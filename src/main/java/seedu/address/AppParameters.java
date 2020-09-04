@@ -10,6 +10,7 @@ import javafx.application.Application;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.FileUtil;
 
+
 /**
  * Represents the parsed command-line parameters given to the application.
  */
