@@ -69,4 +69,6 @@ shadowJar {
     archiveName = 'addressbook.jar'
 }
 
+run {}
+
 defaultTasks 'clean', 'test'
