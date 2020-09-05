@@ -1,4 +1,4 @@
-## Team Project by team T12-4
+## Team Project by team T12-4: PlaNUS
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
