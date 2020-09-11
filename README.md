@@ -1,4 +1,6 @@
-# User Guide (v1.2)
+[![CI Status](https://github.com/nus-cs2103-AY2021S1/tp/workflows/Java%20CI/badge.svg)](https://github.com/nus-cs2103-AY2021S1/tp/actions)
+
+# TAskmaster
 
 TAskmaster is a **desktop app for managing students, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a CS Teaching Assistant who can type fast, TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
 
@@ -69,3 +71,4 @@ exit
 
 ## Frequently Asked Questions (FAQ)
 How to download java? [Here](https://lmgtfy.com/?q=how+to+download+java)
+
