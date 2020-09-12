@@ -4,7 +4,9 @@
 
 ## Header
 
-*Taskmania
+Taskmania
+
+## Project Description
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
