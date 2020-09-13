@@ -1,3 +1,7 @@
+# McGymmy Diet tracker
+
+McGymmy helps sedantary sofware engineers manage their diet to keep fit. It is optimized for CLI users so software engineers can feel more at home.
+
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 ![Ui](docs/images/Ui.png)
