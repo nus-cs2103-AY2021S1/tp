@@ -10,25 +10,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.recipe.*;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Recipe}.
  */
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    //private final String phone;
+    //private final String email;
+    //private final String address;
+    //private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,25 +35,25 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.phone = phone;
+       /* this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
-        }
+        }*/
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Recipe source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        /*phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()));*/
     }
 
     /**
@@ -64,11 +61,11 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Recipe toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        /*for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
-        }
+        }*/
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -78,7 +75,7 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
+       /* if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
@@ -102,8 +99,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(personTags);*/
+        return new Recipe(modelName);//, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
