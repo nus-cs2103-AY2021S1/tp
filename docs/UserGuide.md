@@ -305,12 +305,22 @@ Just type in the `help` command!
 5. Copy over the `resireg.json` file <em>residing in  your previous **ResiReg** home folder</em> that contains data of your previous **ResiReg** session.
 
 ## Command Summary
-| Action   | Format Examples |
-| -------- | --------------- |
-| rooms    | `rooms` |
-| students | `students` |
-| allocate | `allocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108` |
-| deallocate | `deallocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108` |
-| room | `room <matric_number>` e.g. `room A0123456X` |
-| add student | `add student /name <name> /faculty <faculty> /year <year> /email <email>` e.g.`add student /name Jet New /faculty SOC /year 2 /email jn@u.nus.edu` |
-| help | `help [command]` e.g. `help` or `help list` |
+<!-- Action | Format, Examples -->
+<!-- --------|------------------ -->
+<!-- **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` -->
+<!-- **Clear** | `clear` -->
+<!-- **Delete** | `delete INDEX`<br> e.g., `delete 3` -->
+<!-- **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` -->
+<!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
+<!-- **List** | `list` -->
+<!-- **Help** | `help` -->
+
+Action   | Format, Examples
+---------|--------------------
+*rooms*    | `rooms`
+*students* | `students`
+*allocate* | `allocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108`
+*deallocate* | `deallocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108`
+*room* | `room <matric_number>` e.g. `room A0123456X`
+*add student* | `add student /name <name> /faculty <faculty> /year <year> /email <email>` e.g.`add student /name Jet New /faculty SOC /year 2 /email jn@u.nus.edu`
+*help* | `help [command]` e.g. `help` or `help list`
