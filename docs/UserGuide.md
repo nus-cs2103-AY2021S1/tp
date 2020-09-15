@@ -3,176 +3,314 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## Introduction
+__ResiReg__ is a Residential College management application that helps residential admins (from the Office of Housing Services) with their daily tasks. __ResiReg__ allows admin to deal with allocating rooms to students, billing, generating OHS reports, and even managing the COVID-19 situation in residences. 
 
-## Quick start
+__ResiReg__ has the following main features:
+1. View a list of vacant rooms in the College, filtered by COVID-19 zoning if needed.
+2. Allocate or deallocate students to vacant rooms in the College when the semester begins, depending on: 
+    - year of study
+    - faculty
+    - major
+    - room type.
+3. View a list of current room allocations, where each allocation includes room number, student name, room type, and date of check-in. 
+4. Add attributes of students staying in the College, including their room allocated, student name, matric number, faculty, year of study, etc.
 
-1. Ensure you have Java `11` or above installed in your Computer.
+__ResiReg__ is optimised for OHS who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
+- A Command Line Interface (CLI) which allows you to access all __ResiReg__ features by typing.
+- A Graphical User Interface (GUI) that displays the information you need in a grid format.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+> __ResiReg__ is currently a work in progress. Here is a low-fidelity mockup of its skeleton. Stay tuned for our progress!
+![](https://i.imgur.com/uqEO8Lp.png)
 
 
-### Adding a person: `add`
+<!---
+your comment goes here
+and here
+3. Manage students serving Stay-at-Home-Notice (SHN) in the College:
+   * mark rooms that are used for *quarantine*
+   * add records of students serving SHN (duration of notice, symptoms, date of COVID test, emergency contacts)
+   * assign students serving SHN to quarantine rooms
+   * generate daily reports sent to the Ministry of Health (MOH) 
+   
+4. Handle College finances:
+    * add bills for students e.g. for semesterly stay, installation of air-con, late fees
+    * view the outstanding bill due for a student
+    * log transactions when a student pays a bill
+    * generate half-yearly report for internal audit of College accounts 
+-->
 
-Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+## About this Guide
+### Basic Information
+This User Guide explains how you (as an OHS admin) can use __ResiReg__ to manage tasks at Residential Colleges.
 
-### Listing all persons : `list`
+You may refer to [Quick Start](#quick-start) for a short tutorial on how to run __ResiReg__ on your system and use __ResiReg__'s main features. For a full walkthrough of __ResiReg__, please refer to [Features](#features).
 
-Shows a list of all persons in the address book.
+### Command Format
+This section explains the format of commands in this User Guide.
 
-Format: `list`
+- Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
+- Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
+- Items with … after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
 
-### Editing a person : `edit`
+## Quick Start
+1. Ensure that Java 11 or above is installed in your computer
+2. Download the latest `ResiReg.jar` here.
+3. Copy the file to the folder you want to use as the home folder for your **ResiReg**.
+4. Double-click the file to start the app. The following window should appear within a few seconds - this is the Session Screen, where you can create, open, or delete interview sessions:
+5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing Enter will open this user guide.
+6. Some example commands you can try:
+    -  `list rooms`: lists all rooms that are vacant.
+    - `allocate A0123456X 08-108`: allocate a student with the student ID A0123456X to room number 08-108.
+    - `exit`: exits the app.
+8. Refer to “Features” for details of all the commands.
 
-Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### I. Housing Management
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+>**ResiReg** allows you to manage rooms in the Residential College.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+#### 1. Viewing a list of all vacant rooms
 
-### Locating persons by name: `find`
+Before assigning a room to a student at the start of the semester, you can view a list of all vacant rooms using the `list rooms` command.
 
-Finds persons whose names contain any of the given keywords.
+##### Command
+```
+rooms
+```
+##### Execution Example
+```
+> rooms
+```
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+*Action*: Lists all rooms, along with the details such as vacancy in the Residential College.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+*Output*:
+The Output panel on the right should display all rooms, along with their details such as vacancy in the Residential College.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+<!--
+#### Viewing a list of vacant rooms that are within a zone
 
-### Deleting a person : `delete`
+During the COVID-19 pandemic, you may need to consider the student's zones during assignment of a room to adhere to NUS policies, so you can view a list of vacant rooms within a zone using the `rooms <zone>` command.
 
-Deletes the specified person from the address book.
+##### Command
+```
+rooms <zone>
+```
+##### Execution Example
+```
+rooms A
+```
 
-Format: `delete INDEX`
+*Action*: Lists all vacant rooms of Zone A in the Residential College.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+*Output*:
+The Output panel on the right should list the vacant rooms of Zone A in the Residential College.
+-->
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+#### 2. Allocating a room to a student 
 
-### Clearing all entries : `clear`
+Each student can be allocated a room in the Residential College at the start of the semester by using the `allocate` command.
 
-Clears all entries from the address book.
+##### Command
+```
+allocate <matric_number> <room_number>
+```
+##### Execution Example
+```
+> allocate A0123456X 10-108
+```
 
-Format: `clear`
+*Action*: Allocates the student A0123456X the room 10-108.
 
-### Exiting the program : `exit`
+*Output*:
+```
+Successfully allocated the student A0123456X to room 10-108.
+```
 
-Exits the program.
+#### 3. Deallocating a room for a student
 
-Format: `exit`
+A student can be deallocated a room in the Residential College in cases such as early checkout or dropping out of the programme using the `deallocate` command.
 
-### Saving the data
+##### Command
+```
+deallocate <matric_number>
+```
+##### Execution Example
+```
+> deallocate A0123456X
+```
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+*Action*: Deletes the room allocation for the student A0123456X.
 
-### Archiving data files `[coming in v2.0]`
+*Output*:
+```
+Successfully deallocated room for student A0123456X.
+```
 
-_{explain the feature here}_
+#### 4. Viewing a room allocation for a student
 
---------------------------------------------------------------------------------------------------------------------
+The room allocation for a student in the residential college can be viewed to inform said student of his room allocation during check-in
+
+##### Command
+```
+room <matric_number>
+```
+##### Execution Example
+```
+> room A0123456X
+```
+*Action*: views a room allocation for the student A0123456X.
+
+*Output*:
+```
+A0123456X is allocated room <room_number>
+```
+
+
+#### 5. Viewing a list of all allocated rooms
+
+The room allocations for all students in the residential college can be viewed to check which room each student stays in.
+
+##### Command
+```
+rooms
+```
+##### Execution Example
+```
+> rooms
+```
+*Action*: views the room allocations for all students
+
+*Output*:
+```
+Here is the list of all room allocations:
+- Jet New : 11-108
+- John New : 12-107
+- Jason New : 13-105
+```
+<br />
+
+### II. Student Management
+
+>**ResiReg** allows you to manage students in the Residential College.
+
+#### 6. Adding a student
+A new student can be added to **ResiReg**. The following student details are stored: name, matriculation number, email, faculty and year.
+
+##### Command
+```
+add student /name <student_name> /matric <matric_number> /email <email> /faculty <faculty> /year <year>
+```
+
+The pairs of types and data (eg. `/name <student_name>`) may given be in any order. The student will not be added if some pieces of information is missing.
+
+##### Successful Execution Example
+```
+add student /name Jet New /matric A0123456X /email jn@u.nus.edu /faculty computing /year 2
+```
+
+*Action*: Creates a new student named Jet New whose matriculation number is A0123456X, email is jn@u.nus.edu, faculty is Computing and who is in year 2.
+
+*Output*:
+```
+Added a new student Jet New.
+```
+
+##### Unsuccessful Execution Example
+```
+add student /name Jet New /matric A0123456X /email jn@u.nus.edu
+```
+
+*Action*: The student is not added because the faculty and year are missing. **ResiReg** will show an error message describing which fields are missing.
+
+*Output*:
+```
+Couldn't add student! The following fields are missing: faculty, year. 
+```
+
+#### 7. Listing all students
+All the students currently in **ResiReg** can be listed.
+
+##### Command
+```
+students
+```
+
+##### Execution Example
+```
+> students
+```
+
+*Action*: Shows the names of all the students in the panel on the right.
+*Output*: 
+![](https://i.imgur.com/uqEO8Lp.png)
+
+<!---
+#### Editing a room's type
+The types of all rooms in **ResiReg** can be edited, to log upgrades like the installation of air conditioners.
+
+**Command**
+```
+edit room <room_number> <new_room_type>
+```
+
+**Execution Example**
+```
+Edit room 10-108 type air-con
+```
+
+*Action*: edits a room's type 
+*Output*:
+```
+Successfully edited type of room 10-108. It is now of type "air-con".
+```
+
+#### Editing a room's semesterly fees
+The semesterly fees of all rooms in **ResiReg** can be edited, to update room charges when costs increase (e.g. from $1000 to $1500)
+
+**Command**
+```
+edit fees <room_type> <new_fees>
+```
+
+**Example**
+```
+edit fees air-con $1500
+```
+*Action*: edits a room's semesterly fees
+
+Output: 
+```
+The semesterly fees for air-con rooms are now $1500.
+```
+-->
 
 ## FAQ
+### Where do I get help?
+Just type in the `help` command!
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
---------------------------------------------------------------------------------------------------------------------
+### How do I transfer my data to another Computer?
+1. Download the JAR file (`resireg.jar`) on your new computer. 
+2. Navigate to where the JAR file is.  
+3. Double click on `resireg.jar`
+4. Delete the `resireg.json` file in the folder
+5. Copy over the `resireg.json` file <em>residing in  your previous **ResiReg** home folder</em> that contains data of your previous **ResiReg** session.
 
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+## Command Summary
+| Action   | Format Examples |
+| -------- | --------------- |
+| rooms    | `rooms` |
+| students | `students` |
+| allocate | `allocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108` |
+| deallocate | `deallocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108` |
+| room | `room <matric_number>` e.g. `room A0123456X` |
+| add student | `add student /name <name> /faculty <faculty> /year <year> /email <email>` e.g.`add student /name Jet New /faculty SOC /year 2 /email jn@u.nus.edu` |
+| help | `help [command]` e.g. `help` or `help list` |
