@@ -7,12 +7,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Quantity should only contain numbers, and it should be at least 1 digits long";
+    public static final String VALIDATION_REGEX = "\\d{1,}";
     public final String value;
 
     /**
@@ -20,7 +20,7 @@ public class Phone {
      *
      * @param phone A valid phone number.
      */
-    public Phone(String phone) {
+    public Quantity(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
@@ -41,8 +41,8 @@ public class Phone {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                || (other instanceof Quantity // instanceof handles nulls
+                && value.equals(((Quantity) other).value)); // state check
     }
 
     @Override
