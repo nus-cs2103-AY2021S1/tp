@@ -3,11 +3,11 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalItems.CHICKEN;
+import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.exceptions.DuplicateItemException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ItemBuilder;
 
 public class SupplierBookTest {
 
@@ -46,9 +46,9 @@ public class SupplierBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Item editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Item editedAlice = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_MEAT)
                 .build();
-        List<Item> newItems = Arrays.asList(ALICE, editedAlice);
+        List<Item> newItems = Arrays.asList(CHICKEN, editedAlice);
         AddressBookStub newData = new AddressBookStub(newItems);
 
         assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));
@@ -61,21 +61,21 @@ public class SupplierBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasItem(ALICE));
+        assertFalse(addressBook.hasItem(CHICKEN));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addItem(ALICE);
-        assertTrue(addressBook.hasItem(ALICE));
+        addressBook.addItem(CHICKEN);
+        assertTrue(addressBook.hasItem(CHICKEN));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addItem(ALICE);
-        Item editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addItem(CHICKEN);
+        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_MEAT)
                 .build();
-        assertTrue(addressBook.hasItem(editedAlice));
+        assertTrue(addressBook.hasItem(editedChicken));
     }
 
     @Test

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ItemBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,8 +26,8 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
-        Item validItem = new PersonBuilder().build();
+    public void execute_newItem_success() {
+        Item validItem = new ItemBuilder().withName("Chicken").withQuantity("123").withSupplier("NTUC").build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addItem(validItem);

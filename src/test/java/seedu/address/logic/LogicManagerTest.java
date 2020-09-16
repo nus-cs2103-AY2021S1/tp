@@ -3,12 +3,11 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_CHICKEN;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalItems.CHICKEN_MANUAL;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -30,7 +29,7 @@ import seedu.address.model.item.Item;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ItemBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -79,9 +78,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Item expectedItem = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
+                + SUPPLIER_DESC_CHICKEN;
+        Item expectedItem = new ItemBuilder(CHICKEN_MANUAL).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

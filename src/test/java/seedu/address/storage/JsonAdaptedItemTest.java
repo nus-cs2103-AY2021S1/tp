@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalItems.DUCK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,17 +23,17 @@ public class JsonAdaptedItemTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_QUANTITY = BENSON.getQuantity().toString();
-    private static final String VALID_SUPPLIER = BENSON.getSupplier().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = DUCK.getName().toString();
+    private static final String VALID_QUANTITY = DUCK.getQuantity().toString();
+    private static final String VALID_SUPPLIER = DUCK.getSupplier().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = DUCK.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DUCK);
+        assertEquals(DUCK, person.toModelType());
     }
 
     @Test

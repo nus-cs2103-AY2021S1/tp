@@ -11,12 +11,11 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class ItemBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "Chicken";
+    public static final String DEFAULT_QUANTITY = "2";
+    public static final String DEFAULT_SUPPLIER = "NTUC";
 
     private Name name;
     private Quantity quantity;
@@ -26,17 +25,17 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public ItemBuilder() {
         name = new Name(DEFAULT_NAME);
-        quantity = new Quantity(DEFAULT_PHONE);
-        supplier = new Supplier(DEFAULT_ADDRESS);
+        quantity = new Quantity(DEFAULT_QUANTITY);
+        supplier = new Supplier(DEFAULT_SUPPLIER);
         tags = new HashSet<>();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Item itemToCopy) {
+    public ItemBuilder(Item itemToCopy) {
         name = itemToCopy.getName();
         quantity = itemToCopy.getQuantity();
         supplier = itemToCopy.getSupplier();
@@ -46,7 +45,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public ItemBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -54,7 +53,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public ItemBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -62,7 +61,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public ItemBuilder withSupplier(String address) {
         this.supplier = new Supplier(address);
         return this;
     }
@@ -70,7 +69,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public ItemBuilder withQuantity(String phone) {
         this.quantity = new Quantity(phone);
         return this;
     }

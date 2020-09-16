@@ -18,49 +18,49 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditItemDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NAME_CHICKEN = "Chicken";
+    public static final String VALID_NAME_DUCK = "Duck";
+    public static final String VALID_QUANTITY_CHICKEN = "11111111";
+    public static final String VALID_QUANTITY_DUCK = "22222222";
+    public static final String VALID_SUPPLIER_CHICKEN = "NTUC";
+    public static final String VALID_SUPPLIER_DUCK = "Sheng Siong";
+    public static final String VALID_TAG_MEAT = "meat";
+    public static final String VALID_TAG_POULTRY = "poultry";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_QUANTITY + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_QUANTITY + VALID_PHONE_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_SUPPLIER + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_SUPPLIER + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NAME_DESC_CHICKEN = " " + PREFIX_NAME + VALID_NAME_CHICKEN;
+    public static final String NAME_DESC_DUCK = " " + PREFIX_NAME + VALID_NAME_DUCK;
+    public static final String QUANTITY_DESC_CHICKEN = " " + PREFIX_QUANTITY + VALID_QUANTITY_CHICKEN;
+    public static final String QUANTITY_DESC_DUCK = " " + PREFIX_QUANTITY + VALID_QUANTITY_DUCK;
+    public static final String SUPPLIER_DESC_CHICKEN = " " + PREFIX_SUPPLIER + VALID_SUPPLIER_CHICKEN;
+    public static final String SUPPLIER_DESC_DUCK = " " + PREFIX_SUPPLIER + VALID_SUPPLIER_DUCK;
+    public static final String TAG_DESC_POULTRY = " " + PREFIX_TAG + VALID_TAG_POULTRY;
+    public static final String TAG_DESC_MEAT = " " + PREFIX_TAG + VALID_TAG_MEAT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_SUPPLIER_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for addresses
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "liquids*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditItemDescriptor DESC_AMY;
-    public static final EditCommand.EditItemDescriptor DESC_BOB;
+    public static final EditCommand.EditItemDescriptor DESC_CHICKEN;
+    public static final EditCommand.EditItemDescriptor DESC_DUCK;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CHICKEN = new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN)
+                .withQuantity(VALID_QUANTITY_CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN)
+                .withTags(VALID_TAG_POULTRY).build();
+        DESC_DUCK = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK)
+                .withQuantity(VALID_QUANTITY_DUCK).withSupplier(VALID_SUPPLIER_DUCK)
+                .withTags(VALID_TAG_MEAT, VALID_TAG_POULTRY).build();
     }
 
     /**
