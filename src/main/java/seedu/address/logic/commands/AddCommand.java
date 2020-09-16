@@ -48,6 +48,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
+
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

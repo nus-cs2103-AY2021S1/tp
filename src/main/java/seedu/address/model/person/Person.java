@@ -17,10 +17,10 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Quantity quantity;
+    private final Supplier supplier;
 
     // Data fields
-    private final Supplier supplier;
+    private final Quantity quantity;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -65,7 +65,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && otherPerson.getQuantity().equals(getQuantity());
+                && otherPerson.getSupplier().equals(getSupplier());
     }
 
     /**
