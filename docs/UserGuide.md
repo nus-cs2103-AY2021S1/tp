@@ -28,14 +28,14 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
    * **`list`** : Lists all FlashCards.
 
    * **`add`**`add n/Plants give out ___ when they photosynthesise? n/Oxygen` :  Adds a question `Plants give out ___ when they photosynthesise?` with answer `Oxygen`.
+   
+   * **`test`**`1 a/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer. 
 
-   * **`delete`**`3` : Deletes the 3rd FlashCards shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
    * **`clear`** : Deletes all FlashCards.
 
    * **`exit`** : Exits the app.
-   
-   * **`test`**`1 a/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer. 
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -63,8 +63,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
+### Adding a flashcard: `add`
 
 Adds a new flashcard to the application.
 
@@ -73,12 +72,25 @@ Format: `add n/QUESTION n/ANSWER`
 Examples:
 * `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
 
+### Testing a flashcard : `test`
+
+Tests a specified flashcard from the list.
+
+Format: `test INDEX a/ANSWER`
+
+* Tests the flashcard at the specified `INDEX`
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer**  1, 2, 3, …​
+* The `ANSWER` is case-sensitive.
+
+Examples:
+* `list` followed by `test 1 a/Example answer` tests the 1st flashcard in the list with `Example answer` as the answer.
+
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
-
 
 ### Deleting a flashcard : `delete`
 
@@ -105,21 +117,6 @@ Exits the program.
 
 Format: `exit`
 
-### Testing a flashcard : `test`
-
-Tests a specified flashcard from the list.
-
-Format: `test INDEX a/ANSWER`
-
-* Tests the flashcard at the specified `INDEX`
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
-* The `ANSWER` is case-sensitive.
-
-Examples:
-* `list` followed by `test 1 a/Example answer` tests the 1st flashcard in the list with `Example answer` as the answer.
-
-
 ### Saving the data
 
 QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -138,9 +135,9 @@ QuickCache data are saved in the hard disk automatically after any command that 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/QUESTION n/ANSWER` <br> e.g., `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
+**Test** | `test INDEX a/ANSWER`<br> e.g., `test 2 a/lorem ipsum`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
-**Test** | `test INDEX a/ANSWER`<br> e.g., `test 2 a/lorem ipsum`
