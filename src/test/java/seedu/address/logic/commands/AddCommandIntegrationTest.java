@@ -27,7 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newItem_success() {
-        Item validItem = new ItemBuilder().withName("Chicken").withQuantity("123").withSupplier("NTUC").build();
+        Item validItem = new ItemBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addItem(validItem);
