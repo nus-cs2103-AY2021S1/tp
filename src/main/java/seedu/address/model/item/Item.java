@@ -99,9 +99,9 @@ public class Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append(" Quantity: ")
                 .append(getQuantity())
-                .append(" Address: ")
+                .append(" Supplier: ")
                 .append(getSupplier())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

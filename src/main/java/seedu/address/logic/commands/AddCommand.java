@@ -27,8 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "Chicken "
             + PREFIX_QUANTITY + "12 "
             + PREFIX_SUPPLIER + "NTUC "
-            + PREFIX_TAG + "meat "
-            + PREFIX_TAG + "poultry";
+            + PREFIX_TAG + "meat ";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book";

@@ -75,7 +75,7 @@ class JsonAdaptedPerson {
         if (quantity == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
         }
-        if (!Quantity.isValidPhone(quantity)) {
+        if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);
@@ -83,7 +83,7 @@ class JsonAdaptedPerson {
         if (supplier == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Supplier.class.getSimpleName()));
         }
-        if (!Supplier.isValidAddress(supplier)) {
+        if (!Supplier.isValidSupplier(supplier)) {
             throw new IllegalValueException(Supplier.MESSAGE_CONSTRAINTS);
         }
         final Supplier modelSupplier = new Supplier(supplier);

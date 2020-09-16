@@ -58,7 +58,7 @@ public class ParserUtil {
     public static Quantity parseQuantity(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Quantity.isValidPhone(trimmedPhone)) {
+        if (!Quantity.isValidQuantity(trimmedPhone)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
         return new Quantity(trimmedPhone);
@@ -73,7 +73,7 @@ public class ParserUtil {
     public static Supplier parseSupplier(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Supplier.isValidAddress(trimmedAddress)) {
+        if (!Supplier.isValidSupplier(trimmedAddress)) {
             throw new ParseException(Supplier.MESSAGE_CONSTRAINTS);
         }
         return new Supplier(trimmedAddress);

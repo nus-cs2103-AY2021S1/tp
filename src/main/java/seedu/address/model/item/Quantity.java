@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
  */
 public class Quantity {
 
@@ -18,19 +18,24 @@ public class Quantity {
     /**
      * Constructs a {@code Phone}.
      *
-     * @param phone A valid phone number.
+     * @param quantity A valid phone number.
      */
-    public Quantity(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Quantity(String quantity) {
+        requireNonNull(quantity);
+        checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        value = quantity;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public Quantity add(Quantity q) {
+        int value = Integer.parseInt(this.value) + Integer.parseInt(q.value);
+        return new Quantity(Integer.toString(value));
     }
 
     @Override
