@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Quantity;
+import seedu.address.model.item.Supplier;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Quantity;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_QUANTITY = "+651234";
     private static final String INVALID_SUPPLIER = " ";

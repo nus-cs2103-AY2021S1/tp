@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Quantity;
+import seedu.address.model.item.*;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Item}.
  */
 class JsonAdaptedPerson {
 
@@ -44,7 +44,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Item source) {
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
         supplier = source.getSupplier().value;
@@ -58,7 +58,7 @@ class JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Item toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -89,7 +89,7 @@ class JsonAdaptedPerson {
         final Supplier modelSupplier = new Supplier(supplier);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelQuantity, modelSupplier, modelTags);
+        return new Item(modelName, modelQuantity, modelSupplier, modelTags);
     }
 
 }

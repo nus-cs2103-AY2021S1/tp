@@ -4,11 +4,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Quantity;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.Supplier;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -16,25 +17,25 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditItemDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditCommand.EditItemDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditCommand.EditItemDescriptor descriptor) {
+        this.descriptor = new EditItemDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getQuantity());
-        descriptor.setAddress(person.getSupplier());
-        descriptor.setTags(person.getTags());
+    public EditPersonDescriptorBuilder(Item item) {
+        descriptor = new EditCommand.EditItemDescriptor();
+        descriptor.setName(item.getName());
+        descriptor.setPhone(item.getQuantity());
+        descriptor.setAddress(item.getSupplier());
+        descriptor.setTags(item.getTags());
     }
 
     /**
@@ -71,7 +72,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditCommand.EditItemDescriptor build() {
         return descriptor;
     }
 }

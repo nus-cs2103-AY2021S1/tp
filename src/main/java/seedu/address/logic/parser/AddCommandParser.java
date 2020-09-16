@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Quantity;
+import seedu.address.model.item.*;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,9 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Supplier supplier = ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, quantity, supplier, tagList);
+        Item item = new Item(name, quantity, supplier, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(item);
     }
 
     /**

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.item;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Item {
 
     // Identity fields
     private final Name name;
@@ -26,7 +26,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags) {
+    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags) {
         requireAllNonNull(name, quantity, supplier, tags);
         this.name = name;
         this.quantity = quantity;
@@ -58,14 +58,14 @@ public class Person {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameItem(Item otherItem) {
+        if (otherItem == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getSupplier().equals(getSupplier());
+        return otherItem != null
+                && otherItem.getName().equals(getName())
+                && otherItem.getSupplier().equals(getSupplier());
     }
 
     /**
@@ -78,15 +78,15 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Item)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getQuantity().equals(getQuantity())
-                && otherPerson.getSupplier().equals(getSupplier())
-                && otherPerson.getTags().equals(getTags());
+        Item otherItem = (Item) other;
+        return otherItem.getName().equals(getName())
+                && otherItem.getQuantity().equals(getQuantity())
+                && otherItem.getSupplier().equals(getSupplier())
+                && otherItem.getTags().equals(getTags());
     }
 
     @Override
