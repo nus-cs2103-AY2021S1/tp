@@ -33,8 +33,13 @@ public class Quantity {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public Quantity add(Quantity q) {
-        int value = Integer.parseInt(this.value) + Integer.parseInt(q.value);
+    /**
+     * adds a Quantity's value to another quantity's value
+     * @param quantity another quantity
+     * @return Quantity of both quantity's value added up
+     */
+    public Quantity add(Quantity quantity) {
+        int value = Integer.parseInt(this.value) + Integer.parseInt(quantity.value);
         return new Quantity(Integer.toString(value));
     }
 

@@ -1,24 +1,24 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_CHICKEN;
-import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUPPLIER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUPPLIER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_POULTRY;
+import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_POULTRY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -31,9 +31,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
-import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
@@ -172,7 +172,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + INVALID_QUANTITY_DESC + QUANTITY_DESC_DUCK;
-        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_DUCK).build();
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+                .withQuantity(VALID_QUANTITY_DUCK).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

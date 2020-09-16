@@ -10,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.item.*;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,7 +75,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
@@ -81,7 +84,8 @@ class JsonAdaptedPerson {
         final Quantity modelQuantity = new Quantity(quantity);
 
         if (supplier == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Supplier.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Supplier.class.getSimpleName()));
         }
         if (!Supplier.isValidSupplier(supplier)) {
             throw new IllegalValueException(Supplier.MESSAGE_CONSTRAINTS);

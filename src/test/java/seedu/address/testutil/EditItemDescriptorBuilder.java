@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**

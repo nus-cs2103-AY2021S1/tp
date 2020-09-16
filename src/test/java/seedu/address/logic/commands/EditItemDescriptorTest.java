@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,8 @@ public class EditItemDescriptorTest {
         assertFalse(DESC_CHICKEN.equals(DESC_DUCK));
 
         // different name -> returns false
-        EditItemDescriptor editedChicken = new EditItemDescriptorBuilder(DESC_CHICKEN).withName(VALID_NAME_DUCK).build();
+        EditItemDescriptor editedChicken = new EditItemDescriptorBuilder(DESC_CHICKEN)
+                .withName(VALID_NAME_DUCK).build();
         assertFalse(DESC_CHICKEN.equals(editedChicken));
 
         // different quantity -> returns false

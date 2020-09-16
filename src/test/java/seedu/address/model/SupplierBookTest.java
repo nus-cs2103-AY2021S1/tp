@@ -3,24 +3,18 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
 import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.exceptions.DuplicateItemException;
-import seedu.address.testutil.ItemBuilder;
 
 public class SupplierBookTest {
 
