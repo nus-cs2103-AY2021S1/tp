@@ -34,6 +34,8 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
    * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
+   
+   * **`test`**`1 a/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer. 
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -114,6 +116,21 @@ Exits the program.
 
 Format: `exit`
 
+### Testing a flashcard : `test`
+
+Tests a specified flashcard from the list.
+
+Format: `test INDEX a/ANSWER`
+
+* Tests the flashcard at the specified `INDEX`
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer**  1, 2, 3, …​
+* The `ANSWER` is case-sensitive.
+
+Examples:
+* `list` followed by `test 1 a/Example answer` tests the 1st flashcard in the list with `Example answer` as the answer.
+
+
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -137,3 +154,4 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
+**Test** | `test INDEX a/ANSWER`<br> e.g., `test 2 a/lorem ipsum`
