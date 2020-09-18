@@ -1,4 +1,4 @@
-package seedu.address.model.recipe;
+package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class RecipeTest {
+public class PersonTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Recipe recipe = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> recipe.getTags().remove(0));
+        Person person = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class RecipeTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // different phone and email -> returns false
-        Recipe editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name -> returns false
@@ -57,7 +57,7 @@ public class RecipeTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Recipe aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -73,7 +73,7 @@ public class RecipeTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Recipe editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

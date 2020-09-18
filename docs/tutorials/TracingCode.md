@@ -152,14 +152,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person recipeToEdit = lastShownList.get(index.getZeroBased());
-       Person editedRecipe = createEditedPerson(recipeToEdit, editPersonDescriptor);
-       if (!recipeToEdit.isSamePerson(editedRecipe) && model.hasPerson(editedRecipe)) {
+       Person personToEdit = lastShownList.get(index.getZeroBased());
+       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setPerson(recipeToEdit, editedRecipe);
+       model.setPerson(personToEdit, editedPerson);
        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedRecipe));
+       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
    }
    ```
 
@@ -180,7 +180,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     * {@code JsonSerializableAddressBook}.
     */
    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-       recipes.addAll(
+       persons.addAll(
            source.getPersonList()
                  .stream()
                  .map(JsonAdaptedPerson::new)
