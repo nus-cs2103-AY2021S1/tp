@@ -292,10 +292,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+2.  Should be able to hold up to 1000 recipes and ingredients without a noticeable sluggishness in performance for typical usage.
+3.  Reserve an amount of 5MB memory for the baseline recipe data.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.  
+5.  Searching-related features might be slow if there are more than 2000 recipes or ingredients in the database.
+6.  The application does not need internet connection.
+7.  The application uses local database.
+8.  The local database will be immediately updated after each updating command.
 
 ### Glossary
 
