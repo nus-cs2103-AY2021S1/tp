@@ -17,7 +17,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEAT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_POULTRY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
