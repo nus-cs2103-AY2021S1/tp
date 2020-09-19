@@ -65,18 +65,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String supplier} into an {@code Supplier}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code Supplier} is invalid.
      */
-    public static Supplier parseSupplier(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Supplier.isValidSupplier(trimmedAddress)) {
+    public static Supplier parseSupplier(String supplier) throws ParseException {
+        requireNonNull(supplier);
+        String trimmedSupplier = supplier.trim();
+        if (!Supplier.isValidSupplier(trimmedSupplier)) {
             throw new ParseException(Supplier.MESSAGE_CONSTRAINTS);
         }
-        return new Supplier(trimmedAddress);
+        return new Supplier(trimmedSupplier);
     }
 
     /**
