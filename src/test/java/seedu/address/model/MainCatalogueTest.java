@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import seedu.address.model.project.Project;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
@@ -19,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.testutil.ProjectBuilder;
 

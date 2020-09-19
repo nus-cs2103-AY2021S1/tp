@@ -26,7 +26,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import seedu.address.model.project.Project;
 import static seedu.address.testutil.TypicalProjects.AMY;
 import static seedu.address.testutil.TypicalProjects.BOB;
 
@@ -37,6 +36,7 @@ import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Phone;
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ProjectBuilder;
 

@@ -31,7 +31,8 @@ public class JsonMainCatalogueStorageTest {
     }
 
     private java.util.Optional<ReadOnlyMainCatalogue> readMainCatalogue(String filePath) throws Exception {
-        return new JsonMainCatalogueStorage(Paths.get(filePath)).readMainCatalogue(addToTestDataPathIfNotNull(filePath));
+        return new JsonMainCatalogueStorage(Paths.get(filePath))
+                .readMainCatalogue(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -57,7 +58,8 @@ public class JsonMainCatalogueStorageTest {
 
     @Test
     public void readMainCatalogue_invalidAndValidProjectMainCatalogue_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMainCatalogue("invalidAndValidProjectMainCatalogue.json"));
+        assertThrows(DataConversionException.class, () ->
+                readMainCatalogue("invalidAndValidProjectMainCatalogue.json"));
     }
 
     @Test
