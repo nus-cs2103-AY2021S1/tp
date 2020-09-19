@@ -271,7 +271,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User chooses to add ingredients into the fridge.
   2. Wishful Shrinking adds the specified ingredients into the fridge.
 
-    Use case ends.
+  Use case ends.
 	
 **Use case: Add a recipe**
 
@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User chooses to add a recipe to the list of recipes.
   2. Wishful Shrinking adds the recipe to the list of recipes.
 
-    Use case ends.
+  Use case ends.
 	  
 **Use case: View ingredients**
 
@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User requests to view all ingredients that are in the fridge.
   2. Wishful Shrinking lists all the ingredients that are in the fridge.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -304,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User requests to view all recipes that are in the recipe collection.
   2. Wishful Shrinking lists all the recipes that are in the recipe collection, with their respective ingredients.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   3. User requests to delete a specific ingredient in the list.
   4. Wishful Shrinking deletes the ingredient.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -344,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   3. User requests to delete a specific recipe in the list.
   4. Wishful Shrinking deletes the recipe.
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -365,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User wants to search for ingredients by their name in the fridge.
   2. Wishful Shrinking lists the ingredients in the fridge that has the specified name, if present.
 
-    Use case ends.
+  Use case ends.
 	
 **Use case: Search for recipe**
 
@@ -374,7 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User wants to search for recipes by their title in the recipe collection.
   2. Wishful Shrinking lists the recipes that has the specified title, if present.
 
-    Use case ends.
+  Use case ends.
 	
 **Use case: Track calories**
 
@@ -383,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User wants to keep track of the food that they have eaten.
   2. Wishful Shrinking adds the recipes that the user has input to the calorie tracker.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: View help**
 
@@ -392,7 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User wants to view all valid commands they can use.
   2. Wishful Shrinking shows all valid commands.
 
-    Use case ends.
+  Use case ends.
 
 *{More to be added}*
 
