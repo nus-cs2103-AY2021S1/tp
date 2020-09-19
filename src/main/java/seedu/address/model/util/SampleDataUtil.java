@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
@@ -14,7 +14,7 @@ import seedu.address.model.project.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code MainCatalogue} with sample data.
  */
 public class SampleDataUtil {
     public static Project[] getSamplePersons() {
@@ -41,7 +41,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        MainCatalogue sampleAb = new MainCatalogue();
         for (Project sampleProject : getSamplePersons()) {
             sampleAb.addPerson(sampleProject);
         }

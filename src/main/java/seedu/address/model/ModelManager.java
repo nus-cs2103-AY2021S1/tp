@@ -19,12 +19,12 @@ import seedu.address.model.project.Project;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final MainCatalogue mainCatalogue;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given mainCatalogue and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -32,13 +32,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.mainCatalogue = new MainCatalogue(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredProjects = new FilteredList<>(this.addressBook.getPersonList());
+        filteredProjects = new FilteredList<>(this.mainCatalogue.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new MainCatalogue(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,32 +76,32 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== MainCatalogue ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.mainCatalogue.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return mainCatalogue;
     }
 
     @Override
     public boolean hasPerson(Project project) {
         requireNonNull(project);
-        return addressBook.hasPerson(project);
+        return mainCatalogue.hasPerson(project);
     }
 
     @Override
     public void deletePerson(Project target) {
-        addressBook.removePerson(target);
+        mainCatalogue.removePerson(target);
     }
 
     @Override
     public void addPerson(Project project) {
-        addressBook.addPerson(project);
+        mainCatalogue.addPerson(project);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setPerson(Project target, Project editedProject) {
         requireAllNonNull(target, editedProject);
 
-        addressBook.setPerson(target, editedProject);
+        mainCatalogue.setPerson(target, editedProject);
     }
 
     //=========== Filtered Project List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return mainCatalogue.equals(other.mainCatalogue)
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects);
     }
