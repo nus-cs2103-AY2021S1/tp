@@ -46,10 +46,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editItemDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
-            editItemDescriptor.setPhone(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
+            editItemDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_SUPPLIER).isPresent()) {
-            editItemDescriptor.setAddress(ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).get()));
+            editItemDescriptor.setSupplier(ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
 

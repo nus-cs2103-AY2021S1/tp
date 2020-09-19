@@ -91,7 +91,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());
         Quantity updatedQuantity = editItemDescriptor.getPhone().orElse(itemToEdit.getQuantity());
-        Supplier updatedSupplier = editItemDescriptor.getAddress().orElse(itemToEdit.getSupplier());
+        Supplier updatedSupplier = editItemDescriptor.getSupplier().orElse(itemToEdit.getSupplier());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
 
         return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags);
@@ -133,8 +133,8 @@ public class EditCommand extends Command {
          */
         public EditItemDescriptor(EditItemDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.quantity);
-            setAddress(toCopy.supplier);
+            setQuantity(toCopy.quantity);
+            setSupplier(toCopy.supplier);
             setTags(toCopy.tags);
         }
 
@@ -153,7 +153,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Quantity quantity) {
+        public void setQuantity(Quantity quantity) {
             this.quantity = quantity;
         }
 
@@ -161,11 +161,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(quantity);
         }
 
-        public void setAddress(Supplier supplier) {
+        public void setSupplier(Supplier supplier) {
             this.supplier = supplier;
         }
 
-        public Optional<Supplier> getAddress() {
+        public Optional<Supplier> getSupplier() {
             return Optional.ofNullable(supplier);
         }
 
@@ -203,7 +203,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getAddress().equals(e.getAddress())
+                    && getSupplier().equals(e.getSupplier())
                     && getTags().equals(e.getTags());
         }
     }

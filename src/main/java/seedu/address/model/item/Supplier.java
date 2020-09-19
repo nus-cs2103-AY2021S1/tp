@@ -27,7 +27,7 @@ public class Supplier {
     public Supplier(String supplier) {
         requireNonNull(supplier);
         checkArgument(isValidSupplier(supplier), MESSAGE_CONSTRAINTS);
-        value = supplier;
+        value = supplier.toUpperCase();
     }
 
     /**
