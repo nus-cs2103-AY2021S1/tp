@@ -380,8 +380,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-  1. User wants to keep track of the food they have eaten.
-  2. Wishful Shrinking saves the recipes that the user has input in the calorie tracker.
+  1. User wants to keep track of the food that they have eaten.
+  2. Wishful Shrinking adds the recipes that the user has input to the calorie tracker.
 
     Use case ends.
 
@@ -390,7 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
   1. User wants to view all valid commands they can use.
-  2. Wishful Shrinking shows all valid commands to the user.
+  2. Wishful Shrinking shows all valid commands.
 
     Use case ends.
 
