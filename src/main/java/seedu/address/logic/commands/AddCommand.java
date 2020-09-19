@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 
 /**
- * Adds a person to the address book.
+ * Adds a item to the address book.
  */
 public class AddCommand extends Command {
 
@@ -30,8 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "meat ";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book";
-    public static final String MESSAGE_ADDED_ON_EXISTING_ITEM = "Item added to stock. Stock is now: %1$s";
+    public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: %1$s";
 
     private final Item toAdd;
 
@@ -49,7 +48,7 @@ public class AddCommand extends Command {
 
         if (model.hasItem(toAdd)) {
             Item toReplace = model.addOnExistingItem(toAdd);
-            return new CommandResult(String.format(MESSAGE_ADDED_ON_EXISTING_ITEM, toReplace));
+            return new CommandResult(String.format(MESSAGE_ITEM_ADDED_TO_INVENTORY, toReplace));
         } else {
             model.addItem(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
