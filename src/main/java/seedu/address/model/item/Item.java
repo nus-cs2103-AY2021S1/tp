@@ -11,7 +11,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Item in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Item {
@@ -29,20 +29,21 @@ public class Item {
     // Identity fields
     private final int id;
     private final String name;
-    private final int quantity;
 
     // Data fields
+    private final int quantity;
     private final String description;
     private final List<Integer> locationId;
     private final List<Integer> recipeId;
     private final Set<Tag> tags = new HashSet<>();
+    private final boolean isDeleted;
 
     /**
      * Every field must be present and not null.
      */
     public Item(int id, String name, int quantity, String description, List<Integer> locationId,
-                List<Integer> recipeId, Set<Tag> tags) {
-        requireAllNonNull(id, name, quantity, description, locationId, recipeId, tags);
+                List<Integer> recipeId, Set<Tag> tags, boolean isDeleted) {
+        requireAllNonNull(id, name, quantity, description, locationId, recipeId, tags, isDeleted);
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -50,6 +51,7 @@ public class Item {
         this.locationId = locationId;
         this.recipeId = recipeId;
         this.tags.addAll(tags);
+        this.isDeleted = isDeleted;
     }
 
     public int getId() {
@@ -82,6 +84,10 @@ public class Item {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
     /**
@@ -122,13 +128,14 @@ public class Item {
                 && otherItem.getDescription().equals(getDescription())
                 && otherItem.getLocationId().equals(getLocationId())
                 && otherItem.getRecipeId().equals(getRecipeId())
-                && otherItem.getTags().equals(getTags());
+                && otherItem.getTags().equals(getTags())
+                && otherItem.isDeleted() == isDeleted();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, quantity, description, locationId, recipeId, tags);
+        return Objects.hash(id, name, quantity, description, locationId, recipeId, tags, isDeleted);
     }
 
     @Override
@@ -148,6 +155,8 @@ public class Item {
         getRecipeId().forEach(builder::append);
         builder.append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Is deleted: ")
+                .append(isDeleted());
         return builder.toString();
     }
 
