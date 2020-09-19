@@ -15,14 +15,14 @@ public class Supplier {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Supplier}.
      *
-     * @param supplier A valid address.
+     * @param supplier A valid supplier.
      */
     public Supplier(String supplier) {
         requireNonNull(supplier);
@@ -31,7 +31,7 @@ public class Supplier {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid supplier.
      */
     public static boolean isValidSupplier(String test) {
         return test.matches(VALIDATION_REGEX);
