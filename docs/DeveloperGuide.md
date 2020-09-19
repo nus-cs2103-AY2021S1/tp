@@ -294,7 +294,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
     
-    Use case resumes at step 2
+    Use case resumes at step 2.
 
 * 3a. User wants to know all the available commands present in QuickCache.
 
@@ -302,7 +302,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     * 3a2. QuickCache displays all available commands.
     
-    Use case resumes at step 3
+    Use case resumes at step 3.
+    
+* 3b. User quits QuickCache while trying out quiz feature.
+
+    * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
+    
+    Use case resumes at step 3.
+
+* *a. User dislikes the GUI.
+
+    * *a1. User quits and deletes QuickCache.
+    
+    Use case ends.
 
 **Use case: Delete a flashcard**
 
