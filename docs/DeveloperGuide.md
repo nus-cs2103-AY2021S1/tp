@@ -337,7 +337,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 3.
 
-**Use case: Delete a flashcard**
+**Use case: UC3 - Delete a flashcard**
+
+**Preconditions: User has QuickCache open.**
 
 **MSS**
 
@@ -360,12 +362,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Create a flashcard**
+**Use case: UC4 - Create a flashcard**
+
+**Preconditions: User has QuickCache open.**
 
 **MSS**
 
 1.  User requests to add a flashcard
-2.  QuickCache shows the created flashcard and add it to the list
+2.  QuickCache adds it to the list
+3.  User requests to list flashcards
+4.  QuickCache shows the list of flashcards including the recently added flashcard
 
     Use case ends.
 
