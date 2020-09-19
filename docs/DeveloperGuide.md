@@ -243,7 +243,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * wants to monitor his/her progress
 
 **Value proposition**: manage flashcards faster than a typical mouse/GUI driven app with 
-a test features and track the progress later.
+a test feature and track the progress later.
 
 
 ### User stories
@@ -278,7 +278,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: Delete a flashcards**
+**Use case: Delete a flashcard**
 
 **MSS**
 
