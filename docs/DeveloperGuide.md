@@ -275,17 +275,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `QuickCache` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Explore QuickCache**
+
+**MSS**
+
+1.  User double clicks on QuickCache.jar
+2.  QuickCache opens and shows a list of flashcards
+3.  User plays around with QuickCache features to familiarize with them
+4.  User purges all "get started" data
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Error message indicating that QuickCache.jar cannot be opened pops up.
+    
+    * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
+    
+    Use case resumes at step 2
+
+* 3a. User wants to know all the available commands present in QuickCache.
+
+    * 3a1. User requests for all the instructions available in QuickCache.
+    
+    * 3a2. QuickCache displays all available commands.
+    
+    Use case resumes at step 3
 
 **Use case: Delete a flashcard**
 
 **MSS**
 
 1.  User requests to list flashcards
-2.  AddressBook shows a list of flashcards
+2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
-4.  AddressBook deletes the flashcard
+4.  QuickCache deletes the flashcard
 
     Use case ends.
 
@@ -297,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. QuickCache shows an error message.
 
       Use case resumes at step 2.
 
@@ -306,7 +332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a flashcard
-2.  AddressBook shows the created flashcard and add it to the list
+2.  QuickCache shows the created flashcard and add it to the list
 
     Use case ends.
 
@@ -314,13 +340,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The question is empty.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. QuickCache shows an error message.
     
         Use case ends.
      
 * 1b. The answer is empty.
 
-    * 1b1. AddressBook shows an error message.
+    * 1b1. QuickCache shows an error message.
     
         Use case ends.
 
