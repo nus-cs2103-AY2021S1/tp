@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Francis Hodianto
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fh-30.png" width="200px">
 
 [[github](https://github.com/FH-30)] 
 [[portfolio](team/francis.md)]
