@@ -15,14 +15,14 @@ import seedu.address.model.project.exceptions.PersonNotFoundException;
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A project is considered unique by comparing using {@code Project#isSamePerson(Project)}. As such, adding and updating of
  * persons uses Project#isSamePerson(Project) for equality so as to ensure that the project being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a project uses Project#equals(Object) so
+ * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object) so
  * as to ensure that the project with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Project#isSamePerson(Project)
  */
-public class UniquePersonList implements Iterable<Project> {
+public class UniqueProjectList implements Iterable<Project> {
 
     private final ObservableList<Project> internalList = FXCollections.observableArrayList();
     private final ObservableList<Project> internalUnmodifiableList =
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Project> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueProjectList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Project> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueProjectList // instanceof handles nulls
+                        && internalList.equals(((UniqueProjectList) other).internalList));
     }
 
     @Override
