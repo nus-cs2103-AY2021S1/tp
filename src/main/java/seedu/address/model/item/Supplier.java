@@ -22,12 +22,12 @@ public class Supplier {
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid address.
+     * @param supplier A valid address.
      */
-    public Supplier(String address) {
-        requireNonNull(address);
-        checkArgument(isValidSupplier(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Supplier(String supplier) {
+        requireNonNull(supplier);
+        checkArgument(isValidSupplier(supplier), MESSAGE_CONSTRAINTS);
+        value = supplier.toUpperCase();
     }
 
     /**

@@ -70,6 +70,13 @@ public interface Model {
     void addItem(Item item);
 
     /**
+     * Combines quantity and tags of existing item with item provided
+     * @param item item provided to combine with existing item
+     * @return combined item
+     */
+    Item addOnExistingItem(Item item);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.

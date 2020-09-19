@@ -3,13 +3,16 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -61,11 +64,43 @@ public class UniqueItemList implements Iterable<Item> {
             throw new ItemNotFoundException();
         }
 
-        if (!target.isSameItem(editedItem) && contains(editedItem)) {
-            throw new DuplicateItemException();
+        internalList.set(index, editedItem);
+    }
+
+    /**
+     * Combines quantity and tags of existing item with item provided
+     * @param item item provided to combine with existing item
+     * @return combined item
+     */
+    public Item addOnExistingItem(Item item) {
+        requireAllNonNull(item);
+
+        int index = -1;
+        Item existingItem = null;
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).isSameItem(item)) {
+                index = i;
+                existingItem = internalList.get(i);
+                break;
+            }
         }
 
-        internalList.set(index, editedItem);
+        if (index == -1 || existingItem == null) {
+            throw new ItemNotFoundException();
+        }
+
+        Name name = item.getName();
+        Quantity quantity = item.getQuantity().add(existingItem.getQuantity());
+        Supplier supplier = item.getSupplier();
+        Set<Tag> providedItemTags = item.getTags();
+        Set<Tag> existingItemTags = existingItem.getTags();
+        Set<Tag> combinedTags = new HashSet<>();
+        combinedTags.addAll(providedItemTags);
+        combinedTags.addAll(existingItemTags);
+
+        Item toReplace = new Item(name, quantity, supplier, combinedTags);
+        internalList.set(index, toReplace);
+        return toReplace;
     }
 
     /**

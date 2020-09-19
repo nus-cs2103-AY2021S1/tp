@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -41,6 +40,7 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validItem), modelStub.personsAdded);
     }
 
+    /*
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Item validItem = new ItemBuilder().build();
@@ -49,6 +49,7 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ITEM, () -> addCommand.execute(modelStub));
     }
+     */
 
     @Test
     public void equals() {
@@ -110,6 +111,11 @@ public class AddCommandTest {
 
         @Override
         public void addItem(Item item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Item addOnExistingItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 

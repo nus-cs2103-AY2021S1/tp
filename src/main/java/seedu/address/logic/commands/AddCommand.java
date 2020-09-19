@@ -31,6 +31,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book";
+    public static final String MESSAGE_ADDED_ON_EXISTING_ITEM = "Item added to stock. Stock is now: %1$s";
 
     private final Item toAdd;
 
@@ -47,11 +48,12 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasItem(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
+            Item toReplace = model.addOnExistingItem(toAdd);
+            return new CommandResult(String.format(MESSAGE_ADDED_ON_EXISTING_ITEM, toReplace));
+        } else {
+            model.addItem(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
-
-        model.addItem(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

@@ -106,6 +106,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Item addOnExistingItem(Item item) {
+        Item combinedItem = addressBook.addOnExistingItem(item);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        return combinedItem;
+    }
+
+    @Override
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 

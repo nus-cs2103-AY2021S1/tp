@@ -33,8 +33,8 @@ public class EditItemDescriptorBuilder {
     public EditItemDescriptorBuilder(Item item) {
         descriptor = new EditCommand.EditItemDescriptor();
         descriptor.setName(item.getName());
-        descriptor.setPhone(item.getQuantity());
-        descriptor.setAddress(item.getSupplier());
+        descriptor.setQuantity(item.getQuantity());
+        descriptor.setSupplier(item.getSupplier());
         descriptor.setTags(item.getTags());
     }
 
@@ -50,7 +50,7 @@ public class EditItemDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withQuantity(String phone) {
-        descriptor.setPhone(new Quantity(phone));
+        descriptor.setQuantity(new Quantity(phone));
         return this;
     }
 
@@ -58,7 +58,7 @@ public class EditItemDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withSupplier(String address) {
-        descriptor.setAddress(new Supplier(address));
+        descriptor.setSupplier(new Supplier(address));
         return this;
     }
 
