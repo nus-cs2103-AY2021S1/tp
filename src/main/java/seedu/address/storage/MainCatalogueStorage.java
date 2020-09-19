@@ -11,7 +11,7 @@ import seedu.address.model.ReadOnlyMainCatalogue;
 /**
  * Represents a storage for {@link MainCatalogue}.
  */
-public interface AddressBookStorage {
+public interface MainCatalogueStorage {
 
     /**
      * Returns the file path of the data file.

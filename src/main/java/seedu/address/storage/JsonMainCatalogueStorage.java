@@ -17,13 +17,13 @@ import seedu.address.model.ReadOnlyMainCatalogue;
 /**
  * A class to access MainCatalogue data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonMainCatalogueStorage implements MainCatalogueStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonMainCatalogueStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonMainCatalogueStorage(Path filePath) {
         this.filePath = filePath;
     }
 
