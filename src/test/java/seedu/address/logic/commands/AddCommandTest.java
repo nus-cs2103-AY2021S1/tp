@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import seedu.address.model.MainCatalogue;
+import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.project.Project;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,7 +20,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.testutil.PersonBuilder;
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyMainCatalogue newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMainCatalogue getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMainCatalogue getAddressBook() {
             return new MainCatalogue();
         }
     }

@@ -12,7 +12,7 @@ import seedu.address.model.project.UniqueProjectList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class MainCatalogue implements ReadOnlyAddressBook {
+public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     private final UniqueProjectList persons;
 
@@ -32,7 +32,7 @@ public class MainCatalogue implements ReadOnlyAddressBook {
     /**
      * Creates an MainCatalogue using the Persons in the {@code toBeCopied}
      */
-    public MainCatalogue(ReadOnlyAddressBook toBeCopied) {
+    public MainCatalogue(ReadOnlyMainCatalogue toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class MainCatalogue implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code MainCatalogue} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyMainCatalogue newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());

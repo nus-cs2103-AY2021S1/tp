@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyMainCatalogue addressBook);
 
     /** Returns the MainCatalogue */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyMainCatalogue getAddressBook();
 
     /**
      * Returns true if a project with the same identity as {@code project} exists in the address book.

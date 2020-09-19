@@ -49,7 +49,7 @@ public class MainCatalogueTest {
         Project editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Project> newProjects = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newProjects);
+        MainCatalogueStub newData = new MainCatalogueStub(newProjects);
 
         assertThrows(DuplicatePersonException.class, () -> mainCatalogue.resetData(newData));
     }
@@ -84,12 +84,12 @@ public class MainCatalogueTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose projects list can violate interface constraints.
+     * A stub ReadOnlyMainCatalogue whose projects list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Project> projects) {
+        MainCatalogueStub(Collection<Project> projects) {
             this.projects.setAll(projects);
         }
 
