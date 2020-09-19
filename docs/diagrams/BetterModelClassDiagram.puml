@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniqueProjectList
-AddressBook *-right-> "1" UniqueTagList
+MainCatalogue *-right-> "1" UniqueProjectList
+MainCatalogue *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueProjectList
 UniqueTagList -[hidden]down- UniqueProjectList
 

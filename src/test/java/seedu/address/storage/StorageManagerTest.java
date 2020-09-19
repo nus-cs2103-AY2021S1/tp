@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import java.nio.file.Path;
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonMainCatalogueStorage addressBookStorage = new JsonMainCatalogueStorage(getTempFilePath("ab"));
+        JsonMainCatalogueStorage mainCatalogueStorage = new JsonMainCatalogueStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(mainCatalogueStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void mainCatalogueReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonMainCatalogueStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMainCatalogueStorageTest} class.
          */
-        MainCatalogue original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyMainCatalogue retrieved = storageManager.readAddressBook().get();
+        MainCatalogue original = getTypicalMainCatalogue();
+        storageManager.saveMainCatalogue(original);
+        ReadOnlyMainCatalogue retrieved = storageManager.readMainCatalogue().get();
         assertEquals(original, new MainCatalogue(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getMainCatalogueFilePath() {
+        assertNotNull(storageManager.getMainCatalogueFilePath());
     }
 
 }

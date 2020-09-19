@@ -16,7 +16,7 @@ import seedu.address.model.project.Project;
 /**
  * An Immutable MainCatalogue that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "maincatalogue")
 class JsonSerializableMainCatalogue {
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
@@ -41,7 +41,7 @@ class JsonSerializableMainCatalogue {
     }
 
     /**
-     * Converts this address book into the model's {@code MainCatalogue} object.
+     * Converts this main catalogue into the model's {@code MainCatalogue} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

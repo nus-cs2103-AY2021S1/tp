@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an main catalogue
  */
 public interface ReadOnlyMainCatalogue {
 

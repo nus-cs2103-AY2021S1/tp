@@ -6,7 +6,7 @@ import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the main catalogue.
  */
 public class ClearCommand extends Command {
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new MainCatalogue());
+        model.setMainCatalogue(new MainCatalogue());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

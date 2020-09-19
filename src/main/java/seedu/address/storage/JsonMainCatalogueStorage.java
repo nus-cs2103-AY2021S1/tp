@@ -27,32 +27,32 @@ public class JsonMainCatalogueStorage implements MainCatalogueStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getMainCatalogueFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMainCatalogue> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyMainCatalogue> readMainCatalogue() throws DataConversionException {
+        return readMainCatalogue(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readMainCatalogue()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMainCatalogue> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMainCatalogue> readMainCatalogue(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMainCatalogue> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableMainCatalogue> jsonMainCatalogue = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMainCatalogue.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonMainCatalogue.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMainCatalogue.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,21 +60,21 @@ public class JsonMainCatalogueStorage implements MainCatalogueStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMainCatalogue addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue) throws IOException {
+        saveMainCatalogue(mainCatalogue, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyMainCatalogue)}.
+     * Similar to {@link #saveMainCatalogue(ReadOnlyMainCatalogue)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyMainCatalogue addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue, Path filePath) throws IOException {
+        requireNonNull(mainCatalogue);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMainCatalogue(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMainCatalogue(mainCatalogue), filePath);
     }
 
 }

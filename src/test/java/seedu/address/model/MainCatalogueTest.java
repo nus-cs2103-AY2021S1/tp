@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import seedu.address.model.project.Project;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.ALICE;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,8 +37,8 @@ public class MainCatalogueTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        MainCatalogue newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyMainCatalogue_replacesData() {
+        MainCatalogue newData = getTypicalMainCatalogue();
         mainCatalogue.resetData(newData);
         assertEquals(newData, mainCatalogue);
     }
@@ -60,18 +60,18 @@ public class MainCatalogueTest {
     }
 
     @Test
-    public void hasProject_projectNotInAddressBook_returnsFalse() {
+    public void hasProject_projectNotInMainCatalogue_returnsFalse() {
         assertFalse(mainCatalogue.hasProject(ALICE));
     }
 
     @Test
-    public void hasProject_projectInAddressBook_returnsTrue() {
+    public void hasProject_projectInMainCatalogue_returnsTrue() {
         mainCatalogue.addProject(ALICE);
         assertTrue(mainCatalogue.hasProject(ALICE));
     }
 
     @Test
-    public void hasProject_projectWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasProject_projectWithSameIdentityFieldsInMainCatalogue_returnsTrue() {
         mainCatalogue.addProject(ALICE);
         Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

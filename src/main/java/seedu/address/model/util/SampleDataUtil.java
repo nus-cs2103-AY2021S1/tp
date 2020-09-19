@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyMainCatalogue getSampleAddressBook() {
+    public static ReadOnlyMainCatalogue getSampleMainCatalogue() {
         MainCatalogue sampleAb = new MainCatalogue();
         for (Project sampleProject : getSampleProjects()) {
             sampleAb.addProject(sampleProject);

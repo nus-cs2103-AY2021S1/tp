@@ -99,21 +99,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered project list and selected project in {@code actualModel} remain unchanged
+     * - the main catalogue, filtered project list and selected project in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        MainCatalogue expectedMainCatalogue = new MainCatalogue(actualModel.getAddressBook());
+        MainCatalogue expectedMainCatalogue = new MainCatalogue(actualModel.getMainCatalogue());
         List<Project> expectedFilteredList = new ArrayList<>(actualModel.getFilteredProjectList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedMainCatalogue, actualModel.getAddressBook());
+        assertEquals(expectedMainCatalogue, actualModel.getMainCatalogue());
         assertEquals(expectedFilteredList, actualModel.getFilteredProjectList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s main catalogue.
      */
     public static void showProjectAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());

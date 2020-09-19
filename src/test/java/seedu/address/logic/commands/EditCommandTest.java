@@ -14,7 +14,7 @@ import seedu.address.model.MainCatalogue;
 import seedu.address.model.project.Project;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ import seedu.address.testutil.ProjectBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
         expectedModel.setProject(lastProject, editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -111,8 +111,8 @@ public class EditCommandTest {
     public void execute_duplicateProjectFilteredList_failure() {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
-        // edit project in filtered list into a duplicate in address book
-        Project projectInList = model.getAddressBook().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
+        // edit project in filtered list into a duplicate in main catalogue
+        Project projectInList = model.getMainCatalogue().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PROJECT,
                 new EditProjectDescriptorBuilder(projectInList).build());
 
@@ -130,14 +130,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of main catalogue
      */
     @Test
     public void execute_invalidProjectIndexFilteredList_failure() {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
         Index outOfBoundIndex = INDEX_SECOND_PROJECT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProjectList().size());
+        // ensures that outOfBoundIndex is still in bounds of main catalogue list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMainCatalogue().getProjectList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build());

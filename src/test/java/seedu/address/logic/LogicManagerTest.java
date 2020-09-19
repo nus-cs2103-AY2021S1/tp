@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonMainCatalogueStorage addressBookStorage =
-                new JsonMainCatalogueStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMainCatalogueStorage mainCatalogueStorage =
+                new JsonMainCatalogueStorage(temporaryFolder.resolve("mainCatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(mainCatalogueStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,11 +71,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMainCatalogueIoExceptionThrowingStub
-        JsonMainCatalogueStorage addressBookStorage =
-                new JsonMainCatalogueIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonMainCatalogueStorage mainCatalogueStorage =
+                new JsonMainCatalogueIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMainCatalogue.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(mainCatalogueStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +129,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyMainCatalogue addressBook, Path filePath) throws IOException {
+        public void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

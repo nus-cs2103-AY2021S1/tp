@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all projects in the address book to the user.
+ * Lists all projects in the main catalogue to the user.
  */
 public class ListCommand extends Command {
 

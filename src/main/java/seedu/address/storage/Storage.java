@@ -21,12 +21,12 @@ public interface Storage extends MainCatalogueStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getMainCatalogueFilePath();
 
     @Override
-    Optional<ReadOnlyMainCatalogue> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMainCatalogue> readMainCatalogue() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyMainCatalogue addressBook) throws IOException;
+    void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue) throws IOException;
 
 }

@@ -62,7 +62,7 @@ public class TypicalProjects {
     /**
      * Returns an {@code MainCatalogue} with all the typical projects.
      */
-    public static MainCatalogue getTypicalAddressBook() {
+    public static MainCatalogue getTypicalMainCatalogue() {
         MainCatalogue ab = new MainCatalogue();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);

@@ -9,7 +9,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the main-catalogue level
  * Duplicates are not allowed (by .isSameProject comparison)
  */
 public class MainCatalogue implements ReadOnlyMainCatalogue {
@@ -59,7 +59,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     //// project-level operations
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the main catalogue.
      */
     public boolean hasProject(Project project) {
         requireNonNull(project);
@@ -67,8 +67,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     /**
-     * Adds a project to the address book.
-     * The project must not already exist in the address book.
+     * Adds a project to the main catalogue.
+     * The project must not already exist in the main catalogue.
      */
     public void addProject(Project p) {
         projects.add(p);
@@ -76,8 +76,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     /**
      * Replaces the given project {@code target} in the list with {@code editedProject}.
-     * {@code target} must exist in the address book.
-     * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
+     * {@code target} must exist in the main catalogue.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the main catalogue.
      */
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
@@ -87,7 +87,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     /**
      * Removes {@code key} from this {@code MainCatalogue}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the main catalogue.
      */
     public void removeProject(Project key) {
         projects.remove(key);

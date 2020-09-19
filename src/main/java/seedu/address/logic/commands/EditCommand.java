@@ -27,7 +27,7 @@ import seedu.address.model.project.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing project in the address book.
+ * Edits the details of an existing project in the main catalogue.
  */
 public class EditCommand extends Command {
 
@@ -48,7 +48,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the main catalogue.";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;

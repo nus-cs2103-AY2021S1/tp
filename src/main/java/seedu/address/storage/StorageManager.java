@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ MainCatalogue methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return mainCatalogueStorage.getAddressBookFilePath();
+    public Path getMainCatalogueFilePath() {
+        return mainCatalogueStorage.getMainCatalogueFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyMainCatalogue> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(mainCatalogueStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyMainCatalogue> readMainCatalogue() throws DataConversionException, IOException {
+        return readMainCatalogue(mainCatalogueStorage.getMainCatalogueFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyMainCatalogue> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMainCatalogue> readMainCatalogue(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return mainCatalogueStorage.readAddressBook(filePath);
+        return mainCatalogueStorage.readMainCatalogue(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMainCatalogue addressBook) throws IOException {
-        saveAddressBook(addressBook, mainCatalogueStorage.getAddressBookFilePath());
+    public void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue) throws IOException {
+        saveMainCatalogue(mainCatalogue, mainCatalogueStorage.getMainCatalogueFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMainCatalogue addressBook, Path filePath) throws IOException {
+    public void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        mainCatalogueStorage.saveAddressBook(addressBook, filePath);
+        mainCatalogueStorage.saveMainCatalogue(mainCatalogue, filePath);
     }
 
 }

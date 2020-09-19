@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Project values as in TypicalProjects#getTypicalAddressBook()",
+  "_comment": "MainCatalogue save file which contains the same Project values as in TypicalProjects#getTypicalMainCatalogue()",
   "projects" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

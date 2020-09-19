@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
 import seedu.address.model.project.Project;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.UserPrefs;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
         showNoProject(expectedModel);
 
@@ -68,8 +68,8 @@ public class DeleteCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         Index outOfBoundIndex = INDEX_SECOND_PROJECT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProjectList().size());
+        // ensures that outOfBoundIndex is still in bounds of main catalogue list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMainCatalogue().getProjectList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

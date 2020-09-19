@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Deletes a project identified using it's displayed index from the address book.
+ * Deletes a project identified using it's displayed index from the main catalogue.
  */
 public class DeleteCommand extends Command {
 

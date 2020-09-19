@@ -26,17 +26,17 @@ public interface Logic {
     /**
      * Returns the MainCatalogue.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getMainCatalogue()
      */
-    ReadOnlyMainCatalogue getAddressBook();
+    ReadOnlyMainCatalogue getMainCatalogue();
 
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' main catalogue file path.
      */
-    Path getAddressBookFilePath();
+    Path getMainCatalogueFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

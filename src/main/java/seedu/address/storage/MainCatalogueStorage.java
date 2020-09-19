@@ -16,7 +16,7 @@ public interface MainCatalogueStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMainCatalogueFilePath();
 
     /**
      * Returns MainCatalogue data as a {@link ReadOnlyMainCatalogue}.
@@ -24,23 +24,23 @@ public interface MainCatalogueStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyMainCatalogue> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMainCatalogue> readMainCatalogue() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMainCatalogueFilePath()
      */
-    Optional<ReadOnlyMainCatalogue> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMainCatalogue> readMainCatalogue(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyMainCatalogue} to the storage.
-     * @param addressBook cannot be null.
+     * @param mainCatalogue cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyMainCatalogue addressBook) throws IOException;
+    void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyMainCatalogue)
+     * @see #saveMainCatalogue(ReadOnlyMainCatalogue)
      */
-    void saveAddressBook(ReadOnlyMainCatalogue addressBook, Path filePath) throws IOException;
+    void saveMainCatalogue(ReadOnlyMainCatalogue mainCatalogue, Path filePath) throws IOException;
 
 }

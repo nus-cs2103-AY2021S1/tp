@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' main catalogue file path.
      */
-    Path getAddressBookFilePath();
+    Path getMainCatalogueFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' main catalogue file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setMainCatalogueFilePath(Path mainCatalogueFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces main catalogue data with the data in {@code mainCatalogue}.
      */
-    void setAddressBook(ReadOnlyMainCatalogue addressBook);
+    void setMainCatalogue(ReadOnlyMainCatalogue mainCatalogue);
 
     /** Returns the MainCatalogue */
-    ReadOnlyMainCatalogue getAddressBook();
+    ReadOnlyMainCatalogue getMainCatalogue();
 
     /**
-     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * Returns true if a project with the same identity as {@code project} exists in the main catalogue.
      */
     boolean hasProject(Project project);
 
     /**
      * Deletes the given project.
-     * The project must exist in the address book.
+     * The project must exist in the main catalogue.
      */
     void deleteProject(Project target);
 
     /**
      * Adds the given project.
-     * {@code project} must not already exist in the address book.
+     * {@code project} must not already exist in the main catalogue.
      */
     void addProject(Project project);
 
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
-     * {@code target} must exist in the address book.
-     * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
+     * {@code target} must exist in the main catalogue.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the main catalogue.
      */
     void setProject(Project target, Project editedProject);
 

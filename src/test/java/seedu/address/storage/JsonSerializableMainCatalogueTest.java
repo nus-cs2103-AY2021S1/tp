@@ -16,16 +16,16 @@ import seedu.address.testutil.TypicalProjects;
 public class JsonSerializableMainCatalogueTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableMainCatalogueTest");
-    private static final Path TYPICAL_PROJECTS_FILE = TEST_DATA_FOLDER.resolve("typicalProjectsAddressBook.json");
-    private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectAddressBook.json");
-    private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectAddressBook.json");
+    private static final Path TYPICAL_PROJECTS_FILE = TEST_DATA_FOLDER.resolve("typicalProjectsMainCatalogue.json");
+    private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectMainCatalogue.json");
+    private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectMainCatalogue.json");
 
     @Test
     public void toModelType_typicalProjectsFile_success() throws Exception {
         JsonSerializableMainCatalogue dataFromFile = JsonUtil.readJsonFile(TYPICAL_PROJECTS_FILE,
                 JsonSerializableMainCatalogue.class).get();
         MainCatalogue mainCatalogueFromFile = dataFromFile.toModelType();
-        MainCatalogue typicalProjectsMainCatalogue = TypicalProjects.getTypicalAddressBook();
+        MainCatalogue typicalProjectsMainCatalogue = TypicalProjects.getTypicalMainCatalogue();
         assertEquals(mainCatalogueFromFile, typicalProjectsMainCatalogue);
     }
 

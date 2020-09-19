@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        MainCatalogueStorage mainCatalogueStorage = new JsonMainCatalogueStorage(userPrefs.getAddressBookFilePath());
+        MainCatalogueStorage mainCatalogueStorage = new JsonMainCatalogueStorage(userPrefs.getMainCatalogueFilePath());
         storage = new StorageManager(mainCatalogueStorage, userPrefsStorage);
 
         initLogging(config);
@@ -69,19 +69,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s main catalogue and {@code userPrefs}. <br>
+     * The data from the sample main catalogue will be used instead if {@code storage}'s main catalogue is not found,
+     * or an empty main catalogue will be used instead if errors occur when reading {@code storage}'s main catalogue.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMainCatalogue> addressBookOptional;
+        Optional<ReadOnlyMainCatalogue> mainCatalogueOptional;
         ReadOnlyMainCatalogue initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            mainCatalogueOptional = storage.readMainCatalogue();
+            if (!mainCatalogueOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MainCatalogue");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = mainCatalogueOptional.orElseGet(SampleDataUtil::getSampleMainCatalogue);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty MainCatalogue");
             initialData = new MainCatalogue();
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Main Catalogue ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
