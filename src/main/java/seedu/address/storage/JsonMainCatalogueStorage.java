@@ -45,8 +45,8 @@ public class JsonMainCatalogueStorage implements MainCatalogueStorage {
     public Optional<ReadOnlyMainCatalogue> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableMainCatalogue> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableMainCatalogue.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonMainCatalogueStorage implements MainCatalogueStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMainCatalogue(addressBook), filePath);
     }
 
 }

@@ -17,26 +17,26 @@ import seedu.address.model.project.Project;
  * An Immutable MainCatalogue that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableMainCatalogue {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate project(s).";
 
     private final List<JsonAdaptedProject> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableMainCatalogue} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedProject> persons) {
+    public JsonSerializableMainCatalogue(@JsonProperty("persons") List<JsonAdaptedProject> persons) {
         this.persons.addAll(persons);
     }
 
     /**
      * Converts a given {@code ReadOnlyMainCatalogue} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableMainCatalogue}.
      */
-    public JsonSerializableAddressBook(ReadOnlyMainCatalogue source) {
+    public JsonSerializableMainCatalogue(ReadOnlyMainCatalogue source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
