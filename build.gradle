@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.4'
     id 'application'
     id 'jacoco'
+    id "com.star-zero.gradle.githook" version "1.2.1"
 }
 
 mainClassName = 'seedu.address.Main'
@@ -67,6 +68,16 @@ dependencies {
 
 shadowJar {
     archiveName = 'addressbook.jar'
+}
+
+githook {
+    failOnMissingHooksDir = true
+    createHooksDirIfNotExist = true
+    hooks {
+        "pre-push" {
+            task = "test clean checkstyleMain checkStyleTest"
+        }
+    }
 }
 
 defaultTasks 'clean', 'test'
