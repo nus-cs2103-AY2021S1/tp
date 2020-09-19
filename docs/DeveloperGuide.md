@@ -362,8 +362,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-  1. User wants to search for an ingredient by its name in the fridge.
-  2. Wishful Shrinking lists the ingredients in the fridge that contains the specified name, if present.
+  1. User wants to search for ingredients by their name in the fridge.
+  2. Wishful Shrinking lists the ingredients in the fridge that has the specified name, if present.
 
     Use case ends.
 	
@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-  1. User wants to search for a recipe by its title in the recipe collection.
+  1. User wants to search for recipes by their title in the recipe collection.
   2. Wishful Shrinking lists the recipes that has the specified title, if present.
 
     Use case ends.
