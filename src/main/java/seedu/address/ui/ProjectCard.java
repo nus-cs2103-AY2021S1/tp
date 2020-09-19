@@ -12,7 +12,7 @@ import seedu.address.model.project.Project;
 /**
  * An UI component that displays information of a {@code Project}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ProjectCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -44,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Project} and index to display.
      */
-    public PersonCard(Project project, int displayedIndex) {
+    public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ProjectCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
                 && project.equals(card.project);
     }
