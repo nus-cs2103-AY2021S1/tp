@@ -278,14 +278,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 
-**Use case: Delete a person**
+**Use case: Delete a flashcards**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list flashcards
+2.  AddressBook shows a list of flashcards
+3.  User requests to delete a specific flashcard in the list
+4.  AddressBook deletes the flashcard
 
     Use case ends.
 
