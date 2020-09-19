@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `QuickCache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Explore QuickCache**
+**Use case: UC1 - Explore QuickCache**
 
 **MSS**
 
@@ -315,6 +315,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * *a1. User quits and deletes QuickCache.
     
     Use case ends.
+    
+**Use case: UC2 - View Statistics**
+
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests for statistics.
+2.  QuickCache displays statistics.
+3.  User completes a quiz and requests for statistics.
+4.  QuickCache displays updated statistics.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User has not done any quiz on QuickCache.
+    
+    * 1a1. QuickCache shows an error message.
+    
+    Use case resumes at step 3.
 
 **Use case: Delete a flashcard**
 
