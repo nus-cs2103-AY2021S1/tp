@@ -21,13 +21,13 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate project(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedProject> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedProject> persons) {
         this.persons.addAll(persons);
     }
 
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyMainCatalogue source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,8 +47,8 @@ class JsonSerializableAddressBook {
      */
     public MainCatalogue toModelType() throws IllegalValueException {
         MainCatalogue mainCatalogue = new MainCatalogue();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Project project = jsonAdaptedPerson.toModelType();
+        for (JsonAdaptedProject jsonAdaptedProject : persons) {
+            Project project = jsonAdaptedProject.toModelType();
             if (mainCatalogue.hasPerson(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
