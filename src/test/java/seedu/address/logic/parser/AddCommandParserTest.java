@@ -17,7 +17,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEAT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_POULTRY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -82,19 +81,15 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_DUCK + QUANTITY_DESC_DUCK + SUPPLIER_DESC_DUCK,
+        assertParseFailure(parser, VALID_NAME_DUCK + QUANTITY_DESC_DUCK,
                 expectedMessage);
 
         // missing quantity prefix
-        assertParseFailure(parser, NAME_DESC_DUCK + VALID_QUANTITY_DUCK + SUPPLIER_DESC_DUCK,
-                expectedMessage);
-
-        // missing supplier prefix
-        assertParseFailure(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK + VALID_SUPPLIER_DUCK,
+        assertParseFailure(parser, NAME_DESC_DUCK + VALID_QUANTITY_DUCK,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_DUCK + VALID_QUANTITY_DUCK + VALID_SUPPLIER_DUCK,
+        assertParseFailure(parser, VALID_NAME_DUCK + VALID_QUANTITY_DUCK,
                 expectedMessage);
     }
 
