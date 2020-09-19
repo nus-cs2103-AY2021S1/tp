@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.testutil.MainCatalogueBuilder;
 import static seedu.address.testutil.TypicalProjects.ALICE;
 import static seedu.address.testutil.TypicalProjects.BENSON;
 
@@ -16,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        MainCatalogue mainCatalogue = new AddressBookBuilder().withProject(ALICE).withProject(BENSON).build();
+        MainCatalogue mainCatalogue = new MainCatalogueBuilder().withProject(ALICE).withProject(BENSON).build();
         MainCatalogue differentMainCatalogue = new MainCatalogue();
         UserPrefs userPrefs = new UserPrefs();
 
