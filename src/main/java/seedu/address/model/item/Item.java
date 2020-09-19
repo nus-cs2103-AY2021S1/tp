@@ -2,6 +2,7 @@ package seedu.address.model.item;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -33,8 +34,8 @@ public class Item {
     // Data fields
     private final int quantity;
     private final String description;
-    private final List<Integer> locationId;
-    private final List<Integer> recipeId;
+    private final List<Integer> locationId = new ArrayList<>();
+    private final List<Integer> recipeId = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isDeleted;
 
@@ -48,8 +49,8 @@ public class Item {
         this.name = name;
         this.quantity = quantity;
         this.description = description;
-        this.locationId = locationId;
-        this.recipeId = recipeId;
+        this.locationId.addAll(locationId);
+        this.recipeId.addAll(recipeId);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
     }

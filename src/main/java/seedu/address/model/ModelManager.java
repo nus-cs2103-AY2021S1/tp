@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ItemList itemList;
+    private final FilteredList<Item> filteredItems;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +38,22 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    /**
+     * no
+     * @param itemList
+     * @param userPrefs
+     */
+    public ModelManager(ReadOnlyItemList itemList, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(itemList, userPrefs);
+
+        logger.fine("Initializing with item list: " + itemList + " and user prefs " + userPrefs);
+
+        this.itemList = new ItemList(itemList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredItems = new FilteredList<>(this.itemList.getItemList());
     }
 
     public ModelManager() {
