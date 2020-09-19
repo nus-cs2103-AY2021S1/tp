@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
      * {@code target} must exist in the main catalogue.
-     * The project identity of {@code editedProject} must not be the same as another existing project in the main catalogue.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the main
+     * catalogue.
      */
     void setProject(Project target, Project editedProject);
 

@@ -77,7 +77,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     /**
      * Replaces the given project {@code target} in the list with {@code editedProject}.
      * {@code target} must exist in the main catalogue.
-     * The project identity of {@code editedProject} must not be the same as another existing project in the main catalogue.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the main
+     * catalogue.
      */
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
