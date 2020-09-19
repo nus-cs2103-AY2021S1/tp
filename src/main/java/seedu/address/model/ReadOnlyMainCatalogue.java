@@ -9,9 +9,9 @@ import seedu.address.model.project.Project;
 public interface ReadOnlyMainCatalogue {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the projects list.
+     * This list will not contain any duplicate projects.
      */
-    ObservableList<Project> getPersonList();
+    ObservableList<Project> getProjectList();
 
 }

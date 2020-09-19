@@ -14,7 +14,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Project objects.
  */
-public class PersonBuilder {
+public class ProjectBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
@@ -28,9 +28,9 @@ public class PersonBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ProjectBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public ProjectBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -39,9 +39,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code projectToCopy}.
+     * Initializes the ProjectBuilder with the data of {@code projectToCopy}.
      */
-    public PersonBuilder(Project projectToCopy) {
+    public ProjectBuilder(Project projectToCopy) {
         name = projectToCopy.getName();
         phone = projectToCopy.getPhone();
         email = projectToCopy.getEmail();
@@ -52,7 +52,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Project} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public ProjectBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -60,7 +60,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public ProjectBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -68,7 +68,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Project} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public ProjectBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -76,7 +76,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Project} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public ProjectBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -84,7 +84,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Project} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public ProjectBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }

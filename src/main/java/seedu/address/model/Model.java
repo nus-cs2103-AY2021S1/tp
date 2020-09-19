@@ -12,7 +12,7 @@ import seedu.address.model.project.Project;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Project> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
-    boolean hasPerson(Project project);
+    boolean hasProject(Project project);
 
     /**
      * Deletes the given project.
      * The project must exist in the address book.
      */
-    void deletePerson(Project target);
+    void deleteProject(Project target);
 
     /**
      * Adds the given project.
      * {@code project} must not already exist in the address book.
      */
-    void addPerson(Project project);
+    void addProject(Project project);
 
     /**
      * Replaces the given project {@code target} with {@code editedProject}.
      * {@code target} must exist in the address book.
      * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
      */
-    void setPerson(Project target, Project editedProject);
+    void setProject(Project target, Project editedProject);
 
     /** Returns an unmodifiable view of the filtered project list */
-    ObservableList<Project> getFilteredPersonList();
+    ObservableList<Project> getFilteredProjectList();
 
     /**
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Project> predicate);
+    void updateFilteredProjectList(Predicate<Project> predicate);
 }

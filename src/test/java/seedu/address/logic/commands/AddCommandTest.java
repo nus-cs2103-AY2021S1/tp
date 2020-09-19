@@ -21,39 +21,39 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ProjectBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Project validProject = new PersonBuilder().build();
+    public void execute_projectAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
+        Project validProject = new ProjectBuilder().build();
 
         CommandResult commandResult = new AddCommand(validProject).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validProject), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validProject), modelStub.projectsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Project validProject = new PersonBuilder().build();
+    public void execute_duplicateProject_throwsCommandException() {
+        Project validProject = new ProjectBuilder().build();
         AddCommand addCommand = new AddCommand(validProject);
-        ModelStub modelStub = new ModelStubWithPerson(validProject);
+        ModelStub modelStub = new ModelStubWithProject(validProject);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PROJECT, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Project alice = new PersonBuilder().withName("Alice").build();
-        Project bob = new PersonBuilder().withName("Bob").build();
+        Project alice = new ProjectBuilder().withName("Alice").build();
+        Project bob = new ProjectBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Project project) {
+        public void addProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Project project) {
+        public boolean hasProject(Project project) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Project target) {
+        public void deleteProject(Project target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Project target, Project editedProject) {
+        public void setProject(Project target, Project editedProject) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Project> getFilteredPersonList() {
+        public ObservableList<Project> getFilteredProjectList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Project> predicate) {
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -152,37 +152,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single project.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithProject extends ModelStub {
         private final Project project;
 
-        ModelStubWithPerson(Project project) {
+        ModelStubWithProject(Project project) {
             requireNonNull(project);
             this.project = project;
         }
 
         @Override
-        public boolean hasPerson(Project project) {
+        public boolean hasProject(Project project) {
             requireNonNull(project);
-            return this.project.isSamePerson(project);
+            return this.project.isSameProject(project);
         }
     }
 
     /**
      * A Model stub that always accept the project being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Project> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingProjectAdded extends ModelStub {
+        final ArrayList<Project> projectsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Project project) {
+        public boolean hasProject(Project project) {
             requireNonNull(project);
-            return personsAdded.stream().anyMatch(project::isSamePerson);
+            return projectsAdded.stream().anyMatch(project::isSameProject);
         }
 
         @Override
-        public void addPerson(Project project) {
+        public void addProject(Project project) {
             requireNonNull(project);
-            personsAdded.add(project);
+            projectsAdded.add(project);
         }
 
         @Override

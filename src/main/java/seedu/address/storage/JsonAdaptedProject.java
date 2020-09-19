@@ -65,9 +65,9 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> projectTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            projectTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedProject {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(projectTags);
         return new Project(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

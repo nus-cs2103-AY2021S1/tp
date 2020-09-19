@@ -10,11 +10,11 @@ import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameProject comparison)
  */
 public class MainCatalogue implements ReadOnlyMainCatalogue {
 
-    private final UniqueProjectList persons;
+    private final UniqueProjectList projects;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      *   among constructors.
      */
     {
-        persons = new UniqueProjectList();
+        projects = new UniqueProjectList();
     }
 
     public MainCatalogue() {}
 
     /**
-     * Creates an MainCatalogue using the Persons in the {@code toBeCopied}
+     * Creates an MainCatalogue using the Projects in the {@code toBeCopied}
      */
     public MainCatalogue(ReadOnlyMainCatalogue toBeCopied) {
         this();
@@ -43,8 +43,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      * Replaces the contents of the project list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
      */
-    public void setPersons(List<Project> projects) {
-        this.persons.setPersons(projects);
+    public void setProjects(List<Project> projects) {
+        this.projects.setProjects(projects);
     }
 
     /**
@@ -53,7 +53,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     public void resetData(ReadOnlyMainCatalogue newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setProjects(newData.getProjectList());
     }
 
     //// project-level operations
@@ -61,17 +61,17 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     /**
      * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
-    public boolean hasPerson(Project project) {
+    public boolean hasProject(Project project) {
         requireNonNull(project);
-        return persons.contains(project);
+        return projects.contains(project);
     }
 
     /**
      * Adds a project to the address book.
      * The project must not already exist in the address book.
      */
-    public void addPerson(Project p) {
-        persons.add(p);
+    public void addProject(Project p) {
+        projects.add(p);
     }
 
     /**
@@ -79,42 +79,42 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      * {@code target} must exist in the address book.
      * The project identity of {@code editedProject} must not be the same as another existing project in the address book.
      */
-    public void setPerson(Project target, Project editedProject) {
+    public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
-        persons.setPerson(target, editedProject);
+        projects.setProject(target, editedProject);
     }
 
     /**
      * Removes {@code key} from this {@code MainCatalogue}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Project key) {
-        persons.remove(key);
+    public void removeProject(Project key) {
+        projects.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return projects.asUnmodifiableObservableList().size() + " projects";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Project> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Project> getProjectList() {
+        return projects.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MainCatalogue // instanceof handles nulls
-                && persons.equals(((MainCatalogue) other).persons));
+                && projects.equals(((MainCatalogue) other).projects));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return projects.hashCode();
     }
 }

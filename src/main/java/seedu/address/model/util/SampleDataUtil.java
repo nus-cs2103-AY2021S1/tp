@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code MainCatalogue} with sample data.
  */
 public class SampleDataUtil {
-    public static Project[] getSamplePersons() {
+    public static Project[] getSampleProjects() {
         return new Project[] {
             new Project(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -42,8 +42,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyMainCatalogue getSampleAddressBook() {
         MainCatalogue sampleAb = new MainCatalogue();
-        for (Project sampleProject : getSamplePersons()) {
-            sampleAb.addPerson(sampleProject);
+        for (Project sampleProject : getSampleProjects()) {
+            sampleAb.addProject(sampleProject);
         }
         return sampleAb;
     }

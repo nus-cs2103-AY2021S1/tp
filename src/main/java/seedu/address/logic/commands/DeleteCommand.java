@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Project: %1$s";
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
     private final Index targetIndex;
 
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Project> lastShownList = model.getFilteredPersonList();
+        List<Project> lastShownList = model.getFilteredProjectList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, projectToDelete));
+        model.deleteProject(projectToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 
     @Override

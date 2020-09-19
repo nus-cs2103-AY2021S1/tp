@@ -8,19 +8,19 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.project.exceptions.DuplicatePersonException;
-import seedu.address.model.project.exceptions.PersonNotFoundException;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A project is considered unique by comparing using {@code Project#isSamePerson(Project)}. As such, adding and updating of
- * persons uses Project#isSamePerson(Project) for equality so as to ensure that the project being added or updated is
+ * A list of projects that enforces uniqueness between its elements and does not allow nulls.
+ * A project is considered unique by comparing using {@code Project#isSameProject(Project)}. As such, adding and updating of
+ * projects uses Project#isSameProject(Project) for equality so as to ensure that the project being added or updated is
  * unique in terms of identity in the UniqueProjectList. However, the removal of a project uses Project#equals(Object) so
  * as to ensure that the project with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Project#isSamePerson(Project)
+ * @see Project#isSameProject(Project)
  */
 public class UniqueProjectList implements Iterable<Project> {
 
@@ -33,7 +33,7 @@ public class UniqueProjectList implements Iterable<Project> {
      */
     public boolean contains(Project toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameProject);
     }
 
     /**
@@ -43,7 +43,7 @@ public class UniqueProjectList implements Iterable<Project> {
     public void add(Project toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateProjectException();
         }
         internalList.add(toAdd);
     }
@@ -53,16 +53,16 @@ public class UniqueProjectList implements Iterable<Project> {
      * {@code target} must exist in the list.
      * The project identity of {@code editedProject} must not be the same as another existing project in the list.
      */
-    public void setPerson(Project target, Project editedProject) {
+    public void setProject(Project target, Project editedProject) {
         requireAllNonNull(target, editedProject);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ProjectNotFoundException();
         }
 
-        if (!target.isSamePerson(editedProject) && contains(editedProject)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameProject(editedProject) && contains(editedProject)) {
+            throw new DuplicateProjectException();
         }
 
         internalList.set(index, editedProject);
@@ -75,11 +75,11 @@ public class UniqueProjectList implements Iterable<Project> {
     public void remove(Project toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ProjectNotFoundException();
         }
     }
 
-    public void setPersons(UniqueProjectList replacement) {
+    public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,10 +88,10 @@ public class UniqueProjectList implements Iterable<Project> {
      * Replaces the contents of this list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
      */
-    public void setPersons(List<Project> projects) {
+    public void setProjects(List<Project> projects) {
         requireAllNonNull(projects);
-        if (!personsAreUnique(projects)) {
-            throw new DuplicatePersonException();
+        if (!projectsAreUnique(projects)) {
+            throw new DuplicateProjectException();
         }
 
         internalList.setAll(projects);
@@ -124,10 +124,10 @@ public class UniqueProjectList implements Iterable<Project> {
     /**
      * Returns true if {@code projects} contains only unique projects.
      */
-    private boolean personsAreUnique(List<Project> projects) {
+    private boolean projectsAreUnique(List<Project> projects) {
         for (int i = 0; i < projects.size() - 1; i++) {
             for (int j = i + 1; j < projects.size(); j++) {
-                if (projects.get(i).isSamePerson(projects.get(j))) {
+                if (projects.get(i).isSameProject(projects.get(j))) {
                     return false;
                 }
             }

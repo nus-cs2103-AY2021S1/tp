@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalProjects.ALICE;
+import static seedu.address.testutil.TypicalProjects.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,112 +15,112 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.project.exceptions.DuplicatePersonException;
-import seedu.address.model.project.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
+import seedu.address.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {
 
     private final UniqueProjectList uniqueProjectList = new UniqueProjectList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueProjectList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_projectNotInList_returnsFalse() {
         assertFalse(uniqueProjectList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_projectInList_returnsTrue() {
         uniqueProjectList.add(ALICE);
         assertTrue(uniqueProjectList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_projectWithSameIdentityFieldsInList_returnsTrue() {
         uniqueProjectList.add(ALICE);
-        Project editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueProjectList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueProjectList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateProject_throwsDuplicateProjectException() {
         uniqueProjectList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueProjectList.add(ALICE));
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setPerson(null, ALICE));
+    public void setProject_nullTargetProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setPerson(ALICE, null));
+    public void setProject_nullEditedProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProject(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueProjectList.setPerson(ALICE, ALICE));
+    public void setProject_targetProjectNotInList_throwsProjectNotFoundException() {
+        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.setProject(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setProject_editedProjectIsSameProject_success() {
         uniqueProjectList.add(ALICE);
-        uniqueProjectList.setPerson(ALICE, ALICE);
+        uniqueProjectList.setProject(ALICE, ALICE);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         expectedUniqueProjectList.add(ALICE);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setProject_editedProjectHasSameIdentity_success() {
         uniqueProjectList.add(ALICE);
-        Project editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueProjectList.setPerson(ALICE, editedAlice);
+        uniqueProjectList.setProject(ALICE, editedAlice);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         expectedUniqueProjectList.add(editedAlice);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setProject_editedProjectHasDifferentIdentity_success() {
         uniqueProjectList.add(ALICE);
-        uniqueProjectList.setPerson(ALICE, BOB);
+        uniqueProjectList.setProject(ALICE, BOB);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         expectedUniqueProjectList.add(BOB);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setProject_editedProjectHasNonUniqueIdentity_throwsDuplicateProjectException() {
         uniqueProjectList.add(ALICE);
         uniqueProjectList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueProjectList.setPerson(ALICE, BOB));
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProject(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullProject_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueProjectList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueProjectList.remove(ALICE));
+    public void remove_projectDoesNotExist_throwsProjectNotFoundException() {
+        assertThrows(ProjectNotFoundException.class, () -> uniqueProjectList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingProject_removesProject() {
         uniqueProjectList.add(ALICE);
         uniqueProjectList.remove(ALICE);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
@@ -128,38 +128,38 @@ public class UniqueProjectListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setPersons((UniqueProjectList) null));
+    public void setProjects_nullUniqueProjectList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProjects((UniqueProjectList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setProjects_uniqueProjectList_replacesOwnListWithProvidedUniqueProjectList() {
         uniqueProjectList.add(ALICE);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         expectedUniqueProjectList.add(BOB);
-        uniqueProjectList.setPersons(expectedUniqueProjectList);
+        uniqueProjectList.setProjects(expectedUniqueProjectList);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProjectList.setPersons((List<Project>) null));
+    public void setProjects_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.setProjects((List<Project>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setProjects_list_replacesOwnListWithProvidedList() {
         uniqueProjectList.add(ALICE);
         List<Project> projectList = Collections.singletonList(BOB);
-        uniqueProjectList.setPersons(projectList);
+        uniqueProjectList.setProjects(projectList);
         UniqueProjectList expectedUniqueProjectList = new UniqueProjectList();
         expectedUniqueProjectList.add(BOB);
         assertEquals(expectedUniqueProjectList, uniqueProjectList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setProjects_listWithDuplicateProjects_throwsDuplicateProjectException() {
         List<Project> listWithDuplicateProjects = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueProjectList.setPersons(listWithDuplicateProjects));
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(listWithDuplicateProjects));
     }
 
     @Test

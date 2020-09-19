@@ -14,7 +14,7 @@ import seedu.address.model.project.Project;
  */
 public class ProjectCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ProjectListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +42,7 @@ public class ProjectCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Project} and index to display.
+     * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);

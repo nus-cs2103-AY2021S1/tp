@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -25,9 +25,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.ProjectUtil;
 
 public class MainCatalogueParserTest {
 
@@ -35,8 +35,8 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Project project = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(project));
+        Project project = new ProjectBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ProjectUtil.getAddCommand(project));
         assertEquals(new AddCommand(project), command);
     }
 
@@ -49,17 +49,17 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_PROJECT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Project project = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(project).build();
+        Project project = new ProjectBuilder().build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
     @Test

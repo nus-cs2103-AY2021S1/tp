@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.mainCatalogue = new MainCatalogue(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredProjects = new FilteredList<>(this.mainCatalogue.getPersonList());
+        filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
     }
 
     public ModelManager() {
@@ -89,27 +89,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Project project) {
+    public boolean hasProject(Project project) {
         requireNonNull(project);
-        return mainCatalogue.hasPerson(project);
+        return mainCatalogue.hasProject(project);
     }
 
     @Override
-    public void deletePerson(Project target) {
-        mainCatalogue.removePerson(target);
+    public void deleteProject(Project target) {
+        mainCatalogue.removeProject(target);
     }
 
     @Override
-    public void addPerson(Project project) {
-        mainCatalogue.addPerson(project);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addProject(Project project) {
+        mainCatalogue.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     @Override
-    public void setPerson(Project target, Project editedProject) {
+    public void setProject(Project target, Project editedProject) {
         requireAllNonNull(target, editedProject);
 
-        mainCatalogue.setPerson(target, editedProject);
+        mainCatalogue.setProject(target, editedProject);
     }
 
     //=========== Filtered Project List Accessors =============================================================
@@ -119,12 +119,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Project> getFilteredPersonList() {
+    public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Project> predicate) {
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
     }

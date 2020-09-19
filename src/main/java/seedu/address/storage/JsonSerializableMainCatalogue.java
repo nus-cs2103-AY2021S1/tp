@@ -19,16 +19,16 @@ import seedu.address.model.project.Project;
 @JsonRootName(value = "addressbook")
 class JsonSerializableMainCatalogue {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate project(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
 
-    private final List<JsonAdaptedProject> persons = new ArrayList<>();
+    private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMainCatalogue} with the given persons.
+     * Constructs a {@code JsonSerializableMainCatalogue} with the given projects.
      */
     @JsonCreator
-    public JsonSerializableMainCatalogue(@JsonProperty("persons") List<JsonAdaptedProject> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableMainCatalogue(@JsonProperty("projects") List<JsonAdaptedProject> projects) {
+        this.projects.addAll(projects);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableMainCatalogue {
      * @param source future changes to this will not affect the created {@code JsonSerializableMainCatalogue}.
      */
     public JsonSerializableMainCatalogue(ReadOnlyMainCatalogue source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
+        projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableMainCatalogue {
      */
     public MainCatalogue toModelType() throws IllegalValueException {
         MainCatalogue mainCatalogue = new MainCatalogue();
-        for (JsonAdaptedProject jsonAdaptedProject : persons) {
+        for (JsonAdaptedProject jsonAdaptedProject : projects) {
             Project project = jsonAdaptedProject.toModelType();
-            if (mainCatalogue.hasPerson(project)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (mainCatalogue.hasProject(project)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }
-            mainCatalogue.addPerson(project);
+            mainCatalogue.addProject(project);
         }
         return mainCatalogue;
     }

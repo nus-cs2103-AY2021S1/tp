@@ -12,7 +12,7 @@ import java.util.Set;
  * Represents a Project in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class PersonTemp {
+public class ProjectTemp {
 
     // Identity fields
     private final Name name;
@@ -26,7 +26,7 @@ public class PersonTemp {
     /**
      * Every field must be present and not null.
      */
-    public PersonTemp(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public ProjectTemp(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -60,22 +60,22 @@ public class PersonTemp {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both projects of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two projects.
      */
-    public boolean isSamePerson(PersonTemp otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameProject(ProjectTemp otherProject) {
+        if (otherProject == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+        return otherProject != null
+                && otherProject.getName().equals(getName())
+                && (otherProject.getPhone().equals(getPhone()) || otherProject.getEmail().equals(getEmail()));
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both projects have the same identity and data fields.
+     * This defines a stronger notion of equality between two projects.
      */
     @Override
     public boolean equals(Object other) {
@@ -83,16 +83,16 @@ public class PersonTemp {
             return true;
         }
 
-        if (!(other instanceof PersonTemp)) {
+        if (!(other instanceof ProjectTemp)) {
             return false;
         }
 
-        PersonTemp otherPerson = (PersonTemp) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        ProjectTemp otherProject = (ProjectTemp) other;
+        return otherProject.getName().equals(getName())
+                && otherProject.getPhone().equals(getPhone())
+                && otherProject.getEmail().equals(getEmail())
+                && otherProject.getAddress().equals(getAddress())
+                && otherProject.getTags().equals(getTags());
     }
 
     @Override

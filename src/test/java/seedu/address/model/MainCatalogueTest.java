@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import seedu.address.model.project.Project;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.ALICE;
+import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.project.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.testutil.ProjectBuilder;
 
 public class MainCatalogueTest {
 
@@ -28,7 +28,7 @@ public class MainCatalogueTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), mainCatalogue.getPersonList());
+        assertEquals(Collections.emptyList(), mainCatalogue.getProjectList());
     }
 
     @Test
@@ -44,43 +44,43 @@ public class MainCatalogueTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
         // Two projects with the same identity fields
-        Project editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Project> newProjects = Arrays.asList(ALICE, editedAlice);
         MainCatalogueStub newData = new MainCatalogueStub(newProjects);
 
-        assertThrows(DuplicatePersonException.class, () -> mainCatalogue.resetData(newData));
+        assertThrows(DuplicateProjectException.class, () -> mainCatalogue.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> mainCatalogue.hasPerson(null));
+    public void hasProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> mainCatalogue.hasProject(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(mainCatalogue.hasPerson(ALICE));
+    public void hasProject_projectNotInAddressBook_returnsFalse() {
+        assertFalse(mainCatalogue.hasProject(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        mainCatalogue.addPerson(ALICE);
-        assertTrue(mainCatalogue.hasPerson(ALICE));
+    public void hasProject_projectInAddressBook_returnsTrue() {
+        mainCatalogue.addProject(ALICE);
+        assertTrue(mainCatalogue.hasProject(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        mainCatalogue.addPerson(ALICE);
-        Project editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasProject_projectWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        mainCatalogue.addProject(ALICE);
+        Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(mainCatalogue.hasPerson(editedAlice));
+        assertTrue(mainCatalogue.hasProject(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> mainCatalogue.getPersonList().remove(0));
+    public void getProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> mainCatalogue.getProjectList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class MainCatalogueTest {
         }
 
         @Override
-        public ObservableList<Project> getPersonList() {
+        public ObservableList<Project> getProjectList() {
             return projects;
         }
     }

@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyMainCatalogue getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Project> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of projects */
+    ObservableList<Project> getFilteredProjectList();
 
     /**
      * Returns the user prefs' address book file path.

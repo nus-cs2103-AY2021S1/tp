@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
