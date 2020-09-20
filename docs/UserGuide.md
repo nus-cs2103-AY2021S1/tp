@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Modduke is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Modduke can get your module management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `modduke.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -24,13 +24,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`contact list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`contact delete John Doe`** : Deletes `John Doe` from the contact list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`contact clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -60,11 +60,43 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message explaining how to access the help page.
 
 Format: `help`
+
+### Adding a contact: `contact add`
+
+Adds a contact to Modduke.
+
+Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL`
+
+Note: All fields are required. No duplicate names.
+
+Example:
+* `contact add n/John Doe p/98765432 e/johnd@example.com`
+
+### Deleting a contact : `contact delete`
+
+Deletes the specified contact from Modduke.
+
+Format: `contact delete CONTACT_NAME`
+
+* Deletes the contact with the specified name.
+
+Examples:
+* `contact delete Roy` deletes `Roy` contact from Modduke.
+
+### Editing a contact : `contact edit`
+
+Edits an existing contact in Modduke.
+
+Format: `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL] [m/MODULE]`
+
+Note: At least one optional field must be provided
+
+Examples:
+*  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
+*  `contact edit Roy Chan n/Betsy Crower` Edits the name of Roy Chan to be `Betsy Crower` and clears all existing tags.
 
 ### View all contacts: `contact list`
 
@@ -88,6 +120,25 @@ Format: `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`
 
 Note: A Module can have more than 1 member separated by “,” but can only have one name. Members can be optional.
 
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Archiving data files `[coming in v2.0]`
+
+_{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
