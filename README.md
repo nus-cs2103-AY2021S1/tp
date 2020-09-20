@@ -13,5 +13,7 @@
 * For the detailed documentation of this project, see the **[ModDuke Product Website](https://github.com/AY2021S1-CS2103-F10-2/tp)**.
 * Our group is extending the functionality of the application to specifically serve NUS students managing many projects from different modules.
 
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.A
+
 
