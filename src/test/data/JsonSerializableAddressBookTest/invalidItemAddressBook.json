@@ -1,0 +1,8 @@
+{
+  "items" : [ {
+    "name" : "CHICKEN",
+    "quantity" : "+24",
+    "supplier" : "@NTUC",
+    "tagged" : ["meat"]
+  } ]
+}
