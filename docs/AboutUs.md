@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Roy Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/royleochan.png" width="200px">
 
 [[github](http://github.com/royleochan)]
 [[portfolio](team/johndoe.md)]
