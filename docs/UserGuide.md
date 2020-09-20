@@ -58,11 +58,6 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format: `help`
 
 
 ### Adding a contact: `contact add`
@@ -99,25 +94,43 @@ Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
 *  `contact edit Roy Chan n/Betsy Crower` Edits the name of Roy Chan to be `Betsy Crower` and clears all existing tags.
 
+### Viewing all contacts : `contact list`
+
+Shows a list of all persons in the address book.
+
+Format: `contact list`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Add a tag to a user: `label add`
 
-Exits the program.
+Adds a label to a contact
 
-Format: `exit`
+Format: ` label add [c/CONTACT_NAME][t/TAG_NAMES]`
 
-### Saving the data
+* Only 1 contact name can be used at a time but multiple tags can be added.
+* Tag names are to be separated by a ",".
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Examples:
+* `label add c/Jay t/2103, teamproject`
 
-### Archiving data files `[coming in v2.0]`
+### Schedule a meeting : `meeting add`
 
-_{explain the feature here}_
+Schedules a meeting at a given date and time with specified members and a provided meeting name
+
+Format: `meeting add [n/MEETING_NAME] [d/MEETING_DATE]  [t/MEETING_TIME]  [m/MEMBERS]`
+
+* Creates a meeting with the provided meeting name
+* All the fields must be provided
+* Date is in the YYYY-MM-dd format and time is in the HH:mm format
+* There can be multiple members separated by a ",".
+
+Examples:
+*  `meeting add n/CS2103 weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
 
 ### Schedule a meeting : `meeting edit`
 
@@ -142,6 +155,20 @@ Examples:
 Views all of the existing meetings
 
 Format: NA
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Archiving data files `[coming in v2.0]`
+
+_{explain the feature here}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
