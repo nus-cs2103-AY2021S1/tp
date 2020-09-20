@@ -96,6 +96,12 @@ Note: A Module can have more than 1 member separated by “,” but can only hav
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: Can I retrieve my contacts after I have delete them?<br>
+**A**: No. Contacts are permanently deleted and cannot be retrieved after.
+
+**Q**: If I face an error/bug, where can I seek assistance?<br>
+**A**: You can head to the **[ModDuke GitHub Issues page](https://github.com/AY2021S1-CS2103-F10-2/tp/issues)** and create or find your issue there.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
