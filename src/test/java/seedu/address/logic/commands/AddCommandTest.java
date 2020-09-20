@@ -25,19 +25,19 @@ import seedu.address.testutil.ItemBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().build();
 
         CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validItem), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
     /*
@@ -71,7 +71,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different item -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -156,12 +156,12 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single item.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithItem extends ModelStub {
         private final Item item;
 
-        ModelStubWithPerson(Item item) {
+        ModelStubWithItem(Item item) {
             requireNonNull(item);
             this.item = item;
         }
@@ -174,21 +174,21 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the item being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Item> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingItemAdded extends ModelStub {
+        final ArrayList<Item> itemsAdded = new ArrayList<>();
 
         @Override
         public boolean hasItem(Item item) {
             requireNonNull(item);
-            return personsAdded.stream().anyMatch(item::isSameItem);
+            return itemsAdded.stream().anyMatch(item::isSameItem);
         }
 
         @Override
         public void addItem(Item item) {
             requireNonNull(item);
-            personsAdded.add(item);
+            itemsAdded.add(item);
         }
 
         @Override

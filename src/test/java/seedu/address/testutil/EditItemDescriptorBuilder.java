@@ -13,7 +13,7 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditItemDescriptor objects.
  */
 public class EditItemDescriptorBuilder {
 
@@ -28,7 +28,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditItemDescriptor} with fields containing {@code item}'s details
      */
     public EditItemDescriptorBuilder(Item item) {
         descriptor = new EditCommand.EditItemDescriptor();
@@ -39,7 +39,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -47,7 +47,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withQuantity(String phone) {
         descriptor.setQuantity(new Quantity(phone));
@@ -55,7 +55,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withSupplier(String address) {
         descriptor.setSupplier(new Supplier(address));
@@ -63,7 +63,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditItemDescriptor}
      * that we are building.
      */
     public EditItemDescriptorBuilder withTags(String... tags) {

@@ -10,7 +10,7 @@ import seedu.address.model.item.UniqueItemList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -30,7 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Items in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,8 +40,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the item list with {@code items}.
+     * {@code items} must not contain duplicate items.
      */
     public void setItems(List<Item> items) {
         this.items.setItems(items);
@@ -56,10 +56,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setItems(newData.getItemList());
     }
 
-    //// person-level operations
+    //// item-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a item with the same identity as {@code item} exists in the address book.
      */
     public boolean hasItem(Item item) {
         requireNonNull(item);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a item to the address book.
+     * The item must not already exist in the address book.
      */
     public void addItem(Item p) {
         items.add(p);
@@ -84,9 +84,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given item {@code target} in the list with {@code editedItem}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the address book.
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
@@ -106,7 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return items.asUnmodifiableObservableList().size() + " persons";
+        return items.asUnmodifiableObservableList().size() + " items";
         // TODO: refine later
     }
 

@@ -25,7 +25,7 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing item in the address book.
  */
 public class EditCommand extends Command {
 
@@ -50,8 +50,8 @@ public class EditCommand extends Command {
     private final EditItemDescriptor editItemDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editItemDescriptor details to edit the person with
+     * @param index of the item in the filtered item list to edit
+     * @param editItemDescriptor details to edit the item with
      */
     public EditCommand(Index index, EditItemDescriptor editItemDescriptor) {
         requireNonNull(index);
@@ -83,8 +83,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Item} with the details of {@code itemToEdit}
+     * edited with {@code editItemDescriptor}.
      */
     private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
@@ -116,8 +116,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the item with. Each non-empty field value will replace the
+     * corresponding field value of the item.
      */
     public static class EditItemDescriptor {
         private Name name;

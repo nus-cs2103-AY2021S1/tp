@@ -119,10 +119,10 @@ public class ModelManager implements Model {
         addressBook.setItem(target, editedItem);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Item List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override

@@ -51,17 +51,17 @@ public class SupplierBookTest {
      */
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasItem_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasItem(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasItem_itemNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasItem(CHICKEN));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasItem_itemInAddressBook_returnsTrue() {
         addressBook.addItem(CHICKEN);
         assertTrue(addressBook.hasItem(CHICKEN));
     }
@@ -77,12 +77,12 @@ public class SupplierBookTest {
      */
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getItemList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getItemList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose items list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Item> items = FXCollections.observableArrayList();

@@ -17,7 +17,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.item.Item;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Item} objects to be used in tests.
  */
 public class TypicalItems {
 
@@ -36,7 +36,7 @@ public class TypicalItems {
     public static final Item IDA = new ItemBuilder().withName("Ida Mueller").withQuantity("8482131")
             .withSupplier("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Item's details found in {@code CommandTestUtil}
     public static final Item CHICKEN_MANUAL = new ItemBuilder().withName(VALID_NAME_CHICKEN)
             .withQuantity(VALID_QUANTITY_CHICKEN)
            .withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_POULTRY).build();
@@ -49,17 +49,17 @@ public class TypicalItems {
     private TypicalItems() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical items.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Item item : getTypicalPersons()) {
+        for (Item item : getTypicalItems()) {
             ab.addItem(item);
         }
         return ab;
     }
 
-    public static List<Item> getTypicalPersons() {
+    public static List<Item> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(CHICKEN, DUCK));
     }
 }

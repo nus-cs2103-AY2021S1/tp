@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showItemAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
@@ -50,16 +50,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredItemList().size());
-        Item lastItem = model.getFilteredItemList().get(indexLastPerson.getZeroBased());
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+        Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
 
-        ItemBuilder personInList = new ItemBuilder(lastItem);
-        Item editedItem = personInList.withName(VALID_NAME_DUCK).withQuantity(VALID_QUANTITY_DUCK)
+        ItemBuilder itemInList = new ItemBuilder(lastItem);
+        Item editedItem = itemInList.withName(VALID_NAME_DUCK).withQuantity(VALID_QUANTITY_DUCK)
                 .withTags(VALID_TAG_MEAT).build();
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK)
                 .withQuantity(VALID_QUANTITY_DUCK).withTags(VALID_TAG_MEAT).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
@@ -101,7 +101,7 @@ public class EditCommandTest {
     */
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateItemUnfilteredList_failure() {
         Item firstItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
@@ -110,10 +110,10 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_ITEM);
+    public void execute_duplicateItemFilteredList_failure() {
+        showItemAtIndex(model, INDEX_FIRST_ITEM);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit item in filtered list into a duplicate in address book
         Item itemInList = model.getAddressBook().getItemList().get(INDEX_SECOND_ITEM.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
                 new EditItemDescriptorBuilder(itemInList).build());
@@ -122,7 +122,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidItemIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
@@ -135,8 +135,8 @@ public class EditCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_ITEM);
+    public void execute_invalidItemIndexFilteredList_failure() {
+        showItemAtIndex(model, INDEX_FIRST_ITEM);
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getItemList().size());
