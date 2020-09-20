@@ -38,12 +38,14 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.itemList = null;
+        filteredItems = null;
     }
 
     /**
      * no
-     * @param itemList
-     * @param userPrefs
+     * @param itemList no
+     * @param userPrefs no
      */
     public ModelManager(ReadOnlyItemList itemList, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -54,6 +56,8 @@ public class ModelManager implements Model {
         this.itemList = new ItemList(itemList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.itemList.getItemList());
+        addressBook = null;
+        filteredPersons = null;
     }
 
     public ModelManager() {
@@ -90,9 +94,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getItemListFilePath() {
+        return userPrefs.getItemListFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setItemListFilePath(Path itemListFilePath) {
+        requireNonNull(itemListFilePath);
+        userPrefs.setAddressBookFilePath(itemListFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -103,8 +118,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setItemList(ReadOnlyItemList itemList) {
+        this.itemList.resetData(itemList);
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public ReadOnlyItemList getItemList() {
+        return itemList;
     }
 
     @Override
@@ -114,8 +139,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasItem(Item item) {
+        requireNonNull(item);
+        return itemList.hasItem(item);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteItem(Item target) {
+        itemList.removeItem(target);
     }
 
     @Override
@@ -125,10 +161,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addItem(Item item) {
+        itemList.addItem(item);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setItem(Item target, Item editedItem) {
+        requireAllNonNull(target, editedItem);
+
+        itemList.setItem(target, editedItem);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -143,9 +192,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Item> getFilteredItemList() {
+        return filteredItems;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredItemList(Predicate<Item> predicate) {
+        requireNonNull(predicate);
+        filteredItems.setPredicate(predicate);
     }
 
     @Override
