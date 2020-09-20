@@ -9,14 +9,14 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearItemCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -58,14 +58,8 @@ public class ItemListParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -75,6 +69,12 @@ public class ItemListParser {
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
+
+        case ClearItemCommand.COMMAND_WORD:
+            return new ClearItemCommand();
+
+        case ListItemCommand.COMMAND_WORD:
+            return new ListItemCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
