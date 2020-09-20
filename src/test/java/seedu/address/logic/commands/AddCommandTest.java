@@ -19,7 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -104,7 +106,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getItemListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItemListFilePath(Path itemListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,7 +126,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addItem(Item item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItemList(ReadOnlyItemList itemList) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,7 +146,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyItemList getItemList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasItem(Item item) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,7 +166,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteItem(Item target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItem(Item target, Item editedItem) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,7 +186,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Item> getFilteredItemList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredItemList(Predicate<Item> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
