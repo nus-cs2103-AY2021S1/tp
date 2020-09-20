@@ -136,6 +136,35 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+
+### View all meetings : consult list
+
+View all the existing consults
+
+Format: `list`
+
+### Creating New Consultation: consult add
+
+Creates a new consultation with given ConsultName.
+
+Format: `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]`
+
+* CONSULT_NAME is a required field.
+* [d/CONSULT_DATE], [t/CONSULT_TIME], [m/MEMBERS] are optional fields
+* Multiple members can join one consultation. 
+* [d/CONSULT_DATE] is in the YYYY:MM:dd format and [t/CONSULT_TIME] is in the HH:mm format.
+
+### Edit the details of a consult: consult edit
+
+Edits any of the details of a consult
+
+Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS] [cA/CONTACTS]`
+
+* [n/NEW_NAME], [d/NEW_DATE], [t/NEW_TIME], [cD/CONTACTS] and [cA/CONTACTS] are all optional fields, 
+* At least one of the optional fields must be provided.
+* If there is more than one contact to be added or deleted in [cA/CONTACTS], they should be separated by “,”
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -152,16 +181,18 @@ Format: `exit`
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+**Q**: Are commands case-sensitive?<br>
+**A**: Yes
+
+**Q**: How can I import contacts from my existing devices e.g. Mobile Phones / Email?<br>
+**A**: We are currently working on importing .vcf contacts, stay tuned!
 
 --------------------------------------------------------------------------------------------------------------------
 
