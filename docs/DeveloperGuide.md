@@ -249,14 +249,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a…                    | I can…                                                   | So that I can…                                                                                          |
+| -------- | ------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| * *      | Meticulous OHS admin     | have automatic backups of my data                        | rest knowing my data will not be accidentally erased.                                                   |
+| * *      | OHS admin                | generate audit reports for financial data                | comply with internal audits of the Residential College.                                                 |
+| * *      | OHS admin                | export records to csv files                              | easily create mailing lists or send relevant data to other admin.                                       |
+| * * *    | New/Confused User        | check the syntax for a command                           | do a task even if I am unsure of the command usage.                                                     |
+| * * *    | First Time User          | ask for help                                             | quickly and easily learn how to use the application in one place.                                       |
+| * * *    | OHS Admin                | view a list of all students                              | check which students are in the system and access their particulars.                                    |
+| * * *    | OHS Admin                | so that I can check which students stay in which rooms.  | check which students are in the system and access their particulars.                                    |
+| * *      | As as skeptical GUI user | create aliases to other commands                         | perform my common actions while typing less.                                                            |
+| * *      | skeptical GUI user       | create compound commands                                 | ... e.g. to view bills and pay them at the same time, perform common sequences of actions more quickly. |
+| *        | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                     |
+| * *      | OHS Admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                |
+| * *      | OHS admin                | delete a bill                                            | remove a erroneously added bill.                                                                        |
+| * *      | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                  |
+| * *      | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                |
+| * *      | skeptical GUI user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                          |
+| * *      | skeptical GUI user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                  |
+| * *      | Busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                              |
+| * *      | Skeptical GUI user       | undo my last command                                     | fix any change that I made erroneously.                                                                 |
+| * *      | skeptical GUI user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                 |
+| * *      | OHS admin                | edit the bill amount                                     | ensure that changes in the billing amounts due to changes in university policies can be reflected.      |
+| * *      | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                |
 
 *{More to be added}*
 
