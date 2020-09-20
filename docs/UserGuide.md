@@ -119,6 +119,29 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 _{explain the feature here}_
 
+### Schedule a meeting : `meeting edit`
+
+Edits a given meeting. Listed below are the meeting details that can be changed:
+1. Name
+2. Date
+3. Time
+4. Contacts
+
+Format: `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…`
+
+* Edits any of the details of the meeting 
+* `n/NEW_NAME`, `d/NEW_DATE`, `t/NEW_TIME`, `cD/CONTACTS` and `cA/CONTACTS` are all optional fields, but at least one of the optional fields must be provided
+* Date is in the YYYY-MM-dd format and time is in the HH:mm format
+* If there is more than one contact to be added or deleted, they should be separated by “,”
+
+Examples:
+* `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
+
+### Schedule a meeting : `meeting list`
+
+Views all of the existing meetings
+
+Format: NA
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -140,9 +163,9 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Add Label** | `label add [c/CONTACT_NAME] [t/TAG_NAMES]…` <br> e.g., `label add c/Bobby Bob t/friend`
-**Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam m/Jay m/Jerryl m/Roy`
-**Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam cD/Jay cA/Bob`
+**Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
+**Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 **List Meetings** | `meeting list`
-**Add Consults** | `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]` <br> e.g., `add n/CS2103 Consult d/2020:09:25 t/13:00 m/Vineeth m/Ekam m/Jay m/Jerryl m/Roy`
+**Add Consults** | `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]` <br> e.g., `add n/CS2103 Consult d/2020:09:25 t/13:00 m/Vineeth, Ekam, Jay, Jerryl, Roy`
 **Edit Consults** | `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS] [cA/CONTACTS]` <br> e.g., `consult edit CS2103 Consult n/CS2103 Consult with Prof Damith d/2020:09:28 t/15:00 cD/Vineeth cA/Prof Damith`
 **List Consults** | `consult list`
