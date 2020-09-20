@@ -43,7 +43,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_POULTRY = " " + PREFIX_TAG + VALID_TAG_POULTRY;
     public static final String TAG_DESC_MEAT = " " + PREFIX_TAG + VALID_TAG_MEAT;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in phones
     public static final String INVALID_SUPPLIER_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "liquids*"; // '*' not allowed in tags

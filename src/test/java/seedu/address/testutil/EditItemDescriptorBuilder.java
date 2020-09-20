@@ -47,7 +47,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code Quantity} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withQuantity(String phone) {
         descriptor.setQuantity(new Quantity(phone));
@@ -55,7 +55,7 @@ public class EditItemDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditItemDescriptor} that we are building.
+     * Sets the {@code Supplier} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withSupplier(String address) {
         descriptor.setSupplier(new Supplier(address));

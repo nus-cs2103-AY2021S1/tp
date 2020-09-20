@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Quantity;
+import seedu.address.model.item.Supplier;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddCommandTest {
@@ -40,39 +46,39 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
-    /*
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Item validItem = new ItemBuilder().build();
-        AddCommand addCommand = new AddCommand(validItem);
-        ModelStub modelStub = new ModelStubWithPerson(validItem);
+    public void execute_duplicateItem_updateQualitySuccessful() {
+        Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").build();
+        Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
+        ModelStub modelStub = new ModelStubAcceptingDuplicatingItem(currentItem);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ITEM, () -> addCommand.execute(modelStub));
+        CommandResult commandResult = new AddCommand(currentItem).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem), commandResult.getFeedbackToUser());
     }
-     */
 
     @Test
     public void equals() {
-        Item alice = new ItemBuilder().withName("Alice").build();
-        Item bob = new ItemBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Item chicken = new ItemBuilder().withName("Chicken").build();
+        Item duck = new ItemBuilder().withName("Duck").build();
+        AddCommand addChickenCommand = new AddCommand(chicken);
+        AddCommand addDuckCommand = new AddCommand(duck);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addChickenCommand.equals(addChickenCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addChickenCommandCopy = new AddCommand(chicken);
+        assertTrue(addChickenCommand.equals(addChickenCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addChickenCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addChickenCommand.equals(null));
 
         // different item -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addChickenCommand.equals(addDuckCommand));
     }
 
     /**
@@ -156,14 +162,26 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single item.
+     * A Model stub that accepts duplicate item, updating its quantity.
      */
-    private class ModelStubWithItem extends ModelStub {
+    private class ModelStubAcceptingDuplicatingItem extends ModelStub {
+
         private final Item item;
 
-        ModelStubWithItem(Item item) {
+        ModelStubAcceptingDuplicatingItem(Item item) {
             requireNonNull(item);
             this.item = item;
+        }
+
+        @Override
+        public Item addOnExistingItem(Item item) {
+            Name name = item.getName();
+            Quantity quantity = item.getQuantity().add(item.getQuantity());
+            Supplier supplier = item.getSupplier();
+            Set<Tag> providedItemTags = item.getTags();
+            Set<Tag> combinedTags = new HashSet<>(providedItemTags);
+
+            return new Item(name, quantity, supplier, combinedTags);
         }
 
         @Override
@@ -196,5 +214,9 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
+
+    /**
+     *
+     */
 
 }

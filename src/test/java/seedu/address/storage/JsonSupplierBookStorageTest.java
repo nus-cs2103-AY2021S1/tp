@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
-import static seedu.address.testutil.TypicalItems.HOON;
-import static seedu.address.testutil.TypicalItems.IDA;
+import static seedu.address.testutil.TypicalItems.TUNA;
+import static seedu.address.testutil.TypicalItems.LAMB;
 import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
 
 import java.io.IOException;
@@ -52,12 +52,12 @@ public class JsonSupplierBookStorageTest {
 
     @Test
     public void readAddressBook_invalidItemAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidItemAddressBook.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidItemAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidItemAddressBook.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonSupplierBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addItem(HOON);
+        original.addItem(TUNA);
         original.removeItem(CHICKEN);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addItem(IDA);
+        original.addItem(LAMB);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
