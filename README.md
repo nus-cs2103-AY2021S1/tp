@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-#SWEe!
+# SWEe!
 
 * SWEe! is a desktop application used for managing CS2103T learning progress mainly through flashcards.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC)
