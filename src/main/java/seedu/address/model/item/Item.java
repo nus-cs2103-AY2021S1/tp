@@ -143,6 +143,7 @@ public class Item {
 
     @Override
     public String toString() {
+        /*
         final StringBuilder builder = new StringBuilder();
         builder.append("Id:")
                 .append(getId())
@@ -161,6 +162,8 @@ public class Item {
         builder.append(" Is deleted: ")
                 .append(isDeleted());
         return builder.toString();
+         */
+        return name;
     }
 
 }
