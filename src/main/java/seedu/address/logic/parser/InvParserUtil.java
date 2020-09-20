@@ -78,6 +78,8 @@ public class InvParserUtil {
         HashMap<String, Integer> locations = LocationStorage.getLocations();
         Integer result = locations.get(trimmedLocation);
         if (result == null) {
+            // it's a two way map
+            LocationStorage.getLocationIds().put(locations.size() + 1, trimmedLocation);
             locations.put(trimmedLocation, locations.size() + 1);
             return locations.get(trimmedLocation);
         } else {
