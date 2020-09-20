@@ -176,3 +176,10 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Add Label** | `label add [c/CONTACT_NAME] [t/TAG_NAMES]…` <br> e.g., `label add c/Bobby Bob t/friend`
+**Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam m/Jay m/Jerryl m/Roy`
+**Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam cD/Jay cA/Bob`
+**List Meetings** | `meeting list`
+**Add Consults** | `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]` <br> e.g., `add n/CS2103 Consult d/2020:09:25 t/13:00 m/Vineeth m/Ekam m/Jay m/Jerryl m/Roy`
+**Edit Consults** | `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS] [cA/CONTACTS]` <br> e.g., `consult edit CS2103 Consult n/CS2103 Consult with Prof Damith d/2020:09:28 t/15:00 cD/Vineeth cA/Prof Damith`
+**List Consults** | `consult list`
