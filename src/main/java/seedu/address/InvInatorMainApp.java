@@ -13,8 +13,8 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.ItemLogicManager;
 import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
 import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -28,8 +28,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.ui.ItemUiManager;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 
 /**
@@ -64,9 +64,9 @@ public class InvInatorMainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new ItemLogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new ItemUiManager(logic);
     }
 
     /**
@@ -79,7 +79,7 @@ public class InvInatorMainApp extends Application {
         ReadOnlyItemList initialData;
         try {
             itemListOptional = storage.readItemList();
-            if (!itemListOptional.isPresent()) {
+            if (itemListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample ItemList");
             }
             initialData = itemListOptional.orElseGet(SampleDataUtil::getSampleItemList);
@@ -90,7 +90,7 @@ public class InvInatorMainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
             initialData = new ItemList();
         }
-
+        System.out.println("Reached here");
         return new ModelManager(initialData, userPrefs);
     }
 

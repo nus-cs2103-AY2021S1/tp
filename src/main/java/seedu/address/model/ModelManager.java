@@ -107,7 +107,7 @@ public class ModelManager implements Model {
     @Override
     public void setItemListFilePath(Path itemListFilePath) {
         requireNonNull(itemListFilePath);
-        userPrefs.setAddressBookFilePath(itemListFilePath);
+        userPrefs.setItemListFilePath(itemListFilePath);
     }
 
     //=========== AddressBook ================================================================================

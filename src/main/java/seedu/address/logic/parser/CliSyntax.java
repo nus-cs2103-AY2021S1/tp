@@ -13,7 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
     // items start here
-    public static final Prefix PREFIX_ITEM_NAME = new Prefix("addi ");
+    public static final Prefix PREFIX_ITEM_NAME = new Prefix("-n ");
     public static final Prefix PREFIX_ITEM_QUANTITY = new Prefix("-q ");
     public static final Prefix PREFIX_ITEM_DESCRIPTION = new Prefix("-d ");
     public static final Prefix PREFIX_ITEM_LOCATION = new Prefix("-l ");

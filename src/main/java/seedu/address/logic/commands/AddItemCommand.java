@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,14 +20,15 @@ public class AddItemCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a item to the item list. "
             + "Parameters: "
-            + PREFIX_ITEM_QUANTITY + " QUANTITY "
-            + PREFIX_ITEM_DESCRIPTION + " DESCRIPTION "
-            + PREFIX_ITEM_LOCATION + " LOCATION\n"
-            + "Example: " + COMMAND_WORD + " "
-            + " banana "
-            + PREFIX_ITEM_QUANTITY + " 44 "
-            + PREFIX_ITEM_DESCRIPTION + " edible banana "
-            + PREFIX_ITEM_LOCATION + " Bob’s banana farm ";
+            + PREFIX_ITEM_NAME + "NAME "
+            + PREFIX_ITEM_QUANTITY + "QUANTITY "
+            + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_ITEM_LOCATION + "LOCATION\n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_ITEM_NAME + "banana "
+            + PREFIX_ITEM_QUANTITY + "44 "
+            + PREFIX_ITEM_DESCRIPTION + "edible banana "
+            + PREFIX_ITEM_LOCATION + "Bob’s banana farm ";
 
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
