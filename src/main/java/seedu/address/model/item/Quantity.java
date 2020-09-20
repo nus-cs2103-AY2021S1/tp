@@ -4,11 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Item's quantity in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
  */
 public class Quantity {
-
 
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digits long";

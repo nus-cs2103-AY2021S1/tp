@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Item objects.
  */
 public class ItemBuilder {
 
@@ -25,7 +25,7 @@ public class ItemBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ItemBuilder} with the default details.
      */
     public ItemBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -35,7 +35,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the ItemBuilder with the data of {@code itemToCopy}.
      */
     public ItemBuilder(Item itemToCopy) {
         name = itemToCopy.getName();
@@ -45,7 +45,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Item} that we are building.
      */
     public ItemBuilder withName(String name) {
         this.name = new Name(name);
@@ -53,7 +53,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Item} that we are building.
      */
     public ItemBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -61,7 +61,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Item} that we are building.
      */
     public ItemBuilder withSupplier(String address) {
         this.supplier = new Supplier(address);
@@ -69,7 +69,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Item} that we are building.
      */
     public ItemBuilder withQuantity(String phone) {
         this.quantity = new Quantity(phone);

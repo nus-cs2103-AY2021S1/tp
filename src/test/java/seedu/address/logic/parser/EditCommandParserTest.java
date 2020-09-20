@@ -87,7 +87,7 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + QUANTITY_DESC_DUCK + INVALID_QUANTITY_DESC, Quantity.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Item} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_POULTRY + TAG_DESC_MEAT + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_POULTRY + TAG_EMPTY + TAG_DESC_MEAT, Tag.MESSAGE_CONSTRAINTS);

@@ -13,19 +13,19 @@ import seedu.address.model.item.Item;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Item.
  */
 public class ItemUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code item}.
      */
     public static String getAddCommand(Item item) {
         return AddCommand.COMMAND_WORD + " " + getItemDetails(item);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code item}'s details.
      */
     public static String getItemDetails(Item item) {
         StringBuilder sb = new StringBuilder();
@@ -39,7 +39,7 @@ public class ItemUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditItemDescriptor}'s details.
      */
     public static String getEditItemDescriptorDetails(EditCommand.EditItemDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

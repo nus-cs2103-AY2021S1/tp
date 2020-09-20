@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Item in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Item {
@@ -55,8 +55,8 @@ public class Item {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both items of the same name have the same supplier.
+     * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
         if (otherItem == this) {
@@ -69,8 +69,8 @@ public class Item {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both items have the same name and data fields.
+     * This defines a stronger notion of equality between two items.
      */
     @Override
     public boolean equals(Object other) {

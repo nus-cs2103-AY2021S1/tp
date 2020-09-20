@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.DUCK;
 
@@ -31,63 +31,63 @@ public class JsonAdaptedItemTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(DUCK);
-        assertEquals(DUCK, person.toModelType());
+    public void toModelType_validItemDetails_returnsItem() throws Exception {
+        JsonAdaptedItem item = new JsonAdaptedItem(DUCK);
+        assertEquals(DUCK, item.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(INVALID_NAME, VALID_QUANTITY, VALID_SUPPLIER, VALID_TAGS);
+        JsonAdaptedItem item =
+                new JsonAdaptedItem(INVALID_NAME, VALID_QUANTITY, VALID_SUPPLIER, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_QUANTITY, VALID_SUPPLIER, VALID_TAGS);
+        JsonAdaptedItem item = new JsonAdaptedItem(null, VALID_QUANTITY, VALID_SUPPLIER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_invalidQuantity_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, INVALID_QUANTITY, VALID_SUPPLIER, VALID_TAGS);
+        JsonAdaptedItem item =
+                new JsonAdaptedItem(VALID_NAME, INVALID_QUANTITY, VALID_SUPPLIER, VALID_TAGS);
         String expectedMessage = Quantity.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_SUPPLIER, VALID_TAGS);
+        JsonAdaptedItem item = new JsonAdaptedItem(VALID_NAME, null, VALID_SUPPLIER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_QUANTITY, INVALID_SUPPLIER, VALID_TAGS);
+        JsonAdaptedItem item =
+                new JsonAdaptedItem(VALID_NAME, VALID_QUANTITY, INVALID_SUPPLIER, VALID_TAGS);
         String expectedMessage = Supplier.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_QUANTITY, null, VALID_TAGS);
+        JsonAdaptedItem item = new JsonAdaptedItem(VALID_NAME, VALID_QUANTITY, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Supplier.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_QUANTITY, VALID_SUPPLIER, invalidTags);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        JsonAdaptedItem item =
+                new JsonAdaptedItem(VALID_NAME, VALID_QUANTITY, VALID_SUPPLIER, invalidTags);
+        assertThrows(IllegalValueException.class, item::toModelType);
     }
 
 }
