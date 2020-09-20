@@ -40,8 +40,8 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         name.setText(item.getName());
-        quantity.setText(item.getQuantity() + "");
-        description.setText(item.getDescription());
+        quantity.setText("Quantity: " + item.getQuantity());
+        description.setText("Description: " + item.getDescription());
     }
 
     @Override
