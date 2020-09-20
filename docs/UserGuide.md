@@ -58,11 +58,6 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format: `help`
 
 
 ### Adding a contact: `contact add`
@@ -99,11 +94,43 @@ Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
 *  `contact edit Roy Chan n/Betsy Crower` Edits the name of Roy Chan to be `Betsy Crower` and clears all existing tags.
 
+### Viewing all contacts : `contact list`
+
+Shows a list of all persons in the address book.
+
+Format: `contact list`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
+
+### Add a tag to a user: `label add`
+
+Adds a label to a contact
+
+Format: ` label add [c/CONTACT_NAME][t/TAG_NAMES]`
+
+* Only 1 contact name can be used at a time but multiple tags can be added.
+* Tag names are to be separated by a ",".
+
+Examples:
+* `label add c/Jay t/2103, teamproject`
+
+### Schedule a meeting : `meeting add`
+
+Schedules a meeting at a given date and time with specified members and a provided meeting name
+
+Format: `meeting add [n/MEETING_NAME] [d/MEETING_DATE]  [t/MEETING_TIME]  [m/MEMBERS]`
+
+* Creates a meeting with the provided meeting name
+* All the fields must be provided
+* Date is in the YYYY-MM-dd format and time is in the HH:mm format
+* There can be multiple members separated by a ",".
+
+Examples:
+*  `meeting add n/CS2103 weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
 
 ### Exiting the program : `exit`
 
@@ -132,10 +159,10 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add Contact** | `contact add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
+**Clear Contacts** | `contact clear`
+**Delete Contact** | `contact delete CONTACT_NAME`<br> e.g., `delete Jay`
+**Edit Contact** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
+**List Contacts** | `contact list`
+**Add Module** | `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`<br> e.g., `module add n/CS2103 m/Jay, Roy`
+**List Modules** | `module list  [n/MODULE_NAME]`<br> e.g., `module list n/CS2103`
