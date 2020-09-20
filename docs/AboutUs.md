@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lim Jun Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/juncheng98.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/JunCheng98)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code quality
 
 ### Johnny Doe
 
