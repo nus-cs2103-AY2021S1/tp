@@ -242,7 +242,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * Remind students on what is due soon
 * Help students keep track of their CS2103T progress (assignments, results)
 * Provide students with the ease of access to CS2103T content
@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FlashcardList shows an error message.
 
       Use case resumes at step 2.
-      
+
 *{More to be added}*
 
 ### Non-Functional Requirements
