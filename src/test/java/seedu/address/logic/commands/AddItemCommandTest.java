@@ -1,7 +1,19 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
@@ -13,17 +25,6 @@ import seedu.address.model.item.Item;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ItemBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
 public class AddItemCommandTest {
 
     @Test
@@ -31,6 +32,11 @@ public class AddItemCommandTest {
         assertThrows(NullPointerException.class, () -> new AddItemCommand(null));
     }
 
+    /**
+     * no
+     *
+     * @throws Exception no
+     */
     @Test
     public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
@@ -42,15 +48,22 @@ public class AddItemCommandTest {
         assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
+    /**
+     * no
+     */
     @Test
     public void execute_duplicateItem_throwsCommandException() {
         Item validItem = new ItemBuilder().build();
         AddItemCommand addItemCommand = new AddItemCommand(validItem);
         ModelStub modelStub = new ModelStubWithItem(validItem);
 
-        assertThrows(CommandException.class, AddItemCommand.MESSAGE_DUPLICATE_ITEM, () -> addItemCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddItemCommand.MESSAGE_DUPLICATE_ITEM, () -> addItemCommand.execute(modelStub));
     }
 
+    /**
+     * no
+     */
     @Test
     public void equals() {
         Item alice = new ItemBuilder().withName("Apple").build();
@@ -186,7 +199,6 @@ public class AddItemCommandTest {
         public void setItem(Item target, Item editedItem) {
             throw new AssertionError("This method should not be called.");
         }
-
 
 
         @Override

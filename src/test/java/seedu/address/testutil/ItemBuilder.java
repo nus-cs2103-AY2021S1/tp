@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.model.item.Item;
-
 import java.util.HashSet;
+
+import seedu.address.model.item.Item;
 
 /**
  * A utility class to help with building Item objects.
@@ -59,7 +59,10 @@ public class ItemBuilder {
         return this;
     }
 
-
+    /**
+     * no
+     * @return no
+     */
     public Item build() {
         return new Item(0, name, quantity, description,
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), false);
