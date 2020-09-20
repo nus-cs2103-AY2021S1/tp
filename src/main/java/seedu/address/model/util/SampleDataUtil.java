@@ -1,7 +1,7 @@
 package seedu.address.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -64,8 +64,8 @@ public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[] {
             new Item(0, "Apple", 99, "Delicious",
-                new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)), getTagSet("Consummable"), false)
+                new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)), getTagSet("Consummable"), false)
         };
     }
 

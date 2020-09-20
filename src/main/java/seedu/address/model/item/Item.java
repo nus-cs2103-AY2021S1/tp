@@ -26,6 +26,7 @@ public class Item {
     //list<integer> recipe ids that create this item
     //boolean isDeleted
 
+    private static int idCounter = 0;
 
     // Identity fields
     private final int id;
@@ -42,8 +43,8 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(int id, String name, int quantity, String description, List<Integer> locationId,
-                List<Integer> recipeId, Set<Tag> tags, boolean isDeleted) {
+    public Item(int id, String name, int quantity, String description, Set<Integer> locationId,
+                Set<Integer> recipeId, Set<Tag> tags, boolean isDeleted) {
         requireAllNonNull(id, name, quantity, description, locationId, recipeId, tags, isDeleted);
         this.id = id;
         this.name = name;
@@ -53,6 +54,11 @@ public class Item {
         this.recipeId.addAll(recipeId);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
+        idCounter++;
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
     }
 
     public int getId() {
@@ -101,11 +107,7 @@ public class Item {
         }
 
         return otherItem != null
-                && otherItem.getId() == getId()
-                && otherItem.getName().equals(getName())
-                && otherItem.getDescription().equals(getDescription())
-                && (otherItem.getLocationId().equals(getLocationId()))
-                && (otherItem.getRecipeId().equals(getRecipeId()));
+                && otherItem.getName().equals(getName());
     }
 
     /**

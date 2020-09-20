@@ -90,8 +90,10 @@ class JsonAdaptedItem {
         }
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(id, name, quantity, description, locationId,
-                recipeId, modelTags, isDeleted);
+        final Set<Integer> modelLocationIds = new HashSet<>(locationId);
+        final Set<Integer> modelRecipeIds = new HashSet<>(recipeId);
+        return new Item(id, name, quantity, description, modelLocationIds,
+                modelRecipeIds, modelTags, isDeleted);
     }
 
 }
