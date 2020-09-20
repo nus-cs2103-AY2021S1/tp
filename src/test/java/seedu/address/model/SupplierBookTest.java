@@ -47,9 +47,9 @@ public class SupplierBookTest {
     @Test
     public void resetData_withDuplicateItem_throwsItemPersonException() {
         // Two persons with the same identity fields
-        Item editedAlice = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_MEAT)
+        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_MEAT)
                 .build();
-        List<Item> newItems = Arrays.asList(CHICKEN, editedAlice);
+        List<Item> newItems = Arrays.asList(CHICKEN, editedChicken);
         AddressBookStub newData = new AddressBookStub(newItems);
 
         assertThrows(DuplicateItemException.class, () -> addressBook.resetData(newData));

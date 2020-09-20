@@ -3,7 +3,7 @@
   "items" : [ {
     "name" : "Chicken",
     "quantity" : "12",
-    "supplier" : "NTUC",
+    "supplier" : "Giant",
     "tagged" : ["meat"]
   }, {
     "name" : "Duck",

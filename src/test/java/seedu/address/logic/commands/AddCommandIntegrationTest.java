@@ -24,14 +24,14 @@ public class AddCommandIntegrationTest {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
 
-//    @Test
-//    public void execute_newItem_success() {
-//        Item validItem = new ItemBuilder().build();
-//
-//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.addItem(validItem);
-//
-//        assertCommandSuccess(new AddCommand(validItem), model,
-//                String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedModel);
-//    }
+    @Test
+    public void execute_newItem_success() {
+        Item validItem = new ItemBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addItem(validItem);
+
+        assertCommandSuccess(new AddCommand(validItem), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedModel);
+    }
 }

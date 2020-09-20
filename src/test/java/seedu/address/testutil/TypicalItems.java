@@ -22,7 +22,7 @@ import seedu.address.model.item.Item;
 public class TypicalItems {
 
     public static final Item CHICKEN = new ItemBuilder().withName("Chicken")
-            .withSupplier("NTUC")
+            .withSupplier("Giant")
             .withQuantity("12")
             .withTags("meat").build();
     public static final Item DUCK = new ItemBuilder().withName("Duck")
