@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead + Developer
 * Responsibilities: Overall project coordination 
 
-### James Doe
+### Goh Yee Loon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gohyeeloon.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/gloon99)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation

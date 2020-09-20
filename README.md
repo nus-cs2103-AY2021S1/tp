@@ -1,12 +1,15 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S1-CS2103-F10-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-F10-2/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
+* Modduke is a integrated addressbook with scheduler functionalities targeted at NUS Students<br>
   Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
+  * as a one stop place to keep track of contact details related to NUS's modules e.g. Professors, project group mates
+  * as a calendar to keep track of project meetings
+  * as a calendar to keep track of consultations with professors
+
 * The project simulates an ongoing software project for a desktop application (called _ModDuke_) used for managing contact details and meetings.
+
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 * It is named `ModDuke` because it was initially created with similar functionality of the `Duke iP`, while modifying its functionality to suit NUS students.
