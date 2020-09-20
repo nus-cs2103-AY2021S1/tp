@@ -16,5 +16,4 @@
 * Our group is extending the functionality of the application to specifically serve NUS students managing many projects from different modules.
 
 
-
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
