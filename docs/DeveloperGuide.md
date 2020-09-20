@@ -292,15 +292,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 animals without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The system should work on both 32-bit and 64-bit environments.
+5.  The system is expected to show **data persistence**.
+6.  The system should allow different users to access the same data to allow ease of transfer during shift changes.
+7.  The system should have clear, complete and comprehensive documentation of all available commands and/or features by the end of the project.
+8.  The system should be extensible such that new commands or features can be easily added to it if needed.
+9.  The system should adopt a proper security system to prevent outsiders from accessing sensitive information.
+10. The system should respond to user requests (e.g. load data, add new animals) within 2 seconds, unless an error occurs.
+11. The system should be intuitive enough such that new staff are able to adapt quickly and use the app smoothly within a short time frame.
+12. The system should be user-friendly and implement helpful features to assist forgetful or careless users, such as daily reminders and warnings.
+13. The system should be backward compatible with data produced by its earlier versions.
+14. The system should be flexible and allow its users some degree of freedom and customisation, such as personalisation of commands and animal display UI.
+15. The project is expected to adhere to the schedule of the CS2103/CS2103T tP timeline which requires weekly deliverables and increments.
+16. The project is not required to sort and arrange tasks among all staff or ensure efficient task allocation and completion.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Data persistence**: data provided by the user can be saved and updated to the hard drive, and can also be loaded once system is booted up again
+
+*{More to be added, if necessary}*
 
 --------------------------------------------------------------------------------------------------------------------
 
