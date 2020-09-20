@@ -119,7 +119,7 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 _{explain the feature here}_
 
-### Schedule a meeting : `meeting edit`
+### Edit a meeting : `meeting edit`
 
 Edits a given meeting. Listed below are the meeting details that can be changed:
 1. Name
@@ -137,7 +137,7 @@ Format: `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CO
 Examples:
 * `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 
-### Schedule a meeting : `meeting list`
+### List all Meetings : `meeting list`
 
 Views all of the existing meetings
 
