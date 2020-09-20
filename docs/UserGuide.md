@@ -59,7 +59,6 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 </div>
 
 
-
 ### Adding a contact: `contact add`
 
 Adds a contact to Modduke.
@@ -94,17 +93,28 @@ Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
 *  `contact edit Roy Chan n/Betsy Crower` Edits the name of Roy Chan to be `Betsy Crower` and clears all existing tags.
 
+### Clear all contacts: `contact clear`
+
+Deletes all existing contacts
+
+Format: NA
+
+Note: Once cleared, contacts are permanently deleted
+
 ### Viewing all contacts : `contact list`
 
 Shows a list of all persons in the address book.
 
 Format: `contact list`
 
-### Clearing all entries : `clear`
+### Creating a Module : `module add`
 
-Clears all entries from the address book.
+Creates a Module with a given name and members 
 
-Format: `clear`
+Format: `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`
+
+Note: A Module can have more than 1 member separated by “,” but can only have one name. Members can be optional.
+
 
 ### Add a tag to a user: `label add`
 
@@ -151,7 +161,13 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModDuke home folder.
+
+**Q**: Can I retrieve my contacts after I have delete them?<br>
+**A**: No. Contacts are permanently deleted and cannot be retrieved after.
+
+**Q**: If I face an error/bug, where can I seek assistance?<br>
+**A**: You can head to the **[ModDuke GitHub Issues page](https://github.com/AY2021S1-CS2103-F10-2/tp/issues)** and create or find your issue there.
 
 --------------------------------------------------------------------------------------------------------------------
 
