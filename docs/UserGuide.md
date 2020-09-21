@@ -15,8 +15,6 @@ traditional GUI apps.
   * [Deleting a task : `delete`](#deleting-a-task--delete)
   * [Mark a task as done: `done`](#marking-a-task-as-done-done)
   * Editing a task : `edit` (coming soon)
-  * [Deleting a task : `delete`](#deleting-a-task--delete)
-  * [Marking a task as done: `done`](#marking-a-task-as-done-done)
   * [Exiting the program : `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
