@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2021S1-CS2103-F09-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-F09-1/tp/actions)
 
-![Ui](images/Ui.png)
+![Ui](docs/images/Ui.png)
 
 TAskmaster is a desktop app for managing students, optimised 
 for use via a Command Line Interface (CLI) while still having 
