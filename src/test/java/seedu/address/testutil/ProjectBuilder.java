@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.project.DueDate;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -60,7 +60,7 @@ public class ProjectBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
      */
-    public ProjectBuilder withTags(String ... tags) {
+    public ProjectBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

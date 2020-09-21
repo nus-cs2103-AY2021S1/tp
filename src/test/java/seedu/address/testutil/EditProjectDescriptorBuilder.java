@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.DueDate;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.Name;
 import seedu.address.model.project.Leader;
+import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 
 /**
