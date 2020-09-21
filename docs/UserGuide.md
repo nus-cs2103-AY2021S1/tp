@@ -44,7 +44,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in `add title:TITLE`, `TITLE` is a parameter which can be used as `title:homework 1`.
 
 * Items in square brackets are optional. e.g `desc:DESCRIPTION` <br>
