@@ -53,7 +53,7 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Item} that we are building.
+     * Sets the {@code Description} of the {@code Item} that we are building.
      */
     public ItemBuilder withDescription(String description) {
         this.description = description;

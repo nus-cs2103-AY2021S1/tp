@@ -4,13 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -26,6 +30,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // Persons
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -54,6 +59,35 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    // items
+    public static final String VALID_ITEM_NAME_APPLE = "Apple";
+    public static final String VALID_ITEM_NAME_BANANA = "Banana";
+    public static final String VALID_ITEM_QUANTITY_APPLE = "9";
+    public static final String VALID_ITEM_QUANTITY_BANANA = "99";
+    public static final String VALID_ITEM_DESCRIPTION_APPLE = "Recovers 10 hp";
+    public static final String VALID_ITEM_DESCRIPTION_BANANA = "Used as bait";
+    public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
+    public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
+
+    public static final String ITEM_NAME_DESC_APPLE = " "
+            + PREFIX_ITEM_NAME + VALID_ITEM_NAME_APPLE;
+    public static final String ITEM_NAME_DESC_BANANA = " "
+            + PREFIX_ITEM_NAME + VALID_ITEM_NAME_BANANA;
+    public static final String ITEM_QUANTITY_DESC_APPLE = " "
+            + PREFIX_ITEM_QUANTITY + VALID_ITEM_QUANTITY_APPLE;
+    public static final String ITEM_QUANTITY_DESC_BANANA = " "
+            + PREFIX_ITEM_QUANTITY + VALID_ITEM_QUANTITY_BANANA;
+    public static final String ITEM_DESCRIPTION_DESC_APPLE = " "
+            + PREFIX_ITEM_DESCRIPTION + VALID_ITEM_DESCRIPTION_APPLE;
+    public static final String ITEM_DESCRIPTION_DESC_BANANA = " "
+            + PREFIX_ITEM_DESCRIPTION + VALID_ITEM_DESCRIPTION_BANANA;
+    public static final String ITEM_LOCATION_DESC_PEACH_ORCHARD = " "
+            + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_PEACH_ORCHARD;
+    public static final String ITEM_LOCATION_DESC_SPINACH_GARDEN = " "
+            + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_ITEM_QUANTITY + "9a"; // 'a' not allowed in quantity
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -75,7 +109,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -90,7 +124,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -111,6 +145,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -120,7 +155,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
