@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
+import seedu.address.model.project.DueDate;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
@@ -23,8 +23,8 @@ public class ProjectBuilder {
 
     private Name name;
     private Leader leader;
-    private Email email;
-    private Address address;
+    private ProjectDescription projectDescription;
+    private DueDate dueDate;
     private Set<Tag> tags;
 
     /**
@@ -33,8 +33,8 @@ public class ProjectBuilder {
     public ProjectBuilder() {
         name = new Name(DEFAULT_NAME);
         leader = new Leader(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        projectDescription = new ProjectDescription(DEFAULT_EMAIL);
+        dueDate = new DueDate(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -44,8 +44,8 @@ public class ProjectBuilder {
     public ProjectBuilder(Project projectToCopy) {
         name = projectToCopy.getName();
         leader = projectToCopy.getPhone();
-        email = projectToCopy.getEmail();
-        address = projectToCopy.getAddress();
+        projectDescription = projectToCopy.getEmail();
+        dueDate = projectToCopy.getAddress();
         tags = new HashSet<>(projectToCopy.getTags());
     }
 
@@ -69,7 +69,7 @@ public class ProjectBuilder {
      * Sets the {@code Address} of the {@code Project} that we are building.
      */
     public ProjectBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.dueDate = new DueDate(address);
         return this;
     }
 
@@ -85,12 +85,12 @@ public class ProjectBuilder {
      * Sets the {@code Email} of the {@code Project} that we are building.
      */
     public ProjectBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.projectDescription = new ProjectDescription(email);
         return this;
     }
 
     public Project build() {
-        return new Project(name, leader, email, address, tags);
+        return new Project(name, leader, projectDescription, dueDate, tags);
     }
 
 }

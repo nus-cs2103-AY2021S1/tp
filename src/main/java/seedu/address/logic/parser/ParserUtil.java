@@ -9,8 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
+import seedu.address.model.project.DueDate;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Leader;
 import seedu.address.model.tag.Tag;
@@ -71,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static DueDate parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!DueDate.isValidAddress(trimmedAddress)) {
+            throw new ParseException(DueDate.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new DueDate(trimmedAddress);
     }
 
     /**
@@ -86,13 +86,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static ProjectDescription parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (!ProjectDescription.isValidEmail(trimmedEmail)) {
+            throw new ParseException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new ProjectDescription(trimmedEmail);
     }
 
     /**

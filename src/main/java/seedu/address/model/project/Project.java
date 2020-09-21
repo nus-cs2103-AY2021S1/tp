@@ -18,21 +18,21 @@ public class Project {
     // Identity fields
     private final Name name;
     private final Leader leader;
-    private final Email email;
+    private final ProjectDescription projectDescription;
 
     // Data fields
-    private final Address address;
+    private final DueDate dueDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Leader leader, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, leader, email, address, tags);
+    public Project(Name name, Leader leader, ProjectDescription projectDescription, DueDate dueDate, Set<Tag> tags) {
+        requireAllNonNull(name, leader, projectDescription, dueDate, tags);
         this.name = name;
         this.leader = leader;
-        this.email = email;
-        this.address = address;
+        this.projectDescription = projectDescription;
+        this.dueDate = dueDate;
         this.tags.addAll(tags);
     }
 
@@ -44,12 +44,12 @@ public class Project {
         return leader;
     }
 
-    public Email getEmail() {
-        return email;
+    public ProjectDescription getEmail() {
+        return projectDescription;
     }
 
-    public Address getAddress() {
-        return address;
+    public DueDate getAddress() {
+        return dueDate;
     }
 
     /**
@@ -99,7 +99,7 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, leader, email, address, tags);
+        return Objects.hash(name, leader, projectDescription, dueDate, tags);
     }
 
     @Override

@@ -19,8 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
+import seedu.address.model.project.DueDate;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
@@ -95,11 +95,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
         Leader updatedLeader = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
-        Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
-        Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
+        ProjectDescription updatedProjectDescription = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
+        DueDate updatedDueDate = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
-        return new Project(updatedName, updatedLeader, updatedEmail, updatedAddress, updatedTags);
+        return new Project(updatedName, updatedLeader, updatedProjectDescription, updatedDueDate, updatedTags);
     }
 
     @Override
@@ -127,8 +127,8 @@ public class EditCommand extends Command {
     public static class EditProjectDescriptor {
         private Name name;
         private Leader leader;
-        private Email email;
-        private Address address;
+        private ProjectDescription projectDescription;
+        private DueDate dueDate;
         private Set<Tag> tags;
 
         public EditProjectDescriptor() {}
@@ -140,8 +140,8 @@ public class EditCommand extends Command {
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.leader);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setEmail(toCopy.projectDescription);
+            setAddress(toCopy.dueDate);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, leader, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, leader, projectDescription, dueDate, tags);
         }
 
         public void setName(Name name) {
@@ -168,20 +168,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(leader);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmail(ProjectDescription projectDescription) {
+            this.projectDescription = projectDescription;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<ProjectDescription> getEmail() {
+            return Optional.ofNullable(projectDescription);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAddress(DueDate dueDate) {
+            this.dueDate = dueDate;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<DueDate> getAddress() {
+            return Optional.ofNullable(dueDate);
         }
 
         /**

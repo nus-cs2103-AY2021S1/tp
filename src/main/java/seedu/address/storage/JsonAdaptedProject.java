@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
+import seedu.address.model.project.DueDate;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
@@ -87,23 +87,23 @@ class JsonAdaptedProject {
         final Leader modelLeader = new Leader(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDescription.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!ProjectDescription.isValidEmail(email)) {
+            throw new IllegalValueException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final ProjectDescription modelProjectDescription = new ProjectDescription(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DueDate.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!DueDate.isValidAddress(address)) {
+            throw new IllegalValueException(DueDate.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final DueDate modelDueDate = new DueDate(address);
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        return new Project(modelName, modelLeader, modelEmail, modelAddress, modelTags);
+        return new Project(modelName, modelLeader, modelProjectDescription, modelDueDate, modelTags);
     }
 
 }

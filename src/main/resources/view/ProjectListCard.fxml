@@ -29,8 +29,8 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="leader" styleClass="cell_small_label" text="\$leader" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="dueDate" styleClass="cell_small_label" text="\$dueDate" />
+      <Label fx:id="projectDescription" styleClass="cell_small_label" text="\$projectDescription" />
     </VBox>
   </GridPane>
 </HBox>

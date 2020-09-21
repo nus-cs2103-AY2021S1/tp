@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
+import seedu.address.model.project.DueDate;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Leader;
 import seedu.address.model.project.Project;
@@ -59,7 +59,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(new ProjectDescription(email));
         return this;
     }
 
@@ -67,7 +67,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(new DueDate(address));
         return this;
     }
 
