@@ -4,12 +4,12 @@ User Guide
 
 PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
 
-* Quick start
-* Features
-  * Show all commands : `help`
-  * Listing all tasks : `list`
-  * Adding a task: `add`
-  * Deleting a task : `delete`
+## Quick start
+* [Features](#features)
+  * [Show all commands : `help`](#viewing-help-:-`help`)
+  * [Listing all tasks : `list`](#listing-all-persons-:-`list`)
+  * [Adding a task: `add`](### Adding a person: `add`)
+  * [Deleting a task : `delete`](### Deleting a person : `delete`)
   * Mark a task as done: `done`
   * Editing a task : `edit`
   * Locating tasks by attribute and key: `find` 
@@ -50,6 +50,15 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
+### Listing all persons : `list`
+
+Shows a list of all persons in PlaNus.
+
+![list tasks](images/ListTasks.png)
+
+Format: `list`
+
+
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -64,13 +73,6 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in PlaNus.
-
-![list tasks](images/ListTasks.png)
-
-Format: `list`
 
 ### Editing a person : `edit`
 
