@@ -9,13 +9,13 @@ traditional GUI apps.
 
 ## Quick start
 * [Features](#features)
-  * [Show all commands : `help`](#viewing-help--help)
-  * [Listing all tasks : `list`](#listing-all-persons--list)
-  * [Adding a task: `add`](#adding-a-person-add)
-  * [Deleting a task : `delete`](#deleting-a-person--delete)
+  * [Show all commands : `help`](#show-all-commands--help)
+  * [Listing all tasks : `list`](#listing-all-tasks--list)
+  * [Adding a task: `add`](#adding-a-task-add)
+  * [Deleting a task : `delete`](#deleting-a-task--delete)
   * [Mark a task as done: `done`](#marking-a-task-as-done-done)
-  * [Editing a task : `edit`](#editing-a-person--edit)
-  * [Deleting a person : `delete`](#deleting-a-person--delete)
+  * Editing a task : `edit` (coming soon)
+  * [Deleting a task : `delete`](#deleting-a-task--delete)
   * [Marking a task as done: `done`](#marking-a-task-as-done-done)
   * [Exiting the program : `exit`](#exiting-the-program--exit)
 * [FAQ](#faq)
@@ -43,7 +43,7 @@ traditional GUI apps.
 
 </div>
 
-### Viewing help : `help`
+### Show all commands : `help`
 
 Shows a message explaining how to access the help page. 
 
@@ -52,16 +52,16 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Listing all persons : `list`
+### Listing all tasks : `list`
 
-Shows a list of all persons in PlaNus.
+Shows a list of all tasks in PlaNus.
 
 ![list tasks](images/ListTasks.png)
 
 Format: `list`
 
 
-### Adding a person: `add`
+### Adding a task: `add`
 
 Adds a person to the address book.
 
@@ -76,27 +76,7 @@ Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
-The index **must be a positive integer** 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
- and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-
-### Deleting a person : `delete`
+### Deleting a task : `delete`
 
 Deletes the specified task from PlaNus.
 
