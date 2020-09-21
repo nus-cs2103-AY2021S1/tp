@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Quantity;
 
 /**
  * A utility class to help with building Item objects.
@@ -10,11 +11,11 @@ import seedu.address.model.item.Item;
 public class ItemBuilder {
 
     public static final String DEFAULT_NAME = "Bob's Iridescent Grape";
-    public static final int DEFAULT_QUANTITY = 25;
+    public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from bob";
 
     private String name;
-    private int quantity;
+    private Quantity quantity;
     private String description;
 
     /**
@@ -22,7 +23,7 @@ public class ItemBuilder {
      */
     public ItemBuilder() {
         this.name = DEFAULT_NAME;
-        this.quantity = DEFAULT_QUANTITY;
+        this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.description = DEFAULT_DESCRIPTION;
     }
 
@@ -46,8 +47,8 @@ public class ItemBuilder {
     /**
      * Sets the {@code Quantity} of the {@code Item} that we are building.
      */
-    public ItemBuilder withAddress(int quantity) {
-        this.quantity = quantity;
+    public ItemBuilder withQuantity(String quantity) {
+        this.quantity = new Quantity(quantity);
         return this;
     }
 

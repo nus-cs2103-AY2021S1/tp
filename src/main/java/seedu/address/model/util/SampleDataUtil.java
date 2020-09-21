@@ -10,6 +10,7 @@ import seedu.address.model.ItemList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Quantity;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -63,7 +64,7 @@ public class SampleDataUtil {
 
     public static Item[] getSampleItems() {
         return new Item[] {
-            new Item(0, "Apple", 99, "Delicious",
+            new Item(0, "Apple", new Quantity("99"), "Delicious",
                 new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)),
                 new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)), getTagSet("Consummable"), false)
         };

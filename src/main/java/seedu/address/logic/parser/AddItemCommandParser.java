@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Quantity;
 
 
 /**
@@ -37,7 +38,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
         String name = InvParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
-        int quantity = InvParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
+        Quantity quantity = InvParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
         String description = InvParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
         Set<Integer> locationList = InvParserUtil.parseLocations(argMultimap.getAllValues(PREFIX_ITEM_LOCATION));
 

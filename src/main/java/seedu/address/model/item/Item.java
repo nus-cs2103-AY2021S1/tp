@@ -33,7 +33,7 @@ public class Item {
     private final String name;
 
     // Data fields
-    private final int quantity;
+    private final Quantity quantity;
     private final String description;
     private final List<Integer> locationId = new ArrayList<>();
     private final List<Integer> recipeId = new ArrayList<>();
@@ -43,7 +43,7 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(int id, String name, int quantity, String description, Set<Integer> locationId,
+    public Item(int id, String name, Quantity quantity, String description, Set<Integer> locationId,
                 Set<Integer> recipeId, Set<Tag> tags, boolean isDeleted) {
         requireAllNonNull(id, name, quantity, description, locationId, recipeId, tags, isDeleted);
         this.id = id;
@@ -69,7 +69,7 @@ public class Item {
         return name;
     }
 
-    public int getQuantity() {
+    public Quantity getQuantity() {
         return quantity;
     }
 

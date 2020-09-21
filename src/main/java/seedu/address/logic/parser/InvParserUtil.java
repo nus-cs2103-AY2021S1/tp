@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.item.Quantity;
 import seedu.address.storage.LocationStorage;
 
 
@@ -51,9 +52,13 @@ public class InvParserUtil {
      * @param quantity no
      * @return no
      */
-    public static int parseQuantity(String quantity) {
+    public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
-        return Integer.parseInt(quantity.trim());
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
     }
 
     /**
