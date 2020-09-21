@@ -27,5 +27,7 @@ Given below are my contributions to the project.
     * Converted the draft user guide content to markdown file format.
     * Updated the documentation for `delete` feature.
   * Developer Guide:
+    * Update NFR and Appendix section for Warenager.
     * Added implementation details of the `delete` feature.
+    
 
