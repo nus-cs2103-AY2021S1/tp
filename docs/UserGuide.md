@@ -142,15 +142,15 @@ Examples:
 
 Marks a specified task in PlaNus as done.
 
-Format: 'done INDEX...'
+Format: `done INDEX...`
 
-* Marks the task(s) at the specified INDEX... as done
+* Marks the task(s) at the specified `INDEX...` as done
 * The index refers to the index number shown in the displayed task list
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
-* list followed by done 2 3 marks the 2nd and the 3rd tasks in the results of the list command status to be done.
-* find title:homework followed by done 1 marks the 1st task in the results of the find command status to be done.
+* `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
+* `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
 ### Clearing all entries : `clear`
 
