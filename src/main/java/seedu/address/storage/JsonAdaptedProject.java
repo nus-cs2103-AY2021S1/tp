@@ -8,13 +8,12 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.DueDate;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,8 +54,8 @@ class JsonAdaptedProject {
         email = source.getProjectDescription().value;
         address = source.getDueDate().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -87,7 +86,8 @@ class JsonAdaptedProject {
         final Leader modelLeader = new Leader(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDescription.class.getSimpleName()));
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDescription.class.getSimpleName()));
         }
         if (!ProjectDescription.isValidProjectDescription(email)) {
             throw new IllegalValueException(ProjectDescription.MESSAGE_CONSTRAINTS);
