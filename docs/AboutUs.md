@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sean Chan Ding Chao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dcchan98.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](https://ay2021s1-cs2103t-w17-3.github.io/tp/)
+[github](https://github.com/dcchan98)
+[portfolio](team/sean.md)
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: 
 
-### Johnny Doe
+### Kamil Gimik
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chewypiano.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](http://github.com/chewypiano)
+[portfolio](team/kamil.md)
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: 
 
-### Jean Doe
+### Joey Chen De'en
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joeychensmart.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/JoeyChenSmart) 
+[portfolio](team/joey.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: 
+
+### Huynh Thai Duong 
+
+<img src="images/aidoxe-123.png" width="200px">
+
+[github](http://github.com/aidoxe-123)
+[portfolio](team/duong.md)
+
+* Role: Developer
+* Responsibilities: 
+
+### Wen Junhua
+
+<img src="images/jh123x.png" width="200px">
+
+[github](http://github.com/Jh123x)
+[portfolio](team/junhua.md)
+
+* Role: Developer
+* Responsibilities: 
