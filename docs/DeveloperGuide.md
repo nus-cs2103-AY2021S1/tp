@@ -266,8 +266,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case 1**
+
 **System: Eva**
+
 **Use case: UC01 - Adding a Record of staff**
+
 **Actor: User**
 
 
