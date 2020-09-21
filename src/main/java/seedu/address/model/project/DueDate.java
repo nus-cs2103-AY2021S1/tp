@@ -9,10 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class DueDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Due dates can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Due dates can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the due date must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
