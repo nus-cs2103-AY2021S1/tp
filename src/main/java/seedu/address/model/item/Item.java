@@ -115,9 +115,8 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-        return otherItem.getId() == getId()
-                && otherItem.getName().equals(getName())
-                && otherItem.getQuantity() == (getQuantity())
+        return otherItem.getName().equals(getName())
+                && otherItem.getQuantity().equals((getQuantity()))
                 && otherItem.getDescription().equals(getDescription())
                 && otherItem.getLocationIds().equals(getLocationIds())
                 && otherItem.getRecipeIds().equals(getRecipeIds())

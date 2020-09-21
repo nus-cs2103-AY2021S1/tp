@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Collections;
 import java.util.HashSet;
 
 import seedu.address.model.item.Item;
@@ -66,7 +67,7 @@ public class ItemBuilder {
      */
     public Item build() {
         return new Item(0, name, quantity, description,
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), false);
+                new HashSet<>(Collections.singletonList(1)), new HashSet<>(), new HashSet<>(), false);
     }
 
 }
