@@ -317,14 +317,95 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. AddressBook shows an error message.
     
         Use case ends.
-     
+    
 * 1b. The answer is empty.
 
     * 1b1. AddressBook shows an error message.
     
         Use case ends.
 
-*{More to be added}*
+**System: QuickCache**
+
+**Use case: UC06 - Test a single flashcard**
+
+**Actor: User**
+
+**MSS:**
+
+1. User requests to list flashcards
+2. QuickCache shows a list of flashcards
+3. User requests to test a specific flashcard in the list with a specific answer
+4. QuickCache displays whether the answer is correct
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**System: QuickCache**
+
+**Use case: UC07 - Test a set of flashcards by category**
+
+**Actor: User**
+
+MSS:
+
+1. User requests to list categories
+2. QuickCache shows a list of categories
+3. User requests to test a specific category in the list
+4. User tests each flashcard on the list (UC06)
+5. QuickCache shows the number of successful questions at the end
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. QuickCache shows an error message.
+
+    Use case resumes from step 2.
+
+* 3b. The user specifies a time limit.
+
+  * 3b1. QuickCache starts a timer.
+
+    Use case resumes from step 4.
+
+* 3c. The user specifies to randomly sort the questions.
+
+  * 3c1. QuickCache randomizes the flashcards from the category.
+
+    Use case resumes from step 4.
+
+* 4a. The user answers the question.
+
+  * 4a1. QuickCache shows the next question to answer.
+
+  * Step 4a. is repeated until all questions in the category is answered.
+
+    Use case resumes from step 5.
+
+* 4b. The user cancels the test midway.
+
+  * Use case resumes from step 5.
+
+* 4c. The user runs out of time midway.
+
+  * Use case resumes from step 5.
+
+* 4d. The user closes QuickCache
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
