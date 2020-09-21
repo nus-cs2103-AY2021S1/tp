@@ -79,7 +79,7 @@ Returns a list of found stocks from the inventory that have the following keywor
     * Location stored
     * Source of the stock
 
-Format (either):  
+Format (either):
 `find n/<name>`
 `find sn/<serial number>`
 `find l/<location>`
