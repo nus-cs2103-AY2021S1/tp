@@ -1,5 +1,6 @@
+![PlanusLogo](images/PlanusLogo.png)
 ---
-User Guide
+User Guide v1.2
 ---
 
 PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
