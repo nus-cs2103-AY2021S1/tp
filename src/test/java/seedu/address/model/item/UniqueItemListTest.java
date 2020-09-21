@@ -1,13 +1,14 @@
 package seedu.address.model.item;
-/*
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalItems.CHICKEN;
+import static seedu.address.testutil.TypicalItems.DUCK;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,157 +16,172 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.item.exceptions.DuplicateItemException;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
+import seedu.address.testutil.ItemBuilder;
 
-public class UniquePersonListTest {
+public class UniqueItemListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueItemList uniqueItemList = new UniqueItemList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+    public void contains_itemNotInList_returnsFalse() {
+        assertFalse(uniqueItemList.contains(CHICKEN));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_itemInList_returnsTrue() {
+        uniqueItemList.add(CHICKEN);
+        assertTrue(uniqueItemList.contains(CHICKEN));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueItemList.add(CHICKEN);
+        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_MEAT)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueItemList.contains(editedChicken));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateItem_throwsDuplicateItemException() {
+        uniqueItemList.add(CHICKEN);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.add(CHICKEN));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setItem_nullTargetItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(null, CHICKEN));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setItem_nullEditedItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(CHICKEN, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setItem_targetItemNotInList_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.setItem(CHICKEN, CHICKEN));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setItem_editedItemIsSameItem_success() {
+        uniqueItemList.add(CHICKEN);
+        uniqueItemList.setItem(CHICKEN, CHICKEN);
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        expectedUniqueItemList.add(CHICKEN);
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void setItem_editedItemHasSameIdentity_success() {
+        uniqueItemList.add(CHICKEN);
+        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_MEAT)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueItemList.setItem(CHICKEN, editedChicken);
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        expectedUniqueItemList.add(editedChicken);
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setItem_editedItemHasDifferentIdentity_success() {
+        uniqueItemList.add(CHICKEN);
+        uniqueItemList.setItem(CHICKEN, DUCK);
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        expectedUniqueItemList.add(DUCK);
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setItem_editedItemHasNonUniqueIdentity_throwsDuplicateItemException() {
+        uniqueItemList.add(CHICKEN);
+        uniqueItemList.add(DUCK);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(CHICKEN, DUCK));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_itemDoesNotExist_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.remove(CHICKEN));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingItem_removesItem() {
+        uniqueItemList.add(CHICKEN);
+        uniqueItemList.remove(CHICKEN);
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setItems_nullUniqueItemList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItems((UniqueItemList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setItems_uniqueItemList_replacesOwnListWithProvidedUniqueItemList() {
+        uniqueItemList.add(CHICKEN);
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        expectedUniqueItemList.add(DUCK);
+        uniqueItemList.setItems(expectedUniqueItemList);
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+    public void setItems_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItems((List<Item>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setItems_list_replacesOwnListWithProvidedList() {
+        uniqueItemList.add(CHICKEN);
+        List<Item> itemList = Collections.singletonList(DUCK);
+        uniqueItemList.setItems(itemList);
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        expectedUniqueItemList.add(DUCK);
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    public void setItems_listWithDuplicateItems_throwsDuplicateItemException() {
+        List<Item> listWithDuplicateItems = Arrays.asList(CHICKEN, CHICKEN);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItems(listWithDuplicateItems));
+    }
+
+    @Test
+    public void addOnExistingItem_itemDoesNotExist_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.addOnExistingItem(CHICKEN));
+    }
+
+    @Test
+    public void addOnExistingItem_existingItem_success() {
+        uniqueItemList.add(CHICKEN);
+        uniqueItemList.addOnExistingItem(CHICKEN);
+        Item item = new ItemBuilder().withQuantity("24").withSupplier("GIANT").withTags("meat").build();
+        UniqueItemList expectedUniqueItemList = new UniqueItemList();
+        expectedUniqueItemList.add(item);
+        assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueItemList.asUnmodifiableObservableList().remove(0));
     }
 }
- */
+

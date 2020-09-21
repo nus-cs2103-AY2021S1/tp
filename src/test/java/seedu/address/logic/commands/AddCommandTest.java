@@ -54,7 +54,8 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(currentItem).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -214,9 +215,5 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
-    /**
-     *
-     */
 
 }
