@@ -246,8 +246,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 * manage students faster than a typical mouse/GUI driven app
+* view student details at a glance
 * track attendance easily
-* ensure fairer allocation of class participation marks
 * ensure every student participates in class
 
 ### User stories
@@ -266,7 +266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is `Taskmaster` and the **Actor** is the `user`, unless specified otherwise)
-
+<br>
 **Use case: Add a student**
 
 **MSS**
@@ -283,6 +283,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
 
       Use case resumes at step 1.
+<br>
 
 **Use case: View a student's details**
 
@@ -300,20 +301,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
 
       Use case resumes at step 1.
+<br>
 
+**Use Case: View all students' details**
+
+**MSS**
+1. User requests to view all students' details
+2. System shows all students' details.
+<br>
+
+**Use Case: Delete a student**
+
+**MSS**
+1. User requests to list students
+2. System shows a list of students
+3. User requests to delete a specific person in the list
+4. System deletes student
+
+Extensions
+* 2a. The list is empty.
+Use case ends.
+* 3a. The given input is invalid.
+    * 3a1. System shows an error message.
+        Use case resumes at step 2.
 *{More to be added}*
+
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should work without requiring an installer, the installation of any additional software, or any external connections.
+3.  Should only be for a single user.
+4.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6.  Should store data locally _only_, in a human editable text file
+7.  Total file size should not exceed 100MB.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, macO
 * **Private contact detail**: A contact detail that is not meant to be shared with others (e.g. NUSNET ID)
 
 --------------------------------------------------------------------------------------------------------------------
