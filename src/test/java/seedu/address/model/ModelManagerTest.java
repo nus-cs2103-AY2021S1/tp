@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new MainCatalogue(), new MainCatalogue(modelManager.getMainCatalogue()));
+        assertEquals(new MainCatalogue(), new MainCatalogue(modelManager.getProjectCatalogue()));
     }
 
     @Test
@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setMainCatalogueFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setMainCatalogueFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setProjectCatalogueFilePath(null));
     }
 
     @Test
     public void setMainCatalogueFilePath_validPath_setsMainCatalogueFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setMainCatalogueFilePath(path);
-        assertEquals(path, modelManager.getMainCatalogueFilePath());
+        modelManager.setProjectCatalogueFilePath(path);
+        assertEquals(path, modelManager.getProjectCatalogueFilePath());
     }
 
     @Test

@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getProjectCatalogue()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getProjectCatalogue()), new UserPrefs());
         expectedModel.setProject(lastProject, editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getProjectCatalogue()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new MainCatalogue(model.getMainCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MainCatalogue(model.getProjectCatalogue()), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,7 +112,7 @@ public class EditCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         // edit project in filtered list into a duplicate in main catalogue
-        Project projectInList = model.getMainCatalogue().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
+        Project projectInList = model.getProjectCatalogue().getProjectList().get(INDEX_SECOND_PROJECT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PROJECT,
                 new EditProjectDescriptorBuilder(projectInList).build());
 
@@ -137,7 +137,7 @@ public class EditCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
         Index outOfBoundIndex = INDEX_SECOND_PROJECT;
         // ensures that outOfBoundIndex is still in bounds of main catalogue list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getMainCatalogue().getProjectList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectCatalogue().getProjectList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build());
