@@ -14,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 
 /**
  * A class to access ItemList data stored as a json file on the hard disk.
@@ -76,6 +77,14 @@ public class JsonItemListStorage implements ItemListStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableItemList(addressBook), filePath);
+    }
+
+    @Override
+    public void saveLocationList(ReadOnlyLocationList addressBook) {
+    }
+
+    @Override
+    public void saveLocationList(ReadOnlyLocationList addressBook, Path filePath) {
     }
 
 }

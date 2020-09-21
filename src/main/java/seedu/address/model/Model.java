@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 
 /**
@@ -45,6 +46,8 @@ public interface Model {
 
     Path getItemListFilePath();
 
+    Path getLocationListFilePath();
+
     /**
      * Sets the user prefs' address book file path.
      */
@@ -66,6 +69,7 @@ public interface Model {
 
     ReadOnlyItemList getItemList();
 
+    ReadOnlyLocationList getLocationList();
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -73,6 +77,7 @@ public interface Model {
 
     boolean hasItem(Item item);
 
+    boolean hasLocation(Location location);
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -88,6 +93,8 @@ public interface Model {
     void addPerson(Person person);
 
     void addItem(Item item);
+
+    void addLocation(Location location);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -105,6 +112,7 @@ public interface Model {
 
     ObservableList<Item> getFilteredItemList();
 
+    ObservableList<Location> getFilteredLocationList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
@@ -113,4 +121,8 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredItemList(Predicate<Item> predicate);
+
+    void updateFilteredLocationList(Predicate<Location> predicate);
+
+    int findLocationID(Location toFind);
 }

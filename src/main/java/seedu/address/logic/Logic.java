@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -9,7 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +26,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
 
     /**
      * Returns the AddressBook.
@@ -49,6 +52,12 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getItemListFilePath();
+
+    ReadOnlyLocationList getLocationList();
+
+    ObservableList<Location> getFilteredLocationList();
+
+    Path getLocationListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

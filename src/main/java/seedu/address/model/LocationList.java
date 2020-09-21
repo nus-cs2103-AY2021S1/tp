@@ -67,6 +67,14 @@ public class LocationList implements ReadOnlyLocationList {
     }
 
     /**
+     * Returns location ID of location to be found
+     */
+    public int findLocationID(Location location) {
+        requireNonNull(location);
+        return locations.findLocationID(location);
+    }
+
+    /**
      * Adds a location to the location list.
      * The location must not already exist in the location list.
      */

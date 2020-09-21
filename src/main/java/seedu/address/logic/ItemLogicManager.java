@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -17,7 +16,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -43,7 +44,7 @@ public class ItemLogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -68,7 +69,7 @@ public class ItemLogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         logger.warning("Asking for getFilteredPersonList in item list");
-        return new FilteredList<>(null);
+        return null;
     }
 
     @Override
@@ -91,6 +92,24 @@ public class ItemLogicManager implements Logic {
     @Override
     public Path getItemListFilePath() {
         return model.getItemListFilePath();
+    }
+
+    @Override
+    public ReadOnlyLocationList getLocationList() {
+        logger.warning("Asking for getLocationList in item list");
+        return null;
+    }
+
+    @Override
+    public ObservableList<Location> getFilteredLocationList() {
+        logger.warning("Asking for getFilteredLocationList in item list");
+        return null;
+    }
+
+    @Override
+    public Path getLocationListFilePath() {
+        logger.warning("Asking for getLocationListFilePath in item list");
+        return null;
     }
 
     @Override

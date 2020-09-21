@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -37,4 +38,5 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, ItemListS
     void saveItemList(ReadOnlyItemList addressBook) throws IOException;
 
 
+    Optional<ReadOnlyLocationList> readLocationList();
 }

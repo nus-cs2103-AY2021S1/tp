@@ -41,6 +41,14 @@ public class UniqueLocationList implements Iterable<Location> {
     }
 
     /**
+     * Returns location ID of given location
+     */
+    public int findLocationID(Location toFind) {
+        requireNonNull(toFind);
+        return internalList.stream().filter(toFind::isSameLocation).findFirst().get().getId();
+    }
+
+    /**
      * Adds a location to the list.
      * The location must not already exist in the list.
      */

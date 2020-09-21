@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -27,7 +28,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddItemCommand parse(String args) throws ParseException {
+    public AddItemCommand parse(String args) throws ParseException, IOException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME, PREFIX_ITEM_QUANTITY,
                         PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_LOCATION);

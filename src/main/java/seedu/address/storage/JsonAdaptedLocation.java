@@ -4,7 +4,6 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.location.Location;
 
 
@@ -39,11 +38,9 @@ class JsonAdaptedLocation {
 
     /**
      * Converts this Jackson-friendly adapted item object into the model's {@code Location} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
-    public Location toModelType() throws IllegalValueException {
-        return new Location(id, name);
+    public Location toModelType() {
+        return new Location(name);
     }
 
 }

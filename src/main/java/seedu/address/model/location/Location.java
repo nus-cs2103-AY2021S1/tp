@@ -18,11 +18,19 @@ public class Location {
     /**
      * Every field must be present and not null.
      */
-    public Location(int id, String name) {
-        requireAllNonNull(id, name);
-        this.id = id;
+    public Location(String name) {
+        requireAllNonNull(name);
+        this.id = getIdCounter() + 1;
         this.name = name;
         idCounter++;
+    }
+
+    public static void decrementIdCounter() {
+        idCounter--;
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
     }
 
     public int getId() {
@@ -71,7 +79,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return name;
+        return id + ": " + name;
     }
 
 }

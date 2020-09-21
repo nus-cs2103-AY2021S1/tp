@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ItemList;
+import seedu.address.model.LocationList;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -76,5 +79,19 @@ public class SampleDataUtil {
             sampleIl.addItem(sampleItem);
         }
         return sampleIl;
+    }
+
+    public static Location[] getSampleLocations() {
+        return new Location[] {
+            new Location("Town")
+        };
+    }
+
+    public static ReadOnlyLocationList getSampleLocationList() {
+        LocationList sampleLl = new LocationList();
+        for (Location sampleLocation : getSampleLocations()) {
+            sampleLl.addLocation(sampleLocation);
+        }
+        return sampleLl;
     }
 }

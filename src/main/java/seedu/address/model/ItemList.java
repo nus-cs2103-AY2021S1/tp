@@ -59,7 +59,7 @@ public class ItemList implements ReadOnlyItemList {
     //// item-level operations
 
     /**
-     * Returns true if a item with the same identity as {@code item} exists in the address book.
+     * Returns true if a item with the same identity as {@code item} exists in the item list.
      */
     public boolean hasItem(Item item) {
         requireNonNull(item);
@@ -67,8 +67,8 @@ public class ItemList implements ReadOnlyItemList {
     }
 
     /**
-     * Adds a item to the address book.
-     * The item must not already exist in the address book.
+     * Adds a item to the item list.
+     * The item must not already exist in the item list.
      */
     public void addItem(Item p) {
         items.add(p);
@@ -76,8 +76,8 @@ public class ItemList implements ReadOnlyItemList {
 
     /**
      * Replaces the given item {@code target} in the list with {@code editedItem}.
-     * {@code target} must exist in the address book.
-     * The item identity of {@code editedItem} must not be the same as another existing item in the address book.
+     * {@code target} must exist in the item list.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the item list.
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
@@ -87,7 +87,7 @@ public class ItemList implements ReadOnlyItemList {
 
     /**
      * Removes {@code key} from this {@code ItemList}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the item list.
      */
     public void removeItem(Item key) {
         items.remove(key);

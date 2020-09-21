@@ -8,7 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,10 @@ import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ItemBuilder;
 
@@ -42,7 +44,7 @@ public class AddItemCommandTest {
 
         CommandResult commandResult = new AddItemCommand(validItem).execute(modelStub);
         assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
+        assertEquals(Collections.singletonList(validItem), modelStub.itemsAdded);
     }
 
     /**
@@ -125,6 +127,11 @@ public class AddItemCommandTest {
         }
 
         @Override
+        public Path getLocationListFilePath() {
+            return null;
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook addressBook) {
             throw new AssertionError("This method should not be called.");
         }
@@ -142,6 +149,11 @@ public class AddItemCommandTest {
         @Override
         public void addItem(Item item) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLocation(Location location) {
+
         }
 
 
@@ -165,6 +177,11 @@ public class AddItemCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ReadOnlyLocationList getLocationList() {
+            return null;
+        }
+
 
         @Override
         public void deletePerson(Person target) {
@@ -174,6 +191,11 @@ public class AddItemCommandTest {
         @Override
         public boolean hasItem(Item item) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLocation(Location location) {
+            return false;
         }
 
         @Override
@@ -208,9 +230,24 @@ public class AddItemCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Location> getFilteredLocationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void updateFilteredItemList(Predicate<Item> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLocationList(Predicate<Location> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int findLocationID(Location toFind) {
             throw new AssertionError("This method should not be called.");
         }
     }

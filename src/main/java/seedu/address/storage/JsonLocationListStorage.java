@@ -18,32 +18,32 @@ import seedu.address.model.ReadOnlyLocationList;
 /**
  * A class to access Location data stored as a json file on the hard disk.
  */
-public class JsonLocationStorage implements LocationStorage {
+public class JsonLocationListStorage implements LocationListStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonLocationStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonLocationListStorage.class);
 
     private Path filePath;
 
-    public JsonLocationStorage(Path filePath) {
+    public JsonLocationListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getLocationFilePath() {
+    public Path getLocationListFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyLocationList> readLocation() throws DataConversionException {
-        return readLocation(filePath);
+    public Optional<ReadOnlyLocationList> readLocationList() throws DataConversionException {
+        return readLocationList(filePath);
     }
 
     /**
-     * Similar to {@link #readLocation()}.
+     * Similar to {@link #readLocationList()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyLocationList> readLocation(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyLocationList> readLocationList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableLocationList> jsonLocation = JsonUtil.readJsonFile(
@@ -61,16 +61,16 @@ public class JsonLocationStorage implements LocationStorage {
     }
 
     @Override
-    public void saveLocation(ReadOnlyLocationList addressBook) throws IOException {
-        saveLocation(addressBook, filePath);
+    public void saveLocationList(ReadOnlyLocationList addressBook) throws IOException {
+        saveLocationList(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveLocation(ReadOnlyLocationList)}.
+     * Similar to {@link #saveLocationList(ReadOnlyLocationList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveLocation(ReadOnlyLocationList addressBook, Path filePath) throws IOException {
+    public void saveLocationList(ReadOnlyLocationList addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

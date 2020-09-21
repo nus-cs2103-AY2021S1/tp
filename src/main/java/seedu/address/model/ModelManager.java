@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,6 +26,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final ItemList itemList;
     private final FilteredList<Item> filteredItems;
+    private final LocationList locationList;
+    private final FilteredList<Location> filteredLocations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,6 +43,8 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.itemList = null;
         filteredItems = null;
+        locationList = null;
+        filteredLocations = null;
     }
 
     /**
@@ -56,6 +61,26 @@ public class ModelManager implements Model {
         filteredItems = new FilteredList<>(this.itemList.getItemList());
         addressBook = null;
         filteredPersons = null;
+        locationList = null;
+        filteredLocations = null;
+    }
+
+    /**
+     * Initializes a ModelManager with the given locationList and userPrefs.
+     */
+    public ModelManager(ReadOnlyLocationList locationList, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(locationList, userPrefs);
+
+        logger.fine("Initializing with location list: " + locationList + " and user prefs " + userPrefs);
+
+        this.locationList = new LocationList(locationList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredLocations = new FilteredList<>(this.locationList.getLocationList());
+        addressBook = null;
+        filteredPersons = null;
+        itemList = null;
+        filteredItems = null;
     }
 
     public ModelManager() {
@@ -97,6 +122,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getLocationListFilePath() {
+        return null;
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
@@ -131,6 +161,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyLocationList getLocationList() {
+        return locationList;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -140,6 +175,12 @@ public class ModelManager implements Model {
     public boolean hasItem(Item item) {
         requireNonNull(item);
         return itemList.hasItem(item);
+    }
+
+    @Override
+    public boolean hasLocation(Location location) {
+        requireNonNull(location);
+        return locationList.hasLocation(location);
     }
 
     @Override
@@ -162,6 +203,11 @@ public class ModelManager implements Model {
     public void addItem(Item item) {
         itemList.addItem(item);
         updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+    }
+
+    @Override
+    public void addLocation(Location location) {
+        locationList.addLocation(location);
     }
 
     @Override
@@ -195,6 +241,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Location> getFilteredLocationList() {
+        return null;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -204,6 +255,18 @@ public class ModelManager implements Model {
     public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
         filteredItems.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredLocationList(Predicate<Location> predicate) {
+        requireNonNull(predicate);
+        filteredLocations.setPredicate(predicate);
+    }
+
+    @Override
+    public int findLocationID(Location toFind) {
+        requireNonNull(toFind);
+        return locationList.findLocationID(toFind);
     }
 
     @Override

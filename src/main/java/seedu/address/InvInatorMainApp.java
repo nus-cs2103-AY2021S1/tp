@@ -19,12 +19,15 @@ import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ItemListStorage;
 import seedu.address.storage.JsonItemListStorage;
+import seedu.address.storage.JsonLocationListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.LocationListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -38,12 +41,13 @@ import seedu.address.ui.Ui;
 public class InvInatorMainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
-
+    private static Model locationModel;
+    private static Storage locationStorage;
     private static final Logger logger = LogsCenter.getLogger(InvInatorMainApp.class);
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage storage;
+    protected Storage itemStorage;
     protected Model model;
     protected Config config;
 
@@ -58,15 +62,26 @@ public class InvInatorMainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ItemListStorage itemListStorage = new JsonItemListStorage(userPrefs.getItemListFilePath());
-        storage = new StorageManager(itemListStorage, userPrefsStorage);
+        LocationListStorage locationListStorage = new JsonLocationListStorage(userPrefs.getLocationListFilePath());
+        itemStorage = new StorageManager(itemListStorage, userPrefsStorage);
+        locationStorage = new StorageManager(locationListStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(itemStorage, userPrefs);
+        locationModel = initLocationModelManager(locationStorage, userPrefs);
 
-        logic = new ItemLogicManager(model, storage);
+        logic = new ItemLogicManager(model, itemStorage);
 
         ui = new ItemUiManager(logic);
+    }
+
+    public static Model getLocationModel() {
+        return locationModel;
+    }
+
+    public static Storage getLocationStorage() {
+        return locationStorage;
     }
 
     /**
@@ -90,6 +105,22 @@ public class InvInatorMainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
             initialData = new ItemList();
         }
+        return new ModelManager(initialData, userPrefs);
+    }
+
+    /**
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     */
+    private Model initLocationModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyLocationList> locationListOptional;
+        ReadOnlyLocationList initialData;
+        locationListOptional = storage.readLocationList();
+        if (locationListOptional.isEmpty()) {
+            logger.info("Data file not found. Will be starting with a sample ItemList");
+        }
+        initialData = locationListOptional.orElseGet(SampleDataUtil::getSampleLocationList);
         return new ModelManager(initialData, userPrefs);
     }
 
@@ -175,7 +206,7 @@ public class InvInatorMainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            itemStorage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

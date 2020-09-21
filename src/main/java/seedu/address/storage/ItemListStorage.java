@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 
 
 /**
@@ -42,5 +43,17 @@ public interface ItemListStorage {
      * @see #saveItemList(ReadOnlyItemList)
      */
     void saveItemList(ReadOnlyItemList addressBook, Path filePath) throws IOException;
+
+    /**
+     * Saves the given {@link ReadOnlyLocationList} to the storage.
+     * @param addressBook cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveLocationList(ReadOnlyLocationList addressBook) throws IOException;
+
+    /**
+     * @see #saveLocationList(ReadOnlyLocationList)
+     */
+    void saveLocationList(ReadOnlyLocationList addressBook, Path filePath) throws IOException;
 
 }
