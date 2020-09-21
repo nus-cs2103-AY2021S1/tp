@@ -35,13 +35,7 @@ Refer to the guide [UserGuide](UserGuide.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-<div markdown="span" class="alert alert-primary">
-
-**Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder for reference.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -143,13 +137,13 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedInventoryinator`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedInventoryinator`. It extends `Inventoryinator` with an undo/redo history, stored internally as an `inventoryinatorStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedInventoryinator#commit()` — Saves the current address book state in its history.
 * `VersionedInventoryinator#undo()` — Restores the previous address book state from its history.
 * `VersionedInventoryinator#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitInventoryinator()`, `Model#undoInventoryinator()` and `Model#redoInventoryinator()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -157,7 +151,7 @@ Step 1. The user launches the application for the first time. The `VersionedInve
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `del Bob’s 28th finger` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitInventoryinator()`, causing the modified state of the address book after the `del Bob’s 28th finger` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -165,13 +159,13 @@ Step 3. The user executes `addi Bob’s 6th regret -q 8` to add a new person. Th
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `inventoryinatorStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitInventoryinator()`, so the address book state will not be saved into the `inventoryinatorStateList`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInventoryinator()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial Inventoryinator state, then there are no previous Inventoryinator states to restore. The `undo` command uses `Model#canUndoinventoryinator()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
@@ -181,13 +175,13 @@ The following sequence diagram shows how the undo operation works:
 
 The `redo` command does the opposite — it calls `Model#redoInventoryinator()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `inventoryinatorStateList.size() - 1`, pointing to the latest address book state, then there are no undone Inventoryinator states to restore. The `redo` command uses `Model#canRedoInventoryinator()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`, will usually not call `Model#commitInventoryinator()`, `Model#undoInventoryinator()` or `Model#redoInventoryinator()`. Thus, the `inventoryinatorStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInventoryinator()`. Since the `currentStatePointer` is not pointing at the end of the `inventoryinatorStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -235,7 +229,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: manage inventory faster than a typical mouse/GUI driven app
 
-### User stories V1.1
+### User stories for V1.1
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -248,24 +242,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a recipe                | remove recepies that I no longer need to use                           |
 | `* * *`  | user                                       | find a item by name            | locate details of items without having to go through the entire list   |
 | `* * `   | user                                       | tag a item by location         | locate items by where they are located                                 |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
 
-*{More to be added}*
+*{More to be added in later iterations}*
 
-### Use cases
-
-(For all use cases below, the **System** is the `Inventoryinator` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list items
-2.  Inventoryinator shows a list of persons
-3.  User requests to delete a specific item in the list
-4.  Inventoryinator deletes the person
-
-    Use case ends.
 
 **Extensions**
 
@@ -283,67 +262,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+ should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user should be able to view visually the output from the Application
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
-
-### Recess Week:
-
+* **Item**: An item represents an object you obtain in a game. Eg a Rock
+* **Recipe**: An recipe is associated with multiple items, and represents the consumption of items in the input,
+ to produce an item of the output.

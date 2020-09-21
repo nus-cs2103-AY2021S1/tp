@@ -1,7 +1,3 @@
----
-layout: page
-title: EndUserPersona
----
 
 # EndUserPersona
 
@@ -109,6 +105,7 @@ looking for kappas.
 
 ### Persona #4
 Aila the Hardcore Merchant (Age 20)
+![Anon](images/profiles/johndoe.png)
 #### Bio:
 Aila is a college student who plays Penultimate Fiction XIV. She likes to keep track of hot commodities on the player market, which decides her next action on which materials to bulk import from the guilds that she works with.
 
@@ -130,7 +127,8 @@ After checking the in-game market, Aila opens the `Inventoryinator`, opens up th
 realizes she is missing 250k bear asses, 129k rat whiskers, and 2k phoenix beaks. She quickly contacts her 
 suppliers, then proceeds to crafting.
 ### Persona #5
-Rahul the Bot Farmer
+Rahul the Bot Farmer (Age 35)
+![Anon](images/profiles/johndoe.png)
 ####Bio:
 Rahul is a bot farmer, who sets up automated game accounts to farm profitable materials in the game World of Wowcraft to sell on the free market. He has over 10 accounts farming currently, and he makes a living off managing these bot accounts. He also runs similar accounts for other games like Diablow III.
 
