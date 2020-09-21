@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InventoryinatorParser" as InventoryinatorParser LOGIC_COLOR
+participant ":AddItemCommandParser" as AddItemCommandParser LOGIC_COLOR
+participant "d:AddItemCommand" as AddItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addi banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+activate LogicManager
+
+LogicManager -> InventoryinatorParser : parseCommand("addi banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+activate InventoryinatorParser
+
+create AddItemCommandParser
+InventoryinatorParser -> AddItemCommandParser
+activate AddItemCommandParser
+
+AddItemCommandParser --> InventoryinatorParser
+deactivate AddItemCommandParser
+
+InventoryinatorParser -> AddItemCommandParser : parse("banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+activate AddItemCommandParser
+
+create AddItemCommand
+AddItemCommandParser -> AddItemCommand
+activate AddItemCommand
+
+AddItemCommand --> AddItemCommandParser : d
+deactivate AddItemCommand
+
+AddItemCommandParser --> InventoryinatorParser : d
+deactivate AddItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddItemCommandParser -[hidden]-> InventoryinatorParser
+destroy AddItemCommandParser
+
+InventoryinatorParser --> LogicManager : d
+deactivate InventoryinatorParser
+
+LogicManager -> AddItemCommand : execute()
+activate AddItemCommand
+
+AddItemCommand -> Model : addItem("banana", 44, "edible banana",\n [Bob’s banana farm, Bob's home])
+activate Model
+
+Model --> AddItemCommand
+deactivate Model
+
+create CommandResult
+AddItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddItemCommand
+deactivate CommandResult
+
+AddItemCommand --> LogicManager : result
+deactivate AddItemCommand
+
+destroy CommandResult
+[<--LogicManager
+deactivate LogicManager
+@enduml

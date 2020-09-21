@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+
+Participant ":LogicManager" as logic LOGIC_COLOR
+Participant ":InventoryinatorParser" as inv LOGIC_COLOR
+Participant ":EditCommandParser" as ecp LOGIC_COLOR
+Participant "command:EditCommand" as ec LOGIC_COLOR
+
+[-> logic : execute
+activate logic
+logic -> inv ++: parseCommand(commandText)
+create ecp
+inv -> ecp
+inv -> ecp ++: parse(arguments)
+create ec
+ecp -> ec ++: index, editItemDescriptor
+ec --> ecp --
+ecp --> inv --: command
+inv --> logic --: command
+
+@enduml

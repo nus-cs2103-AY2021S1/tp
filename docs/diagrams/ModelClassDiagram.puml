@@ -5,23 +5,29 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyInventoryinator <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Inventoryinator
+Class ReadOnlyInventoryinator
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Item {
+Class Item
+Class ItemId
+Class Description
+Class Location
+Class ItemName
+Class Quantity
+Class UniqueItemList
+Class LocationIdMapping
+Class UniqueRecipesManager
+}
+Package Recipies {
+Class RecipesIDs
 }
 
 Package Tag {
@@ -32,25 +38,28 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Inventoryinator .up.|> ReadOnlyInventoryinator
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Inventoryinator
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Inventoryinator o--> "1" UniqueItemList
+UniqueItemList o--> "*" Item
+Inventoryinator o--> "*" LocationIdMapping
+LocationIdMapping o--> "*" Item
+Inventoryinator o--> "1" UniqueRecipesManager
+UniqueRecipesManager o--> "*" Item
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Item *--> ItemName
+Item *--> Quantity
+Item *--> "*"Location
+Item *--> Description
+Item *--> "*" Tag
+Item *--> ItemId
+Item *--> "*" RecipesIDs
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Item : filtered list
 @enduml
