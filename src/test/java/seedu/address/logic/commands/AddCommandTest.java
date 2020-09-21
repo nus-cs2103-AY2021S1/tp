@@ -17,9 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
+import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
@@ -107,12 +107,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getInventoryBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setInventoryBookFilePath(Path inventoryBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -127,12 +127,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setInventoryBook(ReadOnlyInventoryBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyInventoryBook getInventoryBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -211,8 +211,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyInventoryBook getInventoryBook() {
+            return new InventoryBook();
         }
     }
 

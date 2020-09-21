@@ -100,26 +100,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void parseSupplier_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseSupplier((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
+    public void parseSupplier_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseSupplier(INVALID_SUPPLIER));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseSupplier_validValueWithoutWhitespace_returnsSupplier() throws Exception {
         Supplier expectedSupplier = new Supplier(VALID_SUPPLIER);
         assertEquals(expectedSupplier, ParserUtil.parseSupplier(VALID_SUPPLIER));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_SUPPLIER + WHITESPACE;
+    public void parseSupplier_validValueWithWhitespace_returnsTrimmedSupplier() throws Exception {
+        String supplierWithWhitespace = WHITESPACE + VALID_SUPPLIER + WHITESPACE;
         Supplier expectedSupplier = new Supplier(VALID_SUPPLIER);
-        assertEquals(expectedSupplier, ParserUtil.parseSupplier(addressWithWhitespace));
+        assertEquals(expectedSupplier, ParserUtil.parseSupplier(supplierWithWhitespace));
     }
 
     @Test

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.InventoryBook;
 import seedu.address.model.item.Item;
 
 /**
@@ -68,10 +68,10 @@ public class TypicalItems {
     private TypicalItems() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical items.
+     * Returns an {@code InventoryBook} with all the typical items.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static InventoryBook getTypicalInventoryBook() {
+        InventoryBook ab = new InventoryBook();
         for (Item item : getTypicalItems()) {
             ab.addItem(item);
         }

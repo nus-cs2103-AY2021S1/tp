@@ -63,16 +63,16 @@ public class ItemBuilder {
     /**
      * Sets the {@code Supplier} of the {@code Item} that we are building.
      */
-    public ItemBuilder withSupplier(String address) {
-        this.supplier = new Supplier(address);
+    public ItemBuilder withSupplier(String supplier) {
+        this.supplier = new Supplier(supplier);
         return this;
     }
 
     /**
      * Sets the {@code Quantity} of the {@code Item} that we are building.
      */
-    public ItemBuilder withQuantity(String phone) {
-        this.quantity = new Quantity(phone);
+    public ItemBuilder withQuantity(String quantity) {
+        this.quantity = new Quantity(quantity);
         return this;
     }
 
