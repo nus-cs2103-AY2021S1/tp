@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-This project is part of the NUS module CS2103 Software Engineering. 
+This project is part of the NUS module CS2103 Software Engineering.
 Our lecturer is Professor Damith Chatura Rajapakse.
 You can reach him at the email `damithch@comp.nus.edu.sg`.
 
