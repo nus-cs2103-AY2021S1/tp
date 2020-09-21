@@ -242,8 +242,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Allows users to manage stocks faster than a typical mouse/GUI driven app. 
-Includes higher level features such as ability to bookmark mostly used products and highlights stocks 
+**Value proposition**: Allows users to manage stocks faster than a typical mouse/GUI driven app.
+Includes higher level features such as ability to bookmark mostly used products and highlights stocks
 that are low in quantity to improve user experience.
 
 
