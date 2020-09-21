@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Li Huankang (Matthias)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/matthiaslhk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/MatthiasLHK)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead , Scheduling and tracking
+* Responsibilities: Responsible for overall project coordination and in charge of defining, assigning, and tracking project tasks.
 
 ### Johnny Doe
 
