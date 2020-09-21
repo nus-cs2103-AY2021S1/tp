@@ -30,8 +30,8 @@ class JsonAdaptedItem {
     // Data fields
     private final String quantity;
     private final String description;
-    private final List<Integer> locationId = new ArrayList<>();
-    private final List<Integer> recipeId = new ArrayList<>();
+    private final List<Integer> locationIds = new ArrayList<>();
+    private final List<Integer> recipeIds = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final boolean isDeleted;
 
@@ -43,8 +43,8 @@ class JsonAdaptedItem {
                            @JsonProperty("name") String name,
                            @JsonProperty("quantity") String quantity,
                            @JsonProperty("description") String description,
-                           @JsonProperty("locationId") List<Integer> locationId,
-                           @JsonProperty("recipeId") List<Integer> recipeId,
+                           @JsonProperty("locationIds") List<Integer> locationIds,
+                           @JsonProperty("recipeIds") List<Integer> recipeIds,
                            @JsonProperty("tags") List<JsonAdaptedTag> tagged,
                            @JsonProperty("isDeleted") boolean isDeleted) {
         this.id = id;
@@ -52,11 +52,11 @@ class JsonAdaptedItem {
         this.quantity = quantity;
         this.description = description;
         this.isDeleted = isDeleted;
-        if (locationId != null) {
-            this.locationId.addAll(locationId);
+        if (locationIds != null) {
+            this.locationIds.addAll(locationIds);
         }
-        if (recipeId != null) {
-            this.recipeId.addAll(recipeId);
+        if (recipeIds != null) {
+            this.recipeIds.addAll(recipeIds);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -72,8 +72,8 @@ class JsonAdaptedItem {
         quantity = source.getQuantity().value;
         description = source.getDescription();
         isDeleted = source.isDeleted();
-        locationId.addAll(new ArrayList<>(source.getLocationId()));
-        recipeId.addAll(new ArrayList<>(source.getRecipeId()));
+        locationIds.addAll(new ArrayList<>(source.getLocationIds()));
+        recipeIds.addAll(new ArrayList<>(source.getRecipeIds()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -100,8 +100,8 @@ class JsonAdaptedItem {
         final Quantity modelQuantity = new Quantity(quantity);
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
-        final Set<Integer> modelLocationIds = new HashSet<>(locationId);
-        final Set<Integer> modelRecipeIds = new HashSet<>(recipeId);
+        final Set<Integer> modelLocationIds = new HashSet<>(locationIds);
+        final Set<Integer> modelRecipeIds = new HashSet<>(recipeIds);
         return new Item(id, name, modelQuantity, description, modelLocationIds,
                 modelRecipeIds, modelTags, isDeleted);
     }

@@ -61,19 +61,19 @@ public class ItemLogicManager implements Logic {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        System.out.println("asking for address methods in item list");
+        logger.warning("Asking for getAddressBook in item list");
         return new AddressBook();
     }
 
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        System.out.println("asking for address methods in item list");
+        logger.warning("Asking for getFilteredPersonList in item list");
         return new FilteredList<>(null);
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        System.out.println("asking for address methods in item list");
+        logger.warning("Asking for getAddressBookFilePath in item list");
         return model.getItemListFilePath();
     }
 

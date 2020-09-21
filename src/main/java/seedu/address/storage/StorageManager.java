@@ -87,36 +87,29 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
     public Path getItemListFilePath() {
         return itemListStorage.getItemListFilePath();
     }
 
+    @Override
     public Optional<ReadOnlyItemList> readItemList() throws DataConversionException, IOException {
         return readItemList(itemListStorage.getItemListFilePath());
     }
 
-    /**
-     * no
-     * @param filePath no
-     * @return no
-     * @throws DataConversionException no
-     * @throws IOException no
-     */
+    @Override
     public Optional<ReadOnlyItemList> readItemList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return itemListStorage.readItemList(filePath);
     }
 
+    @Override
     public void saveItemList(ReadOnlyItemList itemList) throws IOException {
         saveItemList(itemList, itemListStorage.getItemListFilePath());
     }
 
-    /**
-     * no
-     * @param itemList no
-     * @param filePath no
-     * @throws IOException no
-     */
+
+    @Override
     public void saveItemList(ReadOnlyItemList itemList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         itemListStorage.saveItemList(itemList, filePath);

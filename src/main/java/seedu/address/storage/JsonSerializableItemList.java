@@ -43,7 +43,7 @@ class JsonSerializableItemList {
     }
 
     /**
-     * Converts this address book into the model's {@code ItemList} object.
+     * Converts this item list into the model's {@code ItemList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

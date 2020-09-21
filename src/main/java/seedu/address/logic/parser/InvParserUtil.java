@@ -36,10 +36,8 @@ public class InvParserUtil {
     }
 
     /**
-     * no
-     *
-     * @param name no
-     * @return no
+     * Parses a {@code String name} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
      */
     public static String parseName(String name) {
         requireNonNull(name);
@@ -47,10 +45,10 @@ public class InvParserUtil {
     }
 
     /**
-     * no
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @param quantity no
-     * @return no
+     * @throws ParseException if the given {@code quantity} is invalid.
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
@@ -62,10 +60,8 @@ public class InvParserUtil {
     }
 
     /**
-     * no
-     *
-     * @param description no
-     * @return no
+     * Parses a {@code String description} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
      */
     public static String parseDescription(String description) {
         requireNonNull(description);
@@ -73,9 +69,8 @@ public class InvParserUtil {
     }
 
     /**
-     * no
-     * @param location no
-     * @return no
+     * Parses a {@code String location} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
      */
     public static int parseLocation(String location) {
         requireNonNull(location);
@@ -93,7 +88,7 @@ public class InvParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<String>}.
+     * Parses {@code Collection<String> locations} into a {@code Set<String>}.
      */
     public static Set<Integer> parseLocations(Collection<String> locations) {
         requireNonNull(locations);

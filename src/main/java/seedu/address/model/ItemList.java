@@ -9,7 +9,7 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.UniqueItemList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the item-list level
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class ItemList implements ReadOnlyItemList {

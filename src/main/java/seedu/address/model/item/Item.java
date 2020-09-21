@@ -16,16 +16,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Item {
-
-    //item:
-    //int id
-    //string name
-    //int quantity
-    //string description
-    //list<integer> locationId
-    //list<integer> recipe ids that create this item
-    //boolean isDeleted
-
     private static int idCounter = 0;
 
     // Identity fields
@@ -35,8 +25,8 @@ public class Item {
     // Data fields
     private final Quantity quantity;
     private final String description;
-    private final List<Integer> locationId = new ArrayList<>();
-    private final List<Integer> recipeId = new ArrayList<>();
+    private final List<Integer> locationIds = new ArrayList<>();
+    private final List<Integer> recipeIds = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isDeleted;
 
@@ -50,8 +40,8 @@ public class Item {
         this.name = name;
         this.quantity = quantity;
         this.description = description;
-        this.locationId.addAll(locationId);
-        this.recipeId.addAll(recipeId);
+        this.locationIds.addAll(locationId);
+        this.recipeIds.addAll(recipeId);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
         idCounter++;
@@ -77,12 +67,12 @@ public class Item {
         return description;
     }
 
-    public List<Integer> getLocationId() {
-        return locationId;
+    public List<Integer> getLocationIds() {
+        return locationIds;
     }
 
-    public List<Integer> getRecipeId() {
-        return recipeId;
+    public List<Integer> getRecipeIds() {
+        return recipeIds;
     }
 
     /**
@@ -98,8 +88,8 @@ public class Item {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both items have the same name.
+     * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
         if (otherItem == this) {
@@ -129,40 +119,19 @@ public class Item {
                 && otherItem.getName().equals(getName())
                 && otherItem.getQuantity() == (getQuantity())
                 && otherItem.getDescription().equals(getDescription())
-                && otherItem.getLocationId().equals(getLocationId())
-                && otherItem.getRecipeId().equals(getRecipeId())
+                && otherItem.getLocationIds().equals(getLocationIds())
+                && otherItem.getRecipeIds().equals(getRecipeIds())
                 && otherItem.getTags().equals(getTags())
                 && otherItem.isDeleted() == isDeleted();
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, quantity, description, locationId, recipeId, tags, isDeleted);
+        return Objects.hash(id, name, quantity, description, locationIds, recipeIds, tags, isDeleted);
     }
 
     @Override
     public String toString() {
-        /*
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Id:")
-                .append(getId())
-                .append(" Name: ")
-                .append(getName())
-                .append(" Quantity: ")
-                .append(getQuantity())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Location Ids: ");
-        getLocationId().forEach(builder::append);
-        builder.append(" Recipe Ids: ");
-        getRecipeId().forEach(builder::append);
-        builder.append(" Tags: ");
-        getTags().forEach(builder::append);
-        builder.append(" Is deleted: ")
-                .append(isDeleted());
-        return builder.toString();
-         */
         return name;
     }
 

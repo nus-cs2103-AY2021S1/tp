@@ -43,9 +43,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * no
-     * @param itemList no
-     * @param userPrefs no
+     * Initializes a ModelManager with the given itemList and userPrefs.
      */
     public ModelManager(ReadOnlyItemList itemList, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -110,7 +108,7 @@ public class ModelManager implements Model {
         userPrefs.setItemListFilePath(itemListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ItemList ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -180,7 +178,7 @@ public class ModelManager implements Model {
         itemList.setItem(target, editedItem);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Item List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

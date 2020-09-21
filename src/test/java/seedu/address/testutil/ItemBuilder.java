@@ -61,8 +61,8 @@ public class ItemBuilder {
     }
 
     /**
-     * no
-     * @return no
+     * builds an item
+     * @return an Item
      */
     public Item build() {
         return new Item(0, name, quantity, description,

@@ -53,7 +53,7 @@ public class AddItemCommand extends Command {
         }
 
         model.addItem(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

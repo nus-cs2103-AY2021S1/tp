@@ -90,7 +90,6 @@ public class InvInatorMainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
             initialData = new ItemList();
         }
-        System.out.println("Reached here");
         return new ModelManager(initialData, userPrefs);
     }
 

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Clears the address book.
+ * Clears the item list.
  */
 public class ClearItemCommand extends Command {
 

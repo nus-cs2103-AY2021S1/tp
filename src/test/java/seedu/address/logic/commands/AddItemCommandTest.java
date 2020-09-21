@@ -33,9 +33,7 @@ public class AddItemCommandTest {
     }
 
     /**
-     * no
-     *
-     * @throws Exception no
+     * test for successful adding of item
      */
     @Test
     public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
@@ -43,13 +41,12 @@ public class AddItemCommandTest {
         Item validItem = new ItemBuilder().build();
 
         CommandResult commandResult = new AddItemCommand(validItem).execute(modelStub);
-        System.out.println(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem));
         assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 
     /**
-     * no
+     * test for detecting duplicate items
      */
     @Test
     public void execute_duplicateItem_throwsCommandException() {
@@ -62,7 +59,7 @@ public class AddItemCommandTest {
     }
 
     /**
-     * no
+     * test for equivalency
      */
     @Test
     public void equals() {
