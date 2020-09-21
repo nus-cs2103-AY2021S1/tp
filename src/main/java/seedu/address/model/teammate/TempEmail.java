@@ -41,7 +41,7 @@ public class TempEmail {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
