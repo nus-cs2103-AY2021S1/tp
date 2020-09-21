@@ -29,4 +29,3 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `add` feature.
     * Added documentation for `product scope` section.
-    
