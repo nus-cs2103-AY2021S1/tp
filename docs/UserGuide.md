@@ -31,7 +31,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 > - Parameters can be in any order
 
 ### Adding a student: `add`
-Adds a student into the student list. 
+Adds a student into the student list.
 ```
 add n/NAME i/NUSNET_ID e/EMAIL
 ```
