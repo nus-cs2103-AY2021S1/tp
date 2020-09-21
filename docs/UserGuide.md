@@ -135,7 +135,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2 3` deletes the 2nd and the 3rd tasks in the results of the list command.
+* `list` followed by `delete 2 3` deletes the 2nd and the 3rd tasks in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Clearing all entries : `clear`
