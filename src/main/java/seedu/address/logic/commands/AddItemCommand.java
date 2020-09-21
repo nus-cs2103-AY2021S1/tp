@@ -34,32 +34,32 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list";
 
-    private final Item toAdd;
+    private final Item itemToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Item}
      */
     public AddItemCommand(Item item) {
         requireNonNull(item);
-        toAdd = item;
+        itemToAdd = item;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasItem(toAdd)) {
+        if (model.hasItem(itemToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.addItem(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addItem(itemToAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, itemToAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddItemCommand // instanceof handles nulls
-                && toAdd.equals(((AddItemCommand) other).toAdd));
+                && itemToAdd.equals(((AddItemCommand) other).itemToAdd));
     }
 }

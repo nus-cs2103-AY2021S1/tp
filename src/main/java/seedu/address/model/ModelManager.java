@@ -224,7 +224,7 @@ public class ModelManager implements Model {
         itemList.setItem(target, editedItem);
     }
 
-    //=========== Filtered Item List Accessors =============================================================
+    //=========== Filtered Item and Location List Accessors ==================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

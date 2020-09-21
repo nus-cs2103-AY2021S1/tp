@@ -53,7 +53,7 @@ public class InvInatorMainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing ItemList ]===========================");
+        logger.info("=============================[ Initializing ItemList ]=============================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -85,9 +85,9 @@ public class InvInatorMainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s item list and {@code userPrefs}. <br>
+     * The data from the sample item list will be used instead if {@code storage}'s item list is not found,
+     * or an empty item list will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyItemList> itemListOptional;
@@ -109,9 +109,9 @@ public class InvInatorMainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s location list and {@code userPrefs}. <br>
+     * The data from the sample location list will be used instead if {@code storage}'s location list is not found,
+     * or an empty location list will be used instead if errors occur when reading {@code storage}'s location list.
      */
     private Model initLocationModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyLocationList> locationListOptional;
@@ -204,7 +204,7 @@ public class InvInatorMainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Inventoryinator ] =============================");
         try {
             itemStorage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

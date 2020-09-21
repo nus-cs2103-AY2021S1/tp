@@ -12,8 +12,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 
-
-
 /**
  * The manager of the UI component.
  */
