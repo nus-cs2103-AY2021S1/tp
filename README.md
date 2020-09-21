@@ -1,9 +1,9 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 #About Warenager
-**Warenager** is an **inventory application** to help tech-savvy warehouse managers 
-to keep track of items in their warehouse. It **optimizes management tasks for warehouse 
-managers** including but not exhaustive of updating, searching and ordering supplies, 
+**Warenager** is an **inventory application** to help tech-savvy warehouse managers
+to keep track of items in their warehouse. It **optimizes management tasks for warehouse
+managers** including but not exhaustive of updating, searching and ordering supplies,
 via Command Line Interface (CLI).
 
 ##User interface
@@ -11,8 +11,8 @@ via Command Line Interface (CLI).
 
   Example usages:
   * as an inventory manager (as opposed to physical tracking of your stocks on paper)
-  * as a locator for items in inventory 
-  
+  * as a locator for items in inventory
+
 ###Features
 * adding stocks
 * deleting stocks

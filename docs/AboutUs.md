@@ -45,5 +45,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/amy.md)]
 
 * Role: Developer
-* Responsibilities: Documentation manager - Responsible for the quality of 
+* Responsibilities: Documentation manager - Responsible for the quality of
 project documents, Coding standards, format of deliverables

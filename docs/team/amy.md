@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement comes with the ability to find stocks from not just the name of the stock
   but also other related fields such as serial number, location stored and source of stock.
   Search is also case-insensitive and any stock that contains the search term will be shown.
-  
+
 * **Git & Repository**:
   * Used GitHub Projects feature to create kanban boards to track user stories.
 
@@ -37,6 +37,5 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added documentation for the feature `find`.
     * Added use cases for feature `find`.
-    * Added documentation for `non-functional requirements` and `glossary`sections. 
+    * Added documentation for `non-functional requirements` and `glossary`sections.
     * Checked team members' documentation.
-
