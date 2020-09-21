@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getMainCatalogueFilePath() {
+        public Path getProjectCatalogueFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setMainCatalogueFilePath(Path mainCatalogueFilePath) {
+        public void setProjectCatalogueFilePath(Path mainCatalogueFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setMainCatalogue(ReadOnlyMainCatalogue newData) {
+        public void setProjectCatalogue(ReadOnlyMainCatalogue newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyMainCatalogue getMainCatalogue() {
+        public ReadOnlyMainCatalogue getProjectCatalogue() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyMainCatalogue getMainCatalogue() {
+        public ReadOnlyMainCatalogue getProjectCatalogue() {
             return new MainCatalogue();
         }
     }

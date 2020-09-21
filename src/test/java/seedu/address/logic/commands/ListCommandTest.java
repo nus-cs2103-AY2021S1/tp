@@ -23,7 +23,7 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
-        expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
+        expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
     }
 
     @Test

@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' main catalogue file path.
      */
-    Path getMainCatalogueFilePath();
+    Path getProjectCatalogueFilePath();
 
     /**
      * Sets the user prefs' main catalogue file path.
      */
-    void setMainCatalogueFilePath(Path mainCatalogueFilePath);
+    void setProjectCatalogueFilePath(Path mainCatalogueFilePath);
 
     /**
      * Replaces main catalogue data with the data in {@code mainCatalogue}.
      */
-    void setMainCatalogue(ReadOnlyMainCatalogue mainCatalogue);
+    void setProjectCatalogue(ReadOnlyMainCatalogue mainCatalogue);
 
     /** Returns the MainCatalogue */
-    ReadOnlyMainCatalogue getMainCatalogue();
+    ReadOnlyMainCatalogue getProjectCatalogue();
 
     /**
      * Returns true if a project with the same identity as {@code project} exists in the main catalogue.
@@ -85,4 +85,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+    //boolean hasPerson(Person person);
+    //void deletePerson(Person person);
+    //void setPerson(Person target, Person editedPerson);
 }
