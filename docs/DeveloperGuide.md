@@ -265,28 +265,111 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1**
+**System: Eva**
+**Use case: UC01 - Adding a Record of staff**
+**Actor: User**
+
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1.  User types in add <staffname> / <email> / <phoneno>
+2.  Eva adds in the staff record
+3.  Eva displays the staff record added to User
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Eva detects missing fields
 
-  Use case ends.
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+    
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
 
-* 3a. The given index is invalid.
+* 1b. Eva detects invalid email or phone number.
 
-    * 3a1. AddressBook shows an error message.
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
 
-      Use case resumes at step 2.
+
+**Use case 2**
+**System: Eva**
+**Use case: UC02 - Deleting a Record of staff**
+**Actor: User**
+
+
+**MSS**
+
+1. User types in delete <staff_name>
+2. Eva shows all matched staff records to the <staff_name> with indexes beside.
+3. User types in the index to delete
+4. Eva deletes the staff record permanently.
+5. Eva displays the confirmed message of deletion of that staff record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any staff record with the keyed in staff_name .
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in the new staff_name of delete <staff_name>.
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <staff_name>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new staff_name of delete <staff_name>.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+
+**Use case 3**
+**System: Eva**
+**Use case: UC03 - list all staff records**
+**Actor: User**
+
+
+**MSS**
+
+1. User types in list
+2. Eva shows all staff records with indexes beside.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any staff records.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends
+
+**Use case 4**
+**System: Eva**
+**Use case: UC04 - Exiting the program**
+**Actor: User**
+
+
+**MSS**
+
+1. User types in exit
+2. Eva exits
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any staff records.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends
 
 *{More to be added}*
 
