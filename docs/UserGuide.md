@@ -1,40 +1,23 @@
 ---
-layout: page
-title: User Guide
+User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+PlaNus is a desktop app for **managing tasks, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+* Quick start
+* Features
+  * Show all commands : `help`
+  * Listing all tasks : `list`
+  * Adding a task: `add`
+  * Deleting a task : `delete`
+  * Mark a task as done: `done`
+  * Editing a task : `edit`
+  * Locating tasks by attribute and key: `find` 
+  * Find by modules: `find module` [coming in future]
+  * Find by time spent: `find time-spent` [coming in future]
+  * Exiting the program : `exit`
+* FAQ
+* Command summary
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +25,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format**<br>
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in `add title:TITLE`, `TITLE` is a parameter which can be used as `title:homework 1`.
