@@ -236,56 +236,70 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* is an Undergraduate CS Teaching Assistant
+* has a need to manage their students:
+    * attendance
+    * participation
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* manage students faster than a typical mouse/GUI driven app
+* track attendance easily
+* ensure fairer allocation of class participation marks
+* ensure every student participates in class
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
+| -------- | ------------------------------------------ | -------------------------------- | ----------------------------------------------------------- |
+| `* * *`  | user                                       | add a new student                |                                                             |
+| `* * *`  | user                                       | view details of a student        | have quick access to them                                   |
+| `* * *`  | user                                       | view details of all my students  | have quick access to them                                   |
+| `* * *`  | user                                       | delete a student                 |                                                             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Taskmaster` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a new student
+2.  System shows the added student
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given input is invalid.
 
-  Use case ends.
+    * 1a1. System shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 1.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: View a student's details**
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  User requests to view a student's details
+2.  System shows the student's details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. System shows an error message.
+
+      Use case resumes at step 1.
 
 *{More to be added}*
 
@@ -300,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private contact detail**: A contact detail that is not meant to be shared with others (e.g. NUSNET ID)
 
 --------------------------------------------------------------------------------------------------------------------
 
