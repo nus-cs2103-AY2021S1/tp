@@ -263,16 +263,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case 1**
-
-**System: Eva**
+(For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Adding a Record of staff**
-
-**Actor: User**
-
 
 **MSS**
 
@@ -302,11 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 2.
 
 
-**Use case 2**
-**System: Eva**
 **Use case: UC02 - Deleting a Record of staff**
-**Actor: User**
-
 
 **MSS**
 
@@ -335,11 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 2.
     
 
-**Use case 3**
-**System: Eva**
 **Use case: UC03 - list all staff records**
-**Actor: User**
-
 
 **MSS**
 
@@ -354,11 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Eva informs the user that no records exist.
     Use case ends
 
-**Use case 4**
-**System: Eva**
 **Use case: UC04 - Exiting the program**
-**Actor: User**
-
 
 **MSS**
 
