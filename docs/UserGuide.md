@@ -153,7 +153,7 @@ Format: `exit`
 
 ## FAQ
 
-**Q**: How do I start the application?
+**Q**: How do I start the application?<br>
 **A**: In command prompt, go to the folder the application resides in and type: java - jar planus.jar
 
 --------------------------------------------------------------------------------------------------------------------
