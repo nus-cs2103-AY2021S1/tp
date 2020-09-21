@@ -236,13 +236,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of accounts with a significant number of entries
+* has a need to manage a significant number of business accounts, each with a significant number of financial entries
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage entries faster than a typical mouse/GUI driven app
+**Value proposition**: manage financial entries faster than a typical mouse/GUI driven app
 
 
 ### User stories
