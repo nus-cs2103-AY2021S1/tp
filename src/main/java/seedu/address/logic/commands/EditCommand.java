@@ -94,9 +94,9 @@ public class EditCommand extends Command {
         assert projectToEdit != null;
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
-        Leader updatedLeader = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
+        Leader updatedLeader = editProjectDescriptor.getPhone().orElse(projectToEdit.getLeader());
         ProjectDescription updatedProjectDescription = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
-        DueDate updatedDueDate = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
+        DueDate updatedDueDate = editProjectDescriptor.getAddress().orElse(projectToEdit.getDueDate());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
         return new Project(updatedName, updatedLeader, updatedProjectDescription, updatedDueDate, updatedTags);

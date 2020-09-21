@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Project's address in the main catalogue.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Project's due date in the main catalogue.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDueDate(String)}
  */
 public class DueDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Due dates can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -20,20 +20,20 @@ public class DueDate {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code DueDate}.
      *
-     * @param address A valid address.
+     * @param dueDate A valid dueDate.
      */
-    public DueDate(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public DueDate(String dueDate) {
+        requireNonNull(dueDate);
+        checkArgument(isValidDueDate(dueDate), MESSAGE_CONSTRAINTS);
+        value = dueDate;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidDueDate(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

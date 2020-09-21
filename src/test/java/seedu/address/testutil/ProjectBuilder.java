@@ -43,9 +43,9 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         name = projectToCopy.getName();
-        leader = projectToCopy.getPhone();
+        leader = projectToCopy.getLeader();
         projectDescription = projectToCopy.getEmail();
-        dueDate = projectToCopy.getAddress();
+        dueDate = projectToCopy.getDueDate();
         tags = new HashSet<>(projectToCopy.getTags());
     }
 

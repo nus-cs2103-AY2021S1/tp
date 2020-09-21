@@ -22,19 +22,19 @@ public class LeaderTest {
     @Test
     public void isValidPhone() {
         // null phone number
-        assertThrows(NullPointerException.class, () -> Leader.isValidPhone(null));
+        assertThrows(NullPointerException.class, () -> Leader.isValidLeader(null));
 
         // invalid phone numbers
-        assertFalse(Leader.isValidPhone("")); // empty string
-        assertFalse(Leader.isValidPhone(" ")); // spaces only
-        assertFalse(Leader.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Leader.isValidPhone("phone")); // non-numeric
-        assertFalse(Leader.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Leader.isValidPhone("9312 1534")); // spaces within digits
+        assertFalse(Leader.isValidLeader("")); // empty string
+        assertFalse(Leader.isValidLeader(" ")); // spaces only
+        assertFalse(Leader.isValidLeader("91")); // less than 3 numbers
+        assertFalse(Leader.isValidLeader("phone")); // non-numeric
+        assertFalse(Leader.isValidLeader("9011p041")); // alphabets within digits
+        assertFalse(Leader.isValidLeader("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Leader.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Leader.isValidPhone("93121534"));
-        assertTrue(Leader.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(Leader.isValidLeader("911")); // exactly 3 numbers
+        assertTrue(Leader.isValidLeader("93121534"));
+        assertTrue(Leader.isValidLeader("124293842033123")); // long phone numbers
     }
 }

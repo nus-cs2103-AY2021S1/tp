@@ -51,9 +51,9 @@ class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phone = source.getLeader().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        address = source.getDueDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -81,7 +81,7 @@ class JsonAdaptedProject {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Leader.class.getSimpleName()));
         }
-        if (!Leader.isValidPhone(phone)) {
+        if (!Leader.isValidLeader(phone)) {
             throw new IllegalValueException(Leader.MESSAGE_CONSTRAINTS);
         }
         final Leader modelLeader = new Leader(phone);
@@ -89,7 +89,7 @@ class JsonAdaptedProject {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDescription.class.getSimpleName()));
         }
-        if (!ProjectDescription.isValidEmail(email)) {
+        if (!ProjectDescription.isValidProjectDescription(email)) {
             throw new IllegalValueException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
         final ProjectDescription modelProjectDescription = new ProjectDescription(email);
@@ -97,7 +97,7 @@ class JsonAdaptedProject {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DueDate.class.getSimpleName()));
         }
-        if (!DueDate.isValidAddress(address)) {
+        if (!DueDate.isValidDueDate(address)) {
             throw new IllegalValueException(DueDate.MESSAGE_CONSTRAINTS);
         }
         final DueDate modelDueDate = new DueDate(address);

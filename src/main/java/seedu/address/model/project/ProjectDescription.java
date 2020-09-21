@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Project's email in the main catalogue.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Represents a Project's project description in the main catalogue.
+ * Guarantees: immutable; is valid as declared in {@link #isValidProjectDescription(String)}
  */
 public class ProjectDescription {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
+    public static final String MESSAGE_CONSTRAINTS = "Project descriptions should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
@@ -30,20 +30,20 @@ public class ProjectDescription {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code ProjectDescription}.
      *
-     * @param email A valid email address.
+     * @param projectDescription A valid projectDescription.
      */
-    public ProjectDescription(String email) {
-        requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public ProjectDescription(String projectDescription) {
+        requireNonNull(projectDescription);
+        checkArgument(isValidProjectDescription(projectDescription), MESSAGE_CONSTRAINTS);
+        value = projectDescription;
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns if a given string is a valid project description.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidProjectDescription(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

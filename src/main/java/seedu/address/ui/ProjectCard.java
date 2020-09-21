@@ -49,8 +49,8 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         name.setText(project.getName().fullName);
-        leader.setText(project.getPhone().value);
-        dueDate.setText(project.getAddress().value);
+        leader.setText(project.getLeader().value);
+        dueDate.setText(project.getDueDate().value);
         projectDescription.setText(project.getEmail().value);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -40,7 +40,7 @@ public class Project {
         return name;
     }
 
-    public Leader getPhone() {
+    public Leader getLeader() {
         return leader;
     }
 
@@ -48,7 +48,7 @@ public class Project {
         return projectDescription;
     }
 
-    public DueDate getAddress() {
+    public DueDate getDueDate() {
         return dueDate;
     }
 
@@ -71,7 +71,7 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getName().equals(getName())
-                && (otherProject.getPhone().equals(getPhone()) || otherProject.getEmail().equals(getEmail()));
+                && (otherProject.getLeader().equals(getLeader()) || otherProject.getEmail().equals(getEmail()));
     }
 
     /**
@@ -90,9 +90,9 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getName().equals(getName())
-                && otherProject.getPhone().equals(getPhone())
+                && otherProject.getLeader().equals(getLeader())
                 && otherProject.getEmail().equals(getEmail())
-                && otherProject.getAddress().equals(getAddress())
+                && otherProject.getDueDate().equals(getDueDate())
                 && otherProject.getTags().equals(getTags());
     }
 
@@ -106,12 +106,12 @@ public class Project {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Leader: ")
+                .append(getLeader())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Due Date: ")
+                .append(getDueDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

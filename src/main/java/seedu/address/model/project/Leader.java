@@ -4,32 +4,32 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Project's phone number in the main catalogue.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ * Represents a Project's leader in the main catalogue.
+ * Guarantees: immutable; is valid as declared in {@link #isValidLeader(String)}
  */
 public class Leader {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Leaders should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Leader}.
      *
-     * @param phone A valid phone number.
+     * @param leader A valid leader.
      */
-    public Leader(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Leader(String leader) {
+        requireNonNull(leader);
+        checkArgument(isValidLeader(leader), MESSAGE_CONSTRAINTS);
+        value = leader;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid leader.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidLeader(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

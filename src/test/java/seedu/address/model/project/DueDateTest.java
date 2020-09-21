@@ -22,15 +22,15 @@ public class DueDateTest {
     @Test
     public void isValidAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> DueDate.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> DueDate.isValidDueDate(null));
 
         // invalid addresses
-        assertFalse(DueDate.isValidAddress("")); // empty string
-        assertFalse(DueDate.isValidAddress(" ")); // spaces only
+        assertFalse(DueDate.isValidDueDate("")); // empty string
+        assertFalse(DueDate.isValidDueDate(" ")); // spaces only
 
         // valid addresses
-        assertTrue(DueDate.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(DueDate.isValidAddress("-")); // one character
-        assertTrue(DueDate.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(DueDate.isValidDueDate("Blk 456, Den Road, #01-355"));
+        assertTrue(DueDate.isValidDueDate("-")); // one character
+        assertTrue(DueDate.isValidDueDate("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
 }

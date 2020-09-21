@@ -59,7 +59,7 @@ public class ParserUtil {
     public static Leader parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Leader.isValidPhone(trimmedPhone)) {
+        if (!Leader.isValidLeader(trimmedPhone)) {
             throw new ParseException(Leader.MESSAGE_CONSTRAINTS);
         }
         return new Leader(trimmedPhone);
@@ -74,7 +74,7 @@ public class ParserUtil {
     public static DueDate parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!DueDate.isValidAddress(trimmedAddress)) {
+        if (!DueDate.isValidDueDate(trimmedAddress)) {
             throw new ParseException(DueDate.MESSAGE_CONSTRAINTS);
         }
         return new DueDate(trimmedAddress);
@@ -89,7 +89,7 @@ public class ParserUtil {
     public static ProjectDescription parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!ProjectDescription.isValidEmail(trimmedEmail)) {
+        if (!ProjectDescription.isValidProjectDescription(trimmedEmail)) {
             throw new ParseException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
         return new ProjectDescription(trimmedEmail);
