@@ -295,6 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 2.
 
 
+
 **Use case: UC02 - Deleting a Record of staff**
 
 **MSS**
@@ -323,6 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
     
+    
 
 **Use case: UC03 - list all staff records**
 
@@ -338,6 +340,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Eva informs the user that no records exist.
     Use case ends
+    
+    
 
 **Use case: UC04 - Exiting the program**
 
