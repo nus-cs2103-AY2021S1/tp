@@ -5,6 +5,9 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+#Developer Guide
+
+This is the developer guide for 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -13,11 +16,13 @@ title: Developer Guide
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+* [EndUserPersona](EndUserPersona.md)
+* [Usecases](Usecases.md)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [UserGuide](UserGuide.md).
 
 
 --------------------------------------------------------------------------------------------------------------------
