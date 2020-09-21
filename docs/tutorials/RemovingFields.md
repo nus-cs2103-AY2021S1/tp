@@ -20,10 +20,6 @@ Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify 
 
 ### Assisted refactoring
 
-The `address` field in `Person` is actually an instance of the `seedu.address.model.person.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
-
-![Usages detected](../images/remove/UnsafeDelete.png)
-
 Choose to `View Usages` and you should be presented with a list of `Safe Delete Conflicts`. These conflicts describe locations in which the `Address` class is used.
 
 ![List of conflicts](../images/remove/SafeDeleteConflicts.png)
@@ -64,8 +60,6 @@ A quick look at the `PersonCard` class and its `fxml` file quickly reveals why i
 
 ``` java
 ...
-@FXML
-private Label address;
 ...
 ```
 
@@ -73,9 +67,6 @@ private Label address;
 
 ``` xml
 ...
-<Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-<Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-<Label fx:id="email" styleClass="cell_small_label" text="\$email" />
 ...
 ```
 
@@ -95,7 +86,6 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
   } ]
 }
 ```
