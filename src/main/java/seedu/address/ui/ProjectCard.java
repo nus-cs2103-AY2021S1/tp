@@ -51,7 +51,7 @@ public class ProjectCard extends UiPart<Region> {
         name.setText(project.getName().fullName);
         leader.setText(project.getLeader().value);
         dueDate.setText(project.getDueDate().value);
-        projectDescription.setText(project.getEmail().value);
+        projectDescription.setText(project.getProjectDescription().value);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

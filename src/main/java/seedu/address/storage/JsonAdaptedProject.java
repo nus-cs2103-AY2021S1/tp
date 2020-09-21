@@ -52,7 +52,7 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(Project source) {
         name = source.getName().fullName;
         phone = source.getLeader().value;
-        email = source.getEmail().value;
+        email = source.getProjectDescription().value;
         address = source.getDueDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

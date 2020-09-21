@@ -32,7 +32,7 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + project.getName().fullName + " ");
         sb.append(PREFIX_PHONE + project.getLeader().value + " ");
-        sb.append(PREFIX_EMAIL + project.getEmail().value + " ");
+        sb.append(PREFIX_EMAIL + project.getProjectDescription().value + " ");
         sb.append(PREFIX_ADDRESS + project.getDueDate().value + " ");
         project.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

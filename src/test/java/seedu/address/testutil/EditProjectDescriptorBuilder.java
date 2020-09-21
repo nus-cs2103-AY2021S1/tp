@@ -34,7 +34,7 @@ public class EditProjectDescriptorBuilder {
         descriptor = new EditProjectDescriptor();
         descriptor.setName(project.getName());
         descriptor.setPhone(project.getLeader());
-        descriptor.setEmail(project.getEmail());
+        descriptor.setEmail(project.getProjectDescription());
         descriptor.setAddress(project.getDueDate());
         descriptor.setTags(project.getTags());
     }

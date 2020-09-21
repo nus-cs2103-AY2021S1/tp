@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
         Leader updatedLeader = editProjectDescriptor.getPhone().orElse(projectToEdit.getLeader());
-        ProjectDescription updatedProjectDescription = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
+        ProjectDescription updatedProjectDescription = editProjectDescriptor.getEmail().orElse(projectToEdit.getProjectDescription());
         DueDate updatedDueDate = editProjectDescriptor.getAddress().orElse(projectToEdit.getDueDate());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 

@@ -44,7 +44,7 @@ public class Project {
         return leader;
     }
 
-    public ProjectDescription getEmail() {
+    public ProjectDescription getProjectDescription() {
         return projectDescription;
     }
 
@@ -71,7 +71,8 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getName().equals(getName())
-                && (otherProject.getLeader().equals(getLeader()) || otherProject.getEmail().equals(getEmail()));
+                && (otherProject.getLeader().equals(getLeader()) || otherProject.getProjectDescription().equals(
+            getProjectDescription()));
     }
 
     /**
@@ -91,7 +92,7 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getName().equals(getName())
                 && otherProject.getLeader().equals(getLeader())
-                && otherProject.getEmail().equals(getEmail())
+                && otherProject.getProjectDescription().equals(getProjectDescription())
                 && otherProject.getDueDate().equals(getDueDate())
                 && otherProject.getTags().equals(getTags());
     }
@@ -108,8 +109,8 @@ public class Project {
         builder.append(getName())
                 .append(" Leader: ")
                 .append(getLeader())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" Project Description: ")
+                .append(getProjectDescription())
                 .append(" Due Date: ")
                 .append(getDueDate())
                 .append(" Tags: ");
