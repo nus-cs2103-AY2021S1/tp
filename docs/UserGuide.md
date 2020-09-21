@@ -6,10 +6,10 @@ PlaNus is a desktop app for **managing tasks, optimized for use via a Command Li
 
 ## Quick start
 * [Features](#features)
-  * [Show all commands : `help`](#viewing-help-:-`help`)
-  * [Listing all tasks : `list`](#listing-all-persons-:-`list`)
-  * [Adding a task: `add`](### Adding a person: `add`)
-  * [Deleting a task : `delete`](### Deleting a person : `delete`)
+  * [Show all commands : `help`](#viewing-help--help)
+  * [Listing all tasks : `list`](#listing-all-persons--list)
+  * [Adding a task: `add`](#adding-a-person-add)
+  * [Deleting a task : `delete`](#deleting-a-person--delete)
   * Mark a task as done: `done`
   * Editing a task : `edit`
   * Locating tasks by attribute and key: `find` 
