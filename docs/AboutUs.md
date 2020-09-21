@@ -17,15 +17,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/daongochieu2810)]
 * Role: Team Lead
 
-### Jane Doe
+### Caitlin Jee Shen-Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/caitlinjee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/caitlinjee)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Code Quality
 
 ### Johnny Doe
 

@@ -262,30 +262,137 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Wishful Shrinking` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add ingredients**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+  1. User chooses to add ingredients into the fridge.
+  2. Wishful Shrinking adds the specified ingredients into the fridge.
 
-    Use case ends.
+     Use case ends.
+	
+**Use case: Add a recipe**
+
+**MSS**
+
+  1. User chooses to add a recipe to the list of recipes.
+  2. Wishful Shrinking adds the recipe to the list of recipes.
+
+     Use case ends.
+	  
+**Use case: View ingredients**
+
+**MSS**
+
+  1. User requests to view all ingredients that are in the fridge.
+  2. Wishful Shrinking lists all the ingredients that are in the fridge.
+
+     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The fridge is empty.
+
+  Use case ends.  
+  
+ **Use case: View recipes**
+
+**MSS**
+
+  1. User requests to view all recipes that are in the recipe collection.
+  2. Wishful Shrinking lists all the recipes that are in the recipe collection, with their respective ingredients.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The list of recipes is empty.
+
+  Use case ends.  
+	  
+**Use case: Delete an ingredient**
+
+**MSS**
+
+  1. User requests to view the ingredients in the fridge.
+  2. Wishful Shrinker shows a list of ingredients that are in the fridge.
+  3. User requests to delete a specific ingredient in the list.
+  4. Wishful Shrinking deletes the ingredient.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The fridge is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Wishful Shrinking shows an error message.
 
       Use case resumes at step 2.
+	  
+**Use case: Delete a recipe**
+
+**MSS**
+
+  1. User requests to view the recipes in the recipe collection.
+  2. Wishful Shrinker shows a list of recipes that are in the recipe collection.
+  3. User requests to delete a specific recipe in the list.
+  4. Wishful Shrinking deletes the recipe.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The list of recipes is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Wishful Shrinking shows an error message.
+
+      Use case resumes at step 2.
+	  
+**Use case: Search for ingredient**
+
+**MSS**
+
+  1. User wants to search for ingredients by their name in the fridge.
+  2. Wishful Shrinking lists the ingredients in the fridge that has the specified name, if present.
+
+     Use case ends.
+	
+**Use case: Search for recipe**
+
+**MSS**
+
+  1. User wants to search for recipes by their title in the recipe collection.
+  2. Wishful Shrinking lists the recipes that has the specified title, if present.
+
+  Use case ends.
+	
+**Use case: Track calories**
+
+**MSS**
+
+  1. User wants to keep track of the food that they have eaten.
+  2. Wishful Shrinking adds the recipes that the user has input to the calorie tracker.
+
+     Use case ends.
+
+**Use case: View help**
+
+**MSS**
+
+  1. User wants to view all valid commands they can use.
+  2. Wishful Shrinking shows all valid commands.
+
+     Use case ends.
 
 *{More to be added}*
 
