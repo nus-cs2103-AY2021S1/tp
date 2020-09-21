@@ -9,13 +9,23 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Audrey Felicio Anwar
 
-<img src="images/audrey.png" width="200px">
+<img src="images/audreyfelicio.png" width="200px">
 
 [[github](https://github.com/AudreyFelicio)]
 [[portfolio](team/audrey.md)]
 
 * Role: Developer
 * Responsibilities: Team repository manager, main PR reviewer, Overall program structure.
+
+### Ang Kai Chao
+
+<img src="images/kc-98.png" width="200px">
+
+[[github](https://github.com/kc-98)]
+[[portfolio](team/kaichao.md)]
+
+* Role: Developer
+* Responsibilities: Team Leader, Overall code quality, Testing
 
 ### Lau Jun Hao Ashley
 

@@ -1,22 +1,26 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 #About Warenager
-Warenager is an **inventory application** to help tech-savvy warehouse managers to keep track of items
-in their warehouse. It **optimizes management tasks** for warehouse managers including but not
-exhaustive of updating, searching and ordering supplies, via Command Line Interface (CLI).
+**Warenager** is an **inventory application** to help tech-savvy warehouse managers 
+to keep track of items in their warehouse. It **optimizes management tasks for warehouse 
+managers** including but not exhaustive of updating, searching and ordering supplies, 
+via Command Line Interface (CLI).
 
 ##User interface
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
+  * as an inventory manager (as opposed to physical tracking of your stocks on paper)
+  * as a locator for items in inventory 
+  
+###Features
+* adding stocks
+* deleting stocks
+* searching for stocks
+* updating stocks
+
+If you are interested in using Warenager, head over to the Quick Start section of the [User Guide](https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html#quick-start).
+If you are interested in developing Warenager, head over to our [Developer Guide](https://ay2021s1-cs2103t-t15-3.github.io/tp/DeveloperGuide.html) for a start.
 
 ##Acknowledgements
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
