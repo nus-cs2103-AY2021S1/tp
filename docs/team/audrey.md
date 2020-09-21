@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement affects existing commands and commands to be added in future.
    It required an in-depth analysis of design alternatives.
    The implementation too was challenging as it required changes to existing commands.
- 
+
 * **Git & Repository**:
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`
   * Set up the team repository as specified by the `CS2103T` module requirements.
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
   * Ensured no pull requests was merged before thorough review was conducted.
   * Ensured every merge pass the GitHub action checks.
   * Head merger for Pull Requests.
- 
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `update`.

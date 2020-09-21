@@ -26,3 +26,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Team Leader, Overall code quality, Testing
+
+### Lau Jun Hao Ashley
+
+<img src="images/ashley-lau.png" width="200px">
+
+[[github](https://github.com/ashley-lau)]
+[[portfolio](team/ashley.md)]
+
+* Role: Developer
+* Responsibilities: Scheduling and tracking manager - In charge of defining, assigning, and tracking project tasks.
+

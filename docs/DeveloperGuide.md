@@ -236,13 +236,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of stocks
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Allows users to manage stocks faster than a typical mouse/GUI driven app.
+Includes higher level features such as ability to bookmark mostly used products and highlights stocks
+that are low in quantity to improve user experience.
 
 
 ### User stories
@@ -284,14 +286,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a stock**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list stocks
+2.  Warenager shows a list of stocks
+3.  User requests to delete a specific stock in the list
+4.  Warenager deletes the stock
 
     Use case ends.
 
@@ -301,9 +303,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given format is missing the field header sn/.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3b. The given serial number is not an integer.
+
+    * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
@@ -312,8 +320,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 stocks without a noticeable sluggishness in performance for smooth typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  A user without online connection should still be able to run the application.
+5.  Should be easy to pickup so that a user of managerial role can quickly teach their employees should he/she be absent.
 
 *{More to be added}*
 
@@ -350,19 +360,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a stock
 
-1. Deleting a person while all persons are being shown
+1. Deleting a stock while all relevant stock are shown.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all stocks by default or use the `find` command. Multiple stocks in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete sn/1111111`<br>
+      Expected: Stock of the serial number 1111111 is deleted from the inventory. Details of the deleted stock shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 1111111`<br>
+      Expected: No stock deleted due to invalid format from missing sn/. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa`, `...` (where x is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
