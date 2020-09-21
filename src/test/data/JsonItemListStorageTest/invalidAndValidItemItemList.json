@@ -1,0 +1,21 @@
+{
+  "items" : [ {
+    "id" : 1,
+    "name" : "banana",
+    "quantity" : "99",
+    "description" : "consumable item",
+    "locationId" : [ 1 ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  }, {
+    "id" : 2,
+    "name" : "Bob's Iridescent Pineapple",
+    "quantity" : "2a",
+    "description" : "Very rare drop from Bob",
+    "locationId" : [ 1 ],
+    "recipeId" : [ ],
+    "isDeleted" : false,
+    "tagged" : [ ]
+  } ]
+}
