@@ -17,7 +17,7 @@ public class Project {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Leader leader;
     private final Email email;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Project(Name name, Leader leader, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, leader, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.leader = leader;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Project {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Leader getPhone() {
+        return leader;
     }
 
     public Email getEmail() {
@@ -99,7 +99,7 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, leader, email, address, tags);
     }
 
     @Override

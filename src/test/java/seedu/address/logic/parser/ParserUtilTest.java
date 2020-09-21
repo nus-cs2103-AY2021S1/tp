@@ -17,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Leader;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -91,15 +91,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        Leader expectedLeader = new Leader(VALID_PHONE);
+        assertEquals(expectedLeader, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        Leader expectedLeader = new Leader(VALID_PHONE);
+        assertEquals(expectedLeader, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test

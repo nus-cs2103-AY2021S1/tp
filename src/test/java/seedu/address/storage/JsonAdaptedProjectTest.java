@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
+import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
 
 public class JsonAdaptedProjectTest {
     private static final String INVALID_NAME = "R@chel";
@@ -57,14 +57,14 @@ public class JsonAdaptedProjectTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedProject project =
                 new JsonAdaptedProject(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Leader.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedProject project = new JsonAdaptedProject(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Leader.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 

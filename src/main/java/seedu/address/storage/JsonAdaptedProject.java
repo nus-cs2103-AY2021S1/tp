@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
+import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
@@ -79,12 +79,12 @@ class JsonAdaptedProject {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Leader.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Leader.isValidPhone(phone)) {
+            throw new IllegalValueException(Leader.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Leader modelLeader = new Leader(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -103,7 +103,7 @@ class JsonAdaptedProject {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        return new Project(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Project(modelName, modelLeader, modelEmail, modelAddress, modelTags);
     }
 
 }

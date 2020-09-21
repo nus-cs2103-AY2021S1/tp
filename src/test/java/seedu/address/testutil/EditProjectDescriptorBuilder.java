@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Leader;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
@@ -51,7 +51,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(new Leader(phone));
         return this;
     }
 

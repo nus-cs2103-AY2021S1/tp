@@ -33,7 +33,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label leader;
     @FXML
     private Label address;
     @FXML
@@ -49,7 +49,7 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         name.setText(project.getName().fullName);
-        phone.setText(project.getPhone().value);
+        leader.setText(project.getPhone().value);
         address.setText(project.getAddress().value);
         email.setText(project.getEmail().value);
         project.getTags().stream()

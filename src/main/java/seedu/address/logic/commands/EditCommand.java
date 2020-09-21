@@ -21,8 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
+import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
@@ -94,12 +94,12 @@ public class EditCommand extends Command {
         assert projectToEdit != null;
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
-        Phone updatedPhone = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
+        Leader updatedLeader = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
         Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
         Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
-        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Project(updatedName, updatedLeader, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Name name;
-        private Phone phone;
+        private Leader leader;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setPhone(toCopy.leader);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, leader, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(Leader leader) {
+            this.leader = leader;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Leader> getPhone() {
+            return Optional.ofNullable(leader);
         }
 
         public void setEmail(Email email) {

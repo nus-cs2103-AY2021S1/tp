@@ -5,8 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
+import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -22,7 +22,7 @@ public class ProjectBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Leader leader;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        leader = new Leader(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         name = projectToCopy.getName();
-        phone = projectToCopy.getPhone();
+        leader = projectToCopy.getPhone();
         email = projectToCopy.getEmail();
         address = projectToCopy.getAddress();
         tags = new HashSet<>(projectToCopy.getTags());
@@ -77,7 +77,7 @@ public class ProjectBuilder {
      * Sets the {@code Phone} of the {@code Project} that we are building.
      */
     public ProjectBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.leader = new Leader(phone);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(name, phone, email, address, tags);
+        return new Project(name, leader, email, address, tags);
     }
 
 }

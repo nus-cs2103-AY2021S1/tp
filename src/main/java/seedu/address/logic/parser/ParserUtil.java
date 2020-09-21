@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Leader;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -56,13 +56,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static Leader parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Leader.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Leader.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Leader(trimmedPhone);
     }
 
     /**
