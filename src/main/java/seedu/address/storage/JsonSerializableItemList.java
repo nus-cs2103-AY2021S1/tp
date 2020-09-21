@@ -18,7 +18,7 @@ import seedu.address.model.item.Item;
 /**
  * An Immutable ItemList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "itemlist")
 class JsonSerializableItemList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Items list contains duplicate item(s).";

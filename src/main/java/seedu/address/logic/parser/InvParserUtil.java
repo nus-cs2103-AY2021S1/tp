@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,8 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Quantity;
-import seedu.address.storage.LocationStorage;
-
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -75,16 +72,8 @@ public class InvParserUtil {
     public static int parseLocation(String location) {
         requireNonNull(location);
         String trimmedLocation = location.trim();
-        HashMap<String, Integer> locations = LocationStorage.getLocations();
-        Integer result = locations.get(trimmedLocation);
-        if (result == null) {
-            // it's a two way map
-            LocationStorage.getLocationIds().put(locations.size() + 1, trimmedLocation);
-            locations.put(trimmedLocation, locations.size() + 1);
-            return locations.get(trimmedLocation);
-        } else {
-            return result;
-        }
+        // TODO
+        return 1;
     }
 
     /**
