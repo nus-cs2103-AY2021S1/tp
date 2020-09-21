@@ -15,12 +15,11 @@ traditional GUI apps.
   * [Deleting a task : `delete`](#deleting-a-person--delete)
   * [Mark a task as done: `done`](#marking-a-task-as-done-done)
   * [Editing a task : `edit`](#editing-a-person--edit)
-  * Locating tasks by attribute and key: `find`
-  * Find by modules: `find module` [coming in future]
-  * Find by time spent: `find time-spent` [coming in future]
-  * Exiting the program : `exit`
-* FAQ
-* Command summary
+  * [Deleting a person : `delete`](#deleting-a-person--delete)
+  * [Marking a task as done: `done`](#marking-a-task-as-done-done)
+  * [Exiting the program : `exit`](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -96,23 +95,6 @@ Examples:
  and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
@@ -142,11 +124,6 @@ Examples:
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -174,3 +151,4 @@ Action | Format, Examples
 **Help** | `help`
 **Done** | `done INDEX...`<br> e.g., `done 1 2 3`
 **Exit** | `exit`
+
