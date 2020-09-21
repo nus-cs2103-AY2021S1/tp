@@ -7,20 +7,17 @@ PlaNus is a desktop app for **managing tasks, optimized for use via a Command Li
 the benefits of a Graphical User Interface (GUI). If you can type fast, PlaNus can get your tasks managed faster than 
 traditional GUI apps.
 
-* Quick start
-* Features
-  * Show all commands : `help`
-  * Listing all tasks : `list`
-  * Adding a task: `add`
-  * Deleting a task : `delete`
-  * Mark a task as done: `done`
-  * Editing a task : `edit`
-  * Locating tasks by attribute and key: `find` 
-  * Find by modules: `find module` [coming in future]
-  * Find by time spent: `find time-spent` [coming in future]
-  * Exiting the program : `exit`
-* FAQ
-* Command summary
+## Quick start
+* [Features](#features)
+  * [Show all commands : `help`](#show-all-commands--help)
+  * [Listing all tasks : `list`](#listing-all-tasks--list)
+  * [Adding a task: `add`](#adding-a-task-add)
+  * [Deleting a task : `delete`](#deleting-a-task--delete)
+  * [Mark a task as done: `done`](#marking-a-task-as-done-done)
+  * Editing a task : `edit` (coming soon)
+  * [Exiting the program : `exit`](#exiting-the-program--exit)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +41,7 @@ traditional GUI apps.
 
 </div>
 
-### Viewing help : `help`
+### Show all commands : `help`
 
 Shows a message explaining how to access the help page. 
 
@@ -53,7 +50,16 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Listing all tasks : `list`
+
+Shows a list of all tasks in PlaNus.
+
+![list tasks](images/ListTasks.png)
+
+Format: `list`
+
+
+### Adding a task: `add`
 
 Adds a person to the address book.
 
@@ -67,52 +73,8 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in PlaNus.
-
-![list tasks](images/ListTasks.png)
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
-The index **must be a positive integer** 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
- and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
+### Deleting a task : `delete`
 
 Deletes the specified task from PlaNus.
 
@@ -140,11 +102,6 @@ Examples:
 * `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
 * `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
 
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -172,3 +129,4 @@ Action | Format, Examples
 **Help** | `help`
 **Done** | `done INDEX...`<br> e.g., `done 1 2 3`
 **Exit** | `exit`
+
