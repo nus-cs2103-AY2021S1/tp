@@ -230,6 +230,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Requirements**
+
 ### Product scope
 
 **Target user profile**:
