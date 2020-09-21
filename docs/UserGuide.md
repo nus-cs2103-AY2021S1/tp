@@ -165,7 +165,7 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE]` <br> e.g., `add title:return book type:todo`
-**Delete** | `delete INDEX... e.g., `delete 3 5 6`
+**Delete** | `delete INDEX...` e.g., `delete 3 5 6`
 **List** | `list`
 **Help** | `help`
 **Done** | `done INDEX...`<br> e.g., `done 1 2 3`
