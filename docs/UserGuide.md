@@ -311,6 +311,50 @@ The semesterly fees for air-con rooms are now $1500.
 ```
 -->
 
+
+### III. General
+
+>**ResiReg** has many general features such as Command Line Interface (CLI) sugar for more efficient usage by experienced users.
+
+#### 1. Asking for help as a first time user
+
+As a first-time user, you can get a walkthrough of all the available commands and their syntax to understand the usage of the commands, using the `help` command.
+
+##### Command
+```
+help
+```
+##### Execution Example
+```
+> list rooms - views a list of vacant rooms
+> ...
+```
+
+*Action*: Lists all user commands, along with details on syntax and usage.
+
+*Output*:
+The Command History panel on the left will display all available command details.
+
+
+#### 2. Checking the syntax for a command
+
+Occasionally, you may need to check the syntax of a command if you need to use the command but are unsure of the command usage.
+
+##### Command
+```
+help <command>
+```
+##### Execution Example
+```
+help list rooms
+> list rooms - views a list of vacant rooms
+```
+
+*Action*: Shows details of the command, including syntax and usage.
+
+*Output*:
+The Command History panel on the left will display the command details, including syntax and usage.
+
 ## FAQ
 ### Where do I get help?
 Just type in the `help` command!
