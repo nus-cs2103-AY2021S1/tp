@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.NusnetID;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -66,18 +66,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String nusnetID} into an {@code NusnetID}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code nusnetID} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static NusnetID parseNusnetID(String nusnetID) throws ParseException {
+        requireNonNull(nusnetID);
+        String trimmedNusnetID = nusnetID.trim();
+        if (!NusnetID.isValidNusnetID(trimmedNusnetID)) {
+            throw new ParseException(NusnetID.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new NusnetID(trimmedNusnetID);
     }
 
     /**
