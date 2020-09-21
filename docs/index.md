@@ -8,10 +8,7 @@ title: AddressBook Level-3
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
-
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+**NUStorage is a inventory and finances record system.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface). If you can type fast, NUStorage can manage your inventory / finances faster and organize said information better than traditional means (e.g. pen and paper).
 
 
 **Acknowledgements**
