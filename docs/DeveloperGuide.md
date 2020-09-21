@@ -236,11 +236,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* NUS Students
-* have a lot of project work
+* NUS Student
+* has a lot of project works
 * can type fast
-* Wants to track productivity
-* Wants to track workload
+* wants to track productivity
+* wants to track workload
 
 **Value proposition**: Allows NUS students to manage their tasks and schedule faster than a typical mouse/GUI driven app
 
