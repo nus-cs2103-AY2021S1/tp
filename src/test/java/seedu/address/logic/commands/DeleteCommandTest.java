@@ -33,7 +33,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
 
-        Model expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
         showNoProject(expectedModel);
 
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PROJECT;
         // ensures that outOfBoundIndex is still in bounds of main catalogue list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getMainCatalogue().getProjectList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectCatalogue().getProjectList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

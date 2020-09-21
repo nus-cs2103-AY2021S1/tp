@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
     public void execute_newProject_success() {
         Project validProject = new ProjectBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getMainCatalogue(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
         expectedModel.addProject(validProject);
 
         assertCommandSuccess(new AddCommand(validProject), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateProject_throwsCommandException() {
-        Project projectInList = model.getMainCatalogue().getProjectList().get(0);
+        Project projectInList = model.getProjectCatalogue().getProjectList().get(0);
         assertCommandFailure(new AddCommand(projectInList), model, AddCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 
