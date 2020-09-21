@@ -110,17 +110,17 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified task from PlaNus.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the task(s) at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2 3` deletes the 2nd and the 3rd tasks in the results of the `list` command.
+* `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 ### Marking a task as done: `done`
 
@@ -163,7 +163,7 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE]` <br> e.g., `add title:return book type:todo`
-**Delete** | `delete INDEX...`<br> e.g., `delete 3 5 6`
+**Delete** | `delete INDEX...` e.g., `delete 3 5 6`
 **List** | `list`
 **Help** | `help`
 **Done** | `done INDEX...`<br> e.g., `done 1 2 3`
