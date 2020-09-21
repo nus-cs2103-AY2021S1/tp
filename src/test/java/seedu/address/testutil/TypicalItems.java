@@ -22,19 +22,39 @@ import seedu.address.model.item.Item;
 public class TypicalItems {
 
     public static final Item CHICKEN = new ItemBuilder().withName("Chicken")
-            .withSupplier("NTUC")
+            .withSupplier("Giant")
             .withQuantity("12")
             .withTags("meat").build();
     public static final Item DUCK = new ItemBuilder().withName("Duck")
-            .withSupplier("NTUC")
+            .withSupplier("Cold Storage")
             .withQuantity("33")
+            .withTags("meat").build();
+    public static final Item SALMON = new ItemBuilder().withName("Salmon")
+            .withSupplier("No Supplier")
+            .withQuantity("5")
+            .withTags("fish").build();
+    public static final Item BROCCOLI = new ItemBuilder().withName("Broccoli")
+            .withSupplier("Sheng Siong")
+            .withQuantity("3")
+            .withTags("vegetable").build();
+    public static final Item CRAB = new ItemBuilder().withName("Crab")
+            .withSupplier("NTUC")
+            .withQuantity("7")
+            .withTags("seafood").build();
+    public static final Item BEEF = new ItemBuilder().withName("Beef")
+            .withSupplier("Cold Storage")
+            .withQuantity("41")
+            .withTags("meat").build();
+    public static final Item PORK = new ItemBuilder().withName("Pork")
+            .withSupplier("Sheng Siong")
+            .withQuantity("2")
             .withTags("meat").build();
 
     // Manually added
-    public static final Item HOON = new ItemBuilder().withName("Hoon Meier").withQuantity("8482424")
-            .withSupplier("little india").build();
-    public static final Item IDA = new ItemBuilder().withName("Ida Mueller").withQuantity("8482131")
-            .withSupplier("chicago ave").build();
+    public static final Item TUNA = new ItemBuilder().withName("Tuna").withQuantity("10")
+            .withSupplier("No Supplier").build();
+    public static final Item LAMB = new ItemBuilder().withName("LAMB").withQuantity("4")
+            .withSupplier("Sheng Siong").build();
 
     // Manually added - Item's details found in {@code CommandTestUtil}
     public static final Item CHICKEN_MANUAL = new ItemBuilder().withName(VALID_NAME_CHICKEN)
@@ -44,7 +64,6 @@ public class TypicalItems {
             .withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_MEAT, VALID_TAG_POULTRY)
             .build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalItems() {} // prevents instantiation
 
@@ -60,6 +79,6 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(CHICKEN, DUCK));
+        return new ArrayList<>(Arrays.asList(CHICKEN, DUCK, SALMON, BROCCOLI, CRAB, BEEF, PORK));
     }
 }

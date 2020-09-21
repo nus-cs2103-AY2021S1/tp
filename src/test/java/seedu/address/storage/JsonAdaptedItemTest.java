@@ -18,9 +18,8 @@ import seedu.address.model.item.Supplier;
 
 public class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_QUANTITY = "+651234";
+    private static final String INVALID_QUANTITY = "+6";
     private static final String INVALID_SUPPLIER = " ";
-    private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = DUCK.getName().toString();
