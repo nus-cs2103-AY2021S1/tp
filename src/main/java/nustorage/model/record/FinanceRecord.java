@@ -9,18 +9,36 @@ public class FinanceRecord {
     private LocalTime time;
     private double amount;
 
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount Amount of the transaction.
+     */
     public FinanceRecord(double amount) {
         this.amount = amount;
         this.date = LocalDate.now();
         this.time = LocalTime.now();
     }
 
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount Amount of the transaction.
+     * @param date Date of the transaction.
+     */
     public FinanceRecord(double amount, LocalDate date) {
         this.amount = amount;
         this.date = date;
         this.time = LocalTime.now();
     }
 
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount Amount of the transaction.
+     * @param date Date of the transaction.
+     * @param time Time of the transaction.
+     */
     public FinanceRecord(double amount, LocalDate date, LocalTime time) {
         this.amount = amount;
         this.date = date;
@@ -49,6 +67,6 @@ public class FinanceRecord {
 
     @Override
     public String toString() {
-        return "Record on " + date + " at " + time +  ": $" + String.format("%.2f", amount);
+        return "Record on " + date + " at " + time + ": $" + String.format("%.2f", amount);
     }
 }
