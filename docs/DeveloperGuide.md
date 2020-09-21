@@ -236,28 +236,34 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* NUS Students
+* have a lot of project work
 * can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Wants to track productivity
+* Wants to track workload
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Allows NUS students to manage their tasks and schedule faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​                                    | I want to …​                                     | So that I can…                   |
+| -------- | ------------------------------------------ | ---------------------------------------------- | -------------------------------- |
+| `* * *`  | new user                                   | have a help command                            |  easily access the user guide.   |
+| `* * *`  | user                                       | add new task to my list                        |                                  |
+| `* * *`  | student                                    | know when my tasks are du                      |                                  |
+| `* * *`  | user                                       | maintain a list of task I currently have       |                                  |
+| `* * *`  | user with a lot of task                    | delete my task after it is not relevant        | be focus on the unfinished task. |
+| `* * *`  | user                                       | mark my task as done after it is completed     | track the status of the task     |
+| `* *  `  | user                                       | find tasks by module                           |                                  |
+| `* *  `  | user                                       | find tasks by due date                         |                                  |
+| `* *  `  | user                                       | mark my task as done after it is completed     |                                  |
+| `* * *`  | user                                       | find tasks by name                             |                                  |
+| `* *  `  | user                                       | find tasks by category                         |                                  |
+| `* * *`  | user                                       | edit my task                                   |                                  |
+  
 *{More to be added}*
 
 ### Use cases
