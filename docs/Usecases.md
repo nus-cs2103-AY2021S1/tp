@@ -6,8 +6,7 @@ title: UseCases
 {:toc}
 
 # Usecase Documentation
-
-
+This document will store the usecases and workflow usecases in our designed product `Inventoryinator`.
 
 ### Feature Usecases
 ![usecases](images/usecases/UsecaseDiagram1.png)
@@ -98,10 +97,3 @@ Usecase end
     1. User adds 10 of item a and 20 of item b (UC1)
     2. User lists items (UC4)
     3. `inv` returns item a and item b with quantity increased 10 and 20 respectively
-    
-
-
-
-
-
-     btw aside from this, any of yall avail tmr ~ 1pm? i need halp for a technical test haha
