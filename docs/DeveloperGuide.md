@@ -265,7 +265,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Adding a Record of staff**
+***Use case: UC01 - Adding a Record of staff***
 
 **MSS**
 
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC02 - Deleting a Record of staff**
+***Use case: UC02 - Deleting a Record of staff***
 
 **MSS**
 
@@ -326,7 +326,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     
 
-**Use case: UC03 - list all staff records**
+***Use case: UC03 - list all staff records***
 
 **MSS**
 
@@ -343,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     
 
-**Use case: UC04 - Exiting the program**
+***Use case: UC04 - Exiting the program***
 
 **MSS**
 
