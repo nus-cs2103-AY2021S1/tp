@@ -42,7 +42,9 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+        // Parse input from String to Command
         Command command = addressBookParser.parseCommand(commandText);
+        // Execute command and save result
         commandResult = command.execute(model);
 
         try {
