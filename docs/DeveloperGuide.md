@@ -247,8 +247,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 * manage students faster than a typical mouse/GUI driven app
 * view student details at a glance
-* track attendance easily
-* ensure every student participates in class
+* add and remove students easily
 
 ### User stories
 
@@ -342,7 +341,7 @@ Use case ends.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, macO
+* **Mainstream OS**: Windows, Linux, Unix, macOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others (e.g. NUSNET ID)
 
 --------------------------------------------------------------------------------------------------------------------
