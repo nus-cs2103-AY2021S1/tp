@@ -262,7 +262,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an expense entry**
+**Use case: UC01 - Add an expense entry**
 
 **MSS**
 
@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
       
       
-**Use case: Add a profit entry**
+**Use case: UC02 - Add a profit entry**
 
 **MSS**
 
@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
       
-**Use case: Delete an entry**
+**Use case: UC03 - Delete an entry**
 
 **MSS**
 
@@ -313,6 +313,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
+      
+**Use case: UC04 - Exiting app**
+
+**MSS**
+
+1.  User requests to exit
+2.  Common cents responds with exit message and closes.
+
+    Use case ends.
 
 *{More to be added}*
 
