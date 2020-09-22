@@ -89,6 +89,14 @@ public class StringView {
         xs.replaceWith(snd);
     }
 
+    public StringView bisect(char b, StringView xs) {
+        var fst = this.take(this.find(b));
+        var snd = this.drop(fst.size() + 1).dropWhile(c -> c == b);
+
+        xs.replaceWith(snd);
+        return fst;
+    }
+
 
     public char at(int idx) {
         return this.chars[this.begin + idx];
@@ -128,6 +136,10 @@ public class StringView {
         }
 
         return new StringView(this.chars, this.begin, n);
+    }
+
+    public StringView undrop(int n) {
+        return new StringView(this.chars, Math.max(0, this.begin - n), this.end);
     }
 
 
