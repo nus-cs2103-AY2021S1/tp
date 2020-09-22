@@ -9,8 +9,8 @@ public class Nric {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Starts with an alphabet, followed by 8 digits and ends with another alphabet";
+    public static final String VALIDATION_REGEX = "\\D\\d{8}\\D$";
     public final String nric;
 
     /**

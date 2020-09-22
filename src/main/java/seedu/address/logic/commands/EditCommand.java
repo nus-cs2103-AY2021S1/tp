@@ -189,6 +189,10 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public Optional<Nric> getNric() {
+            return Optional.ofNullable(nric);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
