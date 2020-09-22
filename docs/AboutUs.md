@@ -9,15 +9,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Zhou Zijian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zzijian.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](http://www.zijianzhou.com/)]
+[[github](https://github.com/BobbyZhouZijian)]
+[[portfolio](team/zhouzijian.md)]
 
-* Role: Project Advisor
+* Role: Tech Lead, Git expert
+* Responsibilities: Scheduling and Tracking
 
 ### Jane Doe
 
