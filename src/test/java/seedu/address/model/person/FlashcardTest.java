@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_2;
-import static seedu.address.testutil.TypicalFlashcards.ONE;
-import static seedu.address.testutil.TypicalFlashcards.TWO;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,48 +17,48 @@ public class FlashcardTest {
     @Test
     public void isSameFlashcard() {
         // same object -> returns true
-        assertTrue(ONE.isSameQuestion(ONE));
+        assertTrue(FLASHCARD_1.isSameQuestion(FLASHCARD_1));
 
         // null -> returns false
-        assertFalse(ONE.isSameQuestion(null));
+        assertFalse(FLASHCARD_1.isSameQuestion(null));
 
         // different question -> returns false
-        Flashcard editedFlashcardOne = new FlashcardBuilder(ONE).withQuestion(VALID_QUESTION_2).build();
-        assertFalse(ONE.isSameQuestion(editedFlashcardOne));
+        Flashcard editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withQuestion(VALID_QUESTION_2).build();
+        assertFalse(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
 
         // different answer -> returns true
-        editedFlashcardOne = new FlashcardBuilder(ONE).withAnswer(VALID_ANSWER_2).build();
-        assertTrue(ONE.isSameQuestion(editedFlashcardOne));
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withAnswer(VALID_ANSWER_2).build();
+        assertTrue(FLASHCARD_1.isSameQuestion(editedFlashcardOne));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Flashcard flashcardOneCopy = new FlashcardBuilder(ONE).build();
-        assertTrue(ONE.equals(flashcardOneCopy));
+        Flashcard flashcardOneCopy = new FlashcardBuilder(FLASHCARD_1).build();
+        assertTrue(FLASHCARD_1.equals(flashcardOneCopy));
 
         // same object -> returns true
-        assertTrue(ONE.equals(ONE));
+        assertTrue(FLASHCARD_1.equals(FLASHCARD_1));
 
         // null -> returns false
-        assertFalse(ONE.equals(null));
+        assertFalse(FLASHCARD_1.equals(null));
 
         // different type -> returns false
-        assertFalse(ONE.equals(5));
+        assertFalse(FLASHCARD_1.equals(5));
 
         // different flashcard -> returns false
-        assertFalse(ONE.equals(TWO));
+        assertFalse(FLASHCARD_1.equals(FLASHCARD_2));
 
         // different questions -> returns false
-        Flashcard editedFlashcardOne = new FlashcardBuilder(ONE).withQuestion(VALID_QUESTION_2).build();
-        assertFalse(ONE.equals(editedFlashcardOne));
+        Flashcard editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withQuestion(VALID_QUESTION_2).build();
+        assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
 
         // different answer -> returns false
-        editedFlashcardOne = new FlashcardBuilder(ONE).withAnswer(VALID_ANSWER_2).build();
-        assertFalse(ONE.equals(editedFlashcardOne));
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withAnswer(VALID_ANSWER_2).build();
+        assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
 
         // different category -> returns false
-        editedFlashcardOne = new FlashcardBuilder(ONE).withCategory(VALID_CATEGORY_2).build();
-        assertFalse(ONE.equals(editedFlashcardOne));
+        editedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).withCategory(VALID_CATEGORY_2).build();
+        assertFalse(FLASHCARD_1.equals(editedFlashcardOne));
     }
 }

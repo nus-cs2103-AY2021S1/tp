@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.ONE;
-import static seedu.address.testutil.TypicalFlashcards.TWO;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -45,8 +45,8 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicateFlashcard_throwsDuplicateFlashcardException() {
-        Flashcard copiedFlashcardOne = new FlashcardBuilder(ONE).build();
-        List<Flashcard> newFlashcards = Arrays.asList(ONE, copiedFlashcardOne);
+        Flashcard copiedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).build();
+        List<Flashcard> newFlashcards = Arrays.asList(FLASHCARD_1, copiedFlashcardOne);
         AddressBookStub newData = new AddressBookStub(newFlashcards);
 
         assertThrows(DuplicateFlashcardException.class, () -> addressBook.resetData(newData));
@@ -59,19 +59,19 @@ public class AddressBookTest {
 
     @Test
     public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasFlashcard(ONE));
+        assertFalse(addressBook.hasFlashcard(FLASHCARD_1));
     }
 
     @Test
     public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
-        addressBook.addFlashcard(ONE);
-        assertTrue(addressBook.hasFlashcard(ONE));
+        addressBook.addFlashcard(FLASHCARD_1);
+        assertTrue(addressBook.hasFlashcard(FLASHCARD_1));
     }
 
     @Test
     public void hasFlashcard_flashcardWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addFlashcard(ONE);
-        Flashcard editedFlashcardTwo = new FlashcardBuilder(TWO).withQuestion(VALID_QUESTION_1)
+        addressBook.addFlashcard(FLASHCARD_1);
+        Flashcard editedFlashcardTwo = new FlashcardBuilder(FLASHCARD_2).withQuestion(VALID_QUESTION_1)
                 .build();
         assertTrue(addressBook.hasFlashcard(editedFlashcardTwo));
     }

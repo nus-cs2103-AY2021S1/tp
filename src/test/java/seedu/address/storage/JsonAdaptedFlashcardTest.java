@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedFlashcard.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFlashcards.ONE;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,14 +17,14 @@ public class JsonAdaptedFlashcardTest {
     private static final String INVALID_ANSWER = "";
     private static final String INVALID_CATEGORY = "";
 
-    private static final String VALID_QUESTION = ONE.getQuestion().toString();
-    private static final String VALID_ANSWER = ONE.getAnswer().toString();
-    private static final String VALID_CATEGORY = ONE.getCategory().toString();
+    private static final String VALID_QUESTION = FLASHCARD_1.getQuestion().toString();
+    private static final String VALID_ANSWER = FLASHCARD_1.getAnswer().toString();
+    private static final String VALID_CATEGORY = FLASHCARD_1.getCategory().toString();
 
     @Test
     public void toModelType_validFlashcardDetails_returnsPerson() throws Exception {
-        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(ONE);
-        assertEquals(ONE, flashcard.toModelType());
+        JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(FLASHCARD_1);
+        assertEquals(FLASHCARD_1, flashcard.toModelType());
     }
 
     @Test

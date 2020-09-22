@@ -12,11 +12,11 @@ import seedu.address.model.person.Flashcard;
  */
 public class TypicalFlashcards {
 
-    public static final Flashcard ONE = new FlashcardBuilder().withQuestion("What does SDLC stand for?")
+    public static final Flashcard FLASHCARD_1 = new FlashcardBuilder().withQuestion("What does SDLC stand for?")
             .withAnswer("Software development life cycle").withCategory("SDLC")
             .build();
 
-    public static final Flashcard TWO = new FlashcardBuilder().withQuestion("What is a revision control software?")
+    public static final Flashcard FLASHCARD_2 = new FlashcardBuilder().withQuestion("What is a revision control software?")
             .withAnswer("It is the software tool that automate the process of Revision Control")
             .withCategory("Revision history")
             .build();
@@ -35,6 +35,6 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(ONE, TWO));
+        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2));
     }
 }
