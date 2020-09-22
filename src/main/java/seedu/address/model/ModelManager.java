@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
 
-        addressBook.setPerson(target, editedFlashcard);
+        addressBook.setFlashcard(target, editedFlashcard);
     }
 
     //=========== Filtered Person List Accessors =============================================================
