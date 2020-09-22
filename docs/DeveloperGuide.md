@@ -236,42 +236,117 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Students with many modules who want to memorize points
 * prefer desktop apps over other types
-* can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* wants to monitor his/her progress
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage flashcards faster than a typical mouse/GUI driven app with 
+a test feature and track the progress later.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                |
+| -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                    |
+| `* * *`  | new user                                   | have a get started             | see the features available in the app                                     |
+| `* * *`  | new user                                   | have a sample data             | explore more about the app                                                |
+| `* * *`  | new user                                   | purge all current data         | delete the sample data for exploring the app                              |
+| `* * *`  | user                                       | add a new flashcard            |                                                                           |
+| `* * *`  | user                                       | delete a flashcard             | remove flashcards that I no longer need                                   |
+| `* *`    | user                                       | find a flashcard by name       | locate details of flashcards without having to go through the entire list |
+| `* *`    | user                                       | edit a flashcard               |                                                                           |
+| `* *`    | user                                       | quiz myself                    | memorize things better                                                    |
+| `* *`    | user                                       | organize my flashcard          |                                                                           |
+| `* *`    | user                                       | categorize my flashcards       | easily find the flashcard associated with the category                    |
+| `* *`    | user                                       | import a set of flashcard      | easily add new category of flashcard                                      |
+| `* *`    | user                                       | export a set of flashcard      | easily transfer a category of flashcard                                   |
+| `*`      | user who has created a lot of flashcard    | delete a category of flashcard | easily transfer a category of flashcard                                   |
+| `*`      | user with many flashcards in the list      | specify the importance         |                                                                           |
+| `*`      | user                                       | randomize the question         | test myself better                                                        |
+| `*`      | user                                       | get the statistic of quiz      | get a visualisation form of my performance                                |
+| `*`      | user                                       | track the progress             | know what I have done when using the app                                  |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `QuickCache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Explore QuickCache**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User double clicks on QuickCache.jar
+2.  QuickCache opens and shows a list of flashcards
+3.  User plays around with QuickCache features to familiarize with them
+4.  User purges all "get started" data
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Error message indicating that QuickCache.jar cannot be opened pops up.
+    
+    * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
+    
+    Use case resumes at step 2.
+
+* 3a. User wants to know all the available commands present in QuickCache.
+
+    * 3a1. User requests for all the instructions available in QuickCache.
+    
+    * 3a2. QuickCache displays all available commands.
+    
+    Use case resumes at step 3.
+    
+* 3b. User quits QuickCache while trying out quiz feature.
+
+    * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
+    
+    Use case resumes at step 3.
+
+* *a. User dislikes the GUI.
+
+    * *a1. User quits and deletes QuickCache.
+    
+    Use case ends.
+    
+**Use case: UC2 - View Statistics**
+
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests for statistics.
+2.  QuickCache displays statistics.
+3.  User completes a quiz and requests for statistics.
+4.  QuickCache displays updated statistics.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User has not done any quiz on QuickCache.
+    
+    * 1a1. QuickCache shows an error message.
+    
+    Use case resumes at step 3.
+
+**Use case: UC3 - Delete a flashcard**
+
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests to list flashcards
+2.  QuickCache shows a list of flashcards
+3.  User requests to delete a specific flashcard in the list
+4.  QuickCache deletes the flashcard
 
     Use case ends.
 
@@ -283,11 +358,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. QuickCache shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: UC4 - Create a flashcard**
+
+**Preconditions: User has QuickCache open.**
+
+**MSS**
+
+1.  User requests to add a flashcard
+2.  QuickCache adds it to the list
+3.  User requests to list flashcards
+4.  QuickCache shows the list of flashcards including the recently added flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The question is empty.
+
+    * 1a1. QuickCache shows an error message.
+    
+        Use case ends.
+    
+* 1b. The answer is empty.
+
+    * 1b1. QuickCache shows an error message.
+    
+        Use case ends.
+
+**System: QuickCache**
+
+**Use case: UC06 - Test a single flashcard**
+
+**Actor: User**
+
+**MSS:**
+
+1. User requests to list flashcards
+2. QuickCache shows a list of flashcards
+3. User requests to test a specific flashcard in the list with a specific answer
+4. QuickCache displays whether the answer is correct
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. AddressBook shows an error message.
+
+    Use case resumes at step 2.
+
+**System: QuickCache**
+
+**Use case: UC07 - Test a set of flashcards by category**
+
+**Actor: User**
+
+MSS:
+
+1. User requests to list categories
+2. QuickCache shows a list of categories
+3. User requests to test a specific category in the list
+4. User tests each flashcard on the list (UC06)
+5. QuickCache shows the number of successful questions at the end
+
+**Extensions:**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. QuickCache shows an error message.
+
+    Use case resumes from step 2.
+
+* 3b. The user specifies a time limit.
+
+  * 3b1. QuickCache starts a timer.
+
+    Use case resumes from step 4.
+
+* 3c. The user specifies to randomly sort the questions.
+
+  * 3c1. QuickCache randomizes the flashcards from the category.
+
+    Use case resumes from step 4.
+
+* 4a. The user answers the question.
+
+  * 4a1. QuickCache shows the next question to answer.
+
+  * Step 4a. is repeated until all questions in the category is answered.
+
+    Use case resumes from step 5.
+
+* 4b. The user cancels the test midway.
+
+  * Use case resumes from step 5.
+
+* 4c. The user runs out of time midway.
+
+  * Use case resumes from step 5.
+
+* 4d. The user closes QuickCache
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
