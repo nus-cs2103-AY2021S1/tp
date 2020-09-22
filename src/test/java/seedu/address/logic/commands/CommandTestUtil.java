@@ -14,7 +14,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.NameContainsKeywordsPredicate;
@@ -29,7 +29,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_DUCK = "Duck";
     public static final String VALID_QUANTITY_CHICKEN = "11111111";
     public static final String VALID_QUANTITY_DUCK = "22222222";
-    public static final String VALID_SUPPLIER_CHICKEN = "NTUC";
+    public static final String VALID_SUPPLIER_CHICKEN = "GIANT";
     public static final String VALID_SUPPLIER_DUCK = "Sheng Siong";
     public static final String VALID_TAG_MEAT = "meat";
     public static final String VALID_TAG_POULTRY = "poultry";
@@ -43,9 +43,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_POULTRY = " " + PREFIX_TAG + VALID_TAG_POULTRY;
     public static final String TAG_DESC_MEAT = " " + PREFIX_TAG + VALID_TAG_MEAT;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_SUPPLIER_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for addresses
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
+    public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
+    public static final String INVALID_SUPPLIER_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for suppliers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "liquids*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -93,21 +93,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered item list and selected item in {@code actualModel} remain unchanged
+     * - the inventory book, filtered item list and selected item in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        InventoryBook expectedInventoryBook = new InventoryBook(actualModel.getInventoryBook());
         List<Item> expectedFilteredList = new ArrayList<>(actualModel.getFilteredItemList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedInventoryBook, actualModel.getInventoryBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredItemList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s inventory book.
      */
     public static void showItemAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());

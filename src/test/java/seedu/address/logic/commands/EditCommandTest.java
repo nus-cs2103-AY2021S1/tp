@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DUCK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
@@ -12,14 +13,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showItemAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalItems.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,7 +33,7 @@ import seedu.address.testutil.ItemBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new InventoryBook(model.getInventoryBook()), new UserPrefs());
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +64,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new InventoryBook(model.getInventoryBook()), new UserPrefs());
         expectedModel.setItem(lastItem, editedItem);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,29 +77,27 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new InventoryBook(model.getInventoryBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_ITEM);
+        showItemAtIndex(model, INDEX_FIRST_ITEM);
 
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_DUCK).build();
+        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_CHICKEN).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
-                new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK).build());
+                new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new InventoryBook(model.getInventoryBook()), new UserPrefs());
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-    */
 
     @Test
     public void execute_duplicateItemUnfilteredList_failure() {
@@ -113,8 +112,8 @@ public class EditCommandTest {
     public void execute_duplicateItemFilteredList_failure() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
 
-        // edit item in filtered list into a duplicate in address book
-        Item itemInList = model.getAddressBook().getItemList().get(INDEX_SECOND_ITEM.getZeroBased());
+        // edit item in filtered list into a duplicate in inventory book
+        Item itemInList = model.getInventoryBook().getItemList().get(INDEX_SECOND_ITEM.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
                 new EditItemDescriptorBuilder(itemInList).build());
 
@@ -132,14 +131,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of inventory book
      */
     @Test
     public void execute_invalidItemIndexFilteredList_failure() {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getItemList().size());
+        // ensures that outOfBoundIndex is still in bounds of inventory book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getInventoryBook().getItemList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK).build());

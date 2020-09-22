@@ -35,37 +35,37 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' inventory book file path.
      */
-    Path getAddressBookFilePath();
+    Path getInventoryBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' inventory book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setInventoryBookFilePath(Path inventoryBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces inventory book data with the data in {@code inventoryBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setInventoryBook(ReadOnlyInventoryBook inventoryBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the InventoryBook */
+    ReadOnlyInventoryBook getInventoryBook();
 
     /**
-     * Returns true if a item with the same identity as {@code item} exists in the address book.
+     * Returns true if a item with the same identity as {@code item} exists in the inventory book.
      */
     boolean hasItem(Item item);
 
     /**
      * Deletes the given item.
-     * The item must exist in the address book.
+     * The item must exist in the inventory book.
      */
     void deleteItem(Item target);
 
     /**
      * Adds the given item.
-     * {@code item} must not already exist in the address book.
+     * {@code item} must not already exist in the inventory book.
      */
     void addItem(Item item);
 
@@ -78,8 +78,8 @@ public interface Model {
 
     /**
      * Replaces the given item {@code target} with {@code editedItem}.
-     * {@code target} must exist in the address book.
-     * The item identity of {@code editedItem} must not be the same as another existing item in the address book.
+     * {@code target} must exist in the inventory book.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the inventory book.
      */
     void setItem(Item target, Item editedItem);
 

@@ -64,6 +64,10 @@ public class UniqueItemList implements Iterable<Item> {
             throw new ItemNotFoundException();
         }
 
+        if (!target.isSameItem(editedItem) && contains(editedItem)) {
+            throw new DuplicateItemException();
+        }
+
         internalList.set(index, editedItem);
     }
 

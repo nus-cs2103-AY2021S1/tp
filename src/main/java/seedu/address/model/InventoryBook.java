@@ -9,10 +9,10 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.UniqueItemList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the inventory-book level
  * Duplicates are not allowed (by .isSameItem comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class InventoryBook implements ReadOnlyInventoryBook {
 
     private final UniqueItemList items;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         items = new UniqueItemList();
     }
 
-    public AddressBook() {}
+    public InventoryBook() {}
 
     /**
-     * Creates an AddressBook using the Items in the {@code toBeCopied}
+     * Creates an InventoryBook using the Items in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public InventoryBook(ReadOnlyInventoryBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,18 +48,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code InventoryBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyInventoryBook newData) {
         requireNonNull(newData);
-
         setItems(newData.getItemList());
     }
 
     //// item-level operations
 
     /**
-     * Returns true if a item with the same identity as {@code item} exists in the address book.
+     * Returns true if a item with the same identity as {@code item} exists in the inventory book.
      */
     public boolean hasItem(Item item) {
         requireNonNull(item);
@@ -67,8 +66,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a item to the address book.
-     * The item must not already exist in the address book.
+     * Adds a item to the inventory book.
+     * The item must not already exist in the inventory book.
      */
     public void addItem(Item p) {
         items.add(p);
@@ -85,8 +84,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given item {@code target} in the list with {@code editedItem}.
-     * {@code target} must exist in the address book.
-     * The item identity of {@code editedItem} must not be the same as another existing item in the address book.
+     * {@code target} must exist in the inventory book.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the inventory book.
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
@@ -95,8 +94,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code InventoryBook}.
+     * {@code key} must exist in the inventory book.
      */
     public void removeItem(Item key) {
         items.remove(key);
@@ -118,8 +117,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && items.equals(((AddressBook) other).items));
+                || (other instanceof InventoryBook // instanceof handles nulls
+                && items.equals(((InventoryBook) other).items));
     }
 
     @Override
