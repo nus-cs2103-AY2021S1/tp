@@ -14,6 +14,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -67,6 +71,36 @@ public class LogicManager implements Logic {
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyItemList getItemList() {
+        return model.getItemList();
+    }
+
+    @Override
+    public ObservableList<Item> getFilteredItemList() {
+        return model.getFilteredItemList();
+    }
+
+    @Override
+    public Path getItemListFilePath() {
+        return model.getItemListFilePath();
+    }
+
+    @Override
+    public ReadOnlyLocationList getLocationList() {
+        return null;
+    }
+
+    @Override
+    public ObservableList<Location> getFilteredLocationList() {
+        return null;
+    }
+
+    @Override
+    public Path getLocationListFilePath() {
+        return null;
     }
 
     @Override

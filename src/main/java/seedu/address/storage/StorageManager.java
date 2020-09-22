@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -18,7 +20,9 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private ItemListStorage itemListStorage;
     private UserPrefsStorage userPrefsStorage;
+    private LocationListStorage locationListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -26,6 +30,24 @@ public class StorageManager implements Storage {
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
+        this.userPrefsStorage = userPrefsStorage;
+    }
+
+    /**
+     * Creates a {@code StorageManager} with the given {@code ItemListStorage} and {@code UserPrefStorage}.
+     */
+    public StorageManager(ItemListStorage itemListStorage, UserPrefsStorage userPrefsStorage) {
+        super();
+        this.itemListStorage = itemListStorage;
+        this.userPrefsStorage = userPrefsStorage;
+    }
+
+    /**
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     */
+    public StorageManager(LocationListStorage locationListStorage, UserPrefsStorage userPrefsStorage) {
+        super();
+        this.locationListStorage = locationListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -76,4 +98,46 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public Path getItemListFilePath() {
+        return itemListStorage.getItemListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyItemList> readItemList() throws DataConversionException, IOException {
+        return readItemList(itemListStorage.getItemListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyItemList> readItemList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return itemListStorage.readItemList(filePath);
+    }
+
+    @Override
+    public void saveItemList(ReadOnlyItemList itemList) throws IOException {
+        saveItemList(itemList, itemListStorage.getItemListFilePath());
+    }
+
+    @Override
+    public void saveItemList(ReadOnlyItemList itemList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        itemListStorage.saveItemList(itemList, filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyLocationList> readLocationList() {
+        return Optional.empty();
+    }
+
+    @Override
+    public void saveLocationList(ReadOnlyLocationList locationList) throws IOException {
+        saveLocationList(locationList, locationListStorage.getLocationListFilePath());
+    }
+
+    @Override
+    public void saveLocationList(ReadOnlyLocationList locationList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        locationListStorage.saveLocationList(locationList, filePath);
+    }
 }
