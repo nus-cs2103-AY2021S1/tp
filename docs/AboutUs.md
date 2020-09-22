@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.zijianzhou.com/)]
 [[github](https://github.com/BobbyZhouZijian)]
-[[portfolio](team/zhouzijian.md)]
+[[portfolio](team/bobbyzhouzijian.md)]
 
 * Role: Tech Lead, Git expert
 * Responsibilities: Scheduling and Tracking
