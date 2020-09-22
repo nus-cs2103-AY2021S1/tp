@@ -138,7 +138,7 @@ public class ModelManager implements Model {
         userPrefs.setItemListFilePath(itemListFilePath);
     }
 
-    //=========== ItemList ================================================================================
+    //=========== Item and Location List =====================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
