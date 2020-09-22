@@ -286,7 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-####Use case: Delete a stock
+#### Use case: Delete a stock
 
 **MSS**
 
@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-####Use case: Find a stock by name
+#### Use case: Find a stock by name
 
 **MSS**
 
@@ -344,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-####Use case: Find a stock by serial number
+#### Use case: Find a stock by serial number
 
 **MSS**
 
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-####Use case: Find a stock by location stored
+#### Use case: Find a stock by location stored
 
 **MSS**
 
@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
     
-####Use case: Find a stock by source of stock
+#### Use case: Find a stock by source of stock
 
 **MSS**
 
