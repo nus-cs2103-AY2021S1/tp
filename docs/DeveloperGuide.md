@@ -410,7 +410,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Fridge**: A personalised storage place that contains ingredients that a user has 
+* **Recipe**: A set of cooking instructions that describes how to prepare a healthy meal
+* **Calorie tracker**: A counter which keeps tracks of the calorie intake of a user based on the meals consumed
+* **Ingredient**: Any of the foods that are combined to make a particular healthy dish according to a recipe
+* **Command**: A directive for the app to perform specific tasks, ie add, delete and search
 
 --------------------------------------------------------------------------------------------------------------------
 
