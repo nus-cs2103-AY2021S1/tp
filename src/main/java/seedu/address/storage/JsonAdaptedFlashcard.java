@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Answer;
-import seedu.address.model.person.Category;
-import seedu.address.model.person.Flashcard;
-import seedu.address.model.person.Question;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Question;
 /**
  * Jackson-friendly version of {@link Flashcard}.
  */
