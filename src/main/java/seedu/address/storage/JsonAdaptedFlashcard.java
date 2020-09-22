@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Answer;
 import seedu.address.model.person.Category;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Flashcard;
 import seedu.address.model.person.Question;
 /**
