@@ -19,16 +19,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Team Lead
 
-### Joshua
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](https://github.com/joshtyf)]
-[[portfolio](team/joshua.md)]
-
-* Role: Developer
-* Responsibilities: Documentation
-
 ### Francis Hodianto
 
 <img src="images/fh-30.png" width="200px">
@@ -38,6 +28,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Testing
+
+### Joshua Tan
+
+<img src="images/joshtyf.png" width="200px">
+
+[[github](http://github.com/joshtyf)]
+[[portfolio](team/joshua.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
 
 ### Gilbert Tan
 
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Code Quality
 
-### Xing Jian
+### Xingjian Chen
 
 <img src="images/chenxj98.png" width="200px">
 
