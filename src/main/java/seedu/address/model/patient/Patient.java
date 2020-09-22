@@ -19,6 +19,7 @@ public class Patient {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Nric nric;
 
     // Data fields
     private final Address address;
@@ -27,12 +28,13 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, nric, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +52,10 @@ public class Patient {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Nric getNric() {
+        return nric;
     }
 
     /**
@@ -71,6 +77,7 @@ public class Patient {
 
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
+                && otherPatient.getNric().equals(getNric())
                 && (otherPatient.getPhone().equals(getPhone()) || otherPatient.getEmail().equals(getEmail()));
     }
 
@@ -93,6 +100,7 @@ public class Patient {
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
+                && otherPatient.getNric().equals(getNric())
                 && otherPatient.getTags().equals(getTags());
     }
 
@@ -106,6 +114,7 @@ public class Patient {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append(getNric())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
