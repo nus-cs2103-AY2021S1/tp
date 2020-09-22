@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -102,7 +102,7 @@ public class ModelManager implements Model {
     @Override
     public void addFlashcard(Flashcard flashcard) {
         addressBook.addFlashcard(flashcard);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
     @Override
@@ -115,16 +115,16 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Flashcard} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Flashcard> getFilteredPersonList() {
+    public ObservableList<Flashcard> getFilteredFlashcardList() {
         return filteredFlashcards;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Flashcard> predicate) {
+    public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
         requireNonNull(predicate);
         filteredFlashcards.setPredicate(predicate);
     }

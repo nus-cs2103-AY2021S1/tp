@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Flashcard;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * A utility class containing a list of {@code Flashcard} objects to be used in tests.

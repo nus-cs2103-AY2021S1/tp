@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Flashcard;
-import seedu.address.model.person.exceptions.DuplicateFlashcardException;
+import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.exceptions.DuplicateFlashcardException;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class AddressBookTest {
@@ -77,12 +77,12 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFlashcardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getFlashcardList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose flashcards list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();

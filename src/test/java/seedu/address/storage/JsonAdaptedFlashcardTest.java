@@ -8,9 +8,9 @@ import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Answer;
-import seedu.address.model.person.Category;
-import seedu.address.model.person.Question;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Question;
 
 public class JsonAdaptedFlashcardTest {
     private static final String INVALID_QUESTION = "";
@@ -22,7 +22,7 @@ public class JsonAdaptedFlashcardTest {
     private static final String VALID_CATEGORY = FLASHCARD_1.getCategory().toString();
 
     @Test
-    public void toModelType_validFlashcardDetails_returnsPerson() throws Exception {
+    public void toModelType_validFlashcardDetails_returnsFlashcard() throws Exception {
         JsonAdaptedFlashcard flashcard = new JsonAdaptedFlashcard(FLASHCARD_1);
         assertEquals(FLASHCARD_1, flashcard.toModelType());
     }

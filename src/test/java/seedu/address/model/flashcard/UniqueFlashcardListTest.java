@@ -1,8 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model.flashcard;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.exceptions.DuplicateFlashcardException;
-import seedu.address.model.person.exceptions.FlashcardNotFoundException;
+import seedu.address.model.flashcard.exceptions.DuplicateFlashcardException;
+import seedu.address.model.flashcard.exceptions.FlashcardNotFoundException;
 import seedu.address.testutil.FlashcardBuilder;
 
 import java.util.Arrays;

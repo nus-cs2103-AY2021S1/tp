@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditFlashcardDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditFlashcardDescriptorBuilder {
 
 //    private EditPersonDescriptor descriptor;
 //

@@ -3,7 +3,7 @@ package seedu.address.testutil;
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class FlashcardUtil {
 //
 //    /**
 //     * Returns an add command string for adding the {@code person}.
