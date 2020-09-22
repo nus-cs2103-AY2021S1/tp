@@ -40,6 +40,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: NA
 
+### Dora
+
+<img src="images/door-oof.png" width="200px">
+
+[[github](https://github.com/Door-oof)]
+[[portfolio](team/dora.md)]
+
+* Role: Developer
+* Responsibilities: NA
+
+### Ee Liang
+
+<img src="images/elgoh.png" width="200px">
+
+[[github](https://github.com/Elgoh)]
+[[portfolio](team/eeliang.md)]
+
+* Role: Developer
+* Responsibilities: NA
+
 ### Xi Hao
 
 <img src="images/howtoosee.png" width="200px">
@@ -60,22 +80,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: NA
 
-### Ee Liang
 
-<img src="images/elgoh.png" width="200px">
 
-[[github](https://github.com/Elgoh)]
-[[portfolio](team/eeliang.md)]
 
-* Role: Developer
-* Responsibilities: NA
-
-### Dora
-
-<img src="images/door-oof.png" width="200px">
-
-[[github](https://github.com/Door-oof)]
-[[portfolio](team/dora.md)]
-
-* Role: Developer
-* Responsibilities: NA
