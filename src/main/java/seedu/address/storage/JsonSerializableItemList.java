@@ -21,7 +21,7 @@ import seedu.address.model.item.Item;
 @JsonRootName(value = "itemlist")
 class JsonSerializableItemList {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Items list contains duplicate item(s).";
+    public static final String MESSAGE_DUPLICATE_ITEM = "Items list contains duplicate item(s).";
 
     private final List<JsonAdaptedItem> items = new ArrayList<>();
 
@@ -52,7 +52,7 @@ class JsonSerializableItemList {
         for (JsonAdaptedItem jsonAdaptedItem : items) {
             Item item = jsonAdaptedItem.toModelType();
             if (itemList.hasItem(item)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
             }
             itemList.addItem(item);
         }

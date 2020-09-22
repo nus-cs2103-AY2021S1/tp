@@ -62,8 +62,8 @@ public class JsonItemListStorage implements ItemListStorage {
     }
 
     @Override
-    public void saveItemList(ReadOnlyItemList addressBook) throws IOException {
-        saveItemList(addressBook, filePath);
+    public void saveItemList(ReadOnlyItemList itemList) throws IOException {
+        saveItemList(itemList, filePath);
     }
 
     /**
@@ -71,20 +71,20 @@ public class JsonItemListStorage implements ItemListStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveItemList(ReadOnlyItemList addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveItemList(ReadOnlyItemList itemList, Path filePath) throws IOException {
+        requireNonNull(itemList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableItemList(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableItemList(itemList), filePath);
     }
 
     @Override
-    public void saveLocationList(ReadOnlyLocationList addressBook) {
+    public void saveLocationList(ReadOnlyLocationList locationList) {
     }
 
     @Override
-    public void saveLocationList(ReadOnlyLocationList addressBook, Path filePath) {
+    public void saveLocationList(ReadOnlyLocationList locationList, Path filePath) {
     }
 
 }

@@ -7,11 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyItemList;
-import seedu.address.model.ReadOnlyLocationList;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,10 +15,11 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private UserPrefsStorage userPrefsStorage;
     private AddressBookStorage addressBookStorage;
     private ItemListStorage itemListStorage;
-    private UserPrefsStorage userPrefsStorage;
     private LocationListStorage locationListStorage;
+    private RecipeListStorage recipeListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -43,11 +40,20 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code LocationListStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(LocationListStorage locationListStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.locationListStorage = locationListStorage;
+        this.userPrefsStorage = userPrefsStorage;
+    }
+
+    /**
+     * Creates a {@code StorageManager} with the given {@code RecipeListStorage} and {@code UserPrefStorage}.
+     */
+    public StorageManager(RecipeListStorage recipeListStorage, UserPrefsStorage userPrefsStorage) {
+        super();
+        this.recipeListStorage = recipeListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -98,6 +104,8 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ ItemList methods ==============================
+
     @Override
     public Path getItemListFilePath() {
         return itemListStorage.getItemListFilePath();
@@ -125,6 +133,8 @@ public class StorageManager implements Storage {
         itemListStorage.saveItemList(itemList, filePath);
     }
 
+    // ================ LocationList methods ==============================
+
     @Override
     public Optional<ReadOnlyLocationList> readLocationList() {
         return Optional.empty();
@@ -139,5 +149,34 @@ public class StorageManager implements Storage {
     public void saveLocationList(ReadOnlyLocationList locationList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         locationListStorage.saveLocationList(locationList, filePath);
+    }
+
+    // ================ RecipeList methods ==============================
+
+    @Override
+    public Path getRecipeListFilePath() {
+        return recipeListStorage.getRecipeListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyRecipeList> readRecipeList() throws DataConversionException, IOException {
+        return readRecipeList(recipeListStorage.getRecipeListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyRecipeList> readRecipeList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return recipeListStorage.readRecipeList(filePath);
+    }
+
+    @Override
+    public void saveRecipeList(ReadOnlyRecipeList recipeList) throws IOException {
+        saveRecipeList(recipeList, recipeListStorage.getRecipeListFilePath());
+    }
+
+    @Override
+    public void saveRecipeList(ReadOnlyRecipeList recipeList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        recipeListStorage.saveRecipeList(recipeList, filePath);
     }
 }

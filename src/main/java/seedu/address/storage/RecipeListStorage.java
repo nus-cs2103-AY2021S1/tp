@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.ReadOnlyLocationList;
 
 import java.io.IOException;
@@ -10,50 +11,38 @@ import java.util.Optional;
 
 
 /**
- * Represents a storage for {@link seedu.address.model.ItemList}.
+ * Represents a storage for {@link seedu.address.model.RecipeList}.
  */
 public interface RecipeListStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getItemListFilePath();
+    Path getRecipeListFilePath();
 
     /**
-     * Returns ItemList data as a {@link ReadOnlyItemList}.
+     * Returns RecipeList data as a {@link ReadOnlyRecipeList}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyItemList> readItemList() throws DataConversionException, IOException;
+    Optional<ReadOnlyRecipeList> readRecipeList() throws DataConversionException, IOException;
 
     /**
-     * @see #getItemListFilePath()
+     * @see #getRecipeListFilePath()
      */
-    Optional<ReadOnlyItemList> readItemList(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyRecipeList> readRecipeList(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyItemList} to the storage.
-     * @param addressBook cannot be null.
+     * Saves the given {@link ReadOnlyRecipeList} to the storage.
+     * @param recipeList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveItemList(ReadOnlyItemList addressBook) throws IOException;
+    void saveRecipeList(ReadOnlyRecipeList recipeList) throws IOException;
 
     /**
-     * @see #saveItemList(ReadOnlyItemList)
+     * @see #saveRecipeList(ReadOnlyRecipeList)
      */
-    void saveItemList(ReadOnlyItemList addressBook, Path filePath) throws IOException;
-
-    /**
-     * Saves the given {@link ReadOnlyLocationList} to the storage.
-     * @param addressBook cannot be null.
-     * @throws IOException if there was any problem writing to the file.
-     */
-    void saveLocationList(ReadOnlyLocationList addressBook) throws IOException;
-
-    /**
-     * @see #saveLocationList(ReadOnlyLocationList)
-     */
-    void saveLocationList(ReadOnlyLocationList addressBook, Path filePath) throws IOException;
+    void saveRecipeList(ReadOnlyRecipeList recipeList, Path filePath) throws IOException;
 
 }
