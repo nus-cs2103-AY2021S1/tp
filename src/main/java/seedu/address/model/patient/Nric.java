@@ -1,53 +1,50 @@
-package seedu.address.model.person;
-
+package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
+ *
  */
-public class Phone {
+public class Nric {
 
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    public final String nric;
 
     /**
-     * Constructs a {@code Phone}.
      *
-     * @param phone A valid phone number.
+     * @param nric
      */
-    public Phone(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Nric(String nric) {
+        requireNonNull(nric);
+        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
+        this.nric = nric;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidPhone(String test) {
+    public static boolean isValidNric(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return nric;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                || (other instanceof Nric // instanceof handles nulls
+                && nric.equals(((Nric) other).nric)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return nric.hashCode();
     }
 
 }
