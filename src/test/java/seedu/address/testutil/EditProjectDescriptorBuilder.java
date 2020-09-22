@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
+import seedu.address.model.project.DueDate;
+import seedu.address.model.project.Leader;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,9 +33,9 @@ public class EditProjectDescriptorBuilder {
     public EditProjectDescriptorBuilder(Project project) {
         descriptor = new EditProjectDescriptor();
         descriptor.setName(project.getName());
-        descriptor.setPhone(project.getPhone());
-        descriptor.setEmail(project.getEmail());
-        descriptor.setAddress(project.getAddress());
+        descriptor.setPhone(project.getLeader());
+        descriptor.setEmail(project.getProjectDescription());
+        descriptor.setAddress(project.getDueDate());
         descriptor.setTags(project.getTags());
     }
 
@@ -51,7 +51,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(new Leader(phone));
         return this;
     }
 
@@ -59,7 +59,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(new ProjectDescription(email));
         return this;
     }
 
@@ -67,7 +67,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(new DueDate(address));
         return this;
     }
 
