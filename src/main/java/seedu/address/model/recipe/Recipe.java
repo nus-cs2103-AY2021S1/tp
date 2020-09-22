@@ -1,7 +1,5 @@
 package seedu.address.model.recipe;
 
-import javafx.util.Pair;
-
 import java.util.*;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -19,18 +17,18 @@ public class Recipe {
     // Data fields
     private final IngredientList ingredients;
     private final int productId;
-    private final Quantity quantityProduct;
+    private final ProductQuantity productQuantity;
     private final boolean isDeleted;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(int id, IngredientList ingredients, int productId, Quantity quantityProduct, boolean isDeleted) {
-        requireAllNonNull(id, ingredients, productId, quantityProduct, isDeleted);
+    public Recipe(int id, IngredientList ingredients, int productId, ProductQuantity productQuantity, boolean isDeleted) {
+        requireAllNonNull(id, ingredients, productId, productQuantity, isDeleted);
         this.id = id;
         this.ingredients = ingredients;
         this.productId = productId;
-        this.quantityProduct = quantityProduct;
+        this.productQuantity = productQuantity;
         this.isDeleted = isDeleted;
         idCounter++;
     }
@@ -54,8 +52,8 @@ public class Recipe {
         return productId;
     }
 
-    public Quantity getQuantityProduct() {
-        return quantityProduct;
+    public ProductQuantity getProductQuantity() {
+        return productQuantity;
     }
 
     public boolean isDeleted() {
@@ -93,13 +91,13 @@ public class Recipe {
         return otherRecipe.getId() == getId()
                 && otherRecipe.getIngredients().equals(getIngredients())
                 && otherRecipe.getProductId() == getProductId()
-                && otherRecipe.getQuantityProduct().equals(getQuantityProduct())
+                && otherRecipe.getProductQuantity().equals(getProductQuantity())
                 && otherRecipe.isDeleted() == isDeleted();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ingredients, productId, quantityProduct, isDeleted);
+        return Objects.hash(id, ingredients, productId, productQuantity, isDeleted);
     }
 
     @Override

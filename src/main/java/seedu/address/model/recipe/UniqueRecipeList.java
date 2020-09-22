@@ -13,24 +13,24 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
 /**
- * A list of items that enforces uniqueness between its elements and does not allow nulls.
- * A item is considered unique by comparing using {@code Recipe#isSameItem(Recipe)}. As such, adding and updating of
- * items uses Recipe#isSameItem(Recipe) for equality so as to ensure that the item being added or updated is
- * unique in terms of identity in the UniqueItemList. However, the removal of a item uses Recipe#equals(Object) so
- * as to ensure that the item with exactly the same fields will be removed.
+ * A list of recipes that enforces uniqueness between its elements and does not allow nulls.
+ * A recipe is considered unique by comparing using {@code Recipe#isSameRecipe(Recipe)}. As such, adding and updating of
+ * items uses Recipe#isSameRecipe(Recipe) for equality so as to ensure that the recipe being added or updated is
+ * unique in terms of identity in the UniqueRecipeList. However, the removal of a recipe uses Recipe#equals(Object) so
+ * as to ensure that the recipe with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
  * @see Recipe#isSameRecipe(Recipe)
  */
-public class UniqueItemList implements Iterable<Recipe> {
+public class UniqueRecipeList implements Iterable<Recipe> {
 
     private final ObservableList<Recipe> internalList = FXCollections.observableArrayList();
     private final ObservableList<Recipe> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent item as the given argument.
+     * Returns true if the list contains an equivalent recipe as the given argument.
      */
     public boolean contains(Recipe toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniqueItemList implements Iterable<Recipe> {
     }
 
     /**
-     * Adds a item to the list.
-     * The item must not already exist in the list.
+     * Adds a recipe to the list.
+     * The recipe must not already exist in the list.
      */
     public void add(Recipe toAdd) {
         requireNonNull(toAdd);
@@ -50,9 +50,9 @@ public class UniqueItemList implements Iterable<Recipe> {
     }
 
     /**
-     * Replaces the item {@code target} in the list with {@code editedRecipe}.
+     * Replaces the recipe {@code target} in the list with {@code editedRecipe}.
      * {@code target} must exist in the list.
-     * The item identity of {@code editedRecipe} must not be the same as another existing item in the list.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the list.
      */
     public void setItem(Recipe target, Recipe editedRecipe) {
         requireAllNonNull(target, editedRecipe);
@@ -70,8 +70,8 @@ public class UniqueItemList implements Iterable<Recipe> {
     }
 
     /**
-     * Removes the equivalent item from the list.
-     * The item must exist in the list.
+     * Removes the equivalent recipe from the list.
+     * The recipe must exist in the list.
      */
     public void remove(Recipe toRemove) {
         requireNonNull(toRemove);
@@ -80,7 +80,7 @@ public class UniqueItemList implements Iterable<Recipe> {
         }
     }
 
-    public void setItems(UniqueItemList replacement) {
+    public void setItems(UniqueRecipeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -113,8 +113,8 @@ public class UniqueItemList implements Iterable<Recipe> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueItemList // instanceof handles nulls
-                && internalList.equals(((UniqueItemList) other).internalList));
+                || (other instanceof UniqueRecipeList // instanceof handles nulls
+                && internalList.equals(((UniqueRecipeList) other).internalList));
     }
 
     @Override

@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Recipe's quantity number in the address book.
+ * Represents a Recipe's product's quantity number in the inventory.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
  */
-public class Quantity {
+public class ProductQuantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,11 +16,11 @@ public class Quantity {
     public final String value;
 
     /**
-     * Constructs a {@code Quantity}.
+     * Constructs a {@code ProductQuantity}.
      *
      * @param quantity A valid quantity number.
      */
-    public Quantity(String quantity) {
+    public ProductQuantity(String quantity) {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         value = quantity;
@@ -41,8 +41,8 @@ public class Quantity {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Quantity // instanceof handles nulls
-                && value.equals(((Quantity) other).value)); // state check
+                || (other instanceof ProductQuantity // instanceof handles nulls
+                && value.equals(((ProductQuantity) other).value)); // state check
     }
 
     @Override

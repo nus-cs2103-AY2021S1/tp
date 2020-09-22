@@ -1,8 +1,7 @@
 package seedu.address.model.recipe.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Items (Items are considered duplicates if they have the same
- * identity).
+ * Signals that the operation will result in duplicate Ingredients.
  */
 public class DuplicateIngredientException extends RuntimeException {
     public DuplicateIngredientException() {

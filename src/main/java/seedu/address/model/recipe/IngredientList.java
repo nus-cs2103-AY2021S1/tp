@@ -12,17 +12,29 @@ import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A list of ingredients that enforces uniqueness between its elements and does not allow nulls.
+ * <p>
+ * Supports a minimal set of list operations.
+ */
 public class IngredientList implements Iterable<Ingredient> {
 
     private final ObservableList<Ingredient> ingredientList = FXCollections.observableArrayList();
     private final ObservableList<Ingredient> ingredientUnmodifiableList =
             FXCollections.unmodifiableObservableList(ingredientList);
 
+    /**
+     * Returns true if the list contains an equivalent ingredient as the given ingredient.
+     */
     public boolean contains(Ingredient toCheck) {
         requireNonNull(toCheck);
         return ingredientList.stream().anyMatch(toCheck::equals);
     }
 
+    /**
+     * Adds an ingredient to the list.
+     * The ingredient must not already exist in the list.
+     */
     public void add(Ingredient toAdd) {
         requireNonNull(toAdd);
         if (contains((toAdd))) {
@@ -31,6 +43,10 @@ public class IngredientList implements Iterable<Ingredient> {
         ingredientList.add(toAdd);
     }
 
+    /**
+     * Removes the equivalent ingredient from the list.
+     * The ingredient must exist in the list.
+     */
     public void remove(Ingredient toRemove) {
         requireNonNull(toRemove);
         if (!ingredientList.remove(toRemove)) {
@@ -44,8 +60,8 @@ public class IngredientList implements Iterable<Ingredient> {
     }
 
     /**
-     * Replaces the contents of this list with {@code items}.
-     * {@code items} must not contain duplicate items.
+     * Replaces the contents of this list with {@code ingredients}.
+     * {@code ingredients} must not contain duplicate ingredients.
      */
     public void setItems(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
@@ -81,7 +97,7 @@ public class IngredientList implements Iterable<Ingredient> {
     }
 
     /**
-     * Returns true if {@code items} contains only unique items.
+     * Returns true if {@code ingredients} contains only unique ingredients.
      */
     private boolean itemsAreUnique(List<Ingredient> ingredients) {
         for (int i = 0; i < ingredients.size() - 1; i++) {
