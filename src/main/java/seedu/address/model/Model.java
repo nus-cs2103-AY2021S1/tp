@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * The API of the Model component.
@@ -18,6 +19,7 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
+    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -48,6 +50,8 @@ public interface Model {
 
     Path getLocationListFilePath();
 
+    Path getRecipeListFilePath();
+
     /**
      * Sets the user prefs' address book file path.
      */
@@ -55,12 +59,16 @@ public interface Model {
 
     void setItemListFilePath(Path itemListFilePath);
 
+    void setRecipeListFilePath(Path recipeListFilePath);
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     void setItemList(ReadOnlyItemList itemList);
+
+    void setRecipeList(ReadOnlyRecipeList recipeList);
 
     /**
      * Returns the AddressBook
@@ -70,6 +78,9 @@ public interface Model {
     ReadOnlyItemList getItemList();
 
     ReadOnlyLocationList getLocationList();
+
+    ReadOnlyRecipeList getRecipeList();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -78,6 +89,9 @@ public interface Model {
     boolean hasItem(Item item);
 
     boolean hasLocation(Location location);
+
+    boolean hasRecipe(Recipe recipe);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -85,6 +99,8 @@ public interface Model {
     void deletePerson(Person target);
 
     void deleteItem(Item target);
+
+    void deleteRecipe(Recipe target);
 
     /**
      * Adds the given person.
@@ -96,6 +112,8 @@ public interface Model {
 
     void addLocation(Location location);
 
+    void addRecipe(Recipe recipe);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -105,6 +123,8 @@ public interface Model {
 
     void setItem(Item target, Item editedItem);
 
+    void setRecipe(Recipe target, Recipe editedRecipe);
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */
@@ -113,6 +133,9 @@ public interface Model {
     ObservableList<Item> getFilteredItemList();
 
     ObservableList<Location> getFilteredLocationList();
+
+    ObservableList<Recipe> getFilteredRecipeList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
@@ -123,6 +146,8 @@ public interface Model {
     void updateFilteredItemList(Predicate<Item> predicate);
 
     void updateFilteredLocationList(Predicate<Location> predicate);
+
+    void updateFilteredRecipeList(Predicate<Recipe> predicate);
 
     int findLocationID(Location toFind);
 }
