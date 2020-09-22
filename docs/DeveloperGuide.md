@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](CAP5BUDDY.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
