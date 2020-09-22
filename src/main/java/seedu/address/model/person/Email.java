@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Project's email in the main catalogue.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class TempEmail {
+public class Email {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -34,7 +34,7 @@ public class TempEmail {
      *
      * @param email A valid email address.
      */
-    public TempEmail(String email) {
+    public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
@@ -55,8 +55,8 @@ public class TempEmail {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TempEmail // instanceof handles nulls
-                && value.equals(((TempEmail) other).value)); // state check
+                || (other instanceof Email // instanceof handles nulls
+                && value.equals(((Email) other).value)); // state check
     }
 
     @Override

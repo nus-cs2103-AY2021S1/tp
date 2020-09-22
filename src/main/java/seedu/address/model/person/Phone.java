@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Project's phone number in the main catalogue.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class TempPhone {
+public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -20,7 +20,7 @@ public class TempPhone {
      *
      * @param phone A valid phone number.
      */
-    public TempPhone(String phone) {
+    public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
@@ -41,8 +41,8 @@ public class TempPhone {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TempPhone // instanceof handles nulls
-                && value.equals(((TempPhone) other).value)); // state check
+                || (other instanceof Phone // instanceof handles nulls
+                && value.equals(((Phone) other).value)); // state check
     }
 
     @Override

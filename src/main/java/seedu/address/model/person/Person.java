@@ -13,21 +13,21 @@ import seedu.address.model.tag.Tag;
  * Represents a Teammate in the team.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class TempPerson {
+public class Person {
 
     // Identity fields
-    private TempName name;
-    private TempPhone phone;
-    private TempEmail email;
+    private PersonName name;
+    private Phone phone;
+    private Email email;
 
     // Data fields
-    private TempAddress address;
+    private Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public TempPerson(TempName name, TempPhone phone, TempEmail email, TempAddress address, Set<Tag> tags) {
+    public Person(PersonName name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -36,36 +36,36 @@ public class TempPerson {
         this.tags.addAll(tags);
     }
 
-    public TempName getName() {
+    public PersonName getName() {
         return name;
     }
 
-    public TempPhone getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
-    public TempEmail getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public TempAddress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
     public void updateName(String newNameStr) {
-        name = new TempName(newNameStr);
+        name = new PersonName(newNameStr);
     }
 
     public void updateAddress(String newAddressStr) {
-        address = new TempAddress(newAddressStr);
+        address = new Address(newAddressStr);
     }
 
     public void updatePhone(String newPhonestr) {
-        phone = new TempPhone(newPhonestr);
+        phone = new Phone(newPhonestr);
     }
 
     public void updateEmail(String newEmailStr) {
-        email = new TempEmail(newEmailStr);
+        email = new Email(newEmailStr);
     }
 
     /**
@@ -80,7 +80,7 @@ public class TempPerson {
      * Returns true if both teammates of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.
      */
-    public boolean isSameTeammate(TempPerson otherTeammate) {
+    public boolean isSameTeammate(Person otherTeammate) {
         if (otherTeammate == this) {
             return true;
         }
@@ -102,11 +102,11 @@ public class TempPerson {
             return true;
         }
 
-        if (!(other instanceof TempPerson)) {
+        if (!(other instanceof Person)) {
             return false;
         }
 
-        TempPerson otherProject = (TempPerson) other;
+        Person otherProject = (Person) other;
         return otherProject.getName().equals(getName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
