@@ -9,8 +9,8 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Wraps all data at the item-list level
- * Duplicates are not allowed (by .isSameItem comparison)
+ * Wraps all data at the recipe-list level
+ * Duplicates are not allowed (by .isSameRecipe comparison)
  */
 public class RecipeList implements ReadOnlyRecipeList {
 
@@ -30,7 +30,7 @@ public class RecipeList implements ReadOnlyRecipeList {
     public RecipeList() {}
 
     /**
-     * Creates an ItemList using the Items in the {@code toBeCopied}
+     * Creates an RecipeList using the Recipes in the {@code toBeCopied}
      */
     public RecipeList(ReadOnlyRecipeList toBeCopied) {
         this();
@@ -40,15 +40,15 @@ public class RecipeList implements ReadOnlyRecipeList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the item list with {@code items}.
-     * {@code items} must not contain duplicate items.
+     * Replaces the contents of the recipe list with {@code recipes}.
+     * {@code recipes} must not contain duplicate recipes.
      */
     public void setRecipes(List<Recipe> recipes) {
         this.recipes.setRecipes(recipes);
     }
 
     /**
-     * Resets the existing data of this {@code ItemList} with {@code newData}.
+     * Resets the existing data of this {@code RecipeList} with {@code newData}.
      */
     public void resetData(ReadOnlyRecipeList newData) {
         requireNonNull(newData);
@@ -56,10 +56,10 @@ public class RecipeList implements ReadOnlyRecipeList {
         setRecipes(newData.getRecipeList());
     }
 
-    //// item-level operations
+    //// recipe-level operations
 
     /**
-     * Returns true if a item with the same identity as {@code item} exists in the item list.
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe list.
      */
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
@@ -67,17 +67,17 @@ public class RecipeList implements ReadOnlyRecipeList {
     }
 
     /**
-     * Adds a item to the item list.
-     * The item must not already exist in the item list.
+     * Adds a recipe to the recipe list.
+     * The recipe must not already exist in the recipe list.
      */
     public void addRecipe(Recipe p) {
         recipes.add(p);
     }
 
     /**
-     * Replaces the given item {@code target} in the list with {@code editedItem}.
-     * {@code target} must exist in the item list.
-     * The item identity of {@code editedItem} must not be the same as another existing item in the item list.
+     * Replaces the given recipe {@code target} in the list with {@code editedRecipe}.
+     * {@code target} must exist in the recipe list.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the recipe list.
      */
     public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireNonNull(editedRecipe);
@@ -86,8 +86,8 @@ public class RecipeList implements ReadOnlyRecipeList {
     }
 
     /**
-     * Removes {@code key} from this {@code ItemList}.
-     * {@code key} must exist in the item list.
+     * Removes {@code key} from this {@code RecipeList}.
+     * {@code key} must exist in the recipe list.
      */
     public void removeRecipe(Recipe key) {
         recipes.remove(key);
