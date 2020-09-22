@@ -17,22 +17,22 @@ public class Project {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Leader leader;
+    private final ProjectDescription projectDescription;
 
     // Data fields
-    private final Address address;
+    private final DueDate dueDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Project(Name name, Leader leader, ProjectDescription projectDescription, DueDate dueDate, Set<Tag> tags) {
+        requireAllNonNull(name, leader, projectDescription, dueDate, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.leader = leader;
+        this.projectDescription = projectDescription;
+        this.dueDate = dueDate;
         this.tags.addAll(tags);
     }
 
@@ -40,16 +40,16 @@ public class Project {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Leader getLeader() {
+        return leader;
     }
 
-    public Email getEmail() {
-        return email;
+    public ProjectDescription getProjectDescription() {
+        return projectDescription;
     }
 
-    public Address getAddress() {
-        return address;
+    public DueDate getDueDate() {
+        return dueDate;
     }
 
     /**
@@ -71,7 +71,8 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getName().equals(getName())
-                && (otherProject.getPhone().equals(getPhone()) || otherProject.getEmail().equals(getEmail()));
+                && (otherProject.getLeader().equals(getLeader()) || otherProject.getProjectDescription().equals(
+            getProjectDescription()));
     }
 
     /**
@@ -90,28 +91,28 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getName().equals(getName())
-                && otherProject.getPhone().equals(getPhone())
-                && otherProject.getEmail().equals(getEmail())
-                && otherProject.getAddress().equals(getAddress())
+                && otherProject.getLeader().equals(getLeader())
+                && otherProject.getProjectDescription().equals(getProjectDescription())
+                && otherProject.getDueDate().equals(getDueDate())
                 && otherProject.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, leader, projectDescription, dueDate, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Leader: ")
+                .append(getLeader())
+                .append(" Project Description: ")
+                .append(getProjectDescription())
+                .append(" Due Date: ")
+                .append(getDueDate())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
