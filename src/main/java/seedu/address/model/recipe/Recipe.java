@@ -17,7 +17,7 @@ public class Recipe {
     private final int id;
 
     // Data fields
-    private final List<Pair<Integer, Integer>> ingredients;
+    private final IngredientList ingredients;
     private final int productId;
     private final Quantity quantityProduct;
     private final boolean isDeleted;
@@ -25,7 +25,7 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(int id, List<Pair<Integer, Integer>> ingredients, int productId, Quantity quantityProduct, boolean isDeleted) {
+    public Recipe(int id, IngredientList ingredients, int productId, Quantity quantityProduct, boolean isDeleted) {
         requireAllNonNull(id, ingredients, productId, quantityProduct, isDeleted);
         this.id = id;
         this.ingredients = ingredients;
@@ -44,11 +44,10 @@ public class Recipe {
     }
 
     /**
-     * Returns an immutable list of ingredients, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an {@code IngredientList}.
      */
-    public List<Pair<Integer, Integer>> getIngredients() {
-        return Collections.unmodifiableList(ingredients);
+    public IngredientList getIngredients() {
+        return ingredients;
     }
 
     public int getProductId() {
