@@ -23,7 +23,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 1. Type the command in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
    <br> Here are some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -64,7 +64,7 @@ Format: `help`
 
 Adds an animal under the care of the user.
 
-Format: `add n/NAME s/SPECIES i/ID`
+Format: `add n/NAME s/SPECIES i/ID [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of tags (including 0).
@@ -85,7 +85,7 @@ Format: `list`
 
 #### Deleting an animal: `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified animal from the app.
 
 Format: `delete i/ID`
 
@@ -130,7 +130,7 @@ Animal data is saved in the hard disk automatically after any command that chang
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME s/SPECIES i/ID [t/TAG]…​` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/0007 t/herbivore`
 **Clear** | `clear`
 **Delete** | `delete i/ID`<br> e.g. `delete i/0193`
 **Exit** | `exit`
