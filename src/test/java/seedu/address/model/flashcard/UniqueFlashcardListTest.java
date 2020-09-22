@@ -1,17 +1,21 @@
 package seedu.address.model.flashcard;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.flashcard.exceptions.DuplicateFlashcardException;
-import seedu.address.model.flashcard.exceptions.FlashcardNotFoundException;
-import seedu.address.testutil.FlashcardBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
+import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
-import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.flashcard.exceptions.DuplicateFlashcardException;
+import seedu.address.model.flashcard.exceptions.FlashcardNotFoundException;
+import seedu.address.testutil.FlashcardBuilder;
 
 public class UniqueFlashcardListTest {
 
@@ -66,7 +70,8 @@ public class UniqueFlashcardListTest {
 
     @Test
     public void setFlashcard_targetFlashcardNotInList_throwsFlashcardNotFoundException() {
-        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.setFlashcard(FLASHCARD_1, FLASHCARD_1));
+        assertThrows(FlashcardNotFoundException.class, ()
+            -> uniqueFlashcardList.setFlashcard(FLASHCARD_1, FLASHCARD_1));
     }
 
     @Test
@@ -103,7 +108,8 @@ public class UniqueFlashcardListTest {
     public void setFlashcard_editedFlashcardHasNonUniqueIdentity_throwsDuplicateFlashcardException() {
         uniqueFlashcardList.add(FLASHCARD_1);
         uniqueFlashcardList.add(FLASHCARD_2);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcard(FLASHCARD_1, FLASHCARD_2));
+        assertThrows(DuplicateFlashcardException.class, ()
+            -> uniqueFlashcardList.setFlashcard(FLASHCARD_1, FLASHCARD_2));
     }
 
     @Test
@@ -156,7 +162,8 @@ public class UniqueFlashcardListTest {
     @Test
     public void setFlashcards_listWithDuplicateFlashcards_throwsDuplicateFlashcardException() {
         List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(FLASHCARD_1, FLASHCARD_1);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcards(listWithDuplicateFlashcards));
+        assertThrows(DuplicateFlashcardException.class, ()
+            -> uniqueFlashcardList.setFlashcards(listWithDuplicateFlashcards));
     }
 
     @Test
