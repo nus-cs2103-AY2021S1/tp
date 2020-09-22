@@ -20,15 +20,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Tech Lead, Git expert
 * Responsibilities: Scheduling and Tracking
 
-### Jane Doe
+### Marcus Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marctzh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/marctzh)]
+[[portfolio](team/marctzh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI and Testing
 
 ### Johnny Doe
 
