@@ -438,11 +438,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Fridge**: A personalised storage place that contains ingredients that a user has 
-* **Recipe**: A set of cooking instructions that describes how to prepare a healthy meal
-* **Calorie tracker**: A counter which keeps tracks of the calorie intake of a user based on the meals consumed
-* **Ingredient**: Any of the foods that are combined to make a particular healthy dish according to a recipe
-* **Command**: A directive for the app to perform specific tasks, ie add, delete and search
+* **Fridge**: A personalised storage that contains all the ingredients that a user has
+* **Recipe**: A set of cooking instructions that describes how to prepare a healthy meal and ingredients required
+* **Ingredient**: Foods that can be used to prepare a particular healthy dish according to a recipe
+* **Consumption**: A counter which calculates and displays the calorie intake of a user based on the recipes consumed
 
 --------------------------------------------------------------------------------------------------------------------
 
