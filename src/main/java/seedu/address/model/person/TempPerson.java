@@ -1,4 +1,4 @@
-package seedu.address.model.teammate;
+package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Teammate in the team.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class TempTeammate {
+public class TempPerson {
 
     // Identity fields
     private TempName name;
@@ -27,7 +27,7 @@ public class TempTeammate {
     /**
      * Every field must be present and not null.
      */
-    public TempTeammate(TempName name, TempPhone phone, TempEmail email, TempAddress address, Set<Tag> tags) {
+    public TempPerson(TempName name, TempPhone phone, TempEmail email, TempAddress address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -80,7 +80,7 @@ public class TempTeammate {
      * Returns true if both teammates of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.
      */
-    public boolean isSameTeammate(TempTeammate otherTeammate) {
+    public boolean isSameTeammate(TempPerson otherTeammate) {
         if (otherTeammate == this) {
             return true;
         }
@@ -102,11 +102,11 @@ public class TempTeammate {
             return true;
         }
 
-        if (!(other instanceof TempTeammate)) {
+        if (!(other instanceof TempPerson)) {
             return false;
         }
 
-        TempTeammate otherProject = (TempTeammate) other;
+        TempPerson otherProject = (TempPerson) other;
         return otherProject.getName().equals(getName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())

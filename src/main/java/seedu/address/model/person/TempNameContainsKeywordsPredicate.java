@@ -1,4 +1,4 @@
-package seedu.address.model.teammate;
+package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -8,7 +8,7 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Project}'s {@code Name} matches any of the keywords given.
  */
-public class TempNameContainsKeywordsPredicate implements Predicate<TempTeammate> {
+public class TempNameContainsKeywordsPredicate implements Predicate<TempPerson> {
     private final List<String> keywords;
 
     public TempNameContainsKeywordsPredicate(List<String> keywords) {
@@ -16,7 +16,7 @@ public class TempNameContainsKeywordsPredicate implements Predicate<TempTeammate
     }
 
     @Override
-    public boolean test(TempTeammate project) {
+    public boolean test(TempPerson project) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getName().fullName, keyword));
     }

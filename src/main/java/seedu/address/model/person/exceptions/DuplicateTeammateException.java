@@ -1,4 +1,4 @@
-package seedu.address.model.teammate.exceptions;
+package seedu.address.model.person.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Projects (Projects are considered duplicates if they have the
