@@ -76,7 +76,7 @@ public class ItemTest {
         editedChicken = new ItemBuilder(CHICKEN).withQuantity(VALID_QUANTITY_DUCK).build();
         assertFalse(CHICKEN.equals(editedChicken));
 
-        // different address -> returns false
+        // different supplier -> returns false
         editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK).build();
         assertFalse(CHICKEN.equals(editedChicken));
 

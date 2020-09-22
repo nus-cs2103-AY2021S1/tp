@@ -25,7 +25,7 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing item in the address book.
+ * Edits the details of an existing item in the inventory book.
  */
 public class EditCommand extends Command {
 
@@ -44,7 +44,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory book.";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
@@ -90,7 +90,7 @@ public class EditCommand extends Command {
         assert itemToEdit != null;
 
         Name updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());
-        Quantity updatedQuantity = editItemDescriptor.getPhone().orElse(itemToEdit.getQuantity());
+        Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         Supplier updatedSupplier = editItemDescriptor.getSupplier().orElse(itemToEdit.getSupplier());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
 
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
             this.quantity = quantity;
         }
 
-        public Optional<Quantity> getPhone() {
+        public Optional<Quantity> getQuantity() {
             return Optional.ofNullable(quantity);
         }
 
@@ -202,7 +202,7 @@ public class EditCommand extends Command {
             EditItemDescriptor e = (EditItemDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getQuantity().equals(e.getQuantity())
                     && getSupplier().equals(e.getSupplier())
                     && getTags().equals(e.getTags());
         }

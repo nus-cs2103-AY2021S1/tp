@@ -49,15 +49,11 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_CHICKEN + NAME_DESC_DUCK + QUANTITY_DESC_DUCK
                 + SUPPLIER_DESC_DUCK + TAG_DESC_POULTRY, new AddCommand(expectedItem));
 
-        // multiple phones - last phone accepted
+        // multiple quantity - last quantity accepted
         assertParseSuccess(parser, NAME_DESC_DUCK + QUANTITY_DESC_CHICKEN + QUANTITY_DESC_DUCK
                 + SUPPLIER_DESC_DUCK + TAG_DESC_POULTRY, new AddCommand(expectedItem));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK
-                + SUPPLIER_DESC_DUCK + TAG_DESC_POULTRY, new AddCommand(expectedItem));
-
-        // multiple addresses - last address accepted
+        // multiple supplier - last supplier accepted
         assertParseSuccess(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK + SUPPLIER_DESC_CHICKEN
                 + SUPPLIER_DESC_DUCK + TAG_DESC_POULTRY, new AddCommand(expectedItem));
 
@@ -99,11 +95,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + QUANTITY_DESC_DUCK + SUPPLIER_DESC_DUCK
                 + TAG_DESC_MEAT + TAG_DESC_POULTRY, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid quantity
         assertParseFailure(parser, NAME_DESC_DUCK + INVALID_QUANTITY_DESC + SUPPLIER_DESC_DUCK
                 + TAG_DESC_MEAT + TAG_DESC_POULTRY, Quantity.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid supplier
         assertParseFailure(parser, NAME_DESC_DUCK + QUANTITY_DESC_DUCK + INVALID_SUPPLIER_DESC
                 + TAG_DESC_MEAT + TAG_DESC_POULTRY, Supplier.MESSAGE_CONSTRAINTS);
 
