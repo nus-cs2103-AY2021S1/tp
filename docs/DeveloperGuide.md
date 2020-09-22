@@ -258,7 +258,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | \* \* \* | First Time User          | ask for help                                             | quickly and easily learn how to use the application in one place.                                         |
 | \* \* \* | OHS Admin                | view a list of all students                              | check which students are in the system and access their particulars.                                      |
 | \* \*    | As as skeptical GUI user | create aliases to other commands                         | perform my common actions while typing less.                                                              |
-| \* \*    | skeptical GUI user       | create compound commands                                 | ... e.g. to view bills and pay them at the same time, perform common sequences of actions more quickly.   |
 | \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                       |
 | \* \*    | OHS Admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
 | \* \*    | OHS admin                | delete a bill                                            | remove a erroneously added bill.                                                                          |
@@ -287,6 +286,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | \*       | OHS admin                | edit a room's semesterly fees                            | update room charges when costs increase (e.g. from $1000 to $1500)                                        |
 | \* \*    | OHS admin                | import data from a data file                             | continue work from where my predecessor left off.                                                         |
 | \* \* \* | OHS admin                | add a student to ResiReg                                 | perform admin duties related to the student.                                                              |
+| \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details in response to changes (e.g. faculty).            |
+| \* \* \* | OHS admin                | delete a student                                         | so that I can remove an erroneously added student.                                                        |
 
 _{More to be added}_
 
