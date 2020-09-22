@@ -1,8 +1,12 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-W14-3/tp/actions)
 
 # Bamboo
+Bamboo is a brown-field team project based on the AddressBook Level 3 (AB3) architecture, aimed at providing college students with a simple and accessible solution to personal finance management.
+
+## App Preview
 ![Ui](docs/images/Ui.png)
 
+## Background Information
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
   * as a starting point of a course project (as opposed to writing everything from scratch)
