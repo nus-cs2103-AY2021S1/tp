@@ -37,3 +37,13 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and tracking manager - In charge of defining, assigning, and tracking project tasks.
 
+### Amy Lim Zhi Ting
+
+<img src="images/amylzting.png" width="200px">
+
+[[github](https://github.com/amylzting)]
+[[portfolio](team/amy.md)]
+
+* Role: Developer
+* Responsibilities: Documentation manager - Responsible for the quality of
+project documents, Coding standards, format of deliverables

@@ -308,7 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given serial number is not an integer.
 
     * 3a1. Warenager shows an error message.
