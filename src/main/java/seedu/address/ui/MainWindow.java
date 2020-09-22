@@ -1,9 +1,15 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -32,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
+    private AttendanceListPanel attendanceListPanel; ///////////////////////////attendance stufffffffffffff
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +49,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane studentListPanelPlaceholder;
+    private StackPane viewListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private MenuItem studentPage;
+
+    @FXML
+    private Menu attendanceMenu;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -111,7 +124,24 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        viewListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskmasterFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Fills up with attendance instead.
+     */
+    void fillInnerParts2() {
+        attendanceListPanel = new AttendanceListPanel(FXCollections.observableList(new ArrayList<String>(Arrays.asList("present", "present", "absent"))));
+        viewListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -162,6 +192,36 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
+
+    /**
+     * Switches to student tab.
+     */
+    @FXML
+    private void handleStudent() {
+        fillInnerParts();
+    }
+
+    /**
+     * Switches to attendance tab.
+     */
+
+    //change this to take in a parameter when implementing multiple attendances
+    @FXML
+    private void handleAttendance() {
+        fillInnerParts2();
+    }
+
+    /*
+    //remember to call this function over at UiManager
+    void addAttendanceInstances(some_form_of_list list_of_attendances) {
+        for loop:
+            MenuItem menuItemToAdd = new MenuItem(attendance.name);
+            menuItemToAdd.setOnAction(
+                    e -> { handleAttendance(i) }
+            );
+    }
+
+     */
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
