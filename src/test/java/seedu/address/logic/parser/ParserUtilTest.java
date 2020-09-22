@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.DueDate;
-import seedu.address.model.project.Leader;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.ProjectDescription;
+import seedu.address.model.project.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -91,15 +91,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Leader expectedLeader = new Leader(VALID_PHONE);
-        assertEquals(expectedLeader, ParserUtil.parsePhone(VALID_PHONE));
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Leader expectedLeader = new Leader(VALID_PHONE);
-        assertEquals(expectedLeader, ParserUtil.parsePhone(phoneWithWhitespace));
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
@@ -114,15 +114,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        DueDate expectedDueDate = new DueDate(VALID_ADDRESS);
-        assertEquals(expectedDueDate, ParserUtil.parseAddress(VALID_ADDRESS));
+        Address expectedAddress = new Address(VALID_ADDRESS);
+        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        DueDate expectedDueDate = new DueDate(VALID_ADDRESS);
-        assertEquals(expectedDueDate, ParserUtil.parseAddress(addressWithWhitespace));
+        Address expectedAddress = new Address(VALID_ADDRESS);
+        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
@@ -137,15 +137,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        ProjectDescription expectedProjectDescription = new ProjectDescription(VALID_EMAIL);
-        assertEquals(expectedProjectDescription, ParserUtil.parseEmail(VALID_EMAIL));
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        ProjectDescription expectedProjectDescription = new ProjectDescription(VALID_EMAIL);
-        assertEquals(expectedProjectDescription, ParserUtil.parseEmail(emailWithWhitespace));
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
     @Test

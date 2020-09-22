@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import seedu.address.model.project.DueDate;
-import seedu.address.model.project.Leader;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,25 +19,23 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
-            new Project(new Name("Alex Yeoh"), new Leader("87438807"), new ProjectDescription("alexyeoh@example.com"),
-                new DueDate("Blk 30 Geylang Street 29, #06-40"),
+            new Project(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Project(new Name("Bernice Yu"), new Leader("99272758"), new ProjectDescription("berniceyu@example.com"),
-                new DueDate("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Project(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Project(new Name("Charlotte Oliveiro"), new Leader("93210283"),
-                new ProjectDescription("charlotte@example.com"),
-                new DueDate("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Project(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Project(new Name("David Li"), new Leader("91031282"), new ProjectDescription("lidavid@example.com"),
-                new DueDate("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Project(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Project(new Name("Irfan Ibrahim"), new Leader("92492021"), new ProjectDescription("irfan@example.com"),
-                new DueDate("Blk 47 Tampines Street 20, #17-35"),
+            new Project(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Project(new Name("Roy Balakrishnan"), new Leader("92624417"),
-                new ProjectDescription("royb@example.com"),
-                new DueDate("Blk 45 Aljunied Street 85, #11-31"),
+            new Project(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
     }
@@ -55,8 +53,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-            .map(Tag::new)
-            .collect(Collectors.toSet());
+                .map(Tag::new)
+                .collect(Collectors.toSet());
     }
 
 }

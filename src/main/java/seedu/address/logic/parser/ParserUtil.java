@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.DueDate;
-import seedu.address.model.project.Leader;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.ProjectDescription;
+import seedu.address.model.project.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +25,6 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -57,13 +56,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Leader parsePhone(String phone) throws ParseException {
+    public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Leader.isValidLeader(trimmedPhone)) {
-            throw new ParseException(Leader.MESSAGE_CONSTRAINTS);
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Leader(trimmedPhone);
+        return new Phone(trimmedPhone);
     }
 
     /**
@@ -72,13 +71,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static DueDate parseAddress(String address) throws ParseException {
+    public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!DueDate.isValidDueDate(trimmedAddress)) {
-            throw new ParseException(DueDate.MESSAGE_CONSTRAINTS);
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new DueDate(trimmedAddress);
+        return new Address(trimmedAddress);
     }
 
     /**
@@ -87,13 +86,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static ProjectDescription parseEmail(String email) throws ParseException {
+    public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!ProjectDescription.isValidProjectDescription(trimmedEmail)) {
-            throw new ParseException(ProjectDescription.MESSAGE_CONSTRAINTS);
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new ProjectDescription(trimmedEmail);
+        return new Email(trimmedEmail);
     }
 
     /**

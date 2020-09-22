@@ -3,11 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.project.DueDate;
-import seedu.address.model.project.Leader;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,9 +22,9 @@ public class ProjectBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Leader leader;
-    private ProjectDescription projectDescription;
-    private DueDate dueDate;
+    private Phone phone;
+    private Email email;
+    private Address address;
     private Set<Tag> tags;
 
     /**
@@ -32,9 +32,9 @@ public class ProjectBuilder {
      */
     public ProjectBuilder() {
         name = new Name(DEFAULT_NAME);
-        leader = new Leader(DEFAULT_PHONE);
-        projectDescription = new ProjectDescription(DEFAULT_EMAIL);
-        dueDate = new DueDate(DEFAULT_ADDRESS);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -43,9 +43,9 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         name = projectToCopy.getName();
-        leader = projectToCopy.getLeader();
-        projectDescription = projectToCopy.getProjectDescription();
-        dueDate = projectToCopy.getDueDate();
+        phone = projectToCopy.getPhone();
+        email = projectToCopy.getEmail();
+        address = projectToCopy.getAddress();
         tags = new HashSet<>(projectToCopy.getTags());
     }
 
@@ -60,7 +60,7 @@ public class ProjectBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
      */
-    public ProjectBuilder withTags(String... tags) {
+    public ProjectBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -69,7 +69,7 @@ public class ProjectBuilder {
      * Sets the {@code Address} of the {@code Project} that we are building.
      */
     public ProjectBuilder withAddress(String address) {
-        this.dueDate = new DueDate(address);
+        this.address = new Address(address);
         return this;
     }
 
@@ -77,7 +77,7 @@ public class ProjectBuilder {
      * Sets the {@code Phone} of the {@code Project} that we are building.
      */
     public ProjectBuilder withPhone(String phone) {
-        this.leader = new Leader(phone);
+        this.phone = new Phone(phone);
         return this;
     }
 
@@ -85,12 +85,12 @@ public class ProjectBuilder {
      * Sets the {@code Email} of the {@code Project} that we are building.
      */
     public ProjectBuilder withEmail(String email) {
-        this.projectDescription = new ProjectDescription(email);
+        this.email = new Email(email);
         return this;
     }
 
     public Project build() {
-        return new Project(name, leader, projectDescription, dueDate, tags);
+        return new Project(name, phone, email, address, tags);
     }
 
 }
