@@ -41,10 +41,11 @@ public class Slice<T>
     {
         this.xs     = xs;
         this.start  = begin;
-        this.length = xs.length - begin;
 
-        if (this.length < 0) {
+        if (begin > xs.length) {
             this.length = 0;
+        } else {
+            this.length = xs.length - begin;
         }
     }
 
@@ -205,7 +206,7 @@ public class Slice<T>
     @Override
     public boolean equals(Object other)
     {
-        if(!(other instanceof Slice<?>))
+        if (!(other instanceof Slice<?>))
             return false;
 
         return ((Slice<?>) other).stream().collect(Collectors.toList())
