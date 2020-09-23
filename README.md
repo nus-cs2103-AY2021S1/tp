@@ -1,5 +1,5 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-F12-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-F12-3/tp/actions)
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/OriginalImages/Ui.png)
 
 ### Cap 5.0 Buddy
 
@@ -18,6 +18,7 @@ progress by allowing efficient management of module details.
     - [Adding a zoom link for a module : `add zoom`](#Adding-a-zoom-link-for-a-module "Goto Adding-a-zoom-link-for-a-module")
 - [Command Summary](#Command-Summary "Goto Command-Summary")
 - [FAQ](#Frequently-Asked-Questions-FAQ "Goto Frequently-Asked-Questions-FAQ")
+- [Acknowledgements](#Acknowledgments "Goto Acknowledgments")
 
 ## Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
