@@ -70,7 +70,7 @@ public class ParserUtilTest {
     public void parseQuestion_validValueWithWhitespace_returnsTrimmedQuestion() throws Exception {
         String questionWithWhitespace = WHITESPACE + VALID_QUESTION + WHITESPACE;
         OpenEndedQuestion expectedQuestion = new OpenEndedQuestion(VALID_QUESTION);
-        assertEquals(expectedQuestion, ParserUtil.parseName(questionWithWhitespace));
+        assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionWithWhitespace));
     }
 
 
@@ -94,7 +94,7 @@ public class ParserUtilTest {
     public void parseAnswer_validValueWithWhitespace_returnsTrimmedAnswer() throws Exception {
         String answerWithWhitespace = WHITESPACE + VALID_ANSWER + WHITESPACE;
         Answer expectedAnswer = new Answer(VALID_ANSWER);
-        assertEquals(expectedAnswer, ParserUtil.parseAddress(answerWithWhitespace));
+        assertEquals(expectedAnswer, ParserUtil.parseAnswer(answerWithWhitespace));
     }
 
     @Test
