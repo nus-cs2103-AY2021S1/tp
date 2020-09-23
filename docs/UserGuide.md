@@ -5,12 +5,12 @@ title: User Guide
 
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
 
-1. [Quick Start](#Quick-Start)
+1. [Quick Start](#quick-start)
 2. [Features](#features)
-   1. [Locating persons by name](#Locating-persons-by-name)
-   2. [Deleting a module](#Deleting-a-module)
-3. [FAQ](#FAQ)
-4. [Command Summary](#Command-Summary)
+   1. [Viewing a module](#viewing-a-module)
+   2. [Deleting a module](#deleting-a-module)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,9 +39,7 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
-
-  
-### Locating persons by name: `view`
+### Viewing a module: `view`
   
 Views a module stored in the system
   
