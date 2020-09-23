@@ -19,11 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.DueDate;
-import seedu.address.model.project.Leader;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,17 +34,17 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the project identified "
-        + "by the index number used in the displayed project list. "
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_PHONE + "PHONE] "
-        + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_ADDRESS + "ADDRESS] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_PHONE + "91234567 "
-        + PREFIX_EMAIL + "johndoe@example.com";
+            + "by the index number used in the displayed project list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
     private final EditProjectDescriptor editProjectDescriptor;
 
     /**
-     * @param index                 of the project in the filtered project list to edit
+     * @param index of the project in the filtered project list to edit
      * @param editProjectDescriptor details to edit the project with
      */
     public EditCommand(Index index, EditProjectDescriptor editProjectDescriptor) {
@@ -63,23 +63,6 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editProjectDescriptor = new EditProjectDescriptor(editProjectDescriptor);
-    }
-
-    /**
-     * Creates and returns a {@code Project} with the details of {@code projectToEdit}
-     * edited with {@code editProjectDescriptor}.
-     */
-    private static Project createEditedProject(Project projectToEdit, EditProjectDescriptor editProjectDescriptor) {
-        assert projectToEdit != null;
-
-        Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
-        Leader updatedLeader = editProjectDescriptor.getPhone().orElse(projectToEdit.getLeader());
-        ProjectDescription updatedProjectDescription =
-            editProjectDescriptor.getEmail().orElse(projectToEdit.getProjectDescription());
-        DueDate updatedDueDate = editProjectDescriptor.getAddress().orElse(projectToEdit.getDueDate());
-        Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
-
-        return new Project(updatedName, updatedLeader, updatedProjectDescription, updatedDueDate, updatedTags);
     }
 
     @Override
@@ -103,6 +86,22 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject));
     }
 
+    /**
+     * Creates and returns a {@code Project} with the details of {@code projectToEdit}
+     * edited with {@code editProjectDescriptor}.
+     */
+    private static Project createEditedProject(Project projectToEdit, EditProjectDescriptor editProjectDescriptor) {
+        assert projectToEdit != null;
+
+        Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
+        Phone updatedPhone = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
+        Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
+        Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
+        Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
+
+        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -118,7 +117,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-            && editProjectDescriptor.equals(e.editProjectDescriptor);
+                && editProjectDescriptor.equals(e.editProjectDescriptor);
     }
 
     /**
@@ -127,13 +126,12 @@ public class EditCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Name name;
-        private Leader leader;
-        private ProjectDescription projectDescription;
-        private DueDate dueDate;
+        private Phone phone;
+        private Email email;
+        private Address address;
         private Set<Tag> tags;
 
-        public EditProjectDescriptor() {
-        }
+        public EditProjectDescriptor() {}
 
         /**
          * Copy constructor.
@@ -141,9 +139,9 @@ public class EditCommand extends Command {
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.leader);
-            setEmail(toCopy.projectDescription);
-            setAddress(toCopy.dueDate);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
+            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -151,39 +149,47 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, leader, projectDescription, dueDate, tags);
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
 
-        public Optional<Leader> getPhone() {
-            return Optional.ofNullable(leader);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
-        public void setPhone(Leader leader) {
-            this.leader = leader;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
-        public Optional<ProjectDescription> getEmail() {
-            return Optional.ofNullable(projectDescription);
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
         }
 
-        public void setEmail(ProjectDescription projectDescription) {
-            this.projectDescription = projectDescription;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
-        public Optional<DueDate> getAddress() {
-            return Optional.ofNullable(dueDate);
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
-        public void setAddress(DueDate dueDate) {
-            this.dueDate = dueDate;
+        public void setAddress(Address address) {
+            this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -193,14 +199,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override
@@ -219,10 +217,10 @@ public class EditCommand extends Command {
             EditProjectDescriptor e = (EditProjectDescriptor) other;
 
             return getName().equals(e.getName())
-                && getPhone().equals(e.getPhone())
-                && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                    && getPhone().equals(e.getPhone())
+                    && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress())
+                    && getTags().equals(e.getTags());
         }
     }
 }

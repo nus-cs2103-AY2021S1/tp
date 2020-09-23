@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.DueDate;
-import seedu.address.model.project.Leader;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
+import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,12 +51,12 @@ class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         name = source.getName().fullName;
-        phone = source.getLeader().value;
-        email = source.getProjectDescription().value;
-        address = source.getDueDate().value;
+        phone = source.getPhone().value;
+        email = source.getEmail().value;
+        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -79,32 +79,31 @@ class JsonAdaptedProject {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Leader.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Leader.isValidLeader(phone)) {
-            throw new IllegalValueException(Leader.MESSAGE_CONSTRAINTS);
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Leader modelLeader = new Leader(phone);
+        final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDescription.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        if (!ProjectDescription.isValidProjectDescription(email)) {
-            throw new IllegalValueException(ProjectDescription.MESSAGE_CONSTRAINTS);
+        if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final ProjectDescription modelProjectDescription = new ProjectDescription(email);
+        final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DueDate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!DueDate.isValidDueDate(address)) {
-            throw new IllegalValueException(DueDate.MESSAGE_CONSTRAINTS);
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final DueDate modelDueDate = new DueDate(address);
+        final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        return new Project(modelName, modelLeader, modelProjectDescription, modelDueDate, modelTags);
+        return new Project(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

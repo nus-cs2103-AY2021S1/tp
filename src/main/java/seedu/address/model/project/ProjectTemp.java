@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Project in the main catalogue.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Project {
+public class ProjectTemp {
 
     // Identity fields
     private final Name name;
@@ -27,7 +27,7 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public ProjectTemp(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -64,7 +64,7 @@ public class Project {
      * Returns true if both projects of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.
      */
-    public boolean isSameProject(Project otherProject) {
+    public boolean isSameProject(ProjectTemp otherProject) {
         if (otherProject == this) {
             return true;
         }
@@ -84,11 +84,11 @@ public class Project {
             return true;
         }
 
-        if (!(other instanceof Project)) {
+        if (!(other instanceof ProjectTemp)) {
             return false;
         }
 
-        Project otherProject = (Project) other;
+        ProjectTemp otherProject = (ProjectTemp) other;
         return otherProject.getName().equals(getName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
