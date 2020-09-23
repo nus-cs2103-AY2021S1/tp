@@ -284,21 +284,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-**Use case: UC03 Delete food**
+**Use case: Delete food**
 
 **MSS**
-1. User requests to list food (UC01)
-2. McGymmy shows a list of food
-3. User request to delete a specific food on the list
-4. McGymmy deletes the food
-Use case ends
 
 **Extensions**
-- 2a. The list is empty<br>
-    Use case ends.
-- 3a. The given index is invalid.<br>
-    3a1. McGymmy shows an error message
-    Use case resumes at step 2.
 
 **Use case: Add a macro command**
 
