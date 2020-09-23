@@ -16,7 +16,7 @@ Refer to Developer's Guide: TO BE UPDATED
 Prerequisites: JDK 11, Gradle.
 
 To run the app: (To be updated)
-1. Download the .jar file from the releases and run it.  
+1. Download the .jar file from the releases and run it.
 
 _or_
 

@@ -24,7 +24,7 @@ Format: `delete case [CASE_NO]`
 Example: `list` followed by `delete case 2` deletes the 2nd case in the investigation list.
 
 #### Open an investigation case: `open case [CASE_NO]`
-Enters the specified investigation case where users can add more information regarding the case 
+Enters the specified investigation case where users can add more information regarding the case
 (see Investigation Case Page).
 
 Format:  `open case [CASE_NO]`
