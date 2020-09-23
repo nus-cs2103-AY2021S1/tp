@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
@@ -31,25 +31,25 @@ public class RecipeTest {
         // null -> returns false
         assertFalse(ALICE.isSameRecipe(null));
 
-        // different phone and email -> returns false
-        Recipe editedAlice = new RecipeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        // different ingredients and email -> returns false
+        Recipe editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameRecipe(editedAlice));
 
         // different name -> returns false
         editedAlice = new RecipeBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameRecipe(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
+        // same name, same ingredients, different attributes -> returns true
         editedAlice = new RecipeBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameRecipe(editedAlice));
 
         // same name, same email, different attributes -> returns true
-        editedAlice = new RecipeBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameRecipe(editedAlice));
 
-        // same name, same phone, same email, different attributes -> returns true
+        // same name, same ingredients, same email, different attributes -> returns true
         editedAlice = new RecipeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameRecipe(editedAlice));
     }
@@ -76,8 +76,8 @@ public class RecipeTest {
         Recipe editedAlice = new RecipeBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new RecipeBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different ingredients -> returns false
+        editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false

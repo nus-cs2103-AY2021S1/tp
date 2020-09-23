@@ -7,7 +7,7 @@ import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.Phone;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_INGREDIENT = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
+    private Ingredient ingredients;
     private Email email;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class RecipeBuilder {
      */
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        ingredients = new Ingredient(DEFAULT_INGREDIENT);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class RecipeBuilder {
      */
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
-        phone = recipeToCopy.getPhone();
+        ingredients = recipeToCopy.getIngredient();
         email = recipeToCopy.getEmail();
         address = recipeToCopy.getAddress();
         tags = new HashSet<>(recipeToCopy.getTags());
@@ -74,10 +74,10 @@ public class RecipeBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Recipe} that we are building.
+     * Sets the {@code Ingredient} of the {@code Recipe} that we are building.
      */
-    public RecipeBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public RecipeBuilder withIngredient(String ingredients) {
+        this.ingredients = new Ingredient(ingredients);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class RecipeBuilder {
     }
 
     public Recipe build() {
-        return new Recipe(name, phone, email, address, tags);
+        return new Recipe(name, ingredients, email, address, tags);
     }
 
 }

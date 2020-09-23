@@ -15,7 +15,7 @@ UniqueRecipeList o-right-> Recipe
 Recipe -up-> "*" Tag
 
 Recipe *--> Name
-Recipe *--> Phone
+Recipe *--> Ingredient
 Recipe *--> Email
 Recipe *--> Address
 @enduml

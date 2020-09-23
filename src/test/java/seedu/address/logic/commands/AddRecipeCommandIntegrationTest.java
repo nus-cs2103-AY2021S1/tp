@@ -14,9 +14,9 @@ import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddRecipeCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddRecipeCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addRecipe(validRecipe);
 
-        assertCommandSuccess(new AddCommand(validRecipe), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), expectedModel);
+        assertCommandSuccess(new AddRecipeCommand(validRecipe), model,
+                String.format(AddRecipeCommand.MESSAGE_SUCCESS, validRecipe), expectedModel);
     }
 
     @Test
     public void execute_duplicateRecipe_throwsCommandException() {
         Recipe recipeInList = model.getWishfulShrinking().getRecipeList().get(0);
-        assertCommandFailure(new AddCommand(recipeInList), model, AddCommand.MESSAGE_DUPLICATE_RECIPE);
+        assertCommandFailure(new AddRecipeCommand(recipeInList), model, AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
     }
 
 }

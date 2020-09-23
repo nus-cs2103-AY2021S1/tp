@@ -20,7 +20,7 @@ Class Recipe
 Class Address
 Class Email
 Class Name
-Class Phone
+Class Ingredient
 Class UniqueRecipeList
 }
 
@@ -43,13 +43,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 WishfulShrinking *--> "1" UniqueRecipeList
 UniqueRecipeList o--> "*" Recipe
 Recipe *--> Name
-Recipe *--> Phone
+Recipe *--> Ingredient
 Recipe *--> Email
 Recipe *--> Address
 Recipe *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Name -[hidden]right-> Ingredient
+Ingredient -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"1" Recipe : filtered list

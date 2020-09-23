@@ -23,11 +23,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
 
-public class AddCommandTest {
+public class AddRecipeCommandTest {
 
     @Test
     public void constructor_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddRecipeCommand(null));
     }
 
     @Test
@@ -35,33 +35,33 @@ public class AddCommandTest {
         ModelStubAcceptingRecipeAdded modelStub = new ModelStubAcceptingRecipeAdded();
         Recipe validRecipe = new RecipeBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validRecipe).execute(modelStub);
+        CommandResult commandResult = new AddRecipeCommand(validRecipe).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddRecipeCommand.MESSAGE_SUCCESS, validRecipe), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validRecipe), modelStub.recipesAdded);
     }
 
     @Test
     public void execute_duplicateRecipe_throwsCommandException() {
         Recipe validRecipe = new RecipeBuilder().build();
-        AddCommand addCommand = new AddCommand(validRecipe);
+        AddRecipeCommand addRecipeCommand = new AddRecipeCommand(validRecipe);
         ModelStub modelStub = new ModelStubWithRecipe(validRecipe);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_RECIPE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE, () -> addRecipeCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Recipe alice = new RecipeBuilder().withName("Alice").build();
         Recipe bob = new RecipeBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddRecipeCommand addAliceCommand = new AddRecipeCommand(alice);
+        AddRecipeCommand addBobCommand = new AddRecipeCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddRecipeCommand addAliceCommandCopy = new AddRecipeCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false

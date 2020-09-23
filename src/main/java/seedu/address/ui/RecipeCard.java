@@ -33,7 +33,7 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label ingredients;
     @FXML
     private Label address;
     @FXML
@@ -49,12 +49,8 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        phone.setText(recipe.getPhone().value);
-        address.setText(recipe.getAddress().value);
-        email.setText(recipe.getEmail().value);
-        recipe.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        ingredients.setText(recipe.getIngredientString().value);
+
     }
 
     @Override

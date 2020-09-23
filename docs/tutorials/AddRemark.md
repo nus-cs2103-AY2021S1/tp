@@ -341,7 +341,7 @@ save it with `Model#setRecipe()`.
         }
 
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
-        Recipe editedRecipe = new Recipe(recipeToEdit.getName(), recipeToEdit.getPhone(), recipeToEdit.getEmail(),
+        Recipe editedRecipe = new Recipe(recipeToEdit.getName(), recipeToEdit.getIngredient(), recipeToEdit.getEmail(),
                 recipeToEdit.getAddress(), remark, recipeToEdit.getTags());
 
         model.setRecipe(recipeToEdit, editedRecipe);

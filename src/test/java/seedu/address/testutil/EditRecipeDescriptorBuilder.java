@@ -9,7 +9,7 @@ import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.Phone;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,10 +33,7 @@ public class EditRecipeDescriptorBuilder {
     public EditRecipeDescriptorBuilder(Recipe recipe) {
         descriptor = new EditRecipeDescriptor();
         descriptor.setName(recipe.getName());
-        descriptor.setPhone(recipe.getPhone());
-        descriptor.setEmail(recipe.getEmail());
-        descriptor.setAddress(recipe.getAddress());
-        descriptor.setTags(recipe.getTags());
+        descriptor.setIngredient(recipe.getIngredient());
     }
 
     /**
@@ -48,38 +45,14 @@ public class EditRecipeDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditRecipeDescriptor} that we are building.
+     * Sets the {@code Ingredient} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditRecipeDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditRecipeDescriptorBuilder withIngredient(String ingredients) {
+        descriptor.setIngredient(new Ingredient[]{new Ingredient(ingredients)});
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code EditRecipeDescriptor} that we are building.
-     */
-    public EditRecipeDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
-        return this;
-    }
 
-    /**
-     * Sets the {@code Address} of the {@code EditRecipeDescriptor} that we are building.
-     */
-    public EditRecipeDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditRecipeDescriptor}
-     * that we are building.
-     */
-    public EditRecipeDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
-        return this;
-    }
 
     public EditRecipeDescriptor build() {
         return descriptor;

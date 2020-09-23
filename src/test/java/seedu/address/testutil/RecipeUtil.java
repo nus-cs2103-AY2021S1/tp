@@ -3,12 +3,12 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
@@ -21,8 +21,8 @@ public class RecipeUtil {
     /**
      * Returns an add command string for adding the {@code recipe}.
      */
-    public static String getAddCommand(Recipe recipe) {
-        return AddCommand.COMMAND_WORD + " " + getRecipeDetails(recipe);
+    public static String getAddRecipeCommand(Recipe recipe) {
+        return AddRecipeCommand.COMMAND_WORD + " " + getRecipeDetails(recipe);
     }
 
     /**
@@ -31,7 +31,7 @@ public class RecipeUtil {
     public static String getRecipeDetails(Recipe recipe) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + recipe.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + recipe.getPhone().value + " ");
+        sb.append(PREFIX_INGREDIENT + recipe.getIngredient().value + " ");
         sb.append(PREFIX_EMAIL + recipe.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + recipe.getAddress().value + " ");
         recipe.getTags().stream().forEach(
@@ -46,7 +46,7 @@ public class RecipeUtil {
     public static String getEditRecipeDescriptorDetails(EditRecipeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getIngredient().ifPresent(ingredients -> sb.append(PREFIX_INGREDIENT).append(ingredients.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
