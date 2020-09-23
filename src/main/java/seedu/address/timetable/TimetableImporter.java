@@ -1,10 +1,8 @@
 package seedu.address.timetable;
 
 import java.io.IOException;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -19,6 +17,11 @@ public class TimetableImporter {
     private static final String JSON_API = "https://api.nusmods.com/v2/2020-2021/modules/";
     private static final String DOT_JSON = ".json";
 
+    // TODO: better json links available eg. "https://api.nusmods.com/v2/2020-2021/semesters/2/CS2100/timetable.json"
+
+    /**
+     * Runs timetable import.
+     */
     public static void main(String[] args) throws IOException, ParseException {
         int semester = parseTimetableUrlForSem(TEST_TIMETABLE);
         String[] moduleDataArray = parseTimetableUrlForData(TEST_TIMETABLE);
@@ -38,7 +41,7 @@ public class TimetableImporter {
 
             String inline = "";
             Scanner sc = new Scanner(url.openStream());
-            while(sc.hasNext()) {
+            while (sc.hasNext()) {
                 inline += sc.nextLine();
             }
 
