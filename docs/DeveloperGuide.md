@@ -303,13 +303,13 @@ Use case ends
 
 **Extensions**
 
-1a. The format of the macro is invalid
-1a1. McGymmy shows an error message
+ - 1a. The format of the macro is invalid
+    - 1a1. McGymmy shows an error message
 
 Use case ends.
 
-4a. One of the executed commands encounter an error.
-3a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
+ - 4a. One of the executed commands encounter an error.
+    - 4a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
 
 Use case ends.
 
