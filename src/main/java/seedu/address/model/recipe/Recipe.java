@@ -18,17 +18,20 @@ public class Recipe {
     private final IngredientList ingredients;
     private final int productId;
     private final ProductQuantity productQuantity;
+    private final String description;
     private final boolean isDeleted;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(int id, IngredientList ingredients, int productId, ProductQuantity productQuantity, boolean isDeleted) {
-        requireAllNonNull(id, ingredients, productId, productQuantity, isDeleted);
+    public Recipe(int id, IngredientList ingredients, int productId,
+                  ProductQuantity productQuantity, String description, boolean isDeleted) {
+        requireAllNonNull(id, ingredients, productId, productQuantity, description, isDeleted);
         this.id = id;
         this.ingredients = ingredients;
         this.productId = productId;
         this.productQuantity = productQuantity;
+        this.description = description;
         this.isDeleted = isDeleted;
         idCounter++;
     }
@@ -54,6 +57,10 @@ public class Recipe {
 
     public ProductQuantity getProductQuantity() {
         return productQuantity;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public boolean isDeleted() {
@@ -92,17 +99,18 @@ public class Recipe {
                 && otherRecipe.getIngredients().equals(getIngredients())
                 && otherRecipe.getProductId() == getProductId()
                 && otherRecipe.getProductQuantity().equals(getProductQuantity())
+                && otherRecipe.description.equals(getDescription())
                 && otherRecipe.isDeleted() == isDeleted();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ingredients, productId, productQuantity, isDeleted);
+        return Objects.hash(id, ingredients, productId, productQuantity, description, isDeleted);
     }
 
     @Override
     public String toString() {
-        return String.format("Recipe for product ID: %s", productId);
-    } // <---------- TODO
+        return String.format("Recipe for product ID: %s %s", productId,  description); // <---------- TODO
+    }
 
 }
