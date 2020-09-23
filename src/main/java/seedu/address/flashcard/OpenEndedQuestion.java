@@ -8,7 +8,7 @@ public class OpenEndedQuestion implements Question {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public static final String MESSAGE_CONSTRAINTS = "OpenEndedQeustion can take any values, "
+    public static final String MESSAGE_CONSTRAINTS = "OpenEndedQuestion can take any values, "
             + "and it should not be blank";
 
     public OpenEndedQuestion(String question) {

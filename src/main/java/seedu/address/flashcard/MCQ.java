@@ -9,6 +9,11 @@ public class MCQ implements Question {
     private final String[] options;
     final String question;
 
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    public static final String MESSAGE_CONSTRAINTS = "MultipleChoiceQuestion can take any values, "
+            + "and it should not be blank";
+
     public MCQ(String question, String... options) {
         this.question = question;
         this.options = options;
@@ -23,5 +28,9 @@ public class MCQ implements Question {
             i++;
         }
         return sb.toString();
+    }
+
+    public static boolean isValidQuestion(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 }
