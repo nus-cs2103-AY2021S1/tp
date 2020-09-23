@@ -249,45 +249,173 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
+| -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| \* \*    | Meticulous OHS admin     | have automatic backups of my data                        | rest knowing my data will not be accidentally erased.                                                     |
+| \* \*    | OHS admin                | generate audit reports for financial data                | comply with internal audits of the Residential College.                                                   |
+| \* \*    | OHS admin                | export records to csv files                              | easily create mailing lists or send relevant data to other admin.                                         |
+| \* \* \* | New/Confused User        | check the syntax for a command                           | do a task even if I am unsure of the command usage.                                                       |
+| \* \* \* | First Time User          | ask for help                                             | quickly and easily learn how to use the application in one place.                                         |
+| \* \* \* | OHS Admin                | view a list of all students                              | check which students are in the system and access their particulars.                                      |
+| \* \*    | As as skeptical GUI user | create aliases to other commands                         | perform my common actions while typing less.                                                              |
+| \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                       |
+| \* \*    | OHS Admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
+| \* \*    | OHS admin                | delete a bill                                            | remove a erroneously added bill.                                                                          |
+| \* \*    | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                    |
+| \* \*    | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                  |
+| \* \*    | skeptical GUI user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
+| \* \*    | skeptical GUI user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
+| \* \*    | Busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
+| \* \*    | Skeptical GUI user       | undo my last command                                     | fix any change that I made erroneously.                                                                   |
+| \* \*    | skeptical GUI user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
+| \* \*    | OHS admin                | edit the bill amount                                     | ensure that changes in the billing amounts due to changes in university policies can be reflected.        |
+| \* \*    | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                  |
+| \* \*    | OHS admin                | update a Semester name                                   | correct typos in the semester name.                                                                       |
+| \* \*    | OHS admin                | add a bill for a student                                 | keep track of a student's bills and finances.                                                             |
+| \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
+| \* \*    | OHS admin                | archive the current Semester's data                      | keep the data for auditing purposes, but not hvae it distract me while dealing with the current semester. |
+| \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
+| \* \* \* | OHS admin                | allocate a room to a student                             | allocate a student to a room before the semester starts.                                                  |
+| \* \* \* | OHS admin                | delete a room allocation for a student                   | update vacancies when a student applies to leave their room.                                              |
+| \* \*    | OHS admin                | add a remark to a bill                                   | record any exceptional details about the bill (e.g. cash-only payment).                                   |
+| \* \*    | OHS admin                | add a new semester                                       | make sure all new bills and allocations are made in the context of the semester.                          |
+| \* \* \* | OHS admin                | view a list of all allocated rooms                       | check which students stay in which rooms.                                                                 |
+| \* \* \* | OHS admin                | edit a room allocation for a student                     | change a student's room allocation and update the room vacancies.                                         |
+| \*       | OHS admin                | edit a room's type                                       | log upgrades like the installation of an aircon.                                                          |
+| \* \*    | OHS admin                | export all of the current data to a data-file            | hand over my duties to another admin.                                                                     |
+| \*       | OHS admin                | edit a room's semesterly fees                            | update room charges when costs increase (e.g. from $1000 to $1500)                                        |
+| \* \*    | OHS admin                | import data from a data file                             | continue work from where my predecessor left off.                                                         |
+| \* \* \* | OHS admin                | add a student to ResiReg                                 | perform admin duties related to the student.                                                              |
+| \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details in response to changes (e.g. faculty).            |
+| \* \* \* | OHS admin                | delete a student                                         | so that I can remove an erroneously added student.                                                        |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ResiReg` and the **Actor** an `OHS admin`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### Use case: UC01 - Add a student
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. OHS admin requests to add a student and supplies student details.
+1. ResiReg adds the student and saves the changes.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 1a. Student details are missing or invalid, or there is already a student with the same matriculation number.
+    - ResiReg shows an error message.
+
+      Use case starts over.
+
+#### Use case: UC02 - Delete a student
+
+**MSS**
+
+1. OHS admin requests to list students.
+1. ResiReg shows a list of students.
+1. OHS admin requests to delete a specified student from the list.
+1. ResiReg deletes the specified student and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list of students is empty.
+  
+  Use case ends.
+  
+- 3a. The specified student does not exist.
+  - ResiReg shows an error message.
+  
+    Use case resumes at step 2.
+
+#### Use case: UC03 - Edit a student
+
+**MSS**
+
+1. OHS admin requests to list students.
+1. ResiReg shows a list of students.
+1. OHS admin requests to edit a specific student from the list and supplies details to edit.
+1. ResiReg edits the student and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list of students is empty.
 
   Use case ends.
+  
+- 3a. The specified student does not exist or the supplied details are invalid.
+  - ResiReg shows an error message.
+  
+    Use case resumes at step 2.
 
-* 3a. The given index is invalid.
+#### Use case: UC04 - Allocate a room to a student
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1. OHS admin requests to list students without a room allocation and list vacant rooms.
+1. ResiReg shows a list of students without a room allocation and a list of vacant rooms.
+1. OHS admin requests to allocate a particular student to a particular room.
+1. ResiReg adds the room allocation and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 3a. Student belongs to an existing room allocation, room belongs to an existing room allocation, room does not exist or student does not exist.
+    - ResiReg shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+#### Use case: UC05 - Delete a room allocation for a student
+
+**MSS**
+
+1. OHS admin requests to list room allocations.
+1. ResiReg shows a list of room allocations.
+1. OHS admin requests to delete a specific room allocation.
+1. ResiReg removes the room allocation and saves the changes. The room and student are not modified.
+ 
+ Use case ends.
+
+**Extensions**
+
+- 1a. The list of room allocations is empty.
+
+    Use case ends.
+
+- 3a. Room allocation does not exist.
+    - ResiReg shows an error message.
+
+      Use case resumes at step 2.
+      
+#### Use case: UC06 - Edit an existing room allocation
+
+**MSS**
+
+1. OHS admin requests to list room allocations.
+1. ResiReg shows a list of room allocations.
+1. OHS admin requests to edit a specific room allocation from the list and supplies details to update.
+1. ResiReg updates the room allocation and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list of room allocations is empty.
+
+  Use case ends.
+
+- 3a. Room allocation does not exist or details supplied are invalid.
+    - ResiReg shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 

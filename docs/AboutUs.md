@@ -19,6 +19,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Scheduling & Tracking, Maintaining Code Quality
 
+### Loh Jing Yen
+
+<img src="images/jingyenloh.png" width="200px">
+
+[[github](https://github.com/jingyenloh)]
+[[portfolio](team/jingyenloh.md)]
+
+* Role: Team Lead
+* Responsibilities: UI
+
 ### Bec Kyung Huhn (Kevin)
 
 <img src="images/kevin.png" width="200px">
@@ -38,12 +48,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Chloe Lee Ke Er
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chloelee767.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chloelee767)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, Git Expert
+* Responsibilities: Testing
