@@ -129,7 +129,7 @@ Examples:
 
 ### Creating a macro command : `macro`
 
-Creates an macro in McGymmy.
+Creates a macro in McGymmy.
 
 Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
 
