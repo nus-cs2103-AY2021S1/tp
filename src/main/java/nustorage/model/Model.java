@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.model.person.Person;
+import nustorage.model.record.FinanceRecord;
 
 /**
  * The API of the Model component.
@@ -33,6 +34,8 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    void addFinanceRecord(FinanceRecord newRecord);
 
     /**
      * Returns the user prefs' address book file path.
