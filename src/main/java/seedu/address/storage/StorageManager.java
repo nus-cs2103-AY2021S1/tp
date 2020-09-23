@@ -179,4 +179,11 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         recipeListStorage.saveRecipeList(recipeList, filePath);
     }
+
+    @Override
+    public void saveModel(Model model) throws IOException {
+        saveItemList(model.getItemList());
+        saveRecipeList(model.getRecipeList());
+        saveLocationList(model.getLocationList());
+    }
 }

@@ -40,4 +40,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, ItemListS
 
     @Override
     void saveRecipeList(ReadOnlyRecipeList recipeList) throws IOException;
+
+    void saveModel(Model model) throws IOException;
 }
