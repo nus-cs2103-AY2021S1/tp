@@ -38,7 +38,8 @@ public class AddOpenEndedQuestionCommandTest {
 
         CommandResult commandResult = new AddOpenEndedQuestionCommand(validFlashcard).execute(modelStub);
 
-        assertEquals(String.format(AddOpenEndedQuestionCommand.MESSAGE_SUCCESS, validFlashcard), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddOpenEndedQuestionCommand.MESSAGE_SUCCESS, validFlashcard),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validFlashcard), modelStub.flashcardsAdded);
     }
 
@@ -48,7 +49,8 @@ public class AddOpenEndedQuestionCommandTest {
         AddOpenEndedQuestionCommand addOpenEndedQuestionCommand = new AddOpenEndedQuestionCommand(validFlashcard);
         ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
 
-        assertThrows(CommandException.class, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD, () -> addOpenEndedQuestionCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD, () ->
+                addOpenEndedQuestionCommand.execute(modelStub));
     }
 
     @Test

@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -34,15 +34,15 @@ public class CommandTestUtil {
     public static final String ANSWER_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_AMY;
     public static final String ANSWER_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_BOB;
 
-
-    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + " "; // empty string not allowed for addresses
+    // empty string not allowed for addresses
+    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + " ";
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER + " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-//    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-//    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    //    public static final EditCommand.EditPersonDescriptor DESC_AMY;
+    //    public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         //        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

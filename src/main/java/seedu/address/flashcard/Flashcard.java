@@ -73,14 +73,15 @@ public class Flashcard {
                 && otherFlashcard.getQuestion().equals(getQuestion())
                 && (otherFlashcard.getAnswer().equals(getAnswer()));
     }
-    @Override
+
     /**
      * A method to check if otherFlashcard is the same with the current one.
      */
+    @Override
     public boolean equals(Object otherFlashcard) {
         if (otherFlashcard == this) {
             return true;
-        } else if (otherFlashcard instanceof Flashcard){
+        } else if (otherFlashcard instanceof Flashcard) {
             Flashcard other = (Flashcard) otherFlashcard;
             return other.getAnswer().equals(getAnswer())
                     && other.getQuestion().equals(getQuestion());

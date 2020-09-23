@@ -1,10 +1,9 @@
 package seedu.address.testutil;
 
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,8 +41,10 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Flashcard AMY = new FlashcardBuilder().withQuestion(VALID_QUESTION_AMY).withAnswer(VALID_ANSWER_AMY).build();
-    public static final Flashcard BOB = new FlashcardBuilder().withQuestion(VALID_QUESTION_BOB).withAnswer(VALID_ANSWER_BOB).build();
+    public static final Flashcard AMY = new FlashcardBuilder().withQuestion(VALID_QUESTION_AMY)
+            .withAnswer(VALID_ANSWER_AMY).build();
+    public static final Flashcard BOB = new FlashcardBuilder().withQuestion(VALID_QUESTION_BOB)
+            .withAnswer(VALID_ANSWER_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

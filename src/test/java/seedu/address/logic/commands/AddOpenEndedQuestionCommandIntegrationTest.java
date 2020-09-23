@@ -39,7 +39,8 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
     @Test
     public void execute_duplicateFlashcard_throwsCommandException() {
         Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(0);
-        assertCommandFailure(new AddOpenEndedQuestionCommand(flashcardInList), model, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD);
+        assertCommandFailure(new AddOpenEndedQuestionCommand(flashcardInList),
+                model, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }
 
 }

@@ -28,6 +28,10 @@ public class AddressBookBuilder {
         addressBook.addPerson(person);
         return this;
     }
+
+    /**
+     * Adds a new {@code Flashcard} to the {@code AddressBook} that we are building.
+     */
     public AddressBookBuilder withFlashcard(Flashcard flashcard) {
         addressBook.addFlashcard(flashcard);
         return this;
