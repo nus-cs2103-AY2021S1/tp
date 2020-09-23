@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
@@ -15,9 +15,9 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.WishfulShrinking;
+//import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
+import seedu.address.model.WishfulShrinking;
 
 public class JsonWishfulShrinkingStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonWishfulShrinkingStorageTest");
@@ -31,7 +31,8 @@ public class JsonWishfulShrinkingStorageTest {
     }
 
     private java.util.Optional<ReadOnlyWishfulShrinking> readWishfulShrinking(String filePath) throws Exception {
-        return new JsonWishfulShrinkingStorage(Paths.get(filePath)).readWishfulShrinking(addToTestDataPathIfNotNull(filePath));
+        return new JsonWishfulShrinkingStorage(Paths.get(filePath))
+                .readWishfulShrinking(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -45,19 +46,20 @@ public class JsonWishfulShrinkingStorageTest {
         assertFalse(readWishfulShrinking("NonExistentFile.json").isPresent());
     }
 
-   /* @Test
+    /*@Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, () -> readWishfulShrinking("notJsonFormatWishfulShrinking.json"));
     }*/
 
-   /* @Test
+    /*@Test
     public void readWishfulShrinking_invalidRecipeWishfulShrinking_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readWishfulShrinking("invalidRecipeWishfulShrinking.json"));
     }*/
 
     /*@Test
     public void readWishfulShrinking_invalidAndValidRecipeWishfulShrinking_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readWishfulShrinking("invalidAndValidRecipeWishfulShrinking.json"));
+        assertThrows(DataConversionException.class, () ->
+        readWishfulShrinking("invalidAndValidRecipeWishfulShrinking.json"));
     }*/
 
     @Test
@@ -69,20 +71,20 @@ public class JsonWishfulShrinkingStorageTest {
         // Save in new file and read back
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original, filePath);
         ReadOnlyWishfulShrinking readBack = jsonWishfulShrinkingStorage.readWishfulShrinking(filePath).get();
-//        assertEquals(original, new WishfulShrinking(readBack));
+        // assertEquals(original, new WishfulShrinking(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addRecipe(HOON);
         original.removeRecipe(ALICE);
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original, filePath);
         readBack = jsonWishfulShrinkingStorage.readWishfulShrinking(filePath).get();
-//        assertEquals(original, new WishfulShrinking(readBack));
+        // assertEquals(original, new WishfulShrinking(readBack));
 
         // Save and read without specifying file path
         original.addRecipe(IDA);
         jsonWishfulShrinkingStorage.saveWishfulShrinking(original); // file path not specified
         readBack = jsonWishfulShrinkingStorage.readWishfulShrinking().get(); // file path not specified
-//        assertEquals(original, new WishfulShrinking(readBack));
+        // assertEquals(original, new WishfulShrinking(readBack));
 
     }
 

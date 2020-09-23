@@ -1,7 +1,7 @@
 package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+//import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Recipe's ingredients in the address book.

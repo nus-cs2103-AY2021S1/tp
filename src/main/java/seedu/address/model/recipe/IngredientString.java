@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class IngredientString {
     public static final String MESSAGE_CONSTRAINTS =
-            "Ingredients should be separated by commas, and each ingredient should be consisted of alphanumeric characters only";
+            "Ingredients should be separated by commas, "
+                    + "and each ingredient should be consisted "
+                    + "of alphanumeric characters only";
     public static final String VALIDATION_REGEX = "[0-9a-zA-Z]+(,\\s*[0-9a-zA-Z]*)*";
     public final String value;
 

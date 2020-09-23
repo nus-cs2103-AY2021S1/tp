@@ -13,7 +13,7 @@ public class IngredientTest {
         assertThrows(NullPointerException.class, () -> new Ingredient(null));
     }
 
-   /* @Test
+    /*@Test
     public void constructor_invalidIngredient_throwsIllegalArgumentException() {
         String invalidIngredient = "";
         assertThrows(IllegalArgumentException.class, () -> new Ingredient(invalidIngredient));
@@ -27,9 +27,9 @@ public class IngredientTest {
         // invalid ingredients numbers
         assertFalse(IngredientString.isValidIngredient("")); // empty string
         assertFalse(IngredientString.isValidIngredient(" ")); // spaces only
-//        assertFalse(IngredientString.isValidIngredient("91")); // less than 3 numbers
-//        assertFalse(IngredientString.isValidIngredient("ingredients")); // non-numeric
-//        assertFalse(IngredientString.isValidIngredient("9011p041")); // alphabets within digits
+        //        assertFalse(IngredientString.isValidIngredient("91")); // less than 3 numbers
+        //        assertFalse(IngredientString.isValidIngredient("ingredients")); // non-numeric
+        //        assertFalse(IngredientString.isValidIngredient("9011p041")); // alphabets within digits
         assertFalse(IngredientString.isValidIngredient("9312 1534")); // spaces within digits
 
         // valid ingredients numbers

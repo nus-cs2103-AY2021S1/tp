@@ -1,12 +1,15 @@
 package seedu.address.testutil;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
-import seedu.address.model.recipe.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.IngredientString;
+import seedu.address.model.recipe.Name;
+import seedu.address.model.recipe.Recipe;
+//import seedu.address.model.tag.Tag;
+//import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Recipe objects.
@@ -33,7 +36,9 @@ public class RecipeBuilder {
      */
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
-        ingredientString = new IngredientString(Arrays.stream(recipeToCopy.getIngredient()).map(item -> item.value).reduce("", (a,b) -> b.equals("") ? a : b + ", " + a));
+        ingredientString = new IngredientString(Arrays.stream(recipeToCopy.getIngredient())
+                .map(item -> item.value)
+                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
     }
 
     /**
@@ -53,7 +58,10 @@ public class RecipeBuilder {
         return this;
     }
 
-
+    /**
+     * Builds Recipe
+     * @return built Recipe
+     */
     public Recipe build() {
         String[] ingredientsToken = ingredientString.value.split(",");
         Ingredient[] ingredients = new Ingredient[ingredientsToken.length];

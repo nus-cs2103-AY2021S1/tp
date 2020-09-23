@@ -5,13 +5,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 //import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -32,8 +32,10 @@ import static seedu.address.testutil.TypicalRecipes.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.model.recipe.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.recipe.IngredientString;
+import seedu.address.model.recipe.Name;
+import seedu.address.model.recipe.Recipe;
+//import seedu.address.model.tag.Tag;
 import seedu.address.testutil.RecipeBuilder;
 
 public class AddRecipeCommandParserTest {
@@ -44,33 +46,33 @@ public class AddRecipeCommandParserTest {
         Recipe expectedRecipe = new RecipeBuilder(BOB).build();
 
         // whitespace only preamble
-/*        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
+        /* assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));*/
 
         // multiple names - last name accepted
-//        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
-  //              + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
+        // assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
+        //  + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
 
         // multiple ingredientss - last ingredients accepted
-//        assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_AMY + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
- //               + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
+        // assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_AMY + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
+        //               + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
 
         // multiple emails - last email accepted
-//        assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
- //               + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
+        // assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+        //             + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
 
         // multiple addresses - last address accepted
-//        assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-//                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
+        // assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
+        //              + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipe));
 
         // multiple tags - all accepted
         Recipe expectedRecipeMultipleTags = new RecipeBuilder(BOB)
                 .build();
-//        assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipeMultipleTags));
+        // assertParseSuccess(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        //           + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddRecipeCommand(expectedRecipeMultipleTags));
     }
 
-  /*  @Test
+    /*@Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Recipe expectedRecipe = new RecipeBuilder(AMY).build();
@@ -93,12 +95,12 @@ public class AddRecipeCommandParserTest {
                 expectedMessage);
 
         // missing email prefix
-/*        assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+        /* assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);*/
 
         // missing address prefix
-//        assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
- //               expectedMessage);
+        //        assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        //               expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_INGREDIENT_BOB
@@ -119,16 +121,16 @@ public class AddRecipeCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, IngredientString.MESSAGE_CONSTRAINTS);
 
         // invalid email
-/*        assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
+        /*  assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);*/
 
         // invalid address
-//        assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
- //               + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        //  assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+        //               + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-//        assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
- //               + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        // assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+        //               + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + INGREDIENT_DESC_BOB

@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.WishfulShrinking;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ReadOnlyWishfulShrinking;
+import seedu.address.model.WishfulShrinking;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
 
@@ -47,7 +47,8 @@ public class AddRecipeCommandTest {
         AddRecipeCommand addRecipeCommand = new AddRecipeCommand(validRecipe);
         ModelStub modelStub = new ModelStubWithRecipe(validRecipe);
 
-        assertThrows(CommandException.class, AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE, () -> addRecipeCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE, () -> addRecipeCommand.execute(modelStub));
     }
 
     @Test

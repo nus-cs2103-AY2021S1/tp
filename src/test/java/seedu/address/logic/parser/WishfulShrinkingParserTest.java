@@ -13,27 +13,27 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddRecipeCommand;
+//import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+//import seedu.address.logic.commands.EditCommand;
+//import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
-import seedu.address.model.recipe.Recipe;
+/*import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
 import seedu.address.testutil.RecipeBuilder;
-import seedu.address.testutil.RecipeUtil;
+import seedu.address.testutil.RecipeUtil;*/
 
 public class WishfulShrinkingParserTest {
 
     private final WishfulShrinkingParser parser = new WishfulShrinkingParser();
 
-   /* @Test
+    /*@Test
     public void parseCommand_add() throws Exception {
         Recipe recipe = new RecipeBuilder().build();
         AddRecipeCommand command = (AddRecipeCommand) parser.parseCommand(RecipeUtil.getAddRecipeCommand(recipe));
@@ -53,7 +53,7 @@ public class WishfulShrinkingParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_RECIPE), command);
     }
 
-   /* @Test
+    /*@Test
     public void parseCommand_edit() throws Exception {
         Recipe recipe = new RecipeBuilder().build();
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();

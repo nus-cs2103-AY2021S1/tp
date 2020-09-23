@@ -17,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
 import seedu.address.model.recipe.Name;
-import seedu.address.model.recipe.Ingredient;
+//import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -89,13 +89,13 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseIngredient(INVALID_INGREDIENT));
     }
 
-   /* @Test
+    /*@Test
     public void parseIngredient_validValueWithoutWhitespace_returnsIngredient() throws Exception {
         Ingredient expectedIngredient = new Ingredient(VALID_INGREDIENT);
         assertEquals(expectedIngredient, ParserUtil.parseIngredient(VALID_INGREDIENT));
     }*/
 
-   /* @Test
+    /*@Test
     public void parseIngredient_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
         String ingredientsWithWhitespace = WHITESPACE + VALID_INGREDIENT + WHITESPACE;
         Ingredient expectedIngredient = new Ingredient(VALID_INGREDIENT);

@@ -1,10 +1,9 @@
 package seedu.address.model.recipe;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Objects;
 
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Recipe in the address book.
@@ -26,7 +25,10 @@ public class Recipe {
         requireAllNonNull(name, ingredients);
         this.name = name;
         this.ingredients = ingredients;
-        this.ingredientString = new IngredientString(Arrays.stream(ingredients).map(item -> item.value).reduce("", (a,b) -> b.equals("") ? a : b +", " +a));
+        this.ingredientString =
+                new IngredientString(Arrays.stream(ingredients)
+                        .map(item -> item.value)
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
     }
 
     public Name getName() {
@@ -36,15 +38,9 @@ public class Recipe {
     public Ingredient[] getIngredient() {
         return ingredients;
     }
-    public IngredientString getIngredientString() { return  ingredientString;}
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    /*public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }*/
+    public IngredientString getIngredientString() {
+        return ingredientString;
+    }
 
     /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
