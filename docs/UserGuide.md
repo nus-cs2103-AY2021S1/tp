@@ -65,7 +65,7 @@ Refer to the features below for details of each command.
 
 Shows all help commands in the terminal.
 
-![help message](images/helpMessage.png)
+![help message](images/CommandImagesForUG/Help.png)
 
 Format: `help`
 
@@ -81,7 +81,7 @@ Examples:
 * `add McSpicy`
 * `add Wonton Mee -c 10`
 
-![add command example]()
+![add command example](images/CommandImagesForUG/Add.png)
 
 ### Listing all food items : `list`
 
@@ -106,7 +106,7 @@ Examples:
 Examples:
 *  `update 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
-![update command example]()
+![update command example](images/CommandImagesForUG/Update.png)
 
 ### Deleting a food : `delete`
 
@@ -121,15 +121,15 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
 
-![delete command example]()
+![delete command example](images/CommandImagesForUG/Delete.png)
 
 ### Creating a macro command : `macro`
 
-Creates a macro in McGymmy.
+Creates an Alias macro in McGymmy.
 
-Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
+Format: `Alias SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
 
-![macro command example]()
+![Alias command example](images/CommandImagesForUG/Alias.png)
 
 ### Exiting the program : `exit`
 
