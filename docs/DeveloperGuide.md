@@ -297,13 +297,17 @@ Use case ends
 2. McGymmy shows a list of food
 3. User request to delete a specific food on the list
 4. McGymmy deletes the food
+
 Use case ends
 
 **Extensions**
 - 2a. The list is empty<br>
+
     Use case ends.
+    
 - 3a. The given index is invalid.<br>
-    3a1. McGymmy shows an error message
+   - 3a1. McGymmy shows an error message
+    
     Use case resumes at step 2.
 
 **Use case: UC04 Help**
@@ -311,6 +315,7 @@ Use case ends
 **MSS**
 1. User requests help
 2. McGymmy shows all commands and examples of command usages
+
 Use case ends
 
 **Extensions**
@@ -323,13 +328,14 @@ No extensions
 2. McGymmy shows a list of food
 3. User request to update a specific food on the list
 4. McGymmy updates the food
+
 Use case ends
 
 **Extensions**
 - 2a. The list is empty<br>
     Use case ends.
 - 3a. The given index is invalid.<br>
-    3a1. McGymmy shows an error message
+   - 3a1. McGymmy shows an error message
     Use case resumes at step 2.
 
 **Use case: Add a macro command**
