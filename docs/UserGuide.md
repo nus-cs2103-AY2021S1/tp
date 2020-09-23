@@ -1,14 +1,15 @@
 ---
 layout: page
-title: ZooKeep- User Guide
+title: User Guide
 ---
 
-* Table of Contents
+1. Table of Contents
 {:toc}
 
-## 1. Introduction
+## Introduction
 ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ZooKeep can get your management tasks done faster than traditional GUI apps.
-## 2. Quick start
+
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -27,7 +28,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 1. Refer to the [Features](#features) below for details of each command.
 
-## 3. Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -115,12 +116,12 @@ Format: `exit`
 
 Animal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## 4. FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
 
-## 5. Command summary
+## Command summary
 
 Action | Format, Examples
 --------|------------------
