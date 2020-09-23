@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.Participation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,8 @@ public class Project {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Participation participation = new Participation();
+
 
     /**
      * Every field must be present and not null.
