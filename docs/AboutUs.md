@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sean Chan Ding Chao
 
-<img src="images/sean.png" width="200px">
+<img src="images/dcchan98.png" width="200px">
 
 [homepage](https://ay2021s1-cs2103t-w17-3.github.io/tp/)
 [github](https://github.com/dcchan98)
@@ -22,7 +22,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kamil Gimik
 
-<img src="images/kamil.png" width="200px">
+<img src="images/chewypiano.png" width="200px">
 
 [github](http://github.com/chewypiano)
 [portfolio](team/kamil.md)
@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Joey Chen De'en
 
-<img src="images/joey.png" width="200px">
+<img src="images/joeychensmart.png" width="200px">
 
 [github](https://github.com/JoeyChenSmart) 
 [portfolio](team/joey.md)
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Huynh Thai Duong 
 
-<img src="images/duong.png" width="200px">
+<img src="images/aidoxe-123.png" width="200px">
 
 [github](http://github.com/aidoxe-123)
 [portfolio](team/duong.md)
@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wen Junhua
 
-<img src="images/junhua.png" width="200px">
+<img src="images/jh123x.png" width="200px">
 
 [github](http://github.com/Jh123x)
 [portfolio](team/junhua.md)
