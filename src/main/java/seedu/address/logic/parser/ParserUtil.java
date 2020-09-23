@@ -62,7 +62,7 @@ public class ParserUtil {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MCQ.isValidQuestion(trimmedQuestion)) {
-            throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MCQ.MESSAGE_CONSTRAINTS);
         }
 
         return new MCQ(trimmedQuestion, choices);
@@ -162,6 +162,9 @@ public class ParserUtil {
             choicesList.add(choice);
         }
         String[] result = new String[choicesList.size()];
+        if(result.length <= 1 ){
+            throw new ParseException("There must be more than 1 choices");
+        }
         choicesList.toArray(result);
         return result;
     }
