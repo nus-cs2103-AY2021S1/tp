@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/matthiaslhk.png" width="200px">
 
 [[github](http://github.com/MatthiasLHK)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/matthiaslhk.md)]
 
 * Role: Team Lead , Scheduling and tracking
 * Responsibilities: Responsible for overall project coordination and in charge of defining, assigning, and tracking project tasks.
