@@ -2,11 +2,19 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.flashcard.*;
+import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.MCQ;
+import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Tag;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -49,6 +57,12 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code question} is invalid.
+     */
     public static Question parseQuestion(String question) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
@@ -58,25 +72,38 @@ public class ParserUtil {
         return new OpenEndedQuestion(trimmedQuestion);
     }
 
-    public static Question parseMultipleChoiceQuestion(String question, String[] choices, Answer answer) throws ParseException {
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if answer is less than choices and question is invalid.
+     */
+    public static Question parseMultipleChoiceQuestion(String question,
+                                                       String[] choices, Answer answer) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MCQ.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(MCQ.MESSAGE_CONSTRAINTS);
         }
+        int ans;
         try {
-            int ans = Integer.parseInt(answer.getAnswer());
-            if (ans > choices.length) {
-               throw new ParseException("Answer cannot be smaller than number of choices");
-            }
+            ans = Integer.parseInt(answer.getAnswer());
         } catch (NumberFormatException e) {
             throw new ParseException("Answer must be in integer");
         }
-
+        if (ans > choices.length) {
+            throw new ParseException("Answer cannot be smaller than number of choices");
+        }
 
         return new MCQ(trimmedQuestion, choices);
     }
 
+    /**
+     * Parses a {@code String answer} into a {@code Answer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code answer} is invalid.
+     */
     public static Answer parseAnswer(String answer) throws ParseException {
         requireNonNull(answer);
         String trimmedAnswer = answer.trim();
@@ -171,7 +198,7 @@ public class ParserUtil {
             choicesList.add(choice);
         }
         String[] result = new String[choicesList.size()];
-        if (result.length <= 1 ){
+        if (result.length <= 1) {
             throw new ParseException("There must be more than 1 choices");
         }
         choicesList.toArray(result);

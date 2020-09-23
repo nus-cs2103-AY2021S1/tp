@@ -11,6 +11,12 @@ public class Flashcard {
     private final Answer answer;
     private final Set<Tag> tags;
 
+    /**
+     * A constructor to create flashcard object.
+     * @param question Question of the flashcard.
+     * @param answer Answer of the flashcard.
+     * @param tags Tags of the flashcard.
+     */
     public Flashcard(Question question, Answer answer, Set<Tag> tags) {
         this.question = question;
         this.answer = answer;
@@ -54,6 +60,10 @@ public class Flashcard {
     public String toString() {
         return String.format("Question:\n%s\nAnswer:\n%s", question.getQuestion(), answer.getAnswer());
     }
+
+    /**
+     * A method to check if otherFlashcard is the same with the current one.
+     */
     public boolean isSameFlashcard(Flashcard otherFlashcard) {
         if (otherFlashcard == this) {
             return true;

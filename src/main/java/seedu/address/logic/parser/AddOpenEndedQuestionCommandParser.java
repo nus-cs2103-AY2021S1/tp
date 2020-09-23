@@ -31,7 +31,8 @@ public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQue
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOpenEndedQuestionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddOpenEndedQuestionCommand.MESSAGE_USAGE));
         }
 
 

@@ -6,14 +6,18 @@ package seedu.address.flashcard;
  * question itself will be stored as a {@code String}.
  */
 public class MCQ implements Question {
-    private final String[] options;
-    final String question;
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public static final String MESSAGE_CONSTRAINTS = "MultipleChoiceQuestion can take any values, "
             + "and it should not be blank";
 
+    private final String[] options;
+    private final String question;
+
+    /**
+     * A constructor to create MCQ Question object.
+     */
     public MCQ(String question, String... options) {
         this.question = question;
         this.options = options;

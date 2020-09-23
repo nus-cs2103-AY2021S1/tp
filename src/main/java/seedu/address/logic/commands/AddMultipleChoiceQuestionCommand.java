@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-
 import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +22,7 @@ public class AddMultipleChoiceQuestionCommand extends Command {
             + "Parameters: "
             + PREFIX_QUESTION + "Question "
             + PREFIX_ANSWER + "Answer "
-            +"" + PREFIX_CHOICE + "Choices...\n"
+            + "" + PREFIX_CHOICE + "Choices...\n"
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
