@@ -76,10 +76,6 @@ Add food item to McGymmy
 
 Format: `add NAME [-p Proteins] [-f Fats] [-c carbs]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
 Examples:
 * `add potato -p 100 -c 5 -f 0`
 * `add McSpicy`
@@ -112,9 +108,9 @@ Examples:
 
 ![update command example]()
 
-### Deleting a person : `delete`
+### Deleting a food : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified food from McGymmy.
 
 Format: `delete INDEX`
 
