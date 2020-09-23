@@ -12,13 +12,16 @@ import javafx.collections.transformation.FilteredList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
 import nustorage.model.person.Person;
+import nustorage.model.record.FinanceRecord;
 
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final FinanceAccount financeAccount;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -32,6 +35,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.financeAccount = new FinanceAccount();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -74,6 +78,12 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    //=========== FinanceAccount ================================================================================
+
+    public void addFinanceRecord(FinanceRecord newRecord) {
+        financeAccount.addRecord(newRecord);
     }
 
     //=========== AddressBook ================================================================================
