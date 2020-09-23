@@ -44,12 +44,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing + Integration
 
-### James Doe
+### Goh Tian Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gohtianyong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/TianYong-Goh)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
