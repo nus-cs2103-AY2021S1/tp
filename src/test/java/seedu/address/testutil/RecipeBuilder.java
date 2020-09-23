@@ -1,13 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.recipe.Address;
-import seedu.address.model.recipe.Email;
-import seedu.address.model.recipe.Name;
-import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,25 +14,18 @@ import seedu.address.model.util.SampleDataUtil;
 public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_INGREDIENT = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_INGREDIENT_STRING = "Something, something";
 
     private Name name;
-    private Ingredient ingredients;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Ingredient[] ingredients;
+    private IngredientString ingredientString;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
      */
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
-        ingredients = new Ingredient(DEFAULT_INGREDIENT);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        ingredientString = new IngredientString(DEFAULT_INGREDIENT_STRING);
     }
 
     /**
@@ -43,10 +33,7 @@ public class RecipeBuilder {
      */
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
-        ingredients = recipeToCopy.getIngredient();
-        email = recipeToCopy.getEmail();
-        address = recipeToCopy.getAddress();
-        tags = new HashSet<>(recipeToCopy.getTags());
+        ingredientString = new IngredientString(Arrays.stream(recipeToCopy.getIngredient()).map(item -> item.value).reduce("", (a,b) -> b.equals("") ? a : b + ", " + a));
     }
 
     /**
@@ -57,40 +44,23 @@ public class RecipeBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
 
     /**
      * Sets the {@code Ingredient} of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withIngredient(String ingredients) {
-        this.ingredients = new Ingredient(ingredients);
+        this.ingredients = new Ingredient[]{new Ingredient(ingredients)};
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
 
     public Recipe build() {
-        return new Recipe(name, ingredients, email, address, tags);
+        String[] ingredientsToken = ingredientString.value.split(",");
+        Ingredient[] ingredients = new Ingredient[ingredientsToken.length];
+        for (int i = 0; i < ingredientsToken.length; i++) {
+            ingredients[i] = new Ingredient(ingredientsToken[i].trim());
+        }
+        return new Recipe(name, ingredients);
     }
 
 }

@@ -161,6 +161,9 @@ public class EditCommand extends Command {
         public Optional<Ingredient[]> getIngredient() {
             return Optional.ofNullable(ingredients);
         }
+        public Optional<IngredientString> getIngredientString() {
+            return Optional.ofNullable(ingredientString);
+        }
 
 
         @Override
