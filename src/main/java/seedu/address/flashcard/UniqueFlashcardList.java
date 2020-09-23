@@ -63,24 +63,24 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     }
 
 
-        /**
-         * Replaces the contents of this list with {@code persons}.
-         * {@code persons} must not contain duplicate persons.
-         */
-        public void setFlashcards(List<Flashcard> flashcards) {
-            requireAllNonNull(flashcards);
-            if (!personsAreUnique(flashcards)) {
-                throw new DuplicatePersonException();
-            }
-
-            internalList.setAll(flashcards);
-        }
-
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Flashcard> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Replaces the contents of this list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setFlashcards(List<Flashcard> flashcards) {
+        requireAllNonNull(flashcards);
+        if (!personsAreUnique(flashcards)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.setAll(flashcards);
     }
 
     @Override

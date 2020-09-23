@@ -26,9 +26,9 @@ public class OpenEndedQuestion implements Question {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
-        } else if(o instanceof OpenEndedQuestion) {
+        } else if (o instanceof OpenEndedQuestion) {
             OpenEndedQuestion temp = (OpenEndedQuestion) o;
             return temp.toString().equals(o.toString());
         }

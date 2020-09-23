@@ -44,9 +44,9 @@ public class Answer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
-        } else if(o instanceof Answer) {
+        } else if (o instanceof Answer) {
             Answer temp = (Answer) o;
             return temp.toString().equals(o.toString());
         }
