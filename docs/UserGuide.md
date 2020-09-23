@@ -43,20 +43,44 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+* Words in `[UPPER_CASE]` (with square brackets) are the parameters to be supplied by the user.<br>
+  e.g. in `case [TITLE]`, `[TITLE]` is a parameter which can be used as `case Kovan double murders`.
 </div>
 
+### Main page
+The main page of the application when the user first enters the app.
+
+#### Adding a person: `add`
+Adds a new investigation case which has the active tag by default.
+
+Format: `case [TITLE]`
+
+Example: `case Kovan double murders` creates a new investigation case with the title “Kovan double murders”.
+
+#### List all investigation cases: `list case`
+Lists all available investigation cases in PIVOT.
+
+Format: `list case`
+
+#### Delete an investigation case: `delete case [CASE_NO]`
+Deletes the specified investigation case.
+
+Format: `delete case [CASE_NO]`
+
+Example: `list` followed by `delete case 2` deletes the 2nd case in the investigation list.
+
+#### Open an investigation case: `open case [CASE_NO]`
+Enters the specified investigation case where users can add more information regarding the case
+(see Investigation Case Page).
+
+Format:  `open case [CASE_NO]`
+
+Example: `list` followed by `open case 1` opens the 1st case in the investigation list.
+
+#### Exit application: `exit`
+Exits the application.
+
+--------------------------------------------------------------------------------------------------------------------
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -175,3 +199,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+
