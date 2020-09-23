@@ -293,32 +293,129 @@ _{More to be added}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `ResiReg` and the **Actor** an `OHS admin`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### Use case: UC01 - Add a student
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. OHS admin requests to add a student and supplies student details.
+1. ResiReg adds the student and saves the changes.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 1a. Student details are missing or invalid, or there is already a student with the same matriculation number.
+    - ResiReg shows an error message.
+
+      Use case starts over.
+
+#### Use case: UC02 - Delete a student
+
+**MSS**
+
+1. OHS admin requests to list students.
+1. ResiReg shows a list of students.
+1. OHS admin requests to delete a specified student from the list.
+1. ResiReg deletes the specified student and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list of students is empty.
+  
+  Use case ends.
+  
+- 3a. The specified student does not exist.
+  - ResiReg shows an error message.
+  
+    Use case resumes at step 2.
+
+#### Use case: UC03 - Edit a student
+
+**MSS**
+
+1. OHS admin requests to list students.
+1. ResiReg shows a list of students.
+1. OHS admin requests to edit a specific student from the list and supplies details to edit.
+1. ResiReg edits the student and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list of students is empty.
 
   Use case ends.
+  
+- 3a. The specified student does not exist or the supplied details are invalid.
+  - ResiReg shows an error message.
+  
+    Use case resumes at step 2.
 
-* 3a. The given index is invalid.
+#### Use case: UC04 - Allocate a room to a student
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
+
+1. OHS admin requests to list students without a room allocation and list vacant rooms.
+1. ResiReg shows a list of students without a room allocation and a list of vacant rooms.
+1. OHS admin requests to allocate a particular student to a particular room.
+1. ResiReg adds the room allocation and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 3a. Student belongs to an existing room allocation, room belongs to an existing room allocation, room does not exist or student does not exist.
+    - ResiReg shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+#### Use case: UC05 - Delete a room allocation for a student
+
+**MSS**
+
+1. OHS admin requests to list room allocations.
+1. ResiReg shows a list of room allocations.
+1. OHS admin requests to delete a specific room allocation.
+1. ResiReg removes the room allocation and saves the changes. The room and student are not modified.
+ 
+ Use case ends.
+
+**Extensions**
+
+- 1a. The list of room allocations is empty.
+
+    Use case ends.
+
+- 3a. Room allocation does not exist.
+    - ResiReg shows an error message.
+
+      Use case resumes at step 2.
+      
+#### Use case: UC06 - Edit an existing room allocation
+
+**MSS**
+
+1. OHS admin requests to list room allocations.
+1. ResiReg shows a list of room allocations.
+1. OHS admin requests to edit a specific room allocation from the list and supplies details to update.
+1. ResiReg updates the room allocation and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The list of room allocations is empty.
+
+  Use case ends.
+
+- 3a. Room allocation does not exist or details supplied are invalid.
+    - ResiReg shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
