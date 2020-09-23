@@ -27,13 +27,13 @@ import seedu.address.testutil.FlashcardBuilder;
 public class AddOpenEndedQuestionCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddOpenEndedQuestionCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_flashcardAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingFlashcardAdded modelStub = new ModelStubAcceptingFlashcardAdded();
         Flashcard validFlashcard = new FlashcardBuilder().build();
 
         CommandResult commandResult = new AddOpenEndedQuestionCommand(validFlashcard).execute(modelStub);
@@ -43,7 +43,7 @@ public class AddOpenEndedQuestionCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateFlashcard_throwsCommandException() {
         Flashcard validFlashcard = new FlashcardBuilder().build();
         AddOpenEndedQuestionCommand addOpenEndedQuestionCommand = new AddOpenEndedQuestionCommand(validFlashcard);
         ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
@@ -171,7 +171,7 @@ public class AddOpenEndedQuestionCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single flashcard.
      */
     private class ModelStubWithFlashcard extends ModelStub {
         private final Flashcard flashcard;
@@ -189,9 +189,9 @@ public class AddOpenEndedQuestionCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the flashcard being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingFlashcardAdded extends ModelStub {
         final ArrayList<Flashcard> flashcardsAdded = new ArrayList<>();
 
         @Override

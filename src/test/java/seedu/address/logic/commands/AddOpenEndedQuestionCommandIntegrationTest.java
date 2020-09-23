@@ -27,13 +27,13 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Flashcard validPerson = new FlashcardBuilder().build();
+        Flashcard validFlashcard = new FlashcardBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addFlashcard(validPerson);
+        expectedModel.addFlashcard(validFlashcard);
 
-        assertCommandSuccess(new AddOpenEndedQuestionCommand(validPerson), model,
-                String.format(AddOpenEndedQuestionCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddOpenEndedQuestionCommand(validFlashcard), model,
+                String.format(AddOpenEndedQuestionCommand.MESSAGE_SUCCESS, validFlashcard), expectedModel);
     }
 
     @Test
