@@ -450,7 +450,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Fridge**: A personalised storage that contains all the ingredients that a user has
+* **Recipe**: A set of cooking instructions that describes how to prepare a meal and ingredients required
+* **Ingredient**: Foods that can be used to prepare a particular dish according to a recipe
+* **Consumption**: A counter which calculates and displays the calorie intake of a user based on the recipes consumed
 
 --------------------------------------------------------------------------------------------------------------------
 

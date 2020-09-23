@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-WishfulShrinking Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Wishful Shrinking is a **desktop app for managing your diet, keeping track of your on-hand ingredients, recipes, as well as the food you’ve eaten (along with their calories)**. It is optimized for fast and efficient typist as it uses a **Command Line Interface (CLI)** with the added beauty of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -12,135 +12,48 @@ WishfulShrinking Level 3 (AB3) is a **desktop app for managing contacts, optimiz
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure your computer has Java `11` or above installed.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `wishfulShrinking.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-2/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your WishfulShrinking.
+3. Copy the file to an empty folder you want to use as the _home folder_.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. **Double-click** the jar file to start the app OR start the app using **CLI** and type `java -jar <jar file name>.jar`.<br>
+   The app should look similar to the one shows below: <br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`recipe`** : Lists all recipes.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`addR`**` n/salad i/lettuce, carrots, olive oil` : Adds a `salad` recipe to Wishful Shrinking.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`deleteR`**`3` : Deletes the 3rd recipe shown in the current list.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+  e.g. in `add n/TITLE`, `TITLE` is a parameter which can be used as `addR n/salad`.
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-
-### Adding a recipe: `add`
-
-Adds a recipe to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A recipe can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all recipes : `list`
-
-Shows a list of all recipes in the address book.
-
-Format: `list`
-
-### Editing a recipe : `edit`
-
-Edits an existing recipe in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the recipe at the specified `INDEX`. The index refers to the index number shown in the displayed recipe list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the recipe will be removed i.e adding of tags is not cumulative.
-* You can remove all the recipe’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st recipe to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd recipe to be `Betsy Crower` and clears all existing tags.
-
-### Locating recipes by name: `find`
-
-Finds recipes whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Recipes matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a recipe : `delete`
-
-Deletes the specified recipe from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed recipe list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd recipe in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st recipe in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -148,31 +61,131 @@ Exits the program.
 
 Format: `exit`
 
+## Recipe
+
+### Adding a recipe: `add`
+
+Adds a recipe to Recipes Collection.
+
+Format: `addR n/TITLE i/INGREDIENTS`
+
+Examples:
+* `addR n/salad i/lettuce, carrots, olive oil`
+* `addR n/sandwiches i/breads, cheese`
+
+
+### Listing all recipes : `list`
+
+Shows a list of all recipes in the Recipes Collection.
+
+Format: `recipe`
+
+
+### Deleting a recipe : `delete`
+
+Deletes the specified recipe from Recipes Collection.
+
+Format: `deleteR INDEX`
+
+* Deletes the recipe at the specified `INDEX`.
+* The index refers to the index number shown in the displayed recipe list.
+* The index **must be a positive integer** 1, 2, 3......
+
+Examples:
+* `list` followed by `deleteR 2` deletes the 2nd recipe in Recipe Collection.
+* `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the results of the `search` command.
+
+
+### Search recipe by recipe title: `search`
+
+Finds recipe with title contain any of the given keywords.
+
+Format: `searchR n/TITLE`
+
+* The search is case-insensitive. e.g `salad` will match `Salad`
+* Only the recipe title is searched.
+
+Examples:
+* `searchR n/salad` returns `salad` and `ham salad`
+
+
+## Fridge
+### Adding an ingredient: `add`
+
+Adds an ingredient to fridge.
+
+Format: `addF i/INGREDIENTS`
+
+Examples:
+* `addF i/avocado`
+* `addF i/banana, green peas, salmon fish`
+
+### Listing all ingredients : `list`
+
+Shows a list of all ingredients in the fridge.
+
+Format: `fridge`
+
+### Deleting an ingredient : `delete`
+
+Deletes the specified ingredient from Fridge.
+
+Format: `deleteF INDEX`
+
+* Deletes the recipe at the specified `INDEX`.
+* The index refers to the index number shown in the displayed recipe list.
+* The index **must be a positive integer** 1, 2, 3......
+
+Examples:
+* `list` followed by `deleteF 2` deletes the 2nd ingredient in the fridge.
+* `searchF avocado` followed by `deleteF 1` deletes the 1st ingredient in the results of the `search` command.
+
+### Search Ingredient: `search`
+
+Finds ingredients that contain any of the given keywords.
+
+Format: `searchF KEYWORD`
+
+* The search is case-insensitive. e.g `avocado` will match `Avocado`
+* Only the recipe title is searched.
+
+Examples:
+* `searchF avo` returns `avocado`
+
+
 ### Saving the data
 
-WishfulShrinking data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Wishful Shrinking data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Archiving data files `[coming in v2.0]`
 
-_{explain the feature here}_
+### Remark `[coming in v1.3]`
 
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous WishfulShrinking home folder.
+_{give a remark to the recipe}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# FAQ
 
-Action | Format, Examples
+**Q**: Why is my data not saved?<br>
+**A**: Remember to copy the jar file to an EMPTY folder before starting the app.
+<br>
+<br>
+**Q**: Why is the app not running?<br>
+**A**: Ensure JDK `11` or above is installed.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Command summary
+
+Features | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Add recipe** | `addR n/TITLE i/INGREDIENTS` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil`
+**Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
+**Delete recipe** | `delete r/INDEX`<br> e.g., `deleteR 3`
+**Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
+**Search recipe** | `searchR n/KEYWORD`<br> e.g., `searchR n/salad`
+**Search Ingredient in the fridge** | `searchF KEYWORD`<br> e.g., `searchF avocado`
+**List recipe** | `recipe`
+**List ingredients in the fridge** | `fridge`
 **Help** | `help`
+**Exit** | `exit`
