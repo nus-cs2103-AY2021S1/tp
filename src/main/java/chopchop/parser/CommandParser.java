@@ -2,6 +2,7 @@
 
 package chopchop.parser;
 
+import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Optional;
@@ -12,6 +13,40 @@ import chopchop.util.StringView;
 
 public class CommandParser {
 
+	private Map<String, List<String>> parseNamedArguments(StringView input) {
+
+		var ret = new HashMap<String, List<String>>();
+		while (input.size() > 0) {
+
+			if (input.find('/') != 0) {
+				break;
+			}
+
+			var currentArg = input.drop(1).bisect('/', input);
+
+			{
+				var argName = new StringView("");
+				var argValue = new StringView("");
+
+				currentArg.bisect(argName, ' ', argValue);
+				var list = new ArrayList<String>();
+				list.add(argValue.toString().strip());
+
+				ret.merge(argName.toString().strip(), list, (oldVal, newVal) -> {
+					oldVal.addAll(newVal);
+					return oldVal;
+				});
+			}
+
+			if (input.isEmpty()) {
+				break;
+			}
+
+			input = input.undrop(1);
+		}
+
+		return ret;
+	}
 
 	public Optional<CommandArguments> parse(String input) {
 
@@ -49,36 +84,7 @@ public class CommandParser {
 		xs = xs.undrop(1);
 		assert xs.at(0) == '/';
 
-		var args = new HashMap<String, List<String>>();
-		while (xs.size() > 0) {
-
-			if (xs.find('/') != 0) {
-				break;
-			}
-
-			var currentArg = xs.drop(1).bisect('/', xs);
-
-			{
-				var argName = new StringView("");
-				var argValue = new StringView("");
-
-				currentArg.bisect(argName, ' ', argValue);
-				var list = new ArrayList<String>();
-				list.add(argValue.toString().strip());
-
-				args.merge(argName.toString().strip(), list, (oldVal, newVal) -> {
-					oldVal.addAll(newVal);
-					return oldVal;
-				});
-			}
-
-			if (xs.isEmpty()) {
-				break;
-			}
-
-			xs = xs.undrop(1);
-		}
-
-		return Optional.of(new CommandArguments(command, target, theRest, args));
+		var namedArgs = this.parseNamedArguments(xs);
+		return Optional.of(new CommandArguments(command, target, theRest, namedArgs));
 	}
 }
