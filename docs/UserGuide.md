@@ -5,8 +5,12 @@ title: User Guide
 
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
 
-* Table of Contents
-{:toc}
+1. [Quick Start](#Quick-Start)
+2. [Features](#features)
+   1. [Locating persons by name](#Locating-persons-by-name)
+   2. [Deleting a module](#Deleting-a-module)
+3. [FAQ](#FAQ)
+4. [Command Summary](#Command-Summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,7 +54,14 @@ Views a module stored in the system
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
     
-
+### Deleting a module: `delete`
+  
+Deletes the specified module from the system
+  
+ Format: `delete` **_`[MODULE_NAME]`_**
+  
+  Examples:
+  * `delete cs2103t` deletes the specified module named `cs2103t`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -68,3 +79,5 @@ Views a module stored in the system
 Action | Format, Examples
 --------|------------------
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+**Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
+
