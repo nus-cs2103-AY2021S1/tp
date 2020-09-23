@@ -23,14 +23,14 @@ public class Participation {
 //    private HashMap<String, Task> taskList;
 //    private HashMap<String, Meeting> meetingList;
 
-    enum Role{
-        LEADER,MEMBER;
+    enum Role {
+        LEADER, MEMBER;
     }
 
     /**
-     *Constructor for Participation
+     * Constructor for Participation
      */
-    public Participation(){
+    public Participation() {
         memberList = new HashMap<>();
         projectList = new HashMap<>();
         /*
@@ -40,12 +40,12 @@ public class Participation {
 //        meetingList = new HashMap<String, Meeting>();
     }
 
-    void AddMember(Person p){
+    void AddMember(Person p) {
         memberList.put(p.getName(), p);
     }
 
-    void AddProject(Project p){
-        projectList.put(p.getName(),p);
+    void AddProject(Project p) {
+        projectList.put(p.getName(), p);
     }
 
     public HashMap<PersonName, Person> getMemberList() {
