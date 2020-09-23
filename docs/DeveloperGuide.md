@@ -236,56 +236,75 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage food intake
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* is sedentary people who sit in front of their computers
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+* manage food intake faster than a typical mouse/GUI driven app
+* reduce the risk of health issues for people with an unhealthy lifestyle
+* help them develop a healthy lifestyle through diet
+* help them track their calorie intake
+* find trends in their eating habits
+* profile setting for them to store different settings
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a/an …​                                  | I want to …​                            | So that I can…​                                                         |
+| -------- | ------------------------------------------ | -------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                 | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | track what I am eating                 |                                                                        |
+| `* * *`  | user                                       | delete a food item                     | remove food items that I no longer care of                             |
+| `* * *`  | user                                       | easily add food items/details          | keep track of my diet                                                  |
+| `* *`    | frequent user                              | perform tasks on a group of food items |                                                                        |
+| `* *`    | expert user                                | create shortcuts for tasks             | frequently performed tasks                                             |
+| `*`      | programmer                                 | make use of the CLI like design        | get used to CLI in the future                                          |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `McGymmy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: List all food**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions**
 
-    Use case ends.
+**Use case: Add food**
+
+**MSS**
 
 **Extensions**
 
-* 2a. The list is empty.
+**Use case: UC03 Delete food**
 
-  Use case ends.
+**MSS**
+1. User requests to list food (UC01)
+2. McGymmy shows a list of food
+3. User request to delete a specific food on the list
+4. McGymmy deletes the food
+Use case ends
 
-* 3a. The given index is invalid.
+**Extensions**
+- 2a. The list is empty<br>
+    Use case ends.
+- 3a. The given index is invalid.<br>
+    3a1. McGymmy shows an error message
+    Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Add a macro command**
 
-      Use case resumes at step 2.
+**MSS**
+
+**Extensions**
 
 *{More to be added}*
 
