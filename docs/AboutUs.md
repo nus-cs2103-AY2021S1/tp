@@ -24,7 +24,7 @@ You can reach us via the issues of this repository.
 
 ### Stephen Tan
 
-![shijinglin](images/profiles/stephentan.jpg)
+![stephen](images/profiles/stephentan.jpg)
 
 [[github](http://github.com/blackonyyx)]
 
@@ -42,7 +42,7 @@ You can reach us via the issues of this repository.
 [[portfolio](team/liuzhendao.md)]
 
 * Role: Developer
-* Responsibilities: GUI, BugTesting
+* Responsibilities: GUI, Feature Developer
 
 ### Kheng Hun
 
@@ -52,7 +52,7 @@ You can reach us via the issues of this repository.
 [[portfolio](team/khenghun.md)]
 
 * Role: Developer
-* Responsibilities: Feature Developer
+* Responsibilities: Feature Developer, Bug Tester
 
 ### Rahul
 
@@ -63,4 +63,4 @@ You can reach us via the issues of this repository.
 [[portfolio](team/rahul.md)]
 
 * Role: Developer
-* Responsibilities: Feature Developer
+* Responsibilities: Feature Developer, Continuous Integration

@@ -93,7 +93,7 @@ Will eventually be extended to get help about specific commands.
 
 **SYNOPSIS:**
 	 
-- `addi` <**item name**> \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2…\>\] 
+- `addi` **-n** \<**item name**\> \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2…\>\] 
 
 **DESCRIPTION:**
 

@@ -18,6 +18,7 @@ This is the developer guide for
 * [DevOps guide](DevOps.md)
 * [EndUserPersona](EndUserPersona.md)
 * [Usecases](Usecases.md)
+* [Implementation Details](CommandSequenceDiagram.md)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

@@ -23,11 +23,16 @@ Class Location
 Class ItemName
 Class Quantity
 Class UniqueItemList
-Class LocationIdMapping
+Class LocationIdManager
 Class UniqueRecipesManager
+Class RecipeList
 }
-Package Recipies {
-Class RecipesIDs
+Package Recipes {
+Class Recipe
+Class Ingredients
+Class RecipeID
+Class CraftedItem
+Class RecipeDescription
 }
 
 Package Tag {
@@ -48,10 +53,18 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Inventoryinator o--> "1" UniqueItemList
 UniqueItemList o--> "*" Item
-Inventoryinator o--> "*" LocationIdMapping
-LocationIdMapping o--> "*" Item
+Inventoryinator o--> "*" LocationIdManager
+LocationIdManager o--> "*" Item
 Inventoryinator o--> "1" UniqueRecipesManager
-UniqueRecipesManager o--> "*" Item
+UniqueRecipesManager o--> "*" Recipe
+
+Recipe *--> RecipeID
+Recipe *--> Ingredients
+Recipe *--> CraftedItem
+Recipe *--> RecipeDescription
+RecipeList o--> "*" RecipeID
+Ingredients *--> ItemId
+CraftedItem *--> ItemId
 
 Item *--> ItemName
 Item *--> Quantity
@@ -59,7 +72,7 @@ Item *--> "*"Location
 Item *--> Description
 Item *--> "*" Tag
 Item *--> ItemId
-Item *--> "*" RecipesIDs
+Item *--> "*" RecipeList
 
 ModelManager -->"1" Item : filtered list
 @enduml
