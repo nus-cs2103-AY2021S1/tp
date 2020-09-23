@@ -3,7 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.flashcard.*;
+import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.MCQ;
+import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Tag;
+
 
 
 public class FlashcardBuilder {

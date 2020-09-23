@@ -51,7 +51,8 @@ public class AddMultipleChoiceQuestionCommandTest {
         Flashcard validFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Alice", choices)
                 .withAnswer("2").build();
 
-        AddMultipleChoiceQuestionCommand addMultipleChoiceQuestionCommand = new AddMultipleChoiceQuestionCommand(validFlashcard);
+        AddMultipleChoiceQuestionCommand addMultipleChoiceQuestionCommand =
+                new AddMultipleChoiceQuestionCommand(validFlashcard);
         ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
 
         assertThrows(CommandException.class, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD, () ->

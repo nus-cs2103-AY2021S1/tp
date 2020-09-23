@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CHOICE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
@@ -13,22 +12,16 @@ import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.MCQ;
-import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
-import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class AddMultipleChoiceQuestionCommandParserTest {
@@ -45,7 +38,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
                 new AddMultipleChoiceQuestionCommand(expectedFlashcard));
 
         // multiple questions - last question accepted
-        assertParseSuccess(parser, QUESTION_DESC_AMY + QUESTION_DESC_ALICE+ ANSWER_DESC_ALICE + CHOICE_DESC,
+        assertParseSuccess(parser, QUESTION_DESC_AMY + QUESTION_DESC_ALICE + ANSWER_DESC_ALICE + CHOICE_DESC,
                 new AddMultipleChoiceQuestionCommand(expectedFlashcard));
 
         // multiple answers - last answer accepted
@@ -61,8 +54,9 @@ public class AddMultipleChoiceQuestionCommandParserTest {
                 AddMultipleChoiceQuestionCommand.MESSAGE_USAGE);
 
         // missing question prefix
-        assertParseFailure(parser, VALID_QUESTION_ALICE+ ANSWER_DESC_ALICE + CHOICE_DESC,
-                expectedMessage);
+        assertParseFailure(parser, VALID_QUESTION_ALICE
+                        + ANSWER_DESC_ALICE + CHOICE_DESC,
+                        expectedMessage);
 
         // missing answer prefix
         assertParseFailure(parser, QUESTION_DESC_ALICE + VALID_ANSWER_ALICE + CHOICE_DESC,
@@ -81,7 +75,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid Question
-        assertParseFailure(parser, ANSWER_DESC_ALICE+ INVALID_QUESTION_DESC + CHOICE_DESC,
+        assertParseFailure(parser, ANSWER_DESC_ALICE + INVALID_QUESTION_DESC + CHOICE_DESC,
                 MCQ.MESSAGE_CONSTRAINTS);
         // invalid Answer
         assertParseFailure(parser, QUESTION_DESC_BOB + INVALID_ANSWER_DESC + CHOICE_DESC,
