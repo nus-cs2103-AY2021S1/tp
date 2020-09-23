@@ -8,6 +8,7 @@ title: User Guide
 
 ## Introduction
 ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ZooKeep can get your management tasks done faster than traditional GUI apps.
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -40,7 +41,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
   e.g `n/NAME [t/TAG]` can be used as `n/Hershey t/bird` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bird`, `t/bird t/timid` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bird`, `t/bird t/timid` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
