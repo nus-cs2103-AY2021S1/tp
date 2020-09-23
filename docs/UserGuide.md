@@ -41,7 +41,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
   e.g `n/NAME [t/TAG]` can be used as `n/Hershey t/bird` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bird`, `t/bird t/timid` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/bird`, `t/bird t/timid` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
@@ -89,7 +89,7 @@ Deletes the specified animal from the app.
 Format: `delete i/ID`
 
 * Deletes the animal at the specified `ID`.
-* The id refers to the id number shown in the displayed animal list.
+* ID refers to the id number shown in the displayed animal list.
 
 Examples:
 * `delete i/0193` deletes the individual animal with id 0193.
