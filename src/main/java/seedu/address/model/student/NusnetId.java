@@ -5,12 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidNusnetID(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidNusnetId(String)}
  */
-public class NusnetID {
+public class NusnetId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "NusnetID needs to start with e, followed by 0, followed by 6 more numerical digits.";
+            "NusnetId needs to start with e, followed by 0, followed by 6 more numerical digits.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -21,20 +21,20 @@ public class NusnetID {
     public final String value;
 
     /**
-     * Constructs an {@code NusnetID}.
+     * Constructs an {@code NusnetId}.
      *
      * @param address A valid address.
      */
-    public NusnetID(String address) {
+    public NusnetId(String address) {
         requireNonNull(address);
-        checkArgument(isValidNusnetID(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidNusnetId(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidNusnetID(String test) {
+    public static boolean isValidNusnetId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -46,8 +46,8 @@ public class NusnetID {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NusnetID // instanceof handles nulls
-                && value.equals(((NusnetID) other).value)); // state check
+                || (other instanceof NusnetId // instanceof handles nulls
+                && value.equals(((NusnetId) other).value)); // state check
     }
 
     @Override

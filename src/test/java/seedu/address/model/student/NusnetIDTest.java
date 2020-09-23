@@ -6,31 +6,31 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class NusnetIDTest {
+public class NusnetIdTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new NusnetID(null));
+        assertThrows(NullPointerException.class, () -> new NusnetId(null));
     }
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new NusnetID(invalidAddress));
+        assertThrows(IllegalArgumentException.class, () -> new NusnetId(invalidAddress));
     }
 
     @Test
     public void isValidAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> NusnetID.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> NusnetId.isValidAddress(null));
 
         // invalid addresses
-        assertFalse(NusnetID.isValidAddress("")); // empty string
-        assertFalse(NusnetID.isValidAddress(" ")); // spaces only
+        assertFalse(NusnetId.isValidAddress("")); // empty string
+        assertFalse(NusnetId.isValidAddress(" ")); // spaces only
 
         // valid addresses
-        assertTrue(NusnetID.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(NusnetID.isValidAddress("-")); // one character
-        assertTrue(NusnetID.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(NusnetId.isValidAddress("Blk 456, Den Road, #01-355"));
+        assertTrue(NusnetId.isValidAddress("-")); // one character
+        assertTrue(NusnetId.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
 }

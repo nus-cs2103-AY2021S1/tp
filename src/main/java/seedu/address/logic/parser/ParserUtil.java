@@ -9,9 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.NusnetID;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -66,18 +66,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nusnetID} into an {@code NusnetID}.
+     * Parses a {@code String nusnetId} into an {@code NusnetId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code nusnetID} is invalid.
+     * @throws ParseException if the given {@code nusnetId} is invalid.
      */
-    public static NusnetID parseNusnetID(String nusnetID) throws ParseException {
-        requireNonNull(nusnetID);
-        String trimmedNusnetID = nusnetID.trim();
-        if (!NusnetID.isValidNusnetID(trimmedNusnetID)) {
-            throw new ParseException(NusnetID.MESSAGE_CONSTRAINTS);
+    public static NusnetId parseNusnetId(String nusnetId) throws ParseException {
+        requireNonNull(nusnetId);
+        String trimmedNusnetId = nusnetId.trim();
+        if (!NusnetId.isValidNusnetId(trimmedNusnetId)) {
+            throw new ParseException(NusnetId.MESSAGE_CONSTRAINTS);
         }
-        return new NusnetID(trimmedNusnetID);
+        return new NusnetId(trimmedNusnetId);
     }
 
     /**

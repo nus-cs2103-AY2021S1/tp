@@ -21,18 +21,18 @@ public class Student {
     private final Email email;
 
     // Data fields
-    private final NusnetID nusnetID;
+    private final NusnetId nusnetId;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, NusnetID nusnetID, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, nusnetID, tags);
+    public Student(Name name, Phone phone, Email email, NusnetId nusnetId, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, nusnetId, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.nusnetID = nusnetID;
+        this.nusnetId = nusnetId;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Student {
         return email;
     }
 
-    public NusnetID getNusnetID() {
-        return nusnetID;
+    public NusnetId getNusnetId() {
+        return nusnetId;
     }
 
     /**
@@ -92,14 +92,14 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getNusnetID().equals(getNusnetID())
+                && otherStudent.getNusnetId().equals(getNusnetId())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, nusnetID, tags);
+        return Objects.hash(name, phone, email, nusnetId, tags);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class Student {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" NusnetID: ")
-                .append(getNusnetID())
+                .append(" NusnetId: ")
+                .append(getNusnetId())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

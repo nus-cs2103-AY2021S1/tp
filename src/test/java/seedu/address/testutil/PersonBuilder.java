@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.NusnetID;
+import seedu.address.model.person.NusnetId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -24,7 +24,7 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private NusnetID nusnetID;
+    private NusnetId nusnetId;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +34,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        nusnetID = new NusnetID(DEFAULT_ADDRESS);
+        nusnetId = new NusnetId(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        nusnetID = personToCopy.getNusnetID();
+        nusnetId = personToCopy.getNusnetId();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -66,10 +66,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code NusnetID} of the {@code Person} that we are building.
+     * Sets the {@code NusnetId} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String nusnetID) {
-        this.nusnetID = new NusnetID(nusnetID);
+    public PersonBuilder withAddress(String nusnetId) {
+        this.nusnetId = new NusnetId(nusnetId);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, nusnetID, tags);
+        return new Person(name, phone, email, nusnetId, tags);
     }
 
 }

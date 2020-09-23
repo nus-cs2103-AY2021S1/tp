@@ -14,7 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.NusnetID;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -104,25 +104,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseNusnetID((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNusnetId((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseNusnetID(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNusnetId(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        NusnetID expectedNusnetID = new NusnetID(VALID_ADDRESS);
-        assertEquals(expectedNusnetID, ParserUtil.parseNusnetID(VALID_ADDRESS));
+        NusnetId expectedNusnetId = new NusnetId(VALID_ADDRESS);
+        assertEquals(expectedNusnetId, ParserUtil.parseNusnetId(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        NusnetID expectedNusnetID = new NusnetID(VALID_ADDRESS);
-        assertEquals(expectedNusnetID, ParserUtil.parseNusnetID(addressWithWhitespace));
+        NusnetId expectedNusnetId = new NusnetId(VALID_ADDRESS);
+        assertEquals(expectedNusnetId, ParserUtil.parseNusnetId(addressWithWhitespace));
     }
 
     @Test
