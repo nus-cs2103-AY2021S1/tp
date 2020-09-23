@@ -100,8 +100,8 @@ public class SampleDataUtil {
         ingredients.setItems(ingredientList);
 
         return new Recipe[] {
-                new Recipe(0, ingredients, 2, new ProductQuantity("1"), false),
-                new Recipe(1, ingredients, 3, new ProductQuantity("2"), false)
+                new Recipe(0, ingredients, 2, new ProductQuantity("1"), "Recipe 1", false),
+                new Recipe(1, ingredients, 3, new ProductQuantity("2"), "Recipe 2", false)
         };
     }
 
