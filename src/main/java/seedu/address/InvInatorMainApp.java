@@ -13,8 +13,8 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.ItemLogicManager;
 import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -71,7 +71,7 @@ public class InvInatorMainApp extends Application {
         model = initModelManager(itemStorage, userPrefs);
         locationModel = initLocationModelManager(locationStorage, userPrefs);
 
-        logic = new ItemLogicManager(model, itemStorage);
+        logic = new LogicManager(model, itemStorage);
 
         ui = new ItemUiManager(logic);
     }

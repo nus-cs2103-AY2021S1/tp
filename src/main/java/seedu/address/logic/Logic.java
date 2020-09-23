@@ -11,9 +11,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * API of the Logic component
@@ -38,9 +40,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
+    /** Returns the user prefs' address book file path */
     Path getAddressBookFilePath();
 
     ReadOnlyItemList getItemList();
@@ -48,9 +48,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Item> getFilteredItemList();
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
+    /** Returns the user prefs' address book file path. */
     Path getItemListFilePath();
 
     ReadOnlyLocationList getLocationList();
@@ -58,6 +56,14 @@ public interface Logic {
     ObservableList<Location> getFilteredLocationList();
 
     Path getLocationListFilePath();
+
+    ReadOnlyRecipeList getRecipeList();
+
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Recipe> getFilteredRecipeList();
+
+    /** Returns the user prefs' address book file path. */
+    Path getRecipeListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

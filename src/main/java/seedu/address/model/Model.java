@@ -9,6 +9,7 @@ import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipePrecursor;
 
 /**
  * The API of the Model component.
@@ -246,4 +247,6 @@ public interface Model {
      * Returns the ID of the given location to find.
      */
     int findLocationID(Location toFind);
+
+    Recipe processPrecursor(RecipePrecursor recipePrecursor);
 }

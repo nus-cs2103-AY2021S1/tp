@@ -98,6 +98,15 @@ public class UniqueItemList implements Iterable<Item> {
         internalList.setAll(items);
     }
 
+    public int findItemId(String itemName) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getName().equals(itemName)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

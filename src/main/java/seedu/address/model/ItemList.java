@@ -93,6 +93,10 @@ public class ItemList implements ReadOnlyItemList {
         items.remove(key);
     }
 
+    public int findItemId(String itemName) {
+        return items.findItemId(itemName);
+    }
+
     //// util methods
 
     @Override

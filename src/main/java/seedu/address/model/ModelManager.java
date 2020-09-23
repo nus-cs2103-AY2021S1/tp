@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,9 +13,13 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
+import seedu.address.model.recipe.IngredientList;
+import seedu.address.model.recipe.IngredientPrecursor;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipePrecursor;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -110,7 +115,7 @@ public class ModelManager implements Model {
         locationList = null;
         filteredLocations = null;
         this.recipeList = new RecipeList(recipeList);
-        filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());;
+        filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());
     }
 
     public ModelManager() {
@@ -355,6 +360,28 @@ public class ModelManager implements Model {
         return locationList.findLocationID(toFind);
     }
 
+    private int findItemId(String itemName) throws ItemNotFoundException {
+        requireNonNull(itemName);
+        int id = itemList.findItemId(itemName);
+        if (id == -1) {
+            throw new ItemNotFoundException();
+        }
+        return id;
+    }
+
+    @Override
+    public Recipe processPrecursor(RecipePrecursor recipePrecursor) throws ItemNotFoundException {
+        int productId = findItemId(recipePrecursor.getProductName());
+
+        List<IngredientPrecursor> ingredientPrecursors = recipePrecursor.getIngredientPrecursors();
+        IngredientList ingredients = new IngredientList();
+        for (IngredientPrecursor precursor : ingredientPrecursors) {
+            int ingredientId = findItemId(precursor.getKey());
+            ingredients.add(precursor.toIngredient(ingredientId));
+        }
+        return recipePrecursor.toRecipe(productId, ingredients);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -373,5 +400,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }
