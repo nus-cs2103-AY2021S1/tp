@@ -283,13 +283,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use case
+### Use cases
 
 (For all use cases below, the System is the Bamboo and the Actor is the user, unless specified otherwise)
 
 **Use case: Add an expense**
 
-**Preconditions (Needed for v1.2.1)**
+**Preconditions:** (Needed for v1.2.1)
 
 * User is logged in
 
