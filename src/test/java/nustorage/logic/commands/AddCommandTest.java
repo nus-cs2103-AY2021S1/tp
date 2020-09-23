@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import nustorage.model.record.FinanceRecord;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -22,6 +21,7 @@ import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.person.Person;
+import nustorage.model.record.FinanceRecord;
 import nustorage.testutil.PersonBuilder;
 
 public class AddCommandTest {
