@@ -20,7 +20,9 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
 import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 import seedu.address.model.person.Address;
@@ -77,15 +79,15 @@ public class AddOpenEndedQuestionCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid Question
         assertParseFailure(parser, ANSWER_DESC_BOB + INVALID_QUESTION_DESC
-                , Address.MESSAGE_CONSTRAINTS);
+                , OpenEndedQuestion.MESSAGE_CONSTRAINTS);
         // invalid Answer
         assertParseFailure(parser, QUESTION_DESC_BOB + INVALID_ANSWER_DESC
-                , Address.MESSAGE_CONSTRAINTS);
+                , Answer.MESSAGE_CONSTRAINTS);
 
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_QUESTION_DESC + INVALID_ANSWER_DESC,
-                Question.MESSAGE_CONSTRAINTS);
+                OpenEndedQuestion.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_BOB + ANSWER_DESC_BOB,

@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import seedu.address.flashcard.Flashcard;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
@@ -25,6 +26,10 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withPerson(Person person) {
         addressBook.addPerson(person);
+        return this;
+    }
+    public AddressBookBuilder withFlashcard(Flashcard flashcard) {
+        addressBook.addFlashcard(flashcard);
         return this;
     }
 

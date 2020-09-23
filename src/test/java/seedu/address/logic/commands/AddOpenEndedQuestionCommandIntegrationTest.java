@@ -26,7 +26,7 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newFlashcard_success() {
         Flashcard validFlashcard = new FlashcardBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -37,9 +37,9 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Flashcard personInList = model.getAddressBook().getFlashcardList().get(0);
-        assertCommandFailure(new AddOpenEndedQuestionCommand(personInList), model, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD);
+    public void execute_duplicateFlashcard_throwsCommandException() {
+        Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(0);
+        assertCommandFailure(new AddOpenEndedQuestionCommand(flashcardInList), model, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }
 
 }

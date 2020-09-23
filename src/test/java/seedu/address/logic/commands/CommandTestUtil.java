@@ -16,7 +16,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String ANSWER_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_BOB;
 
 
-    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION; // empty string not allowed for addresses
-    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER;
+    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + " "; // empty string not allowed for addresses
+    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER + " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
