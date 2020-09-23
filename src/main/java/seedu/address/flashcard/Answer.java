@@ -34,6 +34,9 @@ public class Answer {
         return answer;
     }
 
+    /**
+     * Returns if a given string is a valid answer.
+     */
     public static boolean isValidAnswer(String test) {
         return test.matches(VALIDATION_REGEX);
     }
