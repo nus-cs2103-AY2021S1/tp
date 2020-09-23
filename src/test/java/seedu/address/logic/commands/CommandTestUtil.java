@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -23,14 +22,20 @@ import seedu.address.model.person.Person;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_QUESTION_ALICE = "Alice";
     public static final String VALID_QUESTION_AMY = "Amy Bee";
     public static final String VALID_QUESTION_BOB = "Bob Choo";
+    public static final String VALID_ANSWER_ALICE = "2";
     public static final String VALID_ANSWER_AMY = "11111111";
     public static final String VALID_ANSWER_BOB = "22222222";
 
-
+    public static final String CHOICE_DESC = " " + PREFIX_CHOICE + "First" + " "
+            + PREFIX_CHOICE + "Second" + " " + PREFIX_CHOICE + "Third" + " "
+            + PREFIX_CHOICE + "Fourth";
+    public static final String QUESTION_DESC_ALICE = " " + PREFIX_QUESTION + VALID_QUESTION_ALICE;
     public static final String QUESTION_DESC_AMY = " " + PREFIX_QUESTION + VALID_QUESTION_AMY;
     public static final String QUESTION_DESC_BOB = " " + PREFIX_QUESTION + VALID_QUESTION_BOB;
+    public static final String ANSWER_DESC_ALICE = " " + PREFIX_ANSWER + VALID_ANSWER_ALICE;
     public static final String ANSWER_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_AMY;
     public static final String ANSWER_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_BOB;
 

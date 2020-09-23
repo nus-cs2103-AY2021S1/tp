@@ -37,4 +37,15 @@ public class MCQ implements Question {
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o instanceof MCQ) {
+            MCQ temp = (MCQ) o;
+            return temp.toString().equals(o.toString());
+        }
+        return false;
+    }
 }

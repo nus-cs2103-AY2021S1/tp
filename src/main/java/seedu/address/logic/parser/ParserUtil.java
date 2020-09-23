@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,6 +16,7 @@ import seedu.address.flashcard.MCQ;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
+import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -79,22 +81,12 @@ public class ParserUtil {
      * @throws ParseException if answer is less than choices and question is invalid.
      */
     public static Question parseMultipleChoiceQuestion(String question,
-                                                       String[] choices, Answer answer) throws ParseException {
+                                                       String[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MCQ.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(MCQ.MESSAGE_CONSTRAINTS);
         }
-        int ans;
-        try {
-            ans = Integer.parseInt(answer.getAnswer());
-        } catch (NumberFormatException e) {
-            throw new ParseException("Answer must be in integer");
-        }
-        if (ans > choices.length) {
-            throw new ParseException("Answer cannot be smaller than number of choices");
-        }
-
         return new MCQ(trimmedQuestion, choices);
     }
 
@@ -195,11 +187,12 @@ public class ParserUtil {
         requireNonNull(choices);
         List<String> choicesList = new ArrayList<>();
         for (String choice : choices) {
-            choicesList.add(choice);
+            choicesList.add(parseChoice(choice));
         }
         String[] result = new String[choicesList.size()];
         if (result.length <= 1) {
-            throw new ParseException("There must be more than 1 choices");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
         }
         choicesList.toArray(result);
         return result;

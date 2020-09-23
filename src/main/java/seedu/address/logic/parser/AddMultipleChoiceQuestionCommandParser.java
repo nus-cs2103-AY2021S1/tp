@@ -14,7 +14,6 @@ import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
-import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,15 +33,24 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddOpenEndedQuestionCommand.MESSAGE_USAGE));
+                    AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
         }
 
         String[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Question question = ParserUtil.parseMultipleChoiceQuestion(
-                argMultimap.getValue(PREFIX_QUESTION).get(), choicesList, answer);
+                argMultimap.getValue(PREFIX_QUESTION).get(), choicesList);
+        Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
 
+        int ans;
+        try {
+            ans = Integer.parseInt(answer.getAnswer());
+            if (ans > choicesList.length) {
+                throw new ParseException("Answer must be smaller than number of choices");
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Answer must be integer");
+        }
 
         Flashcard flashcard = new Flashcard(question, answer, tagList);
 
