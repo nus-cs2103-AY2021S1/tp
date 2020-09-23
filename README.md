@@ -4,8 +4,8 @@
 ### Cap 5.0 Buddy
 
 Cap 5.0 Buddy is a desktop app that helps NUS SoC students to keep track of their module details efficiently, optimized for use via a
-**Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-It helps them centralize key module details and follows their study 
+**Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It helps them centralize key module details and follows their study
 progress by allowing efficient management of module details.
 
 ## Contents:
@@ -28,7 +28,7 @@ progress by allowing efficient management of module details.
 
 ## Features
 
-1. Adding a module : `add module` 
+1. Adding a module : `add module`
 Create and add a new module with the input name into the system.
 
 **Format:** `add module [MODULE_NAME]`
@@ -55,7 +55,7 @@ Edits an existing module in the module list.
 * Edits the zoom link of a module named [MODULE_NAME] to [ZOOM_LINK]
 
 **Example of usage:**
-edit zoom CS1101S https://sample.zoom.us edits the zoom link for module named CS1101S to https://sample.zoom.us 
+edit zoom CS1101S https://sample.zoom.us edits the zoom link for module named CS1101S to https://sample.zoom.us
 
 4. Deleting a module : `delete`
 Deletes the specified module from the system.
@@ -80,9 +80,8 @@ add zoom cs2103T https://sample.zoom.us adds a zoom link 'https://sample.zoom.us
 ## Frequently Asked Questions
 Q: How do you add a module into the program?
 A: Run the program and wait for the terminal to start up. Next, type in : “add module [CS2103T]” to add a module called CS2103T. <br/>
-Q: How do you view the zoom links of a particular module? 
+Q: How do you view the zoom links of a particular module?
 A: When the program has started running, enter the following in the terminal : “view [CS2103T]” to view the zoom link for the module called CS2103T.
 
 ## Acknowledgments
-
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
