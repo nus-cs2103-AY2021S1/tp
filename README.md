@@ -1,5 +1,4 @@
-[![CI Status](https://github.com/nus-cs2103-AY2021S1/tp/workflows/Java%20CI/badge.svg)](https://github.com/nus-cs2103-AY2021S1/tp/actions)
-
+[![CI Status](https://github.com/AY2021S1-CS2103T-F12-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-F12-3/tp/actions)
 ![Ui](docs/images/Ui.png)
 
 ### Cap 5.0 Buddy
@@ -30,6 +29,7 @@ progress by allowing efficient management of module details.
 
 1. Adding a module : `add module` 
 Create and add a new module with the input name into the system.
+
 **Format:** `add module [MODULE_NAME]`
 Create and add a new module with `MODULE_NAME`
 
@@ -39,8 +39,10 @@ Create and add a new module with `MODULE_NAME`
 
 2. Viewing a module : `view`
 Views a module stored in the system
+
 **Format:** `view [MODULE_NAME]`
 Tip: Using the keyword all in place of specified module name will display all module details
+
 **Example of usage:**
 * view cs2103t views the specified module
 * view all views all the modules stored
@@ -52,7 +54,6 @@ Edits an existing module in the module list.
 * Edits the zoom link of a module named [MODULE_NAME] to [ZOOM_LINK]
 
 **Example of usage:**
-
 edit zoom CS1101S https://sample.zoom.us edits the zoom link for module named CS1101S to https://sample.zoom.us 
 
 4. Deleting a module : `delete`
@@ -68,9 +69,10 @@ delete CS1231 deletes the module named CS1231
 Adds a zoom link to an existing module
 
 **Format:** `add zoom [MODULE_NAME] [ZOOM_LINK]`
+* Adds a zoom link with specified [ZOOM LINK] to the module with the specified [MODULE_NAME]
 
 **Example of usage:**
-add zoom cs2103T https://sample.zoom.us adds a zoom link https://sample.zoom.us for the mod cs2103T
+add zoom cs2103T https://sample.zoom.us adds a zoom link 'https://sample.zoom.us' for the mod 'cs2103T'
 
 ## Command Summary
 
@@ -79,3 +81,7 @@ Q: How do you add a module into the program?
 A: Run the program and wait for the terminal to start up. Next, type in : “add module [CS2103T]” to add a module called CS2103T. <br/>
 Q: How do you view the zoom links of a particular module? 
 A: When the program has started running, enter the following in the terminal : “view [CS2103T]” to view the zoom link for the module called CS2103T.
+
+## Acknowledgments
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
