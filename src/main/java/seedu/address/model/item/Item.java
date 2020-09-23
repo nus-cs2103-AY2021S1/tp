@@ -87,6 +87,10 @@ public class Item {
         return isDeleted;
     }
 
+    public void addRecipeId(int recipeId) {
+        recipeIds.add(recipeId);
+    }
+
     /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.

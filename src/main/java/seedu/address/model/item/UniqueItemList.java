@@ -107,6 +107,10 @@ public class UniqueItemList implements Iterable<Item> {
         return -1;
     }
 
+    public void addRecipeIdToItem(int itemId, int recipeId) {
+        Item itemToAdd = internalList.get(itemId);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

@@ -93,8 +93,12 @@ public class ItemList implements ReadOnlyItemList {
         items.remove(key);
     }
 
-    public int findItemId(String itemName) {
+    public int findItemIdByName(String itemName) {
         return items.findItemId(itemName);
+    }
+
+    public void addRecipeIdToItem(int itemId, int recipeId) {
+        items.addRecipeIdToItem(itemId, recipeId);
     }
 
     //// util methods

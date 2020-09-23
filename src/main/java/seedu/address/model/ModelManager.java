@@ -280,6 +280,7 @@ public class ModelManager implements Model {
     @Override
     public void addRecipe(Recipe recipe) {
         recipeList.addRecipe(recipe);
+        itemList.addRecipeIdToItem(recipe.getProductId(), recipe.getId());
         updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
     }
 
@@ -362,7 +363,7 @@ public class ModelManager implements Model {
 
     private int findItemId(String itemName) throws ItemNotFoundException {
         requireNonNull(itemName);
-        int id = itemList.findItemId(itemName);
+        int id = itemList.findItemIdByName(itemName);
         if (id == -1) {
             throw new ItemNotFoundException();
         }
