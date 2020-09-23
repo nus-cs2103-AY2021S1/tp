@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.stock.commons.exceptions.IllegalValueException;
-import seedu.stock.model.StockBook;
 import seedu.stock.model.ReadOnlyStockBook;
+import seedu.stock.model.StockBook;
 import seedu.stock.model.stock.Stock;
 
 /**

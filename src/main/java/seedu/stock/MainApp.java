@@ -15,16 +15,16 @@ import seedu.stock.commons.util.ConfigUtil;
 import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.LogicManager;
-import seedu.stock.model.StockBook;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.ReadOnlyUserPrefs;
+import seedu.stock.model.StockBook;
 import seedu.stock.model.UserPrefs;
 import seedu.stock.model.util.SampleDataUtil;
-import seedu.stock.storage.StockBookStorage;
 import seedu.stock.storage.JsonStockBookStorage;
 import seedu.stock.storage.JsonUserPrefsStorage;
+import seedu.stock.storage.StockBookStorage;
 import seedu.stock.storage.Storage;
 import seedu.stock.storage.StorageManager;
 import seedu.stock.storage.UserPrefsStorage;
@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty stock book will be used instead if errors occur when reading {@code storage}'s stock book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyStockBook> StockBookOptional;
+        Optional<ReadOnlyStockBook> stockBookOptional;
         ReadOnlyStockBook initialData;
         try {
-            StockBookOptional = storage.readStockBook();
-            if (!StockBookOptional.isPresent()) {
+            stockBookOptional = storage.readStockBook();
+            if (!stockBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample StockBook");
             }
-            initialData = StockBookOptional.orElseGet(SampleDataUtil::getSampleStockBook);
+            initialData = stockBookOptional.orElseGet(SampleDataUtil::getSampleStockBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty StockBook");
             initialData = new StockBook();

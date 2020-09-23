@@ -2,8 +2,8 @@ package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.stock.model.StockBook;
 import seedu.stock.model.Model;
+import seedu.stock.model.StockBook;
 
 /**
  * Clears the address book.

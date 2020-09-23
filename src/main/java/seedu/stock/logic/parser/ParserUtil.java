@@ -6,9 +6,9 @@ import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
+import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.Source;
-import seedu.stock.model.stock.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

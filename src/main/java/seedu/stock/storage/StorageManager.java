@@ -71,9 +71,9 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveStockBook(ReadOnlyStockBook StockBook, Path filePath) throws IOException {
+    public void saveStockBook(ReadOnlyStockBook stockBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        stockBookStorage.saveStockBook(StockBook, filePath);
+        stockBookStorage.saveStockBook(stockBook, filePath);
     }
 
 }

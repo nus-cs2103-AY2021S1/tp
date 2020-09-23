@@ -2,8 +2,8 @@ package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import seedu.stock.logic.commands.exceptions.CommandException;

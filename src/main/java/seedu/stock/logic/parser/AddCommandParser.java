@@ -2,8 +2,8 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.stream.Stream;
@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
+import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
-import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Stock;
-import seedu.stock.model.stock.Quantity;
 
 /**
  * Parses input arguments and creates a new AddCommand object
