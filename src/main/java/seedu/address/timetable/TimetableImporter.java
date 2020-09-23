@@ -1,13 +1,8 @@
 package seedu.address.timetable;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.util.Scanner;
@@ -21,13 +16,12 @@ public class TimetableImporter {
     private static final String TEST_TIMETABLE = "https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1"
             + "&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=";
 
-    private static final int TEST_SEMESTER = 1; // TODO: need to parse sem as well
-
     private static final String JSON_API = "https://api.nusmods.com/v2/2020-2021/modules/";
     private static final String DOT_JSON = ".json";
 
     public static void main(String[] args) throws IOException, ParseException {
-        String[] moduleDataArray = parseTimetableUrl(TEST_TIMETABLE);
+        int semester = parseTimetableUrlForSem(TEST_TIMETABLE);
+        String[] moduleDataArray = parseTimetableUrlForData(TEST_TIMETABLE);
         String[] moduleCodeArray = getModuleCodeArray(moduleDataArray);
         String[] moduleLessonArray = getModuleLessonArray(moduleDataArray);
 
@@ -51,7 +45,7 @@ public class TimetableImporter {
             JSONParser parser = new JSONParser();
             JSONObject moduleData = (JSONObject) parser.parse(inline);
             JSONArray semesterData = (JSONArray) moduleData.get("semesterData");
-            JSONObject bothSemesterTimetableData = (JSONObject) semesterData.get(TEST_SEMESTER - 1);
+            JSONObject bothSemesterTimetableData = (JSONObject) semesterData.get(semester - 1);
             JSONArray semesterSpecificTimetableData = (JSONArray) bothSemesterTimetableData.get("timetable");
 
             String[] specificModuleLessonArray = getSpecificModuleLessonArray(moduleLessonArray, moduleIter);
@@ -72,7 +66,8 @@ public class TimetableImporter {
                             String day = (String) currentData.get("day");
                             String startTime = (String) currentData.get("startTime");
                             String endTime = (String) currentData.get("endTime");
-                            String infoToPrint = module + ": " + day + " " + startTime + "-" + endTime;
+                            String infoToPrint = module + " - " + lessonType + " " + lessonNum + ", " + day
+                                    + " " + startTime + "-" + endTime;
                             System.out.println(infoToPrint);
                         }
                     }
@@ -87,7 +82,13 @@ public class TimetableImporter {
         return JSON_API + moduleCode + DOT_JSON;
     }
 
-    private static String[] parseTimetableUrl(String url) {
+    private static int parseTimetableUrlForSem(String url) {
+        String semester = url.split("/sem-", 2)[1];
+        semester = semester.substring(0, 1);
+        return Integer.parseInt(semester);
+    }
+
+    private static String[] parseTimetableUrlForData(String url) {
         String moduleData = url.split("\\?", 2)[1];
         String[] moduleDataArray = moduleData.split("&");
         return moduleDataArray; // ["CS=T:1,L=2&MA=L:9"]
