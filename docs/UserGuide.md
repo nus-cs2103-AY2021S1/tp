@@ -1,8 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: ZooKeep- User Guide
 ---
-# ZooKeep - User Guide
 
 * Table of Contents
 {:toc}
@@ -48,8 +47,6 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 </div>
 
----
-
 #### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -73,6 +70,7 @@ An animal can have any number of tags (including 0).
 Examples:
 * `add n/Hershey s/Rufous Hummingbird i/0193`
 * `add n/Lonesome George s/Galapagos Tortoise i/0007 t/herbivore`
+
 ---
 
 #### Listing all animals : `list`
@@ -117,14 +115,10 @@ Format: `exit`
 
 Animal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
----
-
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
 
