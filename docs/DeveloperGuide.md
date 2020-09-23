@@ -272,28 +272,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: List all food**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+**Extensions**
 
-    Use case ends.
+**Use case: Add food**
+
+**MSS**
 
 **Extensions**
 
-* 2a. The list is empty.
+**Use case: Delete food**
 
-  Use case ends.
+**MSS**
 
-* 3a. The given index is invalid.
+**Extensions**
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Add a macro command**
 
-      Use case resumes at step 2.
+**MSS**
+
+**Extensions**
 
 *{More to be added}*
 
