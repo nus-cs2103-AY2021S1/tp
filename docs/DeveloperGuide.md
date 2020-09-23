@@ -236,14 +236,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of animals
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: 
+*  Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
+    
+*   It is easy to lose track without a structured database.
+    
+*   We have thus decided to morph the app into a tracker for an individual zookeeper.
+    
+*   Easier to transfer a large amount of animal information when zookeepers change shifts.
+* Manage animals faster than a typical mouse/GUI driven app.
 
 ### User stories
 
@@ -251,12 +258,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | new zookeeper                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
+| `* * *`  | zookeeper                                       | add an animal entry               | keep track of a new animal under my care                                                                        |
+| `* * *`  | zookeeper                                       | delete an animal entry                | remove animals from my care                                   |
+| `* * *`  | zookeeper                                       | retrieve the information of all the animals          | have a look at which animals are under my duty |
+| `* * *`  | zookeeper                                       | load a save file          | keep track of all the animals I have added |
+| `* * *`  | zookeeper                                       | save all the information when I need to          |  |
+| `* * *`  | zookeeper                                       | exit the program after I have finished using it        |  |
+| `* *`    | zookeeper                                       | search for a specific animal   | filter through the large number of animals without viewing the entire list                |
+| `* *`    | zookeeper                                       | quickly edit the data of certain animals   | avoid deleting and adding the animal to do so              |
+| `*`      | zookeeper with many animals in the address book | sort animals by name and type           | locate a specific animal easily                                                 |
+| `*`      | experienced user | use shortcut commands to carry out tasks           | save time without needing to type the full length commands                                                 |
 
 *{More to be added}*
 
