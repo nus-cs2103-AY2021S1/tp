@@ -12,6 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/lamlaaaam.png" width="200px">
 
 [[github](https://github.com/lamlaaaam)]
+[[portfolio](team/lamlaaaam.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines, scheduling and tracking
@@ -21,18 +22,20 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/juncheng98.png" width="200px">
 
 [[github](http://github.com/JunCheng98)]
+[[portfolio](team/JunCheng98.md)]
 
 * Role: Developer
 * Responsibilities: Code quality
 
-### Johnny Doe
+### Aizat Azhar
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aizatazhar.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/aizatazhar)]
+[[portfolio](team/aizatazhar.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation
 
 ### Jean Doe
 
