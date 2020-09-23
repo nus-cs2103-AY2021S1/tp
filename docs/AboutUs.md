@@ -20,11 +20,11 @@ You can reach us via the issues of this repository.
 [[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
 
 * Role: Project Lead
-* Responsibilities: Workflow Assignment
+* Responsibilities: Workflow Assignment, Main Reviewer
 
 ### Stephen Tan
 
-![stephen](images/profiles/stephentan.jpg)
+![stephentan](images/profiles/stephentan.jpg)
 
 [[github](http://github.com/blackonyyx)]
 
@@ -33,9 +33,9 @@ You can reach us via the issues of this repository.
 * Role: Developer
 * Responsibilities: Documentation, BugTesting
 
-### Liu Zhendao
+### Liu Zhengdao
 
-![Liu Zhendao](images/profiles/johndoe.png)
+![liuzhengdao](images/profiles/johndoe.png)
 
 [[github](https://github.com/justacasul)] 
 
@@ -46,7 +46,7 @@ You can reach us via the issues of this repository.
 
 ### Kheng Hun
 
-![Kheng Hun](images/profiles/johndoe.png)
+![khenghun](images/profiles/johndoe.png)
 
 [[github](https://github.com/khenghun)]
 [[portfolio](team/khenghun.md)]
@@ -56,7 +56,7 @@ You can reach us via the issues of this repository.
 
 ### Rahul
 
-![Rahul](images/profiles/johndoe.png)
+![rahul](images/profiles/johndoe.png)
 
 [[github](https://github.com/Rahul0506)]
 

@@ -9,6 +9,7 @@ title: Developer Guide
 
 This is the developer guide for `Inventoryinator` a brownfield project evolved from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
 ![inventoryinator](images/inventoryinator.jpg)
+
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
@@ -145,49 +146,66 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedInventoryinator`. It extends `Inventoryinator` with an undo/redo history, stored internally as an `inventoryinatorStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedInventoryinator#commit()` — Saves the current address book state in its history.
-* `VersionedInventoryinator#undo()` — Restores the previous address book state from its history.
-* `VersionedInventoryinator#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInventoryinator#commit()` — Saves the current inventory state in its history.
+* `VersionedInventoryinator#undo()` — Restores the previous inventory state from its history.
+* `VersionedInventoryinator#redo()` — Restores a previously undone inventory state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitInventoryinator()`, `Model#undoInventoryinator()` and `Model#redoInventoryinator()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedInventoryinator` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedInventoryinator` will be initialized with the initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitInventoryinator()`, causing the modified state of the address book after the `del Bob’s 28th finger` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `del Bob’s 28th finger` command to delete the matching item in the inventory. The `del`
+command calls `Model#commitInventoryinator()`, causing
+ the modified state of the inventory after the `del Bob’s 28th finger` command executes to be
+ saved in the `inventoryinatorStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addi Bob’s 6th regret -q 8` to add a new person. The `add` command also calls `Model#commitInventoryinator()`, causing another modified address book state to be saved into the `inventoryinatorStateList`.
+Step 3. The user executes `addi Bob’s 6th regret -q 8` to add a new item. The `add` command also calls `Model#commitInventoryinator()`, causing another modified inventory state to be saved into the `inventoryinatorStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-**Note:** If a command fails its execution, it will not call `Model#commitInventoryinator()`, so the address book state will not be saved into the `inventoryinatorStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitInventoryinator()`, so the inventory
+ state will not be saved into the `inventoryinatorStateList`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInventoryinator()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo` command.
+ The `undo` command will call `Model#undoInventoryinator()`, which will shift the `currentStatePointer` once to the
+ left, pointing it to the previous inventory state, and restores the inventory to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial Inventoryinator state, then there are no previous Inventoryinator states to restore. The `undo` command uses `Model#canUndoinventoryinator()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial Inventoryinator state, then there are 
+no previous Inventoryinator states to restore. The `undo` command uses `Model#canUndoinventoryinator()` to check if this
+is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a
+ limitation of PlantUML, the lifeline reaches the end of diagram.
 
-The `redo` command does the opposite — it calls `Model#redoInventoryinator()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoInventoryinator()`, which shifts the `currentStatePointer`
+ once to the right, pointing to the previously undone state, and restores the inventory to that state.
 
-**Note:** If the `currentStatePointer` is at index `inventoryinatorStateList.size() - 1`, pointing to the latest address book state, then there are no undone Inventoryinator states to restore. The `redo` command uses `Model#canRedoInventoryinator()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `inventoryinatorStateList.size() - 1`, pointing to the
+ latest inventory state, then there are no undone Inventoryinator states to restore. The `redo` command uses
+  `Model#canRedoInventoryinator()` to check if this is the case. If so, it will return an error to the user
+   rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`, will usually not call `Model#commitInventoryinator()`, `Model#undoInventoryinator()` or `Model#redoInventoryinator()`. Thus, the `inventoryinatorStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
+ will usually not call `Model#commitInventoryinator()`, `Model#undoInventoryinator()` or `Model#redoInventoryinator()`.
+ Thus, the `inventoryinatorStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitInventoryinator()`. Since the `currentStatePointer` is not pointing at the end of the `inventoryinatorStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInventoryinator()`. Since the `currentStatePointer`
+ is not pointing at the end of the `inventoryinatorStateList`, all inventory states after the `currentStatePointer`
+  will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the
+   behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -199,23 +217,24 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire inventory.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the item/recipe being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 * **Alternative 3:** Store a LinkedList of Negations of non-viewing commands.
-  * Pros: Similar to **Alternative 2** but instead of an explicit undo for each command, store a size k LeakyStack of commands.
-   This is easier to implement, but may be impacted by complex symantics of implementing macro commands. 
+  * Pros: Similar to **Alternative 2** but instead of an explicit undo for each command, store a
+   size k LeakyStack of commands. This is easier to implement, but may be impacted by complex symantics of
+    implementing macro commands. 
   * Cons: Harder to implement.
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+TO_BE_DISCUSSED
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -251,19 +270,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added in later iterations}*
 
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Inventoryinator shows an error message.
-
-      Use case resumes at step 2.
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -279,3 +285,4 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Item**: An item represents an object you obtain in a game. Eg a Rock
 * **Recipe**: An recipe is associated with multiple items, and represents the consumption of items in the input,
  to produce an item of the output.
+* **Location**: The place where a Item can be found in game.

@@ -9,7 +9,7 @@ Through this, we come up with a set of UserStories we would like to implement as
 ## Persona
 ### Persona #1
 #### Stephen the Hardcore Gamer (Age 21)
-![Anon](images/profiles/johndoe.png)
+![progamermoves](images/persona/hardcoregamer.jpg)
 #### Bio: 
 Stephen is a hardcore gamer who plays games 10 hours a day. He is a guild leader in the game
 World of Warfare, and spends a large portion of that time book keeping and managing his accounts for his guild.
@@ -46,7 +46,7 @@ and display his latest inventory.
 
 ### Persona #2
 #### James the Casual Gamer (Age 16)
-![Anon](images/profiles/johndoe.png)
+![xqcow](images/persona/casulgamer.jpg)
 #### Bio: 
 James just started getting into games but feels very behind because many of his friends and guildmates are
  experienced in the game he plays as well as gaming in general. He is unfamiliar with the conventional game 
@@ -79,7 +79,7 @@ James goes back into his game and begins his collection.
 
 ### Persona #3
 Serene the Hardcore Completionist (Age 25)
-![Anon](images/profiles/johndoe.png)
+![catchemall](images/persona/completionist.jpg)
 ####Bio:
 Serene is an office lady who likes to play Build Wars 2 whenever she is off work.
  She is one of the top players in BW2 with 97.2% of the game achievements, limited only by her game time. She
@@ -105,9 +105,10 @@ looking for kappas.
 
 ### Persona #4
 Aila the Hardcore Merchant (Age 20)
-![Anon](images/profiles/johndoe.png)
+![belle](images/persona/merchant.jpg)
 #### Bio:
-Aila is a college student who plays Penultimate Fiction XIV. She likes to keep track of hot commodities on the player market, which decides her next action on which materials to bulk import from the guilds that she works with.
+Aila is a college student who plays Penultimate Fiction XIV. She likes to keep track of hot commodities on the
+ player market, which decides her next action on which materials to bulk import from the guilds that she works with.
 
 #### Goals:
 Make lots of money in game
@@ -128,7 +129,7 @@ realizes she is missing 250k bear asses, 129k rat whiskers, and 2k phoenix beaks
 suppliers, then proceeds to crafting.
 ### Persona #5
 Rahul the Bot Farmer (Age 35)
-![Anon](images/profiles/johndoe.png)
+![hackerboi](images/persona/botfarmer.jpg)
 ####Bio:
 Rahul is a bot farmer, who sets up automated game accounts to farm profitable materials in the game World of Wowcraft to sell on the free market. He has over 10 accounts farming currently, and he makes a living off managing these bot accounts. He also runs similar accounts for other games like Diablow III.
 

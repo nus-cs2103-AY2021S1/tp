@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 # User Guide
-
+![inventoryinator](images/inventoryinator.jpg)
 Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
@@ -20,7 +20,7 @@ get your inventory management tasks done faster than traditional GUI apps.
 
 1. Download the latest `inventoryinator.jar` from [here](https://github.com/AY2021S1-CS2103T-F13-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -37,8 +37,6 @@ get your inventory management tasks done faster than traditional GUI apps.
    * **`del`**`banana` : Deletes the banana item from the Inventoryinator
 
    * **`del`**`banana` **`-r`** `1` : Deletes the first recipe from the item `bananas` 
-
-   * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -235,7 +233,7 @@ Inventoryinator data is saved in the hard disk automatically after any command t
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Inventoryinator home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
