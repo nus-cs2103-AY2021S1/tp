@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import nustorage.model.record.FinanceRecord;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -96,6 +97,11 @@ public class AddCommandTest {
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addFinanceRecord(FinanceRecord newRecord) {
+
         }
 
         @Override
