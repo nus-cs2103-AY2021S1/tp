@@ -236,27 +236,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a Singapore primary/secondary/junior college private tutors
+* has a need to manage a significant number of student contacts
+* has a need to manage administrative details of students
+* has a need to manage administrative details of lessons
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Helps tutors organise administrative details of their students and lesson with ease and manage student needs better.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                   | I want to …​                                          | So that I can…​                                                                     |
+| -------- | --------------------------| ----------------------------------------------------- | ----------------------------------------------------------------------              |
+| `* * *`  | user ready to use Reeve   | input my student’s details (Admin)                    | refer to instructions when I forget how to use the App                              |
+| `* * *`  | novice user               | be able to save meeting links for online lessons      | keep track of meeting links when my student cannot make it for a physical lesson    |                                                                       |
+| `* * *`  | expert user               | view my students' preferred tutoring location         | figure out how to get that location                                                 |
+| `* * *`  | expert user               | edit my students' personal details                    | get rid of outdated data                                                            |
+| `* * *`  | expert user               | view my student's details                             | refer to them when needed                                                           |
+| `* * *`  | expert user               | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
+| `* * *`  | long-time user            | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
+| `* * *`  | expert user               | find a student's record                               | retrieve students' data with ease                                                   |
 
 *{More to be added}*
 
@@ -292,8 +297,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  The response to any use action should become visible within 5 seconds.
+3.  The program should be able to handle at least 100 students.
+4.  The graphical user interface should be easy to use for non-IT savvy users.
 
 *{More to be added}*
 
