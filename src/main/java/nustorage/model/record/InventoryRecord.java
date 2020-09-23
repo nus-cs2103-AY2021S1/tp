@@ -30,7 +30,7 @@ public class InventoryRecord {
         this.date = date;
         this.time = time;
     }
-    
+
     public int getQuantity() {
         return quantity;
     }
