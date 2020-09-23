@@ -41,4 +41,15 @@ public class Answer {
     public static boolean isValidAnswer(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        } else if(o instanceof Answer) {
+            Answer temp = (Answer) o;
+            return temp.toString().equals(o.toString());
+        }
+        return false;
+    }
 }

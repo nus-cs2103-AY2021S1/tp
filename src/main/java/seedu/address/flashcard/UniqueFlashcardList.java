@@ -1,6 +1,7 @@
 package seedu.address.flashcard;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
@@ -62,18 +63,18 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     }
 
 
-    //    /**
-    //     * Replaces the contents of this list with {@code persons}.
-    //     * {@code persons} must not contain duplicate persons.
-    //     */
-    //    public void setPersons(List<Person> persons) {
-    //        requireAllNonNull(persons);
-    //        if (!personsAreUnique(persons)) {
-    //            throw new DuplicatePersonException();
-    //        }
-    //
-    //        internalList.setAll(persons);
-    //    }
+        /**
+         * Replaces the contents of this list with {@code persons}.
+         * {@code persons} must not contain duplicate persons.
+         */
+        public void setFlashcards(List<Flashcard> flashcards) {
+            requireAllNonNull(flashcards);
+            if (!personsAreUnique(flashcards)) {
+                throw new DuplicatePersonException();
+            }
+
+            internalList.setAll(flashcards);
+        }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

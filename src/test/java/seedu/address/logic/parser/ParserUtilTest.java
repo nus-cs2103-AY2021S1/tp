@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.flashcard.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_QUESTION = " ";

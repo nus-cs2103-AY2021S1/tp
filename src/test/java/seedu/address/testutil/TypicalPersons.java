@@ -58,10 +58,16 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+        for (Flashcard flashcard : getTypicalFlashcards()) {
+            ab.addFlashcard(flashcard);
+        }
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+    public static List<Flashcard> getTypicalFlashcards() {
+        return new ArrayList<>(Arrays.asList(AMY, BOB));
     }
 }
