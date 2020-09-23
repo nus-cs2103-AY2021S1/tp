@@ -60,7 +60,7 @@ public class AddItemCommandParserTest {
                         + ITEM_LOCATION_DESC_PEACH_ORCHARD,
                 new AddItemCommand(expectedItem));
 
-        // multiple emails - last email accepted
+        // multiple descriptions - last description accepted
         assertParseSuccess(parser, ITEM_NAME_DESC_BANANA
                         + ITEM_QUANTITY_DESC_BANANA
                         + ITEM_DESCRIPTION_DESC_APPLE

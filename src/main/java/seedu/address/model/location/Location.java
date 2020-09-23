@@ -42,7 +42,7 @@ public class Location {
     }
 
     /**
-     * Returns true if both items have the same name.
+     * Returns true if both locations have the same name.
      * This defines a weaker notion of equality between two items.
      */
     public boolean isSameLocation(Location otherLocation) {
@@ -55,8 +55,8 @@ public class Location {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both locations have the same identity fields.
+     * This defines a stronger notion of equality between two locations.
      */
     @Override
     public boolean equals(Object other) {
