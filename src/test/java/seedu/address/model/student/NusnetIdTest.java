@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,15 +22,16 @@ public class NusnetIdTest {
     @Test
     public void isValidAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> NusnetId.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> NusnetId.isValidNusnetId(null));
 
         // invalid addresses
-        assertFalse(NusnetId.isValidAddress("")); // empty string
-        assertFalse(NusnetId.isValidAddress(" ")); // spaces only
+        assertFalse(NusnetId.isValidNusnetId("")); // empty string
+        assertFalse(NusnetId.isValidNusnetId(" ")); // spaces only
+        assertFalse(NusnetId.isValidNusnetId("e")); // e only
+        assertFalse(NusnetId.isValidNusnetId("e1123456")); // e not followed by 0
+        assertFalse(NusnetId.isValidNusnetId("e01234567")); // one extra length
 
         // valid addresses
-        assertTrue(NusnetId.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(NusnetId.isValidAddress("-")); // one character
-        assertTrue(NusnetId.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(NusnetId.isValidNusnetId("e0123456"));
     }
 }
