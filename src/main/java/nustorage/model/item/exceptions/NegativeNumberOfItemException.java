@@ -2,7 +2,7 @@ package nustorage.model.item.exceptions;
 
 import nustorage.model.item.Item;
 
-public class NegativeNumberOfItemException extends RuntimeException{
+public class NegativeNumberOfItemException extends RuntimeException {
     public NegativeNumberOfItemException() {
         super("This would result in negative number of items in storage");
     }

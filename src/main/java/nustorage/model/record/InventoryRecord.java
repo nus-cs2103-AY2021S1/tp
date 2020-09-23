@@ -3,6 +3,9 @@ package nustorage.model.record;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Class to record movement in the Inventory.
+ */
 public class InventoryRecord {
 
     private final LocalDate date;
@@ -10,6 +13,11 @@ public class InventoryRecord {
     private final int quantity;
     private final String itemName;
 
+    /**
+     * Constructs an InventoryRecord.
+     * @param itemName Item changed.
+     * @param quantity Number of items added/removed.
+     */
     public InventoryRecord(String itemName, int quantity) {
         this.itemName = itemName;
         this.quantity = quantity;
@@ -17,6 +25,12 @@ public class InventoryRecord {
         this.time = LocalTime.now();
     }
 
+    /**
+     * Constructs an InventoryRecord.
+     * @param itemName Item changed.
+     * @param quantity Number of items added/removed.
+     * @param date Date movement.
+     */
     public InventoryRecord(String itemName, int quantity, LocalDate date) {
         this.itemName = itemName;
         this.quantity = quantity;
@@ -24,6 +38,13 @@ public class InventoryRecord {
         this.time = LocalTime.of(0, 0);
     }
 
+    /**
+     * Constructs an InventoryRecord.
+     * @param itemName Item changed.
+     * @param quantity Number of items added/removed.
+     * @param date Date movement.
+     * @param time Time of movement.
+     */
     public InventoryRecord(String itemName, int quantity, LocalDate date, LocalTime time) {
         this.itemName = itemName;
         this.quantity = quantity;
@@ -51,7 +72,7 @@ public class InventoryRecord {
     public boolean equals(Object obj) {
         if (obj instanceof InventoryRecord) {
             return (((InventoryRecord) obj).quantity == this.quantity
-                    && ((InventoryRecord) obj).itemName.equals(this.itemName)) ;
+                    && ((InventoryRecord) obj).itemName.equals(this.itemName));
         }
         return false;
     }
