@@ -47,12 +47,12 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Malcolm Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/m0nggh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/m0nggh)]
+[[portfolio](team/m0nggh.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code testing and quality
