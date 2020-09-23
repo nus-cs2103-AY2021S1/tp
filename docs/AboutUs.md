@@ -38,12 +38,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### David Cai Qifan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/David.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/davidcaiqifan)]
+[[portfolio](team/davidcaiqifan.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
