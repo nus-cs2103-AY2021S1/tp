@@ -186,11 +186,11 @@ public class ParserUtilTest {
         assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
     }
 
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
-    }
+//    @Test
+//    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
+//        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+//        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+//
+//        assertEquals(expectedTagSet, actualTagSet);
+//    }
 }

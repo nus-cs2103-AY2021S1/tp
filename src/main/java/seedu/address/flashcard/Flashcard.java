@@ -1,5 +1,7 @@
 package seedu.address.flashcard;
 
+import seedu.address.model.person.Person;
+
 import java.util.List;
 import java.util.Set;
 
@@ -54,5 +56,14 @@ public class Flashcard {
     @Override
     public String toString() {
         return String.format("Question:\n%s\nAnswer:\n%s", question.getQuestion(), answer.getAnswer());
+    }
+    public boolean isSameFlashcard(Flashcard otherFlashcard) {
+        if (otherFlashcard == this) {
+            return true;
+        }
+
+        return otherFlashcard != null
+                && otherFlashcard.getQuestion().equals(getQuestion())
+                && (otherFlashcard.getAnswer().equals(getAnswer()) );
     }
 }
