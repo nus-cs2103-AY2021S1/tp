@@ -3,20 +3,21 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Police Investigation Virtual Organisational Tool (PIVOT) is a **desktop app to assist the police investigators in keeping track of their investigations and relevant information. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, PIVOT can manage your investigation cases faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start [To be updated]
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest release from [here](https://github.com/AY2021S1-CS2103-F09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for PIVOT.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +25,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all investigation cases.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`case`**`Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`delete`**`case 3` : Deletes the 3rd case shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -40,7 +39,48 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-### Investigation page
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `[UPPER_CASE]` (with square brackets) are the parameters to be supplied by the user.<br>
+  e.g. in `case [TITLE]`, `[TITLE]` is a parameter which can be used as `case Kovan double murders`.
+</div>
+
+### Main page
+The main page of the application when the user first enters the app.
+
+#### Adding an active investigation case: `case [TITLE]`
+Adds a new investigation case which has the active tag by default.
+
+Format: `case [TITLE]`
+
+Example: `case Kovan double murders` creates a new investigation case with the title “Kovan double murders”.
+
+#### List all investigation cases: `list case`
+Lists all available investigation cases in PIVOT.
+
+Format: `list case`
+
+#### Delete an investigation case: `delete case [CASE_NO]`
+Deletes the specified investigation case.
+
+Format: `delete case [CASE_NO]`
+
+Example: `list` followed by `delete case 2` deletes the 2nd case in the investigation list.
+
+#### Open an investigation case: `open case [CASE_NO]`
+Enters the specified investigation case where users can add more information regarding the case
+(see Investigation Case Page).
+
+Format:  `open case [CASE_NO]`
+
+Example: `list` followed by `open case 1` opens the 1st case in the investigation list.
+
+#### Exit application: `exit`
+Exits the application.
+
+### Investigation Case page
 The page of the application when the user opens a specified investigation case.
 
 #### Add investigation case description: `desc [DESC]`
@@ -105,3 +145,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+

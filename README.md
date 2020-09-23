@@ -21,7 +21,7 @@ Refer to [Developer's Guide](https://ay2021s1-cs2103-f09-2.github.io/tp/Develope
 Prerequisites: JDK 11, Gradle.
 
 To run the app: (To be updated)
-1. Download the .jar file from the releases and run it.  
+1. Download the .jar file from the releases and run it.
 
 _or_
 
