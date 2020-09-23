@@ -236,13 +236,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to order supper frequently
+* stays on campus 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage ordering supper faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -252,26 +253,80 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | NUS resident                           | add a food item to my supper order |                                                                        |
+| `* * *`  | NUS resident | delete my supper order |                                    |
+| `* * *`  | NUS resident | see the menu | view all the items currently ordered by me |
+| `* * *` | NUS resident | see the vendor list and select vendor | confirm which vendor to order from                     |
+| `*`      | NUS resident | confirm order | finalize my supper selection                     |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SupperStrikers` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Showing and selecting vendor**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to view the list of vendors
+2. SupperStrikers displays the list of vendors
+3. User requests to choose a specified vendor
+4. SupperStrikers displays the menu of the selected vendor
+
+**Extensions**
+
+- 3a. The given index is invalid.
+
+  - 3a1. SupperStrikers displays an error message.
+
+    Use Case resumes at step 2
+
+**Use case: Creating a new supper order**
+
+**MSS**
+
+1. User requests to start a new supper order
+2. SupperStrikers creates a new supper order
+
+**Use case: Viewing current order**
+
+**MSS**
+
+1. User requests to list all the items in the current order
+2. SupperStrikers displays the current order to the user
+
+**Use case: Add an item**
+
+**MSS**
+
+1. User requests to add a specified quantity of an item listed in the vendor menu
+2. SupperStrikers adds the item along with the quantity specified into the current order
+3. User requests to list all the items in the current order
+4. SupperStrikers displays the updated order with the newly added item
+
+**Extensions**
+
+- 1a. The given index is invalid.
+
+  - 1a1. SupperStrikers shows an error message.
+
+    Use Case resumes at step 1
+
+- 1b. There is no current order.
+
+  - 1b1. SupperStrikers shows an error message
+
+    Use Case resumes at step 1
+
+**Use case: Delete an item**
+
+**MSS**
+
+1.  User requests to list all the items in the current order
+2.  SupperStrikers shows the current order
+3.  User requests to delete a specific item from the order
+4.  SupperStrikers deletes the person
 
     Use case ends.
 
@@ -283,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SupperStrikers shows an error message.
 
       Use case resumes at step 2.
 
@@ -292,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 orders without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -300,7 +355,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,7 +364,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -330,22 +383,86 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Selecting a vendor
 
-1. Deleting a person while all persons are being shown
+1. Selecting a vendor while all the vendors are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all vendors using the `vendor` command.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `vendor i/1`<br>
+      Expected: First vendor is selected. The menu from the selected vendor is displayed.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `vendor`<br>
+      Expected: No vendor is selected. The list of vendors is displayed again.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `vendor i/0`<br>
+
+      Expected: No vendor is selected. Error details shown in status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `vendor i/x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Creating a new supper order
+
+1. Creating a supper order while a vendor has been chosen
+
+   1. Prerequisites: Select a vendor using the `vendor i/x` command (where x is the index of the chosen vendor).
+
+   1. Test case: `create`
+
+      Expected: New supper order created.
+
+1. _{ more test cases …​ }_
+
+### Viewing a current order
+
+1. Viewing an order while the order is currently active
+
+   1. Prerequisites: Create a supper order using the `view` command.
+
+   1. Test case: `order`<br>
+      Expected: All the items in the current order are displayed along with their associated quantities.
+
+1. _{ more test cases …​ }_
+
+### Adding an item
+
+1. Adding an item while an order is currently active
+
+   1. Prerequisites: Create a supper order using the `view` command.
+
+   1. Test case: `add i/1 q/1`<br>
+      Expected: 1 order of the first item from the menu is added into the order. Details of the added order shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `add i/1 q/0`<br>
+      Expected: No item is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `add i/0 q/1`<br>
+
+      Expected: No item is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `add`, `add 0 9`, `add i/x q/y`, `...` (where x is larger than the menu size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Deleting an item
+
+1. Deleting an item while all items currently in the order are being shown
+
+   1. Prerequisites: List all items using the `view` command. Multiple items in the order.
+
+   1. Test case: `delete i/1`<br>
+      Expected: First item is deleted from the order. Details of the deleted order shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete i/0`<br>
+      Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete`, `delete i/x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+1. _{ more test cases …​ }
 
 ### Saving data
 
