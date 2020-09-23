@@ -2,8 +2,14 @@
 
 Morphing AB3 into a Police Investigation Virtual Organisational Tool (PIVOT). An app to assist the police investigators in keeping track of their investigations and relevant information. This is a brownfield Java Project built for CS2103 tP.
 
+## About Us
+Refer to About Us: TO BE UPDATED
+
 ## Features
 Refer to User Guide: TO BE UPDATED
+
+## Developer's Guide
+Refer to Developer's Guide: TO BE UPDATED
 
 ## Setup
 
@@ -25,3 +31,6 @@ Setup Github Actions: https://se-education.org/guides/tutorials/githubActions.ht
 
 ## Code Style
 Follows CS2103 Coding Practices: https://se-education.org/guides/tutorials/checkstyle.html
+
+## Acknowledgements
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
