@@ -57,6 +57,15 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
+    public StorageManager(ItemListStorage itemListStorage, LocationListStorage locationListStorage,
+                          RecipeListStorage recipeListStorage, UserPrefsStorage userPrefsStorage) {
+        super();
+        this.itemListStorage = itemListStorage;
+        this.locationListStorage = locationListStorage;
+        this.recipeListStorage = recipeListStorage;
+        this.userPrefsStorage = userPrefsStorage;
+    }
+
     // ================ UserPrefs methods ==============================
 
     @Override

@@ -118,6 +118,27 @@ public class ModelManager implements Model {
         filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());
     }
 
+    public ModelManager(ReadOnlyItemList itemList, ReadOnlyLocationList locationList,
+                        ReadOnlyRecipeList recipeList, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(userPrefs, itemList, locationList, recipeList);
+
+        logger.fine("Initializing with item list: " + itemList +
+                " location list: " + locationList +
+                " recipe list: " + recipeList +
+                " and user prefs " + userPrefs);
+
+        addressBook = null;
+        filteredPersons = null;
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.itemList = new ItemList(itemList);
+        filteredItems = new FilteredList<>(this.itemList.getItemList());
+        this.locationList = new LocationList(locationList);
+        filteredLocations = new FilteredList<>(this.locationList.getLocationList());
+        this.recipeList = new RecipeList(recipeList);
+        filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());
+    }
+
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
