@@ -2,10 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+//import java.util.Collections;
+//import java.util.HashSet;
+//import java.util.Set;
 
 //import seedu.address.model.tag.Tag;
 
@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-//    private final Set<Tag> tags = new HashSet<>();
+    //    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -33,7 +33,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-//        this.tags.addAll(tags);
+        //        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -52,13 +52,13 @@ public class Person {
         return address;
     }
 
-//    /**
-//     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-//     * if modification is attempted.
-//     */
-//    public Set<Tag> getTags() {
-//        return Collections.unmodifiableSet(tags);
-//    }
+    //    /**
+    //     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+    //     * if modification is attempted.
+    //     */
+    //    public Set<Tag> getTags() {
+    //        return Collections.unmodifiableSet(tags);
+    //    }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
@@ -93,7 +93,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress());
-//                && otherPerson.getTags().equals(getTags());
+        //                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress());
-//                .append(" Tags: ");
+        //                .append(" Tags: ");
         return builder.toString();
     }
 

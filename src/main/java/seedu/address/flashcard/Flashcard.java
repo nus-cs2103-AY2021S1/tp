@@ -1,8 +1,5 @@
 package seedu.address.flashcard;
 
-import seedu.address.model.person.Person;
-
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -64,6 +61,6 @@ public class Flashcard {
 
         return otherFlashcard != null
                 && otherFlashcard.getQuestion().equals(getQuestion())
-                && (otherFlashcard.getAnswer().equals(getAnswer()) );
+                && (otherFlashcard.getAnswer().equals(getAnswer()));
     }
 }

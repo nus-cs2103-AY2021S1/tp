@@ -11,12 +11,13 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Tag;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.flashcard.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

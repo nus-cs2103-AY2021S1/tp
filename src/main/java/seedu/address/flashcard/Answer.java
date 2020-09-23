@@ -6,10 +6,9 @@ package seedu.address.flashcard;
 public class Answer {
     private final String answer;
 
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
     public static final String MESSAGE_CONSTRAINTS = "Answer can take any values, and it should not be blank";
 
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public Answer(String answer) {
         this.answer = answer;
