@@ -274,32 +274,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `AnimalBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an animal**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User specifies the add command with name, species and ID of animal
 
-    Use case ends.
+2. AnimalBook adds the animal
+
+3. AnimalBook refreshes to show the updated list
+
+   Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The command is incorrectly formatted
 
-  Use case ends.
+  AnimalBook shows an error message
 
-* 3a. The given index is invalid.
+  Use case resumes at step 1
 
-    * 3a1. AddressBook shows an error message.
+* 2a. The given ID is already taken
 
-      Use case resumes at step 2.
+  AnimalBook shows an error message
 
-*{More to be added}*
+  Use case resumes at step 1
+
+**Use case: Delete an animal**
+
+**MSS**
+
+1. User specifies the delete command with ID of animal
+
+2. AnimalBook deletes the animal
+
+3. AnimalBook refreshes to show the updated list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  AnimalBook shows an error message
+
+  Use case resumes at step 1
+
+* 2a. The given ID does not exist
+
+  AnimalBook shows an error message
+
+  Use case resumes at step 1
+
+**Use case: List all animals**
+
+**MSS**
+
+1. User specifies the list command
+
+2. AnimalBook displays list of all existing animals
+
+   Use case ends
+
+**Use case: Exit program** 
+
+**MSS**
+
+1. User specifies the exit command
+
+2. AnimalBook quits
+
+   Use case ends
+
+**Use case: View available commands**
+
+**MSS**
+
+1. User specifies the help command
+
+2. AnimalBook displays list of all available commands
+
+   Use case ends
 
 ### Non-Functional Requirements
 
