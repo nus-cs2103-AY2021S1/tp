@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/michael-setia.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -33,7 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/michael-setia.png" width="200px">
 
-[[github](http://github.com/michael-setia)] [[portfolio](team/michael-setia.md)]
+[[github](http://github.com/michael-setia)] 
+[[portfolio](team/michael-setia.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/michael-setia.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -53,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/michael-setia.md)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: UI
