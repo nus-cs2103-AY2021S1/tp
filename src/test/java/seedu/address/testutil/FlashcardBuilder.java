@@ -3,12 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Tag;
-
+import seedu.address.flashcard.*;
 
 
 public class FlashcardBuilder {
@@ -44,6 +39,14 @@ public class FlashcardBuilder {
      */
     public FlashcardBuilder withQuestion(String question) {
         this.question = new OpenEndedQuestion(question);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code question} to the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withMultipleChoiceQuestion(String question, String[] choices) {
+        this.question = new MCQ(question, choices);
         return this;
     }
 
