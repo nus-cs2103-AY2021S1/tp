@@ -89,7 +89,7 @@ Deletes the specified animal from the app.
 Format: `delete i/ID`
 
 * Deletes the animal at the specified `ID`.
-* The id refers to the id number shown in the displayed animal list.
+* ID refers to the id number shown in the displayed animal list.
 
 Examples:
 * `delete i/0193` deletes the individual animal with id 0193.
