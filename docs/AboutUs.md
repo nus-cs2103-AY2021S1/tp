@@ -9,47 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-###	Ben-Hanan Choong See Kaay
+### John Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/Ben-Hanan)]
+[[homepage](http://www.comp.nus.edu.sg/~damithch)]
+[[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Project Advisor
 
-### Hou Rui
+### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/Hou-Rui)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: Team Lead
+* Responsibilities: UI
 
-### Royce Ho Shou Yee
+### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/TheSpaceCuber)] 
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
+* Responsibilities: Data
 
-### Tin Kah Ong Isaac
+### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/IsaacTin)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
+* Responsibilities: Dev Ops + Threading
 
-### Udayagiri Nikhila Sai
+### James Doe
 
-<img src="images/team-images/Nikhilalalalala.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/Nikhilalalalala)]
+[[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
+* Responsibilities: UI
