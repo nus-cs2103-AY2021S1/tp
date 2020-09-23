@@ -18,7 +18,7 @@ understand under the hood what is going on.
 ![AddQuantitySequence](images/commandseqdiagrams/AddSequenceDiagram.png)
 
 ### Delete Item Command
-![DeleteItemSequence](images/commandseqdiagrams/DeleteSequenceDiagram.png)
+![DeleteItemSequence](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
 ### Delete Recipe Command
 ![DeleteRecipe](images/commandseqdiagrams/DeleteRecipeSequenceDiagram.png)

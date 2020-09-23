@@ -7,7 +7,12 @@ title: Developer Guide
 
 #Developer Guide
 
-This is the developer guide for 
+This is the developer guide for `Inventoryinator` a brownfield project evolved from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
+![inventoryinator](images/inventoryinator.jpg)
+Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
+get your inventory management tasks done faster than traditional GUI apps.
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -18,7 +23,7 @@ This is the developer guide for
 * [DevOps guide](DevOps.md)
 * [EndUserPersona](EndUserPersona.md)
 * [Usecases](Usecases.md)
-* [Implementation Details](CommandSequenceDiagram.md)
+* [Implementation Details and Sequence Flow](CommandSequenceDiagram.md)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

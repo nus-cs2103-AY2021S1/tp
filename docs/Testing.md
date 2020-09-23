@@ -6,8 +6,12 @@ title: Testing guide
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
-# Page Introduction
-This page will document our testing for classes in Inventoryinator.
+# Testing Documentation
+This page will document our testing for classes in Inventoryinator. Segmented into:
+* Unittesting
+* Integration Testing
+* Hybrid Testing
+* Acceptance Testing
 
 ### Launch and shutdown
 

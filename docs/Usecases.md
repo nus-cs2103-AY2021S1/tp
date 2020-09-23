@@ -6,7 +6,9 @@ title: UseCases
 {:toc}
 
 # Usecase Documentation
-This document will store the usecases and workflow usecases in our designed product `Inventoryinator`.
+This document will store the **feature usecases** and **workflow usecases** in our designed product `Inventoryinator`.
+
+For more information on how we come up with our Workflow Usecases, please check [Personas](EndUserPersona.md)
 
 ### Feature Usecases
 ![usecases](images/usecases/UsecaseDiagram1.png)
