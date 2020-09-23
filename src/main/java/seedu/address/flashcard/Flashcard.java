@@ -1,17 +1,18 @@
 package seedu.address.flashcard;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Flashcard. Each Flashcard will contain one question and
  * one answer. In addition, it can have multiple tags.
  */
 public class Flashcard {
-    final private Question question;
-    final private Answer answer;
-    final private List<Tag> tags;
+    private final Question question;
+    private final Answer answer;
+    private final Set<Tag> tags;
 
-    public Flashcard(Question question, Answer answer, List<Tag> tags) {
+    public Flashcard(Question question, Answer answer, Set<Tag> tags) {
         this.question = question;
         this.answer = answer;
         this.tags = tags;
@@ -46,7 +47,7 @@ public class Flashcard {
      * Gets the tags of this flashcard.
      * @return a list of tags.
      */
-    public List<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 

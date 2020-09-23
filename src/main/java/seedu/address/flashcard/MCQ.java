@@ -5,8 +5,8 @@ package seedu.address.flashcard;
  * Options for the mcq will be stored in an array while the
  * question itself will be stored as a {@code String}.
  */
-public class MCQ implements Question{
-    final private String[] options;
+public class MCQ implements Question {
+    private final String[] options;
     final String question;
 
     public MCQ(String question, String... options) {

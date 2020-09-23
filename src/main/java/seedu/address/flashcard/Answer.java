@@ -4,7 +4,12 @@ package seedu.address.flashcard;
  * Represents an Answer in a flashcard.
  */
 public class Answer {
-    final private String answer;
+    private final String answer;
+
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    public static final String MESSAGE_CONSTRAINTS = "Answer can take any values, and it should not be blank";
+
 
     public Answer(String answer) {
         this.answer = answer;
@@ -28,5 +33,9 @@ public class Answer {
      */
     public String getAnswer() {
         return answer;
+    }
+
+    public static boolean isValidAnswer(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 }
