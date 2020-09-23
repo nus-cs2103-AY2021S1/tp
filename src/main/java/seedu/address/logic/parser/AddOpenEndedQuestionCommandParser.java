@@ -12,47 +12,36 @@ import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.Phone;
-
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddOpenEndedQuestionCommandParser implements Parser<AddOpenEndedQuestionCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddOpenEndedQuestionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOpenEndedQuestionCommand.MESSAGE_USAGE));
         }
 
-        //        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        //        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        //        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        //        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
 
-        //        Person person = new Person(name, phone, email, address, tagList);
         Flashcard flashcard = new Flashcard(question, answer, tagList);
 
-        //        return new AddCommand(person);
-        return new AddCommand(flashcard);
+        return new AddOpenEndedQuestionCommand(flashcard);
     }
 
     /**
