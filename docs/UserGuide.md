@@ -49,6 +49,15 @@ Views a module stored in the system
   Examples:
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
+  
+  ### Adding a zoom link to a module: `add zoom`
+  
+  Adds a zoom link to an existing module.
+  
+  Format: `add zoom` **_`[MODULE_NAME]`_**
+  
+  Example of usage:
+  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` for the module named `cs2103T`
     
 
 --------------------------------------------------------------------------------------------------------------------
