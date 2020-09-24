@@ -45,7 +45,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 [[homepage](https://limziyang.com/)]
 [[github](http://github.com/Ziyang-98)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](https://limziyang.com)]
 
 * Role: Developer
 * Responsibilities: 
@@ -55,7 +55,8 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 <img src="images/jordan.png" width="200px">
 
 [[github](http://github.com/jordanyoong)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](https://jordanyoong.github.io/cv/experience.html)]
+
 
 * Role: Developer
 * Responsibilities:
