@@ -73,7 +73,8 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_searchRecipe() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         SearchRecipeCommand command = (SearchRecipeCommand) parser.parseCommand(
-                SearchRecipeCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
+                SearchRecipeCommand.COMMAND_WORD + " " + PREFIX_NAME
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchRecipeCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
