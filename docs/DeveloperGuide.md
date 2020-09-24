@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
 4.  QuickCache deletes the flashcard
-5.  QuickCache updates flashcard save file (UC08)
+5.  QuickCache updates flashcard save file (UC07)
 
     Use case ends.
 
@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  QuickCache updates flashcard save file (UC08)
+3.  QuickCache updates flashcard save file (UC07)
 4.  User requests to list flashcards
 5.  QuickCache shows the list of flashcards including the recently added flashcard
 
@@ -393,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: QuickCache**
 
-**Use case: UC06 - Test a single flashcard**
+**Use case: UC05 - Test a single flashcard**
 
 **Actor: User**
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: QuickCache**
 
-**Use case: UC07 - Test a set of flashcards by category**
+**Use case: UC06 - Test a set of flashcards by category**
 
 **Actor: User**
 
@@ -478,7 +478,7 @@ MSS:
 
   Use case ends.
   
-**Use case: UC08 - Update flashcard save file**
+**Use case: UC07 - Update flashcard save file**
 
 **Actor: QuickCache**
 
@@ -504,7 +504,7 @@ MSS:
 
     Use case resumes from step 2.
 
-**Use case: UC09 - Import flashcard data file**
+**Use case: UC08 - Import flashcard data file**
 
 **Actor: User**
 
