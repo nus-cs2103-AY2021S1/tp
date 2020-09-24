@@ -23,7 +23,7 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/OriginalImages/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,6 +52,7 @@ Views a module stored in the system
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
     
+    
 ### Deleting a module: `delete`
   
 Deletes the specified module from the system
@@ -60,6 +61,20 @@ Deletes the specified module from the system
   
   Examples:
   * `delete cs2103t` deletes the specified module named `cs2103t`
+
+
+### Editing a module : `edit zoom`
+
+* Edits an existing module in the module list.
+
+Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+
+* Edits the zoom link of a module named **_`[MODULE_NAME]`_** to **_`[ZOOM_LINK]`_**
+
+Examples:
+* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
+  to `https://sample.zoom.us`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -77,5 +92,8 @@ Deletes the specified module from the system
 Action | Format, Examples
 --------|------------------
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+
 **Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
+
+**Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
 
