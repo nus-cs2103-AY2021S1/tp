@@ -31,9 +31,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Bec Kyung Huhn (Kevin)
 
-<img src="images/kevin.png" width="200px">
+<img src="images/lysire.png" width="200px">
 
 [[github](http://github.com/lysire)]
+[[portfolio](team/lysire.md)]
 
 * Role: Developer, IntelliJ Expert
 * Responsibilities: Deliverables and Deadlines
