@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `QuickCache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1 - Explore QuickCache**
+**Use case: UC01 - Explore QuickCache**
 
 **MSS**
 
@@ -292,31 +292,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Error message indicating that QuickCache.jar cannot be opened pops up.
     
-    * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
+  * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
     
     Use case resumes at step 2.
 
 * 3a. User wants to know all the available commands present in QuickCache.
 
-    * 3a1. User requests for all the instructions available in QuickCache.
+  * 3a1. User requests for all the instructions available in QuickCache.
     
-    * 3a2. QuickCache displays all available commands.
+  * 3a2. QuickCache displays all available commands.
     
     Use case resumes at step 3.
     
 * 3b. User quits QuickCache while trying out quiz feature.
 
-    * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
+  * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
     
     Use case resumes at step 3.
 
 * *a. User dislikes the GUI.
 
-    * *a1. User quits and deletes QuickCache.
+  * *a1. User quits and deletes QuickCache.
     
     Use case ends.
     
-**Use case: UC2 - View Statistics**
+**Use case: UC02 - View Statistics**
 
 **Preconditions: User has QuickCache open.**
 
@@ -333,11 +333,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User has not done any quiz on QuickCache.
     
-    * 1a1. QuickCache shows an error message.
+  * 1a1. QuickCache shows an error message.
     
     Use case resumes at step 3.
 
-**Use case: UC3 - Delete a flashcard**
+**Use case: UC03 - Delete a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
@@ -359,11 +359,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. QuickCache shows an error message.
+  * 3a1. QuickCache shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-**Use case: UC4 - Create a flashcard**
+**Use case: UC04 - Create a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
@@ -381,15 +381,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The question is empty.
 
-    * 1a1. QuickCache shows an error message.
+  * 1a1. QuickCache shows an error message.
     
-        Use case ends.
+    Use case ends.
     
 * 1b. The answer is empty.
 
-    * 1b1. QuickCache shows an error message.
+  * 1b1. QuickCache shows an error message.
     
-        Use case ends.
+    Use case ends.
 
 **System: QuickCache**
 
@@ -403,6 +403,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. QuickCache shows a list of flashcards
 3. User requests to test a specific flashcard in the list with a specific answer
 4. QuickCache displays whether the answer is correct
+
+    Use case ends.
 
 **Extensions:**
 
@@ -429,6 +431,8 @@ MSS:
 3. User requests to test a specific category in the list
 4. User tests each flashcard on the list (UC06)
 5. QuickCache shows the number of successful questions at the end
+
+    Use case ends.
 
 **Extensions:**
 
@@ -481,7 +485,7 @@ MSS:
 MSS:
 
 1. QuickCache accepts update request
-2. QuickCache update save file
+2. QuickCache updates save file
   
     Use case ends.
 
