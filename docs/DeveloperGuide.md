@@ -500,6 +500,7 @@ MSS:
 * 2b. Save file corrupted.
 
   * 2b1. QuickCache shows an error message.
+  
   * 2b2. QuickCache creates new save file.
 
     Use case resumes from step 2.
@@ -531,6 +532,108 @@ MSS:
 
     Use case ends.
 
+**Use case: UC09 - Add tags during creation of a Flashcard**
+
+**Actor: User**
+
+MSS:
+
+1. User creates a flashcard.
+2. QuickCache shows a list of existing tags.
+3. QuickCache asks the user to type in the tags one by one.
+4. User types in the tags one by one.
+5. User signals that he is finished.
+6. QuickCache adds the tags to the flashcard.
+
+    Use case ends.
+
+**Extensions:**
+
+* 3a. User wishes to remove a tag that he entered.
+
+  * 3a1. User inputs the remove command to remove the tag.
+
+    Use case resumes at step 3.
+
+* 5a. Some of the tags are new tags
+
+  * 5a1. QuickCache stores and remembers the tags.
+
+    Use case ends.
+
+**Use case: UC10 - Deleting a tag category**
+
+**Actor: User**
+
+MSS:
+
+1. User wants to remove a tag category.
+2. User enters the delete tag command and the name of the tag to be deleted.
+3. QuickCache asks for a confirmation before deleting.
+4. User gives the confirmation.
+5. QuickCache deletes the tag from every Flashcard.
+
+    Use cased ends.
+
+**Extensions:**
+
+* 4a. User does not give confirmation
+
+  * 4a1. QuickCache does not delete anything.
+
+    Use case ends.
+
+**Use case: UC11 - Edit tags on an existing Flashcard**
+
+**Actor: User**
+
+MSS:
+
+1. User wants to add tags on an existing Flashcard
+2. QuickCache asks for the name of the new tag to be added.
+3. User enters the new tag name
+4. QuickCache adds the tag onto the Flashcard
+
+    Use case ends.
+
+**Extensions:**
+
+* 1a. User wants to remove a tag
+
+	* 1a1. User asks QuickCache to list out all the tags
+  
+	* 1a2. QuickCache lists out all the tags
+  
+	* 1a3. User enters the name of the tag to be removed
+  
+	* 1a4. QuickCache removes the tag from the Flashcard
+
+    Use case ends.
+
+* 1b. User wants to edit a tag
+
+	* 1b1. User asks QuickCache to rename a tag
+  
+	* 1b2. QuickCache asks for the new name of the tag
+  
+	* 1b3. User enters the new name
+  
+	* 1b4. QuickCache updates the tag with it's new name.  
+
+    Use case ends.
+
+**Use case: UC12 - Search for Flashcards based on Tags**
+
+**Actor: User**
+
+MSS:
+
+1. User enters the name of the tag he wants to search
+2. QuickCache filters through all existing Flashcards based on the tag and returns a list of Flashcards.
+
+    Use case ends.
+
+****
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
