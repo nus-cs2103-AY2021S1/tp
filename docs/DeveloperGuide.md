@@ -479,7 +479,7 @@ MSS:
 3. QuickCache asks the user to type in the tags one by one.
 4. User types in the tags one by one.
 5. User signals that he is finished.
-5. QuickCache adds the tags to the flashcard.
+6. QuickCache adds the tags to the flashcard.
 
 Use case ends.
 
@@ -491,8 +491,8 @@ Use case ends.
 Use case resumes at step 3.
 
 * 5a. Some of the tags are new tags
-	* QuickCache stores and remembers the tags.
-	* 
+	* 5a1. QuickCache stores and remembers the tags.
+
 Use case ends.
 
 **Use case: UC09 - Deleting a tag category**
