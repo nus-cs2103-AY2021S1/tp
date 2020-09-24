@@ -5,8 +5,12 @@ title: User Guide
 
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
 
-* Table of Contents
-{:toc}
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+   1. [Viewing a module](#viewing-a-module)
+   2. [Deleting a module](#deleting-a-module)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +23,7 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/OriginalImages/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,9 +39,7 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
-
-  
-### Locating persons by name: `view`
+### Viewing a module: `view`
   
 Views a module stored in the system
   
@@ -61,6 +63,28 @@ Views a module stored in the system
   Example of usage:
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
     
+    
+### Deleting a module: `delete`
+  
+Deletes the specified module from the system
+  
+ Format: `delete` **_`[MODULE_NAME]`_**
+  
+  Examples:
+  * `delete cs2103t` deletes the specified module named `cs2103t`
+
+
+### Editing a module : `edit zoom`
+
+* Edits an existing module in the module list.
+
+Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+
+* Edits the zoom link of a module named **_`[MODULE_NAME]`_** to **_`[ZOOM_LINK]`_**
+
+Examples:
+* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
+  to `https://sample.zoom.us`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -79,5 +103,11 @@ Views a module stored in the system
 Action | Format, Examples
 --------|------------------
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+
+**Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
+
+**Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
+
 **Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`
+
 
