@@ -249,20 +249,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                               | So that I can…​                                                                           |
-| -------- | ------------------------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions                                           | refer to instructions when I forget how to use the App                                       |
-| `* * *`  | user                                       | add a new patient                                                |                                                                                              |
-| `* * *`  | user                                       | delete a patient                                                 | remove entries that I no longer need                                                         |
-| `* * *`  | user                                       | find a patient by name                                           | locate details of persons without having to go through the entire list                       |
-| `* *`    | user                                       | hide private contact details                                     | minimize chance of someone else seeing them by accident                                      |
-| `* * *`  | doctor                                     | retrieve the medical details/notes for each patient easily       | refer to it when the patient visits again                                                    |
-| `* * *`  | doctor                                     | type/store my patients' data on their individual profile pages   | update their condition after each appointment and not write everything down by hand          |
-| `* *`    | doctor                                     | have an undo command                                             | undo any mistakes I make in the software                                                     |
-| `* *`    | doctor                                     | have a redo command                                              | redo any work that I've undone                                                               |
-| `*`      | doctor                                     | retrieve past commands that I input in the application           | refer to my past commands                                                                    |
-| `*`      | doctor                                     | add profile picture to each patient's profile                    | can recognize the patient using the profile picture                                          |
-| `*`      | doctor                                     | color code patients                                              | know which patients are more at risk (e.g. high blood pressure)                              |
+| Priority | As a …​  | I want to …​                                                  | So that I can…​                                                                  |
+| -------- | ------------| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `* * *`  | new user    | see usage instructions                                           | refer to instructions when I forget how to use the App                              |
+| `* * *`  | user        | add a new patient                                                |                                                                                     |
+| `* * *`  | user        | delete a patient                                                 | remove entries that I no longer need                                                |
+| `* * *`  | user        | find a patient by name                                           | locate details of persons without having to go through the entire list              |
+| `* *`    | user        | hide private contact details                                     | minimize chance of someone else seeing them by accident                             |
+| `* * *`  | doctor      | retrieve the medical details/notes for each patient easily       | refer to it when the patient visits again                                           |
+| `* * *`  | doctor      | type/store my patients' data on their individual profile pages   | update their condition after each appointment and not write everything down by hand |
+| `* *`    | doctor      | have an undo command                                             | undo any mistakes I make in the software                                            |
+| `* *`    | doctor      | have a redo command                                              | redo any work that I've undone                                                      |
+| `*`      | doctor      | retrieve past commands that I input in the application           | refer to my past commands                                                           |
+| `*`      | doctor      | add profile picture to each patient's profile                    | can recognize the patient using the profile picture                                 |
+| `*`      | doctor      | color code patients                                              | know which patients are more at risk (e.g. high blood pressure)                     |
+
 *{More to be added}*
 
 ### Use cases
