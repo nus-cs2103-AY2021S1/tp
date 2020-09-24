@@ -23,7 +23,7 @@ public class Person {
     // Data fields
     private Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private HashMap<Name,Participation> listOfParticipations = new HashMap<>();
+    private HashMap<Name, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -69,8 +69,8 @@ public class Person {
         email = new Email(newEmailStr);
     }
 
-    public void addProject(Project p){
-        listOfParticipations.put(p.getName(), new Participation(this,p));
+    public void addProject(Project p) {
+        listOfParticipations.put(p.getName(), new Participation(this, p));
     }
 
     /**
@@ -93,8 +93,8 @@ public class Person {
         return otherTeammate != null
                 && otherTeammate.getName().equals(getName())
                 && (otherTeammate.getPhone().equals(getPhone())
-                        || otherTeammate.getEmail().equals(getEmail())
-                        || otherTeammate.getAddress().equals(getAddress()));
+                || otherTeammate.getEmail().equals(getEmail())
+                || otherTeammate.getAddress().equals(getAddress()));
     }
 
     /**

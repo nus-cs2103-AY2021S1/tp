@@ -23,7 +23,7 @@ public class Project {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private HashMap<PersonName,Participation> listOfParticipations = new HashMap<>();
+    private HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -53,8 +53,8 @@ public class Project {
         return address;
     }
 
-    public void addProject(Person p){
-        listOfParticipations.put(p.getName(), new Participation(p,this));
+    public void addProject(Person p) {
+        listOfParticipations.put(p.getName(), new Participation(p, this));
     }
 
     /**
