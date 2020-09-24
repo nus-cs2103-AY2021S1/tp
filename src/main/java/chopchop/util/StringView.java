@@ -63,14 +63,12 @@ public class StringView {
 
     /**
      * Reseats this string view to refer to the same array as the given other string view, with
-     * the appropriate bounds etc.
+     * the appropriate bounds etc. This violates the immutability of the string view.
      *
      * @param other the source string view
      */
     private void replaceWith(StringView other) {
-        this.chars = other.chars;
-        this.begin = other.begin;
-        this.end   = other.end;
+        this.set(other.chars, other.begin, other.end);
     }
 
     /**
@@ -103,6 +101,16 @@ public class StringView {
      *
      * This version of {@code bisect()} will modify both parameters {@code x} and {@code xs}, and will
      * replace their contents with the appropriate first and second parts of the split.
+     *
+     * The reason that {@code bisect()} is implemented in this way is to allow writing code in this manner:
+     * {@code
+     *      xs.bisect(x, ' ', xs);
+     *      var foo = x;
+     *      xs.bisect(x, ' ', xs);
+     *      var bar = x;
+     * }
+     * It would not be necessary if this language had some semblance of pattern matching so one could do
+     * {@code var (x, xs) = sv.bisect(' ')}, so we have to live with this.
      *
      * @param x     the view in which to place the first part of the bisection
      * @param delim the delimiter to use
