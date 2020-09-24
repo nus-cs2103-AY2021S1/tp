@@ -7,44 +7,21 @@ title: User Guide
 {:toc}
 
 ## Introduction
-__ResiReg__ is a Residential College management application that helps residential admins (from the Office of Housing Services) with their daily tasks. __ResiReg__ allows admin to deal with allocating rooms to students, billing, generating OHS reports, and even managing the COVID-19 situation in residences. 
-
-__ResiReg__ has the following main features:
-1. View a list of vacant rooms in the College, filtered by COVID-19 zoning if needed.
-2. Allocate or deallocate students to vacant rooms in the College when the semester begins, depending on: 
-    - year of study
-    - faculty
-    - major
-    - room type.
-3. View a list of current room allocations, where each allocation includes room number, student name, room type, and date of check-in. 
-4. Add attributes of students staying in the College, including their room allocated, student name, matric number, faculty, year of study, etc.
+**ResiReg** (**Res**idential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs)* in NUS with their daily tasks. ResiReg allows admin to allocate rooms to students, manage students records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+ 
+ **ResiReg** has the following main features:
+ 
+ * Manage records of students.
+ * Manage allocations of students to rooms in the College
+ * Generate bills and log payments for RC-related services.
+ * Export records of students, rooms or transactions to CSV files for easy reference and sharing.
 
 __ResiReg__ is optimised for OHS who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
 - A Command Line Interface (CLI) which allows you to access all __ResiReg__ features by typing.
 - A Graphical User Interface (GUI) that displays the information you need in a grid format.
 
 > __ResiReg__ is currently a work in progress. Here is a low-fidelity mockup of its skeleton. Stay tuned for our progress!
-![](https://i.imgur.com/uqEO8Lp.png)
-
-
-<!---
-your comment goes here
-and here
-3. Manage students serving Stay-at-Home-Notice (SHN) in the College:
-   * mark rooms that are used for *quarantine*
-   * add records of students serving SHN (duration of notice, symptoms, date of COVID test, emergency contacts)
-   * assign students serving SHN to quarantine rooms
-   * generate daily reports sent to the Ministry of Health (MOH) 
-   
-4. Handle College finances:
-    * add bills for students e.g. for semesterly stay, installation of air-con, late fees
-    * view the outstanding bill due for a student
-    * log transactions when a student pays a bill
-    * generate half-yearly report for internal audit of College accounts 
--->
-
-
-
+![](images/Ui.png)
 
 ## About this Guide
 ### Basic Information

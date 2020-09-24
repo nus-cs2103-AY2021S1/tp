@@ -2,16 +2,28 @@
 
 ![Ui](docs/images/Ui.png)
 
-* ResiReg is a project built for the CS2103 module at NUS. ResiReg is a housing management application for residential administration staff, such as admin working at NUS Residential Colleges. <br>
-  Example usages:
-  * to manage records of students and rooms
-  * to allocate and deallocate students to rooms 
-  * to generate bills and record payments
-  * to manage students serving SHN notice
-  * to generate reports for half-yearly audits of the admin staff
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_), originally used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `ResiReg` because it provides functionality for "__Res__idential __Reg__ulation" of dorms at a university. 
-* For the detailed documentation of this project, see the **[ResiReg Product Website](https://ay2021s1-cs2103-t16-3.github.io/tp)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+**ResiReg** (**Res**idential **Reg**ulation) is a productivity app designed to help admin staff at Residential Colleges (RCs)* in NUS with their daily tasks. ResiReg allows admin to allocate rooms to students, manage students records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+
+**ResiReg** has the following main features:
+
+* Manage records of students.
+* Manage allocations of students to rooms in the College
+* Generate bills and log payments for RC-related services.
+* Export records of students, rooms or transactions to CSV files for easy reference and sharing.
+
+Our application is geared towards users who prefer typing over mouse actions, so interactions with our application is mainly keyboard based.
+
+## Site Map
+ 
+ * [User Guide](docs/UserGuide.md)
+ * [Developer Guide](docs/DeveloperGuide.md)
+ * [About Us](docs/AboutUs.md)
+ * [Contact Us](docs/ContactUs.md)
+ 
+## Acknowledgements
+ 
+ * This project is a based off the AddressBook-Level3 project, created by SE-EDU initiative at https://se-education.org
+ * Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by _Marco Jakob_.
+ * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+ 
+## License : [MIT](LICENSE)
