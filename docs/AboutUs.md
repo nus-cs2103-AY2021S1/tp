@@ -38,22 +38,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ng Shuo Qi, Constance
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/constancensq.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/constancensq)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents.
 
-### James Doe
+### Cody Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cody.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/CodyChew)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Looks after code quality,
+ensures adherence to coding standards, etc.
+
+<br>
+
+#### Jon Chua (Supervisor)
+
+#### Prof Damith (Lecturer)
