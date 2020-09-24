@@ -21,4 +21,3 @@ such that it can be used as a client tracking software for insurance agents.
 * Credits:
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * Professor Damith, Teaching Assistant Danny and fellow peer reviewers who have graciously tested our app :)
-
