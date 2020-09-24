@@ -6,27 +6,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class SearchRecipeCommandParser implements Parser<SearchRecipeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public SearchRecipeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get();
@@ -34,12 +34,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = name.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new SearchRecipeCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**

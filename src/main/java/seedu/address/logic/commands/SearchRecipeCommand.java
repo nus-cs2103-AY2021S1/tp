@@ -10,7 +10,7 @@ import seedu.address.model.recipe.NameContainsKeywordsPredicate;
  * Finds and lists all recipes in Recipe collection whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class SearchRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "searchR";
 
@@ -21,7 +21,7 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public SearchRecipeCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof SearchRecipeCommand // instanceof handles nulls
+                && predicate.equals(((SearchRecipeCommand) other).predicate)); // state check
     }
 }
