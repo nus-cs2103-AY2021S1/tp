@@ -173,8 +173,26 @@ room <matric_number>
 A0123456X is allocated room <room_number>
 ```
 
+#### 5. Edit a room allocation for a student
 
-#### 5. Viewing a list of all allocated rooms
+A student's room allocation can be edited to update room vacancies.
+
+##### Command
+```
+edit <matric_number> <room_number>
+```
+##### Execution Example
+```
+> edit A0123456X 11-109
+```
+*Action*: edits the room allocation for student A0123456X to the specified room number.
+
+*Output*:
+```
+Successfully edited room allocation for student A0123456X to 11-109.
+```
+
+#### 6. Viewing a list of all allocated rooms
 
 The room allocations for all students in the residential college can be viewed to check which room each student stays in.
 
@@ -195,13 +213,14 @@ Here is the list of all room allocations:
 - John New : 12-107
 - Jason New : 13-105
 ```
+
 <br />
 
 ### II. Student Management
 
 >**ResiReg** allows you to manage students in the Residential College.
 
-#### 6. Adding a student
+#### 7. Adding a student
 A new student can be added to **ResiReg**. The following student details are stored: name, matriculation number, email, faculty and year.
 
 ##### Command
@@ -235,7 +254,7 @@ add student /name Jet New /matric A0123456X /email jn@u.nus.edu
 Couldn't add student! The following fields are missing: faculty, year. 
 ```
 
-#### 7. Listing all students
+#### 8. Listing all students
 All the students currently in **ResiReg** can be listed.
 
 ##### Command
@@ -365,6 +384,7 @@ Action   | Format, Examples
 *students* | `students`
 *allocate* | `allocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108`
 *deallocate* | `deallocate <matric_number> <room_number>` e.g. `allocate A0123456X 10-108`
+*edit* | `edit <matric_number> <room_number>` e.g. `edit A0123456X 10-108`
 *room* | `room <matric_number>` e.g. `room A0123456X`
 *add student* | `add student /name <name> /faculty <faculty> /year <year> /email <email>` e.g.`add student /name Jet New /faculty SOC /year 2 /email jn@u.nus.edu`
 *help* | `help [command]` e.g. `help` or `help list`
