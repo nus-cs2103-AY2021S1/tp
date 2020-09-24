@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Terence Ho Wei Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vielheim.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/vielheim)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Overall project coordination. Ensures team is on schedule.
 
 ### Wong Wen Wei Esmanda
 
@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ng Shuo Qi, Constance
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/constancensq.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/constancensq)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents.
 
 ### Cody Chew
 
