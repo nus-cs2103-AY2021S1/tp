@@ -76,7 +76,7 @@ Examples:
 * `add c/earnings n/selling cookies a/10.10`
 
 
-### Listing all persons : `remove`
+### Removing expenses : `remove`
 
 Removes an expense from the tracker.
 
@@ -90,60 +90,52 @@ Example:
 * `remove 1`: Removes the first expense in the tracker
 
 
-### Editing a person : `edit`
+### Editing an expense : `edit`
 
-Edits an existing person in the address book.
+Edits an entry in the tracker.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+* Edits an entry that matches the expense name and changes the initial amount with the either entry in a/MONEY_AMT (if any), the initial name to the entry in n/EXPENSE_NAME (if any) or both if both entries are keyed in
+* The tags n/ and a/ have to be used to indicate which field specifies EXPENSE_NAME and which field specifies MONEY_AMT
+* Order of whether `[n/EXPENSE_NAME]` or `[a/MONEY_AMT]` would not affect the edit command so long as the `n/` and `a/` tags are used, e.g. `edit 2 n/Cash paid at Zouk a/200` would have the same effect as `edit 2 a/200 and n/Cash paid at Zouk`.
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: 
+* `edit ENTRY_NUM [n/EXPENSE_NAME] [a/MONEY_AMT]`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+Example: 
+* `edit 2 n/eating McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
+* `edit 2 n/eating McNuggets` changes the name of entry 2 to `eating McNuggets` 
+* `edit 2 a/5.50` changes the amount of entry 2 to `$5.50`
 
-Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+### Locating expenses by name: `find`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Finds expenses that have the given keyword in their names.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* The search is case-sensitive. e.g grocery will match grocery but not Grocery.
+* Only the expense name is searched.
+* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. Food will return Hawker Food, Restaurant Food
 
-### Deleting a person : `delete`
+Format: 
+* `find KEYWORD [MORE_KEYWORDS]`
 
-Deletes the specified person from the address book.
+Example:
+* `find food`: Finds expenses with the keyword `food`.
 
-Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+### Listing out expenses : `list`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Lists out all expenses in a category. 
 
-### Clearing all entries : `clear`
+* The search is case-sensitive. e.g food will match food but not Food.
+* All expenses belonging to that category will be shown. 
 
-Clears all entries from the address book.
+Format: 
+* `list CATEGORY`
 
-Format: `clear`
+Example:
+* `list earning`: Lists expenses that belong to the `earnings` category. 
 
 ### Exiting the program : `exit`
 
@@ -151,31 +143,16 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Add** | `add c/CATEGORY  n/EXPENSE_NAME a/EXPENSE_AMT`
+**Remove** | `remove ENTRY_NUM`<br>`remove n/EXPENSE_NAME`  
+**Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`
+**List** | `list CATEGORY`
+**Exit** | `exit`
