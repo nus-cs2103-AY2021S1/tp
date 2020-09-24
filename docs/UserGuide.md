@@ -150,9 +150,23 @@ Exits the program.
 
 Format: `exit`
 
+#### Undoing the previous command: undo 
+
+Reverts the previous command given by the user. 
+
+Format: `undo`
+
+#### Redoing a command : redo 
+
+Redoes the most recent command that the user has undone. 
+
 ### Saving the data
 
 CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+
+
+Format: `redo` 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,3 +188,5 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Undo** | `undo`
+**Redo** | `redo`
