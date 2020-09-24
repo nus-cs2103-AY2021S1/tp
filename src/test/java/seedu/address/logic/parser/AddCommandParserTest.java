@@ -1,11 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.flashcard.Answer;
-import seedu.address.model.flashcard.Category;
-import seedu.address.model.flashcard.Question;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ANSWER_1;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_1;
@@ -20,20 +14,28 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_3;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.flashcard.Answer;
+import seedu.address.model.flashcard.Category;
+import seedu.address.model.flashcard.Question;
+
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
-    public static final String SPACE = " ";
-    public static final String PREFIX_QUESTION = " q/";
     public static final String PREFIX_ANSWER = " a/";
     public static final String PREFIX_CATEGORY = " c/";
+    public static final String PREFIX_QUESTION = " q/";
+    public static final String SPACE = " ";
+
+    private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-         // standard flashcard with category
-         assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
+        // standard flashcard with category
+        assertParseSuccess(parser, SPACE + PREFIX_QUESTION + VALID_QUESTION_1 + PREFIX_ANSWER
                  + VALID_ANSWER_1 + PREFIX_CATEGORY + VALID_CATEGORY_1, new AddCommand(FLASHCARD_1));
 
-         // flashcard with input arguments in reversed order, with category
+        // flashcard with input arguments in reversed order, with category
         assertParseSuccess(parser, SPACE + PREFIX_ANSWER + VALID_ANSWER_1 + PREFIX_QUESTION + VALID_QUESTION_1
                  + PREFIX_CATEGORY + VALID_CATEGORY_1, new AddCommand(FLASHCARD_1));
     }
@@ -65,7 +67,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid question
-        assertParseFailure(parser,SPACE + PREFIX_QUESTION + INVALID_QUESTION_1 + PREFIX_ANSWER
+        assertParseFailure(parser, SPACE + PREFIX_QUESTION + INVALID_QUESTION_1 + PREFIX_ANSWER
                 + VALID_ANSWER_1, Question.MESSAGE_CONSTRAINTS);
 
         // invalid answer
