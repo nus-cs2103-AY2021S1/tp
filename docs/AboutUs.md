@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/Michaeliaaa.png.png" width="200px">
 
-[[github](https://github.com/Michaeliaaa)]
+[[github](https://github.com/michaeliaaa)]
 [[portfolio](team/Michaeliaaa.md)]
 
 * Role: Team Lead
