@@ -93,8 +93,10 @@ public class CommandParser {
         xs.bisect(x, '/', xs);
         var theRest = x.toString().strip();
 
-        xs = xs.undrop(1);
-        assert xs.at(0) == '/';
+        if (!xs.isEmpty()) {
+            xs = xs.undrop(1);
+            assert xs.at(0) == '/';
+        }
 
         return this.parseNamedArguments(xs)
             .map(args -> new CommandArguments(command, target, theRest, args));

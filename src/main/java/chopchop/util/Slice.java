@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class Slice<T> {
 
     public final T[] xs;
-    public final int start;
+    public final int begin;
     public final int length;
 
     /**
@@ -25,7 +25,7 @@ public class Slice<T> {
      */
     public Slice(T[] xs, int begin, int length) {
         this.xs     = xs;
-        this.start  = begin;
+        this.begin  = begin;
         this.length = length;
     }
 
@@ -38,7 +38,7 @@ public class Slice<T> {
      */
     public Slice(T[] xs, int begin) {
         this.xs     = xs;
-        this.start  = begin;
+        this.begin  = begin;
 
         if (begin > xs.length) {
             this.length = 0;
@@ -54,7 +54,7 @@ public class Slice<T> {
      */
     public Slice(T[] xs) {
         this.xs     = xs;
-        this.start  = 0;
+        this.begin  = 0;
         this.length = xs.length;
     }
 
@@ -64,7 +64,7 @@ public class Slice<T> {
      * @return the starting index of the slice.
      */
     public int begin() {
-        return this.start;
+        return this.begin;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Slice<T> {
      * @return one-past-the-index of the slice.
      */
     public int end() {
-        return this.start + this.length;
+        return this.begin + this.length;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Slice<T> {
      * @return the element at the specified index
      */
     public T get(int i) {
-        return this.xs[this.start + i];
+        return this.xs[this.begin + i];
     }
 
     /**
@@ -102,7 +102,7 @@ public class Slice<T> {
      */
     public T front() {
         assert this.size() > 0;
-        return this.xs[this.start];
+        return this.xs[this.begin];
     }
 
     /**
@@ -112,7 +112,7 @@ public class Slice<T> {
      */
     public T back() {
         assert this.size() > 0;
-        return this.xs[this.start + this.length - 1];
+        return this.xs[this.begin + this.length - 1];
     }
 
     /**
@@ -127,7 +127,7 @@ public class Slice<T> {
             n = this.length;
         }
 
-        return new Slice<T>(this.xs, this.start + n, this.length - n);
+        return new Slice<T>(this.xs, this.begin + n, this.length - n);
     }
 
     /**
@@ -142,7 +142,7 @@ public class Slice<T> {
             n = this.length;
         }
 
-        return new Slice<T>(this.xs, this.start, n);
+        return new Slice<T>(this.xs, this.begin, n);
     }
 
     /**
@@ -157,18 +157,18 @@ public class Slice<T> {
             n = this.length;
         }
 
-        return new Slice<T>(this.xs, this.start + this.length - n, n);
+        return new Slice<T>(this.xs, this.begin + this.length - n, n);
     }
 
     /**
      * Return a new slice with the given bounds.
      *
-     * @param begin the starting index of the new slice
+     * @param start the starting index of the new slice
      * @param len   the length of the new slice
      * @return the new subslice
      */
-    public Slice<T> slice(int begin, int len) {
-        return new Slice<T>(this.xs, this.start + begin, len);
+    public Slice<T> slice(int start, int len) {
+        return new Slice<T>(this.xs, this.begin + start, len);
     }
 
     /**
@@ -177,9 +177,8 @@ public class Slice<T> {
      * @return a Stream of elements
      */
     public Stream<T> stream() {
-        return Stream
-            .iterate(this.start, i -> i + 1)
-            .map(i -> this.xs[i])
+        return Arrays.stream(this.xs)
+            .skip(this.begin())
             .limit(this.size());
     }
 
