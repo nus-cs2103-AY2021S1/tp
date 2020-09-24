@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.HILARY;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,41 @@ public class PersonTest {
         // same name, same phone, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
+    }
+
+    @Test
+    public void isAlreadyReminded() {
+        // new assignment created -> returns false
+        Person newAssignment = new PersonBuilder().build();
+        assertFalse(newAssignment.isAlreadyReminded());
+
+        // assignment set to have reminders -> returns true
+        Person aliceCopy = new PersonBuilder(ALICE).withRemindersSet().build();
+        assertTrue(aliceCopy.isAlreadyReminded());
+
+        // assignment already has reminders set -> returns true
+        assertTrue(HILARY.isAlreadyReminded());
+
+        // already has reminders set, different name -> returns true
+        Person editedHilary = new PersonBuilder(HILARY).withName(VALID_NAME_BOB).build();
+        assertTrue(editedHilary.isAlreadyReminded());
+
+        // already has reminders set, different phone -> returns true
+        editedHilary = new PersonBuilder(HILARY).withPhone(VALID_PHONE_BOB).build();
+        assertTrue(editedHilary.isAlreadyReminded());
+
+        // already has reminders set, different email -> returns true
+        editedHilary = new PersonBuilder(HILARY).withEmail(VALID_EMAIL_BOB).build();
+        assertTrue(editedHilary.isAlreadyReminded());
+
+        // already has reminders set, different address -> returns true
+        editedHilary = new PersonBuilder(HILARY).withAddress(VALID_ADDRESS_BOB).build();
+        assertTrue(editedHilary.isAlreadyReminded());
+
+        // already has reminders set, different tags -> returns true
+        editedHilary = new PersonBuilder(HILARY).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(editedHilary.isAlreadyReminded());
+
     }
 
     @Test
