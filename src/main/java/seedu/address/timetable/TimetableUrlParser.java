@@ -10,7 +10,7 @@ public class TimetableUrlParser {
         String[] moduleDataArray = parseTimetableUrlForData(url);
         String[] moduleCodeArray = getModuleCodeArray(moduleDataArray);
         String[] moduleLessonArray = getModuleLessonArray(moduleDataArray);
-        return new TimetableData(semester, moduleDataArray, moduleCodeArray, moduleLessonArray);
+        return new TimetableData(semester, moduleCodeArray, moduleLessonArray);
     }
 
     private static int parseTimetableUrlForSem(String url) {
