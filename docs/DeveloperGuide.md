@@ -426,7 +426,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing an order while the order is currently active
 
-   1. Prerequisites: Create a supper order using the `view` command.
+   1. Prerequisites: Create a supper order using the `order` command.
 
    1. Test case: `order`<br>
       Expected: All the items in the current order are displayed along with their associated quantities.
