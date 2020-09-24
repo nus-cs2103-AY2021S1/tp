@@ -31,32 +31,9 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * Creates a {@code StorageManager} with the given {@code ItemListStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ItemListStorage}, {@code LocationListStorage},
+     * {@code RecipeListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ItemListStorage itemListStorage, UserPrefsStorage userPrefsStorage) {
-        super();
-        this.itemListStorage = itemListStorage;
-        this.userPrefsStorage = userPrefsStorage;
-    }
-
-    /**
-     * Creates a {@code StorageManager} with the given {@code LocationListStorage} and {@code UserPrefStorage}.
-     */
-    public StorageManager(LocationListStorage locationListStorage, UserPrefsStorage userPrefsStorage) {
-        super();
-        this.locationListStorage = locationListStorage;
-        this.userPrefsStorage = userPrefsStorage;
-    }
-
-    /**
-     * Creates a {@code StorageManager} with the given {@code RecipeListStorage} and {@code UserPrefStorage}.
-     */
-    public StorageManager(RecipeListStorage recipeListStorage, UserPrefsStorage userPrefsStorage) {
-        super();
-        this.recipeListStorage = recipeListStorage;
-        this.userPrefsStorage = userPrefsStorage;
-    }
-
     public StorageManager(ItemListStorage itemListStorage, LocationListStorage locationListStorage,
                           RecipeListStorage recipeListStorage, UserPrefsStorage userPrefsStorage) {
         super();

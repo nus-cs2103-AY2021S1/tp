@@ -62,65 +62,8 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Initializes a ModelManager with the given itemList and userPrefs.
+     * Initializes a ModelManager with the given itemList, locationList, recipeList and userPrefs.
      */
-    public ModelManager(ReadOnlyItemList itemList, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(itemList, userPrefs);
-
-        logger.fine("Initializing with item list: " + itemList + " and user prefs " + userPrefs);
-
-        addressBook = null;
-        this.userPrefs = new UserPrefs(userPrefs);
-        this.itemList = new ItemList(itemList);
-        filteredItems = new FilteredList<>(this.itemList.getItemList());
-        filteredPersons = null;
-        locationList = null;
-        filteredLocations = null;
-        recipeList = null;
-        filteredRecipes = null;
-    }
-
-    /**
-     * Initializes a ModelManager with the given locationList and userPrefs.
-     */
-    public ModelManager(ReadOnlyLocationList locationList, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(locationList, userPrefs);
-
-        logger.fine("Initializing with location list: " + locationList + " and user prefs " + userPrefs);
-
-        addressBook = null;
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = null;
-        itemList = null;
-        filteredItems = null;
-        this.locationList = new LocationList(locationList);
-        filteredLocations = new FilteredList<>(this.locationList.getLocationList());
-        recipeList = null;
-        filteredRecipes = null;
-    }
-
-    /**
-     * Initializes a ModelManager with the given recipeList and userPrefs.
-     */
-    public ModelManager(ReadOnlyRecipeList recipeList, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(recipeList, userPrefs);
-
-        logger.fine("Initializing with recipe list: " + recipeList + " and user prefs " + userPrefs);
-
-        addressBook = null;
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = null;
-        itemList = null;
-        filteredItems = null;
-        locationList = null;
-        filteredLocations = null;
-        this.recipeList = new RecipeList(recipeList);
-        filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());
-    }
-
     public ModelManager(ReadOnlyItemList itemList, ReadOnlyLocationList locationList,
                         ReadOnlyRecipeList recipeList, ReadOnlyUserPrefs userPrefs) {
         super();
