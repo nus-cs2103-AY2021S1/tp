@@ -347,6 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
 4.  QuickCache deletes the flashcard
+5.  QuickCache updates flashcard save file (UC08)
 
     Use case ends.
 
@@ -370,8 +371,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  User requests to list flashcards
-4.  QuickCache shows the list of flashcards including the recently added flashcard
+3.  QuickCache updates flashcard save file (UC08)
+4.  User requests to list flashcards
+5.  QuickCache shows the list of flashcards including the recently added flashcard
 
     Use case ends.
 
@@ -471,6 +473,59 @@ MSS:
 * 4d. The user closes QuickCache
 
   Use case ends.
+  
+**Use case: UC08 - Update flashcard save file**
+
+**Actor: QuickCache**
+
+MSS:
+
+1. QuickCache accepts update request
+2. QuickCache update save file
+  
+    Use case ends.
+
+**Extensions:**
+
+* 2a. No save file.
+
+  * 3a1. QuickCache creates new save file.
+  
+    Use case resumes from step 2.
+
+* 2b. Save file corrupted.
+
+  * 2b1. QuickCache shows an error message.
+  * 2b2. QuickCache creates new save file.
+
+    Use case resumes from step 2.
+
+**Use case: UC09 - Import flashcard data file**
+
+**Actor: User**
+
+MSS:
+
+1. User requests to import data file
+2. QuickCache requests for the file location
+3. User specifies the file location
+4. QuickCache imports the file
+  
+    Use case ends.
+
+**Extensions:**
+
+* 3a. File not found.
+
+  * 3a1. QuickCache shows an error message.
+  
+    Use case ends.
+
+* 3b. Data file corrupted
+
+  * 3b1. QuickCache shows an error message.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
