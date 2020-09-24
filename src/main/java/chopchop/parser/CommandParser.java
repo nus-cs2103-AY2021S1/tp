@@ -8,11 +8,12 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ArrayList;
 
+import chopchop.util.Result;
 import chopchop.util.StringView;
 
 public class CommandParser {
 
-    private Map<String, List<String>> parseNamedArguments(StringView input) {
+    private Result<Map<String, List<String>>> parseNamedArguments(StringView input) {
 
         var ret = new HashMap<String, List<String>>();
         while (input.size() > 0) {
@@ -29,8 +30,7 @@ public class CommandParser {
 
                 currentArg.bisect(argName, ' ', argValue);
                 if (argName.isEmpty()) {
-                    // return Optional.empty();
-
+                    return Result.error("argument name cannot be empty");
                 }
 
                 var list = new ArrayList<String>();
@@ -49,7 +49,7 @@ public class CommandParser {
             input = input.undrop(1);
         }
 
-        return ret;
+        return Result.of(ret);
     }
 
     /**
@@ -60,7 +60,7 @@ public class CommandParser {
      * @param input the input string to parse
      * @return      the parsed components, iff parsing succeeded; an empty optional otherwise.
      */
-    public Optional<CommandArguments> parse(String input) {
+    public Result<CommandArguments> parse(String input) {
 
         var sv = new StringView(input);
 
@@ -96,7 +96,7 @@ public class CommandParser {
         xs = xs.undrop(1);
         assert xs.at(0) == '/';
 
-        var namedArgs = this.parseNamedArguments(xs);
-        return Optional.of(new CommandArguments(command, target, theRest, namedArgs));
+        return this.parseNamedArguments(xs)
+            .map(args -> new CommandArguments(command, target, theRest, args));
     }
 }

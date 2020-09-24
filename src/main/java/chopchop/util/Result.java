@@ -33,7 +33,7 @@ public class Result<T> extends Either<String, T> {
      * @return the contained value
      * @throws NoSuchElementException if the Result was invalid (ie. does not have a value)
      */
-    public String getValue() {
+    public T getValue() {
         return super.fromRight();
     }
 
@@ -42,7 +42,7 @@ public class Result<T> extends Either<String, T> {
      *
      * @return the contained value, optionally
      */
-    public Optional<String> getValueOpt() {
+    public Optional<T> getValueOpt() {
         return super.fromRightOpt();
     }
 
