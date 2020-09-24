@@ -1,12 +1,17 @@
----
-layout: page
-title: User Guide
----
+# User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Common Cents is your convenient at-hand expense-tracking tool, meant for Singaporean University students with side businesses. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
-* Table of Contents
-{:toc}
+* Quick Start
+* Features
+  * Viewing help: `help`
+  * Adding an expense: `add`
+  * Removing an expense: `remove`
+  * Editing an expense: `edit`
+  * Finding expenses by keyword: `find`
+  * Listing out expenses: `list`
+  * Exiting the program: `exit`
+* Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
 
