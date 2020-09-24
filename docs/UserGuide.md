@@ -137,6 +137,7 @@ Example: `open doc 0`
 ## Command summary
 
 #### Main Page Commands
+
 |Command            | Format                        | Association   |
 | ----------------- | ----------------------------- | ------------- | 
 |**case**           | `case [TITLE]`                | Investigation |
@@ -146,6 +147,7 @@ Example: `open doc 0`
 |**exit**           | `exit`                        | General       |
 
 #### Investigation Page Commands
+
 | Command           | Format                        | Association   |
 | ----------------- | ----------------------------- | ------------- |
 |**desc**           | `desc [DESC]`                 | Investigation |
