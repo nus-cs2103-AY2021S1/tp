@@ -59,7 +59,7 @@ Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
 * Edits the zoom link of a module named **_`[MODULE_NAME]`_** to **_`[ZOOM_LINK]`_**
 
 Examples:
-* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module name `CS2030`
+* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
   to `https://sample.zoom.us`
 
 --------------------------------------------------------------------------------------------------------------------
