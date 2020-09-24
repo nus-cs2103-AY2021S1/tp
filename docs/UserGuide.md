@@ -51,6 +51,17 @@ Views a module stored in the system
   Examples:
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
+  
+  ### Adding a zoom link to a module: `add zoom`
+  
+  Adds a zoom link to an existing module.
+  
+  Format: `add zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+  
+  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_** 
+  
+  Example of usage:
+  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
     
     
 ### Deleting a module: `delete`
@@ -96,4 +107,7 @@ Action | Format, Examples
 **Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
 
 **Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
+
+**Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`
+
 
