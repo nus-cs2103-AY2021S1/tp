@@ -11,6 +11,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
+***
+
 ### Dianne Loh Wen Hui
 
 <img src="images/dianneloh9.png" width="200px">
@@ -20,6 +22,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Team Lead
 * Responsibilities: Property Management, UI
+
+***
 
 ### Kor Ming Soon
 
@@ -31,6 +35,8 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Deliverables and deadlines, Intellij expert
 * Responsibilities: Storage, Client Management, UI
 
+***
+
 ### Marcus Duigan Xing Yu
 
 <img src="images/marcon2509.png" width="200px">
@@ -41,6 +47,8 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Documentation, Code Quality
 * Responsibilities: Bid Management, Model
 
+***
+
 ### Munnamgi Harsha Vardhan Reddy
 
 <img src="images/munharsha.png" width="200px">
@@ -50,6 +58,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Testing, Integration
 * Responsibilities: Calendar Management, Storage
+
+***
 
 ### Christopher Leo Mervyn
 
