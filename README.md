@@ -44,10 +44,11 @@ _Hospify is part of a team project under the CS2103 Software Engineering Module 
 <li>As a data entry clerk who is relatively new to the app, I can load existing hardcopies of medical records and contact information of patients quickly onto the app</li>
 </ol>
 
-##Instructions to install
+
+## Instructions to install
 Download the `jar` file from the latest release and run on your local device. Please ensure that you have at least installed `Java JDK 11` on your local device.
 
-##Guides / Notes
+## Guides / Notes  
 [User Guide](docs/UserGuide.md)  
 [About Us](docs/AboutUs.md)  
 [Meeting notes](https://docs.google.com/document/d/14gDsicyg6XdIeHpiP8oH9UL7aLPPmoj9kUCA_w8ZNQU/edit?usp=sharing)
