@@ -82,7 +82,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/COLOR_TAG] [t/TAG]…`
 * A patient can have any number of tags (including 0)
 
 * The color tag can be any standard HTML color name, such as red, green or orange.<br>
-  Check out [link](https://www.w3schools.com/colors/colors_names.asp) for an extensive list.
+  Check out [this link](https://www.w3schools.com/colors/colors_names.asp) for an extensive list.
 
 </div>
 
@@ -116,11 +116,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/COLOR_TAG] [t/T
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it. The same applies for color tags of a patient.
+* You can remove all the patient’s tags by typing `t/` without specifying any tags after it. The same applies for color tags of a patient.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 * When editing tags (or color tag), the existing tags (or color tag) of the patient will be removed i.e adding of tags (or color tag) is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
 
