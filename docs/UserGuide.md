@@ -138,7 +138,7 @@ Example: `open doc 0`
 
 #### Main Page Commands
 Command | Format |  Association
---------|--------|------
+--------|--------|--------------
 **case** | `case [TITLE]` | Investigation
 **list** | `list case` | Investigation
 **delete** | `delete case [CASE_NO]` | Investigation
@@ -147,7 +147,7 @@ Command | Format |  Association
 
 #### Investigation Page Commands
 Command | Format |  Association
---------|--------|------
+--------|--------|--------------
 **desc** | `desc [DESC]` | Investigation
 **tag** | `tag [STATUS]` | Investigation
 **document** | `doc [TITLE]` | Document
