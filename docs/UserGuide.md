@@ -50,6 +50,17 @@ Views a module stored in the system
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
     
+### Editing a module : `edit zoom`
+
+* Edits an existing module in the module list.
+
+Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+
+* Edits the zoom link of a module named **_`[MODULE_NAME]`_** to **_`[ZOOM_LINK]`_**
+
+Examples:
+* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module name `CS2030`
+  to `https://sample.zoom.us`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,3 +79,4 @@ Views a module stored in the system
 Action | Format, Examples
 --------|------------------
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+**Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
