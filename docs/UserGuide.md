@@ -125,6 +125,90 @@ Format: `open doc [DOC_NO]`
 
 Example: `open doc 0`
 
+#### Adding a Suspect related to the case: `suspect [NAME]`
+
+Adds a new suspect related to the investigation case.
+
+Format: `suspect [NAME]`
+
+Example: `suspect John Doe`
+
+#### List all suspects related to the case: `list suspect`
+
+Lists all added suspects that are related to the investigation case.
+
+Format: `list suspect`
+
+#### Delete suspect: `delete suspect [SUSPECT_NO]`
+
+Deletes the specified suspect from the list of suspects.
+
+Format: `delete suspect [SUSPECT_NO]`
+
+Example: `delete suspect 0`
+
+#### Adding a victim related to the case: `victim [NAME]`
+
+Adds a new victim that is related to the investigation case.
+
+Format: `victim [NAME]`
+
+Example: `victim James Lee`
+
+#### List all victims related to the case: `list victim`
+
+Lists all added victims that are related to the investigation case.
+
+Format: `list victim`
+
+#### Delete victim: `delete victim [VICTIM_NO]`
+
+Deletes the specified victim from the list of victims.
+
+Format: `delete victim [VICTIM_NO]`
+
+Example: `delete victim 0`
+
+#### Add a witness related to the case: `witness [NAME]`
+
+Adds a new witness that is related to the investigation case.
+
+Format: `witness [NAME]`
+
+Example: `witness John Doe`
+
+#### List all witness related to the case: `list witness`
+
+Lists all added witnesses that are related to the investigation case.
+
+Format: `list witness`
+
+#### Delete suspect: `delete witness [WITNESS_NO]`
+
+Deletes the specified witness from the list of witnesses.
+
+Format: `delete witness [WITNESS_NO]]`
+
+Example: `delete witness 0`
+
+#### Return to main page: `return`
+
+Returns to the application main page.
+
+#### Exit application: `exit`
+
+Exits the application.
+
+### Data Management
+
+#### Loading of User Data
+
+User data automatically loads when user opens the app
+
+#### Saving of User Data
+
+User data automatically saves when there is a change in data
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
