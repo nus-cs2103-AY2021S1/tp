@@ -71,25 +71,6 @@ rooms
 *Output*:
 The Output panel on the right should display all rooms, along with their details such as vacancy in the Residential College.
 
-<!--
-#### Viewing a list of vacant rooms that are within a zone
-
-During the COVID-19 pandemic, you may need to consider the student's zones during assignment of a room to adhere to NUS policies, so you can view a list of vacant rooms within a zone using the `rooms <zone>` command.
-
-##### Command
-```
-rooms <zone>
-```
-##### Execution Example
-```
-rooms A
-```
-
-*Action*: Lists all vacant rooms of Zone A in the Residential College.
-
-*Output*:
-The Output panel on the right should list the vacant rooms of Zone A in the Residential College.
--->
 
 #### 2. Allocating a room to a student 
 
