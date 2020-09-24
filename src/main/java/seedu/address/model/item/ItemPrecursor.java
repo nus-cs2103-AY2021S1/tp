@@ -1,11 +1,11 @@
 package seedu.address.model.item;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 public class ItemPrecursor {
 

@@ -2,10 +2,9 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.
@@ -39,7 +38,7 @@ class JsonAdaptedIngredient {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted ingredient.
      */
-    public Ingredient toModelType() throws IllegalValueException {
+    public Ingredient toModelType() {
         //TODO: check if exception needed here
         return new Ingredient(itemId, itemQuantity);
     }

@@ -15,9 +15,26 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
+import seedu.address.model.ItemList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RecipeList;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.*;
+import seedu.address.storage.ItemListStorage;
+import seedu.address.storage.JsonItemListStorage;
+import seedu.address.storage.JsonLocationListStorage;
+import seedu.address.storage.JsonRecipeListStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.LocationListStorage;
+import seedu.address.storage.RecipeListStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.InventoryUiManager;
 import seedu.address.ui.Ui;
 
@@ -109,14 +126,14 @@ public class InventoryMainApp extends Application {
         try {
             recipeListOptional = storage.readRecipeList();
             if (recipeListOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample ItemList");
+                logger.info("Data file not found. Will be starting with a sample RecipeList");
             }
             initialRecipeList = recipeListOptional.orElseGet(SampleDataUtil::getSampleRecipeList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ItemList");
+            logger.warning("Data file not in the correct format. Will be starting with an empty RecipeList");
             initialRecipeList = new RecipeList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
+            logger.warning("Problem while reading from the file. Will be starting with an empty RecipeList");
             initialRecipeList = new RecipeList();
         }
         return initialRecipeList;
@@ -180,7 +197,7 @@ public class InventoryMainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
+            logger.warning("Problem while reading from the file. Will be starting with empty user prefs");
             initializedPrefs = new UserPrefs();
         }
 

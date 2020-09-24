@@ -16,15 +16,13 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyItemList;
-import seedu.address.model.ReadOnlyLocationList;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
+import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipePrecursor;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -123,7 +121,12 @@ public class AddCommandTest {
 
         @Override
         public Path getLocationListFilePath() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getRecipeListFilePath() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -133,6 +136,11 @@ public class AddCommandTest {
 
         @Override
         public void setItemListFilePath(Path itemListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecipeListFilePath(Path recipeListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -148,7 +156,12 @@ public class AddCommandTest {
 
         @Override
         public void addLocation(Location location) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void addRecipe(Recipe recipe) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -158,6 +171,11 @@ public class AddCommandTest {
 
         @Override
         public void setItemList(ReadOnlyItemList itemList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecipeList(ReadOnlyRecipeList recipeList) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -173,7 +191,12 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyLocationList getLocationList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyRecipeList getRecipeList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -188,7 +211,12 @@ public class AddCommandTest {
 
         @Override
         public boolean hasLocation(Location location) {
-            return false;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRecipe(Recipe recipe) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -202,12 +230,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteRecipe(Recipe target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setItem(Item target, Item editedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecipe(Recipe target, Recipe editedRecipe) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -223,7 +261,12 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Location> getFilteredLocationList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Recipe> getFilteredRecipeList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -242,7 +285,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int findLocationID(Location toFind) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Recipe processPrecursor(RecipePrecursor recipePrecursor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Item processPrecursor(ItemPrecursor itemPrecursor) {
             throw new AssertionError("This method should not be called.");
         }
     }

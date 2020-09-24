@@ -1,8 +1,8 @@
 package seedu.address.model.recipe;
 
-import java.util.*;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents an Recipe in the Inventoryinator.
@@ -110,7 +110,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return String.format("Recipe for product ID: %s %s", productId,  description); // <---------- TODO
+        return String.format("Recipe for product ID: %s %s", productId, description); // <---------- TODO
     }
 
 }

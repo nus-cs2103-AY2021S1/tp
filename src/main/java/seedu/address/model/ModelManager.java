@@ -69,10 +69,10 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(userPrefs, itemList, locationList, recipeList);
 
-        logger.fine("Initializing with item list: " + itemList +
-                " location list: " + locationList +
-                " recipe list: " + recipeList +
-                " and user prefs " + userPrefs);
+        logger.fine("Initializing with item list: " + itemList
+                + " location list: " + locationList
+                + " recipe list: " + recipeList
+                + " and user prefs " + userPrefs);
 
         addressBook = null;
         filteredPersons = null;
@@ -350,6 +350,15 @@ public class ModelManager implements Model {
         return recipePrecursor.toRecipe(productId, ingredients);
     }
 
+    @Override
+    public Item processPrecursor(ItemPrecursor itemPrecursor) {
+        Set<Integer> locationIds = new HashSet<>();
+        for (String locationName : itemPrecursor.getLocationNames()) {
+            locationIds.add(findLocationIdByName(locationName));
+        }
+        return itemPrecursor.toItem(locationIds, new HashSet<>());
+    }
+
     private int findLocationIdByName(String location) {
         requireNonNull(location);
         String trimmedLocation = location.trim();
@@ -362,15 +371,6 @@ public class ModelManager implements Model {
 
         addLocation(toAdd);
         return toAdd.getId();
-    }
-
-    @Override
-    public Item processPrecursor(ItemPrecursor itemPrecursor) {
-        Set<Integer> locationIds = new HashSet<>();
-        for (String locationName : itemPrecursor.getLocationNames()) {
-            locationIds.add(findLocationIdByName(locationName));
-        }
-        return itemPrecursor.toItem(locationIds, new HashSet<>());
     }
 
     @Override

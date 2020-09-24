@@ -1,8 +1,8 @@
 package seedu.address.model.recipe;
 
-import java.util.List;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
 
 public class RecipePrecursor {
 

@@ -1,9 +1,20 @@
 package seedu.address.model.util;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.ItemList;
+import seedu.address.model.LocationList;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.RecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.location.Location;
@@ -100,8 +111,8 @@ public class SampleDataUtil {
         ingredients.setItems(ingredientList);
 
         return new Recipe[] {
-                new Recipe(0, ingredients, 2, new ProductQuantity("1"), "Recipe 1", false),
-                new Recipe(1, ingredients, 3, new ProductQuantity("2"), "Recipe 2", false)
+            new Recipe(0, ingredients, 2, new ProductQuantity("1"), "Recipe 1", false),
+            new Recipe(1, ingredients, 3, new ProductQuantity("2"), "Recipe 2", false)
         };
     }
 

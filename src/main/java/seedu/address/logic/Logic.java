@@ -43,26 +43,31 @@ public interface Logic {
     /** Returns the user prefs' address book file path */
     Path getAddressBookFilePath();
 
+    /** Returns the ItemList */
     ReadOnlyItemList getItemList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Item> getFilteredItemList();
 
-    /** Returns the user prefs' address book file path. */
+    /** Returns the user prefs' item list file path. */
     Path getItemListFilePath();
 
+    /** Returns the LocationList */
     ReadOnlyLocationList getLocationList();
 
+    /** Returns an unmodifiable view of the filtered list of locations */
     ObservableList<Location> getFilteredLocationList();
 
+    /** Returns the user prefs' location list file path. */
     Path getLocationListFilePath();
 
+    /** Returns the RecipeList */
     ReadOnlyRecipeList getRecipeList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of recipes */
     ObservableList<Recipe> getFilteredRecipeList();
 
-    /** Returns the user prefs' address book file path. */
+    /** Returns the user prefs' recipe list file path. */
     Path getRecipeListFilePath();
 
     /**

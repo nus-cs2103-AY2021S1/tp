@@ -10,8 +10,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemPrecursor;
-import seedu.address.model.location.exceptions.LocationNotFoundException;
-
 
 /**
  * Adds a item to the item list.

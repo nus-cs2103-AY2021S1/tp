@@ -1,20 +1,15 @@
 package seedu.address.logic.parser;
 
-import javafx.util.Pair;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientList;
-import seedu.address.model.recipe.IngredientPrecursor;
-import seedu.address.model.recipe.ProductQuantity;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.IngredientPrecursor;
+import seedu.address.model.recipe.ProductQuantity;
 
 public class RecipeParserUtil {
 

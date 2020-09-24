@@ -1,16 +1,15 @@
 package seedu.address.model.recipe;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.recipe.exceptions.RecipeNotFoundException;
-import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
+import seedu.address.model.recipe.exceptions.RecipeNotFoundException;
 
 /**
  * A list of recipes that enforces uniqueness between its elements and does not allow nulls.

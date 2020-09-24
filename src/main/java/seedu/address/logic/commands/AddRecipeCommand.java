@@ -1,15 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
+
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipePrecursor;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
 
 /**
  * Adds a item to the item list.

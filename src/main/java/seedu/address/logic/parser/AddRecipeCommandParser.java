@@ -1,30 +1,29 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.item.Item;
-import seedu.address.model.item.Quantity;
-import seedu.address.model.recipe.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
 
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+import seedu.address.logic.commands.AddRecipeCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.IngredientPrecursor;
+import seedu.address.model.recipe.ProductQuantity;
+import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipePrecursor;
 
 /**
- * Parses input arguments and creates a new AddItemCommand object
+ * Parses input arguments and creates a new AddRecipeCommand object
  */
 public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddItemCommand
-     * and returns an AddItemCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddRecipeCommand
+     * and returns an AddRecipeCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -40,8 +39,10 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         }
 
         String productName = RecipeParserUtil.parseProductName(argMultimap.getValue(PREFIX_RECIPE_PRODUCT_NAME).get());
-        List<IngredientPrecursor> ingredientPrecursors = RecipeParserUtil.parseIngredients(argMultimap.getValue(PREFIX_RECIPE_INGREDIENTS).get());
-        ProductQuantity productQuantity = RecipeParserUtil.parseProductQuantity(argMultimap.getValue(PREFIX_RECIPE_PRODUCT_QUANTITY).get());
+        List<IngredientPrecursor> ingredientPrecursors = RecipeParserUtil
+                .parseIngredients(argMultimap.getValue(PREFIX_RECIPE_INGREDIENTS).get());
+        ProductQuantity productQuantity = RecipeParserUtil
+                .parseProductQuantity(argMultimap.getValue(PREFIX_RECIPE_PRODUCT_QUANTITY).get());
         String description = RecipeParserUtil.parseDescription(argMultimap.getValue(PREFIX_RECIPE_DESCRIPTION).get());
 
         RecipePrecursor recipePre = new RecipePrecursor(Recipe.getIdCounter() + 1, ingredientPrecursors,
