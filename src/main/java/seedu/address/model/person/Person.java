@@ -2,12 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.logic.Participation;
+import seedu.address.model.project.Name;
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +23,7 @@ public class Person {
     // Data fields
     private Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Participation participation = new Participation();
+    private HashMap<Name,Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -68,6 +67,10 @@ public class Person {
 
     public void updateEmail(String newEmailStr) {
         email = new Email(newEmailStr);
+    }
+
+    public void addProject(Project p){
+        listOfParticipations.put(p.getName(), new Participation(this,p));
     }
 
     /**

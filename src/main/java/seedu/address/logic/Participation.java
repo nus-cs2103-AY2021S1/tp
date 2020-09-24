@@ -5,6 +5,7 @@ import seedu.address.model.person.PersonName;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Project;
 
+import java.lang.reflect.Member;
 import java.util.HashMap;
 
 /**
@@ -13,47 +14,21 @@ import java.util.HashMap;
 public class Participation {
 
     /**
-     * List of things Person can participate in.
+     * List of thing(s) Person can participate in.
      */
-    private HashMap<PersonName, Person> memberList;
-    private HashMap<Name, Project> projectList;
-    /*
-    for when we add the following activities that a Person can participate in
-     */
-//    private HashMap<String, Task> taskList;
-//    private HashMap<String, Meeting> meetingList;
-
-    enum Role {
-        LEADER, MEMBER;
-    }
+    private Person person;
+    private Project project;
 
     /**
      * Constructor for Participation
      */
-    public Participation() {
-        memberList = new HashMap<>();
-        projectList = new HashMap<>();
-        /*
-        for when we add the following activities that a Person can participate in
-        */
-//        taskList = new HashMap<String, Task>();
-//        meetingList = new HashMap<String, Meeting>();
+    public Participation(Person person, Project project) {
+        this.person = person ;
+        this.project = project;
     }
 
-    void AddMember(Person p) {
-        memberList.put(p.getName(), p);
-    }
-
-    void AddProject(Project p) {
-        projectList.put(p.getName(), p);
-    }
-
-    public HashMap<PersonName, Person> getMemberList() {
-        return memberList;
-    }
-
-    public HashMap<Name, Project> getProjectList() {
-        return projectList;
+    enum Role {
+        LEADER, MEMBER;
     }
 
 }
