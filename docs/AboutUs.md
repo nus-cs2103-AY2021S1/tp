@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/Michaeliaaa.png.png" width="200px">
 
-[[github](https://github.com/Micaheliaaa)]
+[[github](https://github.com/Michaeliaaa)]
 [[portfolio](team/Michaeliaaa.md)]
 
 * Role: Team Lead
@@ -21,9 +21,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Eugene Chua
 
-<img src="images/eugene3231.png.png" width="200px">
+<img src="images/eugene3231.png" width="200px">
 
-[[github](https://github.com/eugene3231.png)]
+[[github](https://github.com/eugene3231)]
 [[portfolio](team/eugene3231.png.md)]
 
 * Role: Developer
