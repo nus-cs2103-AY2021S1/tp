@@ -170,17 +170,23 @@ Exits the program.
 
 Format: `exit`
 
-#### Undoing the previous command: undo 
+#### Undoing the previous command: `undo` 
 
 Reverts the previous command given by the user. 
 
 Format: `undo`
 
-#### Redoing a command : redo 
+#### Redoing a command : `redo` 
 
 Redoes the most recent command that the user has undone. 
 
 Format: `redo` 
+
+#### Retrieve past commands : `history`
+
+Retrieves a list of past commands that the user had used during the session.
+
+Format: `history`
 
 ### Saving the data
 
@@ -215,3 +221,4 @@ Action | Format, Examples
 **Help** | `help`
 **Undo** | `undo`
 **Redo** | `redo`
+**Retrieve past commands** | `history`
