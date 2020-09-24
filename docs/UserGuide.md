@@ -136,13 +136,32 @@ Example: `open doc 0`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+####Main Page Commands
+Command | Format |  Association
+--------|--------|------
+**case** | `case [TITLE]` | Investigation
+**list** | `list case` | Investigation
+**delete** | `delete case [CASE_NO]` | Investigation
+**open** | `open case [CASE_NO]` | Investigation
+**exit** | `exit` | General
 
+####Investigation Page Commands
+Command | Format |  Association
+--------|--------|------
+**desc** | `desc [DESC]` | Investigation
+**tag** | `tag [STATUS]` | Investigation
+**document** | `doc [TITLE]` | Document
+**list doc** | `list doc` | Document
+**delete doc** | `delete doc [DOC_NO]` | Document
+**open doc** | `open doc [DOC_NO]` | Document
+**suspect** | `suspect [NAME]` | Suspect
+**list suspect** | `list suspect` | Suspect
+**delete suspect** | `delete suspect [SUSPECT_NO]` | Suspect
+**victim** | `victim [NAME]` | Victim
+**list victim** | `list victim` | Victim
+**delete victim** | `delete victim [VICTIM_NO]` | Victim
+**witness** | `witness [NAME]` | Witness
+**list witness** | `list witness` | Witness
+**delete witness** | `delete witness [WITNESS_NO]` | Witness
+**return** | `return` | General
+**exit** | `exit` | General
