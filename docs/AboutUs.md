@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Michaelia Tan Tong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/Michaeliaaa.png.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Micaheliaaa)]
+[[portfolio](team/Michaeliaaa.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
 
-### Johnny Doe
+### Eugene Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugene3231.png.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugene3231.png)]
+[[portfolio](team/eugene3231.png.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Taekwon Kim
+
+<img src="images/ktaekwon000.png" width="200px">
+
+[[github](https://github.com/ktaekwon000)]
+[[portfolio](team/ktaekwon000.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and Deadlines
+
+### Geon Sik Moon
+
+<img src="images/gsmoon97.png" width="200px">
+
+[[github](https://github.com/gsmoon97)]
+[[portfolio](team/gsmoon97.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Kenneth Ng
+
+<img src="images/afroneth.png" width="200px">
+
+[[github](https://github.com/afroneth)]
+[[portfolio](team/afroneth.md)]
+
+* Role: Developer
+* Responsibilities: Dev Ops
