@@ -315,7 +315,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 1b. There is no current order.
 
-  - 1b1. SupperStrikers shows an error message
+  - 1b1. SupperStrikers shows an error message.
+
+    Use Case resumes at step 1
+  
+- 1c. The given quantity is negative.
+
+  - 1c1. SupperStrikers shows an error message.
 
     Use Case resumes at step 1
 
@@ -325,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list all the items in the current order
 2.  SupperStrikers shows the current order
-3.  User requests to delete a specific item from the order
+3.  User requests to delete a specific item in the current order
 4.  SupperStrikers deletes the person
 
     Use case ends.
@@ -443,7 +449,7 @@ testers are expected to do more *exploratory* testing.
 
       Expected: No item is added. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `add`, `add 0 9`, `add i/x q/y`, `...` (where x is larger than the menu size)<br>
+   1. Other incorrect add commands to try: `add`, `add 0 9`, `add i/x q/y`, `...` (where x is larger than the menu size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -452,7 +458,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting an item while all items currently in the order are being shown
 
-   1. Prerequisites: List all items using the `view` command. Multiple items in the order.
+   1. Prerequisites: List all items using the `view` command. There is atleast one item in the order.
 
    1. Test case: `delete i/1`<br>
       Expected: First item is deleted from the order. Details of the deleted order shown in the status message. Timestamp in the status bar is updated.
