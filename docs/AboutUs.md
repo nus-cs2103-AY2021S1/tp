@@ -47,3 +47,14 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Documentation manager - Responsible for the quality of
 project documents, Coding standards, format of deliverables
+
+### Lim Ze Wei Dennis
+
+<img src="images/dennis_profile.jpg" width="200px">
+
+[[github](https://github.com/LimZeWeiDennis)]
+[[portfolio](team/dennis.md)]
+
+* Role: Developer
+* Responsibilities: Deadline and Deliverables manager - in charge of making sure that 
+members completes tasks and submit deliverables on time
