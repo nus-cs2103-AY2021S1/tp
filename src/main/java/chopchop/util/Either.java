@@ -5,6 +5,7 @@ package chopchop.util;
 import java.util.Optional;
 import java.util.function.Function;
 
+import java.util.NoSuchElementException;
 
 /**
  * A container class that wraps a value of either type L (the 'left' value), or
@@ -16,7 +17,7 @@ public class Either<L, R> {
     private final L leftValue;
     private final R rightValue;
 
-    private Either(L leftVal, R rightVal) {
+    protected Either(L leftVal, R rightVal) {
         this.leftValue = leftVal;
         this.rightValue = rightVal;
 
@@ -46,19 +47,45 @@ public class Either<L, R> {
      * right value, throws a NoSuchElementException.
      *
      * @return The left value contained in the Either.
+     * @throws NoSuchElementException if the Either contains a right value
      */
     public L fromLeft() {
-        return Optional.ofNullable(this.leftValue).get();
+        return Optional.ofNullable(this.leftValue)
+            .orElseThrow(() -> new NoSuchElementException("Either was not left"));
     }
 
     /**
      * Obtains the stored right value in the Either. If the Either contains a
-     * right value, throws a NoSuchElementException.
+     * left value, throws a NoSuchElementException.
      *
      * @return The right value contained in the Either.
+     * @throws NoSuchElementException if the Either contains a left value
      */
     public R fromRight() {
-        return Optional.ofNullable(this.rightValue).get();
+        return Optional.ofNullable(this.rightValue)
+            .orElseThrow(() -> new NoSuchElementException("Either was not right"));
+    }
+
+    /**
+     * Obtains the stored left value in the Either. If the Either contains a
+     * right value, returns an empty {@code Optional}.
+     *
+     * @return The left value contained in the Either, optionally.
+     * @throws NoSuchElementException if the Either contains a right value
+     */
+    public Optional<L> fromLeftOpt() {
+        return Optional.ofNullable(this.leftValue);
+    }
+
+    /**
+     * Obtains the stored right value in the Either. If the Either contains a
+     * left value, returns an empty {@code Optional}.
+     *
+     * @return The right value contained in the Either, optionally.
+     * @throws NoSuchElementException if the Either contains a left value
+     */
+    public Optional<R> fromRightOpt() {
+        return Optional.ofNullable(this.rightValue);
     }
 
     /**

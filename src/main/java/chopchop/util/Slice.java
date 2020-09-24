@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
  * Represents a non-owning array-like reference. Allows for efficient
  * substring-like operations.
  */
-public class Slice<T>
-{
+public class Slice<T> {
+
     public final T[] xs;
     public final int start;
     public final int length;
@@ -23,8 +23,7 @@ public class Slice<T>
      * @param begin  the starting index of the slice
      * @param length the length of the slice
      */
-    public Slice(T[] xs, int begin, int length)
-    {
+    public Slice(T[] xs, int begin, int length) {
         this.xs     = xs;
         this.start  = begin;
         this.length = length;
@@ -37,8 +36,7 @@ public class Slice<T>
      * @param xs     the backing array
      * @param begin  the starting index of the slice
      */
-    public Slice(T[] xs, int begin)
-    {
+    public Slice(T[] xs, int begin) {
         this.xs     = xs;
         this.start  = begin;
 
@@ -54,8 +52,7 @@ public class Slice<T>
      *
      * @param xs     the backing array
      */
-    public Slice(T[] xs)
-    {
+    public Slice(T[] xs) {
         this.xs     = xs;
         this.start  = 0;
         this.length = xs.length;
@@ -66,8 +63,7 @@ public class Slice<T>
      *
      * @return the starting index of the slice.
      */
-    public int begin()
-    {
+    public int begin() {
         return this.start;
     }
 
@@ -76,8 +72,7 @@ public class Slice<T>
      *
      * @return one-past-the-index of the slice.
      */
-    public int end()
-    {
+    public int end() {
         return this.start + this.length;
     }
 
@@ -86,8 +81,7 @@ public class Slice<T>
      *
      * @return the length of the slice.
      */
-    public int size()
-    {
+    public int size() {
         return this.length;
     }
 
@@ -97,8 +91,7 @@ public class Slice<T>
      * @param i the index of the element to get
      * @return the element at the specified index
      */
-    public T get(int i)
-    {
+    public T get(int i) {
         return this.xs[this.start + i];
     }
 
@@ -107,8 +100,7 @@ public class Slice<T>
      *
      * @return the first element of the slice
      */
-    public T front()
-    {
+    public T front() {
         assert this.size() > 0;
         return this.xs[this.start];
     }
@@ -118,8 +110,7 @@ public class Slice<T>
      *
      * @return the last element of the slice
      */
-    public T back()
-    {
+    public T back() {
         assert this.size() > 0;
         return this.xs[this.start + this.length - 1];
     }
@@ -131,8 +122,7 @@ public class Slice<T>
      * @param n the number of elements to drop
      * @return the new subslice
      */
-    public Slice<T> drop(int n)
-    {
+    public Slice<T> drop(int n) {
         if (this.length < n) {
             n = this.length;
         }
@@ -147,8 +137,7 @@ public class Slice<T>
      * @param n the number of elements to take
      * @return the new subslice
      */
-    public Slice<T> take(int n)
-    {
+    public Slice<T> take(int n) {
         if (this.length < n) {
             n = this.length;
         }
@@ -163,8 +152,7 @@ public class Slice<T>
      * @param n the number of elements to take (from the back)
      * @return the new subslice
      */
-    public Slice<T> takeLast(int n)
-    {
+    public Slice<T> takeLast(int n) {
         if (this.length < n) {
             n = this.length;
         }
@@ -179,8 +167,7 @@ public class Slice<T>
      * @param len   the length of the new slice
      * @return the new subslice
      */
-    public Slice<T> slice(int begin, int len)
-    {
+    public Slice<T> slice(int begin, int len) {
         return new Slice<T>(this.xs, this.start + begin, len);
     }
 
@@ -189,8 +176,7 @@ public class Slice<T>
      *
      * @return a Stream of elements
      */
-    public Stream<T> stream()
-    {
+    public Stream<T> stream() {
         return Stream
             .iterate(this.start, i -> i + 1)
             .map(i -> this.xs[i])
@@ -198,24 +184,22 @@ public class Slice<T>
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return Arrays.toString(Arrays.copyOfRange(this.xs, this.begin(), this.end()));
     }
 
     @Override
-    public boolean equals(Object other)
-    {
-        if (!(other instanceof Slice<?>))
+    public boolean equals(Object other) {
+        if (!(other instanceof Slice<?>)) {
             return false;
+        }
 
         return ((Slice<?>) other).stream().collect(Collectors.toList())
             .equals(this.stream().collect(Collectors.toList()));
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         // just cheat
         return this.stream()
             .collect(Collectors.toList())
