@@ -99,16 +99,21 @@ public class UniqueItemList implements Iterable<Item> {
     }
 
     public int findItemId(String itemName) {
-        for (int i = 0; i < internalList.size(); i++) {
-            if (internalList.get(i).getName().equals(itemName)) {
-                return i;
+        for (Item item : internalList) {
+            if (item.getName().equals(itemName)) {
+                return item.getId();
             }
         }
         return -1;
     }
 
     public void addRecipeIdToItem(int itemId, int recipeId) {
-        Item itemToAdd = internalList.get(itemId);
+        for (Item item : internalList) {
+            if (item.getId() == itemId) {
+                item.addRecipeId(recipeId);
+                break;
+            }
+        }
     }
 
     /**
