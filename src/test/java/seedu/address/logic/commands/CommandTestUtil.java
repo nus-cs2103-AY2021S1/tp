@@ -22,12 +22,19 @@ public class CommandTestUtil {
 
     public static final String VALID_QUESTION_1 = "What does SDLC stand for?";
     public static final String VALID_QUESTION_2 = "What is a revision control software?";
+    public static final String VALID_QUESTION_3 = "It is recommended that assertions to be used liberally in the "
+            + "code. True or False?";
 
     public static final String VALID_ANSWER_1 = "Software development life cycle";
     public static final String VALID_ANSWER_2 = "It is the software tool that automate the process of Revision Control";
+    public static final String VALID_ANSWER_3 = "True";
 
     public static final String VALID_CATEGORY_1 = "SDLC";
     public static final String VALID_CATEGORY_2 = "Revision history";
+
+    public static final String INVALID_QUESTION_1 = " ";
+    public static final String INVALID_ANSWER_1 = " ";
+    public static final String INVALID_CATEGORY_1 = "%";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
