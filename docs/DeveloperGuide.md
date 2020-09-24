@@ -342,7 +342,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Patient records**: Extensive collection of patients’ private information (not meant to be shared) and medical histories.
+* **Main window**: Application’s opening window which displays a command bar and the list of patients.
 
 --------------------------------------------------------------------------------------------------------------------
 
