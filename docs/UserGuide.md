@@ -54,10 +54,12 @@ Views a module stored in the system
   
   Adds a zoom link to an existing module.
   
-  Format: `add zoom` **_`[MODULE_NAME]`_**
+  Format: `add zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+  
+  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_** 
   
   Example of usage:
-  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` for the module named `cs2103T`
+  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
     
 
 --------------------------------------------------------------------------------------------------------------------
@@ -77,3 +79,5 @@ Views a module stored in the system
 Action | Format, Examples
 --------|------------------
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+**Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`
+
