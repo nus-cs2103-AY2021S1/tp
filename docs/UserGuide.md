@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Police Investigation Virtual Organisational Tool (PIVOT) is a **desktop app to assist the police investigators in keeping track of their investigations and relevant information. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+Police Investigation Virtual Organisational Tool (PIVOT) is a **desktop app to assist the police investigators in keeping track of their investigations and relevant information. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, PIVOT can manage your investigation cases faster than traditional GUI apps.
 
 * Table of Contents
@@ -84,7 +84,7 @@ Exits the application.
 The page of the application when the user opens a specified investigation case.
 
 #### Add investigation case description: `desc [DESC]`
-Adds the description of the investigation 
+Adds the description of the investigation
 
 Format: `desc [DESC]`
 
