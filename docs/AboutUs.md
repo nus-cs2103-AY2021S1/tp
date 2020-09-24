@@ -5,55 +5,58 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Le Hue Man
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/man-maxx.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/lettuceman4)]
+[[portfolio](team/man-cv.pdf)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: 
 
-### Jean Doe
+### Cheok Su Anne
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/suanne.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/cheoksuanne)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: 
 
-### James Doe
+### Nicholas Canete
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nicholas-gcc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nicholas-gcc)] 
+[[portfolio](team/nic-cv.pdf)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+
+### Lim Zi Yang
+
+<img src="images/ziyangs-carry.png" width="200px">
+
+[[homepage](https://limziyang.com/)]
+[[github](http://github.com/Ziyang-98)]
+[[portfolio](https://limziyang.com)]
+
+* Role: Developer
+* Responsibilities: 
+
+### Jordan Yoong
+
+<img src="images/jordan.png" width="200px">
+
+[[github](http://github.com/jordanyoong)]
+[[portfolio](https://jordanyoong.github.io/cv/experience.html)]
+
+
+* Role: Developer
+* Responsibilities:
