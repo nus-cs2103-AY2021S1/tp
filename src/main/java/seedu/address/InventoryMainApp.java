@@ -18,17 +18,17 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.*;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.*;
-import seedu.address.ui.ItemUiManager;
+import seedu.address.ui.InventoryUiManager;
 import seedu.address.ui.Ui;
 
 
 /**
  * Runs the application.
  */
-public class InvInatorMainApp extends Application {
+public class InventoryMainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
-    private static final Logger logger = LogsCenter.getLogger(InvInatorMainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(InventoryMainApp.class);
 
     protected Ui ui;
     protected Logic logic;
@@ -58,7 +58,7 @@ public class InvInatorMainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new ItemUiManager(logic);
+        ui = new InventoryUiManager(logic);
     }
 
     /**
@@ -196,7 +196,7 @@ public class InvInatorMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ItemList " + InvInatorMainApp.VERSION);
+        logger.info("Starting ItemList " + InventoryMainApp.VERSION);
         ui.start(primaryStage);
     }
 

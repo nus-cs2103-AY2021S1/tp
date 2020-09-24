@@ -15,24 +15,24 @@ import seedu.address.model.item.Item;
 /**
  * Panel containing the list of items.
  */
-public class ItemListPanel extends UiPart<Region> {
-    private static final String FXML = "ItemListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);
+public class InventoryListPanel extends UiPart<Region> {
+    private static final String FXML = "InventoryListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(InventoryListPanel.class);
 
     @FXML
     private ListView<Item> itemListView;
 
     /**
-     * Creates a {@code ItemListPanel} with the given {@code ObservableList}.
+     * Creates a {@code InventoryListPanel} with the given {@code ObservableList}.
      */
-    public ItemListPanel(ObservableList<Item> itemList) {
+    public InventoryListPanel(ObservableList<Item> itemList) {
         super(FXML);
         itemListView.setItems(itemList);
         itemListView.setCellFactory(listView -> new ItemListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code ItemCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code InventoryCard}.
      */
     class ItemListViewCell extends ListCell<Item> {
         @Override
@@ -43,7 +43,7 @@ public class ItemListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ItemCard(item, getIndex() + 1).getRoot());
+                setGraphic(new InventoryCard(item, getIndex() + 1).getRoot());
             }
         }
     }

@@ -10,9 +10,9 @@ import seedu.address.model.item.Item;
 /**
  * An UI component that displays information of a {@code Item}.
  */
-public class ItemCard extends UiPart<Region> {
+public class InventoryCard extends UiPart<Region> {
 
-    private static final String FXML = "ItemListCard.fxml";
+    private static final String FXML = "InventoryListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -36,7 +36,7 @@ public class ItemCard extends UiPart<Region> {
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
-    public ItemCard(Item item, int displayedIndex) {
+    public InventoryCard(Item item, int displayedIndex) {
         super(FXML);
         this.item = item;
         name.setText(item.getName());
@@ -52,12 +52,12 @@ public class ItemCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ItemCard)) {
+        if (!(other instanceof InventoryCard)) {
             return false;
         }
 
         // state check
-        ItemCard card = (ItemCard) other;
+        InventoryCard card = (InventoryCard) other;
         return item.equals(card.item);
     }
 }

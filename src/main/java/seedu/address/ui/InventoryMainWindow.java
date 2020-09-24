@@ -23,9 +23,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class ItemMainWindow extends UiPart<Stage> {
+public class InventoryMainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "ItemMainWindow.fxml";
+    private static final String FXML = "InventoryMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -33,7 +33,7 @@ public class ItemMainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ItemListPanel itemListPanel;
+    private InventoryListPanel inventoryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -55,7 +55,7 @@ public class ItemMainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public ItemMainWindow(Stage primaryStage, Logic logic) {
+    public InventoryMainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -112,8 +112,8 @@ public class ItemMainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        itemListPanel = new ItemListPanel(logic.getFilteredItemList());
-        itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
+        inventoryListPanel = new InventoryListPanel(logic.getFilteredItemList());
+        itemListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -165,8 +165,8 @@ public class ItemMainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ItemListPanel getItemListPanel() {
-        return itemListPanel;
+    public InventoryListPanel getItemListPanel() {
+        return inventoryListPanel;
     }
 
     /**
