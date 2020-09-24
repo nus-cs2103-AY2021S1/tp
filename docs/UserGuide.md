@@ -5,8 +5,12 @@ title: User Guide
 
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
 
-* Table of Contents
-{:toc}
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+   1. [Viewing a module](#viewing-a-module)
+   2. [Deleting a module](#deleting-a-module)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,9 +39,7 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
-
-  
-### Locating persons by name: `view`
+### Viewing a module: `view`
   
 Views a module stored in the system
   
@@ -50,6 +52,17 @@ Views a module stored in the system
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
     
+    
+### Deleting a module: `delete`
+  
+Deletes the specified module from the system
+  
+ Format: `delete` **_`[MODULE_NAME]`_**
+  
+  Examples:
+  * `delete cs2103t` deletes the specified module named `cs2103t`
+
+
 ### Editing a module : `edit zoom`
 
 * Edits an existing module in the module list.
@@ -79,4 +92,8 @@ Examples:
 Action | Format, Examples
 --------|------------------
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
+
+**Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
+
 **Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
+

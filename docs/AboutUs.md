@@ -57,4 +57,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/joshuawong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
