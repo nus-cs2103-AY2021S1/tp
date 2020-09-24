@@ -169,10 +169,12 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Tag** | `tag <filename> /t <tagname>` <br> e.g., `tag c:/myfolder/file.jpg /t newTag`
+**Show** | `show <tag name>`
+**Untag** | `untag <tag name>`
+**Retag** | `retag <tag name> /t <new tag name>` <br> e.g., `retag myTag /t anotherNameForMyTag`
+**Open** | `open <tagname>`
+**List** | `ls`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Help** | `help [<command>]`
+**Exit** | `exit`
