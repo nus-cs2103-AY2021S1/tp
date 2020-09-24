@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wong Wen Wei Esmanda
 
-<img src="images/Esmanda.jpg" width="200px">
+<img src="images/esmanda3w.png" width="200px">
 
 [[github](http://github.com/esmanda3w)]
 [[portfolio](team/johndoe.md)]
