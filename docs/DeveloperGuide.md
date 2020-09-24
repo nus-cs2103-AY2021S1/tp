@@ -277,7 +277,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `QuickCache` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC1 - Explore QuickCache**
+**Use case: UC01 - Explore QuickCache**
 
 **MSS**
 
@@ -292,31 +292,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Error message indicating that QuickCache.jar cannot be opened pops up.
     
-    * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
+  * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
     
     Use case resumes at step 2.
 
 * 3a. User wants to know all the available commands present in QuickCache.
 
-    * 3a1. User requests for all the instructions available in QuickCache.
+  * 3a1. User requests for all the instructions available in QuickCache.
     
-    * 3a2. QuickCache displays all available commands.
+  * 3a2. QuickCache displays all available commands.
     
     Use case resumes at step 3.
     
 * 3b. User quits QuickCache while trying out quiz feature.
 
-    * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
+  * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
     
     Use case resumes at step 3.
 
 * *a. User dislikes the GUI.
 
-    * *a1. User quits and deletes QuickCache.
+  * *a1. User quits and deletes QuickCache.
     
     Use case ends.
     
-**Use case: UC2 - View Statistics**
+**Use case: UC02 - View Statistics**
 
 **Preconditions: User has QuickCache open.**
 
@@ -333,11 +333,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User has not done any quiz on QuickCache.
     
-    * 1a1. QuickCache shows an error message.
+  * 1a1. QuickCache shows an error message.
     
     Use case resumes at step 3.
 
-**Use case: UC3 - Delete a flashcard**
+**Use case: UC03 - Delete a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
@@ -347,6 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  QuickCache shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
 4.  QuickCache deletes the flashcard
+5.  QuickCache updates flashcard save file (UC07)
 
     Use case ends.
 
@@ -358,11 +359,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. QuickCache shows an error message.
+  * 3a1. QuickCache shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-**Use case: UC4 - Create a flashcard**
+**Use case: UC04 - Create a flashcard**
 
 **Preconditions: User has QuickCache open.**
 
@@ -370,8 +371,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to add a flashcard
 2.  QuickCache adds it to the list
-3.  User requests to list flashcards
-4.  QuickCache shows the list of flashcards including the recently added flashcard
+3.  QuickCache updates flashcard save file (UC07)
+4.  User requests to list flashcards
+5.  QuickCache shows the list of flashcards including the recently added flashcard
 
     Use case ends.
 
@@ -379,17 +381,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The question is empty.
 
-    * 1a1. QuickCache shows an error message.
+  * 1a1. QuickCache shows an error message.
     
-        Use case ends.
+    Use case ends.
     
 * 1b. The answer is empty.
 
-    * 1b1. QuickCache shows an error message.
+  * 1b1. QuickCache shows an error message.
     
-        Use case ends.
+    Use case ends.
 
-**Use case: UC06 - Test a single flashcard**
+**System: QuickCache**
+
+**Use case: UC05 - Test a single flashcard**
 
 **Actor: User**
 
@@ -399,6 +403,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. QuickCache shows a list of flashcards
 3. User requests to test a specific flashcard in the list with a specific answer
 4. QuickCache displays whether the answer is correct
+
+    Use case ends.
 
 **Extensions:**
 
@@ -412,7 +418,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC07 - Test a set of flashcards by category**
+**System: QuickCache**
+
+**Use case: UC06 - Test a set of flashcards by category**
 
 **Actor: User**
 
@@ -423,6 +431,8 @@ MSS:
 3. User requests to test a specific category in the list
 4. User tests each flashcard on the list (UC06)
 5. QuickCache shows the number of successful questions at the end
+
+    Use case ends.
 
 **Extensions:**
 
@@ -468,7 +478,61 @@ MSS:
 
   Use case ends.
   
-**Use case: UC08 - Add tags during creation of a Flashcard**
+**Use case: UC07 - Update flashcard save file**
+
+**Actor: QuickCache**
+
+MSS:
+
+1. QuickCache accepts update request
+2. QuickCache updates save file
+  
+    Use case ends.
+
+**Extensions:**
+
+* 2a. No save file.
+
+  * 3a1. QuickCache creates new save file.
+  
+    Use case resumes from step 2.
+
+* 2b. Save file corrupted.
+
+  * 2b1. QuickCache shows an error message.
+  
+  * 2b2. QuickCache creates new save file.
+
+    Use case resumes from step 2.
+
+**Use case: UC08 - Import flashcard data file**
+
+**Actor: User**
+
+MSS:
+
+1. User requests to import data file
+2. QuickCache requests for the file location
+3. User specifies the file location
+4. QuickCache imports the file
+  
+    Use case ends.
+
+**Extensions:**
+
+* 3a. File not found.
+
+  * 3a1. QuickCache shows an error message.
+  
+    Use case ends.
+
+* 3b. Data file corrupted
+
+  * 3b1. QuickCache shows an error message.
+
+    Use case ends.
+
+**Use case: UC09 - Add tags during creation of a Flashcard**
 
 **Actor: User**
 
@@ -481,21 +545,23 @@ MSS:
 5. User signals that he is finished.
 6. QuickCache adds the tags to the flashcard.
 
-Use case ends.
+    Use case ends.
 
 **Extensions:**
 
 * 3a. User wishes to remove a tag that he entered.
-	* 3a1. User inputs the remove command to remove the tag.
 
-Use case resumes at step 3.
+  * 3a1. User inputs the remove command to remove the tag.
+
+    Use case resumes at step 3.
 
 * 5a. Some of the tags are new tags
-	* 5a1. QuickCache stores and remembers the tags.
 
-Use case ends.
+  * 5a1. QuickCache stores and remembers the tags.
 
-**Use case: UC09 - Deleting a tag category**
+    Use case ends.
+
+**Use case: UC10 - Deleting a tag category**
 
 **Actor: User**
 
@@ -507,16 +573,17 @@ MSS:
 4. User gives the confirmation.
 5. QuickCache deletes the tag from every Flashcard.
 
-Use cased ends.
+    Use cased ends.
 
 **Extensions:**
 
 * 4a. User does not give confirmation
-	* 4a1. QuickCache does not delete anything.
 
-Use case ends.
+  * 4a1. QuickCache does not delete anything.
 
-**Use case: UC10 - Edit tags on an existing Flashcard**
+    Use case ends.
+
+**Use case: UC11 - Edit tags on an existing Flashcard**
 
 **Actor: User**
 
@@ -527,27 +594,35 @@ MSS:
 3. User enters the new tag name
 4. QuickCache adds the tag onto the Flashcard
 
-Use case ends.
+    Use case ends.
 
 **Extensions:**
 
 * 1a. User wants to remove a tag
+
 	* 1a1. User asks QuickCache to list out all the tags
+  
 	* 1a2. QuickCache lists out all the tags
+  
 	* 1a3. User enters the name of the tag to be removed
+  
 	* 1a4. QuickCache removes the tag from the Flashcard
 
-Use case ends.
+    Use case ends.
 
 * 1b. User wants to edit a tag
+
 	* 1b1. User asks QuickCache to rename a tag
+  
 	* 1b2. QuickCache asks for the new name of the tag
+  
 	* 1b3. User enters the new name
+  
 	* 1b4. QuickCache updates the tag with it's new name.  
 
-Use case ends.
+    Use case ends.
 
-**Use case: UC11 - Search for Flashcards based on Tags**
+**Use case: UC12 - Search for Flashcards based on Tags**
 
 **Actor: User**
 
@@ -556,7 +631,7 @@ MSS:
 1. User enters the name of the tag he wants to search
 2. QuickCache filters through all existing Flashcards based on the tag and returns a list of Flashcards.
 
-Use case ends.
+    Use case ends.
 
 ****
 ### Non-Functional Requirements
