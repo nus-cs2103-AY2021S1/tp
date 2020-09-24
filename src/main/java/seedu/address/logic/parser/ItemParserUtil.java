@@ -71,41 +71,11 @@ public class ItemParserUtil {
     }
 
     /**
-     * Parses a {@code String location} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static int parseLocation(String location) throws IOException {
-        requireNonNull(location);
-        String trimmedLocation = location.trim();
-        Location toAdd = new Location(trimmedLocation);
-        Model locationModel = InvInatorMainApp.getLocationModel();
-
-        if (locationModel == null) {
-            // for test cases, InvInatorMainApp won't be run.
-            return 1;
-        }
-
-        if (locationModel.hasLocation(toAdd)) {
-            Location.decrementIdCounter();
-            return locationModel.findLocationID(toAdd);
-        }
-
-        locationModel.addLocation(toAdd);
-        Storage locationStorage = InvInatorMainApp.getLocationStorage();
-        locationStorage.saveLocationList(locationModel.getLocationList());
-        return toAdd.getId();
-    }
-
-    /**
      * Parses {@code Collection<String> locations} into a {@code Set<String>}.
      */
-    public static Set<Integer> parseLocations(Collection<String> locations) throws IOException {
+    public static Set<String> parseLocations(Collection<String> locations) {
         requireNonNull(locations);
-        final Set<Integer> locationSet = new HashSet<>();
-        for (String locationName : locations) {
-            locationSet.add(parseLocation(locationName));
-        }
-        return locationSet;
+        return new HashSet<>(locations);
     }
 }
 

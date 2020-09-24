@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -382,7 +385,7 @@ public class ModelManager implements Model {
         return locationList.findLocationID(toFind);
     }
 
-    private int findItemId(String itemName) throws ItemNotFoundException {
+    private int findItemIdByName(String itemName) throws ItemNotFoundException {
         requireNonNull(itemName);
         int id = itemList.findItemIdByName(itemName);
         if (id == -1) {
@@ -393,15 +396,38 @@ public class ModelManager implements Model {
 
     @Override
     public Recipe processPrecursor(RecipePrecursor recipePrecursor) throws ItemNotFoundException {
-        int productId = findItemId(recipePrecursor.getProductName());
+        int productId = findItemIdByName(recipePrecursor.getProductName());
 
         List<IngredientPrecursor> ingredientPrecursors = recipePrecursor.getIngredientPrecursors();
         IngredientList ingredients = new IngredientList();
         for (IngredientPrecursor precursor : ingredientPrecursors) {
-            int ingredientId = findItemId(precursor.getKey());
+            int ingredientId = findItemIdByName(precursor.getKey());
             ingredients.add(precursor.toIngredient(ingredientId));
         }
         return recipePrecursor.toRecipe(productId, ingredients);
+    }
+
+    private int findLocationIdByName(String location) {
+        requireNonNull(location);
+        String trimmedLocation = location.trim();
+        Location toAdd = new Location(trimmedLocation);
+
+        if (hasLocation(toAdd)) {
+            Location.decrementIdCounter();
+            return findLocationID(toAdd);
+        }
+
+        addLocation(toAdd);
+        return toAdd.getId();
+    }
+
+    @Override
+    public Item processPrecursor(ItemPrecursor itemPrecursor) {
+        Set<Integer> locationIds = new HashSet<>();
+        for (String locationName : itemPrecursor.getLocationNames()) {
+            locationIds.add(findLocationIdByName(locationName));
+        }
+        return itemPrecursor.toItem(locationIds, new HashSet<>());
     }
 
     @Override

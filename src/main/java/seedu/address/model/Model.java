@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
@@ -249,4 +250,6 @@ public interface Model {
     int findLocationID(Location toFind);
 
     Recipe processPrecursor(RecipePrecursor recipePrecursor);
+
+    Item processPrecursor(ItemPrecursor itemPrecursor);
 }
