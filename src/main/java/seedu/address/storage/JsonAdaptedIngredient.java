@@ -36,7 +36,6 @@ class JsonAdaptedIngredient {
     /**
      * Converts this Jackson-friendly adapted ingredient object into the model's {@code Ingredient} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted ingredient.
      */
     public Ingredient toModelType() {
         //TODO: check if exception needed here
