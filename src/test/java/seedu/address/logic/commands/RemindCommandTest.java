@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -17,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -73,6 +75,33 @@ public class RemindCommandTest {
         RemindCommand remindCommand = new RemindCommand(outOfBoundIndex);
 
         assertCommandFailure(remindCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_alreadyRemindedAssignmentUnfilteredList_failure() {
+        // Set reminders for assignment in filtered list in address book
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person firstPersonReminded = new PersonBuilder(firstPerson).withRemindersSet().build();
+        model.setPerson(firstPerson, firstPersonReminded);
+
+        RemindCommand remindCommand = new RemindCommand(INDEX_FIRST_PERSON);
+
+        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+    }
+
+    @Test
+    public void execute_alreadyRemindedAssignmentFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        // Set reminders for assignment in filtered list in address book
+        Person personInList = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personInListReminded = new PersonBuilder(personInList).withRemindersSet().build();
+        model.setPerson(personInList, personInListReminded);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        RemindCommand remindCommand = new RemindCommand(INDEX_FIRST_PERSON);
+
+        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
     }
 
     @Test

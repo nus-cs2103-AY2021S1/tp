@@ -93,6 +93,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remind} of the {@code Person} that we are building.
+     * @return
+     */
+    public PersonBuilder withRemindersSet() {
+        this.remind = new Remind().setReminder();
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, tags, remind);
     }
