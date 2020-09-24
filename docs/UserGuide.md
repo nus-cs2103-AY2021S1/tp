@@ -182,6 +182,12 @@ Redoes the most recent command that the user has undone.
 
 Format: `redo` 
 
+#### Retrieve past commands : history
+
+Retrieves a list of past commands that the user had used during the session.
+
+Format: `history`
+
 ### Saving the data
 
 CliniCal data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -215,3 +221,4 @@ Action | Format, Examples
 **Help** | `help`
 **Undo** | `undo`
 **Redo** | `redo`
+**Retrieve past commands** | `history`
