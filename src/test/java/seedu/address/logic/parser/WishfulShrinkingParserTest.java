@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
@@ -72,7 +73,7 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_searchRecipe() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         SearchRecipeCommand command = (SearchRecipeCommand) parser.parseCommand(
-                SearchRecipeCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                SearchRecipeCommand.COMMAND_WORD + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchRecipeCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
