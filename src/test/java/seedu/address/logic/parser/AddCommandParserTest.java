@@ -7,7 +7,14 @@ import seedu.address.model.flashcard.Category;
 import seedu.address.model.flashcard.Question;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ANSWER_1;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_1;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUESTION_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_3;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
