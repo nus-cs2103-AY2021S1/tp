@@ -1,7 +1,4 @@
----
-layout: page
-title: Developer Guide
----
+# Developer Guide
 * Table of Contents
 {:toc}
 
@@ -268,16 +265,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  CliniCal shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  CliniCal deletes the person
 
     Use case ends.
 
@@ -289,9 +286,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. CliniCal shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User keys in command to add a person
+2.  CliniCal shows an updated list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command is invalid.
+    * 1a1. CliniCal shows an error message.
+
+  Use case resumes at step 1.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  CliniCal shows a list of persons
+3.  User requests to edit a specific person in the list, providing the details to edit the person with
+4.  CliniCal edits the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The person cannot be found.
+    * 3a1. CliniCal shows an error message.
+
+    Use case resumes at Step 3.
+
+* 3b. The person cannot be found.
+    * 3b1. CliniCal shows an error message.
+
+    Use case resumes at Step 3.
 
 *{More to be added}*
 
