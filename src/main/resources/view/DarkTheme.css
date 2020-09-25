@@ -146,17 +146,23 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.result-display {
+.result-display-text {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-control-inner-background: derive(#1d1d1d, 20%);
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: white;
-    -fx-pref-height: 30px;
+    -fx-wrap-text: true;
 }
 
-.result-display .label {
-    -fx-text-fill: black !important;
+.result-display-valid-command {
+    -fx-font-weight: bold;
+    -fx-text-fill: lightblue;
+}
+
+.result-display-invalid-command {
+    -fx-font-weight: bold;
+    -fx-text-fill: orange;
 }
 
 .status-bar .label {
