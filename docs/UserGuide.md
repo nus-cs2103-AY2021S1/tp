@@ -72,9 +72,9 @@ Format: `add title:TITLE type:TYPE_OF_TASK [desc:description] [date:DATE]`
     * event
 
 Examples:
-* `add title:return book type:todo` Adds a task with title return book and type todo to PlaNus. 
+* `add title:return book type:todo` Adds a task with title return book and type todo to PlaNus.
 * `add title:Birthday party type:event desc:Frank’s birthday party date:2019-03-08`
-  Adds a task with title “Birthday party” , type event, 
+  Adds a task with title “Birthday party” , type event,
   description “Frank’s birthday party” , and date “2019-03-08” to PlaNus.
 
 
