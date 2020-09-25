@@ -39,15 +39,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, IntelliJ Expert
 * Responsibilities: Deliverables and Deadlines
 
-### Jean Doe
+### New Jun Jie (Jet)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jetnew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jetnew)]
+[[portfolio](team/jetnew.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, Intellij
+* Responsibilities: Documentation
 
 ### Chloe Lee Ke Er
 
