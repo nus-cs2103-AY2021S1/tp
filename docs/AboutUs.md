@@ -24,41 +24,42 @@ You can reach us at the following emails:
 * Role: Team lead, Integration 
 * Responsibilities:
 
-### Jane Doe
+### Li Huankang (Matthias)
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/matthiaslhk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/MatthiasLHK)]
+[[portfolio](team/matthiaslhk.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead , Scheduling and tracking
+* Responsibilities: Responsible for overall project coordination and in charge of defining, assigning, and tracking project tasks.
 
-### Johnny Doe
+### Michael Setia Atmaja
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/michael-setia.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/michael-setia)] 
+[[portfolio](team/michael-setia.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### David Cai Qifan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/David.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/davidcaiqifan)]
+[[portfolio](team/davidcaiqifan.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Joshua Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joshuawong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/murtubak)]
+[[portfolio](team/joshuawong.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code quality
