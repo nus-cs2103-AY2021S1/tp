@@ -400,10 +400,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	    
 <br />
 
-
-<br />
-
-
 **UseCase ID: UC04**
 
 **Use Case: Untag a file**
