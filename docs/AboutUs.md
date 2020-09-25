@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/GabriellaTeh)] [[portfolio](team/GabriellaTeh.md)]
 
 * Role: Developer
-* Responsibilities: Documentation and, Deliverables and Deadlines
+* Responsibilities: Documentation, deliverables and deadlines
 
 ### Jean Doe
 
