@@ -33,8 +33,6 @@ public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
-
-    //fail
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
