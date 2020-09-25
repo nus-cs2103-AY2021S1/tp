@@ -101,6 +101,6 @@ _{coming soon}_
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+--------|-AY I -----------------
 **Delete** | `delete i/INDEX [q/QUANTITY]`<br> e.g., `delete i/3`
 **Confirm**| `confirm` <br> e.g., `confirm`
