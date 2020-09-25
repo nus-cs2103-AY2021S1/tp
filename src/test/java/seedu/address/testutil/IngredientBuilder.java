@@ -1,15 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.Arrays;
-//import java.util.HashSet;
-//import java.util.Set;
-
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
-import seedu.address.model.recipe.Name;
-import seedu.address.model.recipe.Recipe;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Ingredient objects.
