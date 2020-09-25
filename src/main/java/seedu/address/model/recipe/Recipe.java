@@ -117,7 +117,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return String.format("Recipe for: %s. %s", productName, description); // <---------- TODO
+        return String.format("Recipe for: %s. %s", productName, description);
     }
 
 }
