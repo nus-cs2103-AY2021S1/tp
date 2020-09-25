@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jerry Ho
 
-<img src="images/Jerry.png" width="200px">
+<img src="images/printinghelloworld.png" width="200px">
 
 [[github](http://github.com/printinghelloworld)] [[portfolio](team/printinghelloworld.md)]
 
