@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 //import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteRecipeCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -48,9 +48,9 @@ public class WishfulShrinkingParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_RECIPE), command);
+        DeleteRecipeCommand command = (DeleteRecipeCommand) parser.parseCommand(
+                DeleteRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
+        assertEquals(new DeleteRecipeCommand(INDEX_FIRST_RECIPE), command);
     }
 
     /*@Test
