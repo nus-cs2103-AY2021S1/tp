@@ -32,14 +32,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables and deadlines
 * Responsibilities: Code quality
 
-### Johnny Doe
+### Jerry Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/printinghelloworld.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/printinghelloworld)] [[portfolio](team/printinghelloworld.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and deadlines
+* Responsibilities: UI
 
 ### Hwang Yong Kang
 
