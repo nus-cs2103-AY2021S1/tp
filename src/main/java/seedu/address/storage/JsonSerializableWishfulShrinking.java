@@ -34,7 +34,7 @@ class JsonSerializableWishfulShrinking {
         this.recipes.addAll(recipes);
     }
 
-    /**
+    /*
      * Constructs a {@code JsonSerializableWishfulShrinking} with the given ingredients.
      */
     /*@JsonCreator
