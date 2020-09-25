@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.flashcard.Flashcard;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,16 +59,33 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a flashcard with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasFlashcard(Flashcard flashcard);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
 
     /**
+     * Deletes the given flashcard.
+     * The flashcard must exist in the address book.
+     */
+    void deleteFlashcard(Flashcard target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given flashcard.
+     * {@code flashcard} must not already exist in the address book.
+     */
+    void addFlashcard(Flashcard flashcard);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -79,9 +97,13 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Flashcard> getFilteredFlashcardList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

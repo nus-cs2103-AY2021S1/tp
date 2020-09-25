@@ -15,53 +15,56 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.FlashcardBuilder;
 
-public class AddCommandTest {
+public class AddOpenEndedQuestionCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullFlashcard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddOpenEndedQuestionCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_flashcardAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingFlashcardAdded modelStub = new ModelStubAcceptingFlashcardAdded();
+        Flashcard validFlashcard = new FlashcardBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddOpenEndedQuestionCommand(validFlashcard).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddOpenEndedQuestionCommand.MESSAGE_SUCCESS, validFlashcard),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validFlashcard), modelStub.flashcardsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateFlashcard_throwsCommandException() {
+        Flashcard validFlashcard = new FlashcardBuilder().build();
+        AddOpenEndedQuestionCommand addOpenEndedQuestionCommand = new AddOpenEndedQuestionCommand(validFlashcard);
+        ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD, () ->
+                addOpenEndedQuestionCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Flashcard alice = new FlashcardBuilder().withQuestion("Alice").build();
+        Flashcard bob = new FlashcardBuilder().withQuestion("Bob").build();
+        AddOpenEndedQuestionCommand addAliceCommand = new AddOpenEndedQuestionCommand(alice);
+        AddOpenEndedQuestionCommand addBobCommand = new AddOpenEndedQuestionCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddOpenEndedQuestionCommand addAliceCommandCopy = new AddOpenEndedQuestionCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -114,6 +117,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addFlashcard(Flashcard flashcard) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -129,7 +137,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasFlashcard(Flashcard flashcard) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteFlashcard(Flashcard target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,45 +162,50 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Flashcard> getFilteredFlashcardList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single flashcard.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithFlashcard extends ModelStub {
+        private final Flashcard flashcard;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithFlashcard(Flashcard flashcard) {
+            requireNonNull(flashcard);
+            this.flashcard = flashcard;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasFlashcard(Flashcard flashcard) {
+            requireNonNull(flashcard);
+            return this.flashcard.isSameFlashcard(flashcard);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the flashcard being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingFlashcardAdded extends ModelStub {
+        final ArrayList<Flashcard> flashcardsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasFlashcard(Flashcard flashcard) {
+            requireNonNull(flashcard);
+            return flashcardsAdded.stream().anyMatch(flashcard::isSameFlashcard);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addFlashcard(Flashcard flashcard) {
+            requireNonNull(flashcard);
+            flashcardsAdded.add(flashcard);
         }
 
         @Override

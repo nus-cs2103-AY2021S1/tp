@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.flashcard.Flashcard;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Flashcard> filteredFlashcards;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFlashcards = new FilteredList<>(this.addressBook.getFlashcardList());
+
     }
 
     public ModelManager() {
@@ -95,13 +100,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasFlashcard(Flashcard flashcard) {
+        requireNonNull(flashcard);
+        return addressBook.hasFlashcard(flashcard);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
 
     @Override
+    public void deleteFlashcard(Flashcard target) {
+        addressBook.removeFlashcard(target);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addFlashcard(Flashcard person) {
+        addressBook.addFlashcard(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -121,6 +143,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Flashcard> getFilteredFlashcardList() {
+        return filteredFlashcards;
     }
 
     @Override
