@@ -159,10 +159,14 @@ _{explain the feature here}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
-
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HelloFile home folder.
 
+**Q**: What if the name or the directory of the file I tagged is changed? Can I still access the file using HelloFile?<br>
+**A**: No. HelloFile cannot trace the file if its name or directory is changed, but if you still want to manage the file, you can tag it again.
+
+**Q**: Can tag name be duplicated?<br>
+**A**: No. The tag names must be unique for all files being managed.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary

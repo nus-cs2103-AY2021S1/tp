@@ -20,3 +20,10 @@ title: About Us
 
 * Role: Developer
 * Responsibilities: Not available
+
+### Anthony Lie
+<img src="images/anthony6401.png" width="200px">
+
+[github](https://github.com/Anthony6401)
+
+* Role: Developer
