@@ -47,7 +47,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Udayagiri Nikhila Sai
 
-<img src="images/team-images/Nikhilalalalala.png" width="200px">
+<img src="images/Nikhilalalalala.png" width="200px">
 
 [[github](http://github.com/Nikhilalalalala)]
 [[portfolio](team/johndoe.md)]
