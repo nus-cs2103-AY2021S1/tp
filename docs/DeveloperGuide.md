@@ -430,7 +430,194 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. There is no stock with source that matches keyword.
 
     Use case ends.
+
+#### Use case: Increment or decrement a stock's quantity
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to increment or decrement a specific stock's quantity.
+4.  Warenager updates the stock's quantity.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given serial number is not an integer.
+
+    * 3b1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header q/.
     
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3d. The given increment or decrement value is not an integer.
+    
+    * 3d1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Rewrite a stock's quantity
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's quantity.
+4.  Warenager updates the stock's quantity.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given serial number is not an integer.
+
+    * 3b1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header nq/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3d. The given increment or decrement value is not an integer.
+    
+    * 3d1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the name of a stock.
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's name.
+4.  Warenager updates the stock's name.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given serial number is not an integer.
+
+    * 3b1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header n/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the location of a stock
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's location.
+4.  Warenager updates the stock's location.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given serial number is not an integer.
+
+    * 3b1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header l/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the source of a stock
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's source.
+4.  Warenager updates the stock's source.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given serial number is not an integer.
+
+    * 3b1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header s/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
