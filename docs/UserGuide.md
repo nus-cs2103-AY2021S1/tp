@@ -1,3 +1,7 @@
+#User Guide for Supper Striker
+
+## Commands
+
 **Supper Strikers is a desktop application for managing your supper orders.** While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
 * Table of Contents
@@ -59,11 +63,21 @@ Format: `delete i/INDEX [q/QUANTITY]`
 * Deletes the item at the specified `INDEX` of the user's supper order.
 * Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all the item's quantity.
 * The index refers to the index number shown in the displayed supper order list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `delete i/2` deletes the second item in the supper order.
 * `delete i/1 q/2` deletes 2 instances of the first item in the supper order.
+
+### View/select vendor: `vendor`
+
+Shows the list of vendor. If an index is specified, that vendor is selected.
+
+Format: `vendor [i/INDEX]`
+
+Examples:
+* `vendor` Shows the list of vendor
+* `vendor i/2` Selects the 2<sup>nd</sup> vendor in the list
 
 
 ### Other features `[coming soon]`
