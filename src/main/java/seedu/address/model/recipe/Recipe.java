@@ -17,6 +17,7 @@ public class Recipe {
     // Data fields
     private final IngredientList ingredients;
     private final int productId;
+    private final String productName;
     private final ProductQuantity productQuantity;
     private final String description;
     private final boolean isDeleted;
@@ -24,12 +25,13 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(int id, IngredientList ingredients, int productId,
+    public Recipe(int id, IngredientList ingredients, int productId, String productName,
                   ProductQuantity productQuantity, String description, boolean isDeleted) {
         requireAllNonNull(id, ingredients, productId, productQuantity, description, isDeleted);
         this.id = id;
         this.ingredients = ingredients;
         this.productId = productId;
+        this.productName = productName;
         this.productQuantity = productQuantity;
         this.description = description;
         this.isDeleted = isDeleted;
@@ -53,6 +55,10 @@ public class Recipe {
 
     public int getProductId() {
         return productId;
+    }
+
+    public String getProductName() {
+        return productName;
     }
 
     public ProductQuantity getProductQuantity() {
@@ -98,6 +104,7 @@ public class Recipe {
         return otherRecipe.getId() == getId()
                 && otherRecipe.getIngredients().equals(getIngredients())
                 && otherRecipe.getProductId() == getProductId()
+                && otherRecipe.getProductName().equals(getProductName())
                 && otherRecipe.getProductQuantity().equals(getProductQuantity())
                 && otherRecipe.description.equals(getDescription())
                 && otherRecipe.isDeleted() == isDeleted();
@@ -110,7 +117,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return String.format("Recipe for product ID: %s %s", productId, description); // <---------- TODO
+        return String.format("Recipe for: %s. %s", productName, description); // <---------- TODO
     }
 
 }

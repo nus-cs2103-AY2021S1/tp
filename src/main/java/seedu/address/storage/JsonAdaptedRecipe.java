@@ -27,6 +27,7 @@ class JsonAdaptedRecipe {
     // Data fields
     private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
     private final int productId;
+    private final String productName;
     private final String productQuantity;
     private final String description;
     private final boolean isDeleted;
@@ -38,11 +39,13 @@ class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(@JsonProperty("id") int id,
                              @JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients,
                              @JsonProperty("productId") int productId,
+                             @JsonProperty("productName") String productName,
                              @JsonProperty("productQuantity") String productQuantity,
                              @JsonProperty("description") String description,
                              @JsonProperty("isDeleted") boolean isDeleted) {
         this.id = id;
         this.productId = productId;
+        this.productName = productName;
         this.productQuantity = productQuantity;
         this.description = description;
         this.isDeleted = isDeleted;
@@ -57,6 +60,7 @@ class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(Recipe source) {
         id = source.getId();
         productId = source.getProductId();
+        productName = source.getProductName();
         productQuantity = source.getProductQuantity().value;
         description = source.getDescription();
         isDeleted = source.isDeleted();
@@ -89,7 +93,7 @@ class JsonAdaptedRecipe {
         }
         final ProductQuantity modelQuantity = new ProductQuantity(productQuantity);
 
-        return new Recipe(id, modelIngredients, productId, modelQuantity, description, isDeleted);
+        return new Recipe(id, modelIngredients, productId, productName, modelQuantity, description, isDeleted);
     }
 
 }
