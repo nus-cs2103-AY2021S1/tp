@@ -662,7 +662,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -697,16 +697,16 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.
    
    1. Test case: `find n/umbrella`<br>
-         Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
-         Status message shows success of command.  
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
+      Status message shows success of command.  
          
    1. Test case: `find l/section 3`<br>
-            Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
-            Status message shows success of command.  
+      Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
+      Status message shows success of command.  
             
    1. Test case: `find s/company abc`<br>
-            Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
-            Status message shows success of command.  
+      Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
+      Status message shows success of command.  
             
    1. Test case: `find 1111111`<br>
       Expected: No stock deleted due to invalid format from missing field header
@@ -716,6 +716,38 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect find commands to try: `find`, `find sn/absdsa` 
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Updating a stock
+
+1. Updating a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    
+    1. Test case: `update sn/2103 q/50`<br>
+       Expected: The stock with serial number 2103 will have an increase of quantity by 50.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 q/-50`<br>
+       Expected: The stock with serial number 2103 will have a decrease of quantity by 50.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 nq/2103`<br>
+       Expected: The stock with serial number 2103 will have a new quantity 2103.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 n/CS2103T`
+       Expected: The stock with serial number 2103 will have a new name CS2103T.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 l/B1`
+       Expected: The stock with serial number 2103 will have a new location B1.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 s/NUS`
+       Expected: The stock with serial number 2103 will have a new source NUS.
+       Details of the updated stock is shown in the status message.
 
 1. _{ more test cases …​ }_
 
