@@ -316,6 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
     
+    
 **Use case: UC02 - View Statistics**
 
 **Preconditions: User has QuickCache open.**
@@ -336,6 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. QuickCache shows an error message.
     
     Use case resumes at step 3.
+    
 
 **Use case: UC03 - Delete a flashcard**
 
@@ -362,6 +364,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. QuickCache shows an error message.
 
     Use case resumes at step 2.
+    
 
 **Use case: UC04 - Create a flashcard**
 
@@ -390,6 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. QuickCache shows an error message.
     
     Use case ends.
+    
 
 **System: QuickCache**
 
@@ -417,6 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. AddressBook shows an error message.
 
     Use case resumes at step 2.
+    
 
 **System: QuickCache**
 
@@ -478,6 +483,7 @@ MSS:
 
   Use case ends.
   
+  
 **Use case: UC07 - Update flashcard save file**
 
 **Actor: QuickCache**
@@ -504,6 +510,7 @@ MSS:
   * 2b2. QuickCache creates new save file.
 
     Use case resumes from step 2.
+    
 
 **Use case: UC08 - Import flashcard data file**
 
@@ -531,6 +538,7 @@ MSS:
   * 3b1. QuickCache shows an error message.
 
     Use case ends.
+    
 
 **Use case: UC09 - Add tags during creation of a Flashcard**
 
@@ -560,6 +568,7 @@ MSS:
   * 5a1. QuickCache stores and remembers the tags.
 
     Use case ends.
+    
 
 **Use case: UC10 - Deleting a tag category**
 
@@ -582,6 +591,7 @@ MSS:
   * 4a1. QuickCache does not delete anything.
 
     Use case ends.
+    
 
 **Use case: UC11 - Edit tags on an existing Flashcard**
 
@@ -621,6 +631,7 @@ MSS:
 	* 1b4. QuickCache updates the tag with it's new name.  
 
     Use case ends.
+    
 
 **Use case: UC12 - Search for Flashcards based on Tags**
 
@@ -637,7 +648,7 @@ MSS:
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 flashcards without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
