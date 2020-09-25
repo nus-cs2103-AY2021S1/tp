@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------------------------------------------
 
 [![CI Status](https://github.com/AY2021S1-CS2103T-F12-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-F12-3/tp/actions)
-![Ui](docs/images/OriginalImages/CAP5BUDDY.png)
+![Ui](docs/images/Ui.png)
 
 - Cap 5.0 Buddy is a project developed for a software engineering module (CS2103T) at the National University of Singapore.
   - Cap 5.0 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently, optimized for use via a
