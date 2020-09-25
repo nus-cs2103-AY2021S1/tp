@@ -269,6 +269,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
+
+<br />
+
+
 **Use case ID: UC01**
 
 **Use case: Create fileInfo**
@@ -297,6 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
 * 2c. HelloFile detects a duplicate tag name.
 
+
 	* 2c1. HelloFile prompts the user for another tag name. 
 	
         Use case resumes from step 1.
@@ -314,6 +319,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use Case: Access file using tag**
 
 **MSS**
+
+
+	* 2c1. HelloFile prompts the user for another tag name. 
+	
+        Use case resumes from step 1.
+        
+* *a. HelloFile has no permission to read or write to the file system.
+
+    * *a1. HelloFile prompts the user that it needs the read and write permission.
+    
+        Use case resumes.
+
+<br />
+
+**User case ID: UC02**
+
+**Use Case: Access file using tag**
+
+**MSS**
+
 
 1. User requests to open a file using a tag.
 2. HelloFile recognises the tag to be valid.
@@ -392,7 +417,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	
 	    Use case resumes.
 
+
 <br />
+
+
+<br />
+
 
 **UseCase ID: UC04**
 
@@ -409,6 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. HelloFile fails to recognize the tag.
+
 
 	* 2a1. HelloFile shows the error message.
 	
@@ -514,6 +545,114 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
+
+
+
+	* 2a1. HelloFile shows the error message.
+	
+	    Use case resumes from step 1.
+	    
+* *a. HelloFile has no permission to read or write to the file system.
+
+	* *a1. HelloFile prompts the user that it needs the read and write permission.
+	
+        Use case resumes.
+
+<br />
+
+**UseCase ID: UC05**
+
+**Use Case: Show a tagged file’s path**
+
+**MSS**
+
+1. User requests the check the path of a tagged file.
+2. HelloFile recognises that the tag exist.
+3. HelloFile shows the path of the file.
+
+    Use case ends.
+    
+**Extensions**
+
+* 2a. HelloFile failed to recognize the tag.
+
+	* 2a1. HelloFile prompts the user that the tag is wrong.
+	
+        Use case resumes from step 1.
+        
+* 3a. HelloFile detects that the target file does not exist.
+
+	* 3a1. HelloFile prompts that the target file does not exist.
+		
+        Use case resumes from step 1.
+		    
+* *a. HelloFile has no permission to read or write to the file system.
+
+	* *a1. HelloFile prompts the user that it needs the read and write permission.
+	
+	    Use case resumes.
+
+<br />
+
+**UseCase ID: UC06**
+
+**Use Case: Access the parent folder of a tagged file**
+
+**MSS**
+
+1. User request to open parent folder of a tagged file.
+2. HelloFile recognises the tag exist.
+3. HelloFile open the parent folder with the tag.
+
+    Use case ends.
+    
+**Extension**
+
+* 2a. HelloFile detects that the tag is invalid.
+
+	* 2a1. HelloFile prompts the user that the tag is wrong.
+	
+        Use case resumes from step 1.
+        
+* 3a. HelloFile detects that the target file does not exist.
+	
+	* 3a1. HelloFile prompts that the target file does not exist.
+		
+	    Use case resumes from step 1.
+		
+* 3b. HelloFile detects no default application to open the file.
+	
+	* 3b1. HelloFile prompts the user to choose an application to open the file.
+		
+        Use case resumes form step 1.
+		
+* 3c. HelloFile encounters an exception when opening the file.
+	
+	* 3c1. HelloFile shows the error message.
+		
+		Use case resumes from step 1.
+		
+* *a. HelloFile has no permission to read or write to the file system.
+
+	* *a1. HelloFile prompts the user that it needs the read and write permission.
+	
+	    Use case resumes.
+
+<br />
+
+**UseCase ID: UC07**
+
+**Use Case: Show the user help**
+
+**MSS**
+
+1. User requests to see the user help.
+2. HelloFile shows the user help.
+
+    Use case ends.
+
+**Extensions**
+
 
 * *a. User input the wrong command.
 	
