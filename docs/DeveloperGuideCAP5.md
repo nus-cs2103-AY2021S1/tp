@@ -68,14 +68,17 @@ This section describes some noteworthy details on how certain features are imple
 
 **Target user profile**:
 
-* has a need to manage a significant number of modules and tasks.
+* has a need to manage a number of classes
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage tasks and modules faster than a typical mouse/GUI driven app.
-
+**Value proposition**: 
+* Users can keep track of all module details efficiently.
+* Centralize key module details.
+* Keep track of study progress effectively.
+* Everything can be done in a single app.
 
 ### User stories
 
@@ -186,8 +189,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with not be able to access and modify other users' data files.
+4.  Should be usable by any novice that has never used this program before.
+5.  The name of the modules should not exceed 40 characters.
+6.  Should not contain more than 100 modules at 1 time.
 
 *{More to be added}*
 
