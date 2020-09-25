@@ -61,17 +61,22 @@ Format: `list`
 
 ### Adding a task: `add`
 
-Adds a person to the address book.
+Adds a task of the specified type to PlaNus.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add title:TITLE type:TYPE_OF_TASK [desc:description] [date:DATE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Adds the task of the specified `type:TYPE_OF_TASK` to PlaNus.
+* The type must be of the following types:
+    * todo
+    * deadline
+    * event
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add title:return book type:todo` Adds a task with title return book and type todo to PlaNus. 
+* `add title:Birthday party type:event desc:Frank’s birthday party date:2019-03-08`
+  Adds a task with title “Birthday party” , type event, 
+  description “Frank’s birthday party” , and date “2019-03-08” to PlaNus.
+
 
 
 ### Deleting a task : `delete`
@@ -124,7 +129,7 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add** | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE]` <br> e.g., `add title:return book type:todo`
-**Delete** | `delete INDEX...` e.g., `delete 3 5 6`
+**Delete** | `delete INDEX...` <br> e.g., `delete 3 5 6`
 **List** | `list`
 **Help** | `help`
 **Done** | `done INDEX...`<br> e.g., `done 1 2 3`

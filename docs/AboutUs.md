@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Zhou Zijian
 
-<img src="images/zzijian.png" width="200px">
+<img src="images/bobbyzhouzijian.png" width="200px">
 
 [[homepage](http://www.zijianzhou.com/)]
 [[github](https://github.com/BobbyZhouZijian)]
