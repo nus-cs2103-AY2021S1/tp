@@ -243,7 +243,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: CS students can manage/access their files by typing 
+**Value proposition**: CS students can manage/access their files by typing
                        and using a simple GUI. Help CS students to see file relations easily.
 
 
@@ -256,11 +256,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                             |
 | `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                  |
 | `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                          |
-| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                          |  
+| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                          |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident   |
 | `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                    |
 | `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                  |
-| `*`      | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files             |   
+| `*`      | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files             |
 
 
 ### Use cases
@@ -284,32 +284,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile creates the tag and display the fileInfo.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. HelloFile detects the file path is invalid.
 
     * 2a1. HelloFile prompts the user that the file path is wrong.
-    
+
         Use case resumes from step 1.
-        
+    
 * 2b. HelloFile detects no tag input.
 
     * 2b1. HelloFile prompts the user for a tag.
-    
+
         Use case resumes from step 1.
-        
+                 
 * 2c. HelloFile detects a duplicate tag name.
 
 
-	* 2c1. HelloFile prompts the user for another tag name. 
-	
+	* 2c1. HelloFile prompts the user for another tag name.
+		
         Use case resumes from step 1.
-        
+                
 * *a. HelloFile has no permission to read or write to the file system.
 
     * *a1. HelloFile prompts the user that it needs the read and write permission.
-    
+        
         Use case resumes.
 
 <br />
@@ -326,39 +326,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile opens the specified file using the default application.
         
     Use case ends.
-        
+               
 **Extension**
 
 * 2a. HelloFile detects that the tag is invalid.
 
 	* 2a1. HelloFile prompts the user that the tag is wrong.
-	
+		
         Use case resumes from step 1.
-        
+                
 * 3a. HelloFile detects that the target file does not exist.
 		
 	* 3a1. HelloFile prompts that the target file does not exist.
-		
+			
         Use case resumes from step 1.
-		    
+        		    
 * 3b. HelloFile detects no default application to open the file.
 	
 	* 3b1. HelloFile prompts the user to choose an application to open the file.
 		
 	    Use case resumes form step 1.
-		    
+	    		    
 * 3c. HelloFile encounters an exception when opening the file.
 	
 	* 3c1. HelloFile shows the error message.
 		
 	    Use case resumes from step 1.
-		    
+	    	    		    
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+		
 	    Use case resumes.
-
+	    
 <br />
 
 **UseCase ID: UC03**
@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. HelloFile replaces the tag of the file with the new tag.
 
     Use case ends.
-    
+        
 **Extensions**
 
 * 2a. HelloFile failed to recognize the tag.
@@ -379,26 +379,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	* 2a1. HelloFile prompts that tag does not exist.
 	
     	Use case resumes from step 1
-    	
+    	    	
 * 2b. HelloFile failed to recognize the new tag input.
 
     * 2b1. HelloFile prompts that the new tag is invalid.
-    
-        Use case resumes from step 1. 
         
+        Use case resumes from step 1. 
+                
 * 2c. HelloFile detects a duplicate tag name.
 
 	* 2c1. HelloFile prompts the user for another tag name. 
-	
+		
         Use case resumes from step 1.
-        
+                
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+		
 	    Use case resumes.
-
-
+	    
+	    
 <br />
 
 
@@ -416,22 +416,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile removes the file from access.
 
     Use case ends.
-    
+        
 **Extensions**
 
 * 2a. HelloFile fails to recognize the tag.
 
-
 	* 2a1. HelloFile shows the error message.
 	
 	    Use case resumes from step 1.
-	    
+	    	    
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+		
         Use case resumes.
-
+        
+        
 <br />
 
 **UseCase ID: UC05**
@@ -445,21 +445,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile shows the path of the file.
 
     Use case ends.
-    
+        
 **Extensions**
 
 * 2a. HelloFile failed to recognize the tag.
 
 	* 2a1. HelloFile prompts the user that the tag is wrong.
-	
+		
         Use case resumes from step 1.
-        
+               
 * 3a. HelloFile detects that the target file does not exist.
 
 	* 3a1. HelloFile prompts that the target file does not exist.
-		
+			
         Use case resumes from step 1.
-		    
+        		    
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
@@ -479,39 +479,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile open the parent folder with the tag.
 
     Use case ends.
-    
+        
 **Extension**
 
 * 2a. HelloFile detects that the tag is invalid.
 
 	* 2a1. HelloFile prompts the user that the tag is wrong.
-	
+		
         Use case resumes from step 1.
-        
+                
 * 3a. HelloFile detects that the target file does not exist.
 	
 	* 3a1. HelloFile prompts that the target file does not exist.
-		
+			
 	    Use case resumes from step 1.
-		
+	    		
 * 3b. HelloFile detects no default application to open the file.
 	
 	* 3b1. HelloFile prompts the user to choose an application to open the file.
-		
+			
         Use case resumes form step 1.
-		
+        		
 * 3c. HelloFile encounters an exception when opening the file.
 	
 	* 3c1. HelloFile shows the error message.
-		
+			
 		Use case resumes from step 1.
-		
+				
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
 	
-	    Use case resumes.
-
+		    Use case resumes.
+		    
 <br />
 
 **UseCase ID: UC07**
@@ -524,19 +524,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. HelloFile shows the user help.
 
     Use case ends.
-
+    
 **Extensions**
 
 
-
 	* 2a1. HelloFile shows the error message.
-	
+		
 	    Use case resumes from step 1.
-	    
+	        
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+		
         Use case resumes.
 <br />
 
@@ -573,18 +572,19 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+
 ### Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-
+   
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
+   
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
+   
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
@@ -595,16 +595,16 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
+   
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
+      
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
+      
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
+      
 1. _{ more test cases …​ }_
 
 ### Saving data
@@ -612,6 +612,5 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
+   
 1. _{ more test cases …​ }_
-	
