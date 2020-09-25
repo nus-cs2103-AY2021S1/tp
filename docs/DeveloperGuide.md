@@ -245,7 +245,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * has a basic understanding of file paths to manage his/her files
 
-**Value proposition**: 
+**Value proposition**:  
+
 A lot of detectives use physical folders, whiteboards to consolidate their investigation information. 
 This uses up a lot of physical resources such as printing papers. 
 There may also exist cluttered information across multiple cases. 
