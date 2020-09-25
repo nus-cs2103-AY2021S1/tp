@@ -5,29 +5,32 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
+[Click](https://ay2021s1-cs2103t-f11-3.github.io/tp/) to view the homepage for ProductiveNUS.
+
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Andrea Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/andreatanky.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/andreatanky)]
+[[portfolio](team/andreatanky.md)]
 
-* Role: Project Advisor
+* Role: Deliverables and deadlines
+* Responsibilities: UI 
+     
 
-### Jane Doe
+### Choo Jia Xin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/choojiaxin.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ChooJiaXin)]
+[[portfolio](team/choojiaxin.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Deliverables and deadlines
+* Responsibilities: Code quality
 
 ### Johnny Doe
 
