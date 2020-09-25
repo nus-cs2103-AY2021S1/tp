@@ -1,12 +1,17 @@
----
-layout: page
-title: User Guide
----
+# User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Common Cents is your convenient at-hand expense-tracking tool, meant for Singaporean University students with side businesses. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
-* Table of Contents
-{:toc}
+* Quick Start
+* Features
+  * Viewing help: `help`
+  * Adding an expense: `add`
+  * Removing an expense: `remove`
+  * Editing an expense: `edit`
+  * Finding expenses by keyword: `find`
+  * Listing out expenses: `list`
+  * Exiting the program: `exit`
+* Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,24 +19,19 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `commoncents.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and income.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
+   * **`add`**`n/Food costs a/6.90` : Adds an expense named "Food costs" to the expense list.
+   * **`delete`**`3` : Deletes the 3rd expense entry shown in the current list.
+   * **`clear`** : Deletes all expenses.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -44,17 +44,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in UPPERCASE are the parameters to be supplied by the user.<br>
+  e.g. in `add n/EXPENSE_NAME`, `EXPENSE_NAME` is a parameter which can be used as `add n/Buying cups`
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `n/EXPENSE_NAME [t/TAG]` can be used as `n/Buying cups t/Supplies` or as `n/Buying cups`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/EXPENSE_NAME a/EXPENSE_AMOUNT`, `a/EXPENSE_AMOUNT n/EXPENSE_NAME` is also acceptable.
+
 
 </div>
 
@@ -67,80 +65,77 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding an expense: `add`
 
-Adds a person to the address book.
+Adds an expense to the tracker.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add c/CATEGORY n/EXPENSE_NAME a/EXPENSE_AMT`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add c/expenses n/buying cups a/5.50` 
+* `add c/earnings n/selling cookies a/10.10`
 
-### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+### Removing expenses : `remove`
 
-Format: `list`
+Removes an expense from the tracker.
 
-### Editing a person : `edit`
+Format: `remove ENTRY_INDEX`
 
-Edits an existing person in the address book.
+* Deletes the expense at the specified INDEX.
+* The index refers to the index number shown in the displayed expense list.
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10)
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Example: 
+* `remove 1`: Removes the first expense in the tracker
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+### Editing an expense : `edit`
 
-### Locating persons by name: `find`
+Edits an entry in the tracker.
 
-Finds persons whose names contain any of the given keywords.
+* Edits an entry that matches the expense name and changes the initial amount with the either entry in a/MONEY_AMT (if any), the initial name to the entry in n/EXPENSE_NAME (if any) or both if both entries are keyed in
+* The tags n/ and a/ have to be used to indicate which field specifies EXPENSE_NAME and which field specifies MONEY_AMT
+* Order of whether `[n/EXPENSE_NAME]` or `[a/MONEY_AMT]` would not affect the edit command so long as the `n/` and `a/` tags are used, e.g. `edit 2 n/Cash paid at Zouk a/200` would have the same effect as `edit 2 a/200 and n/Cash paid at Zouk`.
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: 
+* `edit ENTRY_NUM [n/EXPENSE_NAME] [a/MONEY_AMT]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Example: 
+* `edit 2 n/eating McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
+* `edit 2 n/eating McNuggets` changes the name of entry 2 to `eating McNuggets` 
+* `edit 2 a/5.50` changes the amount of entry 2 to `$5.50`
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+### Locating expenses by name: `find`
 
-Format: `delete INDEX`
+Finds expenses that have the given keyword in their names.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The search is case-sensitive. e.g grocery will match grocery but not Grocery.
+* Only the expense name is searched.
+* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. Food will return Hawker Food, Restaurant Food
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Format: 
+* `find KEYWORD [MORE_KEYWORDS]`
 
-### Clearing all entries : `clear`
+Example:
+* `find food`: Finds expenses with the keyword `food`.
 
-Clears all entries from the address book.
 
-Format: `clear`
+### Listing out expenses : `list`
+
+Lists out all expenses in a category. 
+
+* The search is case-sensitive. e.g food will match food but not Food.
+* All expenses belonging to that category will be shown. 
+
+Format: 
+* `list CATEGORY`
+
+Example:
+* `list earning`: Lists expenses that belong to the `earnings` category. 
 
 ### Exiting the program : `exit`
 
@@ -148,31 +143,16 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Add** | `add c/CATEGORY  n/EXPENSE_NAME a/EXPENSE_AMT`
+**Remove** | `remove ENTRY_NUM`<br>`remove n/EXPENSE_NAME`  
+**Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`
+**List** | `list CATEGORY`
+**Exit** | `exit`

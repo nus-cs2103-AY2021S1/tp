@@ -236,27 +236,25 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of business accounts, each with a significant number of financial entries
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage financial entries faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                 | I want to …​                                   | So that I can…​                                                                 |
+| -------- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------- |
+| `* * *`  | user                                       | exit the app                                      |                                                                      |
+| `* * *`  | user                                       | add an expense/profit entry                       |                                                                      |
+| `* * *`  | user                                       | delete an entry                                   | remove entries that I no longer need                                 |
+| `* *`    | user                                       | have multiple accounts for different businesses   | keep expense/earning entries for the respective businesses separate  |
 
 *{More to be added}*
 
@@ -264,37 +262,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add an expense entry**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an expense entry
+2.  Common Cents adds the expense entry
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given input is in invalid format.
 
-  Use case ends.
+    * 1a1. Common Cents shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 1.
+      
+      
+**Use case: UC02 - Add a profit entry**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1.  User requests to add profit entry
+2.  Common Cents adds profit entry
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: UC03 - Delete an entry**
+
+**MSS**
+
+1.  User requests to delete a specific entry
+2.  Common cents deletes the entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+      
+**Use case: UC04 - Exiting app**
+
+**MSS**
+
+1.  User requests to exit
+2.  Common cents responds with exit message and closes.
+
+    Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 entries per account without a noticeable sluggishness in performance for typical
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  Should be able to perform simple arithmetic with up to 1000 entries without a significant drop in performance
+5.  Should be able to understand the layout of product without much reference to the user guide
+6.  Should be able to hold up to 100 accounts without taking up excess memory
 *{More to be added}*
 
 ### Glossary
