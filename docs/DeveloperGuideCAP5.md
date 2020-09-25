@@ -68,14 +68,17 @@ This section describes some noteworthy details on how certain features are imple
 
 **Target user profile**:
 
-* has a need to manage a significant number of modules and tasks.
+* has a need to manage a number of classes
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage tasks and modules faster than a typical mouse/GUI driven app.
-
+**Value proposition**: 
+* Users can keep track of all module details efficiently.
+* Centralize key module details.
+* Keep track of study progress effectively.
+* Everything can be done in a single app.
 
 ### User stories
 
