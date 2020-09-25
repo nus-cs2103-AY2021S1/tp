@@ -5,9 +5,14 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the following emails:
+* Jonas Ng: `e0415645@u.nus.edu`
+* Li HuanKang:
+* David Cai:
+* Joshua Wong:
+* Michael:
 
-## Cap 5.0 Buddy
+## Cap 5.0 Buddy Team
 
 ### Jonas Ng
 
