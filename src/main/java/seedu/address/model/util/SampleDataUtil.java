@@ -76,8 +76,14 @@ public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[] {
             new Item(0, "Apple", new Quantity("99"), "Delicious",
-                new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6)), getTagSet("Consummable"), false)
+                new HashSet<>(Arrays.asList(0)),
+                new HashSet<>(), getTagSet("Consummable"), false),
+            new Item(1, "Banana", new Quantity("99"), "Delicious",
+                    new HashSet<>(Arrays.asList(0)),
+                    new HashSet<>(), getTagSet("Consummable"), false),
+            new Item(2, "Fruit basket", new Quantity("99"), "Delicious",
+                    new HashSet<>(Arrays.asList(0)),
+                    new HashSet<>(Arrays.asList(0)), getTagSet("Consummable"), false)
         };
     }
 
@@ -111,8 +117,7 @@ public class SampleDataUtil {
         ingredients.setItems(ingredientList);
 
         return new Recipe[] {
-            new Recipe(0, ingredients, 2, new ProductQuantity("1"), "Recipe 1", false),
-            new Recipe(1, ingredients, 3, new ProductQuantity("2"), "Recipe 2", false)
+            new Recipe(0, ingredients, 2, new ProductQuantity("1"), "Recipe 1", false)
         };
     }
 
