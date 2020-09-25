@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.resireg.ui;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,7 +7,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.resireg.ui.UiPart;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
