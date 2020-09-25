@@ -32,31 +32,31 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Deliverables and deadlines
 * Responsibilities: Code quality
 
-### Johnny Doe
+### Jerry Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/printinghelloworld.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/printinghelloworld)] [[portfolio](team/printinghelloworld.md)]
 
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
+* Role: Deliverables and deadlines
 * Responsibilities: UI
+
+### Hwang Yong Kang
+
+<img src="images/hyngkng.png" width="200px">
+
+[[github](http://github.com/hyngkng)]
+[[portfolio](team/hyngkng.md)]
+
+* Role: Deliverables and deadlines
+* Responsibilities: JUnit testing
+
+### Nguyen Hoang Hai Minh
+
+<img src="images/minhhhnguyen2000.png" width="200px">
+
+[[github](http://github.com/minhhhnguyen2000)]
+[[portfolio](team/minhhhnguyen2000.md)]
+
+* Role: Deliverables and deadlines
+* Responsibilities: JUnit testing
