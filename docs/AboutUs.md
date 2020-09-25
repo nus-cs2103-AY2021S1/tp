@@ -41,15 +41,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Hwang Yong Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hyngkng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hyngkng)]
+[[portfolio](team/hyngkng.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Deliverables and deadlines
+* Responsibilities: JUnit testing
 
 ### James Doe
 
