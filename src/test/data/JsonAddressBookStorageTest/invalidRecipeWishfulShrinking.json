@@ -1,0 +1,8 @@
+{
+  "recipes": [ {
+    "name": "Recipe with invalid name field: Ha!ns Mu@ster",
+    "ingredients": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street"
+  } ]
+}
