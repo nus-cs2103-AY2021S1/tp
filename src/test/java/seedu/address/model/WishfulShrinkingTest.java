@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
 //import seedu.address.testutil.RecipeBuilder;
@@ -88,6 +89,7 @@ public class WishfulShrinkingTest {
      */
     private static class WishfulShrinkingStub implements ReadOnlyWishfulShrinking {
         private final ObservableList<Recipe> recipes = FXCollections.observableArrayList();
+        private final ObservableList<Ingredient> ingredients = FXCollections.observableArrayList();
 
         WishfulShrinkingStub(Collection<Recipe> recipes) {
             this.recipes.setAll(recipes);
@@ -96,6 +98,11 @@ public class WishfulShrinkingTest {
         @Override
         public ObservableList<Recipe> getRecipeList() {
             return recipes;
+        }
+
+        @Override
+        public ObservableList<Ingredient> getIngredientList() {
+            return ingredients;
         }
     }
 

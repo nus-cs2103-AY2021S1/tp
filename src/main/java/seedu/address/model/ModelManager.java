@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final WishfulShrinking addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Recipe> filteredRecipes;
+    private final FilteredList<Ingredient> filteredIngredients;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new WishfulShrinking(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredRecipes = new FilteredList<>(this.addressBook.getRecipeList());
+        filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
     }
 
     public ModelManager() {
@@ -112,6 +115,30 @@ public class ModelManager implements Model {
         addressBook.setRecipe(target, editedRecipe);
     }
 
+    @Override
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return addressBook.hasIngredient(ingredient);
+    }
+
+    @Override
+    public void deleteIngredient(Ingredient target) {
+        addressBook.removeIngredient(target);
+    }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        addressBook.addIngredient(ingredient);
+        updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+    }
+
+    @Override
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) {
+        requireAllNonNull(target, editedIngredient);
+
+        addressBook.setIngredient(target, editedIngredient);
+    }
+
     //=========== Filtered Recipe List Accessors =============================================================
 
     /**
@@ -127,6 +154,21 @@ public class ModelManager implements Model {
     public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         requireNonNull(predicate);
         filteredRecipes.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
+     * {@code versionedWishfulShrinking}
+     */
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return filteredIngredients;
+    }
+
+    @Override
+    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        requireNonNull(predicate);
+        filteredIngredients.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +187,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredRecipes.equals(other.filteredRecipes);
+                && filteredRecipes.equals(other.filteredRecipes)
+                && filteredIngredients.equals(other.filteredIngredients);
     }
 
 }

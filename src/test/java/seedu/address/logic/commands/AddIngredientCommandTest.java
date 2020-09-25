@@ -22,48 +22,50 @@ import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.testutil.RecipeBuilder;
+import seedu.address.testutil.IngredientBuilder;
 
-public class AddRecipeCommandTest {
+public class AddIngredientCommandTest {
 
     @Test
     public void constructor_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddRecipeCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(null));
     }
 
     @Test
-    public void execute_recipeAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingRecipeAdded modelStub = new ModelStubAcceptingRecipeAdded();
-        Recipe validRecipe = new RecipeBuilder().build();
+    public void execute_ingredientAcceptedByModel_addSuccessful() throws Exception {
+        AddIngredientCommandTest.ModelStubAcceptingIngredientAdded modelStub = new ModelStubAcceptingIngredientAdded();
+        Ingredient validIngredient = new IngredientBuilder().build();
 
-        CommandResult commandResult = new AddRecipeCommand(validRecipe).execute(modelStub);
+        CommandResult commandResult = new AddIngredientCommand(validIngredient).execute(modelStub);
 
-        assertEquals(String.format(AddRecipeCommand.MESSAGE_SUCCESS, validRecipe), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validRecipe), modelStub.recipesAdded);
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validIngredient), modelStub.ingredientsAdded);
     }
 
     @Test
-    public void execute_duplicateRecipe_throwsCommandException() {
-        Recipe validRecipe = new RecipeBuilder().build();
-        AddRecipeCommand addRecipeCommand = new AddRecipeCommand(validRecipe);
-        ModelStub modelStub = new ModelStubWithRecipe(validRecipe);
+    public void execute_duplicateIngredient_throwsCommandException() {
+        Ingredient validIngredient = new IngredientBuilder().build();
+        AddIngredientCommand addIngredientCommand = new AddIngredientCommand(validIngredient);
+        AddIngredientCommandTest.ModelStub modelStub = new AddIngredientCommandTest
+                .ModelStubWithIngredient(validIngredient);
 
         assertThrows(CommandException.class,
-                AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE, () -> addRecipeCommand.execute(modelStub));
+                AddIngredientCommand.MESSAGE_DUPLICATE_RECIPE, () -> addIngredientCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Recipe alice = new RecipeBuilder().withName("Alice").build();
-        Recipe bob = new RecipeBuilder().withName("Bob").build();
-        AddRecipeCommand addAliceCommand = new AddRecipeCommand(alice);
-        AddRecipeCommand addBobCommand = new AddRecipeCommand(bob);
+        Ingredient alice = new IngredientBuilder().withValue("Alice").build();
+        Ingredient bob = new IngredientBuilder().withValue("Bob").build();
+        AddIngredientCommand addAliceCommand = new AddIngredientCommand(alice);
+        AddIngredientCommand addBobCommand = new AddIngredientCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddRecipeCommand addAliceCommandCopy = new AddRecipeCommand(alice);
+        AddIngredientCommand addAliceCommandCopy = new AddIngredientCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -72,7 +74,7 @@ public class AddRecipeCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different recipe -> returns false
+        // different ingredient -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -181,42 +183,40 @@ public class AddRecipeCommandTest {
         }
     }
 
-
-
     /**
-     * A Model stub that contains a single recipe.
+     * A Model stub that contains a single ingredient.
      */
-    private class ModelStubWithRecipe extends ModelStub {
-        private final Recipe recipe;
+    private class ModelStubWithIngredient extends AddIngredientCommandTest.ModelStub {
+        private final Ingredient ingredient;
 
-        ModelStubWithRecipe(Recipe recipe) {
-            requireNonNull(recipe);
-            this.recipe = recipe;
+        ModelStubWithIngredient(Ingredient ingredient) {
+            requireNonNull(ingredient);
+            this.ingredient = ingredient;
         }
 
         @Override
-        public boolean hasRecipe(Recipe recipe) {
-            requireNonNull(recipe);
-            return this.recipe.isSameRecipe(recipe);
+        public boolean hasIngredient(Ingredient ingredient) {
+            requireNonNull(ingredient);
+            return this.ingredient.isSameIngredient(ingredient);
         }
     }
 
     /**
-     * A Model stub that always accept the recipe being added.
+     * A Model stub that always accept the ingredient being added.
      */
-    private class ModelStubAcceptingRecipeAdded extends ModelStub {
-        final ArrayList<Recipe> recipesAdded = new ArrayList<>();
+    private class ModelStubAcceptingIngredientAdded extends AddIngredientCommandTest.ModelStub {
+        final ArrayList<Ingredient> ingredientsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasRecipe(Recipe recipe) {
-            requireNonNull(recipe);
-            return recipesAdded.stream().anyMatch(recipe::isSameRecipe);
+        public boolean hasIngredient(Ingredient ingredient) {
+            requireNonNull(ingredient);
+            return ingredientsAdded.stream().anyMatch(ingredient::isSameIngredient);
         }
 
         @Override
-        public void addRecipe(Recipe recipe) {
-            requireNonNull(recipe);
-            recipesAdded.add(recipe);
+        public void addIngredient(Ingredient ingredient) {
+            requireNonNull(ingredient);
+            ingredientsAdded.add(ingredient);
         }
 
         @Override
@@ -224,5 +224,6 @@ public class AddRecipeCommandTest {
             return new WishfulShrinking();
         }
     }
+
 
 }

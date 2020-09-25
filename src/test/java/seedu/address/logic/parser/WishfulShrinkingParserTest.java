@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 //import seedu.address.logic.commands.AddRecipeCommand;
+import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 //import seedu.address.logic.commands.EditCommand;
@@ -23,7 +24,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
+import seedu.address.testutil.IngredientBuilder;
+import seedu.address.testutil.IngredientUtil;
 /*import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
 import seedu.address.testutil.RecipeBuilder;
@@ -39,6 +43,14 @@ public class WishfulShrinkingParserTest {
         AddRecipeCommand command = (AddRecipeCommand) parser.parseCommand(RecipeUtil.getAddRecipeCommand(recipe));
         assertEquals(new AddRecipeCommand(recipe), command);
     }*/
+
+    @Test
+    public void parseCommand_addIngredient() throws Exception {
+        Ingredient ingredient = new IngredientBuilder().build();
+        AddIngredientCommand command = (AddIngredientCommand) parser.parseCommand(IngredientUtil
+                .getAddIngredientCommand(ingredient));
+        assertEquals(new AddIngredientCommand(ingredient), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {

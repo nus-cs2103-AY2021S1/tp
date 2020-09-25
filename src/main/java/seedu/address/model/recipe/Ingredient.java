@@ -19,6 +19,22 @@ public class Ingredient {
         value = ingredient;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns true if both ingredients have the same name.
+     * This defines a weaker notion of equality between two recipes.
+     */
+    public boolean isSameIngredient(Ingredient otherIngredient) {
+        if (otherIngredient == this) {
+            return true;
+        }
+
+        return otherIngredient != null
+                && otherIngredient.toString().equals(toString());
+    }
 
     @Override
     public String toString() {
