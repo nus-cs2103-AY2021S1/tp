@@ -115,6 +115,8 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add module KEYWORD`<br> e.g., `add module CS2103T [link]`, `add module CS2103T`
+
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
 
 **Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
