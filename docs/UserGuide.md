@@ -79,6 +79,11 @@ Examples:
 * `vendor` Shows the list of vendor
 * `vendor i/2` Selects the 2<sup>nd</sup> vendor in the list
 
+### Confirming order: 'confirm'
+
+Confirms the final order with the final price displayed
+
+Format: `confirm`
 
 ### Other features `[coming soon]`
 
@@ -98,3 +103,4 @@ _{coming soon}_
 Action | Format, Examples
 --------|------------------
 **Delete** | `delete i/INDEX [q/QUANTITY]`<br> e.g., `delete i/3`
+**Confirm**| `confirm` <br> e.g., `confirm`
