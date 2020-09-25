@@ -270,7 +270,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br />
 
 
-<br />
 
 
 **Use case ID: UC01**
@@ -527,16 +526,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 **Extensions**
 
-
-	* 2a1. HelloFile shows the error message.
-		
-	    Use case resumes from step 1.
 	        
-* *a. HelloFile has no permission to read or write to the file system.
+* *a. User input the wrong command
 
-	* *a1. HelloFile prompts the user that it needs the read and write permission.
-		
-        Use case resumes.
+	* *a1. HelloFile shows the error message and direct the user to enter the user help command.
+	    
+	    Use case ends.
 <br />
 
 *{More to be added}*

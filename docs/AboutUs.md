@@ -6,7 +6,6 @@ title: About Us
 
 ### Lu Luoyi
 
-
 <img src="images/luo-git.png" width="200px" alt="Luoyi's profile picture">
 
 [github](https://github.com/luo-git)
@@ -34,5 +33,4 @@ title: About Us
 
 [github](https://github.com/HynRidge)
 
-
-<
+* Role: Developer
