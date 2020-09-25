@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.UniqueFlashcardList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueFlashcardList flashcards;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        flashcards = new UniqueFlashcardList();
     }
 
     public AddressBook() {}
@@ -47,6 +51,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    public void setFlashcards(List<Flashcard> flashcards) {
+        this.flashcards.setFlashcards(flashcards);
+    }
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -54,6 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setFlashcards(newData.getFlashcardList());
     }
 
     //// person-level operations
@@ -67,11 +75,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a flashcard with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasFlashcard(Flashcard flashcard) {
+        requireNonNull(flashcard);
+        return flashcards.contains(flashcard);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
+    }
+
+    /**
+     * Adds a flashcard to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addFlashcard(Flashcard f) {
+        flashcards.add(f);
     }
 
     /**
@@ -93,6 +117,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeFlashcard(Flashcard key) {
+        flashcards.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -105,6 +137,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
+    public ObservableList<Flashcard> getFlashcardList() {
+        return flashcards.asUnmodifiableObservableList();
+    }
+
 
     @Override
     public boolean equals(Object other) {

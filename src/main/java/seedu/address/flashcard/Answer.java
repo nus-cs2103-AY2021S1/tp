@@ -4,7 +4,12 @@ package seedu.address.flashcard;
  * Represents an Answer in a flashcard.
  */
 public class Answer {
-    final private String answer;
+
+    public static final String MESSAGE_CONSTRAINTS = "Answer can take any values, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    private final String answer;
 
     public Answer(String answer) {
         this.answer = answer;
@@ -28,5 +33,23 @@ public class Answer {
      */
     public String getAnswer() {
         return answer;
+    }
+
+    /**
+     * Returns if a given string is a valid answer.
+     */
+    public static boolean isValidAnswer(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o instanceof Answer) {
+            Answer temp = (Answer) o;
+            return temp.toString().equals(o.toString());
+        }
+        return false;
     }
 }

@@ -1,19 +1,28 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Tag;
+import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -48,6 +57,52 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code question} is invalid.
+     */
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!OpenEndedQuestion.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
+        }
+        return new OpenEndedQuestion(trimmedQuestion);
+    }
+
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if answer is less than choices and question is invalid.
+     */
+    public static Question parseMultipleChoiceQuestion(String question,
+                                                       String[] choices) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!Mcq.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(Mcq.MESSAGE_CONSTRAINTS);
+        }
+        return new Mcq(trimmedQuestion, choices);
+    }
+
+    /**
+     * Parses a {@code String answer} into a {@code Answer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code answer} is invalid.
+     */
+    public static Answer parseAnswer(String answer) throws ParseException {
+        requireNonNull(answer);
+        String trimmedAnswer = answer.trim();
+        if (!Answer.isValidAnswer(trimmedAnswer)) {
+            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
+        }
+        return new Answer(trimmedAnswer);
     }
 
     /**
@@ -110,6 +165,38 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static String parseChoice(String choice) throws ParseException {
+        requireNonNull(choice);
+        String trimmedChoice = choice.trim();
+        if (choice.equals(" ")) {
+            throw new ParseException("Choices cannot be empty");
+        }
+        return trimmedChoice;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static String[] parseChoices(Collection<String> choices) throws ParseException {
+        requireNonNull(choices);
+        List<String> choicesList = new ArrayList<>();
+        for (String choice : choices) {
+            choicesList.add(parseChoice(choice));
+        }
+        String[] result = new String[choicesList.size()];
+        if (result.length <= 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
+        }
+        choicesList.toArray(result);
+        return result;
+    }
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */

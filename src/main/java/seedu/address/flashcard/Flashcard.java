@@ -1,17 +1,23 @@
 package seedu.address.flashcard;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Flashcard. Each Flashcard will contain one question and
  * one answer. In addition, it can have multiple tags.
  */
 public class Flashcard {
-    final private Question question;
-    final private Answer answer;
-    final private List<Tag> tags;
+    private final Question question;
+    private final Answer answer;
+    private final Set<Tag> tags;
 
-    public Flashcard(Question question, Answer answer, List<Tag> tags) {
+    /**
+     * A constructor to create flashcard object.
+     * @param question Question of the flashcard.
+     * @param answer Answer of the flashcard.
+     * @param tags Tags of the flashcard.
+     */
+    public Flashcard(Question question, Answer answer, Set<Tag> tags) {
         this.question = question;
         this.answer = answer;
         this.tags = tags;
@@ -46,12 +52,41 @@ public class Flashcard {
      * Gets the tags of this flashcard.
      * @return a list of tags.
      */
-    public List<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
     @Override
     public String toString() {
         return String.format("Question:\n%s\nAnswer:\n%s", question.getQuestion(), answer.getAnswer());
+    }
+
+    /**
+     * A method to check if otherFlashcard is the same with the current one.
+     */
+    public boolean isSameFlashcard(Flashcard otherFlashcard) {
+        if (otherFlashcard == this) {
+            return true;
+        }
+
+        return otherFlashcard != null
+                && otherFlashcard.getQuestion().equals(getQuestion())
+                && (otherFlashcard.getAnswer().equals(getAnswer()));
+    }
+
+    /**
+     * A method to check if otherFlashcard is the same with the current one.
+     */
+    @Override
+    public boolean equals(Object otherFlashcard) {
+        if (otherFlashcard == this) {
+            return true;
+        } else if (otherFlashcard instanceof Flashcard) {
+            Flashcard other = (Flashcard) otherFlashcard;
+            return other.getAnswer().equals(getAnswer())
+                    && other.getQuestion().equals(getQuestion());
+        }
+        return false;
+
     }
 }
