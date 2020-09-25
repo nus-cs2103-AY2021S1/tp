@@ -149,8 +149,10 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
+    -fx-control-inner-background: derive(#1d1d1d, 20%);
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-pref-height: 30px;
 }
 
 .result-display .label {
@@ -349,4 +351,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#responseContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
