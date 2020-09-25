@@ -51,7 +51,6 @@ public class NameContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new RecipeBuilder().withName("Alice Carol").build()));
-
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new RecipeBuilder().withName("Alice Bob").build()));

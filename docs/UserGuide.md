@@ -104,7 +104,6 @@ Format: `searchR n/TITLE [MORE_TITLE]`
 
 * The search is case-insensitive. e.g `salad` will match `Salad`
 * Only the recipe title is searched.
-* Only full words will be matched e.g. `salad` will not match `salads`
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham
 
 Examples:
@@ -150,7 +149,6 @@ Format: `searchF KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `peanut` will match `Peanut`
 * Only the recipe title is searched.
-* Only full words will be matched e.g. `peanut` will not match `peanuts`
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut
 
 Examples:
