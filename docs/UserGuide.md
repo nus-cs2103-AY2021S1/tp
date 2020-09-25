@@ -1,4 +1,4 @@
-#User Guide for Supper Striker
+# User Guide for Supper Striker
 
 ## Commands
 
@@ -6,12 +6,6 @@
 
 * Table of Contents
 {coming soon}
-
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `supperstrikers.jar` from [here](https://github.com/AY2021S1-CS2103-T16-1/tp/releases).
 
@@ -54,6 +48,48 @@
 
 </div>
 
+
+### Getting Started: `help`
+
+Shows the user instructions on how to use the application.
+
+
+### View/select vendor: `vendor`
+
+Shows the list of vendor. If an index is specified, that vendor is selected.
+
+Format: `vendor [i/INDEX]`
+
+Examples:
+* `vendor` Shows the list of vendor
+* `vendor i/2` Selects the 2<sup>nd</sup> vendor in the list
+
+
+### Displaying supper menu: `menu`
+
+Shows the menu from the current selected vendor
+
+Format: `menu`
+
+
+### Creating a new supper order: `create`
+
+Creates a new supper order for the user
+
+Format: `create`
+
+
+### Adding a food item: `add`
+
+Adds a new food item for the user according to the index from the menu
+
+Format: `add i/INDEX q/QUANTITY`
+
+Examples:
+* `add i/1 q/1` add 1 quantity of item at index 1
+* `add i/2 q/3` add 3 quantity of item at index 2
+
+
 ### Deleting an item : `delete`
 
 Deletes the specified item from the supper order.
@@ -69,21 +105,13 @@ Examples:
 * `delete i/2` deletes the second item in the supper order.
 * `delete i/1 q/2` deletes 2 instances of the first item in the supper order.
 
-### View/select vendor: `vendor`
-
-Shows the list of vendor. If an index is specified, that vendor is selected.
-
-Format: `vendor [i/INDEX]`
-
-Examples:
-* `vendor` Shows the list of vendor
-* `vendor i/2` Selects the 2<sup>nd</sup> vendor in the list
 
 ### Confirming order: 'confirm'
 
 Confirms the final order with the final price displayed
 
 Format: `confirm`
+
 
 ### Other features `[coming soon]`
 
@@ -101,6 +129,11 @@ _{coming soon}_
 ## Command summary
 
 Action | Format, Examples
---------|-AY I -----------------
+--------|------------------
+**Help**   | `help`
+**Vendor** | `vendor i/INDEX` <br> e.g., `vendor i/2`
+**Menu**   | `menu` <br> e.g., `menu`
+**Create** | `create` <br> e.g., `create`
+**Add**    | `add i/INDEX q/QUANTITY` <br> e.g., `add i/2` 
 **Delete** | `delete i/INDEX [q/QUANTITY]`<br> e.g., `delete i/3`
 **Confirm**| `confirm` <br> e.g., `confirm`
