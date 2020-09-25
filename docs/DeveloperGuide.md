@@ -253,16 +253,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ---------------------------------------------- | -------------------------------- |
 | `* * *`  | new user                                   | have a help command                            |  easily access the user guide.   |
 | `* * *`  | user                                       | add new task to my list                        |                                  |
-| `* * *`  | student                                    | know when my tasks are du                      |                                  |
-| `* * *`  | user                                       | maintain a list of task I currently have       |                                  |
-| `* * *`  | user with a lot of task                    | delete my task after it is not relevant        | be focus on the unfinished task. |
+| `* * *`  | student                                    | know when my tasks are due                     |                                  |
+| `* * *`  | user                                       | maintain a list of tasks I currently have      |                                  |
+| `* * *`  | user with a lot of task                    | delete my task after it is not relevant        | be focused on the unfinished tasks. |
 | `* * *`  | user                                       | mark my task as done after it is completed     | track the status of the task     |
 | `* *  `  | user                                       | find tasks by module                           |                                  |
 | `* *  `  | user                                       | find tasks by due date                         |                                  |
 | `* *  `  | user                                       | mark my task as done after it is completed     |                                  |
 | `* * *`  | user                                       | find tasks by name                             |                                  |
 | `* *  `  | user                                       | find tasks by category                         |                                  |
-| `* * *`  | user                                       | edit my task                                   |                                  |
+| `* * *`  | user                                       | edit my tasks                                  |                                  |
   
 *{More to be added}*
 
