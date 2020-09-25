@@ -5,8 +5,7 @@ title: User Guide
 
 AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+PropertyFree is adapted from AB3. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,165 +13,494 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Stay tuned to our release!
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+# CS2103-W14-1: PropertyFree User Guide
 
-## Features
+**PropertyFree is a management system for property agents to track and manage their property listing 
+details.** It **a**llows users to easily take control of their bookkeeping matters inclusive of seller ask prices, 
+bidder buy prices, key details of properties and record keeping of past properties. 
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+PropertyFree also provides a 
+calendar for property agents to manage their schedule be it for property viewings or meeting with clients. 
+It is optimized for CLI users so that the bookkeeping can be done faster by typing in commands.
 
 
-### Adding a person: `add`
+# Property Features
 
-Adds a person to the address book.
+---
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+## Addition of Property Listing
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Adds a property listing and its relevant details to the list of properties.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- Command:  `add -p`
+- Format: `add -p n/PROPERTY_NAME s/SELLER_ID ab/ASKING_BID d/DESCRIPTION t/TYPE a/ADDRESS r/IS_RENTAL`
 
-### Listing all persons : `list`
+Example:
 
-Shows a list of all persons in the address book.
+```java
+add -p n/Sunrise s/C12345678 ab/100 d/Beautiful home t/landed a/99 Sunrise Street r/No
+```
 
-Format: `list`
+Expected Output:
 
-### Editing a person : `edit`
+```java
+Property
+    Id: P23
+		Name: Sunrise
+		Seller id: C12345678
+		Asking bid: $100
+		Description: Beautiful home
+		Type: Landed
+		Address: 99 Sunrise Street
+		Rental: No
+Has been added!
+```
 
-Edits an existing person in the address book.
+💡 IS_RENTAL can be the following format : Yes / yes / Y / y or No / no / N / n
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+## **Addition of Seller**
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Adds a seller to the seller list.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- Command: `add -s`
+- Format: `add -s n/SELLER_NAME p/PHONE_NUMBER a/ADDRESS`
 
-### Locating persons by name: `find`
+Example:
 
-Finds persons whose names contain any of the given keywords.
+```java
+add -c n/Marcus Duigan p/12345678 a/99 Hill Street
+```
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Expected Output:
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+```java
+Client
+    Id: S2
+    Name: Marcus Duigan
+    Phone number: 12345678
+    Address: 99 Hill Street
+Has been added!
+```
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+## **View List of Sellers**
 
-### Deleting a person : `delete`
+Views the list of sellers with property listings that I manage.
 
-Deletes the specified person from the address book.
+- Command: `list -s`
+- Format: `list -s`
 
-Format: `delete INDEX`
+Example:
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+```java
+list -s
+```
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Expected Output:
 
-### Clearing all entries : `clear`
+```java
+Here are the list of sellers:
+C1 Marcus Duigan, 12345678, 99 Hill Street
+C2 Kor Ming Soon, 12345679, 99 Mountain Street
+```
 
-Clears all entries from the address book.
+## **Deletion of Property Listing**
 
-Format: `clear`
+Deletes a property listing that the seller no longer wants to sell.
 
-### Exiting the program : `exit`
+- Command: `delete -p`
+- Format: `delete -p PROPERTY_ID`
 
-Exits the program.
+Example:
 
-Format: `exit`
+```java
+delete -p P23
+```
 
-### Saving the data
+Expected Output:
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+```java
+Property P23 has been deleted.
+```
 
-### Archiving data files `[coming in v2.0]`
+## **Editing Property Listing**
 
-_{explain the feature here}_
+Edits a property listing.
 
---------------------------------------------------------------------------------------------------------------------
+- Command: `edit -p`
+- Format: `edit -p PROPERTY_ID [n/PROPERTY_NAME] [s/SELLER_ID] 
+[ab/ASKING_BID] [d/DESCRIPTION] [t/TYPE] [r/IS_RENTAL]`
+
+Example:
+
+```java
+edit -p P23 ab/200
+```
+
+💡 Only the parameter provided will be updated while all other details remain the same.
+
+Expected Output:
+
+```java
+Property
+    Id: P23
+		Name: Sunrise
+		Seller id: S12345678
+		Asking bid: $200
+		Description: Beautiful home
+		Address: 99 Sunrise Street
+		Type: Landed
+		Rental: No
+Has been updated!
+```
+
+## **View List of Property**
+
+Shows a picture of a the current property in the list.
+
+- Command: `view -p`
+- Format: `view -p`
+
+Example:
+
+```java
+view -p
+```
+
+Expected Output:
+
+```java
+These are your current property listings!
+
+1. Punggol Avenue 3 Block 46 #12-345
+2. Chinatown Avenue 4 Block 44 #11-111
+```
+
+## **Search for a Property**
+
+Searches for a property according to the address, property id or description of the property.
+
+- Command: `search -p`
+- Format: `search -p [PROPERTY_ID] [n/PROPERTY_NAME] [d/DESCRIPTION]`
+
+Example:
+
+```java
+search -p Chinatown
+```
+
+Expected Output:
+
+```java
+Search Results:
+1. Chinatown Avenue 4 Block 44 #11-111
+```
+
+## **Sort Property List**
+
+Sorts the property accordingly to how I want it: property name (alphabetically), asking bid, type of housing, deal type (rental or sale)
+
+- Command: `sort-p`
+- Format:
+
+    `sort-p name` 
+
+    `sort-p bid` 
+
+    `sort-p housing` 
+
+    `sort-p deal` 
+
+Example:
+
+```java
+sort -p name
+```
+
+Expected Output:
+
+```java
+Your property list is sorted!
+1. Chinatown Avenue 4 Block 44 #11-111 
+2. Punggol Avenue 3 Block 46 #12-345
+```
+
+---
+
+# Bid Features
+
+---
+
+## Adding to Bid to a Property
+
+Adds a bid to the property when there is a bidder for a specific property
+
+- Command: `add -b`
+- Format: `add -b a/ADDRESS c/CLIENT_NAME a/BID_AMOUNT`
+
+Example:
+
+```java
+add -b a/99 Sunrise Street c/Marcus Duigan a/150000
+```
+
+Expected Output:
+
+```java
+Added bid to property: 99 Sunrise Street of $150,000 by Marcus Duigan
+```
+
+## View List of Bidders for a Property
+
+Will display all bidders for a property
+
+- Command: `list -b`
+- Format: `list -b n/PROPERTY_NAME`
+
+Example:
+
+```java
+list -b n/99 Sunrise Street
+```
+
+Expected Output:
+
+```java
+List of bidders for 99 Sunrise Street
+
+* Marcus Duigan- $150000
+* Kor Ming Soon- $140330
+```
+
+## Deletion of Existing Bid
+
+Will display all bidders for a property
+
+- Command: `delete -b`
+- Format: `delete -b a/ADDRESS c/CLIENT_NAME`
+
+Example:
+
+```java
+delete -b a/99 Sunrise Street c/Marcus Duigan
+```
+
+Expected Output:
+
+```java
+Removed bid made by Marcus Duigan for property: 99 Sunrise Street
+```
+
+## Editing Bid from a Property
+
+Will edit a bidder’s bid value for a specific property
+
+- Command: `edit -b`
+- Format: `edit -b a/ADDRESS c/CLIENT_NAME ab/BID_AMOUNT`
+
+Example:
+
+```java
+edit -b a/99 Sunrise Streetc/Marcus Duigan ab/140000
+```
+
+Expected Output:
+
+```java
+Edited bid made by: Marcus Duigan 
+Property: 99 Sunrise Street
+Amount: $140000
+```
+
+---
+
+# Calendar Features
+
+---
+
+There are three types of meetings of which the agent will be able to add:
+
+1. View - For viewing of properties
+2. Admin - For general admin meetings
+3. Paperwork - For signing of paperwork related to the selling and buying of the house
+
+---
+
+## Add a View Meeting
+
+Creates a view meeting to be added to the schedule.
+
+- Command: `add -m view`
+- Format: `add -m view at/PROPERTY_ID by/TIME d/DESCRIPTION`
+
+Example:
+
+```java
+add -m view at/4 by/12102020 1600 d/bring to condo
+```
+
+💡 at/PROPERTY_ID indicates the id of the property listing.
+
+💡 by/TIME indicates the time of the meeting.
+
+Expected Output:
+
+```java
+Client Viewing Meeting: 12 Oct 2020 at 1600hrs
+    Id: C2
+    Name: Marcus Duigan
+    Phone number: 12345678
+    Address: 99 Hill Street
+    Type: Seller
+    Description: bring to condo
+Has been added!
+```
+
+## Add an Administrative Meeting
+
+Creates an admin meeting to be added to the schedule.
+
+- Command: `add -m admin`
+- Format: `add -m admin at/PROPERTY_ID by/TIME d/DESCRIPTION`
+
+Example:
+
+```java
+add -m admin at/4 by/12102020 1600 d/talk about regulations
+```
+
+💡 at/PROPERTY_ID indicates the id of the property listing.
+
+💡 by/TIME indicates the time of the meeting.
+
+Expected Output:
+
+```java
+Client Admin Meeting: 12 Oct 2020 at 1600hrs
+    Id: C2
+    Name: Marcus Duigan
+    Phone number: 12345678
+    Address: 99 Hill Street
+    Type: Seller
+    Description: talk about regulations
+Has been added!
+```
+
+## Add a Paperwork Meeting
+
+Creates a paperwork meeting to be added to the schedule.
+
+- Command: `add -m admin`
+- Format: `add -m paper at/PROPERTY_ID by/TIME d/DESCRIPTION`
+
+Example:
+
+```java
+add -m paper at/4 by/12102020 1600 d/sign CPF paper
+```
+
+💡 at/PROPERTY_ID indicates the id of the property listing.
+
+💡 by/TIME indicates the time of the meeting.
+
+Expected Output:
+
+```java
+Client Paperwork Meeting: 12 Oct 2020 at 1600hrs
+    Id: C2
+    Name: Marcus Duigan
+    Phone number: 12345678
+    Address: 99 Hill Street
+    Type: Seller
+     Description: sign CPF paper
+Has been added!
+```
+
+## Deleting a Meeting
+
+Deletes a meeting from the calendar when a meeting is cancelled
+
+- Command: `delete -m`
+- Format: `delete -m m/MEETING_ID`
+
+Example:
+
+```java
+delete -m m/M4
+```
+
+Expected Output:
+
+```java
+Meeting M4 has been deleted
+```
+
+## Editing an Existing Meeting
+
+Edits an existing meeting detail that is in the list.
+
+- Command: `edit -m`
+- Format: `edit -m m/MEETING_ID by/TIME t/TYPE_MEETING d/DESCRIPTION`
+
+Example:
+
+```java
+edit -c m/4 by/12102020 1600 t/view d/show bedroom
+```
+
+💡 at/PROPERTY_ID indicates the id of the property listing.
+
+💡 by/TIME indicates the time of the meeting.
+
+Expected Output:
+
+```java
+Client Paperwork Meeting: 12 Oct 2020 at 1600hrs
+    Id: C2
+    Name: Marcus Duigan
+    Phone number: 12345678
+    Address: 99 Hill Street
+    Type: Seller
+    Description: show bedroom
+Has been added!
+```
+
+## Listing all Meeting Schedules
+
+Displays all meetings in the calendar list chronologically
+
+- Command: `add -m admin`
+- Format: `add -m admin at/PROPERTY_ID by/TIME d/DESCRIPTION`
+
+Example:
+
+```java
+add -m admin at/4 by/12102020 1600 d/talk about regulations
+```
+
+💡 at/PROPERTY_ID indicates the id of the property listing.
+
+💡 by/TIME indicates the time of the meeting.
+
+Expected Output:
+
+```java
+Client Admin Meeting: 12 Oct 2020 at 1600hrs
+    Id: C2
+    Name: Marcus Duigan
+    Phone number: 12345678
+    Address: 99 Hill Street
+    Type: Seller
+    Description: talk about regulations
+Has been added!
+```
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+To be completed. Stay tuned!
