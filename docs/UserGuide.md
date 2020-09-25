@@ -118,5 +118,8 @@ _{coming soon}_
 
 Action | Format, Examples
 --------|------------------
+**Vendor** | `vendor i/INDEX` <br> e.g., `vendor i/2`
+**Menu**   | `menu` <br> e.g., `menu`
+**Create** | `create` <br> e.g., `create`
 **Delete** | `delete i/INDEX [q/QUANTITY]`<br> e.g., `delete i/3`
 **Confirm**| `confirm` <br> e.g., `confirm`
