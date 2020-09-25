@@ -2,7 +2,11 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.logic.Participation;
 import seedu.address.model.person.Person;
