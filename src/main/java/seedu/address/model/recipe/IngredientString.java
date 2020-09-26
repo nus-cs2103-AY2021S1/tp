@@ -22,6 +22,7 @@ public class IngredientString {
      */
     public IngredientString(String ingredients) {
         requireNonNull(ingredients);
+        ingredients = ingredients.strip();
         checkArgument(isValidIngredient(ingredients), MESSAGE_CONSTRAINTS);
         value = ingredients;
     }

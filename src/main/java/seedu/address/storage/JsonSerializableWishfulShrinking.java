@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -20,8 +21,10 @@ import seedu.address.model.recipe.Recipe;
 class JsonSerializableWishfulShrinking {
 
     public static final String MESSAGE_DUPLICATE_RECIPE = "Recipes list contains duplicate recipe(s).";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "Fridge contains duplicate ingredient(s).";
 
     private final List<JsonAdaptedRecipe> recipes = new ArrayList<>();
+    private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableWishfulShrinking} with the given recipes.
@@ -31,6 +34,14 @@ class JsonSerializableWishfulShrinking {
         this.recipes.addAll(recipes);
     }
 
+    /*
+     * Constructs a {@code JsonSerializableWishfulShrinking} with the given ingredients.
+     */
+    /*@JsonCreator
+    public JsonSerializableWishfulShrinking(@JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients) {
+        this.ingredients.addAll(ingredients);
+    }*/
+
     /**
      * Converts a given {@code ReadOnlyWishfulShrinking} into this class for Jackson use.
      *
@@ -38,6 +49,8 @@ class JsonSerializableWishfulShrinking {
      */
     public JsonSerializableWishfulShrinking(ReadOnlyWishfulShrinking source) {
         recipes.addAll(source.getRecipeList().stream().map(JsonAdaptedRecipe::new).collect(Collectors.toList()));
+        ingredients.addAll(source.getIngredientList().stream().map(JsonAdaptedIngredient::new).collect(Collectors
+                .toList()));
     }
 
     /**
@@ -53,6 +66,13 @@ class JsonSerializableWishfulShrinking {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }
             addressBook.addRecipe(recipe);
+        }
+        for (JsonAdaptedIngredient jsonAdaptedIngredient : ingredients) {
+            Ingredient ingredient = jsonAdaptedIngredient.toModelType();
+            if (addressBook.hasIngredient(ingredient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);
+            }
+            addressBook.addIngredient(ingredient);
         }
         return addressBook;
     }
