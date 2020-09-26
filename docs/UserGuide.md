@@ -39,37 +39,50 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 </div>
 
+### Adding a new module: `add module`
+
+Creates and add a new module to be stored in the system.
+
+  Format: `add module` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+
+   * Leaving the **_ZOOM_LINK_** part empty will create a empty module.
+
+   Examples:
+   * `add module CS2103T https:\\link` creates and add the module called CS2103T
+   with the specified link into the system.
+   * `add module CS2103T` creates and add the module CS2103T with no zoom link.
+
 ### Viewing a module: `view`
-  
+
 Views a module stored in the system
-  
+
  Format: `view` **_`[MODULE_NAME]`_**
-  
+
   * Using the keyword all in place of specified module name will display all module details
 
-  
+
   Examples:
   * `view cs2103t` views the specified module
   * `view all` views all the modules stored
-  
-  ### Adding a zoom link to a module: `add zoom`
-  
+
+### Adding a zoom link to a module: `add zoom`
+
   Adds a zoom link to an existing module.
-  
+
   Format: `add zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
-  
-  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_** 
-  
+
+  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_**
+
   Example of usage:
   `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
-    
-    
+
+
 ### Deleting a module: `delete`
-  
+
 Deletes the specified module from the system
-  
+
  Format: `delete` **_`[MODULE_NAME]`_**
-  
+
   Examples:
   * `delete cs2103t` deletes the specified module named `cs2103t`
 
@@ -102,6 +115,8 @@ Examples:
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add module KEYWORD`<br> e.g., `add module CS2103T [link]`, `add module CS2103T`
+
 **View** | `view KEYWORD `<br> e.g., `view cs2101` , `view all`
 
 **Delete** | `delete KEYWORD `<br> e.g., `delete cs2101`
@@ -109,5 +124,3 @@ Action | Format, Examples
 **Edit** | `edit zoom MODULE_NAME ZOOM_LINK`<br> e.g., `edit zoom CS2103T https://sample.zoom.us`
 
 **Add Zoom** | `add zoom MODULE_NAME ZOOM_LINK` <br> e.g., `add zoom cs2103T https://sample.zoom.us`
-
-

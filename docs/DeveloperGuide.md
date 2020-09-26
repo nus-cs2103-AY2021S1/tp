@@ -68,14 +68,17 @@ This section describes some noteworthy details on how certain features are imple
 
 **Target user profile**:
 
-* has a need to manage a significant number of modules and tasks.
+* has a need to manage a number of classes
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage tasks and modules faster than a typical mouse/GUI driven app.
-
+**Value proposition**: 
+* Users can keep track of all module details efficiently.
+* Centralize key module details.
+* Keep track of study progress effectively.
+* Everything can be done in a single app.
 
 ### User stories
 
@@ -178,15 +181,179 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. CAP5BUDDY displays an error message.
 
   Use case resumes at step 2.
+
+**Use case: Input module Cumulative Average Point(CAP) details**
+
+**MSS**
+
+1. User requests to input CAP details(Grade point and Credit) for a module.
+2. CAP5BUDDY saves CAP details under the specified module.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Input contains invalid CAP details.
+
+  * 2a1. CAP5BUDDY displays an error message.
+  * 2a2. User enters the correct data.
+  Use case resumes at step 1.
+  
+**Use case: Calculate Cumulative Average Point(CAP)**
+
+**MSS**
+
+1. User requests to calculate CAP
+2. CAP5BUDDY calculates and displays CAP to user.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. One or more modules do not contain details of grade point or credits.
+
+  * 2a1. CAP5BUDDY displays an error message.
+  
+  * 2a2. User enters required data.
+  
+  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+  Use case resumes at step 2.
+
+* 3a. One or more modules contain invalid details of grade point or credits.
+
+  * 3a1. CAP5BUDDY displays an error message.
+  
+  * 3a2. User enters valid data.
+  
+  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+  Use case resumes at step 2.
+  
+  *{More to be added}*
+
+**Use case: Add a task to todo list**
+
+**MSS**
+
+1. User wants to add a task to the todo list.
+2. User chooses the type of task to be added.
+3. User enters the information regarding the task.
+4. CAP5BUDDY saves the given task in the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. Format for information about the task is invalid.
+
+  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
+  * 3a2. User enters the information with the correct format.
+  
+  Use case resumes at step 4
+  
+  *{More to be added}*
+  
+**Use case: Delete a task in the todo list**
+
+**MSS**
+
+1. User wants to delete a task in the todo list.
+2. User chooses the task to be deleted.
+3. CAP5BUDDY shows a prompt message asking if the user really wants to delete the task.
+4. User clicks the "YES" button.
+5. CAP5BUDDY deletes the task from the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. User accidentally clicked the "NO" button. 
+
+  * 4a1. The prompt message disappears and CAP5BUDDY does not delete the task.
+  
+  Use case ends.
+  
+  *{More to be added}*
+
+**Use case: Sort task in the todo list**
+
+**MSS**
+
+1. User wants to sort the tasks in the todo list.
+2. User chooses the basis for sorting the tasks.
+3. CAP5BUDDY displays the sorted tasks based on the chosen basis.
+
+Use case ends.
+
+  *{More to be added}*
+  
+**Use case: Find a task in the todo list**
+
+**MSS**
+
+1. User wants to find a task in the todo list.
+2. User chooses whether to find task based on date or keyword.
+3. User enters the date or keyword.
+4. CAP5BUDDY displays all task based on the user input from step 3.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User inputs the date with an incorrect format. 
+
+  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
+  * 3a2. User enters the date with the correct format.
+  
+  Use case resumes at step 4
+  
+  *{More to be added}*
+
+**Use case: Archive a task in the todo list**
+
+**MSS**
+
+1. User wants to archive a task in the todo list.
+2. CAP5BUDDY shows a prompt message asking if the user is sure to archive the task.
+3. User clicks the "YES" button.
+4. CAP5BUDDY archives the task.
+
+Use case ends.
+  
+**Extensions**
+
+* 3a. User accidentally clicked the "NO" button. 
+
+  * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
+  
+  Use case ends.
+  
+  *{More to be added}*
   
   **Use Case: View all contact details of a lecturer**
+    
+    **MSS**
+    1. User requests to view all contact details of a lecturer.
+    2. User provides the name of the lecturer.
+    3. CAP5BUDDY searches for the specified lecturer from storage.
+    4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
+    4. CAP5BUDDY displays the desired contact details.
+    
+    **Extensions**
+    
+    * 3a. The specified lecturer name does not exist.
+    
+      * CAP5BUDDY displays an error message.
+      
+      Use case ends.
+  
+  **Use Case: View the email of a Lecturer**
   
   **MSS**
-  1. User requests to view all contact details of a lecturer.
+  1. User requests to view the email of a lecturer.
   2. User provides the name of the lecturer.
   3. CAP5BUDDY searches for the specified lecturer from storage.
-  4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
-  4. CAP5BUDDY displays the desired contact details.
+  4. CAP5BUDDY retrieves the email of the lecturer from storage.
+  4. CAP5BUDDY displays the desired email address.
   
   **Extensions**
   
@@ -195,34 +362,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * CAP5BUDDY displays an error message.
     
     Use case ends.
-
-**Use Case: View the email of a Lecturer**
-
-**MSS**
-1. User requests to view the email of a lecturer.
-2. User provides the name of the lecturer.
-3. CAP5BUDDY searches for the specified lecturer from storage.
-4. CAP5BUDDY retrieves the email of the lecturer from storage.
-4. CAP5BUDDY displays the desired email address.
-
-**Extensions**
-
-* 3a. The specified lecturer name does not exist.
-
-  * CAP5BUDDY displays an error message.
+    
+  **Use Case: View the hand phone contact of a peer**
   
-  Use case ends.
+  **MSS**
+  1. User requests to view the hand phone number of a peer.
+  2. User provides the name of the peer.
+  3. CAP5BUDDY searches for the specified peer from storage.
+  4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
+  4. CAP5BUDDY displays the desired hand phone contact.
   
-**Use Case: View the hand phone contact of a peer**
-
-**MSS**
-1. User requests to view the hand phone number of a peer.
-2. User provides the name of the peer.
-3. CAP5BUDDY searches for the specified peer from storage.
-4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
-4. CAP5BUDDY displays the desired hand phone contact.
-
-**Extensions**
+  **Extensions**
 
 * 3a. The specified peer name does not exist.
 
@@ -265,8 +415,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with not be able to access and modify other users' data files.
+4.  Should be usable by any novice that has never used this program before.
+5.  The name of the modules should not exceed 40 characters.
+6.  Should not contain more than 100 modules at 1 time.
 
 *{More to be added}*
 
