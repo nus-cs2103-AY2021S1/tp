@@ -167,7 +167,6 @@ public class EditCommand extends Command {
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
-        
         public void setEmail(Email email) {
             this.email = email;
         }

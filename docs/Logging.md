@@ -2,6 +2,8 @@
 layout: page
 title: Logging guide
 ---
+* Table of Contents
+{:toc}
 #Logging Guide
 
 

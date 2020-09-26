@@ -63,12 +63,10 @@ public class PersonCard extends UiPart<Region> {
         if (other == this) {
             return true;
         }
-        
         // instanceof handles nulls
         if (!(other instanceof PersonCard)) {
             return false;
         }
-        
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())

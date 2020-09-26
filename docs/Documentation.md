@@ -2,6 +2,10 @@
 layout: page
 title: Documentation guide
 ---
+
+* Table of Contents
+{:toc}
+
 #Documentation Style and Methods:
 
 **Setting up and maintaining the project website:**
