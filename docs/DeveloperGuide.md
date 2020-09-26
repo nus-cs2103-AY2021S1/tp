@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a patient).
+1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Patient` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Patient` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -151,11 +151,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th patient in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -163,7 +163,7 @@ Step 3. The user executes `add n/David …​` to add a new patient. The `add` c
 
 </div>
 
-Step 4. The user now decides that adding the patient was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -208,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -254,7 +254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user    | see usage instructions                                           | refer to instructions when I forget how to use the App                              |
 | `* * *`  | user        | add a new patient                                                |                                                                                     |
 | `* * *`  | user        | delete a patient                                                 | remove entries that I no longer need                                                |
-| `* * *`  | user        | find a patient by name                                           | locate details of patients without having to go through the entire list              |
+| `* * *`  | user        | find a patient by name                                           | locate details of persons without having to go through the entire list              |
 | `* *`    | user        | hide private contact details                                     | minimize chance of someone else seeing them by accident                             |
 | `* * *`  | doctor      | retrieve the medical details/notes for each patient easily       | refer to it when the patient visits again                                           |
 | `* * *`  | doctor      | type/store my patients' data on their individual profile pages   | update their condition after each appointment and not write everything down by hand |
@@ -270,14 +270,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a patient**
+**Use case: Delete a person**
 
 **MSS**
 
-1.  User requests to list patients
-2.  CliniCal shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  CliniCal deletes the patient
+1.  User requests to list persons
+2.  CliniCal shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  CliniCal deletes the person
 
     Use case ends.
 
@@ -293,12 +293,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a patient**
+**Use case: Add a person**
 
 **MSS**
 
-1.  User keys in command to add a patient
-2.  CliniCal shows an updated list of patients
+1.  User keys in command to add a person
+2.  CliniCal shows an updated list of persons
 
     Use case ends.
 
@@ -309,25 +309,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-**Use case: Edit a patient**
+**Use case: Edit a person**
 
 **MSS**
 
-1.  User requests to list patients
-2.  CliniCal shows a list of patients
-3.  User requests to edit a specific patient in the list, providing the details to edit the patient with
-4.  CliniCal edits the patient
+1.  User requests to list persons
+2.  CliniCal shows a list of persons
+3.  User requests to edit a specific person in the list, providing the details to edit the person with
+4.  CliniCal edits the person
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The patient cannot be found.
+* 3a. The person cannot be found.
     * 3a1. CliniCal shows an error message.
 
     Use case resumes at Step 3.
 
-* 3b. The patient cannot be found.
+* 3b. The person cannot be found.
     * 3b1. CliniCal shows an error message.
 
     Use case resumes at Step 3.
@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` installed.
-1. Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
+1. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 1. Should be able to schedule up to 100 patient appointments without a noticeable sluggishness in performance for typical usage.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
@@ -377,17 +377,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a patient
+### Deleting a person
 
-1. Deleting a patient while all patients are being shown
+1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
