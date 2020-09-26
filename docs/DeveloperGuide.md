@@ -266,7 +266,7 @@ PIVOT can assist to manage investigation cases faster than a typical mouse/GUI d
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | investigator                               | create investigation cases with a relevant title                                  | store resources inside                                   |
 | `* * *`  | investigator                               | view the list of investigation cases stored in PIVOT                              |                                                          |
@@ -276,6 +276,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | investigator                               | open investigation cases easily and view the files that are stored inside         | retrieve the necessary information for those who need it |
 | `* * *`  | investigator                               | add relevant documents to an investigation case                                   |                                                          |
 | `* * *`  | investigator                               | view the list of documents relevant to an investigation case                      |                                                          |
+| `* * *`  | investigator                               | delete irrelevant documents to an investigation case                              | remove outdated documents                                |
+| `* * *`  | investigator                               | view the list of suspects tied to an investigation case                           | refer to all suspects in an investigation case           |
+| `* * *`  | investigator                               | add a list of suspects tied to an investigation case                              |                                                          |
+| `* * *`  | investigator                               | delete suspects tied to an investigation case                                     | delete irrelevant suspects                               |
+| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case                          | refer to all witnesses in an investigation case          |
+| `* * *`  | investigator                               | add a list of witnesses tied to an investigation case                             |                                                          |
+| `* * *`  | investigator                               | delete witnesses tied to an investigation case                                    | delete irrelevant witnesses                              |
+| `* * *`  | investigator                               | view the list of victims tied to an investigation case                            | refer to all victims in an investigation case            |
+| `* * *`  | investigator                               | add a list of victims tied to an investigation case                               |                                                          |
+| `* * *`  | investigator                               | delete victims tied to an investigation case                                      | delete irrelevant victims                                |
+| `* * *`  | investigator                               | close the application when I am done using it                                     | safely exit the application                              |
+
+
+
 
 *{More to be added}*
 
