@@ -99,13 +99,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CAP5BUDDY` and the **Actor** is the `user`, unless specified otherwise)
 
-**User case: Add a new Module**
+**Use case: Add a new Module**
 
 **MSS**
 
 1. User wants to add a new module to track.
-2. User enters the add module command.
-`add [module name/code] [zoom link]`
+2. User enters the command for adding a module: `add [module name/code]`
 3. CAP5BUDDY adds the module into storage and display the success message.
 
 *{More to be added}*
@@ -116,7 +115,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to show all the existing modules.
 2. CAP5BUDDY displays a list of the modules.
-3. User requests to delete a specific module from the list.
+3. User wants to delete a specific module from the list.
+4. User enters the command for module deletion: `delete [module name/code]`
 4. CAP5BUDDY deletes that module from the list.
 
 **Extensions**
@@ -138,7 +138,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to show all the existing modules.
 2. CAP5BUDDY displays all the modules in a list.
-3. User requests to edit a specific module from the list.
+3. User wants to edit a specific module from the list.
 4. User enters the new information for that module.
 5. CAP5BUDDY overwrites the existing information of that module.
 
@@ -160,7 +160,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case resumes at step 2.
 
   *{More to be added}*
-
 
 **Use case: View a module**
 
@@ -329,7 +328,90 @@ Use case ends.
   Use case ends.
   
   *{More to be added}*
+  
+  **Use Case: View all contact details of a lecturer**
+    
+    **MSS**
+    1. User requests to view all contact details of a lecturer.
+    2. User provides the name of the lecturer.
+    3. CAP5BUDDY searches for the specified lecturer from storage.
+    4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
+    4. CAP5BUDDY displays the desired contact details.
+    
+    **Extensions**
+    
+    * 3a. The specified lecturer name does not exist.
+    
+      * CAP5BUDDY displays an error message.
+      
+      Use case ends.
+  
+  **Use Case: View the email of a Lecturer**
+  
+  **MSS**
+  1. User requests to view the email of a lecturer.
+  2. User provides the name of the lecturer.
+  3. CAP5BUDDY searches for the specified lecturer from storage.
+  4. CAP5BUDDY retrieves the email of the lecturer from storage.
+  4. CAP5BUDDY displays the desired email address.
+  
+  **Extensions**
+  
+  * 3a. The specified lecturer name does not exist.
+  
+    * CAP5BUDDY displays an error message.
+    
+    Use case ends.
+    
+  **Use Case: View the hand phone contact of a peer**
+  
+  **MSS**
+  1. User requests to view the hand phone number of a peer.
+  2. User provides the name of the peer.
+  3. CAP5BUDDY searches for the specified peer from storage.
+  4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
+  4. CAP5BUDDY displays the desired hand phone contact.
+  
+  **Extensions**
 
+* 3a. The specified peer name does not exist.
+
+  * CAP5BUDDY displays an error message.
+  
+  Use case ends.
+ 
+* 4a. The specified peer does not have a hand phone contact saved.
+
+  * CAP5BUDDY displays an error message.
+  
+  Use case ends.
+  
+**Use Case: Edit the email of a TA**
+  
+  **MSS**
+  1. User requests to edit the email of a TA.
+  2. User provides the name of the TA.
+  3. CAP5BUDDY searches for the specified TA from storage.
+  4. User provides the new email to replace the existing email.
+  5. CAP5BUDDY replaces the email of the TA with the user provided email.
+  6. CAP5BUDDY displays the success message.
+  
+  **Extensions**
+  
+  * 3a. The specified TA name does not exist.
+  
+    * CAP5BUDDY displays an error message.
+    
+    Use case ends.
+    
+  * 4a. The provided email address is empty or null.
+  
+    * CAP5BUDDY displays an error message.
+    
+    Use case ends.
+  
+    *{More to be added}*
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
