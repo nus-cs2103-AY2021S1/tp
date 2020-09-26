@@ -505,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
 	
-		    Use case resumes.
+        Use case resumes.
 		    
 <br />
 
