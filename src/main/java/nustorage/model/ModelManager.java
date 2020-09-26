@@ -11,10 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
+import nustorage.model.item.Inventory;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
-import nustorage.model.item.Inventory;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -86,7 +86,7 @@ public class ModelManager implements Model {
 
     //=========== Inventory ================================================================================
 
-    public  void addInventoryRecord(InventoryRecord newRecord) {
+    public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
     }
 

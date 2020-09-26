@@ -1,8 +1,8 @@
 package nustorage.logic.parser;
 
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.stream.Stream;
 
@@ -16,6 +16,12 @@ import nustorage.model.record.InventoryRecord;
  */
 public class AddInventoryCommandParser implements Parser<AddInventoryCommand> {
 
+    /**
+     * Parses Inventory commands arguments from the user.
+     * @param args User arguments.
+     * @return An AddInventoryCommand.
+     * @throws ParseException When user arguments results in a parsing error.
+     */
     public AddInventoryCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION);

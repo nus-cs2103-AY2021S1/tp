@@ -6,7 +6,7 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.InventoryRecord;
 
-public class AddInventoryCommand extends Command{
+public class AddInventoryCommand extends Command {
 
     public static final String COMMAND_WORD = "add_inventory";
 
@@ -14,14 +14,17 @@ public class AddInventoryCommand extends Command{
 
     private final InventoryRecord newRecord;
 
-
+    /**
+     * Constructs an AddInventoryCommand class using a new inventory record.
+     * @param newRecord New inventory record.
+     */
     public AddInventoryCommand(InventoryRecord newRecord) {
         requireNonNull(newRecord);
         this.newRecord = newRecord;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         model.addInventoryRecord(newRecord);

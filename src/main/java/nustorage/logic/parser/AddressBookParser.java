@@ -7,8 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nustorage.logic.commands.AddCommand;
-import nustorage.logic.commands.AddInventoryCommand;
 import nustorage.logic.commands.AddFinanceCommand;
+import nustorage.logic.commands.AddInventoryCommand;
 import nustorage.logic.commands.ClearCommand;
 import nustorage.logic.commands.Command;
 import nustorage.logic.commands.DeleteCommand;

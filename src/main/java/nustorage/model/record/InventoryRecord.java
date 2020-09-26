@@ -1,9 +1,9 @@
 package nustorage.model.record;
 
-import nustorage.model.item.exceptions.NegativeNumberOfItemException;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import nustorage.model.item.exceptions.NegativeNumberOfItemException;
 
 /**
  * Class to record movement in the Inventory.

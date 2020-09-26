@@ -1,11 +1,10 @@
 package nustorage.model.item;
 
-import nustorage.model.record.FinanceRecord;
-import nustorage.model.record.InventoryRecord;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import nustorage.model.record.InventoryRecord;
 
 /**
  * Class to store different InventoryRecords.
