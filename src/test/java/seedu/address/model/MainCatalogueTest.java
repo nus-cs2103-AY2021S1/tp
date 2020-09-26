@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
@@ -47,6 +48,7 @@ public class MainCatalogueTest {
     public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
         // Two projects with the same identity fields
         Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withTasks(VALID_TASK_DG)
                 .build();
         List<Project> newProjects = Arrays.asList(ALICE, editedAlice);
         MainCatalogueStub newData = new MainCatalogueStub(newProjects);
@@ -74,6 +76,7 @@ public class MainCatalogueTest {
     public void hasProject_projectWithSameIdentityFieldsInMainCatalogue_returnsTrue() {
         mainCatalogue.addProject(ALICE);
         Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withTasks(VALID_TASK_DG)
                 .build();
         assertTrue(mainCatalogue.hasProject(editedAlice));
     }
