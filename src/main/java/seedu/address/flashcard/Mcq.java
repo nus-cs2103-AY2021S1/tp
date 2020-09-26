@@ -34,6 +34,15 @@ public class Mcq implements Question {
         return sb.toString();
     }
 
+    public String getOnlyQuestion() {
+        StringBuilder sb = new StringBuilder(question);
+        return sb.toString();
+    }
+
+    public String[] getChoices() {
+        return this.options;
+    }
+
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -44,7 +53,7 @@ public class Mcq implements Question {
             return true;
         } else if (o instanceof Mcq) {
             Mcq temp = (Mcq) o;
-            return temp.toString().equals(o.toString());
+            return temp.getQuestion().equals(getQuestion());
         }
         return false;
     }

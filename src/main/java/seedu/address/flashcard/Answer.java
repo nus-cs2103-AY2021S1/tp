@@ -48,7 +48,7 @@ public class Answer {
             return true;
         } else if (o instanceof Answer) {
             Answer temp = (Answer) o;
-            return temp.toString().equals(o.toString());
+            return temp.getAnswer().equals(getAnswer());
         }
         return false;
     }

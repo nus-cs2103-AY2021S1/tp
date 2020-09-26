@@ -27,16 +27,16 @@ public class Flashcard {
      * Gets the question.
      * @return the question.
      */
-    public String getQuestion() {
-        return question.getQuestion();
+    public Question getQuestion() {
+        return question;
     }
 
     /**
      * Gets the answer.
      * @return the answer.
      */
-    public String getAnswer() {
-        return answer.getAnswer();
+    public Answer getAnswer() {
+        return answer;
     }
 
     /**
