@@ -1,5 +1,7 @@
 package seedu.address.model.attendance;
 
+import seedu.address.model.student.Student;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +14,20 @@ public class Attendance {
 
     private HashMap<String, AttendanceType> attendanceList;
 
-    public Attendance() {
+    private Attendance() {
         attendanceList = new HashMap<>();
     }
 
     public Attendance(HashMap<String, AttendanceType> attendanceList) {
         this.attendanceList = attendanceList;
+    }
+
+    public static Attendance of(List<Student> students) {
+        Attendance attendance = new Attendance();
+        for (Student student : students) {
+            attendance.markStudentAttendance(student.getNusnetId().value, AttendanceType.NO_RECORD);
+        }
+        return attendance;
     }
 
     public void markStudentAttendance(String nusnetId, AttendanceType attendanceType) {

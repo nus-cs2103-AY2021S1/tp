@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NusnetId;
@@ -120,5 +122,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    
+    public static AttendanceType parseAttendanceType(String attendanceType) throws ParseException {
+        requireNonNull(attendanceType);
+        String trimmedAttendanceType = attendanceType.trim().toUpperCase();
+        if (!AttendanceType.isValidAttendanceType(trimmedAttendanceType)) {
+            throw new ParseException(AttendanceType.MESSAGE_CONSTRAINTS);
+        }
+        return AttendanceType.valueOf(trimmedAttendanceType);
     }
 }
