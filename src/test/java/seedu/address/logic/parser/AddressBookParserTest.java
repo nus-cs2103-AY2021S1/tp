@@ -37,7 +37,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_remark() throws Exception {
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD);
-        assertEquals(new RemarkCommand(), command);
+        assertEquals(new RemarkCommand(null,null ), command);
     }
 
     @Test

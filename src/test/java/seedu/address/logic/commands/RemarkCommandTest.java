@@ -7,9 +7,11 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Remark;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemarkCommand.
@@ -27,6 +29,6 @@ public class RemarkCommandTest {
 
     @Test
     public void execute() {
-        assertCommandSuccess(new RemarkCommand(), model, RemarkCommand.COMMAND_WORD, expectedModel);
+        assertCommandSuccess(new RemarkCommand(null, new Remark("hi")), model, RemarkCommand.COMMAND_WORD, expectedModel);
     }
 }
