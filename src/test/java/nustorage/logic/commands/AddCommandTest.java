@@ -22,6 +22,7 @@ import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
 import nustorage.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -98,6 +99,9 @@ public class AddCommandTest {
         public void setGuiSettings(GuiSettings guiSettings) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void addInventoryRecord(InventoryRecord newRecord) {}
 
         @Override
         public void addFinanceRecord(FinanceRecord newRecord) {
