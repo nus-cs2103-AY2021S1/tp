@@ -28,4 +28,4 @@
 
 ## Acknowledgments
 
-- Adapted from AddressBook Level 3 (AB3), part of the **se-education.org initiative.** If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+- Adapted from AddressBook Level 3 (AB3), part of the **se-education.org initiative.** If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more information.
