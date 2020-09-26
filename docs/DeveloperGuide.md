@@ -278,7 +278,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   2. PlaNus adds the task.
 
-Use case ends.
+  Use case ends.
 
 
 **Extensions**
@@ -303,7 +303,7 @@ Use case ends.
 
   4. PlaNus deletes the task.
 
-Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -327,13 +327,13 @@ Use case ends.
 
   2. PlaNus shows a list of tasks.
 
-Use case ends.
+  Use case ends.
 
 **Extensions**
 
   - 2a. The list is empty.
 
-Use case ends.
+    Use case ends.
 
 <br>
 
@@ -345,7 +345,7 @@ Use case ends.
 
   2. PlaNus shows available commands.
 
-Use case ends.
+  Use case ends.
 
 <br>   
 
@@ -354,14 +354,14 @@ Use case ends.
 **MSS**
 
   1. User requests to list tasks.
+  
+  2. PlaNus shows a list of tasks.
+  
+  3. User requests to mark a specific tasks in the list as done.
+  
+  4. PlaNus marks the task as done.
 
- 	2. PlaNus shows a list of tasks.
-
- 	3. User requests to mark a specific tasks in the list as done.
-
- 	4. PlaNus marks the task as done.
-
-Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -381,7 +381,7 @@ Use case ends.
 
   2. PlaNus exits application.
 
-Use case ends.
+  Use case ends.
 
    
 
