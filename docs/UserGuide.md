@@ -1,6 +1,6 @@
 ---
-
-ProductiveNUS User Guide
+layout: page
+title: ProductiveNUS
 ---
 
 ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
