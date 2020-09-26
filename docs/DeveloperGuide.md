@@ -280,15 +280,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. McGymmy shows a list of food that user has added (UC02)
 Use case ends
 
-**Extensions**
-- 1a. The list is empty<br>
-    Empty list is returned.
-    
 **Use case: UC02 Add food**
 
 **MSS**
+1. User requests to add food into the list
+2. McGymmy adds the food item into the list
+
+Use case ends
 
 **Extensions**
+- 1a. The format of the add method is invalid
+    1a1. McGymmy shows an error message
+    Use case ends
 
 **Use case: UC03 Delete food**
 
