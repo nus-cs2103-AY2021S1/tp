@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chan Yong Soon, Kendrew
 
-<img src="images/kendrewc.png" width="200px">
+<img src="images/kendrewchan.png" width="200px">
 
 [[github](https://github.com/KendrewChan)] [[portfolio]([https://kendrewc.netlify.app](https://kendrewc.netlify.app/))]
 
