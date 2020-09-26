@@ -301,6 +301,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **.vcf,.csv files**: A format of files that contains contact information from users phones
+* **CLI**: CLI is the Command Line Interface where you can type in commands and get an output
+
 
 --------------------------------------------------------------------------------------------------------------------
 
