@@ -415,6 +415,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
  Use case ends.
 
+**UC07: Clear Contacts**
+
+**MSS**
+
+1.  User makes request to clear all contacts
+2.  Modduke clears all contacts
+
+    Use case ends.
+
+**UC08: Create Meeting**
+
+**MSS**
+
+1.  User makes request to create a meeting
+2.  Modduke accepts request and creates meeting
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Meeting Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+
+* 1b. Meeting with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
+
+**UC09: Set Time/Date for Meeting**
+
+**MSS**
+
+1.  User makes request to edit a specific meeting
+2.  Modduke accepts request and makes changes to meeting
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Meeting Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends.
+
+* 1b. Meeting with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
+
+**UC10: View all Meeting**
+
+**MSS**
+
+1.  User makes request to show all meetings
+2.  Modduke accepts request and displays all meetings
+
+    Use case ends.
+
+**UC11: Create Consult**
+
+**MSS**
+
+1.  User makes request to create a consult
+2.  Modduke accepts request and creates consult
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Consult Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends
+
+* 1b. Consult with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
+
+**UC12: Set Time/Date for Consult**
+
+**MSS**
+
+1.  User makes request to edit a specific consult
+2.  Modduke accepts request and makes changes to consult
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Consult Name is missing.
+
+  * 1a1. Modduke shows an error message.
+
+    Use case ends.
+
+* 1b. Consult with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
+
+
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
