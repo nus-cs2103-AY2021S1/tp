@@ -327,14 +327,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should not take above 2 seconds to execute any command.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Investigation Case**: The investigation case encapsulating all relevant data the police wants to keep track of
+* **Investigation Case Tag**: The status of the case (Active/In-Progress, Closed, Cold Case)
+* **Document**: An actual document/file stored in the project directory
+* **Person**: Data stored in the investigation case (For suspects, witnesses or victims related)
+* **File Paths**: System Location of the specified file inside the project directory
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
