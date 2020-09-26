@@ -100,10 +100,11 @@ Examples:
 
 Finds recipe with title contain any of the given keywords.
 
-Format: `searchR n/TITLE`
+Format: `searchR n/TITLE [MORE_TITLE]`
 
 * The search is case-insensitive. e.g `salad` will match `Salad`
 * Only the recipe title is searched.
+* The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham
 
 Examples:
 * `searchR n/salad` returns `salad` and `ham salad`
@@ -117,7 +118,7 @@ Adds an ingredient to fridge.
 Format: `addF i/INGREDIENTS`
 
 Examples:
-* `addF i/avocado`
+* `addF i/peanut`
 * `addF i/banana, green peas, salmon fish`
 
 ### Listing all ingredients : `list`
@@ -138,19 +139,20 @@ Format: `deleteF INDEX`
 
 Examples:
 * `list` followed by `deleteF 2` deletes the 2nd ingredient in the fridge.
-* `searchF avocado` followed by `deleteF 1` deletes the 1st ingredient in the results of the `search` command.
+* `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `search` command.
 
 ### Search Ingredient: `search`
 
 Finds ingredients that contain any of the given keywords.
 
-Format: `searchF KEYWORD`
+Format: `searchF KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `avocado` will match `Avocado`
+* The search is case-insensitive. e.g `peanut` will match `Peanut`
 * Only the recipe title is searched.
+* The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut
 
 Examples:
-* `searchF avo` returns `avocado`
+* `searchF peanut` returns `peanut`
 
 
 ### Saving the data
