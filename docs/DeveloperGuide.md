@@ -230,64 +230,152 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
-
-### Product scope
+## Appendix A: Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* Has a need to manage a significant number of property details, seller details and buyer details
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Able to manage property listings, client 
+contact details as well as creating a meeting schedule easily 
+while being faster and more convenient than traditional bookkeeping 
+softwares such as Excel. 
 
 
-### User stories
+## Appendix B: User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                         |
+| -------- | ----------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | Real estate agent           | add a new property listing                                                          | add a new property entry when a seller wants to sell a new property    |
+| `* * *`  | Real estate agent           | add bidder or seller                                                                | keep track of bidders or sellers involved                              |
+| `* * *`  | Real estate agent           | view the list of interested sellers                                                 | keep track of property owners                                          |
+| `* *`    | Real estate agent           | edit the property listing                                                           | ensure that the property information is accurate                       |
+| `* * *`  | Real estate agent           | delete a property listing                                                           | remove listings that are closed or that sellers no longer want to sell |
+| `* *`    | Real estate agent           | view the listings I have by area                                                    | be better equipped to give more options to the buyers on the spot      |
+| `* *`    | Real estate agent           | input details about the rental                                                      | inform the client about the renter’s property                          |
+| `* *`    | Real estate agent           | edit the details of the property rental                                             | update with new information from the client                            |
+| `* * *`  | Real estate agent           | search the properties by id, name or area etc                                       | filter properties according to my criteria                             |
+| `* * *`  | Real estate agent           | sort the listing according to my criteria                                           | obtain a filtered list to easily observe properties of the same type   |
+| `*`      | Real estate agent           | mark a property as sold                                                             | keep track on which houses are already sold                            |
+| `*`      | Real estate agent           | see the historical transactions                                                     | track my performance                                                   |
+| `* * *`  | Real estate agent           | add bids to my properties                                                           | keep track of my customers’ bids                                       |
+| `* * *`  | Real estate agent           | delete bids                                                                         | so that I can remove bids that are withdrawn by the bidders            |
+| `* * *`  | Real estate agent           | view the current bids organised by property, sellers and buyers                     | keep track of the bids                                                 |
+| `* *`    | Real estate agent           | edit bids                                                                           | so that I can remove bids that are withdrawn by the bidders            |
+| `* * *`  | Busy real estate agent      | create meetings                                                                     | so that I can remove bids that are withdrawn by the bidders            |
+| `* * *`  | Busy real estate agent      | view the list of meetings                                                           | so that I can remove bids that are withdrawn by the bidders            |
+| `* * *`  | Busy real estate agent      | delete meetings                                                                     | so that I can remove bids that are withdrawn by the bidders            |
+| `* *`    | Busy real estate agent      | schedule meetings such that it can warn me if there is any clashes in meetings      | so that I can remove bids that are withdrawn by the bidders            |
+| `* *`    | Busy real estate agent      | edit meeting details                                                                | ensure that meeting details are accurate in case of changes            |
 
-*{More to be added}*
 
-### Use cases
+## Appendix C: Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PropertyFree` and the **Actor** is the `Real Estate Agent`, unless specified otherwise)
 
-**Use case: Delete a person**
+**1. Use case: Delete a property**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
+1. User requests to list of properties
+2. PropertyFree shows a list of properties
+3. User requests to delete a specific property in the list
+4. PropertyFree deletes the property  
     Use case ends.
-
+    
 **Extensions**
 
 * 2a. The list is empty.
+    Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. PropertyFree shows an error message.  
+        Use case resumes at step 2.
+        
+**2. Use case: Add a property**
 
+**MSS**
+
+1. User requests to add a property
+2. PropertyFree adds the property to the list  
+    Use case ends.
+    
+**Extensions**
+
+* 2a. The given property is of the wrong format.
+    * 3a1. PropertyFree shows an error message.  
+        Use case ends.
+        
+**3. Use case: View a calendar of meetings**
+
+**MSS**
+
+1. User requests to show a list of meetings scheduled
+2. PropertyFree shows a list of meetings scheduled.  
+Use case ends.
+
+    
+**Extensions**
+
+* 2a. The list of meetings is empty.  
+    Use case ends.
+
+**4. Use case: Edit an Existing Meeting on the Calendar**
+
+**MSS**
+
+1. User requests to edit a meeting on the calendar.
+2. PropertyFree shows the old meeting details and the new meeting details.  
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no corresponding meeting existing to be edited.  
   Use case ends.
 
+**5. Use case: Add Bid to a Property**
+
+**MSS**
+
+1. User requests to view the list of existing properties inside the property list.
+2. PropertyFree shows the current list of properties that are on the list.
+3. User requests to add bid to a specific property
+4. PropertyFree shows the property updated with the addition of the new bid.
+
+
+**Extensions**
+
+* 2a. There are no properties in the list.  
+  Use case ends.
+* 3a. There are no properties corresponding to what the user input is.  
+  Use case ends.
+  
+**6. Use case: Edit Bid to a Property**
+
+**MSS**
+
+1. User requests to list of bids
+2. PropertyFree shows a list of bids
+3. User requests to edit a specific bid in the list
+4. PropertyFree edits the bid  
+Use case ends.
+
+
+**Extensions**
+
+* 2a. The list is empty.  
+Use case ends.
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
+    * 3a1. PropertyFree shows an error message.  
+        Use case resumes at step 2.
+* 3b. The given format of message is wrong.
+    * 3b1. PropertyFree shows an error message.  
+        Use case ends.
 
 ### Non-Functional Requirements
 
@@ -295,12 +383,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private Seller and Bidder details**: Contact details that are not meant to be publicly shared with others
+* **Public Property Details**: Description of the property that is meant to be shared with others
+* **Bid Details**: Description of the bid which is meant to be shared with others 
 
 --------------------------------------------------------------------------------------------------------------------
 
