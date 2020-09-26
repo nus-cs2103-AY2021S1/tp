@@ -132,4 +132,17 @@ public class ParserUtil {
         String trimmedTask = task.trim();
         return new Task(trimmedTask, null, null, 0, false);
     }
+
+
+    /**
+     * Parses {@code Collection<String> tasks} into a {@code Set<Task>}.
+     */
+    public static Set<Task> parseTasks(Collection<String> tasks) {
+        requireNonNull(tasks);
+        final Set<Task> taskSet = new HashSet<>();
+        for (String taskName : tasks) {
+            taskSet.add(parseTask(taskName));
+        }
+        return taskSet;
+    }
 }
