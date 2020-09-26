@@ -291,9 +291,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The product should only be for a single user rather than multi-user.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Increments to the code should be made every week with a consistent delivery rate. 
+4. The data should be stored locally and should be in a human editable text file, instead of using a DBMS.
+5. The software should follow the Object-oriented paradigm primarily.
+6. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+7. Should work without requiring an installer.
+8. Should be able to function without having to rely on being heavily connected to a network.
+9. The use of third-party frameworks and libraries should be avoided.
+10. JAR files should not exceed 100Mb and PDF files should not exceed 15Mb/file.
+11. All features should be easy to test. (i.e., do not depend heavily on remote APIs, do not have audio-related features and do not require creating user accounts before usage)
+12. The system should repond within two seconds.
+13. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 
 *{More to be added}*
 
