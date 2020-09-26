@@ -26,6 +26,7 @@ import seedu.address.model.project.Name;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing project in the main catalogue.
@@ -131,6 +132,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Task> tasks;
 
         public EditProjectDescriptor() {}
 
@@ -144,6 +146,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -200,6 +203,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code tasks} to this object's {@code tasks}.
+         * A defensive copy of {@code tasks} is used internally.
+         */
+        public void setTasks(Set<Task> tasks) {
+            this.tasks = (tasks != null) ? new HashSet<>(tasks) : null;
+        }
+
+        /**
+         * Returns an unmodifiable task set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tasks} is null.
+         */
+        public Optional<Set<Task>> getTasks() {
+            return (tasks != null) ? Optional.of(Collections.unmodifiableSet(tasks)) : Optional.empty();
         }
 
         @Override
