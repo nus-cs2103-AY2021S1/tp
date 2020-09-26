@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import seedu.address.model.task.Task;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
@@ -20,6 +19,7 @@ import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
