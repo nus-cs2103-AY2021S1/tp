@@ -464,6 +464,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 *{More to be added}*
 
+#### Use case: Using the help command
+
+**MSS**
+
+1.  User requests helps from Warenager.
+2.  Warenager shows the user guide as a pop up.
+3.  User views the user guide.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+
+#### Use case: Exit Warenager
+
+**MSS**
+
+1.  User requests to exit Warenager.
+2.  Warenager shows exit message.
+3.  User exits Warenager.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+     
+    
+*{More to be added}*
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
