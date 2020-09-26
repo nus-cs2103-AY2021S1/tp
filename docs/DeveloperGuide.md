@@ -234,29 +234,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Business Owners who needs to keep track of their stock inventory
 
-* has a need to manage a significant number of contacts
+* needs to manage purchasing appropriate amounts of raw materials based on usage
+* wants to be updated on raw materials stock level on a daily basis
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage inventory faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new item               |                                                                        |
-| `* * *`  | user                                       | delete a item                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a item by name          | locate details of items without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many items in the address book | sort items by name           | locate a item easily                                                 |
+| Priority | As a …​                                 | I want to …​                                                                   | So that I can…​                                                     |
+| -------- | ------------------------------------------ | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | Restaurant owner                           | be able to list all the items out                                                 | save in terms of man-hours                                             |
+| `* * *`  | Restaurant owner                           | have an accurate stock level reflected in a system                                | know when to restock and know how much is left to sell                 |
+| `* * *`  | Inventory Manager                          | remove stock                                                                      | update them in the event of usage/stock going bad                      |
+| `* * *`  | Supplier                                   | be able to be up to date with the restaurant's stock level                        | have a heads up on how much to restock                                 |
+| `* *`    | Restaurant owner                           | be able to order appropriate amount of raw materials for work cycle ahead         | minimize waste                                                         |
+| `* *`    | Restaurant owner                           | store all the supplier's information                                              | contact them easily                                                    |
+| `* *`    | Restaurant owner                           | be able to view schedules                                                         | plan deliveries from wholesalers                                       |
+| `* *`    | Restaurant owner                           | be able to add notes                                                              | input more details                                                     |
+| `* *`    | Restaurant owner                           | use the app in an easier way                                                      | teach new users quicker                                                |
+| `* *`    | Inventory Manager                          | be able to categorise the items                                                   | better manage them                                                     |
+| `* *`    | Inventory Manager                          | sort my items                                                                     | visualize the inventory better                                         |
+| `* *`    | Inventory Manager                          | be able to print monthly report                                                   | keep track of the restaurant's status                                  |
+| `* *`    | Inventory Manager                          | receive a notification if stock goes below a threshold                            | restock promptly                                                       |
+| `* *`    | Inventory Manager                          | see the prices of my items                                                        | better manage budget                                                   |
+| `* *`    | Inventory Manager                          | see statistics of stocks                                                          | optimize future restocking                                             |
+| `* *`    | Inventory Manager                          | be able to upload images of stock                                                 | identify them easily                                                   |
+| `* *`    | First time user                            | be able to pick up commands easily                                                | start using the application asap                                       |
+| `* *`    | Fast typist                                | be able to undo my command                                                        | correct myself in case of a typo                                       |
+| `*`      | Inventory Manager                          | be able to convert data into csv/excel                                            | view it in a more readable format                                      |
+
 
 *{More to be added}*
 
