@@ -1,4 +1,4 @@
-package seedu.address.model.Teammate;
+package seedu.address.model.teammate;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 

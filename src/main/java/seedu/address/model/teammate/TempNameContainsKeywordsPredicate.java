@@ -1,4 +1,4 @@
-package seedu.address.model.Teammate;
+package seedu.address.model.teammate;
 
 import java.util.List;
 import java.util.function.Predicate;
