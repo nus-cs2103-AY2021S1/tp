@@ -7,9 +7,9 @@ title: "Tutorial: Removing Fields"
 >
 > —  Antoine de Saint-Exupery
 
-When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
+When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Patient` model to suit your use case.
 
-In this tutorial, we’ll do exactly just that and remove the `address` field from `Person`.
+In this tutorial, we’ll do exactly just that and remove the `address` field from `Patient`.
 
 * Table of Contents
 {:toc}
@@ -91,8 +91,8 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+  "patients": [ {
+    "name": "Patient with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street"

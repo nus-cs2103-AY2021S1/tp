@@ -152,14 +152,14 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+       Patient patientToEdit = lastShownList.get(index.getZeroBased());
+       Patient editedPatient = createEditedPerson(patientToEdit, editPatientDescriptor);
+       if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setPerson(personToEdit, editedPerson);
+       model.setPerson(patientToEdit, editedPatient);
        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
    }
    ```
 
@@ -180,7 +180,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     * {@code JsonSerializableAddressBook}.
     */
    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-       persons.addAll(
+       patients.addAll(
            source.getPersonList()
                  .stream()
                  .map(JsonAdaptedPerson::new)
@@ -188,7 +188,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    }
    ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedPerson` is created for each `Patient` and then added to the `JsonSerializableAddressBook`.
 
 1. We can continue to step through until we return to `MainWindow#executeCommand()`.
 
@@ -245,6 +245,6 @@ the given commands to find exactly what happens.
 
     4.  Add a new command
 
-    5.  Add a new field to `Person`
+    5.  Add a new field to `Patient`
 
     6.  Add a new entity to the address book
