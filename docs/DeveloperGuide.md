@@ -378,16 +378,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Selecting a vendor
 
@@ -395,20 +395,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all vendors using the `vendor` command.
 
-   1. Test case: `vendor i/1`<br>
+   2. Test case: `vendor i/1`<br>
       Expected: First vendor is selected. The menu from the selected vendor is displayed.
 
-   1. Test case: `vendor`<br>
+   3. Test case: `vendor`<br>
       Expected: No vendor is selected. The list of vendors is displayed again.
 
-   1. Test case: `vendor i/0`<br>
+   4. Test case: `vendor i/0`<br>
 
       Expected: No vendor is selected. Error details shown in status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `vendor i/x`, `...` (where x is larger than the list size)<br>
+   5. Other incorrect delete commands to try: `vendor i/x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Creating a new supper order
 
@@ -416,7 +416,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Select a vendor using the `vendor i/x` command (where x is the index of the chosen vendor).
 
-   1. Test case: `create`
+   2. Test case: `create`
 
       Expected: New supper order created.
 
@@ -428,10 +428,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Create a supper order using the `order` command.
 
-   1. Test case: `order`<br>
+   2. Test case: `order`<br>
       Expected: All the items in the current order are displayed along with their associated quantities.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Adding an item
 
@@ -439,20 +439,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: Create a supper order using the `view` command.
 
-   1. Test case: `add i/1 q/1`<br>
+   2. Test case: `add i/1 q/1`<br>
       Expected: 1 order of the first item from the menu is added into the order. Details of the added order shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `add i/1 q/0`<br>
+   3. Test case: `add i/1 q/0`<br>
       Expected: No item is added. Error details shown in the status message. Status bar remains the same.
 
-   1. Test case: `add i/0 q/1`<br>
+   4. Test case: `add i/0 q/1`<br>
 
       Expected: No item is added. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect add commands to try: `add`, `add 0 9`, `add i/x q/y`, `...` (where x is larger than the menu size)<br>
+   5. Other incorrect add commands to try: `add`, `add 0 9`, `add i/x q/y`, `...` (where x is larger than the menu size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Deleting an item
 
@@ -460,15 +460,15 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all items using the `view` command. There is atleast one item in the order.
 
-   1. Test case: `delete i/1`<br>
+   2. Test case: `delete i/1`<br>
       Expected: First item is deleted from the order. Details of the deleted order shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete i/0`<br>
+   3. Test case: `delete i/0`<br>
       Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete i/x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete i/x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-1. _{ more test cases …​ }
+2. _{ more test cases …​ }
 
 ### Saving data
 
@@ -476,4 +476,4 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
