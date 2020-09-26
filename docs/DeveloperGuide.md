@@ -286,6 +286,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
+
+#### Use case: Adding a stock
+
+**MSS**
+
+1.  User requests to add a stock
+2.  Warenager adds the stock into the inventory
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given format is missing any field header.
+
+    * 1a1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given input to the field header is empty.
+
+    * 1b1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. The given input to the field header is invalid.
+
+    * 1c1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+
+
 #### Use case: Delete a stock
 
 **MSS**
@@ -723,6 +754,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+### Adding a stock
+
+1. Adding a stock into the inventory.
+
+   1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
+      Expected: New stock added: Banana SerialNumber: 12 Source: NUS Quantity: 9999 Location: Fruit Section.
+      Details of the added stock shown in the status message.
+
+   1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
+      Expected: Locations can take any values, and it should not be blank.
+      Error details shown in the status message. Status bar remains the same.
+      
+   1. Test case: ` add n/Banana s/NUS q/9999`<br>
+      Expected: Invalid command format! 
+      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION 
+      Example: add n/Umbrella s/Kc company q/100 l/section B,
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
+      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
