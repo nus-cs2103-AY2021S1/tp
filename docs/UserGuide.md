@@ -37,7 +37,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
    
-   * **`remind 3`** : Tags your assignment to receive reminders.
+   * **`remind 3`** : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
 
    * **`exit`** : Exits the application.
 
@@ -100,7 +100,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Setting reminders for assignments : `remind`
-Tags the specified assignment to receive reminders.
+Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
 
 Format: `remind INDEX`
 
