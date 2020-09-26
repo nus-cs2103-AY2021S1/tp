@@ -236,14 +236,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* police investigators who require an organisational tool
+* has a need to manage a significant number of investigation cases
+* prefer a structured app to organise information related to their cases
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a basic understanding of file paths to manage his/her files
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:  
 
+A lot of detectives use physical folders, whiteboards to consolidate their investigation information. 
+This uses up a lot of physical resources such as printing papers. 
+There may also exist cluttered information across multiple cases. 
+This leads to disorganisation of evidence and documents during investigations, 
+which makes it difficult to link the investigation together. 
+Furthermore, physically looking through archive files can be time-consuming, and 
+they might miss out important information in the process.
+
+PIVOT can help to better organise investigation cases and 
+group the relevant information on a digital platform. 
+This helps investigators to manage and easily locate the required information. 
+It also links up relations between people for better visualisation of the case so that detectives will not miss any information.
+
+PIVOT can assist to manage investigation cases faster than a typical mouse/GUI driven app.
 
 ### User stories
 
@@ -251,17 +268,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | investigator                               | delete irrelevant documents to an investigation case     | remove outdated documents                       |
-| `* * *`  | investigator                               | view the list of suspects tied to an investigation case  | refer to all suspects in an investigation case  |
-| `* * *`  | investigator                               | add a list of suspects tied to an investigation case     |                                                 |
-| `* * *`  | investigator                               | delete suspects tied to an investigation case            | delete irrelevant suspects                      |
-| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case | refer to all witnesses in an investigation case |
-| `* * *`  | investigator                               | add a list of witnesses tied to an investigation case    |                                                 |
-| `* * *`  | investigator                               | delete witnesses tied to an investigation case           | delete irrelevant witnesses                     |
-| `* * *`  | investigator                               | view the list of victims tied to an investigation case   | refer to all victims in an investigation case   |
-| `* * *`  | investigator                               | add a list of victims tied to an investigation case      |                                                 |
-| `* * *`  | investigator                               | delete victims tied to an investigation case             | delete irrelevant victims                       |
-| `* * *`  | investigator                               | close the application when I am done using it            | safely exit the application                     |
+| `* * *`  | investigator                               | create investigation cases with a relevant title                                  | store resources inside                                   |
+| `* * *`  | investigator                               | view the list of investigation cases stored in PIVOT                              |                                                          |
+| `* * *`  | investigator                               | indicate and see the state of different cases (e.g. closed/in-progress/cold case) | edit or see the statuses of my cases                     |
+| `* * *`  | investigator                               | add a description to an investigation case                                        | capture key information about the investigation case     |
+| `* * *`  | investigator                               | delete investigation cases                                                        | delete unwanted cases or cases that are wrongly created  |
+| `* * *`  | investigator                               | open investigation cases easily and view the files that are stored inside         | retrieve the necessary information for those who need it |
+| `* * *`  | investigator                               | add relevant documents to an investigation case                                   |                                                          |
+| `* * *`  | investigator                               | view the list of documents relevant to an investigation case                      |                                                          |
+| `* * *`  | investigator                               | delete irrelevant documents to an investigation case                              | remove outdated documents                                |
+| `* * *`  | investigator                               | view the list of suspects tied to an investigation case                           | refer to all suspects in an investigation case           |
+| `* * *`  | investigator                               | add a list of suspects tied to an investigation case                              |                                                          |
+| `* * *`  | investigator                               | delete suspects tied to an investigation case                                     | delete irrelevant suspects                               |
+| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case                          | refer to all witnesses in an investigation case          |
+| `* * *`  | investigator                               | add a list of witnesses tied to an investigation case                             |                                                          |
+| `* * *`  | investigator                               | delete witnesses tied to an investigation case                                    | delete irrelevant witnesses                              |
+| `* * *`  | investigator                               | view the list of victims tied to an investigation case                            | refer to all victims in an investigation case            |
+| `* * *`  | investigator                               | add a list of victims tied to an investigation case                               |                                                          |
+| `* * *`  | investigator                               | delete victims tied to an investigation case                                      | delete irrelevant victims                                |
+| `* * *`  | investigator                               | close the application when I am done using it                                     | safely exit the application                              |
+
+
+
 
 *{More to be added}*
 
@@ -299,14 +327,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should not take above 2 seconds to execute any command.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Investigation Case**: The investigation case encapsulating all relevant data the police wants to keep track of
+* **Investigation Case Tag**: The status of the case (Active/In-Progress, Closed, Cold Case)
+* **Document**: An actual document/file stored in the project directory
+* **Person**: Data stored in the investigation case (For suspects, witnesses or victims related)
+* **File Paths**: System Location of the specified file inside the project directory
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
