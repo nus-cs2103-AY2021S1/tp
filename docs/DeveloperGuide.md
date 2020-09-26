@@ -281,38 +281,156 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Modduke` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC01: Add a Contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact to the list
+2.  Modduke adds the contact
+
+ Use case ends.
+
+**Extensions**
+
+* 1a. Name, phone number or email field is missing.
+
+  * 1a1. Modduke shows an error message.
 
     Use case ends.
+
+* 1b. Contact with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+    Use case ends.
+
+
+**UC02: Delete a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  Modduke deletes the contact
+
+ Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given name is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. Modduke shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-*{More to be added}*
+
+**UC03: Edit a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to edit a specific contact in the list
+4.  Modduke edits the contact
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. No optional field is provided.
+
+  * 3a1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. The given name is invalid.
+
+  * 3b1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+
+
+**UC04: View Contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+**UC05: Label a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to label a specific contact in the list
+4.  Modduke labels the contact
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given name is invalid.
+
+  * 3a1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+
+* 3b. No tags are provided.
+
+  * 3b1. Modduke shows an error message.
+
+    Use case resumes at step 2.
+
+
+**UC06: Clear all Contacts**
+
+**MSS**
+
+1.  User requests to clear all existing contacts.
+2.  Modduke deletes all existing contacts.
+
+ Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The product should only be for a single user rather than multi-user.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Increments to the code should be made every week with a consistent delivery rate. 
+4. The data should be stored locally and should be in a human editable text file, instead of using a DBMS.
+5. The software should follow the Object-oriented paradigm primarily.
+6. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+7. Should work without requiring an installer.
+8. Should be able to function without having to rely on being heavily connected to a network.
+9. The use of third-party frameworks and libraries should be avoided.
+10. JAR files should not exceed 100Mb and PDF files should not exceed 15Mb/file.
+11. All features should be easy to test. (i.e., do not depend heavily on remote APIs, do not have audio-related features and do not require creating user accounts before usage)
+12. The system should repond within two seconds.
+13. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 
 *{More to be added}*
 
@@ -320,6 +438,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **.vcf,.csv files**: A format of files that contains contact information from users phones
+* **CLI**: CLI is the Command Line Interface where you can type in commands and get an output
+* **TA**: Teaching assistant
+* **Consultation**: A meeting between students and a professor or TA
+* **Meeting**: A general purpose appointment between students
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
