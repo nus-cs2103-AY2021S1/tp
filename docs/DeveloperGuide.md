@@ -300,8 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
                  
 * 2c. HelloFile detects a duplicate tag name.
 
-
-	* 2c1. HelloFile prompts the user for another tag name.
+    * 2c1. HelloFile prompts the user for another tag name.
 		
         Use case resumes from step 1.
                 
