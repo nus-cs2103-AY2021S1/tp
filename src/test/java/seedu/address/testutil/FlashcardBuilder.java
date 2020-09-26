@@ -36,7 +36,7 @@ public class FlashcardBuilder {
      */
     public FlashcardBuilder(Flashcard flashcard) {
         question = new OpenEndedQuestion(flashcard.getQuestion().getQuestion());
-        answer = new Answer(flashcard.getAnswer());
+        answer = new Answer(flashcard.getAnswer().getAnswer());
         tags = flashcard.getTags();
     }
 

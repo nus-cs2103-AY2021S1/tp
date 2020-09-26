@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -62,18 +61,18 @@ public class DeleteCommandTest {
     //        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     //    }
 
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_THIRD_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertFalse(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-    }
+    //    @Test
+    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    //        //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    //
+    //        Index outOfBoundIndex = INDEX_THIRD_PERSON;
+    //        // ensures that outOfBoundIndex is still in bounds of address book list
+    //        assertFalse(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
+    //
+    //        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    //
+    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+    //    }
 
     @Test
     public void equals() {

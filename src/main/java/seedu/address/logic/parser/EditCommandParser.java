@@ -7,16 +7,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.flashcard.Tag;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.flashcard.Tag;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -42,39 +41,39 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         boolean isMcq = argMultimap.getValue(PREFIX_CHOICE).isPresent();
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor(isMcq);
+        EditCommand.EditFlashcardDescriptor editFlashcardDescriptor = new EditCommand.EditFlashcardDescriptor(isMcq);
 
         if (argMultimap.getValue(PREFIX_QUESTION).isPresent()) {
-            editPersonDescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get()));
+            editFlashcardDescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get()));
         }
         if (argMultimap.getValue(PREFIX_ANSWER).isPresent()) {
-            editPersonDescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
+            editFlashcardDescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
         }
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseChoicesForEdit(argMultimap.getAllValues(PREFIX_CHOICE)).ifPresent(editPersonDescriptor::setChoices);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFlashcardDescriptor::setTags);
+        parseChoicesForEdit(argMultimap.getAllValues(PREFIX_CHOICE)).ifPresent(editFlashcardDescriptor::setChoices);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editFlashcardDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editFlashcardDescriptor);
     }
 
-        /**
-         * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-         * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-         * {@code Set<Tag>} containing zero tags.
-         */
-        private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-            assert tags != null;
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
 
-            if (tags.isEmpty()) {
-                return Optional.empty();
-            }
-            Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-            return Optional.of(ParserUtil.parseTags(tagSet));
+        if (tags.isEmpty()) {
+            return Optional.empty();
         }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
 
     /**
      * Parses {@code Collection<String> choices} into a {@code String[]} if {@code choices} is non-empty.

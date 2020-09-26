@@ -7,20 +7,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.flashcard.*;
+import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 
 
 /**
@@ -48,18 +52,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DIFFERENT_TYPE = "The question do not have choices";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditFlashcardDescriptor editFlashcardDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editFlashcardDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditFlashcardDescriptor editFlashcardDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editFlashcardDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editFlashcardDescriptor = new EditFlashcardDescriptor(editFlashcardDescriptor);
     }
 
     @Override
@@ -72,7 +76,7 @@ public class EditCommand extends Command {
         }
 
         Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
-        Flashcard editedFlashcard = createEditedFlashcard(flashcardToEdit, editPersonDescriptor);
+        Flashcard editedFlashcard = createEditedFlashcard(flashcardToEdit, editFlashcardDescriptor);
 
         if (flashcardToEdit.isSameFlashcard(editedFlashcard) || model.hasFlashcard(editedFlashcard)) {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
@@ -87,45 +91,46 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit, EditPersonDescriptor editPersonDescriptor)
+    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit,
+                                                   EditFlashcardDescriptor editFlashcardDescriptor)
             throws CommandException {
         assert flashcardToEdit != null;
 
         boolean isMcq = flashcardToEdit.getQuestion() instanceof Mcq;
 
-        Answer updatedAnswer = editPersonDescriptor.getAnswer().orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
-        Question updatedQuestion = editPersonDescriptor.getQuestion()
+        Answer updatedAnswer = editFlashcardDescriptor.getAnswer()
+                .orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+        Question updatedQuestion = editFlashcardDescriptor.getQuestion()
                 .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getOnlyQuestion()));
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(flashcardToEdit.getTags());
+        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
         String[] emptyArray = new String[0];
-        String[] updatedChoices = editPersonDescriptor.getChoices().orElse(emptyArray);
-        boolean isMcqEdit = editPersonDescriptor.getIsMcq();
-
+        String[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
+        boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
         if (isMcq) {
-           String question = updatedQuestion.getQuestion();
-           Mcq mcq = (Mcq) flashcardToEdit.getQuestion();
-           String[] choices = mcq.getChoices();
-           if (Arrays.equals(updatedChoices,emptyArray)) {
-               updatedQuestion = new Mcq(question, choices);
-               try {
-                   int ans = Integer.parseInt(updatedAnswer.getAnswer());
-                   if (ans > choices.length)  {
-                       throw new CommandException("Answer must be smaller than number of choices");
-                   }
-               } catch (NumberFormatException e) {
-                   throw new CommandException("Answer must be integer");
-               }
-           } else {
-               updatedQuestion = new Mcq (question, updatedChoices);
-               try {
-                   int ans = Integer.parseInt(updatedAnswer.getAnswer());
-                   if (ans > updatedChoices.length)  {
-                       throw new CommandException("Number of choices must be larger than answer");
-                   }
-               } catch (NumberFormatException e) {
-                   throw new CommandException("Answer must be integer");
-               }
-           }
+            String question = updatedQuestion.getQuestion();
+            Mcq mcq = (Mcq) flashcardToEdit.getQuestion();
+            String[] choices = mcq.getChoices();
+            if (Arrays.equals(updatedChoices, emptyArray)) {
+                updatedQuestion = new Mcq(question, choices);
+                try {
+                    int ans = Integer.parseInt(updatedAnswer.getAnswer());
+                    if (ans > choices.length) {
+                        throw new CommandException("Answer must be smaller than number of choices");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new CommandException("Answer must be integer");
+                }
+            } else {
+                updatedQuestion = new Mcq (question, updatedChoices);
+                try {
+                    int ans = Integer.parseInt(updatedAnswer.getAnswer());
+                    if (ans > updatedChoices.length) {
+                        throw new CommandException("Number of choices must be larger than answer");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new CommandException("Answer must be integer");
+                }
+            }
         } else {
             if (!Arrays.equals(updatedChoices, emptyArray)) {
                 throw new CommandException(MESSAGE_DIFFERENT_TYPE);
@@ -151,14 +156,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editFlashcardDescriptor.equals(e.editFlashcardDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditFlashcardDescriptor {
         private Answer answer;
         private Question question;
         private String[] choices;
@@ -166,7 +171,7 @@ public class EditCommand extends Command {
         private boolean isMcq;
 
 
-        public EditPersonDescriptor(boolean isMcq) {
+        public EditFlashcardDescriptor(boolean isMcq) {
             this.isMcq = isMcq;
         }
 
@@ -174,7 +179,7 @@ public class EditCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditFlashcardDescriptor(EditFlashcardDescriptor toCopy) {
             setAnswer(toCopy.answer);
             setQuestion(toCopy.question);
             setChoices(toCopy.choices);
@@ -253,12 +258,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditFlashcardDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditFlashcardDescriptor e = (EditFlashcardDescriptor) other;
 
             return getAnswer().equals(e.getAnswer())
                     && getQuestion().equals(e.getQuestion())
