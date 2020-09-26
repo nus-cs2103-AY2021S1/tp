@@ -6,7 +6,17 @@ import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nustorage.logic.commands.*;
+import nustorage.logic.commands.AddCommand;
+import nustorage.logic.commands.AddFinanceCommand;
+import nustorage.logic.commands.ClearCommand;
+import nustorage.logic.commands.Command;
+import nustorage.logic.commands.DeleteCommand;
+import nustorage.logic.commands.DeleteFinanceCommand;
+import nustorage.logic.commands.EditCommand;
+import nustorage.logic.commands.ExitCommand;
+import nustorage.logic.commands.FindCommand;
+import nustorage.logic.commands.HelpCommand;
+import nustorage.logic.commands.ListCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 
 /**
