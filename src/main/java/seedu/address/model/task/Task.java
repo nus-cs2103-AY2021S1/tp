@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,6 +19,7 @@ public class Task {
     private final boolean isDone;
 
     public Task(String name, String description, LocalDateTime deadline, double progress, boolean isDone) {
+        requireAllNonNull(name, progress, isDone);
         this.name = name;
         this.description = description;
         publishDate = LocalDate.now();
