@@ -31,6 +31,7 @@ public class DescriptionTest {
         // valid addresses
         assertTrue(Description.isValidAddress("Blk 456, Den Road, #01-355"));
         assertTrue(Description.isValidAddress("-")); // one character
-        assertTrue(Description.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Description.isValidAddress("Leng Inc; 1234 Market St;"
+                                                      + " San Francisco CA 2349879; USA")); // long address
     }
 }
