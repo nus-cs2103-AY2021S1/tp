@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="600" minHeight="740" onCloseRequest="#handleExit">
+         title="OneShelf" minWidth="600" minHeight="740" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -34,28 +34,32 @@
         </MenuBar>
 
         <HBox minHeight="590" prefHeight="590">
-          <VBox fx:id="itemList" styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox>
-            <StackPane VBox.vgrow="NEVER" fx:id="" styleClass="pane-with-border"
-                       minHeight="295" prefHeight="295">
+          <children>
+            <VBox fx:id="itemList" styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
               <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
+                <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
-            </StackPane>
+              <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
 
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                       minHeight="295" prefHeight="295">
-              <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
-              </padding>
-            </StackPane>
-          </VBox>
+            <VBox>
+              <children>
+                <StackPane VBox.vgrow="NEVER" fx:id="" styleClass="pane-with-border"
+                           minHeight="295" prefHeight="295">
+                  <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                  </padding>
+                </StackPane>
+
+                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                           minHeight="295" prefHeight="295">
+                  <padding>
+                    <Insets top="5" right="10" bottom="5" left="10" />
+                  </padding>
+                </StackPane>
+              </children>
+            </VBox>
+          </children>
         </HBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
