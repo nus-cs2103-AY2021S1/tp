@@ -268,30 +268,122 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `PlaNus` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 01: Add a task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+  1. User requests to add a specific task to the list.
 
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+  2. PlaNus adds the task.
 
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**Extensions**
 
-      Use case resumes at step 2.
+- 1a. The given index is invalid.
+
+  - 1a1. AddressBook shows an error message.
+
+    Use case resumes at step 1.
+
+<br>
+
+**Use case 02: Delete a task**
+
+**MSS**
+
+  1. User requests to list tasks.
+
+  2. PlaNus shows a list of tasks.
+
+  3. User requests to delete a specific task in the list.
+
+  4. PlaNus deletes the task.
+
+  Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+  - 3a1. PlaNus shows an error message.
+
+    Use case resumes at step 2.
+
+ <br> 
+
+**Use case 03: List all tasks**
+
+**MSS**
+
+  1. User requests to list tasks.
+
+  2. PlaNus shows a list of tasks.
+
+  Use case ends.
+
+**Extensions**
+
+  - 2a. The list is empty.
+
+    Use case ends.
+
+<br>
+
+**Use case 04: Request help**
+
+**MSS**
+
+  1. User requests help.
+
+  2. PlaNus shows available commands.
+
+  Use case ends.
+
+<br>   
+
+**Use case 05: Mark a task as done**
+
+**MSS**
+
+  1. User requests to list tasks.
+  
+  2. PlaNus shows a list of tasks.
+  
+  3. User requests to mark a specific tasks in the list as done.
+  
+  4. PlaNus marks the task as done.
+
+  Use case ends.
+
+**Extensions**
+
+- 3a. The given index is invalid.
+
+  - 3a1. PlaNus shows an error message.
+
+    Use case resumes at step 3.
+
+<br>    
+
+**Use case 06: Exit application**
+
+**MSS**
+
+  1. User requests to exit application.
+
+  2. PlaNus exits application.
+
+  Use case ends.
+
+   
 
 *{More to be added}*
 
