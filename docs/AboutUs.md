@@ -3,57 +3,52 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a group of students taking CS2103T: Software Engineering in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+|  | Name | Role | Github Repo |
+|---|---|---|---|
+|<img src="images/about-us-image/wei_min.jpg" width="200px">|Lee Wei Min| Developer | [[github](https://github.com/leeweiminsg)] | 
 
-<img src="images/johndoe.png" width="200px">
+### Lee Wei Min
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/about-us-image/wei_min.jpg" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/leeweiminsg)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Liu Xinyi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/about-us-image/xinyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Liu-2001)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Nauman Sajid
 
-<img src="images/johndoe.png" width="200px">
+<img src="https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Nauman-S)]
 
 * Role: Developer
-* Responsibilities: UI
+
+### Phyo Han
+
+<img src="https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](https://github.com/Nahoyhp/)]
+
+* Role: Developer
+
+### Xu Zeng, Roy
+
+<img src="https://upload.wikimedia.org/wikipedia/en/b/b1/Portrait_placeholder.png" width="200px">
+
+[[github](https://github.com/Royxuzeng)]
+
+* Role: Developer
