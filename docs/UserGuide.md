@@ -6,11 +6,11 @@ ProductiveNUS User Guide
 ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 It is a convenient platform for you to keep track of your lessons and assignments at hand and being able to type quickly will make the process fast as well.
 
-###Table of Contents
-1) Quick Start
-2) Features
-3) FAQ
-4) Summary of commands supported
+### Table of Contents
+1. Quick Start
+2. Features
+3. FAQ
+4. Summary of commands supported
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
    
-   * **`remind 3`** : Tags your assignment with a reminder.
+   * **`remind 3`** : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
 
    * **`exit`** : Exits the application.
 
@@ -63,7 +63,6 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
 </div>
 
-
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -86,7 +85,6 @@ Format: `list`
 
 Example: `list`
 
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -100,6 +98,15 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Setting reminders for assignments : `remind`
+Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
+
+Format: `remind INDEX`
+
+* Tags the assignment at the specified `INDEX` to receive reminders.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Exiting the program : `exit`
 
