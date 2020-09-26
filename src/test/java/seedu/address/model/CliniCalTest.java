@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCliniCal;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.PatientBuilder;
 
-public class AddressBookTest {
+public class CliniCalTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final CliniCal cliniCal = new CliniCal();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPatientList());
+        assertEquals(Collections.emptyList(), cliniCal.getPatientList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> cliniCal.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyCliniCal_replacesData() {
+        CliniCal newData = getTypicalCliniCal();
+        cliniCal.resetData(newData);
+        assertEquals(newData, cliniCal);
     }
 
     @Test
@@ -49,47 +49,47 @@ public class AddressBookTest {
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPatients);
+        CliniCalStub newData = new CliniCalStub(newPatients);
 
-        assertThrows(DuplicatePatientException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePatientException.class, () -> cliniCal.resetData(newData));
     }
 
     @Test
     public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPatient(null));
+        assertThrows(NullPointerException.class, () -> cliniCal.hasPatient(null));
     }
 
     @Test
-    public void hasPatient_patientNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPatient(ALICE));
+    public void hasPatient_patientNotInCliniCal_returnsFalse() {
+        assertFalse(cliniCal.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPatient_patientInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
-        assertTrue(addressBook.hasPatient(ALICE));
+    public void hasPatient_patientInCliniCal_returnsTrue() {
+        cliniCal.addPatient(ALICE);
+        assertTrue(cliniCal.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPatient_patientWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
+    public void hasPatient_patientWithSameIdentityFieldsInCliniCal_returnsTrue() {
+        cliniCal.addPatient(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPatient(editedAlice));
+        assertTrue(cliniCal.hasPatient(editedAlice));
     }
 
     @Test
     public void getPatientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPatientList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> cliniCal.getPatientList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose patients list can violate interface constraints.
+     * A stub ReadOnlyCliniCal whose patients list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class CliniCalStub implements ReadOnlyCliniCal {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Patient> patients) {
+        CliniCalStub(Collection<Patient> patients) {
             this.patients.setAll(patients);
         }
 
