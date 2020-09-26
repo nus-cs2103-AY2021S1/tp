@@ -78,4 +78,6 @@ public class Task {
     public int hashCode() {
         return Objects.hash(getTaskName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
     }
+
+    // TODO: may add isValidTask method.
 }
