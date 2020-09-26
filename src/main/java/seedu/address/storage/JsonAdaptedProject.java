@@ -17,6 +17,7 @@ import seedu.address.model.project.Name;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -78,6 +79,10 @@ class JsonAdaptedProject {
         for (JsonAdaptedTag tag : tagged) {
             projectTags.add(tag.toModelType());
         }
+        final List<Task> projectTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : occupied) {
+            projectTasks.add(task.toModelType());
+        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -112,8 +117,9 @@ class JsonAdaptedProject {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
+        final Set<Task> modelTasks = new HashSet<>(projectTasks);
         return new Project(modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, new HashMap<>(), new HashSet<>());
+                modelTags, new HashMap<>(), modelTasks);
     }
 
 }
