@@ -303,6 +303,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **.vcf,.csv files**: A format of files that contains contact information from users phones
 * **CLI**: CLI is the Command Line Interface where you can type in commands and get an output
+* **Consultation**: A meeting between students and a professor or TA
+* **Meeting**: A general purpose appointment between students
 
 
 --------------------------------------------------------------------------------------------------------------------
