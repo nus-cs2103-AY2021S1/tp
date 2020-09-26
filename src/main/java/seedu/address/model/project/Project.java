@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.logic.Participation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.tag.Tag;
