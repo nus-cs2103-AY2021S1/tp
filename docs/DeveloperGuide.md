@@ -262,32 +262,218 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+**Use case: UC01 - Check help information**
 
-**Use case: Delete a person**
+Actor: User
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User asks for help information of a specified command name
+2.  Task manager shows information about the asking command name
+    
+    Use case ends
 
+**Extensions**
+
+1a. User does not provide specified command name
+    
+    1a1. Task manager lists all the commands used in this software.
+        Use case ends
+
+1b. User input an invalid command name
+
+    1b1. Task manager informs user the invalidation of the command name and lists all the command used in this software
+        Use case ends
+
+
+
+
+**Use case: UC02 - View admin information**
+
+Actor: User
+
+**MSS**
+
+1.  User asks for specified administrative information by parameters
+2.  Task manager shows the admin information asked by user.
+
+    Use case ends
+
+**Extensions**
+
+1a. Parameter provided by user is invalid
+    
+    1a1.  Task manager informs user the parameter is invalid and lists all the valid parameters.
+        Use case ends
+
+1b. User does not provide parameter
+
+    1b1. Task manager lists all the valid parameters.
+        Use case ends
+        
+        
+        
+**Use case: UC03 - Search for tasks**
+
+Actor: User
+
+**MSS**
+
+1.  User asks for searching tasks with keyword
+2.  Task manager lists search result
+
+    Use case ends
+
+**Extensions**
+
+1a. User does not provide a keyword
+    
+    1a1. Task manager informs user to add a parameter
+        Use case ends
+
+2a. Searching for the keyword got no answer
+
+    2a1.  Task manager informs user there is no result.
+        Use case ends.
+
+
+
+
+**Use case: UC04 - Check task list**
+
+Actor: User
+
+**MSS**
+
+1.  User asks for list all tasks in a specific week
+2.  Task manager lists all the tasks in the specific week
+
+    Use case ends
+
+**Extensions**
+
+1a. User provides an invalid week number
+    
+    1a1.  Task manager informs the user the week number is incorrect
+        Use case ends
+
+1b. User does not provide week number
+    
+    1b1. Task manager informs the user to provide valid week number
+        Use case ends
+
+
+
+
+**Use case: UC05 - Add customized deadline to a task**
+
+Actor: User
+
+**MSS**
+
+1.  User requests for adding a customized deadline to a task and provides task index and deadline
+2.  Task manager add the deadline to the task and show overview of the task
+
+    Use case ends
+
+**Extensions**
+
+1a.  User gives an invalid task index
+
+    1a1.  Task manager informs user the task index is invalid
+        Use case ends
+
+1b.  User gives deadline in incorrect format
+
+    1b1.  Task manager informs user the time format is incorrect and shows the correct format
+        Use case ends
+
+1c.  User does not provide complete parameters
+
+    1c1.  Task manager informs user the command does not have complete parameters
+        Use case ends
+
+1d.  The task to be edited already has a deadline
+
+    1d1.  Task manager updates the task with the new deadline and informs user the deadline of this task has been edited and shows the previous deadline
+        Use case ends
+
+
+
+**Use case: UC06 - Add a customized task**
+
+Actor: User
+
+**MSS**
+1.  User requests for adding customized task and provides the necessary information
+2.  Task manager adds the task and shows user an overview of task added
+    
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+1a.  Information provided by user is not complete
+    
+    1a1.  Task manager informs user the correct format and asks for a new order
+        Use case ends
 
-  Use case ends.
+1b.  Information provided by user is not in correct format
 
-* 3a. The given index is invalid.
+    1b1.  Task manager informs user the correct format and asks for a new order
+        Use case ends
 
-    * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: UC07 - Delete a customized task**
+
+Actor: User
+
+**MSS**
+
+1.  User asks for deleting a customized task by giving task index
+2.  Task manager deletes the task and informs user the task content deleted
+
+    Use case ends
+
+**Extensions**
+
+1a.  User provides an invalid task index
+    
+    1a1. Task manager informs the user to provide a valid task index
+        Use case ends
+
+2a.  User does not provide task index
+
+    2a1. Task manager informs the user to provide a valid task index
+        Use case ends
+
+
+
+
+**Use case: UC08 - Exit the task manager**
+
+Actor: User
+
+**MSS**
+1.  User requests to exit from task manager
+2.  Task manager shows goodbye words and stops program
+ 
+    Use case ends.
+
+**Extensions**
+
+*a. User clicks on exit button to exit
+
+    *a1. Task manager shows goodbye words and exits
+         Use case ends.
+    
+
+
+
+
+
+
 
 ### Non-Functional Requirements
 
