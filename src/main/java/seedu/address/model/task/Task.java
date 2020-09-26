@@ -13,4 +13,16 @@ public class Task {
     private int frequency;
     private LocalDate endDate;
     private double progress;
+
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+        publishDate = LocalDate.now();
+        startDate = null;
+        deadline = null;
+        lastDoneOn = null;
+        frequency = 0;
+        endDate = null;
+        progress = 0;
+    }
 }
