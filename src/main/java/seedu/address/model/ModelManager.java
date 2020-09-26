@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Bug;
+import seedu.address.model.bug.Bug;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given bugList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyBugList addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -79,12 +79,12 @@ public class ModelManager implements Model {
     //=========== BugList ================================================================================
 
     @Override
-    public void setBugList(ReadOnlyAddressBook bugList) {
+    public void setBugList(ReadOnlyBugList bugList) {
         this.bugList.resetData(bugList);
     }
 
     @Override
-    public ReadOnlyAddressBook getBugList() {
+    public ReadOnlyBugList getBugList() {
         return bugList;
     }
 

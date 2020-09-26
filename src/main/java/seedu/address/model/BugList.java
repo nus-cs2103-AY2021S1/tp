@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Bug;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.bug.Bug;
+import seedu.address.model.bug.UniqueBugList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class BugList implements ReadOnlyAddressBook {
+public class BugList implements ReadOnlyBugList {
 
-    private final UniquePersonList persons;
+    private final UniqueBugList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class BugList implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueBugList();
     }
 
     public BugList() {}
@@ -32,7 +32,7 @@ public class BugList implements ReadOnlyAddressBook {
     /**
      * Creates an BugList using the Persons in the {@code toBeCopied}
      */
-    public BugList(ReadOnlyAddressBook toBeCopied) {
+    public BugList(ReadOnlyBugList toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class BugList implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code BugList} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyBugList newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());

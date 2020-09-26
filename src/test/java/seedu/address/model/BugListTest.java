@@ -1,25 +1,21 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Bug;
-import seedu.address.model.person.exceptions.DuplicateBugException;
+import org.junit.jupiter.api.Test;
+import seedu.address.model.bug.Bug;
+import seedu.address.model.bug.exceptions.DuplicateBugException;
 import seedu.address.testutil.PersonBuilder;
 
 public class BugListTest {
@@ -49,7 +45,7 @@ public class BugListTest {
         Bug editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Bug> newBugs = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newBugs);
+        BugListStub newData = new BugListStub(newBugs);
 
         assertThrows(DuplicateBugException.class, () -> bugList.resetData(newData));
     }
@@ -84,12 +80,12 @@ public class BugListTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose bugs list can violate interface constraints.
+     * A stub ReadOnlyBugList whose bugs list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class BugListStub implements ReadOnlyBugList {
         private final ObservableList<Bug> bugs = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Bug> bugs) {
+        BugListStub(Collection<Bug> bugs) {
             this.bugs.setAll(bugs);
         }
 

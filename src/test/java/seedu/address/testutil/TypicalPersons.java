@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.BugList;
-import seedu.address.model.person.Bug;
+import seedu.address.model.bug.Bug;
 
 /**
  * A utility class containing a list of {@code Bug} objects to be used in tests.

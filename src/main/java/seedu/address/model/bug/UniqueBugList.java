@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.bug;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,21 +8,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateBugException;
-import seedu.address.model.person.exceptions.BugNotFoundException;
+import seedu.address.model.bug.exceptions.DuplicateBugException;
+import seedu.address.model.bug.exceptions.BugNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A bug is considered unique by comparing using {@code Bug#isSamePerson(Bug)}. As such, adding and updating of
  * persons uses Bug#isSamePerson(Bug) for equality so as to ensure that the bug being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a bug uses Bug#equals(Object) so
+ * unique in terms of identity in the UniqueBugList. However, the removal of a bug uses Bug#equals(Object) so
  * as to ensure that the bug with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Bug#isSamePerson(Bug)
  */
-public class UniquePersonList implements Iterable<Bug> {
+public class UniqueBugList implements Iterable<Bug> {
 
     private final ObservableList<Bug> internalList = FXCollections.observableArrayList();
     private final ObservableList<Bug> internalUnmodifiableList =
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Bug> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueBugList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Bug> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueBugList // instanceof handles nulls
+                        && internalList.equals(((UniqueBugList) other).internalList));
     }
 
     @Override

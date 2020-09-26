@@ -1,12 +1,12 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Bug;
+import seedu.address.model.bug.Bug;
 
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyBugList {
 
     /**
      * Returns an unmodifiable view of the persons list.

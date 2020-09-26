@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.BugList;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Bug;
+import seedu.address.model.ReadOnlyBugList;
+import seedu.address.model.bug.Bug;
 
 /**
  * An Immutable BugList that is serializable to JSON format.
@@ -32,11 +32,11 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyBugList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableAddressBook(ReadOnlyBugList source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 

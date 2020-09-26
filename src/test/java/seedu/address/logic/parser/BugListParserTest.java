@@ -23,15 +23,15 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Bug;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.bug.Bug;
+import seedu.address.model.bug.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
 public class BugListParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final BugListParser parser = new BugListParser();
 
     @Test
     public void parseCommand_add() throws Exception {

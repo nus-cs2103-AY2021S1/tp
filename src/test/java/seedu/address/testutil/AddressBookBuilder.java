@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.BugList;
-import seedu.address.model.person.Bug;
+import seedu.address.model.bug.Bug;
 
 /**
  * A utility class to help with building Addressbook objects.

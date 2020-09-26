@@ -5,9 +5,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.BugList;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Bug;
+import seedu.address.model.ReadOnlyBugList;
+import seedu.address.model.bug.*;
+import seedu.address.model.bug.Bug;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +37,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyBugList getSampleAddressBook() {
         BugList sampleAb = new BugList();
         for (Bug sampleBug : getSamplePersons()) {
             sampleAb.addPerson(sampleBug);

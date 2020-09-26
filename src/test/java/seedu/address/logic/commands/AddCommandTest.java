@@ -18,9 +18,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.BugList;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBugList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Bug;
+import seedu.address.model.bug.Bug;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setBugList(ReadOnlyAddressBook newData) {
+        public void setBugList(ReadOnlyBugList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getBugList() {
+        public ReadOnlyBugList getBugList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,7 +186,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getBugList() {
+        public ReadOnlyBugList getBugList() {
             return new BugList();
         }
     }

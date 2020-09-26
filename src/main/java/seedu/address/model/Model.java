@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Bug;
+import seedu.address.model.bug.Bug;
 
 /**
  * The API of the Model component.
@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code bugList}.
      */
-    void setBugList(ReadOnlyAddressBook bugList);
+    void setBugList(ReadOnlyBugList bugList);
 
     /** Returns the BugList */
-    ReadOnlyAddressBook getBugList();
+    ReadOnlyBugList getBugList();
 
     /**
      * Returns true if a bug with the same identity as {@code bug} exists in the address book.
