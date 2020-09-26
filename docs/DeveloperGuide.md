@@ -272,11 +272,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `McGymmy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: List all food**
+
+**Use case: UC01 List food**
 
 **MSS**
-
-**Extensions**
+1. User requests to list food (UC01)
+2. McGymmy shows a list of food that user has added (UC02)
+Use case ends
 
 **Use case: UC02 Add food**
 
@@ -291,8 +293,6 @@ Use case ends
     1a1. McGymmy shows an error message
     Use case ends
 
-**Extensions**
-
 **Use case: UC03 Delete food**
 
 **MSS**
@@ -300,13 +300,45 @@ Use case ends
 2. McGymmy shows a list of food
 3. User request to delete a specific food on the list
 4. McGymmy deletes the food
+
+Use case ends
+
+**Extensions**
+- 2a. The list is empty<br>
+
+    Use case ends.
+    
+- 3a. The given index is invalid.<br>
+   - 3a1. McGymmy shows an error message
+    
+    Use case resumes at step 2.
+
+**Use case: UC04 Help**
+
+**MSS**
+1. User requests help
+2. McGymmy shows all commands and examples of command usages
+
+Use case ends
+
+**Extensions**
+No extensions
+
+**Use case: UC05 Update food**
+
+**MSS**
+1. User requests to list food (UC01)
+2. McGymmy shows a list of food
+3. User request to update a specific food on the list
+4. McGymmy updates the food
+
 Use case ends
 
 **Extensions**
 - 2a. The list is empty<br>
     Use case ends.
 - 3a. The given index is invalid.<br>
-    3a1. McGymmy shows an error message
+   - 3a1. McGymmy shows an error message
     Use case resumes at step 2.
 
 **Use case: Add a macro command**
