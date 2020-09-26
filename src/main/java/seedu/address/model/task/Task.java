@@ -11,7 +11,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
-    private final String name;
+    private final String taskName;
     private final String description;
     private final LocalDate publishDate;
     private final LocalDateTime deadline;
@@ -21,9 +21,9 @@ public class Task {
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
      */
-    public Task(String name, String description, LocalDateTime deadline, double progress, boolean isDone) {
-        requireAllNonNull(name, progress, isDone);
-        this.name = name;
+    public Task(String taskName, String description, LocalDateTime deadline, double progress, boolean isDone) {
+        requireAllNonNull(taskName, progress, isDone);
+        this.taskName = taskName;
         this.description = description;
         publishDate = LocalDate.now();
         this.deadline = deadline;
@@ -31,8 +31,8 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String getName() {
-        return name;
+    public String getTaskName() {
+        return taskName;
     }
 
     public String getDescription() {
@@ -68,7 +68,7 @@ public class Task {
         }
         Task task = (Task) o;
         return Double.compare(task.getProgress(), getProgress()) == 0
-                && getName().equals(task.getName())
+                && getTaskName().equals(task.getTaskName())
                 && getDescription().equals(task.getDescription())
                 && getPublishDate().equals(task.getPublishDate())
                 && Objects.equals(getDeadline(), task.getDeadline());
@@ -76,6 +76,6 @@ public class Task {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
+        return Objects.hash(getTaskName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
     }
 }
