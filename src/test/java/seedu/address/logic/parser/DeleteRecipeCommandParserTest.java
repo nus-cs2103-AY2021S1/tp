@@ -22,12 +22,12 @@ public class DeleteRecipeCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "deleteR r/1", new DeleteRecipeCommand(INDEX_FIRST_RECIPE));
+        assertParseSuccess(parser, "1", new DeleteRecipeCommand(INDEX_FIRST_RECIPE));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRecipeCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, "deleteR r/a", expectedMessage);
+        assertParseFailure(parser, "a", expectedMessage);
     }
 }

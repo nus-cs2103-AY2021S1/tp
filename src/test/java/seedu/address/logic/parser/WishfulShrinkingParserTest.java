@@ -62,7 +62,7 @@ public class WishfulShrinkingParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteRecipeCommand command = (DeleteRecipeCommand) parser.parseCommand(
-                DeleteRecipeCommand.COMMAND_WORD + " r/" + INDEX_FIRST_RECIPE.getOneBased());
+                DeleteRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
         assertEquals(new DeleteRecipeCommand(INDEX_FIRST_RECIPE), command);
     }
 

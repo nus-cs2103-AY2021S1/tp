@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE;
 
 import java.util.List;
 
@@ -20,8 +19,8 @@ public class DeleteRecipeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the recipe identified by the index number used in the displayed recipe list.\n"
-            + "Parameters: " + PREFIX_RECIPE + "INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_RECIPE + "1";
+            + "Parameters: " + "INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
