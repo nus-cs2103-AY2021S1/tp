@@ -11,7 +11,7 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {
-    private final String taskName;
+    public final String taskName;
     private final String description;
     private final LocalDate publishDate;
     private final LocalDateTime deadline;
