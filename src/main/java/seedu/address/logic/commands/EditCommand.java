@@ -102,9 +102,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
         Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
+        Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
         return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, new HashMap<>(), new HashSet<>());
+                updatedTags, new HashMap<>(), updatedTasks);
     }
 
     @Override
@@ -244,7 +245,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getTasks().equals(e.getTasks());
         }
     }
 }
