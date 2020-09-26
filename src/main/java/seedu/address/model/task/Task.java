@@ -18,6 +18,9 @@ public class Task {
     private final double progress;
     private final boolean isDone;
 
+    /**
+     * name, progress, and isDone should be present and not null. description and deadline can be null.
+     */
     public Task(String name, String description, LocalDateTime deadline, double progress, boolean isDone) {
         requireAllNonNull(name, progress, isDone);
         this.name = name;
@@ -57,14 +60,18 @@ public class Task {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Task task = (Task) o;
-        return Double.compare(task.getProgress(), getProgress()) == 0 &&
-                getName().equals(task.getName()) &&
-                getDescription().equals(task.getDescription()) &&
-                getPublishDate().equals(task.getPublishDate()) &&
-                Objects.equals(getDeadline(), task.getDeadline());
+        return Double.compare(task.getProgress(), getProgress()) == 0
+                && getName().equals(task.getName())
+                && getDescription().equals(task.getDescription())
+                && getPublishDate().equals(task.getPublishDate())
+                && Objects.equals(getDeadline(), task.getDeadline());
     }
 
     @Override
