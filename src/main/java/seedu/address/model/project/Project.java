@@ -58,16 +58,24 @@ public class Project {
         return address;
     }
 
-    public void addParticipation(Person p) {
-        listOfParticipations.put(p.getName(), new Participation(p, this));
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable task set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Task> getTasks() {
+        return Collections.unmodifiableSet(tasks);
+    }
+
+    public void addParticipation(Person p) {
+        listOfParticipations.put(p.getName(), new Participation(p, this));
     }
 
     /**
