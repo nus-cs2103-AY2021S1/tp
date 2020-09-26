@@ -284,8 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
-
+(For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
 
 #### Use case: Adding a stock
 
@@ -340,12 +339,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
+* 3b. The given serial number is not found.
 
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
-
 
 #### Use case: Find a stock by name
 
@@ -363,13 +361,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  
     * 1a1. Warenager shows an error message.
     
-     Use case resumes at step 1.
+      Use case resumes at step 1.
 
 * 1b. The given command is invalid (wrong find command). 
 
     * 1b1. Warenager shows an error message.
         
-    Use case resumes at step 1.
+      Use case resumes at step 1.
      
 * 2a. There is no stock with name that matches keyword.
 
@@ -392,13 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
      Use case resumes at step 1.
 
-* 1b. The given serial number is not an integer.
-
-    * 1b1. Warenager shows an error message.
-
-      Use case resumes at step 1.
-
-* 1c. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command). 
 
     * 1b1. Warenager shows an error message.
         
@@ -485,45 +477,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
-
+* 3b. The stock with the given serial number is not found.
+    
     * 3b1. Warenager shows an error message.
-
+    
       Use case resumes at step 2.
 
-* 3c. The stock with the given serial number is not found.
+* 3c. The given format is missing the field header q/.
     
     * 3c1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
-* 3d. The given format is missing the field header q/.
+* 3d. The given increment or decrement value is not an integer.
     
     * 3d1. Warenager shows an error message.
     
       Use case resumes at step 2.
+      
+* 3e. The given increment or decrement value exceeds the integer limit.
 
-* 3e. The given increment or decrement value is not an integer.
-    
     * 3e1. Warenager shows an error message.
     
       Use case resumes at step 2.
-      
-* 3f. The given increment or decrement value exceeds the integer limit.
+
+* 3f. The given increment value plus the stock's current quantity exceeds the integer limit.
 
     * 3f1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
-* 3g. The given increment value plus the stock's current quantity exceeds the integer limit.
+* 3g. The stock's current quantity minus the given decrement value results in a negative value.
 
     * 3g1. Warenager shows an error message.
-    
-      Use case resumes at step 2.
-
-* 3h. The stock's current quantity minus the given decrement value results in a negative value.
-
-    * 3h1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
@@ -550,39 +536,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
-
+* 3b. The stock with the given serial number is not found.
+    
     * 3b1. Warenager shows an error message.
-
+    
       Use case resumes at step 2.
 
-* 3c. The stock with the given serial number is not found.
+* 3c. The given format is missing the field header nq/.
     
     * 3c1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
-* 3d. The given format is missing the field header nq/.
+* 3d. The given quantity value is not an integer.
     
     * 3d1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
-* 3e. The given quantity value is not an integer.
-    
+* 3e. The given quantity value exceeds the integer limit.
+
     * 3e1. Warenager shows an error message.
     
       Use case resumes at step 2.
-
-* 3f. The given quantity value exceeds the integer limit.
+      
+* 3f. The given quantity value is negative.
 
     * 3f1. Warenager shows an error message.
-    
-      Use case resumes at step 2.
-      
-* 3g. The given quantity value is negative.
-
-    * 3g1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
@@ -609,21 +589,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
-
+* 3b. The stock with the given serial number is not found.
+    
     * 3b1. Warenager shows an error message.
-
+    
       Use case resumes at step 2.
 
-* 3c. The stock with the given serial number is not found.
+* 3c. The given format is missing the field header n/.
     
     * 3c1. Warenager shows an error message.
-    
-      Use case resumes at step 2.
-
-* 3d. The given format is missing the field header n/.
-    
-    * 3d1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
@@ -650,21 +624,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
-
+* 3b. The stock with the given serial number is not found.
+    
     * 3b1. Warenager shows an error message.
-
+    
       Use case resumes at step 2.
 
-* 3c. The stock with the given serial number is not found.
+* 3c. The given format is missing the field header l/.
     
     * 3c1. Warenager shows an error message.
-    
-      Use case resumes at step 2.
-
-* 3d. The given format is missing the field header l/.
-    
-    * 3d1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
@@ -691,21 +659,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
-
+* 3b. The stock with the given serial number is not found.
+    
     * 3b1. Warenager shows an error message.
-
+    
       Use case resumes at step 2.
 
-* 3c. The stock with the given serial number is not found.
+* 3c. The given format is missing the field header s/.
     
     * 3c1. Warenager shows an error message.
-    
-      Use case resumes at step 2.
-
-* 3d. The given format is missing the field header s/.
-    
-    * 3d1. Warenager shows an error message.
     
       Use case resumes at step 2.
 
