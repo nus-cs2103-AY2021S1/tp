@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.QuickCache;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyQuickCache;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.FlashcardBuilder;
@@ -102,12 +102,12 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getQuickCacheFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setQuickCacheFilePath(Path quickCacheFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -122,12 +122,12 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setQuickCache(ReadOnlyQuickCache newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyQuickCache getQuickCache() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -209,8 +209,8 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyQuickCache getQuickCache() {
+            return new QuickCache();
         }
     }
 

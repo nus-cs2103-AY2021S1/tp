@@ -5,7 +5,7 @@ package seedu.address.flashcard;
  * Options for the mcq will be stored in an array while the
  * question itself will be stored as a {@code String}.
  */
-public class Mcq implements Question {
+public class MultipleChoiceQuestion implements Question {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -18,13 +18,13 @@ public class Mcq implements Question {
     /**
      * A constructor to create MCQ Question object.
      */
-    public Mcq(String question, String... options) {
+    public MultipleChoiceQuestion(String question, String... options) {
         this.question = question;
         this.options = options;
     }
 
     @Override
-    public String getQuestion() {
+    public String toString() {
         StringBuilder sb = new StringBuilder(question + "\n");
         int i = 1;
         for (String option : options) {
@@ -42,10 +42,15 @@ public class Mcq implements Question {
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        } else if (o instanceof Mcq) {
-            Mcq temp = (Mcq) o;
+        } else if (o instanceof MultipleChoiceQuestion) {
+            MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
             return temp.toString().equals(o.toString());
         }
         return false;
+    }
+
+    @Override
+    public String getQuestion() {
+        return question;
     }
 }

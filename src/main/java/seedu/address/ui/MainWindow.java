@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -31,9 +32,17 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FlashcardListPanel flashcardListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private OptionListPanel optionListPanel;
+    private  QuestionDisplay questionDisplay;
+
+    private boolean isOnOpenWindow;
+
+    @FXML
+    private VBox mainPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,10 +51,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane displayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -59,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.isOnOpenWindow = false;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,11 +120,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        listPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -158,13 +168,45 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
+//        logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    private void handleBackToDefault() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        displayPlaceholder.getChildren().clear();
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        this.isOnOpenWindow = false;
+    }
+
+    private void handleOpen() {
+
+        listPanelPlaceholder.getChildren().clear();
+        displayPlaceholder.getChildren().clear();
+
+        optionListPanel = new OptionListPanel(logic.getOptionsList());
+        listPanelPlaceholder.getChildren().add(optionListPanel.getRoot());
+
+        questionDisplay = new QuestionDisplay();
+        displayPlaceholder.getChildren().add(questionDisplay.getRoot());
+        questionDisplay.setQuestion(logic.getQuestion());
+
+        this.isOnOpenWindow = true;
+    }
+
+    public void handleTest() {
+        handleOpen();
+        questionDisplay.showOutcome("Happ", "Happy", false);
+    }
+
+    public FlashcardListPanel getFlashcardListPanel() {
+        return flashcardListPanel;
     }
 
     /**
@@ -178,12 +220,16 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isOpen()) {
+                handleOpen();
+            } else if (commandResult.isTest()) {
+                handleTest();
+            } else if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+            } else if (commandResult.isExit()) {
                 handleExit();
+            } else if (this.isOnOpenWindow) {
+                handleBackToDefault();
             }
 
             return commandResult;

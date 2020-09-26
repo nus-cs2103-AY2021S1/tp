@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
@@ -84,10 +84,10 @@ public class ParserUtil {
                                                        String[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
-        if (!Mcq.isValidQuestion(trimmedQuestion)) {
-            throw new ParseException(Mcq.MESSAGE_CONSTRAINTS);
+        if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         }
-        return new Mcq(trimmedQuestion, choices);
+        return new MultipleChoiceQuestion(trimmedQuestion, choices);
     }
 
     /**

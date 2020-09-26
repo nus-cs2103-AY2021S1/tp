@@ -26,7 +26,7 @@ import seedu.address.testutil.FlashcardBuilder;
 import seedu.address.testutil.FlashcardUtil;
 //import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookParserTest {
+public class QuickCacheParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 

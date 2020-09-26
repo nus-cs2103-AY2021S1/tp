@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,30 +19,28 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final QuickCache quickCache;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Flashcard> filteredFlashcards;
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given quickCache and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyQuickCache quickCache, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(quickCache, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with quick cache: " + quickCache + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.quickCache = new QuickCache(quickCache);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredFlashcards = new FilteredList<>(this.addressBook.getFlashcardList());
+        filteredFlashcards = new FilteredList<>(this.quickCache.getFlashcardList());
 
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new QuickCache(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,89 +68,56 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getQuickCacheFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setQuickCacheFilePath(Path quickCacheFilePath) {
+        requireNonNull(quickCacheFilePath);
+        userPrefs.setAddressBookFilePath(quickCacheFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== QuickCache ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setQuickCache(ReadOnlyQuickCache quickCache) {
+        this.quickCache.resetData(quickCache);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyQuickCache getQuickCache() {
+        return quickCache;
     }
 
     @Override
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return addressBook.hasFlashcard(flashcard);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        return quickCache.hasFlashcard(flashcard);
     }
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        addressBook.removeFlashcard(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        quickCache.removeFlashcard(target);
     }
 
     @Override
     public void addFlashcard(Flashcard person) {
-        addressBook.addFlashcard(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        quickCache.addFlashcard(person);
+        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
+        requireNonNull(predicate);
+        filteredFlashcards.setPredicate(predicate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
+    //=========== Filtered Flashcard List Accessors =============================================================
 
     @Override
     public ObservableList<Flashcard> getFilteredFlashcardList() {
         return filteredFlashcards;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -170,9 +134,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return quickCache.equals(other.quickCache)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredFlashcards.equals(other.filteredFlashcards);
     }
 
 }

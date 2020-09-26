@@ -17,25 +17,25 @@ import javafx.collections.ObservableList;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.model.person.Person;
 
-public class AddressBookTest {
+public class QuickCacheTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final QuickCache quickCache = new QuickCache();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), quickCache.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> quickCache.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        QuickCache newData = getTypicalAddressBook();
+        quickCache.resetData(newData);
+        assertEquals(newData, quickCache);
     }
 
     //    @Test
@@ -45,55 +45,50 @@ public class AddressBookTest {
     //                .build();
     //        List<Person> newPersons = Arrays.asList();
     //        List<Flashcard> newFlashcards = Arrays.asList(ALICE, editedAlice);
-    //        AddressBookStub newData = new AddressBookStub(newPersons, newFlashcards);
+    //        QuickCacheStub newData = new QuickCacheStub(newPersons, newFlashcards);
     //
-    //        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    //        assertThrows(DuplicatePersonException.class, () -> quickCache.resetData(newData));
     //    }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasFlashcard(null));
+        assertThrows(NullPointerException.class, () -> quickCache.hasFlashcard(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasFlashcard(ALICE));
+        assertFalse(quickCache.hasFlashcard(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addFlashcard(ALICE);
-        assertTrue(addressBook.hasFlashcard(ALICE));
+        quickCache.addFlashcard(ALICE);
+        assertTrue(quickCache.hasFlashcard(ALICE));
     }
 
     //    @Test
     //    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-    //        addressBook.addPerson(ALICE);
+    //        quickCache.addPerson(ALICE);
     //        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
     //                .build();
-    //        assertTrue(addressBook.hasPerson(editedAlice));
+    //        assertTrue(quickCache.hasPerson(editedAlice));
     //    }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getFlashcardList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> quickCache.getFlashcardList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyQuickCache whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class QuickCacheStub implements ReadOnlyQuickCache {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Flashcard> flashcards) {
+        QuickCacheStub(Collection<Person> persons, Collection<Flashcard> flashcards) {
             this.persons.setAll(persons);
             this.flashcards.setAll(flashcards);
-        }
-
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
         }
 
         @Override

@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.testutil.FlashcardBuilder;
 
@@ -76,7 +76,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid Question
         assertParseFailure(parser, ANSWER_DESC_ALICE + INVALID_QUESTION_DESC + CHOICE_DESC,
-                Mcq.MESSAGE_CONSTRAINTS);
+                MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         // invalid Answer
         assertParseFailure(parser, QUESTION_DESC_BOB + INVALID_ANSWER_DESC + CHOICE_DESC,
                 Answer.MESSAGE_CONSTRAINTS);
@@ -84,7 +84,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_QUESTION_DESC + INVALID_ANSWER_DESC + CHOICE_DESC,
-                Mcq.MESSAGE_CONSTRAINTS);
+                MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_ALICE

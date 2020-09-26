@@ -4,10 +4,11 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyQuickCache;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,14 +25,14 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the QuickCache.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getQuickCache()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyQuickCache getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of flashcards */
+    ObservableList<Flashcard> getFilteredFlashcardList();
 
     /**
      * Returns the user prefs' address book file path.

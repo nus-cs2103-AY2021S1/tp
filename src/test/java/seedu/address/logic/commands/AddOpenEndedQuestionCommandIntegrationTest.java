@@ -29,7 +29,7 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
     public void execute_newFlashcard_success() {
         Flashcard validFlashcard = new FlashcardBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
         expectedModel.addFlashcard(validFlashcard);
 
         assertCommandSuccess(new AddOpenEndedQuestionCommand(validFlashcard), model,
@@ -38,7 +38,7 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
 
     @Test
     public void execute_duplicateFlashcard_throwsCommandException() {
-        Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(0);
+        Flashcard flashcardInList = model.getQuickCache().getFlashcardList().get(0);
         assertCommandFailure(new AddOpenEndedQuestionCommand(flashcardInList),
                 model, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }

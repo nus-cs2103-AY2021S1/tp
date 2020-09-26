@@ -14,9 +14,8 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class QuickCache implements ReadOnlyQuickCache {
 
-    private final UniquePersonList persons;
     private final UniqueFlashcardList flashcards;
 
     /*
@@ -27,16 +26,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         flashcards = new UniqueFlashcardList();
     }
 
-    public AddressBook() {}
+    public QuickCache() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an QuickCache using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public QuickCache(ReadOnlyQuickCache toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -44,35 +42,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of the flashcard list with {@code flashcards}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
     public void setFlashcards(List<Flashcard> flashcards) {
         this.flashcards.setFlashcards(flashcards);
     }
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code QuickCache} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyQuickCache newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
         setFlashcards(newData.getFlashcardList());
     }
 
     //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
 
     /**
      * Returns true if a flashcard with the same identity as {@code person} exists in the address book.
@@ -80,14 +65,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
         return flashcards.contains(flashcard);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
     }
 
     /**
@@ -99,26 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code QuickCache}.
      * {@code key} must exist in the address book.
      */
     public void removeFlashcard(Flashcard key) {
@@ -129,29 +87,23 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return flashcards.asUnmodifiableObservableList().size() + " flashcards";
         // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     public ObservableList<Flashcard> getFlashcardList() {
         return flashcards.asUnmodifiableObservableList();
     }
 
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof QuickCache // instanceof handles nulls
+                && flashcards.equals(((QuickCache) other).flashcards));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return flashcards.hashCode();
     }
 }
