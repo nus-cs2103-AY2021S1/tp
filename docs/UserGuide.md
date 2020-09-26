@@ -88,22 +88,22 @@ Shows a list of all items in the address book.
 
 Format: `list`
 
-### Editing a item : `edit`
+### Editing an item : `edit`
 
-Edits an existing item in the address book.
+Edits an existing item in the Inventory book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* Updates ALL the components of an item, UNABLE to update a specific component of an item. 
+Ie if a user wants to update the quantity, he/ she needs to specify all attributes again: name, quantity, supplier, tag, if any.
 * When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
 * You can remove all the item’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st item to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd item to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 n/Chicken q/50` Edits the name and quantity of the 1st item to be `CHICKEN` and `50` respectively.
+*  `edit 2 n/Spinach t/` Edits the name of the 2nd item to be `Spinach` and clears all existing tags.
 
 ### Locating items by name: `find`
 
@@ -137,7 +137,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the Inventory book.
 
 Format: `clear`
 
@@ -149,7 +149,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+InventoryBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 

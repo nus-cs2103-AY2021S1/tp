@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * General: Initial Project Readme set up to match our project
   * User Guide:
-    *
+    * Added documentation for the features `clear` and `edit`
   * Developer Guide: 
     * Added Glossary
 
