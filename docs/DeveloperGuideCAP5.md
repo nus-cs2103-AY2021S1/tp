@@ -183,6 +183,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 2.
 
+**Use case: Input module Cumulative Average Point(CAP) details**
+
+**MSS**
+
+1. User requests to input CAP details(Grade point and Credit) for a module.
+2. CAP5BUDDY saves CAP details under the specified module.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Input contains invalid CAP details.
+
+  * 2a1. CAP5BUDDY displays an error message.
+  * 2a2. User enters the correct data.
+  Use case resumes at step 1.
+  
+**Use case: Calculate Cumulative Average Point(CAP)**
+
+**MSS**
+
+1. User requests to calculate CAP
+2. CAP5BUDDY calculates and displays CAP to user.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. One or more modules do not contain details of grade point or credits.
+
+  * 2a1. CAP5BUDDY displays an error message.
+  
+  * 2a2. User enters required data.
+  
+  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+  Use case resumes at step 2.
+
+* 3a. One or more modules contain invalid details of grade point or credits.
+
+  * 3a1. CAP5BUDDY displays an error message.
+  
+  * 3a2. User enters valid data.
+  
+  Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
+  Use case resumes at step 2.
+  
   *{More to be added}*
 
 
