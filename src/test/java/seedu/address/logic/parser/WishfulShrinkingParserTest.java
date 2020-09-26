@@ -21,7 +21,7 @@ import seedu.address.logic.commands.DeleteRecipeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListRecipesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 /*import seedu.address.model.recipe.Recipe;
@@ -49,7 +49,7 @@ public class WishfulShrinkingParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteRecipeCommand command = (DeleteRecipeCommand) parser.parseCommand(
-                DeleteRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
+                DeleteRecipeCommand.COMMAND_WORD + " r/" + INDEX_FIRST_RECIPE.getOneBased());
         assertEquals(new DeleteRecipeCommand(INDEX_FIRST_RECIPE), command);
     }
 
@@ -84,8 +84,8 @@ public class WishfulShrinkingParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD) instanceof ListRecipesCommand);
+        assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD + " 3") instanceof ListRecipesCommand);
     }
 
     @Test
