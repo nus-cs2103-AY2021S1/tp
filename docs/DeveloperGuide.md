@@ -338,11 +338,28 @@ Use case ends
    - 3a1. McGymmy shows an error message
     Use case resumes at step 2.
 
-**Use case: Add a macro command**
+**Use case: UC06 Add a macro command**
 
 **MSS**
 
+1. User creates a macro to execute two 'add' commands in sequence
+2. McGymmy adds the macro to the list of available commands
+3. User uses the newly added macro command
+4. McGymmy executes the two commands consecutively
+
+Use case ends
+
 **Extensions**
+
+ - 1a. The format of the macro is invalid
+    - 1a1. McGymmy shows an error message
+
+Use case ends.
+
+ - 4a. One of the executed commands encounter an error.
+    - 4a1. McGymmy shows the error message from that command, and displays the commands that successfully executed, and the commands that have yet to execute.
+
+Use case ends.
 
 *{More to be added}*
 
