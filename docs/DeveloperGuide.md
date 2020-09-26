@@ -262,32 +262,140 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Modduke` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**UC01: Add a Contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a contact to the list
+2.  Modduke adds the contact
 
-    Use case ends.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Name, phone number or email field is missing.
+
+  * 1a1. Modduke shows an error message.
+
+ Use case ends.
+
+* 1b. Contact with the same name already exists.
+
+  * 1b1. Modduke shows an error message.
+
+ Use case ends.
+
+
+**UC02: Delete a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  Modduke deletes the contact
+
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+ Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given name is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. Modduke shows an error message.
 
-      Use case resumes at step 2.
+     Use case resumes at step 2.
 
-*{More to be added}*
+
+**UC03: Edit a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to edit a specific contact in the list
+4.  Modduke edits the contact
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+ Use case ends.
+
+* 3a. No optional field is provided.
+
+  * 3a1. Modduke shows an error message.
+
+     Use case resumes at step 2.
+
+* 3b. The given name is invalid.
+
+  * 3b1. Modduke shows an error message.
+
+     Use case resumes at step 2.
+
+
+**UC04: View Contacts**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+ Use case ends.
+
+**UC05: Label a Contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  Modduke shows a list of contacts
+3.  User requests to label a specific contact in the list
+4.  Modduke labels the contact
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+ Use case ends.
+
+* 3a. The given name is invalid.
+
+  * 3a1. Modduke shows an error message.
+
+     Use case resumes at step 2.
+
+* 3b. No tags are provided.
+
+  * 3b1. Modduke shows an error message.
+
+     Use case resumes at step 2.
+
+
+**UC06: Clear all Contacts**
+
+**MSS**
+
+1.  User requests to clear all existing contacts.
+2.  Modduke deletes all existing contacts.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
