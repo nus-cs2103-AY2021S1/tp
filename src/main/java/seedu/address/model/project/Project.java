@@ -56,7 +56,7 @@ public class Project {
         return address;
     }
 
-    public void addProject(Person p) {
+    public void addParticipation(Person p) {
         listOfParticipations.put(p.getName(), new Participation(p, this));
     }
 
