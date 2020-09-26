@@ -194,6 +194,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User enters the information regarding the task.
 4. CAP5BUDDY saves the given task in the todo list.
 
+Use case ends.
+
 **Extensions**
 
 * 3a. Format for information about the task is invalid.
@@ -215,6 +217,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. User clicks the "YES" button.
 5. CAP5BUDDY deletes the task from the todo list.
 
+Use case ends.
+
 **Extensions**
 
 * 4a. User accidentally clicked the "NO" button. 
@@ -232,7 +236,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User wants to sort the tasks in the todo list.
 2. User chooses the basis for sorting the tasks.
 3. CAP5BUDDY displays the sorted tasks based on the chosen basis.
-  
+
+Use case ends.
+
   *{More to be added}*
   
 **Use case: Find a task in the todo list**
@@ -243,7 +249,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User chooses whether to find task based on date or keyword.
 3. User enters the date or keyword.
 4. CAP5BUDDY displays all task based on the user input from step 3.
-  
+
+Use case ends.
+
 **Extensions**
 
 * 3a. User inputs the date with an incorrect format. 
@@ -263,6 +271,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. CAP5BUDDY shows a prompt message asking if the user is sure to archive the task.
 3. User clicks the "YES" button.
 4. CAP5BUDDY archives the task.
+
+Use case ends.
   
 **Extensions**
 
