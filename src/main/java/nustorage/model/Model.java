@@ -1,12 +1,14 @@
 package nustorage.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
+import nustorage.commons.core.index.Index;
+import nustorage.model.finance.FinanceRecord;
 import nustorage.model.person.Person;
-import nustorage.model.record.FinanceRecord;
 
 /**
  * The API of the Model component.
@@ -36,6 +38,8 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     void addFinanceRecord(FinanceRecord newRecord);
+
+    Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
 
     /**
      * Returns the user prefs' address book file path.

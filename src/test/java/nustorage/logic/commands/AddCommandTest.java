@@ -9,19 +9,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
+import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.AddressBook;
 import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyUserPrefs;
+import nustorage.model.finance.FinanceRecord;
 import nustorage.model.person.Person;
-import nustorage.model.record.FinanceRecord;
 import nustorage.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -102,6 +104,11 @@ public class AddCommandTest {
         @Override
         public void addFinanceRecord(FinanceRecord newRecord) {
 
+        }
+
+        @Override
+        public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
+            return Optional.empty();
         }
 
         @Override

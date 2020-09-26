@@ -1,4 +1,4 @@
-package nustorage.model.record;
+package nustorage.model.finance;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -8,13 +8,13 @@ import java.util.stream.Stream;
 import nustorage.logic.commands.AddCommand;
 import nustorage.logic.commands.AddFinanceCommand;
 import nustorage.logic.parser.exceptions.ParseException;
-import nustorage.model.record.FinanceRecord;
+import nustorage.model.finance.FinanceRecord;
 
 public class AddFinanceCommandParser implements Parser<AddFinanceCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddFinanceCommand
+     * and returns an AddFinanceCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddFinanceCommand parse(String args) throws ParseException {

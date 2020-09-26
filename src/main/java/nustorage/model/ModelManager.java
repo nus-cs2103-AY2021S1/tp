@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,8 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
+import nustorage.commons.core.index.Index;
+import nustorage.model.finance.FinanceAccount;
+import nustorage.model.finance.FinanceRecord;
 import nustorage.model.person.Person;
-import nustorage.model.record.FinanceRecord;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -82,8 +85,14 @@ public class ModelManager implements Model {
 
     //=========== FinanceAccount ================================================================================
 
+    @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addRecord(newRecord);
+    }
+
+    @Override
+    public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
+        return financeAccount.removeRecord(targetIndex);
     }
 
     //=========== AddressBook ================================================================================
