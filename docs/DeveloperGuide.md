@@ -299,13 +299,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-3.  The report is expected to be generated and formatted within 2 seconds.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  The product is not required to handle the printing of reports.
-6.  The product should be easy to use by a novice with no experience of using a task management application.
-7.  The size of built-in module data should not exceed 10mb.
-8.  Documentation should be easy to read with proper highlighting.
-9.  The source code should be open source.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
+4.  The product should be easy to use by a novice with no experience of using a task management application.
+5.  The size of built-in module data should not exceed 10mb.
+6.  Documentation should be easy to read with proper highlighting.
+7.  The source code should be open source.
 
 
 *{More to be added}*
@@ -313,8 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Task**: A task is a collection of details about a specific task that needs to be done, including description, title and so on
-* **Report**: A visualisation of the time analysis for a particular module or project the user is engaged in.
+* **Task**: A task is a collection of details about a specific task that needs to be done, including description, title, date and time.
 
 --------------------------------------------------------------------------------------------------------------------
 
