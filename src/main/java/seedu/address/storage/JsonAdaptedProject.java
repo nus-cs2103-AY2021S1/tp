@@ -63,6 +63,9 @@ class JsonAdaptedProject {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        occupied.addAll(source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList()));
     }
 
     /**
