@@ -9,18 +9,18 @@ title: "Tutorial: Removing Fields"
 
 When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
 
-In this tutorial, we’ll do exactly just that and remove the `location` field from `Person`.
+In this tutorial, we’ll do exactly just that and remove the `location` field from `Stock`.
 
 * Table of Contents
 {:toc}
 
-## Safely deleting `Address`
+## Safely deleting `Location`
 
 Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify *most* usages. Let’s try to use it as much as we can.
 
 ### Assisted refactoring
 
-The `location` field in `Person` is actually an instance of the `seedu.stock.model.stock.Locations` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `location` field in `Stock` is actually an instance of the `seedu.stock.model.stock.Locations` class. Since removing the `Location` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
@@ -54,13 +54,13 @@ After you are done, verify that the application still works by compiling and run
 
 Unfortunately, there are usages of `Address` that IntelliJ IDEA cannot identify. You can find them by searching for instances of the word `location` in your code (`Edit` \> `Find` \> `Find in path`).
 
-Places of interest to look out for would be resources used by the application. `main/resources` contains images and `fxml` files used by the application and `test/resources` contains test data. For example, there is a `$location` in each `PersonCard` that has not been removed nor identified.
+Places of interest to look out for would be resources used by the application. `main/resources` contains images and `fxml` files used by the application and `test/resources` contains test data. For example, there is a `$location` in each `StockCard` that has not been removed nor identified.
 
 ![$location](../images/remove/$location.png)
 
 A quick look at the `PersonCard` class and its `fxml` file quickly reveals why it slipped past the automated refactoring.
 
-**`PersonCard.java`**
+**`StockCard.java`**
 
 ``` java
 ...
