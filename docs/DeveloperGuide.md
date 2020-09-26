@@ -289,7 +289,7 @@ Use case ends.
 
     Use case resumes at step 1.
 
-    
+<br>
 
 **Use case 02: Delete a task**
 
@@ -317,7 +317,7 @@ Use case ends.
 
     Use case resumes at step 2.
 
-    
+ <br> 
 
 **Use case 03: List all tasks**
 
@@ -335,7 +335,7 @@ Use case ends.
 
 Use case ends.
 
-
+<br>
 
 **Use case 04: Request help**
 
@@ -347,14 +347,18 @@ Use case ends.
 
 Use case ends.
 
-   
+<br>   
 
 **Use case 05: Mark a task as done**
 
 **MSS**
- 	1. User requests to list tasks.
+
+  1. User requests to list tasks.
+
  	2. PlaNus shows a list of tasks.
+
  	3. User requests to mark a specific tasks in the list as done.
+
  	4. PlaNus marks the task as done.
 
 Use case ends.
@@ -367,7 +371,7 @@ Use case ends.
 
     Use case resumes at step 3.
 
-    
+<br>    
 
 **Use case 06: Exit application**
 
