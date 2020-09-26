@@ -17,13 +17,13 @@ import seedu.address.model.ReadOnlyBugList;
 /**
  * A class to access BugList data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements BugListStorage {
+public class JsonBugListStorage implements BugListStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonBugListStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonBugListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
