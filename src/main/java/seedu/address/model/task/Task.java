@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import seedu.address.model.project.Project;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -22,5 +24,29 @@ public class Task {
         this.deadline = deadline;
         this.progress = progress;
         this.isDone = isDone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getPublishDate() {
+        return publishDate;
+    }
+
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+
+    public double getProgress() {
+        return progress;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 }
