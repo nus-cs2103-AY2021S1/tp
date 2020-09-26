@@ -4,6 +4,14 @@ title: About Us
 ---
 ## Project team
 
+### Li Shuo
+
+<img src="images/li-s.png" width="200px" alt="Li Shuo's profile picture">
+
+[github](https://github.com/li-s)
+
+* Role: Developer
+
 ### Lu Luoyi
 
 <img src="images/luo-git.png" width="200px" alt="Luoyi's profile picture">
