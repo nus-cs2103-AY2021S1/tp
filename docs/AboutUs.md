@@ -41,7 +41,7 @@ You can contact us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](https://www.linkedin.com/in/tanweixin/)]
 
 * Role: Developer
-* Responsibilities: Code Quality, Code Expert
+* Responsibilities: Code Quality 
 
 ### Chan Yong Soon, Kendrew
 
