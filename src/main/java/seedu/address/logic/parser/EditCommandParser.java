@@ -59,6 +59,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editProjectDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editProjectDescriptor::setTags);
+        parseTasksForEdit(argMultimap.getAllValues(PREFIX_TASK)).ifPresent(editProjectDescriptor::setTasks);
 
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
