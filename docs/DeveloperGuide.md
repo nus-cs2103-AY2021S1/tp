@@ -290,11 +290,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-**Use case: UC04 Add a macro command**
+**Use case: UC06 Add a macro command**
 
 **MSS**
 
-1. User creates a macro to execute two 'add' commands in sequence (UC02)
+1. User creates a macro to execute two 'add' commands in sequence
 2. McGymmy adds the macro to the list of available commands
 3. User uses the newly added macro command
 4. McGymmy executes the two commands consecutively
