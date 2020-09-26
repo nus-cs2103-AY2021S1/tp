@@ -13,7 +13,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/wincenttjoi)]
 [[portfolio](team/wincenttjoi.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Scheduling and tracking, Deliverables and Deadlines, Git Expert
 
 ### Jane Doe
 
