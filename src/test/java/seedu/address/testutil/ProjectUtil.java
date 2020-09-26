@@ -10,8 +10,10 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class for Project.
@@ -37,6 +39,9 @@ public class ProjectUtil {
         project.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        project.getTasks().stream().forEach(
+            s -> sb.append(PREFIX_TASK + s.taskName + " ")
+        );
         return sb.toString();
     }
 
@@ -55,6 +60,14 @@ public class ProjectUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getTasks().isPresent()) {
+            Set<Task> tasks = descriptor.getTasks().get();
+            if (tasks.isEmpty()) {
+                sb.append(PREFIX_TASK);
+            } else {
+                tasks.forEach(s -> sb.append(PREFIX_TASK).append(s.taskName).append(" "));
             }
         }
         return sb.toString();
