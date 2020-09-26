@@ -3,10 +3,14 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.Participation;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +27,7 @@ public class Project {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -50,6 +55,10 @@ public class Project {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void addProject(Person p) {
+        listOfParticipations.put(p.getName(), new Participation(p, this));
     }
 
     /**

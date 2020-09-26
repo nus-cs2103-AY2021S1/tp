@@ -3,10 +3,14 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.Participation;
+import seedu.address.model.project.Name;
+import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +27,7 @@ public class Person {
     // Data fields
     private Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private HashMap<Name, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -68,6 +73,10 @@ public class Person {
         email = new Email(newEmailStr);
     }
 
+    public void addProject(Project p) {
+        listOfParticipations.put(p.getName(), new Participation(this, p));
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -88,8 +97,8 @@ public class Person {
         return otherTeammate != null
                 && otherTeammate.getName().equals(getName())
                 && (otherTeammate.getPhone().equals(getPhone())
-                        || otherTeammate.getEmail().equals(getEmail())
-                        || otherTeammate.getAddress().equals(getAddress()));
+                || otherTeammate.getEmail().equals(getEmail())
+                || otherTeammate.getAddress().equals(getAddress()));
     }
 
     /**
