@@ -1,14 +1,14 @@
+[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T12-1/tp/actions)
+
+![Ui](docs/images/Ui.png)
+
 # What is OneShelf?
 **OneShelf** is a desktop application for you to manage all of restaurant inventories, 
 table reservations and pending deliveries. It is easy to build and customise your inventories
 by using only Command Line Interface. If you are a busy restaurant manager who prefers
 to use the Command Line Interface and needs to keep track of multiple items,
  **OneShelf** is for you!
-
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T12-1/tp/actions)
-
-![Ui](docs/images/Ui.png)
-
+ 
 # Site Map
 * [User Guide](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/docs/UserGuide.md)
 * [Developer Guide](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/docs/DeveloperGuide.md)
