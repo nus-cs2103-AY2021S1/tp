@@ -4,12 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A ui for the history of executed commands and results, which is displayed as a panel on the left of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
 
@@ -28,14 +27,15 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplayScroll.vvalueProperty().bind(responseContainer.heightProperty());
     }
 
-    public void setFeedbackToUser(String feedbackToUser) {
+    public void setFeedbackToUser(String command, String feedbackToUser, boolean isError) {
         requireNonNull(feedbackToUser);
-        TextArea response = new TextArea(feedbackToUser);
-        response.setEditable(false);
-        response.getStyleClass().add("result-display");
+        ResultDisplayItem response = new ResultDisplayItem(command, feedbackToUser, isError);
         responseContainer
                 .getChildren()
-                .add(response);
+                .add(response.getRoot());
     }
 
+    public void setFeedbackToUser(String command, String feedbackToUser) {
+        setFeedbackToUser(command, feedbackToUser, false);
+    }
 }

@@ -1,8 +1,9 @@
-package seedu.address.ui;
+package seedu.resireg.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+
 
 /**
  * A ui item in the {@link ResultDisplay} which displays an executed command and its result.
