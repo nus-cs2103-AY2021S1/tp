@@ -104,7 +104,8 @@ class JsonAdaptedProject {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        return new Project(modelName, modelPhone, modelEmail, modelAddress, modelTags, new HashMap<>(), new HashSet<>());
+        return new Project(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, new HashMap<>(), new HashSet<>());
     }
 
 }
