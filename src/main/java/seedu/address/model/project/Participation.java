@@ -1,7 +1,6 @@
-package seedu.address.logic;
+package seedu.address.model.project;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 
 /**
  * Participation class handles the interactions between the different classes involved in the project.
@@ -13,6 +12,7 @@ public class Participation {
      */
     private Person person;
     private Project project;
+    private Role role;
 
     /**
      * Constructor for Participation
@@ -20,6 +20,7 @@ public class Participation {
     public Participation(Person person, Project project) {
         this.person = person;
         this.project = project;
+        role = Role.MEMBER;
     }
 
     enum Role {
