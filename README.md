@@ -7,7 +7,7 @@ managers** including but not exhaustive of updating, searching and ordering supp
 via Command Line Interface (CLI).
 
 ## User interface
-![Ui](docs/images/Warenager.png)
+![Ui](docs/images/UI.png)
 
   Example usages:
   * as an inventory manager (as opposed to physical tracking of your stocks on paper)
