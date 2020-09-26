@@ -231,6 +231,104 @@ Use case ends.
   
   *{More to be added}*
 
+**Use case: Add a task to todo list**
+
+**MSS**
+
+1. User wants to add a task to the todo list.
+2. User chooses the type of task to be added.
+3. User enters the information regarding the task.
+4. CAP5BUDDY saves the given task in the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. Format for information about the task is invalid.
+
+  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
+  * 3a2. User enters the information with the correct format.
+  
+  Use case resumes at step 4
+  
+  *{More to be added}*
+  
+**Use case: Delete a task in the todo list**
+
+**MSS**
+
+1. User wants to delete a task in the todo list.
+2. User chooses the task to be deleted.
+3. CAP5BUDDY shows a prompt message asking if the user really wants to delete the task.
+4. User clicks the "YES" button.
+5. CAP5BUDDY deletes the task from the todo list.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. User accidentally clicked the "NO" button. 
+
+  * 4a1. The prompt message disappears and CAP5BUDDY does not delete the task.
+  
+  Use case ends.
+  
+  *{More to be added}*
+
+**Use case: Sort task in the todo list**
+
+**MSS**
+
+1. User wants to sort the tasks in the todo list.
+2. User chooses the basis for sorting the tasks.
+3. CAP5BUDDY displays the sorted tasks based on the chosen basis.
+
+Use case ends.
+
+  *{More to be added}*
+  
+**Use case: Find a task in the todo list**
+
+**MSS**
+
+1. User wants to find a task in the todo list.
+2. User chooses whether to find task based on date or keyword.
+3. User enters the date or keyword.
+4. CAP5BUDDY displays all task based on the user input from step 3.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. User inputs the date with an incorrect format. 
+
+  * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
+  * 3a2. User enters the date with the correct format.
+  
+  Use case resumes at step 4
+  
+  *{More to be added}*
+
+**Use case: Archive a task in the todo list**
+
+**MSS**
+
+1. User wants to archive a task in the todo list.
+2. CAP5BUDDY shows a prompt message asking if the user is sure to archive the task.
+3. User clicks the "YES" button.
+4. CAP5BUDDY archives the task.
+
+Use case ends.
+  
+**Extensions**
+
+* 3a. User accidentally clicked the "NO" button. 
+
+  * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
+  
+  Use case ends.
+  
+  *{More to be added}*
 
 ### Non-Functional Requirements
 
