@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import seedu.address.model.task.Task;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
@@ -33,6 +34,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TASK_1 = "Write DG";
+    private static final String VALID_TASK_2 = "Brainstorm user stories";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +196,44 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    // TODO: task invalid tests
+    @Test
+    public void parseTask_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTask(null));
+    }
+
+    @Test
+    public void parseTask_validValueWithoutWhitespace_returnsTask() {
+        Task expectedTask = new Task(VALID_TASK_1, null, null, 0, false);
+        assertEquals(expectedTask, ParserUtil.parseTask(VALID_TASK_1));
+    }
+
+    @Test
+    public void parseTask_validValueWithWhitespace_returnsTrimmedTask() {
+        String taskWithWhitespace = WHITESPACE + VALID_TASK_1 + WHITESPACE;
+        Task expectedTask = new Task(VALID_TASK_1, null, null, 0, false);
+        assertEquals(expectedTask, ParserUtil.parseTask(taskWithWhitespace));
+    }
+
+    @Test
+    public void parseTasks_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTasks(null));
+    }
+
+    @Test
+    public void parseTasks_emptyCollection_returnsEmptySet() {
+        assertTrue(ParserUtil.parseTasks(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseTasks_collectionWithValidTasks_returnsTaskSet() {
+        Set<Task> actualTaskSet = ParserUtil.parseTasks(Arrays.asList(VALID_TASK_1, VALID_TASK_2));
+        Set<Task> expectedTaskSet = new HashSet<Task>(Arrays.asList(
+                new Task(VALID_TASK_1, null, null, 0, false),
+                new Task(VALID_TASK_2, null, null, 0, false)));
+
+        assertEquals(expectedTaskSet, actualTaskSet);
+    }
+
 }
