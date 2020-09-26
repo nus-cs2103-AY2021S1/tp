@@ -33,13 +33,16 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
+        requireAllNonNull(name, phone, email, address, tags, listOfParticipations, tasks);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.listOfParticipations.putAll(listOfParticipations);
+        this.tasks.addAll(tasks);
     }
 
     public Name getName() {

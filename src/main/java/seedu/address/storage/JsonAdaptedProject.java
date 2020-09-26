@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -103,7 +104,7 @@ class JsonAdaptedProject {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
-        return new Project(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Project(modelName, modelPhone, modelEmail, modelAddress, modelTags, new HashMap<>(), new HashSet<>());
     }
 
 }

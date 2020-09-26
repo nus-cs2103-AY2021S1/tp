@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -99,7 +100,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
-        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, new HashMap<>(), new HashSet<>());
     }
 
     @Override

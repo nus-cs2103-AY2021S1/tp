@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -90,7 +91,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(name, phone, email, address, tags);
+        return new Project(name, phone, email, address, tags, new HashMap<>(), new HashSet<>());
     }
 
 }
