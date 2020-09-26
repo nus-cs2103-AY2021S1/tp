@@ -547,7 +547,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A string that will be mapped to a file path
+* **UI**: User interface
+* **CLI**: Command line interface
+* **GUI**: Graphical user interface
+* **Relative File Path**: A path that is relative to a current directory, it is combined with another file path to access a file.
+* **Absolute File Path**: The complete details required to locate the file or folder, starting with the root element.
 
 --------------------------------------------------------------------------------------------------------------------
 
