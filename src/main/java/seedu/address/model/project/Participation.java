@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package seedu.address.model.project;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
