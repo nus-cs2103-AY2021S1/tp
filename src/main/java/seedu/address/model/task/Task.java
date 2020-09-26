@@ -4,6 +4,7 @@ import seedu.address.model.project.Project;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Represents a Task of a project.
@@ -48,5 +49,23 @@ public class Task {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Double.compare(task.getProgress(), getProgress()) == 0 &&
+                isDone() == task.isDone() &&
+                getName().equals(task.getName()) &&
+                getDescription().equals(task.getDescription()) &&
+                getPublishDate().equals(task.getPublishDate()) &&
+                Objects.equals(getDeadline(), task.getDeadline());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
     }
 }
