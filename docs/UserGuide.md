@@ -52,7 +52,7 @@ Examples:
 Adds a bug to the list
 
 Format: `add n/NAME d/DESCRIPTION s/STATE`
-* Add a bug with the specified name, description and state to the bottom of the list.
+* Add a bug with the specified name, address and state to the bottom of the list.
 * **All** of the fields are needed
 
 Examples:
@@ -80,8 +80,8 @@ Format: `edit INDEX [n/NEW_NAME] [d/NEW_DESCRIPTION]`
 
 Examples:
 
-- `edit 1 n/Wrong list numbers when displaying list d/List column printed as all 1's`, edits the name and description of the 1st bug to be "Wrong list numbers when displaying list" and "List column printed as all 1's" respectively.
-- `edit 2 d/When listing items, duplicates are printed`, edits the description of the 2nd bug to be "When listing items, duplicated are printed".
+- `edit 1 n/Wrong list numbers when displaying list d/List column printed as all 1's`, edits the name and address of the 1st bug to be "Wrong list numbers when displaying list" and "List column printed as all 1's" respectively.
+- `edit 2 d/When listing items, duplicates are printed`, edits the address of the 2nd bug to be "When listing items, duplicated are printed".
 
 ### Moving a bug : `move`
 
