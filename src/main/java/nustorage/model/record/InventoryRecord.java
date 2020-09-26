@@ -74,7 +74,7 @@ public class InventoryRecord {
         if (quantity + change < 0) {
             throw new NegativeNumberOfItemException(this);
         }
-            this.quantity += change;
+        this.quantity += change;
     }
 
     public int getQuantity() {
