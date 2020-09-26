@@ -412,6 +412,87 @@ Use case ends.
   
     *{More to be added}*
   
+**Use Case: Add grades to CAP5BUDDY**
+
+  **MSS**
+  1. User requests to add grade to CAP5BUDDY.
+  2. CAP5BUDDY retrieves current grades.
+  3. CAP5BUDDY saves new grade with previous grades.
+  
+     Use case ends.
+  
+  **Extensions**
+  
+  * 3a. The given grade is invalid.
+  
+    * CAP5BUDDY displays an error message.
+    
+      Use case ends.
+    
+**Use Case: View grades for a module**
+
+  **MSS**
+  1. User requests to view grades for a module.
+  2. CAP5BUDDY retrieves current grades.
+  3. CAP5BUDDY displays current grades.
+  
+     Use case ends.
+   
+  **Extensions**
+
+  * 3a. The current list of grades is empty.
+    
+    * CAP5BUDDY displays an error message.
+    
+      Use case ends.
+
+
+**Use Case: Edit grade in CAP5BUDDY**
+
+  **MSS**
+  1. User requests to show stored grades in CAP5BUDDY.
+  2. CAP5BUDDY shows a list of current grades.
+  3. User requests to edit grade at a specific index.
+  4. CAP5BUDDY saves new grade with previous grades.
+  
+     Use case ends.
+  
+  **Extensions**
+  
+  * 3a. The given grade is invalid.
+  
+    * CAP5BUDDY displays an error message.
+    
+      Use case ends.
+    
+  * 4a. The provided index of the grade is invalid.
+  
+    * CAP5BUDDY displays an error message.
+    
+      Use case resumes at step 2.
+    
+  *{More to be added}*
+  
+**Use case: Delete a grade**
+    
+   **MSS**
+   1. User requests to show stored grades in CAP5BUDDY.
+   2. CAP5BUDDY shows a list of current grades.
+   3. User chooses the grade to be deleted at a specific index.
+   4. CAP5BUDDY deletes the grade from the list.
+   
+      Use case ends. 
+    
+   **Extensions**
+    
+   * 3a. The provided index of the grade is invalid.
+      
+        * CAP5BUDDY displays an error message.
+        
+          Use case resumes at step 2.
+        
+   *{More to be added}*
+        
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

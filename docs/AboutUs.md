@@ -56,7 +56,7 @@ You can reach us at the following emails:
 
 ### Joshua Wong
 
-<img src="images/joshuawong.png" width="200px">
+<img src="images/murtubak.png" width="200px">
 
 [[github](http://github.com/murtubak)]
 [[portfolio](team/joshuawong.md)]
