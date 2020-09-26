@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jay Chua
 
-<img src="images/jaychua.png" width="200px">
+<img src="images/nopenotj.png" width="200px">
 
 [[github](http://github.com/nopenotj)]
 [[portfolio](team/johndoe.md)]
