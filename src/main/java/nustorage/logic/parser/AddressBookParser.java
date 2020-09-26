@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nustorage.logic.commands.AddCommand;
+import nustorage.logic.commands.AddInventoryCommand;
 import nustorage.logic.commands.AddFinanceCommand;
 import nustorage.logic.commands.ClearCommand;
 import nustorage.logic.commands.Command;
@@ -44,6 +45,9 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case AddInventoryCommand.COMMAND_WORD:
+            return new AddInventoryCommandParser().parse(arguments);
 
         case AddFinanceCommand.COMMAND_WORD:
             return new AddFinanceCommandParser().parse(arguments);

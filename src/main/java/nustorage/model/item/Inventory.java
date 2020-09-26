@@ -1,35 +1,47 @@
 package nustorage.model.item;
 
+import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * Class to store different Items.
+ * Class to store different InventoryRecords.
  */
 public class Inventory {
 
-    private List<Item> inventory;
+    private final List<InventoryRecord> inventory;
 
     /**
-     * Constructs inventory object to hold Items.
+     * Constructs inventory object to hold InventoryRecords.
      */
     public Inventory() {
         this.inventory = new ArrayList<>();
     }
 
     /**
-     * Adds item into inventory.
-     * @param item to be added.
+     * Adds InventoryRecord into inventory.
+     * @param inventoryRecord to be added.
      */
-    public void addItem(Item item) {
-        inventory.add(item);
+    public void addInventoryRecord(InventoryRecord inventoryRecord) {
+        inventory.add(inventoryRecord);
     }
 
     /**
-     * Removes item from inventory.
-     * @param item to be removed.
+     * Removes InventoryRecord from inventory.
+     * @param inventoryRecord to be removed.
      */
-    public void deleteItem(Item item) {
-        inventory.remove(item);
+    public void deleteInventoryRecord(InventoryRecord inventoryRecord) {
+        inventory.remove(inventoryRecord);
+    }
+
+    @Override
+    public String toString() {
+        return inventory.stream()
+                .map(InventoryRecord::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
+

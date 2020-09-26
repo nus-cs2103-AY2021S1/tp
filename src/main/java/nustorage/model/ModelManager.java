@@ -13,6 +13,8 @@ import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
+import nustorage.model.item.Inventory;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,6 +23,7 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final Inventory inventory;
     private final FinanceAccount financeAccount;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.inventory = new Inventory();
         this.financeAccount = new FinanceAccount();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -78,6 +82,12 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    //=========== Inventory ================================================================================
+
+    public  void addInventoryRecord(InventoryRecord newRecord) {
+        inventory.addInventoryRecord(newRecord);
     }
 
     //=========== FinanceAccount ================================================================================

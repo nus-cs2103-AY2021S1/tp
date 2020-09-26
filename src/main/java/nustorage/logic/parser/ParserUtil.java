@@ -22,6 +22,29 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount if not a decimal value.";
+    public static final String MESSAGE_INVALID_QUANITY = "Quantity is not a non-zero integer.";
+
+    /**
+     * Parses {@code itemDescription} into an String and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     */
+    public static String parseItemDescription(String itemDescription) {
+        return itemDescription.trim();
+    }
+
+    /**
+     * Parses {@code quantity} into an int and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified quantity is invalid
+     */
+    public static int parseQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        try {
+            return Integer.parseInt(trimmedQuantity);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_QUANITY);
+        }
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
