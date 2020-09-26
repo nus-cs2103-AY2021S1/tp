@@ -101,7 +101,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
-        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, new HashMap<>(), new HashSet<>());
+        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, new HashMap<>(), new HashSet<>());
     }
 
     @Override
