@@ -236,6 +236,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**: Business Owners who needs to keep track of their stock inventory
 
+* needs to manage table reservations
+* needs to handle pending deliveries
 * needs to manage purchasing appropriate amounts of raw materials based on usage
 * wants to be updated on raw materials stock level on a daily basis
 * prefer desktop apps over other types
