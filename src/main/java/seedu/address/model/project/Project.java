@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Project in the main catalogue.
@@ -27,6 +28,7 @@ public class Project {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
+    private final Set<Task> tasks = new HashSet<>();
 
     /**
      * Every field must be present and not null.
