@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Bug source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
+        email = source.getState().value;
         address = source.getDescription().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -84,12 +84,12 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, State.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!State.isValidEmail(email)) {
+            throw new IllegalValueException(State.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final State modelState = new State(email);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
@@ -100,7 +100,7 @@ class JsonAdaptedPerson {
         final Description modelDescription = new Description(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Bug(modelName, modelPhone, modelEmail, modelDescription, modelTags);
+        return new Bug(modelName, modelPhone, modelState, modelDescription, modelTags);
     }
 
 }

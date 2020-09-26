@@ -31,7 +31,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(bug.getName());
         descriptor.setPhone(bug.getPhone());
-        descriptor.setEmail(bug.getEmail());
+        descriptor.setState(bug.getState());
         descriptor.setDescription(bug.getDescription());
         descriptor.setTags(bug.getTags());
     }
@@ -53,10 +53,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code State} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setState(new State(email));
         return this;
     }
 

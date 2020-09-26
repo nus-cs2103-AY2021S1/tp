@@ -82,11 +82,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(bugToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(bugToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(bugToEdit.getEmail());
+        State updatedState = editPersonDescriptor.getState().orElse(bugToEdit.getState());
         Description updatedDescription = editPersonDescriptor.getDescription().orElse(bugToEdit.getDescription());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(bugToEdit.getTags());
 
-        return new Bug(updatedName, updatedPhone, updatedEmail, updatedDescription, updatedTags);
+        return new Bug(updatedName, updatedPhone, updatedState, updatedDescription, updatedTags);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private State state;
         private Description description;
         private Set<Tag> tags;
 
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setState(toCopy.state);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
         }
@@ -136,7 +136,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, description, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, state, description, tags);
         }
 
         public void setName(Name name) {
@@ -155,12 +155,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setState(State state) {
+            this.state = state;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<State> getState() {
+            return Optional.ofNullable(state);
         }
 
         public void setDescription(Description description) {
@@ -205,7 +205,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
+                    && getState().equals(e.getState())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags());
         }

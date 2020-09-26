@@ -17,7 +17,7 @@ public class Bug {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final State state;
 
     // Data fields
     private final Description description;
@@ -26,11 +26,11 @@ public class Bug {
     /**
      * Every field must be present and not null.
      */
-    public Bug(Name name, Phone phone, Email email, Description description, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, description, tags);
+    public Bug(Name name, Phone phone, State state, Description description, Set<Tag> tags) {
+        requireAllNonNull(name, phone, state, description, tags);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.state = state;
         this.description = description;
         this.tags.addAll(tags);
     }
@@ -43,8 +43,8 @@ public class Bug {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public State getState() {
+        return state;
     }
 
     public Description getDescription() {
@@ -70,7 +70,7 @@ public class Bug {
 
         return otherBug != null
                 && otherBug.getName().equals(getName())
-                && (otherBug.getPhone().equals(getPhone()) || otherBug.getEmail().equals(getEmail()));
+                && (otherBug.getPhone().equals(getPhone()) || otherBug.getState().equals(getState()));
     }
 
     /**
@@ -90,7 +90,7 @@ public class Bug {
         Bug otherBug = (Bug) other;
         return otherBug.getName().equals(getName())
                 && otherBug.getPhone().equals(getPhone())
-                && otherBug.getEmail().equals(getEmail())
+                && otherBug.getState().equals(getState())
                 && otherBug.getDescription().equals(getDescription())
                 && otherBug.getTags().equals(getTags());
     }
@@ -98,7 +98,7 @@ public class Bug {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, description, tags);
+        return Objects.hash(name, phone, state, description, tags);
     }
 
     @Override
@@ -107,8 +107,8 @@ public class Bug {
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" State: ")
+                .append(getState())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Tags: ");
