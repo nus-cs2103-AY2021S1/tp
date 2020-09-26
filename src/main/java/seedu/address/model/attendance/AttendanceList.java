@@ -1,5 +1,8 @@
 package seedu.address.model.attendance;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +13,6 @@ import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a list of students' attendance.
@@ -31,7 +31,7 @@ public class AttendanceList implements Iterable<Attendance> {
                 .stream()
                 .map(student -> new Attendance(student.getNusnetId()))
                 .collect(Collectors.toList());
-        
+
         AttendanceList attendanceList = new AttendanceList();
         attendanceList.setAttendances(attendances);
         return attendanceList;
@@ -96,7 +96,7 @@ public class AttendanceList implements Iterable<Attendance> {
     public Iterator<Attendance> iterator() {
         return internalList.iterator();
     }
-    
+
     @Override
     public String toString() {
         String result = "";
