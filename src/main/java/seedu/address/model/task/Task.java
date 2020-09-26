@@ -7,22 +7,27 @@ public class Task {
     private String name;
     private String description;
     private LocalDate publishDate;
-    private LocalDate startDate;
     private LocalDateTime deadline;
-    private LocalDate lastDoneOn;
-    private int frequency;
-    private LocalDate endDate;
     private double progress;
 
     public Task(String name, String description) {
+        initialize(name, description);
+    }
+
+    public Task(String name, String description, LocalDateTime deadline) {
+        initialize(name, description);
+        setDeadline(deadline);
+    }
+
+    private void initialize(String name, String description) {
         this.name = name;
         this.description = description;
         publishDate = LocalDate.now();
-        startDate = null;
         deadline = null;
-        lastDoneOn = null;
-        frequency = 0;
-        endDate = null;
         progress = 0;
+    }
+
+    private void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }
