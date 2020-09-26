@@ -10,13 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.project.Project;
 
