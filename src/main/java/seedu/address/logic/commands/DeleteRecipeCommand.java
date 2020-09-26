@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE;
 
 import java.util.List;
 
@@ -19,15 +20,15 @@ public class DeleteRecipeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the recipe identified by the index number used in the displayed recipe list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: " + PREFIX_RECIPE + "INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_RECIPE + "1";
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
-    private final Index targetIndex;
+    private final Index toDelete;
 
-    public DeleteRecipeCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteRecipeCommand(Index toDelete) {
+        this.toDelete = toDelete;
     }
 
     @Override
@@ -35,11 +36,11 @@ public class DeleteRecipeCommand extends Command {
         requireNonNull(model);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (toDelete.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        Recipe recipeToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Recipe recipeToDelete = lastShownList.get(toDelete.getZeroBased());
         model.deleteRecipe(recipeToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
     }
@@ -48,6 +49,6 @@ public class DeleteRecipeCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteRecipeCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteRecipeCommand) other).targetIndex)); // state check
+                && toDelete.equals(((DeleteRecipeCommand) other).toDelete)); // state check
     }
 }

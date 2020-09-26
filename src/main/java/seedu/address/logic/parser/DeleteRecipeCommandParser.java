@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteRecipeCommand;
@@ -17,13 +18,13 @@ public class DeleteRecipeCommandParser implements Parser<DeleteRecipeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteRecipeCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_RECIPE);
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RECIPE).get());
             return new DeleteRecipeCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRecipeCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRecipeCommand.MESSAGE_USAGE));
         }
     }
-
 }
