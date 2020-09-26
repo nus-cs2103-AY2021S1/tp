@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### David Cai Qifan
 
-<img src="images/David.png" width="200px">
+<img src="images/davidcaiqifan.png" width="200px">
 
 [[github](http://github.com/davidcaiqifan)]
 [[portfolio](team/davidcaiqifan.md)]
