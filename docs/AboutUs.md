@@ -9,7 +9,7 @@ You can reach us at the email `e0417539@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Xing Yu
 
 <img src="images/xnoobftw.png" width="200px">
 
