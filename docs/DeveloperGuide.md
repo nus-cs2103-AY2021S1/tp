@@ -249,14 +249,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | investigator                               | delete irrelevant documents to an investigation case     | remove outdated documents                       |
+| `* * *`  | investigator                               | view the list of suspects tied to an investigation case  | refer to all suspects in an investigation case  |
+| `* * *`  | investigator                               | add a list of suspects tied to an investigation case     |                                                 |
+| `* * *`  | investigator                               | delete suspects tied to an investigation case            | delete irrelevant suspects                      |
+| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case | refer to all witnesses in an investigation case |
+| `* * *`  | investigator                               | add a list of witnesses tied to an investigation case    |                                                 |
+| `* * *`  | investigator                               | delete witnesses tied to an investigation case           | delete irrelevant witnesses                     |
+| `* * *`  | investigator                               | view the list of victims tied to an investigation case   | refer to all victims in an investigation case   |
+| `* * *`  | investigator                               | add a list of victims tied to an investigation case      |                                                 |
+| `* * *`  | investigator                               | delete victims tied to an investigation case             | delete irrelevant victims                       |
+| `* * *`  | investigator                               | close the application when I am done using it            | safely exit the application                     |
 
 *{More to be added}*
 
