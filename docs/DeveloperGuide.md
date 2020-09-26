@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-**Use case: Add a macro command**
+**Use case: UC04 Add a macro command**
 
 **MSS**
 
