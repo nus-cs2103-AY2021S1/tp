@@ -14,6 +14,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Mcq;
 import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Option;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
@@ -207,5 +208,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String option} into a {@code Option}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} is invalid.
+     */
+    public static Option parseOption(String option) throws ParseException {
+        requireNonNull(option);
+        String trimmedOption = option.trim();
+        if (!Option.isValidOption(trimmedOption)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Option(trimmedOption);
     }
 }

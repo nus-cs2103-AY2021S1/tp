@@ -11,8 +11,12 @@ public class Answer {
 
     private final String answer;
 
+    /**
+     * Instantiates an Answer.
+     * @param answer to be set.
+     */
     public Answer(String answer) {
-        this.answer = answer;
+        this.answer = normalizeAnswer(answer);
     }
 
     /**
@@ -21,10 +25,17 @@ public class Answer {
      * @param userAnswer the user's answer.
      * @return true if the user's answer is equal to the actual answer.
      */
-    public boolean checkAnswer(String userAnswer) {
-        String lowerCaseActualAnswer = answer.toLowerCase();
-        String lowerCaseUserAnswer = userAnswer.toLowerCase();
-        return lowerCaseActualAnswer.equals(lowerCaseUserAnswer);
+    public boolean checkAnswer(Answer userAnswer) {
+        return this.equals(userAnswer);
+    }
+
+    /**
+     * Lower cases the answer.
+     * @param answer to be normalized.
+     * @return lower-cased answer.
+     */
+    private String normalizeAnswer(String answer) {
+        return answer.toLowerCase();
     }
 
     /**
@@ -43,13 +54,18 @@ public class Answer {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
-        } else if (o instanceof Answer) {
-            Answer temp = (Answer) o;
-            return temp.toString().equals(o.toString());
+        } else if (object instanceof Answer) {
+            Answer temp = (Answer) object;
+            return this.toString().equals(temp.toString());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return answer;
     }
 }

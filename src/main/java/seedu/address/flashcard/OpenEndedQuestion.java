@@ -34,4 +34,9 @@ public class OpenEndedQuestion implements Question {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return question;
+    }
 }

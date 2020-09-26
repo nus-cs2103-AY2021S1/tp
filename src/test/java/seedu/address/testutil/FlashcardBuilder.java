@@ -31,12 +31,12 @@ public class FlashcardBuilder {
     }
 
     /**
-     * A constructor for the FlashcarBuilder.
+     * A constructor for the FlashcardBuilder.
      * @param flashcard
      */
     public FlashcardBuilder(Flashcard flashcard) {
-        question = new OpenEndedQuestion(flashcard.getQuestion());
-        answer = new Answer(flashcard.getAnswer());
+        question = flashcard.getQuestion();
+        answer = flashcard.getAnswer();
         tags = flashcard.getTags();
     }
 
