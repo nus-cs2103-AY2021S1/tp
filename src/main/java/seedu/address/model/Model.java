@@ -88,7 +88,7 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
-     * Marks the attendance of the given student {@code target} as the {@code attendanceType} given.
+     * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
      * The student must exist in the student list.
      */
     void markStudent(Student target, AttendanceType attendanceType);

@@ -117,6 +117,12 @@ public class ModelManager implements Model {
         taskmaster.setStudent(target, editedStudent);
     }
 
+    @Override
+    public void markStudent(Student target, AttendanceType attendanceType) {
+        requireAllNonNull(target, attendanceType);
+        attendance.markStudentAttendance(target.getNusnetId().value, attendanceType);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -132,12 +138,6 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
-    }
-
-    @Override
-    public void markStudent(Student target, AttendanceType attendanceType) {
-        requireAllNonNull(target, attendanceType);
-        attendance.markStudentAttendance(target.getNusnetId().value, attendanceType);
     }
 
     @Override

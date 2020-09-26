@@ -1,10 +1,10 @@
 package seedu.address.model.attendance;
 
-import seedu.address.model.student.Student;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import seedu.address.model.student.Student;
 
 /**
  * Represents an Attendance for the student list.
@@ -22,6 +22,10 @@ public class Attendance {
         this.attendanceList = attendanceList;
     }
 
+    /**
+     * Initialises and returns an {@code Attendance} list of {@code students}.
+     * Each student has an attendance type of {@code NO_RECORD}.
+     */
     public static Attendance of(List<Student> students) {
         Attendance attendance = new Attendance();
         for (Student student : students) {
@@ -30,10 +34,16 @@ public class Attendance {
         return attendance;
     }
 
+    /**
+     * Marks the attendance of a student represented by their {@code nusnetId} with {@code attendanceType}.
+     */
     public void markStudentAttendance(String nusnetId, AttendanceType attendanceType) {
         attendanceList.put(nusnetId, attendanceType);
     }
 
+    /**
+     * Marks the attendance of all students represented by the list of {@code nusnetIds} with {@code attendanceType}.
+     */
     public void markAllAttendance(List<String> nusnetIds, AttendanceType attendanceType) {
         for (String nusnetId : nusnetIds) {
             attendanceList.put(nusnetId, attendanceType);
