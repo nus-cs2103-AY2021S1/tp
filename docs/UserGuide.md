@@ -14,15 +14,15 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 
 1. Ensure your computer has Java `11` or above installed.
 
-1. Download the latest `wishfulShrinking.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-2/tp).
+2. Download the latest `wishfulShrinking.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-2/tp).
 
-1. Copy the file to an empty folder you want to use as the _home folder_.
+3. Copy the file to an empty folder you want to use as the _home folder_.
 
-1. **Double-click** the jar file to start the app OR start the app using **CLI** and type `java -jar <jar file name>.jar`.<br>
+4. **Double-click** the jar file to start the app OR start the app using **CLI** and type `java -jar <jar file name>.jar`.<br>
    The app should look similar to the one shows below: <br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`recipe`** : Lists all recipes.
@@ -33,7 +33,7 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 

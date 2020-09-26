@@ -7,8 +7,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyWishfulShrinking;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * API of the Logic component
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the WishfulShrinking.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getWishfulShrinking()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyWishfulShrinking getWishfulShrinking();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of recipes */
+    ObservableList<Recipe> getFilteredRecipeList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getWishfulShrinkingFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
