@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
@@ -53,6 +55,10 @@ public class EditProjectDescriptorTest {
 
         // different tags -> returns false
         editedAmy = new EditProjectDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different tasks -> return false
+        editedAmy = new EditProjectDescriptorBuilder(DESC_AMY).withTasks(VALID_TASK_DG, VALID_TASK_MODEL).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
