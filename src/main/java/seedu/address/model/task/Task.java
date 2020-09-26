@@ -19,6 +19,11 @@ public class Task {
         setDeadline(deadline);
     }
 
+    public Task(String name, String description, LocalDate deadline) {
+        initialize(name, description);
+        setDeadline(deadline.atTime(23, 59));
+    }
+
     private void initialize(String name, String description) {
         this.name = name;
         this.description = description;
