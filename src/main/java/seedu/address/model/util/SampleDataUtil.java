@@ -12,6 +12,7 @@ import seedu.address.model.project.Name;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods for populating {@code MainCatalogue} with sample data.
@@ -54,6 +55,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a task set containing the list of strings given.
+     */
+    public static Set<Task> getTaskSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(s -> new Task(s, null, null, 0, false))
                 .collect(Collectors.toSet());
     }
 
