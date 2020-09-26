@@ -14,6 +14,7 @@ import seedu.resireg.logic.parser.AddressBookParser;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
 
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ObservableList<Room> getFilteredRoomList() {
+        return model.getFilteredRoomList();
     }
 
     @Override

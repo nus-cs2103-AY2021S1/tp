@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -20,8 +21,10 @@ import seedu.resireg.model.student.Student;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given students.
@@ -29,6 +32,7 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.students.addAll(students);
+        this.rooms.addAll(rooms);
     }
 
     /**
@@ -38,6 +42,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +58,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addStudent(student);
+        }
+        for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
+            Room room = jsonAdaptedRoom.toModelType();
+            if (addressBook.hasRoom(room)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
+            }
+            addressBook.addRoom(room);
         }
         return addressBook;
     }

@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.room.Floor;
+import seedu.resireg.model.room.Room;
+import seedu.resireg.model.room.RoomNumber;
+import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -41,10 +45,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Room[] getSampleRooms() {
+        return new Room[] {
+            new Room(new Floor("11"), new RoomNumber("108"), new RoomType("CA"),
+                    getTagSet("normal")),
+            new Room(new Floor("11"), new RoomNumber("104"), new RoomType("CN"),
+                    getTagSet("normal")),
+            new Room(new Floor("9"), new RoomNumber("102"), new RoomType("NN"),
+                    getTagSet("normal")),
+            new Room(new Floor("8"), new RoomNumber("107"), new RoomType("NA"),
+                    getTagSet("room")),
+            new Room(new Floor("7"), new RoomNumber("106"), new RoomType("CN"),
+                    getTagSet("hello"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
+        }
+        for (Room sampleRoom : getSampleRooms()) {
+            sampleAb.addRoom(sampleRoom);
         }
         return sampleAb;
     }

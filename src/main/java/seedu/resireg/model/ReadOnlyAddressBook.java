@@ -1,6 +1,7 @@
 package seedu.resireg.model;
 
 import javafx.collections.ObservableList;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -13,5 +14,9 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate students.
      */
     ObservableList<Student> getStudentList();
-
+    /**
+     * Returns an unmodifiable view of the rooms list.
+     * This list will not contain any duplicate rooms.
+     */
+    ObservableList<Room> getRoomList();
 }

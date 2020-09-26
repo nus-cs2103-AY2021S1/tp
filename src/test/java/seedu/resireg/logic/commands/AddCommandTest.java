@@ -20,6 +20,7 @@ import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyAddressBook;
 import seedu.resireg.model.ReadOnlyUserPrefs;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.testutil.StudentBuilder;
 
@@ -144,7 +145,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Room> getFilteredRoomList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredRoomList(Predicate<Room> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
