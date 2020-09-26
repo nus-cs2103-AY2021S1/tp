@@ -295,32 +295,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PIVOT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add Investigation Case**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to create a new active investigation case and specifies a title
+2.  PIVOT adds the new investigation case
 
     Use case ends.
 
 **Extensions**
+* 1a. The title is empty.
+    * 1a1. PIVOT shows an error message.
+	  Use case ends.
 
+**Use case: List Investigation Case**
+
+**MSS**
+1.  User requests to list investigation cases
+2.  PIVOT shows a list of investigation cases
+
+    Use case ends.
+
+**Use case: Delete Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to delete a specific investigation case in the list
+4. PIVOT deletes the investigation case
+
+   Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      Use case resumes at step 1.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Open Investigation Case**
 
-      Use case resumes at step 2.
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT navigates to the specified investigation case page
 
-*{More to be added}*
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      Use case resumes at step 1.
+
+**Use case: Tag Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User specifies an investigation case
+4. PIVOT navigates to the specified investigation case page
+5. User requests to tag the investigation case with specific tag
+6. PIVOT tags the investigation case with specified tag
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      Use case resumes at step 1.
+      
+* 5a. The given tag is invalid.
+    * 5a1. PIVOT shows an error message.
+      Use case resumes at step 5.
+
 
 ### Non-Functional Requirements
 
