@@ -12,7 +12,7 @@ public class IngredientString {
             "Ingredients should be separated by commas, "
                     + "and each ingredient should be consisted "
                     + "of alphanumeric characters only";
-    public static final String VALIDATION_REGEX = "[0-9a-zA-Z]+(,\\s*[0-9a-zA-Z]*)*";
+    public static final String VALIDATION_REGEX = "[\\w\\s]+(,\\s*[\\w\\s]*)*";
     public final String value;
 
     /**
