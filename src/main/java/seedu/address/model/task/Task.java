@@ -69,7 +69,7 @@ public class Task {
         Task task = (Task) o;
         return Double.compare(task.getProgress(), getProgress()) == 0
                 && getTaskName().equals(task.getTaskName())
-                && getDescription().equals(task.getDescription())
+                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
                 && getPublishDate().equals(task.getPublishDate())
                 && Objects.equals(getDeadline(), task.getDeadline());
     }
@@ -77,6 +77,11 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(getTaskName(), getDescription(), getPublishDate(), getDeadline(), getProgress(), isDone());
+    }
+
+    @Override
+    public String toString() {
+        return "[" + taskName + "]";
     }
 
     // TODO: may add isValidTask method.
