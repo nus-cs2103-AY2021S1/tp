@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User provides input with missing compulsory fields
+* 1a. User provides input with missing compulsory fields.
   * 1a1. Reeve requests for appropriate input.
 <br> Use case resumes from step 1.
         	
