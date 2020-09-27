@@ -20,7 +20,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 //import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.DeleteRecipeCommand;
+import seedu.address.logic.commands.ListRecipesCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -59,14 +60,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = DeleteRecipeCommand.COMMAND_WORD + " 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListRecipesCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListRecipesCommand.MESSAGE_SUCCESS, model);
     }
 
     /*@Test

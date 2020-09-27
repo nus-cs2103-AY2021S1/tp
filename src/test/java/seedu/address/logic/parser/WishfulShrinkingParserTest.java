@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
@@ -18,14 +19,14 @@ import org.junit.jupiter.api.Test;
 //import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteRecipeCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
@@ -70,9 +71,9 @@ public class WishfulShrinkingParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_RECIPE), command);
+        DeleteRecipeCommand command = (DeleteRecipeCommand) parser.parseCommand(
+                DeleteRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
+        assertEquals(new DeleteRecipeCommand(INDEX_FIRST_RECIPE), command);
     }
 
     /*@Test
@@ -91,11 +92,12 @@ public class WishfulShrinkingParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_searchRecipe() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        SearchRecipeCommand command = (SearchRecipeCommand) parser.parseCommand(
+                SearchRecipeCommand.COMMAND_WORD + " " + PREFIX_NAME
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchRecipeCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -106,8 +108,8 @@ public class WishfulShrinkingParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD) instanceof ListRecipesCommand);
+        assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD + " 3") instanceof ListRecipesCommand);
     }
 
     @Test
