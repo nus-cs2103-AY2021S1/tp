@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.location.Location;
 
 /**
- * Unmodifiable view of a Location list
+ * Unmodifiable view of a location list
  */
 public interface ReadOnlyLocationList {
 

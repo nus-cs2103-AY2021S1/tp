@@ -10,15 +10,17 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
 
 /**
@@ -30,7 +32,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final InventoryParser inventoryParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -38,25 +40,28 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        inventoryParser = new InventoryParser();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = inventoryParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            // TODO: different saves
+            storage.saveModel(model);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
         return commandResult;
     }
+
+    // Person
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
@@ -73,6 +78,8 @@ public class LogicManager implements Logic {
         return model.getAddressBookFilePath();
     }
 
+    // Item
+
     @Override
     public ReadOnlyItemList getItemList() {
         return model.getItemList();
@@ -88,20 +95,41 @@ public class LogicManager implements Logic {
         return model.getItemListFilePath();
     }
 
+    // Location
+
     @Override
     public ReadOnlyLocationList getLocationList() {
-        return null;
+        return model.getLocationList();
     }
 
     @Override
     public ObservableList<Location> getFilteredLocationList() {
-        return null;
+        return model.getFilteredLocationList();
     }
 
     @Override
     public Path getLocationListFilePath() {
-        return null;
+        return model.getLocationListFilePath();
     }
+
+    // Recipe
+
+    @Override
+    public ReadOnlyRecipeList getRecipeList() {
+        return model.getRecipeList();
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return model.getFilteredRecipeList();
+    }
+
+    @Override
+    public Path getRecipeListFilePath() {
+        return model.getRecipeListFilePath();
+    }
+
+    // GUI
 
     @Override
     public GuiSettings getGuiSettings() {

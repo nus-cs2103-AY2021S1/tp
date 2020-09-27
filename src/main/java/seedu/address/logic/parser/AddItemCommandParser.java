@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.Quantity;
 
 
@@ -38,15 +39,15 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
-        String name = InvParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
-        Quantity quantity = InvParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
-        String description = InvParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
-        Set<Integer> locationList = InvParserUtil.parseLocations(argMultimap.getAllValues(PREFIX_ITEM_LOCATION));
+        String name = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
+        Quantity quantity = ItemParserUtil.parseQuantity(argMultimap.getValue(PREFIX_ITEM_QUANTITY).get());
+        String description = ItemParserUtil.parseDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
+        Set<String> locationList = ItemParserUtil.parseLocations(argMultimap.getAllValues(PREFIX_ITEM_LOCATION));
 
-        Item item = new Item(Item.getIdCounter() + 1, name, quantity, description, locationList,
-                new HashSet<>(), new HashSet<>(), false);
+        ItemPrecursor itemPrecursor = new ItemPrecursor(Item.getIdCounter() + 1, name, quantity, description,
+                locationList, new HashSet<>());
 
-        return new AddItemCommand(item);
+        return new AddItemCommand(itemPrecursor);
     }
 
     /**

@@ -13,47 +13,49 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.ItemLogicManager;
 import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ItemListStorage;
 import seedu.address.storage.JsonItemListStorage;
 import seedu.address.storage.JsonLocationListStorage;
+import seedu.address.storage.JsonRecipeListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.LocationListStorage;
+import seedu.address.storage.RecipeListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.ItemUiManager;
+import seedu.address.ui.InventoryUiManager;
 import seedu.address.ui.Ui;
 
 
 /**
  * Runs the application.
  */
-public class InvInatorMainApp extends Application {
+public class InventoryMainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
-    private static Model locationModel;
-    private static Storage locationStorage;
-    private static final Logger logger = LogsCenter.getLogger(InvInatorMainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(InventoryMainApp.class);
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage itemStorage;
+    protected Storage storage;
     protected Model model;
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing ItemList ]=============================");
+        logger.info("=============================[ Initializing Inventory ]=============================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -63,25 +65,17 @@ public class InvInatorMainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ItemListStorage itemListStorage = new JsonItemListStorage(userPrefs.getItemListFilePath());
         LocationListStorage locationListStorage = new JsonLocationListStorage(userPrefs.getLocationListFilePath());
-        itemStorage = new StorageManager(itemListStorage, userPrefsStorage);
-        locationStorage = new StorageManager(locationListStorage, userPrefsStorage);
+        RecipeListStorage recipeListStorage = new JsonRecipeListStorage(userPrefs.getRecipeListFilePath());
+
+        storage = new StorageManager(itemListStorage, locationListStorage, recipeListStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(itemStorage, userPrefs);
-        locationModel = initLocationModelManager(locationStorage, userPrefs);
+        model = initModelManager(storage, userPrefs);
 
-        logic = new ItemLogicManager(model, itemStorage);
+        logic = new LogicManager(model, storage);
 
-        ui = new ItemUiManager(logic);
-    }
-
-    public static Model getLocationModel() {
-        return locationModel;
-    }
-
-    public static Storage getLocationStorage() {
-        return locationStorage;
+        ui = new InventoryUiManager(logic);
     }
 
     /**
@@ -90,38 +84,59 @@ public class InvInatorMainApp extends Application {
      * or an empty item list will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        ReadOnlyItemList initialItemList = initItemList(storage);
+        ReadOnlyLocationList initialLocationList = initLocationList(storage);
+        ReadOnlyRecipeList initialRecipeList = initRecipeList(storage);
+        return new ModelManager(initialItemList, initialLocationList, initialRecipeList, userPrefs);
+    }
+
+    private ReadOnlyItemList initItemList(Storage storage) {
         Optional<ReadOnlyItemList> itemListOptional;
-        ReadOnlyItemList initialData;
+        ReadOnlyItemList initialItemList;
         try {
             itemListOptional = storage.readItemList();
             if (itemListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample ItemList");
             }
-            initialData = itemListOptional.orElseGet(SampleDataUtil::getSampleItemList);
+            initialItemList = itemListOptional.orElseGet(SampleDataUtil::getSampleItemList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ItemList");
-            initialData = new ItemList();
+            initialItemList = new ItemList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
-            initialData = new ItemList();
+            initialItemList = new ItemList();
         }
-        return new ModelManager(initialData, userPrefs);
+        return initialItemList;
     }
 
-    /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s location list and {@code userPrefs}. <br>
-     * The data from the sample location list will be used instead if {@code storage}'s location list is not found,
-     * or an empty location list will be used instead if errors occur when reading {@code storage}'s location list.
-     */
-    private Model initLocationModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private ReadOnlyLocationList initLocationList(Storage storage) {
         Optional<ReadOnlyLocationList> locationListOptional;
-        ReadOnlyLocationList initialData;
+        ReadOnlyLocationList initialLocationList;
         locationListOptional = storage.readLocationList();
         if (locationListOptional.isEmpty()) {
-            logger.info("Data file not found. Will be starting with a sample ItemList");
+            logger.info("Data file not found. Will be starting with a sample LocationList");
         }
-        initialData = locationListOptional.orElseGet(SampleDataUtil::getSampleLocationList);
-        return new ModelManager(initialData, userPrefs);
+        initialLocationList = locationListOptional.orElseGet(SampleDataUtil::getSampleLocationList);
+        return initialLocationList;
+    }
+
+    private ReadOnlyRecipeList initRecipeList(Storage storage) {
+        Optional<ReadOnlyRecipeList> recipeListOptional;
+        ReadOnlyRecipeList initialRecipeList;
+        try {
+            recipeListOptional = storage.readRecipeList();
+            if (recipeListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample RecipeList");
+            }
+            initialRecipeList = recipeListOptional.orElseGet(SampleDataUtil::getSampleRecipeList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty RecipeList");
+            initialRecipeList = new RecipeList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty RecipeList");
+            initialRecipeList = new RecipeList();
+        }
+        return initialRecipeList;
     }
 
     private void initLogging(Config config) {
@@ -182,7 +197,7 @@ public class InvInatorMainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ItemList");
+            logger.warning("Problem while reading from the file. Will be starting with empty user prefs");
             initializedPrefs = new UserPrefs();
         }
 
@@ -198,7 +213,7 @@ public class InvInatorMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ItemList " + InvInatorMainApp.VERSION);
+        logger.info("Starting ItemList " + InventoryMainApp.VERSION);
         ui.start(primaryStage);
     }
 
@@ -206,7 +221,7 @@ public class InvInatorMainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Inventoryinator ] =============================");
         try {
-            itemStorage.saveUserPrefs(model.getUserPrefs());
+            storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

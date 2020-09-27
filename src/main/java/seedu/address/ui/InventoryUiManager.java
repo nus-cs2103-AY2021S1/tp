@@ -15,20 +15,20 @@ import seedu.address.logic.Logic;
 /**
  * The manager of the UI component.
  */
-public class ItemUiManager implements Ui {
+public class InventoryUiManager implements Ui {
 
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
-    private static final Logger logger = LogsCenter.getLogger(ItemUiManager.class);
+    private static final Logger logger = LogsCenter.getLogger(InventoryUiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
     private Logic logic;
-    private ItemMainWindow mainWindow;
+    private InventoryMainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public ItemUiManager(Logic logic) {
+    public InventoryUiManager(Logic logic) {
         super();
         this.logic = logic;
     }
@@ -41,7 +41,7 @@ public class ItemUiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new ItemMainWindow(primaryStage, logic);
+            mainWindow = new InventoryMainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
