@@ -58,7 +58,7 @@ public class EditProjectDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tasks -> return false
-        editedAmy = new EditProjectDescriptorBuilder(DESC_AMY).withTasks(VALID_TASK_DG, VALID_TASK_MODEL).build();
+        editedAmy = new EditProjectDescriptorBuilder(DESC_AMY).withTasks(VALID_TASK_DG).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
