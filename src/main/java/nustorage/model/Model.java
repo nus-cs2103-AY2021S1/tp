@@ -7,8 +7,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.index.Index;
-import nustorage.model.finance.FinanceRecord;
 import nustorage.model.person.Person;
+import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
 
 /**
  * The API of the Model component.
@@ -40,6 +41,8 @@ public interface Model {
     void addFinanceRecord(FinanceRecord newRecord);
 
     Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
+
+    void addInventoryRecord(InventoryRecord inventoryRecord);
 
     /**
      * Returns the user prefs' address book file path.

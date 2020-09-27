@@ -8,7 +8,7 @@ import nustorage.commons.core.Messages;
 import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
-import nustorage.model.finance.FinanceRecord;
+import nustorage.model.record.FinanceRecord;
 
 public class DeleteFinanceCommand extends Command {
 

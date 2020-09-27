@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import nustorage.logic.commands.AddCommand;
 import nustorage.logic.commands.AddFinanceCommand;
 import nustorage.logic.parser.exceptions.ParseException;
-import nustorage.model.finance.FinanceRecord;
+import nustorage.model.record.FinanceRecord;
 
 public class AddFinanceCommandParser implements Parser<AddFinanceCommand> {
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
-import nustorage.model.finance.FinanceRecord;
+import nustorage.model.record.FinanceRecord;
 
 public class AddFinanceCommand extends Command {
 

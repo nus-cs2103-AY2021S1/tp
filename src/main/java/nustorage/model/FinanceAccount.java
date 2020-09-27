@@ -1,4 +1,4 @@
-package nustorage.model.finance;
+package nustorage.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import nustorage.commons.core.index.Index;
+import nustorage.model.record.FinanceRecord;
 
 public class FinanceAccount {
 
