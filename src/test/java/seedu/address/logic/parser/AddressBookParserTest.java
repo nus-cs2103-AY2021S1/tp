@@ -38,7 +38,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Person person = new PersonBuilder().withRemark("").build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -93,10 +93,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_remark() throws Exception {
-        final String remark = "Some remark.";
+        final Remark remark = new Remark("some remark");
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
-        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark(remark)), command);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
     }
 
     @Test
