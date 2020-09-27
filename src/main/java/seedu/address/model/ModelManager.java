@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.patient.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the CliniCal application data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,7 +30,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(cliniCal, userPrefs);
 
-        logger.fine("Initializing with address book: " + cliniCal + " and user prefs " + userPrefs);
+        logger.fine("Initializing with CliniCal application: " + cliniCal + " and user prefs " + userPrefs);
 
         this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);

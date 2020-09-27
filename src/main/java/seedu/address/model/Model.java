@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CliniCal application file path.
      */
     Path getCliniCalFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' CliniCal application file path.
      */
     void setCliniCalFilePath(Path cliniCalFilePath);
 
     /**
-     * Replaces address book data with the data in {@code cliniCal}.
+     * Replaces CliniCal application data with the data in {@code cliniCal}.
      */
     void setCliniCal(ReadOnlyCliniCal cliniCal);
 
@@ -53,27 +53,27 @@ public interface Model {
     ReadOnlyCliniCal getCliniCal();
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the CliniCal application.
      */
     boolean hasPatient(Patient patient);
 
     /**
      * Deletes the given patient.
-     * The patient must exist in the address book.
+     * The patient must exist in the CliniCal application.
      */
     void deletePatient(Patient target);
 
     /**
      * Adds the given patient.
-     * {@code patient} must not already exist in the address book.
+     * {@code patient} must not already exist in the CliniCal application.
      */
     void addPatient(Patient patient);
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the CliniCal application.
      * The patient identity of {@code editedPatient} must not be the same as another existing patient
-     * in the address book.
+     * in the CliniCal application.
      */
     void setPatient(Patient target, Patient editedPatient);
 

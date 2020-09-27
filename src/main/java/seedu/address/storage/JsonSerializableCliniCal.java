@@ -41,7 +41,7 @@ class JsonSerializableCliniCal {
     }
 
     /**
-     * Converts this address book into the model's {@code CliniCal} object.
+     * Converts this CliniCal application into the model's {@code CliniCal} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
