@@ -267,7 +267,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
 
 **Use case: UC01 - Adding a student**
 
@@ -287,14 +287,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Reeve requests for appropriate input with valid format.
 <br> Use case resumes from step 1.
         	
-**Use case: Delete a person**
+**Use case: Searching for a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
+2.  Reeve displays all students matching the criteria.
+
+    Use case ends.
+
+**Use case: Editing a student's details**
+
+**MSS**
+
+1.  User enters a command to list all students.
+2.  Reeve shows the list of students.
+3.  User enters command to edit a specific student in the list and provides needed parameters.
+4.  Reeve updates the specified student with the input parameters and displays a success message.
 
     Use case ends.
 
@@ -304,12 +313,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. User provides input with invalid index.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Reeve requests for input with valid index.
 
       Use case resumes at step 2.
+* 3b. User provides input without any parameters.
+    * 3b1. Reeve requests for input with parameters.
+      
+      Use case resumes at step 2.
+* 3c. User provides input with invalid format.
+	* 3c1. Reeve requests for input with valid format.
+	
+	  Use case resumes at step 2.
 
+**Use case: Deleting a person**
+
+**MSS**
+
+1.  User enters a command to list students.
+2.  Reeve displays a list of students.
+3.  User enters a command to delete a specific student in the list.
+4.  Reeve deletes the student and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides input with invalid index.
+
+    * 3a1. Reeve displays an error message.
+
+      Use case resumes at step 2.
+    
+**Use case: Listing all students** 
+
+**MSS**
+
+1. User enters command to display students list.
+2. Reeve displays the students list with student details.
+
+   Use case ends.
+ 
+
+**Use case: Clearing all student records**
+
+**MSS**
+
+1. User enters a command to clear the students list.
+2. Reeve displays a success message.
+   
+   Use case ends.
+   
 *{More to be added}*
 
 ### Non-Functional Requirements
