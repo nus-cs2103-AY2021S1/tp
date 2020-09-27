@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ng Song Guan
 
-<img src="images/SongGuan.jpg" width="200px">
+<img src="images/sgn00.png" width="200px">
 
 [[github](http://github.com/sgn00)]
-[[portfolio](team/SongGuan.md)]
+[[portfolio](team/sgn00.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
