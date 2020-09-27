@@ -94,7 +94,7 @@ Format: `list`
 
 Edits an existing student in Reeve.
 
-Format: `edit INDEX n/NAME p/PHONE s/SCHOOL y/YEAR v/VENUE t/TIME [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/VENUE] [t/TIME] [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
@@ -107,7 +107,7 @@ The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st person to be `Alex`, `99999999` and `Meridian Junior College` respectively.
-*  `edit 3 e/amongus@isgood.com sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the email address, subject, venue and time of the third student to be `amongus@isgood.com`, `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
+*  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `amongus@isgood.com`, `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
 ### Locating persons by name: `find`
 
@@ -177,7 +177,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/AJC`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
