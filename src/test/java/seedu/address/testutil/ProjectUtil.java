@@ -62,6 +62,7 @@ public class ProjectUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        sb.append(" ");
         if (descriptor.getTasks().isPresent()) {
             Set<Task> tasks = descriptor.getTasks().get();
             if (tasks.isEmpty()) {
