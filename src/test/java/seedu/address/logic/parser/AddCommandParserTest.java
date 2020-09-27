@@ -81,7 +81,8 @@ public class AddCommandParserTest {
         Project expectedProjectMultipleTasks = new ProjectBuilder(BOB).withTasks(VALID_TASK_DG, VALID_TASK_MODEL)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TASK_DESC_DG + TASK_DESC_MODEL, new AddCommand(expectedProjectMultipleTasks));
+                + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TASK_DESC_DG + TASK_DESC_MODEL,
+                new AddCommand(expectedProjectMultipleTasks));
     }
 
     @Test
