@@ -3,6 +3,9 @@ package seedu.address.logic.parser.parameter;
 import java.util.Optional;
 import java.util.function.Function;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.UninitializedCommandException;
+
 public class Parameter<T> extends AbstractParameter {
     private Function<String, T> converter;
 
@@ -11,10 +14,11 @@ public class Parameter<T> extends AbstractParameter {
         this.converter = converter;
     }
 
-    public T consume() {
+    public T consume() throws UninitializedCommandException {
         Optional<String> rawValue = this.getRawValue();
         if (rawValue.isEmpty()) {
-            // throw something
+            // is this considered a parse exception?
+            throw new UninitializedCommandException();
         } else {
             return converter.apply(rawValue.get());
         }

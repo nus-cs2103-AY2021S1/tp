@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import java.util.function.Function;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParameterConflictException;
 import seedu.address.logic.parser.parameter.AbstractParameter;
 import seedu.address.logic.parser.parameter.OptionalParameter;
 import seedu.address.logic.parser.parameter.Parameter;
@@ -28,7 +30,13 @@ public abstract class Command {
     public abstract CommandResult execute(Model model) throws CommandException;
 
     protected void registerParameter(AbstractParameter parameter) {
-        this.parameterSet.addParameter(parameter);
+        try {
+            this.parameterSet.addParameter(parameter);
+        } catch (ParameterConflictException e) {
+            // Commands can only be created by the developers so any parameter conflicts
+            // should not happen, and should fail here during testing.
+            assert false : e.getMessage();
+        }
     }
 
     protected <T> Parameter<T> addParameter(String name, String flag, String description,
