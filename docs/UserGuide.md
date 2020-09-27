@@ -58,16 +58,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Displaying usage instructions : `help`
 
-Shows a message explaning how to access the help page.
+Shows a list of basic commands (and their usages) supported by Hospify. [Update coming soon]
 
-![help message](images/helpMessage.png)
+![tp_help_command](images/hospify/tp_help_command.png)
 
 Format: `help`
 
 
-### Adding a patient: `add`
+### Adding a patient : `add`
 
 Adds a patient to the address book.
 
