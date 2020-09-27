@@ -9,4 +9,5 @@ public interface Question {
             "Questions should only contain alphanumeric characters and spaces, and it should not be blank";
 
     String getQuestion();
+
 }

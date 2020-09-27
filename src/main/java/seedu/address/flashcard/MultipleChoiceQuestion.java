@@ -1,5 +1,7 @@
 package seedu.address.flashcard;
 
+import seedu.address.commons.core.index.Index;
+
 /**
  * Represents a mcq question.
  * Options for the mcq will be stored in an array while the
@@ -24,7 +26,7 @@ public class MultipleChoiceQuestion implements Question {
     }
 
     @Override
-    public String toString() {
+    public String getQuestion() {
         StringBuilder sb = new StringBuilder(question + "\n");
         int i = 1;
         for (String option : options) {
@@ -38,19 +40,28 @@ public class MultipleChoiceQuestion implements Question {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Retrieves the option from {@code index} as an Answer.
+     * @param index to get option from.
+     * @return option as an {@code Answer}.
+     */
+    public Answer getAnswerFromIndex(Index index) {
+        String option = options[index.getZeroBased()];
+        return new Answer(option);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         } else if (o instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
-            return temp.toString().equals(o.toString());
+            return this.toString().equals(temp.toString());
         }
         return false;
     }
 
-    @Override
-    public String getQuestion() {
-        return question;
+   public String toString() {
+       return question;
     }
 }

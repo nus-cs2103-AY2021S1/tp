@@ -42,7 +42,7 @@ public class FlashcardDisplay extends UiPart<Region> {
         super(FXML);
         this.flashcard = flashcard;
         id.setText(displayedIndex + ". ");
-        question.setText(flashcard.getQuestion());
+        question.setText(flashcard.getQuestion().toString());
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

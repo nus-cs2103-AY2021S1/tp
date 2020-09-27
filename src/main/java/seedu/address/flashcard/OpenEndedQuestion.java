@@ -30,8 +30,13 @@ public class OpenEndedQuestion implements Question {
             return true;
         } else if (o instanceof OpenEndedQuestion) {
             OpenEndedQuestion temp = (OpenEndedQuestion) o;
-            return temp.toString().equals(o.toString());
+            return this.toString().equals(temp.toString());
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return question;
     }
 }
