@@ -40,11 +40,7 @@ public class ParserManager {
         String[] input = this.current_Input.split(" ");
         int limit = input.length;
         for(int i = this.count; i < limit; i++) {
-            if (i == this.count) {
-                nonCommand += input[i].substring(2) + " ";
-            } else {
-                nonCommand += input[i] + " ";
-            }
+            nonCommand += input[i] + " ";
         }
         this.nonCommand = nonCommand;
         this.count = 0; // to reset the counter
