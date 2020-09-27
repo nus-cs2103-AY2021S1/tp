@@ -6,9 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
-
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +18,10 @@ import org.junit.jupiter.api.Test;
 //import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
-import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
