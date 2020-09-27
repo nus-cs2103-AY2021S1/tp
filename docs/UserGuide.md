@@ -87,18 +87,24 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
 Edits an existing student in Reeve.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`
+Format: `edit INDEX n/NAME p/PHONE s/SCHOOL y/YEAR v/VENUE t/TIME [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
+</div>
+
+
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit 1 n/Alex p/99999999 s/AJC` Edits the name, phone number and school of the first student to `Alex`, `99999999` and `AJC` respectively.
+*  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st person to be `Alex`, `99999999` and `Meridian Junior College` respectively.
+*  `edit 3 e/amongus@isgood.com sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the email address, subject, venue and time of the third student to be `amongus@isgood.com`, `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
 ### Locating persons by name: `find`
 
