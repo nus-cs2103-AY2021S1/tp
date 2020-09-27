@@ -2,7 +2,7 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)  
 
 **Hospify** is an application to help clinics digitalise their medical records.  
-it is a brown-field project adapted from [`AddressBook 3`](https://se-education.org/addressbook-level3/).  
+It is a brown-field project adapted from [`AddressBook 3`](https://se-education.org/addressbook-level3/).  
 
 <u>**Motivation**</u>  
 * **Problem Statement**  
@@ -22,7 +22,7 @@ _Hospify is part of a team project under the CS2103 Software Engineering Module 
 <li>As an admin staff, I can archive appointments and medical records of deceased patients or patients who have not visited the clinic for 5 years or more</li>
 <li>As an admin staff, I can cancel appointment for patients</li>
 <li>As an admin staff, I can access and retrieve medical records (like drug allergies) of patients when requested by doctors</li>
-<li>As a admin staff, I can access and retrieve prescription list of patients when requested by the nurse</li>
+<li>As an admin staff, I can access and retrieve prescription list of patients when requested by the nurse</li>
 <li>As an admin staff, I can access the hospitalized date of the patients</li>
 <li>As an admin staff, I can access the discharged date of the patients</li>
 <li>As an admin staff, I can access the location of the room of the patient if he/she is hospitalized</li>
@@ -33,7 +33,7 @@ _Hospify is part of a team project under the CS2103 Software Engineering Module 
 <li>As an admin staff who is experienced in the app, I can create shortcuts to access the information I want</li>
 <li>As an admin staff, I can find the patient on the app and create a new patient entry if he is not already in it.</li>
 <li>As an admin staff, I can store NRIC of patients so that there is a unique way to identify patients and detect duplicates in the app</li>
-<li>As an data entry clerk who is experienced in the app, I can use keywords to scan the documents so that I can verify if certain records have already been added</li>
+<li>As a data entry clerk who is experienced in the app, I can use keywords to scan the documents so that I can verify if certain records have already been added</li>
 <li>As an admin staff who is new to the app, I can verify the number of entries on the app so that I can make sure that all the hardcopy records are added</li>
 <li>As an admin staff, I can sort the database according to the patients’ last visit.</li>
 <li>As an admin staff, I can attach notes to high risk patients so that the clinic can check up on the patient in future.</li>

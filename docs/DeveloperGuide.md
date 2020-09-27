@@ -236,56 +236,129 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Administrative staff in clinics
+* has a need to manage a significant number of patients and their respective medical records
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+- What problem does it solve?
+    * Many small clinics still use hard copies to store patients' medical records. The database can get really large after many years. It is very expensive and time constraining to archive medical records and find medical records of patients when they revisit. There are also a lot of documents and folders which require a lot of physical space to store.
+- How does it make their lives easier?
+    * We will build an easily accessible and secure system that helps clinics to store the patients’ information and medical records. It will enable the admin staff to easily reach out to the patients and doctors and help them to contact each other.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new patient               |                                                                        |
-| `* * *`  | user                                       | delete a patient                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a patient by name          | locate details of patients without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many patients in the address book | sort patients by name           | locate a patient easily                                                 |
+| Priority | As an …​                                | I want to …​                | So that I can…​                                                      |
+| -------- | ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------- |
+| `* * *`  | admin staff who is a new user              | see usage instructions         | refer to instructions when I forget how to use the App                  |
+| `* * *`  | admin staff                                | add a new patient              | store a new patient's medical records                                   |
+| `* * *`  | admin staff                                | delete a patient               | remove entries that I no longer need                                    |
+| `* * *`  | admin staff                                | find a patient by name         | locate details of patients without having to go through the entire list |
+| `* *`    | admin staff with many patients in the App  | view the number of patients    | have an overview of the size of the database                            |
+| `* *`    | admin staff                                | make new appointments for patients | arrange an appointment timing easily |
+| `* *`    | admin staff                                | cancel appointments for patients | cancel an appointment timing easily |
+| `* * *`  | admin staff                                | access and retrieve medical records (like drug allergies) of patients | obtain them when requested by doctors |
+| `* * *`  | admin staff                                | access and retrieve prescription list of patients | obtain them when requested by nurses |
+| `* * *`  | admin staff                                | store NRIC of patients | uniquely identify patients and detect duplicates in the App |
+| `* * *`  | admin staff                                | use keywords to scan documents | verify if certain records have already been added |
+| `* *`    | admin staff who is a new user              | verify the number of entries on the App | make sure that all the hardcopy records are added |
+| `* * *`  | admin staff                                | edit and update the patients’ personal information | make any changes when necessary |
+| `* *`    | admin staff with many patients in the App  | sort the database according to the patients’ last visit | locate a patient easily |
+| `*`      | admin staff                                | archive appointments and medical records | store away less relevant information about deceased patients or patients who have not visited the clinic for 5 years or more |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Hospify` and the **Actor** is the `admin`, unless specified otherwise)
 
-**Use case: Delete a patient**
+**Use case: UC1 - Add patient information**
 
 **MSS**
 
-1.  User requests to list patients
-2.  AddressBook shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  AddressBook deletes the patient
+1.  Admin types “add” followed by patient details.
+2.  Hospify notifies that patient information is added.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Hospify detects that the input is in the wrong format.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 1a1. Hospify requests for the correct data.
+    * 1a2. Admin enters new data.
+    
+      Steps 1a1-1a2 are repeated until the data entered are correct.
 
       Use case resumes at step 2.
+
+**Use case: UC2 - Delete patient information**
+
+**MSS**
+
+1.  Admin types “delete” followed by patient NRIC.
+2.  Hospify requests for confirmation.
+3.  Admin confirms.
+4.  Hospify notifies that patient information is deleted.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Hospify detects that the input is in the wrong format.
+
+    * 1a1. Hospify requests for the correct data.
+    * 1a2. Admin enters new data.
+    
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+
+      Use case resumes at step 2.
+
+**Use case: UC3 - Find patient information**
+
+**MSS**
+
+1.  Admin wants to find a patient using their name.
+2.  Admin types “find” followed by keyword (name).
+3.  Hospify returns all matches (if any) to the staff.
+4.  Admin selects the patient of interest.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. Hospify detects invalid characters (e.g. numbers and symbols).
+
+    * 2a1. Hospify requests for the correct data.
+    * 2a2. Admin enters new data.
+    
+      Steps 2a1-2a2 are repeated until the data entered are correct.
+
+      Use case resumes at step 3.
+
+**Use case: UC4 - Compute number of entries**
+
+**MSS**
+
+1.  Admin types “count”.
+2.  Hospify displays the number of patients that are currently not archived.
+
+    Use case ends.
+
+**Use case: UC5 - Display usage instructions**
+
+**MSS**
+
+1.  Admin types “help” followed by patient NRIC.
+2.  Hospify displays help interface.
+
+    Use case ends.
 
 *{More to be added}*
 
@@ -294,13 +367,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should work on both 32-bit and 64-bit environments.
+5.  The system should respond within two seconds.
+6.  The product does not support printing of reports (patient details).
+7.  The product does not support syncing data with other clinics’ patients’ details.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **NRIC**: National Registration Identity Card - A unique identification system with 1 alphabet followed by 8 digits, and another alphabet. E.g  X12345678X, where X is an arbitrary Alphabet
 
 --------------------------------------------------------------------------------------------------------------------
 
