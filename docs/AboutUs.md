@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### Tan huo Yao
+### Tan Zhuo Yao
 
 <img src="images/tanzhuoyao.png" width="200px">
 
