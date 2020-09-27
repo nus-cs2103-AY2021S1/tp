@@ -269,34 +269,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
 
-**Use case: UC01 - Adding a student**
+**UC01: Adding a student**
 
 **MSS**
 
-1. User enters a command to add a student with student details.
-2. Reeve saves student data into the students list and displays a success message.
-<br> Use case ends.
+1.  User enters a command to add a student with student details.
+2.  Reeve saves student data into the students list and displays a success message.
+
+    Use case ends.
 
 **Extensions**
 
 * 1a. User provides input with missing compulsory fields.
-  * 1a1. Reeve requests for appropriate input.
-<br> Use case resumes from step 1.
+    * 1a1. Reeve requests for appropriate input.
+
+      Use case resumes from step 1.
         	
 * 1b. User provides input with invalid format.
-  * 1b1. Reeve requests for appropriate input with valid format.
-<br> Use case resumes from step 1.
+    * 1b1. Reeve requests for appropriate input with valid format.
+      
+      Use case resumes from step 1.
         	
-**Use case: Searching for a student**
+**UC02: Searching for a student**
 
 **MSS**
 
 1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
-2.  Reeve displays all students matching the criteria.
-
+2.  Reeve displays all students matching the criteria. 
+    
     Use case ends.
 
-**Use case: Editing a student's details**
+**Extensions**
+
+* 1a. User provides input with invalid data into the search parameter.
+    * 1a1. Reeve displays erroneous field and expected format.       
+      
+      Use case resumes at step 1.      
+* 1b. User provides input without a search parameter.
+    * 1a1. Reeve displays a message indicating a search parameter was not provided.       
+      
+      Use case resumes at step 1.
+* 1c. No students match the given criteria.
+    * 1c1. Reeve displays a message indicating no match found.    
+      
+      Use case ends.
+
+**UC03: Editing a student's details**
 
 **MSS**
 
@@ -310,11 +328,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-
   Use case ends.
 
 * 3a. User provides input with invalid index.
-
     * 3a1. Reeve requests for input with valid index.
 
       Use case resumes at step 2.
@@ -327,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	
 	  Use case resumes at step 2.
 
-**Use case: Deleting a person**
+**UC04: Deleting a person**
 
 **MSS**
 
@@ -345,12 +361,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. User provides input with invalid index.
-
     * 3a1. Reeve displays an error message.
 
       Use case resumes at step 2.
     
-**Use case: Listing all students** 
+**UC05: Listing all students** 
 
 **MSS**
 
@@ -360,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
  
 
-**Use case: Clearing all student records**
+**UC06: Clearing all student records**
 
 **MSS**
 
