@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* Modduke is a integrated addressbook with scheduler functionalities targeted at NUS Students<br>
+* ModDuke is a integrated addressbook with scheduler functionalities targeted at NUS Students<br>
   Example usages:
   * as a one stop place to keep track of contact details related to NUS's modules e.g. Professors, project group mates
   * as a calendar to keep track of project meetings
