@@ -12,7 +12,7 @@ import seedu.address.model.recipe.Ingredient;
  */
 public class ListIngredientsCommand extends Command {
 
-    public static final String COMMAND_WORD = "ingredients";
+    public static final String COMMAND_WORD = "fridge";
 
     public static final String MESSAGE_SUCCESS = "Listed all ingredients" + "\n";
 
