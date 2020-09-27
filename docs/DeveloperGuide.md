@@ -391,14 +391,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+<<<<<<< HEAD
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+=======
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
+4.  The product should be easy to use by a novice with no experience of using a task management application.
+5.  The size of built-in module data should not exceed 10mb.
+6.  Documentation should be easy to read with proper highlighting.
+7.  The source code should be open source.
+
+>>>>>>> 40c48479e0967772ef6be58268c9d0236e38d3f4
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Task**: A task is a collection of details about a specific task that needs to be done, including description, title, date and time.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -30,9 +30,9 @@ import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TaskUtil;
 
 
-public class AddressBookParserTest {
+public class PlanusParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final PlanusParser parser = new PlanusParser();
 
     @Test
     public void parseCommand_add() throws Exception {

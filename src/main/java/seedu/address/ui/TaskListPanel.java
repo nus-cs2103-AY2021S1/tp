@@ -23,25 +23,25 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Task> taskList) {
+    public TaskListPanel(ObservableList<Task> personList) {
         super(FXML);
-        taskListView.setItems(taskList);
+        taskListView.setItems(personList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code TaskCard}.
      */
     class TaskListViewCell extends ListCell<Task> {
         @Override
-        protected void updateItem(Task task, boolean empty) {
-            super.updateItem(task, empty);
+        protected void updateItem(Task person, boolean empty) {
+            super.updateItem(person, empty);
 
-            if (empty || task == null) {
+            if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
+                setGraphic(new TaskCard(person, getIndex() + 1).getRoot());
             }
         }
     }
