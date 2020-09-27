@@ -41,10 +41,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Zhuo Yao
 
+<<<<<<< HEAD
 <img src="images/tabzhuoyao.png" width="200px">
 
 [[github](http://github.com/tanzhuoyao-nus)]
 [[portfolio](team/tanzhuoyao.md)]
+=======
+<img src="images/minzzelo.png" width="200px">
+
+[[github](http://github.com/minzzelo)]
+[[portfolio](team/minzzelo.md)]
+>>>>>>> b501b500050d469c8e44a01c9fe8963052d5259c
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
