@@ -13,8 +13,8 @@ import nustorage.model.record.FinanceRecord;
 public class AddFinanceCommandParser implements Parser<AddFinanceCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddFinanceCommand
+     * and returns an AddFinanceCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddFinanceCommand parse(String args) throws ParseException {

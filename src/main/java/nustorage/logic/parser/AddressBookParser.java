@@ -12,6 +12,7 @@ import nustorage.logic.commands.AddInventoryCommand;
 import nustorage.logic.commands.ClearCommand;
 import nustorage.logic.commands.Command;
 import nustorage.logic.commands.DeleteCommand;
+import nustorage.logic.commands.DeleteFinanceCommand;
 import nustorage.logic.commands.EditCommand;
 import nustorage.logic.commands.ExitCommand;
 import nustorage.logic.commands.FindCommand;
@@ -57,6 +58,9 @@ public class AddressBookParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case DeleteFinanceCommand.COMMAND_WORD:
+            return new DeleteFinanceCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

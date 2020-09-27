@@ -2,9 +2,11 @@ package nustorage.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 
 public class FinanceAccount {
@@ -23,8 +25,19 @@ public class FinanceAccount {
         financeRecords.add(record);
     }
 
-    public FinanceRecord removeRecord(int index) {
-        return financeRecords.remove(index);
+    /**
+     * Removes the finance record with the corresponding index
+     *
+     * @param targetIndex Index of finance record to be removed
+     * @return Optional containing removed finance record if index is valid, else an empty optional
+     */
+    public Optional<FinanceRecord> removeRecord(Index targetIndex) {
+
+        if (targetIndex.getZeroBased() >= financeRecords.size()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(financeRecords.remove(targetIndex.getZeroBased()));
     }
 
     public int count() {
@@ -33,6 +46,8 @@ public class FinanceAccount {
 
     /**
      * Returns the net transaction amount of all finance records
+     *
+     * @return Net transaction amount of all finance records
      */
     public double netProfit() {
         return financeRecords.stream()
