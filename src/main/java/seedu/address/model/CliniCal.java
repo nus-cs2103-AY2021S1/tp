@@ -12,7 +12,7 @@ import seedu.address.model.patient.UniquePatientList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePatient comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class CliniCal implements ReadOnlyCliniCal {
 
     private final UniquePatientList patients;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         patients = new UniquePatientList();
     }
 
-    public AddressBook() {}
+    public CliniCal() {}
 
     /**
-     * Creates an AddressBook using the Patients in the {@code toBeCopied}
+     * Creates a CliniCal using the Patients in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public CliniCal(ReadOnlyCliniCal toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code CliniCal} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyCliniCal newData) {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
@@ -87,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code CliniCal}.
      * {@code key} must exist in the address book.
      */
     public void removePatient(Patient key) {
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && patients.equals(((AddressBook) other).patients));
+                || (other instanceof CliniCal // instanceof handles nulls
+                && patients.equals(((CliniCal) other).patients));
     }
 
     @Override
