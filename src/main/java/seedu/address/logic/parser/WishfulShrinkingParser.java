@@ -70,7 +70,7 @@ public class WishfulShrinkingParser {
 
         case ListIngredientsCommand.COMMAND_WORD:
             return new ListIngredientsCommand();
-            
+
         case ListRecipesCommand.COMMAND_WORD:
             return new ListRecipesCommand();
 
