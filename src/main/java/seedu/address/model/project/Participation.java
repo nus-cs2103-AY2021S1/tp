@@ -1,6 +1,10 @@
 package seedu.address.model.project;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Participation class handles the interactions between the different classes involved in the project.
@@ -13,6 +17,7 @@ public class Participation {
     private Person person;
     private Project project;
     private Role role;
+    private Set<Task> tasks;
 
     /**
      * Constructor for Participation
@@ -21,6 +26,7 @@ public class Participation {
         this.person = person;
         this.project = project;
         role = Role.MEMBER;
+        tasks = new HashSet<>();
     }
 
     enum Role {
