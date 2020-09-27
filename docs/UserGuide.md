@@ -95,7 +95,7 @@ Edits an existing item in the Inventory book.
 Format: ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
-* Updates ALL the components of an item, UNABLE to update a specific component of an item. 
+* Updates ALL the components of an item, UNABLE to update a specific component of an item.
 Ie if a user wants to update the quantity, he/ she needs to specify all attributes again: name, quantity, supplier, tag, if any.
 * When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
 * You can remove all the item’s tags by typing `t/` without

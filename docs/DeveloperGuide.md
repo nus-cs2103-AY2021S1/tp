@@ -318,15 +318,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. InventoryBook detect invalid data input.
 
   * 1a1. InventoryBook shows an error message.
-  
+
   Use case ends.
-  
+
 * 1b. InventoryBook unable to detect existing item name and supplier.
 
   * 1b1. InventoryBook adds a new item into the inventory.
-  
+
   Use case ends.
-  
+
 **Use case: Editing an item**
 
 **MSS**
@@ -337,29 +337,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. InventoryBook edits the item.
 
    Use case ends.
-   
+
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 * 3a. The given index is invalid.
 
   * 3a1. InventoryBook shows an error message.
-  
+
         Use case resumes at step 2.
-        
+
 * 3b. The given data to edit is invalid.
 
   * 3b1. InventoryBook shows an error message.
-  
+
         Use case resumes at step 2.
-        
+
 * 3c. InventoryBook detects a duplicate after editing.
 
   * 3c1. InventoryBook shows an error message.
-        
+ 
         Use case resumes at step 2.
 
 ### Non-Functional Requirements

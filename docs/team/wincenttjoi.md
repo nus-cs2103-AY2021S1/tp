@@ -21,11 +21,11 @@ Given below are my contributions to the project.
   * General: Initial Project Readme set up to match our project
   * User Guide:
     * Added documentation for the features `clear` and `edit`
-  * Developer Guide: 
+  * Developer Guide:
     * Added Glossary
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
+  * PRs reviewed (with non-trivial review comments):
   * Contributed to forum discussions (examples: )
   * Reported bugs and suggestions for other teams in the class (examples:)
   * Some parts of the history feature I added was adopted by several other class mates ()
