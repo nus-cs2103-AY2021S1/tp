@@ -46,10 +46,10 @@ public class StockCard extends UiPart<Region> {
         this.stock = stock;
         id.setText(displayedIndex + ". ");
         name.setText(stock.getName().fullName);
-        serialNumber.setText(stock.getSerialNumber().serialNumber);
-        source.setText(stock.getSource().value);
-        quantity.setText(stock.getQuantity().quantity);
-        locationStored.setText(stock.getLocation().value);
+        serialNumber.setText("S/N: " + stock.getSerialNumber().serialNumber);
+        quantity.setText("Quantity: " + stock.getQuantity().quantity);
+        source.setText("Source: " + stock.getSource().value);
+        locationStored.setText("Location in warehouse: " + stock.getLocation().value);
     }
 
     @Override
