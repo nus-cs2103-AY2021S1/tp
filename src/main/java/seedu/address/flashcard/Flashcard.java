@@ -27,16 +27,16 @@ public class Flashcard {
      * Gets the question.
      * @return the question.
      */
-    public String getQuestion() {
-        return question.getQuestion();
+    public Question getQuestion() {
+        return question;
     }
 
     /**
      * Gets the answer.
      * @return the answer.
      */
-    public String getAnswer() {
-        return answer.getAnswer();
+    public Answer getAnswer() {
+        return answer;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Flashcard {
      * @param userAnswer the user's answer.
      * @return {@code true} if the user's answer is equal to the actual answer.
      */
-    public boolean checkAnswer(String userAnswer) {
+    public boolean checkAnswer(Answer userAnswer) {
         return answer.checkAnswer(userAnswer);
     }
 
@@ -87,6 +87,5 @@ public class Flashcard {
                     && other.getQuestion().equals(getQuestion());
         }
         return false;
-
     }
 }
