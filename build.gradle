@@ -7,7 +7,7 @@ plugins {
     id "com.star-zero.gradle.githook" version "1.2.1"
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.resireg.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
