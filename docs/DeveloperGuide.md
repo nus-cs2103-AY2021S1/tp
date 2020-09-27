@@ -99,8 +99,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1. User chooses to add new client with client details.
- 2. System gives success message.
+1. User chooses to add new client with client details.
+2. System gives success message.
 
     Use case ends.
 
@@ -116,22 +116,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1. User chooses to delete particular client.
- 2. System gives success message.
+1. User requests to list persons.
+2. I4I shows a list of persons.
+3. User chooses to delete particular client.
+4. System gives success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User enters wrong delete command format.
+* 2a. The list is empty.
 
-    * 1a1. System gives corresponding error message.
+      Use case ends.
+
+* 3a. User enters wrong delete command format.
+
+    * 3a1. System gives corresponding error message.
 
       Use case ends.
       
-* 1b. User enters invalid index.
+* 3b. User enters invalid index.
 
-    * 1b1. System gives corresponding error message.
+    * 3b1. System gives corresponding error message.
 
       Use case ends.
 
@@ -139,8 +145,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
- 1. User chooses to list all clients.
- 2. System shows all clients.
+1. User chooses to list all clients.
+2. System shows all clients.
 
     Use case ends.
 
