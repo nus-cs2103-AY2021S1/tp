@@ -169,8 +169,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tasks
-        userInput = targetIndex.getOneBased() + TASK_DESC_DG;
-        descriptor = new EditProjectDescriptorBuilder().withTasks(VALID_TASK_DG).build();
+        userInput = targetIndex.getOneBased() + TASK_DESC_MODEL;
+        descriptor = new EditProjectDescriptorBuilder().withTasks(VALID_TASK_MODEL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
