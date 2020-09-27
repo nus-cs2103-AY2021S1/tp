@@ -41,7 +41,7 @@ You can reach us via the issues of this repository.
 
 [[github](https://github.com/justacasul)] 
 
-[[portfolio](team/liuzhendao.md)]
+[[portfolio](team/liuzhengdao.md)]
 
 * Role: Developer
 * Responsibilities: GUI, Feature Developer

@@ -23,7 +23,7 @@ This page will document our testing for classes in Inventoryinator. Segmented in
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an pre-set size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
@@ -32,6 +32,7 @@ This page will document our testing for classes in Inventoryinator. Segmented in
 
 ### Deleting a entry
 
+TODO
 
 ### Saving data
 
@@ -67,9 +68,10 @@ This project has three types of tests:
    e.g. `seedu.address.logic.LogicManagerTest`
 
 ## UnitTesting
-
+TODO
 ## Integration Testing
-
+TODO
 ## Hybrid Testing
-
+TODO
 ## Acceptance testing
+TODO

@@ -66,9 +66,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `del stone`.
 
-![architecture](images/ArchitectureSequenceDiagram.png)
+![architecture](images/commandseqdiagrams/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -282,7 +282,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Item**: An item represents an object you obtain in a game. Eg a Rock
+* **Item**: An item represents an object you obtain in a game. Eg a <u>Rock</u>
 * **Recipe**: An recipe is associated with multiple items, and represents the consumption of items in the input,
- to produce an item of the output.
-* **Location**: The place where a Item can be found in game.
+ to produce an item of the output. Eg: a 3 <u>Sticks</u> -> <u>Staff</u>
+* **Location**: The place where a Item can be found in game. Eg: <u>Sleepywood</u>
+* **Inventory**: The entire state of the inventoryinator, including recipes, items and item quantities.
