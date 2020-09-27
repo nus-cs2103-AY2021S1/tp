@@ -267,7 +267,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
+
+**Use case: Searching for a student**
+
+**MSS**
+
+1.  User enters a command to find all students that match the given search parameter (name, school, year or subject).
+2.  Reeve displays all users matching the criteria.
+
+    Use case ends.
 
 **Use case: Delete a person**
 
