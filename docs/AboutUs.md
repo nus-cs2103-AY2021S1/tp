@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Olivia Juliani Johansen
 
-<img src="images/oliviajohansen.jpg" width="200px">
+<img src="images/oliviajohansen.png" width="200px">
 
 [[github](http://github.com/oliviajohansen)]
 
