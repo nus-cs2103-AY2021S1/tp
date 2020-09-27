@@ -8,6 +8,9 @@ import org.apache.commons.cli.Options;
 
 import seedu.address.logic.parser.exceptions.ParameterConflictException;
 
+/**
+ * Container for AbstractParameter objects.
+ */
 public class ParameterSet {
     private final List<AbstractParameter> parameterList;
     private Options options = new Options();
@@ -27,6 +30,11 @@ public class ParameterSet {
         }
     }
 
+    /**
+     * Adds a parameter to the set
+     * @param parameter parameter to add
+     * @throws ParameterConflictException if there are 2 parameters with the same flag
+     */
     public void addParameter(AbstractParameter parameter) throws ParameterConflictException {
         this.parameterList.add(parameter);
         if (this.hasParameterConflict()) {
@@ -41,6 +49,10 @@ public class ParameterSet {
         return set.size() != parameterList.size();
     }
 
+    /**
+     * Get the set of commons-cli options generated from the parameters.
+     * @return commons-cli options
+     */
     public Options asOptions() {
         return options;
     }

@@ -31,11 +31,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.parameter.AbstractParameter;
 import seedu.address.logic.parser.parameter.ParameterSet;
 
+/**
+ * Parser for McGymmy commands.
+ */
 public class McGymmyParser {
     private final Map<String, Supplier<Command>> commandTable;
     private final CommandLineParser parser;
     private final HelpFormatter formatter;
 
+    /**
+     * Creates a new McGymmyParser
+     */
     public McGymmyParser() {
         this.commandTable = new HashMap<>();
         this.addDefaultCommands();
@@ -54,6 +60,14 @@ public class McGymmyParser {
         this.addCommand("help", HelpCommand::new);
     }
 
+    /**
+     * Parses a raw input string from the user into an executable Command.
+     * @param text raw input from the user
+     * @return Command if parsing is successful
+     * @throws ParseException if command is not found
+     * @throws ParseException if a required argument to the command is not supplied
+     * @throws ParseException if an argument to the command is not in the correct format
+     */
     public Command parse(String text) throws ParseException {
         String[] splitInput = text.split(" ");
         if (splitInput.length < 1) {
@@ -78,6 +92,13 @@ public class McGymmyParser {
         }
     }
 
+    /**
+     * Helper function that takes values in the commons-cli CommandLine object
+     * and puts them in the parameterList
+     * @param cmd CommandLine object to take values from
+     * @param parameterList parameterList to put values in
+     * @throws ParseException if any of the parameter's conversion functions breaks (wrongly formatted argument)
+     */
     private void provideValuesToParameterList(CommandLine cmd, List<AbstractParameter> parameterList)
         throws ParseException {
         for (AbstractParameter parameter : parameterList) {
@@ -100,6 +121,12 @@ public class McGymmyParser {
         }
     }
 
+    /**
+     * Adds a new command into the parser.
+     * TODO: change Command to an 'Executable' interface for macros
+     * @param name Name of command to be added
+     * @param commandSupplier a constructor of the command taking no arguments
+     */
     public void addCommand(String name, Supplier<Command> commandSupplier) {
         if (this.commandTable.containsKey(name)) {
             // TODO throw some exception?
@@ -107,6 +134,7 @@ public class McGymmyParser {
         this.commandTable.put(name, commandSupplier);
     }
 
+    // Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function
     private String getUsage(String commandName, Options options, List<AbstractParameter> parameterList) {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
@@ -126,7 +154,7 @@ public class McGymmyParser {
 
     private String createExampleCommand(String commandName, List<AbstractParameter> parameterList) {
         return commandName + " " + parameterList.stream()
-            .map(p -> p.getFlag() + p.getExample())
+            .map(p -> "-" + p.getFlag() + " " + p.getExample())
             .collect(Collectors.joining(" "));
     }
 

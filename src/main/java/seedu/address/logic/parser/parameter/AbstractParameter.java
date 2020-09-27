@@ -4,6 +4,9 @@ import org.apache.commons.cli.Option;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Abstract class for the parameter classes.
+ */
 public abstract class AbstractParameter {
     private final Option option;
     private final String flag;

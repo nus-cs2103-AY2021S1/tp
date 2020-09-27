@@ -1,8 +1,9 @@
 package seedu.address.logic.parser.parameter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 public class OptionalParameterTest {
@@ -15,6 +16,6 @@ public class OptionalParameterTest {
             "test",
             String::length);
         testParameter.setValue("abcdef");
-        assertEquals(testParameter.consumeIfPresent(i -> i + 1), Optional.of(7));
+        assertEquals(testParameter.getValue().map(i -> i + 1), Optional.of(7));
     }
 }

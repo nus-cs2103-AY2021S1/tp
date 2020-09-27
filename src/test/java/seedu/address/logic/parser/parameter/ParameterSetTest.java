@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.apache.commons.cli.DefaultParser;
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.exceptions.ParameterConflictException;
+
 import seedu.address.logic.parser.CommandParserTestUtil;
+import seedu.address.logic.parser.exceptions.ParameterConflictException;
 
 
 public class ParameterSetTest {
