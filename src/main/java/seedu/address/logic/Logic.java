@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Patient> getFilteredPatientList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CliniCal application file path.
      */
     Path getCliniCalFilePath();
 
