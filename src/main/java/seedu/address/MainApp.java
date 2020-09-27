@@ -69,9 +69,11 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s CliniCal application and {@code userPrefs}. <br>
-     * The data from the sample CliniCal application will be used instead if {@code storage}'s CliniCal application is not found,
-     * or an empty CliniCal application with zero patient data will be used instead if errors occur when reading {@code storage}'s CliniCal application.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s CliniCal application
+     * and {@code userPrefs}. <br>
+     * The data from the sample CliniCal application will be used instead if {@code storage}'s CliniCal application
+     * is not found, or an empty CliniCal application with zero patient data will be used instead if errors occur when
+     * reading {@code storage}'s CliniCal application.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyCliniCal> cliniCalOptional;
