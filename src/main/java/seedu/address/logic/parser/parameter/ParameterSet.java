@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 
 import seedu.address.logic.parser.exceptions.ParameterConflictException;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ParameterSet {
     private final List<AbstractParameter> parameterList;

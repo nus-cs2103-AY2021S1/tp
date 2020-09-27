@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.parameter;
 
 import java.util.Optional;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Parameter<T> extends AbstractParameter {

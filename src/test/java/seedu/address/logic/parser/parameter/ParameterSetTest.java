@@ -1,27 +1,20 @@
 package seedu.address.logic.parser.parameter;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Options;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParameterConflictException;
+import seedu.address.logic.parser.CommandParserTestUtil;
 
 
 public class ParameterSetTest {
     private DefaultParser parser = new DefaultParser();
 
-    private Parameter<String> makeDummyParameter(String name, String flag) {
-        return new Parameter<>(name, flag, "test", "test", (s)->s);
-    }
+    private Parameter<String> dummyParameter1 = CommandParserTestUtil.makeDummyParameter("test", "t");
 
-    private Parameter<String> dummyParameter1 = makeDummyParameter("test", "t");
-
-    private Parameter<String> dummyParameter2 = makeDummyParameter("test2", "t2");
+    private Parameter<String> dummyParameter2 = CommandParserTestUtil.makeDummyParameter("test2", "t2");
 
     @Test
     void add_newParameter_success() {

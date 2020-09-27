@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.parameter.OptionalParameter;
+import seedu.address.logic.parser.parameter.Parameter;
 
 /**
  * Contains helper methods for testing command parsers.
@@ -34,5 +36,13 @@ public class CommandParserTestUtil {
         } catch (ParseException pe) {
             assertEquals(expectedMessage, pe.getMessage());
         }
+    }
+
+    public static Parameter<String> makeDummyParameter(String name, String flag) {
+        return new Parameter<>(name, flag, "test", "test", (s)->s);
+    }
+
+    public static OptionalParameter<String> makeDummyOptionalParameter(String name, String flag) {
+        return new OptionalParameter<>(name, flag, "test", "test", (s)->s);
     }
 }

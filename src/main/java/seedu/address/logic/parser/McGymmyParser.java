@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -58,8 +61,8 @@ public class McGymmyParser {
         }
         String commandName = splitInput[0];
         if (!this.commandTable.containsKey(commandName)) {
-            // TODO: better error message?
-            throw new ParseException("Command not found");
+            // TODO: clean up MESSAGE class
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
         Command result = this.commandTable.get(commandName).get();
         ParameterSet parameterSet = result.getParameterSet();
@@ -125,5 +128,9 @@ public class McGymmyParser {
         return commandName + " " + parameterList.stream()
             .map(p -> p.getFlag() + p.getExample())
             .collect(Collectors.joining(" "));
+    }
+
+    public Set<String> getRegisteredCommands() {
+        return this.commandTable.keySet();
     }
 }

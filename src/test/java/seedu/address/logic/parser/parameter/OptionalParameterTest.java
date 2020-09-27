@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 public class OptionalParameterTest {
     @Test
-    void parameter_storesCorrectValue() {
+    void parameter_storesCorrectValue() throws Exception {
         OptionalParameter<Integer> testParameter = new OptionalParameter<>(
             "intparam",
             "i",
             "test",
             "test",
             String::length);
-        testParameter.setRawValue("abcdef");
+        testParameter.setValue("abcdef");
         assertEquals(testParameter.consumeIfPresent(i -> i + 1), Optional.of(7));
     }
 }
