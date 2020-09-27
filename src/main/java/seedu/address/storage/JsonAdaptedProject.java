@@ -40,7 +40,7 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty List<JsonAdaptedTask> occupied) {
+                              @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
         this.name = name;
         this.phone = phone;
         this.email = email;
