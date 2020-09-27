@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has **two** classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -72,6 +72,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Returns what to be printed out on the UI
 
 ### Logic component
 
@@ -315,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to show a list of meetings scheduled
+1. User requests for a list of meetings scheduled
 2. PropertyFree shows a list of meetings scheduled.  
 Use case ends.
 
@@ -376,6 +377,12 @@ Use case ends.
 * 3b. The given format of message is wrong.
     * 3b1. PropertyFree shows an error message.  
         Use case ends.
+        
+**7. Use case: Edit Current Meeting(to be implemented)**
+
+**8. Use case: Edit Details of a property(to be implemented)**
+
+**9. Use case: Edit type of meeting(to be implemented)**
 
 ### Non-Functional Requirements
 
