@@ -32,22 +32,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gabriella Teh
 
-<img src="images/GabriellaTeh.png" width="200px">
+<img src="images/gabriellateh.png" width="200px">
 
-[[github](http://github.com/GabriellaTeh)] [[portfolio](team/GabriellaTeh.md)]
+[[github](http://github.com/gabriellateh)] [[portfolio](team/gabriellateh.md)]
 
 * Role: Developer
 * Responsibilities: Documentation, deliverables and deadlines
 
-### Jean Doe
+### Li Beining
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dearvae.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/dearvae)]
+[[portfolio](team/dearvae.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, Figma expert
+* Responsibilities: Integration 
 
 ### James Doe
 
