@@ -269,7 +269,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
 
-**UC01: Searching for a student**
+**UC01: Adding a student**
+
+**MSS**
+
+1.  User enters a command to add a student with student details.
+2.  Reeve saves student data into the students list and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with missing compulsory fields.
+    * 1a1. Reeve requests for appropriate input.
+
+      Use case resumes from step 1.
+        	
+* 1b. User provides input with invalid format.
+    * 1b1. Reeve requests for appropriate input with valid format.
+      
+      Use case resumes from step 1.
+        	
+**UC02: Searching for a student**
 
 **MSS**
 
@@ -293,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case ends.
 
-**UC02: Editing a student's details**
+**UC03: Editing a student's details**
 
 **MSS**
 
@@ -322,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	
 	  Use case resumes at step 2.
 
-**UC03: Deleting a person**
+**UC04: Deleting a person**
 
 **MSS**
 
@@ -344,7 +365,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
     
-**UC04: Listing all students** 
+**UC05: Listing all students** 
 
 **MSS**
 
@@ -354,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
  
 
-**UC05: Clearing all student records**
+**UC06: Clearing all student records**
 
 **MSS**
 
