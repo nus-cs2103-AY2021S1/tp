@@ -69,7 +69,7 @@ Format: `help`
 
 ### Adding a student: `add`
 
-Adds a student to Reeve.
+Adds a student to Reeve. (written by: Alex and Hogan)
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/VENUE t/TIME 
 [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
