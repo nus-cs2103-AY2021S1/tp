@@ -87,6 +87,9 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+
+(Written by: Vaishak)
+
 ### Editing a student : `edit`
 
 Edits an existing student in Reeve.
