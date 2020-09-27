@@ -308,6 +308,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The title is empty.
     * 1a1. PIVOT shows an error message.
+    
 	  Use case ends.
 
 **Use case: List Investigation Case**
@@ -330,10 +331,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
+  
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
+      
       Use case resumes at step 1.
 
 **Use case: Open Investigation Case**
@@ -348,10 +351,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
+  
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
+      
       Use case resumes at step 1.
 
 **Use case: Tag Investigation Case**
@@ -368,16 +373,122 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
+  
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
+      
       Use case resumes at step 1.
       
 * 5a. The given tag is invalid.
     * 5a1. PIVOT shows an error message.
+      
       Use case resumes at step 5.
 
+**Use case: Add Description for an Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User specifies an investigation case
+4. PIVOT navigates to the specified investigation case page
+5. User requests to add a description to the investigation case
+6. PIVOT adds the description to the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+      
+* 5a. The given description is empty.
+    * 5a1. PIVOT shows an error message.
+      
+      Use case resumes at step 5.
+
+**Use case: Add Document to Investigation Case**
+
+**MSS**
+1. User requests to add a document to investigation case, specifies a document title and reference
+2. PIVOT adds a new document to the investigation case
+   
+   Use case ends.
+
+**Extensions**
+* 1a. The title is empty.
+    * 1a1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1b. The reference is empty.
+    * 1b1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+    
+* 1c. The reference is invalid.
+    * 1c1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+**Use case: List Document related to Investigation Case**
+
+**MSS**
+1. User requests to list documents related to the case
+2. PIVOT shows a list of documents related to the case
+
+   Use case ends.
+
+**Use case: Delete Document from Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to delete a specific investigation case in the list
+4. PIVOT deletes the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+**Use case: Open Document**
+
+**MSS**
+1. User requests to list documents
+2. PIVOT shows a list of documents
+3. User requests to open a specific document in the list
+4. PIVOT opens the specified document
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+* 4a. The specified document does not exist in the saved reference.
+    * 4a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
