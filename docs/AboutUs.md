@@ -39,29 +39,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Tan Zhuo Yao
+### Ong Si Min
 
-<<<<<<< HEAD
-<img src="images/tabzhuoyao.png" width="200px">
-
-[[github](http://github.com/tanzhuoyao-nus)]
-[[portfolio](team/tanzhuoyao.md)]
-=======
 <img src="images/minzzelo.png" width="200px">
 
 [[github](http://github.com/minzzelo)]
 [[portfolio](team/minzzelo.md)]
->>>>>>> b501b500050d469c8e44a01c9fe8963052d5259c
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tan huo Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanzhuoyao.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanzhuoyao-nus)]
+[[portfolio](team/tanzhuoyao.md)]
 
 * Role: Developer
 * Responsibilities: UI
