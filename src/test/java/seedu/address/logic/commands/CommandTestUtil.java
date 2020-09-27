@@ -18,9 +18,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.WishfulShrinking;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.KeywordsContainIngredientPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.KeywordsContainIngredientPredicate;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
 
 /**

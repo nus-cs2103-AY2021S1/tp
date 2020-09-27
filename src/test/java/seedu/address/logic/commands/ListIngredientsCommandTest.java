@@ -13,7 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.Recipe;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListIngredientCommand.

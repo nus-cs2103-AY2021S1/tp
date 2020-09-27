@@ -55,13 +55,13 @@ public class WishfulShrinkingParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-            
+
         case DeleteIngredientCommand.COMMAND_WORD:
             return new DeleteIngredientCommandParser().parse(arguments);
 
         case DeleteRecipeCommand.COMMAND_WORD:
             return new DeleteRecipeCommandParser().parse(arguments);
-            
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
