@@ -1,10 +1,10 @@
 package seedu.address.model.project;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Participation class handles the interactions between the different classes involved in the project.
