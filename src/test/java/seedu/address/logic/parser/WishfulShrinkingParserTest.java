@@ -26,9 +26,11 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListIngredientsCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.IngredientUtil;
@@ -98,6 +100,15 @@ public class WishfulShrinkingParserTest {
                 SearchRecipeCommand.COMMAND_WORD + " " + PREFIX_NAME
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchRecipeCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_searchIngredient() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        SearchIngredientCommand command = (SearchIngredientCommand) parser.parseCommand(
+                SearchIngredientCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchIngredientCommand(new IngredientContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
