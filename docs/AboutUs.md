@@ -16,3 +16,27 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/StopTakingAllTheNames)]
 
 * Role: Developer
+
+### Alex Chua
+
+<img src="images/alexcqy.png" width="200px">
+
+[[github](https://github.com/AlexCQY)]
+
+* Role: Developer
+
+### Ng Choon Siong
+
+<img src="images/choonsiong.png" width="200px">
+
+[[github](http://github.com/csiongn)]
+
+* Role: Developer
+
+### Hogan Tan
+
+<img src="images/hogantan.png" width="200px">
+
+[[github](http://github.com/hogantan)]
+
+* Role: Developer
