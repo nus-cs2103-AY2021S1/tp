@@ -1,7 +1,5 @@
 package seedu.address.flashcard;
 
-import java.util.Arrays;
-
 import seedu.address.commons.core.index.Index;
 
 /**
@@ -58,7 +56,7 @@ public class Mcq implements Question {
             return true;
         } else if (o instanceof Mcq) {
             Mcq temp = (Mcq) o;
-            return temp.toString().equals(o.toString());
+            return this.toString().equals(temp.toString());
         }
         return false;
     }

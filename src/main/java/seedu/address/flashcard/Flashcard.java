@@ -87,6 +87,5 @@ public class Flashcard {
                     && other.getQuestion().equals(getQuestion());
         }
         return false;
-
     }
 }

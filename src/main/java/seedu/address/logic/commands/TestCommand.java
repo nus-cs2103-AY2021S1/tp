@@ -41,6 +41,7 @@ public class TestCommand extends Command {
     public static final String MESSAGE_NO_OPTION_PROVIDED = "An option must be chosen for "
             + "the multiple choice question.";
     public static final String MESSAGE_NO_ANSWER_PROVIDED = "An answer must be chosen for the open ended question.";
+    public static final String MESSAGE_NO_OPTION_OR_ANSWER_PROVIDED = "An option or answer must be specified.";
     private final Index index;
     private final TestAnswerDescriptor testAnswerDescriptor;
 
@@ -109,6 +110,24 @@ public class TestCommand extends Command {
         return String.format(MESSAGE_CORRECT_ANSWER, question, correctAnswer, userAnswer);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof TestCommand)) {
+            return false;
+        }
+
+        // state check
+        TestCommand e = (TestCommand) other;
+        return index.equals(e.index)
+                && testAnswerDescriptor.equals(e.testAnswerDescriptor);
+    }
+
     /**
      * Stores the details to test the question with. Can be used for both open ended and
      * multiple choice questions.
@@ -153,5 +172,8 @@ public class TestCommand extends Command {
             return Objects.hash(answer, option);
         }
 
+        public boolean isAnyFieldPresent() {
+            return answer != null || option != null;
+        }
     }
 }

@@ -1,5 +1,8 @@
 package seedu.address.flashcard;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents an Answer in a flashcard.
  */
@@ -16,6 +19,8 @@ public class Answer {
      * @param answer to be set.
      */
     public Answer(String answer) {
+        requireNonNull(answer);
+        checkArgument(isValidAnswer(answer), MESSAGE_CONSTRAINTS);
         this.answer = normalizeAnswer(answer);
     }
 
