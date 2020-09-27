@@ -21,7 +21,7 @@ import seedu.address.model.task.Task;
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -57,20 +57,20 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalTasks() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical tasks.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Task task : getTypicalPersons()) {
-            ab.addPerson(task);
+        for (Task task : getTypicalTasks()) {
+            ab.addTask(task);
         }
         return ab;
     }
 
-    public static List<Task> getTypicalPersons() {
+    public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

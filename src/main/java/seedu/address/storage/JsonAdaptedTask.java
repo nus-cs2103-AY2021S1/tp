@@ -20,7 +20,7 @@ import seedu.address.model.task.Task;
 /**
  * Jackson-friendly version of {@link Task}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
@@ -31,12 +31,12 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given task details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                           @JsonProperty("email") String email, @JsonProperty("address") String address,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Task source) {
+    public JsonAdaptedTask(Task source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -65,9 +65,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> taskTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            taskTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(taskTags);
         return new Task(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
