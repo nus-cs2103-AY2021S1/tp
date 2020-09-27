@@ -121,9 +121,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find Chicken` returns `chicken` and `CHICKEN`
 
-### Deleting a item : `delete`
+### Deleting an item : `delete`
 
-Deletes the specified item from the address book.
+Deletes the specified item from the inventory book.
 
 Format: `delete INDEX`
 
@@ -132,8 +132,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd item in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st item in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd item in the inventory book.
+* `find Duck` followed by `delete 1` deletes the 1st item in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -151,9 +151,29 @@ Format: `exit`
 
 InventoryBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Archiving data files `[coming in v2.0]`
+### Undo `[Coming Soon]`
 
-_{explain the feature here}_
+Undo previous command
+
+### Sorting items`[Coming Soon]`
+
+Implicit sorting done. Can be explicitly called for lexicographical sorting
+
+### Statistics `[Coming Soon]`
+
+Prints the total amount of delivery and reservation for the day
+
+### Scheduling `[Coming Soon]`
+
+Allows user to know when to do restocking
+
+### Prices of items `[Coming Soon]`
+
+Look up prices on a 'supplier' database
+
+### Notification `[Coming Soon]`
+
+Notify the user if a certain stock is below threshold
 
 --------------------------------------------------------------------------------------------------------------------
 
