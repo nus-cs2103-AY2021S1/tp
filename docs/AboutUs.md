@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ong Si Min
 
 <img src="images/minzzelo.png" width="200px">
 
@@ -49,12 +49,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tan Zhuo Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanzhuoyao.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanzhuoyao-nus)]
+[[portfolio](team/tanzhuoyao.md)]
 
 * Role: Developer
 * Responsibilities: UI
