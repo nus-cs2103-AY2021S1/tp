@@ -423,7 +423,7 @@ Use case ends.
   
   **Extensions**
   
-  * 3a. The given grade is invalid.
+  * 1a. The given grade is invalid.
   
     * CAP5BUDDY displays an error message.
     
@@ -440,7 +440,7 @@ Use case ends.
    
   **Extensions**
 
-  * 3a. The current list of grades is empty.
+  * 2a. The current list of grades is empty.
     
     * CAP5BUDDY displays an error message.
     
@@ -465,7 +465,7 @@ Use case ends.
     
       Use case ends.
     
-  * 4a. The provided index of the grade is invalid.
+  * 3a. The provided index of the grade is invalid.
   
     * CAP5BUDDY displays an error message.
     
