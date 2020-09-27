@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.recipe.Ingredient;
 
 /**
- * Deletes an ingredient identified using it's displayed index from the address book.
+ * Deletes an ingredient identified using it's displayed index from the fridge.
  */
 public class DeleteIngredientCommand extends Command {
 
