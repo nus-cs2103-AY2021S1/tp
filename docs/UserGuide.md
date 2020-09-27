@@ -126,9 +126,9 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`
 
 (written by: Choon Siong)
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
+* `find s/yishun` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
+* `find n/alex s/yishun` searches for all students who match `n/alex` and `s/yishun`.
 
 ### Deleting a student : `delete`
 
@@ -181,6 +181,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
 **List** | `list`
 **Help** | `help`
