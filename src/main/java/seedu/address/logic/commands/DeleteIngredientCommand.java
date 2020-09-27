@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.Ingredient;
 
 /**
  * Deletes an ingredient identified using it's displayed index from the address book.
@@ -22,7 +22,7 @@ public class DeleteIngredientCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
+    public static final String MESSAGE_DELETE_INGREDIENT_SUCCESS = "Deleted Ingredient: %1$s";
 
     private final Index targetIndex;
 
@@ -33,15 +33,15 @@ public class DeleteIngredientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Recipe> lastShownList = model.getFilteredRecipeList(); //here
+        List<Ingredient> lastShownList = model.getFilteredIngredientList(); 
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
 
-        Recipe recipeToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteRecipe(recipeToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
+        Ingredient ingredientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteIngredient(ingredientToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete));
     }
 
     @Override

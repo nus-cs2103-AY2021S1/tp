@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +21,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -50,6 +53,13 @@ public class WishfulShrinkingParserTest {
         AddIngredientCommand command = (AddIngredientCommand) parser.parseCommand(IngredientUtil
                 .getAddIngredientCommand(ingredient));
         assertEquals(new AddIngredientCommand(ingredient), command);
+    }
+
+    @Test
+    public void parseCommand_deleteIngredient() throws Exception {
+        DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
+                DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST_INGREDIENT.getOneBased());
+        assertEquals(new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT), command);
     }
 
     @Test
