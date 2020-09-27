@@ -118,9 +118,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
+* `find s/yishun` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
+* `find n/alex s/yishun` searches for all students who match `n/alex` and `s/yishun`.
 
 ### Deleting a person : `delete`
 
