@@ -269,6 +269,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
 
+**Use case: UC01 - Adding a student**
+
+**MSS**
+
+1. User enters a command to add a student with student details.
+2. Reeve saves student data into the students list and displays a success message.
+<br> Use case ends.
+
+**Extensions**
+
+* 1a. User provides input with missing compulsory fields.
+  * 1a1. Reeve requests for appropriate input.
+<br> Use case resumes from step 1.
+        	
+* 1b. User provides input with invalid format.
+  * 1b1. Reeve requests for appropriate input with valid format.
+<br> Use case resumes from step 1.
+        	
 **Use case: Searching for a student**
 
 **MSS**
