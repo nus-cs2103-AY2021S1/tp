@@ -1,5 +1,10 @@
 title: "Modduke"
-theme: minima
+plugins:
+  - jemoji
+  - jekyll-remote-theme
+remote_theme: jekyll/minima
+minima:
+  skin: solarized
 
 header_pages:
   - UserGuide.md
@@ -11,5 +16,4 @@ markdown: kramdown
 repository: "ay2021s1-cs2103-f10-2/tp"
 github_icon: "images/github-icon.png"
 
-plugins:
-  - jemoji
+
