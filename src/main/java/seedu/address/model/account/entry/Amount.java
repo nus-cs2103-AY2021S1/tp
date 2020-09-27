@@ -13,7 +13,7 @@ public class Amount {
             + "1. The Dollars part should be all numbers and should not start with the digit 0.\n"
             + "2. The . between Dollars and Cents is optional"
             + "3. The Cents part should be all numbers and can only contain 0-2 digits";
-    public static final String VALIDATION_REGEX = "(^[1-9][0-9]*(\\.?[0-9]?[0-9]?))";
+    public static final String VALIDATION_REGEX = "(^[1-9][0-9]*(\\.?[0-9]?[0-9]?)|^\\.[1-9][0-9]?|^\\.[0-9][1-9])";
     private final Double value;
 
     /**

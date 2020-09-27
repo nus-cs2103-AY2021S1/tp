@@ -36,14 +36,19 @@ public class AmountTest {
         assertFalse(Amount.isValidAmount("1.30 ")); // trailing space
         assertFalse(Amount.isValidAmount(" 1.30")); // starts with a space
         assertFalse(Amount.isValidAmount("01.30")); // starts with a zero
+        assertFalse(Amount.isValidAmount(".0")); // starts with a zero after dot
+        assertFalse(Amount.isValidAmount(".00")); // starts with two zero after dot
+        assertFalse(Amount.isValidAmount("00.00")); // all zeros
+
 
         // valid amount
         assertTrue(Amount.isValidAmount("1")); // short integer
         assertTrue(Amount.isValidAmount("100000")); // long integer
-        assertTrue(Amount.isValidAmount("10.00")); // double value
+        assertTrue(Amount.isValidAmount("10.00")); // double value with all zeros
         assertTrue(Amount.isValidAmount("10.")); //a dot with no decimal places
         assertTrue(Amount.isValidAmount("10.1")); //a dot with one decimal places
+        assertTrue(Amount.isValidAmount("10.10")); // double value with varying ones and zeros
         assertTrue(Amount.isValidAmount(".1")); //only decimal with a dot with one decimal places
-        assertTrue(Amount.isValidAmount(".10")); //only decimal a dot with one decimal places
+        assertTrue(Amount.isValidAmount(".01")); //only decimal a dot with two decimal places
     }
 }
