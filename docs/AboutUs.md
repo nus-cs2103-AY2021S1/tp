@@ -26,7 +26,7 @@ You can reach us via the issues of this repository.
 
 ### Stephen Tan
 
-![stephentan](images/profiles/stephentan.jpg)
+![stephentan](images/profiles/blackonyyx.jpg)
 
 [[github](http://github.com/blackonyyx)]
 
