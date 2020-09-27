@@ -88,11 +88,10 @@ Shows a list of all persons in the address book.
 Format: `list`
 
 
-(Written by: Vaishak)
 
 ### Editing a student : `edit`
 
-Edits an existing student in Reeve.
+Edits an existing student in Reeve (Written by: Vaishak).
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/VENUE] [t/TIME] [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
 
