@@ -5,15 +5,19 @@ About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
+[[Visit our homepage](https://ay2021s1-cs2103t-w10-3.github.io/tp/)]
+
+You can reach us at the email `seer[at]comp.nus.edu.sg`
+
 ## Project team
 
 ### Niaaz Wahab
 
-<img src="images/members/niaaz.jpg" width="200px">
-
-[[LinkedIn](https://www.linkedin.com/in/niaaz-wahab-5657281a2/)]
+<img src="images/geniaaz.png" width="200px">
 
 [[github](https://github.com/geniaaz)]
+
+[[portfolio](team/geniaaz.md)]
 
 * Role: Project Member
 * Responsibilities: Developer
