@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jin Yuze
 
-<img src="images/UnicornJin.png" width="200px">
+<img src="images/unicornjin.png" width="200px">
 
 [[github](https://github.com/UnicornJin)]
 [[portfolio]()]
