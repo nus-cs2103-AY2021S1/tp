@@ -17,7 +17,19 @@ public class ParserManager {
         this.current_Input = input;
         getCommand();
         getNonCommand();
-        return this.command + " Non: " + this.nonCommand;
+        Tokenizer token = new Tokenizer(this.nonCommand);
+        String[] words = token.getWords();
+        String result = "";
+
+        switch (this.command) {
+            case "addmodule":
+                AddModuleParser parser = new AddModuleParser(words);
+                result = parser.execute();
+                break;
+            default:
+                result = "Nothing happens";
+        }
+        return result;
     }
 
     private void getCommand() {
@@ -40,11 +52,7 @@ public class ParserManager {
         String[] input = this.current_Input.split(" ");
         int limit = input.length;
         for(int i = this.count; i < limit; i++) {
-            if (i == this.count) {
-                nonCommand += input[i].substring(2) + " ";
-            } else {
-                nonCommand += input[i] + " ";
-            }
+            nonCommand += input[i] + " ";
         }
         this.nonCommand = nonCommand;
         this.count = 0; // to reset the counter
