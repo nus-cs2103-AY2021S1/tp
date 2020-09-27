@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,13 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,23 +39,32 @@ public class McGymmyParser {
     }
 
     private void addDefaultCommands() {
-        this.addCommand("list", ListCommand::new); //TODO just an example
+        this.addCommand("add", AddCommand::new);
+        this.addCommand("edit", EditCommand::new);
+        this.addCommand("delete", DeleteCommand::new);
+        this.addCommand("clear", ClearCommand::new);
+        this.addCommand("exit", ExitCommand::new);
+        this.addCommand("find", FindCommand::new);
+        this.addCommand("list", ListCommand::new);
         this.addCommand("help", HelpCommand::new);
     }
 
     public Command parse(String text) throws ParseException {
-        String[] splitInput = text.split(" ", 2);
+        String[] splitInput = text.split(" ");
+        if (splitInput.length < 1) {
+            throw new ParseException("Please enter a command.");
+        }
         String commandName = splitInput[0];
         if (!this.commandTable.containsKey(commandName)) {
             // TODO: better error message?
             throw new ParseException("Command not found");
         }
-        Command result = this.commandTable.get(text).get();
+        Command result = this.commandTable.get(commandName).get();
         ParameterSet parameterSet = result.getParameterSet();
         Options options = parameterSet.asOptions();
         List<AbstractParameter> parameterList = parameterSet.getParameterList();
         try {
-            CommandLine cmd = this.parser.parse(options, splitInput[1].split(" "));
+            CommandLine cmd = this.parser.parse(options, Arrays.copyOfRange(splitInput, 1, splitInput.length));
             this.provideValuesToParameterList(cmd, parameterList);
             return result;
         } catch (org.apache.commons.cli.ParseException e) {
@@ -67,9 +83,14 @@ public class McGymmyParser {
                     // TODO: improve message?
                     throw new ParseException("argument not supplied.");
                 }
-                parameter.setRawValue(String.join(" ", unconsumedArgs));
+                parameter.setValue(String.join(" ", unconsumedArgs));
             } else {
-                parameter.setRawValue(String.join(" ", cmd.getOptionValues(flag)));
+                String[] values = cmd.getOptionValues(flag);
+                if (values == null) {
+                    // optional value that was not supplied by user.
+                    continue;
+                }
+                parameter.setValue(String.join(" ", values));
             }
         }
     }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.exceptions.UninitializedCommandException;
 
 public class OptionalParameterTest {
     @Test

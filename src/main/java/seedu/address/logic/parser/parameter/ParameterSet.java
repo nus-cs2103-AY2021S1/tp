@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ParameterSet {
     private final List<AbstractParameter> parameterList;
-    private Options options;
+    private Options options = new Options();
 
     public ParameterSet() {
         this.parameterList = new ArrayList<>();
@@ -21,6 +21,10 @@ public class ParameterSet {
     private void refreshOptions() {
         this.options = new Options();
         for (AbstractParameter parameter : this.parameterList) {
+            if (parameter.getFlag().equals("")) {
+                // unnamed parameter, e.g. '1' in 'DELETE 1'
+                continue;
+            }
             this.options.addOption(parameter.asOption());
         }
     }

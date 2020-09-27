@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
-import java.util.function.Function;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParameterConflictException;
 import seedu.address.logic.parser.parameter.AbstractParameter;
 import seedu.address.logic.parser.parameter.OptionalParameter;
 import seedu.address.logic.parser.parameter.Parameter;
+import seedu.address.logic.parser.parameter.ParameterConverter;
 import seedu.address.logic.parser.parameter.ParameterSet;
 import seedu.address.model.Model;
 
@@ -40,7 +39,7 @@ public abstract class Command {
     }
 
     protected <T> Parameter<T> addParameter(String name, String flag, String description,
-                                            String example, Function<String, T> converter) {
+                                            String example, ParameterConverter<T> converter) {
         Parameter<T> parameter = new Parameter<>(name, flag, description, example, converter);
         this.registerParameter(parameter);
         return parameter;
@@ -51,7 +50,7 @@ public abstract class Command {
     }
 
     protected <T> OptionalParameter<T> addOptionalParameter(String name, String flag, String description,
-                                                            String example, Function<String, T> converter) {
+                                                            String example, ParameterConverter<T> converter) {
         OptionalParameter<T> parameter = new OptionalParameter<>(name, flag, description, example, converter);
         this.registerParameter(parameter);
         return parameter;
