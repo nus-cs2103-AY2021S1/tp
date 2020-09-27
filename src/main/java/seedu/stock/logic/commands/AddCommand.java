@@ -51,6 +51,7 @@ public class AddCommand extends Command {
         }
 
         model.addStock(toAdd);
+        model.updateSerialNumberSet(toAdd.getSource());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

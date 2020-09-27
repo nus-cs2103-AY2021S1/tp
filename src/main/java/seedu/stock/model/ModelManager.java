@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.commons.core.LogsCenter;
+import seedu.stock.model.stock.SerialNumberSet;
+import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -20,25 +22,30 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final StockBook stockBook;
+    private final SerialNumberSetsBook serialNumberSetsBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Stock> filteredStocks;
+    private final FilteredList<SerialNumberSet> filteredSerialNumberSets;
 
     /**
      * Initializes a ModelManager with the given stockBook and userPrefs.
      */
-    public ModelManager(ReadOnlyStockBook stockBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyStockBook stockBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlySerialNumberSetsBook serialNumberSetsBook) {
         super();
         requireAllNonNull(stockBook, userPrefs);
 
         logger.fine("Initializing with stock book: " + stockBook + " and user prefs " + userPrefs);
 
         this.stockBook = new StockBook(stockBook);
+        this.serialNumberSetsBook = new SerialNumberSetsBook(serialNumberSetsBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStocks = new FilteredList<>(this.stockBook.getStockList());
+        filteredSerialNumberSets = new FilteredList<>(this.serialNumberSetsBook.getSerialNumberSetsList());
     }
 
     public ModelManager() {
-        this(new StockBook(), new UserPrefs());
+        this(new StockBook(), new UserPrefs(), new SerialNumberSetsBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,6 +119,47 @@ public class ModelManager implements Model {
         stockBook.setStock(target, editedStock);
     }
 
+    //=========== SerialNumberSetsBook ================================================================================
+
+    @Override
+    public void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook SerialNumberSetsBook) {
+        this.serialNumberSetsBook.resetData(SerialNumberSetsBook);
+    }
+
+    @Override
+    public ReadOnlySerialNumberSetsBook getSerialNumberSetsBook() {
+        return serialNumberSetsBook;
+    }
+
+    @Override
+    public boolean hasSerialNumberSet(SerialNumberSet serialNumberSet) {
+        requireNonNull(serialNumberSet);
+        return serialNumberSetsBook.hasSerialNumberSet(serialNumberSet);
+    }
+
+    @Override
+    public void deleteSerialNumberSet(SerialNumberSet target) {
+        serialNumberSetsBook.removeSerialNumberSet(target);
+    }
+
+    @Override
+    public void updateSerialNumberSet(Source source) {
+        serialNumberSetsBook.updateSerialNumberSet(source);
+    }
+
+    @Override
+    public void addSerialNumberSet(SerialNumberSet serialNumberSet) {
+        serialNumberSetsBook.addSerialNumberSet(serialNumberSet);
+        //updateFilteredSerialNumberSetsList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setSerialNumberSet(SerialNumberSet target, SerialNumberSet editedSerialNumberSet) {
+        requireAllNonNull(target, editedSerialNumberSet);
+
+        serialNumberSetsBook.setSerialNumberSet(target, editedSerialNumberSet);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -127,6 +175,17 @@ public class ModelManager implements Model {
     public void updateFilteredStockList(Predicate<Stock> predicate) {
         requireNonNull(predicate);
         filteredStocks.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<SerialNumberSet> getFilteredSerialNumberSetList() {
+        return filteredSerialNumberSets;
+    }
+
+    @Override
+    public void updateFilteredSerialNumberSetList(Predicate<SerialNumberSet> predicate) {
+        requireNonNull(predicate);
+        filteredSerialNumberSets.setPredicate(predicate);
     }
 
     @Override

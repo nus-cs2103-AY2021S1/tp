@@ -7,9 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.exceptions.DataConversionException;
-import seedu.stock.model.ReadOnlyStockBook;
-import seedu.stock.model.ReadOnlyUserPrefs;
-import seedu.stock.model.UserPrefs;
+import seedu.stock.model.*;
 
 /**
  * Manages storage of StockBook data in local storage.
@@ -19,14 +17,17 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private StockBookStorage stockBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private SerialNumberSetsBookStorage serialNumberSetsBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code StockBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(StockBookStorage stockBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(StockBookStorage stockBookStorage, UserPrefsStorage userPrefsStorage,
+                          SerialNumberSetsBookStorage serialNumberSetsBook) {
         super();
         this.stockBookStorage = stockBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.serialNumberSetsBookStorage = serialNumberSetsBook;
     }
 
     // ================ UserPrefs methods ==============================
@@ -76,4 +77,26 @@ public class StorageManager implements Storage {
         stockBookStorage.saveStockBook(stockBook, filePath);
     }
 
+    // ================ SerialNumberSetsBook methods ==============================
+    public Path getSerialNumberSetsBookFilePath() {
+        return serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath();
+    }
+
+    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook() throws DataConversionException, IOException {
+        return readSerialNumberSetsBook(serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath());
+    }
+
+    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return serialNumberSetsBookStorage.readSerialNumberSetsBook(filePath);
+    }
+
+    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook) throws IOException {
+        saveSerialNumberSetsBook(serialNumberSetsBook, serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath());
+    }
+
+    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        serialNumberSetsBookStorage.saveSerialNumberSetsBook(serialNumberSetsBook, filePath);
+    }
 }

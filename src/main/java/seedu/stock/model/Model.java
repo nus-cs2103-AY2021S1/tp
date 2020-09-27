@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.stock.commons.core.GuiSettings;
+import seedu.stock.model.stock.SerialNumberSet;
+import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -84,4 +86,22 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStockList(Predicate<Stock> predicate);
+
+    void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook SerialNumberSetsBook);
+
+    ReadOnlySerialNumberSetsBook getSerialNumberSetsBook();
+
+    boolean hasSerialNumberSet(SerialNumberSet serialNumberSet);
+
+    void deleteSerialNumberSet(SerialNumberSet target);
+
+    void setSerialNumberSet(SerialNumberSet target, SerialNumberSet editedSerialNumberSet);
+
+    void updateSerialNumberSet(Source source);
+
+    void addSerialNumberSet(SerialNumberSet serialNumberSet);
+
+    ObservableList<SerialNumberSet> getFilteredSerialNumberSetList();
+
+    void updateFilteredSerialNumberSetList(Predicate<SerialNumberSet> predicate);
 }

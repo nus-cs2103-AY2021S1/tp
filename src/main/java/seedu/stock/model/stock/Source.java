@@ -43,11 +43,11 @@ public class Source {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid source.
+     * @param source A valid source.
      */
-    public Source(String email) {
-        requireNonNull(email);
-        value = email;
+    public Source(String source) {
+        requireNonNull(source);
+        value = source;
     }
 
     @Override
@@ -72,6 +72,10 @@ public class Source {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public boolean isSameSource(Source source) {
+        return this.value.equals(source.value);
     }
 
 }
