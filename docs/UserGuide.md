@@ -78,9 +78,15 @@ Format: `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​`
 A item can have any number of tags (including 0)
 </div>
 
+### Removing quantity from an item: `remove`
+
+Removes a specified quantity of an existing item from OneShelf.
+
+Format: `remove INDEX q/QUANTITY`
+* Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
-* `add n/Chicken q/3 s/ShengSiong t/Poultry`
-* `add n/Chicken q/3 s/NTUC`
+* `remove n/Chicken q/1 s/ShengSiong`
 
 ### Listing all items : `list`
 
