@@ -34,15 +34,13 @@ You can reach us at the email: `seer[at]comp.nus.edu.sg`
 
 -   Role: Programmer
 
-### Jean Doe
+### Tan Eu Zin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/euzintan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/euzintan)]
 
--   Role: Developer
--   Responsibilities: Dev Ops + Threading
+-   Role: Programmer
 
 ### James Doe
 
