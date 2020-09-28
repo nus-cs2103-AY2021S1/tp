@@ -51,16 +51,10 @@ public class Ui {
      * Starts the scanning of user input.
      */
     public void startScanner() {
-        System.out.println("Starting scanner");
-        String current = sc.nextLine();
-        setInput(current);
-        String result = sendToParser();
-        printResult(result);
-        System.out.println("Entering while loop");
         while (sc.hasNextLine()) {
-            current = sc.nextLine();
+            String current = sc.nextLine();
             setInput(current);
-            result = sendToParser();
+            String result = sendToParser();
             printResult(result);
         }
         sc.close();
