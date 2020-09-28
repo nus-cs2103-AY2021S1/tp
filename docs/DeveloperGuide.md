@@ -236,44 +236,112 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is a college student
+* spends money mainly on food, transportation, social life and material goods
+* wants to keep track of his personal expenses
+* considers oneself as "tech-folk"
+* is familiar and comfortable with the command line
+* types fast
+* wants to set and keep to a budget
+* likes things that are fast and simple
+* is attached
+* pays for his own bills
+* is all for cashless
+* is cautious about digital security
+* prefers storing things digitally rather than on paper
+* likes flexibility/customization
+* plays games and likes achievements
+* is not earning income
+* is lazy enough to find a solution to manage his expenses for him
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage expenses faster and simpler than a typical mouse/GUI driven app
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                                                                 | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | user                                       | add a new expense                                                                                    |                                                                        |
+| `* * *`  | user                                       | delete an expense                                                                                    | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | set a budget                                                                                         | track if I am sticking to my financial goals                           |
+| `* * *`  | user                                       | top up a budget                                                                                      |                                                                        |
+| `* * *`  | user                                       | edit an expense                                                                                      |                                                                        |
+| `* *`    | organized person                           | categorise my expenditure                                                                            | better manage specific aspects of my spending                          |
+| `* *`    | new user                                   | use a help command                                                                                   | refer to instructions when I forget how to use the App                 |
+| `* *`    | cautious person                            | set a password for Bamboo                                                                            | keep my expenses private                                               |
+| `* *`    | user with many expenses                    | find expenses via date, keywords, or category                                                        | locate an expense easily                                               |
+| `* *`    | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting                             |
+| `*`      | meticulous user                            | track my saving progress to buy big ticket items                                                     | know how far away am I from the target                                 |
+| `*`      | user who likes to see progress             | use the progress tracker to motivate myself                                                          | keep working at saving up                                              |
+| `*`      | cautious person                            | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
+| `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
+| `stretch`| user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
+| `stretch`| forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            | 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the System is the Bamboo and the Actor is the user, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an expense**
+
+**Preconditions:** (Needed for v1.2.1)
+
+* User is logged in
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add an expense
+2. Bamboo adds the expense
+3. Bamboo shows the balance
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The given command format is invalid
+    * 1a1. Bamboo shows an error message
+      Use case ends.
+
+**Use case: Top-up budget**
+
+**Preconditions:** (Needed for v1.2.1)
+
+- User is logged in
+
+**MSS**
+
+1. User requests to top up budget by an amount he provides.
+2. Bamboo tops up the user's budget by the amount given by the user.
+3. Bamboo shows the balance.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. The given top-up value is invalid.
+    * 1a1. Bamboo shows an error message. 
+      Use case ends.
+
+**Use case: Delete an expense**
+
+**Preconditions:** (Needed for v1.2.1)
+
+* User is logged in
+
+**MSS**
+
+1. User requests to list expenses
+2. Bamboo shows a list of expenses
+3. User requests to delete a specific expense in the list
+4. Bamboo deletes the expense
+5. Bamboo shows the balance
+
+   Use case ends.
 
 **Extensions**
 
@@ -282,25 +350,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Bamboo shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit an expense**
 
-### Non-Functional Requirements
+**Preconditions:** (Needed for v1.2.1)
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+* User is logged in
 
-*{More to be added}*
+**MSS**
+
+1. User requests to list expenses
+2. Bamboo shows a list of expenses
+3. User requests to edit an expense with the new fields given
+4. Bamboo edits the expense
+5. Bamboo shows the new balance
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. Bamboo shows an error message
+      Use case ends
+* 3a. The given field value is invalid.
+    * 3a1. Bamboo shows an error message. 
+      Use case ends.
+
+### Non-Functional Requirement
+
+Project Constraints:
+
+* Product does not handle user's actual financial account
+* User input in the form of command line
+* System should be beginner-friendly
+* User's spending data should be saved in an external storage file
+* Storage file should be updated after each addition or update of spending data
+* Product is offered as an offline application
+
+Process Requirements:
+
+* Project is expected to adhere to the set Milestones.
+* User can execute actions using at most 1 command.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Expense**: A single instance of expenditure containing a description, amount spent, date, and category (coming soon). Expenses are subtracted from the user's **budget**.
+- **Budget**: The amount a user sets aside to spend.
+- **Budget Balance**: The amount of budget left after deducting all expenses.
 
 --------------------------------------------------------------------------------------------------------------------
 
