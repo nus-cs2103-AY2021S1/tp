@@ -79,7 +79,7 @@ public class CommonCents implements ReadOnlyCommonCents {
      * The account identity of {@code editedAccount} must not be the same as another
      * existing account in the money-tracker.
      */
-    public void setPerson(Account target, Account editedAccount) {
+    public void setAccount(Account target, Account editedAccount) {
         requireNonNull(editedAccount);
 
         accounts.setAccount(target, editedAccount);

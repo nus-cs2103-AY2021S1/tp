@@ -50,7 +50,7 @@ public class LogicManager implements Logic {
 
         try {
             // Since the model is modified previously, the current model is saved through the storage
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getCommonCents());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,7 +60,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+        return model.getCommonCents();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getCommonCentsFilePath();
     }
 
     @Override
