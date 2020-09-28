@@ -5,7 +5,7 @@
 
 ![Ui](docs/images/Ui.png)
 <br/>
-Are you still struggling with all the projects and modules? Do you want to have a sense of how much time you spent
+Are you still struggling with all your projects and modules? Do you want to have a sense of how much time you spent
 on each of them? PlaNus is here to help! By providing a clear data visualisation of various aspects of your project
 life, such as time spent, productivity and so on, PlaNus helps you to maintain a better work-life balance and plan
 better for choosing your future workloads!
