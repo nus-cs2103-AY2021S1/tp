@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.patient.exceptions.DuplicateNricException;
 import seedu.address.model.patient.exceptions.DuplicatePersonException;
 import seedu.address.model.patient.exceptions.PersonNotFoundException;
 
@@ -37,6 +38,14 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
+     * Returns true if the list contains an equivalent NRIC as the given argument.
+     */
+    public boolean containsNric(Nric nric) {
+        requireNonNull(nric);
+        return internalList.stream().map(patient -> patient.getNric()).anyMatch(nric::equals);
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
@@ -44,6 +53,9 @@ public class UniquePersonList implements Iterable<Patient> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
+        }
+        if (containsNric(toAdd.getNric())) {
+            throw new DuplicateNricException();
         }
         internalList.add(toAdd);
     }
@@ -63,6 +75,11 @@ public class UniquePersonList implements Iterable<Patient> {
 
         if (!target.isSamePerson(editedPatient) && contains(editedPatient)) {
             throw new DuplicatePersonException();
+        }
+
+        if (!target.getNric().equals(editedPatient.getNric())
+                && containsNric(editedPatient.getNric())) {
+            throw new DuplicateNricException();
         }
 
         internalList.set(index, editedPatient);
@@ -92,6 +109,9 @@ public class UniquePersonList implements Iterable<Patient> {
         requireAllNonNull(patients);
         if (!personsAreUnique(patients)) {
             throw new DuplicatePersonException();
+        }
+        if (!nricsAreUnique(patients)) {
+            throw new DuplicateNricException();
         }
 
         internalList.setAll(patients);
@@ -132,6 +152,20 @@ public class UniquePersonList implements Iterable<Patient> {
         for (int i = 0; i < patients.size() - 1; i++) {
             for (int j = i + 1; j < patients.size(); j++) {
                 if (patients.get(i).isSamePerson(patients.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code persons} contains only unique NRICs.
+     */
+    private boolean nricsAreUnique(List<Patient> patients) {
+        for (int i = 0; i < patients.size() - 1; i++) {
+            for (int j = i + 1; j < patients.size(); j++) {
+                if (patients.get(i).getNric().equals(patients.get(j).getNric())) {
                     return false;
                 }
             }
