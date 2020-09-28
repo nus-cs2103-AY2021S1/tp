@@ -97,7 +97,7 @@ Format: `tag [STATUS]`
 
 Example: `tag CLOSED` updates the tag status of this investigation case to “CLOSED”.
 
-#### Adding a document related to the case: `doc [TITLE]`
+#### Adding a document related to the case: `doc [TITLE] [RELATIVE FILEPATH]`
 Adds a new document that is related to the investigation case.
 
 Format: `doc [TITLE]`

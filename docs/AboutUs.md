@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Cody Chew
 
-<img src="images/cody.png" width="200px">
+<img src="images/codychew.png" width="200px">
 
 [[github](http://github.com/CodyChew)]
 [[portfolio](team/johndoe.md)]
