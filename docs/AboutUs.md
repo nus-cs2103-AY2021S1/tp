@@ -9,51 +9,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Zhia Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhiayang.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](http://github.com/zhiayang)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Technical Lead
+* Responsibilities: Command UI and Parser
 
-### Jane Doe
+### Seow Alex
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seowalex.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/seowalex)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Code quality/Integration

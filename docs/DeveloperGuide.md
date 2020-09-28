@@ -234,31 +234,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: People that cook daily, who need a way to manage recipes and their fridge contents.
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Manages recipes and fridge inventory/expiry, and automatically suggests recipes to cook.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a ...                              | I want to ...                                                                     | So that I can ...                                      |
+| -------- | ------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `* * *`  | person learning how to cook           | view my recipes                                                                   | not get the instructions wrong                         |
+| `* * *`  | forgetful home cook                   | record recipes that I learnt from my friends and television shows                 | try to cook them in the future                         |                                                                        |
+| `* * *`  | person that cannot decide             | select recipes to cook automatically based on the ingredients that i have         | eat a wider variety of meals                           |
+| `* *`    | home cook who buys a lot of groceries | Enter the long list of products that I have bought while referring to the receipt | I can easily enter a large number of groceries at once |
+| `* *`    | person on a diet                      | sort recipes based on calorie count                                               | choose to cook lower-calorie meals                     |
+| `*`      | busy mother                           | enter the list of recipes I want to cook for the week                             | find out which groceries I need to buy                 |
 
 ### Use cases
 
@@ -287,20 +279,127 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: U5 - List ingredients**
+
+**MSS:** 
+
+1. User chooses to view all ingredients.
+2. User inputs the command to request for the ingredients.
+3. FRMS shows the confirmation message and displays the complete list of ingredients.
+
+    Use case ends. 
+     
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters data according to the correct format.  
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+**Use case: U6 - Add Ingredient**
+
+**MSS:**
+
+1. User chooses to add an ingredient.
+2. User enters the details according to the format.
+3. FRMS displays a confirmation message with the new ingredient.
+
+**Extensions:**
+
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. FRMS detects a duplicate ingredient.
+    * 2b1. FRMS displays error messages.
+    * 2b2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+
+
+**Use case: U7 - Delete Ingredient**
+
+**MSS:**
+
+1. User chooses to delete an ingredient.
+2. User enters the details according to the format.
+3. FRMS displays a confirmation message.
+
+**Extensions:**
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. FRMS detects invalid input of ingredient name.
+    * 2b. FRMS displays error messages.
+    * 2b. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+
+
+
+
+**Use case: U8 - View expiring ingredients** 
+
+**MSS:**
+1. User chooses to view a list of expiring ingredients.
+2. User enters the date range.
+3. FMRS displays a filtered list of expiring ingredients.
+
+**Extensions:**
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. Filtered list does not contain any ingredients in the date range.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+
+**Use case: U9 - Filter ingredients**
+ 
+**MSS:**
+1. User chooses to view a list of filtered ingredients.
+2. User enters the filter conditions.
+3. FMRS displays a filtered list of ingredients.
+
+**Extensions:**
+
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. Filtered list does not contain any ingredients.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.      
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to add multiple recipes at once
+5. Should have autocompletion for commands
+6. Should be able to fuzzy search for recipes/food
+7. Should be able to manage recipes in a interactive manner (like Google Assistant)
+8. Should have input sanitisation
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS:** Latest version of Windows, MacOS or any Linux distro
+* **Recipe:** List of ingredients and steps needed to cook a dish
 
 --------------------------------------------------------------------------------------------------------------------
 
