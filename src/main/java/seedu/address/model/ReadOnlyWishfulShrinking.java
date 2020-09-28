@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
@@ -20,5 +21,10 @@ public interface ReadOnlyWishfulShrinking {
      * This list will not contain any duplicate ingredients.
      */
     ObservableList<Ingredient> getIngredientList();
+
+    /**
+     * Returns an unmodifiable view of the consumption list.
+     */
+    ObservableList<Consumption> getConsumptionList();
 
 }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
@@ -86,6 +87,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecipeList(Predicate<Recipe> predicate);
+
+    /**
+     * Eat the given recipe.
+     * The recipe must exist in the recipe Collection.
+     */
+    void addConsumption(Consumption target);
+
+    /** Returns an unmodifiable view of the filtered consumption list */
+    ObservableList<Consumption> getFilteredConsumptionList();
 
     /**
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the fridge.
