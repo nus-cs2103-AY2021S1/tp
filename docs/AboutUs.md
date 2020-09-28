@@ -9,19 +9,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Terence Ho Wei Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vielheim.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/vielheim)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Overall project coordination. Ensures team is on schedule.
 
 ### Wong Wen Wei Esmanda
 
-<img src="images/Esmanda.jpg" width="200px">
+<img src="images/esmanda3w.png" width="200px">
 
 [[github](http://github.com/esmanda3w)]
 [[portfolio](team/johndoe.md)]
@@ -38,22 +38,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Integration
 * Responsibilities: Reviewing of PRs, making sure code fits
 
-### Jean Doe
+### Ng Shuo Qi, Constance
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/constancensq.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/constancensq)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents.
 
-### James Doe
+### Cody Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cody.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/CodyChew)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Code Quality
+* Responsibilities: Looks after code quality,
+ensures adherence to coding standards, etc.
+
+<br>
+
+#### Jon Chua (Supervisor)
+
+#### Prof Damith (Lecturer)

@@ -236,71 +236,277 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* police investigators who require an organisational tool
+* has a need to manage a significant number of investigation cases
+* prefer a structured app to organise information related to their cases
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a basic understanding of file paths to manage his/her files
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:  
 
+A lot of detectives use physical folders, whiteboards to consolidate their investigation information. 
+This uses up a lot of physical resources such as printing papers. 
+There may also exist cluttered information across multiple cases. 
+This leads to disorganisation of evidence and documents during investigations, 
+which makes it difficult to link the investigation together. 
+Furthermore, physically looking through archive files can be time-consuming, and 
+they might miss out important information in the process.
+
+PIVOT can help to better organise investigation cases and 
+group the relevant information on a digital platform. 
+This helps investigators to manage and easily locate the required information. 
+It also links up relations between people for better visualisation of the case so that detectives will not miss any information.
+
+PIVOT can assist to manage investigation cases faster than a typical mouse/GUI driven app.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                             |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | investigator                               | create investigation cases with a relevant title                                  | store resources inside                                   |
+| `* * *`  | investigator                               | view the list of investigation cases stored in PIVOT                              |                                                          |
+| `* * *`  | investigator                               | indicate and see the state of different cases (e.g. closed/in-progress/cold case) | edit or see the statuses of my cases                     |
+| `* * *`  | investigator                               | add a description to an investigation case                                        | capture key information about the investigation case     |
+| `* * *`  | investigator                               | delete investigation cases                                                        | delete unwanted cases or cases that are wrongly created  |
+| `* * *`  | investigator                               | open investigation cases easily and view the files that are stored inside         | retrieve the necessary information for those who need it |
+| `* * *`  | investigator                               | add relevant documents to an investigation case                                   |                                                          |
+| `* * *`  | investigator                               | view the list of documents relevant to an investigation case                      |                                                          |
+| `* * *`  | investigator                               | delete irrelevant documents to an investigation case                              | remove outdated documents                                |
+| `* * *`  | investigator                               | view the list of suspects tied to an investigation case                           | refer to all suspects in an investigation case           |
+| `* * *`  | investigator                               | add a list of suspects tied to an investigation case                              |                                                          |
+| `* * *`  | investigator                               | delete suspects tied to an investigation case                                     | delete irrelevant suspects                               |
+| `* * *`  | investigator                               | view the list of witnesses tied to an investigation case                          | refer to all witnesses in an investigation case          |
+| `* * *`  | investigator                               | add a list of witnesses tied to an investigation case                             |                                                          |
+| `* * *`  | investigator                               | delete witnesses tied to an investigation case                                    | delete irrelevant witnesses                              |
+| `* * *`  | investigator                               | view the list of victims tied to an investigation case                            | refer to all victims in an investigation case            |
+| `* * *`  | investigator                               | add a list of victims tied to an investigation case                               |                                                          |
+| `* * *`  | investigator                               | delete victims tied to an investigation case                                      | delete irrelevant victims                                |
+| `* * *`  | investigator                               | close the application when I am done using it                                     | safely exit the application                              |
+
+
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PIVOT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add Investigation Case**
 
 **MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to create a new active investigation case and specifies a title
+2.  PIVOT adds the new investigation case
 
     Use case ends.
 
 **Extensions**
+* 1a. The title is empty.
+    * 1a1. PIVOT shows an error message.
+    
+	  Use case ends.
 
+**Use case: List Investigation Case**
+
+**MSS**
+1.  User requests to list investigation cases
+2.  PIVOT shows a list of investigation cases
+
+    Use case ends.
+
+**Use case: Delete Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to delete a specific investigation case in the list
+4. PIVOT deletes the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: Open Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT navigates to the specified investigation case page
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+
+**Use case: Tag Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User specifies an investigation case
+4. PIVOT navigates to the specified investigation case page
+5. User requests to tag the investigation case with specific tag
+6. PIVOT tags the investigation case with specified tag
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+      
+* 5a. The given tag is invalid.
+    * 5a1. PIVOT shows an error message.
+      
+      Use case resumes at step 5.
+
+**Use case: Add Description for an Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User specifies an investigation case
+4. PIVOT navigates to the specified investigation case page
+5. User requests to add a description to the investigation case
+6. PIVOT adds the description to the investigation case
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+      
+      Use case resumes at step 1.
+      
+* 5a. The given description is empty.
+    * 5a1. PIVOT shows an error message.
+      
+      Use case resumes at step 5.
+
+**Use case: Add Document to Investigation Case**
+
+**MSS**
+1. User requests to add a document to investigation case, specifies a document title and reference
+2. PIVOT adds a new document to the investigation case
+   
+   Use case ends.
+
+**Extensions**
+* 1a. The title is empty.
+    * 1a1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1b. The reference is empty.
+    * 1b1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+    
+* 1c. The reference is invalid.
+    * 1c1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
+
+**Use case: List Document related to Investigation Case**
+
+**MSS**
+1. User requests to list documents related to the case
+2. PIVOT shows a list of documents related to the case
+
+   Use case ends.
+
+**Use case: Delete Document from Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to delete a specific investigation case in the list
+4. PIVOT deletes the investigation case
+
+   Use case ends.
+
+**Extensions**
 * 2a. The list is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+      Use case resumes at step 1.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Open Document**
 
-      Use case resumes at step 2.
+**MSS**
+1. User requests to list documents
+2. PIVOT shows a list of documents
+3. User requests to open a specific document in the list
+4. PIVOT opens the specified document
 
-*{More to be added}*
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+* 4a. The specified document does not exist in the saved reference.
+    * 4a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should not take above 2 seconds to execute any command.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Investigation Case**: The investigation case encapsulating all relevant data the police wants to keep track of
+* **Investigation Case Tag**: The status of the case (Active/In-Progress, Closed, Cold Case)
+* **Document**: An actual document/file stored in the project directory
+* **Person**: Data stored in the investigation case (For suspects, witnesses or victims related)
+* **File Paths**: System Location of the specified file inside the project directory
 
 --------------------------------------------------------------------------------------------------------------------
 
