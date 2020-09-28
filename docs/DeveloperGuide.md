@@ -236,7 +236,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -251,49 +251,168 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | TA                                   | add/delete students to my list         | easily categorize them                 |
+| `* * *`  | TA                                       | add/delete modules               |                                                                        |
+| `* * *`  | TA                                       | rename a module                | correct any errors                                  |
+| `* * *`  | TA who needs to contact many students                                       | search a person by name or module          | get their contact details |
+| `* * *`    | TA managing many modules                                       | have a checklist of the things I want to do in each tutorial   | remember what I need to cover in each tutorial                |
+| `* * *`      | TA | save my data          | continue where I left off                                                 |
+| `* * *`      | TA | update a checklist of task such as deleting or marking a task as done          | know what to do and keep track of the tasks that have been done|
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Trackr shows a list of persons
+3.  User requests to add a specific person to the list
+4.  Trackr adds the person
+
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. Incorrect input format
+    
+   * 2a1. Tracker shows an error message
+   
+   Use Case resumes at 2
+
+
+
+
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Trackr shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Trackr deletes the person
 
-    Use case ends.
+   Use case ends.
+
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  Use case ends.
+ Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  * 3a1. Trackr shows an error message.
 
-      Use case resumes at step 2.
+     Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Loading a save file**
+
+**MSS**
+
+1. User launches the application
+2. Trackr attempts to read the save file
+3. Trackr successfully parses the save file and loads the lists of students on it
+4. User can start using the application
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. The save file is corrupted / in the wrong format
+
+  * 3a1. Trackr shows an error message
+  * 3a2. Trackr starts a new save file and overwrites the existing one
+    
+     Use case resumes at step 4.
+
+* 3b. The save file does not exist
+
+  * 3b1. Trackr creates a new save file
+
+     Use case resumes at step 4.
+
+
+
+**Use case: Search for a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Trackr shows a list of persons
+3.  User requests to search for a specific person in the list
+4.  Trackr displays the person
+
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. The list is empty.
+
+ Use case ends.
+
+* 3a. The given information is invalid.
+
+  * 3a1. Trackr shows an error message.
+  
+  Use case resumes at 1.
+
+
+**Use case: Add a checklist of task**
+
+**MSS**
+
+1.  User requests to list checklist of tasks
+2.  Trackr shows a list of tasks
+3.  User requests to add a specific task to the list
+4.  Trackr adds the task to the list
+
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. Incorrect input format
+    
+   * 2a1. Trackr shows an error message
+   
+   Use Case resumes at 2
+
+**Use case: Mark a task in the list as done**
+
+**MSS**
+
+1.  User requests to list checklist of tasks
+2.  Trackr shows a list of tasks
+3.  User requests to mark a specific task as done
+4.  Trackr marks the task as done
+   Use case ends.
+
+
+**Extensions**
+
+* 2a. Incorrect input format
+    
+   * 2a1. Trackr shows an error message
+   
+   Use Case resumes at 2
+
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 student details without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The data should be stored locally so the user would not require the Internet to access his data.
 
 *{More to be added}*
 
@@ -301,6 +420,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **TA**: Teaching Assistant 
+* **Modules**: University courses that students are enrolled in
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,16 +438,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+  1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+  1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -334,16 +455,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+  1. Test case: `delete 1`<br>
+     Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+  1. Test case: `delete 0`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -351,6 +472,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
