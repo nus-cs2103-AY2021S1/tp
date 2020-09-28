@@ -17,6 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.KeywordsContainIngredientPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
@@ -78,6 +80,8 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
+            System.out.println(result.getFeedbackToUser());
+            System.out.println(expectedCommandResult.getFeedbackToUser());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -124,5 +128,17 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredRecipeList().size());
     }
+    /**
+     * Updates {@code model}'s filtered list to show only the ingredient at the given {@code targetIndex} in the
+     * {@code model}'s fridge.
+     */
+    public static void showIngredientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredIngredientList().size());
 
+        Ingredient ingredient = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
+        final String[] splitName = ingredient.getValue().split("\\s+");
+        model.updateFilteredIngredientList(new KeywordsContainIngredientPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredIngredientList().size());
+    }
 }

@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.UniqueIngredientList;
 import seedu.address.model.recipe.UniqueRecipeList;
 
 /**
@@ -16,6 +18,8 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     private final UniqueRecipeList recipes;
 
+    private final UniqueIngredientList ingredients;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -25,6 +29,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
      */
     {
         recipes = new UniqueRecipeList();
+        ingredients = new UniqueIngredientList();
     }
 
     public WishfulShrinking() {}
@@ -48,12 +53,21 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     /**
+     * Replaces the contents of the ingredient list with {@code ingredients}.
+     * {@code ingredients} must not contain duplicate ingredients.
+     */
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients.setIngredients(ingredients);
+    }
+
+    /**
      * Resets the existing data of this {@code WishfulShrinking} with {@code newData}.
      */
     public void resetData(ReadOnlyWishfulShrinking newData) {
         requireNonNull(newData);
 
         setRecipes(newData.getRecipeList());
+        setIngredients(newData.getIngredientList());
     }
 
     //// recipe-level operations
@@ -93,6 +107,44 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
         recipes.remove(key);
     }
 
+    //// ingredient-level operations
+
+    /**
+     * Returns true if a ingredient with the same identity as {@code ingredient} exists in the fridge.
+     */
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredients.contains(ingredient);
+    }
+
+    /**
+     * Adds a ingredient to the fridge.
+     * The ingredient must not already exist in the fridge.
+     */
+    public void addIngredient(Ingredient i) {
+        ingredients.add(i);
+    }
+
+    /**
+     * Replaces the given ingredient {@code target} in the list with {@code editedIngredient}.
+     * {@code target} must exist in the fridge.
+     * The ingredient identity of {@code editedIngredient} must not be the same as another existing ingredient in the
+     * fridge.
+     */
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) {
+        requireNonNull(editedIngredient);
+
+        ingredients.setIngredient(target, editedIngredient);
+    }
+
+    /**
+     * Removes {@code key} from this {@code WishfulShrinking}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeIngredient(Ingredient key) {
+        ingredients.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +156,11 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     @Override
     public ObservableList<Recipe> getRecipeList() {
         return recipes.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getIngredientList() {
+        return ingredients.asUnmodifiableObservableList();
     }
 
     @Override
