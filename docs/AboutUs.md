@@ -11,7 +11,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ### Le Hue Man
 
-<img src="images/man-maxx.png" width="200px">
+<img src="images/lettuceman4.png" width="200px">
 
 [[github](https://github.com/lettuceman4)]
 [[portfolio](team/man-cv.pdf)]
@@ -21,7 +21,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ### Cheok Su Anne
 
-<img src="images/suanne.png" width="200px">
+<img src="images/cheoksuanne.png" width="200px">
 
 [[github](https://github.com/cheoksuanne)]
 [[portfolio](team/johndoe.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ### Lim Zi Yang
 
-<img src="images/ziyangs-carry.png" width="200px">
+<img src="images/Ziyang-98.png" width="200px">
 
 [[homepage](https://limziyang.com/)]
 [[github](http://github.com/Ziyang-98)]
@@ -52,7 +52,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ### Jordan Yoong
 
-<img src="images/jordan.png" width="200px">
+<img src="images/jordanyoong.png" width="200px">
 
 [[github](http://github.com/jordanyoong)]
 [[portfolio](https://jordanyoong.github.io/cv/experience.html)]
