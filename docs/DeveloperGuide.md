@@ -375,8 +375,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2.  Should be able to hold up to 30 projects and 150 members without noticeable slugglishness in performance.
+3.  Can functional without an internet connection.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
+should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
@@ -384,7 +386,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Member**: A person belonging to a member of a team leader's team.
-* **Project**: A project with a deadline, tasks, and members allocated to those tasks
+* **Task**: Something that has to be done with relation to a project to complete it.
+* **Project**: A project with a deadline, tasks, and members allocated to those tasks.
 
 --------------------------------------------------------------------------------------------------------------------
 
