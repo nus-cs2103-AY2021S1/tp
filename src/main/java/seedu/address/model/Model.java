@@ -94,6 +94,13 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given flashcard {@code target} with {@code editedFlashcard}.
+     * {@code target} must exist in the address book.
+     * The Flashcard of {@code editedFlashcard} must not be the same as another existing Flashcard in the address book.
+     */
+    void setFlashcard(Flashcard target, Flashcard editedFlashcard);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

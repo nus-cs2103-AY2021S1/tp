@@ -157,6 +157,11 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
+        public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -24,6 +24,9 @@ public class OpenEndedQuestion implements Question {
         return question;
     }
 
+    public String getOnlyQuestion() {
+        return question;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
