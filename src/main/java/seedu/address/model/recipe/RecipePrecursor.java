@@ -13,6 +13,15 @@ public class RecipePrecursor {
     private final ProductQuantity productQuantity;
     private final String description;
 
+    /**
+     * Constructor for {@code RecipePrecursor}.
+     *
+     * @param id ID of RecipePrecursor.
+     * @param ingredientPrecursors ingredientPrecursors used in recipe.
+     * @param productName Name of product produced by the recipe.
+     * @param productQuantity Quantity of product produced by the recipe.
+     * @param description Description of recipe.
+     */
     public RecipePrecursor(int id, List<IngredientPrecursor> ingredientPrecursors, String productName,
                            ProductQuantity productQuantity, String description) {
         requireAllNonNull(id, ingredientPrecursors, productName, productQuantity, description);
