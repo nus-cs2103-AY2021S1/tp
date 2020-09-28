@@ -38,6 +38,20 @@ public class Recipe {
         idCounter++;
     }
 
+    /**
+     * Creates a deleted recipe.
+     */
+    public Recipe(int id, IngredientList ingredients, int productId, String productName,
+        ProductQuantity productQuantity, String description) {
+        this.id = id;
+        this.ingredients = ingredients;
+        this.productId = productId;
+        this.productName = productName;
+        this.productQuantity = productQuantity;
+        this.description = description;
+        this.isDeleted = true;
+    }
+
     public static int getIdCounter() {
         return idCounter;
     }
@@ -71,6 +85,13 @@ public class Recipe {
 
     public boolean isDeleted() {
         return isDeleted;
+    }
+
+    /**
+     * Returns a deleted form of the same recipe.
+     */
+    public Recipe delete() {
+        return new Recipe(id, ingredients, productId, productName, productQuantity, description);
     }
 
     /**

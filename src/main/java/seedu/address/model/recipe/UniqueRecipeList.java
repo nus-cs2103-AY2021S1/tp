@@ -79,6 +79,21 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         }
     }
 
+    /**
+     * Deletes the equivalent recipe from the list, sets deleted flag to true.
+     * The recipe must exist in the list.
+     */
+    public void delete(Recipe toDelete) {
+        requireNonNull(toDelete);
+        System.out.println(1);
+        if (!internalList.contains(toDelete)) {
+            throw new RecipeNotFoundException();
+        }
+        Recipe toAdd = toDelete.delete();
+        remove(toDelete);
+        add(toAdd);
+    }
+
     public void setRecipes(UniqueRecipeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

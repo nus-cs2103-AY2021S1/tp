@@ -93,6 +93,14 @@ public class RecipeList implements ReadOnlyRecipeList {
         recipes.remove(key);
     }
 
+    /**
+     * Deletes {@code recipe} from this {@code RecipeList}.
+     * {@code recipe} must exist in the recipe list.
+     */
+    public void deleteRecipe(Recipe recipe) {
+        recipes.delete(recipe);
+    }
+
     //// util methods
 
     @Override
@@ -117,4 +125,6 @@ public class RecipeList implements ReadOnlyRecipeList {
     public int hashCode() {
         return recipes.hashCode();
     }
+
+
 }

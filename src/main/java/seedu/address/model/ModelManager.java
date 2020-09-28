@@ -224,7 +224,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteRecipe(Recipe target) {
-        recipeList.removeRecipe(target);
+        recipeList.deleteRecipe(target);
     }
 
     @Override
