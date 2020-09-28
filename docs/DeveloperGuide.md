@@ -236,42 +236,91 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* team leader managing software projects
+* has a growing number of projects and team members to manage
+* prefer desktop apps over mobile apps 
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is tech-savvy and reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage projects, team members, and tasks on a unified platform as opposed to scattered on
+ different messaging platforms
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new project               |                                                                        |
-| `* * *`  | user                                       | delete a project                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a project by name          | locate details of projects without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many projects in the main catalogue | sort projects by name           | locate a project easily                                                 |
+| `* * *`  | project team leader                        | see tasks assigned to members  | better know the progress of my team                                    |
+| `* * *`  | project team leader                        | add a project                  |                      |
+| `* *`  | project team leader                        | view projects of a member      | assess a specific member's workload |
+| `* *`    | project team leader                | view a dashboard of my project   | see at a glance what needs to be done for a project               |
+| `* * *`      | forgetful user | add in members' information           | keep track of my members' contact information                                                 |
+| `* * *`    | fast typing user               | use a Command line type Interface   | have higher efficiency when managing my team's workload               |
 
-*{More to be added}*
+*(More to be added)*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MainCatalogue` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Taskmania` program and the **Actor** is the `user`, unless specified
+ otherwise)
+ 
+ (A member refers a member of a team in one of the projects managed by the team leader( `user` ))
 
-**Use case: Delete a project**
+#### **Use case: Delete a project**
 
 **MSS**
 
 1.  User requests to list projects
-2.  MainCatalogue shows a list of projects
-3.  User requests to delete a specific project in the list
-4.  MainCatalogue deletes the project
+2.  Taskmania shows a list of projects
+3.  User requests to delete a specific project in the list using the index of the project in the list
+4.  Taskmania deletes the project
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. MainCatalogue shows an error message.
+
+      Use case resumes at step 2.
+      
+#### **Use case: Add a project**
+
+**MSS**
+
+1.  User requests to add a new project to Taskmania.
+2.  Taskmania adds the project.
+3.  Taskmania displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User input for project attributes are incorrect.
+  *2a1. Taskmania displays an error message.
+  *2a2. Taskmania requests user to try again with correct values.  
+  
+  Use case resumes at step 1
+
+  Use case ends.
+
+**Use case: Edit a project**
+
+**MSS**
+
+1.  User requests to list projects
+2.  Taskmania shows a list of projects
+3.  User requests to edit a specific project in the list using the index of the project in the list, providing the
+ fields to change
+4.  Taskmania edits the project
+5. Taskmania displays a success message.
 
     Use case ends.
 
@@ -283,15 +332,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. MainCatalogue shows an error message.
+    * 3a1. Taskmania shows an error message.
 
       Use case resumes at step 2.
+      
+ * 3b The given input by user is invalid.
+ 
+   * 3b1. Taskmania shows an error message.
+   
+     Use case resumes at step 2.
+     
+     
+**Use case: Add a member to a project**
 
-*{More to be added}*
+**MSS**
+
+1.  User requests to list projects.
+2.  Taskmania shows a list of projects.
+3.  User requests to open a project using an index
+4.  Taskmania opens the project
+5.  User requests to add a member to the project
+6. Taskmania adds teammate to the project
+
+    Use case ends.
+
+**Extensions**
+      
+ * 4a The given index is not valid
+ 
+   * 4a1. Taskmania shows an error message.
+   
+     Use case resumes at step 3.
+     
+ * 5a The given input for member's attributes are not valid
+ 
+   * 5a1. Taskmania shows an error message, showing appropriate input for adding a new member
+   
+     Use case resumes at step 4.
+
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
@@ -299,8 +382,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Member**: A person belonging to a member of a team leader's team.
+* **Project**: A project with a deadline, tasks, and members allocated to those tasks
 
 --------------------------------------------------------------------------------------------------------------------
 
