@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jargonx.png" width="200px">
 
-[[github](http://github.com/jargonx)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jargonx)]][[portfolio](team/johndoe.md)]
 
 * Role: Integration
 * Responsibilities: Reviewing of PRs, making sure code fits
