@@ -2,7 +2,8 @@ package tp.cap5buddy.parser;
 
 import java.util.Scanner;
 
-import tp.cap5buddy.commands.ResultCommand;
+import tp.cap5buddy.commands.Command;
+import tp.cap5buddy.parser.exception.ParseException;
 
 
 /**
@@ -28,24 +29,27 @@ public class ParserManager {
      * @param input user input.
      * @return String result message.
      */
-    public String parse(String input) {
+    public Command parse(String input) throws ParseException {
         this.currentInput = input;
         getCommand();
         getNonCommand();
         Tokenizer token = new Tokenizer(this.nonCommand);
         String[] words = token.getWords();
-        ResultCommand result;
+        Parser parser;
+        //ResultCommand result;
 
         switch (this.command) {
         case "addmodule":
-            AddModuleParser parser = new AddModuleParser();
-            parser.parse(words);
-            result = parser.execute();
-            break;
+            //command = parser.parse(words);
+            //result = command.execute();
+            parser = new AddModuleParser();
+            return parser.parse(input);
+        case "addzoom":
+            parser = new AddZoomLinkParser();
+            return parser.parse(input);
         default:
-            result = new ResultCommand("Nothing happens");
+            throw new ParseException("Invalid command");
         }
-        return result.getMessage();
     }
 
     private void getCommand() {

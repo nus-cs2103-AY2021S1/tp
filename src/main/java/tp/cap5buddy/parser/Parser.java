@@ -1,12 +1,14 @@
 package tp.cap5buddy.parser;
 
-import tp.cap5buddy.commands.ResultCommand;
+import tp.cap5buddy.commands.Command;
 
 /**
  * Represents the super class of all Parser commands.
  */
 public abstract class Parser {
 
-    public abstract ResultCommand execute();
+    public abstract Command parse(String userInput);
+
+    // public abstract ResultCommand execute();
 }
 

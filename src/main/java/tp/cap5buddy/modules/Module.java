@@ -5,16 +5,16 @@ package tp.cap5buddy.modules;
  */
 public class Module {
     private final String name;
-    private final String link;
+    private final String zoomLink;
 
     /**
      * Represents the module object constructor.
      * @param name name of module
-     * @param link zoom link attached to module
+     * @param zoomLink zoom link attached to module
      */
-    public Module(String name, String link) {
+    public Module(String name, String zoomLink) {
         this.name = name;
-        this.link = link;
+        this.zoomLink = zoomLink;
     }
 
     /**
@@ -23,7 +23,7 @@ public class Module {
      */
     public Module(String name) {
         this.name = name;
-        this.link = null;
+        this.zoomLink = null;
     }
 
     /**
@@ -39,15 +39,15 @@ public class Module {
      * @return String zoom link.
      */
     public String getLink() {
-        return this.link;
+        return this.zoomLink;
     }
 
     /**
-     * Sets the zoom link for that module.
-     * @param link zoom link.
-     * @return Module a new Module.
+     * Adds the zoom link for this module.
+     * @param zoomLink zoom link.
+     * @return Module a new Module with the input zoom link.
      */
-    public Module setLink(String link) {
-        return new Module(this.getName(), link);
+    public Module addZoomLink(String zoomLink) {
+        return new Module(this.getName(), zoomLink);
     }
 }
