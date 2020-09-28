@@ -97,6 +97,10 @@ public class UniquePersonList implements Iterable<Patient> {
         internalList.setAll(patients);
     }
 
+    public int count() {
+        return internalList.size();
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

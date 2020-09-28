@@ -23,7 +23,7 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_NRIC = BENSON.getNric().nric;
+    private static final String VALID_NRIC = BENSON.getNric().value;
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
@@ -63,7 +63,7 @@ public class JsonAdaptedPatientTest {
     @Test
     public void toModelType_nullNric_throwsIllegalValueException() {
         JsonAdaptedPatient person = new JsonAdaptedPatient(VALID_NAME, null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
