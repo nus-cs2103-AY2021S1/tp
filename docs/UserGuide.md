@@ -47,7 +47,7 @@ HelloFile is a desktop app for managing files, optimised for use via a Command L
 
 Shows a command's usage and format, if no command is specified, show help for all commands.
 
-Format: `help [COMMAND]`
+Format: `help [c/COMMAND]`
 
 ### Adding a tag with filepath : `tag`
 
@@ -88,12 +88,12 @@ Examples:
 
 Renames the tag of the file with a new tag.
 
-Format: `retag t/OLD_TAG t/NEW_TAG`
+Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 
 * The command is case-sensitive. e.g `notes` will not match `Notes`
 
 Examples:
-* `retag t/notes t/secret`
+* `retag o/notes t/secret`
 
 ### Listing all tags : `ls`
 
