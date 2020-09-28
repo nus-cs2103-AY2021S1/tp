@@ -3,7 +3,7 @@ package tp.cap5buddy.commands;
 /**
  * Represents that command the stores the success or failure message.
  */
-public class ResultCommand extends Command {
+public class ResultCommand {
     private String result;
 
     /**

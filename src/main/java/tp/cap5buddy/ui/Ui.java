@@ -1,9 +1,11 @@
 package tp.cap5buddy.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.parser.ParserManager;
-
+import tp.cap5buddy.parser.exception.ParseException;
 
 
 /**
@@ -35,8 +37,8 @@ public class Ui {
      * Sends the user input to the parser to be executed.
      * @return String the result message of the user command.
      */
-    private String sendToParser() {
-        return pm.parse(this.currentInput);
+    private String sendToParser() throws ParseException {
+        return pm.parse(this.currentInput).execute(new ModuleList(new ArrayList<>())).getMessage();
     }
 
     /**
@@ -50,7 +52,7 @@ public class Ui {
     /**
      * Starts the scanning of user input.
      */
-    public void startScanner() {
+    public void startScanner() throws ParseException {
         printResult(Messages.getStart());
         while (sc.hasNextLine()) {
             String current = sc.nextLine();
