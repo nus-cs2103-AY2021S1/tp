@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/lucastai98)]
 
-[[portfolio](team/geniaaz.md)]
+[[portfolio](team/lucastai98.md)]
 
 * Role: Project Member
 * Responsibilities: Developer

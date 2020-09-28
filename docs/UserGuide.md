@@ -95,8 +95,20 @@ Examples: `start 2` Initialises the second project in the project list.
 
 ## **Features** after project initialisation
 
+### Task-related features
 
+#### Checking the project dashboard `dashboard `
+Shows a summary of the important information regarding the project.
 
+Format: `dashboard`
+
+#### Viewing tasks allocated to a team member `view `
+Displays a list of tasks allocated to the specified members.
+
+Format: `view NAME`
+- NAME refers to the name of the team member when it was first input during project creation.
+
+Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
 
 --------------------------------------------------------------------------------------------------------------------
 
