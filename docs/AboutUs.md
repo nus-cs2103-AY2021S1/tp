@@ -29,14 +29,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time.
 
-### Johnny Doe
+### Neil Gupta
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jargonx.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jargonx)]][[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Integration
+* Responsibilities: Reviewing of PRs, making sure code fits
 
 ### Ng Shuo Qi, Constance
 
