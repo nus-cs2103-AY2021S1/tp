@@ -28,7 +28,6 @@ public class AddZoomLinkCommand extends Command {
      */
     @Override
     public ResultCommand execute(ModuleList moduleList) {
-        System.out.println(moduleList.size());
         Module module = moduleList.getModule(this.moduleName);
         module.addZoomLink(this.zoomLink);
         return new ResultCommand(this.zoomLink + SUCCESS_MESSAGE + this.moduleName);
