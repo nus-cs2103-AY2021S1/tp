@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -33,7 +34,10 @@ public class CommandTestUtil {
     public static final String VALID_ANSWER_AMY = "11111111";
     public static final String VALID_ANSWER_BOB = "22222222";
     public static final String VALID_ANSWER_KEV = "11112222";
-
+    public static final String VALID_OPTION_ALICE = "1";
+    public static final String VALID_OPTION_AMY = "23";
+    public static final String VALID_OPTION_BOB = "555";
+  
     public static final String CHOICE_DESC = " " + PREFIX_CHOICE + "First" + " "
             + PREFIX_CHOICE + "Second" + " " + PREFIX_CHOICE + "Third" + " "
             + PREFIX_CHOICE + "Fourth";
@@ -43,10 +47,15 @@ public class CommandTestUtil {
     public static final String ANSWER_DESC_ALICE = " " + PREFIX_ANSWER + VALID_ANSWER_ALICE;
     public static final String ANSWER_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_AMY;
     public static final String ANSWER_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_BOB;
+    public static final String OPTION_DESC_ALICE = " " + PREFIX_OPTION + VALID_OPTION_ALICE;
+    public static final String OPTION_DESC_AMY = " " + PREFIX_OPTION + VALID_OPTION_AMY;
+    public static final String OPTION_DESC_BOB = " " + PREFIX_OPTION + VALID_OPTION_BOB;
 
     // empty string not allowed for addresses
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + " ";
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER + " ";
+    public static final String INVALID_OPTION_DESC = " " + PREFIX_OPTION + " ";
+    public static final String INVALID_OPTION_NON_ALPHANUMERIC_DESC = " " + PREFIX_OPTION + "abc";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

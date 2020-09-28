@@ -24,8 +24,8 @@ public class FlashcardUtil {
      */
     public static String getFlashcardDetails(Flashcard flashcard) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_QUESTION + flashcard.getQuestion().getQuestion() + " ");
-        sb.append(PREFIX_ANSWER + flashcard.getAnswer().getAnswer() + " ");
+        sb.append(PREFIX_QUESTION + flashcard.getQuestion().toString() + " ");
+        sb.append(PREFIX_ANSWER + flashcard.getAnswer().toString() + " ");
 
         return sb.toString();
     }

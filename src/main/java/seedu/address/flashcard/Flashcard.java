@@ -44,7 +44,7 @@ public class Flashcard {
      * @param userAnswer the user's answer.
      * @return {@code true} if the user's answer is equal to the actual answer.
      */
-    public boolean checkAnswer(String userAnswer) {
+    public boolean checkAnswer(Answer userAnswer) {
         return answer.checkAnswer(userAnswer);
     }
 
@@ -87,6 +87,5 @@ public class Flashcard {
                     && other.getQuestion().equals(getQuestion());
         }
         return false;
-
     }
 }
