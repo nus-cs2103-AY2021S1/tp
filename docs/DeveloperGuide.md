@@ -236,35 +236,39 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Tech savvy NUS Computer Science Student
+* has a need to manage a significant number of files
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: CS students can manage/access their files by typing
+                       and using a simple GUI. Help CS students to see file relations easily.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                        |
+| -------- | ---------------------------------------------------------------| ------------------------------------------------------| ----------------------------------------------------------|
+| `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                             |
+| `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                  |
+| `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                          |
+| `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                          |
+| `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident   |
+| `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                    |
+| `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                  |
+| `*`      | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files             |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HelloFile` and the **Actor** is the `user`, unless specified otherwise)
 
 <br />
+
 
 **Use case ID: UC01**
 
@@ -277,31 +281,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile creates the tag and display the fileInfo.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. HelloFile detects the file path is invalid.
 
     * 2a1. HelloFile prompts the user that the file path is wrong.
-    
+
         Use case resumes from step 1.
-        
+
 * 2b. HelloFile detects no tag input.
 
     * 2b1. HelloFile prompts the user for a tag.
-    
+
         Use case resumes from step 1.
-        
+
 * 2c. HelloFile detects a duplicate tag name.
 
-	* 2c1. HelloFile prompts the user for another tag name. 
-	
+    * 2c1. HelloFile prompts the user for another tag name.
+
         Use case resumes from step 1.
-        
+
 * *a. HelloFile has no permission to read or write to the file system.
 
     * *a1. HelloFile prompts the user that it needs the read and write permission.
-    
+
         Use case resumes.
 
 <br />
@@ -312,42 +316,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
+
 1. User requests to open a file using a tag.
 2. HelloFile recognises the tag to be valid.
 3. HelloFile opens the specified file using the default application.
-        
+
     Use case ends.
-        
+
 **Extension**
 
 * 2a. HelloFile detects that the tag is invalid.
 
 	* 2a1. HelloFile prompts the user that the tag is wrong.
-	
+
         Use case resumes from step 1.
-        
+
 * 3a. HelloFile detects that the target file does not exist.
-		
+
 	* 3a1. HelloFile prompts that the target file does not exist.
-		
+
         Use case resumes from step 1.
-		    
+
 * 3b. HelloFile detects no default application to open the file.
-	
+
 	* 3b1. HelloFile prompts the user to choose an application to open the file.
-		
+
 	    Use case resumes form step 1.
-		    
+
 * 3c. HelloFile encounters an exception when opening the file.
-	
+
 	* 3c1. HelloFile shows the error message.
-		
+
 	    Use case resumes from step 1.
-		    
+
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+
 	    Use case resumes.
 
 <br />
@@ -362,32 +367,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. HelloFile replaces the tag of the file with the new tag.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. HelloFile failed to recognize the tag.
 
 	* 2a1. HelloFile prompts that tag does not exist.
-	
+
     	Use case resumes from step 1
-    	
+
 * 2b. HelloFile failed to recognize the new tag input.
 
     * 2b1. HelloFile prompts that the new tag is invalid.
-    
+
         Use case resumes from step 1. 
-        
+
 * 2c. HelloFile detects a duplicate tag name.
 
 	* 2c1. HelloFile prompts the user for another tag name. 
-	
+
         Use case resumes from step 1.
-        
+
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+
 	    Use case resumes.
+
 
 <br />
 
@@ -402,21 +408,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile removes the file from access.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. HelloFile fails to recognize the tag.
 
 	* 2a1. HelloFile shows the error message.
-	
+
 	    Use case resumes from step 1.
-	    
+
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+		
         Use case resumes.
-
+        
+        
 <br />
 
 **UseCase ID: UC05**
@@ -430,25 +437,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile shows the path of the file.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. HelloFile failed to recognize the tag.
 
 	* 2a1. HelloFile prompts the user that the tag is wrong.
-	
+
         Use case resumes from step 1.
-        
+
 * 3a. HelloFile detects that the target file does not exist.
 
 	* 3a1. HelloFile prompts that the target file does not exist.
-		
+
         Use case resumes from step 1.
-		    
+
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
+
 	    Use case resumes.
 
 <br />
@@ -464,38 +471,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. HelloFile open the parent folder with the tag.
 
     Use case ends.
-    
+
 **Extension**
 
 * 2a. HelloFile detects that the tag is invalid.
 
 	* 2a1. HelloFile prompts the user that the tag is wrong.
-	
+
         Use case resumes from step 1.
-        
+
 * 3a. HelloFile detects that the target file does not exist.
-	
+
 	* 3a1. HelloFile prompts that the target file does not exist.
-		
+
 	    Use case resumes from step 1.
-		
+
 * 3b. HelloFile detects no default application to open the file.
-	
+
 	* 3b1. HelloFile prompts the user to choose an application to open the file.
-		
+
         Use case resumes form step 1.
-		
+
 * 3c. HelloFile encounters an exception when opening the file.
-	
+
 	* 3c1. HelloFile shows the error message.
-		
+
 		Use case resumes from step 1.
-		
+
 * *a. HelloFile has no permission to read or write to the file system.
 
 	* *a1. HelloFile prompts the user that it needs the read and write permission.
-	
-	    Use case resumes.
+
+        Use case resumes.
 
 <br />
 
@@ -512,27 +519,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* *a. User input the wrong command.
-	
-	* *a1. HelloFile shows the error message and direct the user to enter the user help command.
-	
-	    Use case ends.
 
+* *a. User input the wrong command
+
+	* *a1. HelloFile shows the error message and direct the user to enter the user help command.
+
+	    Use case ends.
+<br />
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Should be able to hold up to 1000 tags without sluggishness longer than 5 seconds.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The source code should be open source.
+5. The application should be usable by a tech-savvy NUS CS student who has never used a similar file management system before.
+6. The user interface should be simple and optimized for CLI power users.
+7. The product is offered as a free application.
+8. 99% of the functions are bug free.
+9. The code base should be well documented and populated with ample assertions.
+
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A string that will be mapped to a file path
+* **UI**: User interface
+* **CLI**: Command line interface
+* **GUI**: Graphical user interface
+* **Relative File Path**: A path that is relative to a current directory, it is combined with another file path to access a file.
+* **Absolute File Path**: The complete details required to locate the file or folder, starting with the root element.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -544,6 +564,7 @@ Given below are instructions to test the app manually.
 testers are expected to do more *exploratory* testing.
 
 </div>
+
 
 ### Launch and shutdown
 
