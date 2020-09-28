@@ -280,7 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `PropertyFree` and the **Actor** is the `Real Estate Agent`, unless specified otherwise)
 
-**1. Use case: Delete a property**
+**1. Use case: Delete a property form the list of properties**
 
 **MSS**
 
