@@ -19,3 +19,6 @@ Example usages:
 * The name “ChopChop” comes from a Cantonese phrase that means to “hurry up”, reflecting the speed in which users can use our application to manage their recipes. It’s also related to the act of chopping, a common action in the kitchen.
 * For the detailed documentation of this project, see the Address Book Product Website.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+
+For more information, check out **[ChopChop Product Website](https://ay2021s1-cs2103t-t10-3.github.io/tp/)** 
