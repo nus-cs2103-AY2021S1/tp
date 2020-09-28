@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Panel containing the list of tasks.
@@ -18,23 +18,23 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Task> taskListView;
 
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Person> personList) {
+    public TaskListPanel(ObservableList<Task> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        taskListView.setItems(personList);
+        taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code TaskCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class TaskListViewCell extends ListCell<Task> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
+        protected void updateItem(Task person, boolean empty) {
             super.updateItem(person, empty);
 
             if (empty || person == null) {
