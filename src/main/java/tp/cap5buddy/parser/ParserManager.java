@@ -2,19 +2,31 @@ package tp.cap5buddy.parser;
 
 import java.util.Scanner;
 
+/**
+ * Represents the manager that handles all parser related actions and requests.
+ */
 public class ParserManager {
-    private String current_Input;
+    private String currentInput;
     private String command;
     private String nonCommand;
     private int count;
+
+    /**
+     * Represents the constructor that creates the manager object.
+     */
     public ParserManager() {
-        this.current_Input = null;
+        this.currentInput = null;
         this.command = null;
         this.nonCommand = null;
     }
 
+    /**
+     * Returns the String of the result after parsing the input.
+     * @param input user input.
+     * @return String result message.
+     */
     public String parse(String input) {
-        this.current_Input = input;
+        this.currentInput = input;
         getCommand();
         getNonCommand();
         return this.command + " Non: " + this.nonCommand;
@@ -22,7 +34,7 @@ public class ParserManager {
 
     private void getCommand() {
         String command = "";
-        Scanner sc = new Scanner(this.current_Input);
+        Scanner sc = new Scanner(this.currentInput);
         while (sc.hasNext()) {
             String now = sc.next();
             if (Prefix.isPrefix(now)) {
@@ -37,9 +49,9 @@ public class ParserManager {
 
     private void getNonCommand() {
         String nonCommand = "";
-        String[] input = this.current_Input.split(" ");
+        String[] input = this.currentInput.split(" ");
         int limit = input.length;
-        for(int i = this.count; i < limit; i++) {
+        for (int i = this.count; i < limit; i++) {
             nonCommand += input[i] + " ";
         }
         this.nonCommand = nonCommand;

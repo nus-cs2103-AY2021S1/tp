@@ -15,19 +15,24 @@ public class Prefix {
         return this.prefix;
     }
 
+    /**
+     * Checks if the given word contains a prefix.
+     * @param word word to check.
+     * @return boolean is prefix or not.
+     */
     public static boolean isPrefix(String word) {
         String possiblePrefix = "" + word.charAt(0) + word.charAt(1);
         boolean res = false;
         switch (possiblePrefix) {
-            case "n/":
-                res = true;
-                break;
-            case "l/":
-                res = true;
-                break;
+        case "n/":
+            res = true;
+            break;
+        case "l/":
+            res = true;
+            break;
 
-            default:
-                res = false;
+        default:
+            res = false;
         }
         return res;
     }
