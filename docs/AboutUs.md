@@ -7,15 +7,16 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ## Project team
 
-### Audrey Felicio Anwar
+### Amy Lim Zhi Ting
 
-<img src="images/audreyfelicio.png" width="200px">
+<img src="images/amylzting.png" width="200px">
 
-[[github](https://github.com/AudreyFelicio)]
-[[portfolio](team/audrey.md)]
+[[github](https://github.com/amylzting)]
+[[portfolio](team/amy.md)]
 
 * Role: Developer
-* Responsibilities: Team repository manager, main PR reviewer, Overall program structure.
+* Responsibilities: Documentation manager - Responsible for the quality of
+project documents, Coding standards, format of deliverables
 
 ### Ang Kai Chao
 
@@ -27,6 +28,17 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Team Leader, Overall code quality, Testing
 
+### Audrey Felicio Anwar
+
+<img src="images/audreyfelicio.png" width="200px">
+
+[[github](https://github.com/AudreyFelicio)]
+[[portfolio](team/audrey.md)]
+
+* Role: Developer
+* Responsibilities: Team repository manager, main PR reviewer, Overall program structure.
+
+
 ### Lau Jun Hao Ashley
 
 <img src="images/ashley-lau.png" width="200px">
@@ -37,3 +49,14 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Scheduling and tracking manager - In charge of defining, assigning, and tracking project tasks.
 
+
+### Lim Ze Wei Dennis
+
+<img src="images/dennis_profile.jpg" width="200px">
+
+[[github](https://github.com/LimZeWeiDennis)]
+[[portfolio](team/dennis.md)]
+
+* Role: Developer
+* Responsibilities: Deadline and Deliverables manager - in charge of making sure that 
+members completes tasks and submit deliverables on time
