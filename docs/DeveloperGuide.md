@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](CAP5BUDDY.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ This section describes some noteworthy details on how certain features are imple
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * Users can keep track of all module details efficiently.
 * Centralize key module details.
 * Keep track of study progress effectively.
@@ -198,7 +198,7 @@ Use case ends.
   * 2a1. CAP5BUDDY displays an error message.
   * 2a2. User enters the correct data.
   Use case resumes at step 1.
-  
+
 **Use case: Calculate Cumulative Average Point(CAP)**
 
 **MSS**
@@ -213,21 +213,21 @@ Use case ends.
 * 2a. One or more modules do not contain details of grade point or credits.
 
   * 2a1. CAP5BUDDY displays an error message.
-  
+
   * 2a2. User enters required data.
-  
+
   Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
   Use case resumes at step 2.
 
 * 3a. One or more modules contain invalid details of grade point or credits.
 
   * 3a1. CAP5BUDDY displays an error message.
-  
+
   * 3a2. User enters valid data.
-  
+
   Steps 2a1-2a2 are repeated until the data requirements are fulfilled.<br>
   Use case resumes at step 2.
-  
+
   *{More to be added}*
 
 **Use case: Add a task to todo list**
@@ -247,11 +247,11 @@ Use case ends.
 
   * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
   * 3a2. User enters the information with the correct format.
-  
+
   Use case resumes at step 4
-  
+
   *{More to be added}*
-  
+
 **Use case: Delete a task in the todo list**
 
 **MSS**
@@ -266,12 +266,12 @@ Use case ends.
 
 **Extensions**
 
-* 4a. User accidentally clicked the "NO" button. 
+* 4a. User accidentally clicked the "NO" button.
 
   * 4a1. The prompt message disappears and CAP5BUDDY does not delete the task.
-  
+
   Use case ends.
-  
+
   *{More to be added}*
 
 **Use case: Sort task in the todo list**
@@ -285,7 +285,7 @@ Use case ends.
 Use case ends.
 
   *{More to be added}*
-  
+
 **Use case: Find a task in the todo list**
 
 **MSS**
@@ -299,13 +299,13 @@ Use case ends.
 
 **Extensions**
 
-* 3a. User inputs the date with an incorrect format. 
+* 3a. User inputs the date with an incorrect format.
 
   * 3a1. CAP5BUDDY displays an error message and ask the user to use the correct format.
   * 3a2. User enters the date with the correct format.
-  
+
   Use case resumes at step 4
-  
+
   *{More to be added}*
 
 **Use case: Archive a task in the todo list**
@@ -318,76 +318,76 @@ Use case ends.
 4. CAP5BUDDY archives the task.
 
 Use case ends.
-  
+
 **Extensions**
 
-* 3a. User accidentally clicked the "NO" button. 
+* 3a. User accidentally clicked the "NO" button.
 
   * 3a1. The prompt message disappears and CAP5BUDDY does not archive the task.
-  
+
   Use case ends.
-  
+
   *{More to be added}*
-  
+
   **Use Case: View all contact details of a lecturer**
-    
+
     **MSS**
     1. User requests to view all contact details of a lecturer.
     2. User provides the name of the lecturer.
     3. CAP5BUDDY searches for the specified lecturer from storage.
     4. CAP5BUDDY retrieves all contact details of the lecturer from storage.
     4. CAP5BUDDY displays the desired contact details.
-    
+
     **Extensions**
-    
+
     * 3a. The specified lecturer name does not exist.
-    
+
       * CAP5BUDDY displays an error message.
-      
+
       Use case ends.
-  
+
   **Use Case: View the email of a Lecturer**
-  
+
   **MSS**
   1. User requests to view the email of a lecturer.
   2. User provides the name of the lecturer.
   3. CAP5BUDDY searches for the specified lecturer from storage.
   4. CAP5BUDDY retrieves the email of the lecturer from storage.
   4. CAP5BUDDY displays the desired email address.
-  
+
   **Extensions**
-  
+
   * 3a. The specified lecturer name does not exist.
-  
+
     * CAP5BUDDY displays an error message.
-    
+
     Use case ends.
-    
+
   **Use Case: View the hand phone contact of a peer**
-  
+
   **MSS**
   1. User requests to view the hand phone number of a peer.
   2. User provides the name of the peer.
   3. CAP5BUDDY searches for the specified peer from storage.
   4. CAP5BUDDY retrieves the hand phone contact of the peer from storage.
   4. CAP5BUDDY displays the desired hand phone contact.
-  
+
   **Extensions**
 
 * 3a. The specified peer name does not exist.
 
   * CAP5BUDDY displays an error message.
-  
+
   Use case ends.
- 
+
 * 4a. The specified peer does not have a hand phone contact saved.
 
   * CAP5BUDDY displays an error message.
-  
+
   Use case ends.
-  
+
 **Use Case: Edit the email of a TA**
-  
+
   **MSS**
   1. User requests to edit the email of a TA.
   2. User provides the name of the TA.
@@ -395,55 +395,55 @@ Use case ends.
   4. User provides the new email to replace the existing email.
   5. CAP5BUDDY replaces the email of the TA with the user provided email.
   6. CAP5BUDDY displays the success message.
-  
+
   **Extensions**
-  
+
   * 3a. The specified TA name does not exist.
-  
+
     * CAP5BUDDY displays an error message.
-    
+
     Use case ends.
-    
+
   * 4a. The provided email address is empty or null.
-  
+
     * CAP5BUDDY displays an error message.
-    
+
     Use case ends.
-  
+
     *{More to be added}*
-  
+
 **Use Case: Add grades to CAP5BUDDY**
 
   **MSS**
   1. User requests to add grade to CAP5BUDDY.
   2. CAP5BUDDY retrieves current grades.
   3. CAP5BUDDY saves new grade with previous grades.
-  
+
      Use case ends.
-  
+
   **Extensions**
-  
+
   * 3a. The given grade is invalid.
-  
+
     * CAP5BUDDY displays an error message.
-    
+
       Use case ends.
-    
+
 **Use Case: View grades for a module**
 
   **MSS**
   1. User requests to view grades for a module.
   2. CAP5BUDDY retrieves current grades.
   3. CAP5BUDDY displays current grades.
-  
+
      Use case ends.
-   
+
   **Extensions**
 
   * 3a. The current list of grades is empty.
-    
+
     * CAP5BUDDY displays an error message.
-    
+
       Use case ends.
 
 
@@ -454,45 +454,138 @@ Use case ends.
   2. CAP5BUDDY shows a list of current grades.
   3. User requests to edit grade at a specific index.
   4. CAP5BUDDY saves new grade with previous grades.
-  
+
      Use case ends.
-  
+
   **Extensions**
-  
+
   * 3a. The given grade is invalid.
-  
+
     * CAP5BUDDY displays an error message.
-    
+
       Use case ends.
-    
+
   * 4a. The provided index of the grade is invalid.
-  
+
     * CAP5BUDDY displays an error message.
-    
+
       Use case resumes at step 2.
-    
+
   *{More to be added}*
-  
+
 **Use case: Delete a grade**
-    
+
    **MSS**
    1. User requests to show stored grades in CAP5BUDDY.
    2. CAP5BUDDY shows a list of current grades.
    3. User chooses the grade to be deleted at a specific index.
    4. CAP5BUDDY deletes the grade from the list.
-   
-      Use case ends. 
-    
+
+      Use case ends.
+
    **Extensions**
-    
+
    * 3a. The provided index of the grade is invalid.
-      
+
         * CAP5BUDDY displays an error message.
-        
+
           Use case resumes at step 2.
-        
+
    *{More to be added}*
-        
+
+**Use case: Add an event**
+
+  **MSS**
+  1. User request to create and add a new event into the tracker.
+  2. CAP5BUDDY creates and add the event into the list.
+
+  **Extensions**
+  * 1a. The provide event information is invalid, missing date and time.
+
+        * CAP5BUDDY displays an error message.
+
+          Use case resumes at step 1.
+
+**Use case: Edit an event**
+
+  **MSS**
+  1. User requests to view all existing events.
+  2. CAP5BUDDY displays the list of all events.
+  3. User requests to modify an existing event.
+  4. CAP5BUDDY displays the newly modified event.
+
+  **Extensions**
+  * 3a. The newly inputted information is invalid format or empty.
+
+    * CAP5BUDDY displays an error message.
+
+      Use case resumes at step 2.
+
+  * 3b. The requested event does not exist.
+
+    * CAP5BUDDY displays an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete an event**
+
+  **MSS**
+  1. User requests to view all existing events in the list.
+  2. CAP5BUDDY displays all the events.
+  3. User requests to remove a specific event from the list.
+  4. CAP5BUDDY shows a success message and shows the new list.
+
+  **Extensions**
+  * 3a. The event to be removed does not exist.
+
+    * CAP5BUDDY displays an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Mark an event as completed**
+
+  **MSS**
+  1. User requests to show all events.
+  2. CAP5BUDDY displays all tracked events.
+  3. User requests to mark a specific event as completed.
+  4. CAP5BUDDY shows the event as completed.
+
+  **Extensions**
+
+  * 3a. The event requested does not exist.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 2.
+
+  * 3b. The event requested is already marked as completed/
+
+    * CAP5BUDDY does nothing.
+
+      Use case resumes at step 2.
+
+**Use case: Push the event back**
+
+  **MSS**
+  1. User requests to show all events.
+  2. CAP5BUDDY displays all currently tracked events.
+  3. User requests to push the event back.
+  4. CAP5BUDDY shows the new date and time of the event.
+
+  **Extensions**
+
+  * 3a. The requested event does not exist.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 2.
+
+  * 3b. The new date and time is invalid.
+
+    * CAP5BUDDY shows an error message.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
