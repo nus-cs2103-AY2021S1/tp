@@ -3,8 +3,8 @@ layout: page
 title: Common Cents
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2021S1-CS2103T-T13-4/tp/workflows/Java CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T13-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-T13-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-T13-4/tp)
 
 ![Ui](images/Ui.png)
 
