@@ -43,5 +43,9 @@ public class ModuleList {
     public void addModule(Module module) {
         this.modules.add(module);
     }
+
+    public int size() {
+        return this.modules.size();
+    }
 }
 
