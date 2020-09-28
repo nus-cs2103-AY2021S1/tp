@@ -43,10 +43,11 @@ public class DeleteRecipeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Recipe> recipelist = new ArrayList<>(model.getFilteredRecipeList());
-        if (recipelist.stream().noneMatch(recipe -> recipe.getProductName().equals(productName))) {
-            throw new CommandException(MESSAGE_RECIPE_NOT_FOUND); //recipe is not found
-        }
+        // filter to only get matching and not deleted recipes
         recipelist.removeIf(x -> !x.getProductName().equals(productName) || x.isDeleted());
+        if (recipelist.isEmpty()) {
+            throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
+        }
         Recipe recipeToDelete;
         try {
             recipeToDelete = recipelist.get(index.getOneBased() - 1);
