@@ -5,7 +5,7 @@ package tp.cap5buddy.parser;
  * Represents the token of each user input.
  */
 public class Tokenizer {
-    private static final int SIZE = 2; // updates as the number of prefixes increases.
+    private static final int SIZE = 3; // updates as the number of prefixes increases.
     private String[] words = new String[SIZE];
     private String input;
 

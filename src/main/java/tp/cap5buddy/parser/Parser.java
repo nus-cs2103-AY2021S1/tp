@@ -1,5 +1,6 @@
 package tp.cap5buddy.parser;
 
+import tp.cap5buddy.commands.Command;
 import tp.cap5buddy.commands.ResultCommand;
 
 /**
@@ -7,6 +8,8 @@ import tp.cap5buddy.commands.ResultCommand;
  */
 public abstract class Parser {
 
-    public abstract ResultCommand execute();
+    public abstract Command parse(String userInput);
+
+    // public abstract ResultCommand execute();
 }
 
