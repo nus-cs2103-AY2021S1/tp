@@ -9,8 +9,8 @@ Hospify is an application to help maintain medical records.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
-  * What it does: 
+* **New Feature**:
+  * What it does:
 
 * **Code contributed**: [RepoSense link]()
 

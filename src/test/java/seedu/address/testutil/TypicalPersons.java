@@ -49,9 +49,9 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Patient AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric("S00000010A").withPhone(VALID_PHONE_AMY)
+    public static final Patient AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric("S12345678A").withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Patient BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric("S00000011A").withPhone(VALID_PHONE_BOB)
+    public static final Patient BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric("S87654321A").withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

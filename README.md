@@ -1,20 +1,18 @@
 # Hospify e-Medical Records solution
-![Java CI](https://github.com/AY2021S1-CS2103T-W15-3/tp/workflows/Java%20CI/badge.svg)  
+![Java CI](https://github.com/AY2021S1-CS2103T-W15-3/tp/workflows/Java%20CI/badge.svg)\
+**Hospify** is an application to help clinics digitalise their medical records.\
+It is a brown-field project adapted from [`AddressBook 3`](https://se-education.org/addressbook-level3/).
 
-**Hospify** is an application to help clinics digitalise their medical records.  
-It is a brown-field project adapted from [`AddressBook 3`](https://se-education.org/addressbook-level3/).  
-
-<u>**Motivation**</u>  
-* **Problem Statement**  
-Many small clinics still use hard copies to store patients' medical records. The database can get really large after many years. 
-It is very expensive and time constraining to archive medical records and find medical records of patients when they revisit. There are also a lot of documents and folders which requires a lot of physical space to store.  
+<u>**Motivation**</u>
+* **Problem Statement**\
+Many small clinics still use hard copies to store patients' medical records. The database can get really large after many years.\
+It is very expensive and time constraining to archive medical records and find medical records of patients when they revisit. There are also a lot of documents and folders which requires a lot of physical space to store.
 * **Solution**  
-We will build an easily accessible and secure system that helps clinics to store the patients’ information and medical records. 
-It will enable the admin staff to easily reach out to the patients and doctors and help them to contact each other.  
-
+We will build an easily accessible and secure system that helps clinics to store the patients’ information and medical records.\
+It will enable the admin staff to easily reach out to the patients and doctors and help them to contact each other.
 
 _Hospify is part of a team project under the CS2103 Software Engineering Module taken in the National University of Singapore._
-## User stories  
+## User stories
 <ol>
 <li>As an admin staff who is a new user, I want to be able to see usage instructions so that I can refer to instructions when I forget how to use the app</li>
 <li>As an admin staff, I can remind patients of their appointment in advance</li>
@@ -44,13 +42,12 @@ _Hospify is part of a team project under the CS2103 Software Engineering Module 
 <li>As a data entry clerk who is relatively new to the app, I can load existing hardcopies of medical records and contact information of patients quickly onto the app</li>
 </ol>
 
-
 ## Instructions to install
 Download the `jar` file from the latest release and run on your local device. Please ensure that you have at least installed `Java JDK 11` on your local device.
 
-## Guides / Notes  
-[User Guide](docs/UserGuide.md)  
-[About Us](docs/AboutUs.md)  
+## Guides / Notes
+[User Guide](docs/UserGuide.md)\
+[About Us](docs/AboutUs.md)\
 [Meeting notes](https://docs.google.com/document/d/14gDsicyg6XdIeHpiP8oH9UL7aLPPmoj9kUCA_w8ZNQU/edit?usp=sharing)
 ## Mock-ups (12 sept 2020)
 **List** Command
