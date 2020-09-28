@@ -27,7 +27,7 @@ public class PersonUtil {
     public static String getPersonDetails(Patient patient) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + patient.getName().fullName + " ");
-        sb.append(PREFIX_NRIC + patient.getNric().value + " " )
+        sb.append(PREFIX_NRIC + patient.getNric().value + " " );
         sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");

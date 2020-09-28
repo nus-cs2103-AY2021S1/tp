@@ -23,7 +23,7 @@ public class JsonAdaptedPatientTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_NRIC = BENSON.getNric().nric;
+    private static final String VALID_NRIC = BENSON.getNric().value;
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();

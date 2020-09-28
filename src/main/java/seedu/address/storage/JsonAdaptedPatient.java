@@ -50,7 +50,7 @@ class JsonAdaptedPatient {
      */
     public JsonAdaptedPatient(Patient source) {
         name = source.getName().fullName;
-        nric = source.getNric().nric;
+        nric = source.getNric().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

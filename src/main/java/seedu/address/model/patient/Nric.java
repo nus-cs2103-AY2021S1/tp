@@ -11,16 +11,17 @@ public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "Starts with an alphabet, followed by 8 digits and ends with another alphabet";
     public static final String VALIDATION_REGEX = "\\D\\d{8}\\D$";
-    public final String nric;
+    public final String value;
 
     /**
+     * Creates a NRIC with a given value.
      *
-     * @param nric
+     * @param value
      */
-    public Nric(String nric) {
-        requireNonNull(nric);
-        checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
-        this.nric = nric;
+    public Nric(String value) {
+        requireNonNull(value);
+        checkArgument(isValidNric(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -32,19 +33,19 @@ public class Nric {
 
     @Override
     public String toString() {
-        return nric;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Nric // instanceof handles nulls
-                && nric.equals(((Nric) other).nric)); // state check
+                && value.equals(((Nric) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return nric.hashCode();
+        return value.hashCode();
     }
 
 }
