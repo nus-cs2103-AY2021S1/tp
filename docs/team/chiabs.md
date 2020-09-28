@@ -24,6 +24,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added Delete command.
+    * Added Count command.
   * Developer Guide:
     * Added Target user profile, value proposition, and user stories.
     * Added Use cases.

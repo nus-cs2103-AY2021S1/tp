@@ -136,6 +136,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
+### Counting total number of patients : `count`
+
+Shows total number of patients recorded in Hospify.
+
+Format: `count`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -176,3 +182,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
+**Count** | `count`

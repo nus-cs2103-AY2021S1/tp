@@ -112,6 +112,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPatient);
     }
 
+    @Override
+    public int count() {
+        return addressBook.count();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
