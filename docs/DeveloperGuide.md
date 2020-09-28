@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `nustoragebook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,18 +262,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `NUStorage` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an inventory item**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list inventory
+2.  NUStorage shows the inventory list
+3.  User requests to add a specific inventory item into the list
+4.  NUStorage adds the item to the list
 
     Use case ends.
+    
+**Use case: Remove an inventory item**
+
+**MSS**
+
+1. User requests to list inventory
+2. NUStorage shows the inventory list
+3. User requests to remove a specific inventory item into the list
+4. NUStorage removes the item from the list at the specified index
 
 **Extensions**
 
@@ -283,16 +292,74 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. NUStorage shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a finance record**
+
+**MSS**
+
+1.  User requests to list finances
+2.  NUStorage shows the finance record list
+3.  User requests to add a specific finance record into the list
+4.  NUStorage adds the record to the list
+
+    Use case ends.
+
+**Use case: Remove a finance record**
+
+**MSS**
+
+1. User requests to list finances
+2. NUStorage shows the finance record list
+3. User requests to remove a specific financial record into the list
+4. NUStorage removes the record from the list at the specified index
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. NUStorage shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: List finance/inventory records**
+
+**MSS**
+
+1. User requests to list finances / inventories
+2. NUStorage shows the finance record / inventory list
+
+* 2a. The list is empty.
+
+  Use case ends.
+  
+**Use case: Save finance / inventory records**
+
+**MSS**
+
+1. User requests to save the current data stored
+2. NUStorage saves both finance and inventory records and shows a success message
+
+**Use case: Exiting the application**
+
+**MSS**
+
+1. User requests to exit NUStorage
+2. NUStorage saves both finance and inventory records and shows a goodbye message
+3. NUStorage terminates after 1.5 seconds
+  
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
