@@ -134,6 +134,13 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+        requireAllNonNull(target, editedFlashcard);
+
+        addressBook.setFlashcard(target, editedFlashcard);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

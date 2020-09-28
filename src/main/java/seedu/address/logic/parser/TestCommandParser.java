@@ -40,6 +40,10 @@ public class TestCommandParser implements Parser<TestCommand> {
             testAnswerDescriptor.setOption(ParserUtil.parseOption(argMultimap.getValue(PREFIX_OPTION).get()));
         }
 
+        if (!testAnswerDescriptor.isAnyFieldPresent()) {
+            throw new ParseException(TestCommand.MESSAGE_NO_OPTION_OR_ANSWER_PROVIDED);
+        }
+
         return new TestCommand(index, testAnswerDescriptor);
     }
 

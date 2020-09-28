@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -17,7 +18,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -27,9 +29,14 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_ALICE = "Alice";
     public static final String VALID_QUESTION_AMY = "Amy Bee";
     public static final String VALID_QUESTION_BOB = "Bob Choo";
+    public static final String VALID_QUESTION_KEV = "KEv Chee";
     public static final String VALID_ANSWER_ALICE = "2";
     public static final String VALID_ANSWER_AMY = "11111111";
     public static final String VALID_ANSWER_BOB = "22222222";
+    public static final String VALID_ANSWER_KEV = "11112222";
+    public static final String VALID_OPTION_ALICE = "1";
+    public static final String VALID_OPTION_AMY = "23";
+    public static final String VALID_OPTION_BOB = "555";
 
     public static final String CHOICE_DESC = " " + PREFIX_CHOICE + "First" + " "
             + PREFIX_CHOICE + "Second" + " " + PREFIX_CHOICE + "Third" + " "
@@ -40,24 +47,27 @@ public class CommandTestUtil {
     public static final String ANSWER_DESC_ALICE = " " + PREFIX_ANSWER + VALID_ANSWER_ALICE;
     public static final String ANSWER_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_AMY;
     public static final String ANSWER_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_BOB;
+    public static final String OPTION_DESC_ALICE = " " + PREFIX_OPTION + VALID_OPTION_ALICE;
+    public static final String OPTION_DESC_AMY = " " + PREFIX_OPTION + VALID_OPTION_AMY;
+    public static final String OPTION_DESC_BOB = " " + PREFIX_OPTION + VALID_OPTION_BOB;
 
     // empty string not allowed for addresses
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + " ";
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER + " ";
+    public static final String INVALID_OPTION_DESC = " " + PREFIX_OPTION + " ";
+    public static final String INVALID_OPTION_NON_ALPHANUMERIC_DESC = " " + PREFIX_OPTION + "abc";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    //    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    //    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditFlashcardDescriptor DESC_AMY;
+    public static final EditCommand.EditFlashcardDescriptor DESC_BOB;
 
     static {
-        //        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-        //                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-        //                .withTags(VALID_TAG_FRIEND).build();
-        //        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-        //                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-        //                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
+                    .withAnswer(VALID_ANSWER_AMY).build();
+        DESC_BOB = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
+                    .withAnswer(VALID_ANSWER_BOB).build();
     }
 
     /**
@@ -102,6 +112,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.

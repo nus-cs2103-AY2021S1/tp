@@ -10,4 +10,6 @@ public interface Question {
 
     String getQuestion();
 
+    String getOnlyQuestion();
+
 }

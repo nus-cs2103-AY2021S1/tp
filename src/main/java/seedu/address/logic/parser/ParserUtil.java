@@ -220,7 +220,7 @@ public class ParserUtil {
         requireNonNull(option);
         String trimmedOption = option.trim();
         if (!Option.isValidOption(trimmedOption)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Option.MESSAGE_CONSTRAINTS);
         }
         return new Option(trimmedOption);
     }

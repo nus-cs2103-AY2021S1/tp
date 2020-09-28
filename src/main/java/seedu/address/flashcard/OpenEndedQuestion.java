@@ -24,13 +24,16 @@ public class OpenEndedQuestion implements Question {
         return question;
     }
 
+    public String getOnlyQuestion() {
+        return question;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         } else if (o instanceof OpenEndedQuestion) {
             OpenEndedQuestion temp = (OpenEndedQuestion) o;
-            return temp.toString().equals(o.toString());
+            return this.toString().equals(temp.toString());
         }
         return false;
     }

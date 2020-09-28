@@ -2,8 +2,10 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_KEV;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_KEV;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +47,8 @@ public class TypicalPersons {
             .withAnswer(VALID_ANSWER_AMY).build();
     public static final Flashcard BOB = new FlashcardBuilder().withQuestion(VALID_QUESTION_BOB)
             .withAnswer(VALID_ANSWER_BOB).build();
+    public static final Flashcard KEV = new FlashcardBuilder().withQuestion(VALID_QUESTION_KEV)
+            .withAnswer(VALID_ANSWER_KEV).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -68,6 +72,6 @@ public class TypicalPersons {
         return new ArrayList<>(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(AMY, BOB));
+        return new ArrayList<>(Arrays.asList(AMY, BOB, KEV));
     }
 }
