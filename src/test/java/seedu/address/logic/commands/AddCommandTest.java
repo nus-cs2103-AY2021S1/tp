@@ -47,7 +47,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicateItem_updateQualitySuccessful() {
+    public void execute_duplicateItem_updateQuantitySuccessful() {
         Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").build();
         Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
         ModelStub modelStub = new ModelStubAcceptingDuplicatingItem(currentItem);
