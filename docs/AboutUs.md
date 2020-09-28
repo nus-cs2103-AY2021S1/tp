@@ -11,8 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ringo1225.png" width="200px">
 
-[[github](http://github.com/Ringo1225)]
-[[portfolio](team/ringo1225.md)]
+[[github](http://github.com/Ringo1225)] [[portfolio](team/ringo1225.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
@@ -30,8 +29,25 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/gabrielteo.png" width="200px">
 
-[[github](https://github.com/GabrielTeo)]
-[[portfolio](team/gabrielteo.md)]
+[[github](https://github.com/GabrielTeo)] [[portfolio](team/gabrielteo.md)]
 
 * Role: Developer
 * Responsibilities: Documentation + Deliverables and deadlines
+
+### Cedric Lim Jun Wei
+
+<img src="images/cedo8.png" width="200px">
+
+[[github](https://github.com/Cedo8)] [[portfolio](team/cedo8.md)]
+
+* Role: Developer
+* Responsibilities: Code quality + Scheduling & tracking
+
+### Chong Jia Le
+
+<img src="images/chiabs.png" width="200px">
+
+[[github](https://github.com/chiabs)] [[portfolio](team/chiabs.md)]
+
+* Role: Developer
+* Responsibilities: Storage
