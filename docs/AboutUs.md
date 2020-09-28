@@ -22,6 +22,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Member
 * Responsibilities: Developer
 
+### Lucas Tai
+
+<img src="images/lucastai98.png" width="200px">
+
+[[github](https://github.com/lucastai98)]
+
+[[portfolio](team/geniaaz.md)]
+
+* Role: Project Member
+* Responsibilities: Developer
+
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
