@@ -84,4 +84,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Patient> predicate);
+
+    /**
+     * Gives number of patients in records.
+     * @return number of patients.
+     */
+    int count();
 }
