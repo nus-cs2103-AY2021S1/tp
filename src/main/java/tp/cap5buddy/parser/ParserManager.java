@@ -2,6 +2,9 @@ package tp.cap5buddy.parser;
 
 import java.util.Scanner;
 
+import tp.cap5buddy.commands.ResultCommand;
+
+
 /**
  * Represents the manager that handles all parser related actions and requests.
  */
@@ -29,7 +32,20 @@ public class ParserManager {
         this.currentInput = input;
         getCommand();
         getNonCommand();
-        return this.command + " Non: " + this.nonCommand;
+        Tokenizer token = new Tokenizer(this.nonCommand);
+        String[] words = token.getWords();
+        ResultCommand result;
+
+        switch (this.command) {
+        case "addmodule":
+            AddModuleParser parser = new AddModuleParser();
+            parser.parse(words);
+            result = parser.execute();
+            break;
+        default:
+            result = new ResultCommand("Nothing happens");
+        }
+        return result.getMessage();
     }
 
     private void getCommand() {

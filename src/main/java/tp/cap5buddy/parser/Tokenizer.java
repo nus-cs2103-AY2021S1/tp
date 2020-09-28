@@ -1,13 +1,12 @@
 package tp.cap5buddy.parser;
 
-import java.util.Scanner;
 
 /**
  * Represents the token of each user input.
  */
 public class Tokenizer {
-
-    private Prefix[] userCommand = new Prefix[2];
+    private static final int SIZE = 2; // updates as the number of prefixes increases.
+    private String[] words = new String[SIZE];
     private String input;
 
     /**
@@ -16,10 +15,28 @@ public class Tokenizer {
      */
     public Tokenizer(String input) {
         this.input = input;
+        breakDown();
     }
 
     private void breakDown() {
-        Scanner sc = new Scanner(this.input);
+        String[] temp = this.input.split(" ");
+        for (int i = 0; i < temp.length; i++) {
+            String word = temp[i];
+            String prefix = word.substring(0, 2); // to extract the prefix
+            if (Prefix.isPrefix(word)) {
+                word = word.substring(2); // to remove the prefix from the actual word
+            }
+            if (prefix.equals(PrefixList.MODULE_NAME_PREFIX.toString())) {
+                this.words[0] = word;
+            } else if (prefix.equals(PrefixList.MODULE_LINK_PREFIX.toString())) {
+                this.words[1] = word;
+            } else {
+                // throws error as invalid prefix is found
+            }
+        }
+    }
 
+    public String[] getWords() {
+        return this.words;
     }
 }
