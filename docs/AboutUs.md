@@ -19,12 +19,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Cao Qin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ringo1225.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ringo1225)]
+[[portfolio](team/ringo1225.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
