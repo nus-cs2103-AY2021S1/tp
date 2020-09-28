@@ -12,9 +12,9 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class Fridge implements ReadOnlyFridge {
+public class McGymmy implements ReadOnlyMcGymmy {
 
-    private final UniquePersonList persons;
+    private final UniquePersonList foods;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,15 +24,15 @@ public class Fridge implements ReadOnlyFridge {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        foods = new UniquePersonList();
     }
 
-    public Fridge() {}
+    public McGymmy() {}
 
     /**
-     * Creates an Fridge using the Persons in the {@code toBeCopied}
+     * Creates an McGymmy using the Persons in the {@code toBeCopied}
      */
-    public Fridge(ReadOnlyFridge toBeCopied) {
+    public McGymmy(ReadOnlyMcGymmy toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -43,17 +43,17 @@ public class Fridge implements ReadOnlyFridge {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setFoods(List<Person> foods) {
+        this.foods.setPersons(foods);
     }
 
     /**
-     * Resets the existing data of this {@code Fridge} with {@code newData}.
+     * Resets the existing data of this {@code McGymmy} with {@code newData}.
      */
-    public void resetData(ReadOnlyFridge newData) {
+    public void resetData(ReadOnlyMcGymmy newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setFoods(newData.getPersonList());
     }
 
     //// person-level operations
@@ -61,17 +61,17 @@ public class Fridge implements ReadOnlyFridge {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
+    public boolean hasFood(Person person) {
         requireNonNull(person);
-        return persons.contains(person);
+        return foods.contains(person);
     }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addFood(Person p) {
+        foods.add(p);
     }
 
     /**
@@ -79,42 +79,42 @@ public class Fridge implements ReadOnlyFridge {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
+    public void setFood(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        foods.setPerson(target, editedPerson);
     }
 
     /**
-     * Removes {@code key} from this {@code Fridge}.
+     * Removes {@code key} from this {@code McGymmy}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeFood(Person key) {
+        foods.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return foods.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return foods.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Fridge // instanceof handles nulls
-                && persons.equals(((Fridge) other).persons));
+                || (other instanceof McGymmy // instanceof handles nulls
+                && foods.equals(((McGymmy) other).foods));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return foods.hashCode();
     }
 }
