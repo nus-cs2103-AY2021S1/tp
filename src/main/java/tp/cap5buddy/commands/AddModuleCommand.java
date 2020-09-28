@@ -21,7 +21,7 @@ public class AddModuleCommand extends Command {
 
     /**
      * Executes the main function of this command, to create a new module.
-     * @return String success message.
+     * @return ResultCommand ResultCommand object.
      */
     public ResultCommand execute() {
         if (this.link == null) {

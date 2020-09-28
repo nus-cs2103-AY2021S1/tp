@@ -1,8 +1,9 @@
 package tp.cap5buddy.parser;
 
+import java.util.Scanner;
+
 import tp.cap5buddy.commands.ResultCommand;
 
-import java.util.Scanner;
 
 /**
  * Represents the manager that handles all parser related actions and requests.
