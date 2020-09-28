@@ -254,30 +254,93 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Food Recipe Management System (FRMS)` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: U1 - Add recipe**
 
-**MSS**
+**MSS:** 
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User chooses to add a recipe.
+2. User enters the details according to the format.
+3. FRMS displays a confirmation message with the new recipe.
 
-    Use case ends.
+    Use case ends. 
 
-**Extensions**
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+* 2b. FRMS detects a duplicate recipe.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.	      
 
-* 2a. The list is empty.
 
-  Use case ends.
+**Use case: U2 - Delete recipe**
 
-* 3a. The given index is invalid.
+**MSS:** 
 
-    * 3a1. AddressBook shows an error message.
+1. User chooses to delete a recipe.
+2. User enters the recipe name.
+3. FRMS displays a confirmation message.
 
-      Use case resumes at step 2.
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+* 2b. FRMS detects invalid input of recipe name.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+**Use case: U3 - View recipe**
+
+**MSS:** 
+
+1. User chooses to view all recipes.
+2. User requests for the recipes.
+3. FRMS display all the recipes.
+
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters data according to the correct format.
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+**Use case: U4 - Filter recipes**
+
+**MSS:** 
+
+1. User chooses to view a list of filtered recipes.
+2. User enters the filter conditions.
+3. FMRS displays a filtered list of recipes.
+
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+* 2b. Filtered list does not contain any recipes.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
 
 
 **Use case: U5 - List ingredients**
@@ -383,6 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. User enters new data.  
       Steps a-b are repeated until the data entered are correct.  
 	      User case resumes from step 3.      
+
 
 
 ### Non-Functional Requirements
