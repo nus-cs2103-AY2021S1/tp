@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.flashcard.Question;
+
 /**
  * Represents the result of a command execution.
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
+    private final Feedback feedbackToUser;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -21,7 +23,24 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
+        requireNonNull(feedbackToUser);
+        this.feedbackToUser = new Feedback(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields including {@code question} and {@code isCorrect}.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Question question, Boolean isCorrect) {
+        requireNonNull(feedbackToUser);
+        requireNonNull(question);
+        requireNonNull(isCorrect);
+
+        this.feedbackToUser = new Feedback(feedbackToUser);
+        this.feedbackToUser.setQuestion(question);
+        this.feedbackToUser.setCorrect(isCorrect);
+
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -34,8 +53,17 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code question}, {@code isCorrect}
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Question question, Boolean isCorrect) {
+        this(feedbackToUser, false, false, question, isCorrect);
+    }
+
     public String getFeedbackToUser() {
-        return feedbackToUser;
+        return feedbackToUser.toString();
     }
 
     public boolean isShowHelp() {

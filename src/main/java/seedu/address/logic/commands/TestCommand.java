@@ -33,9 +33,8 @@ public class TestCommand extends Command {
             + PREFIX_OPTION + " 1";
 
 
-    public static final String MESSAGE_FORMAT = "Question: %1$s\n"
-                    + "Answer: %2$s\n"
-                    + "Your Answer: %3$s";
+    public static final String MESSAGE_FORMAT = "Answer: %1$s\n"
+                    + "Your Answer: %2$s";
     public static final String MESSAGE_CORRECT_ANSWER = MESSAGE_FORMAT + "\n" + "Your answer is correct!";
     public static final String MESSAGE_INCORRECT_ANSWER = MESSAGE_FORMAT + "\n" + "Your answer is wrong!";
     public static final String MESSAGE_NO_OPTION_PROVIDED = "An option must be chosen for "
@@ -92,7 +91,8 @@ public class TestCommand extends Command {
 
         requireNonNull(answer);
         boolean isCorrect = flashcardToTest.checkAnswer(answer);
-        return new CommandResult(getTestResult(question, flashcardToTest.getAnswer(), answer, isCorrect));
+        return new CommandResult(getTestResult(
+                flashcardToTest.getAnswer(), answer, isCorrect), question, isCorrect);
     }
 
     /**
@@ -103,11 +103,11 @@ public class TestCommand extends Command {
      * @param isCorrect answer.
      * @return string output of the test result.
      */
-    private static String getTestResult(Question question, Answer correctAnswer, Answer userAnswer, boolean isCorrect) {
+    private static String getTestResult(Answer correctAnswer, Answer userAnswer, boolean isCorrect) {
         if (!isCorrect) {
-            return String.format(MESSAGE_INCORRECT_ANSWER, question, correctAnswer, userAnswer);
+            return String.format(MESSAGE_INCORRECT_ANSWER,correctAnswer, userAnswer);
         }
-        return String.format(MESSAGE_CORRECT_ANSWER, question, correctAnswer, userAnswer);
+        return String.format(MESSAGE_CORRECT_ANSWER, correctAnswer, userAnswer);
     }
 
     @Override
