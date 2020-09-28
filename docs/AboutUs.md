@@ -48,12 +48,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Ng Zhia Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhiayang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/zhiayang)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Technical Lead
+* Responsibilities: Command UI and Parser
