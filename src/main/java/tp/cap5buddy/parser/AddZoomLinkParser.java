@@ -11,7 +11,8 @@ public class AddZoomLinkParser extends Parser {
      * @return
      */
     public AddZoomLinkCommand parse(String userInput) {
-        String[] parsedArguments = {"module name, zoom link"};
+        Tokenizer token = new Tokenizer(userInput);
+        String[] parsedArguments = token.getWords();
         return new AddZoomLinkCommand(parsedArguments);
     }
 }

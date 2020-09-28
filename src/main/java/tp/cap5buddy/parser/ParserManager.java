@@ -36,17 +36,19 @@ public class ParserManager {
         Tokenizer token = new Tokenizer(this.nonCommand);
         String[] words = token.getWords();
         Parser parser;
-        //ResultCommand result;
+        Command command;
 
         switch (this.command) {
         case "addmodule":
             //command = parser.parse(words);
             //result = command.execute();
             parser = new AddModuleParser();
-            return parser.parse(input);
+            command = parser.parse(this.nonCommand);
+            return command;
         case "addzoom":
             parser = new AddZoomLinkParser();
-            return parser.parse(input);
+            command = parser.parse(this.nonCommand);
+            return command;
         default:
             throw new ParseException("Invalid command");
         }

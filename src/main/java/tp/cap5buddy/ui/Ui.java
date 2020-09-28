@@ -3,6 +3,7 @@ package tp.cap5buddy.ui;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.parser.ParserManager;
 import tp.cap5buddy.parser.exception.ParseException;
@@ -14,6 +15,7 @@ import tp.cap5buddy.parser.exception.ParseException;
 public class Ui {
     private static Scanner sc = new Scanner(System.in);
     private static ParserManager pm = new ParserManager();
+    private static ModuleList modList = new ModuleList(new ArrayList<Module>());
     private boolean isExit;
     private String currentInput;
 
@@ -38,7 +40,7 @@ public class Ui {
      * @return String the result message of the user command.
      */
     private String sendToParser() throws ParseException {
-        return pm.parse(this.currentInput).execute(new ModuleList(new ArrayList<>())).getMessage();
+        return pm.parse(this.currentInput).execute(modList).getMessage();
     }
 
     /**
