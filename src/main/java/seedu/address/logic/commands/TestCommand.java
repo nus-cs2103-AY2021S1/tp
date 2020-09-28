@@ -34,7 +34,7 @@ public class TestCommand extends Command {
 
 
     public static final String MESSAGE_FORMAT = "Answer: %1$s\n"
-                    + "Your Answer: %2$s";
+            + "Your Answer: %2$s";
     public static final String MESSAGE_CORRECT_ANSWER = MESSAGE_FORMAT + "\n" + "Your answer is correct!";
     public static final String MESSAGE_INCORRECT_ANSWER = MESSAGE_FORMAT + "\n" + "Your answer is wrong!";
     public static final String MESSAGE_NO_OPTION_PROVIDED = "An option must be chosen for "
@@ -46,6 +46,7 @@ public class TestCommand extends Command {
 
     /**
      * Instantiates a test command.
+     *
      * @param index of the question in the filtered question list to test.
      * @param testAnswerDescriptor details to test the question with.
      */
@@ -55,6 +56,21 @@ public class TestCommand extends Command {
 
         this.index = index;
         this.testAnswerDescriptor = testAnswerDescriptor;
+    }
+
+    /**
+     * Creates a string output of the test result based on whether it is correct.
+     *
+     * @param correctAnswer of the question.
+     * @param userAnswer that is given.
+     * @param isCorrect answer.
+     * @return string output of the test result.
+     */
+    private static String getTestResult(Answer correctAnswer, Answer userAnswer, boolean isCorrect) {
+        if (!isCorrect) {
+            return String.format(MESSAGE_INCORRECT_ANSWER, correctAnswer, userAnswer);
+        }
+        return String.format(MESSAGE_CORRECT_ANSWER, correctAnswer, userAnswer);
     }
 
     @Override
@@ -95,21 +111,6 @@ public class TestCommand extends Command {
                 flashcardToTest.getAnswer(), answer, isCorrect), question, isCorrect);
     }
 
-    /**
-     * Creates a string output of the test result based on whether it is correct.
-     * @param question that is tested.
-     * @param correctAnswer of the question.
-     * @param userAnswer that is given.
-     * @param isCorrect answer.
-     * @return string output of the test result.
-     */
-    private static String getTestResult(Answer correctAnswer, Answer userAnswer, boolean isCorrect) {
-        if (!isCorrect) {
-            return String.format(MESSAGE_INCORRECT_ANSWER,correctAnswer, userAnswer);
-        }
-        return String.format(MESSAGE_CORRECT_ANSWER, correctAnswer, userAnswer);
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -136,7 +137,8 @@ public class TestCommand extends Command {
         private Answer answer;
         private Option option;
 
-        public TestAnswerDescriptor() {};
+        public TestAnswerDescriptor() {
+        }
 
         public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
