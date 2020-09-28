@@ -10,12 +10,15 @@ import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 import seedu.address.logic.commands.EatRecipeCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListIngredientsCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -58,6 +61,9 @@ public class WishfulShrinkingParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case DeleteIngredientCommand.COMMAND_WORD:
+            return new DeleteIngredientCommandParser().parse(arguments);
+
         case DeleteRecipeCommand.COMMAND_WORD:
             return new DeleteRecipeCommandParser().parse(arguments);
 
@@ -66,6 +72,12 @@ public class WishfulShrinkingParser {
 
         case SearchRecipeCommand.COMMAND_WORD:
             return new SearchRecipeCommandParser().parse(arguments);
+
+        case ListIngredientsCommand.COMMAND_WORD:
+            return new ListIngredientsCommand();
+
+        case SearchIngredientCommand.COMMAND_WORD:
+            return new SearchIngredientCommandParser().parse(arguments);
 
         case ListRecipesCommand.COMMAND_WORD:
             return new ListRecipesCommand();

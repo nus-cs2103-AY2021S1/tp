@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import java.util.Arrays;
@@ -17,15 +18,19 @@ import org.junit.jupiter.api.Test;
 //import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 //import seedu.address.logic.commands.EditCommand;
 //import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListIngredientsCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.IngredientUtil;
@@ -51,6 +56,13 @@ public class WishfulShrinkingParserTest {
         AddIngredientCommand command = (AddIngredientCommand) parser.parseCommand(IngredientUtil
                 .getAddIngredientCommand(ingredient));
         assertEquals(new AddIngredientCommand(ingredient), command);
+    }
+
+    @Test
+    public void parseCommand_deleteIngredient() throws Exception {
+        DeleteIngredientCommand command = (DeleteIngredientCommand) parser.parseCommand(
+                DeleteIngredientCommand.COMMAND_WORD + " " + INDEX_FIRST_INGREDIENT.getOneBased());
+        assertEquals(new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT), command);
     }
 
     @Test
@@ -91,6 +103,15 @@ public class WishfulShrinkingParserTest {
     }
 
     @Test
+    public void parseCommand_searchIngredient() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        SearchIngredientCommand command = (SearchIngredientCommand) parser.parseCommand(
+                SearchIngredientCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchIngredientCommand(new IngredientContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -100,6 +121,12 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD) instanceof ListRecipesCommand);
         assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD + " 3") instanceof ListRecipesCommand);
+    }
+
+    @Test
+    public void parseCommand_listIngredient() throws Exception {
+        assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD) instanceof ListIngredientsCommand);
+        assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD + " 3") instanceof ListIngredientsCommand);
     }
 
     @Test
