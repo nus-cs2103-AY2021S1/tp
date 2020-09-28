@@ -1,3 +1,14 @@
+---
+layout: page
+title: Setting up and getting started
+---
+
+* Table of Contents
+{:toc}
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Setting up the program in your computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
