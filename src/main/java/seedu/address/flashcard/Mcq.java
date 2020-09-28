@@ -1,8 +1,8 @@
 package seedu.address.flashcard;
 
-import seedu.address.commons.core.index.Index;
-
 import java.util.Arrays;
+
+import seedu.address.commons.core.index.Index;
 
 /**
  * Represents a mcq question.
