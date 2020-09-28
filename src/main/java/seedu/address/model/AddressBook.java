@@ -93,6 +93,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Gives the number of records in Hospify.
+     * @return number of patients.
+     */
+    public int count() {
+        return persons.count();
+    }
+
     //// util methods
 
     @Override

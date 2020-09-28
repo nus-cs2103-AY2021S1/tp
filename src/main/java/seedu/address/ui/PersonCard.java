@@ -51,7 +51,7 @@ public class PersonCard extends UiPart<Region> {
         this.patient = patient;
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
-        nric.setText(patient.getNric().nric);
+        nric.setText(patient.getNric().value);
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
