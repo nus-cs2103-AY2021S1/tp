@@ -1,5 +1,7 @@
 package tp.cap5buddy.parser;
 
+import tp.cap5buddy.commands.ResultCommand;
+
 import java.util.Scanner;
 
 /**
@@ -31,17 +33,18 @@ public class ParserManager {
         getNonCommand();
         Tokenizer token = new Tokenizer(this.nonCommand);
         String[] words = token.getWords();
-        String result = "";
+        ResultCommand result;
 
         switch (this.command) {
         case "addmodule":
-            AddModuleParser parser = new AddModuleParser(words);
+            AddModuleParser parser = new AddModuleParser();
+            parser.parse(words);
             result = parser.execute();
             break;
         default:
-            result = "Nothing happens";
+            result = new ResultCommand("Nothing happens");
         }
-        return result;
+        return result.getMessage();
     }
 
     private void getCommand() {

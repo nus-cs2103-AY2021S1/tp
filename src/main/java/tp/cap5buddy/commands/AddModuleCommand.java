@@ -23,12 +23,12 @@ public class AddModuleCommand extends Command {
      * Executes the main function of this command, to create a new module.
      * @return String success message.
      */
-    public String execute() {
+    public ResultCommand execute() {
         if (this.link == null) {
             Module mod = new Module(this.name);
         } else {
             Module mod = new Module(this.name, this.link);
         }
-        return this.name + SUCCESS_MESSAGE;
+        return new ResultCommand(this.name + SUCCESS_MESSAGE);
     }
 }

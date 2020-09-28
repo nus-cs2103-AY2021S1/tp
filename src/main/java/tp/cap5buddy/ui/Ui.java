@@ -51,12 +51,14 @@ public class Ui {
      * Starts the scanning of user input.
      */
     public void startScanner() {
+        printResult(Messages.getStart());
         while (sc.hasNextLine()) {
             String current = sc.nextLine();
             setInput(current);
             String result = sendToParser();
             printResult(result);
         }
+        printResult(Messages.getClose());
         sc.close();
     }
 }
