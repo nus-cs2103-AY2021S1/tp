@@ -8,6 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
@@ -33,6 +34,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Patient patient) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(patient.getName());
+        descriptor.setNric(patient.getNric());
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
@@ -44,6 +46,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNric(String nric) {
+        descriptor.setNric(new Nric(nric));
         return this;
     }
 
