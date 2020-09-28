@@ -1,14 +1,8 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -32,6 +26,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        /*
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -41,7 +36,9 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        */
+        String stub = "stub";
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, stub));
     }
 
     @Override

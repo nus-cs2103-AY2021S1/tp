@@ -45,6 +45,7 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        /*
         requireNonNull(model);
 
         if (model.hasAccount(toAdd)) {
@@ -53,6 +54,9 @@ public class AddCommand extends Command {
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+         */
+        String stub = "stub";
+        return new CommandResult(String.format(MESSAGE_SUCCESS, stub));
     }
 
     @Override

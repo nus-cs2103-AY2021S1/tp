@@ -7,11 +7,13 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.account.Account;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -148,4 +150,9 @@ public class ModelManager implements Model {
                 && filteredAccounts.equals(other.filteredAccounts);
     }
 
+    //=========== Stub methods =============================================================
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return FXCollections.observableArrayList();
+    };
 }

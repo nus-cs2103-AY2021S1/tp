@@ -3,9 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
@@ -56,19 +55,21 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setCommonCentsFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setCommonCentsFilePath(null));
     }
 
+    /*
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setCommonCentsFilePath_validPath_setsCommonCentsFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setCommonCentsFilePath(path);
         assertEquals(path, modelManager.getCommonCentsFilePath());
     }
+    */
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasPerson_nullAccount_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasAccount(null));
     }
 
@@ -85,7 +86,7 @@ public class ModelManagerTest {
     }
     */
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredAccountList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAccountList().remove(0));
     }
 
