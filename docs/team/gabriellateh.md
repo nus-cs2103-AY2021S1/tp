@@ -17,7 +17,10 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=gabriellateh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other) (to be updated)
 
-* **Documentation**: (to be updated)
+* **Documentation**:
+* User Guide:
+    * Added documentation for the features `add` [\#78](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/78)
+    * Added documentation for the features `delete` [\#65](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/65)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): (to be updated)
