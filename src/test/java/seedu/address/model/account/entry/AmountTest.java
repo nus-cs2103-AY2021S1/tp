@@ -51,4 +51,5 @@ public class AmountTest {
         assertTrue(Amount.isValidAmount(".1")); //only decimal with a dot with one decimal places
         assertTrue(Amount.isValidAmount(".01")); //only decimal a dot with two decimal places
     }
+
 }

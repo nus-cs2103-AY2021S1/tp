@@ -88,4 +88,5 @@ public interface Model {
 
     // Stub Methods
     ObservableList<Person> getFilteredPersonList();
+
 }

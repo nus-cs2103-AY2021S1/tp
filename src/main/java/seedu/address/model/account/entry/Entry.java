@@ -50,4 +50,5 @@ public abstract class Entry {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(description, amount, tags);
     }
+
 }

@@ -97,4 +97,5 @@ public class ExpenseList implements Iterable<Expense> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
 }

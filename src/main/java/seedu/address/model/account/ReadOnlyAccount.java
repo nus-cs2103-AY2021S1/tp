@@ -14,4 +14,5 @@ public interface ReadOnlyAccount {
      * Returns an unmodifiable view of the profit list.
      */
     ObservableList<Profit> getProfitList();
+
 }

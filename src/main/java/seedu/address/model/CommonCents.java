@@ -117,4 +117,5 @@ public class CommonCents implements ReadOnlyCommonCents {
     public int hashCode() {
         return accounts.hashCode();
     }
+
 }

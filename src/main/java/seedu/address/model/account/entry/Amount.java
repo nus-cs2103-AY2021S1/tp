@@ -50,4 +50,5 @@ public class Amount {
     public int hashCode() {
         return value.hashCode();
     }
+
 }

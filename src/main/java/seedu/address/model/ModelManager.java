@@ -155,4 +155,5 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return FXCollections.observableArrayList();
     };
+
 }

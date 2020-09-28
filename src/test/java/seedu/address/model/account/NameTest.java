@@ -35,4 +35,5 @@ public class NameTest {
         assertTrue(Name.isValidName("flower-shop123")); // with alphabets, numbers and symbols
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
 }

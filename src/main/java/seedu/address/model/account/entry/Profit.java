@@ -41,4 +41,5 @@ public class Profit extends Entry {
         getTags().forEach(builder::append);
         return builder.toString();
     }
+
 }

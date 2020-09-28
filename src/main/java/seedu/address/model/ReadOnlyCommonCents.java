@@ -12,4 +12,5 @@ public interface ReadOnlyCommonCents {
      * This list will not contain any duplicate accounts.
      */
     ObservableList<Account> getAccountList();
+
 }

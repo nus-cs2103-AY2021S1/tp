@@ -40,4 +40,5 @@ public class Expense extends Entry {
         getTags().forEach(builder::append);
         return builder.toString();
     }
+
 }

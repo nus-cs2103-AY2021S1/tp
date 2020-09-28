@@ -97,4 +97,5 @@ public class ProfitList implements Iterable<Profit> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
 }

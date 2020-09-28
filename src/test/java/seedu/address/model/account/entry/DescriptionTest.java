@@ -33,4 +33,5 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("bought very very very very "
                 + "very expensive stuffs")); // long description
     }
+
 }
