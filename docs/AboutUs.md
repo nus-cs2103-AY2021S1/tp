@@ -27,3 +27,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Code quality/Integration
+
+### Travis Toh
+
+<img src="images/trav1st.png" width="200px">
+
+[[github](http://github.com/trav1st)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Testing/deliverables and deadlines
+
