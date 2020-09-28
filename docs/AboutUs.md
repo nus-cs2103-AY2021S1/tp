@@ -1,29 +1,33 @@
+
 ---
-layout: page
-title: About Us
+About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+
+[[Visit our homepage](https://ay2021s1-cs2103t-w10-3.github.io/tp/)]
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Niaaz Wahab
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/geniaaz.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/geniaaz)]
 
-* Role: Project Advisor
+[[portfolio](team/geniaaz.md)]
+
+* Role: Project Member
+* Responsibilities: Developer
 
 ### Jane Doe
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
+
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
@@ -33,7 +37,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] 
+
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -43,6 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
+
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
@@ -53,6 +60,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
+
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
