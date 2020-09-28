@@ -35,4 +35,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/trav1st)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Testing/deliverables and deadlines
+* Role: Testing / Deliverables and Deadlines
