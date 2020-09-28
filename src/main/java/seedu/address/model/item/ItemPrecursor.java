@@ -17,6 +17,16 @@ public class ItemPrecursor {
     private final List<String> locationNames = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
 
+    /**
+     * Constructs a {@code ItemPrecursor}.
+     *
+     * @param id ID of ItemPrecursor.
+     * @param name Name of item.
+     * @param quantity Quantity of item.
+     * @param description Description of item.
+     * @param locationNames Names of locations where item can be found.
+     * @param tags Tags associated with item.
+     */
     public ItemPrecursor(int id, String name, Quantity quantity, String description,
                          Set<String> locationNames, Set<Tag> tags) {
         this.id = id;

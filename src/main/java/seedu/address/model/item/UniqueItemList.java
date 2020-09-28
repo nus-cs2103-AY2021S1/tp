@@ -98,6 +98,9 @@ public class UniqueItemList implements Iterable<Item> {
         internalList.setAll(items);
     }
 
+    /**
+     * Gets item ID given item name.
+     */
     public int findItemId(String itemName) {
         for (Item item : internalList) {
             if (item.getName().equals(itemName)) {
@@ -107,6 +110,12 @@ public class UniqueItemList implements Iterable<Item> {
         return -1;
     }
 
+    /**
+     * Adds a recipe to an item.
+     *
+     * @param itemId ID of item the recipe is to be added to.
+     * @param recipeId ID of recipe to be added to item.
+     */
     public void addRecipeIdToItem(int itemId, int recipeId) {
         for (Item item : internalList) {
             if (item.getId() == itemId) {
