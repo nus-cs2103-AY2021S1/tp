@@ -1,11 +1,7 @@
 package tp.cap5buddy.parser;
 
-import java.util.ArrayList;
-
 import tp.cap5buddy.commands.AddModuleCommand;
 import tp.cap5buddy.commands.Command;
-import tp.cap5buddy.commands.ResultCommand;
-import tp.cap5buddy.modules.ModuleList;
 
 
 /**

@@ -1,13 +1,8 @@
 package tp.cap5buddy.parser;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import tp.cap5buddy.commands.Command;
-import tp.cap5buddy.commands.ResultCommand;
-import tp.cap5buddy.modules.Module;
-import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.parser.exception.ParseException;
 
 

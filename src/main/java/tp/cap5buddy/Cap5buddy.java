@@ -1,6 +1,5 @@
 package tp.cap5buddy;
 
-import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.parser.exception.ParseException;
 import tp.cap5buddy.ui.Ui;
 
