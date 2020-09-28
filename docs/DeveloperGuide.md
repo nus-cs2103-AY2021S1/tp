@@ -267,7 +267,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Taskmania` program and the **Actor** is the `user`, unless specified
  otherwise)
  
- (A member refers a member of a team in one of the projects managed by the team leader( `user` ))
+ (A member refers to a member of a team in one of the projects managed by the team leader( `user` ))
 
 #### **Use case: Delete a project**
 
@@ -375,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ (tested on Windows, Mac, Linux) as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 30 projects and 150 members without noticeable slugglishness in performance.
+2.  Should be able to hold up to 30 projects and 150 members without a noticeable drop in performance.
 3.  Can functional without an internet connection.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
