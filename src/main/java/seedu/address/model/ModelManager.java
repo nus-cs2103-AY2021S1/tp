@@ -11,34 +11,34 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.item.Item;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the inventory book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final InventoryBook inventoryBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Item> filteredItems;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given inventoryBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyInventoryBook inventoryBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(inventoryBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with inventory book: " + inventoryBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.inventoryBook = new InventoryBook(inventoryBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredItems = new FilteredList<>(this.inventoryBook.getItemList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new InventoryBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +66,74 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getInventoryBookFilePath() {
+        return userPrefs.getInventoryBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setInventoryBookFilePath(Path inventoryBookFilePath) {
+        requireNonNull(inventoryBookFilePath);
+        userPrefs.setInventoryBookFilePath(inventoryBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== InventoryBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setInventoryBook(ReadOnlyInventoryBook inventoryBook) {
+        this.inventoryBook.resetData(inventoryBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyInventoryBook getInventoryBook() {
+        return inventoryBook;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasItem(Item item) {
+        requireNonNull(item);
+        return inventoryBook.hasItem(item);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteItem(Item target) {
+        inventoryBook.removeItem(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addItem(Item item) {
+        inventoryBook.addItem(item);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public Item addOnExistingItem(Item item) {
+        Item combinedItem = inventoryBook.addOnExistingItem(item);
+        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        return combinedItem;
+    }
+
+    @Override
+    public void setItem(Item target, Item editedItem) {
+        requireAllNonNull(target, editedItem);
+
+        inventoryBook.setItem(target, editedItem);
+    }
+
+    //=========== Filtered Item List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
+     * {@code versionedInventoryBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Item> getFilteredItemList() {
+        return filteredItems;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredItemList(Predicate<Item> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredItems.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +150,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return inventoryBook.equals(other.inventoryBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredItems.equals(other.filteredItems);
     }
 
 }

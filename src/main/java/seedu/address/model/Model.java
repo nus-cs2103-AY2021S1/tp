@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.model.item.Item;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +35,60 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' inventory book file path.
      */
-    Path getAddressBookFilePath();
+    Path getInventoryBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' inventory book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setInventoryBookFilePath(Path inventoryBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces inventory book data with the data in {@code inventoryBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setInventoryBook(ReadOnlyInventoryBook inventoryBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the InventoryBook */
+    ReadOnlyInventoryBook getInventoryBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a item with the same identity as {@code item} exists in the inventory book.
      */
-    boolean hasPerson(Person person);
+    boolean hasItem(Item item);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given item.
+     * The item must exist in the inventory book.
      */
-    void deletePerson(Person target);
+    void deleteItem(Item target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given item.
+     * {@code item} must not already exist in the inventory book.
      */
-    void addPerson(Person person);
+    void addItem(Item item);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Combines quantity and tags of existing item with item provided
+     * @param item item provided to combine with existing item
+     * @return combined item
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    Item addOnExistingItem(Item item);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Replaces the given item {@code target} with {@code editedItem}.
+     * {@code target} must exist in the inventory book.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the inventory book.
+     */
+    void setItem(Item target, Item editedItem);
+
+    /** Returns an unmodifiable view of the filtered item list */
+    ObservableList<Item> getFilteredItemList();
+
+    /**
+     * Updates the filter of the filtered item list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredItemList(Predicate<Item> predicate);
 }

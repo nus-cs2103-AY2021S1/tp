@@ -1,0 +1,12 @@
+{
+  "items" : [ {
+    "name" : "CHICKEN",
+    "quantity" : "24",
+    "supplier" : "NTUC",
+    "tagged" : ["meat" ]
+  }, {
+    "name": "Chicken",
+    "quantity": "12",
+    "supplier": "NTUC"
+  } ]
+}
