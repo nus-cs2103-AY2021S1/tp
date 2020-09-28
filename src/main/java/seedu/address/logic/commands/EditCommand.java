@@ -92,11 +92,20 @@ public class EditCommand extends Command {
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        MeetingLink updatedMeetingLink = editStudentDescriptor.getMeetingLink().orElse(studentToEdit.getMeetingLink());
+        School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
+        Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
         ClassVenue updatedClassVenue = editStudentDescriptor.getClassVenue().orElse(studentToEdit.getClassVenue());
+        ClassTime updatedClassTime = editStudentDescriptor.getClassTime().orElse(studentToEdit.getClassTime());
+        AdditionalDetails updatedAdditionalDetails =
+                editStudentDescriptor.getAdditionalDetails().orElse(studentToEdit.getAdditionalDetails());
+        MeetingLink updatedMeetingLink = editStudentDescriptor.getMeetingLink().orElse(studentToEdit.getMeetingLink());
+        Subject updatedSubject = editStudentDescriptor.getSubject().orElse(studentToEdit.getSubject());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedMeetingLink, updatedClassVenue, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
+                updatedClassVenue,
+                updatedClassTime, updatedAdditionalDetails, updatedMeetingLink,
+                updatedSubject, updatedTags);
     }
 
     @Override
@@ -124,8 +133,13 @@ public class EditCommand extends Command {
     public static class EditStudentDescriptor {
         private Name name;
         private Phone phone;
-        private MeetingLink meetingLink;
+        private School school;
+        private Year year;
         private ClassVenue classVenue;
+        private ClassTime classTime;
+        private AdditionalDetails additionalDetails;
+        private MeetingLink meetingLink;
+        private Subject subject;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -137,8 +151,13 @@ public class EditCommand extends Command {
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setMeetingLink(toCopy.meetingLink);
+            setSchool(toCopy.school);
+            setYear(toCopy.year);
             setClassVenue(toCopy.classVenue);
+            setClassTime(toCopy.classTime);
+            setAdditionalDetails(toCopy.additionalDetails);
+            setMeetingLink(toCopy.meetingLink);
+            setSubject(toCopy.subject);
             setTags(toCopy.tags);
         }
 
@@ -165,13 +184,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setMeetingLink(MeetingLink meetingLink) {
-            this.meetingLink = meetingLink;
+        public void setSchool(School school) {
+            this.school = school;
         }
 
-        public Optional<MeetingLink> getMeetingLink() {
-            return Optional.ofNullable(meetingLink);
+        public Optional<School> getSchool() {
+            return Optional.ofNullable(school);
         }
+
+        public void setYear(Year year) {
+            this.year = year;
+        }
+
+        public Optional<Year> getYear() {return Optional.ofNullable(year);}
 
         public void setClassVenue(ClassVenue classVenue) {
             this.classVenue = classVenue;
@@ -179,6 +204,36 @@ public class EditCommand extends Command {
 
         public Optional<ClassVenue> getClassVenue() {
             return Optional.ofNullable(classVenue);
+        }
+
+        public void setClassTime(ClassTime classTime) {
+            this.classTime = classTime;
+        }
+
+        public Optional<ClassTime> getClassTime() {return Optional.ofNullable(classTime);}
+
+        public void setAdditionalDetails(AdditionalDetails additionalDetails) {
+            this.additionalDetails = additionalDetails;
+        }
+
+        public Optional<AdditionalDetails> getAdditionalDetails() {
+            return Optional.ofNullable(additionalDetails);
+        }
+
+        public void setSubject(Subject subject) {
+            this.subject = subject;
+        }
+
+        public Optional<Subject> getSubject() {
+            return Optional.ofNullable(subject);
+        }
+
+        public void setMeetingLink(MeetingLink meetingLink) {
+            this.meetingLink = meetingLink;
+        }
+
+        public Optional<MeetingLink> getMeetingLink() {
+            return Optional.ofNullable(meetingLink);
         }
 
         /**
@@ -215,8 +270,13 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getMeetingLink().equals(e.getMeetingLink())
+                    && getSchool().equals(e.getSchool())
+                    && getYear().equals(e.getYear())
                     && getClassVenue().equals(e.getClassVenue())
+                    && getClassTime().equals(e.getClassTime())
+                    && getAdditionalDetails().equals(e.getAdditionalDetails())
+                    && getMeetingLink().equals(e.getMeetingLink())
+                    && getSubject().equals(e.getSubject())
                     && getTags().equals(e.getTags());
         }
     }
