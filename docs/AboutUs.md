@@ -21,9 +21,18 @@ You can reach us at the email `e0417539@u.nus.edu`
 
 <img src="images/xnoobftw.png" width="200px">
 
-[github](https://github.com/xnoobftw)
-[portfolio](team/xnoobftw.md)
+[[github](https://github.com/xnoobftw)]
+[[portfolio](team/xnoobftw.md)]
 
 * Role: Developer
 * Responsibilities: Coding Quality
 
+### Bobby Law
+
+<img src="images/bobbylaw.png" width="200px">
+
+[[github](https://github.com/zeranium97)]
+[[portfolio](team/bobbylaw.md)]
+
+* Role: Developer
+* Responsibilities: Tests, Coding Quality

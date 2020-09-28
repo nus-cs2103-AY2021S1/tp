@@ -279,16 +279,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InventoryBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a item**
+**Use case: Delete an item**
 
 **MSS**
 
 1.  User requests to list items
-2.  AddressBook shows a list of items
+2.  InventoryBook shows a list of items
 3.  User requests to delete a specific item in the list
-4.  AddressBook deletes the item
+4.  InventoryBook deletes the item
 
     Use case ends.
 
@@ -300,11 +300,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InventoryBook shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Update existing item quantity or tags**
+
+**MSS**
+
+1. User request to update item.
+2. InventoryBook updates the item accordingly.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. InventoryBook detect invalid data input.
+
+  * 1a1. InventoryBook shows an error message.
+
+  Use case ends.
+
+* 1b. InventoryBook unable to detect existing item name and supplier.
+
+  * 1b1. InventoryBook adds a new item into the inventory.
+
+  Use case ends.
+
+**Use case: Editing an item**
+
+**MSS**
+
+1. User request to list all item or specific item using the find-command
+2. InventoryBook show the list of corresponding items.
+3. User request to edit a specific item in the list.
+4. InventoryBook edits the item.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. InventoryBook shows an error message.
+
+        Use case resumes at step 2.
+
+* 3b. The given data to edit is invalid.
+
+  * 3b1. InventoryBook shows an error message.
+
+        Use case resumes at step 2.
+
+* 3c. InventoryBook detects a duplicate after editing.
+
+  * 3c1. InventoryBook shows an error message.
+ 
+        Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
