@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyMcGymmy;
 /**
  * Represents a storage for {@link McGymmy}.
  */
-public interface AddressBookStorage {
+public interface McGymmyStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMcGymmyFilePath();
 
     /**
      * Returns McGymmy data as a {@link ReadOnlyMcGymmy}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyMcGymmy> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMcGymmyFilePath()
      */
-    Optional<ReadOnlyMcGymmy> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMcGymmy> readMcGymmy(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyMcGymmy} to the storage.
-     * @param addressBook cannot be null.
+     * @param mcGymmy cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyMcGymmy addressBook) throws IOException;
+    void saveMcGymmy(ReadOnlyMcGymmy mcGymmy) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyMcGymmy)
+     * @see #saveMcGymmy(ReadOnlyMcGymmy)
      */
-    void saveAddressBook(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException;
+    void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, Path filePath) throws IOException;
 
 }

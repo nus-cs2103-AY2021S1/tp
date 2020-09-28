@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonMcGymmyStorage addressBookStorage = new JsonMcGymmyStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -51,18 +51,18 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonMcGymmyStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMcGymmyStorageTest} class.
          */
         McGymmy original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyMcGymmy retrieved = storageManager.readAddressBook().get();
+        storageManager.saveMcGymmy(original);
+        ReadOnlyMcGymmy retrieved = storageManager.readMcGymmy().get();
         assertEquals(original, new McGymmy(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getMcGymmyFilePath());
     }
 
 }

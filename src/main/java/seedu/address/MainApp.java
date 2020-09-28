@@ -22,8 +22,8 @@ import seedu.address.model.ReadOnlyMcGymmy;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.McGymmyStorage;
+import seedu.address.storage.JsonMcGymmyStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        McGymmyStorage mcGymmyStorage = new JsonMcGymmyStorage(userPrefs.getAddressBookFilePath());
+        storage = new StorageManager(mcGymmyStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,7 +77,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyMcGymmy> addressBookOptional;
         ReadOnlyMcGymmy initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readMcGymmy();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample McGymmy");
             }
