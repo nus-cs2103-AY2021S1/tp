@@ -1,6 +1,6 @@
 package seedu.address.logic;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -47,20 +47,20 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         // Executes the Command and stores the result in commandResult
         commandResult = command.execute(model);
-
+        /*
         try {
             // Since the model is modified previously, the current model is saved through the storage
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getCommonCents());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
+        */
         return commandResult;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyCommonCents getCommonCents() {
+        return model.getCommonCents();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getCommonCentsFilePath();
     }
 
     @Override
