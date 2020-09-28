@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Recipe> filteredRecipes;
     private final FilteredList<Ingredient> filteredIngredients;
+    private final FilteredList<Consumption> filteredConsumption;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredRecipes = new FilteredList<>(this.addressBook.getRecipeList());
         filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
+        filteredConsumption = new FilteredList<>(this.addressBook.getConsumptionList());
     }
 
     public ModelManager() {
@@ -116,6 +119,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addConsumption(Consumption target) {
+        addressBook.addConsumption(target);
+    }
+
+    @Override
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return addressBook.hasIngredient(ingredient);
@@ -156,6 +164,13 @@ public class ModelManager implements Model {
         filteredRecipes.setPredicate(predicate);
     }
 
+    //=========== Filtered Consumption List Accessors =============================================================
+    @Override
+    public ObservableList<Consumption> getFilteredConsumptionList() {
+        return filteredConsumption;
+    }
+
+    //=========== Filtered Ingredients List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedWishfulShrinking}
@@ -188,7 +203,8 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredRecipes.equals(other.filteredRecipes)
-                && filteredIngredients.equals(other.filteredIngredients);
+                && filteredIngredients.equals(other.filteredIngredients)
+                && filteredConsumption.equals(other.filteredConsumption);
     }
 
 }

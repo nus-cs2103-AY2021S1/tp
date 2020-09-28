@@ -3,21 +3,18 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
-//import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
@@ -90,6 +87,7 @@ public class WishfulShrinkingTest {
     private static class WishfulShrinkingStub implements ReadOnlyWishfulShrinking {
         private final ObservableList<Recipe> recipes = FXCollections.observableArrayList();
         private final ObservableList<Ingredient> ingredients = FXCollections.observableArrayList();
+        private final ObservableList<Consumption> consumption = FXCollections.observableArrayList();
 
         WishfulShrinkingStub(Collection<Recipe> recipes) {
             this.recipes.setAll(recipes);
@@ -103,6 +101,11 @@ public class WishfulShrinkingTest {
         @Override
         public ObservableList<Ingredient> getIngredientList() {
             return ingredients;
+        }
+
+        @Override
+        public ObservableList<Consumption> getConsumptionList() {
+            return consumption;
         }
     }
 

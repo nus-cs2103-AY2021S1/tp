@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.IngredientBuilder;
@@ -149,6 +150,16 @@ public class AddIngredientCommandTest {
 
         @Override
         public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addConsumption(Consumption target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Consumption> getFilteredConsumptionList() {
             throw new AssertionError("This method should not be called.");
         }
 

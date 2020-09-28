@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consumption.Consumption;
+import seedu.address.model.consumption.ConsumptionList;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.UniqueIngredientList;
@@ -17,8 +19,8 @@ import seedu.address.model.recipe.UniqueRecipeList;
 public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     private final UniqueRecipeList recipes;
-
     private final UniqueIngredientList ingredients;
+    private final ConsumptionList consumption;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +32,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     {
         recipes = new UniqueRecipeList();
         ingredients = new UniqueIngredientList();
+        consumption = new ConsumptionList();
     }
 
     public WishfulShrinking() {}
@@ -107,6 +110,16 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
         recipes.remove(key);
     }
 
+    //// calorie counter operations
+
+    /**
+     * Add {@code key} from this {@code WishfulShrinking} to daily consumption.
+     * {@code key} must exist in the address book.
+     */
+    public void addConsumption(Consumption key) {
+        consumption.eat(key);
+    }
+
     //// ingredient-level operations
 
     /**
@@ -161,6 +174,11 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     @Override
     public ObservableList<Ingredient> getIngredientList() {
         return ingredients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Consumption> getConsumptionList() {
+        return consumption.asUnmodifiableObservableList();
     }
 
     @Override

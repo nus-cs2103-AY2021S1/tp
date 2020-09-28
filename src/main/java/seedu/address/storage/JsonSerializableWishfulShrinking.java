@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
@@ -25,6 +26,7 @@ class JsonSerializableWishfulShrinking {
 
     private final List<JsonAdaptedRecipe> recipes = new ArrayList<>();
     private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
+    private final List<JsonAdaptedConsumption> consumption = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableWishfulShrinking} with the given recipes.
@@ -51,6 +53,12 @@ class JsonSerializableWishfulShrinking {
         recipes.addAll(source.getRecipeList().stream().map(JsonAdaptedRecipe::new).collect(Collectors.toList()));
         ingredients.addAll(source.getIngredientList().stream().map(JsonAdaptedIngredient::new).collect(Collectors
                 .toList()));
+        consumption.addAll(source.getConsumptionList().stream().map(consump -> {
+            String recipeName = consump.getRecipe().getName().fullName;
+            String ingredients = consump.getRecipe().getIngredientString().value;
+            return new JsonAdaptedConsumption(recipeName, ingredients);
+        }).collect(Collectors
+                .toList()));
     }
 
     /**
@@ -73,6 +81,10 @@ class JsonSerializableWishfulShrinking {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);
             }
             addressBook.addIngredient(ingredient);
+        }
+        for (JsonAdaptedConsumption jsonAdaptedConsumption : consumption) {
+            Consumption recipeToEat = jsonAdaptedConsumption.toModelType();
+            addressBook.addConsumption(recipeToEat);
         }
         return addressBook;
     }
