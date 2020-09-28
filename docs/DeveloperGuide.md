@@ -281,6 +281,95 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+	      
+**Use case: U1 - Add recipe**
+
+**MSS:** 
+
+1. User chooses to add a recipe.
+2. User enters the details according to the format.
+3. FRMS displays a confirmation message with the new recipe.
+
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+* 2b. FRMS detects a duplicate recipe.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.	      
+
+
+**Use case: U2 - Delete recipe**
+
+**MSS:** 
+
+1. User chooses to delete a recipe.
+2. User enters the recipe name.
+3. FRMS displays a confirmation message.
+
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+* 2b. FRMS detects invalid input of recipe name.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+**Use case: U3 - View recipe**
+
+**MSS:** 
+
+1. User chooses to view all recipes.
+2. User requests for the recipes.
+3. FRMS display all the recipes.
+
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters data according to the correct format.
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+**Use case: U4 - Filter recipes**
+
+**MSS:** 
+
+1. User chooses to view a list of filtered recipes.
+2. User enters the filter conditions.
+3. FMRS displays a filtered list of recipes.
+
+    Use case ends. 
+
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+* 2b. Filtered list does not contain any recipes.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data. 
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
