@@ -33,9 +33,9 @@ class TestCommandTest {
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
         String expectedMessage = String.format(TestCommand.MESSAGE_CORRECT_ANSWER,
-                question, answer, userAnswer);
+                answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, question, true);
     }
 
     @Test
@@ -49,9 +49,9 @@ class TestCommandTest {
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
         String expectedMessage = String.format(TestCommand.MESSAGE_INCORRECT_ANSWER,
-                question, answer, userAnswer);
+                answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, question, false);
     }
 
     @Test
@@ -66,9 +66,9 @@ class TestCommandTest {
         TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
 
         String expectedMessage = String.format(TestCommand.MESSAGE_CORRECT_ANSWER,
-                mcq, answer, userAnswer);
+                answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, true);
     }
 
     @Test
@@ -83,9 +83,9 @@ class TestCommandTest {
         TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
 
         String expectedMessage = String.format(TestCommand.MESSAGE_INCORRECT_ANSWER,
-                mcq, answer, userAnswer);
+                answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, false);
     }
 
     @Test
