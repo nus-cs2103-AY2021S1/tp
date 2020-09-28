@@ -9,6 +9,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 1. [Quick Start](#QuickStart)
 2. [Features](#Features)
 3. [Usage](#Usage)
+4. [Command Summary](#CommandSummary)
 
 ## Quick Start <a name="QuickStart"></a>
 
@@ -95,4 +96,13 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Format: `topup $<amount>`
     - Example: `topup $200` Adds an extra budget of 200 dollars to work with.
 
+## Command summary <a name="CommandSummary"></a>
+
+Action | Format, Examples
+--------|------------------
+**Spent** | `spent -d <description> $<amount_spent> [@ <date>]` <br> e.g., `spent -d dinner $10.50`, `spent -d dinner $10.50 @ 20-08-2020`
+**List** | `list`
+**Edit** | `edit <index> [-d <description>] [$<amount_spent>] [@ <date>]`<br> e.g.,`edit 1 -d lunch $12.50`, `edit 1 $12.50 -d lunch @ 11-11/2020`
+**Delete** | `delete <index>`<br> e.g., `delete 1`
+**Topup** | `topup $<amount>`<br> e.g., `topup $200`
 --------------------------------------------------------------------------------------------------------------------
