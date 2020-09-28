@@ -31,29 +31,31 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Patient CARL = new PersonBuilder().withName("Carl Kurz").withNric("S00000003A").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Patient DANIEL = new PersonBuilder().withName("Daniel Meier").withNric("S00000004A").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Patient ELLE = new PersonBuilder().withName("Elle Meyer").withNric("S00000005A").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Patient FIONA = new PersonBuilder().withName("Fiona Kunz").withNric("S00000006A").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Patient GEORGE = new PersonBuilder().withName("George Best").withNric("S00000007A").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final Patient CARL = new PersonBuilder().withName("Carl Kurz").withNric("S00000003A")
+            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").build();
+    public static final Patient DANIEL = new PersonBuilder().withName("Daniel Meier").withNric("S00000004A")
+            .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
+            .withTags("friends").build();
+    public static final Patient ELLE = new PersonBuilder().withName("Elle Meyer").withNric("S00000005A")
+            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave").build();
+    public static final Patient FIONA = new PersonBuilder().withName("Fiona Kunz").withNric("S00000006A")
+            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo").build();
+    public static final Patient GEORGE = new PersonBuilder().withName("George Best").withNric("S00000007A")
+            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Patient HOON = new PersonBuilder().withName("Hoon Meier").withNric("S00000008A").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Patient IDA = new PersonBuilder().withName("Ida Mueller").withNric("S00000009A").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    public static final Patient HOON = new PersonBuilder().withName("Hoon Meier").withNric("S00000008A")
+            .withPhone("8482424").withEmail("stefan@example.com").withAddress("little india").build();
+    public static final Patient IDA = new PersonBuilder().withName("Ida Mueller").withNric("S00000009A")
+            .withPhone("8482131").withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Patient AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric("S12345678A").withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Patient BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric("S87654321A").withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    public static final Patient AMY = new PersonBuilder().withName(VALID_NAME_AMY).withNric("S12345678A")
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+    public static final Patient BOB = new PersonBuilder().withName(VALID_NAME_BOB).withNric("S87654321A")
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
