@@ -31,7 +31,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`list`** : Lists all assignments.
 
-   * **`add`**`n/Lab report 3 d/23/04/2020 12:30 PM mod/CS2100` : Adds an assignment named `Lab Assignment 3` to the Address Book.
+   * **`add`**`n/Lab report 3 d/23/04/2020 t/1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
 
    * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
 
@@ -65,17 +65,14 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds an assignment into your schedule.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT [t/TIME_ASSIGNMENT_IS_DUE] mod/MODULE​[remind]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Lab report 3 d/23/04/2020 t/1230 mod/CS2100`
+* `add n/Tutorial 2 d/29/06/2020 mod/CS2100 remind`
+* `add n/Assignment 1 d/31/06/2020 mod/CS2040`
 
 ### Listing all assignments : `list`
 
