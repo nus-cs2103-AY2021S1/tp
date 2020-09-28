@@ -42,3 +42,12 @@ We are a team based in the [School of Computing, National University of Singapor
 
 * Role: Developer
 * Responsibilities: Code quality + Scheduling & tracking
+
+### Chong Jia Le
+
+<img src="images/chiabs.png" width="200px">
+
+[[github](https://github.com/chiabs)] [[portfolio](team/chiabs.md)]
+
+* Role: Developer
+* Responsibilities: Storage
