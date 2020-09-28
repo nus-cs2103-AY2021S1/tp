@@ -1,6 +1,5 @@
 package tp.cap5buddy.modules;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

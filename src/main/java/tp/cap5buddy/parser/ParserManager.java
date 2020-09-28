@@ -2,10 +2,7 @@ package tp.cap5buddy.parser;
 
 import java.util.Scanner;
 
-import tp.cap5buddy.commands.AddModuleCommand;
-import tp.cap5buddy.commands.AddZoomLinkCommand;
 import tp.cap5buddy.commands.Command;
-import tp.cap5buddy.commands.ResultCommand;
 import tp.cap5buddy.parser.exception.ParseException;
 
 
@@ -42,15 +39,14 @@ public class ParserManager {
         //ResultCommand result;
 
         switch (this.command) {
-            case "addmodule":
-                //command = parser.parse(words);
-                //result = command.execute();
-                parser = new AddModuleParser();
-                return parser.parse(input);
-            case "addzoom":
-                parser = new AddZoomLinkParser();
-                return parser.parse(input);
-
+        case "addmodule":
+            //command = parser.parse(words);
+            //result = command.execute();
+            parser = new AddModuleParser();
+            return parser.parse(input);
+        case "addzoom":
+            parser = new AddZoomLinkParser();
+            return parser.parse(input);
         default:
             throw new ParseException("Invalid command");
         }
