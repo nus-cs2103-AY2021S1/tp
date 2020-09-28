@@ -37,7 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_OPTION_ALICE = "1";
     public static final String VALID_OPTION_AMY = "23";
     public static final String VALID_OPTION_BOB = "555";
-  
+
     public static final String CHOICE_DESC = " " + PREFIX_CHOICE + "First" + " "
             + PREFIX_CHOICE + "Second" + " " + PREFIX_CHOICE + "Third" + " "
             + PREFIX_CHOICE + "Fourth";
