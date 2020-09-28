@@ -130,12 +130,12 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag <filename> /t <tagname>` <br> e.g., `tag c:/myfolder/file.jpg /t newTag`
-**Show** | `show <tag name>`
-**Untag** | `untag <tag name>`
-**Retag** | `retag <tag name> /t <new tag name>` <br> e.g., `retag myTag /t anotherNameForMyTag`
-**Open** | `open <tagname>`
+**Tag** | `tag f/FILE_NAME t/TAG_NAME` <br> e.g., `tag f/c:/myfolder/file.jpg t/newTag`
+**Show** | `show t/TAG_NAME`
+**Untag** | `untag t/TAG_NAME`
+**Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
+**Open** | `open t/TAG_NAME`
 **List** | `ls`
 **Clear** | `clear`
-**Help** | `help [<command>]`
+**Help** | `help [c/COMMAND]`
 **Exit** | `exit`
