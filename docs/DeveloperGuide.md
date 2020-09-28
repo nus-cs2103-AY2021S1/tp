@@ -279,7 +279,111 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: U5 - List ingredients**
+
+**MSS:** 
+
+1. User chooses to view all ingredients.
+2. User inputs the command to request for the ingredients.
+3. FRMS shows the confirmation message and displays the complete list of ingredients.
+
+    Use case ends. 
+     
+**Extensions:**  
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters data according to the correct format.  
+	     Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+**Use case: U6 - Add Ingredient**
+
+**MSS:**
+
+1. User chooses to add an ingredient.
+2. User enters the details according to the format.
+3. FRMS displays a confirmation message with the new ingredient.
+
+**Extensions:**
+
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. FRMS detects a duplicate ingredient.
+    * 2b1. FRMS displays error messages.
+    * 2b2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+
+
+**Use case: U7 - Delete Ingredient**
+
+**MSS:**
+
+1. User chooses to delete an ingredient.
+2. User enters the details according to the format.
+3. FRMS displays a confirmation message.
+
+**Extensions:**
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. FRMS detects invalid input of ingredient name.
+    * 2b. FRMS displays error messages.
+    * 2b. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+
+
+
+
+**Use case: U8 - View expiring ingredients** 
+
+**MSS:**
+1. User chooses to view a list of expiring ingredients.
+2. User enters the date range.
+3. FMRS displays a filtered list of expiring ingredients.
+
+**Extensions:**
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. Filtered list does not contain any ingredients in the date range.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.
+
+
+
+**Use case: U9 - Filter ingredients**
+ 
+**MSS:**
+1. User chooses to view a list of filtered ingredients.
+2. User enters the filter conditions.
+3. FMRS displays a filtered list of ingredients.
+
+**Extensions:**
+
+* 2a. FRMS detects invalid input format.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.  
+* 2b. Filtered list does not contain any ingredients.
+    * 2a1. FRMS displays error messages.
+    * 2a2. User enters new data.  
+      Steps a-b are repeated until the data entered are correct.  
+	      User case resumes from step 3.      
+
 
 	      
 **Use case: U1 - Add recipe**
