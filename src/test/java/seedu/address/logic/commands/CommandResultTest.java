@@ -7,7 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Question;
+
 public class CommandResultTest {
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
@@ -33,6 +37,32 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+        Question question = new OpenEndedQuestion("question");
+        commandResult = new CommandResult("feedback", question, true);
+
+        // same values -> returns true
+        assertTrue(commandResult.equals(new CommandResult("feedback", question, true)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false,
+                false, question, true)));
+
+        // same object -> returns true
+        assertTrue(commandResult.equals(commandResult));
+
+        // null -> returns false
+        assertFalse(commandResult.equals(null));
+
+        // different types -> returns false
+        assertFalse(commandResult.equals(0.5f));
+
+        // different feedbackToUser value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("different", question, true)));
+
+        // different showHelp value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, question, true)));
+
+        // different exit value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, question, true)));
     }
 
     @Test
@@ -51,4 +81,5 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
+
 }
