@@ -191,7 +191,7 @@ Action | Format, Examples
 **Add** | `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`
 **List** | `list`
 **Help** | `help`
