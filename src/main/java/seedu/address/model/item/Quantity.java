@@ -26,7 +26,7 @@ public class Quantity {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -39,6 +39,16 @@ public class Quantity {
      */
     public Quantity add(Quantity quantity) {
         int value = Integer.parseInt(this.value) + Integer.parseInt(quantity.value);
+        return new Quantity(Integer.toString(value));
+    }
+
+    /**
+     * subtracts a Quantity's value from another quantity's value
+     * @param quantity another quantity
+     * @return Quantity after subtraction
+     */
+    public Quantity subtract(Quantity quantity) {
+        int value = Integer.parseInt(this.value) - Integer.parseInt(quantity.value);
         return new Quantity(Integer.toString(value));
     }
 
