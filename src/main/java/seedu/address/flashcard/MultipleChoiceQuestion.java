@@ -1,5 +1,7 @@
 package seedu.address.flashcard;
 
+import java.util.Arrays;
+
 import seedu.address.commons.core.index.Index;
 
 /**
@@ -36,6 +38,15 @@ public class MultipleChoiceQuestion implements Question {
         return sb.toString();
     }
 
+    public String getOnlyQuestion() {
+        StringBuilder sb = new StringBuilder(question);
+        return sb.toString();
+    }
+
+    public String[] getChoices() {
+        return this.options;
+    }
+
     public static boolean isValidQuestion(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -56,7 +67,8 @@ public class MultipleChoiceQuestion implements Question {
             return true;
         } else if (o instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
-            return this.toString().equals(temp.toString());
+            return this.toString().equals(temp.toString())
+                    && Arrays.equals(this.getChoices(), temp.getChoices());
         }
         return false;
     }

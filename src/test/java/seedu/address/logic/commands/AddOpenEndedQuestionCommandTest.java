@@ -112,11 +112,6 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addFlashcard(Flashcard flashcard) {
             throw new AssertionError("This method should not be called.");
         }
@@ -132,17 +127,7 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasFlashcard(Flashcard flashcard) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,12 +137,7 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,7 +147,7 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

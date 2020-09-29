@@ -13,12 +13,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.Question;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.QuickCache;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditFlashcardDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -28,9 +31,11 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_ALICE = "Alice";
     public static final String VALID_QUESTION_AMY = "Amy Bee";
     public static final String VALID_QUESTION_BOB = "Bob Choo";
+    public static final String VALID_QUESTION_KEV = "KEv Chee";
     public static final String VALID_ANSWER_ALICE = "2";
     public static final String VALID_ANSWER_AMY = "11111111";
     public static final String VALID_ANSWER_BOB = "22222222";
+    public static final String VALID_ANSWER_KEV = "11112222";
     public static final String VALID_OPTION_ALICE = "1";
     public static final String VALID_OPTION_AMY = "23";
     public static final String VALID_OPTION_BOB = "555";
@@ -57,16 +62,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    //    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    //    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditFlashcardDescriptor DESC_AMY;
+    public static final EditCommand.EditFlashcardDescriptor DESC_BOB;
 
     static {
-        //        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-        //                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-        //                .withTags(VALID_TAG_FRIEND).build();
-        //        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-        //                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-        //                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
+                    .withAnswer(VALID_ANSWER_AMY).build();
+        DESC_BOB = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
+                    .withAnswer(VALID_ANSWER_BOB).build();
     }
 
     /**
@@ -96,6 +99,17 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, Question expectedQuestion,
+                                            boolean expectedIsCorrect) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedQuestion, expectedIsCorrect);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
@@ -105,25 +119,26 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         QuickCache expectedQuickCache = new QuickCache(actualModel.getQuickCache());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Flashcard> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFlashcardList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedQuickCache, actualModel.getQuickCache());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
-    /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPersonList().size());
-    }
+//    /**
+//     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+//     * {@code model}'s address book.
+//     */
+//    public static void showPersonAtIndex(Model model, Index targetIndex) {
+//        assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
+//
+//        Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
+//        final String[] splitName = flashcard.getName().fullName.split("\\s+");
+//        model.updateFilteredFlashcardList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+//
+//        assertEquals(1, model.getFilteredFlashcardList().size());
+//    }
 
 
 }

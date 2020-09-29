@@ -7,8 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.UniqueFlashcardList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
@@ -73,6 +71,17 @@ public class QuickCache implements ReadOnlyQuickCache {
      */
     public void addFlashcard(Flashcard f) {
         flashcards.add(f);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+        requireNonNull(editedFlashcard);
+
+        flashcards.setFlashcard(target, editedFlashcard);
     }
 
     /**

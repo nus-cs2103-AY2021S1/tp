@@ -112,6 +112,12 @@ public class ModelManager implements Model {
         filteredFlashcards.setPredicate(predicate);
     }
 
+    @Override
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+        requireAllNonNull(target, editedFlashcard);
+
+        quickCache.setFlashcard(target, editedFlashcard);
+    }
 
     //=========== Filtered Flashcard List Accessors =============================================================
 
