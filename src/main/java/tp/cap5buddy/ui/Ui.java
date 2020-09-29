@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Represents the UI object that the user interacts with.
  */
 public class Ui {
-    private final static Scanner SC = new Scanner(System.in);
+    private static final Scanner SC = new Scanner(System.in);
 
     /**
      * Prints the result message.

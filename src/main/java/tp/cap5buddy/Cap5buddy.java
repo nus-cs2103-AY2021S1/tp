@@ -1,7 +1,7 @@
 package tp.cap5buddy;
 
-import tp.cap5buddy.logic.commands.ResultCommand;
 import tp.cap5buddy.logic.LogicManager;
+import tp.cap5buddy.logic.commands.ResultCommand;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 import tp.cap5buddy.ui.Ui;
 
@@ -20,7 +20,7 @@ public class Cap5buddy {
         run(userInterface);
     }
 
-    private static void run(Ui ui) throws ParseException{
+    private static void run(Ui ui) throws ParseException {
         boolean isExit = false;
         LogicManager lm = new LogicManager();
         while (!isExit) {
