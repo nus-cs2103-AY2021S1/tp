@@ -9,6 +9,21 @@ MainCatalogue - Level 3 is a desktop main catalogue application used for teachin
 
 Given below are my contributions to the project.
 
+* **Model modification**: Came up with the overall structure for Taskmania and a guideline for adapting from AB3.
+
+* **Model modification**: Refactored Person in AB3 as Project and AddressBook as MainCatalogue. (Pull request [\#2](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/2))
+  * What it means: projects are the list of objects the application mainly holds, and main catalogue holds all projects.
+  * What changes made: 
+    * replaced all person with project;
+    * replaced all addressBook with mainCatalogue. 
+
+* **Model modification**: Created Task object and added basic dependencies. (Pull request: Pull request [\#21](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/21))
+  * What it means: a task in a project that can be assigned to teammates.
+  * What changes made: 
+    * created the class from scratch;
+    * added dependencies of it in Project, Participation, and related collections;
+    * added related test cases.
+
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
@@ -20,7 +35,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed all contributions of Model modifications.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
