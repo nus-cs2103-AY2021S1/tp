@@ -41,6 +41,19 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 
 </div>
 
+#### Add exercises : `add`
+
+Add an exercise to the application, with calories burnt (optional).
+
+Format: `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]`
+
+- The format for the DATE should be in the form of DD-MM-YYYY.
+
+Examples:
+
+- `add e/Push up d/10 at/14-09-2020 c/30`
+- `add e/Sit up d/10 at/14-09-2020`
+
 #### Update exercises : `update`
 
 Update an existing exercise.
