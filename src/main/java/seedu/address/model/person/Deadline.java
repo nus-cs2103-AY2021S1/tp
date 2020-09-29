@@ -3,14 +3,18 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Deadlines should only be in the format 'dd-MM-uuuu HH:mm', and contain a valid date and time";
     public final String value;
 
     /**
@@ -28,7 +32,15 @@ public class Deadline {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime taskDate = LocalDateTime.parse(test, inputFormat);
+            taskDate.format(inputFormat);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
     }
 
     @Override

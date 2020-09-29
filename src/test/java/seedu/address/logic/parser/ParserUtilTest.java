@@ -22,13 +22,13 @@ import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_DEADLINE = "99-99-9999 99:99";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_DEADLINE = "31-10-2020 00:00";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -86,19 +86,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
     }
 
     @Test
     public void parseDeadlineparsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_PHONE);
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_PHONE));
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_PHONE);
+        String phoneWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
+        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(phoneWithWhitespace));
     }
 
