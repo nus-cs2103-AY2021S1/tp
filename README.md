@@ -8,13 +8,13 @@ Trackr helps teaching assistants (TAs) manage the details of their students. It 
 
 ## Site Map
 
--   [User Guide](docs/)
--   [Developer Guide](docs/)
--   [About Us](docs/)
+-   [User Guide](docs/UserGuide.md)
+-   [Developer Guide](docs/DeveloperGuide.md)
+-   [About Us](docs/AboutUs.md)
 
 ## Acknowledgements
 
 -   This application is built on the AddressBook-Level-3 project developed by SE-EDU initiative. For more information, you may wish to visit their [website](https://se-education.org).
--   Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+-   Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit 5](https://github.com/junit-team/junit5)
 
 ## Licence: [MIT](LICENSE)
