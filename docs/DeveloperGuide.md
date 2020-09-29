@@ -264,111 +264,129 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Taskmania` program and the **Actor** is the `user`, unless specified
- otherwise)
- 
- (A member refers to a member of a team in one of the projects managed by the team leader( `user` ))
+#### System: Project Profile Tracking System (PTS)
 
-#### **Use case: Delete a project**
+**Use Case: UC1 - Create New Project**
 
-**MSS**
+**Actor:** Project Team Leader
 
-1.  User requests to list projects
-2.  Taskmania shows a list of projects
-3.  User requests to delete a specific project in the list using the index of the project in the list
-4.  Taskmania deletes the project
+**MSS:**
 
-    Use case ends.
+1. Team leader creates a new project profile.
+2. PTS asks for the details of project such as project name, project due date and project team members.
+3. Team leader keys in the details.
+4. PTS stores the project profile into the data file.
 
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-    * 3a1. MainCatalogue shows an error message.
-
-      Use case resumes at step 2.
-      
-#### **Use case: Add a project**
-
-**MSS**
-
-1.  User requests to add a new project to Taskmania.
-2.  Taskmania adds the project.
-3.  Taskmania displays a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. User input for project attributes are incorrect.
-  *2a1. Taskmania displays an error message.
-  *2a2. Taskmania requests user to try again with correct values.  
-  
-  Use case resumes at step 1
-
-  Use case ends.
-
-**Use case: Edit a project**
-
-**MSS**
-
-1.  User requests to list projects
-2.  Taskmania shows a list of projects
-3.  User requests to edit a specific project in the list using the index of the project in the list, providing the
- fields to change
-4.  Taskmania edits the project
-5. Taskmania displays a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Taskmania shows an error message.
-
-      Use case resumes at step 2.
-      
- * 3b The given input by user is invalid.
- 
-   * 3b1. Taskmania shows an error message.
-   
-     Use case resumes at step 2.
-     
-     
-**Use case: Add a member to a project**
-
-**MSS**
-
-1.  User requests to list projects.
-2.  Taskmania shows a list of projects.
-3.  User requests to open a project using an index
-4.  Taskmania opens the project
-5.  User requests to add a member to the project
-6. Taskmania adds teammate to the project
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
       
- * 4a The given index is not valid
+ * 3a. The given details are not valid.
+   * 3a1. PTS shows an error message.
+    
+Use case ends.
+
+**Use Case: UC2 - Edit Existing Project Profile**
+
+**Actor:** Project Team Leader
+
+**Precondition:** The project profile to be changed is existing.
+
+**MSS:**
+1. Team leader chooses to edit a project profile.
+2. PTS asks for the name of the project which project profile is to be edited.
+3. Team leader keys in the name of the project.
+4. PTS asks for the new infomation of project such as project name, project due date and project team members.
+5. Team leader keys in the details.
+6. PTS stores the team member's profile into the data file. 
+
+Use case ends.
  
-   * 4a1. Taskmania shows an error message.
-   
-     Use case resumes at step 3.
-     
- * 5a The given input for member's attributes are not valid
+**Extensions**
+      
+ * 3a. The given name is not found.
+   * 3a1. PTS shows an error message.
+    
+Use case ends.
  
-   * 5a1. Taskmania shows an error message, showing appropriate input for adding a new member
+  * 5b. The given information is not valid.
+    * 5b1. PTS shows an error message.
    
-     Use case resumes at step 4.
+Use case ends.
+
+
+#### System: Team Members Tracking System (TMTS)
+
+**Use Case: UC3 - Add Team Members**
+
+**Actor:** Project Team Leader
+
+**MSS:**
+
+1. Team leader create a new team member profile.
+2. TMTS asks for the details of the team member such as name, phone number and email address.
+3. Team leader keys in the details.
+4. TMTS stores the team member's profile into the data file.
+
+Use case ends.
+
+**Extensions**
+      
+ * 3a. The given details are not valid.
+   * 3a1. TMTS shows an error message.
+    
+Use case ends.
+ 
+
+**Use Case: UC4 - Update Team Members**
+
+**Actor:** Project Team Leader
+
+**Precondition:** The team member's profile to be changed is existing.
+
+**MSS:**
+
+1. Team leader chooses to edit a team member's profile.
+2. PTS asks for the name of the team member whose profile is to be edited.
+3. Team leader keys in the name of the team member.
+4. TMTS asks for the new information of team member such as name, phone number and email address.
+5. Team leader keys in the details.
+6. TMTS stores the team member's profile into the data file.
+
+Use case ends.
+
+**Extensions**
+      
+ * 3a. The given name is not found.
+   * 3a1. PTS shows an error message.
+    
+Use case ends.
+ 
+  * 5b. The given information is not valid.
+    * 5b1. TMTS shows an error message.
+   
+Use case ends.
+
+**Use Case: UC5 - View Team Member On The Task**
+
+**Actor:** Project Team Leader
+
+**Precondition:** The team member's profile and the task are existing.
+
+**MSS:**
+
+1. Team leader chooses to view the profile of the task assignee.
+2. TMTS asks for the task number.
+3. Team leader keys in the task number.
+4. TMTS shows the profile of the task assignee.
+
+Use case ends.
+
+ * 3a. The given task number is not found.
+   * 3a1. TMTS shows an error message.
+    
+Use case ends.
+
 
 #### System: Project Management System (PMS)
 **Use case: UC6 - Start the project**
