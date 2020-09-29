@@ -5,23 +5,34 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyInventoryinator <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Inventoryinator
+Class ReadOnlyInventoryinator
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Item {
+Class Item
+Class ItemId
+Class Description
+Class Location
+Class ItemName
+Class Quantity
+Class UniqueItemList
+Class LocationIdManager
+Class UniqueRecipesManager
+Class RecipeList
+}
+Package Recipes {
+Class Recipe
+Class Ingredients
+Class RecipeID
+Class CraftedItem
+Class RecipeDescription
 }
 
 Package Tag {
@@ -32,25 +43,36 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Inventoryinator .up.|> ReadOnlyInventoryinator
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Inventoryinator
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Inventoryinator o--> "1" UniqueItemList
+UniqueItemList o--> "*" Item
+Inventoryinator o--> "*" LocationIdManager
+LocationIdManager o--> "*" Item
+Inventoryinator o--> "1" UniqueRecipesManager
+UniqueRecipesManager o--> "*" Recipe
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Recipe *--> RecipeID
+Recipe *--> Ingredients
+Recipe *--> CraftedItem
+Recipe *--> RecipeDescription
+RecipeList o--> "*" RecipeID
+Ingredients *--> ItemId
+CraftedItem *--> ItemId
 
-ModelManager -->"1" Person : filtered list
+Item *--> ItemName
+Item *--> Quantity
+Item *--> "*"Location
+Item *--> Description
+Item *--> "*" Tag
+Item *--> ItemId
+Item *--> "*" RecipeList
+
+ModelManager -->"1" Item : filtered list
 @enduml

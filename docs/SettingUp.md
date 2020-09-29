@@ -5,17 +5,13 @@ title: Setting up and getting started
 
 * Table of Contents
 {:toc}
-
+#Setting Up and Getting Started
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Setting up the project in your computer
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
-</div>
-
 First, **fork** this repo, and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
@@ -45,11 +41,4 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
-
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
-
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Removing fields](tutorials/RemovingFields.md)
-   * [Adding a new command](tutorials/AddRemark.md)
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [Inventoryinator architecture](DeveloperGuide.md).
