@@ -32,7 +32,7 @@ You can reach us at the email `e0417539@u.nus.edu`
 <img src="images/bobbylaw.png" width="200px">
 
 [[github](https://github.com/zeranium97)]
-[[portfolio](team/bobbylaw.md)]
+[[portfolio](team/zeranium97.md)]
 
 * Role: Developer
 * Responsibilities: Tests, Coding Quality
