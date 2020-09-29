@@ -16,10 +16,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.Question;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.QuickCache;
 import seedu.address.model.Model;
+import seedu.address.model.QuickCache;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 
 
@@ -104,8 +103,9 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel, Question expectedQuestion,
-                                            boolean expectedIsCorrect) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedQuestion, expectedIsCorrect, false);
+                                            Boolean expectedIsCorrect, boolean isChangeWindow) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedQuestion,
+                expectedIsCorrect, isChangeWindow);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -126,19 +126,19 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
 
-//    /**
-//     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-//     * {@code model}'s address book.
-//     */
-//    public static void showPersonAtIndex(Model model, Index targetIndex) {
-//        assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
-//
-//        Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
-//        final String[] splitName = flashcard.getName().fullName.split("\\s+");
-//        model.updateFilteredFlashcardList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-//
-//        assertEquals(1, model.getFilteredFlashcardList().size());
-//    }
+    /**
+     * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
+     * {@code model}'s QuickCache.
+     */
+    public static void showFlashcardAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
+
+        Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
+        final String[] splitName = flashcard.getQuestion().toString().split("\\s+");
+        model.updateFilteredFlashcardList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+
+        assertEquals(1, model.getFilteredFlashcardList().size());
+    }
 
 
 }

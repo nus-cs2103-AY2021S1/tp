@@ -17,11 +17,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.QuickCache;
 import seedu.address.model.Model;
+import seedu.address.model.QuickCache;
 import seedu.address.model.ReadOnlyQuickCache;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class AddOpenEndedQuestionCommandTest {

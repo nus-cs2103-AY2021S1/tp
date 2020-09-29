@@ -45,7 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private OptionListPanel optionListPanel;
-    private  QuestionDisplay questionDisplay;
+    private QuestionDisplay questionDisplay;
 
     private boolean isOnChangedWindow;
 
@@ -176,12 +176,61 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-//        logic.setGuiSettings(guiSettings);
+        // logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    private void handleBackToDefault() {
+    /**
+     * Changes the content of the placeHolders of this window.
+     * @param feedbackToUser the feedback describing what to display to the user.
+     */
+    public void handleChangeWindow(Feedback feedbackToUser) {
+        // can add if-else statements to differentiate between
+        // how the content of the placeholders are changed.
+        changeInnerPartsToFlashcardWindow(feedbackToUser);
+    }
+
+    /**
+     * Changes the content of the placeHolders of this window to display an opened flashcard.
+     * @param feedbackToUser the feedback describing what to display to the user.
+     */
+    private void changeInnerPartsToFlashcardWindow(Feedback feedbackToUser) {
+
+        listPanelPlaceholder.getChildren().clear();
+        displayPlaceholder.getChildren().clear();
+
+        Optional<Question> questionToDisplay = feedbackToUser.getQuestion();
+
+        questionDisplay = new QuestionDisplay();
+        displayPlaceholder.getChildren().add(questionDisplay.getRoot());
+        // display the question
+        questionDisplay.setQuestion(questionToDisplay.map(Question::getOnlyQuestion)
+                .orElse("There is no question to display"));
+
+        // initialize question's options into VBox
+        optionListPanel = new OptionListPanel(questionToDisplay.map(question -> {
+            if (question instanceof MultipleChoiceQuestion) {
+                return FXCollections.observableList(Arrays.stream(((MultipleChoiceQuestion) question)
+                        .getChoices()).collect(Collectors.toCollection(ArrayList::new)));
+            } else {
+                return FXCollections.observableArrayList("Open Ended Question has no options");
+            }
+        }).get()); // get() will never throw an exception as null will never be returned
+        listPanelPlaceholder.getChildren().add(optionListPanel.getRoot());
+
+        // isCorrect() is not null only when test command is called
+        feedbackToUser.isCorrect().ifPresent(isCorrect -> {
+            questionDisplay.showOutcome(feedbackToUser.toString(), isCorrect);
+        });
+
+        this.isOnChangedWindow = true;
+    }
+
+    /**
+     * Reverse changes to the content of the window's placeholders to the default content.
+     */
+    private void reverseWindowChange() {
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
@@ -191,40 +240,6 @@ public class MainWindow extends UiPart<Stage> {
         displayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         this.isOnChangedWindow = false;
-    }
-
-    private void changeInnerParts(Feedback feedbackToUser) {
-
-        listPanelPlaceholder.getChildren().clear();
-        displayPlaceholder.getChildren().clear();
-
-        Optional<Question> questionToDisplay = feedbackToUser.getQuestion();
-
-        questionDisplay = new QuestionDisplay();
-        displayPlaceholder.getChildren().add(questionDisplay.getRoot());
-        questionDisplay.setQuestion(questionToDisplay.map(Question::getOnlyQuestion)
-                .orElse("There is no question to display"));
-
-        optionListPanel = new OptionListPanel(questionToDisplay.map(question -> {
-            if (question instanceof MultipleChoiceQuestion) {
-                return FXCollections.observableList(Arrays.stream(((MultipleChoiceQuestion)question)
-                        .getChoices()).collect(Collectors.toCollection(ArrayList::new)));
-            } else {
-                return FXCollections.observableArrayList("Open Ended Question has no options");
-            }
-        }).get());
-        listPanelPlaceholder.getChildren().add(optionListPanel.getRoot());
-
-        this.isOnChangedWindow = true;
-    }
-
-    public void handleChangeWindow(Feedback feedbackToUser) {
-        changeInnerParts(feedbackToUser);
-        feedbackToUser.isCorrect().ifPresentOrElse(isCorrect -> {
-            changeInnerParts(feedbackToUser);
-            questionDisplay.showOutcome(feedbackToUser.toString(), isCorrect);
-        }, () -> changeInnerParts(feedbackToUser));
-
     }
 
     public FlashcardListPanel getFlashcardListPanel() {
@@ -249,14 +264,14 @@ public class MainWindow extends UiPart<Stage> {
             } else if (commandResult.isExit()) {
                 handleExit();
             } else if (isOnChangedWindow) {
-                handleBackToDefault();
+                reverseWindowChange();
             }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             if (isOnChangedWindow) {
-                handleBackToDefault();
+                reverseWindowChange();
             }
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

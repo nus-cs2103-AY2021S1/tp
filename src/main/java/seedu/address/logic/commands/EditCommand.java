@@ -83,7 +83,7 @@ public class EditCommand extends Command {
         }
 
         model.setFlashcard(flashcardToEdit, editedFlashcard);
-//        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
     }
 
@@ -112,24 +112,28 @@ public class EditCommand extends Command {
             String[] choices = mcq.getChoices();
             if (Arrays.equals(updatedChoices, emptyArray)) {
                 updatedQuestion = new MultipleChoiceQuestion(question, choices);
+                int ans;
                 try {
-                    int ans = Integer.parseInt(updatedAnswer.getAnswer());
+                    ans = Integer.parseInt(updatedAnswer.getAnswer());
                     if (ans > choices.length) {
                         throw new CommandException("Answer must be smaller than number of choices");
                     }
                 } catch (NumberFormatException e) {
                     throw new CommandException("Answer must be integer");
                 }
+                updatedAnswer = new Answer(choices[ans - 1]);
             } else {
+                int ans;
                 updatedQuestion = new MultipleChoiceQuestion(question, updatedChoices);
                 try {
-                    int ans = Integer.parseInt(updatedAnswer.getAnswer());
+                    ans = Integer.parseInt(updatedAnswer.getAnswer());
                     if (ans > updatedChoices.length) {
                         throw new CommandException("Number of choices must be larger than answer");
                     }
                 } catch (NumberFormatException e) {
                     throw new CommandException("Answer must be integer");
                 }
+                updatedAnswer = new Answer(updatedChoices[ans - 1]);
             }
         } else {
             if (!Arrays.equals(updatedChoices, emptyArray)) {

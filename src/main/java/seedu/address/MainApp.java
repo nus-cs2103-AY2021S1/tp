@@ -52,8 +52,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-//        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-//        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        // AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        // storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,20 +75,22 @@ public class MainApp extends Application {
 
         initialData = SampleDataUtil.getSampleQuickCache(); // can delete after storage is implemented
 
-//        try {
-//            addressBookOptional = storage.readAddressBook();
-//            if (!addressBookOptional.isPresent()) {
-//                logger.info("Data file not found. Will be starting with a sample QuickCache");
-//            }
-//            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleQuickCache);
+        /*
+        try {
+            addressBookOptional = storage.readAddressBook();
+            if (!addressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample QuickCache");
+            }
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleQuickCache);
 
-//        } catch (DataConversionException e) {
-//            logger.warning("Data file not in the correct format. Will be starting with an empty QuickCache");
-//            initialData = new QuickCache();
-//        } catch (IOException e) {
-//            logger.warning("Problem while reading from the file. Will be starting with an empty QuickCache");
-//            initialData = new QuickCache();
-//        }
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty QuickCache");
+            initialData = new QuickCache();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty QuickCache");
+            initialData = new QuickCache();
+        }
+         */
 
         return new ModelManager(initialData, userPrefs);
     }
@@ -174,10 +176,12 @@ public class MainApp extends Application {
     @Override
     public void stop() {
         logger.info("============================ [ Stopping QuickCache ] =============================");
-//        try {
-//            storage.saveUserPrefs(model.getUserPrefs());
-//        } catch (IOException e) {
-//            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
-//        }
+        /*
+        try {
+            storage.saveUserPrefs(model.getUserPrefs());
+        } catch (IOException e) {
+            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+        }
+        */
     }
 }

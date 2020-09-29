@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.VERY_BIG_INDEX_FLASHCARD;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +19,6 @@ import seedu.address.flashcard.Flashcard;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 
 
 /**
@@ -26,18 +29,18 @@ public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
-//        @Test
-//        public void execute_validIndexUnfilteredList_success() {
-//            Flashcard flashcardToDelete = model.getFilteredFlashcardList().get(INDEX_FIRST_PERSON.getZeroBased());
-//            DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-//
-//            String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS,flashcardToDelete);
-//
-//            ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
-//            expectedModel.deleteFlashcard(flashcardToDelete);
-//
-//            assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-//        }
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        Flashcard flashcardToDelete = model.getFilteredFlashcardList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
+        expectedModel.deleteFlashcard(flashcardToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -46,35 +49,35 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
-//     Waiting for List
-//        @Test
-//        public void execute_validIndexFilteredList_success() {
-//            showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//
-//            Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//            DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-//
-//            String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
-//
-//            Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//            expectedModel.deletePerson(personToDelete);
-//            showNoPerson(expectedModel);
-//
-//            assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-//        }
 
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-    //
-    //        Index outOfBoundIndex = INDEX_THIRD_PERSON;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertFalse(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
-    //
-    //        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-    //    }
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
+
+        Flashcard flashcardToDelete = model.getFilteredFlashcardList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FLASHCARD_SUCCESS, flashcardToDelete);
+
+        Model expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
+        expectedModel.deleteFlashcard(flashcardToDelete);
+        showNoFlashcard(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
+
+        Index outOfBoundIndex = VERY_BIG_INDEX_FLASHCARD;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertFalse(outOfBoundIndex.getZeroBased() < model.getQuickCache().getFlashcardList().size());
+
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals() {
@@ -98,12 +101,12 @@ public class DeleteCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-//    /**
-//     * Updates {@code model}'s filtered list to show no one.
-//     */
-//    private void showNoPerson(Model model) {
-//        model.updateFilteredPersonList(p -> false);
-//
-//        assertTrue(model.getFilteredPersonList().isEmpty());
-//    }
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    private void showNoFlashcard(Model model) {
+        model.updateFilteredFlashcardList(p -> false);
+
+        assertTrue(model.getFilteredFlashcardList().isEmpty());
+    }
 }

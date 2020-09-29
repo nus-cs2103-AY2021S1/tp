@@ -8,11 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A ui for the question window that is displayed at the header of the application.
  */
 public class QuestionDisplay extends UiPart<Region> {
 
@@ -30,6 +29,9 @@ public class QuestionDisplay extends UiPart<Region> {
     @FXML
     private TextArea outcomeDisplay;
 
+    /**
+     * Creates a {@code QuestionDisplay}.
+     */
     public QuestionDisplay() {
         super(FXML);
 
@@ -44,15 +46,11 @@ public class QuestionDisplay extends UiPart<Region> {
         questionDisplay.setText("Question: " + question);
     }
 
-    public void showError(String err) {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(displayBox.getChildren());
-        tmp.remove(this.outcomeDisplay);
-        tmp.addAll(this.outcomeDisplay);
-        displayBox.getChildren().setAll(tmp);
-
-        outcomeDisplay.setText(err);
-    }
-
+    /**
+     * Displays the outcome of a test command to the user.
+     * @param feedbackToUser the feedback to be displayed to the user.
+     * @param isAnswerCorrect displays the answer to be correct if true and vice versa.
+     */
     public void showOutcome(String feedbackToUser, boolean isAnswerCorrect) {
         ObservableList<Node> tmp = FXCollections.observableArrayList(displayBox.getChildren());
         tmp.addAll(this.answerDisplay, this.outcomeDisplay);

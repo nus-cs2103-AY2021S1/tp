@@ -35,7 +35,7 @@ class TestCommandTest {
         String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, question, true);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, question, true, true);
     }
 
     @Test
@@ -51,7 +51,7 @@ class TestCommandTest {
         String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, question, false);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, question, false, true);
     }
 
     @Test
@@ -68,7 +68,7 @@ class TestCommandTest {
         String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, true);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, true, true);
     }
 
     @Test
@@ -85,7 +85,7 @@ class TestCommandTest {
         String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, false);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, false, true);
     }
 
     @Test

@@ -73,7 +73,7 @@ public class MultipleChoiceQuestion implements Question {
         return false;
     }
 
-   public String toString() {
-       return question;
+    public String toString() {
+        return question;
     }
 }

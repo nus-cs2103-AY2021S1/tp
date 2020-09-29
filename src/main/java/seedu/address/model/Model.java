@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
@@ -71,6 +70,10 @@ public interface Model {
      */
     void addFlashcard(Flashcard flashcard);
 
+    /**
+     * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
 
     /**
