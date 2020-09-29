@@ -32,7 +32,6 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
@@ -43,13 +42,9 @@ Given below are my contributions to the project.
     * Came up with the content outline of the first draft of modified User Guide.
     * Added user guide for dashboard-related features, including project dashboard and task dashboard.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Added all user stories of first draft to issue tracker
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())

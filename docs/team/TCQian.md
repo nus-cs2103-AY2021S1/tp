@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Set up GitHub organization of team repository
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
@@ -37,13 +37,12 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for advanced task-related features.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Came up with the outline of Use Cases.
+    * Wrote the Use Cases for first draft of ProjectProfile Tracking System.
+    * Wrote the Use Cases for first draft of Team Members Tracking System.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Set up milestones in GitHub
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())

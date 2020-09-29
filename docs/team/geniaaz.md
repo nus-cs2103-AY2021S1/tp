@@ -33,7 +33,6 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
@@ -45,13 +44,10 @@ Given below are my contributions to the project.
     * Added general introduction of the application.
     * Modified the original AB3 DG on manipulation of persons to fit for Taskmania's management for project.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Adapted first draft for target user profile, value proposition, and user stories to the format that fit in Developer Guide.
+    * Added glossaries in the first draft.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())

@@ -45,13 +45,10 @@ Given below are my contributions to the project.
   * User Guide:
     * Added the teammate-related features' guide.
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Wrote the Use Cases for first draft of Project Management System.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Updated the first draft for `AboutUs.md`.
 
 * **Tools**:
   * Integrated a third party library (Natty) to the project ([\#42]())
