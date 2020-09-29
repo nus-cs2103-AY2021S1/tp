@@ -86,7 +86,7 @@ Format: `remove INDEX q/QUANTITY`
 * Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `remove n/Chicken q/1 s/ShengSiong`
+* `remove n/Chicken q/1`
 
 ### Listing all items : `list`
 
@@ -195,6 +195,7 @@ Notify the user if a certain stock is below threshold
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry`
+**Remove** | `remove INDEX q/QUANTITY` <br> e.g., `remove 1 q/3`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`
