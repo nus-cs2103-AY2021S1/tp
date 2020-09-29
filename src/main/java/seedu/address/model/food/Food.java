@@ -13,6 +13,7 @@ public class Food {
     // Generic Constructor
 
     public Food(String name, Protein protein, Carbohydrate carbs, Fat fat) {
+        requireAllNonNull(name, protein, carbs, fat);
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
@@ -22,7 +23,7 @@ public class Food {
     // Constructor for convenience
 
     public Food(String name, int proteinAmount, int carbsAmount, int fatAmount) {
-        this(name,new Protein(proteinAmount),new Carbohydrate(carbsAmount),new Fat(fatAmount));
+        this(name, new Protein(proteinAmount), new Carbohydrate(carbsAmount), new Fat(fatAmount));
     }
     // getters : make when needed
 
@@ -34,10 +35,10 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food:"+this.name +
+        return "Food:" + this.name +
             ", protein=" + protein.getAmount() +
             ", carbs=" + carbs.getAmount() +
             ", fat=" + fat.getAmount();
     }
-    
+
 }

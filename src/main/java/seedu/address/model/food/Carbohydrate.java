@@ -10,12 +10,12 @@ public class Carbohydrate extends Macronutrient {
     public String toString() {
         return
             "MacronutrientType: Carbohydrate\n" +
-                "Amount: "+this.amount+"\n"+
-                "Caloric Count: "+this.totalCalories+"\n";
+                "Amount: " + this.amount + "\n" +
+                "Caloric Count: " + this.totalCalories + "\n";
     }
 
     // getter
-    public int getAmount(){
+    public int getAmount() {
         return this.amount;
     }
 

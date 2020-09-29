@@ -7,15 +7,15 @@ public abstract class Macronutrient {
 
     // Constructor
     public Macronutrient(int amount, int caloricMultiplier) {
-        assert amount>=0;
+        assert amount >= 0;
         System.out.println("amount cannot be negative");
 
-        assert (caloricMultiplier==4 ||caloricMultiplier==9);
+        assert (caloricMultiplier == 4 || caloricMultiplier == 9);
         System.out.println("caloric multiplier must be 7 or 9");
 
         this.amount = amount;
-        this.caloricMultiplier= caloricMultiplier;
-        this.totalCalories = caloricMultiplier*amount;
+        this.caloricMultiplier = caloricMultiplier;
+        this.totalCalories = caloricMultiplier * amount;
 
     }
 

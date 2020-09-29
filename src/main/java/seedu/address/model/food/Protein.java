@@ -15,7 +15,7 @@ public class Protein extends Macronutrient {
     }
 
     // getter
-    public int getAmount(){
+    public int getAmount() {
         return this.amount;
     }
 
