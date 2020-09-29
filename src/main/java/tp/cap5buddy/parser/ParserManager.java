@@ -3,6 +3,7 @@ package tp.cap5buddy.parser;
 import java.util.Scanner;
 
 import tp.cap5buddy.commands.Command;
+import tp.cap5buddy.commands.ResultCommand;
 import tp.cap5buddy.parser.exception.ParseException;
 
 
@@ -35,17 +36,18 @@ public class ParserManager {
         getNonCommand();
         Tokenizer token = new Tokenizer(this.nonCommand);
         String[] words = token.getWords();
-        Parser parser;
-        //ResultCommand result;
+        // Parser parser;
+        // ResultCommand result;
 
         switch (this.command) {
         case "addmodule":
             //command = parser.parse(words);
             //result = command.execute();
-            parser = new AddModuleParser();
+            AddModuleParser parser = new AddModuleParser();
+            break;
             return parser.parse(input);
         case "addzoom":
-            parser = new AddZoomLinkParser();
+            AddZoomLinkParser parser = new AddZoomLinkParser();
             return parser.parse(input);
         default:
             throw new ParseException("Invalid command");
@@ -65,6 +67,26 @@ public class ParserManager {
             }
         }
         this.command = command;
+    }
+
+    public String Parse(String input) {
+        this.currentInput = input;
+        getCommand();
+        getNonCommand();
+        Tokenizer token = new Tokenizer(this.nonCommand);
+        String[] words = token.getWords();
+        ResultCommand result;
+
+        switch (this.command) {
+        case "addmodule":
+            AddModuleParser parser = new AddModuleParser();
+            parser.parse(words);
+            result = parser.execute();
+            break;
+        default:
+            result = new ResultCommand("Nothing happens");
+        }
+        return result.getMessage();
     }
 
     private void getNonCommand() {
