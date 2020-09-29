@@ -155,7 +155,7 @@ Step 2. The user executes `delete 5` command to delete the 5th food item in the 
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new food item. The `add` command also calls `Model#commitMcGymmy()`, causing another modified McGymmy state to be saved into the `mcGymmyStateList`.
+Step 3. The user executes `add n/Rice …​` to add a new food item. The `add` command also calls `Model#commitMcGymmy()`, causing another modified McGymmy state to be saved into the `mcGymmyStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
