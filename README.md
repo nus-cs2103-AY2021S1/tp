@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/UIdraft1.png)
 
-* This is **a CS2103 Project done by Wei Jie, Joven and Javier from NUS**. It is called InsuranceForinsurance and is targeted for insurance agents
+* This is **a CS2103 Project done by Wei Jie, Joven and Javier from NUS**. It is called Insurance4insurance and is targeted for insurance agents
  to save the details of the clients and connections that they meet.<br>
   Example usages:
   * Adding client's details into the app
@@ -15,7 +15,7 @@ such that it can be used as a client tracking software for insurance agents.
   * Our end product will have **no** bugs. 
   * The project comes with a **reasonable number of tests**.
   * It comes with a **reasonable level of user and developer documentation**.
-* It is named `InsuranceForInsurance` (`I4I` for short) because we thought that this app would be a form of insurance for insurance advisors such that they do not forget their clients.
+* It is named `Insurance4Insurance` (`I4I` for short) because we thought that this app would be a form of insurance for insurance advisors such that they do not forget their clients.
 * For the detailed documentation of this project, see [here](https://ay2021s1-cs2103-t16-2.github.io/tp/).
 
 * Credits:
