@@ -17,6 +17,9 @@ import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Removes a quantity from an existing item in the inventory book.
+ */
 public class RemoveCommand extends Command {
 
     public static final String COMMAND_WORD = "remove";
@@ -69,7 +72,7 @@ public class RemoveCommand extends Command {
 
     /**
      * Creates and returns a {@code Item} with the details of {@code itemToEdit}
-     * edited with {@code editItemDescriptor}.
+     * after removing {@code quantity}.
      */
     private static Item createRemovedItem(Item itemToEdit, Quantity quantity) {
         assert itemToEdit != null;
