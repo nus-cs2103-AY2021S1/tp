@@ -3,6 +3,8 @@ layout: page
 title: About Us
 ---
 
+Designed and developed by the [CS2013T-W12-2](https://github.com/AY2021S1-CS2103T-W12-2) team.
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 You can reach us at the email: `seer[at]comp.nus.edu.sg`
@@ -42,12 +44,10 @@ You can reach us at the email: `seer[at]comp.nus.edu.sg`
 
 -   Role: Programmer
 
-### James Doe
+### Jian Fanmin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fanminjian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/fanminj)]
 
--   Role: Developer
--   Responsibilities: UI
+-   Role: Programmer
