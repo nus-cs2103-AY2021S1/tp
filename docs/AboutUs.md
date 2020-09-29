@@ -7,7 +7,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us via the issues of this repository.
+You can reach us via the issues tracker of this [repository](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues).
 
 ## Project team
 
@@ -48,10 +48,10 @@ You can reach us via the issues of this repository.
 
 ### Kheng Hun
 
-![khenghun](images/profiles/johndoe.png)
+![siewkhenghun](images/profiles/johndoe.png)
 
 [[github](https://github.com/khenghun)]
-[[portfolio](team/khenghun.md)]
+[[portfolio](team/siewkhenghun.md)]
 
 * Role: Developer
 * Responsibilities: Feature Developer, Bug Tester

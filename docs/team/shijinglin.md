@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Shi Jing Lin's Project Portfolio Page
 ---
 
 ## Project: AddressBook Level 3

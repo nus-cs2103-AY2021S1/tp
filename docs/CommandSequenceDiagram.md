@@ -7,7 +7,7 @@ title: CommandSequenceDiagrams
 
 #Command Implementation Details
 This will detail the planned sequence flow for commands, and help the developer
-understand under the hood what is going on.
+understand what is going on under the hood.
 
 ## Commands
 

@@ -14,7 +14,6 @@ Inventoryinator is a **desktop app for game inventories, optimized for use via a
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -66,7 +65,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `del stone`.
+The *Sequence Diagram* below shows how the components interact with each other
+ for the scenario where the user issues the command `delr bob's toenail -r 1`.
 
 ![architecture](images/commandseqdiagrams/ArchitectureSequenceDiagram.png)
 
@@ -101,9 +101,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("del bob's toenail -r 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delr bob's toenail -r 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/commandseqdiagrams/DeleteRecipeSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delr bob's toenail -r 1` Command](images/commandseqdiagrams/DeleteRecipeSequenceDiagram.png)
 
 ### Model component
 
@@ -129,6 +129,7 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the inventory data in json format and read it back.
 * can save recipes data in json format and read it back. 
+* can save location data in json format and read it back.
 
 ### Common classes
 
@@ -144,7 +145,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedInventoryinator`. It extends `Inventoryinator` with an undo/redo history, stored internally as an `inventoryinatorStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedInventoryinator`. It extends `Inventoryinator`
+ with an undo/redo history, stored internally as an `inventoryinatorStateList` and `currentStatePointer`.
+  Additionally, it implements the following operations:
 
 * `VersionedInventoryinator#commit()` — Saves the current inventory state in its history.
 * `VersionedInventoryinator#undo()` — Restores the previous inventory state from its history.
@@ -154,18 +157,21 @@ These operations are exposed in the `Model` interface as `Model#commitInventoryi
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedInventoryinator` will be initialized with the initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
+Step 1. The user launches the application for the first time. The `VersionedInventoryinator` will be initialized with
+ the initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `del Bob’s 28th finger` command to delete the matching item in the inventory. The `del`
+Step 2. The user executes `deli Bob’s 28th finger` command to delete the matching item in the inventory. The `deli`
 command calls `Model#commitInventoryinator()`, causing
- the modified state of the inventory after the `del Bob’s 28th finger` command executes to be
+ the modified state of the inventory after the `deli Bob’s 28th finger` command executes to be
  saved in the `inventoryinatorStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addi Bob’s 6th regret -q 8` to add a new item. The `add` command also calls `Model#commitInventoryinator()`, causing another modified inventory state to be saved into the `inventoryinatorStateList`.
+Step 3. The user executes `addi Bob’s 6th regret -q 8` to add a new item.
+ The `addi` command also calls `Model#commitInventoryinator()`, causing another modified inventory state to be
+  saved into the `inventoryinatorStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -223,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the item/recipe being deleted).
+  * Pros: Will use less memory (e.g. for `deli/delr`, just save the item/recipe being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 * **Alternative 3:** Store a LinkedList of Negations of non-viewing commands.
@@ -234,7 +240,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ### \[Proposed\] Data archiving
 
-TO_BE_DISCUSSED
+TODO
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -267,7 +273,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a recipe                | remove recepies that I no longer need to use                           |
 | `* * *`  | user                                       | find a item by name            | locate details of items without having to go through the entire list   |
 | `* * `   | user                                       | tag a item by location         | locate items by where they are located                                 |
-
+| `* * `   | user                                       | use del command to delete both recipes and items         | improve user experience in the application   |
 *{More to be added in later iterations}*
 
 ### Non-Functional Requirements

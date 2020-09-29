@@ -34,9 +34,9 @@ get your inventory management tasks done faster than traditional GUI apps.
 
    * **`add`** `banana -q 10` Add a quantity of 10 to the Bananas
 
-   * **`del`**`banana` : Deletes the banana item from the Inventoryinator
+   * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 
-   * **`del`**`banana` **`-r`** `1` : Deletes the first recipe from the item `bananas` 
+   * **`delr`**`-n banana` **`-r`** `1` : Deletes the first recipe from the item `bananas` 
 
    * **`exit`** : Exits the app.
 
@@ -59,7 +59,8 @@ Action | Format
 **Add Recipe** | `addr` \<**product name**\> **-items** **\<item name\[quantity\]**, … > \[-pc \<num>\] \[-d \<desc\>\]
 **Add quantity to item** | `add` <**item name**> -q <**qty**>
 **List** | `list` \[-i (default) / -r\]
-**Delete entry** | `del` \<item name\> \[-r index\]
+**Delete item** | `deli` \<item name\>
+**Delete Recipe** | `delr` \<item name\> \[-r index\]
 **Find** | `find` \<search string\>
 **View** | `view` <item name> \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
@@ -125,6 +126,7 @@ Will eventually be extended to get help about specific commands.
 
 
 ### Adding a item: `add`
+NOT Supported as of v1.1 yet
 
 **NAME:**
 
@@ -142,7 +144,7 @@ Will eventually be extended to get help about specific commands.
 - `add` <u>Bob’s 6th regret</u> -q <u>8</u>
 - Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the `Inventoryinator`
 
-### Listing all persons : `list`
+### Listing all items : `list`
 **NAME:**
 	
 - `list` - lists all items or recipes the user has entered
@@ -163,9 +165,41 @@ Will eventually be extended to get help about specific commands.
 - Lists all items and their quantities
 
 
-### Deleting a entry : `del`
+### Deleting a item : `deli`
 **NAME:**
-- `del` - delete an item or recipe
+- `del` - delete an item
+
+**SYNOPSIS:**
+- `del` \<item name\> \[-r index\]
+
+**DESCRIPTION:**
+- **deletes** the item in the inventory with the corresponding item name
+- **index:** 	if provided, deletes the <u>recipe</u> numbered <u>index</u>, 
+
+**EXAMPLE:**
+- `del` <u>Bob’s 28th finger</u>
+- Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+
+### Deleting a Recipe : `delr`
+NOT Supported as of v1.1 yet
+**NAME:**
+- `delr` - delete an item
+
+**SYNOPSIS:**
+- `delr` \<item name\> \[-r index\]
+
+**DESCRIPTION:**
+- **deletes** the recipe in the inventory with the corresponding recipe index
+- **index:** deletes the <u>recipe</u> numbered <u>index</u>, 
+
+**EXAMPLE:**
+- `delr` <u>Bob’s 28th finger -r 1</u>
+- Deletes the **first recipe** of the item <u>Bob’s 28th finger</u>
+### Delete item : `del`
+NOT Supported as of v1.1 yet
+
+**NAME:**
+- `del` - delete an item
 
 **SYNOPSIS:**
 - `del` \<item name\> \[-r index\]
@@ -179,6 +213,8 @@ Will eventually be extended to get help about specific commands.
 - Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
 ### Finding an Entry: `find`
+NOT Supported as of v1.1
+
 **NAME:**
 - `find` - find an item
 
@@ -197,6 +233,8 @@ Will eventually be extended to get help about specific commands.
 
 
 ### View item `view`
+NOT Supported as of v1.1
+
 **NAME:**
 - `view` - view more details on an item
 
@@ -233,7 +271,8 @@ Inventoryinator data is saved in the hard disk automatically after any command t
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Inventoryinator home folder.
+**A**: Install the app in the other computer and overwrite the empty data files
+ it creates with the files that contain the data of your previous Inventoryinator home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

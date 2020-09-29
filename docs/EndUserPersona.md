@@ -8,9 +8,12 @@ title: EndUserPersona
 # EndUserPersona
 
 This page documents the Persona of our target audiences, and how we would like to bring value to them through 
-`Inventoryinator`.
+`Inventoryinator`. These personas are structured in such that we capture the target group's needs in their day-to-day lives in the before scenario
+and how `Inventoryinator` can transition their lives to the after scenario.
 
 Through this, we come up with a set of UserStories we would like to implement as features in `Inventoryinator` 
+
+
 
 ## Persona
 ### Persona #1
