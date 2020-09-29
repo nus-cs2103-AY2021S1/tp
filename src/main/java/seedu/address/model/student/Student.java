@@ -125,6 +125,7 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getMeetingLink().equals(getMeetingLink())
                 && otherStudent.getClassVenue().equals(getClassVenue())
+
                 && otherStudent.getTags().equals(getTags());
     }
 

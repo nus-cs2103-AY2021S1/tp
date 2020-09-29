@@ -19,8 +19,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.*;
+import seedu.address.model.student.AdditionalDetails;
+import seedu.address.model.student.ClassTime;
+import seedu.address.model.student.ClassVenue;
+import seedu.address.model.student.MeetingLink;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Subject;
+import seedu.address.model.student.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -196,7 +204,9 @@ public class EditCommand extends Command {
             this.year = year;
         }
 
-        public Optional<Year> getYear() {return Optional.ofNullable(year);}
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
 
         public void setClassVenue(ClassVenue classVenue) {
             this.classVenue = classVenue;
@@ -210,7 +220,9 @@ public class EditCommand extends Command {
             this.classTime = classTime;
         }
 
-        public Optional<ClassTime> getClassTime() {return Optional.ofNullable(classTime);}
+        public Optional<ClassTime> getClassTime() {
+            return Optional.ofNullable(classTime);
+        }
 
         public void setAdditionalDetails(AdditionalDetails additionalDetails) {
             this.additionalDetails = additionalDetails;
