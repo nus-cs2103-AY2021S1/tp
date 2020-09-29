@@ -149,6 +149,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a module: `addmod`
+
+Adds a new module to FaculType.
+
+Format : `addmod m/MODULE_CODE n/MODULE_NAME`
+
+* `MODULE_CODE` must be unique.
+
+Examples:
+* `addmod m/CS2103 n/Software Engineering` adds a module `Software Engineering` with code `CS2103` to FaculType.
+* `addmod m/CS2102 n/Database System` adds a module `Database System` with code `CS2102` to FaculType.
+
 ### Deleting a module: `delmod`
 
 Deletes a module from FaculType.
