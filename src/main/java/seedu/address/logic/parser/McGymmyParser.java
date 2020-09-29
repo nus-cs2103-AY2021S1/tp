@@ -50,14 +50,14 @@ public class McGymmyParser {
     }
 
     private void addDefaultCommands() {
-        this.addCommand("add", AddCommand::new);
-        this.addCommand("edit", EditCommand::new);
-        this.addCommand("delete", DeleteCommand::new);
-        this.addCommand("clear", ClearCommand::new);
-        this.addCommand("exit", ExitCommand::new);
-        this.addCommand("find", FindCommand::new);
-        this.addCommand("list", ListCommand::new);
-        this.addCommand("help", HelpCommand::new);
+        this.addCommand(AddCommand.COMMAND_WORD, AddCommand::new);
+        this.addCommand(ExitCommand.COMMAND_WORD, EditCommand::new);
+        this.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand::new);
+        this.addCommand(ClearCommand.COMMAND_WORD, ClearCommand::new);
+        this.addCommand(ExitCommand.COMMAND_WORD, ExitCommand::new);
+        this.addCommand(FindCommand.COMMAND_WORD, FindCommand::new);
+        this.addCommand(ListCommand.COMMAND_WORD, ListCommand::new);
+        this.addCommand(HelpCommand.COMMAND_WORD, HelpCommand::new);
     }
 
     /**
