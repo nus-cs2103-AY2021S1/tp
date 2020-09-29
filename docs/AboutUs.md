@@ -26,7 +26,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Ethan Noah Rozario
 
-<img src="images/ethanthegoondu.png" width="200px">
+<img src="images/ethanthegoondu.png"  width="200px">
 
 [[github](http://github.com/ethanthegoondu)]
 
