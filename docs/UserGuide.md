@@ -31,7 +31,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    * **`list`** : Lists all assignments.
 
-   * **`add`**`n/Lab report 3 d/23/04/2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
+   * **`add`**`n/Lab report 3 d/23-04-2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
 
    * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
 
@@ -70,8 +70,8 @@ Adds an assignment into your schedule.
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
 
 Examples:
-* `add n/Lab report 3 d/23/04/2020 1230 mod/CS2100`
-* `add n/Tutorial 2 d/29/06/2020 mod/CS2100 remind`
+* `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
+* `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
 
 ### Listing all assignments : `list`
 
