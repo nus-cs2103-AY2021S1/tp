@@ -9,6 +9,18 @@ MainCatalogue - Level 3 is a desktop main catalogue application used for teachin
 
 Given below are my contributions to the project.
 
+* **Model modification**: Created Participation object. (Pull request: Pull request [\#18](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/18))
+  * What it means: an association class keeping track of who participates in what project.
+  * What changes made: 
+    * created the class from scratch.
+    
+* **Model modification**: Created Meeting object and added basic dependencies.
+  * What it means: a meeting of a project that teammates can attend.
+  * What changes made: 
+    * created the class from scratch;
+    * added dependencies of it in Project, Participation, and related collections;
+    * added related test cases.
+
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
