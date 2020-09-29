@@ -1,5 +1,7 @@
 package seedu.stock.model.stock;
 
+import seedu.stock.model.SerialNumberSetsBook;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -9,8 +11,11 @@ import static java.util.Objects.requireNonNull;
 public class SerialNumber {
     public static final String MESSAGE_CONSTRAINTS =
             "Serial numbers should only contain numbers, and it should be at least 2 digits long";
-    public static final String VALIDATION_REGEX = "\\d{2,}";
-
+    /*
+     * The first character of the source must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String serialNumber;
 
 

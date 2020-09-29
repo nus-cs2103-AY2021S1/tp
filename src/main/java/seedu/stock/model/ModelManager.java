@@ -144,7 +144,14 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSerialNumberSet(Source source) {
-        serialNumberSetsBook.updateSerialNumberSet(source);
+        serialNumberSetsBook.incrementSerialNumberSet(source);
+    }
+
+    @Override
+    public String generateNextSerialNumber(Source source) {
+        String serialNumber = serialNumberSetsBook.generateNextSerialNumber(source);
+        serialNumberSetsBook.incrementSerialNumberSet(source);
+        return serialNumber;
     }
 
     @Override

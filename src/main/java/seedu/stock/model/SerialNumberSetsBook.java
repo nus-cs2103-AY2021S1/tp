@@ -93,7 +93,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         serialNumberSets.remove(key);
     }
 
-    public void updateSerialNumberSet(Source source) {
+    public void incrementSerialNumberSet(Source source) {
         Optional<SerialNumberSet> serialNumberSetOptional = serialNumberSets.getSerialNumberSet(source);
         if (serialNumberSetOptional.isPresent()) {
             SerialNumberSet current = serialNumberSetOptional.get();
@@ -105,6 +105,16 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         }
     }
 
+    public String generateNextSerialNumber(Source source) {
+        Optional<SerialNumberSet> serialNumberSetOptional = serialNumberSets.getSerialNumberSet(source);
+        if (serialNumberSetOptional.isPresent()) {
+            SerialNumberSet current = serialNumberSetOptional.get();
+            String numberSection = current.getAccQuantity().getIncrementedAccQuantity().accQuantity;
+            return source.value + numberSection;
+        } else {
+            return source.value + "1";
+        }
+    }
     //// util methods
 
     @Override

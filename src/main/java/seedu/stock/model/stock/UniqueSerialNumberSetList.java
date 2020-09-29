@@ -61,8 +61,9 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
     public Optional<SerialNumberSet> getSerialNumberSet(Source source) {
         requireNonNull(source);
         for (int i = 0; i < internalList.size(); i++) {
-            if (containsSource(source)) {
-                return Optional.of(internalList.get(i));
+            SerialNumberSet curr = internalList.get(i);
+            if (curr.getSource().isSameSource(source)) {
+                return Optional.of(curr);
             }
         }
         return Optional.empty();

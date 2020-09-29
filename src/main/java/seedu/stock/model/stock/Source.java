@@ -30,7 +30,7 @@ public class Source {
     //    + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
     // Condition can be refined later.
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Sources should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the source must not be a whitespace,

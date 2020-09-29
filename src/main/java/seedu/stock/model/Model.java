@@ -104,4 +104,6 @@ public interface Model {
     ObservableList<SerialNumberSet> getFilteredSerialNumberSetList();
 
     void updateFilteredSerialNumberSetList(Predicate<SerialNumberSet> predicate);
+
+    String generateNextSerialNumber(Source source);
 }
