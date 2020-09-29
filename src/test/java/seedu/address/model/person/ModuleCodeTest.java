@@ -14,7 +14,7 @@ public class ModuleCodeTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+    public void constructor_invalidModuleCode_throwsIllegalArgumentException() {
         String invalidModuleCode = "";
         assertThrows(IllegalArgumentException.class, () -> new ModuleCode(invalidModuleCode));
     }
