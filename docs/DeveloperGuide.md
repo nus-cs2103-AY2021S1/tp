@@ -262,16 +262,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)
+
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a specific person in the list
+2.  FaculType adds the person
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. The attributes are in an invalid format.
+    
+    * 1a1. FaculType shows an error message.
+    
+      Use case resumes at step 1.
+      
+* 1b. The person to be added already exists.
+
+    * 1b1. FaculType shows an error message.
+    
+      Use case resumes at step 1.
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  FaculType shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  FaculType deletes the person
 
     Use case ends.
 
@@ -283,11 +307,95 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FaculType shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  FaculType shows a list of persons
+3.  User requests to edit a specific person in the list
+4.  FaculType edits the person
+
+    Use case ends.
+    
+**Extensions**
+
+*   2a. The list is empty.
+
+    Use case ends.
+    
+*   3a. The given index is invalid.
+
+    * 3a1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
+      
+*   3b. The attributes to be edited are invalid.
+
+    * 3b1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: Add or update a remark**
+
+**MSS**
+
+1.  User requests to list persons
+2.  FaculType shows a list of persons
+3.  User requests to add/edit a specific person's remark in the list
+4.  FaculType adds/edits the person's remark
+
+    Use case ends.
+    
+**Extensions**
+
+*   2a. The list is empty.
+
+    Use case ends.
+    
+*   3a. The given index is invalid.
+
+    * 3a1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: Add a module**
+
+1.  User requests to add a module to the module list
+2.  FaculType adds the module
+
+    Use case ends.
+    
+**Extensions**
+
+*   1a. The module code already exists.
+    
+    * 1a1. FaculType shows an error message.
+        
+      Use case resumes at step 1.
+
+**Use case: Delete a module**
+
+1.  FaculType shows a list of modules
+2.  User requests to delete a module
+3.  FaculType deletes the module
+
+    Use case ends.
+    
+*   1a. The module list is empty.
+    
+    Use case ends.
+    
+*   2a. The given module code does not exist.
+
+    * 2a1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
