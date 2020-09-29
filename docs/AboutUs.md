@@ -55,6 +55,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Member
 * Responsibilities: Developer
 
+
 ### Lucas Tai
 
 <img src="images/lucastai98.png" width="200px">
