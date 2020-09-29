@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -151,11 +151,13 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th contact in the address book. The `delete` command calls
+ `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also calls `Model#commitAddressBook
+()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -163,7 +165,8 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the contact was a mistake, and decides to undo that action by executing the
+ `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -208,7 +211,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -252,26 +255,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add a new contact               |                                                                        |
+| `* * *`  | user                                       | delete a contact                | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a contact by name          | locate details of contacts without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | user with many contacts in the address book | sort contacts by name           | locate a contact easily                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FaculType` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a specific contact in the list
+2.  FaculType adds the contact
+
+    Use case ends.
+    
+**Extensions**
+
+* 1a. The attributes are in an invalid format.
+    
+    * 1a1. FaculType shows an error message.
+    
+      Use case resumes at step 1.
+      
+* 1b. The contact to be added already exists.
+
+    * 1b1. FaculType shows an error message.
+    
+      Use case resumes at step 1.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  FaculType deletes the contact
 
     Use case ends.
 
@@ -283,25 +310,122 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. FaculType shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows a list of contacts
+3.  User requests to edit a specific contact in the list
+4.  FaculType edits the contact
+
+    Use case ends.
+    
+**Extensions**
+
+*   2a. The list is empty.
+
+    Use case ends.
+    
+*   3a. The given index is invalid.
+
+    * 3a1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
+      
+*   3b. The attributes to be edited are invalid.
+
+    * 3b1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: Add or update a remark**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  FaculType shows a list of contacts
+3.  User requests to add/edit a specific contact's remark in the list
+4.  FaculType adds/edits the contact's remark
+
+    Use case ends.
+    
+**Extensions**
+
+*   2a. The list is empty.
+
+    Use case ends.
+    
+*   3a. The given index is invalid.
+
+    * 3a1. FaculType shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: Add a module**
+
+1.  User requests to add a module to the module list
+2.  FaculType adds the module
+
+    Use case ends.
+    
+**Extensions**
+
+*   1a. The module code already exists.
+    
+    * 1a1. FaculType shows an error message.
+        
+      Use case resumes at step 1.
+
+**Use case: Delete a module**
+
+1.  FaculType shows a list of modules
+2.  User requests to delete a module
+3.  FaculType deletes the module
+
+    Use case ends.
+    
+*   1a. The module list is empty.
+    
+    Use case ends.
+    
+*   2a. The given module code does not exist.
+
+    * 2a1. FaculType shows an error message.
+    
+    Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4. Should be usable by a novice who has never used a contact management system/command line application before.
+5. Should adhere to the schedule specified in the CS2103 website.
+6. Not required to support contacting the faculty members.
+7. Not required to handle printing of faculty member/module data.
+8. Not required to connect to any backend system/DBMS.
+9. Not required to support multiple users on a single device.
+10. Not required to support any language other than English.
+11. Should be able to work without users having Gradle/JavaFX installed beforehand.
+12. Should disallow users from manipulating data externally (by editing the JSON file, etc).
+13. Each time a user opens the application, the user should be able to view the latest version of the data (new / updated data should be there and deleted data should no longer exist).
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, building, remark, tag(s)
+* **Contact**: A member of a faculty
+* **Module**: A course held in a college or university. A module can be assigned to a contact
+* **Assignment**: A module handled by a contact. Assignment links a contact with a module
+* **Remark**: A short description of a contact. Remark is an optional attribute
+* **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -330,17 +454,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a contact
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -354,3 +478,11 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### User Stories
+1. As a forgetful person, I want to keep remarks about the faculty members so that I remember certain things about them.
+2. As a dean who works in a dynamic environment, I want to be able to update any member’s building and department quickly without having to re-add the member.
+3. As a faculty leader, I want to be able to keep track of the buildings of the faculty members so that I know where to find them.
+4. As a faculty leader, I want to be able to keep track of the departments of the faculty members.
+5. As a dean, I want to be able to add new modules to keep the module list up-to-date. 
+6. As a dean, I want to be able to delete some modules that are no longer offered by the faculty.
