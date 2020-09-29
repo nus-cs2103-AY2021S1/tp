@@ -10,6 +10,7 @@ and tracking of inventories for hardcore gamers. It allows users to keep track
 of their inventory through quick commands that support many types of shortcuts.
 Users can also save recipes and check if they have sufficient materials in
 their inventory to utilise a recipe.
+
 ![Ui](docs/images/Ui.png)
 
 **Prerequisites**
