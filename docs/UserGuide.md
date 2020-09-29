@@ -2,7 +2,7 @@
 
 1. [Introduction](#1-introduction)
 2. [Quick Start](#2-quick-start)
-3. [Features](#3-features)
+3. [Features](#3-features)<br>
    3.1 [Command format](#31-command-format)<br>
    3.2 [View help: `help`](#32-view-help-help)<br>
    3.3 [Add an item: `add`](#33-add-an-item-add)<br>
