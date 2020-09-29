@@ -28,8 +28,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added the teammate-related features' guide.
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
