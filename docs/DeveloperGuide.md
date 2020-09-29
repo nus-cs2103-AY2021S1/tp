@@ -262,10 +262,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to use the app     | reset all current data                              | begin using the app for real without any sample data                   |
 | `* *`    | busy user                     | use my keyboard to log exercises                    | log exercises as quickly as possible                                   |
 | `* *`    | forgetful user                | have easy to remember input commands                | use the app quickly without constantly referring to the manual         |
-| `* *`    | user                          | have a graph showing my calories burnt              | see if I am making progress                                            |
-| `*`      | indecisive  user              | view a list of exercises I can do                   | start exercising without having to think of what to do                 |
-| `*`      | insecure user                 | view the calories I have burnt over time            | feel a sense of accomplishment                                         |
+| `* *`    | indecisive  user              | view a list of exercises I can do                   | start exercising without having to think of what to do                 |
+| `*`      | user                          | have a graph showing my calories burnt over time    | see if I am making progress                                            |
+| `*`      | user                          | view the calories I have burnt over time            | feel a sense of accomplishment                                         |
 | `* `     | tech savvy user               | import my own list of exercises                     | view and track it in the application                                   |
+| `* `     | unmotivated user              | have reminders of the last time I exercised         | feel more motivated to start exercising again                          |
+| `* `     | careless user                 | be able to undo actions                             | fix any mistakes I may have done regarding input                       |
 
 *{More to be added}*
 
