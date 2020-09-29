@@ -20,10 +20,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Javier Lim Xin Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ijavierja.png" width="200px">
 
 [homepage](http://www.comp.nus.edu.sg/~damithch)
-[github](https://github.com/johndoe)
+[github](https://github.com/ijavierja)
 [portfolio](team/johndoe.md)
 
 * Role: Project Manager
