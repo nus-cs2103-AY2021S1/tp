@@ -9,6 +9,13 @@ MainCatalogue - Level 3 is a desktop main catalogue application used for teachin
 
 Given below are my contributions to the project.
 
+* **Model modification**: Refactored some attributes for Person in AB3 to attributes for Project in Taskmania.
+  * What it means: refactors person.Phone -> project.Deadline, person.Email -> project.RepoUrl
+  * What changes made: 
+    * refactored based on attributes for Person in AB3;
+    * changed all methods that has dependency on relevant attributes;
+    * updated test cases accordingly.
+
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
