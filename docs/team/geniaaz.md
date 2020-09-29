@@ -9,6 +9,19 @@ MainCatalogue - Level 3 is a desktop main catalogue application used for teachin
 
 Given below are my contributions to the project.
 
+* **Model modification**: Added the Person model and its attributes. (Pull requests [\#13](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/13), [\#17](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/17))
+  * What it means: persons that participates in projects.
+  * What changes made: 
+    * copied the original Person class in AB3;
+    * adapted dependencies accordingly. 
+
+* **Model modification**: Refactored some attributes for Person in AB3 to attributes for Project in Taskmania.
+  * What it means: refactors person.Name -> project.ProjectName, person.Address -> project.ProjectDescription, person.Tags -> project.ProjectTags
+  * What changes made: 
+    * refactored based on attributes for Person in AB3;
+    * changed all methods that has dependency on relevant attributes;
+    * updated test cases accordingly.
+
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
