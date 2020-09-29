@@ -370,6 +370,165 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
      Use case resumes at step 4.
 
+#### System: Project Management System (PMS)
+**Use case: UC6 - Start the project**
+
+**Actor:** User
+
+**MSS:**
+
+1.  User requests to start a project with its index.
+2.  PMS shows the dashboard of the project.
+
+Use case ends.
+
+**Extensions**
+      
+ * 2a. The given index is not valid
+   * 2a1. PMS shows an error message. 
+   
+Use case ends.
+
+**Use case: UC7 - Add new task**
+
+**Actor:** User
+
+**MSS:**
+
+1. User requests to add a task in a project with specifications such as name, deadline, etc.
+2. PMS adds the task with given specifications.
+
+Use case ends.
+
+**Extensions**
+
+ * 2a. The application has not started any project.
+   * 2a1. PMS shows an error message. 
+
+Use case ends
+
+ * 2b. The input format for adding a task is invalid.
+   * 2b1. PMS shows an error message. 
+
+Use case ends.
+
+**Use case: UC8 - Delete a task**
+
+**Actor:** User
+
+**MSS:**
+
+1. User requests to delete a task in a project with its index.
+2. PMS deletes the task in the project.
+
+Use case ends.
+
+**Extensions**
+
+ * 2a. The application has not started any project.
+   * 2a1. PMS shows an error message. 
+
+Use case ends
+
+ * 2b. The index for the task is invalid.
+   * 2b1. PMS shows an error message. 
+
+Use case ends.
+
+**Use case: UC9 - Find a task**
+
+**Actor:** User
+
+**MSS:**
+
+1. User requests to find a task based on its name, description, deadline, etc.
+2. PMS shows the list of filtered tasks with given specifications.
+
+Use case ends.
+
+**Use case: UC10 - Prioritises a task**
+
+**Actor:** User
+
+**MSS:**
+
+1. User requests to prioritise a task in a project with its index.
+2. PMS prioritises the task.
+
+Use case ends.
+
+**Extensions**
+
+ * 2a. The application has not started any project.
+   * 2a1. PMS shows an error message. 
+
+Use case ends
+
+ * 2b. The input index of task is invalid.
+   * 2b1. PMS shows an error message. 
+
+Use case ends.
+
+ * 2c. The task has already be prioritised.
+   * 2c1. PMS outputs a message and do nothing else. 
+
+Use case ends.
+
+**Use case: UC11 - Task assignment**
+
+**Actor:** User
+
+**MSS:**
+
+1. User requests to assign a task in the project with its index to a teammate of the project.
+2. PMS associates the task with the participation of the teammate in the project.
+
+Use case ends.
+
+**Extensions**
+
+ * 2a. The application has not started any project.
+   * 2a1. PMS shows an error message. 
+
+Use case ends
+
+ * 2b. The input index of task is invalid.
+   * 2b1. PMS shows an error message. 
+
+Use case ends.
+
+ * 2c. The name of person does not exist in the project.
+   * 2c1. PMS shows an error message. 
+
+Use case ends.
+
+ * 2d. The task has already been assigned to the teammate.
+   * 2d1. PMS shows a message and do nothing else. 
+
+Use case ends.
+
+**Use case: UC12 - View Tasks of a Person**
+
+**Actor:** User
+
+**MSS:**
+
+1. User requests to view all tasks assigned to a teammate.
+2. PMS displays the filtered list of tasks that are associated with the person in the project.
+
+Use case ends.
+
+**Extensions**
+
+ * 2a. The application has not started any project.
+   * 2a1. PMS shows the list of tasks that are associated with the person in all projects. 
+
+Use case ends
+
+ * 2b. The teammate does not exist in the project.
+   * 2b1. PMS shows an error message. 
+
+Use case ends.
 
 
 ### Non-Functional Requirements
