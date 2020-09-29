@@ -545,7 +545,7 @@ should be able to accomplish most of the tasks faster using commands than using 
 7.  Information is presented in a pleasing way.
 8.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
 9.  Tests are written for important components, and every working prototype must pass all the test first.
-10.  Code are written in an easy-to-maintain manner (e.g. no extremely long function).
+10.  Code is written in an easy-to-maintain manner (e.g. no extremely long function).
 
 *{More to be added}*
 
