@@ -66,7 +66,7 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FoodListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -102,7 +102,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the McGymmy data.
 * exposes an unmodifiable `ObservableList<Food>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -121,7 +121,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the McGymmy data in json format and read it back.
 
 ### Common classes
 
@@ -139,31 +139,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedMcGymmy`. It extends `McGymmy` with an undo/redo history, stored internally as a `McGymmy` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedMcGymmy#commit()` — Saves the current address book state in its history.
-* `VersionedMcGymmy#undo()` — Restores the previous address book state from its history.
-* `VersionedMcGymmy#redo()` — Restores a previously undone address book state from its history.
+* `VersionedMcGymmy#commit()` — Saves the current McGymmy state in its history.
+* `VersionedMcGymmy#undo()` — Restores the previous McGymmy state from its history.
+* `VersionedMcGymmy#redo()` — Restores a previously undone McGymmy state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitMcGymmy()`, `Model#undoMcGymmy()` and `Model#redoMcGymmy()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedMcGymmy` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedMcGymmy` will be initialized with the initial McGymmy state, and the `currentStatePointer` pointing to that single McGymmy state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th food item in the McGymmy. The `delete` command calls `Model#commitMcGymmy()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `mcGymmyStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th food item in the McGymmy. The `delete` command calls `Model#commitMcGymmy()`, causing the modified state of the McGymmy after the `delete 5` command executes to be saved in the `mcGymmyStateList`, and the `currentStatePointer` is shifted to the newly inserted McGymmy state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new food item. The `add` command also calls `Model#commitMcGymmy()`, causing another modified address book state to be saved into the `mcGymmyStateList`.
+Step 3. The user executes `add n/David …​` to add a new food item. The `add` command also calls `Model#commitMcGymmy()`, causing another modified McGymmy state to be saved into the `mcGymmyStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitMcGymmy()`, so the address book state will not be saved into the `mcGymmyStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitMcGymmy()`, so the McGymmy state will not be saved into the `mcGymmyStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMcGymmy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMcGymmy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous McGymmy state, and restores the McGymmy to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoMcGymmy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoMcGymmy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the McGymmy to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `mcGymmyStateList.size() - 1`, pointing to the latest address book state, then there are no undone McGymmy states to restore. The `redo` command uses `Model#canRedoMcGymmy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `mcGymmyStateList.size() - 1`, pointing to the latest McGymmy state, then there are no undone McGymmy states to restore. The `redo` command uses `Model#canRedoMcGymmy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitMcGymmy()`, `Model#undoMcGymmy()` or `Model#redoMcGymmy()`. Thus, the `mcGymmyStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the McGymmy, such as `list`, will usually not call `Model#commitMcGymmy()`, `Model#undoMcGymmy()` or `Model#redoMcGymmy()`. Thus, the `mcGymmyStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitMcGymmy()`. Since the `currentStatePointer` is not pointing at the end of the `mcGymmyStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitMcGymmy()`. Since the `currentStatePointer` is not pointing at the end of the `mcGymmyStateList`, all McGymmy states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -286,12 +286,12 @@ Use case ends
 1. User requests to add food into the list
 2. McGymmy adds the food item into the list
 
-Use case ends
+Use case ends.
 
 **Extensions**
 - 1a. The format of the add method is invalid
     1a1. McGymmy shows an error message
-    Use case ends
+    Use case ends.
 
 **Use case: UC03 Delete food**
 
@@ -309,7 +309,7 @@ Use case ends
     Use case ends.
     
 - 3a. The given index is invalid.<br>
-   - 3a1. McGymmy shows an error message
+   - 3a1. McGymmy shows an error message.
     
     Use case resumes at step 2.
 
@@ -354,8 +354,8 @@ Use case ends
 
 **Extensions**
 
- - 1a. The format of the macro is invalid
-    - 1a1. McGymmy shows an error message
+ - 1a. The format of the macro is invalid.
+    - 1a1. McGymmy shows an error message.
 
 Use case ends.
 
@@ -413,9 +413,9 @@ testers are expected to do more *exploratory* testing.
       <br>
       Expected: The most recent window size and location is retained.
 
-### Deleting a food item
+### Deleting food items
 
-1. Deleting a food item while all food items are shown
+1. Deleting a food item while all food items are shown.
 
    1. Prerequisites: List all food items using the `list` command. Multiple food items in the list.
 
