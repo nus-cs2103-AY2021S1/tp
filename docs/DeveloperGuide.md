@@ -266,7 +266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Taskmania` program and the **Actor** is the `user`, unless specified
  otherwise)
- 
+
  (A member refers to a member of a team in one of the projects managed by the team leader( `user` ))
 
 #### **Use case: Delete a project**
@@ -335,14 +335,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Taskmania shows an error message.
 
       Use case resumes at step 2.
-      
+    
  * 3b The given input by user is invalid.
- 
+
    * 3b1. Taskmania shows an error message.
    
      Use case resumes at step 2.
      
      
+
 **Use case: Add a member to a project**
 
 **MSS**
@@ -359,13 +360,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
       
  * 4a The given index is not valid
- 
+
    * 4a1. Taskmania shows an error message.
    
      Use case resumes at step 3.
-     
+   
  * 5a The given input for member's attributes are not valid
- 
+
    * 5a1. Taskmania shows an error message, showing appropriate input for adding a new member
    
      Use case resumes at step 4.
@@ -387,6 +388,7 @@ Use case ends.
  * 2a. The given index is not valid
    * 2a1. PMS shows an error message. 
    
+
 Use case ends.
 
 **Use case: UC7 - Add new task**
@@ -538,6 +540,12 @@ Use case ends.
 3.  Can function without an internet connection.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  There are checks for the inputs the user gives, and corresponding tips are presented if the input format is incorrect.
+6.  There are `help` commands to tell the user what command does what.
+7.  Information is presented in a pleasing way.
+8.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
+9.  Tests are written for important components, and every working prototype must pass all the test first.
+10.  Code are written in an easy-to-maintain manner (e.g. no extremely long function).
 
 *{More to be added}*
 
