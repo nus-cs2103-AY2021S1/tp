@@ -1,7 +1,16 @@
 package seedu.stock.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+
 import java.util.Optional;
 
+import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.CollectionUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -15,7 +24,42 @@ public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
 
-    public UpdateCommand() {}
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the stock with "
+            + "the given serial number "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: "
+            + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER "
+            + "Followed with one of: "
+            + PREFIX_QUANTITY + "QUANTITY "
+            + PREFIX_NEW_QUANTITY + "NEW QUANTITY "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_SOURCE + "SOURCE "
+            + PREFIX_LOCATION + "LOCATION \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Umbrella "
+            + PREFIX_SOURCE + "Kc company "
+            + PREFIX_QUANTITY + "100 "
+            + PREFIX_LOCATION + "section B ";
+
+    public static final String MESSAGE_UPDATE_STOCK_SUCCESS = "Updated Stock: %1$s";
+    public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
+    public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the address book.";
+
+    private final Index index;
+    private final UpdateStockDescriptor updateStockDescriptor;
+
+    /**
+     * Constructs a new update command.
+     * @param index Index of the stock in inventory.
+     * @param updateStockDescriptor Details to be updated.
+     */
+    public UpdateCommand(Index index, UpdateStockDescriptor updateStockDescriptor) {
+        requireNonNull(index);
+        requireNonNull(updateStockDescriptor);
+
+        this.index = index;
+        this.updateStockDescriptor = updateStockDescriptor;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
