@@ -95,34 +95,34 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code menuManager}.
      */
-    void setMenuManager(ReadOnlyMenuManager menuManager);
+    void setMenuManager(ReadOnlyMenuManager menuManager, int index);
 
-    /** Returns the MenuManager */
-    ReadOnlyMenuManager getMenuManager();
+    /** Returns the MenuManager at the ith index */
+    ReadOnlyMenuManager getMenuManager(int index);
 
     /**
      * Returns true if a food with the same identity as {@code food} exists in the address book.
      */
-    boolean hasFood(Food food);
+    boolean hasFood(Food food, int index);
 
     /**
      * Deletes the given food.
-     * The food must exist in the address book.
+     * The food must exist in the menu manager.
      */
-    void deleteFood(Food target);
+    void deleteFood(Food target, int index);
 
     /**
      * Adds the given food.
-     * {@code food} must not already exist in the address book.
+     * {@code food} must not already exist in the menu manager.
      */
-    void addFood(Food food);
+    void addFood(Food food, int index);
 
     /**
      * Replaces the given food {@code target} with {@code editedFood}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the menu manager.
      * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
      */
-    void setFood(Food target, Food editedFood);
+    void setFood(Food target, Food editedFood, int index);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -133,12 +133,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns an unmodifiable view of the filtered food list */
-    ObservableList<Food> getFilteredFoodList();
+    /** Returns an unmodifiable view of the filtered food list at the corresponding index */
+    ObservableList<Food> getFilteredFoodList(int index);
 
     /**
-     * Updates the filter of the filtered food list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredFoodList(Predicate<Food> predicate);
+    void updateFilteredFoodList(Predicate<Food> predicate, int index);
 }
