@@ -22,46 +22,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Member
 * Responsibilities: Developer
 
-### Jane Doe
+### Li Jiayu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lll-jy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/lll-jy)]
 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/lll-jy.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Project Member
+* Responsibilities: Developer
 
-### Johnny Doe
+### Tian Fang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/T-Fang.png" width="200px">
 
-[[github](http://github.com/johndoe)] 
+[[github](http://github.com/T-Fang)] 
 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/T-Fang.md)]
 
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Project Member
+* Responsibilities: Developer
 
 ### Tan Chia Qian
 
-<img src="images/tanchiaqian.png" width="200px">
+<img src="images/TCQian.png" width="200px">
 
 [[github](http://github.com/TCQian)]
 
-[[portfolio](team/tanchiaqian.md)]
+[[portfolio](team/TCQian.md)]
+
+* Role: Project Member
+* Responsibilities: Developer
+
+
+### Lucas Tai
+
+<img src="images/lucastai98.png" width="200px">
+
+[[github](http://github.com/lucastai98)]
+
+[[portfolio](team/lucastai98.md)]
 
 * Role: Project Member
 * Responsibilities: Developer
