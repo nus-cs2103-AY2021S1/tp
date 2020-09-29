@@ -1,9 +1,9 @@
-package tp.cap5buddy.parser;
+package tp.cap5buddy.logic.parser;
 
 import java.util.Scanner;
 
-import tp.cap5buddy.commands.Command;
-import tp.cap5buddy.parser.exception.ParseException;
+import tp.cap5buddy.logic.commands.Command;
+import tp.cap5buddy.logic.parser.exception.ParseException;
 
 
 /**
@@ -40,8 +40,6 @@ public class ParserManager {
 
         switch (this.command) {
         case "addmodule":
-            //command = parser.parse(words);
-            //result = command.execute();
             parser = new AddModuleParser();
             command = parser.parse(this.nonCommand);
             return command;

@@ -1,4 +1,4 @@
-package tp.cap5buddy.parser;
+package tp.cap5buddy.logic.parser;
 
 
 /**
