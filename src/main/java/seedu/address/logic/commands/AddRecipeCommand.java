@@ -25,7 +25,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_RECIPE_INGREDIENTS + "ITEM NAME[QUANTITY] "
             + PREFIX_RECIPE_PRODUCT_QUANTITY + "PRODUCT QUANTITY "
             + PREFIX_RECIPE_DESCRIPTION + "DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_RECIPE_PRODUCT_NAME + "banana cake "
             + PREFIX_RECIPE_INGREDIENTS + "banana[2], flour[2], water[1] "
             + PREFIX_RECIPE_PRODUCT_QUANTITY + "1 "

@@ -126,5 +126,4 @@ public class RecipeList implements ReadOnlyRecipeList {
         return recipes.hashCode();
     }
 
-
 }

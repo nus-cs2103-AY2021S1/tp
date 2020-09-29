@@ -85,13 +85,12 @@ public class UniqueRecipeList implements Iterable<Recipe> {
      */
     public void delete(Recipe toDelete) {
         requireNonNull(toDelete);
-        System.out.println(1);
         if (!internalList.contains(toDelete)) {
             throw new RecipeNotFoundException();
         }
-        Recipe toAdd = toDelete.delete();
+        Recipe updatedRecipe = toDelete.delete();
         remove(toDelete);
-        add(toAdd);
+        add(updatedRecipe);
     }
 
     public void setRecipes(UniqueRecipeList replacement) {

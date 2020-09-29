@@ -20,18 +20,20 @@ public class DeleteRecipeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a recipe in the recipe list. "
             + "Parameters: "
             + PREFIX_RECIPE_PRODUCT_NAME + "PRODUCT NAME "
-            + PREFIX_RECIPE_ID + "RECIPE ID ";
+            + PREFIX_RECIPE_ID + "RECIPE ID\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_RECIPE_PRODUCT_NAME + "Iron "
+            + PREFIX_RECIPE_ID + "2";
 
     public static final String MESSAGE_SUCCESS = "Recipe has been deleted: %1$s";
     public static final String MESSAGE_RECIPE_NOT_FOUND = "Recipe is not found in the recipe list";
-    public static final String MESSAGE_INDEX_NOT_FOUND = "Id is out of range";
-
+    public static final String MESSAGE_INDEX_NOT_FOUND = "Recipe ID is out of range";
 
     private final String productName;
     private final Index index;
 
     /**
-     * Creates an DeleteRecipeCommand to delete the specified {@code Item}
+     * Creates an DeleteRecipeCommand to delete the specified {@code Recipe}
      */
     public DeleteRecipeCommand(String productName, Index index) {
         requireNonNull(productName);
@@ -50,8 +52,8 @@ public class DeleteRecipeCommand extends Command {
         }
         Recipe recipeToDelete;
         try {
-            recipeToDelete = recipelist.get(index.getOneBased() - 1);
-        } catch (Exception e) {
+            recipeToDelete = recipelist.get(index.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INDEX_NOT_FOUND); //index out of range
         }
         model.deleteRecipe(recipeToDelete);
