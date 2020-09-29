@@ -31,7 +31,7 @@ You can reach us at the email: `seer[at]comp.nus.edu.sg`
 
 ### Ethan Noah Rozario
 
-<img src="images/ethanthegoondu.png" width="200px">
+<img src="images/ethanthegoondu.png"  width="200px">
 
 [[github](http://github.com/ethanthegoondu)]
 
