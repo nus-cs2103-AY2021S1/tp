@@ -28,8 +28,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Came up with the content outline of the first draft of modified User Guide.
+    * Added general introduction of the application.
+    * Modified the original AB3 DG on manipulation of persons to fit for Taskmania's management for project.
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
