@@ -136,6 +136,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Deleting a module: `delmod`
+
+Deletes a moudule from FaculType.
+
+Format: `delmod m/MODULE_CODE`
+
+* Deletes the `MODULE_CODE` specified from FaculType. The `MODULE_CODE` **must exist** in FaculType in the first place.
+
+Examples:
+* `delmod m/CS2103` deletes the existing `CS2103` module from FaculType.
+* `delmod m/CS2102` deletes the existing `CS2102` module from FaculType.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
