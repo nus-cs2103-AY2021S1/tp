@@ -45,7 +45,7 @@ public class Quantity {
     /**
      * subtracts a Quantity's value from another quantity's value
      * @param quantity another quantity
-     * @return Difference in Quantity
+     * @return Quantity after subtraction
      */
     public Quantity subtract(Quantity quantity) {
         int value = Integer.parseInt(this.value) - Integer.parseInt(quantity.value);
