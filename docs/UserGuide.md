@@ -112,21 +112,21 @@ Instruction:
 
 Outcome: A list of tasks will be shown. 
 
-#### deleting a task `delete `
+#### Deleting a task `delete `
 
 Deletes the specified task from your task list.
 
 Format: `delete INDEX`
 
-- Deletes the task at the specified INDEX.
+- Deletes the task at the specified `INDEX`.
 - The index refers to the index number shown in the displayed task list.
 - The index must be a positive integer 1, 2, 3, …
 
 Instruction:
 
-1. List out the list of tasks(Use 'list' command) to look for the number of task to be deleted.
+1. List out the list of tasks(Use `list` command) to look for the number of task to be deleted.
 
-1. Type the command 'delete' with the number of the task to be deleted. (eg. `delete 2` deletes the 2nd task in the task list.)
+1. Type the command `delete` with the number of the task to be deleted. (eg. `delete 2` deletes the 2nd task in the task list.)
 
 1. List out the list of tasks to see the new list of tasks without the deleted tasks.
 
@@ -143,7 +143,7 @@ Format: `find KEYWORD`
 
 Instruction: 
 
-1. Type the command 'find' with the keyword which might be found in the name of the task that the user is looking for.(eg. `find read` to find  the task 'todo reading')
+1. Type the command `find` with the `KEYWORD` which might be found in the name of the task that the user is looking for.(eg. `find read` to find  the task 'todo reading')
 
 Outcome: List of tasks with the name containing the keyword will be shown.
 
@@ -153,15 +153,15 @@ Assigns a level of priority to the specified task.
 
 Format: `prioritise INDEX1, INDEX2`
 
-- Assigns a priority level of INDEX2 to the task at specified INDEX1.
-- INDEX1 refers to the index number shown in the displayed task list.
-- Both INDEX1 and INDEX2 must be a positive integer 1, 2, 3, …
+- Assigns a priority level of `INDEX2` to the task at specified `INDEX1`.
+- `INDEX1` refers to the index number shown in the displayed task list.
+- Both `INDEX1` and `INDEX2` must be a positive integer 1, 2, 3, …
 
 Instruction:
 
-1. List out the list of tasks(Use 'list' command) to look for the number of task to be assigned with a priority level.
+1. List out the list of tasks(Use `list` command) to look for the number of task to be assigned with a priority level.
 
-1. Type the command 'prioritise' with the number of task which the user wants to assign a priority level to it, followed by a `,` , then the number of the priority level.(eg. `prioritise 2,3` to assign the second task in the task list with a priority level of 3.
+1. Type the command `prioritise` with the number of task which the user wants to assign a priority level to it, followed by a `,` , then the number of the priority level.(eg. `prioritise 2,3` to assign the second task in the task list with a priority level of 3.
 
 Outcome: The task is assigned with the priority level.
 
