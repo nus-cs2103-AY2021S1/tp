@@ -2,16 +2,17 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+-   Table of Contents
+    {:toc}
+
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -19,7 +20,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -28,22 +29,23 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+-   At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+-   At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+-   [**`UI`**](#ui-component): The UI of the App.
+-   [**`Logic`**](#logic-component): The command executor.
+-   [**`Model`**](#model-component): Holds the data of the App in memory.
+-   [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+-   defines its _API_ in an `interface` with the same name as the Component.
+-   exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -51,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -70,8 +72,8 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 
 The `UI` component,
 
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+-   Executes user commands using the `Logic` component.
+-   Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
@@ -101,17 +103,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
+-   stores a `UserPref` object that represents the user’s preferences.
+-   stores the address book data.
+-   exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+-   does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
-
 
 ### Storage component
 
@@ -120,14 +120,15 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+
+-   can save `UserPref` objects in json format and read it back.
+-   can save the address book data in json format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
@@ -139,9 +140,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+-   `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+-   `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+-   `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -202,14 +203,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+-   **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    -   Pros: Easy to implement.
+    -   Cons: May have performance issues in terms of memory usage.
+
+-   **Alternative 2:** Individual command knows how to undo/redo by
+    itself.
+    -   Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    -   Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -217,18 +219,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+-   [Documentation guide](Documentation.md)
+-   [Testing guide](Testing.md)
+-   [Logging guide](Logging.md)
+-   [Configuration guide](Configuration.md)
+-   [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -236,73 +237,173 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+-   has a need to manage a significant number of students
+-   prefer desktop apps over other types
+-   can type fast
+-   prefers typing to mouse interactions
+-   is reasonably comfortable using CLI apps
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                               | I want to …​                                                          | So that I can…​                                                 |
+| -------- | ------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `* * *`  | TA                                    | add/delete students to my list                                        | easily categorize them                                          |
+| `* * *`  | TA                                    | add/delete modules                                                    |                                                                 |
+| `* * *`  | TA                                    | rename a module                                                       | correct any errors                                              |
+| `* * *`  | TA who needs to contact many students | search a person by name or module                                     | get their contact details                                       |
+| `* * *`  | TA managing many modules              | have a checklist of the things I want to do in each tutorial          | remember what I need to cover in each tutorial                  |
+| `* * *`  | TA                                    | save my data                                                          | continue where I left off                                       |
+| `* * *`  | TA                                    | update a checklist of task such as deleting or marking a task as done | know what to do and keep track of the tasks that have been done |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Trackr shows a list of persons
+3.  User requests to add a specific person to the list
+4.  Trackr adds the person
+
+Use case ends.
+
+**Extensions**
+
+-   2a. Incorrect input format
+    -   2a1. Trackr shows an error message
+    Use Case resumes at 2
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Trackr shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Trackr deletes the person
+
+Use case ends.
+
+**Extensions**
+
+-   2a. The list is empty.
+
+Use case ends.
+
+-   3a. The given index is invalid.
+
+    -   3a1. Trackr shows an error message.
+
+        Use case resumes at step 2.
+
+**Use case: Loading a save file**
+
+**MSS**
+
+1. User launches the application
+2. Trackr attempts to read the save file
+3. Trackr successfully parses the save file and loads the lists of students on it
+4. User can start using the application
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+-   3a. The save file is corrupted / in the wrong format
 
-  Use case ends.
+    -   3a1. Trackr shows an error message
+    -   3a2. Trackr starts a new save file and overwrites the existing one
 
-* 3a. The given index is invalid.
+        Use case resumes at step 4.
 
-    * 3a1. AddressBook shows an error message.
+-   3b. The save file does not exist
 
-      Use case resumes at step 2.
+    -   3b1. Trackr creates a new save file
 
-*{More to be added}*
+        Use case resumes at step 4.
+
+**Use case: Search for a person**
+
+**MSS**
+
+1.  User requests to list persons
+2.  Trackr shows a list of persons
+3.  User requests to search for a specific person in the list
+4.  Trackr displays the person
+
+Use case ends.
+
+**Extensions**
+
+-   2a. The list is empty.
+
+Use case ends.
+
+-   3a. The given information is invalid.
+
+    -   3a1. Trackr shows an error message.
+
+    Use case resumes at 1.
+
+**Use case: Add a checklist of task**
+
+**MSS**
+
+1.  User requests to list checklist of tasks
+2.  Trackr shows a list of tasks
+3.  User requests to add a specific task to the list
+4.  Trackr adds the task to the list
+
+Use case ends.
+
+**Extensions**
+
+-   2a. Incorrect input format
+    -   2a1. Trackr shows an error message
+    Use Case resumes at 2
+
+**Use case: Mark a task in the list as done**
+
+**MSS**
+
+1.  User requests to list checklist of tasks
+2.  Trackr shows a list of tasks
+3.  User requests to mark a specific task as done
+4.  Trackr marks the task as done
+    Use case ends.
+
+**Extensions**
+
+-   2a. Incorrect input format
+    -   2a1. Trackr shows an error message
+    Use Case resumes at 2
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 student details without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The data should be stored locally so the user would not require the Internet to access his data.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+-   **Mainstream OS**: Windows, Linux, Unix, OS-X
+-   **Private contact detail**: A contact detail that is not meant to be shared with others
+-   **TA**: Teaching Assistant
+-   **Modules**: University courses that students are enrolled in
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -317,16 +418,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+1. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -334,16 +435,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Test case: `delete 1`<br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+1. Test case: `delete 0`<br>
+   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -351,6 +452,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
