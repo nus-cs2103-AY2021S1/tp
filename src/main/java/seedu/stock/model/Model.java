@@ -87,7 +87,7 @@ public interface Model {
      */
     void updateFilteredStockList(Predicate<Stock> predicate);
 
-    void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook SerialNumberSetsBook);
+    void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook);
 
     ReadOnlySerialNumberSetsBook getSerialNumberSetsBook();
 

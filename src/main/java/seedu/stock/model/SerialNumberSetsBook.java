@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.stock.model.stock.*;
+import seedu.stock.model.stock.AccQuantity;
+import seedu.stock.model.stock.SerialNumberSet;
+import seedu.stock.model.stock.Source;
+import seedu.stock.model.stock.UniqueSerialNumberSetList;
 
 /**
  * Wraps all data at the stock-book level
@@ -90,6 +93,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
      * {@code key} must exist in the stock book.
      */
     public void removeSerialNumberSet(SerialNumberSet key) {
+        //removes the serial number set related to the given key.
         serialNumberSets.remove(key);
     }
 
@@ -101,6 +105,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
             setSerialNumberSet(current, updated);
         } else {
             SerialNumberSet toAdd = new SerialNumberSet(source, new AccQuantity("1"));
+            //adds the desired serial number set by calling the addSerialNumberSet method.
             addSerialNumberSet(toAdd);
         }
     }

@@ -15,9 +15,23 @@ import seedu.stock.commons.util.ConfigUtil;
 import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.LogicManager;
-import seedu.stock.model.*;
+import seedu.stock.model.Model;
+import seedu.stock.model.ModelManager;
+import seedu.stock.model.StockBook;
+import seedu.stock.model.SerialNumberSetsBook;
+import seedu.stock.model.ReadOnlySerialNumberSetsBook;
+import seedu.stock.model.ReadOnlyStockBook;
+import seedu.stock.model.ReadOnlyUserPrefs;
+import seedu.stock.model.UserPrefs;
 import seedu.stock.model.util.SampleDataUtil;
-import seedu.stock.storage.*;
+import seedu.stock.storage.JsonSerialNumberSetsBookStorage;
+import seedu.stock.storage.JsonStockBookStorage;
+import seedu.stock.storage.JsonUserPrefsStorage;
+import seedu.stock.storage.SerialNumberSetsBookStorage;
+import seedu.stock.storage.StockBookStorage;
+import seedu.stock.storage.Storage;
+import seedu.stock.storage.StorageManager;
+import seedu.stock.storage.UserPrefsStorage;
 import seedu.stock.ui.Ui;
 import seedu.stock.ui.UiManager;
 
@@ -80,7 +94,8 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample SerialNumberSetsBook");
             }
             initialData = stockBookOptional.orElseGet(SampleDataUtil::getSampleStockBook);
-            initialSerialNumberSetsBookData = serialNumberSetsBookOptional.orElseGet(SampleDataUtil::getSampleSerialNumberSetsBook);
+            initialSerialNumberSetsBookData = serialNumberSetsBookOptional
+                                                .orElseGet(SampleDataUtil::getSampleSerialNumberSetsBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty StockBook");
             initialData = new StockBook();

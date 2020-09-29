@@ -1,8 +1,8 @@
 package seedu.stock.model.stock;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
 
 public class SerialNumberSet {
 

@@ -7,7 +7,11 @@ import java.util.logging.Logger;
 
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.exceptions.DataConversionException;
-import seedu.stock.model.*;
+import seedu.stock.model.ReadOnlySerialNumberSetsBook;
+import seedu.stock.model.ReadOnlyStockBook;
+import seedu.stock.model.ReadOnlyUserPrefs;
+import seedu.stock.model.UserPrefs;
+
 
 /**
  * Manages storage of StockBook data in local storage.
@@ -82,11 +86,13 @@ public class StorageManager implements Storage {
         return serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath();
     }
 
-    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook()
+            throws DataConversionException, IOException {
         return readSerialNumberSetsBook(serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath());
     }
 
-    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return serialNumberSetsBookStorage.readSerialNumberSetsBook(filePath);
     }
@@ -95,7 +101,8 @@ public class StorageManager implements Storage {
         saveSerialNumberSetsBook(serialNumberSetsBook, serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath());
     }
 
-    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath) throws IOException {
+    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath)
+            throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         serialNumberSetsBookStorage.saveSerialNumberSetsBook(serialNumberSetsBook, filePath);
     }

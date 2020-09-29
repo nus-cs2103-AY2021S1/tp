@@ -9,7 +9,7 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 public class AccQuantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity numbers should be more than 0.";
+            "AccQuantity numbers should be more than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
     public String accQuantity;
 

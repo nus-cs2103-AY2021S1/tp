@@ -32,7 +32,8 @@ public class JsonSerialNumberSetsBookStorage implements SerialNumberSetsBookStor
     }
 
     @Override
-    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook()
+            throws DataConversionException, IOException {
         return readSerialNumberSetsBook(filePath);
     }
 
@@ -42,7 +43,8 @@ public class JsonSerialNumberSetsBookStorage implements SerialNumberSetsBookStor
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath)
+            throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableSerialNumberSetsBook> jsonSerialNumberSetsBook = JsonUtil.readJsonFile(
@@ -60,7 +62,8 @@ public class JsonSerialNumberSetsBookStorage implements SerialNumberSetsBookStor
     }
 
     @Override
-    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook) throws IOException {
+    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook)
+            throws IOException {
         saveSerialNumberSetsBook(serialNumberSetsBook, filePath);
     }
 
@@ -69,7 +72,8 @@ public class JsonSerialNumberSetsBookStorage implements SerialNumberSetsBookStor
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath) throws IOException {
+    public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath)
+            throws IOException {
         requireNonNull(serialNumberSetsBook);
         requireNonNull(filePath);
 

@@ -1,7 +1,5 @@
 package seedu.stock.model.stock;
 
-import seedu.stock.model.SerialNumberSetsBook;
-
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -47,8 +45,8 @@ public class SerialNumber {
      *
      * @return SerialNumber of the object.
      */
-    public static SerialNumber generateSerialNumber() {
-        return new SerialNumber("12");
+    public static SerialNumber generateDefaultSerialNumber() {
+        return new SerialNumber("0");
     }
 
     @Override

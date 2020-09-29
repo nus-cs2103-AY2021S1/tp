@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.stock.commons.exceptions.IllegalValueException;
-import seedu.stock.model.stock.*;
+import seedu.stock.model.stock.AccQuantity;
+import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.SerialNumberSet;
+import seedu.stock.model.stock.Source;
 
 /**
  * Jackson-friendly version of {@link SerialNumberSet}.
@@ -53,7 +56,7 @@ class JsonAdaptedSerialNumberSet {
                     AccQuantity.class.getSimpleName()));
         }
         if (!AccQuantity.isValidAccQuantity(accQuantity)) {
-            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(AccQuantity.MESSAGE_CONSTRAINTS);
         }
         final AccQuantity modelAccQuantity = new AccQuantity(accQuantity);
 

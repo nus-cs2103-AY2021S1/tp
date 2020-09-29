@@ -2,7 +2,6 @@ package seedu.stock.model;
 
 import javafx.collections.ObservableList;
 import seedu.stock.model.stock.SerialNumberSet;
-import seedu.stock.model.stock.Stock;
 
 /**
  * Unmodifiable view of an stock book

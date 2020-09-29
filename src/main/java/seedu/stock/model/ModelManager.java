@@ -122,8 +122,8 @@ public class ModelManager implements Model {
     //=========== SerialNumberSetsBook ================================================================================
 
     @Override
-    public void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook SerialNumberSetsBook) {
-        this.serialNumberSetsBook.resetData(SerialNumberSetsBook);
+    public void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook) {
+        this.serialNumberSetsBook.resetData(serialNumberSetsBook);
     }
 
     @Override
