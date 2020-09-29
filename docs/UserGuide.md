@@ -2,13 +2,17 @@
 layout: page
 title: User Guide
 ---
-
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+ OneShelf is a desktop application for you to manage all of restaurant inventories,
+ table reservations and pending deliveries. 
+ It is easy to build and customise your inventories by using 
+ only Command Line Interface. If you are a busy restaurant manager 
+ who prefers to use the Command Line Interface and needs to keep 
+ track of multiple items, OneShelf is for you!
 
 ## Quick start
 
@@ -16,7 +20,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Inventory Book.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -84,7 +88,7 @@ Examples:
 
 ### Listing all items : `list`
 
-Shows a list of all items in the address book.
+Shows a list of all items in the Inventory book.
 
 Format: `list`
 
@@ -180,18 +184,18 @@ Notify the user if a certain stock is below threshold
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InventoryBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`
-**List** | `list`
-**Help** | `help`
+| Action    | Format, Examples                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------|
+|**Add**    | `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
+|**Clear**  | `clear`                                                                                             |
+|**Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                 |
+|**Edit**   | ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
+|**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`                                       |
+|**List**   | `list`                                                                                              |
+|**Help**   | `help`                                                                                              |
