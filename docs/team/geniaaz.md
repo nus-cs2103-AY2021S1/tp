@@ -1,12 +1,15 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Wahab Niaaz's Project Portfolio Page
 ---
 
-## Project: MainCatalogue Level 3
+## Project: Taskmania
 
-MainCatalogue - Level 3 is a desktop main catalogue application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
-
+Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a
+ software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
+ Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
+ a traditional point and click interface.
+ 
 Given below are my contributions to the project.
 
 * **Model modification**: Added the Person model and its attributes. (Pull requests [\#13](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/13), [\#17](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/17))
@@ -22,35 +25,25 @@ Given below are my contributions to the project.
     * changed all methods that has dependency on relevant attributes;
     * updated test cases accordingly.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: 
 
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
   * User Guide:
     * Came up with the content outline of the first draft of modified User Guide.
-    * Added general introduction of the application.
-    * Modified the original AB3 DG on manipulation of persons to fit for Taskmania's management for project.
+    * Added general introduction of the application (Pull request [\#27](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/27)).
+    * Modified the original AB3 UG on manipulation of persons to fit for Taskmania's management for project.
   * Developer Guide:
     * Adapted first draft for target user profile, value proposition, and user stories to the format that fit in Developer Guide.
-    * Added glossaries in the first draft.
+    * Added glossaries in the first draft (Pull request [\#44](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/44)).
 
 * **Community**:
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
