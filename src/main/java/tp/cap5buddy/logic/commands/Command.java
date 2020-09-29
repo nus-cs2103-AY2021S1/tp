@@ -1,4 +1,4 @@
-package tp.cap5buddy.commands;
+package tp.cap5buddy.logic.commands;
 
 import tp.cap5buddy.modules.ModuleList;
 

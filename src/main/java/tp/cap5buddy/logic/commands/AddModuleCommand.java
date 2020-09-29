@@ -1,4 +1,4 @@
-package tp.cap5buddy.commands;
+package tp.cap5buddy.logic.commands;
 
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
@@ -32,7 +32,7 @@ public class AddModuleCommand extends Command {
             Module mod = new Module(this.name, this.link);
             modules.addModule(mod);
         }
-        return new ResultCommand(this.name + SUCCESS_MESSAGE);
+        return new ResultCommand(this.name + SUCCESS_MESSAGE, isExit());
     }
 
     @Override
