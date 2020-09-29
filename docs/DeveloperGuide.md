@@ -413,8 +413,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Not required to support multiple users on a single device.
 10. Not required to support any language other than English.
 11. Should be able to work without users having Gradle/JavaFX installed beforehand.
-12. Should disallow users from manipulating data externally (by editing the JSON file, etc).
-13. Each time a user opens the application, the user should be able to view the latest version of the data (new / updated data should be there and deleted data should no longer exist).
+12. Each time a user opens the application, the user should be able to view the latest version of the data (new/updated data should be there and deleted data should no longer exist).
 
 ### Glossary
 
