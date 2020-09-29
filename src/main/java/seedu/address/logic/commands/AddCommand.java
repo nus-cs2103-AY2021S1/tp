@@ -23,21 +23,21 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Parameter<Name> nameParameter = this.addParameter(
+    private Parameter<Name> nameParameter = this.addParameter(
         "name",
         "n",
         "Name of person to add",
         "John Doe",
         ParserUtil::parseName
     );
-    private final Parameter<Phone> phoneParameter = this.addParameter(
+    private Parameter<Phone> phoneParameter = this.addParameter(
         "phone",
         "p",
         "Phone number of person to add",
         "98765432",
         ParserUtil::parsePhone
     );
-    private final Parameter<Email> emailParameter = this.addParameter(
+    private Parameter<Email> emailParameter = this.addParameter(
         "email",
         "e",
         "Email address of person to add",
@@ -45,6 +45,13 @@ public class AddCommand extends Command {
         ParserUtil::parseEmail
 
     );
+
+    void setParameters(Parameter<Name> nameParameter, Parameter<Phone> phoneParameter,
+                       Parameter<Email> emailParameter) {
+        this.nameParameter = nameParameter;
+        this.phoneParameter = phoneParameter;
+        this.emailParameter = emailParameter;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

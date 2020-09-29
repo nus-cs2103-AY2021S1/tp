@@ -21,38 +21,48 @@ import seedu.address.model.person.Phone;
  * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
+    public static final String COMMAND_WORD = "edit";
+
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Parameter<Index> indexParameter = this.addParameter(
+    private Parameter<Index> indexParameter = this.addParameter(
         "index",
         "",
         "index number used in the displayed person list.",
         "2",
         ParserUtil::parseIndex
     );
-    private final OptionalParameter<Name> nameParameter = this.addOptionalParameter(
+    private OptionalParameter<Name> nameParameter = this.addOptionalParameter(
         "name",
         "n",
         "Name of person to add",
         "John Doe",
         ParserUtil::parseName
     );
-    private final OptionalParameter<Phone> phoneParameter = this.addOptionalParameter(
+    private OptionalParameter<Phone> phoneParameter = this.addOptionalParameter(
         "phone",
         "p",
         "Phone number of person to add",
         "98765432",
         ParserUtil::parsePhone
     );
-    private final OptionalParameter<Email> emailParameter = this.addOptionalParameter(
+    private OptionalParameter<Email> emailParameter = this.addOptionalParameter(
         "email",
         "e",
         "Email address of person to add",
         "johnd@example.com",
         ParserUtil::parseEmail
     );
+
+    void setParameters(Parameter<Index> indexParameter, OptionalParameter<Name> nameParameter,
+                       OptionalParameter<Phone> phoneParameter, OptionalParameter<Email> emailParameter) {
+        this.indexParameter = indexParameter;
+        this.nameParameter = nameParameter;
+        this.phoneParameter = phoneParameter;
+        this.emailParameter = emailParameter;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

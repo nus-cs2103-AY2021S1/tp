@@ -14,12 +14,18 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
-    private final Parameter<NameContainsKeywordsPredicate> predicateParameter = this.addParameter(
+    public static final String COMMAND_WORD = "find";
+
+    private Parameter<NameContainsKeywordsPredicate> predicateParameter = this.addParameter(
         "keyword",
         "",
         "keywords (case-insensitive).",
         "alice bob charlie", (s) -> new NameContainsKeywordsPredicate(Arrays.asList(s.split("\\s+")))
     );
+
+    void setParameters(Parameter<NameContainsKeywordsPredicate> predicateParameter) {
+        this.predicateParameter = predicateParameter;
+    }
 
     @Override
     public CommandResult execute(Model model) {
