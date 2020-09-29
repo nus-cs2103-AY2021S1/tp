@@ -10,6 +10,6 @@
   
 * For the detailed documentation of this project, see the **[McGymmy Product Website](https://ay2021s1-cs2103t-w17-3.github.io/tp/)**.
 
-##Extras
+## Extras
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
