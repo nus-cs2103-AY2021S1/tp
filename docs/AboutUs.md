@@ -50,10 +50,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Zhuo Yao
 
-<img src="images/tanzhuoyao.png" width="200px">
+<img src="images/tanzhuoyao-nus.png" width="200px">
 
 [[github](http://github.com/tanzhuoyao-nus)]
-[[portfolio](team/tanzhuoyao.md)]
+[[portfolio](team/tanzhuoyao-nus.md)]
 
 * Role: Developer
 * Responsibilities: UI
