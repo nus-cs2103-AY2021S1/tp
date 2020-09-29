@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+McGymmy (MG) is a **desktop app for managing diet and exercise, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, McGimmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -12,11 +12,16 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Quick start
 
+Double click on the jar file to open the GUI.
+Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+Refer to the features below for details of each command.
+
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `mcgymmy.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your McGymmy.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,11 +31,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100` proteins, `5` carbs, and `0` fats.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`delete`**`3` : Deletes the 3rd food item shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -45,102 +48,88 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `-c CARBS -p PROTEIN`, `-p PROTEIN -c CARBS` is also acceptable.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows all help commands in the terminal.
 
-![help message](images/helpMessage.png)
+![help message](images/CommandImagesForUG/Help.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a food item: `add`
 
-Adds a person to the address book.
+Add food item to McGymmy
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add NAME [-p Proteins] [-f Fats] [-c carbs]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add potato -p 100 -c 5 -f 0`
+* `add McSpicy`
+* `add Wonton Mee -c 10`
 
-### Listing all persons : `list`
+![add command example](images/CommandImagesForUG/Add.png)
 
-Shows a list of all persons in the address book.
+### Listing all food items : `list`
+
+Shows a list of all food items in McGymmy.
 
 Format: `list`
 
-### Editing a person : `edit`
+![list command example]()
 
-Edits an existing person in the address book.
+### Updating a food item : `update`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Update the food item details based on index.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `update 5 [-n foodItem] [-p protein] [-c carbs] [-f fats]`
+
+Examples: 
+
+* Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `update 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
-### Locating persons by name: `find`
+![update command example](images/CommandImagesForUG/Update.png)
 
-Finds persons whose names contain any of the given keywords.
+### Deleting a food : `delete`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the specified food from McGymmy.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the food at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
 
-### Clearing all entries : `clear`
+![delete command example](images/CommandImagesForUG/Delete.png)
 
-Clears all entries from the address book.
+### Creating a macro command : `macro`
 
-Format: `clear`
+Creates an Alias macro in McGymmy.
+
+Format: `Alias SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
+
+![Alias command example](images/CommandImagesForUG/Alias.png)
 
 ### Exiting the program : `exit`
 
@@ -150,7 +139,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+McGymmy's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -161,7 +150,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous McGymmy home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,10 +158,9 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add** | `add NAME [-p Proteins] [-f Fats] [-c carbs]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Update** | `update INDEX [-n NAME] [-p Proteins] [-f Fats] [-c carbs]`<br> e.g.,`update 2 -n Chicken Rice -p 30 -f 50 -c 60`
 **List** | `list`
 **Help** | `help`
+**Macro** | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
