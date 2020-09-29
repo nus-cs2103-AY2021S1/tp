@@ -35,12 +35,6 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
                 serialNumberSet.getSource().isSameSource(toCheck.getSource()));
     }
 
-    public boolean containsSource(Source source) {
-        requireNonNull(source);
-        return internalList.stream().anyMatch(serialNumberSet ->
-                serialNumberSet.getSource().isSameSource(source));
-    }
-
     /**
      * Adds a serial number set to the list.
      * The serial number set's source must not already exist in the list.
