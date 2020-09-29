@@ -1,7 +1,12 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,8 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.flashcard.MultipleChoiceQuestion;
+import seedu.address.flashcard.Question;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.Feedback;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -39,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private OptionListPanel optionListPanel;
     private  QuestionDisplay questionDisplay;
 
-    private boolean isOnOpenWindow;
+    private boolean isOnChangedWindow;
 
     @FXML
     private VBox mainPlaceholder;
@@ -68,7 +76,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.isOnOpenWindow = false;
+        this.isOnChangedWindow = false;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -182,27 +190,41 @@ public class MainWindow extends UiPart<Stage> {
         displayPlaceholder.getChildren().clear();
         displayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        this.isOnOpenWindow = false;
+        this.isOnChangedWindow = false;
     }
 
-    private void handleOpen() {
+    private void changeInnerParts(Feedback feedbackToUser) {
 
         listPanelPlaceholder.getChildren().clear();
         displayPlaceholder.getChildren().clear();
 
-        optionListPanel = new OptionListPanel(logic.getOptionsList());
-        listPanelPlaceholder.getChildren().add(optionListPanel.getRoot());
+        Optional<Question> questionToDisplay = feedbackToUser.getQuestion();
 
         questionDisplay = new QuestionDisplay();
         displayPlaceholder.getChildren().add(questionDisplay.getRoot());
-        questionDisplay.setQuestion(logic.getQuestion());
+        questionDisplay.setQuestion(questionToDisplay.map(Question::getOnlyQuestion)
+                .orElse("There is no question to display"));
 
-        this.isOnOpenWindow = true;
+        optionListPanel = new OptionListPanel(questionToDisplay.map(question -> {
+            if (question instanceof MultipleChoiceQuestion) {
+                return FXCollections.observableList(Arrays.stream(((MultipleChoiceQuestion)question)
+                        .getChoices()).collect(Collectors.toCollection(ArrayList::new)));
+            } else {
+                return FXCollections.observableArrayList("Open Ended Question has no options");
+            }
+        }).get());
+        listPanelPlaceholder.getChildren().add(optionListPanel.getRoot());
+
+        this.isOnChangedWindow = true;
     }
 
-    public void handleTest() {
-        handleOpen();
-        questionDisplay.showOutcome("Happ", "Happy", false);
+    public void handleChangeWindow(Feedback feedbackToUser) {
+        changeInnerParts(feedbackToUser);
+        feedbackToUser.isCorrect().ifPresentOrElse(isCorrect -> {
+            changeInnerParts(feedbackToUser);
+            questionDisplay.showOutcome(feedbackToUser.toString(), isCorrect);
+        }, () -> changeInnerParts(feedbackToUser));
+
     }
 
     public FlashcardListPanel getFlashcardListPanel() {
@@ -220,21 +242,22 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isOpen()) {
-                handleOpen();
-            } else if (commandResult.isTest()) {
-                handleTest();
+            if (commandResult.isChangeWindow()) {
+                handleChangeWindow(commandResult.getFeedback());
             } else if (commandResult.isShowHelp()) {
                 handleHelp();
             } else if (commandResult.isExit()) {
                 handleExit();
-            } else if (this.isOnOpenWindow) {
+            } else if (isOnChangedWindow) {
                 handleBackToDefault();
             }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            if (isOnChangedWindow) {
+                handleBackToDefault();
+            }
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

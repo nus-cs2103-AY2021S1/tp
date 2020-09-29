@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.Question;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -37,7 +38,8 @@ public class OpenCommand extends Command {
         }
 
         Flashcard flashcardToOpen = lastShownList.get(targetIndex.getZeroBased());
-        model.openFlashcard(flashcardToOpen);
-        return new CommandResult(String.format(MESSAGE_OPEN_FLASHCARD_SUCCESS, flashcardToOpen));
+        Question question = flashcardToOpen.getQuestion();
+        return new CommandResult(String.format(MESSAGE_OPEN_FLASHCARD_SUCCESS, flashcardToOpen), question,
+                null, true);
     }
 }

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickcache;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MCQ_FLASHCARD;
 
@@ -20,7 +20,7 @@ import seedu.address.model.UserPrefs;
 
 class TestCommandTest {
 
-    private final Model model = new ModelManager(getTypicalQuickcache(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_answerSpecifiedOpenEndedUnfilteredListCorrect_success() {
@@ -32,7 +32,7 @@ class TestCommandTest {
         descriptor.setAnswer(answer);
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_CORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
         assertCommandSuccess(testCommand, model, expectedMessage, model, question, true);
@@ -48,7 +48,7 @@ class TestCommandTest {
         descriptor.setAnswer(userAnswer);
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_INCORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
         assertCommandSuccess(testCommand, model, expectedMessage, model, question, false);
@@ -65,7 +65,7 @@ class TestCommandTest {
         descriptor.setOption(new Option(String.valueOf(correctIndex.getOneBased())));
         TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_CORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
         assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, true);
@@ -82,7 +82,7 @@ class TestCommandTest {
         descriptor.setOption(new Option(String.valueOf(incorrectIndex.getOneBased())));
         TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_INCORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
         assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, false);

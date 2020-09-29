@@ -7,7 +7,7 @@ import seedu.address.flashcard.Question;
 
 public class Feedback {
 
-    private boolean isCorrect;
+    private Boolean isCorrect;
     private String body;
     private Question question;
 
@@ -32,7 +32,7 @@ public class Feedback {
     }
 
     public Optional<Boolean> isCorrect() {
-        return Optional.of(isCorrect);
+        return Optional.ofNullable(isCorrect);
     }
 
     public void setCorrect(boolean correct) {

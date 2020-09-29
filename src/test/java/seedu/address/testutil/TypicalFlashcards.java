@@ -45,7 +45,7 @@ public class TypicalFlashcards {
     /**
      * Returns a {@code Quickcache} with all the typical flashcards.
      */
-    public static QuickCache getTypicalQuickcache() {
+    public static QuickCache getTypicalQuickCache() {
         QuickCache qc = new QuickCache();
         for (Flashcard flashcard : getTypicalFlashcards()) {
             qc.addFlashcard(flashcard);

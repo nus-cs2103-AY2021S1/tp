@@ -35,7 +35,7 @@ public class QuestionDisplay extends UiPart<Region> {
 
         ObservableList<Node> tmp = FXCollections.observableArrayList(displayBox.getChildren());
         tmp.remove(this.answerDisplay);
-        tmp.remove(this.questionDisplay);
+        tmp.remove(this.outcomeDisplay);
         displayBox.getChildren().setAll(tmp);
     }
 
@@ -44,14 +44,21 @@ public class QuestionDisplay extends UiPart<Region> {
         questionDisplay.setText("Question: " + question);
     }
 
-    public void showOutcome(String givenAnswer, String expectedAnswer, boolean isAnswerCorrect) {
+    public void showError(String err) {
         ObservableList<Node> tmp = FXCollections.observableArrayList(displayBox.getChildren());
-        tmp.addAll(this.answerDisplay, this.questionDisplay);
+        tmp.remove(this.outcomeDisplay);
+        tmp.addAll(this.outcomeDisplay);
         displayBox.getChildren().setAll(tmp);
 
-        String answerToDisplay = String.format("Your Answer: %s\nExpected Answer: %s",
-                givenAnswer, expectedAnswer);
-        answerDisplay.setText(answerToDisplay);
+        outcomeDisplay.setText(err);
+    }
+
+    public void showOutcome(String feedbackToUser, boolean isAnswerCorrect) {
+        ObservableList<Node> tmp = FXCollections.observableArrayList(displayBox.getChildren());
+        tmp.addAll(this.answerDisplay, this.outcomeDisplay);
+        displayBox.getChildren().setAll(tmp);
+
+        answerDisplay.setText(feedbackToUser);
 
         if (isAnswerCorrect) {
             outcomeDisplay.setText("You are correct!");
