@@ -70,7 +70,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the FaculType.
+Adds a person to FaculType.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT b/BUILDING [t/TAG]…​
 ​`
