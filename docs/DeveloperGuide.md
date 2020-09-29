@@ -302,11 +302,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, building, remark, tag(s)
-* **Contact**: A member of the faculty
+* **Contact**: A member of a faculty
 * **Module**: A course held in a college or university. A module can be assigned to a contact
-* **Assignment**: A module handled by the contact. Assignment links the contact with the module.
-* **Remark**: A short description of the contact. Remark is an optional attribute
-* **Tag**: An optional one-word identifier of the contact. Contact can have multiple tags
+* **Assignment**: A module handled by a contact. Assignment links a contact with a module
+* **Remark**: A short description of a contact. Remark is an optional attribute
+* **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
