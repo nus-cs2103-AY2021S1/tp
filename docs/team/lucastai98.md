@@ -28,8 +28,8 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Came up with the content outline of the first draft of modified User Guide.
+    * Added user guide for dashboard-related features, including project dashboard and task dashboard.
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
