@@ -35,7 +35,9 @@ public class Recipe {
         this.productQuantity = productQuantity;
         this.description = description;
         this.isDeleted = isDeleted;
-        idCounter++;
+        if (!isDeleted) {
+            idCounter++;
+        }
     }
 
     public static int getIdCounter() {
@@ -71,6 +73,13 @@ public class Recipe {
 
     public boolean isDeleted() {
         return isDeleted;
+    }
+
+    /**
+     * Returns a deleted form of the same recipe.
+     */
+    public Recipe delete() {
+        return new Recipe(id, ingredients, productId, productName, productQuantity, description, true);
     }
 
     /**

@@ -24,7 +24,7 @@ public class AddItemCommand extends Command {
             + PREFIX_ITEM_QUANTITY + "QUANTITY "
             + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION "
             + PREFIX_ITEM_LOCATION + "LOCATION\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITEM_NAME + "banana "
             + PREFIX_ITEM_QUANTITY + "44 "
             + PREFIX_ITEM_DESCRIPTION + "edible banana "
