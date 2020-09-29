@@ -27,6 +27,6 @@ public interface Storage extends WishfulShrinkingStorage, UserPrefsStorage {
     Optional<ReadOnlyWishfulShrinking> readWishfulShrinking() throws DataConversionException, IOException;
 
     @Override
-    void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook) throws IOException;
+    void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking) throws IOException;
 
 }

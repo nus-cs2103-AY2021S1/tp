@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Recipe's ingredients in the address book.
+ * Represents a Recipe's ingredients' String in the recipe collection.
  * Guarantees: immutable; is valid as declared in {@link #isValidIngredient(String)}
  */
 public class IngredientString {

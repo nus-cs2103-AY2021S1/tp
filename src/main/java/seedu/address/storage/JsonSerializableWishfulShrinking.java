@@ -18,7 +18,7 @@ import seedu.address.model.recipe.Recipe;
 /**
  * An Immutable WishfulShrinking that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "wishfulShrinking")
 class JsonSerializableWishfulShrinking {
 
     public static final String MESSAGE_DUPLICATE_RECIPE = "Recipes list contains duplicate recipe(s).";
@@ -62,31 +62,31 @@ class JsonSerializableWishfulShrinking {
     }
 
     /**
-     * Converts this address book into the model's {@code WishfulShrinking} object.
+     * Converts this Wishful Shrinking into the model's {@code WishfulShrinking} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public WishfulShrinking toModelType() throws IllegalValueException {
-        WishfulShrinking addressBook = new WishfulShrinking();
+        WishfulShrinking wishfulShrinking = new WishfulShrinking();
         for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
             Recipe recipe = jsonAdaptedRecipe.toModelType();
-            if (addressBook.hasRecipe(recipe)) {
+            if (wishfulShrinking.hasRecipe(recipe)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }
-            addressBook.addRecipe(recipe);
+            wishfulShrinking.addRecipe(recipe);
         }
         for (JsonAdaptedIngredient jsonAdaptedIngredient : ingredients) {
             Ingredient ingredient = jsonAdaptedIngredient.toModelType();
-            if (addressBook.hasIngredient(ingredient)) {
+            if (wishfulShrinking.hasIngredient(ingredient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);
             }
-            addressBook.addIngredient(ingredient);
+            wishfulShrinking.addIngredient(ingredient);
         }
         for (JsonAdaptedConsumption jsonAdaptedConsumption : consumption) {
             Consumption recipeToEat = jsonAdaptedConsumption.toModelType();
-            addressBook.addConsumption(recipeToEat);
+            wishfulShrinking.addConsumption(recipeToEat);
         }
-        return addressBook;
+        return wishfulShrinking;
     }
 
 }

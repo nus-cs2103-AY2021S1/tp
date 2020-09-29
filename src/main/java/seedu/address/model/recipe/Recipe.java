@@ -6,7 +6,7 @@ import java.util.Objects;
 
 
 /**
- * Represents a Recipe in the address book.
+ * Represents a Recipe in the Wishful Shrinking.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Recipe {

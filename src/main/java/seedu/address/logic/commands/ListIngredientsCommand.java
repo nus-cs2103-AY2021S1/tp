@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.recipe.Ingredient;
 
 /**
- * Lists all recipes in the address book to the user.
+ * Lists all ingredients in the fridge to the user.
  */
 public class ListIngredientsCommand extends Command {
 

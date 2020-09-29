@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * Lists all recipes in the address book to the user.
+ * Lists all recipes in the recipe collection to the user.
  */
 public class ListRecipesCommand extends Command {
 
