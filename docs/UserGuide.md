@@ -113,7 +113,7 @@ Shows a list of all reminders for upcoming tasks.
 
 Format: `list reminders`
 
-### 3.5 Filter students: `filter
+### 3.5 Filter students: `filter`
 
 Filters students in a module based on certain criteria.
 
