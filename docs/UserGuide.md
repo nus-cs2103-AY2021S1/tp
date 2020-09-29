@@ -99,6 +99,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Importing your timetable : `import`
+
+Imports your NUSMods timetable data.
+
+Format: `import YOUR_NUSMODS_URL`
+
+* Imports lesson data based on your NUSMods timetable data.
+* NUSMods timetable URL used is obtained by clicking on the "Share/Sync" timetable icon at NUSMods.
+
+Examples:
+* `import https://nusmods.com/timetable/sem-2/share?ES2660=SEC:G01`.
+
 ### Setting reminders for assignments : `remind`
 Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
 
