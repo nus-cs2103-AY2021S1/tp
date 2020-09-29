@@ -5,17 +5,39 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Food {
 
     // Identity field names
-    //Name
-    // Carbs
-    // Protein
-    // Fats
+    private String name;
+    private Protein protein;
+    private Carbohydrate carbs;
+    private Fat fat;
 
-    // Constructor
+    // Generic Constructor
 
-    // getters
+    public Food(String name, Protein protein, Carbohydrate carbs, Fat fat) {
+        this.name = name;
+        this.protein = protein;
+        this.carbs = carbs;
+        this.fat = fat;
+    }
 
-    // isSameFood
+    // Constructor for convenience
 
-    // toString
+    public Food(String name, int proteinAmount, int carbsAmount, int fatAmount) {
+        this(name,new Protein(proteinAmount),new Carbohydrate(carbsAmount),new Fat(fatAmount));
+    }
+    // getters : make when needed
 
+    // isSameFood : make when needed
+
+    // Displays
+    // name + PCF details + total calories
+
+
+    @Override
+    public String toString() {
+        return "Food:"+this.name +
+            ", protein=" + protein.getAmount() +
+            ", carbs=" + carbs.getAmount() +
+            ", fat=" + fat.getAmount();
+    }
+    
 }

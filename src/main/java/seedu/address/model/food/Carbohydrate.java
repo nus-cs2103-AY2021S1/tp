@@ -13,4 +13,10 @@ public class Carbohydrate extends Macronutrient {
                 "Amount: "+this.amount+"\n"+
                 "Caloric Count: "+this.totalCalories+"\n";
     }
+
+    // getter
+    public int getAmount(){
+        return this.amount;
+    }
+
 }
