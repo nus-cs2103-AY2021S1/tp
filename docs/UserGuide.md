@@ -100,6 +100,72 @@ Examples: `start 2` Initialises the second project in the project list.
 
 ## **Features** after project initialisation
 
+#### Listing all tasks `list`
+
+Shows a list of all tasks in the task list sorted by priority.
+
+Format: `list`
+
+Instruction:
+
+1. Type the command 'list' into the command line.
+
+Outcome: A list of tasks will be shown. 
+
+#### Deleting a task `delete `
+
+Deletes the specified task from your task list.
+
+Format: `delete INDEX`
+
+- Deletes the task at the specified `INDEX`.
+- The index refers to the index number shown in the displayed task list.
+- The index must be a positive integer 1, 2, 3, …
+
+Instruction:
+
+1. List out the list of tasks(Use `list` command) to look for the number of task to be deleted.
+
+1. Type the command `delete` with the number of the task to be deleted. (eg. `delete 2` deletes the 2nd task in the task list.)
+
+1. List out the list of tasks to see the new list of tasks without the deleted tasks.
+
+Outcome: The task is removed from the list.
+
+#### Locating tasks by keyword `find `
+
+Finds tasks whose descriptions contain the given keyword.
+
+Format: `find KEYWORD`
+
+- The search is case-insensitive. e.g run will match Run.
+- Only the description is searched.
+
+Instruction: 
+
+1. Type the command `find` with the `KEYWORD` which might be found in the name of the task that the user is looking for.(eg. `find read` to find  the task 'todo reading')
+
+Outcome: List of tasks with the name containing the keyword will be shown.
+
+#### Giving a task a certain level of priority `prioritise `
+
+Assigns a level of priority to the specified task.
+
+Format: `prioritise INDEX1, INDEX2`
+
+- Assigns a priority level of `INDEX2` to the task at specified `INDEX1`.
+- `INDEX1` refers to the index number shown in the displayed task list.
+- Both `INDEX1` and `INDEX2` must be a positive integer 1, 2, 3, …
+
+Instruction:
+
+1. List out the list of tasks(Use `list` command) to look for the number of task to be assigned with a priority level.
+
+1. Type the command `prioritise` with the number of task which the user wants to assign a priority level to it, followed by a `,` , then the number of the priority level.(eg. `prioritise 2,3` to assign the second task in the task list with a priority level of 3.
+
+Outcome: The task is assigned with the priority level.
+
+
 ### **Teammate**-related features
 #### Create new teammate `new teammate `
 Adds a new teammate to a project
@@ -167,6 +233,10 @@ Action | Format, Examples | Scope
 **Get Help** | `help` | any scope
 **Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
 **Start** | `start INDEX`<br> e.g., `start 3` | global scope
+**List Out The List Of Tasks** | `list` | project-specific scope
+**Delete Task** | `delete INDEX` <br> eg. `delete 2` | project-specific scope
+**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project-specific scope
+**Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project-specific scope 
 **New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project-specific scope
 **Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project-specific scope
 **Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project-specific scope
