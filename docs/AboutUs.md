@@ -49,12 +49,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer, Figma expert
 * Responsibilities: Integration 
 
-### James Doe
+### Li Gangwei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nuovonatura.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/template.md)]
+[[github](http://github.com/nuovonatura)]
+[[portfolio](team/nuovonatura.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, JavaFX expert
+* Responsibilities: UI and Code Quality
