@@ -33,15 +33,15 @@ public class Item {
     /**
      * Every field must be present and not null.
      */
-    public Item(int id, String name, Quantity quantity, String description, Set<Integer> locationId,
-                Set<Integer> recipeId, Set<Tag> tags, boolean isDeleted) {
-        requireAllNonNull(id, name, quantity, description, locationId, recipeId, tags, isDeleted);
+    public Item(int id, String name, Quantity quantity, String description, Set<Integer> locationIds,
+                Set<Integer> recipeIds, Set<Tag> tags, boolean isDeleted) {
+        requireAllNonNull(id, name, quantity, description, locationIds, recipeIds, tags, isDeleted);
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.description = description;
-        this.locationIds.addAll(locationId);
-        this.recipeIds.addAll(recipeId);
+        this.locationIds.addAll(locationIds);
+        this.recipeIds.addAll(recipeIds);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
         idCounter++;
@@ -85,6 +85,10 @@ public class Item {
 
     public boolean isDeleted() {
         return isDeleted;
+    }
+
+    public void addRecipeId(int recipeId) {
+        recipeIds.add(recipeId);
     }
 
     /**

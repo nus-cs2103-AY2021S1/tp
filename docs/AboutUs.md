@@ -2,58 +2,67 @@
 layout: page
 title: About Us
 ---
+* Table of Contents
+{:toc}
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us via the issues tracker of this [repository](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues).
 
 ## Project team
 
-### John Doe
+### Shi Jing Lin
 
-<img src="images/johndoe.png" width="200px">
+![shijinglin](images/profiles/shijinglin.jpg)
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://aqcd.github.io/)]
 
-* Role: Project Advisor
+[[github](https://github.com/aqcd)]
 
-### Jane Doe
+[[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Project Lead
+* Responsibilities: Workflow Assignment, Main Reviewer
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Stephen Tan
 
-* Role: Team Lead
-* Responsibilities: UI
+![stephentan](images/profiles/blackonyyx.jpg)
 
-### Johnny Doe
+[[github](http://github.com/blackonyyx)]
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio](team/stephentan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, BugTesting
 
-### Jean Doe
+### Liu Zhengdao
 
-<img src="images/johndoe.png" width="200px">
+![liuzhengdao](images/profiles/johndoe.png)
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/justacasul)] 
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/liuzhengdao.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: GUI, Feature Developer
+
+### Kheng Hun
+
+![siewkhenghun](images/profiles/johndoe.png)
+
+[[github](https://github.com/khenghun)]
+[[portfolio](team/siewkhenghun.md)]
+
+* Role: Developer
+* Responsibilities: Feature Developer, Bug Tester
+
+### Rahul
+
+![rahul](images/profiles/johndoe.png)
+
+[[github](https://github.com/Rahul0506)]
+
+[[portfolio](team/rahul.md)]
+
+* Role: Developer
+* Responsibilities: Feature Developer, Continuous Integration

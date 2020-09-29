@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
-
+import seedu.address.model.item.ItemPrecursor;
 
 /**
  * Adds a item to the item list.
@@ -24,7 +24,7 @@ public class AddItemCommand extends Command {
             + PREFIX_ITEM_QUANTITY + "QUANTITY "
             + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION "
             + PREFIX_ITEM_LOCATION + "LOCATION\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITEM_NAME + "banana "
             + PREFIX_ITEM_QUANTITY + "44 "
             + PREFIX_ITEM_DESCRIPTION + "edible banana "
@@ -34,19 +34,22 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list";
 
-    private final Item itemToAdd;
+    private final ItemPrecursor itemPre;
 
     /**
      * Creates an AddCommand to add the specified {@code Item}
      */
-    public AddItemCommand(Item item) {
-        requireNonNull(item);
-        itemToAdd = item;
+    public AddItemCommand(ItemPrecursor itemPrecursor) {
+        requireNonNull(itemPrecursor);
+        itemPre = itemPrecursor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Item itemToAdd;
+        itemToAdd = model.processPrecursor(itemPre);
 
         if (model.hasItem(itemToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
@@ -60,6 +63,6 @@ public class AddItemCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddItemCommand // instanceof handles nulls
-                && itemToAdd.equals(((AddItemCommand) other).itemToAdd));
+                && itemPre.equals(((AddItemCommand) other).itemPre));
     }
 }
