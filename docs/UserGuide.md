@@ -29,7 +29,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    Some example commands you can try:
 
-   * **`list`** : Lists all assignments.
+   * **`list 2`** : Lists all assignments and lessons.
 
    * **`add`**`n/Lab report 3 d/23/04/2020 12:30 PM mod/CS2100` : Adds an assignment named `Lab Assignment 3` to the Address Book.
 
@@ -77,13 +77,19 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all assignments : `list`
+### Listing all assignments and lessons : `list NUMBER`
 
-Shows a list of all assignments in your schedule.
+- Shows a list of all assignments and lessons in your schedule within `NUMBER` 
+number of weeks.
+- A week in this context starts with Monday and ends with Sunday.
 
-Format: `list`
+Format: `list NUMBER`
 
-Example: `list`
+Examples: 
+- `list 2` displays all your assignments and lessons within 
+the current and the next week.
+- `list 3` displays all your assignments and lessons within the current 
+and next 2 weeks.
 
 ### Deleting a person : `delete`
 
@@ -137,6 +143,6 @@ Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE mod/MODULE_CODE` <br> e.g., `add n/Math tutorial d/21/03/2020 11:00 AM mod/ST2334`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
-**list** | `list`
+**list** | `list NUMBER` e.g., `list 2`
 **import** | `import NUSMODS_URL`
 **remind** | `remind INDEX`
