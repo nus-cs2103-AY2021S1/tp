@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.stock.model.stock.SerialNumberSet;
 
 /**
- * Unmodifiable view of an stock book
+ * Unmodifiable view of a SerialNumberSetsBook
  */
 public interface ReadOnlySerialNumberSetsBook {
 

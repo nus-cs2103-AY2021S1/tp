@@ -91,6 +91,14 @@ public class StorageManager implements Storage {
         return readSerialNumberSetsBook(serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath());
     }
 
+    /**
+     * Reads the serial number sets book data from the given file path.
+     *
+     * @param filePath The filepath to read from.
+     * @return The ReadOnlySerialNumberSetsBook object wrapped by Optional.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the storage.
+     */
     public Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
@@ -101,6 +109,13 @@ public class StorageManager implements Storage {
         saveSerialNumberSetsBook(serialNumberSetsBook, serialNumberSetsBookStorage.getSerialNumberSetsBookFilePath());
     }
 
+    /**
+     * Writes the serial number sets book data to the desired file path.
+     *
+     * @param serialNumberSetsBook The serialNumberSetsBook to write.
+     * @param filePath The filepath to read from.
+     * @throws IOException if there was any problem when reading from the storage.
+     */
     public void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath)
             throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);

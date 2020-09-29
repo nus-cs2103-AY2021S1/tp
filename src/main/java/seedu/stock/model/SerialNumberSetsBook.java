@@ -12,8 +12,8 @@ import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.UniqueSerialNumberSetList;
 
 /**
- * Wraps all data at the stock-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the SerialNumberSetsBook level.
+ * Duplicates are not allowed (by .isSameSerialNumberSet comparison).
  */
 public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
 
@@ -33,7 +33,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
     public SerialNumberSetsBook() {}
 
     /**
-     * Creates an StockBook using the Persons in the {@code toBeCopied}
+     * Creates a SerialNumberSetsBook using the SerialNumberSets in the {@code toBeCopied}.
      */
     public SerialNumberSetsBook(ReadOnlySerialNumberSetsBook toBeCopied) {
         this();
@@ -43,15 +43,15 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the SerialNumberSet list with {@code serialNumberSetList}.
+     * {@code serialNumberSets} must not contain duplicate SerialNumberSet.
      */
     public void setSerialNumberSets(List<SerialNumberSet> serialNumberSetList) {
         this.serialNumberSets.setSerialNumberSets(serialNumberSetList);
     }
 
     /**
-     * Resets the existing data of this {@code StockBook} with {@code newData}.
+     * Resets the existing data of this {@code SerialNumberSetsBook} with {@code newData}.
      */
     public void resetData(ReadOnlySerialNumberSetsBook newData) {
         requireNonNull(newData);
@@ -62,7 +62,8 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
     //// person-level operations
 
     /**
-     * Returns true if a stock with the same identity as {@code stock} exists in the stock book.
+     * Returns true if a SerialNumberSet with the same identity as {@code serialNumberSet} exists
+     *     in the SerialNumberSetsBook.
      */
     public boolean hasSerialNumberSet(SerialNumberSet serialNumberSet) {
         requireNonNull(serialNumberSet);
@@ -70,7 +71,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
     }
 
     /**
-     * Adds a stock to the stock book.
+     * Adds a SerialNumberSet to the SerialNumberSetsBook.
      * The stock must not already exist in the stock book.
      */
     public void addSerialNumberSet(SerialNumberSet p) {
@@ -78,9 +79,10 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedStock}.
-     * {@code target} must exist in the stock book.
-     * The stock identity of {@code editedStock} must not be the same as another existing stock in the stock book.
+     * Replaces the given SerialNumberSet {@code target} in the list with {@code editedSerialNumberSet}.
+     * {@code target} must exist in the SerialNumberSetsBook.
+     * The SerialNumberSet identity of {@code editedSerialNumberSet} must not be the same as
+     * another existing SerialNumberSet in the SerialNumberSetsBook.
      */
     public void setSerialNumberSet(SerialNumberSet target, SerialNumberSet editedSerialNumberSet) {
         requireNonNull(editedSerialNumberSet);
@@ -89,14 +91,20 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
     }
 
     /**
-     * Removes {@code key} from this {@code StockBook}.
-     * {@code key} must exist in the stock book.
+     * Removes {@code key} from this {@code SerialNumberSetsBook}.
+     * {@code key} must exist in the SerialNumberSetsBook
      */
     public void removeSerialNumberSet(SerialNumberSet key) {
         //removes the serial number set related to the given key.
         serialNumberSets.remove(key);
     }
 
+    /**
+     * Increases the quantity in the serial number set by 1 of the respective source company,
+     *     used when new stock is added.
+     *
+     * @param source The source company name.
+     */
     public void incrementSerialNumberSet(Source source) {
         Optional<SerialNumberSet> serialNumberSetOptional = serialNumberSets.getSerialNumberSet(source);
         if (serialNumberSetOptional.isPresent()) {
@@ -110,11 +118,16 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         }
     }
 
+    /**
+     * Generates a serial number for the stock from a particular source company.
+     *
+     * @param source The source company name.
+     */
     public String generateNextSerialNumber(Source source) {
         Optional<SerialNumberSet> serialNumberSetOptional = serialNumberSets.getSerialNumberSet(source);
         if (serialNumberSetOptional.isPresent()) {
             SerialNumberSet current = serialNumberSetOptional.get();
-            String numberSection = current.getAccQuantity().getIncrementedAccQuantity().accQuantity;
+            String numberSection = current.getAccQuantity().getIncrementedAccQuantity().getAccQuantity();
             return source.value + numberSection;
         } else {
             return source.value + "1";

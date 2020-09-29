@@ -5,7 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.stock.commons.exceptions.DataConversionException;
-import seedu.stock.model.*;
+import seedu.stock.model.ReadOnlySerialNumberSetsBook;
+import seedu.stock.model.ReadOnlyStockBook;
+import seedu.stock.model.ReadOnlyUserPrefs;
+import seedu.stock.model.UserPrefs;
 
 /**
  * API of the Storage component

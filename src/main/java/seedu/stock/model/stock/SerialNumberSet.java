@@ -9,6 +9,13 @@ public class SerialNumberSet {
     private Source source;
     private AccQuantity accQuantity;
 
+    /**
+     * Constructor for a serialNumberSet.
+     *
+     * @param source The source company name.
+     * @param accQuantity The accumulated quantity of stocks the source company has in relation to
+     *     the local warehouse.
+     */
     public SerialNumberSet(Source source, AccQuantity accQuantity) {
         requireNonNull(source);
         requireNonNull(accQuantity);
@@ -25,8 +32,7 @@ public class SerialNumberSet {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both serialNumberSet has the same source company.
      */
     public boolean isSameSerialNumberSetSource(SerialNumberSet otherSerialNumberSet) {
         if (otherSerialNumberSet == this) {
@@ -38,8 +44,7 @@ public class SerialNumberSet {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both serialNumberSet is the same.
      */
     public boolean isSameSerialNumberSet(SerialNumberSet otherSerialNumberSet) {
         if (otherSerialNumberSet == this) {
@@ -51,6 +56,11 @@ public class SerialNumberSet {
                 && otherSerialNumberSet.getAccQuantity().equals(getAccQuantity());
     }
 
+    /**
+     * Gets a new SerialNumberSet with an increment quantity of 1.
+     *
+     * @return The new SerialNumberSet.
+     */
     public SerialNumberSet getNewIncrementedSerialNumberSet() {
         Source newSource = this.source;
         AccQuantity newAccQuantity = this.accQuantity.getIncrementedAccQuantity();

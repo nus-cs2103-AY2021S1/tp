@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.stock.commons.exceptions.IllegalValueException;
 import seedu.stock.model.stock.AccQuantity;
-import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumberSet;
 import seedu.stock.model.stock.Source;
 
@@ -14,13 +13,13 @@ import seedu.stock.model.stock.Source;
  */
 class JsonAdaptedSerialNumberSet {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "SerialNumberSet's %s field is missing!";
 
     private final String source;
     private final String accQuantity;
 
     /**
-     * Constructs a {@code JsonAdaptedSerialNumberSet} with the given person details.
+     * Constructs a {@code JsonAdaptedSerialNumberSet} with the given SerialNumberSet details.
      */
     @JsonCreator
     public JsonAdaptedSerialNumberSet(@JsonProperty("source") String source,
@@ -34,13 +33,13 @@ class JsonAdaptedSerialNumberSet {
      */
     public JsonAdaptedSerialNumberSet(SerialNumberSet serialNumberSet) {
         this.source = serialNumberSet.getSource().value;
-        this.accQuantity = serialNumberSet.getAccQuantity().accQuantity;
+        this.accQuantity = serialNumberSet.getAccQuantity().getAccQuantity();
     }
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code SerialNumberSet} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted stock.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted SerialNumberSet.
      */
     public SerialNumberSet toModelType() throws IllegalValueException {
         if (source == null) {

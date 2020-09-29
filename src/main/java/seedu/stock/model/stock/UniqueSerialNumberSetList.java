@@ -15,15 +15,10 @@ import seedu.stock.model.stock.exceptions.SerialNumberSetNotFoundException;
 import seedu.stock.model.stock.exceptions.StockNotFoundException;
 
 /**
- * A list of stock that enforces uniqueness between its elements and does not allow nulls.
- * A stock is considered unique by comparing using {@code Stock#isSameStock(Stock)}. As such, adding and updating of
- * persons uses Stock#isSameStock(Stock) for equality so as to ensure that the stock being added or updated is
- * unique in terms of identity in the UniqueStockList. However, the removal of a stock uses Stock#equals(Object) so
- * as to ensure that the stock with exactly the same fields will be removed.
- *
+ * A list of serialNumberSets that enforces uniqueness between its elements and does not allow nulls.
  * Supports a minimal set of list operations.
  *
- * @see Stock#isSameStock(Stock)
+ * @see SerialNumberSet#isSameSerialNumberSet(SerialNumberSet)
  */
 public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
 
@@ -90,8 +85,8 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent SerialNumberSet from the list.
+     * The SerialNumberSet must exist in the list.
      */
     public void remove(SerialNumberSet toRemove) {
         requireNonNull(toRemove);

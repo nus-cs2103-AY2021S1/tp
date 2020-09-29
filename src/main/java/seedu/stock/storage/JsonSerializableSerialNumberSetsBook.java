@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.stock.commons.exceptions.IllegalValueException;
-import seedu.stock.model.ReadOnlySerialNumberSetsBook;;
+import seedu.stock.model.ReadOnlySerialNumberSetsBook;
 import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.stock.SerialNumberSet;
 
@@ -36,14 +36,15 @@ class JsonSerializableSerialNumberSetsBook {
     /**
      * Converts a given {@code ReadOnlyStockBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableStockBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableSerialNumberSetsBook}.
      */
     public JsonSerializableSerialNumberSetsBook(ReadOnlySerialNumberSetsBook source) {
-        serialNumberSets.addAll(source.getSerialNumberSetsList().stream().map(JsonAdaptedSerialNumberSet::new).collect(Collectors.toList()));
+        serialNumberSets.addAll(source.getSerialNumberSetsList().stream()
+                .map(JsonAdaptedSerialNumberSet::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this stock book into the model's {@code StockBook} object.
+     * Converts this SerialNumberSetsBook into the model's {@code SerialNumberSetsBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

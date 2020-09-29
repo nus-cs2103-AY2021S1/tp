@@ -24,12 +24,14 @@ public interface SerialNumberSetsBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook() throws DataConversionException, IOException;
+    Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook()
+            throws DataConversionException, IOException;
 
     /**
      * @see #getSerialNumberSetsBookFilePath()
      */
-    Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlySerialNumberSetsBook> readSerialNumberSetsBook(Path filePath)
+            throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlySerialNumberSetsBook} to the storage.
@@ -41,6 +43,7 @@ public interface SerialNumberSetsBookStorage {
     /**
      * @see #saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook)
      */
-    void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath) throws IOException;
+    void saveSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook, Path filePath)
+            throws IOException;
 
 }

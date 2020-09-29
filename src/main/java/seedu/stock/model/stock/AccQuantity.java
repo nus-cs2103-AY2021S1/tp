@@ -11,7 +11,7 @@ public class AccQuantity {
     public static final String MESSAGE_CONSTRAINTS =
             "AccQuantity numbers should be more than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
-    public String accQuantity;
+    private String accQuantity;
 
     /**
      * Constructs a {@code AccQuantity}.
@@ -27,6 +27,10 @@ public class AccQuantity {
     public AccQuantity getIncrementedAccQuantity() {
         int increased = Integer.parseInt(this.accQuantity) + 1;
         return new AccQuantity(Integer.toString(increased));
+    }
+
+    public String getAccQuantity() {
+        return this.accQuantity;
     }
 
     /**
