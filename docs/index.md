@@ -3,7 +3,7 @@ layout: page
 title: ResiReg
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2021S1-CS2103-T16-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T16-3/tp/actions)
 
 ![Ui](images/Ui.png)
 
