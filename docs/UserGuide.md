@@ -100,6 +100,12 @@ Examples: `start 2` Initialises the second project in the project list.
 
 ## **Features** after project initialisation
 
+### Task-related features
+#### Checking the project dashboard `dashboard `
+Shows a summary of the important information regarding the project.
+
+Format: `dashboard`
+
 #### Listing all tasks `list`
 
 Shows a list of all tasks in the task list sorted by priority.
@@ -165,6 +171,15 @@ Instruction:
 
 Outcome: The task is assigned with the priority level.
 
+#### Viewing tasks allocated to a team member `view `
+Displays a list of tasks allocated to the specified members.
+
+Format: `view NAME`
+- NAME refers to the name of the team member when it was first input during project creation.
+
+Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### **Teammate**-related features
 #### Create new teammate `new teammate `
@@ -214,9 +229,6 @@ Format: `task participants TASK_NUMBER`
 - `TASK_NUMBER` refers to the task number in the project
 
 Example: `task participants 1` Displays the teammates that are assigned to do task 1
-
-
---------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
