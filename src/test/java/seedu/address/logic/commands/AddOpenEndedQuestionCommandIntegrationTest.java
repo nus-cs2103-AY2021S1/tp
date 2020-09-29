@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
     }
 
     @Test
     public void execute_newFlashcard_success() {
         Flashcard validFlashcard = new FlashcardBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getQuickCache(), new UserPrefs());
         expectedModel.addFlashcard(validFlashcard);
 
         assertCommandSuccess(new AddOpenEndedQuestionCommand(validFlashcard), model,
@@ -38,7 +38,7 @@ public class AddOpenEndedQuestionCommandIntegrationTest {
 
     @Test
     public void execute_duplicateFlashcard_throwsCommandException() {
-        Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(0);
+        Flashcard flashcardInList = model.getQuickCache().getFlashcardList().get(0);
         assertCommandFailure(new AddOpenEndedQuestionCommand(flashcardInList),
                 model, AddOpenEndedQuestionCommand.MESSAGE_DUPLICATE_FLASHCARD);
     }

@@ -17,11 +17,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.QuickCache;
+import seedu.address.model.ReadOnlyQuickCache;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class AddOpenEndedQuestionCommandTest {
@@ -102,17 +101,12 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getQuickCacheFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
+        public void setQuickCacheFilePath(Path quickCacheFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -122,17 +116,12 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setQuickCache(ReadOnlyQuickCache newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
+        public ReadOnlyQuickCache getQuickCache() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -142,17 +131,7 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteFlashcard(Flashcard target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,17 +141,12 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Flashcard> getFilteredFlashcardList() {
             return null;
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -214,8 +188,8 @@ public class AddOpenEndedQuestionCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyQuickCache getQuickCache() {
+            return new QuickCache();
         }
     }
 

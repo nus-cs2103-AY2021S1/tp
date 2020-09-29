@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.EditCommand;
@@ -34,10 +34,10 @@ public class EditFlashcardDescriptorBuilder {
         descriptor.setQuestion(flashcard.getQuestion());
         descriptor.setTags(flashcard.getTags());
         descriptor.setAnswer(flashcard.getAnswer());
-        boolean isMcq = flashcard.getQuestion() instanceof Mcq;
+        boolean isMcq = flashcard.getQuestion() instanceof MultipleChoiceQuestion;
         descriptor.setIsMcq(isMcq);
         if (isMcq) {
-            descriptor.setChoices(((Mcq) flashcard.getQuestion()).getChoices());
+            descriptor.setChoices(((MultipleChoiceQuestion) flashcard.getQuestion()).getChoices());
         } else {
             String[] emptyArray = new String[0];
             descriptor.setChoices(emptyArray);

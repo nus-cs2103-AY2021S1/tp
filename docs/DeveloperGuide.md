@@ -323,10 +323,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests for statistics.
-2.  QuickCache displays statistics.
-3.  User completes a quiz and requests for statistics.
-4.  QuickCache displays updated statistics.
+1.  User requests for statistics
+2.  QuickCache displays statistics
+3.  User completes a quiz and requests for statistics
+4.  QuickCache displays updated statistics
 
     Use case ends.
 
@@ -643,6 +643,30 @@ MSS:
 2. QuickCache filters through all existing Flashcards based on the tag and returns a list of Flashcards.
 
     Use case ends.
+    
+**Use case: UC13 - Open a single flashcard**
+
+**MSS**
+
+1. User double clicks on QuickCache.jar
+2. QuickCache opens and shows a list of flashcards
+3. User forgets the options of a question
+4. User requests to open a specific flashcard in the list
+5. QuickCache opens the flashcard and displays the options
+
+	Use case ends.
+	
+**Extensions**
+
+* 2a. The list is empty.
+
+  	Use case ends.
+
+* 4a. The given index is invalid.
+
+  * 4a1. QuickCache shows an error message.
+
+    Use case resumes at step 3.
 
 ****
 ### Non-Functional Requirements

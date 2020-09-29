@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.flashcard.Flashcard;
-import seedu.address.model.AddressBook;
+import seedu.address.model.QuickCache;
 
 public class TypicalFlashcards {
 
@@ -45,12 +45,12 @@ public class TypicalFlashcards {
     /**
      * Returns a {@code Quickcache} with all the typical flashcards.
      */
-    public static AddressBook getTypicalQuickcache() {
-        AddressBook ab = new AddressBook();
+    public static QuickCache getTypicalQuickCache() {
+        QuickCache qc = new QuickCache();
         for (Flashcard flashcard : getTypicalFlashcards()) {
-            ab.addFlashcard(flashcard);
+            qc.addFlashcard(flashcard);
         }
-        return ab;
+        return qc;
     }
 
     public static List<Flashcard> getTypicalFlashcards() {

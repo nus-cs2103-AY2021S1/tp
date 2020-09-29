@@ -13,6 +13,7 @@ public class TypicalIndexes {
     public static final Index INDEX_FIRST_FLASHCARD = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_FLASHCARD = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_FLASHCARD = Index.fromOneBased(3);
+    public static final Index VERY_BIG_INDEX_FLASHCARD = Index.fromOneBased(Integer.MAX_VALUE);
 
     public static final Index INDEX_FIRST_MCQ_FLASHCARD = Index.fromOneBased(5);
     public static final Index INDEX_FIRST_OPENENDED_FLASHCARD = Index.fromOneBased(1);

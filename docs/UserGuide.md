@@ -63,6 +63,19 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Open a flashcard: `open`
+
+Opens a specified flashcard from the list .
+
+Format: `open INDEX`
+
+* Opens the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `open 2` opens the 2nd flashcard in the list.
+
 ### Adding a flashcard: `add`
 
 Adds a new flashcard to the application.
@@ -134,6 +147,7 @@ QuickCache data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
+**Open**| `open INDEX` <br> e.g., `open 3`
 **Add** | `add n/QUESTION n/ANSWER` <br> e.g., `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
 **Test** | `test INDEX a/ANSWER`<br> e.g., `test 2 a/lorem ipsum`
 **Clear** | `clear`

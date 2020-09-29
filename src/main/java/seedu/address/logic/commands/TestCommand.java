@@ -12,7 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Option;
 import seedu.address.flashcard.Question;
@@ -29,14 +29,12 @@ public class TestCommand extends Command {
             + "[" + PREFIX_ANSWER + "ANSWER] "
             + "[" + PREFIX_OPTION + "OPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ANSWER + "Oxygen"
+            + PREFIX_ANSWER + "Oxygen "
             + PREFIX_OPTION + " 1";
 
 
-    public static final String MESSAGE_FORMAT = "Answer: %1$s\n"
+    public static final String MESSAGE_FORMAT = "Expected Answer: %1$s\n"
             + "Your Answer: %2$s";
-    public static final String MESSAGE_CORRECT_ANSWER = MESSAGE_FORMAT + "\n" + "Your answer is correct!";
-    public static final String MESSAGE_INCORRECT_ANSWER = MESSAGE_FORMAT + "\n" + "Your answer is wrong!";
     public static final String MESSAGE_NO_OPTION_PROVIDED = "An option must be chosen for "
             + "the multiple choice question.";
     public static final String MESSAGE_NO_ANSWER_PROVIDED = "An answer must be chosen for the open ended question.";
@@ -63,14 +61,10 @@ public class TestCommand extends Command {
      *
      * @param correctAnswer of the question.
      * @param userAnswer that is given.
-     * @param isCorrect answer.
      * @return string output of the test result.
      */
-    private static String getTestResult(Answer correctAnswer, Answer userAnswer, boolean isCorrect) {
-        if (!isCorrect) {
-            return String.format(MESSAGE_INCORRECT_ANSWER, correctAnswer, userAnswer);
-        }
-        return String.format(MESSAGE_CORRECT_ANSWER, correctAnswer, userAnswer);
+    private static String getTestResult(Answer correctAnswer, Answer userAnswer) {
+        return String.format(MESSAGE_FORMAT, correctAnswer, userAnswer);
     }
 
     @Override
@@ -86,7 +80,7 @@ public class TestCommand extends Command {
         Question question = flashcardToTest.getQuestion();
 
 
-        if (question instanceof Mcq && testAnswerDescriptor.getOption().isEmpty()) {
+        if (question instanceof MultipleChoiceQuestion && testAnswerDescriptor.getOption().isEmpty()) {
             throw new CommandException(MESSAGE_NO_OPTION_PROVIDED);
         }
         if (question instanceof OpenEndedQuestion && testAnswerDescriptor.getAnswer().isEmpty()) {
@@ -95,8 +89,8 @@ public class TestCommand extends Command {
 
         Answer answer = null;
 
-        if (question instanceof Mcq) {
-            Mcq mcq = (Mcq) question;
+        if (question instanceof MultipleChoiceQuestion) {
+            MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) question;
             Option option = testAnswerDescriptor.getOption().get();
             Index index = option.getIndex();
             answer = mcq.getAnswerFromIndex(index);
@@ -108,7 +102,7 @@ public class TestCommand extends Command {
         requireNonNull(answer);
         boolean isCorrect = flashcardToTest.checkAnswer(answer);
         return new CommandResult(getTestResult(
-                flashcardToTest.getAnswer(), answer, isCorrect), question, isCorrect);
+                flashcardToTest.getAnswer(), answer), question, isCorrect, true);
     }
 
     @Override

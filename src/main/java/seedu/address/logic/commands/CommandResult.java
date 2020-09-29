@@ -19,30 +19,36 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final boolean changeWindow;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean changeWindow) {
         requireNonNull(feedbackToUser);
         this.feedbackToUser = new Feedback(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.changeWindow = changeWindow;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields including {@code question} and {@code isCorrect}.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Question question, Boolean isCorrect) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean changeWindow,
+                         Question question, Boolean isCorrect) {
         requireNonNull(feedbackToUser);
         requireNonNull(question);
-        requireNonNull(isCorrect);
 
         this.feedbackToUser = new Feedback(feedbackToUser);
         this.feedbackToUser.setQuestion(question);
-        this.feedbackToUser.setCorrect(isCorrect);
+        if (isCorrect != null) {
+            this.feedbackToUser.setCorrect(isCorrect);
+        }
 
         this.showHelp = showHelp;
         this.exit = exit;
+        this.changeWindow = changeWindow;
     }
 
     /**
@@ -50,7 +56,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     /**
@@ -58,12 +64,16 @@ public class CommandResult {
      * {@code question}, {@code isCorrect}
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, Question question, Boolean isCorrect) {
-        this(feedbackToUser, false, false, question, isCorrect);
+    public CommandResult(String feedbackToUser, Question question, Boolean isCorrect, boolean changeWindow) {
+        this(feedbackToUser, false, false, changeWindow, question, isCorrect);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser.toString();
+    }
+
+    public Feedback getFeedback() {
+        return feedbackToUser;
     }
 
     public boolean isShowHelp() {
@@ -72,6 +82,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isChangeWindow() {
+        return changeWindow;
     }
 
     @Override
@@ -88,12 +102,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && changeWindow == otherCommandResult.changeWindow;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, changeWindow);
     }
 
 }
