@@ -5,7 +5,11 @@ public abstract class Macronutrient {
     protected int caloricMultiplier;
     protected int totalCalories;
 
-    // Constructor
+    /**
+     * Represents macronutrients of 3 types
+     * @param amount
+     * @param caloricMultiplier
+     */
     public Macronutrient(int amount, int caloricMultiplier) {
         assert amount >= 0;
         System.out.println("amount cannot be negative");

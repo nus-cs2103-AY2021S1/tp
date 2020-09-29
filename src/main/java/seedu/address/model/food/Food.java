@@ -10,8 +10,13 @@ public class Food {
     private Carbohydrate carbs;
     private Fat fat;
 
-    // Generic Constructor
-
+    /**
+     * Represents a food item
+     * @param name
+     * @param protein
+     * @param carbs
+     * @param fat
+     */
     public Food(String name, Protein protein, Carbohydrate carbs, Fat fat) {
         requireAllNonNull(name, protein, carbs, fat);
         this.name = name;
@@ -35,10 +40,10 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food:" + this.name +
-            ", protein=" + protein.getAmount() +
-            ", carbs=" + carbs.getAmount() +
-            ", fat=" + fat.getAmount();
+        return "Food:" + this.name + "\n"
+            + "protein: " + protein.getAmount() + "\n"
+            + "carbs: " + carbs.getAmount() + "\n"
+            + "fat: " + fat.getAmount() + "\n";
     }
 
 }

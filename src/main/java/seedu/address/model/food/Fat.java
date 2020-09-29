@@ -8,10 +8,10 @@ public class Fat extends Macronutrient {
 
     @Override
     public String toString() {
-        return
-            "MacronutrientType: Fats\n" +
-                "Amount: " + this.amount + "\n" +
-                "Caloric Count: " + this.totalCalories + "\n";
+        return "MacronutrientType: Fat\n"
+            + "Amount: "
+            + this.amount + "\n"
+            + "Caloric Count: " + this.totalCalories + "\n";
     }
 
     // getter

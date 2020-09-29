@@ -8,10 +8,10 @@ public class Carbohydrate extends Macronutrient {
 
     @Override
     public String toString() {
-        return
-            "MacronutrientType: Carbohydrate\n" +
-                "Amount: " + this.amount + "\n" +
-                "Caloric Count: " + this.totalCalories + "\n";
+        return "MacronutrientType: Carbohydrate\n"
+                + "Amount: "
+                + this.amount + "\n"
+                + "Caloric Count: " + this.totalCalories + "\n";
     }
 
     // getter

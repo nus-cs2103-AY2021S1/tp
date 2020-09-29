@@ -8,10 +8,10 @@ public class Protein extends Macronutrient {
 
     @Override
     public String toString() {
-        return
-            "MacronutrientType: Protein\n" +
-                "Amount: "+this.amount+"\n"+
-                "Caloric Count: "+this.totalCalories+"\n";
+        return "MacronutrientType: Protein\n"
+            + "Amount: "
+            + this.amount + "\n"
+            + "Caloric Count: " + this.totalCalories + "\n";
     }
 
     // getter
