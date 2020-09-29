@@ -22,46 +22,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Project Member
 * Responsibilities: Developer
 
-### Jane Doe
+### Li Jiayu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lll-jy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/lll-jy)]
 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/lll-jy.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Project Member
+* Responsibilities: Developer
 
-### Johnny Doe
+### Tian Fang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/T-Fang.png" width="200px">
 
-[[github](http://github.com/johndoe)] 
+[[github](http://github.com/T-Fang)] 
 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/T-Fang.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Project Member
+* Responsibilities: Developer
 
-### Jean Doe
+### Tan Chia Qian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/TCQian.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/TCQian)]
 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/TCQian.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Project Member
+* Responsibilities: Developer
 
-### James Doe
+### Lucas Tai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lucastai98.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/lucastai98)]
 
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/lucastai98.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Project Member
+* Responsibilities: Developer

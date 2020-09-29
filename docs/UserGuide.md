@@ -17,10 +17,15 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   - Features associated with initialising project 
     - Creating new project `new project `
     - Start working on an existing project `start `
-  
+    
 - Features after project initialisation
-
-
+  - Teammate related features 
+    - Create new teammate `new teammate `
+    - Add existing teammates of other projects to participate in this project `involves `
+    - Update teammate details (person portfolio) `updatetm teammate `
+    - Update participation details (tasks and project-specific information) `updatept participation `
+    - Remove a teammate in the project `remove teammate `
+    - View tasks allocated to a particular teammate `task participants `
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -95,7 +100,54 @@ Examples: `start 2` Initialises the second project in the project list.
 
 ## **Features** after project initialisation
 
+### **Teammate**-related features
+#### Create new teammate `new teammate `
+Adds a new teammate to a project
 
+Format: `new NAME p/PHONE_NUMBER e/EMAIL`
+- `NAME` refers to the name of the teammate
+- `PHONE_NUMBER` refers to the teammate's contact number
+- `EMAIL` refers to the teammate's email
+
+Example: `new Lucas p/94311421 e/lucastai98@gmail.com` Instantiates teammate Lucas with the specified contact number and email
+
+#### Add existing teammates of other projects to participate in this project `involves `
+Involves an existing teammate in other projects to the current project
+
+Format: `involves NAME`
+- `NAME` refers to the name of the teammate; by this, we should guarantee that teammates of all projects have different names if they are different people
+
+Example: `involves Lucas` for `Lucas` that participates in another existing project
+
+#### Update teammate details (person portfolio) `updatetm teammate `
+Updates person particulars of person portfolio of a teammate
+
+Format: `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
+
+Example: `updatetm Lucas p/12345678` Resets the contact number of `Lucas` to `12345678`
+
+#### Update participation details (tasks and project-specific information) `updatept participation `
+Updates the participation details of the teammate, such as his/her role
+
+Format: `updatept NAME [r/ROLE]`
+- `ROLE` refers to the role of the teammate in the project, i.e., team member or leader
+
+Example: `updatept Lucas r/LEADER` Sets the existing teammate in the project, `Lucas`, as the leader of the project.
+
+#### Remove a teammate in the project `remove teammate `
+Removes an existing teammate in the project
+
+Format: `removetm NAME`
+
+Example: `removetm Lucas` Removes the existing teammate in the project, `Lucas`, from the current project
+
+#### View teammates participated in a particular task `task participants `
+Views the information of all teammates participating in a particular task
+
+Format: `task participants TASK_NUMBER`
+- `TASK_NUMBER` refers to the task number in the project
+
+Example: `task participants 1` Displays the teammates that are assigned to do task 1
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -110,9 +162,15 @@ contains the data of your previous Taskmania home folder.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Get Help** | `help`
-**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas`
-**Start** | `start INDEX`<br> e.g., `start 3`
+Action | Format, Examples | Scope
+--------|------------------|-------
+**Get Help** | `help` | any scope
+**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
+**Start** | `start INDEX`<br> e.g., `start 3` | global scope
+**New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project-specific scope
+**Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project-specific scope
+**Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project-specific scope
+**Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project-specific scope
+**Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project-specific scope
+**View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project-specific scope
 
