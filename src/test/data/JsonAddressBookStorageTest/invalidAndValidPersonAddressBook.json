@@ -1,12 +1,12 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "deadline": "01-01-2020 18:00",
+    "deadline": "01-01-2020 1800",
     "email": "hans@example.com",
     "address": "4th street"
   }, {
     "name": "Person With Invalid Phone Field",
-    "deadline": "99-99-9999 99:99",
+    "deadline": "99-99-9999 9999",
     "email": "hans@example.com",
     "address": "4th street"
   } ]

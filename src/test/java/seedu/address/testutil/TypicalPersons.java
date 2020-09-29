@@ -25,27 +25,27 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withDeadline("01-01-2020 18:00")
+            .withDeadline("01-01-2020 1800")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withDeadline("02-03-2020 23:59")
+            .withEmail("johnd@example.com").withDeadline("02-03-2020 2359")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withDeadline("12-12-2020 12:00")
+    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withDeadline("12-12-2020 1200")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withDeadline("03-03-2020 03:00")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withDeadline("03-03-2020 0300")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withDeadline("12-10-2020 19:00")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withDeadline("12-10-2020 1900")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withDeadline("10-10-2020 17:00")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withDeadline("10-10-2020 1700")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withDeadline("03-12-2020 04:00")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withDeadline("03-12-2020 0400")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withDeadline("01-01-2020 01:00")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withDeadline("01-01-2020 0100")
             .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withDeadline("02-02-2020 02:20")
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withDeadline("02-02-2020 0220")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

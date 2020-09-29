@@ -1,7 +1,7 @@
 {
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "deadline": "02-02-2020 19:00",
+    "deadline": "02-02-2020 1900",
     "email": "hans@example.com",
     "address": "4th street"
   } ]
