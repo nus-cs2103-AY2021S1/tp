@@ -7,9 +7,7 @@
 
 * McGymmy is a CLI based application for sedentary software engineers to manage their diet and stay healthy.
   * The CLI aspect of the application benefits the target audience (software engineers), as it is something often used by them.
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
+  
 * For the detailed documentation of this project, see the **[McGymmy Product Website](https://ay2021s1-cs2103t-w17-3.github.io/tp/)**.
 
 ##Extras
