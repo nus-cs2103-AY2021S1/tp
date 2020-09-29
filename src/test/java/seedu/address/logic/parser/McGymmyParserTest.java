@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Optional;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,41 +25,41 @@ public class McGymmyParserTest {
     private final McGymmyParser parserWithDummy = new McGymmyParser();
 
     {
-        parserWithDummy.addCommand("dummy", commandStub::new);
+        parserWithDummy.addCommand("dummy", StubCommand::new);
     }
 
     @Test
     public void parse_dummyCommand_correctType() throws Exception {
         String commandString = String.format("dummy -t1 %s -t2 %s -o1 %s", DUMMY_VALUE_1, DUMMY_VALUE_2, DUMMY_VALUE_3);
         Command command = parserWithDummy.parse(commandString);
-        assertTrue(command instanceof commandStub);
+        assertTrue(command instanceof StubCommand);
     }
 
     @Test
     public void parse_dummyCommandAllParameters_success() throws Exception {
         String commandString = String.format("dummy -t1 %s -t2 %s -o1 %s", DUMMY_VALUE_1, DUMMY_VALUE_2, DUMMY_VALUE_3);
-        commandStub commandStub = (commandStub) parserWithDummy.parse(commandString);
-        assertEquals(commandStub.getParameter1(), DUMMY_VALUE_1);
-        assertEquals(commandStub.getParameter2(), DUMMY_VALUE_2);
-        assertEquals(commandStub.getOptionalParameter(), Optional.of(DUMMY_VALUE_3));
+        StubCommand stubCommand = (StubCommand) parserWithDummy.parse(commandString);
+        assertEquals(stubCommand.getParameter1(), DUMMY_VALUE_1);
+        assertEquals(stubCommand.getParameter2(), DUMMY_VALUE_2);
+        assertEquals(stubCommand.getOptionalParameter(), Optional.of(DUMMY_VALUE_3));
     }
 
     @Test
     public void parse_dummyCommandOmitOptional_success() throws Exception {
         String commandString = String.format("dummy -t1 %s -t2 %s", DUMMY_VALUE_1, DUMMY_VALUE_2);
-        commandStub commandStub = (commandStub) parserWithDummy.parse(commandString);
-        assertEquals(commandStub.getParameter1(), DUMMY_VALUE_1);
-        assertEquals(commandStub.getParameter2(), DUMMY_VALUE_2);
-        assertEquals(commandStub.getOptionalParameter(), Optional.empty());
+        StubCommand stubCommand = (StubCommand) parserWithDummy.parse(commandString);
+        assertEquals(stubCommand.getParameter1(), DUMMY_VALUE_1);
+        assertEquals(stubCommand.getParameter2(), DUMMY_VALUE_2);
+        assertEquals(stubCommand.getOptionalParameter(), Optional.empty());
     }
 
     @Test
     public void parse_dummyCommandSwapOrder_success() throws Exception {
         String commandString = String.format("dummy -t2 %s -o1 %s -t1 %s", DUMMY_VALUE_2, DUMMY_VALUE_3, DUMMY_VALUE_1);
-        commandStub commandStub = (commandStub) parserWithDummy.parse(commandString);
-        assertEquals(commandStub.getParameter1(), DUMMY_VALUE_1);
-        assertEquals(commandStub.getParameter2(), DUMMY_VALUE_2);
-        assertEquals(commandStub.getOptionalParameter(), Optional.of(DUMMY_VALUE_3));
+        StubCommand stubCommand = (StubCommand) parserWithDummy.parse(commandString);
+        assertEquals(stubCommand.getParameter1(), DUMMY_VALUE_1);
+        assertEquals(stubCommand.getParameter2(), DUMMY_VALUE_2);
+        assertEquals(stubCommand.getOptionalParameter(), Optional.of(DUMMY_VALUE_3));
     }
 
     @Test
@@ -74,10 +73,10 @@ public class McGymmyParserTest {
         String spacedValue1 = "abc def";
         String spacedValue2 = "a b c d e f g 1 2 3";
         String commandString = String.format("dummy -t1 %s -t2 %s", spacedValue1, spacedValue2);
-        commandStub commandStub = (commandStub) parserWithDummy.parse(commandString);
-        assertEquals(commandStub.getParameter1(), spacedValue1);
-        assertEquals(commandStub.getParameter2(), spacedValue2);
-        assertEquals(commandStub.getOptionalParameter(), Optional.empty());
+        StubCommand stubCommand = (StubCommand) parserWithDummy.parse(commandString);
+        assertEquals(stubCommand.getParameter1(), spacedValue1);
+        assertEquals(stubCommand.getParameter2(), spacedValue2);
+        assertEquals(stubCommand.getOptionalParameter(), Optional.empty());
     }
 
     @Test
@@ -85,7 +84,7 @@ public class McGymmyParserTest {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parse("unknownCommand"));
     }
 
-    static class commandStub extends Command {
+    static class StubCommand extends Command {
         private Parameter<String> testParameter1 = CommandParserTestUtil.makeDummyParameter("test1", "t1");
         private Parameter<String> testParameter2 = CommandParserTestUtil.makeDummyParameter("test2", "t2");
         private OptionalParameter<String> testOptionalParameter =

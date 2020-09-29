@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Optional;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.parameter.AbstractParameter;
@@ -94,8 +95,14 @@ public class CommandParserTestUtil {
         }
     }
 
-    public static Optional<String> commandParameterValue(Command cmd, String flag) {
-        List<AbstractParameter> parameterList = cmd.getParameterSet().getParameterList();
+    /**
+     * Retrieves the rawValue of a command's parameter
+     * @param command the command to inspect
+     * @param flag the desired flag
+     * @return the raw value of the parameter, Optional.empty() otherwise.
+     */
+    public static Optional<String> commandParameterValue(Command command, String flag) {
+        List<AbstractParameter> parameterList = command.getParameterSet().getParameterList();
         for (AbstractParameter parameter : parameterList) {
             if (parameter.getFlag().equals(flag)) {
                 return parameter.getRawValue();

@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CommandParserTestUtil;
@@ -32,8 +31,7 @@ public class AddCommandTest {
         command.setParameters(
             new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
             new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
-            new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail())
-            );
+            new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail()));
 
         CommandResult commandResult = command.execute(modelStub);
 
