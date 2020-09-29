@@ -371,6 +371,11 @@ Use case ends.
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 food items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The product should be for a single user i.e. (not a multi-user product).
+5. The data should be stored locally and should be in a human editable text file.
+6. The software should not depend on a private remote server.
+7. The size of the final compiled JAR file should be less than 100Mb.
+8. There should be CLI alternatives to every GUI input. (E.g. instead of clicking on a button I can type an equivalent command to achieve the same result.)
 
 *{More to be added}*
 
