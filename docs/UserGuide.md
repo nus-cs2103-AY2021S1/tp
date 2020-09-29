@@ -104,6 +104,19 @@ Examples:
 *  `edit 1 d/Computing b/COM2` Edits the department and building of the 1st person to be `Computing` and `COM2` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Adding or updating a remark : `remark`
+
+Adds or updates the remark of an existing person in FaculType.
+
+Format: `remark INDEX [r/REMARK]`
+
+* Adds a remark to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* You can remove the person’s remark by typing `r/` without specifying any remark after it.
+    
+Examples:
+*  `remark 1 r/Wears red glasses` Adds the remark “Wears red glasses” to the 1st person in the list.
+*  `remark 2 r/` Erases the remark of the 2nd person in the list.
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
