@@ -138,7 +138,7 @@ Examples:
 
 ### Deleting a module: `delmod`
 
-Deletes a moudule from FaculType.
+Deletes a module from FaculType.
 
 Format: `delmod m/MODULE_CODE`
 
