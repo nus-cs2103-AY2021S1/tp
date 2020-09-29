@@ -36,3 +36,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Testing / Deliverables and Deadlines
+
+### Teh Xue Yong
+<img src="images/fall9x.png" width="200px">
+
+[[github](http://github.com/fall9x)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Testing / Documentation
