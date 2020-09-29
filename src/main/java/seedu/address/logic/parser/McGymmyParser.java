@@ -51,7 +51,7 @@ public class McGymmyParser {
 
     private void addDefaultCommands() {
         this.addCommand(AddCommand.COMMAND_WORD, AddCommand::new);
-        this.addCommand(ExitCommand.COMMAND_WORD, EditCommand::new);
+        this.addCommand(EditCommand.COMMAND_WORD, EditCommand::new);
         this.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand::new);
         this.addCommand(ClearCommand.COMMAND_WORD, ClearCommand::new);
         this.addCommand(ExitCommand.COMMAND_WORD, ExitCommand::new);
