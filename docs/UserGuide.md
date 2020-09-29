@@ -158,8 +158,8 @@ Format : `addmod m/MODULE_CODE n/MODULE_NAME`
 * `MODULE_CODE` must be unique.
 
 Examples:
-* `addmod m/CS2103 n/Software Engineering` adds a module `Software Engineering` with code `CS2103` to the FaculType.
-* `addmod m/CS2102 n/Database System` adds a module `Database System` with code `CS2102` to the FaculType.
+* `addmod m/CS2103 n/Software Engineering` adds a module `Software Engineering` with code `CS2103` to FaculType.
+* `addmod m/CS2102 n/Database System` adds a module `Database System` with code `CS2102` to FaculType.
 
 ### Deleting a module: `delmod`
 
