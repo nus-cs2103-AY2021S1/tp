@@ -9,18 +9,19 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents the deadline of an assignment in the assignment list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should only be in the format 'dd-MM-uuuu HH:mm', and contain a valid date and time";
+    public static final String DEADLINE_DATE_TIME_FORMAT = "dd-MM-uuuu HH:mm";
     public final String value;
 
     /**
      * Constructs a {@code Deadline}.
      *
-     * @param deadline A valid phone number.
+     * @param deadline A valid deadline.
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
@@ -29,11 +30,11 @@ public class Deadline {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
         try {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             LocalDateTime taskDate = LocalDateTime.parse(test, inputFormat);
             taskDate.format(inputFormat);
