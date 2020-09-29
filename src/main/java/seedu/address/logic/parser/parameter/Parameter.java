@@ -27,6 +27,7 @@ public class Parameter<T> extends AbstractParameter {
 
     @Override
     public void setValue(String rawValue) throws ParseException {
+        super.setValue(rawValue);
         this.value = Optional.of(converter.apply(rawValue));
     }
 

@@ -30,16 +30,6 @@ public class McGymmyParserTest {
     }
 
     @Test
-    public void defaultCommands_added() {
-        // if this breaks, you need to add the command in McGymmyParser.addDefaultCommands
-        String[] commands = {"add", "edit", "delete", "clear", "find", "delete", "help", "list"};
-        Set<String> registeredCommands = parser.getRegisteredCommands();
-        for (String command : commands) {
-            assertTrue(registeredCommands.contains(command));
-        }
-    }
-
-    @Test
     public void parse_dummyCommand_correctType() throws Exception {
         String commandString = String.format("dummy -t1 %s -t2 %s -o1 %s", DUMMY_VALUE_1, DUMMY_VALUE_2, DUMMY_VALUE_3);
         Command command = parserWithDummy.parse(commandString);
