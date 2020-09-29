@@ -11,6 +11,10 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/johndoe.png" width="200px">
 
+[homepage](http://www.comp.nus.edu.sg/~damithch)
+[github](http://github.com/johndoe)
+[portfolio](team/johndoe.md)
+
 * Role: Code Quality
 * Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.
 
@@ -18,8 +22,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[homepage](http://www.comp.nus.edu.sg/~damithch)
+[github](https://github.com/johndoe)
+[portfolio](team/johndoe.md)
 
 * Role: Project Manager
 * Responsibilities:
@@ -32,7 +37,9 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/joven-heng.png" width="200px">
 
-[Joven github](http://github.com/Joven-Heng) 
+[homepage](http://www.comp.nus.edu.sg/~damithch)
+[Joven github](http://github.com/Joven-Heng)
+[portfolio](team/johndoe.md)
 
 * Role: Testing
 * Responsibilities: Ensures the testing of the project is done properly and on time.
