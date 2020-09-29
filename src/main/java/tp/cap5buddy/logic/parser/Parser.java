@@ -1,6 +1,6 @@
-package tp.cap5buddy.parser;
+package tp.cap5buddy.logic.parser;
 
-import tp.cap5buddy.commands.Command;
+import tp.cap5buddy.logic.commands.Command;
 
 /**
  * Represents the super class of all Parser commands.

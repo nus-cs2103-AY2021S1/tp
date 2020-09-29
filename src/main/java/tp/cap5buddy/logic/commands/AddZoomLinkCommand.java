@@ -1,4 +1,4 @@
-package tp.cap5buddy.commands;
+package tp.cap5buddy.logic.commands;
 
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
@@ -30,7 +30,7 @@ public class AddZoomLinkCommand extends Command {
     public ResultCommand execute(ModuleList moduleList) {
         Module module = moduleList.getModule(this.moduleName);
         module.addZoomLink(this.zoomLink);
-        return new ResultCommand(this.zoomLink + SUCCESS_MESSAGE + this.moduleName);
+        return new ResultCommand(this.zoomLink + SUCCESS_MESSAGE + this.moduleName, isExit());
     }
 
     /**

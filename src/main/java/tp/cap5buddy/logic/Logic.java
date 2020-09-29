@@ -1,8 +1,9 @@
 package tp.cap5buddy.logic;
 
-import seedu.address.logic.commands.CommandResult;
+import tp.cap5buddy.logic.commands.ResultCommand;
+import tp.cap5buddy.logic.parser.exception.ParseException;
 
 public interface Logic {
 
-    CommandResult execute();
+    ResultCommand execute(String userInput) throws ParseException;
 }

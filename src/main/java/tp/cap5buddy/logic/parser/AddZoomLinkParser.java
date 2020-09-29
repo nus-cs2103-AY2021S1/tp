@@ -1,6 +1,6 @@
-package tp.cap5buddy.parser;
+package tp.cap5buddy.logic.parser;
 
-import tp.cap5buddy.commands.AddZoomLinkCommand;
+import tp.cap5buddy.logic.commands.AddZoomLinkCommand;
 
 public class AddZoomLinkParser extends Parser {
 
@@ -11,7 +11,8 @@ public class AddZoomLinkParser extends Parser {
      * @return
      */
     public AddZoomLinkCommand parse(String userInput) {
-        String[] parsedArguments = {"module name, zoom link"};
+        Tokenizer token = new Tokenizer(userInput);
+        String[] parsedArguments = token.getWords();
         return new AddZoomLinkCommand(parsedArguments);
     }
 }

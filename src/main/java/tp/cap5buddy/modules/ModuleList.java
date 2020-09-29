@@ -43,5 +43,13 @@ public class ModuleList {
     public void addModule(Module module) {
         this.modules.add(module);
     }
+
+    /**
+     * Returns the size of the list.
+     * @return integer size.
+     */
+    public int size() {
+        return this.modules.size();
+    }
 }
 

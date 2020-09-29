@@ -1,10 +1,10 @@
-package tp.cap5buddy.parser;
+package tp.cap5buddy.logic.parser;
 
 import java.util.Scanner;
 
-import tp.cap5buddy.commands.Command;
-import tp.cap5buddy.commands.ResultCommand;
-import tp.cap5buddy.parser.exception.ParseException;
+import tp.cap5buddy.logic.commands.Command;
+import tp.cap5buddy.logic.parser.exception.ParseException;
+
 
 
 /**
@@ -36,21 +36,18 @@ public class ParserManager {
         getNonCommand();
         Tokenizer token = new Tokenizer(this.nonCommand);
         String[] words = token.getWords();
-        // Parser parser;
-        // ResultCommand result;
+        Parser parser;
+        Command command;
 
         switch (this.command) {
         case "addmodule":
-            //command = parser.parse(words);
-            //result = command.execute();
-            AddModuleParser parser = new AddModuleParser();
-            break;
-            return parser.parse(input);
+            parser = new AddModuleParser();
+            command = parser.parse(this.nonCommand);
         case "addzoom":
-            AddZoomLinkParser parser = new AddZoomLinkParser();
-            return parser.parse(input);
+            parser = new AddZoomLinkParser();
+            command = parser.parse(this.nonCommand);
         default:
-            throw new ParseException("Invalid command");
+            throw new ParseException("Invalid Command");
         }
     }
 
@@ -67,26 +64,6 @@ public class ParserManager {
             }
         }
         this.command = command;
-    }
-
-    public String Parse(String input) {
-        this.currentInput = input;
-        getCommand();
-        getNonCommand();
-        Tokenizer token = new Tokenizer(this.nonCommand);
-        String[] words = token.getWords();
-        ResultCommand result;
-
-        switch (this.command) {
-        case "addmodule":
-            AddModuleParser parser = new AddModuleParser();
-            parser.parse(words);
-            result = parser.execute();
-            break;
-        default:
-            result = new ResultCommand("Nothing happens");
-        }
-        return result.getMessage();
     }
 
     private void getNonCommand() {
