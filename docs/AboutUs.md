@@ -46,3 +46,14 @@ You can reach us at the email `e0417539@u.nus.edu`
 
 * Role: Developer
 * Responsibilities: Documentation
+
+### Weng Fai
+
+<img src="images/wengfaing.png" width="200px">
+
+[[github](https://github.com/wengfaing)]
+[[portfolio](team/wengfaing.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+

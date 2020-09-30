@@ -3,7 +3,7 @@ layout: page
 title: Saad Haider's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: Inventory Book (OneShelf)
 
 OneShelf is an app designed to automate the managing of stock inventory for business owners which translates to savings in man-hours and minimal losses due to over stocking.
 
