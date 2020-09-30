@@ -1,5 +1,14 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
+### User stories
+| No. | As a...           | I can...                             | So that...                                                       |
+|-----|-------------------|--------------------------------------|------------------------------------------------------------------|
+| 1   | Student           | Import my timetable from NUSMods     | I can better plan my work                                        |
+| 2   | Forgetful student | Receive reminders for my assignments | I will not forget about my work                                  |
+| 3   | Poor time manager | Add and schedule assignments         | I can keep track of what needs  to be done                       |
+| 4   | Poor time manager | Delete assignments                   | I can remove assignments that I have completed  or added wrongly |
+| 5   | Poor time manager | View assignments                     | I can view all the assignments I have to complete                |
+
 ![Ui](docs/images/Ui.png)
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
