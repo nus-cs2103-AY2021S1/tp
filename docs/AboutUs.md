@@ -20,7 +20,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Hou Rui
 
-<img src="images/Hou-Rui.png" width="200px">
+<img src="images/hou-rui.png" width="200px">
 
 [[github](http://github.com/Hou-Rui)] 
 [[portfolio](team/johndoe.md)]
@@ -29,7 +29,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Royce Ho Shou Yee
 
-<img src="images/TheSpaceCuber.png" width="200px">
+<img src="images/thespacecuber.png" width="200px">
 
 [[github](http://github.com/TheSpaceCuber)]
 [[portfolio](team/johndoe.md)]
@@ -38,7 +38,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Tin Kah Ong Isaac
 
-<img src="images/IsaacTin.png" width="200px">
+<img src="images/isaactin.png" width="200px">
 
 [[github](http://github.com/IsaacTin)]
 [[portfolio](team/johndoe.md)]
@@ -47,7 +47,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Udayagiri Nikhila Sai
 
-<img src="images/Nikhilalalalala.png" width="200px">
+<img src="images/nikhilalalalala.png" width="200px">
 
 [[github](http://github.com/Nikhilalalalala)]
 [[portfolio](team/johndoe.md)]
