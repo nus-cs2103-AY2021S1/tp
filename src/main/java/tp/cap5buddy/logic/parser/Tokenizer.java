@@ -11,6 +11,7 @@ public class Tokenizer {
 
     /**
      * Constructs the tokenising object.
+     *
      * @param input
      */
     public Tokenizer(String input) {
@@ -30,6 +31,8 @@ public class Tokenizer {
                 this.words[0] = word;
             } else if (prefix.equals(PrefixList.MODULE_LINK_PREFIX.toString())) {
                 this.words[1] = word;
+            } else if (prefix.equals(PrefixList.MODULE_DELETE_PREFIX.toString())) {
+                this.words[2] = word;
             } else {
                 // throws error as invalid prefix is found
             }

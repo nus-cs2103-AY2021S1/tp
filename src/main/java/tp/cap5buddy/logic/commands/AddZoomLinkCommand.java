@@ -14,6 +14,7 @@ public class AddZoomLinkCommand extends Command {
 
     /**
      * Creates and initialises a new AddZoomLinkCommand object.
+     *
      * @param commandArguments array containing the tokenized command arguments.
      */
     public AddZoomLinkCommand(String[] commandArguments) {
