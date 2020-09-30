@@ -9,8 +9,6 @@ Eva is a desktop HR management application. The user interacts with it using a C
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
- 
 * **New Feature**:
 
 * **Code contributed**: 
