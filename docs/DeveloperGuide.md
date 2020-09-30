@@ -264,6 +264,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
+ (A member refers to a member of a team in one of the projects managed by the team leader( `user` ))
+
 #### System: Project Profile Tracking System (PTS)
 
 **Use Case: UC1 - Create New Project**
@@ -387,7 +389,6 @@ Use case ends.
     
 Use case ends.
 
-
 #### System: Project Management System (PMS)
 **Use case: UC6 - Start the project**
 
@@ -405,6 +406,7 @@ Use case ends.
  * 2a. The given index is not valid
    * 2a1. PMS shows an error message. 
    
+
 Use case ends.
 
 **Use case: UC7 - Add new task**
@@ -556,6 +558,12 @@ Use case ends.
 3.  Can function without an internet connection.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  There are checks for the inputs the user gives, and corresponding tips are presented if the input format is incorrect.
+6.  There are `help` commands to tell the user what command does what.
+7.  Information is presented in a pleasing way.
+8.  New user can learn the software easily and quickly (so that other team members can help organize or add tasks if they want to)
+9.  Tests are written for important components, and every working prototype must pass all the test first.
+10.  Code is written in an easy-to-maintain manner (e.g. no extremely long function).
 
 *{More to be added}*
 
