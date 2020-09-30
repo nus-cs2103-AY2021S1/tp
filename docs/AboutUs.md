@@ -29,10 +29,20 @@ You can reach us at the email `e0417539@u.nus.edu`
 
 ### Bobby Law
 
-<img src="images/bobbylaw.png" width="200px">
+<img src="images/zeranium97.png" width="200px">
 
 [[github](https://github.com/zeranium97)]
 [[portfolio](team/zeranium97.md)]
 
 * Role: Developer
 * Responsibilities: Tests, Coding Quality
+
+### Saad Haider
+
+<img src="images/halcon-blanco.png" width="200px">
+
+[[github](https://github.com/halcon-blanco)]
+[[portfolio](team/halcon-blanco.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
