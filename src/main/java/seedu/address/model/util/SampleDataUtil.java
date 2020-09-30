@@ -31,7 +31,7 @@ public class SampleDataUtil {
                     new AdditionalDetails("He's quiet"),
                     new MeetingLink("alexyeoh@example.com"),
                     new Subject("Mathematics"),
-                getTagSet("friends")),
+                getTagSet("friends"))
         };
     }
 
