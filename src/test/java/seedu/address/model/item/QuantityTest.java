@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class QuantityTest {
 
     /**
-     * test for valid quantity for only non-negative integers
+     * Tests for valid quantity. Only non-negative integers are allowed.
      */
     @Test
     public void isValidQuantity() {
@@ -22,10 +22,12 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("a"));
     }
 
+    /**
+     * Test for equality between quantities.
+     */
     @Test
     public void equals() {
         assertEquals(new Quantity("1"), new Quantity("1"));
         assertNotEquals(new Quantity("1"), new Quantity("2"));
     }
-
 }

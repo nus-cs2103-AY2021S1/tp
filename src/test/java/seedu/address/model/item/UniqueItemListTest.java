@@ -31,7 +31,6 @@ public class UniqueItemListTest {
         assertEquals(1, uList.asUnmodifiableObservableList().size());
     }
 
-
     @Test
     public void setItem() {
         UniqueItemList uList = new UniqueItemList();
@@ -42,7 +41,7 @@ public class UniqueItemListTest {
     }
 
     /**
-     * setItem when item is not found
+     * Tests that setItem throws an exception when item is not found.
      */
     @Test
     public void setItem_throwsItemNotFoundException() {
@@ -52,7 +51,7 @@ public class UniqueItemListTest {
     }
 
     /**
-     * setItem with duplicate item as input
+     * Tests that setItem throws an exception when input is a duplicate item.
      */
     @Test
     public void setItem_throwsDuplicateItemException() {
@@ -71,7 +70,8 @@ public class UniqueItemListTest {
     }
 
     /**
-     * remove item which does not exist
+     * Tests that exception is thrown when attempting to
+     * remove item which does not exist.
      */
     @Test
     public void remove_throwsItemNotFoundException() {
@@ -81,7 +81,7 @@ public class UniqueItemListTest {
     }
 
     /**
-     * replacing a UniqueItemList with another
+     * Tests replacing a UniqueItemList with another.
      */
     @Test
     public void setItems() {
@@ -93,7 +93,7 @@ public class UniqueItemListTest {
     }
 
     /**
-     * replacing a UniqueItemList with a list
+     * Tests replacing a UniqueItemList with a list.
      */
     @Test
     public void setItems_success() {
