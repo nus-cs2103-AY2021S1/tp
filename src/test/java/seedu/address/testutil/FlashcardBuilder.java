@@ -66,6 +66,16 @@ public class FlashcardBuilder {
         return this;
     }
 
+    /**
+     * Adds a new {@code Tag} to the {@code Flashcard} that we are building.
+     * @param tag the tag to be added.
+     * @return the FlashcardBuilder
+     */
+    public FlashcardBuilder withTag(String tag) {
+        tags = new HashSet<>(Collections.singletonList(new Tag(tag)));
+        return this;
+    }
+
     public Flashcard build() {
         return new Flashcard(question, answer, tags);
     }
