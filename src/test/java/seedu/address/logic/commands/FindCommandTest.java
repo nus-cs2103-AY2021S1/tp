@@ -64,7 +64,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_oneKeyword_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         FlashcardContainsTagPredicate predicate = preparePredicate("LSM1301");
         FindCommand command = new FindCommand(predicate);
