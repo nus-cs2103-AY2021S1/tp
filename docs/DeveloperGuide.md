@@ -285,9 +285,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 <p>
-    1a. The list is empty <br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
-    Use case ends.
+* 1a. The list is empty <br>
+* * 1a1. Calo shows a message indicating that no such exercise exists.<br>
+* Use case ends.
 </p>
   
 #### **Use case: Update an exercise**
@@ -300,37 +300,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.  
 
 **Extensions**
-<b> The index is invalid </b>
-<p>
-    1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
-    Use case ends.
-</p>
-  
+
+* 1a.  The index is invalid.  
+* * 1a1. Calo shows a message indicating that no such exercise exists.  
+* Use case ends.
+
 #### **Use case: Delete an exercise**
 
 **MSS**
 
-1.  User requests to delete a specific exercise in the list
+1.  User requests to delete a specific exercise in the list.
 2.  Calo deletes the exercise
 
     Use case ends.
 
 **Extensions**
-<b> The index is invalid </b>
-<p>
-    1a. The index is invalid<br>
-      1a1. Calo shows a message indicating that no such exercise exists.<br>
-    Use case ends.
-</p>
+* 1a.  No such exercise exists in system.  
+* * 1a1. Calo shows a message indicating that no such exercise exists.  
+* Use case ends.
+
   
   ####**Use case: Archive data**
-    
   **MSS**
     
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
       Use case ends.
+      
+**Extensions**
+* 1a.  File can't be created at specified location.  
+* * 1a1. Calo shows a message indicating that file can't be created.  
+* Use case ends.
   
   #### **Use case: List exercises**
   
