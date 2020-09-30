@@ -29,7 +29,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    Some example commands you can try:
 
-   * **`list`** : Lists all assignments.
+   * **`list 2`** : Lists all lessons and assignments within 2 weeks (including this week).
 
    * **`add`**`n/Lab report 3 d/23-04-2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
 
@@ -73,13 +73,23 @@ Examples:
 * `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
 * `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
 
-### Listing all assignments : `list`
+### Listing all lessons and assignments : `list`
 
-Shows a list of all assignments in your schedule.
+Format: `list [NUMBER]`
 
-Format: `list`
+- Shows a list of all lessons and assignments in your schedule within `NUMBER` 
+number of weeks.
+- `list` command without `NUMBER` displays your entire list of lessons and assignments 
+stored in ProductiveNUS.
+- A week in this context starts with Monday and ends with Sunday.
 
-Example: `list`
+
+Examples: 
+- `list 2` displays all your lessons and assignments within 
+2 weeks (including the current week).
+- `list 3` displays all your lessons and assignments within  
+3 weeks (including the current week).
+- `list ` displays all your lessons and assignments.
 
 ### Deleting an assignment : `delete`
 
@@ -144,6 +154,6 @@ Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE mod/MODULE_CODE` <br> e.g., `add n/Math tutorial d/21/03/2020 11:00 AM mod/ST2334`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
-**list** | `list`
+**list** | `list [NUMBER]` e.g., `list 2`, `list`
 **import** | `import NUSMODS_URL`
 **remind** | `remind INDEX`
