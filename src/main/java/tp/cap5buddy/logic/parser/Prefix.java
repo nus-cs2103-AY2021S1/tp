@@ -30,7 +30,9 @@ public class Prefix {
         case "l/":
             res = true;
             break;
-
+        case "e/":
+            res = true;
+            break;
         default:
             res = false;
         }

@@ -7,7 +7,7 @@ plugins {
 }
 
 //mainClassName = 'seedu.address.Main'
-mainClassName = 'tp.cap5buddy.cap5buddy'
+mainClassName = 'tp.cap5buddy.Cap5buddy'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
