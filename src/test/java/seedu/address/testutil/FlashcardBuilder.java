@@ -79,7 +79,7 @@ public class FlashcardBuilder {
     }
 
     /**
-     * Adds a few {@code Tag}s to the {@code Flashcard} that we are building/
+     * Adds a few {@code Tag}s to the {@code Flashcard} that we are building.
      * @param tagArr the array containing the tags.
      * @return the FlashcardBuilder.
      */
