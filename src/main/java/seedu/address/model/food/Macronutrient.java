@@ -50,13 +50,17 @@ public abstract class Macronutrient {
 
     @Override
     public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
         if (!(other instanceof Macronutrient)) {
             return false;
         }
 
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getType().equals(otherMacronutrient.getType())
-            && this.getTotalCalories() == otherMacronutrient.getTotalCalories();
+            && this.getAmount() == otherMacronutrient.getAmount()
+            && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
     }
 
     public String getType() {

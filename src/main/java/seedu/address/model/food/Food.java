@@ -40,10 +40,7 @@ public class Food {
      * A Constructor made for convenience
      */
     public Food(String name, int proteinAmount, int carbsAmount, int fatAmount) {
-        checkArgument(isValidAmount(proteinAmount), PROTEIN_AMOUNT_MESSAGE_CONTRAINT);
-        checkArgument(isValidAmount(carbsAmount), CABS_AMOUNT_MESSAGE_CONTRAINT);
-        checkArgument(isValidAmount(fatAmount), FAT_AMOUNT_MESSAGE_CONTRAINT);
-        new Food(name, new Protein(proteinAmount), new Carbohydrate(carbsAmount), new Fat(fatAmount));
+        this(name, new Protein(proteinAmount), new Carbohydrate(carbsAmount), new Fat(fatAmount));
     }
 
     private boolean isValidName(String test) {
