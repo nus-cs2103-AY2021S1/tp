@@ -3,11 +3,11 @@
 ### User stories
 | No. | As a...           | I can...                              | So that I can...                                                          |
 |-----|-------------------|---------------------------------------|---------------------------------------------------------------------------|
-| 1   | Student           | Import my timetable from NUSMods      | better schedule my assignments with my lesson  timings taken into account |
-| 2   | Forgetful student | Receive reminders for my assignments  | avoid forgetting to attend my lessons or do my work                       |
-| 3   | Poor time manager | Add and schedule assignments          | keep track of what needs  to be done                                      |
-| 4   | Poor time manager | Delete assignments                    | remove assignments that I have completed  or added wrongly                |
-| 5   | Poor time manager | View lessons and assignments together | view all the assignments I have to complete amidst  my lessons            |
+| 1   | Student           | import my timetable from NUSMods      | better schedule my assignments with my lesson  timings taken into account |
+| 2   | Forgetful student | receive reminders for my assignments  | avoid forgetting to attend my lessons or do my work                       |
+| 3   | Poor time manager | add and schedule assignments          | keep track of what needs  to be done                                      |
+| 4   | Poor time manager | delete assignments                    | remove assignments that I have completed  or added wrongly                |
+| 5   | Poor time manager | view lessons and assignments together | view all the assignments I have to complete amidst  my lessons            |
 
 ![Ui](docs/images/Ui.png)
 
