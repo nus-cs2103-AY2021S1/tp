@@ -29,9 +29,9 @@ public class ModuleCodeTest {
         assertFalse(ModuleCode.isValidModuleCode(" ")); // spaces only
 
         // valid addresses
-        assertTrue(ModuleCode.isValidModuleCode("Blk 456, Den Road, #01-355"));
-        assertTrue(ModuleCode.isValidModuleCode("-")); // one character
+        assertTrue(ModuleCode.isValidModuleCode("CS2103T"));
+        assertTrue(ModuleCode.isValidModuleCode("CS2040S")); // one character
         assertTrue(ModuleCode.isValidModuleCode(
-                "Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+                "CS2101")); // long address
     }
 }
