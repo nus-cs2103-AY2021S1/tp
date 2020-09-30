@@ -11,7 +11,7 @@ public class Fat extends Macronutrient {
      * @param amount A valid amount.
      */
     public Fat(int amount) {
-        super("Fat", amount, FAT_MULTIPLIER);
+        super(Fat.class.getName(), amount, FAT_MULTIPLIER);
     }
 
 }
