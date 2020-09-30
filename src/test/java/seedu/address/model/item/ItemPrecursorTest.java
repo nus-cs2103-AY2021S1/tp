@@ -1,13 +1,16 @@
 package seedu.address.model.item;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.ItemPrecursorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_DESCRIPTION_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BANANA;
 import static seedu.address.testutil.TypicalItemPrecursors.APPLE_PRECURSOR;
 import static seedu.address.testutil.TypicalItemPrecursors.BANANA_PRECURSOR;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.ItemPrecursorBuilder;
 
 public class ItemPrecursorTest {
 

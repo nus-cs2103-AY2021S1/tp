@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
@@ -54,7 +53,7 @@ public class JsonLocationListStorage implements LocationListStorage {
 
         try {
             return Optional.of(jsonLocation.get().toModelType());
-        } catch (IllegalValueException ive) {
+        } catch (IllegalValueException | NullPointerException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }

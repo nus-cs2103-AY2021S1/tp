@@ -1,10 +1,9 @@
 package seedu.address.testutil;
 
-import seedu.address.model.item.Item;
+import java.util.HashSet;
+
 import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.Quantity;
-
-import java.util.HashSet;
 
 /**
  * A utility class to help with building ItemPrecursor objects.

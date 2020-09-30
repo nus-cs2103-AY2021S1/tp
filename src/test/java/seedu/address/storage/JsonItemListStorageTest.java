@@ -58,7 +58,7 @@ public class JsonItemListStorageTest {
     }
 
     /**
-     * tests reading and saving
+     * Tests reading and saving.
      */
     @Test
     public void readAndSaveItemList_allInOrder_success() throws Exception {
