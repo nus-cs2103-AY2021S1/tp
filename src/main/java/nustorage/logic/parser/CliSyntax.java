@@ -18,4 +18,5 @@ public class CliSyntax {
 
     // Finance
     public static final Prefix PREFIX_AMOUNT = new Prefix("amt/");
+    public static final Prefix PREFIX_DATETIME = new Prefix("at/");
 }
