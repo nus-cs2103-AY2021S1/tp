@@ -11,7 +11,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Ben-Hanan Choong See Kaay
 
-<img src="images/Ben-Hanan.png" width="200px">
+<img src="images/ben-hanan.png" width="200px">
 
 [[github](http://github.com/Ben-Hanan)]
 [[portfolio](team/johndoe.md)]
