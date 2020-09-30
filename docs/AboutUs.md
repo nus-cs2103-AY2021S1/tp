@@ -36,3 +36,24 @@ You can reach us at the email `e0417539@u.nus.edu`
 
 * Role: Developer
 * Responsibilities: Tests, Coding Quality
+
+### Saad Haider
+
+<img src="images/halcon-blanco.png" width="200px">
+
+[[github](https://github.com/halcon-blanco)]
+[[portfolio](team/halcon-blanco.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Weng Fai
+
+<img src="images/wengfaing.png" width="200px">
+
+[[github](https://github.com/wengfaing)]
+[[portfolio](team/wengfaing.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
