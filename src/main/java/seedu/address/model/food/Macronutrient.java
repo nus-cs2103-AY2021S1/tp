@@ -1,5 +1,7 @@
 package seedu.address.model.food;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public abstract class Macronutrient {
     private String name;
     private int amount;
@@ -13,11 +15,10 @@ public abstract class Macronutrient {
      * @param caloricMultiplier
      */
     public Macronutrient(String name, int amount, int caloricMultiplier) {
-        assert amount >= 0;
-        System.out.println("amount cannot be negative");
+        requireAllNonNull(name, amount, caloricMultiplier);
+        assert amount >= 0 : "Negative Macronutrient Amount";
 
-        assert (caloricMultiplier == 4 || caloricMultiplier == 9);
-        System.out.println("caloric multiplier must be 7 or 9");
+        assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macrobutrient Multiplier";
         // initialise variables
         this.name = name;
         this.amount = amount;

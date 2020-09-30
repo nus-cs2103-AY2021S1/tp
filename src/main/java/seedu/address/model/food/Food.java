@@ -2,20 +2,19 @@ package seedu.address.model.food;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Represents a Food item in McGymmy.
+ */
 public class Food {
 
     // Identity field names
-    private String name;
-    private Protein protein;
-    private Carbohydrate carbs;
-    private Fat fat;
+    private final String name;
+    private final Protein protein;
+    private final Carbohydrate carbs;
+    private final Fat fat;
 
     /**
-     * Represents a food item
-     * @param name
-     * @param protein
-     * @param carbs
-     * @param fat
+     * Every field must be present and not null.
      */
     public Food(String name, Protein protein, Carbohydrate carbs, Fat fat) {
         requireAllNonNull(name, protein, carbs, fat);
@@ -27,6 +26,10 @@ public class Food {
 
     // Constructor for convenience
 
+    /**
+     * Every field must be present and not null.
+     * A Constructor made for convenience
+     */
     public Food(String name, int proteinAmount, int carbsAmount, int fatAmount) {
         this(name, new Protein(proteinAmount), new Carbohydrate(carbsAmount), new Fat(fatAmount));
     }
