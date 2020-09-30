@@ -241,15 +241,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* **Convenience**: 
-    * lessons and assignments all found in one area
-    * no need to keep switching tabs to keep track/schedule of what needs to be done
-* **Typing-based**: 
-    * no mouse required (our target user likes VIM anyways)
-    * faster than a typical mouse/GUI driven app
-* **Time management**: 
-    * tight deadlines, high workload, many assignments due
-    * better able to schedule their lessons and assignments
+* More convenient than typical apps as lessons and assignments are managed in just one app so there is no need to switch between different ones.
+* Faster than typical mouse/GUI driven apps as most features are accomplished by typing simple commands.
+* Easier to manage schedule than typical scheduling apps as assignments are automatically scheduled.
 
 ### User stories
 
