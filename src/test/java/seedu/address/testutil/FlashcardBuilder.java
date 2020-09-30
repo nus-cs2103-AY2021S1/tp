@@ -17,7 +17,7 @@ public class FlashcardBuilder {
 
     public static final String DEFAULT_QUESTION = "Question 0";
     public static final String DEFAULT_ANSWER = "Answer 0";
-    public static final Tag DEFAULT_TAG = new Tag("Tag 0");
+    public static final String DEFAULT_TAG = "Tag 0";
 
     private Question question;
     private Answer answer;
@@ -29,7 +29,7 @@ public class FlashcardBuilder {
     public FlashcardBuilder() {
         question = new OpenEndedQuestion(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
-        tags = new HashSet<>(Collections.singletonList(DEFAULT_TAG));
+        tags = new HashSet<>(Collections.singletonList(new Tag(DEFAULT_TAG)));
     }
 
     /**
