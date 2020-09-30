@@ -25,30 +25,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Yongyan
 
-<img src="images/ChenYongyan.png" width="200px">
+<img src="images/raymond0212.png" width="200px">
 
 [[github](https://github.com/Raymond0212)]
-[[portfolio](team/chenyongyan.md)]
+[[portfolio](team/raymond0212.md)]
 
 * Role: Developer
 * Responsibilities: Front-end, Back-end, UI/UX Design
 
 ### Daniel Adipranoto
 
-<img src="images/DanielAdi.png" width="200px">
+<img src="images/danadi7.png" width="200px">
 
 [[github](https://github.com/danadi7)] 
-[[portfolio](team/danieladi.md)]
+[[portfolio](team/danadi7.md)]
 
 * Role: Developer
 * Responsibilities: Front-end, Back-end, UI/UX Design
 
 ### Qu Mingsi
 
-<img src="images/QuMingsi.png" width="200px">
+<img src="images/e0316059.png" width="200px">
 
 [[github](http://github.com/e0316059)]
-[[portfolio](team/qumingsi.md)]
+[[portfolio](team/e0316059.md)]
 
 * Role: Developer
 * Responsibilities: Front-end, Back-end, UI/UX Design
