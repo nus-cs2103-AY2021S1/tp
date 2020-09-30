@@ -300,7 +300,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.  
 
 **Extensions**
-<b> The index is invalid </b>
 <p>
     1a. The index is invalid<br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
@@ -317,7 +316,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-<b> The index is invalid </b>
 <p>
     1a. The index is invalid<br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
@@ -331,6 +329,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
       Use case ends.
+  
+**Extensions**
+<p>
+    1a. User does not have permission to create file at specified location <br>
+      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+    Use case ends.
+</p>
   
   #### **Use case: List exercises**
   
