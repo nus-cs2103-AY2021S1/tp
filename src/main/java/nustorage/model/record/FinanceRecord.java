@@ -2,8 +2,12 @@ package nustorage.model.record;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
+
+    private final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    private final static DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     private LocalDate date;
     private LocalTime time;
@@ -67,6 +71,9 @@ public class FinanceRecord {
 
     @Override
     public String toString() {
-        return "Record on " + date + " at " + time + ": $" + String.format("%.2f", amount);
+        return String.format("Record on %s at %s: $%.2f",
+                DATE_FORMAT.format(date),
+                TIME_FORMAT.format(time),
+                amount);
     }
 }
