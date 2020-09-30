@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package chopchop.logic.parser;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
@@ -6,10 +6,8 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_PHONE = new Prefix("p/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_INGREDIENT = new Prefix("/ingredient");
+    public static final Prefix PREFIX_QTY = new Prefix("/qty");
+    public static final Prefix PREFIX_STEP = new Prefix("/step");
 
 }

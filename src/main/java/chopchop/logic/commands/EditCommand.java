@@ -1,40 +1,32 @@
-package seedu.address.logic.commands;
+package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static chopchop.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static chopchop.logic.parser.CliSyntax.PREFIX_QTY;
+import static chopchop.logic.parser.CliSyntax.PREFIX_STEP;
+import static chopchop.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import chopchop.commons.core.Messages;
+import chopchop.commons.core.index.Index;
+import chopchop.commons.util.CollectionUtil;
+import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.model.Model;
+import chopchop.model.recipe.Recipe;
+import chopchop.model.recipe.Name;
+import chopchop.model.recipe.Ingredient;
+import chopchop.model.recipe.Step;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing Recipe in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Recipe identified "
+            + "by the index number used in the displayed Recipe list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -46,60 +38,58 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditRecipeDescriptor editRecipeDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the Recipe in the filtered Recipe list to edit
+     * @param editRecipeDescriptor details to edit the Recipe with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditRecipeDescriptor editRecipeDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editRecipeDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editRecipeDescriptor = new EditRecipeDescriptor(editRecipeDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Recipe> lastShownList = model.getFilteredRecipeList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_Recipe_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Recipe RecipeToEdit = lastShownList.get(index.getZeroBased());
+        Recipe editedRecipe = createEditedRecipe(RecipeToEdit, editRecipeDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!RecipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
+            throw new CommandException(MESSAGE_DUPLICATE_Recipe);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setRecipe(RecipeToEdit, editedRecipe);
+        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RecipeS);
+        return new CommandResult(String.format(MESSAGE_EDIT_Recipe_SUCCESS, editedRecipe));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Recipe} with the details of {@code RecipeToEdit}
+     * edited with {@code editRecipeDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Recipe createEditedRecipe(Recipe RecipeToEdit, EditRecipeDescriptor editRecipeDescriptor) {
+        assert RecipeToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editRecipeDescriptor.getName().orElse(RecipeToEdit.getName());
+        Set<Ingredient> updatedIngredients = editRecipeDescriptor.getIngredients().orElse(RecipeToEdit.getIngredients());
+        List<Step> updatedSteps = editRecipeDescriptor.getSteps().orElse(RecipeToEdit.getSteps());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Recipe(updatedName, updatedIngredients, updatedSteps);
     }
 
     @Override
@@ -117,32 +107,28 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editRecipeDescriptor.equals(e.editRecipeDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the Recipe with. Each non-empty field value will replace the
+     * corresponding field value of the Recipe.
      */
-    public static class EditPersonDescriptor {
+    public static class EditRecipeDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private Step<Ingredient> ingredients;
+        private List<Step> steps;
 
-        public EditPersonDescriptor() {}
+        public EditRecipeDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setIngrdients(toCopy.ingredients);
+            setSteps(toCopy.steps);
         }
 
         /**
@@ -188,8 +174,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setIngredients(Set<Ingredient> ingredients) {
+            this.ingredients = (ingredients != null) ? new HashSet<>(ingredients) : null;
         }
 
         /**
@@ -197,8 +183,26 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Ingredient>> getIngredients() {
+            return (ingredients != null) ? Optional.of(Collections.unmodifiableSet(ingredients)) : Optional.empty();
+        }
+
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setSteps(List<Step> steps) {
+            this.steps = (steps != null) ? new ArrayList<>(steps) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Ingredient>> getIngredients() {
+            return (ingredients != null) ? Optional.of(Collections.unmodifiableSet(ingredients)) : Optional.empty();
         }
 
         @Override
@@ -209,12 +213,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditRecipeDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditRecipeDescriptor e = (EditRecipeDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

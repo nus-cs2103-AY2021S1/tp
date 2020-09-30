@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package chopchop.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 

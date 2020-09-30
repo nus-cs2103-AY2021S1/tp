@@ -1,6 +1,6 @@
-package seedu.address.logic.commands;
+package chopchop.logic.commands;
 
-import seedu.address.model.Model;
+import chopchop.model.Model;
 
 /**
  * Terminates the program.
@@ -9,7 +9,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Recipe Book as requested ...";
 
     @Override
     public CommandResult execute(Model model) {

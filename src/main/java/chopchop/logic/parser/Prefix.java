@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package chopchop.logic.parser;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
@@ -36,4 +36,5 @@ public class Prefix {
         Prefix otherPrefix = (Prefix) obj;
         return otherPrefix.getPrefix().equals(getPrefix());
     }
+    
 }

@@ -1,20 +1,20 @@
-package seedu.address.model;
+package chopchop.model;
 
 import static java.util.Objects.requireNonNull;
+import chopchop.model.recipe.Recipe;
+import chopchop.model.recipe.UniqueRecipeList;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class RecipeBook implements ReadOnlyRecipeBook {
 
-    private final UniquePersonList persons;
+    private final UniqueRecipeList recipes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,15 +24,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        recipes = new UniqueRecipeList();
     }
 
-    public AddressBook() {}
+    public RecipeBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public RecipeBook(ReadOnlyRecipeBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -43,17 +43,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes.setRecipes(recipes);
     }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyRecipeBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setRecipes(newData.getRecipeList());
     }
 
     //// person-level operations
@@ -61,17 +61,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return recipes.contains(recipe);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a recipe to the recipe book.
+     * The recipe must not already exist in the recipe book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addRecipe(Recipe r) {
+        recipes.add(r);
     }
 
     /**
@@ -79,42 +79,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setRecipe(Recipe target, Recipe editedRecipe) {
+        requireNonNull(editedRecipe);
 
-        persons.setPerson(target, editedPerson);
+        recipes.setRecipe(target, editedRecipe);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code RecipeBook}.
+     * {@code key} must exist in the recipe book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeRecipe(Recipe key) {
+        recipes.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return recipes.asUnmodifiableObservableList().size() + " recipes";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Recipe> getRecipeList() {
+        return recipes.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof RecipeBook // instanceof handles nulls
+                && recipes.equals(((RecipeBook) other).recipes));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return recipes.hashCode();
     }
 }
