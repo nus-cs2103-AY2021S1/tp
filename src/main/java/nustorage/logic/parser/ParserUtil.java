@@ -14,7 +14,6 @@ import java.util.Set;
 import nustorage.commons.core.index.Index;
 import nustorage.commons.util.StringUtil;
 import nustorage.logic.parser.exceptions.ParseException;
-import nustorage.model.person.Address;
 import nustorage.model.person.Email;
 import nustorage.model.person.Name;
 import nustorage.model.person.Phone;
@@ -151,21 +150,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**
