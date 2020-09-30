@@ -17,11 +17,12 @@ import seedu.address.model.person.Name;
 import seedu.address.testutil.FoodBuilder;
 
 public class JsonAdaptedFoodTest {
+    public static final Food EGG_PRATA = new FoodBuilder().withName("Egg Prata")
+            .withPrice(1.2).withTags("bestseller").build();
+
     private static final String VALID_NAME = "Egg Prata";
     private static final double VALID_PRICE = 1.20;
     private static final String INVALID_TAG = "#tasty";
-    private static final Food EGG_PRATA = new FoodBuilder().withName("Egg Prata")
-            .withPrice(1.2).withTags("bestseller").build();
     private static final List<JsonAdaptedTag> VALID_TAGS = EGG_PRATA.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

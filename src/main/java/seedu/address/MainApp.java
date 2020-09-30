@@ -2,6 +2,8 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -21,8 +23,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.menu.MenuManager;
+import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.FoodStorageStub;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -75,22 +80,37 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyMenuManager> menuManagerOptional;
         ReadOnlyAddressBook initialData;
+        MenuManager initialMenuManager;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            menuManagerOptional = new FoodStorageStub().readMenuManager();
+            if (!menuManagerOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            }
+            initialMenuManager = new MenuManager(menuManagerOptional.get());
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialMenuManager = new MenuManager();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialMenuManager = new MenuManager();
         }
 
-        return new ModelManager(initialData, userPrefs);
+
+        List<MenuManager> list = new ArrayList<>();
+        list.add(initialMenuManager);
+
+        return new ModelManager(initialData, userPrefs, list);
     }
 
     private void initLogging(Config config) {

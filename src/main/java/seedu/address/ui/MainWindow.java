@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private FoodListPanel foodListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane foodListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +117,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -121,7 +128,35 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        displayMenu(false);
     }
+
+    /**
+     * Sets visibility of person list display based on the boolean provided.
+     */
+    void setPersonListDisplay(boolean bool) {
+        personListPanel.getRoot().setVisible(bool);
+        personListPanel.getRoot().setManaged(bool);
+    }
+
+    /**
+     * Sets visibility of food list display based on the boolean provided.
+     */
+    void setFoodListDisplay(boolean bool) {
+        foodListPanel.getRoot().setVisible(bool);
+        foodListPanel.getRoot().setManaged(bool);
+
+    }
+
+    /**
+     * Displays menu if boolean is true, otherwise display vendor list.
+     */
+    void displayMenu(boolean bool) {
+        setPersonListDisplay(!bool);
+        setFoodListDisplay(bool);
+    }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
