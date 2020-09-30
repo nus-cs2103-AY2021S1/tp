@@ -31,7 +31,7 @@ public class Tokenizer {
             } else if (prefix.equals(PrefixList.MODULE_LINK_PREFIX.toString())) {
                 this.words[1] = word;
             } else if (prefix.equals(PrefixList.MODULE_INDEX_PREFIX.toString())) {
-                this.words[2] = word;
+                this.words[4] = word;
             } else {
                 // throws error as invalid prefix is found
             }
