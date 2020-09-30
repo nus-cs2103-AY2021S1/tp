@@ -24,7 +24,7 @@ public class Account implements ReadOnlyAccount {
     private final ExpenseList expenses;
     private final ProfitList profits;
 
-    Account(Name name) {
+    public Account(Name name) {
         requireNonNull(name);
         this.name = name;
         this.expenses = new ExpenseList();
@@ -49,6 +49,14 @@ public class Account implements ReadOnlyAccount {
      * Replaces the contents of the profit list with {@code profits}.
      */
     public void setProfits(List<Profit> profits) {
+        this.profits.setProfits(profits);
+    }
+
+    public void setExpenses(ExpenseList expenses) {
+        this.expenses.setExpenses(expenses);
+    }
+
+    public void setProfits(ProfitList profits) {
         this.profits.setProfits(profits);
     }
 
