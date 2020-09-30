@@ -25,12 +25,10 @@ public class Prefix {
         boolean res = false;
         switch (possiblePrefix) {
         case "n/":
-            res = true;
-            break;
         case "l/":
+        case "i/":
             res = true;
             break;
-
         default:
             res = false;
         }

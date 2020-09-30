@@ -43,9 +43,11 @@ public class ParserManager {
         case "addmodule":
             parser = new AddModuleParser();
             command = parser.parse(this.nonCommand);
+            return command;
         case "addzoom":
             parser = new AddZoomLinkParser();
             command = parser.parse(this.nonCommand);
+            return command;
         default:
             throw new ParseException("Invalid Command");
         }

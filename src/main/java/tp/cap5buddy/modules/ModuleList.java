@@ -22,17 +22,12 @@ public class ModuleList {
     /**
      * Retrieves the module matching the input module name from the list of modules.
      *
-     * @param inputModuleName
+     * @param index Zero based index of the module.
      * @return Module matching the input module name if it exists, null otherwise.
      */
-    public Module getModule(String inputModuleName) {
-        for (Module module : this.modules) {
-            String moduleName = module.getName();
-            if (moduleName.equals(inputModuleName)) {
-                return module;
-            }
-        }
-        return null;
+    public Module getModule(int index) {
+        Module module = this.modules.get(index);
+        return module;
     }
 
     /**
@@ -48,8 +43,18 @@ public class ModuleList {
      * Returns the size of the list.
      * @return integer size.
      */
-    public int size() {
+    public int getListSize() {
         return this.modules.size();
+    }
+
+    /**
+     * Updates a module in the list of modules at the given index.
+     *
+     * @param index Zero based index of the module in the list of modules.
+     * @param module Updated module to replace the old module in the list of modules.
+     */
+    public void updateModule(int index, Module module) {
+        this.modules.set(index, module);
     }
 }
 
