@@ -1,7 +1,6 @@
 package nustorage.logic.parser;
 
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nustorage.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static nustorage.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static nustorage.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static nustorage.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -18,7 +17,6 @@ import static nustorage.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static nustorage.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static nustorage.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static nustorage.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static nustorage.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static nustorage.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static nustorage.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static nustorage.logic.commands.CommandTestUtil.VALID_PHONE_BOB;

@@ -2,7 +2,6 @@ package nustorage.logic;
 
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static nustorage.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static nustorage.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static nustorage.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static nustorage.logic.commands.CommandTestUtil.PHONE_DESC_AMY;

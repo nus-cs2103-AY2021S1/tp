@@ -2,7 +2,6 @@ package nustorage.logic.commands;
 
 import static nustorage.logic.commands.CommandTestUtil.DESC_AMY;
 import static nustorage.logic.commands.CommandTestUtil.DESC_BOB;
-import static nustorage.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static nustorage.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static nustorage.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static nustorage.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
