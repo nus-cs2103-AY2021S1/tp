@@ -309,6 +309,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
+**Use case: UC03 - Import timetable**
+
+**MSS**
+
+1.  Pseudo steps
+2.  User requests to delete a specific assignment in the list.
+3.  Academic Schedule Manager deletes the assignment.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid (index is referring to a lesson or index is out of range).
+
+    * 3a1. Academic Schedule Manager shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC04 - Remind**
+
+**MSS**
+
+1.  Pseudo steps
+2.  User requests to delete a specific assignment in the list.
+3.  Academic Schedule Manager deletes the assignment.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid (index is referring to a lesson or index is out of range).
+
+    * 3a1. Academic Schedule Manager shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC05 - List assignments and lessons**
+
+**MSS**
+
+1.  User requests to list assignments and lessons.
+2.  Academic Schedule Manager shows a list of all assignments and lessons.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User requests to list XX day(s) of assignments and lessons.
+
+    * 1a1. Academic Schedule Manager shows a filtered list of assignments and lessons.
+
+        Use case ends.
+      
+* 2a. The list is empty.
+
+        Use case ends.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
