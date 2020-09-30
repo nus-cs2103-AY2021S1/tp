@@ -236,33 +236,56 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* NUS CS Students 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* seeking an integrated calendar
+* seeking a task management application to plan their schedule
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: A calendar and scheduling application that assists students in the planning of their lecture and tutorial schedules, as well as keep track of assignments and deadlines.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As …​                                    | I want to …​                     | So that I can…​                                                        |
+|:--------:| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | a new user                                   | have access to user guide/help file easily |learn more about the software easily when I need            |
+| `* * *`  | a student                                  | see the time of my lessons and meetings |      plan my day.                                             |
+| `* * *`  | a student                                  | see my deadlines at a glance   | prioritise my work.                                                    |
+| `* * *`  | a student                                  | assign priorities to my different tasks | know which ones I should do first |
+| `* * *`  | a student                                  | delete tasks    | remove cancelled obligations.        |
+| `* * *`  | a student with many tasks                  |search through my task using keywords   | I can find relevant tasks quickly |
+| `* * *`  | an advanced user                           |edit the source file of todo list directly   |make changes without going through the CLI|
+|`* *`| a NUS student | add my periodic asks at once | avoid adding them repeatedly |
+| `* *` | a student bad at remembering deadlines | sort my deadlines based on date | know which deadline is coming soon |
+| `* *` | an efficient student | type abbreviated commands | type super fast |
+| `* *` | a student | see the statistics of my tasks | preview the workload I will encounter in the coming weeks |
+| `* *` | self-consistent NUS student | add task to different task | make my plan well organised |
+| `* *` | a NUS student |  add class schedule by module code |  |
+| `*` | an every day user | receive a warm welcome when I open the app | feel pleased |
+| `*` | a student likes customisation | customise some parts of UI | feel more comfortable when I use it |
+| `*` | a student | set a free day for my timetable by making proper arrangement | have a long weekend |
+| `*` | a user | get notifications for recent events and coming deadlines | will not miss them |
+| `*` | an organised user | be able to add tags to my task and filter by tags | sort my tasks by topic |
+| `*` | a lazy user | past and add a bunch of different tasks at once through command line | add them fastly |
+| `*` | a student with a lot of group projects | assiciate tasks with people | keep track which group member is doing what |
+| `*` | an advanced user | add dates to todos to convert them to events/deadlines | I don't have to delete and create a new task |
+| `*` | a user | change the description of a task | update them without deleting |
+| `*` | a forgetful user | have duplicate tasks deleted | avoid the same task appearing twice |
+| `*` | a lazy student | have acces to links to websites or file in the description | have access to related resources easily |
+| `*` | a careless student | undo my commands | avoid misoperation |
+| `*` | a normal user |  go through my tasks opon opening the app | be well informed |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ScheDar` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
