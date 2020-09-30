@@ -37,20 +37,15 @@ public class Fridge implements Iterable<Food> {
 
     /**
      * Adds a food item to the list.
-     * The food must not already exist in the list.
      */
     public void add(Food toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateFoodException();
-        }
         internalList.add(toAdd);
     }
 
     /**
      * Replaces the food item {@code target} in the list with {@code editedFood}.
      * {@code target} must exist in the list.
-     * The food identity of {@code editedFood} must not be the same as another existing food in the list.
      */
     public void setFood(Food target, Food editedFood) {
         requireAllNonNull(target, editedFood);
@@ -59,11 +54,6 @@ public class Fridge implements Iterable<Food> {
         if (index == -1) {
             throw new FoodNotFoundException();
         }
-
-        if (!target.isSameFood(editedFood) && contains(editedFood)) {
-            throw new DuplicateFoodException();
-        }
-
         internalList.set(index, editedFood);
     }
 
@@ -85,13 +75,9 @@ public class Fridge implements Iterable<Food> {
 
     /**
      * Replaces the contents of this list with {@code foods}.
-     * {@code foods} must not contain duplicate foods.
      */
     public void setFoods(List<Food> foods) {
         requireAllNonNull(foods);
-        if (!foodsAreUnique(foods)) {
-            throw new DuplicateFoodException();
-        }
 
         internalList.setAll(foods);
     }
@@ -118,19 +104,5 @@ public class Fridge implements Iterable<Food> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code foods} contains only unique foods.
-     */
-    private boolean foodsAreUnique(List<Food> foods) {
-        for (int i = 0; i < foods.size() - 1; i++) {
-            for (int j = i + 1; j < foods.size(); j++) {
-                if (foods.get(i).isSameFood(foods.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
