@@ -7,6 +7,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFlashcards.RANDOM1;
 import static seedu.address.testutil.TypicalFlashcards.RANDOM2;
+import static seedu.address.testutil.TypicalFlashcards.RANDOM3;
+import static seedu.address.testutil.TypicalFlashcards.RANDOM4;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
 
 import java.util.Arrays;
@@ -71,6 +73,16 @@ public class FindCommandTest {
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(RANDOM1, RANDOM2), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        FlashcardContainsTagPredicate predicate = preparePredicate("CS2100 CS");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(RANDOM3, RANDOM4), model.getFilteredFlashcardList());
     }
 
     /**
