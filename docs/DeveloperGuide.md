@@ -281,7 +281,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Eva shows the correct format to key in data.
     * 1a2. Eva requests the user to add in data again.
     * 1a3  User enters new data.
-    
+
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
@@ -290,7 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Eva shows the valid format to key in the relevant field.
     * 1b2. Eva requests the user to add in data again.
     * 1b3. User enters new data.
-    
+
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
@@ -323,8 +323,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b2. User types in the new staff_name of delete <staff_name>.    
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
-    
-    
+
+
 
 ***Use case: UC03 - list all staff records***
 
@@ -340,8 +340,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Eva informs the user that no records exist.
     Use case ends
-    
-    
+
+
 
 ***Use case: UC04 - Exiting the program***
 
