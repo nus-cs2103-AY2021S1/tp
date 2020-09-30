@@ -33,7 +33,7 @@ public class IngredientTest {
         assertFalse(APRICOT.equals(editedApricot));
 
         // different date -> returns false. Different ingredients can be of the same name but different expiry
-        editedApricot = new IngredientBuilder(APRICOT).withDate("2020-12-02 03:10").build();
+        editedApricot = new IngredientBuilder(APRICOT).withDate("2020-12-02").build();
         assertFalse(APRICOT.equals(editedApricot));
 
         // different qty -> returns true

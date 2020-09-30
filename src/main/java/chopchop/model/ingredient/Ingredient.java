@@ -2,6 +2,7 @@ package chopchop.model.ingredient;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
+import chopchop.model.FoodEntry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Name;
@@ -9,10 +10,9 @@ import chopchop.model.attributes.Name;
 /**
  * Represents an Ingredient in the recipe manager.
  */
-public class Ingredient {
+public class Ingredient extends FoodEntry {
 
     // Identity fields
-    private final Name name;
     private final ExpiryDate expiryDate;
 
     // Data fields
@@ -23,14 +23,10 @@ public class Ingredient {
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
     public Ingredient(Name name, Quantity quantity, ExpiryDate expiryDate) {
-        requireAllNonNull(name, quantity, expiryDate);
-        this.name = name;
+        super(name);
+        requireAllNonNull(quantity, expiryDate);
         this.quantity = quantity;
         this.expiryDate = expiryDate;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public Quantity getQuantity() {
@@ -40,7 +36,6 @@ public class Ingredient {
     public ExpiryDate getExpiryDate() {
         return expiryDate;
     }
-
 
 
     /**
@@ -65,7 +60,7 @@ public class Ingredient {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, quantity, expiryDate);
+        return Objects.hash(super.name, quantity, expiryDate);
     }
 
     @Override

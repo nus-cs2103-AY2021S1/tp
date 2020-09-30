@@ -12,7 +12,7 @@ import chopchop.commons.core.GuiSettings;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
+    Predicate<FoodEntry> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyIngredientBook addressBook);
+    void setAddressBook(ReadOnlyFoodEntryBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyIngredientBook getIngredientBook();
+    ReadOnlyFoodEntryBook getIngredientBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -78,11 +78,11 @@ public interface Model {
     void setIngredient(Ingredient target, Ingredient editedIngredient);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Ingredient> getFilteredIngredientList();
+    ObservableList<FoodEntry> getFilteredIngredientList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredIngredientList(Predicate<Ingredient> predicate);
+    void updateFilteredIngredientList(Predicate<FoodEntry> predicate);
 }

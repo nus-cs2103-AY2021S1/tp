@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import chopchop.model.ingredient.IngredientBook;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import chopchop.commons.core.GuiSettings;
@@ -21,12 +22,12 @@ public class ModelManager implements Model {
 
     private final IngredientBook ingredientBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Ingredient> filteredIngredients;
+    private final FilteredList<FoodEntry> filteredIngredients;
 
     /**
      * Initializes a ModelManager with the given ingredientBook and userPrefs.
      */
-    public ModelManager(ReadOnlyIngredientBook ingredientBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyFoodEntryBook ingredientBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(ingredientBook, userPrefs);
 
@@ -34,7 +35,7 @@ public class ModelManager implements Model {
 
         this.ingredientBook = new IngredientBook(ingredientBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList());
+        filteredIngredients = new FilteredList<FoodEntry>(this.ingredientBook.getFoodEntryList());
     }
 
     public ModelManager() {
@@ -79,12 +80,12 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyIngredientBook ingredientBook) {
+    public void setAddressBook(ReadOnlyFoodEntryBook ingredientBook) {
         this.ingredientBook.resetData(ingredientBook);
     }
 
     @Override
-    public ReadOnlyIngredientBook getIngredientBook() {
+    public ReadOnlyFoodEntryBook getIngredientBook() {
         return ingredientBook;
     }
 
@@ -119,12 +120,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Ingredient> getFilteredIngredientList() {
+    public ObservableList<FoodEntry> getFilteredIngredientList() {
         return filteredIngredients;
     }
 
     @Override
-    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+    public void updateFilteredIngredientList(Predicate<FoodEntry> predicate) {
         requireNonNull(predicate);
         filteredIngredients.setPredicate(predicate);
     }

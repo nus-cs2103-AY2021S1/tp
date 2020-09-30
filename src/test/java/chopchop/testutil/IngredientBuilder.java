@@ -9,7 +9,7 @@ public class IngredientBuilder {
 
     public static final String DEFAULT_NAME = "Egg";
     public static final int DEFAULT_QTY = 3;
-    public static final String DEFAULT_EXPIRY = "2020-10-12 15:13";
+    public static final String DEFAULT_EXPIRY = "2020-10-12";
 
     private Name name;
     private Quantity qty;
@@ -28,10 +28,10 @@ public class IngredientBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public IngredientBuilder(Ingredient personToCopy) {
-        name = personToCopy.getName();
-        qty = personToCopy.getQuantity();
-        expDate = personToCopy.getExpiryDate();
+    public IngredientBuilder(Ingredient IndToCopy) {
+        name = IndToCopy.getName();
+        qty = IndToCopy.getQuantity();
+        expDate = IndToCopy.getExpiryDate();
 
     }
 
