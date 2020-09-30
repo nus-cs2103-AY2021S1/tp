@@ -11,7 +11,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Ben-Hanan Choong See Kaay
 
-<img src="images/Ben-Hanan.png" width="200px">
+<img src="images/ben-hanan.png" width="200px">
 
 [[github](http://github.com/Ben-Hanan)]
 [[portfolio](team/Ben-Hanan.md)]
@@ -20,7 +20,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Hou Rui
 
-<img src="images/Hou-Rui.png" width="200px">
+<img src="images/hou-rui.png" width="200px">
 
 [[github](http://github.com/Hou-Rui)] 
 [[portfolio](team/Hou-Rui.md)]
@@ -29,7 +29,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Royce Ho Shou Yee
 
-<img src="images/TheSpaceCuber.png" width="200px">
+<img src="images/thespacecuber.png" width="200px">
 
 [[github](http://github.com/TheSpaceCuber)]
 [[portfolio](team/TheSpaceCuber.md)]
@@ -37,7 +37,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Tin Kah Ong Isaac
 
-<img src="images/IsaacTin.png" width="200px">
+<img src="images/isaactin.png" width="200px">
 
 [[github](http://github.com/IsaacTin)]
 [[portfolio](team/IsaacTin.md)]
@@ -46,7 +46,7 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 ### Udayagiri Nikhila Sai
 
-<img src="images/Nikhilalalalala.png" width="200px">
+<img src="images/nikhilalalalala.png" width="200px">
 
 [[github](http://github.com/Nikhilalalalala)]
 [[portfolio](team/Nikhilalalalala.md)]
