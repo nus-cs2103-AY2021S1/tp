@@ -6,9 +6,5 @@ public class Carbohydrate extends Macronutrient {
     public Carbohydrate(int amount) {
         super("Carbohydrate", amount, CARBOHYDRATE_MULTIPLIER);
     }
-    // getter
-    public int getAmount() {
-        return this.amount;
-    }
 
 }

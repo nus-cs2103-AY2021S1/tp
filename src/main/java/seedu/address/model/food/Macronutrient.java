@@ -1,10 +1,10 @@
 package seedu.address.model.food;
 
 public abstract class Macronutrient {
-    protected String name;
-    protected int amount;
-    protected int caloricMultiplier;
-    protected int totalCalories;
+    private String name;
+    private int amount;
+    private int caloricMultiplier;
+    private int totalCalories;
 
     /**
      * Represents macronutrients of 3 types
@@ -32,5 +32,21 @@ public abstract class Macronutrient {
             + "Amount: "
             + this.amount + "\n"
             + "Caloric Count: " + this.totalCalories + "\n";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getCaloricMultiplier() {
+        return caloricMultiplier;
+    }
+
+    public int getTotalCalories() {
+        return totalCalories;
     }
 }

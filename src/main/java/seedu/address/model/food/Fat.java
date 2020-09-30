@@ -6,9 +6,5 @@ public class Fat extends Macronutrient {
     public Fat(int amount) {
         super("Fat", amount, FAT_MULTIPLIER);
     }
-    // getter
-    public int getAmount() {
-        return this.amount;
-    }
 
 }

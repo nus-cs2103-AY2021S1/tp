@@ -6,9 +6,5 @@ public class Protein extends Macronutrient {
     public Protein(int amount) {
         super("Protein", amount, PROTEIN_MULTIPLIER);
     }
-    // getter
-    public int getAmount() {
-        return this.amount;
-    }
 
 }
