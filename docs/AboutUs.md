@@ -41,7 +41,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ### Lim Zi Yang
 
-<img src="images/Ziyang-98.png" width="200px">
+<img src="images/ziyang-98.png" width="200px">
 
 [[homepage](https://limziyang.com/)]
 [[github](http://github.com/Ziyang-98)]
