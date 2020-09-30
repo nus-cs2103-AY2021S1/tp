@@ -44,7 +44,7 @@ You can reach us through our respective emails.
 
 ### Leben Chew
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lebencwb.png" width="200px">
 
 [[github](http://github.com/lebencwb)]
 [[portfolio](team/lebencwb.md)]
