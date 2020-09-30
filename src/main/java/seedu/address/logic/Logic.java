@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Recipe> getFilteredRecipeList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Wishful Shrinking file path.
      */
     Path getWishfulShrinkingFilePath();
 

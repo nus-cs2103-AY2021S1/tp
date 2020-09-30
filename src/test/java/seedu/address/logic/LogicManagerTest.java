@@ -45,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonWishfulShrinkingStorage addressBookStorage =
-                new JsonWishfulShrinkingStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonWishfulShrinkingStorage wishfulShrinkingStorage =
+                new JsonWishfulShrinkingStorage(temporaryFolder.resolve("wishfulShrinking.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(wishfulShrinkingStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -73,12 +73,12 @@ public class LogicManagerTest {
     /*@Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonWishfulShrinkingIoExceptionThrowingStub
-        JsonWishfulShrinkingStorage addressBookStorage =
+        JsonWishfulShrinkingStorage wishfulShrinkingStorage =
                 new JsonWishfulShrinkingIoExceptionThrowingStub(temporaryFolder.
                 resolve("ioExceptionWishfulShrinking.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(wishfulShrinkingStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -158,7 +158,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook, Path filePath) throws IOException {
+        public void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

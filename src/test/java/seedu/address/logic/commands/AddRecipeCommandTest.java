@@ -107,7 +107,7 @@ public class AddRecipeCommandTest {
         }
 
         @Override
-        public void setWishfulShrinkingFilePath(Path addressBookFilePath) {
+        public void setWishfulShrinkingFilePath(Path wishfulShrinkingFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -94,12 +94,12 @@ public class JsonWishfulShrinkingStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code wishfulShrinking} at the specified {@code filePath}.
      */
-    private void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook, String filePath) {
+    private void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking, String filePath) {
         try {
             new JsonWishfulShrinkingStorage(Paths.get(filePath))
-                    .saveWishfulShrinking(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveWishfulShrinking(wishfulShrinking, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

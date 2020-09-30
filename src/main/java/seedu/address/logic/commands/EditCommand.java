@@ -47,7 +47,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Recipe collection.";
 
     private final Index index;
     private final EditRecipeDescriptor editRecipeDescriptor;

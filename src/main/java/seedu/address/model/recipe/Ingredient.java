@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 //import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Recipe's ingredients in the address book.
+ * Represents a Recipe's ingredients in the Wishful Shrinking.
  */
 public class Ingredient {
     public final String value;

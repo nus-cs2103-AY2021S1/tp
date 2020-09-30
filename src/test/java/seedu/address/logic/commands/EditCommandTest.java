@@ -111,7 +111,7 @@ public class EditCommandTest {
     public void execute_duplicateRecipeFilteredList_failure() {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
-        // edit recipe in filtered list into a duplicate in address book
+        // edit recipe in filtered list into a duplicate in recipe collection
         Recipe recipeInList = model.getWishfulShrinking().getRecipeList().get(INDEX_SECOND_RECIPE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE,
                 new EditRecipeDescriptorBuilder(recipeInList).build());
@@ -130,13 +130,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of recipe collection
      */
     @Test
     public void execute_invalidRecipeIndexFilteredList_failure() {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
         Index outOfBoundIndex = INDEX_SECOND_RECIPE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of recipe collection list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWishfulShrinking().getRecipeList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,

@@ -6,7 +6,7 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of Wishful Shrinking
  */
 public interface ReadOnlyWishfulShrinking {
 

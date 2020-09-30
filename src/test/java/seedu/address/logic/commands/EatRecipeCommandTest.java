@@ -64,7 +64,7 @@ public class EatRecipeCommandTest {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
         Index outOfBoundIndex = INDEX_SECOND_RECIPE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of recipe collection list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWishfulShrinking().getRecipeList().size());
 
         EatRecipeCommand eatRecipeCommand = new EatRecipeCommand(outOfBoundIndex);

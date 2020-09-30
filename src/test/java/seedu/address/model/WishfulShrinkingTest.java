@@ -22,23 +22,23 @@ import seedu.address.model.recipe.Recipe;
 
 public class WishfulShrinkingTest {
 
-    private final WishfulShrinking addressBook = new WishfulShrinking();
+    private final WishfulShrinking wishfulShrinking = new WishfulShrinking();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getRecipeList());
+        assertEquals(Collections.emptyList(), wishfulShrinking.getRecipeList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> wishfulShrinking.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyWishfulShrinking_replacesData() {
         WishfulShrinking newData = getTypicalWishfulShrinking();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        wishfulShrinking.resetData(newData);
+        assertEquals(newData, wishfulShrinking);
     }
 
     /*@Test
@@ -49,36 +49,36 @@ public class WishfulShrinkingTest {
         List<Recipe> newRecipes = Arrays.asList(ALICE, editedAlice);
         WishfulShrinkingStub newData = new WishfulShrinkingStub(newRecipes);
 
-        assertThrows(DuplicateRecipeException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateRecipeException.class, () -> wishfulShrinking.resetData(newData));
     }*/
 
     @Test
     public void hasRecipe_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasRecipe(null));
+        assertThrows(NullPointerException.class, () -> wishfulShrinking.hasRecipe(null));
     }
 
     @Test
     public void hasRecipe_recipeNotInWishfulShrinking_returnsFalse() {
-        assertFalse(addressBook.hasRecipe(ALICE));
+        assertFalse(wishfulShrinking.hasRecipe(ALICE));
     }
 
     @Test
     public void hasRecipe_recipeInWishfulShrinking_returnsTrue() {
-        addressBook.addRecipe(ALICE);
-        assertTrue(addressBook.hasRecipe(ALICE));
+        wishfulShrinking.addRecipe(ALICE);
+        assertTrue(wishfulShrinking.hasRecipe(ALICE));
     }
 
     /*@Test
     public void hasRecipe_recipeWithSameIdentityFieldsInWishfulShrinking_returnsTrue() {
-        addressBook.addRecipe(ALICE);
+        wishfulShrinking.addRecipe(ALICE);
         Recipe editedAlice = new RecipeBuilder(ALICE)
                 .build();
-        assertTrue(addressBook.hasRecipe(editedAlice));
+        assertTrue(wishfulShrinking.hasRecipe(editedAlice));
     }*/
 
     @Test
     public void getRecipeList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getRecipeList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> wishfulShrinking.getRecipeList().remove(0));
     }
 
     /**

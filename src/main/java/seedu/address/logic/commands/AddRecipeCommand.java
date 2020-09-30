@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * Adds a recipe to the address book.
+ * Adds a recipe to the Wishful Shrinking.
  */
 public class AddRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "addR";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the Wishful Shrinking. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_INGREDIENT + "INGREDIENT "
@@ -34,7 +34,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Wishful Shrinking";
 
     private final Recipe toAdd;
 
