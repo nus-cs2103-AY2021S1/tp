@@ -5,54 +5,52 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Wang Ri Zhao 
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/wangrizhao.png" width="200px">
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/therizhao)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Lionel Lim Wen Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lionellim.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/whitelio)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Le Quang Tuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tuanle.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/youaremysky99)] [[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Data
+
+### Sieow Je Min
+
+<img src="images/sieowjemin.png" width="200px">
+
+[[github](http://github.com/jeminsieow)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Zeng Yu Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zengyuting.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jillzyt)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
