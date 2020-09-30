@@ -11,7 +11,7 @@ public class TypicalIngredients {
     private TypicalIngredients() {} // prevents instantiation
 
     /**
-     * Returns an {@code ItemList} with all the typical items.
+     * Returns an {@code IngredientList} with all the typical ingredients.
      */
     public static IngredientList getTypicalIngredientList() {
         IngredientList ab = new IngredientList();
