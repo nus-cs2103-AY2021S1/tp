@@ -144,13 +144,14 @@ Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program. 
 
 Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Once any change is made to the data from the commands above, the data is saved in the hard disk. 
+There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
