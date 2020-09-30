@@ -69,6 +69,9 @@ Adds an assignment into your schedule.
 
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
 
+**Tip:**
+You can include the `remind` tag when adding the assignment instead of using the `remind` command after adding the assignment.
+
 Examples:
 * `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
 * `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
