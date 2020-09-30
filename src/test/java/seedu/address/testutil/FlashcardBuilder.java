@@ -1,7 +1,11 @@
 package seedu.address.testutil;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.flashcard.Answer;
@@ -73,6 +77,20 @@ public class FlashcardBuilder {
      */
     public FlashcardBuilder withTag(String tag) {
         tags = new HashSet<>(Collections.singletonList(new Tag(tag)));
+        return this;
+    }
+
+    /**
+     * Adds a few {@code Tag}s to the {@code Flashcard} that we are building/
+     * @param tagArr the array containing the tags.
+     * @return the FlashcardBuilder.
+     */
+    public FlashcardBuilder withTags(String[] tagArr) {
+        List<Tag> taglist = new ArrayList<>();
+        for (String tag : tagArr) {
+            taglist.add(new Tag(tag));
+        }
+        tags = new HashSet<>(taglist);
         return this;
     }
 
