@@ -235,14 +235,21 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* NUS Computing Students with poor time management skills who have difficulties managing their weekly academic schedule
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* can type fast and prefer typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* **Convenience**: 
+    * lessons and assignments all found in one area
+    * no need to keep switching tabs to keep track/schedule of what needs to be done
+* **Typing-based**: 
+    * no mouse required (our target user likes VIM anyways)
+    * faster than a typical mouse/GUI driven app
+* **Time management**: 
+    * tight deadlines, high workload, many assignments due
+    * better able to schedule their lessons and assignments
 
 
 ### User stories
