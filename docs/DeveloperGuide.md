@@ -235,14 +235,15 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* NUS Computing Students with poor time management skills who have difficulties managing their weekly academic schedule
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* can type fast and prefer typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+* More convenient than typical apps as lessons and assignments are managed in just one app so there is no need to switch between different ones.
+* Faster than typical mouse/GUI driven apps as most features are accomplished by typing simple commands.
+* Easier to manage schedule than typical scheduling apps as assignments are automatically scheduled.
 
 ### User stories
 
