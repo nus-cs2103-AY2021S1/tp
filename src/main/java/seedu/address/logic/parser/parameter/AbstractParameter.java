@@ -12,11 +12,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public abstract class AbstractParameter {
     private final Option option;
     private final String flag;
+    private final String name;
+    private final String description;
     private final String example;
     private Optional<String> rawValue = Optional.empty();
 
     protected AbstractParameter(String name, String flag, String description, String example, boolean isRequired) {
+        this.name = name;
         this.flag = flag;
+        this.description = description;
         this.example = example;
         this.option = Option.builder(flag)
             .longOpt(name)
@@ -35,8 +39,16 @@ public abstract class AbstractParameter {
         return this.rawValue;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public String getFlag() {
         return this.flag;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     public String getExample() {

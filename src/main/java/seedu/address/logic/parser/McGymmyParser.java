@@ -81,13 +81,12 @@ public class McGymmyParser {
         Command result = this.commandTable.get(commandName).get();
         ParameterSet parameterSet = result.getParameterSet();
         Options options = parameterSet.asOptions();
-        List<AbstractParameter> parameterList = parameterSet.getParameterList();
         try {
             CommandLine cmd = this.parser.parse(options, Arrays.copyOfRange(splitInput, 1, splitInput.length));
-            this.provideValuesToParameterList(cmd, parameterList);
+            this.provideValuesToParameterSet(cmd, parameterSet);
             return result;
-        } catch (org.apache.commons.cli.ParseException e) {
-            String message = e.getMessage() + "\n" + this.getUsage(commandName, options, parameterList);
+        } catch (org.apache.commons.cli.ParseException | ParseException e) {
+            String message = e.getMessage() + "\n" + this.getUsage(commandName, parameterSet);
             throw new ParseException(message);
         }
     }
@@ -96,18 +95,20 @@ public class McGymmyParser {
      * Helper function that takes values in the commons-cli CommandLine object
      * and puts them in the parameterList
      * @param cmd CommandLine object to take values from
-     * @param parameterList parameterList to put values in
+     * @param parameterSet parameterSet to put values in
      * @throws ParseException if any of the parameter's conversion functions breaks (wrongly formatted argument)
      */
-    private void provideValuesToParameterList(CommandLine cmd, List<AbstractParameter> parameterList)
-        throws ParseException {
+    private void provideValuesToParameterSet(CommandLine cmd, ParameterSet parameterSet) throws ParseException {
+        List<AbstractParameter> parameterList = parameterSet.getParameterList();
         for (AbstractParameter parameter : parameterList) {
             String flag = parameter.getFlag();
             if (flag.equals("")) {
                 List<String> unconsumedArgs = cmd.getArgList();
                 if (unconsumedArgs.size() == 0) {
-                    // TODO: improve message?
-                    throw new ParseException("argument not supplied.");
+                    String message = parameterSet.getUnnamedParameter()
+                        .map(param -> String.format("Missing required option: %s", param.getName()))
+                        .orElseGet(() -> "");
+                    throw new ParseException(message);
                 }
                 parameter.setValue(String.join(" ", unconsumedArgs));
             } else {
@@ -130,19 +131,22 @@ public class McGymmyParser {
     public void addCommand(String name, Supplier<Command> commandSupplier) {
         if (this.commandTable.containsKey(name)) {
             // TODO throw some exception?
+            assert false : "Command has already been added";
         }
         this.commandTable.put(name, commandSupplier);
     }
 
     // Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function
-    private String getUsage(String commandName, Options options, List<AbstractParameter> parameterList) {
+    private String getUsage(String commandName, ParameterSet parameterSet) {
+        List<AbstractParameter> parameterList = parameterSet.getParameterList();
+        Options options = parameterSet.asOptions();
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
         formatter.printHelp(
             printWriter,
             formatter.getWidth(),
             commandName,
-            "",
+            getUnnamedParameterUsage(parameterSet),
             options,
             formatter.getLeftPadding(),
             formatter.getDescPadding(),
@@ -152,9 +156,15 @@ public class McGymmyParser {
         return stringWriter.toString();
     }
 
+    private String getUnnamedParameterUsage(ParameterSet parameterSet) {
+        return parameterSet.getUnnamedParameter()
+            .map(param -> String.format("<arg> %s: %s", param.getName(), param.getDescription()))
+            .orElseGet(() -> "");
+    }
+
     private String createExampleCommand(String commandName, List<AbstractParameter> parameterList) {
         return commandName + " " + parameterList.stream()
-            .map(p -> "-" + p.getFlag() + " " + p.getExample())
+            .map(p -> p.getFlag().equals("") ? p.getExample() : "-" + p.getFlag() + " " + p.getExample())
             .collect(Collectors.joining(" "));
     }
 

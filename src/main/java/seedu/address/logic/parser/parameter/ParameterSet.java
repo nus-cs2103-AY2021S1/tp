@@ -3,6 +3,7 @@ package seedu.address.logic.parser.parameter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.cli.Options;
 
@@ -47,6 +48,19 @@ public class ParameterSet {
         HashSet<String> set = new HashSet<>();
         parameterList.forEach(x -> set.add(x.getFlag()));
         return set.size() != parameterList.size();
+    }
+
+    /**
+     * Returns the unnamed parameter, if present
+     * @return Optional.of the unnamed parameter is present, Optional.empty() otherwise.
+     */
+    public Optional<AbstractParameter> getUnnamedParameter() {
+        for (AbstractParameter param : parameterList) {
+            if (param.getFlag().equals("")) {
+                return Optional.of(param);
+            }
+        }
+        return Optional.empty();
     }
 
     /**
