@@ -46,15 +46,15 @@ class JsonSerializableMcGymmy {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public McGymmy toModelType() throws IllegalValueException {
-        McGymmy addressBook = new McGymmy();
+        McGymmy mcGymmy = new McGymmy();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasFood(person)) {
+            if (mcGymmy.hasFood(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addFood(person);
+            mcGymmy.addFood(person);
         }
-        return addressBook;
+        return mcGymmy;
     }
 
 }

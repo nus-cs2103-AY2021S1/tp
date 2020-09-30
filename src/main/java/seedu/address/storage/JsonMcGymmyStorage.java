@@ -45,14 +45,14 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
     public Optional<ReadOnlyMcGymmy> readMcGymmy(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMcGymmy> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableMcGymmy> jsonMcGymmy = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMcGymmy.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonMcGymmy.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMcGymmy.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
