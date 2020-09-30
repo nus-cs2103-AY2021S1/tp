@@ -284,12 +284,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
-**The list is empty**
-
-  Calo shows an message indicating that no such exercise exists.
-  
-  Use case ends.
+<p>
+    1a. The list is empty <br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
   
 #### **Use case: Update an exercise**
 
@@ -298,15 +297,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to update a specific exercise in the list
 2.  Calo updates the exercise
 
-    Use case ends.
+    Use case ends.  
 
 **Extensions**
-
-**The index is invalid**
-
-  Calo shows an message indicating that no such exercise exists.
-  
-  Use case ends.
+<b> The index is invalid </b>
+<p>
+    1a. The index is invalid<br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
   
 #### **Use case: Delete an exercise**
 
@@ -318,12 +317,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-
-**The index is invalid**
-
-  Calo shows an message indicating that no such exercise exists.
-  
-  Use case ends.
+<b> The index is invalid </b>
+<p>
+    1a. The index is invalid<br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
   
   ####**Use case: Archive data**
     
@@ -331,7 +330,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
-    
       Use case ends.
   
   #### **Use case: List exercises**
@@ -340,7 +338,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   1.  User requests to list exercises
   2.  Calo shows a list of exercises
-  
       Use case ends.
 
 ### Non-Functional Requirements
