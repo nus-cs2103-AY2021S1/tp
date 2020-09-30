@@ -29,7 +29,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    Some example commands you can try:
 
-   * **`list 2`** : Lists all lessons and assignments.
+   * **`list 2`** : Lists all lessons and assignments within this week and next week.
 
    * **`add`**`n/Lab report 3 d/23/04/2020 12:30 PM mod/CS2100` : Adds an assignment named `Lab Assignment 3` to the Address Book.
 
