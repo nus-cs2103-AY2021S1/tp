@@ -1,5 +1,5 @@
 ---
-layout: something stupid
+layout: page
 title: User Guide
 ---
 
