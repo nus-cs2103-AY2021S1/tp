@@ -8,6 +8,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleCommonCentsUtilData;
 
 /**
  * A utility class to help with building Person objects.
@@ -55,7 +56,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleAddressBookUtilData.getTagSet(tags);
+        this.tags = SampleCommonCentsUtilData.getTagSet(tags);
         return this;
     }
 

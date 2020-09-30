@@ -1,15 +1,20 @@
 package seedu.address.model.util;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.model.CommonCents;
 import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Name;
-import seedu.address.model.account.entry.*;
+import seedu.address.model.account.entry.Amount;
+import seedu.address.model.account.entry.Description;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.ExpenseList;
+import seedu.address.model.account.entry.Profit;
+import seedu.address.model.account.entry.ProfitList;
 import seedu.address.model.tag.Tag;
-
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Contains utility methods for populating {@code CommonCents} with sample data.

@@ -22,7 +22,12 @@ import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleCommonCentsUtilData;
-import seedu.address.storage.*;
+import seedu.address.storage.CommonCentsStorage;
+import seedu.address.storage.JsonCommonCentsStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 

@@ -1,14 +1,17 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.account.entry.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.account.entry.Amount;
+import seedu.address.model.account.entry.Description;
+import seedu.address.model.account.entry.Entry;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedExpense extends JsonAdaptedEntry {
     /**
@@ -40,7 +43,8 @@ public class JsonAdaptedExpense extends JsonAdaptedEntry {
         }
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                            Description.class.getSimpleName()));
         }
         final Description modelDescription = new Description(description);
 
