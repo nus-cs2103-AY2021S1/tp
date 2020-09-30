@@ -35,12 +35,43 @@ public class Food {
     }
     // getters : make when needed
 
-    // isSameFood : make when needed
+    private String getName() {
+        return this.name;
+    }
+
+    private Protein getProtein() {
+        return this.protein;
+    }
+
+    private Carbohydrate getCarbs() {
+        return this.carbs;
+    }
+
+    private Fat getFat() {
+        return this.fat;
+    }
+
+    /**
+     * Compare if two food item are the same
+     * Compare criteria: same name (case sensitive) and same nutrition values
+     * @param otherFood Other food to be compared with this food
+     * @return True if the 2 are the same
+     */
+    public boolean isSameFood(Food otherFood) {
+        requireAllNonNull(protein, carbs, fat);
+        if (otherFood == this) {
+            return true;
+        }
+
+        return otherFood != null
+            && this.getName().equals(otherFood.getName())
+            && this.getProtein().equals(otherFood.getProtein())
+            && this.getCarbs().equals(otherFood.getCarbs())
+            && this.getFat().equals(otherFood.getFat());
+    }
 
     // Displays
     // name + PCF details + total calories
-
-
     @Override
     public String toString() {
         return "Food:" + this.name + "\n"

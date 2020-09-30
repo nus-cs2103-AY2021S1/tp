@@ -35,6 +35,17 @@ public abstract class Macronutrient {
             + "Caloric Count: " + this.totalCalories + "\n";
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Macronutrient)) {
+            return false;
+        }
+
+        Macronutrient otherMacronutrient = (Macronutrient) other;
+        return this.getName().equals(otherMacronutrient.getName())
+            && this.getTotalCalories() == otherMacronutrient.getTotalCalories();
+    }
+
     public String getName() {
         return name;
     }
