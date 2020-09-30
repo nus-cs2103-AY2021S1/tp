@@ -29,7 +29,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    Some example commands you can try:
 
-   * **`list 2`** : Lists all assignments and lessons.
+   * **`list 2`** : Lists all lessons and assignments.
 
    * **`add`**`n/Lab report 3 d/23/04/2020 12:30 PM mod/CS2100` : Adds an assignment named `Lab Assignment 3` to the Address Book.
 
@@ -77,22 +77,23 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all assignments and lessons : `list`
+### Listing all lessons and assignments : `list`
 
 Format: `list [NUMBER]`
 
-- Shows a list of all assignments and lessons in your schedule within `NUMBER` 
+- Shows a list of all lessons and assignments in your schedule within `NUMBER` 
 number of weeks.
-- `list` command without `NUMBER` displays your entire schedule.
+- `list` command without `NUMBER` displays your entire list of lessons and assignments 
+stored in ProductiveNUS.
 - A week in this context starts with Monday and ends with Sunday.
 
 
 Examples: 
-- `list 2` displays all your assignments and lessons within 
+- `list 2` displays all your lessons and assignments within 
 the current and the next week.
-- `list 3` displays all your assignments and lessons within the current 
+- `list 3` displays all your lessons and assignments within the current 
 and next 2 weeks.
-- `list ` displays all your assignments and lessons.
+- `list ` displays all your lessons and assignments.
 
 ### Deleting a person : `delete`
 

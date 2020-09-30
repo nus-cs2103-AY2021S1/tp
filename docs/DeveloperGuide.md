@@ -251,7 +251,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | student                                    | import my timetable         | better schedule my assignments with my lesson timings taken into account              |
-| `* * *`  | forgetful student                                       | receive reminders for my lessons and assignments               |  avoid forgetting to attend or do my work                                                                      |
+| `* * *`  | forgetful student                                       | receive reminders for my lessons and assignments               |  avoid forgetting to attend lessons or do my work                                                                      |
 | `* * *`  | poor time manager                                       | add and schedule assignments                |  keep track of what needs to be done                                 |
 | `* * *`  | poor time manager                                       | delete assignments          | remove assignments that i have completed or added wrongly |
 | `* * *`    | student                                       | view lessons and assignments together   | view all assignments i have to complete amidst my lessons                |
@@ -259,6 +259,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`      | new user | navigate the UI easily           | use the application efficiently                                                 |                                      |
 | `* * *`      | slow/confused student | i can access and view my academic duties easily           | quickly find out what i need to do for the week
 | `* * *`      | experienced vim-user | use my keyboard to key in assignments           | save time tracking down my assignments                                                 ||
+| `* * `      | beginner user | view a tutorial           | benefit from the features of ProductiveNUS                                                 ||
+| `* * `      | experienced vim-user | use shortcuts in my commands            | access my academic schedule more quickly                                              ||
 *{More to be added}*
 
 ### Use cases
