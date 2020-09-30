@@ -1,0 +1,26 @@
+{
+  "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "persons" : [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "school": "NUS High School",
+    "year": "Year 6",
+    "classVenue": "123, Jurong West Ave 6, #08-111",
+    "classTime": "1 1500 - 1700",
+    "additionalDetails" : "She is quiet",
+    "meetingLink": "www.zoom123.com",
+    "subject": "Mathematics",
+    "tagged": [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "school": "NUS High School",
+    "year": "Year 6",
+    "classVenue" : "311, Clementi Ave 2, #02-25",
+    "classTime": "1 1500 - 1700",
+    "additionalDetails" : "She is quiet",
+    "meetingLink" : "johnd@example.com",
+    "subject": "Mathematics",
+    "tagged" : [ "owesMoney", "friends" ]
+  } ]
+}

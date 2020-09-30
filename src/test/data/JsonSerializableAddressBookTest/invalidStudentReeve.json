@@ -1,0 +1,13 @@
+{
+  "persons": [ {
+    "name": "Hans Muster",
+    "phone": "9482424!invalid",
+    "school": "NUS High School",
+    "year": "Year 6",
+    "classVenue": "4th street",
+    "classTime": "1 1500 - 1700",
+    "additionalDetails" : "He is noisy",
+    "meetingLink": "www.zoom123.com",
+    "subject": "Mathematics"
+  } ]
+}
