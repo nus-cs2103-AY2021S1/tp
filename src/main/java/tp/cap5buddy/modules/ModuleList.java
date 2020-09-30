@@ -45,6 +45,36 @@ public class ModuleList {
     }
 
     /**
+     * Returns the index of the first module with the given name.
+     *
+     * @param inputModuleName the module name.
+     * @return the index of the first module with inputModuleName as its name.
+     */
+    public int getModuleIndex(String inputModuleName) {
+        // Maybe an additional data structured can be implemented to store all the index?
+        int index = 0;
+        for (Module module : modules) {
+            String moduleName = module.getName();
+            if (moduleName.equals(inputModuleName)) {
+                break;
+            }
+            index++;
+        }
+        return index;
+    }
+
+    /**
+     * Replaces the first module in the list with the given name with the specified module.
+     *
+     * @param inputModuleName the name of the module to be replaced.
+     * @param newModule the replacement module.
+     */
+    public void setModule(String inputModuleName, Module newModule) {
+        int index = getModuleIndex(inputModuleName);
+        this.modules.set(index, newModule);
+    }
+
+    /**
      * Returns the size of the list.
      * @return integer size.
      */
