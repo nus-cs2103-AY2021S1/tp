@@ -18,7 +18,7 @@ public abstract class Macronutrient {
         requireAllNonNull(name, amount, caloricMultiplier);
         assert amount >= 0 : "Negative Macronutrient Amount";
 
-        assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macrobutrient Multiplier";
+        assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
         this.name = name;
         this.amount = amount;
