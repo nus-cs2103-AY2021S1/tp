@@ -33,7 +33,6 @@ You can reach us at the email `u_nikhila@comp.nus.edu.sg`
 
 [[github](http://github.com/TheSpaceCuber)]
 [[portfolio](team/TheSpaceCuber.md)]
-
 * Role: Developer
 
 ### Tin Kah Ong Isaac
