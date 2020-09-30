@@ -279,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user didn't supply all required parameters.
+* 1a. The user did not supply all required parameters.
 
     * 1a1. Academic Schedule Manager shows an error message.
 
@@ -298,16 +298,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User <ins>requests to list assignments and lessons (UC05)</ins>.
-3.  User requests to delete a specific assignment in the list.
-4.  Academic Schedule Manager deletes the assignment.
+2.  User requests to delete a specific assignment in the list.
+3.  Academic Schedule Manager shows a success message with details of the assignment deleted.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid (index is referring to a lesson or index is out of range).
+* 2a. The given index is invalid (index is referring to a lesson or index is out of range).
 
-    * 3a1. Academic Schedule Manager shows an error message.
+    * 2a1. Academic Schedule Manager shows an error message.
 
       Use case resumes at step 2.
 
@@ -316,36 +316,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Pseudo steps
-2.  User requests to delete a specific assignment in the list.
-3.  Academic Schedule Manager deletes the assignment.
+1.  User retrieves NUSMods timetable URL from the NUSMods website.
+2.  User requests to import NUSMods timetable using their NUSMods timetable URL.
+3.  Academic Schedule Manager adds all the lessons according to the data retrieved.
+4.  Academic Schedule Manager shows a success message with details of the lessons added.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid (index is referring to a lesson or index is out of range).
+* 2a. The given URL is invalid (not a valid NUSMods timetable URL).
 
-    * 3a1. Academic Schedule Manager shows an error message.
+    * 2a1. Academic Schedule Manager shows an error message.
 
       Use case resumes at step 2.
+
+* 2b. User already has a timetable imported before.
+
+    * 2b1. Academic Schedule Manager informs user that previously imported lesson will be deleted.
+    
+      Use case resumes at step 3.
 
 
 **Use case: UC04 - Remind**
 
 **MSS**
 
-1.  Pseudo steps
-2.  User requests to delete a specific assignment in the list.
-3.  Academic Schedule Manager deletes the assignment.
+1.  User <ins>requests to list assignments and lessons (UC05)</ins>.
+2.  User requests to set reminder for a specific assignment in the list.
+3.  Academic Schedule Manager adds the assignment to the remind list.
+4.  Academic Schedule Manager shows a success message with details of the assignment set as reminder.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid (index is referring to a lesson or index is out of range).
+* 2a. The given index is invalid (index is referring to a lesson or index is out of range).
 
-    * 3a1. Academic Schedule Manager shows an error message.
+    * 2a1. Academic Schedule Manager shows an error message.
 
       Use case resumes at step 2.
 
