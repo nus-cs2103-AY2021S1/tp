@@ -2,8 +2,13 @@ package nustorage.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import nustorage.commons.core.index.Index;
@@ -22,6 +27,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount if not a decimal value.";
+    public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
     public static final String MESSAGE_INVALID_QUANITY = "Quantity is not a non-zero integer.";
 
     /**
@@ -47,9 +53,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses {@code amount} into an {@code double} and returns it.
+     * @throws ParseException if the specified amount is invalid (non-double value).
      */
     public static double parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
@@ -59,6 +64,50 @@ public class ParserUtil {
         } catch (NumberFormatException ex) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
         }
+    }
+
+    /**
+     * Parses {@code datetimeList} into an {@code LocalDateTime} and returns it.
+     * @throws ParseException if the specified input is invalid (not correctly formatted).
+     */
+    public static LocalDateTime parseDatetime(Optional<String> datetime) throws ParseException {
+        requireNonNull(datetime);
+
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+
+        if (datetime.isPresent()) {
+            String[] datetimeArray = datetime.get().split(" ");
+
+            if (datetimeArray.length == 1) {
+
+                try {
+                    date = LocalDate.parse(datetimeArray[0]);
+                } catch (DateTimeParseException ex1) {
+                    try {
+                        time = LocalTime.parse(datetimeArray[0]);
+                    } catch (DateTimeParseException ex2) {
+                        throw new ParseException(MESSAGE_INVALID_DATETIME);
+                    }
+                }
+
+            } else if (datetimeArray.length > 1) {
+
+                try {
+                    date = LocalDate.parse(datetimeArray[0]);
+                    time = LocalTime.parse(datetimeArray[1]);
+                } catch (DateTimeParseException ex1) {
+                    try {
+                        date = LocalDate.parse(datetimeArray[1]);
+                        time = LocalTime.parse(datetimeArray[0]);
+                    } catch (DateTimeParseException ex2) {
+                        throw new ParseException(MESSAGE_INVALID_DATETIME);
+                    }
+                }
+            }
+        }
+
+        return LocalDateTime.of(date, time);
     }
 
     /**

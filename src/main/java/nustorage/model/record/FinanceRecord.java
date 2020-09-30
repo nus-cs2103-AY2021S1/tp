@@ -1,12 +1,13 @@
 package nustorage.model.record;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
 
-    private LocalDate date;
-    private LocalTime time;
+    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+
+    private LocalDateTime datetime;
     private double amount;
 
     /**
@@ -16,45 +17,26 @@ public class FinanceRecord {
      */
     public FinanceRecord(double amount) {
         this.amount = amount;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
+        this.datetime = LocalDateTime.now();
     }
 
     /**
      * Constructs a {@code Finance Record}.
      *
      * @param amount Amount of the transaction.
-     * @param date Date of the transaction.
+     * @param datetime Date of the transaction.
      */
-    public FinanceRecord(double amount, LocalDate date) {
+    public FinanceRecord(double amount, LocalDateTime datetime) {
         this.amount = amount;
-        this.date = date;
-        this.time = LocalTime.now();
-    }
-
-    /**
-     * Constructs a {@code Finance Record}.
-     *
-     * @param amount Amount of the transaction.
-     * @param date Date of the transaction.
-     * @param time Time of the transaction.
-     */
-    public FinanceRecord(double amount, LocalDate date, LocalTime time) {
-        this.amount = amount;
-        this.date = date;
-        this.time = time;
+        this.datetime = datetime;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getTime() {
-        return time;
+    public LocalDateTime getDate() {
+        return datetime;
     }
 
     @Override
@@ -67,6 +49,8 @@ public class FinanceRecord {
 
     @Override
     public String toString() {
-        return "Record on " + date + " at " + time + ": $" + String.format("%.2f", amount);
+        return String.format("Record on %s: $%.2f",
+                DATETIME_FORMAT.format(datetime),
+                amount);
     }
 }
