@@ -1,19 +1,11 @@
 package seedu.address.model.food;
 
 public class Carbohydrate extends Macronutrient {
+    private static final int CARBOHYDRATE_MULTIPLIER = 4;
 
     public Carbohydrate(int amount) {
-        super(amount, 4);
+        super("Carbohydrate", amount, CARBOHYDRATE_MULTIPLIER);
     }
-
-    @Override
-    public String toString() {
-        return "MacronutrientType: Carbohydrate\n"
-                + "Amount: "
-                + this.amount + "\n"
-                + "Caloric Count: " + this.totalCalories + "\n";
-    }
-
     // getter
     public int getAmount() {
         return this.amount;

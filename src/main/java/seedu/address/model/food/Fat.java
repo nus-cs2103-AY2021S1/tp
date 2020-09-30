@@ -1,19 +1,11 @@
 package seedu.address.model.food;
 
 public class Fat extends Macronutrient {
+    private static final int FAT_MULTIPLIER = 9;
 
     public Fat(int amount) {
-        super(amount, 9);
+        super("Fat", amount, FAT_MULTIPLIER);
     }
-
-    @Override
-    public String toString() {
-        return "MacronutrientType: Fat\n"
-            + "Amount: "
-            + this.amount + "\n"
-            + "Caloric Count: " + this.totalCalories + "\n";
-    }
-
     // getter
     public int getAmount() {
         return this.amount;
