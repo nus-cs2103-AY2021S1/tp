@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chen Yongyan
 
-<img src="images/raymond0212.png" width="200px">
+<img src="images/raymond0212.jpg" width="200px">
 
 [[github](https://github.com/Raymond0212)]
 [[portfolio](team/raymond0212.md)]
