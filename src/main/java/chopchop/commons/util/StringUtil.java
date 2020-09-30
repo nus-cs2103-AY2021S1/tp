@@ -1,7 +1,7 @@
 package chopchop.commons.util;
 
 import static java.util.Objects.requireNonNull;
-import static chopchop.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

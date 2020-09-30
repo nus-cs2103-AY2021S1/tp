@@ -6,16 +6,16 @@ import static chopchop.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import chopchop.logic.commands.AddCommand;
-import chopchop.logic.commands.ClearCommand;
-import chopchop.logic.commands.Command;
-import chopchop.logic.commands.DeleteCommand;
-import chopchop.logic.commands.EditCommand;
-import chopchop.logic.commands.ExitCommand;
-import chopchop.logic.commands.FindCommand;
-import chopchop.logic.commands.HelpCommand;
-import chopchop.logic.commands.ListCommand;
-import chopchop.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.

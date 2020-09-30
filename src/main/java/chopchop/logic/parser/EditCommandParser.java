@@ -13,11 +13,11 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import chopchop.commons.core.index.Index;
-import chopchop.logic.commands.EditCommand;
-import chopchop.logic.commands.EditCommand.EditPersonDescriptor;
-import chopchop.logic.parser.exceptions.ParseException;
-import chopchop.model.tag.Tag;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object

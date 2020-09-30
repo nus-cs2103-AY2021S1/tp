@@ -3,6 +3,8 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import chopchop.model.ReadOnlyIngredientBook;
+import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
@@ -50,7 +52,7 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyIngredientBook getIngredientBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -77,7 +79,7 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Ingredient> getFilteredIngredientList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

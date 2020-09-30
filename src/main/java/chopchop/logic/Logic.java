@@ -2,13 +2,13 @@ package chopchop.logic;
 
 import java.nio.file.Path;
 
+import chopchop.model.ReadOnlyIngredientBook;
+import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ObservableList;
-import chopchop.commons.core.GuiSettings;
-import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.parser.exceptions.ParseException;
-import chopchop.model.ReadOnlyAddressBook;
-import chopchop.model.person.Person;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * API of the Logic component
@@ -26,12 +26,12 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see chopchop.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getIngredientBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyIngredientBook getIngredientBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Ingredient> getFilteredIngredientList();
 
     /**
      * Returns the user prefs' address book file path.

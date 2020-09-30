@@ -3,7 +3,7 @@ package chopchop.commons.util;
 import static java.util.Objects.requireNonNull;
 
 import javafx.scene.image.Image;
-import chopchop.MainApp;
+import seedu.address.MainApp;
 
 /**
  * A container for App specific utility functions

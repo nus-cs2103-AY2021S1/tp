@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import chopchop.commons.core.Config;
-import chopchop.commons.exceptions.DataConversionException;
+import seedu.address.commons.core.Config;
+import seedu.address.commons.exceptions.DataConversionException;
 
 /**
  * A class for accessing the Config File.

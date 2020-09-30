@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import chopchop.commons.core.Messages;
-import chopchop.commons.core.index.Index;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.model.Model;
-import chopchop.model.person.Person;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

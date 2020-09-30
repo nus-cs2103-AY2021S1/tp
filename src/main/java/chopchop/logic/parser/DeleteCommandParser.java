@@ -2,9 +2,9 @@ package chopchop.logic.parser;
 
 import static chopchop.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import chopchop.commons.core.index.Index;
-import chopchop.logic.commands.DeleteCommand;
-import chopchop.logic.parser.exceptions.ParseException;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

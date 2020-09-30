@@ -10,14 +10,14 @@ import static chopchop.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import chopchop.logic.commands.AddCommand;
-import chopchop.logic.parser.exceptions.ParseException;
-import chopchop.model.person.Address;
-import chopchop.model.person.Email;
-import chopchop.model.person.Name;
-import chopchop.model.person.Person;
-import chopchop.model.person.Phone;
-import chopchop.model.tag.Tag;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

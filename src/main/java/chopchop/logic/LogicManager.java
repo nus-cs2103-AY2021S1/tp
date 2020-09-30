@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import chopchop.model.ReadOnlyIngredientBook;
+import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ObservableList;
-import chopchop.commons.core.GuiSettings;
-import chopchop.commons.core.LogsCenter;
-import chopchop.logic.commands.Command;
-import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.parser.AddressBookParser;
-import chopchop.logic.parser.exceptions.ParseException;
-import chopchop.model.Model;
-import chopchop.model.ReadOnlyAddressBook;
-import chopchop.model.person.Person;
-import chopchop.storage.Storage;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.storage.Storage;
 
 /**
  * The main LogicManager of the app.
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getIngredientBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,13 +55,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyIngredientBook getIngredientBook() {
+        return model.getIngredientBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return model.getFilteredIngredientList();
     }
 
     @Override
