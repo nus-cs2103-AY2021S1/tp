@@ -3,7 +3,7 @@ layout: page
 title: Weng Fai's Project Portfolio Page
 ---
 
-## Project: OneShelf
+## Project: Inventory Book (OneShelf)
 
 OneShelf is an app designed to automate the managing of stock inventory for business owners which translates to savings in man-hours and minimal losses due to over stocking.
 
