@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,11 +78,11 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a stock).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -97,12 +97,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the stock book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -117,11 +117,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the stock book data in json format and read it back.
 
 ### Common classes
 
@@ -139,31 +139,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current stock book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous stock book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone stock book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial stock book state, and the `currentStatePointer` pointing to that single stock book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th stock in the stock book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the stock book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted stock book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new stock. The `add` command also calls `Model#commitAddressBook()`, causing another modified stock book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the stock book state will not be saved into the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the stock was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous stock book state, and restores the stock book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the stock book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest stock book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the stock book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all stock book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -202,13 +202,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire stock book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the stock being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -266,7 +266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tech savvy warehouse manager                                | to be able to change the information of my existing stock in the application         | I can keep my existing inventories updated                             |
 | `* *`    | major shareholder                                           | to easily understand how inventory count works                                       | I can determine if the investment is worthy                            |
 | `* *`    | manager                                                     | to be able to gather the statistics (eg. profit) of the items in inventory           | I can report the profitability of products                             |
-| `* *`    | forgetful person                                            | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
+| `* *`    | forgetful stock                                            | to add optional notes at certain stocks                                              | I can be reminded of important information                             |
 | `* *`    | busy manager                                                | to be able to see or highlight low stocks at a glance                                | I can replenish them in time                                           |
 | `* *`    | busy manager                                                | to automate the calculation of how much stock to restock based on the current stocks | I do not need to spend time manually calculating                       |
 | `* *`    | tech savvy warehouse manager                                | to be able to bookmark certain items in the warehouse                                | I can access and augment their information easily                      |
@@ -284,7 +284,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
+
+#### Use case: Adding a stock
+
+**MSS**
+
+1.  User requests to add a stock
+2.  Warenager adds the stock into the inventory
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given format is missing any field header.
+
+    * 1a1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given input to the field header is empty.
+
+    * 1b1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. The given input to the field header is invalid.
+
+    * 1c1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+
 
 #### Use case: Delete a stock
 
@@ -309,12 +339,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
+* 3b. The given serial number is not found.
 
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
-
 
 #### Use case: Find a stock by name
 
@@ -332,13 +361,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  
     * 1a1. Warenager shows an error message.
     
-     Use case resumes at step 1.
+      Use case resumes at step 1.
 
 * 1b. The given command is invalid (wrong find command). 
 
     * 1b1. Warenager shows an error message.
         
-    Use case resumes at step 1.
+      Use case resumes at step 1.
      
 * 2a. There is no stock with name that matches keyword.
 
@@ -361,13 +390,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
      Use case resumes at step 1.
 
-* 1b. The given serial number is not an integer.
-
-    * 1b1. Warenager shows an error message.
-
-      Use case resumes at step 1.
-
-* 1c. The given command is invalid (wrong find command). 
+* 1b. The given command is invalid (wrong find command). 
 
     * 1b1. Warenager shows an error message.
         
@@ -430,6 +453,261 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. There is no stock with source that matches keyword.
 
     Use case ends.
+
+#### Use case: Increment or decrement a stock's quantity
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to increment or decrement a specific stock's quantity.
+4.  Warenager updates the stock's quantity.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header q/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3d. The given increment or decrement value is not an integer.
+    
+    * 3d1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+      
+* 3e. The given increment or decrement value exceeds the integer limit.
+
+    * 3e1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3f. The given increment value plus the stock's current quantity exceeds the integer limit.
+
+    * 3f1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3g. The stock's current quantity minus the given decrement value results in a negative value.
+
+    * 3g1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Rewrite a stock's quantity
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's quantity.
+4.  Warenager updates the stock's quantity.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header nq/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3d. The given quantity value is not an integer.
+    
+    * 3d1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3e. The given quantity value exceeds the integer limit.
+
+    * 3e1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+      
+* 3f. The given quantity value is negative.
+
+    * 3f1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the name of a stock.
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's name.
+4.  Warenager updates the stock's name.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header n/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the location of a stock
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's location.
+4.  Warenager updates the stock's location.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header l/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the source of a stock
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's source.
+4.  Warenager updates the stock's source.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header s/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+*{More to be added}*
+
+#### Use case: Using the help command
+
+**MSS**
+
+1.  User requests helps from Warenager.
+2.  Warenager shows the user guide as a pop up.
+3.  User views the user guide.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+
+#### Use case: Exit Warenager
+
+**MSS**
+
+1.  User requests to exit Warenager.
+2.  Warenager shows exit message.
+3.  User exits Warenager.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+     
     
 *{More to be added}*
 
@@ -475,7 +753,30 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+### Adding a stock
+
+1. Adding a stock into the inventory.
+
+   1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
+      Expected: New stock added: Banana SerialNumber: 12 Source: NUS Quantity: 9999 Location: Fruit Section.
+      Details of the added stock shown in the status message.
+
+   1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
+      Expected: Locations can take any values, and it should not be blank.
+      Error details shown in the status message. Status bar remains the same.
+      
+   1. Test case: ` add n/Banana s/NUS q/9999`<br>
+      Expected: Invalid command format! 
+      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION 
+      Example: add n/Umbrella s/Kc company q/100 l/section B,
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
+      Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -510,16 +811,16 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.
    
    1. Test case: `find n/umbrella`<br>
-         Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
-         Status message shows success of command.  
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
+      Status message shows success of command.  
          
    1. Test case: `find l/section 3`<br>
-            Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
-            Status message shows success of command.  
+      Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
+      Status message shows success of command.  
             
    1. Test case: `find s/company abc`<br>
-            Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
-            Status message shows success of command.  
+      Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
+      Status message shows success of command.  
             
    1. Test case: `find 1111111`<br>
       Expected: No stock deleted due to invalid format from missing field header
@@ -529,6 +830,38 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect find commands to try: `find`, `find sn/absdsa` 
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Updating a stock
+
+1. Updating a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    
+    1. Test case: `update sn/2103 q/50`<br>
+       Expected: The stock with serial number 2103 will have an increase of quantity by 50.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 q/-50`<br>
+       Expected: The stock with serial number 2103 will have a decrease of quantity by 50.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 nq/2103`<br>
+       Expected: The stock with serial number 2103 will have a new quantity 2103.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 n/CS2103T`
+       Expected: The stock with serial number 2103 will have a new name CS2103T.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 l/B1`
+       Expected: The stock with serial number 2103 will have a new location B1.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 s/NUS`
+       Expected: The stock with serial number 2103 will have a new source NUS.
+       Details of the updated stock is shown in the status message.
 
 1. _{ more test cases …​ }_
 
