@@ -55,7 +55,7 @@ You can reach us through our respective emails.
 
 ### Marcus Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/marcus2k.png" width="200px">
 
 [[github](http://github.com/marcus2k)]
 [[portfolio](team/marcus2k.md)]
