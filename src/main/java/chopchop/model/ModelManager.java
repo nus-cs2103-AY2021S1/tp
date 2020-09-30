@@ -84,7 +84,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyIngredientBook getAddressBook() {
+    public ReadOnlyIngredientBook getIngredientBook() {
         return ingredientBook;
     }
 

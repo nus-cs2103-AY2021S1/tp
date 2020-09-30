@@ -50,7 +50,7 @@ public interface Model {
     void setAddressBook(ReadOnlyIngredientBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyIngredientBook getAddressBook();
+    ReadOnlyIngredientBook getIngredientBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
