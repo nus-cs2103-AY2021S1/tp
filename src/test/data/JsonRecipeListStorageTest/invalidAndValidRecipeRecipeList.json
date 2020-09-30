@@ -1,0 +1,29 @@
+{
+  "recipes" : [ {
+    "id" : 0,
+    "ingredients" : [ {
+      "itemId" : 0,
+      "itemQuantity" : 2
+    }, {
+      "itemId" : 1,
+      "itemQuantity" : 3
+    } ],
+    "productId" : 2,
+    "description" : "Recipe 1",
+    "isDeleted" : false
+  }, {
+    "id" : 2,
+    "ingredients" : [ {
+      "itemId" : 0,
+      "itemQuantity" : 10
+    }, {
+      "itemId" : 1,
+      "itemQuantity" : 10
+    } ],
+    "productId" : 4,
+    "productName" : "Apple pie",
+    "productQuantity" : "2",
+    "description" : "Recipe 2",
+    "isDeleted" : false
+  } ]
+}

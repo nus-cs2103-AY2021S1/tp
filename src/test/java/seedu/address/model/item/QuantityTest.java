@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class QuantityTest {
-
     /**
      * Tests for valid quantity. Only non-negative integers are allowed.
      */

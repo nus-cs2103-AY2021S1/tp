@@ -15,7 +15,6 @@ import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
 
 public class UniqueItemListTest {
-
     @Test
     public void contains() {
         UniqueItemList uList = new UniqueItemList();
