@@ -244,20 +244,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| `* * *`  | student                                    | import my timetable         | better schedule my assignments with my lesson timings taken into account              |
+| `* * *`  | forgetful student                                       | receive reminders for my lessons and assignments               |  avoid forgetting to attend lessons or do my work                                                                      |
+| `* * *`  | poor time manager                                       | add and schedule assignments                |  keep track of what needs to be done                                 |
+| `* * *`  | poor time manager                                       | delete assignments          | remove assignments that i have completed or added wrongly |
+| `* * *`    | student                                       | view lessons and assignments together   | view all assignments i have to complete amidst my lessons                |
+| `* * *`      | particular student | use a scheduler with a user-friendly interface           | use the application easily and enjoyably                                                 |
+| `* * *`      | new user | navigate the UI easily           | use the application efficiently                                                 |                                      |
+| `* * *`      | slow/confused student | i can access and view my academic duties easily           | quickly find out what i need to do for the week
+| `* * *`      | experienced vim-user | use my keyboard to key in assignments           | save time tracking down my assignments                                                 ||
+| `* * `      | beginner user | view a tutorial           | benefit from the features of ProductiveNUS                                                 ||
+| `* * `      | experienced vim-user | use shortcuts in my commands            | access my academic schedule more quickly                                              ||
 *{More to be added}*
 
 ### Use cases
