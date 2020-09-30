@@ -8,9 +8,18 @@
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 ## Motivation
-
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* As a NUS Computing Student, you would probably have had **difficulties managing your
+academic schedule**. You often feel overwhelmed because you have so many things to do:
+**tight deadlines; high workload; many assignments due**. You often **underestimate the time
+it takes** to complete your assignments. You are often **late for appointments, lessons**. All these
+things just don't get done. You keep spinning your wheels.
+* This is exactly why we develop **ProductiveNUS**, an **Academic Schedule Manager** that 
+will **solve all these problems**.
+### Aim
+* Effective time management = **HIGHER PRODUCTIVITY** + **LESS STRESS**.
+* **`YOU + TASK + SETTING = PEAK PERFORMANCE`**
+* We hope to provide you with the best **SETTING** to manage your academic schedule
+so that you can excel in your University Study.
 
 ## Current features supported
 * Importing timetable from NUSMods
