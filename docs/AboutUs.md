@@ -36,3 +36,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Testing / Deliverables and Deadlines
+
+### He Jialei
+
+<img src="images/hjl99.png" width="200px">
+
+[[github](http://github.com/hjl99)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Deliverables and Deadlines / Scheduling and Tracking
+
