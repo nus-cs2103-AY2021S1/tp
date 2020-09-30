@@ -250,7 +250,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                     |
+| Priority | As a …​                    | I want to …​                                     | So that I can…​                                                     |
 | -------- | ----------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | user                          | see usage instructions                              | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                          | add an exercise                                     | track what I have done in the app                                      |
@@ -297,8 +297,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FixMyAbs shows an error message.
     
       Use case resumes at step 2.
-      
-<br />
 
 **Use case: UC-02 - Edit an exercise**
 
