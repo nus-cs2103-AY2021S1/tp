@@ -16,10 +16,10 @@ public class TypicalFlashcards {
             .withAnswer("No reversal agent").withTag("LSM1301").build();
     public static final Flashcard RANDOM3 = new FlashcardBuilder()
             .withQuestion("What is the binary representation of 4 5/8?")
-            .withAnswer("110.101").withTag("CS2100").build();
+            .withAnswer("110.101").withTags(new String[] {"CS2100", "CS"}).build();
     public static final Flashcard RANDOM4 = new FlashcardBuilder()
             .withQuestion("What is a digital circuit capable of holding a single digit")
-            .withAnswer("Flip-flop").withTag("CS2100").build();
+            .withAnswer("Flip-flop").withTags(new String[] {"CS2100", "CS"}).build();
 
     public static final Flashcard RANDOM5 = new FlashcardBuilder()
             .withMultipleChoiceQuestion("Which of the following storage systems is best suited for "
