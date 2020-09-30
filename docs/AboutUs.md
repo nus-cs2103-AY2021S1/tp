@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Jian Fanmin
 
-<img src="images/fanminjian.png" width="200px">
+<img src="images/fanminj.png" width="200px">
 
 [[github](http://github.com/fanminj)]
 
