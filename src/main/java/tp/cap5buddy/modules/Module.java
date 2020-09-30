@@ -50,4 +50,9 @@ public class Module {
     public Module addZoomLink(String zoomLink) {
         return new Module(this.getName(), zoomLink);
     }
+
+    @Override
+    public String toString() {
+        return String.format("The zoom link for %s is %s", getName(), getLink());
+    }
 }
