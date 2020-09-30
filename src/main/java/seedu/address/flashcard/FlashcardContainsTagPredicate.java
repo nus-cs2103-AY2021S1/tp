@@ -1,7 +1,5 @@
 package seedu.address.flashcard;
 
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
 import java.util.List;
 import java.util.function.Predicate;
 
