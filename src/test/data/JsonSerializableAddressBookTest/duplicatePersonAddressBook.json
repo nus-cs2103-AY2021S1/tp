@@ -3,12 +3,12 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "moduleCode": "123, Jurong West Ave 6, #08-111",
+    "moduleCode": "CS2103T",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "moduleCode": "4th street"
+    "moduleCode": "CS2103T"
   } ]
 }

@@ -3,11 +3,11 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "moduleCode": "4th street"
+    "moduleCode": "CS2103T"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "moduleCode": "4th street"
+    "moduleCode": "CS2103T"
   } ]
 }
