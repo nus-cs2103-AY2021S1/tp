@@ -285,9 +285,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 <p>
-* 1a. The list is empty <br>
-* * 1a1. Calo shows a message indicating that no such exercise exists.<br>
-* Use case ends.
+    The list is empty <br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
 </p>
   
 #### **Use case: Update an exercise**
@@ -330,9 +330,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
       
 **Extensions**
-* 1a.  File can't be created at specified location.  
-* * 1a1. Calo shows a message indicating that file can't be created.  
-* Use case ends.
+    1a. File can't be created at specified location.  
+      1a1. Calo shows a message indicating that file can't be created.  
+    Use case ends.
   
 **Extensions**
 <p>
