@@ -280,21 +280,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*` | a careless student | undo my commands | avoid misoperation |
 | `*` | a normal user |  go through my tasks opon opening the app | be well informed |
 
-
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `ScheDar` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: add a ta's'k**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters add command specifying task type
+2. ScheDar give a response
+
+    Use case ends.
+
+**Use case: delete a task**
+
+**MSS**
+
+1. User requests to delete a specific task in the list
+2. ScheDar deletes the task
 
     Use case ends.
 
@@ -306,16 +310,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ScheDar shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+**Use case: assign priority to a task**
+
+**MSS**
+
+1. User requests to assign priority a specific task in the list
+2. ScheDar gives priority to the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ScheDar shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The task already have a priority.
+
+    * 4a1. ScheDar shows a confirmation about overriding.
+
+         * 4a1a User confirms override
+
+         * ScheDar gives new priority to the task
+
+           Use case ends
+
+         * 4a1a User denies override
+
+           Use case resumes at step 1.
+
+**Use case: mark a task as done**
+
+**MSS**
+
+1. User requests to mark a specific task in the list as done
+2. ScheDar marks the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ScheDar shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The task is already done.
+
+    * 3a1. ScheDar shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: retrieve last-deleted task**
+
+**MSS**
+
+1. User requests to retrieve a last-deleted task
+2. ScheDar retrieves the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The rubbish bin is empty.
+
+    * 3a1. ScheDar shows an error message.
+
+  Use case ends.
+
+**Use case: search for tasks by keyword**
+
+**MSS**
+
+1. User requests search with keyward
+2. ScheDar get matched tasks and list them
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The keyword is not found.
+
+   * 3a1. ScheDar shows an warning message.
+
+  Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -323,7 +423,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
