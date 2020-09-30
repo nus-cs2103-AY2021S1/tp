@@ -9,51 +9,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Damith C. Pahapakse
 
 <img src="images/johndoe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Supervisor
 
-### Jane Doe
+### Tishya Khanna
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Supervisor
 
-* Role: Team Lead
-* Responsibilities: UI
+### Chen Yongyan
 
-### Johnny Doe
+<img src="images/raymond0212.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Raymond0212)]
+[[portfolio](team/raymond0212.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Front-end, Back-end, UI/UX Design
 
-### Jean Doe
+### Daniel Adipranoto
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/danadi7.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/danadi7)] 
+[[portfolio](team/danadi7.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Front-end, Back-end, UI/UX Design
+
+### Qu Mingsi
+
+<img src="images/e0316059.png" width="200px">
+
+[[github](http://github.com/e0316059)]
+[[portfolio](team/e0316059.md)]
+
+* Role: Developer
+* Responsibilities: Front-end, Back-end, UI/UX Design
