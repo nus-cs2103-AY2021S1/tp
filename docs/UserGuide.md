@@ -29,7 +29,7 @@ It is a convenient platform for you to keep track of your lessons and assignment
 
    Some example commands you can try:
 
-   * **`list 2`** : Lists all lessons and assignments within this week and next week.
+   * **`list 2`** : Lists all lessons and assignments within 2 weeks (including this week).
 
    * **`add`**`n/Lab report 3 d/23/04/2020 12:30 PM mod/CS2100` : Adds an assignment named `Lab Assignment 3` to the Address Book.
 
@@ -90,9 +90,9 @@ stored in ProductiveNUS.
 
 Examples: 
 - `list 2` displays all your lessons and assignments within 
-the current and the next week.
-- `list 3` displays all your lessons and assignments within the current 
-and next 2 weeks.
+2 weeks (including the current week).
+- `list 3` displays all your lessons and assignments within  
+3 weeks (including the current week).
 - `list ` displays all your lessons and assignments.
 
 ### Deleting a person : `delete`
