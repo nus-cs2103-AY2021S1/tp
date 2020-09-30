@@ -29,8 +29,14 @@ public class AddFinanceCommandParser implements Parser<AddFinanceCommand> {
         }
 
         double amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        LocalDateTime datetime = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_DATETIME));
-        FinanceRecord record = new FinanceRecord(amount, datetime);
+        FinanceRecord record;
+
+        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
+            LocalDateTime datetime = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_DATETIME).get());
+            record = new FinanceRecord(amount, datetime);
+        } else {
+            record = new FinanceRecord(amount);
+        }
 
         return new AddFinanceCommand(record);
     }
