@@ -77,19 +77,22 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all assignments and lessons : `list NUMBER`
+### Listing all assignments and lessons : `list`
+
+Format: `list [NUMBER]`
 
 - Shows a list of all assignments and lessons in your schedule within `NUMBER` 
 number of weeks.
+- `list` command without `NUMBER` displays your entire schedule.
 - A week in this context starts with Monday and ends with Sunday.
 
-Format: `list NUMBER`
 
 Examples: 
 - `list 2` displays all your assignments and lessons within 
 the current and the next week.
 - `list 3` displays all your assignments and lessons within the current 
 and next 2 weeks.
+- `list ` displays all your assignments and lessons.
 
 ### Deleting a person : `delete`
 
@@ -143,6 +146,6 @@ Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE mod/MODULE_CODE` <br> e.g., `add n/Math tutorial d/21/03/2020 11:00 AM mod/ST2334`
 **delete** | `delete INDEX`<br> e.g., `delete 3`
-**list** | `list NUMBER` e.g., `list 2`
+**list** | `list [NUMBER]` e.g., `list 2`, `list`
 **import** | `import NUSMODS_URL`
 **remind** | `remind INDEX`
