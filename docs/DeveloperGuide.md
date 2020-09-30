@@ -315,9 +315,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User retrieves NUSMods timetable URL from the NUSMods website.
 2.  User requests to import NUSMods timetable using their NUSMods timetable URL.
-3.  Academic Schedule Manager retrieves lesson data from NUSMods API.
-4.  Academic Schedule Manager adds all the lessons according to the data retrieved.
-5.  Academic Schedule Manager shows a success message with details of the lessons added.
+3.  Academic Schedule Manager adds all the lessons according to the data retrieved.
+4.  Academic Schedule Manager shows a success message with details of the lessons added.
 
     Use case ends.
 
@@ -331,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. User already has a timetable imported before.
 
-    * 2b1. Academic Schedule Manager deletes all lessons from previously imported timetable.
+    * 2b1. Academic Schedule Manager informs user that previously imported lesson will be deleted.
     
       Use case resumes at step 3.
 
