@@ -49,12 +49,12 @@ Adds a client to I4I.
 A person can have any number of tags (including 0)
 </div>
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/SOURCE]…​`
 
 Examples: 
    
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-   *` add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal o/This client is new.`
+   * `add n/Betsy Crowe s/friend from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new.`
 
 
 ### Listing all clients : `list`
@@ -89,7 +89,7 @@ Notes:
 
 Action | Format, Examples
 --------|------------------
-**Add** | add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [t/TAG]…​<br>e.g., add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. t/friend t/criminal
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/SOURCE]…`​<br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend`
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Help** | `help`
