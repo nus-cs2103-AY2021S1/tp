@@ -25,9 +25,25 @@ public class ModuleList {
      * @param index Zero based index of the module.
      * @return Module matching the input module name if it exists, null otherwise.
      */
-    public Module getModule(int index) {
+    public Module getModuleByIndex(int index) {
         Module module = this.modules.get(index);
         return module;
+    }
+
+    /**
+     * Retrieves the module matching the input module name from the list of modules.
+     *
+     * @param inputModuleName
+     * @return Module matching the input module name if it exists, null otherwise.
+     */
+    public Module getModule(String inputModuleName) {
+        for (Module module : this.modules) {
+            String moduleName = module.getName();
+            if (moduleName.equals(inputModuleName)) {
+                return module;
+            }
+        }
+        return null;
     }
 
     /**

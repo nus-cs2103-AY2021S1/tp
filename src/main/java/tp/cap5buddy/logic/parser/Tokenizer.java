@@ -30,7 +30,7 @@ public class Tokenizer {
                 this.words[0] = word;
             } else if (prefix.equals(PrefixList.MODULE_LINK_PREFIX.toString())) {
                 this.words[1] = word;
-            }  else if (prefix.equals(PrefixList.MODULE_NEWNAME_PREFIX.toString())) {
+            } else if (prefix.equals(PrefixList.MODULE_NEWNAME_PREFIX.toString())) {
                 this.words[2] = word;
             } else if (prefix.equals(PrefixList.MODULE_VIEW_PREFIX.toString())) {
                 this.words[3] = word;

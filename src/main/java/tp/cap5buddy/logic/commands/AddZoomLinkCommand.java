@@ -36,7 +36,7 @@ public class AddZoomLinkCommand extends Command {
             throw new CommandException(error);
         }
         int index = this.moduleID - 1;
-        Module module = modules.getModule(index);
+        Module module = modules.getModuleByIndex(index);
         Module updatedModule = module.addZoomLink(this.zoomLink);
         modules.updateModule(index, updatedModule);
         String successMessage = createSuccessMessage(updatedModule.getName());
