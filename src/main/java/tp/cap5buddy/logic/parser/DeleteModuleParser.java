@@ -1,14 +1,12 @@
 package tp.cap5buddy.logic.parser;
 
-import tp.cap5buddy.logic.commands.AddModuleCommand;
 import tp.cap5buddy.logic.commands.Command;
-
+import tp.cap5buddy.logic.commands.DeleteModuleCommand;
 
 /**
- * Represents the parser that handles Add Module command.
+ * Represents the parser that handles Delete Module command.
  */
-public class AddModuleParser extends Parser {
-    private AddModuleCommand command;
+public class DeleteModuleParser extends Parser {
 
     /**
      * Represents the function call that passes info into the Command object.
@@ -16,12 +14,11 @@ public class AddModuleParser extends Parser {
      * @param userInput tokenised information.
      * @return Command the respective command type.
      */
+    @Override
     public Command parse(String userInput) {
-        // this.command = new AddModuleCommand(words);
         Tokenizer token = new Tokenizer(userInput);
         String[] mod = token.getWords();
-        // return this.command;
-        return new AddModuleCommand(mod);
+        int position = Integer.parseInt(mod[2]);
+        return new DeleteModuleCommand(position);
     }
-
 }

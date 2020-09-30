@@ -26,6 +26,7 @@ public class ParserManager {
 
     /**
      * Returns the String of the result after parsing the input.
+     *
      * @param input user input.
      * @return String result message.
      */
@@ -33,8 +34,6 @@ public class ParserManager {
         this.currentInput = input;
         getCommand();
         getNonCommand();
-        Tokenizer token = new Tokenizer(this.nonCommand);
-        String[] words = token.getWords();
         Parser parser;
         Command command;
 
@@ -53,6 +52,10 @@ public class ParserManager {
             return command;
         case "viewmodule":
             parser = new ViewModuleParser();
+            command = parser.parse(this.nonCommand);
+            return command;
+        case "deletemodule":
+            parser = new DeleteModuleParser();
             command = parser.parse(this.nonCommand);
             return command;
         default:
