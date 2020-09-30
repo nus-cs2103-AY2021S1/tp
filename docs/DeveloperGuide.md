@@ -262,32 +262,86 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+  ####**Use case: add an exercise**
+  
+  **MSS**
+  
+1.  User requests to add an exercise
+
+2.  Calo adds the exercise
+  
+  Use case ends.
+      
+####**Use case: Find exercises with a keyword**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to find exercises with a keyword
+2.  Calo shows a list of exercises which contain the keyword
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+**The list is empty**
 
+  Calo shows an message indicating that no such exercise exists.
+  
   Use case ends.
+  
+####**Use case: Update an exercise**
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1.  User requests to update a specific exercise in the list
+2.  Calo updates the exercise
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+**The index is invalid**
+
+  Calo shows an message indicating that no such exercise exists.
+  
+  Use case ends.
+  
+####**Use case: Delete an exercise**
+
+**MSS**
+
+1.  User requests to delete a specific exercise in the list
+2.  Calo deletes the exercise
+
+    Use case ends.
+
+**Extensions**
+
+**The index is invalid**
+
+  Calo shows an message indicating that no such exercise exists.
+  
+  Use case ends.
+  
+  ####**Use case: Archive data**
+    
+  **MSS**
+    
+  1.  User requests to archive data to a different file location
+  2.  Calo archives data to the specified location
+    
+      Use case ends.
+  
+  ####**Use case: List exercises**
+  
+  **MSS**
+  
+  1.  User requests to list exercises
+  2.  Calo shows a list of exercises
+  
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -300,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories) 
 
 --------------------------------------------------------------------------------------------------------------------
 
