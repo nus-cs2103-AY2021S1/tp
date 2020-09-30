@@ -261,8 +261,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
+For all use cases (unless specified otherwise):
+- The **System** is `NUStorage`
+- The **Actor** is `User` 
 
-(For all use cases below, the **System** is `NUStorage` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add an inventory item**
 
