@@ -1,4 +1,4 @@
-package seedu.address;
+package chopchop;
 
 import javafx.application.Application;
 

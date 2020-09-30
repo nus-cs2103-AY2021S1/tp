@@ -1,7 +1,6 @@
 package chopchop.model.recipe;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 import java.util.List;
 import java.util.function.Predicate;

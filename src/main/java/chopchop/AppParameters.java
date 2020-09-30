@@ -1,4 +1,4 @@
-package seedu.address;
+package chopchop;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,8 +7,8 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.FileUtil;
+import chopchop.commons.core.LogsCenter;
+import chopchop.commons.util.FileUtil;
 
 /**
  * Represents the parsed command-line parameters given to the application.

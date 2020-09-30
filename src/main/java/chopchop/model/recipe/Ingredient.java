@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Ingredient {
 

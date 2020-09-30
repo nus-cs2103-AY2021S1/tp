@@ -3,7 +3,7 @@ package chopchop.model.recipe;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Recipe {
 
@@ -42,22 +42,6 @@ public class Recipe {
      */
     public List<Step> getSteps() {
         return Collections.unmodifiableList(steps);
-    }
-
-
-    /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSameRecipe(Recipe otherRecipe) {
-        if (otherRecipe == this) {
-            return true;
-        }
-
-        return otherRecipe != null
-                && otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredients().equals(getIngredients())
-                && otherRecipe.getSteps().equals(getSteps());
     }
 
     /**

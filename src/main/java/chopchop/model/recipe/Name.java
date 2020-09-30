@@ -1,7 +1,7 @@
 package chopchop.model.recipe;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static chopchop.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Recipe's name in Chopchop.

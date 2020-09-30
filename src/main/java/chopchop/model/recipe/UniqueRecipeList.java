@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -20,7 +20,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  *
  * Supports a minimal set of list operations.
  *
- * @see Recipe#isSameRecipe(Recipe)
+ * @see Recipe#equals(Recipe)
  */
 public class UniqueRecipeList implements Iterable<Recipe> {
 
@@ -33,7 +33,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
      */
     public boolean contains(Recipe toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameRecipe);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
             throw new RecipeNotFoundException();
         }
 
-        if (!target.isSameRecipe(editedRecipe) && contains(editedRecipe)) {
+        if (!target.equals(editedRecipe) && contains(editedRecipe)) {
             throw new DuplicateRecipeException();
         }
 
@@ -127,7 +127,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     private boolean recipesAreUnique(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size() - 1; i++) {
             for (int j = i + 1; j < recipes.size(); j++) {
-                if (recipes.get(i).isSameRecipe(recipes.get(j))) {
+                if (recipes.get(i).equals(recipes.get(j))) {
                     return false;
                 }
             }

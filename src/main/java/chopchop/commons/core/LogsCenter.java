@@ -1,4 +1,4 @@
-package seedu.address.commons.core;
+package chopchop.commons.core;
 
 import java.io.IOException;
 import java.util.Arrays;

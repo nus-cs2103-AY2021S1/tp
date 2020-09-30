@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package chopchop.logic;
 
 import java.nio.file.Path;
 
