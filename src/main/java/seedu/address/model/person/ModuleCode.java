@@ -9,13 +9,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Module codes should begin with at least 2 alphabets, end with an alphabet/number and cannot be empty.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    //public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]{2,3}[0-9]{4}[a-zA-Z]?";
 
     public final String moduleCode;
 
