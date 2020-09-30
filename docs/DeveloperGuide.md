@@ -262,32 +262,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Academic Schedule Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add an assignment**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an assignment.
+2.  Academic Schedule Manager adds the assignment.
+3.  Academic Schedule Manager shows a success message with details of the assignment added.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The user didn't supply all required parameters.
 
-  Use case ends.
+    * 1a1. Academic Schedule Manager shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+
+* 1b. The given DEADLINE_OF_ASSIGNMENT parameter is in the wrong format.
+
+    * 1b1. Academic Schedule Manager shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC02 - Delete an assignment**
+
+**MSS**
+
+1.  User <ins>requests to list assignments and lessons (UC05)</ins>.
+3.  User requests to delete a specific assignment in the list.
+4.  Academic Schedule Manager deletes the assignment.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid (index is referring to a lesson or index is out of range).
+
+    * 3a1. Academic Schedule Manager shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
