@@ -1,5 +1,6 @@
 package nustorage.logic.commands;
 
+
 import static nustorage.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static nustorage.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static nustorage.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,6 +10,9 @@ import static nustorage.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +24,7 @@ import nustorage.model.Model;
 import nustorage.model.person.NameContainsKeywordsPredicate;
 import nustorage.model.person.Person;
 import nustorage.testutil.EditPersonDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -60,6 +65,34 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+
+    /*
+     * Adapted for NUStorage:
+     */
+    public static final String ITEM_NAME_1 = "ITEM_NAME_1";
+    public static final String ITEM_NAME_2 = "ITEM_NAME_2";
+    public static final String ITEM_NAME_3 = "ITEM_NAME_3";
+
+    public static final int QUANTITY_1 = 10;
+    public static final int QUANTITY_2 = 0;
+    public static final int QUANTITY_3 = 17;
+
+    public static final double AMOUNT_1 = 0.10;
+    public static final double AMOUNT_2 = 17.17;
+    public static final double AMOUNT_3 = 128.99;
+
+
+    public static final LocalDate DATE_1 = LocalDate.of(2020, 10, 1);
+    public static final LocalDate DATE_2 = LocalDate.of(2019, 1, 1);
+    public static final LocalTime TIME_1 = LocalTime.of(23, 59);
+    public static final LocalTime TIME_2 = LocalTime.of(0, 1);
+
+    public static final LocalDateTime DATE_TIME_1 = LocalDateTime.of(DATE_1, TIME_1);
+    public static final LocalDateTime DATE_TIME_2 = LocalDateTime.of(DATE_1, TIME_2);
+    public static final LocalDateTime DATE_TIME_3 = LocalDateTime.of(DATE_2, TIME_1);
+    public static final LocalDateTime DATE_TIME_4 = LocalDateTime.of(DATE_2, TIME_2);
+
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -75,7 +108,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -85,15 +118,17 @@ public class CommandTestUtil {
         }
     }
 
+
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
+
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -111,6 +146,8 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
