@@ -94,4 +94,5 @@ public class JsonCommonCentsStorage implements CommonCentsStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableCommonCents(commonCents), filePath);
     }
+
 }

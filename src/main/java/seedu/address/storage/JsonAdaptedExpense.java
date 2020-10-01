@@ -60,4 +60,5 @@ public class JsonAdaptedExpense extends JsonAdaptedEntry {
         final Set<Tag> modelTags = new HashSet<>(entryTags);
         return new Expense(modelDescription, modelAmount, modelTags);
     }
+
 }

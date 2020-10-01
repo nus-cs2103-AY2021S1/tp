@@ -74,4 +74,5 @@ public class JsonAdaptedAccount {
         modelAcc.setProfits(accountProfits);
         return modelAcc;
     }
+
 }

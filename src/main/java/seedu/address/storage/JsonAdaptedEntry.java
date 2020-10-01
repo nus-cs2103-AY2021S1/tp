@@ -43,4 +43,5 @@ public class JsonAdaptedEntry {
     public Entry toModelType() throws IllegalValueException {
         return null;
     }
+
 }

@@ -40,4 +40,5 @@ public interface CommonCentsStorage {
      * @see #saveCommonCents(ReadOnlyCommonCents)
      */
     void saveCommonCents(ReadOnlyCommonCents commonCents, Path filePath) throws IOException;
+
 }

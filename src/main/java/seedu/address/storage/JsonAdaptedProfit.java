@@ -61,4 +61,5 @@ public class JsonAdaptedProfit extends JsonAdaptedEntry {
         final Set<Tag> modelTags = new HashSet<>(entryTags);
         return new Profit(modelDescription, modelAmount, modelTags);
     }
+
 }
