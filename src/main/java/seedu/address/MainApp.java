@@ -80,9 +80,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        Optional<ReadOnlyMenuManager> menuManagerOptional;
+        List<Optional<ReadOnlyMenuManager>> menuManagersOptional;
         ReadOnlyAddressBook initialData;
-        MenuManager initialMenuManager;
+        List<MenuManager> initialMenuManagers = new ArrayList<>();
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -90,27 +90,25 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
-            menuManagerOptional = new FoodStorageStub().readMenuManager();
-            if (!menuManagerOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialMenuManager = new MenuManager(menuManagerOptional.get());
+            menuManagersOptional = new FoodStorageStub().readMenuManagers();
+            menuManagersOptional.forEach(x -> x.ifPresentOrElse(y ->
+                    initialMenuManagers.add(new MenuManager(y)), () -> {
+                    logger.info("Data file not found. Will be starting with an empty menu");
+                    initialMenuManagers.add(new MenuManager());
+                }
+            ));
+
 
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
-            initialMenuManager = new MenuManager();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
-            initialMenuManager = new MenuManager();
         }
 
 
-        List<MenuManager> list = new ArrayList<>();
-        list.add(initialMenuManager);
-
-        return new ModelManager(initialData, userPrefs, list);
+        return new ModelManager(initialData, userPrefs, initialMenuManagers);
     }
 
     private void initLogging(Config config) {
