@@ -13,7 +13,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Shi Jing Lin
 
-![shijinglin](images/profiles/shijinglin.jpg)
+![shijinglin](images/aqcd.jpg)
 
 [[homepage](https://aqcd.github.io/)]
 
@@ -26,7 +26,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Stephen Tan
 
-![stephentan](images/profiles/blackonyyx.jpg)
+![stephentan](images/blackonyyx.jpg)
 
 [[github](http://github.com/blackonyyx)]
 
@@ -37,7 +37,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Liu Zhengdao
 
-![liuzhengdao](images/profiles/johndoe.png)
+![liuzhengdao](images/johndoe.png)
 
 [[github](https://github.com/justacasul)] 
 
@@ -48,7 +48,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Kheng Hun
 
-![siewkhenghun](images/profiles/johndoe.png)
+![siewkhenghun](images/johndoe.png)
 
 [[github](https://github.com/khenghun)]
 [[portfolio](team/siewkhenghun.md)]
@@ -58,7 +58,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Rahul
 
-![rahul](images/profiles/johndoe.png)
+![rahul](images/johndoe.png)
 
 [[github](https://github.com/Rahul0506)]
 
