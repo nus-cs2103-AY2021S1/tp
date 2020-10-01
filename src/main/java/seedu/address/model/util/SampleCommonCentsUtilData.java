@@ -60,5 +60,5 @@ public class SampleCommonCentsUtilData {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-    
+
 }
