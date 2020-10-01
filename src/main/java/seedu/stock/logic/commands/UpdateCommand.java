@@ -8,6 +8,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
+import java.util.List;
 import java.util.Optional;
 
 import seedu.stock.commons.util.CollectionUtil;
@@ -18,6 +19,7 @@ import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
+import seedu.stock.model.stock.Stock;
 
 public class UpdateCommand extends Command {
 
@@ -58,7 +60,31 @@ public class UpdateCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Stock> lastShownInventory = model.getFilteredStockList();
+
+        // Dummy stock for now
+        Stock stockToUpdate = lastShownInventory.get(0);
+        Stock updatedStock = createUpdatedStock(stockToUpdate, updateStockDescriptor);
+
+        if (!stockToUpdate.isSameStock(updatedStock) && model.hasStock(updatedStock)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STOCK);
+        }
+
+        // TODO: Implement set stock in model class
+
         return null;
+    }
+
+    private static Stock createUpdatedStock(Stock stockToUpdate, UpdateStockDescriptor updateStockDescriptor) {
+        assert stockToUpdate != null;
+
+        Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(stockToUpdate.getQuantity());
+        Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
+        Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
+        Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
+
+        return new Stock(updatedName, null, updatedSource, updatedQuantity, updatedLocation);
     }
 
     @Override
