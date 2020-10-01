@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Sieow Je Min
 
-<img src="images/jeminseow.png" width="200px">
+<img src="images/jeminsieow.png" width="200px">
 
 [[github](http://github.com/jeminsieow)]
 
