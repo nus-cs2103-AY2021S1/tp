@@ -6,6 +6,9 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
+/**
+ * Adds a finance record to the address book.
+ */
 public class AddFinanceCommand extends Command {
 
     public static final String COMMAND_WORD = "add_finance";
@@ -23,7 +26,7 @@ public class AddFinanceCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
 
         model.addFinanceRecord(newRecord);
