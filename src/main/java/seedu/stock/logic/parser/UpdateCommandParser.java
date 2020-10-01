@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
@@ -19,7 +20,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SERIAL_NUMBER, PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION
+                        args, PREFIX_SERIAL_NUMBER, PREFIX_QUANTITY, PREFIX_NEW_QUANTITY,
+                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION
                 );
 
         // If serial number is not provided
@@ -42,8 +44,17 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         // Update quantity with new quantity provided
-        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
-            updateStockDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
+        if (argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+            updateStockDescriptor.setQuantity(
+                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_NEW_QUANTITY).get()));
+        }
+
+        // Increment quantity with increment value provided
+        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()
+                && !argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+            updateStockDescriptor.setQuantity(
+                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
+            updateStockDescriptor.setIsIncrement(true);
         }
 
         // Update location with new location provided
@@ -55,6 +66,6 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);
         }
 
-        return new UpdateCommand(null, updateStockDescriptor);
+        return new UpdateCommand(updateStockDescriptor);
     }
 }

@@ -10,7 +10,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Optional;
 
-import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.CollectionUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -45,19 +44,15 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the address book.";
 
-    private final Index index;
     private final UpdateStockDescriptor updateStockDescriptor;
 
     /**
      * Constructs a new update command.
-     * @param index Index of the stock in inventory.
      * @param updateStockDescriptor Details to be updated.
      */
-    public UpdateCommand(Index index, UpdateStockDescriptor updateStockDescriptor) {
-        requireNonNull(index);
+    public UpdateCommand(UpdateStockDescriptor updateStockDescriptor) {
         requireNonNull(updateStockDescriptor);
 
-        this.index = index;
         this.updateStockDescriptor = updateStockDescriptor;
     }
 
@@ -91,6 +86,8 @@ public class UpdateCommand extends Command {
         private Source source;
         private Quantity quantity;
         private Location location;
+
+        private boolean isIncrement;
 
         public UpdateStockDescriptor() {}
 
@@ -140,6 +137,10 @@ public class UpdateCommand extends Command {
 
         public Optional<Quantity> getQuantity() {
             return Optional.ofNullable(quantity);
+        }
+
+        public void setIsIncrement(boolean isIncrement) {
+            this.isIncrement = isIncrement;
         }
 
         public void setLocation(Location location) {
