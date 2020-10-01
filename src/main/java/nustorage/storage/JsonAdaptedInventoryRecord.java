@@ -6,6 +6,7 @@ import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.record.InventoryRecord;
 
