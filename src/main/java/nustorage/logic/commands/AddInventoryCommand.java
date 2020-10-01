@@ -6,6 +6,9 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.InventoryRecord;
 
+/**
+ * An add inventory command class
+ */
 public class AddInventoryCommand extends Command {
 
     public static final String COMMAND_WORD = "add_inventory";
