@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String TITLE_DESC_COOK = " " + PREFIX_TITLE + VALID_TITLE_AMY;
-    public static final String TITLE_DESC_WASH = " " + PREFIX_TITLE + VALID_TITLE_BOB;
+    public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
+    public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -57,14 +57,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTaskDescriptor DESC_COOK;
-    public static final EditCommand.EditTaskDescriptor DESC_WASH;
+    public static final EditCommand.EditTaskDescriptor DESC_AMY;
+    public static final EditCommand.EditTaskDescriptor DESC_BOB;
 
     static {
-        DESC_COOK = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
+        DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_WASH = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
+        DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }

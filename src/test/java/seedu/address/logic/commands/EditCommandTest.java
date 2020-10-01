@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_COOK;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_WASH;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
@@ -147,10 +147,10 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TASK, DESC_COOK);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TASK, DESC_AMY);
 
         // same values -> returns true
-        EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(DESC_COOK);
+        EditTaskDescriptor copyDescriptor = new EditTaskDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TASK, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TASK, DESC_COOK)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TASK, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TASK, DESC_WASH)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TASK, DESC_BOB)));
     }
 
 }
