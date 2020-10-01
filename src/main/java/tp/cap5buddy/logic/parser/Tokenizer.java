@@ -5,12 +5,13 @@ package tp.cap5buddy.logic.parser;
  * Represents the token of each user input.
  */
 public class Tokenizer {
-    private static final int SIZE = 4; // updates as the number of prefixes increases.
+    private static final int SIZE = 5; // updates as the number of prefixes increases.
     private String[] words = new String[SIZE];
     private String input;
 
     /**
      * Constructs the tokenising object.
+     *
      * @param input
      */
     public Tokenizer(String input) {
@@ -34,6 +35,8 @@ public class Tokenizer {
                 this.words[2] = word;
             } else if (prefix.equals(PrefixList.MODULE_VIEW_PREFIX.toString())) {
                 this.words[3] = word;
+            } else if (prefix.equals(PrefixList.MODULE_DELETE_PREFIX.toString())) {
+                this.words[4] = word;
             } else if (prefix.equals(PrefixList.MODULE_INDEX_PREFIX.toString())) {
                 this.words[4] = word;
             } else {

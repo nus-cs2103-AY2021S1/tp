@@ -7,5 +7,6 @@ public class PrefixList {
     public static final Prefix MODULE_INDEX_PREFIX = new Prefix("i/");
     public static final Prefix MODULE_NEWNAME_PREFIX = new Prefix("e/");
     public static final Prefix MODULE_VIEW_PREFIX = new Prefix("v/");
+    public static final Prefix MODULE_DELETE_PREFIX = new Prefix("d/");
 
 }

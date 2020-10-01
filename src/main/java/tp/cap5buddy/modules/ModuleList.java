@@ -86,7 +86,17 @@ public class ModuleList {
     }
 
     /**
+     * Deletes a module at the stated position starting from 1.
+     *
+     * @param position the position of the module to delete given by the user.
+     */
+    public void deleteModule(int position) {
+        modules.remove(position - 1);
+    }
+
+    /**
      * Returns the size of the list.
+     *
      * @return integer size.
      */
     public int getListSize() {
