@@ -9,7 +9,7 @@ import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
 
 /**
- * Represents a storage for {@link UserPrefs}.
+ * Represents a storage for {@link com.eva.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
 

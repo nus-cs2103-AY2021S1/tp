@@ -5,12 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import com.eva.commons.exceptions.DataConversionException;
-import com.eva.model.AddressBook;
 import com.eva.model.ReadOnlyAddressBook;
 
 
 /**
- * Represents a storage for {@link AddressBook}.
+ * Represents a storage for {@link com.eva.model.AddressBook}.
  */
 public interface AddressBookStorage {
 

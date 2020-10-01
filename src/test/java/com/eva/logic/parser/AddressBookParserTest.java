@@ -3,6 +3,7 @@ package com.eva.logic.parser;
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static com.eva.testutil.Assert.assertThrows;
+import static com.eva.testutil.PersonUtil.getAddCommand;
 import static com.eva.testutil.PersonUtil.getEditPersonDescriptorDetails;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +29,6 @@ import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
 import com.eva.testutil.EditPersonDescriptorBuilder;
 import com.eva.testutil.PersonBuilder;
-import com.eva.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
@@ -37,7 +37,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        AddCommand command = (AddCommand) parser.parseCommand(getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 

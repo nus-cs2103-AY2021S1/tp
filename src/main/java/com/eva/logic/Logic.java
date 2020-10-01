@@ -6,7 +6,6 @@ import com.eva.commons.core.GuiSettings;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
-import com.eva.model.Model;
 import com.eva.model.ReadOnlyAddressBook;
 import com.eva.model.person.Person;
 
@@ -28,7 +27,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see com.eva.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
