@@ -30,75 +30,85 @@ class JsonAdaptedInventoryRecordTest {
 
     @Test
     void toModelType_validSourceRecordA_returnsInventoryRecord() throws Exception {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(INVENTORY_RECORD_A);
-        assertEquals(INVENTORY_RECORD_A, IR.toModelType());
+        JsonAdaptedInventoryRecord testInventoryRecord = new JsonAdaptedInventoryRecord(INVENTORY_RECORD_A);
+        assertEquals(INVENTORY_RECORD_A, testInventoryRecord.toModelType());
     }
 
 
     @Test
     void toModelType_validSourceRecordB_returnsInventoryRecord() throws Exception {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(INVENTORY_RECORD_B);
-        assertEquals(INVENTORY_RECORD_B, IR.toModelType());
+        JsonAdaptedInventoryRecord testInventoryRecord = new JsonAdaptedInventoryRecord(INVENTORY_RECORD_B);
+        assertEquals(INVENTORY_RECORD_B, testInventoryRecord.toModelType());
     }
 
 
     @Test
     void toModelType_validSourceRecordC_returnsInventoryRecord() throws Exception {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(INVENTORY_RECORD_C);
-        assertEquals(INVENTORY_RECORD_C, IR.toModelType());
+        JsonAdaptedInventoryRecord testInventoryRecord = new JsonAdaptedInventoryRecord(INVENTORY_RECORD_C);
+        assertEquals(INVENTORY_RECORD_C, testInventoryRecord.toModelType());
     }
 
 
     @Test
     void toModelType_validDetails1_returnsInventoryRecord() throws Exception {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_1, TIME_1);
-        assertEquals(new InventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_1, TIME_1), IR.toModelType());
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_1, TIME_1);
+        assertEquals(new InventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_1, TIME_1),
+                testInventoryRecord.toModelType());
     }
 
 
     @Test
     void toModelType_validDetails2_returnsInventoryRecord() throws Exception {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_2, TIME_2);
-        assertEquals(new InventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_2, TIME_2), IR.toModelType());
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_2, TIME_2);
+        assertEquals(new InventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_2, TIME_2),
+                testInventoryRecord.toModelType());
     }
 
 
     @Test
     void toModelType_validDetails3_returnsInventoryRecord() throws Exception {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, DATE_1, TIME_2);
-        assertEquals(new InventoryRecord(ITEM_NAME_3, QUANTITY_3, DATE_1, TIME_2), IR.toModelType());
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, DATE_1, TIME_2);
+        assertEquals(new InventoryRecord(ITEM_NAME_3, QUANTITY_3, DATE_1, TIME_2),
+                testInventoryRecord.toModelType());
     }
 
 
     @Test
     void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(null, QUANTITY_1, DATE_1, TIME_1);
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(null, QUANTITY_1, DATE_1, TIME_1);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "item name");
-        assertThrows(IllegalValueException.class, expectedMessage, IR::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
 
 
     @Test
     void toModelType_invalidQuantity_throwsIllegalValueException() {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(ITEM_NAME_2, -1, DATE_2, TIME_2);
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_2, -1, DATE_2, TIME_2);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "quantity");
-        assertThrows(IllegalValueException.class, expectedMessage, IR::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
 
 
     @Test
     void toModelType_invalidDate_throwsIllegalValueException() {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, null, TIME_1);
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, null, TIME_1);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "date");
-        assertThrows(IllegalValueException.class, expectedMessage, IR::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
 
 
     @Test
     void toModelType_invalidTime_throwsIllegalValueException() {
-        JsonAdaptedInventoryRecord IR = new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, DATE_1, null);
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, DATE_1, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "time");
-        assertThrows(IllegalValueException.class, expectedMessage, IR::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
 
 }
