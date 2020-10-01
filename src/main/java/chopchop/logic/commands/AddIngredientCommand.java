@@ -22,8 +22,8 @@ public class AddIngredientCommand extends AddCommand {
         + PREFIX_QUANTITY + "3"
         + PREFIX_EXPIRY + "2020-10-05";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the ingredient book";
 
     private final Ingredient toAdd;
 
@@ -41,7 +41,7 @@ public class AddIngredientCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasIngredient(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
         }
 
         model.addIngredient(toAdd);
@@ -54,4 +54,5 @@ public class AddIngredientCommand extends AddCommand {
             || (other instanceof AddIngredientCommand // instanceof handles nulls
             && toAdd.equals(((AddIngredientCommand) other).toAdd));
     }
+
 }

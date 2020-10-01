@@ -2,6 +2,7 @@ package chopchop.model;
 
 import static java.util.Objects.requireNonNull;
 import java.util.List;
+import chopchop.model.recipe.Recipe;
 import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ObservableList;
 
@@ -51,11 +52,27 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
     }
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    public boolean hasRecipe(FoodEntry entry) {
+        requireNonNull(entry);
+        return entries.contains(entry);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addIngredient(Ingredient p) {
         entries.add(p);
+    }
+
+    /**
+     * Adds a recipe to the recipe book.
+     * The recipe must not already exist in the recipe book.
+     */
+    public void addRecipe(Recipe r) {
+        entries.add(r);
     }
 
     /**
@@ -71,10 +88,29 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
     }
 
     /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setRecipe(Recipe target, Recipe editedRecipe) {
+        requireNonNull(editedRecipe);
+
+        entries.setEntry(target, editedRecipe);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeIngredient(Ingredient key) {
+        entries.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code RecipeBook}.
+     * {@code key} must exist in the recipe book.
+     */
+    public void removeRecipe(Recipe key) {
         entries.remove(key);
     }
 

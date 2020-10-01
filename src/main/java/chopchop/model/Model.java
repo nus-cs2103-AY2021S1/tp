@@ -16,7 +16,7 @@ import chopchop.commons.core.GuiSettings;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
+    Predicate<FoodEntry> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
     Predicate<FoodEntry> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
 
     /**
@@ -88,7 +88,7 @@ public interface Model {
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredRecipeList(Predicate<Recipe> predicate);
+    void updateFilteredRecipeList(Predicate<FoodEntry> predicate);
 
     /**
      * Sets the user prefs' address book file path.
@@ -129,7 +129,7 @@ public interface Model {
     void setIngredient(Ingredient target, Ingredient editedIngredient);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<FoodEntry> getFilteredIngredientList();
+    ObservableList<Ingredient> getFilteredIngredientList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

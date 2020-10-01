@@ -9,9 +9,6 @@ public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the address book";
-
     private final FoodEntry toAdd;
 
     /**

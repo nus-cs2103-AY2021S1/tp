@@ -3,12 +3,14 @@ package chopchop.model.recipe;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import chopchop.model.attributes.Name;
+import chopchop.model.attributes.Step;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.FoodEntry;
+
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
-public class Recipe {
-
-    // Identity fields
-    private final Name name;
+public class Recipe extends FoodEntry{
 
     // Data fields
     private final Set<Ingredient> ingredients = new HashSet<>();
@@ -18,14 +20,10 @@ public class Recipe {
      * Every field must be present and not null.
      */
     public Recipe(Name name, Set<Ingredient> ingredients, List<Step> steps) {
+        super(name);
         requireAllNonNull(name, ingredients, steps);
-        this.name = name;
         this.ingredients.addAll(ingredients);
         this.steps.addAll(steps);
-    }
-
-    public Name getName() {
-        return name;
     }
 
     /**
