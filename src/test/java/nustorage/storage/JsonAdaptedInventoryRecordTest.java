@@ -17,9 +17,10 @@ import static nustorage.testutil.TypicalInventoryRecords.INVENTORY_RECORD_B;
 import static nustorage.testutil.TypicalInventoryRecords.INVENTORY_RECORD_C;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.record.InventoryRecord;
-import org.junit.jupiter.api.Test;
 
 
 class JsonAdaptedInventoryRecordTest {

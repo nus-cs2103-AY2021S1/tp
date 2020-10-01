@@ -1,14 +1,6 @@
 package nustorage.logic.commands;
 
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 import static nustorage.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static nustorage.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static nustorage.logic.parser.CliSyntax.PREFIX_NAME;
@@ -17,6 +9,13 @@ import static nustorage.logic.parser.CliSyntax.PREFIX_TAG;
 import static nustorage.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
