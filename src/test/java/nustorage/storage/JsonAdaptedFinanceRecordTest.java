@@ -4,11 +4,11 @@ package nustorage.storage;
 import static nustorage.logic.commands.CommandTestUtil.AMOUNT_1;
 import static nustorage.logic.commands.CommandTestUtil.AMOUNT_2;
 import static nustorage.logic.commands.CommandTestUtil.AMOUNT_3;
-import static nustorage.logic.commands.CommandTestUtil.DATE_1;
-import static nustorage.logic.commands.CommandTestUtil.DATE_2;
-import static nustorage.logic.commands.CommandTestUtil.TIME_1;
-import static nustorage.logic.commands.CommandTestUtil.TIME_2;
 import static nustorage.testutil.Assert.assertThrows;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_1;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_2;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_3;
+import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_4;
 import static nustorage.testutil.TypicalFinanceRecords.RECORD_A;
 import static nustorage.testutil.TypicalFinanceRecords.RECORD_B;
 import static nustorage.testutil.TypicalFinanceRecords.RECORD_C;
@@ -47,28 +47,28 @@ class JsonAdaptedFinanceRecordTest {
 
     @Test
     void toModelType_validDetails1_returnsFinanceRecord() throws Exception {
-        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_1, DATE_1, TIME_1);
-        assertEquals(new FinanceRecord(AMOUNT_1, DATE_1, TIME_1), FR.toModelType());
+        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_1, DATE_TIME_1);
+        assertEquals(new FinanceRecord(AMOUNT_1, DATE_TIME_1), FR.toModelType());
     }
 
 
     @Test
     void toModelType_validDetails2_returnsFinanceRecord() throws Exception {
-        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_2, DATE_2, TIME_2);
-        assertEquals(new FinanceRecord(AMOUNT_2, DATE_2, TIME_2), FR.toModelType());
+        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_2, DATE_TIME_2);
+        assertEquals(new FinanceRecord(AMOUNT_2, DATE_TIME_2), FR.toModelType());
     }
 
 
     @Test
     void toModelType_validDetails3_returnsFinanceRecord() throws Exception {
-        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_3, DATE_2, TIME_1);
-        assertEquals(new FinanceRecord(AMOUNT_3, DATE_1, TIME_1), FR.toModelType());
+        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_3, DATE_TIME_3);
+        assertEquals(new FinanceRecord(AMOUNT_3, DATE_TIME_3), FR.toModelType());
     }
 
 
     @Test
     void toModelType_invalidAmount_throwsIllegalValueException() {
-        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(-1, DATE_1, TIME_1);
+        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(-1, DATE_TIME_4);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "amount");
         assertThrows(IllegalValueException.class, expectedMessage, FR::toModelType);
     }
@@ -76,17 +76,10 @@ class JsonAdaptedFinanceRecordTest {
 
     @Test
     void toModelType_invalidDate_throwsIllegalValueException() {
-        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_2, null, TIME_1);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "date");
+        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_2, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "date-time");
         assertThrows(IllegalValueException.class, expectedMessage, FR::toModelType);
     }
 
-
-    @Test
-    void toModelType_invalidTime_throwsIllegalValueException() {
-        JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_3, DATE_1, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "time");
-        assertThrows(IllegalValueException.class, expectedMessage, FR::toModelType);
-    }
 
 }

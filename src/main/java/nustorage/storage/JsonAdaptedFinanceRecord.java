@@ -1,8 +1,7 @@
 package nustorage.storage;
 
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,8 +17,7 @@ class JsonAdaptedFinanceRecord {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Finance record's %s field is missing!";
 
     private final double amount;
-    private final LocalDate date;
-    private final LocalTime time;
+    private final LocalDateTime dateTime;
 
 
     /**
@@ -27,11 +25,9 @@ class JsonAdaptedFinanceRecord {
      */
     @JsonCreator
     public JsonAdaptedFinanceRecord(@JsonProperty("amount") double amount,
-                                    @JsonProperty("date") LocalDate date,
-                                    @JsonProperty("time") LocalTime time) {
+                                    @JsonProperty("dateTime") LocalDateTime dateTime) {
         this.amount = amount;
-        this.date = date;
-        this.time = time;
+        this.dateTime = dateTime;
     }
 
 
@@ -41,8 +37,7 @@ class JsonAdaptedFinanceRecord {
     @JsonCreator
     public JsonAdaptedFinanceRecord(FinanceRecord source) {
         this.amount = source.getAmount();
-        this.date = source.getDate();
-        this.time = source.getTime();
+        this.dateTime = source.getDate();
     }
 
 
@@ -57,17 +52,12 @@ class JsonAdaptedFinanceRecord {
         }
         final double modelAmount = this.amount;
 
-        if (this.date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
+        if (this.dateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date-time"));
         }
-        final LocalDate modelDate = this.date;
+        final LocalDateTime modelDateTime = this.dateTime;
 
-        if (this.time == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "time"));
-        }
-        final LocalTime modelTime = this.time;
-
-        return new FinanceRecord(modelAmount, modelDate, modelTime);
+        return new FinanceRecord(modelAmount, modelDateTime);
 
     }
 

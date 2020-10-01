@@ -2,9 +2,11 @@ package nustorage.logic.commands;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static nustorage.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -85,6 +87,12 @@ public class CommandTestUtil {
     public static final LocalDate DATE_2 = LocalDate.of(2019, 1, 1);
     public static final LocalTime TIME_1 = LocalTime.of(23, 59);
     public static final LocalTime TIME_2 = LocalTime.of(0, 1);
+
+    public static final LocalDateTime DATE_TIME_1 = LocalDateTime.of(DATE_1, TIME_1);
+    public static final LocalDateTime DATE_TIME_2 = LocalDateTime.of(DATE_1, TIME_2);
+    public static final LocalDateTime DATE_TIME_3 = LocalDateTime.of(DATE_2, TIME_1);
+    public static final LocalDateTime DATE_TIME_4 = LocalDateTime.of(DATE_2, TIME_2);
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
