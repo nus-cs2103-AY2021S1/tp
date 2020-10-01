@@ -263,7 +263,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a contact by name         | locate details of contacts without having to go through the entire list|
 | `* * *`  | forgetful user                             | add remarks to contacts        | remember certain details about them                                    |
 | `* * *`  | faculty leader                             | store a contact's building     | keep track of where to find them                                       |
-| `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective fields                                  |
+| `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective field                                  |
 | `* * *`  | faculty leader                             | edit a contact's building      | keep the data up to date                                               |
 | `* * *`  | faculty leader                             | edit a contact's department    | keep the data up to date                                               |
 | `* * *`  | faculty leader                             | add a new module               |                                                                        |
