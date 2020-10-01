@@ -27,6 +27,12 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 
 </div>
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
 ### Adding a contact: `add`
 
 Adds a contact to FaculType.
@@ -157,3 +163,19 @@ FaculType data are saved in the hard disk automatically after any command that c
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FaculType home folder.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT b/BUILDING [t/TAG]…​` <br> e.g., `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [b/BUILDING] [t/TAG]…​`<br> e.g.,`edit 1 d/Computing b/COM2`
+**Remark** | `remark INDEX [r/REMARK]`<br> e.g., `remark 1 r/Wears red glasses`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Addmod** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g., `addmod m/CS2103 n/Software Engineering`
+**Delmod** | `delmod m/MODULE_CODE`<br> e.g., `delmod m/CS2103`
+**List** | `list`
+**Help** | `help`
