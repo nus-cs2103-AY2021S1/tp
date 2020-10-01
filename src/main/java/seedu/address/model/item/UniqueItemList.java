@@ -99,6 +99,33 @@ public class UniqueItemList implements Iterable<Item> {
     }
 
     /**
+     * Gets item ID given item name.
+     */
+    public int findItemId(String itemName) {
+        for (Item item : internalList) {
+            if (item.getName().equals(itemName)) {
+                return item.getId();
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Adds a recipe to an item.
+     *
+     * @param itemId ID of item the recipe is to be added to.
+     * @param recipeId ID of recipe to be added to item.
+     */
+    public void addRecipeIdToItem(int itemId, int recipeId) {
+        for (Item item : internalList) {
+            if (item.getId() == itemId) {
+                item.addRecipeId(recipeId);
+                break;
+            }
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Item> asUnmodifiableObservableList() {

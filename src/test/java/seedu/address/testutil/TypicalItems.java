@@ -7,8 +7,6 @@ import java.util.List;
 import seedu.address.model.ItemList;
 import seedu.address.model.item.Item;
 
-
-
 /**
  * A utility class containing a list of {@code Item} objects to be used in tests.
  */

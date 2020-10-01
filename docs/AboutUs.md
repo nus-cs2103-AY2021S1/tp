@@ -42,7 +42,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Liu Zhengdao
 
-![liuzhengdao](images/profiles/johndoe.png)
+![liuzhengdao](images/johndoe.png)
 
 [[github](https://github.com/justacasul)] 
 
@@ -68,7 +68,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
     
 ### Rahul
 
-![rahul](images/profiles/johndoe.png)
+![rahul](images/johndoe.png)
 
 [[github](https://github.com/Rahul0506)]
 
