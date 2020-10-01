@@ -2,14 +2,14 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_WASH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_WASH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_WASH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_WASH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.BOB;
+import static seedu.address.testutil.TypicalTasks.HOMEWORK;
+import static seedu.address.testutil.TypicalTasks.WASH;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,70 +26,70 @@ public class TaskTest {
     @Test
     public void isSameTask() {
         // same object -> returns true
-        assertTrue(ALICE.isSameTask(ALICE));
+        assertTrue(HOMEWORK.isSameTask(HOMEWORK));
 
         // null -> returns false
-        assertFalse(ALICE.isSameTask(null));
+        assertFalse(HOMEWORK.isSameTask(null));
 
         // different phone and email -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSameTask(editedAlice));
+        Task editedAlice = new TaskBuilder(HOMEWORK).withPhone(VALID_PHONE_WASH).withEmail(VALID_EMAIL_WASH).build();
+        assertFalse(HOMEWORK.isSameTask(editedAlice));
 
-        // different name -> returns false
-        editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameTask(editedAlice));
+        // different title -> returns false
+        editedAlice = new TaskBuilder(HOMEWORK).withTitle(VALID_TITLE_WASH).build();
+        assertFalse(HOMEWORK.isSameTask(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        // same title, same phone, different attributes -> returns true
+        editedAlice = new TaskBuilder(HOMEWORK).withEmail(VALID_EMAIL_WASH).withAddress(VALID_ADDRESS_WASH)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        assertTrue(HOMEWORK.isSameTask(editedAlice));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+        // same title, same email, different attributes -> returns true
+        editedAlice = new TaskBuilder(HOMEWORK).withPhone(VALID_PHONE_WASH).withAddress(VALID_ADDRESS_WASH)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        assertTrue(HOMEWORK.isSameTask(editedAlice));
 
-        // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTask(editedAlice));
+        // same title, same phone, same email, different attributes -> returns true
+        editedAlice = new TaskBuilder(HOMEWORK).withAddress(VALID_ADDRESS_WASH).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(HOMEWORK.isSameTask(editedAlice));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Task aliceCopy = new TaskBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Task aliceCopy = new TaskBuilder(HOMEWORK).build();
+        assertTrue(HOMEWORK.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(HOMEWORK.equals(HOMEWORK));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(HOMEWORK.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(HOMEWORK.equals(5));
 
         // different task -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(HOMEWORK.equals(WASH));
 
         // different name -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Task editedAlice = new TaskBuilder(HOMEWORK).withTitle(VALID_TITLE_WASH).build();
+        assertFalse(HOMEWORK.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(HOMEWORK).withPhone(VALID_PHONE_WASH).build();
+        assertFalse(HOMEWORK.equals(editedAlice));
 
         // different email -> returns false
-        editedAlice = new TaskBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(HOMEWORK).withEmail(VALID_EMAIL_WASH).build();
+        assertFalse(HOMEWORK.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(HOMEWORK).withAddress(VALID_ADDRESS_WASH).build();
+        assertFalse(HOMEWORK.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new TaskBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TaskBuilder(HOMEWORK).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(HOMEWORK.equals(editedAlice));
     }
 }

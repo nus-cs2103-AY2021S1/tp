@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Phone;
+import seedu.address.model.task.Title;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -36,18 +36,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Title parseTitle(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Title.isValidTitle(trimmedName)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Title(trimmedName);
     }
 
     /**

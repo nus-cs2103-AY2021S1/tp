@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same title as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -260,7 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | user                                       | find tasks by module                           |                                  |
 | `* *  `  | user                                       | find tasks by due date                         |                                  |
 | `* *  `  | user                                       | mark my task as done after it is completed     |                                  |
-| `* * *`  | user                                       | find tasks by name                             |                                  |
+| `* * *`  | user                                       | find tasks by title                             |                                  |
 | `* *  `  | user                                       | find tasks by category                         |                                  |
 | `* * *`  | user                                       | edit my tasks                                  |                                  |
   
