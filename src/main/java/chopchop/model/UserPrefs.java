@@ -42,10 +42,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings;
     }
 
+    @Override
+    public Path getAddressBookFilePath() {
+        return null;
+    }
+
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
+
 
     public Path getRecipeBookFilePath() {
         return recipeBookFilePath;
@@ -81,6 +87,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + recipeBookFilePath);
+
         return sb.toString();
     }
 

@@ -7,14 +7,22 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import chopchop.model.ingredient.IngredientBook;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
+
 import chopchop.model.recipe.Recipe;
 
 /**
  * Represents the in-memory model of the recipe book data.
+=======
+import chopchop.model.ingredient.Ingredient;
+
+/**
+ * Represents the in-memory model of the address book data.
+>>>>>>> cb563d89572c21157e8c19f7640820f6f84be35a
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -22,6 +30,11 @@ public class ModelManager implements Model {
     private final RecipeBook recipeBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Recipe> filteredRecipes;
+
+//    private final IngredientBook ingredientBook;
+//    private final UserPrefs userPrefs;
+//    private final FilteredList<FoodEntry> filteredIngredients;
+
 
     /**
      * Initializes a ModelManager with the given recipeBook and userPrefs.
@@ -39,6 +52,26 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new RecipeBook(), new UserPrefs());
+
+
+
+//    /**
+//     * Initializes a ModelManager with the given ingredientBook and userPrefs.
+//     */
+//    public ModelManager(ReadOnlyFoodEntryBook ingredientBook, ReadOnlyUserPrefs userPrefs) {
+//        super();
+//        requireAllNonNull(ingredientBook, userPrefs);
+//
+//        logger.fine("Initializing with address book: " + ingredientBook + " and user prefs " + userPrefs);
+//
+//        this.ingredientBook = new IngredientBook(ingredientBook);
+//        this.userPrefs = new UserPrefs(userPrefs);
+//        filteredIngredients = new FilteredList<FoodEntry>(this.ingredientBook.getFoodEntryList());
+//    }
+//
+//    public ModelManager() {
+//        this(new IngredientBook(), new UserPrefs());
+
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,11 +107,22 @@ public class ModelManager implements Model {
     public void setRecipeBookFilePath(Path recipeBookFilePath) {
         requireNonNull(recipeBookFilePath);
         userPrefs.setRecipeBookFilePath(recipeBookFilePath);
+
+    public Path getAddressBookFilePath() {
+        return userPrefs.getAddressBookFilePath();
+    }
+
+    @Override
+    public void setAddressBookFilePath(Path ingredientBookFilePath) {
+        requireNonNull(ingredientBookFilePath);
+        userPrefs.setAddressBookFilePath(ingredientBookFilePath);
+
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
+
     public void setRecipeBook(ReadOnlyRecipeBook recipeBook) {
         this.recipeBook.resetData(recipeBook);
     }
@@ -127,6 +171,56 @@ public class ModelManager implements Model {
     public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         requireNonNull(predicate);
         filteredRecipes.setPredicate(predicate);
+
+    public void setAddressBook(ReadOnlyFoodEntryBook ingredientBook) {
+        this.ingredientBook.resetData(ingredientBook);
+    }
+
+    @Override
+    public ReadOnlyFoodEntryBook getIngredientBook() {
+        return ingredientBook;
+    }
+
+    @Override
+    public boolean hasIngredient(Ingredient person) {
+        requireNonNull(person);
+        return ingredientBook.hasIngredient(person);
+    }
+
+    @Override
+    public void deleteIngredient(Ingredient target) {
+        ingredientBook.removeIngredient(target);
+    }
+
+    @Override
+    public void addIngredient(Ingredient person) {
+        ingredientBook.addIngredient(person);
+        updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+    }
+
+    @Override
+    public void setIngredient(Ingredient target, Ingredient editedIngredient) {
+        requireAllNonNull(target, editedIngredient);
+
+        ingredientBook.setIngredient(target, editedIngredient);
+    }
+
+    //=========== Filtered Ingredient List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<FoodEntry> getFilteredIngredientList() {
+        return filteredIngredients;
+    }
+
+    @Override
+    public void updateFilteredIngredientList(Predicate<FoodEntry> predicate) {
+        requireNonNull(predicate);
+        filteredIngredients.setPredicate(predicate);
+
     }
 
     @Override
@@ -143,9 +237,15 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
         return recipeBook.equals(other.recipeBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredRecipes.equals(other.filteredRecipes);
+//
+//        return ingredientBook.equals(other.ingredientBook)
+//                && userPrefs.equals(other.userPrefs)
+//                && filteredIngredients.equals(other.filteredIngredients);
+
     }
 
 }
