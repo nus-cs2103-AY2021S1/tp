@@ -64,7 +64,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
-    
+
     /*
      * Adapted for NUStorage:
      */

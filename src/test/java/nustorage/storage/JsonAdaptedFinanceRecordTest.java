@@ -73,12 +73,14 @@ class JsonAdaptedFinanceRecordTest {
         assertThrows(IllegalValueException.class, expectedMessage, FR::toModelType);
     }
 
+
     @Test
     void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedFinanceRecord FR = new JsonAdaptedFinanceRecord(AMOUNT_2, null, TIME_1);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "date");
         assertThrows(IllegalValueException.class, expectedMessage, FR::toModelType);
     }
+
 
     @Test
     void toModelType_invalidTime_throwsIllegalValueException() {
