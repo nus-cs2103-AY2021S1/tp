@@ -10,6 +10,9 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
+/**
+ * Deletes an existing finance record from the address book.
+ */
 public class DeleteFinanceCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_finance";

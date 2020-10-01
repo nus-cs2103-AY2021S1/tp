@@ -77,6 +77,9 @@ public class InventoryRecord {
         this.quantity += change;
     }
 
+    /**
+     * Get the number of this item in the inventory
+     */
     public int getQuantity() {
         return quantity;
     }
