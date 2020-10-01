@@ -13,7 +13,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 ### Shi Jing Lin
 
-![shijinglin](images/profiles/shijinglin.jpg)
+![shijinglin](images/aqcd.png)
 
 [[homepage](https://aqcd.github.io/)]
 
@@ -21,19 +21,24 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 [[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
 
-* Role: Project Lead
-* Responsibilities: Workflow Assignment, Main Reviewer
-
+* Role: Project Manager
+* Responsibilities: 
+    * Workflow Assignment
+    * Team Lead
+    * Git Expert
+    
 ### Stephen Tan
 
-![stephentan](images/profiles/blackonyyx.jpg)
+![stephentan](images/blackonyyx.png)
 
 [[github](http://github.com/blackonyyx)]
 
 [[portfolio](team/stephentan.md)]
 
 * Role: Developer
-* Responsibilities: Documentation, BugTesting
+* Responsibilities: 
+    * Documentation
+    * Javadoc Standards
 
 ### Liu Zhengdao
 
@@ -44,18 +49,23 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[portfolio](team/liuzhengdao.md)]
 
 * Role: Developer
-* Responsibilities: GUI, Feature Developer
+* Responsibilities: 
+    * GUI Expert
+    * Code Quality
 
 ### Kheng Hun
 
-![siewkhenghun](images/profiles/johndoe.png)
+![siewkhenghun](images/khenghun.png)
 
 [[github](https://github.com/khenghun)]
 [[portfolio](team/siewkhenghun.md)]
 
 * Role: Developer
-* Responsibilities: Feature Developer, Bug Tester
-
+* Responsibilities: 
+    * Scheduling and Tracking
+    * Deliverables and deadlines
+    * Testing
+    
 ### Rahul
 
 ![rahul](images/profiles/johndoe.png)
@@ -65,4 +75,6 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[portfolio](team/rahul.md)]
 
 * Role: Developer
-* Responsibilities: Feature Developer, Continuous Integration
+* Responsibilities: 
+    * Continuous Integration
+    * DevOps
