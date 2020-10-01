@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.MOVIE;
+import static seedu.address.testutil.TypicalTasks.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Address;
 import seedu.address.model.task.Email;
-import seedu.address.model.task.Title;
 import seedu.address.model.task.Phone;
+import seedu.address.model.task.Title;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@te movie";
@@ -24,18 +24,18 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_TITLE = MOVIE.getTitle().toString();
-    private static final String VALID_PHONE = MOVIE.getPhone().toString();
-    private static final String VALID_EMAIL = MOVIE.getEmail().toString();
-    private static final String VALID_ADDRESS = MOVIE.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = MOVIE.getTags().stream()
+    private static final String VALID_TITLE = BENSON.getTitle().toString();
+    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_EMAIL = BENSON.getEmail().toString();
+    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
-        JsonAdaptedTask task = new JsonAdaptedTask(MOVIE);
-        assertEquals(MOVIE, task.toModelType());
+        JsonAdaptedTask task = new JsonAdaptedTask(BENSON);
+        assertEquals(BENSON, task.toModelType());
     }
 
     @Test

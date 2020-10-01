@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.HOMEWORK;
-import static seedu.address.testutil.TypicalTasks.MOVIE;
+import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasTask(HOMEWORK));
+        assertFalse(modelManager.hasTask(ALICE));
     }
 
     @Test
     public void hasTask_taskInAddressBook_returnsTrue() {
-        modelManager.addTask(HOMEWORK);
-        assertTrue(modelManager.hasTask(HOMEWORK));
+        modelManager.addTask(ALICE);
+        assertTrue(modelManager.hasTask(ALICE));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withTask(HOMEWORK).withTask(MOVIE).build();
+        AddressBook addressBook = new AddressBookBuilder().withTask(ALICE).withTask(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = HOMEWORK.getTitle().fullTitle.split("\\s+");
+        String[] keywords = ALICE.getTitle().fullTitle.split("\\s+");
         modelManager.updateFilteredTaskList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 

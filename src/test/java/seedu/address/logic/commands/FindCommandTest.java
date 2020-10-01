@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.CHORES;
-import static seedu.address.testutil.TypicalTasks.RUN;
-import static seedu.address.testutil.TypicalTasks.MEET;
+import static seedu.address.testutil.TypicalTasks.CARL;
+import static seedu.address.testutil.TypicalTasks.ELLE;
+import static seedu.address.testutil.TypicalTasks.FIONA;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -71,7 +71,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CHORES, RUN, MEET), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTaskList());
     }
 
     /**

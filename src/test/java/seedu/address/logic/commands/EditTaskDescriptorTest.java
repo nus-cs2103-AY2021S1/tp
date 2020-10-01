@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_COOK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_WASH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_WASH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_WASH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_WASH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_WASH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,19 +36,19 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_COOK.equals(DESC_WASH));
 
         // different title -> returns false
-        EditTaskDescriptor editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withTitle(VALID_TITLE_WASH).build();
+        EditTaskDescriptor editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withTitle(VALID_TITLE_BOB).build();
         assertFalse(DESC_COOK.equals(editedCook));
 
         // different phone -> returns false
-        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withPhone(VALID_PHONE_WASH).build();
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_COOK.equals(editedCook));
 
         // different email -> returns false
-        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withEmail(VALID_EMAIL_WASH).build();
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_COOK.equals(editedCook));
 
         // different address -> returns false
-        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withAddress(VALID_ADDRESS_WASH).build();
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_COOK.equals(editedCook));
 
         // different tags -> returns false
