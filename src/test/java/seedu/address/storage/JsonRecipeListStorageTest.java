@@ -78,7 +78,7 @@ public class JsonRecipeListStorageTest {
     }
 
     /**
-     * Saves {@code recipeList} at the specified {@code filePath}.
+     * Tests saving {@code recipeList} at the specified {@code filePath}.
      */
     private void saveRecipeList(ReadOnlyRecipeList recipeList, String filePath) {
         try {

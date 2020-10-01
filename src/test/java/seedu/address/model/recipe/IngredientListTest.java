@@ -13,11 +13,12 @@ import seedu.address.testutil.TypicalIngredients;
 
 public class IngredientListTest {
     /**
-     * Test for exception when duplicate ingredient added.
+     * Tests for exception when duplicate ingredient added.
      */
     @Test
     public void duplicate() {
         IngredientList a = TypicalIngredients.getTypicalIngredientList();
+        // duplicate ingredient added -> throw exception
         assertThrows(DuplicateIngredientException.class, () -> a.add(INGREDIENT_1));
     }
 
@@ -27,10 +28,12 @@ public class IngredientListTest {
     @Test
     public void contains() {
         IngredientList a = TypicalIngredients.getTypicalIngredientList();
+        // list contains ingredient -> return true
         assertTrue(a.contains(INGREDIENT_1));
         assertTrue(a.contains(INGREDIENT_2));
 
         a.remove(INGREDIENT_1);
+        // list does not contain ingredient -> return false
         assertFalse(a.contains(INGREDIENT_1));
     }
 
@@ -43,17 +46,21 @@ public class IngredientListTest {
         IngredientList b = new IngredientList();
         b.add(INGREDIENT_1);
         b.add(INGREDIENT_2);
+        // same ingredients -> return true
         assertTrue(a.equals(b));
 
         a = new IngredientList();
         a.add(INGREDIENT_1);
         b = new IngredientList();
         b.add(INGREDIENT_2);
+        // different ingredients -> return false
         assertFalse(a.equals(b));
 
+        // one list strict subset of the other -> return false
         a.add(INGREDIENT_2);
         assertFalse(a.equals(b));
 
+        // same ingredients -> return true
         a.remove(INGREDIENT_1);
         assertTrue(a.equals(b));
     }

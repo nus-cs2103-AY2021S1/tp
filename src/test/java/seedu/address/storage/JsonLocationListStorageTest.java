@@ -78,7 +78,7 @@ public class JsonLocationListStorageTest {
     }
 
     /**
-     * Saves {@code itemList} at the specified {@code filePath}.
+     * Tests saving {@code locationList} at the specified {@code filePath}.
      */
     private void saveLocationList(ReadOnlyLocationList locationList, String filePath) {
         try {

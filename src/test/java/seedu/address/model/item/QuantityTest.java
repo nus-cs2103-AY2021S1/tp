@@ -22,7 +22,7 @@ public class QuantityTest {
     }
 
     /**
-     * Test for equality between quantities.
+     * Tests for equality between quantities.
      */
     @Test
     public void equals() {
