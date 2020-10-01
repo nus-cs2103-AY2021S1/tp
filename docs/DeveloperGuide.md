@@ -252,14 +252,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new contact               |                                                                        |
-| `* * *`  | user                                       | delete a contact                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a contact by name          | locate details of contacts without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many contacts in the address book | sort contacts by name           | locate a contact easily                                                 |
+| `* * *`  | user                                       | add a new contact              |                                                                        |
+| `* * *`  | user                                       | delete a contact               | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a contact by name         | locate details of contacts without having to go through the entire list|
+| `* * *`  | forgetful user                             | add remarks to contacts        | remember certain details about them                                    |
+| `* * *`  | dean                                       | store a contact's building     | keep track of where to find them                                       |
+| `* * *`  | dean                                       | store a contact's department   | keep track of their respective fields                                  |
+| `* * *`  | dean                                       | edit a contact's building      | keep the data up to date                                               |
+| `* * *`  | dean                                       | edit a contact's department    | keep the data up to date                                               |
+| `* * *`  | dean                                       | add a new module               |                                                                        |
+| `* * *`  | dean                                       | delete a module                | remove modules no longer offered                                       |
 
 *{More to be added}*
 
@@ -478,10 +483,3 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### User Stories
-1. As a forgetful person, I want to keep remarks about the faculty members so that I remember certain things about them.
-2. As a dean who works in a dynamic environment, I want to be able to update any member’s building and department quickly without having to re-add the member.
-3. As a faculty leader, I want to be able to keep track of the buildings of the faculty members so that I know where to find them.
-4. As a faculty leader, I want to be able to keep track of the departments of the faculty members.
-5. As a dean, I want to be able to add new modules to keep the module list up-to-date. 
-6. As a dean, I want to be able to delete some modules that are no longer offered by the faculty.
