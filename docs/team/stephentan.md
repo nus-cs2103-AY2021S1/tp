@@ -2,6 +2,9 @@
 layout: page
 title: Stephen Tan Hin Khai's Project Portfolio Page
 ---
+![profileimage](../images/blackonyyx.png)
+
+TODO
 
 ## Project: AddressBook Level 3
 
