@@ -239,13 +239,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* works as a faculty leader
+* has a need to manage a significant number of faculty members
+* has a need to manage a significant number of modules
+* has a need to manage assignments of modules to faculty members
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage faculty members and modules faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -259,12 +262,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a contact               | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a contact by name         | locate details of contacts without having to go through the entire list|
 | `* * *`  | forgetful user                             | add remarks to contacts        | remember certain details about them                                    |
-| `* * *`  | dean                                       | store a contact's building     | keep track of where to find them                                       |
-| `* * *`  | dean                                       | store a contact's department   | keep track of their respective fields                                  |
-| `* * *`  | dean                                       | edit a contact's building      | keep the data up to date                                               |
-| `* * *`  | dean                                       | edit a contact's department    | keep the data up to date                                               |
-| `* * *`  | dean                                       | add a new module               |                                                                        |
-| `* * *`  | dean                                       | delete a module                | remove modules no longer offered                                       |
+| `* * *`  | faculty leader                             | store a contact's building     | keep track of where to find them                                       |
+| `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective fields                                  |
+| `* * *`  | faculty leader                             | edit a contact's building      | keep the data up to date                                               |
+| `* * *`  | faculty leader                             | edit a contact's department    | keep the data up to date                                               |
+| `* * *`  | faculty leader                             | add a new module               |                                                                        |
+| `* * *`  | faculty leader                             | delete a module                | remove modules no longer offered                                       |
 
 *{More to be added}*
 
