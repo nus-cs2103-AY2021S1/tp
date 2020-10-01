@@ -35,24 +35,24 @@ public class EditTaskDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_COOK.equals(DESC_WASH));
 
-        // different name -> returns false
-        EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_COOK).withTitle(VALID_TITLE_WASH).build();
-        assertFalse(DESC_COOK.equals(editedAmy));
+        // different title -> returns false
+        EditTaskDescriptor editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withTitle(VALID_TITLE_WASH).build();
+        assertFalse(DESC_COOK.equals(editedCook));
 
         // different phone -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_COOK).withPhone(VALID_PHONE_WASH).build();
-        assertFalse(DESC_COOK.equals(editedAmy));
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withPhone(VALID_PHONE_WASH).build();
+        assertFalse(DESC_COOK.equals(editedCook));
 
         // different email -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_COOK).withEmail(VALID_EMAIL_WASH).build();
-        assertFalse(DESC_COOK.equals(editedAmy));
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withEmail(VALID_EMAIL_WASH).build();
+        assertFalse(DESC_COOK.equals(editedCook));
 
         // different address -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_COOK).withAddress(VALID_ADDRESS_WASH).build();
-        assertFalse(DESC_COOK.equals(editedAmy));
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withAddress(VALID_ADDRESS_WASH).build();
+        assertFalse(DESC_COOK.equals(editedCook));
 
         // different tags -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_COOK).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_COOK.equals(editedAmy));
+        editedCook = new EditTaskDescriptorBuilder(DESC_COOK).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_COOK.equals(editedCook));
     }
 }

@@ -51,7 +51,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_WASH + PHONE_DESC_WASH + EMAIL_DESC_WASH
                 + ADDRESS_DESC_WASH + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
-        // multiple names - last name accepted
+        // multiple titles - last title accepted
         assertParseSuccess(parser, TITLE_DESC_COOK + TITLE_DESC_WASH + PHONE_DESC_WASH + EMAIL_DESC_WASH
                 + ADDRESS_DESC_WASH + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
@@ -86,7 +86,7 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
+        // missing title prefix
         assertParseFailure(parser, VALID_TITLE_WASH + PHONE_DESC_WASH + EMAIL_DESC_WASH + ADDRESS_DESC_WASH,
                 expectedMessage);
 
@@ -109,7 +109,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // invalid title
         assertParseFailure(parser, INVALID_TITLE_DESC + PHONE_DESC_WASH + EMAIL_DESC_WASH + ADDRESS_DESC_WASH
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
 

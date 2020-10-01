@@ -72,7 +72,7 @@ public class TaskTest {
         // different task -> returns false
         assertFalse(HOMEWORK.equals(WASH));
 
-        // different name -> returns false
+        // different title -> returns false
         Task editedAlice = new TaskBuilder(HOMEWORK).withTitle(VALID_TITLE_WASH).build();
         assertFalse(HOMEWORK.equals(editedAlice));
 
