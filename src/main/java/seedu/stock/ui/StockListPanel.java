@@ -11,7 +11,7 @@ import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of stocks.
  */
 public class StockListPanel extends UiPart<Region> {
     private static final String FXML = "StockListPanel.fxml";

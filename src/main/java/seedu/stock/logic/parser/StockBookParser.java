@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.ExitCommand;
+import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -30,7 +31,8 @@ public class StockBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        String trimmedUserInput = userInput.trim();
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -57,8 +59,8 @@ public class StockBookParser {
         //        case ClearCommand.COMMAND_WORD:
         //            return new ClearCommand();
         //
-        //        case FindCommand.COMMAND_WORD:
-        //            return new FindCommandParser().parse(arguments);
+                case FindCommand.COMMAND_WORD:
+                    return new FindCommandParser().parse(arguments);
         //
         //        case ListCommand.COMMAND_WORD:
         //            return new ListCommand();
