@@ -8,40 +8,40 @@
     https://oss-generic.github.io/process/codingstandards/coding-standards-java.html
 -->
 
-<module title="Checker">
+<module name="Checker">
 
-  <module title="FileTabCharacter">
+  <module name="FileTabCharacter">
     <!-- Checks that there are no tab characters in the file. -->
   </module>
 
-  <module title="NewlineAtEndOfFile">
+  <module name="NewlineAtEndOfFile">
     <!-- Accept LF, CR or CRLF to accomodate devs who prefer different line endings -->
-    <property title="lineSeparator" value="lf_cr_crlf"/>
+    <property name="lineSeparator" value="lf_cr_crlf"/>
   </module>
 
-  <module title="RegexpSingleline">
+  <module name="RegexpSingleline">
     <!-- Checks that FIXME is not used in comments.  TODO is preferred. -->
-    <property title="format" value="((//.*)|(\*.*))FIXME" />
-    <property title="message" value='TODO is preferred to FIXME."' />
+    <property name="format" value="((//.*)|(\*.*))FIXME" />
+    <property name="message" value='TODO is preferred to FIXME."' />
   </module>
 
-  <module title="SuppressionFilter">
-    <property title="file" value="${config_loc}/suppressions.xml"/>
+  <module name="SuppressionFilter">
+    <property name="file" value="${config_loc}/suppressions.xml"/>
   </module>
 
-  <module title="LineLength">
+  <module name="LineLength">
     <!-- Checks if a line is too long. -->
-    <property title="max" value="120"/>
+    <property name="max" value="120"/>
   </module>
 
   <!-- All Java AST specific tests live under TreeWalker module. -->
-  <module title="TreeWalker">
+  <module name="TreeWalker">
 
     <!-- Required to allow exceptions in code style -->
-    <module title="SuppressionCommentFilter">
-      <property title="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
-      <property title="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
-      <property title="checkFormat" value="$1"/>
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
+      <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
+      <property name="checkFormat" value="$1"/>
     </module>
 
     <!--
