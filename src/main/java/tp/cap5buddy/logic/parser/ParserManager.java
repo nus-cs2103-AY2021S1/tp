@@ -6,6 +6,7 @@ import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 
 
+
 /**
  * Represents the manager that handles all parser related actions and requests.
  */
@@ -56,7 +57,7 @@ public class ParserManager {
             command = parser.parse(this.nonCommand);
             return command;
         default:
-            throw new ParseException("Invalid command");
+            throw new ParseException("Invalid Command");
         }
     }
 
