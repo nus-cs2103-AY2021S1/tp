@@ -10,7 +10,7 @@ public class IntegerUtil {
      * @param integer integer to be checked
      */
     public static boolean isPositiveInteger(Integer integer) {
-        return integer < 0;
+        return integer > 0;
     }
 
     /**
