@@ -84,6 +84,12 @@ public class UpdateCommand extends Command {
         Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
         Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
+        boolean isIncrement = updateStockDescriptor.getIsIncrement();
+
+        if (isIncrement) {
+            Quantity originalQuantity = stockToUpdate.getQuantity();
+            updatedQuantity = originalQuantity.incrementQuantity(updatedQuantity);
+        }
 
         return new Stock(updatedName, new SerialNumber("12"), updatedSource, updatedQuantity, updatedLocation);
     }
@@ -116,7 +122,9 @@ public class UpdateCommand extends Command {
 
         private boolean isIncrement;
 
-        public UpdateStockDescriptor() {}
+        public UpdateStockDescriptor() {
+            isIncrement = false;
+        }
 
         /**
          * Copy constructor.
@@ -128,6 +136,7 @@ public class UpdateCommand extends Command {
             setSource(toCopy.source);
             setQuantity(toCopy.quantity);
             setLocation(toCopy.location);
+            setIsIncrement(toCopy.isIncrement);
         }
 
         public boolean isAnyFieldEdited() {
@@ -170,6 +179,10 @@ public class UpdateCommand extends Command {
             this.isIncrement = isIncrement;
         }
 
+        public boolean getIsIncrement() {
+            return isIncrement;
+        }
+
         public void setLocation(Location location) {
             this.location = location;
         }
@@ -197,7 +210,8 @@ public class UpdateCommand extends Command {
                     && getSerialNumber().equals(castedOther.getSerialNumber())
                     && getSource().equals(castedOther.getSource())
                     && getQuantity().equals(castedOther.getQuantity())
-                    && getLocation().equals(castedOther.getLocation());
+                    && getLocation().equals(castedOther.getLocation())
+                    && (getIsIncrement() == castedOther.getIsIncrement());
         }
     }
 }
