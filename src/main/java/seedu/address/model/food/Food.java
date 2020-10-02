@@ -4,7 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Food item in McGymmy.
+ * Represents a Food item in AddressBook.
  */
 public class Food {
     public static final String FOOD_NAME_MESSAGE_CONTRAINT = "Food name can take in any value, and it cannot be blank";
@@ -64,17 +64,19 @@ public class Food {
         return this.fat;
     }
 
-    /**
-     * Compare if two food item are the same
-     * Compare criteria: same name (case sensitive) and same nutrition values
-     * @param otherFood Other food to be compared with this food
-     * @return True if the 2 are the same
-     */
-    public boolean isSameFood(Food otherFood) {
+    @Override
+    public boolean equals(Object other) {
         requireAllNonNull(protein, carbs, fat);
-        if (otherFood == this) {
+
+        if (other == this) {
             return true;
         }
+
+        if (!(other instanceof Food)) {
+            return false;
+        }
+
+        Food otherFood = (Food) other;
 
         return otherFood != null
             && this.getName().equals(otherFood.getName())

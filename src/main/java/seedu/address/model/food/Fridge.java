@@ -8,13 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.food.exceptions.FoodNotFoundException;
 
 /**
  * A list of food items that allows repeated elements and does not allow nulls.
  * Supports a minimal set of list operations.
- *
- * @see Food#isSameFood(Food)
  */
 public class Fridge implements Iterable<Food> {
     private final ObservableList<Food> internalList = FXCollections.observableArrayList();
@@ -26,7 +23,7 @@ public class Fridge implements Iterable<Food> {
      */
     public boolean contains(Food toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameFood);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -38,28 +35,21 @@ public class Fridge implements Iterable<Food> {
     }
 
     /**
-     * Replaces the food item {@code target} in the list with {@code editedFood}.
+     * Replaces the food item at the {@code index} position in the list with {@code editedFood}.
      * {@code target} must exist in the list.
      */
-    public void setFood(Food target, Food editedFood) {
-        requireAllNonNull(target, editedFood);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new FoodNotFoundException();
-        }
+    public void setFood(int index, Food editedFood) {
+        requireAllNonNull(editedFood);
         internalList.set(index, editedFood);
     }
 
     /**
-     * Removes the equivalent food item from the list.
+     * Removes the food item at the position index from the list.
      * The food item must exist in the list.
      */
-    public void remove(Food toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new FoodNotFoundException();
-        }
+    public void remove(int removeIndex) {
+        requireNonNull(removeIndex);
+        internalList.remove(removeIndex);
     }
 
     public void setFoods(Fridge replacement) {

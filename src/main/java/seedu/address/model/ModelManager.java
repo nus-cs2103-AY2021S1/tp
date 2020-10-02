@@ -19,26 +19,26 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final McGymmy mcGymmy;
+    private final AddressBook mcGymmy;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given mcGymmy and userPrefs.
      */
-    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook mcGymmy, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(mcGymmy, userPrefs);
 
         logger.fine("Initializing with address book: " + mcGymmy + " and user prefs " + userPrefs);
 
-        this.mcGymmy = new McGymmy(mcGymmy);
+        this.mcGymmy = new AddressBook(mcGymmy);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.mcGymmy.getPersonList());
     }
 
     public ModelManager() {
-        this(new McGymmy(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,40 +76,40 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== McGymmy ================================================================================
+    //=========== AddressBook ================================================================================
 
     @Override
-    public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
-        this.mcGymmy.resetData(mcGymmy);
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.mcGymmy.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyMcGymmy getMcGymmy() {
+    public ReadOnlyAddressBook getAddressBook() {
         return mcGymmy;
     }
 
     @Override
-    public boolean hasFood(Person person) {
+    public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return mcGymmy.hasFood(person);
+        return mcGymmy.hasPerson(person);
     }
 
     @Override
-    public void deleteFood(Person target) {
-        mcGymmy.removeFood(target);
+    public void deletePerson(Person target) {
+        mcGymmy.removePerson(target);
     }
 
     @Override
-    public void addFood(Person person) {
-        mcGymmy.addFood(person);
+    public void addPerson(Person person) {
+        mcGymmy.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setFood(Person target, Person editedPerson) {
+    public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        mcGymmy.setFood(target, editedPerson);
+        mcGymmy.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================

@@ -1,34 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.McGymmy;
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class to help with building McGymmy objects.
+ * A utility class to help with building AddressBook objects.
  * Example usage: <br>
- *     {@code McGymmy ab = new McGymmyBuilder().withPerson("John", "Doe").build();}
+ *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class McGymmyBuilder {
 
-    private McGymmy mcGymmy;
+    private AddressBook addressBook;
 
     public McGymmyBuilder() {
-        mcGymmy = new McGymmy();
+        addressBook = new AddressBook();
     }
 
-    public McGymmyBuilder(McGymmy mcGymmy) {
-        this.mcGymmy = mcGymmy;
+    public McGymmyBuilder(AddressBook addressBook) {
+        this.addressBook = addressBook;
     }
 
     /**
-     * Adds a new {@code Person} to the {@code McGymmy} that we are building.
+     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
     public McGymmyBuilder withPerson(Person person) {
-        mcGymmy.addFood(person);
+        addressBook.addPerson(person);
         return this;
     }
 
-    public McGymmy build() {
-        return mcGymmy;
+    public AddressBook build() {
+        return addressBook;
     }
 }

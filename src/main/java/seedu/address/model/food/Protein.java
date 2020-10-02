@@ -1,7 +1,7 @@
 package seedu.address.model.food;
 
 /**
- * Represents Protein in food item in McGymmy.
+ * Represents Protein in food item in AddressBook.
  */
 public class Protein extends Macronutrient {
     private static final int PROTEIN_MULTIPLIER = 4;

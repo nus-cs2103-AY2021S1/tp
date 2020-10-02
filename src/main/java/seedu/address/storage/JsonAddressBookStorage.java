@@ -12,41 +12,41 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyMcGymmy;
+import seedu.address.model.ReadOnlyAddressBook;
 
 /**
- * A class to access McGymmy data stored as a json file on the hard disk.
+ * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonMcGymmyStorage implements McGymmyStorage {
+public class JsonAddressBookStorage implements AddressBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonMcGymmyStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
 
-    public JsonMcGymmyStorage(Path filePath) {
+    public JsonAddressBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getMcGymmyFilePath() {
+    public Path getAddressBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException {
-        return readMcGymmy(filePath);
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
+        return readAddressBook(filePath);
     }
 
     /**
-     * Similar to {@link #readMcGymmy()}.
+     * Similar to {@link #readAddressBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMcGymmy> readMcGymmy(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMcGymmy> jsonMcGymmy = JsonUtil.readJsonFile(
-                filePath, JsonSerializableMcGymmy.class);
+        Optional<JsonSerializableAddressBook> jsonMcGymmy = JsonUtil.readJsonFile(
+                filePath, JsonSerializableAddressBook.class);
         if (!jsonMcGymmy.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
     }
 
     @Override
-    public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy) throws IOException {
-        saveMcGymmy(mcGymmy, filePath);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveMcGymmy(ReadOnlyMcGymmy)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, Path filePath) throws IOException {
-        requireNonNull(mcGymmy);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        requireNonNull(addressBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMcGymmy(mcGymmy), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
     }
 
 }

@@ -47,34 +47,34 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
+    void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the McGymmy */
-    ReadOnlyMcGymmy getMcGymmy();
+    /** Returns the AddressBook */
+    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasFood(Person person);
+    boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deleteFood(Person target);
+    void deletePerson(Person target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addFood(Person person);
+    void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setFood(Person target, Person editedPerson);
+    void setPerson(Person target, Person editedPerson);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -4,7 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Macronutrient {
-    private String type;
+    private String macronutrientType;
     private int amount;
     private int caloricMultiplier;
     private int totalCalories;
@@ -12,20 +12,21 @@ public abstract class Macronutrient {
     /**
      * Represents macronutrients of 3 types
      *
-     * @param amount
-     * @param caloricMultiplier
+     * @param macronutrientType The type of the macronutrient
+     * @param amount The amount of the macronutrient
+     * @param caloricMultiplier This value varies for each macronutrient type
      */
-    public Macronutrient(String type, int amount, int caloricMultiplier) {
-        requireAllNonNull(type, amount, caloricMultiplier);
+    public Macronutrient(String macronutrientType, int amount, int caloricMultiplier) {
+        requireAllNonNull(macronutrientType, amount, caloricMultiplier);
 
-        assert !type.equals("") : "Name cannot be blank";
+        assert !macronutrientType.equals("") : "Name cannot be blank";
 
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
         checkArgument(isValidAmount(amount), getMessageContraint());
 
         assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
-        this.type = type;
+        this.macronutrientType = macronutrientType;
         this.amount = amount;
         this.caloricMultiplier = caloricMultiplier;
         this.totalCalories = caloricMultiplier * amount;
@@ -37,12 +38,12 @@ public abstract class Macronutrient {
     }
 
     private String getMessageContraint() {
-        return this.type + " amount can only take in value larger than 0";
+        return this.macronutrientType + " amount can only take in value larger than 0";
     }
 
     @Override
     public String toString() {
-        return "MacronutrientType:" + this.type + "\n"
+        return "MacronutrientType:" + this.macronutrientType + "\n"
             + "Amount: "
             + this.amount + "\n"
             + "Caloric Count: " + this.totalCalories + "\n";
@@ -58,13 +59,13 @@ public abstract class Macronutrient {
         }
 
         Macronutrient otherMacronutrient = (Macronutrient) other;
-        return this.getType().equals(otherMacronutrient.getType())
+        return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
             && this.getAmount() == otherMacronutrient.getAmount()
             && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
     }
 
-    public String getType() {
-        return type;
+    public String getMacronutrientType() {
+        return macronutrientType;
     }
 
     public int getAmount() {

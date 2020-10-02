@@ -22,9 +22,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class McGymmyTest {
+public class AddressBookTest {
 
-    private final McGymmy addressBook = new McGymmy();
+    private final AddressBook addressBook = new AddressBook();
 
     @Test
     public void constructor() {
@@ -38,7 +38,7 @@ public class McGymmyTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        McGymmy newData = getTypicalAddressBook();
+        AddressBook newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,33 +49,33 @@ public class McGymmyTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        McGymmyStub newData = new McGymmyStub(newPersons);
+        AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasFood(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasFood(ALICE));
+        assertFalse(addressBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addFood(ALICE);
-        assertTrue(addressBook.hasFood(ALICE));
+        addressBook.addPerson(ALICE);
+        assertTrue(addressBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addFood(ALICE);
+        addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasFood(editedAlice));
+        assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test
@@ -84,12 +84,12 @@ public class McGymmyTest {
     }
 
     /**
-     * A stub ReadOnlyMcGymmy whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class McGymmyStub implements ReadOnlyMcGymmy {
+    private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        McGymmyStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

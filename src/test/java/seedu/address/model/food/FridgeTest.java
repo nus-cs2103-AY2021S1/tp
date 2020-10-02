@@ -10,8 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.food.exceptions.FoodNotFoundException;
-
 class FridgeTest {
     private static final Food CHIMKEN = new Food("Chimken", 1, 2, 3);
     private static final Food RAMEN = new Food("Ramen", 2, 3, 4);
@@ -40,43 +38,43 @@ class FridgeTest {
     }
 
     @Test
-    public void setFood_nullTargetFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> fridge.setFood(null, CHIMKEN));
+    public void setFood_indexLessThanZero_throwsIndexOutOfBoundException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(-1, CHIMKEN));
+    }
+
+    @Test
+    public void setFood_indexLargerThanOrEqualToSize_throwsIndexOutOfBoundException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(1, CHIMKEN));
     }
 
     @Test
     public void setFood_nullEditedFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> fridge.setFood(CHIMKEN, null));
-    }
-
-    @Test
-    public void setFood_targetFoodNotInList_throwsFoodNotFoundException() {
-        assertThrows(FoodNotFoundException.class, () -> fridge.setFood(CHIMKEN, CHIMKEN));
+        assertThrows(NullPointerException.class, () -> fridge.setFood(1, null));
     }
 
     @Test
     public void setFood_validFood_success() {
         fridge.add(CHIMKEN);
-        fridge.setFood(CHIMKEN, RAMEN);
+        fridge.setFood(0, RAMEN);
         Fridge expectedFridge = new Fridge();
         expectedFridge.add(RAMEN);
         assertEquals(expectedFridge, this.fridge);
     }
 
     @Test
-    public void remove_nullFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> fridge.remove(null));
+    public void remove_removeIndexLesserThanZero_throwsIndexOutOfBoundException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(-1));
     }
 
     @Test
-    public void remove_foodDoesNotExist_throwsFoodNotFoundException() {
-        assertThrows(FoodNotFoundException.class, () -> fridge.remove(CHIMKEN));
+    public void remove_removeIndexLargerThanOrEqualToSize_throwsIndexOutOfBoundException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(0));
     }
 
     @Test
-    public void remove_existingFood_removesFood() {
+    public void remove_validIndex_removesFood() {
         fridge.add(CHIMKEN);
-        fridge.remove(CHIMKEN);
+        fridge.remove(0);
         Fridge expectedFridge = new Fridge();
         assertEquals(expectedFridge, fridge);
     }

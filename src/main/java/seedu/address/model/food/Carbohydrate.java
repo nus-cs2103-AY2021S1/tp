@@ -1,7 +1,7 @@
 package seedu.address.model.food;
 
 /**
- * Represents Carbodydrates in food item in McGymmy.
+ * Represents Carbodydrates in food item in AddressBook.
  */
 public class Carbohydrate extends Macronutrient {
     private static final int CARBOHYDRATE_MULTIPLIER = 4;
