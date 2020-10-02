@@ -21,17 +21,19 @@ public class ModuleCodeTest {
 
     @Test
     public void isValidModuleCode() {
-        // null address
+        // null module code
         assertThrows(NullPointerException.class, () -> ModuleCode.isValidModuleCode(null));
 
-        // invalid addresses
+        // invalid module codes
         assertFalse(ModuleCode.isValidModuleCode("")); // empty string
         assertFalse(ModuleCode.isValidModuleCode(" ")); // spaces only
+        assertFalse(ModuleCode.isValidModuleCode("C2300")); // begins with one alphabet
+        assertFalse(ModuleCode.isValidModuleCode("GER10")); // only has 2 numbers
 
-        // valid addresses
+        // valid module codes
         assertTrue(ModuleCode.isValidModuleCode("CS2103T"));
-        assertTrue(ModuleCode.isValidModuleCode("CS2040S")); // one character
+        assertTrue(ModuleCode.isValidModuleCode("CS2040S"));
         assertTrue(ModuleCode.isValidModuleCode(
-                "CS2101")); // long address
+                "CS2101"));
     }
 }

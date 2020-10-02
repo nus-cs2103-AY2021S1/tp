@@ -85,7 +85,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different module code -> returns false
         editedAlice = new PersonBuilder(ALICE).withModuleCode(VALID_MODULE_CODE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
