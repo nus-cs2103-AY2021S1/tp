@@ -10,6 +10,5 @@ public abstract class Parser {
 
     public abstract Command parse(String userInput) throws ParseException;
 
-    // public abstract ResultCommand execute();
 }
 
