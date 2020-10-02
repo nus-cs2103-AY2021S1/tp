@@ -49,23 +49,23 @@ public class UniqueStockList implements Iterable<Stock> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the stock {@code target} in the list with {@code updatedStock}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code updatedStock} must not be the same as another existing stock in the list.
      */
-    public void setPerson(Stock target, Stock editedStock) {
-        requireAllNonNull(target, editedStock);
+    public void setStock(Stock target, Stock updatedStock) {
+        requireAllNonNull(target, updatedStock);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new StockNotFoundException();
         }
 
-        if (!target.isSameStock(editedStock) && contains(editedStock)) {
+        if (!target.isSameStock(updatedStock) && contains(updatedStock)) {
             throw new DuplicateStockException();
         }
 
-        internalList.set(index, editedStock);
+        internalList.set(index, updatedStock);
     }
 
     /**

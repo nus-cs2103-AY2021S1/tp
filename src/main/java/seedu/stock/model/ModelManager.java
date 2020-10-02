@@ -106,10 +106,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Stock target, Stock editedStock) {
-        requireAllNonNull(target, editedStock);
+    public void setStock(Stock target, Stock updatedStock) {
+        requireAllNonNull(target, updatedStock);
 
-        stockBook.setStock(target, editedStock);
+        stockBook.setStock(target, updatedStock);
     }
 
     //=========== Filtered Person List Accessors =============================================================

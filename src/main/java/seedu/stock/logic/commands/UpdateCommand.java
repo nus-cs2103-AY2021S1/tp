@@ -71,9 +71,10 @@ public class UpdateCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STOCK);
         }
 
-        // TODO: Implement set stock in model class
+        model.setStock(stockToUpdate, updatedStock);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return null;
+        return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, updatedStock));
     }
 
     private static Stock createUpdatedStock(Stock stockToUpdate, UpdateStockDescriptor updateStockDescriptor) {

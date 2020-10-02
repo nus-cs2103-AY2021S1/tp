@@ -70,11 +70,11 @@ public interface Model {
     void addStock(Stock stock);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given stock {@code target} with {@code updatedStock}.
      * {@code target} must exist in the stock book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The {@code updatedStock} must not be the same as another existing stock in the stock book.
      */
-    void setPerson(Stock target, Stock editedStock);
+    void setStock(Stock target, Stock updatedStock);
 
     /** Returns an unmodifiable view of the filtered stock list */
     ObservableList<Stock> getFilteredStockList();
