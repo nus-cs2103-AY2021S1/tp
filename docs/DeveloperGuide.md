@@ -275,7 +275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list flashcards
 2.  FlashcardList shows a list of flashcards
 3.  User requests to delete a specific flashcard in the list
-4.  FlashcardList deletes the person
+4.  FlashcardList deletes the flashcard
 
     Use case ends.
 

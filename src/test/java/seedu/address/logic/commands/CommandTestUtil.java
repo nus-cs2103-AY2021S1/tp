@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -13,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
-import seedu.address.model.flashcard.NameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -95,15 +93,14 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the flashcard at the given {@code targetIndex} in the
+     * {@code model}'s flashcard deck.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showFlashcardAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFlashcardList().size());
 
-        Flashcard flashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
-        final String[] splitName = flashcard.getQuestion().toString().split("\\s+");
-        model.updateFilteredFlashcardList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Flashcard filteredFlashcard = model.getFilteredFlashcardList().get(targetIndex.getZeroBased());
+        model.updateFilteredFlashcardList(flashcard -> flashcard.isSameQuestion(filteredFlashcard));
 
         assertEquals(1, model.getFilteredFlashcardList().size());
     }
