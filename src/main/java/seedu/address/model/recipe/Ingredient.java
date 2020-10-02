@@ -16,4 +16,13 @@ public class Ingredient extends Pair<Integer, Integer> {
     public Ingredient(Integer key, Integer value) {
         super(key, value);
     }
+
+    /**
+     * Utilty function to check if itemid is equivelent to contained id
+     * @param id identity key
+     * @return boolean check that the id is the item
+     */
+    public boolean isItem(int id) {
+        return getKey().equals(id);
+    }
 }
