@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
@@ -36,7 +37,7 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
                     AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
         }
 
-        String[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
+        Choice[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Question question = ParserUtil.parseMultipleChoiceQuestion(
                 argMultimap.getValue(PREFIX_QUESTION).get(), choicesList);
@@ -52,7 +53,7 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
             throw new ParseException("Answer must be integer");
         }
 
-        Answer answer = new Answer(choicesList[ans - 1]);
+        Answer answer = new Answer(choicesList[ans - 1].getContent());
         Flashcard flashcard = new Flashcard(question, answer, tagList);
 
         return new AddMultipleChoiceQuestionCommand(flashcard);
