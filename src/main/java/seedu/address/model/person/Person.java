@@ -92,7 +92,7 @@ public class Person extends Task {
                 .append(getTime())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
+                .append(" Module code: ")
                 .append(getModuleCode())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
