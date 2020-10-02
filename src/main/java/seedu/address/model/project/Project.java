@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.tag.Tag;
@@ -29,6 +30,7 @@ public class Project {
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
     private final Set<Task> tasks = new HashSet<>();
+    private final Set<Meeting> meetings = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -59,6 +61,10 @@ public class Project {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Set<Meeting> getMeetings() {
+        return meetings;
     }
 
     /**
