@@ -80,8 +80,13 @@ public class Person {
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
-    public boolean isAlreadyReminded() {
-        return getRemind().isReminded();
+    /**
+     * Returns true if the assignment already has reminders set. Otherwise, returns false.
+     *
+     * @return true if the assignment already has reminders set. Otherwise, returns false
+     */
+    public boolean isReminded() {
+        return remind.isReminded();
     }
 
     /**

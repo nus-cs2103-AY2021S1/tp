@@ -56,10 +56,11 @@ public class RemindCommand extends Command {
 
         Person assignmentToRemind = lastShownList.get(targetIndex.getZeroBased());
 
-        if (assignmentToRemind.isAlreadyReminded() && model.hasPerson(assignmentToRemind)) {
+        if (assignmentToRemind.isReminded() && model.hasPerson(assignmentToRemind)) {
             throw new CommandException(MESSAGE_REMINDED_ASSIGNMENT);
         }
 
+        assert(!assignmentToRemind.isReminded());
         Person remindedAssignment = createRemindedAssignment(assignmentToRemind);
 
         model.setPerson(assignmentToRemind, remindedAssignment);

@@ -59,34 +59,34 @@ public class PersonTest {
     public void isAlreadyReminded() {
         // new assignment created -> returns false
         Person newAssignment = new PersonBuilder().build();
-        assertFalse(newAssignment.isAlreadyReminded());
+        assertFalse(newAssignment.isReminded());
 
         // assignment set to have reminders -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).withRemindersSet().build();
-        assertTrue(aliceCopy.isAlreadyReminded());
+        assertTrue(aliceCopy.isReminded());
 
         // assignment already has reminders set -> returns true
-        assertTrue(HILARY.isAlreadyReminded());
+        assertTrue(HILARY.isReminded());
 
         // already has reminders set, different name -> returns true
         Person editedHilary = new PersonBuilder(HILARY).withName(VALID_NAME_BOB).build();
-        assertTrue(editedHilary.isAlreadyReminded());
+        assertTrue(editedHilary.isReminded());
 
         // already has reminders set, different phone -> returns true
         editedHilary = new PersonBuilder(HILARY).withPhone(VALID_PHONE_BOB).build();
-        assertTrue(editedHilary.isAlreadyReminded());
+        assertTrue(editedHilary.isReminded());
 
         // already has reminders set, different email -> returns true
         editedHilary = new PersonBuilder(HILARY).withEmail(VALID_EMAIL_BOB).build();
-        assertTrue(editedHilary.isAlreadyReminded());
+        assertTrue(editedHilary.isReminded());
 
         // already has reminders set, different address -> returns true
         editedHilary = new PersonBuilder(HILARY).withAddress(VALID_ADDRESS_BOB).build();
-        assertTrue(editedHilary.isAlreadyReminded());
+        assertTrue(editedHilary.isReminded());
 
         // already has reminders set, different tags -> returns true
         editedHilary = new PersonBuilder(HILARY).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(editedHilary.isAlreadyReminded());
+        assertTrue(editedHilary.isReminded());
 
     }
 
