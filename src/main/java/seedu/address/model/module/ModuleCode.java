@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Module's code in FaculType.
  * Guarantees: immutable; is valid as declared in {@link #isValidCode(String)}
  */
-public class Code {
+public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Codes should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,17 +18,17 @@ public class Code {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String code;
+    public final String moduleCode;
 
     /**
      * Constructs a {@code Code}.
      *
-     * @param code A valid code.
+     * @param moduleCode A valid code.
      */
-    public Code(String code) {
-        requireNonNull(code);
-        checkArgument(isValidCode(code), MESSAGE_CONSTRAINTS);
-        this.code = code.toUpperCase();
+    public ModuleCode(String moduleCode) {
+        requireNonNull(moduleCode);
+        checkArgument(isValidCode(moduleCode), MESSAGE_CONSTRAINTS);
+        this.moduleCode = moduleCode.toUpperCase();
     }
 
     /**
@@ -40,19 +40,19 @@ public class Code {
 
     @Override
     public String toString() {
-        return code;
+        return moduleCode;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.module.Code // instanceof handles nulls
-                && code.equals(((seedu.address.model.module.Code) other).code)); // state check
+                || (other instanceof ModuleCode // instanceof handles nulls
+                && moduleCode.equals(((ModuleCode) other).moduleCode)); // state check
     }
 
     @Override
     public int hashCode() {
-        return code.hashCode();
+        return moduleCode.hashCode();
     }
 
 }

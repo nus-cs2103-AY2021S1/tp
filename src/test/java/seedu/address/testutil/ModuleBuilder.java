@@ -3,9 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.module.Code;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.Name;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -13,16 +13,16 @@ public class ModuleBuilder {
     public static final String DEFAULT_CODE = "CS2103";
     public static final String DEFAULT_NAME = "Software Engineering";
 
-    private Code code;
-    private Name name;
+    private ModuleCode moduleCode;
+    private ModuleName moduleName;
     private Set<Person> persons;
 
     /**
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
-        code = new seedu.address.model.module.Code(DEFAULT_CODE);
-        name = new seedu.address.model.module.Name(DEFAULT_NAME);
+        moduleCode = new ModuleCode(DEFAULT_CODE);
+        moduleName = new ModuleName(DEFAULT_NAME);
         persons = new HashSet<>();
     }
 
@@ -30,8 +30,8 @@ public class ModuleBuilder {
      * Initializes the ModuleBuilder with the data of {@code moduleToCopy}.
      */
     public ModuleBuilder(Module moduleToCopy) {
-        code = moduleToCopy.getModuleCode();
-        name = moduleToCopy.getModuleName();
+        moduleCode = moduleToCopy.getModuleCode();
+        moduleName = moduleToCopy.getModuleName();
         persons = new HashSet<>(moduleToCopy.getPersons());
     }
 
@@ -39,7 +39,7 @@ public class ModuleBuilder {
      * Sets the {@code Code} of the {@code Module} that we are building.
      */
     public ModuleBuilder withCode(String code) {
-        this.code = new seedu.address.model.module.Code(code);
+        this.moduleCode = new ModuleCode(code);
         return this;
     }
 
@@ -47,7 +47,7 @@ public class ModuleBuilder {
      * Sets the {@code Name} of the {@code Module} that we are building.
      */
     public ModuleBuilder withName(String name) {
-        this.name = new seedu.address.model.module.Name(name);
+        this.moduleName = new ModuleName(name);
         return this;
     }
 
@@ -60,6 +60,6 @@ public class ModuleBuilder {
     }
 
     public Module build() {
-        return new Module(code, name, persons);
+        return new Module(moduleCode, moduleName, persons);
     }
 }

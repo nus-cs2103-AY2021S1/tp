@@ -16,27 +16,27 @@ import seedu.address.model.person.Person;
 public class Module {
 
     // Identity fields
-    private final Code moduleCode;
+    private final ModuleCode moduleCode;
 
     // Data fields
-    private final Name moduleName;
+    private final ModuleName moduleName;
     private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Module(Code moduleCode, Name moduleName, Set<Person> persons) {
+    public Module(ModuleCode moduleCode, ModuleName moduleName, Set<Person> persons) {
         requireAllNonNull(moduleCode, moduleName, persons);
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
         this.persons.addAll(persons);
     }
 
-    public Code getModuleCode() {
+    public ModuleCode getModuleCode() {
         return moduleCode;
     }
 
-    public Name getModuleName() {
+    public ModuleName getModuleName() {
         return moduleName;
     }
 
