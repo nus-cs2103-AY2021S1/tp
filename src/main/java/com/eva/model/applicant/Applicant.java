@@ -1,5 +1,8 @@
 package com.eva.model.applicant;
 
+import java.util.Optional;
+import java.util.Set;
+
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -7,14 +10,16 @@ import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
 import com.eva.model.tag.Tag;
 
-import java.util.Optional;
-import java.util.Set;
-
+/**
+ * Represents the Applicant to be stored by Eva.
+ */
 public class Applicant extends Person {
     protected Optional<InterviewDate> interviewDate;
     protected ApplicationStatus applicationStatus;
 
-
+    /**
+     * Creates of an applicant object with a fixed interview date.
+     */
     public Applicant(Name name,
                      Phone phone,
                      Email email,
@@ -27,6 +32,9 @@ public class Applicant extends Person {
         this.applicationStatus = status;
     }
 
+    /**
+     * Creates of an applicant object without a fixed interview date.
+     */
     public Applicant(Name name,
                      Phone phone,
                      Email email,
@@ -38,10 +46,16 @@ public class Applicant extends Person {
         this.applicationStatus = status;
     }
 
+    /**
+     * Sets the application status of the specific applicant to be accepted.
+     */
     public void setApplicantAccepted() {
         this.applicationStatus.setAccepted();
     }
 
+    /**
+     * Sets the application status of the specific applicant to be rejected.
+     */
     public void setApplicantRejected() {
         this.applicationStatus.setRejected();
     }
@@ -71,6 +85,5 @@ public class Applicant extends Person {
                 .append(" Application Status: ")
                 .append(getApplicationStatus());
         return builder.toString();
-
     }
 }
