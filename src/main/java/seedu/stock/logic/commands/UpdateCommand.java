@@ -85,7 +85,7 @@ public class UpdateCommand extends Command {
         Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
 
-        return new Stock(updatedName, null, updatedSource, updatedQuantity, updatedLocation);
+        return new Stock(updatedName, new SerialNumber("12"), updatedSource, updatedQuantity, updatedLocation);
     }
 
     @Override
