@@ -4,7 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a Food item in AddressBook.
+ * Represents a Food item in McGymmy.
  */
 public class Food {
     public static final String FOOD_NAME_MESSAGE_CONTRAINT = "Food name can take in any value, and it cannot be blank";

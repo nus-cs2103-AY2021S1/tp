@@ -64,24 +64,24 @@ public class JsonAddressBookStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonMcGymmyStorage = new JsonAddressBookStorage(filePath);
+        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
-        jsonMcGymmyStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonMcGymmyStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveAddressBook(original, filePath);
+        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonMcGymmyStorage.saveAddressBook(original, filePath);
-        readBack = jsonMcGymmyStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveAddressBook(original, filePath);
+        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonMcGymmyStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonMcGymmyStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
+        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
 
     }

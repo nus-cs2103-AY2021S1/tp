@@ -45,14 +45,14 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonMcGymmy = JsonUtil.readJsonFile(
+        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAddressBook.class);
-        if (!jsonMcGymmy.isPresent()) {
+        if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonMcGymmy.get().toModelType());
+            return Optional.of(jsonAddressBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

@@ -2,7 +2,7 @@ package seedu.address.model.food;
 
 
 /**
- * Represents Fats in food item in AddressBook.
+ * Represents Fats in food item in McGymmy.
  */
 public class Fat extends Macronutrient {
     private static final int FAT_MULTIPLIER = 9;
