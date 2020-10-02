@@ -27,12 +27,13 @@ class MacronutrientTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            new MacronutrientStub(null, 1, 1));
+            new MacronutrientStub(null, 1, 4));
     }
 
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
-
+        assertThrows(IllegalArgumentException.class, () ->
+            new MacronutrientStub("dummy", -1, 4));
     }
 
     @Test
