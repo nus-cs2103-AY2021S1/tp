@@ -14,6 +14,6 @@ public interface Question {
 
     String getOnlyQuestion();
 
-    Optional<String[]> getChoices();
+    Optional<Choice[]> getChoices();
 
 }
