@@ -40,8 +40,8 @@ public class ModuleListTest {
     @Test
     public void contains_moduleWithSameIdentityFieldsInList_returnsTrue() {
         moduleList.add(CS1010S);
-        Module editedCS1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
-        assertTrue(moduleList.contains(editedCS1010S));
+        Module editedCs1010s = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
+        assertTrue(moduleList.contains(editedCs1010s));
     }
 
     @Test
@@ -82,10 +82,10 @@ public class ModuleListTest {
     @Test
     public void setModule_editedModuleHasSameIdentity_success() {
         moduleList.add(CS1010S);
-        Module editedCS1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
-        moduleList.setModule(CS1010S, editedCS1010S);
+        Module editedCs1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
+        moduleList.setModule(CS1010S, editedCs1010S);
         ModuleList expectedModuleList = new ModuleList();
-        expectedModuleList.add(editedCS1010S);
+        expectedModuleList.add(editedCs1010S);
         assertEquals(expectedModuleList, moduleList);
     }
 

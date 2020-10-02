@@ -16,28 +16,28 @@ import seedu.address.model.person.Person;
 public class Module {
 
     // Identity fields
-    private final Code code;
+    private final Code moduleCode;
 
     // Data fields
-    private final Name name;
+    private final Name moduleName;
     private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Module(Code code, Name name, Set<Person> persons) {
-        requireAllNonNull(code, name, persons);
-        this.code = code;
-        this.name = name;
+    public Module(Code moduleCode, Name moduleName, Set<Person> persons) {
+        requireAllNonNull(moduleCode, moduleName, persons);
+        this.moduleCode = moduleCode;
+        this.moduleName = moduleName;
         this.persons.addAll(persons);
     }
 
     public Code getModuleCode() {
-        return code;
+        return moduleCode;
     }
 
     public Name getModuleName() {
-        return name;
+        return moduleName;
     }
 
     public Set<Person> getPersons() {
@@ -53,7 +53,7 @@ public class Module {
         }
 
         return otherModule != null
-                && otherModule.code.equals(code);
+                && otherModule.moduleCode.equals(moduleCode);
     }
 
     /**
@@ -71,18 +71,18 @@ public class Module {
         }
 
         Module m = (Module) other;
-        return m.code.equals(code) && m.name.equals(name) && m.persons.equals(persons);
+        return m.moduleCode.equals(moduleCode) && m.moduleName.equals(moduleName) && m.persons.equals(persons);
 
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(code);
+        return Objects.hash(moduleCode);
     }
 
     @Override
     public String toString() {
-        return code + " " + name;
+        return moduleCode + " " + moduleName;
     }
 }

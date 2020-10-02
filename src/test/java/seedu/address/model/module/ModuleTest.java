@@ -36,31 +36,33 @@ public class ModuleTest {
         assertFalse(CS1010S.isSameModule(CS1101S));
 
         // different code, same name, same attributes -> returns false
-        Person[] personsCS1101S = new Person[CS1101S.getPersons().size()];
-        CS1101S.getPersons().toArray(personsCS1101S);
+        Person[] personsCs1101s = new Person[CS1101S.getPersons().size()];
+        CS1101S.getPersons().toArray(personsCs1101s);
 
         Module cs50 = new ModuleBuilder(CS1101S).withCode("CS50").build();
         assertFalse(CS1101S.isSameModule(cs50));
 
         // same code, same name, different attributes -> returns true
-        Module editedCS1010S = new ModuleBuilder(CS1010S).withPersons(IDA).build();
-        assertTrue(CS1010S.isSameModule(editedCS1010S));
+        Module editedCs1010S = new ModuleBuilder(CS1010S).withPersons(IDA).build();
+        assertTrue(CS1010S.isSameModule(editedCs1010S));
 
         // same code, different name, same attributes -> returns true
-        editedCS1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
-        assertTrue(CS1010S.isSameModule(editedCS1010S));
+        editedCs1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
+        assertTrue(CS1010S.isSameModule(editedCs1010S));
 
         // same code, different name, different attributes -> returns true
-        editedCS1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).withPersons(personsCS1101S).build();
-        assertTrue(CS1010S.isSameModule(editedCS1010S));
+        editedCs1010S = new ModuleBuilder(CS1010S)
+                .withName(VALID_MODULE_NAME_CS50)
+                .withPersons(personsCs1101s).build();
+        assertTrue(CS1010S.isSameModule(editedCs1010S));
 
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Module copyCS1010S = new ModuleBuilder(CS1010S).build();
-        assertEquals(copyCS1010S, CS1010S);
+        Module copyCs1010s = new ModuleBuilder(CS1010S).build();
+        assertEquals(copyCs1010s, CS1010S);
 
         // same object -> returns true
         assertEquals(CS1010S, CS1010S);
@@ -75,18 +77,18 @@ public class ModuleTest {
         assertNotEquals(CS2030, CS1010S);
 
         // different code -> returns false
-        Module editedCS1010S = new ModuleBuilder(CS1010S).withCode(VALID_MODULE_CODE_CS50).build();
-        assertNotEquals(editedCS1010S, CS1010S);
+        Module editedCs1010s = new ModuleBuilder(CS1010S).withCode(VALID_MODULE_CODE_CS50).build();
+        assertNotEquals(editedCs1010s, CS1010S);
 
         // different name -> returns false
-        editedCS1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
-        assertNotEquals(editedCS1010S, CS1010S);
+        editedCs1010s = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
+        assertNotEquals(editedCs1010s, CS1010S);
 
         // different persons -> returns false
-        Person[] personsCS1101S = new Person[CS1101S.getPersons().size()];
-        CS1101S.getPersons().toArray(personsCS1101S);
+        Person[] personsCs1101s = new Person[CS1101S.getPersons().size()];
+        CS1101S.getPersons().toArray(personsCs1101s);
 
-        editedCS1010S = new ModuleBuilder(CS1010S).withPersons(personsCS1101S).build();
-        assertNotEquals(editedCS1010S, CS1010S);
+        editedCs1010s = new ModuleBuilder(CS1010S).withPersons(personsCs1101s).build();
+        assertNotEquals(editedCs1010s, CS1010S);
     }
 }
