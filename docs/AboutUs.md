@@ -29,7 +29,7 @@ title: About Us
 * Role: Developer
 
 ### Heinrich
-<img src="images/HynRidge.png" width="200px">
+<img src="images/hynridge.png" width="200px">
 
 [github](https://github.com/HynRidge)
 
