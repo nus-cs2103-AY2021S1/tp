@@ -9,7 +9,7 @@ package seedu.address.logic.commands;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 //import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 //import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+//import static seedu.address.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 //import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 //import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 //import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -83,7 +83,7 @@ public class EditCommandTest {
 //
 //    @Test
 //    public void execute_filteredList_success() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+//        showFlashcardAtIndex(model, INDEX_FIRST_PERSON);
 //
 //        Flashcard flashcardInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 //        Flashcard editedFlashcard = new PersonBuilder(flashcardInFilteredList).withName(VALID_NAME_BOB).build();
@@ -109,7 +109,7 @@ public class EditCommandTest {
 //
 //    @Test
 //    public void execute_duplicatePersonFilteredList_failure() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+//        showFlashcardAtIndex(model, INDEX_FIRST_PERSON);
 //
 //        // edit person in filtered list into a duplicate in address book
 //        Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -125,7 +125,7 @@ public class EditCommandTest {
 //        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
 //        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 //
-//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
 //    }
 //
 //    /**
@@ -134,7 +134,7 @@ public class EditCommandTest {
 //     */
 //    @Test
 //    public void execute_invalidPersonIndexFilteredList_failure() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+//        showFlashcardAtIndex(model, INDEX_FIRST_PERSON);
 //        Index outOfBoundIndex = INDEX_SECOND_PERSON;
 //        // ensures that outOfBoundIndex is still in bounds of address book list
 //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
@@ -142,7 +142,7 @@ public class EditCommandTest {
 //        EditCommand editCommand = new EditCommand(outOfBoundIndex,
 //                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 //
-//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
 //    }
 //
 //    @Test
