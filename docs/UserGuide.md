@@ -124,6 +124,16 @@ Clears all entries from QuickCache.
 
 Format: `clear`
 
+### Finding Flashcards by their tags: `find`
+
+Finds all Flashcards based on their tags.
+
+Format: `find KEYWORDS`
+
+* Keywords should be seperated by a whitespace between
+
+Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -153,5 +163,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
+**Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
 **Help** | `help`
 **Exit** | `exit`
