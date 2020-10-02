@@ -34,7 +34,8 @@ Given below are my contributions to the project.
     [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/47#issuecomment-678718187),
     [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/86#issuecomment-681816644),
     [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/110#issuecomment-683312239),
-    [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502))
+    [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502),
+    [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/278))
   * Reported bugs and suggestions for other teams in the class (examples:)
   * Some parts of the history feature I added was adopted by several other class mates ()
 
