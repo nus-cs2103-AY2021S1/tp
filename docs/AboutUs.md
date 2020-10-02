@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tian Fang
 
-<img src="images/T-Fang.png" width="200px">
+<img src="images/t-fang.png" width="200px">
 
 [[github](http://github.com/T-Fang)] 
 
