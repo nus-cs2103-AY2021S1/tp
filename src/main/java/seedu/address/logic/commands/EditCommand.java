@@ -109,7 +109,7 @@ public class EditCommand extends Command {
         if (isMcq) {
             String question = updatedQuestion.getQuestion();
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
-            String[] choices = mcq.getChoices();
+            String[] choices = mcq.getChoices().get();
             if (Arrays.equals(updatedChoices, emptyArray)) {
                 updatedQuestion = new MultipleChoiceQuestion(question, choices);
                 int ans;

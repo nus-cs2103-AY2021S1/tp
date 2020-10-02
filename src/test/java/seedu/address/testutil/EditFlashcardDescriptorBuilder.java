@@ -37,7 +37,7 @@ public class EditFlashcardDescriptorBuilder {
         boolean isMcq = flashcard.getQuestion() instanceof MultipleChoiceQuestion;
         descriptor.setIsMcq(isMcq);
         if (isMcq) {
-            descriptor.setChoices(((MultipleChoiceQuestion) flashcard.getQuestion()).getChoices());
+            descriptor.setChoices(((MultipleChoiceQuestion) flashcard.getQuestion()).getChoices().get());
         } else {
             String[] emptyArray = new String[0];
             descriptor.setChoices(emptyArray);

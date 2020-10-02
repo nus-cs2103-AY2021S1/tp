@@ -1,5 +1,7 @@
 package seedu.address.flashcard;
 
+import java.util.Optional;
+
 /**
  * Represents a question.
  */
@@ -11,5 +13,7 @@ public interface Question {
     String getQuestion();
 
     String getOnlyQuestion();
+
+    Optional<String[]> getChoices();
 
 }
