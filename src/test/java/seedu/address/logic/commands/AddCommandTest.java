@@ -20,6 +20,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.food.Food;
+import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -105,6 +107,56 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMenuManager(ReadOnlyMenuManager menuManager, int index) {
+
+        }
+
+        @Override
+        public ReadOnlyMenuManager getMenuManager(int index) {
+            return null;
+        }
+
+        @Override
+        public boolean hasFood(Food food, int index) {
+            return false;
+        }
+
+        @Override
+        public void deleteFood(Food target, int index) {
+
+        }
+
+        @Override
+        public void addFood(Food food, int index) {
+
+        }
+
+        @Override
+        public void setFood(Food target, Food editedFood, int index) {
+
+        }
+
+        @Override
+        public ObservableList<Food> getFilteredFoodList(int index) {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredFoodList(Predicate<Food> predicate, int index) {
+
+        }
+
+        @Override
+        public Path getMenuManagerFolderPath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMenuManagerFolderPath(Path menuManagerFolderPath) {
             throw new AssertionError("This method should not be called.");
         }
 

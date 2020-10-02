@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.food.Food;
+import seedu.address.model.menu.MenuManager;
+import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,9 +25,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final List<MenuManager> menuManagers;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
+    private FilteredList<Food> filteredFoods;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -33,12 +39,29 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.menuManagers = new ArrayList<>();
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, userPrefs and menuManager.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, List<MenuManager> menuManagers) {
+        super();
+        requireAllNonNull(addressBook, userPrefs, menuManagers);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.menuManagers = menuManagers;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new ArrayList<>());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,6 +99,18 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getMenuManagerFolderPath() {
+        return userPrefs.getMenuManagerFolderPath();
+    }
+
+    @Override
+    public void setMenuManagerFolderPath(Path menuManagerFolderPath) {
+        requireNonNull(menuManagerFolderPath);
+        userPrefs.setAddressBookFilePath(menuManagerFolderPath);
+    }
+
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -112,6 +147,40 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setMenuManager(ReadOnlyMenuManager menuManager, int index) {
+        this.menuManagers.get(index).resetData(menuManager);
+    }
+
+    @Override
+    public ReadOnlyMenuManager getMenuManager(int index) {
+        return menuManagers.get(index);
+    }
+
+    @Override
+    public boolean hasFood(Food food, int index) {
+        requireNonNull(food);
+        return menuManagers.get(index).hasFood(food);
+    }
+
+    @Override
+    public void deleteFood(Food target, int index) {
+        menuManagers.get(index).removeFood(target);
+    }
+
+    @Override
+    public void addFood(Food food, int index) {
+        menuManagers.get(index).addFood(food);
+        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS, index);
+    }
+
+    @Override
+    public void setFood(Food target, Food editedFood, int index) {
+        requireAllNonNull(target, editedFood);
+
+        menuManagers.get(index).setFood(target, editedFood);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -128,6 +197,20 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public ObservableList<Food> getFilteredFoodList(int index) {
+        if (filteredFoods == null) {
+            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS, index);
+        }
+        return filteredFoods;
+    }
+
+    @Override
+    public void updateFilteredFoodList(Predicate<Food> predicate, int index) {
+        filteredFoods = new FilteredList<>(this.menuManagers.get(index).getFoodList());;
+    }
+
 
     @Override
     public boolean equals(Object obj) {

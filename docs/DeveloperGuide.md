@@ -237,7 +237,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * has a need to order supper frequently
-* stays on campus 
+* stays on campus
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -318,7 +318,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. SupperStrikers shows an error message.
 
     Use Case resumes at step 1
-  
+
 - 1c. The given quantity is negative.
 
   - 1c1. SupperStrikers shows an error message.

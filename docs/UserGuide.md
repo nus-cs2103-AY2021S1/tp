@@ -18,11 +18,11 @@
    Some example commands you can try:
 
    * **`vendor`** : List all the vendors available.
-   
+
    * **`vendor i/1`** : Select the first vendor to make a supper order for.
-   
+
    * **`create`** : Creates a new supper order.
-   
+ 
    * **`add i/1 q/1`** : Adds one quantity of the first item from the vendor's menu to your supper menu. 
 
    * **`exit`** : Exits the app.
@@ -134,6 +134,6 @@ Action | Format, Examples
 **Vendor** | `vendor i/INDEX` <br> e.g., `vendor i/2`
 **Menu**   | `menu` <br> e.g., `menu`
 **Create** | `create` <br> e.g., `create`
-**Add**    | `add i/INDEX q/QUANTITY` <br> e.g., `add i/2` 
+**Add**    | `add i/INDEX q/QUANTITY` <br> e.g., `add i/2`
 **Delete** | `delete i/INDEX [q/QUANTITY]`<br> e.g., `delete i/3`
 **Confirm**| `confirm` <br> e.g., `confirm`

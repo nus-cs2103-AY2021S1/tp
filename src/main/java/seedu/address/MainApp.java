@@ -2,6 +2,8 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -21,8 +23,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.menu.MenuManager;
+import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.FoodStorageStub;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -75,13 +80,25 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        List<Optional<ReadOnlyMenuManager>> menuManagersOptional;
         ReadOnlyAddressBook initialData;
+        List<MenuManager> initialMenuManagers = new ArrayList<>();
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            menuManagersOptional = new FoodStorageStub().readMenuManagers();
+            menuManagersOptional.forEach(x -> x.ifPresentOrElse(y ->
+                    initialMenuManagers.add(new MenuManager(y)), () -> {
+                    logger.info("Data file not found. Will be starting with an empty menu");
+                    initialMenuManagers.add(new MenuManager());
+                }
+            ));
+
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
@@ -90,7 +107,8 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+
+        return new ModelManager(initialData, userPrefs, initialMenuManagers);
     }
 
     private void initLogging(Config config) {
