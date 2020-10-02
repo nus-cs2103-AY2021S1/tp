@@ -18,27 +18,26 @@ public class Person extends Task {
     // Identity fields
     //private final Name name;
     //private final Phone phone;
-    //private final Email email;
+    private final Email email;
 
     // Data fields
-    private final Address address;
+    //private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email);
+        super(name, phone, address);
         requireAllNonNull(address, tags);
         //this.name = name;
         //this.phone = phone;
-        //this.email = email;
-        this.address = address;
+        this.email = email;
+        //this.address = address;
         this.tags.addAll(tags);
     }
-
-    public Address getAddress() {
-        return address;
+    public Email getEmail() {
+        return email;
     }
 
     /**
@@ -60,7 +59,7 @@ public class Person extends Task {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getTime().equals(getTime()) || otherPerson.getModuleCode().equals(getModuleCode()));
+                && (otherPerson.getTime().equals(getTime()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -80,15 +79,15 @@ public class Person extends Task {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getTime().equals(getTime())
+                && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getModuleCode().equals(getModuleCode())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(super.getName(), super.getTime(), super.getModuleCode(), address, tags);
+        return Objects.hash(super.getName(), super.getTime(), email, super.getModuleCode(), tags);
     }
 
     @Override
@@ -98,9 +97,9 @@ public class Person extends Task {
                 .append(" Phone: ")
                 .append(getTime())
                 .append(" Email: ")
-                .append(getModuleCode())
+                .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
+                .append(getModuleCode())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

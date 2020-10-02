@@ -6,9 +6,9 @@ abstract class Task {
     // Identity fields
     private final Name name;
     private final Phone time;
-    private final Email moduleCode;
+    private final Address moduleCode;
 
-    Task(Name name, Phone time, Email moduleCode) {
+    Task(Name name, Phone time, Address moduleCode) {
         requireAllNonNull(name, time, moduleCode);
         this.name = name;
         this.time = time;
@@ -23,7 +23,7 @@ abstract class Task {
         return time;
     }
 
-    public Email getModuleCode() {
+    public Address getModuleCode() {
         return moduleCode;
     }
 }
