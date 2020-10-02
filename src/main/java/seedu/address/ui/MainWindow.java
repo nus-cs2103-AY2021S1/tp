@@ -1,7 +1,12 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -9,11 +14,15 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.flashcard.MultipleChoiceQuestion;
+import seedu.address.flashcard.Question;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.Feedback;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -31,9 +40,17 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FlashcardListPanel flashcardListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private OptionListPanel optionListPanel;
+    private QuestionDisplay questionDisplay;
+
+    private boolean isOnChangedWindow;
+
+    @FXML
+    private VBox mainPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,10 +59,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane displayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -59,6 +76,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.isOnChangedWindow = false;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -110,11 +128,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        listPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -158,13 +176,74 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
+        // logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Changes the content of the placeHolders of this window.
+     * @param feedbackToUser the feedback describing what to display to the user.
+     */
+    public void handleChangeWindow(Feedback feedbackToUser) {
+        // can add if-else statements to differentiate between
+        // how the content of the placeholders are changed.
+        changeInnerPartsToFlashcardWindow(feedbackToUser);
+    }
+
+    /**
+     * Changes the content of the placeHolders of this window to display an opened flashcard.
+     * @param feedbackToUser the feedback describing what to display to the user.
+     */
+    private void changeInnerPartsToFlashcardWindow(Feedback feedbackToUser) {
+
+        listPanelPlaceholder.getChildren().clear();
+        displayPlaceholder.getChildren().clear();
+
+        Optional<Question> questionToDisplay = feedbackToUser.getQuestion();
+
+        questionDisplay = new QuestionDisplay();
+        displayPlaceholder.getChildren().add(questionDisplay.getRoot());
+        // display the question
+        questionDisplay.setQuestion(questionToDisplay.map(Question::getOnlyQuestion)
+                .orElse("There is no question to display"));
+
+        // initialize question's options into VBox
+        optionListPanel = new OptionListPanel(questionToDisplay.map(question -> {
+            if (question instanceof MultipleChoiceQuestion) {
+                return FXCollections.observableList(Arrays.stream(((MultipleChoiceQuestion) question)
+                        .getChoices().get()).collect(Collectors.toCollection(ArrayList::new)));
+            } else {
+                return FXCollections.observableArrayList("Open Ended Question has no options");
+            }
+        }).get()); // get() will never throw an exception as null will never be returned
+        listPanelPlaceholder.getChildren().add(optionListPanel.getRoot());
+
+        // isCorrect() is not null only when test command is called
+        feedbackToUser.isCorrect().ifPresent(isCorrect -> {
+            questionDisplay.showOutcome(feedbackToUser.toString(), isCorrect);
+        });
+
+        this.isOnChangedWindow = true;
+    }
+
+    /**
+     * Reverse changes to the content of the window's placeholders to the default content.
+     */
+    private void reverseWindowChange() {
+        flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        displayPlaceholder.getChildren().clear();
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        this.isOnChangedWindow = false;
+    }
+
+    public FlashcardListPanel getFlashcardListPanel() {
+        return flashcardListPanel;
     }
 
     /**
@@ -178,17 +257,22 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.isChangeWindow()) {
+                handleChangeWindow(commandResult.getFeedback());
+            } else if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+            } else if (commandResult.isExit()) {
                 handleExit();
+            } else if (isOnChangedWindow) {
+                reverseWindowChange();
             }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            if (isOnChangedWindow) {
+                reverseWindowChange();
+            }
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

@@ -4,23 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.EditCommand.EditFlashcardDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.QuickCache;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 import seedu.address.testutil.FlashcardBuilder;
@@ -31,7 +27,7 @@ import seedu.address.testutil.FlashcardBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -41,44 +37,33 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastFlashcard = Index.fromOneBased(model.getFilteredFlashcardList().size());
-        Flashcard lastFlashcard = model.getFilteredFlashcardList().get(indexLastFlashcard.getZeroBased());
-
-        FlashcardBuilder flashcardInList = new FlashcardBuilder(lastFlashcard);
-        Flashcard editedFlashcard = flashcardInList.withQuestion(VALID_QUESTION_BOB)
-                .withAnswer(VALID_ANSWER_AMY).build();
-
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
-                .withAnswer(VALID_ANSWER_AMY).build();
-        EditCommand editCommand = new EditCommand(indexLastFlashcard, descriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    //    @Test
-    //    public void execute_noFieldSpecifiedUnfilteredList_success() {
-    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditFlashcardDescriptor(false));
-    //        Flashcard editedFlashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_PERSON.getZeroBased());
+    //        @Test
+    //        public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    //            Index indexLastFlashcard = Index.fromOneBased(model.getFilteredFlashcardList().size());
+    //            Flashcard lastFlashcard = model.getFilteredFlashcardList().get(indexLastFlashcard.getZeroBased());
     //
-    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
+    //            FlashcardBuilder flashcardInList = new FlashcardBuilder(lastFlashcard);
+    //            Flashcard editedFlashcard = flashcardInList.withQuestion(VALID_QUESTION_BOB)
+    //                    .withAnswer(VALID_ANSWER_AMY).build();
     //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //            EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder().
+    //            withQuestion(VALID_QUESTION_BOB)
+    //                    .withAnswer(VALID_ANSWER_AMY).build();
+    //            EditCommand editCommand = new EditCommand(indexLastFlashcard, descriptor);
     //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+    //            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
+    //
+    //            Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
+    //            expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
+    //
+    //            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //        }
 
     @Test
     public void execute_filteredList_success() {
@@ -92,59 +77,11 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
-
-    @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Flashcard firstFlashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(firstFlashcard).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FLASHCARD);
-    }
-
-    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        // showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        // edit person in filtered list into a duplicate in address book
-        Flashcard flashcardInList = model.getAddressBook().getFlashcardList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditFlashcardDescriptorBuilder(flashcardInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FLASHCARD);
-    }
-
-    @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder()
-                .withQuestion(VALID_QUESTION_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-    }
-
-    //    /**
-    //     * Edit filtered list where index is larger than size of filtered list,
-    //     * but smaller than size of address book
-    //     */
-    //    @Test
-    //    public void execute_invalidPersonIndexFilteredList_failure() {
-    //        //showPersonAtIndex(model, INDEX_FIRST_PERSON);
-    //        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFlashcardList().size());
-    //
-    //        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-    //                new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build());
-    //
-    //        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-    //    }
 
     @Test
     public void equals() {

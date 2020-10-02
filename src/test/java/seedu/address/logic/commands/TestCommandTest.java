@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickcache;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalQuickCache;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MCQ_FLASHCARD;
 
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.Option;
 import seedu.address.flashcard.Question;
 import seedu.address.model.Model;
@@ -20,7 +20,7 @@ import seedu.address.model.UserPrefs;
 
 class TestCommandTest {
 
-    private final Model model = new ModelManager(getTypicalQuickcache(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_answerSpecifiedOpenEndedUnfilteredListCorrect_success() {
@@ -32,10 +32,10 @@ class TestCommandTest {
         descriptor.setAnswer(answer);
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_CORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, question, true);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, question, true, true);
     }
 
     @Test
@@ -48,16 +48,16 @@ class TestCommandTest {
         descriptor.setAnswer(userAnswer);
         TestCommand testCommand = new TestCommand(INDEX_FIRST_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_INCORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, question, false);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, question, false, true);
     }
 
     @Test
     public void execute_optionSpecifiedMcqUnfilteredListCorrect_success() {
         Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_MCQ_FLASHCARD.getZeroBased());
-        Mcq mcq = (Mcq) flashcard.getQuestion();
+        MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcard.getQuestion();
         Answer answer = flashcard.getAnswer();
         Index correctIndex = Index.fromOneBased(3);
         Answer userAnswer = mcq.getAnswerFromIndex(correctIndex);
@@ -65,16 +65,16 @@ class TestCommandTest {
         descriptor.setOption(new Option(String.valueOf(correctIndex.getOneBased())));
         TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_CORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, true);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, true, true);
     }
 
     @Test
     public void execute_optionSpecifiedMcqUnfilteredListWrong_success() {
         Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_MCQ_FLASHCARD.getZeroBased());
-        Mcq mcq = (Mcq) flashcard.getQuestion();
+        MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcard.getQuestion();
         Answer answer = flashcard.getAnswer();
         Index incorrectIndex = Index.fromOneBased(2);
         Answer userAnswer = mcq.getAnswerFromIndex(incorrectIndex);
@@ -82,10 +82,10 @@ class TestCommandTest {
         descriptor.setOption(new Option(String.valueOf(incorrectIndex.getOneBased())));
         TestCommand testCommand = new TestCommand(INDEX_FIRST_MCQ_FLASHCARD, descriptor);
 
-        String expectedMessage = String.format(TestCommand.MESSAGE_INCORRECT_ANSWER,
+        String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, false);
+        assertCommandSuccess(testCommand, model, expectedMessage, model, mcq, false, true);
     }
 
     @Test

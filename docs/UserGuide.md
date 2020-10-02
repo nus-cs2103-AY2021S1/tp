@@ -63,14 +63,36 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a flashcard: `add`
+### Open a flashcard: `open`
+
+Opens a specified flashcard from the list .
+
+Format: `open INDEX`
+
+* Opens the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `open 2` opens the 2nd flashcard in the list.
+
+### Adding a flashcard with open ended question: `add`
 
 Adds a new flashcard to the application.
 
-Format: `add n/QUESTION n/ANSWER`
+Format: `add q/QUESTION ans/ANSWER`
 
 Examples:
-* `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
+* `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
+
+### Adding a flashcard with multiple choice question: `addcdq`
+
+Adds a new flashcard to the application.
+
+Format: `add q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+
+Examples:
+* `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
 
 ### Testing a flashcard : `test`
 
@@ -111,6 +133,16 @@ Clears all entries from QuickCache.
 
 Format: `clear`
 
+### Finding Flashcards by their tags: `find`
+
+Finds all Flashcards based on their tags.
+
+Format: `find KEYWORDS`
+
+* Keywords should be seperated by a whitespace between
+
+Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -134,10 +166,13 @@ QuickCache data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/QUESTION n/ANSWER` <br> e.g., `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
+**Open**| `open INDEX` <br> e.g., `open 3`
+**Add** | `add q/QUESTION ans/ANSWER` <br> e.g., `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
+**Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
 **Test** | `test INDEX a/ANSWER`<br> e.g., `test 2 a/lorem ipsum`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
+**Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
 **Help** | `help`
 **Exit** | `exit`

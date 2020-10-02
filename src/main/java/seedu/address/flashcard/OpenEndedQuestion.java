@@ -1,5 +1,7 @@
 package seedu.address.flashcard;
 
+import java.util.Optional;
+
 /**
  * Represents an open ended question.
  */
@@ -36,6 +38,10 @@ public class OpenEndedQuestion implements Question {
             return this.toString().equals(temp.toString());
         }
         return false;
+    }
+
+    public Optional<String[]> getChoices() {
+        return Optional.empty();
     }
 
     @Override

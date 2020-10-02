@@ -285,6 +285,10 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.text-area .scroll-pane .corner {
+    -fx-background-color: transparent ;
+}
+
 .scroll-bar .thumb {
     -fx-background-color: derive(#1d1d1d, 50%);
     -fx-background-insets: 3;
@@ -333,6 +337,26 @@
 }
 
 #resultDisplay .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-radius: 0;
+}
+
+#answerDisplay .content {
+    -fx-background-color: transparent, #484848, transparent, #484848;
+    -fx-background-radius: 0;
+}
+
+#questionDisplay .content {
+    -fx-background-color: transparent, #343434, transparent, #343434;
+    -fx-background-radius: 0;
+}
+
+#outcomeDisplay .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-radius: 0;
+}
+
+# .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }

@@ -1,6 +1,7 @@
 package seedu.address.flashcard;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 
@@ -9,7 +10,7 @@ import seedu.address.commons.core.index.Index;
  * Options for the mcq will be stored in an array while the
  * question itself will be stored as a {@code String}.
  */
-public class Mcq implements Question {
+public class MultipleChoiceQuestion implements Question {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -22,7 +23,7 @@ public class Mcq implements Question {
     /**
      * A constructor to create MCQ Question object.
      */
-    public Mcq(String question, String... options) {
+    public MultipleChoiceQuestion(String question, String... options) {
         this.question = question;
         this.options = options;
     }
@@ -43,8 +44,8 @@ public class Mcq implements Question {
         return sb.toString();
     }
 
-    public String[] getChoices() {
-        return this.options;
+    public Optional<String[]> getChoices() {
+        return Optional.ofNullable(this.options);
     }
 
     public static boolean isValidQuestion(String test) {
@@ -65,15 +66,14 @@ public class Mcq implements Question {
     public boolean equals(Object o) {
         if (this == o) {
             return true;
-        } else if (o instanceof Mcq) {
-            Mcq temp = (Mcq) o;
+        } else if (o instanceof MultipleChoiceQuestion) {
+            MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
             return this.toString().equals(temp.toString())
-                    && Arrays.equals(this.getChoices(), temp.getChoices());
+                    && Arrays.equals(this.getChoices().get(), temp.getChoices().get());
         }
         return false;
     }
 
-    @Override
     public String toString() {
         return question;
     }

@@ -5,21 +5,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.flashcard.Flashcard;
-import seedu.address.model.AddressBook;
+import seedu.address.model.QuickCache;
 
 public class TypicalFlashcards {
 
     public static final Flashcard RANDOM1 = new FlashcardBuilder().withQuestion("Are heparins safe in pregnancy?")
-            .withAnswer("Yes, They dont cross the placenta").build();
+            .withAnswer("Yes, They dont cross the placenta").withTag("LSM1301").build();
     public static final Flashcard RANDOM2 = new FlashcardBuilder()
             .withQuestion("What is the big downside for LMWH, direct thrombin and anti Xa inhibitors?")
-            .withAnswer("No reversal agent").build();
+            .withAnswer("No reversal agent").withTag("LSM1301").build();
     public static final Flashcard RANDOM3 = new FlashcardBuilder()
             .withQuestion("What is the binary representation of 4 5/8?")
-            .withAnswer("110.101").build();
+            .withAnswer("110.101").withTags(new String[] {"CS2100", "CS"}).build();
     public static final Flashcard RANDOM4 = new FlashcardBuilder()
             .withQuestion("What is a digital circuit capable of holding a single digit")
-            .withAnswer("Flip-flop").build();
+            .withAnswer("Flip-flop").withTags(new String[] {"CS2100", "CS"}).build();
 
     public static final Flashcard RANDOM5 = new FlashcardBuilder()
             .withMultipleChoiceQuestion("Which of the following storage systems is best suited for "
@@ -45,12 +45,12 @@ public class TypicalFlashcards {
     /**
      * Returns a {@code Quickcache} with all the typical flashcards.
      */
-    public static AddressBook getTypicalQuickcache() {
-        AddressBook ab = new AddressBook();
+    public static QuickCache getTypicalQuickCache() {
+        QuickCache qc = new QuickCache();
         for (Flashcard flashcard : getTypicalFlashcards()) {
-            ab.addFlashcard(flashcard);
+            qc.addFlashcard(flashcard);
         }
-        return ab;
+        return qc;
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
