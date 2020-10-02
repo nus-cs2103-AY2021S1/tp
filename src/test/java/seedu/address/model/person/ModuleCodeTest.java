@@ -28,11 +28,14 @@ public class ModuleCodeTest {
         assertFalse(ModuleCode.isValidModuleCode("")); // empty string
         assertFalse(ModuleCode.isValidModuleCode(" ")); // spaces only
         assertFalse(ModuleCode.isValidModuleCode("C2300")); // begins with one alphabet
+        assertFalse(ModuleCode.isValidModuleCode("ABCD1000")); // begins with more than 3 alphabets
         assertFalse(ModuleCode.isValidModuleCode("GER10")); // only has 2 numbers
+        assertFalse(ModuleCode.isValidModuleCode("ABC10000")); // has 5 numbers
 
         // valid module codes
         assertTrue(ModuleCode.isValidModuleCode("CS2103T"));
         assertTrue(ModuleCode.isValidModuleCode("CS2040S"));
+        assertTrue(ModuleCode.isValidModuleCode("GER1000"));
         assertTrue(ModuleCode.isValidModuleCode(
                 "CS2101"));
     }
