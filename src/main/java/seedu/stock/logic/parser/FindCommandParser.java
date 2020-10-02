@@ -33,7 +33,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean isEmptyArgument = trimmedArgs.isEmpty();
         boolean isMatch = findMatcher.matches();
         // check if argument matches find format
-        if (isMatch || !isEmptyArgument) {
+        if (!isMatch || isEmptyArgument) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
