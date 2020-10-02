@@ -1,6 +1,11 @@
 package tp.cap5buddy.logic.parser;
 
 
+import tp.cap5buddy.logic.parser.exception.ParseException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents the token of each user input.
  */
@@ -16,6 +21,63 @@ public class Tokenizer {
     public Tokenizer(String input) {
         this.input = input;
         breakDown();
+    }
+
+    public Tokenizer() {
+
+    }
+
+    public String[] tokenize(String userInput, Prefix... prefixes ) throws ParseException {
+        List<PrefixPosition> prefixPositions = findAllPrefixPositions(userInput, prefixes);
+        return extractArguments(userInput, prefixPositions);
+    }
+
+    public List<PrefixPosition> findAllPrefixPositions(String userInput, Prefix... prefixes) throws ParseException {
+        List<PrefixPosition> prefixPositions = new ArrayList<>();
+        for (Prefix prefix : prefixes) {
+            PrefixPosition prefixPosition = findPrefixPosition(userInput, prefix);
+            if (prefixPosition != null) {
+                prefixPositions.add(prefixPosition);
+            }
+        }
+        return prefixPositions;
+    }
+
+    public PrefixPosition findPrefixPosition(String userInput, Prefix prefix) throws ParseException {
+        String prefixSearch = " " + prefix.getPrefix();
+        int prefixIndex = userInput.indexOf(prefixSearch);
+
+        boolean hasMultipleSamePrefixes = hasMultipleSamePrefixes(userInput, prefix, prefixIndex);
+        if (hasMultipleSamePrefixes) {
+            String error = "User input has multiple arguments for the same prefix";
+            throw new ParseException(error);
+        }
+        return (prefixIndex == -1 ? null : new PrefixPosition(prefixIndex + 1, prefix));
+    }
+
+    public boolean hasMultipleSamePrefixes(String userInput, Prefix prefix, int currentPrefixIndex) {
+        int nextPrefixIndex = userInput.indexOf(" " + prefix.getPrefix(), currentPrefixIndex + 1);
+        boolean hasMultipleSamePrefix = nextPrefixIndex != -1;
+        return hasMultipleSamePrefix;
+    }
+
+    public String[] extractArguments(String userInput, List<PrefixPosition> prefixPositions) {
+        String[] results = new String[SIZE];
+        for (int i = 0; i < SIZE - 1; i++) {
+            String argument = extractArgument(userInput, prefixPositions.get(i), prefixPositions.get(i + 1));
+            results[i] = argument;
+        }
+        return results;
+    }
+
+    public String extractArgument(String userInput,
+                                  PrefixPosition currentPrefixPosition,
+                                  PrefixPosition nextPrefixPosition) {
+
+        Prefix prefix = currentPrefixPosition.getPrefix();
+        int argumentIndex = currentPrefixPosition.getPrefixIndex() + prefix.getPrefix().length();
+        String argument = userInput.substring(argumentIndex, nextPrefixPosition.getPrefixIndex());
+        return argument.trim();
     }
 
     private void breakDown() {
@@ -42,5 +104,23 @@ public class Tokenizer {
 
     public String[] getWords() {
         return this.words;
+    }
+
+    private class PrefixPosition {
+        private int prefixIndex;
+        private final Prefix prefix;
+
+        public PrefixPosition(int startPosition, Prefix prefix) {
+            this.prefixIndex = startPosition;
+            this.prefix = prefix;
+        }
+
+        public int getPrefixIndex() {
+            return this.prefixIndex;
+        }
+
+        public Prefix getPrefix() {
+            return this.prefix;
+        }
     }
 }

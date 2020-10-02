@@ -1,6 +1,7 @@
 package tp.cap5buddy.logic.parser;
 
 import tp.cap5buddy.logic.commands.AddZoomLinkCommand;
+import tp.cap5buddy.logic.parser.exception.ParseException;
 
 public class AddZoomLinkParser extends Parser {
 
@@ -10,9 +11,10 @@ public class AddZoomLinkParser extends Parser {
      * @param userInput
      * @return
      */
-    public AddZoomLinkCommand parse(String userInput) {
-        Tokenizer token = new Tokenizer(userInput);
-        String[] parsedArguments = token.getWords();
+    public AddZoomLinkCommand parse(String userInput) throws ParseException {
+        Tokenizer tokenizer = new Tokenizer();
+        String[] parsedArguments = tokenizer.tokenize(userInput,
+                PrefixList.MODULE_NAME_PREFIX, PrefixList.MODULE_LINK_PREFIX, PrefixList.MO)
         return new AddZoomLinkCommand(parsedArguments);
     }
 }
