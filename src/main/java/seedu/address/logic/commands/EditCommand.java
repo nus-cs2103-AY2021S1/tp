@@ -98,8 +98,9 @@ public class EditCommand extends Command {
 
         boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
 
-        Answer updatedAnswer = editFlashcardDescriptor.getAnswer()
-                .orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+        Optional<Answer> updatedAnswer = editFlashcardDescriptor.getAnswer();
+        //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+        Answer finalAnswer;
         Question updatedQuestion = editFlashcardDescriptor.getQuestion()
                 .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getOnlyQuestion()));
         Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
@@ -109,38 +110,59 @@ public class EditCommand extends Command {
         if (isMcq) {
             String question = updatedQuestion.getQuestion();
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
-            String[] choices = mcq.getChoices();
+            String[] previousChoices = mcq.getChoices().get();
             if (Arrays.equals(updatedChoices, emptyArray)) {
-                updatedQuestion = new MultipleChoiceQuestion(question, choices);
-                int ans;
-                try {
-                    ans = Integer.parseInt(updatedAnswer.getAnswer());
-                    if (ans > choices.length) {
+                updatedQuestion = new MultipleChoiceQuestion(question, previousChoices);
+                if (updatedAnswer.isPresent()) {
+                    int ans;
+                    try {
+                        ans = Integer.parseInt(updatedAnswer.get().getAnswer());
+                        if (ans > previousChoices.length && ans > 0) {
+                            throw new CommandException("Answer must be smaller than number of choices");
+                        }
+                    } catch (NumberFormatException e) {
+                        throw new CommandException("Answer must be integer");
+                    }
+                    finalAnswer = new Answer(previousChoices[ans - 1]);
+                } else {
+                    finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+                }
+            } else {
+                updatedQuestion = new MultipleChoiceQuestion(question, updatedChoices);
+                if (updatedAnswer.isPresent()) {
+                    int ans;
+                    try {
+                        ans = Integer.parseInt(updatedAnswer.get().getAnswer());
+                        if (ans > updatedChoices.length && ans > 0) {
+                            throw new CommandException("Answer must be smaller than number of choices");
+                        }
+                    } catch (NumberFormatException e) {
+                        throw new CommandException("Answer must be integer");
+                    }
+                    finalAnswer = new Answer(updatedChoices[ans - 1]);
+                } else {
+                    Answer previousAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+                    String previousAnswerString = previousAnswer.getAnswer();
+                    int previousIndex = -1;
+                    for (int i = 0; i < previousChoices.length; i++) {
+                        if (previousAnswerString.equals(previousChoices[i].toLowerCase())) {
+                            previousIndex = i;
+                        }
+                    }
+                    if (previousIndex < updatedChoices.length) {
+                        finalAnswer = new Answer(updatedChoices[previousIndex]);
+                    } else {
                         throw new CommandException("Answer must be smaller than number of choices");
                     }
-                } catch (NumberFormatException e) {
-                    throw new CommandException("Answer must be integer");
                 }
-                updatedAnswer = new Answer(choices[ans - 1]);
-            } else {
-                int ans;
-                updatedQuestion = new MultipleChoiceQuestion(question, updatedChoices);
-                try {
-                    ans = Integer.parseInt(updatedAnswer.getAnswer());
-                    if (ans > updatedChoices.length) {
-                        throw new CommandException("Number of choices must be larger than answer");
-                    }
-                } catch (NumberFormatException e) {
-                    throw new CommandException("Answer must be integer");
-                }
-                updatedAnswer = new Answer(updatedChoices[ans - 1]);
             }
         } else {
             if (!Arrays.equals(updatedChoices, emptyArray)) {
                 throw new CommandException(MESSAGE_DIFFERENT_TYPE);
             }
+            finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
         }
-        return new Flashcard(updatedQuestion, updatedAnswer, updatedTags);
+        return new Flashcard(updatedQuestion, finalAnswer, updatedTags);
     }
 
 
