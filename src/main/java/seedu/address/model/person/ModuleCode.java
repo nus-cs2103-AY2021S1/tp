@@ -4,19 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents an assignment's module code in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should begin with at least 2 alphabets, end with an alphabet/number and cannot be empty.";
+            "Module codes should begin with 2 or 3 alphabets, have 4 numbers and end with an alphabet/number.\n"
+            + "It should not be left empty.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * Module code should begin with 2 or 3 alphabets, have 4 numbers and end with an alphabet/number.
      */
-    //public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String VALIDATION_REGEX = "[a-zA-Z]{2,3}[0-9]{4}[a-zA-Z]?";
 
     public final String moduleCode;
@@ -33,7 +32,7 @@ public class ModuleCode {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid module code.
      */
     public static boolean isValidModuleCode(String test) {
         return test.matches(VALIDATION_REGEX);
