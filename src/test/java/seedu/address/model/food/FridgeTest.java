@@ -8,13 +8,19 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class FridgeTest {
     private static final Food CHIMKEN = new Food("Chimken", 1, 2, 3);
     private static final Food RAMEN = new Food("Ramen", 2, 3, 4);
 
-    private final Fridge fridge = new Fridge();
+    private Fridge fridge;
+
+    @BeforeEach
+    public void beforeEachTestMethod() {
+        fridge = new Fridge();
+    }
 
     @Test
     public void contains_nullFood_throwsNullPointerException() {
