@@ -1,6 +1,6 @@
 package com.eva.ui;
 
-import com.eva.logic.Logic;
+
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -74,7 +74,7 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see Logic#execute(String)
+         * @see com.eva.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }

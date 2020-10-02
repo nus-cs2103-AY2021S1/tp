@@ -15,6 +15,7 @@ import java.util.Set;
 
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.EditCommand;
+import com.eva.logic.commands.EditCommand.EditPersonDescriptor;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.tag.Tag;
 
@@ -42,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
