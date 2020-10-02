@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-import seedu.stock.model.stock.NameContainsKeywordsPredicate;
+import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
