@@ -19,7 +19,7 @@ public abstract class Macronutrient {
     public Macronutrient(String macronutrientType, int amount, int caloricMultiplier) {
         requireAllNonNull(macronutrientType, amount, caloricMultiplier);
 
-        assert !macronutrientType.equals("") : "Name cannot be blank";
+        assert !macronutrientType.equals("") : "Macronutrient type cannot be blank";
 
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
         checkArgument(isValidAmount(amount), getMessageContraint());
