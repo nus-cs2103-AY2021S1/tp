@@ -20,7 +20,6 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
  *
  * Supports a minimal set of list operations.
  *
- * @see Recipe#equals(Recipe)
  */
 public class UniqueRecipeList implements Iterable<Recipe> {
 
@@ -88,7 +87,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
      * Replaces the contents of this list with {@code recipes}.
      * {@code recipes} must not contain duplicate recipes.
      */
-    public void setRecipes(List<Recipe> recipes) {
+    public void setRecipeEntries(List<Recipe> recipes) {
         requireAllNonNull(recipes);
         if (!recipesAreUnique(recipes)) {
             throw new DuplicateRecipeException();

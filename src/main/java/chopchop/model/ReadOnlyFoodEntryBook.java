@@ -5,12 +5,12 @@ import javafx.collections.ObservableList;
 /**
  * Unmodifiable view of a food entry book
  */
-public interface ReadOnlyFoodEntryBook <F extends FoodEntry> {
+public interface ReadOnlyFoodEntryBook <FoodEntry> {
 
     /**
      * Returns an unmodifiable view of the food entry list.
      * This list will not contain any duplicate food entries.
      */
-    ObservableList<F> getFoodEntryList();
+    ObservableList<FoodEntry> getFoodEntryList();
 
 }

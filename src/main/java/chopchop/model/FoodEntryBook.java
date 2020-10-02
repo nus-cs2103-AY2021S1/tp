@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
 
-    private final UniqueFoodEntryList entries;
+    protected final UniqueFoodEntryList entries;
 
     public FoodEntryBook() {
         entries = new UniqueFoodEntryList();

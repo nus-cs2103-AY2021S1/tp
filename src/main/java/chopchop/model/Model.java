@@ -16,8 +16,8 @@ import chopchop.model.ingredient.Ingredient;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<FoodEntry> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
-    Predicate<FoodEntry> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
+    Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
+    Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
