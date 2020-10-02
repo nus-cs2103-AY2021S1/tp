@@ -21,7 +21,10 @@ their inventory to utilise a recipe.
 ```
 java -jar InvInator.jar
 ```
-* Use the `help` command to access the user guide, or go there [_directly_](UserGuide.html#quick-start).
+* Use the `help` command to access the user guide, or go there [_directly_](docs/UserGuide.md).
+
+**Want to help develop Inventoryinator?**
+* Go [_here_](docs/DeveloperGuide.md) to access the Developer Guide
 
 This project is based on the AddressBook-Level3 project created by
 the [SE-EDU initiative](https://se-education.org).

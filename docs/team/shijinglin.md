@@ -2,6 +2,9 @@
 layout: page
 title: Shi Jing Lin's Project Portfolio Page
 ---
+![profileimage](../images/aqcd.png)
+
+TODO
 
 ## Project: AddressBook Level 3
 

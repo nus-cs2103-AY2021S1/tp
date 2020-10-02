@@ -72,6 +72,7 @@ Action | Format
 ### Viewing help : `help`
 **NAME:** 
 
+NOT Supported as of v1.1 yet
 - `help` - lists all commands and how to use them (Current implementation)
 
 **SYNOPSIS:**
@@ -111,7 +112,7 @@ Will eventually be extended to get help about specific commands.
 - `addr` - adds a new recipe
 
 **SYNOPSIS:**
-- `addr` \<**product name**\> **-items** **\<item name\[quantity\]**, … > \[-pc \<num>\]
+- `addr` **-n**  \<**product name**\> **-items** **\<item name\[quantity\]**, … > \[-pc \<num>\]
 \[-d \<desc\>\]
 
 **DESCRIPTION:**
@@ -145,6 +146,8 @@ NOT Supported as of v1.1 yet
 - Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the `Inventoryinator`
 
 ### Listing all items : `list`
+NOT Supported as of v1.1 yet
+
 **NAME:**
 	
 - `list` - lists all items or recipes the user has entered
@@ -166,6 +169,7 @@ NOT Supported as of v1.1 yet
 
 
 ### Deleting a item : `deli`
+NOT Supported as of v1.1 yet
 **NAME:**
 - `del` - delete an item
 
@@ -181,7 +185,7 @@ NOT Supported as of v1.1 yet
 - Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
 ### Deleting a Recipe : `delr`
-NOT Supported as of v1.1 yet
+
 **NAME:**
 - `delr` - delete an item
 
@@ -252,13 +256,13 @@ NOT Supported as of v1.1
 - Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
 
 
-### Exiting the program : `bye`
+### Exiting the program : `exit`
 
 **NAME:**
-- `bye` - closes the application
+- `exit` - closes the application
 
 **SYNOPSIS:**
-- `bye`
+- `exit`
 
 **DESCRIPTION:**
 - Closes the application. 
