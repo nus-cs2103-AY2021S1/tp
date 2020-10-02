@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
@@ -56,7 +57,11 @@ public class FlashcardBuilder {
      * Adds a new {@code question} to the {@code Flashcard} that we are building.
      */
     public FlashcardBuilder withMultipleChoiceQuestion(String question, String[] choices) {
-        this.question = new MultipleChoiceQuestion(question, choices);
+        Choice[] choiceArr = new Choice[choices.length];
+        for (int i = 0; i < choices.length; i++) {
+            choiceArr[i] = new Choice(choices[i]);
+        }
+        this.question = new MultipleChoiceQuestion(question, choiceArr);
         return this;
     }
 
