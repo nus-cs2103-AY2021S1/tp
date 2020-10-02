@@ -1,11 +1,10 @@
 package seedu.address.model.meeting;
-
-import seedu.address.model.person.Person;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+
+import seedu.address.model.person.Person;
 
 public class Meeting {
     private String name;
@@ -18,22 +17,34 @@ public class Meeting {
     private LocalDate endDate;
     private String note;
     private boolean isDone;
-    ArrayList<Person> attendees = new ArrayList<>();
+    private ArrayList<Person> attendees = new ArrayList<>();
 
+    /**
+     * Constructor for meeting.
+     *
+     * @param name name of meeting
+     */
     public Meeting(String name) {
         this.name = name;
         isDone = false;
     }
 
-    public void eventHappens(){
+    /**
+     * Finishes a meeting.
+     */
+    public void done() {
         isDone = true;
+    }
+
+    public ArrayList<Person> getAttendees() {
+        return attendees;
     }
 
     public String getName() {
         return name;
     }
 
-    public void addAttendee(Person person){
+    public void addAttendee(Person person) {
         attendees.add(person);
     }
 

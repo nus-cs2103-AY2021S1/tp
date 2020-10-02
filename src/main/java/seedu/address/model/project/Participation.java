@@ -37,7 +37,7 @@ public class Participation {
      *
      * @param meeting meeting to attend
      */
-    public void attends(Meeting meeting){
+    public void attends(Meeting meeting) {
         meeting.addAttendee(person);
         meetings.add(meeting);
         project.getMeetings().add(meeting);
