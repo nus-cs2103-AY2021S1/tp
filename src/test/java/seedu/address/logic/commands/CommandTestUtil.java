@@ -36,6 +36,10 @@ public class CommandTestUtil {
     public static final String VALID_DEPARTMENT_BOB = "Computer Engineering";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_MODULE_CODE_CS50 = "CS50";
+    public static final String VALID_MODULE_CODE_CS1010S = "CS1010S";
+    public static final String VALID_MODULE_NAME_CS50 = "Introduction to Computer Science";
+    public static final String VALID_MODULE_NAME_CS1010S = "Programming Methodology";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
