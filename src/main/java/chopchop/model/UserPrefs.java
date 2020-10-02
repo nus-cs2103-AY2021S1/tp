@@ -42,7 +42,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings;
     }
 
-    @Override
     public Path getAddressBookFilePath() {
         return null;
     }

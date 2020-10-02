@@ -1,12 +1,13 @@
-package chopchop.model;
+package chopchop.model.recipe;
 
+import chopchop.model.ReadOnlyFoodEntryBook;
 import javafx.collections.ObservableList;
 import chopchop.model.recipe.Recipe;
 
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyRecipeBook {
+public interface ReadOnlyRecipeBook extends ReadOnlyFoodEntryBook {
 
     /**
      * Returns an unmodifiable view of the recipes list.

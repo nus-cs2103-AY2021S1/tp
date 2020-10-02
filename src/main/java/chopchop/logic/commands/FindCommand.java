@@ -2,7 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.commons.core.Messages;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 
@@ -14,9 +13,10 @@ public abstract class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    private final NameContainsKeywordsPredicate predicate;
+    protected final NameContainsKeywordsPredicate predicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

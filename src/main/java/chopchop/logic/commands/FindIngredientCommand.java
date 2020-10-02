@@ -7,19 +7,17 @@ import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Finds and lists all recipes in address book whose name contains any of the argument keywords.
+ * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindIngredientCommand extends FindCommand {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes whose content contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose content contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " sugar tomato orange";
-
-    private NameContainsKeywordsPredicate predicate;
+            + "Example: " + COMMAND_WORD + " sugar";
 
     public FindIngredientCommand(NameContainsKeywordsPredicate predicate) {
         super(predicate);
@@ -30,7 +28,7 @@ public class FindIngredientCommand extends FindCommand {
         requireNonNull(model);
         model.updateFilteredRecipeList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
+                String.format(Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW, model.getFilteredIngredientList().size()));
     }
 
     @Override
@@ -39,5 +37,5 @@ public class FindIngredientCommand extends FindCommand {
                 || (other instanceof FindIngredientCommand // instanceof handles nulls
                 && predicate.equals(((FindIngredientCommand) other).predicate)); // state check
     }
-    
+
 }

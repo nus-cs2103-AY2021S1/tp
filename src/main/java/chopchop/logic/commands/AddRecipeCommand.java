@@ -2,7 +2,7 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static chopchop.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static chopchop.logic.parser.CliSyntax.PREFIX_QTY;
+import static chopchop.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static chopchop.logic.parser.CliSyntax.PREFIX_STEP;
 
 import chopchop.logic.commands.exceptions.CommandException;
@@ -19,19 +19,18 @@ public class AddRecipeCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the recipe book. "
             + "Parameters: "
             + "NAME "
-            + "[" + PREFIX_INGREDIENT + "INGREDIENT [" + PREFIX_QTY + " QUANTITY]]..."
+            + "[" + PREFIX_INGREDIENT + "INGREDIENT [" + PREFIX_QUANTITY + " QUANTITY]]..."
             + "[" + PREFIX_STEP + "STEP]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "Sugar Tomato"
             + PREFIX_INGREDIENT + "Sugar "
-            + PREFIX_INGREDIENT + "Tomato " + PREFIX_QTY + " 5 "
+            + PREFIX_INGREDIENT + "Tomato " + PREFIX_QUANTITY + " 5 "
             + PREFIX_STEP + "Chop tomatoes. "
             + PREFIX_STEP + "Add sugar to it and mix well. ";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
 
-    private final Recipe recipeToAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -39,7 +38,6 @@ public class AddRecipeCommand extends AddCommand {
     public AddRecipeCommand(Recipe recipe) {
         super(recipe);
         requireNonNull(recipe);
-        recipeToAdd = recipe;
     }
 
 
@@ -47,18 +45,18 @@ public class AddRecipeCommand extends AddCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasRecipe(recipeToAdd)) {
+        if (model.hasRecipe((Recipe) toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
-        model.addRecipe(recipeToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd));
+        model.addRecipe((Recipe) toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddRecipeCommand // instanceof handles nulls
-                && recipeToAdd.equals(((AddRecipeCommand) other).recipeToAdd));
+                && toAdd.equals(((AddRecipeCommand) other).toAdd));
     }
 }

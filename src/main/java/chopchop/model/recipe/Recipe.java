@@ -1,6 +1,11 @@
 package chopchop.model.recipe;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import chopchop.model.attributes.Name;
@@ -10,7 +15,7 @@ import chopchop.model.FoodEntry;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
-public class Recipe extends FoodEntry{
+public class Recipe extends FoodEntry {
 
     // Data fields
     private final Set<Ingredient> ingredients = new HashSet<>();

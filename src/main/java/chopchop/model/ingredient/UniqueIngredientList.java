@@ -4,10 +4,11 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
+import chopchop.model.UniqueFoodEntryList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class UniqueIngredientList implements Iterable<Ingredient> {
+public class UniqueIngredientList extends UniqueFoodEntryList {
 
     private final ObservableList<Ingredient> internalList = FXCollections.observableArrayList();
     private final ObservableList<Ingredient> internalUnmodifiableList =
@@ -58,6 +59,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
      * Removes the equivalent Ingredient from the list.
      * The Ingredient must exist in the list.
      */
+    @Override
     public void remove(Ingredient toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {

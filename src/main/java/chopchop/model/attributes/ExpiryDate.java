@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class ExpiryDate {
     public static final String MESSAGE_CONSTRAINTS =
-        "Exipry date should be in the form, yyyy-MM-dd";
+        "Expiry date should be in the form, yyyy-MM-dd";
     //temporary using 1 fixed date format before parser is integrated.
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}";
     private final LocalDate date;

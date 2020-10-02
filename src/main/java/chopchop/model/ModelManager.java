@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientBook;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.recipe.RecipeBook;
 import javafx.collections.ObservableList;
@@ -16,72 +17,41 @@ import javafx.collections.transformation.FilteredList;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 
-
-
-import chopchop.model.FoodEntry;
-
 /**
  * Represents the in-memory model of the recipe book data.
-=======
-
-
-/**
- * Represents the in-memory model of the address book data.
->>>>>>> cb563d89572c21157e8c19f7640820f6f84be35a
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final RecipeBook recipeBook;
-    private final UserPrefs userPrefs;
-    private final FilteredList<FoodEntry> filteredRecipes;
-
     private final IngredientBook ingredientBook;
-    private final FilteredList<FoodEntry> filteredIngredients;
+    private final UserPrefs userPrefs;
+    private final FilteredList<Recipe> filteredRecipes;
+    private final FilteredList<Ingredient> filteredIngredients;
 
-
-//    /**
-//     * Initializes a ModelManager with the given recipeBook and userPrefs.
-//     */
-//    public ModelManager(ReadOnlyFoodEntryBook recipeBook, ReadOnlyUserPrefs userPrefs) {
-//        super();
-//        requireAllNonNull(recipeBook, userPrefs);
-//
-//        logger.fine("Initializing with recipe book: " + recipeBook + " and user prefs " + userPrefs);
-//
-//        this.recipeBook = new RecipeBook(recipeBook);
-//        this.userPrefs = new UserPrefs(userPrefs);
-//        filteredRecipes = new FilteredList<FoodEntry>(this.recipeBook.getFoodEntryList());
-//    }
-//
-//    public ModelManager() {
-//        this(new RecipeBook(), new UserPrefs());
-//    }
 
     /**
      * Initializes a ModelManager with the given recipeBook and userPrefs.
      */
-    public ModelManager(ReadOnlyFoodEntryBook book, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyRecipeBook recipeBook, ReadOnlyIngredientBook ingredientBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(book, userPrefs);
-        this.userPrefs = new UserPrefs(userPrefs);
+        requireAllNonNull(recipeBook, ingredientBook, userPrefs);
 
-        if (book instanceof IngredientBook) {
-            logger.fine("Initializing with ingredient book: " + book + " and user prefs " + userPrefs);
-            this.recipeBook = new RecipeBook(book);
-            this.ingredientBook = null;
-            filteredRecipes = new FilteredList<FoodEntry>(this.recipeBook.getFoodEntryList());
-        } else if (book instanceof RecipeBook) {
-            logger.fine("Initializing with recipe book: " + book + " and user prefs " + userPrefs);
-            this.ingredientBook = new IngredientBook(book);
-            this.recipeBook = null;
-            filteredIngredients = new FilteredList<FoodEntry>(this.ingredientBook.getFoodEntryList());
-        }
+
+        logger.fine("Initializing with recipe book: " + recipeBook + " and user prefs " + userPrefs);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.recipeBook = new RecipeBook(recipeBook);
+        filteredRecipes = new FilteredList<Recipe>(this.recipeBook.getFoodEntryList());
+        filteredIngredients = new FilteredList<FoodEntry>(this.ingredientBook.getFoodEntryList());
+
+        logger.fine("Initializing with ingredient book: " + recipeBook + " and user prefs " + userPrefs);
+        this.ingredientBook = new IngredientBook(ingredientBook);
+
 
     }
 
     public ModelManager() {
-        this(new RecipeBook(), new UserPrefs());
+        this(new RecipeBook(), new IngredientBook(), new UserPrefs());
     }
 
 

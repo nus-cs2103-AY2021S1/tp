@@ -3,12 +3,12 @@ package chopchop.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
 import javafx.collections.ObservableList;
 import chopchop.commons.core.GuiSettings;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.ingredient.Ingredient;
-import javafx.collections.ObservableList;
-import chopchop.commons.core.GuiSettings;
 
 
 /**
@@ -88,12 +88,12 @@ public interface Model {
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredRecipeList(Predicate<FoodEntry> predicate);
+    void updateFilteredRecipeList(Predicate<Recipe> predicate);
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setIngredientBookFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -101,24 +101,24 @@ public interface Model {
     void setAddressBook(ReadOnlyFoodEntryBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyFoodEntryBook getIngredientBook();
+    ReadOnlyIngredientBook getIngredientBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasIngredient(Ingredient person);
+    boolean hasIngredient(Ingredient ind);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deleteIngredient(Ingredient target);
+    void deleteIngredient(Ingredient ind);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addIngredient(Ingredient person);
+    void addIngredient(Ingredient ind);
 
     /**
      * Replaces the given person {@code target} with {@code editedIngredient}.
@@ -135,6 +135,6 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredIngredientList(Predicate<FoodEntry> predicate);
+    void updateFilteredIngredientList(Predicate<Ingredient> predicate);
 
 }

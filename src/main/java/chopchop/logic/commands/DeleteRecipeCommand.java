@@ -22,8 +22,6 @@ public class DeleteRecipeCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
-    private Index targetIndex;
-
     public DeleteRecipeCommand(Index targetIndex) {
         super(targetIndex);
     }

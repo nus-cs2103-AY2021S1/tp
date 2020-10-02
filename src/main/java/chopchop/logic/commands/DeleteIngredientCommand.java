@@ -11,18 +11,16 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Deletes a recipe identified using it's displayed index from the recipe book.
+ * Deletes an ingredient identified using it's displayed index from the ingredient book.
  */
 public class DeleteIngredientCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the recipe identified by the index number used in the displayed recipe list.\n"
+            + ": Deletes the ingredient identified by the index number used in the displayed recipe list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_INGREDIENT_SUCCESS = "Deleted Ingredient: %1$s";
-
-    private Index targetIndex;
 
     public DeleteIngredientCommand(Index targetIndex) {
         super(targetIndex);
@@ -37,7 +35,7 @@ public class DeleteIngredientCommand extends DeleteCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
         }
 
-        Ingredient ingredientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Ingredient ingredientToDelete = lastShownList.get(super.targetIndex.getZeroBased());
         model.deleteIngredient(ingredientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INGREDIENT_SUCCESS, ingredientToDelete));
     }
