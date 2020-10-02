@@ -26,21 +26,24 @@ public class UpdateCommand extends Command {
     public static final String COMMAND_WORD = "update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the stock with "
-            + "the given serial number "
+            + "the given serial number. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER "
-            + "Followed with one of: "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_NEW_QUANTITY + "NEW QUANTITY "
             + PREFIX_NAME + "NAME "
             + PREFIX_SOURCE + "SOURCE "
             + PREFIX_LOCATION + "LOCATION \n"
+            + "Note that only one of " + PREFIX_QUANTITY
+            + "and " + PREFIX_NEW_QUANTITY
+            + "can be specified. \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Umbrella "
-            + PREFIX_SOURCE + "Kc company "
-            + PREFIX_QUANTITY + "100 "
-            + PREFIX_LOCATION + "section B ";
+            + PREFIX_SERIAL_NUMBER + "CS2103 "
+            + PREFIX_QUANTITY + "2103 "
+            + PREFIX_NAME + "CS2103 "
+            + PREFIX_SOURCE + "National University of Singapore "
+            + PREFIX_LOCATION + "Group 3 ";
 
     public static final String MESSAGE_UPDATE_STOCK_SUCCESS = "Updated Stock: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
@@ -77,6 +80,12 @@ public class UpdateCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, updatedStock));
     }
 
+    /**
+     * Creates the stock with updated attributes.
+     * @param stockToUpdate The stock in the list to be updated.
+     * @param updateStockDescriptor The collection of values to be updated.
+     * @return The stock with updated attributes.
+     */
     private static Stock createUpdatedStock(Stock stockToUpdate, UpdateStockDescriptor updateStockDescriptor) {
         assert stockToUpdate != null;
 
@@ -139,6 +148,10 @@ public class UpdateCommand extends Command {
             setIsIncrement(toCopy.isIncrement);
         }
 
+        /**
+         * Checks if any updates exists.
+         * @return A boolean value indicating if an update exists.
+         */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, serialNumber, source, quantity, location);
         }

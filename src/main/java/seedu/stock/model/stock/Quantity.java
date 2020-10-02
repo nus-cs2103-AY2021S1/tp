@@ -11,7 +11,6 @@ import java.math.BigInteger;
  */
 public class Quantity {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity numbers should be more than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
