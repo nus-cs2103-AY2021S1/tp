@@ -84,7 +84,8 @@ public class Project {
     }
 
     public void addParticipation(Person p) {
-        listOfParticipations.put(p.getPersonName(), new Participation(p, this));
+        listOfParticipations.put(
+            p.getPersonName(), new Participation(p, this));
     }
 
     /**
