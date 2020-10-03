@@ -43,6 +43,7 @@ public class ArgumentTokenizer {
 
     /**
      * {@see findAllPrefixPositions}
+     * Repeatedly searches down the string for all occurrences of one prefix
      */
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
