@@ -33,6 +33,20 @@ public class OrderItem extends Food {
         this.quantity = qty;
     }
 
+    /**
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameOrderItem(OrderItem orderItem) {
+        if (orderItem == this) {
+            return true;
+        }
+
+        return orderItem != null
+                && orderItem.getName().equals(getName())
+                && (orderItem.getPrice() == (getPrice()));
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
