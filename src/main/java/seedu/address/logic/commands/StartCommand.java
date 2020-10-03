@@ -5,6 +5,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
 
 import java.util.List;
@@ -39,7 +40,12 @@ public class StartCommand extends Command {
         }
 
         Project projectToStart = lastShownList.get(targetIndex.getZeroBased());
-        model.enter(projectToStart);
+        try {
+            model.enter(projectToStart);
+        } catch (InvalidScopeException e) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_SCOPE_COMMAND,
+                    e.getExpected(), e.getActual()));
+        }
         return new CommandResult(String.format(MESSAGE_START_PROJECT_SUCCESS, projectToStart));
     }
 
