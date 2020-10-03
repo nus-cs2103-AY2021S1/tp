@@ -1,3 +1,7 @@
+---
+layout: page
+title: User Guide
+---
 Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
