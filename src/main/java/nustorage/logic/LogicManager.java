@@ -15,6 +15,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.Model;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.person.Person;
+import nustorage.model.record.InventoryRecord;
 import nustorage.storage.Storage;
 
 /**
@@ -62,6 +63,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    public ObservableList<InventoryRecord> getFilteredInventory() {
+        return model.getFilteredInventory();
     }
 
     @Override
