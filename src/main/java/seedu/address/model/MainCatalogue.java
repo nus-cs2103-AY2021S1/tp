@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
@@ -110,6 +111,9 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     @Override
     public void enter(Project project) {
+        if (status != Status.CATALOGUE) {
+            throw new InvalidScopeException(Status.CATALOGUE, status);
+        }
         status = Status.PROJECT;
         this.project = Optional.of(projects.getProject(project));
     }
