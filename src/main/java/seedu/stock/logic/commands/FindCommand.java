@@ -1,17 +1,17 @@
 package seedu.stock.logic.commands;
 
-import seedu.stock.commons.core.Messages;
-import seedu.stock.model.Model;
-import seedu.stock.model.stock.Stock;
-
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.stock.commons.core.Messages;
+import seedu.stock.model.Model;
+import seedu.stock.model.stock.Stock;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
