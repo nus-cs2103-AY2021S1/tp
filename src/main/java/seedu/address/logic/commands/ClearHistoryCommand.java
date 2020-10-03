@@ -10,7 +10,7 @@ public class ClearHistoryCommand extends Command {
 
     public static final String COMMAND_WORD = "clearhistory";
 
-    public static final String MESSAGE_SUCCESS = "Command history has been cleared.";
+    public static final String MESSAGE_SUCCESS = "Your command history has been cleared.";
 
     @Override
     public CommandResult execute(Model model) {
