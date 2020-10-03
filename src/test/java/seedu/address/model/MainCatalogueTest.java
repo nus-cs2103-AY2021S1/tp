@@ -126,6 +126,17 @@ public class MainCatalogueTest {
         assertThrows(ProjectNotFoundException.class, () -> mainCatalogue.enter(ALICE));
     }
 
+    @Test
+    public void enter_sameButNotEqualProject_success() {
+        mainCatalogue.addProject(ALICE);
+        Project adapted = new ProjectBuilder(ALICE).withTags().build();
+        try {
+            mainCatalogue.enter(adapted);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
     /**
      * A stub ReadOnlyMainCatalogue whose projects list can violate interface constraints.
      */

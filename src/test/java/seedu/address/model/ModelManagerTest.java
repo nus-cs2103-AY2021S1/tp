@@ -94,6 +94,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredProjectList_enterProject_singleProject() {
+        modelManager.addProject(ALICE);
+        modelManager.enter(ALICE);
+        assertTrue(modelManager.getFilteredProjectList().contains(ALICE));
+        assertEquals(1, modelManager.getFilteredProjectList().size());
+    }
+
+    @Test
+    public void getFilteredProjectList_quit_fullList() {
+        modelManager.addProject(ALICE);
+        modelManager.addProject(BENSON);
+        modelManager.enter(ALICE);
+        modelManager.quit();
+        assertEquals(modelManager.getProjectCatalogue().getProjectList(), modelManager.getFilteredProjectList());
+    }
+
+    @Test
     public void equals() {
         MainCatalogue mainCatalogue = new MainCatalogueBuilder().withProject(ALICE).withProject(BENSON).build();
         MainCatalogue differentMainCatalogue = new MainCatalogue();
