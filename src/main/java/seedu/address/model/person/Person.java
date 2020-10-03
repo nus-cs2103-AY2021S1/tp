@@ -19,6 +19,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Status status;
 
     // Data fields
     private final Address address;
@@ -27,11 +28,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Status status, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, status, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.status = status;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -46,6 +48,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public Address getAddress() {
@@ -71,7 +77,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()))
+                && otherPerson.getStatus().equals(getStatus());
     }
 
     /**
@@ -92,6 +99,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getStatus().equals(getStatus())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -99,7 +107,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, status, address, tags);
     }
 
     @Override
@@ -110,6 +118,8 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
+                .append(" Status: ")
+                .append(getStatus())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");
