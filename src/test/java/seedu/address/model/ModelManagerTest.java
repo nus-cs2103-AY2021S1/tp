@@ -69,7 +69,7 @@ public class ModelManagerTest {
     */
 
     @Test
-    public void hasPerson_nullAccount_throwsNullPointerException() {
+    public void hasAccount_nullAccount_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasAccount(null));
     }
 
