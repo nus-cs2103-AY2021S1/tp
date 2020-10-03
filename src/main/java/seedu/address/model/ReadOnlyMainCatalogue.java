@@ -19,4 +19,9 @@ public interface ReadOnlyMainCatalogue {
      * Gets the current status for valid scope.
      */
     Status getStatus();
+
+    /**
+     * Enters a designated project.
+     */
+    Project enter(Project project);
 }

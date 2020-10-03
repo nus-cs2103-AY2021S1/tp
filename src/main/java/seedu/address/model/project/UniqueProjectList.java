@@ -48,6 +48,15 @@ public class UniqueProjectList implements Iterable<Project> {
         internalList.add(toAdd);
     }
 
+    public Project getProject(Project project) {
+        requireNonNull(project);
+        int index = internalList.indexOf(project);
+        if (index == -1) {
+            throw new ProjectNotFoundException();
+        }
+        return internalList.get(index);
+    }
+
     /**
      * Replaces the project {@code target} in the list with {@code editedProject}.
      * {@code target} must exist in the list.

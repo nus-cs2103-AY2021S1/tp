@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * Wraps all data at the main-catalogue level
@@ -106,6 +107,13 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     @Override
     public Status getStatus() {
         return status;
+    }
+
+    @Override
+    public Project enter(Project project) {
+        status = Status.PROJECT;
+        project = projects.getProject(project);
+        return project;
     }
 
     //// util methods
