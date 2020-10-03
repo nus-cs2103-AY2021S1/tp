@@ -23,15 +23,18 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final List<Predicate<Stock>> predicates;
+    private final Predicate<Stock> combinedPredicates;
 
     public FindCommand(List<Predicate<Stock>> predicates) {
         this.predicates = predicates;
+        this.combinedPredicates = predicates.stream().reduce(x -> false, Predicate::or);
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        predicates.forEach(model::updateFilteredStockList);
+       
+        model.updateFilteredStockList(combinedPredicates);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStockList().size()));

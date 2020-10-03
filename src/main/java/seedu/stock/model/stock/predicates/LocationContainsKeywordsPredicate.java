@@ -19,10 +19,10 @@ public class LocationContainsKeywordsPredicate implements Predicate<Stock> {
 
     @Override
     public boolean test(Stock stock) {
-        String stockSerialNumber = stock.getSerialNumber().serialNumber.toLowerCase();
+        String stockLocation = stock.getLocation().value.toLowerCase();
 
         boolean isPartialMatch = keywords.stream()
-                .anyMatch(keyword -> stockSerialNumber.contains(keyword.toLowerCase()));
+                .anyMatch(keyword -> stockLocation.contains(keyword.toLowerCase()));
 
         return isPartialMatch;
     }
