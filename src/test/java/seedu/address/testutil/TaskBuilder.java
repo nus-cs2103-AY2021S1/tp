@@ -5,8 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.util.SampleDataUtil;
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "School work";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_DATE = "01-01-2020-1200";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Title title;
-    private Phone phone;
+    private Date date;
     private Description description;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
-        phone = new Phone(DEFAULT_PHONE);
+        date = new Date(DEFAULT_DATE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
-        phone = taskToCopy.getPhone();
+        date = taskToCopy.getDate();
         description = taskToCopy.getDescription();
         address = taskToCopy.getAddress();
         tags = new HashSet<>(taskToCopy.getTags());
@@ -74,10 +74,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Task} that we are building.
+     * Sets the {@code date} of the {@code Task} that we are building.
      */
-    public TaskBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public TaskBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, phone, description, address, tags);
+        return new Task(title, date, description, address, tags);
     }
 
 }

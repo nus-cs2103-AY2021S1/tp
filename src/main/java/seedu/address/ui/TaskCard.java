@@ -33,7 +33,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label date;
     @FXML
     private Label address;
     @FXML
@@ -49,7 +49,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);
-        phone.setText(task.getPhone().value);
+        date.setText(task.getDate().value);
         address.setText(task.getAddress().value);
         description.setText(task.getDescription().value);
         task.getTags().stream()

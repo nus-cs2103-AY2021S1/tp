@@ -3,8 +3,8 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,8 +31,8 @@ public class TaskTest {
         // null -> returns false
         assertFalse(ALICE.isSameTask(null));
 
-        // different phone and description -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        // different date and description -> returns false
+        Task editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB)
                                                  .withDescription(VALID_DESCRIPTION_BOB)
                                                  .build();
         assertFalse(ALICE.isSameTask(editedAlice));
@@ -41,17 +41,17 @@ public class TaskTest {
         editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
-        // same title, same phone, different attributes -> returns true
+        // same title, same date, different attributes -> returns true
         editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // same title, same email, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
-        // same title, same phone, same email, different attributes -> returns true
+        // same title, same date, same email, different attributes -> returns true
         editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
     }
@@ -78,8 +78,8 @@ public class TaskTest {
         Task editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different date -> returns false
+        editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different description -> returns false

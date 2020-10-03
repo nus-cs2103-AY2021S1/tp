@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -21,8 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -38,12 +38,12 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_DATE + "02-02-2020-1200 "
             + PREFIX_DESCRIPTION + "johndoe,example.com";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
@@ -94,12 +94,12 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
-        Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
+        Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedPhone, updatedDescription, updatedAddress, updatedTags);
+        return new Task(updatedTitle, updatedDate, updatedDescription, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Title title;
-        private Phone phone;
+        private Date date;
         private Description description;
         private Address address;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
-            setPhone(toCopy.phone);
+            setDate(toCopy.date);
             setDescription(toCopy.description);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, phone, description, address, tags);
+            return CollectionUtil.isAnyNonNull(title, date, description, address, tags);
         }
 
         public void setTitle(Title title) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setDescription(Description description) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getPhone().equals(e.getPhone())
+                    && getDate().equals(e.getDate())
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
