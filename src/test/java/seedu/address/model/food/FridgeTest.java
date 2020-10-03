@@ -11,6 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+
 class FridgeTest {
     private static final Food CHIMKEN = new Food("Chimken", 1, 2, 3);
     private static final Food RAMEN = new Food("Ramen", 2, 3, 4);
@@ -45,23 +47,23 @@ class FridgeTest {
 
     @Test
     public void setFood_indexLessThanZero_throwsIndexOutOfBoundException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(-1, CHIMKEN));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(Index.fromZeroBased(-1), CHIMKEN));
     }
 
     @Test
     public void setFood_indexLargerThanOrEqualToSize_throwsIndexOutOfBoundException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(1, CHIMKEN));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(Index.fromZeroBased(1), CHIMKEN));
     }
 
     @Test
     public void setFood_nullEditedFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> fridge.setFood(1, null));
+        assertThrows(NullPointerException.class, () -> fridge.setFood(Index.fromZeroBased(1), null));
     }
 
     @Test
     public void setFood_validFood_success() {
         fridge.add(CHIMKEN);
-        fridge.setFood(0, RAMEN);
+        fridge.setFood(Index.fromZeroBased(0), RAMEN);
         Fridge expectedFridge = new Fridge();
         expectedFridge.add(RAMEN);
         assertEquals(expectedFridge, this.fridge);
@@ -69,18 +71,18 @@ class FridgeTest {
 
     @Test
     public void remove_removeIndexLesserThanZero_throwsIndexOutOfBoundException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(Index.fromZeroBased(-1)));
     }
 
     @Test
     public void remove_removeIndexLargerThanOrEqualToSize_throwsIndexOutOfBoundException() {
-        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(Index.fromZeroBased(-1)));
     }
 
     @Test
     public void remove_validIndex_removesFood() {
         fridge.add(CHIMKEN);
-        fridge.remove(0);
+        fridge.remove(Index.fromZeroBased(0));
         Fridge expectedFridge = new Fridge();
         assertEquals(expectedFridge, fridge);
     }

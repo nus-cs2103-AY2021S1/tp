@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 
 /**
  * A list of food items that allows repeated elements and does not allow nulls.
@@ -38,18 +39,18 @@ public class Fridge implements Iterable<Food> {
      * Replaces the food item at the {@code index} position in the list with {@code editedFood}.
      * {@code target} must exist in the list.
      */
-    public void setFood(int index, Food editedFood) {
-        requireAllNonNull(editedFood);
-        internalList.set(index, editedFood);
+    public void setFood(Index index, Food editedFood) {
+        requireAllNonNull(editedFood, index);
+        internalList.set(index.getZeroBased(), editedFood);
     }
 
     /**
      * Removes the food item at the position index from the list.
      * The food item must exist in the list.
      */
-    public void remove(int removeIndex) {
+    public void remove(Index removeIndex) {
         requireNonNull(removeIndex);
-        internalList.remove(removeIndex);
+        internalList.remove(removeIndex.getZeroBased());
     }
 
     public void setFoods(Fridge replacement) {
