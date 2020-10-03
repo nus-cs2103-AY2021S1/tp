@@ -9,36 +9,6 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 ## Project team
 
-### Le Hue Man
-
-<img src="images/lettuceman4.png" width="200px">
-
-[[github](https://github.com/lettuceman4)]
-[[portfolio](team/man-cv.pdf)]
-
-* Role: Developer
-* Responsibilities: 
-
-### Cheok Su Anne
-
-<img src="images/cheoksuanne.png" width="200px">
-
-[[github](https://github.com/cheoksuanne)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: 
-
-### Nicholas Canete
-
-<img src="images/nicholas-gcc.png" width="200px">
-
-[[github](https://github.com/nicholas-gcc)] 
-[[portfolio](team/nic-cv.pdf)]
-
-* Role: Developer
-* Responsibilities:
-
 ### Lim Zi Yang
 
 <img src="images/ziyang-98.png" width="200px">
@@ -47,8 +17,39 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 [[github](http://github.com/Ziyang-98)]
 [[portfolio](https://limziyang.com)]
 
-* Role: Developer
-* Responsibilities: 
+* Role: Team Lead
+* Responsibilities: Responsible for overall project coordination
+
+### Le Hue Man
+
+<img src="images/lettuceman4.png" width="200px">
+
+[[github](https://github.com/lettuceman4)]
+[[portfolio](team/man-cv.pdf)]
+
+* Role: Scheduling and Tracking/Deliverables and Deadlines
+* Responsibilities: In charge of defining, assigning, and tracking project tasks and 
+ensure project deliverables are done on time and in the right format
+
+### Cheok Su Anne
+
+<img src="images/cheoksuanne.png" width="200px">
+
+[[github](https://github.com/cheoksuanne)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time
+
+### Nicholas Canete
+
+<img src="images/nicholas-gcc.png" width="200px">
+
+[[github](https://github.com/nicholas-gcc)] 
+[[portfolio](team/nic-cv.pdf)]
+
+* Role: Code Quality
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.
 
 ### Jordan Yoong
 
@@ -58,5 +59,5 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 [[portfolio](https://jordanyoong.github.io/cv/experience.html)]
 
 
-* Role: Developer
-* Responsibilities:
+* Role: Documentation 
+* Responsibilities: Responsible for the quality of various project documents
