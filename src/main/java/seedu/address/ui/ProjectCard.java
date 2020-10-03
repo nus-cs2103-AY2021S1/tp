@@ -26,6 +26,7 @@ public class ProjectCard extends UiPart<Region> {
      */
 
     public final Project project;
+    public Status status;
 
     @FXML
     private HBox cardPane;
@@ -50,19 +51,21 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex, Status status) {
         super(FXML);
         this.project = project;
+        this.status = status;
         id.setText(displayedIndex + ". ");
         name.setText(project.getName().fullName);
         phone.setText(project.getPhone().value);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (status == Status.PROJECT) {
-            address.setText(project.getAddress().value);
-            email.setText(project.getEmail().value);
-            project.getTasks().stream()
-                    .sorted(Comparator.comparing(task -> task.taskName))
-                    .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
-        } else {
+
+        address.setText(project.getAddress().value);
+        email.setText(project.getEmail().value);
+        project.getTasks().stream()
+                .sorted(Comparator.comparing(task -> task.taskName))
+                .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+        //System.out.println(status + name.getText());
+        if (status == Status.CATALOGUE) {
             address.setVisible(false);
             email.setVisible(false);
             tasks.setVisible(false);
@@ -87,6 +90,7 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
+                && project.equals(card.project)
+                && status.equals(card.status);
     }
 }

@@ -27,13 +27,20 @@ public class ProjectListPanel extends UiPart<Region> {
     public ProjectListPanel(ObservableList<Project> projectList, Status status) {
         super(FXML);
         projectListView.setItems(projectList);
-        projectListView.setCellFactory(listView -> new ProjectListViewCell());
+        projectListView.setCellFactory(listView -> new ProjectListViewCell(status));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Project} using a {@code ProjectCard}.
      */
     class ProjectListViewCell extends ListCell<Project> {
+        private Status status;
+
+        ProjectListViewCell(Status status) {
+            super();
+            this.status = status;
+        }
+
         @Override
         protected void updateItem(Project project, boolean empty) {
             super.updateItem(project, empty);
@@ -42,7 +49,7 @@ public class ProjectListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ProjectCard(project, getIndex() + 1, Status.CATALOGUE).getRoot());
+                setGraphic(new ProjectCard(project, getIndex() + 1, status).getRoot());
             }
         }
     }
