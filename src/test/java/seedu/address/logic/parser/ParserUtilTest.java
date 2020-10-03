@@ -16,19 +16,19 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.Name;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_PROJECT_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_PROJECT_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -60,26 +60,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parseProjectName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProjectName((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parseProjectName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProjectName(INVALID_PROJECT_NAME));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    public void parseProjectName_validValueWithoutWhitespace_returnsName() throws Exception {
+        ProjectName expectedProjectName = new ProjectName(VALID_PROJECT_NAME);
+        assertEquals(expectedProjectName, ParserUtil.parseProjectName(VALID_PROJECT_NAME));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    public void parseProjectName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String projectNameWithWhitespace = WHITESPACE + VALID_PROJECT_NAME + WHITESPACE;
+        ProjectName expectedProjectName = new ProjectName(VALID_PROJECT_NAME);
+        assertEquals(expectedProjectName, ParserUtil.parseProjectName(projectNameWithWhitespace));
     }
 
     @Test

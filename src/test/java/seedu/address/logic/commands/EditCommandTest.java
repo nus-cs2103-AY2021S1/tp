@@ -54,10 +54,10 @@ public class EditCommandTest {
         Project lastProject = model.getFilteredProjectList().get(indexLastProject.getZeroBased());
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
-        Project editedProject = projectInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Project editedProject = projectInList.withProjectName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastProject, descriptor);
 
@@ -86,9 +86,9 @@ public class EditCommandTest {
         showProjectAtIndex(model, INDEX_FIRST_PROJECT);
 
         Project projectInFilteredList = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Project editedProject = new ProjectBuilder(projectInFilteredList).withName(VALID_NAME_BOB).build();
+        Project editedProject = new ProjectBuilder(projectInFilteredList).withProjectName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PROJECT,
-                new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidProjectIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
@@ -140,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectCatalogue().getProjectList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }

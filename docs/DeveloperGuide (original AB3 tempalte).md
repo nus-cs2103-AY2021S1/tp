@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same projectName as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -254,9 +254,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new project               |                                                                        |
 | `* * *`  | user                                       | delete a project                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a project by name          | locate details of projects without having to go through the entire list |
+| `* * *`  | user                                       | find a project by projectName          | locate details of projects without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many projects in the main catalogue | sort projects by name           | locate a project easily                                                 |
+| `*`      | user with many projects in the main catalogue | sort projects by projectName           | locate a project easily                                                 |
 
 *{More to be added}*
 

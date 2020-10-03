@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.Name;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
@@ -33,7 +33,7 @@ public class EditProjectDescriptorBuilder {
      */
     public EditProjectDescriptorBuilder(Project project) {
         descriptor = new EditProjectDescriptor();
-        descriptor.setName(project.getName());
+        descriptor.setProjectName(project.getProjectName());
         descriptor.setPhone(project.getPhone());
         descriptor.setEmail(project.getEmail());
         descriptor.setAddress(project.getAddress());
@@ -42,10 +42,10 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code ProjectName} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+    public EditProjectDescriptorBuilder withProjectName(String projectName) {
+        descriptor.setProjectName(new ProjectName(projectName));
         return this;
     }
 

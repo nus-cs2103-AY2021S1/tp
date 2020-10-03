@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.project.Name;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
@@ -20,29 +20,29 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private PersonName name;
+    private PersonName personName;
     private Phone phone;
     private Email email;
 
     // Data fields
     private Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private HashMap<Name, Participation> listOfParticipations = new HashMap<>();
+    private HashMap<ProjectName, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonName name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Person(PersonName personName, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(personName, phone, email, address, tags);
+        this.personName = personName;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public PersonName getName() {
-        return name;
+    public PersonName getPersonName() {
+        return personName;
     }
 
     public Phone getPhone() {
@@ -57,8 +57,8 @@ public class Person {
         return address;
     }
 
-    public void updateName(String newNameStr) {
-        name = new PersonName(newNameStr);
+    public void updatePersonName(String newPersonNameStr) {
+        personName = new PersonName(newPersonNameStr);
     }
 
     public void updateAddress(String newAddressStr) {
@@ -74,7 +74,7 @@ public class Person {
     }
 
     public void addProject(Project p) {
-        listOfParticipations.put(p.getName(), new Participation(this, p));
+        listOfParticipations.put(p.getProjectName(), new Participation(this, p));
     }
 
     /**
@@ -95,7 +95,7 @@ public class Person {
         }
 
         return otherTeammate != null
-                && otherTeammate.getName().equals(getName())
+                && otherTeammate.getPersonName().equals(getPersonName())
                 && (otherTeammate.getPhone().equals(getPhone())
                 || otherTeammate.getEmail().equals(getEmail())
                 || otherTeammate.getAddress().equals(getAddress()));
@@ -116,7 +116,7 @@ public class Person {
         }
 
         Person otherProject = (Person) other;
-        return otherProject.getName().equals(getName())
+        return otherProject.getPersonName().equals(getPersonName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
                 && otherProject.getAddress().equals(getAddress())
@@ -126,13 +126,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(personName, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(" Person name: ")
+                .append(getPersonName())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")

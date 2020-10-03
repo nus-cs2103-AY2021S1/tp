@@ -52,8 +52,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Project alice = new ProjectBuilder().withName("Alice").build();
-        Project bob = new ProjectBuilder().withName("Bob").build();
+        Project alice = new ProjectBuilder().withProjectName("Alice").build();
+        Project bob = new ProjectBuilder().withProjectName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

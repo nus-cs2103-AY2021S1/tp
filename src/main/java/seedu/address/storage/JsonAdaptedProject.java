@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.Name;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
@@ -26,7 +26,7 @@ class JsonAdaptedProject {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
 
-    private final String name;
+    private final String projectName;
     private final String phone;
     private final String email;
     private final String address;
@@ -37,11 +37,11 @@ class JsonAdaptedProject {
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
     @JsonCreator
-    public JsonAdaptedProject(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
-        this.name = name;
+        this.projectName = projectName;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -57,7 +57,7 @@ class JsonAdaptedProject {
      * Converts a given {@code Project} into this class for Jackson use.
      */
     public JsonAdaptedProject(Project source) {
-        name = source.getName().fullName;
+        projectName = source.getProjectName().fullProjectName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -84,13 +84,13 @@ class JsonAdaptedProject {
             projectTasks.add(task.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (projectName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!ProjectName.isValidProjectName(projectName)) {
+            throw new IllegalValueException(ProjectName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final ProjectName modelProjectName = new ProjectName(projectName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -118,7 +118,7 @@ class JsonAdaptedProject {
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
-        return new Project(modelName, modelPhone, modelEmail, modelAddress,
+        return new Project(modelProjectName, modelPhone, modelEmail, modelAddress,
                 modelTags, new HashMap<>(), modelTasks);
     }
 

@@ -29,7 +29,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label projectName;
     @FXML
     private Label id;
     @FXML
@@ -50,7 +50,7 @@ public class ProjectCard extends UiPart<Region> {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
-        name.setText(project.getName().fullName);
+        projectName.setText(project.getProjectName().fullProjectName);
         phone.setText(project.getPhone().value);
         address.setText(project.getAddress().value);
         email.setText(project.getEmail().value);
