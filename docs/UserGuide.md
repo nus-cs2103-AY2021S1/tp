@@ -67,6 +67,22 @@ Examples:
 
 - `update 1 e/Push up d/30 at/09-07-2020 c/260` Updates the exercise, the description, the date and the calories burnt of the 1st exercise to be `push up`, `30`,  `07-09-2020`, `260` respectively.
 
+#### Delete : `delete`
+Deletes an exercise that a user has previously added.
+
+Format: `delete INDEX`
+
+- Deletes an exercise at the specified `INDEX`.
+- The index refers to the index number shown in the displayed workout list.
+- The index must be a positive integer: 1, 2, 3, …​
+ 
+Example:
+
+- `delete 2` Deletes the second exercise in the displayed list.
+
+
+
+
 #### Save
 The application will save the data automatically to the default file path after any command that changes the data. There is no need to save the data manually.
 
