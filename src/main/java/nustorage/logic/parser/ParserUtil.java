@@ -29,6 +29,18 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_AMOUNT = "Amount if not a decimal value.";
     public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
     public static final String MESSAGE_INVALID_QUANITY = "Quantity is not a non-zero integer.";
+    public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be a positive numerical value.";
+
+    /**
+     * Parses {@code itemCost} into an double and returns it
+     */
+    public static double parseItemCost(String itemCost) throws ParseException {
+        String trimmedCost = itemCost.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedCost)) {
+            throw new ParseException(MESSAGE_INVALID_ITEM_COST);
+        }
+        return Double.parseDouble(trimmedCost);
+    }
 
     /**
      * Parses {@code itemDescription} into an String and returns it. Leading and trailing whitespaces will be

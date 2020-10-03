@@ -15,6 +15,7 @@ public class CliSyntax {
     // Inventory
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/"); // can change to n after removing name
     public static final Prefix PREFIX_ITEM_DESCRIPTION = new Prefix("i/");
+    public static final Prefix PREFIX_ITEM_COST = new Prefix("c/");
 
     // Finance
     public static final Prefix PREFIX_AMOUNT = new Prefix("amt/");
