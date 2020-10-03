@@ -5,49 +5,52 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.stock.commons.core.Messages;
-import seedu.stock.commons.core.index.Index;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
+import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a stock identified using it's displayed serial number from the stock book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the stock identified by the serial number used in the displayed.\n"
+            + "Parameters: SERIAL NUMBER (must be a valid serial number)\n"
+            + "Example: " + COMMAND_WORD + " sn/Kc company1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_STOCK_SUCCESS = "Deleted Stock: %1$s";
 
-    private final Index targetIndex;
+    private final SerialNumber targetSerialNumber;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(SerialNumber targetSerialNumber) {
+        this.targetSerialNumber = targetSerialNumber;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Stock> lastShownList = model.getFilteredStockList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (int i = 0; i < lastShownList.size(); i++) {
+            Stock currentStock = lastShownList.get(i);
+            if (currentStock.getSerialNumber().getSerialNumberAsString().
+                    equals(targetSerialNumber.getSerialNumberAsString())) {
+                model.deleteStock(currentStock);
+                return new CommandResult(String.format(MESSAGE_DELETE_STOCK_SUCCESS,currentStock));
+            }
         }
 
-        Stock stockToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(stockToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, stockToDelete));
+        throw new CommandException(Messages.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetSerialNumber.equals(((DeleteCommand) other).targetSerialNumber)); // state check
     }
 }

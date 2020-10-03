@@ -2,6 +2,7 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -100,9 +101,16 @@ public class ParserUtil {
     public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
         requireNonNull(serialNumber);
         String trimmedSerialNumber = serialNumber.trim();
-        if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
+        String[] withoutPrefix = trimmedSerialNumber.split("sn/");
+        //a valid array after splitting should be at length 2, index 0 being an empty string and 1
+        //being the actual serial number.
+        if (withoutPrefix.length < 2) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        String wantedSerialNumber = withoutPrefix[1];
+        if (!SerialNumber.isValidSerialNumber(wantedSerialNumber)) {
             throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
         }
-        return new SerialNumber(trimmedSerialNumber);
+        return new SerialNumber(wantedSerialNumber);
     }
 }
