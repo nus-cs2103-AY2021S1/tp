@@ -66,9 +66,9 @@ public class ProjectCard extends UiPart<Region> {
             address.setVisible(false);
             email.setVisible(false);
             tasks.setVisible(false);
-            address.setMaxHeight(1);
-            email.setMaxHeight(1);
-            tasks.setMaxHeight(1);
+            address.setManaged(false);
+            email.setManaged(false);
+            tasks.setManaged(false);
         }
     }
 
