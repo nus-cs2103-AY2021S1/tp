@@ -103,7 +103,6 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
