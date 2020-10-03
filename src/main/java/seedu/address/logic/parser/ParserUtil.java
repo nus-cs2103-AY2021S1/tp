@@ -86,7 +86,6 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code building} is invalid.
-     * @return
      */
     public static Building parseBuilding(String building) throws ParseException {
         requireNonNull(building);
