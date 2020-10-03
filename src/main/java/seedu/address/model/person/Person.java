@@ -17,7 +17,7 @@ public class Person {
 
     // Identity fields
     private final Description description;
-    private final Phone phone;
+    private final Amount amount;
     private final Email email;
 
     // Data fields
@@ -28,10 +28,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Description description, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(description, phone, email, address, tags);
+    public Person(Description description, Amount amount, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(description, amount, email, address, tags);
         this.description = description;
-        this.phone = phone;
+        this.amount = amount;
         this.email = email;
         this.address = address;
         this.remark = remark;
@@ -42,8 +42,8 @@ public class Person {
         return description;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Amount getAmount() {
+        return amount;
     }
 
     public Email getEmail() {
@@ -77,7 +77,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getDescription().equals(getDescription())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getAmount().equals(getAmount()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -96,7 +96,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getDescription().equals(getDescription())
-                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getAmount().equals(getAmount())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
@@ -105,15 +105,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, phone, email, address, tags);
+        return Objects.hash(description, amount, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Amount: ")
+                .append(getAmount())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")

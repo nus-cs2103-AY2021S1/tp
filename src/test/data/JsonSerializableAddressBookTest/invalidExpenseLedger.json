@@ -1,7 +1,7 @@
 {
   "persons": [ {
-    "description": "Hans Muster",
-    "phone": "9482424",
+    "description": "Sauna",
+    "amount": "4.60",
     "email": "invalid@email!3e",
     "address": "4th street"
   } ]

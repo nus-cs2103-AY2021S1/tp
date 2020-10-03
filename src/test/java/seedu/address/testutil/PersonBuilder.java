@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Amount;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,13 +18,13 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Lunch Bak Chor Mee";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_AMOUNT = "3.00";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     private Description description;
-    private Phone phone;
+    private Amount amount;
     private Email email;
     private Address address;
     private Remark remark;
@@ -35,7 +35,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
-        phone = new Phone(DEFAULT_PHONE);
+        amount = new Amount(DEFAULT_AMOUNT);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
@@ -47,7 +47,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         description = personToCopy.getDescription();
-        phone = personToCopy.getPhone();
+        amount = personToCopy.getAmount();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
@@ -79,10 +79,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Amount} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withAmount(String amount) {
+        this.amount = new Amount(amount);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(description, phone, email, address, remark, tags);
+        return new Person(description, amount, email, address, remark, tags);
     }
 
 }

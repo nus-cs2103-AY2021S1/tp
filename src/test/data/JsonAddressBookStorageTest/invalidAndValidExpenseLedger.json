@@ -1,12 +1,12 @@
 {
   "persons": [ {
-    "description": "Valid Person",
-    "phone": "9482424",
+    "description": "Valid Expense",
+    "amount": "12.00",
     "email": "hans@example.com",
     "address": "4th street"
   }, {
-    "description": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
+    "description": "Expense With Invalid Amount Field",
+    "amount": "67s",
     "email": "hans@example.com",
     "address": "4th street"
   } ]
