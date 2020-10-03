@@ -46,7 +46,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_NAME_CS2103 = "Software Engineering";
 
     public static final String CODE_DESC_CS50 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS50;
-    public static final String NAME_DESC_CS50 = " " + PREFIX_MODULE_CODE + VALID_MODULE_NAME_CS50;
+    public static final String NAME_DESC_CS50 = " " + PREFIX_MODULE_NAME + VALID_MODULE_NAME_CS50;
     public static final String CODE_DESC_CS1010S = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS1010S;
     public static final String NAME_DESC_CS1010S = " " + PREFIX_MODULE_NAME + VALID_MODULE_NAME_CS1010S;
     public static final String CODE_DESC_CS2103 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103;
@@ -67,13 +67,10 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_DEPARTMENT_DESC =
-            " " + PREFIX_DEPARTMENT; // empty string not allowed for departments
+    public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT; // empty string not allowed for departments
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE
-            + "CS*#1"; // '*' and '#' not allowed in module code
-    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_MODULE_NAME
-            + "Programming&Fun"; // '&' not allowed in module name
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "CS*#1"; // '*' and '#' not allowed in module code
+    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_MODULE_NAME + "Programming&Fun"; // '&' not allowed in module name
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
