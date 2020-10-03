@@ -37,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        SerialNumber serialNumber = SerialNumber.generateSerialNumber();
+        SerialNumber serialNumber = SerialNumber.generateDefaultSerialNumber();
         Source source = ParserUtil.parseSource(argMultimap.getValue(PREFIX_SOURCE).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());

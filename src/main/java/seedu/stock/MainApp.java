@@ -17,13 +17,17 @@ import seedu.stock.logic.Logic;
 import seedu.stock.logic.LogicManager;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
+import seedu.stock.model.ReadOnlySerialNumberSetsBook;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.ReadOnlyUserPrefs;
+import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.StockBook;
 import seedu.stock.model.UserPrefs;
 import seedu.stock.model.util.SampleDataUtil;
+import seedu.stock.storage.JsonSerialNumberSetsBookStorage;
 import seedu.stock.storage.JsonStockBookStorage;
 import seedu.stock.storage.JsonUserPrefsStorage;
+import seedu.stock.storage.SerialNumberSetsBookStorage;
 import seedu.stock.storage.StockBookStorage;
 import seedu.stock.storage.Storage;
 import seedu.stock.storage.StorageManager;
@@ -57,7 +61,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         StockBookStorage stockBookStorage = new JsonStockBookStorage(userPrefs.getStockBookFilePath());
-        storage = new StorageManager(stockBookStorage, userPrefsStorage);
+        SerialNumberSetsBookStorage serialNumberSetsBookStorage =
+                                new JsonSerialNumberSetsBookStorage(userPrefs.getSerialNumberSetsBookFilePath());
+        storage = new StorageManager(stockBookStorage, userPrefsStorage, serialNumberSetsBookStorage);
 
         initLogging(config);
 
@@ -75,22 +81,32 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyStockBook> stockBookOptional;
+        Optional<ReadOnlySerialNumberSetsBook> serialNumberSetsBookOptional;
         ReadOnlyStockBook initialData;
+        ReadOnlySerialNumberSetsBook initialSerialNumberSetsBookData;
         try {
             stockBookOptional = storage.readStockBook();
+            serialNumberSetsBookOptional = storage.readSerialNumberSetsBook();
             if (!stockBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample StockBook");
             }
+            if (!serialNumberSetsBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample SerialNumberSetsBook");
+            }
             initialData = stockBookOptional.orElseGet(SampleDataUtil::getSampleStockBook);
+            initialSerialNumberSetsBookData = serialNumberSetsBookOptional
+                                                .orElseGet(SampleDataUtil::getSampleSerialNumberSetsBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty StockBook");
             initialData = new StockBook();
+            initialSerialNumberSetsBookData = new SerialNumberSetsBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty StockBook");
             initialData = new StockBook();
+            initialSerialNumberSetsBookData = new SerialNumberSetsBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialSerialNumberSetsBookData);
     }
 
     private void initLogging(Config config) {

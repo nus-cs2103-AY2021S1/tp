@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path stockBookFilePath = Paths.get("data" , "stockbook.json");
+    private Path serialNumberSetsBookFilePath = Paths.get("data", "serialnumbers.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setStockBookFilePath(newUserPrefs.getStockBookFilePath());
+        setSerialNumberSetsBookFilePath(newUserPrefs.getSerialNumberSetsBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.stockBookFilePath = stockBookFilePath;
     }
 
+    public Path getSerialNumberSetsBookFilePath() {
+        return serialNumberSetsBookFilePath;
+    }
+
+    public void setSerialNumberSetsBookFilePath(Path serialNumberSetsBookFilePath) {
+        requireNonNull(serialNumberSetsBookFilePath);
+        this.serialNumberSetsBookFilePath = serialNumberSetsBookFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,7 +79,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && stockBookFilePath.equals(o.stockBookFilePath);
+                && stockBookFilePath.equals(o.stockBookFilePath)
+                && serialNumberSetsBookFilePath.equals(o.serialNumberSetsBookFilePath);
     }
 
     @Override
@@ -81,6 +93,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + stockBookFilePath);
+        sb.append("\nLocal serial number data file location : " + serialNumberSetsBookFilePath);
         return sb.toString();
     }
 
