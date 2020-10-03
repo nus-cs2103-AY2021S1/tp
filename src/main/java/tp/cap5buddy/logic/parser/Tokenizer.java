@@ -1,9 +1,9 @@
 package tp.cap5buddy.logic.parser;
 
-import tp.cap5buddy.logic.parser.exception.ParseException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import tp.cap5buddy.logic.parser.exception.ParseException;
 
 /**
  * Represents the token of each user input.
@@ -27,11 +27,27 @@ public class Tokenizer {
 
     }
 
-    public String[] tokenize(String userInput, Prefix... prefixes ) throws ParseException {
+    /**
+     * Tokenizes a user input based on prefixes.
+     *
+     * @param userInput User input
+     * @param prefixes Array of prefixes
+     * @return String array containing command arguments
+     * @throws ParseException If the user input could not be parsed.
+     */
+    public String[] tokenize(String userInput, Prefix... prefixes) throws ParseException {
         List<PrefixPosition> prefixPositions = findAllPrefixPositions(userInput, prefixes);
         return extractArguments(userInput, prefixPositions);
     }
 
+    /**
+     *
+     *
+     * @param userInput User input
+     * @param prefixes Array of prefixes
+     * @return List of prefix positions
+     * @throws ParseException If the input could not be parsed.
+     */
     public List<PrefixPosition> findAllPrefixPositions(String userInput, Prefix... prefixes) throws ParseException {
         List<PrefixPosition> prefixPositions = new ArrayList<>();
         for (Prefix prefix : prefixes) {
@@ -43,6 +59,14 @@ public class Tokenizer {
         return prefixPositions;
     }
 
+    /**
+     * Finds the position of the prefix in the user input.
+     *
+     * @param userInput User input.
+     * @param prefix Prefix.
+     * @return Prefix position.
+     * @throws ParseException If the same prefix is used more than once by the user.
+     */
     public PrefixPosition findPrefixPosition(String userInput, Prefix prefix) throws ParseException {
         String prefixSearch = " " + prefix.getPrefix();
         int prefixIndex = userInput.indexOf(prefixSearch);
@@ -55,12 +79,27 @@ public class Tokenizer {
         return (prefixIndex == -1 ? null : new PrefixPosition(prefixIndex + 1, prefix));
     }
 
+    /**
+     * Determines if the same prefix is used more than once.
+     *
+     * @param userInput User input.
+     * @param prefix Prefix.
+     * @param currentPrefixIndex Index of the current prefix in the user input.
+     * @return boolean.
+     */
     public boolean hasMultipleSamePrefixes(String userInput, Prefix prefix, int currentPrefixIndex) {
         int nextPrefixIndex = userInput.indexOf(" " + prefix.getPrefix(), currentPrefixIndex + 1);
         boolean hasMultipleSamePrefix = nextPrefixIndex != -1;
         return hasMultipleSamePrefix;
     }
 
+    /**
+     * Extracts the command arguments using the list of prefix positions.
+     *
+     * @param userInput User input.
+     * @param prefixPositions Prefix positions.
+     * @return String array containing the command arguments.
+     */
     public String[] extractArguments(String userInput, List<PrefixPosition> prefixPositions) {
         String[] results = new String[SIZE];
         PrefixPosition endPositionMarker = new PrefixPosition(userInput.length(), new Prefix(""));
@@ -72,6 +111,14 @@ public class Tokenizer {
         return results;
     }
 
+    /**
+     * Extracts the argument of a prefix.
+     *
+     * @param userInput User input.
+     * @param currentPrefixPosition Current index of the prefix.
+     * @param nextPrefixPosition Next prefix index.
+     * @return String containing the command argument for the current prefix.
+     */
     public String extractArgument(String userInput,
                                   PrefixPosition currentPrefixPosition,
                                   PrefixPosition nextPrefixPosition) {
