@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class SerialNumber {
     public static final String MESSAGE_CONSTRAINTS =
-            "Serial numbers should only contain numbers, and it should be at least 2 digits long";
+            "Serial numbers should only contain words and numbers, and it should be at least 2 digits long";
     /*
      * The first character of the source must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

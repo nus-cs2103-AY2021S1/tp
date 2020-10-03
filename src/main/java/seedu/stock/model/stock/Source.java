@@ -3,7 +3,7 @@ package seedu.stock.model.stock;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Stocks's source in the stock book.
+ * Represents a Stock's source in the stock book.
  * Guarantees: immutable;
  */
 public class Source {
@@ -41,7 +41,7 @@ public class Source {
     public final String value;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code Source}.
      *
      * @param source A valid source.
      */
