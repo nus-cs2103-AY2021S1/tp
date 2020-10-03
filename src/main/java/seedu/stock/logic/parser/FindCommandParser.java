@@ -47,12 +47,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<String> prefixesPresentAndKeywords =
+        List<Predicate<Stock>> getPredicates =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIALNUMBER);
 
-        List<Predicate<Stock>> predicates = getPredicates(prefixesPresentAndKeywords);
-
-        return new FindCommand(predicates);
+        return new FindCommand(getPredicates);
     }
 
     /**
@@ -63,55 +61,37 @@ public class FindCommandParser implements Parser<FindCommand> {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    private static List<String> parsePrefixAndKeywords(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static List<Predicate<Stock>> parsePrefixAndKeywords(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
-                .map(prefix -> prefix.getPrefix() + argumentMultimap.getValue(prefix))
+                .map(prefix -> getPredicate(prefix, argumentMultimap.getValue(prefix).get()))
                 .collect(Collectors.toList());
     }
 
-    private static List<Predicate<Stock>> getPredicates(List<String> prefixesPresentAndKeywords) {
-        return prefixesPresentAndKeywords
-                .stream().map(FindCommandParser::parsePredicate).collect(Collectors.toList());
-    }
-
-    private static Predicate<Stock> parsePredicate(String prefixAndKeywords) {
-        String trimmedArgs = prefixAndKeywords.trim();
-        final Matcher findMatcher = BASIC_FIND_FORMAT.matcher(trimmedArgs);
-
-        // keywords to find in field
-        final String keyWordsToFind = findMatcher.group("keyWordsToFind");
-        String trimmedKeyWordsToFind = keyWordsToFind.trim();
-        String[] keyWords = trimmedKeyWordsToFind.split("\\s+");
-
-        // prefix for field to find
-        final String prefix = findMatcher.group("commandPrefix");
-
-        return getPredicate(prefix, keyWords);
-
-    }
-
-    private static Predicate<Stock> getPredicate(String prefix, String[] keyWords) {
+    private static Predicate<Stock> getPredicate(Prefix prefix, String keywordsToFind) {
         final Predicate<Stock> fieldContainsKeywordsPredicate;
-        switch(prefix) {
+        String trimmedKeywordsToFind = keywordsToFind.trim();
+        String[] keywords = trimmedKeywordsToFind.split("\\s+");
+
+        switch(prefix.getPrefix()) {
         case "n/":
             fieldContainsKeywordsPredicate =
-                    new NameContainsKeywordsPredicate(Arrays.asList(keyWords));
+                    new NameContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
 
         case "sn/":
             fieldContainsKeywordsPredicate =
-                    new SerialNumberContainsKeywordsPredicate(Arrays.asList(keyWords));
+                    new SerialNumberContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
 
         case "s/":
             fieldContainsKeywordsPredicate =
-                    new SourceContainsKeywordsPredicate(Arrays.asList(keyWords));
+                    new SourceContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
 
         case "l/":
             fieldContainsKeywordsPredicate =
-                    new LocationContainsKeywordsPredicate(Arrays.asList(keyWords));
+                    new LocationContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
         default:
             throw new IllegalStateException("Unexpected value: " + prefix);

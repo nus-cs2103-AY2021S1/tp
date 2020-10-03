@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.stock.commons.core.Messages;
 import seedu.stock.model.Model;
-import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
+import seedu.stock.model.stock.Stock;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,16 +22,17 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final List<Predicate<Stock>> predicates;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(List<Predicate<Stock>> predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStockList(predicate);
+        predicates.forEach(model::updateFilteredStockList);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStockList().size()));
     }
@@ -37,6 +41,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
     }
 }
