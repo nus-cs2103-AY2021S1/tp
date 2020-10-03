@@ -236,13 +236,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* has a need to manage a significant number of varying inventories, as well as their finances
+* prefer desktop apps over other traditional modes of managing inventories/finances, such as pen and paper
 * can type fast
-* prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* Proficient in english to allow them to check the user guide when they are having trouble with the app
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: manage inventories and finances faster than the typical paper and pen
 
 
 ### User stories
@@ -369,7 +370,8 @@ For all use cases (unless specified otherwise):
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object
+* **Finances**: A record that allows a user to monitor his earnings and spending. 
 
 --------------------------------------------------------------------------------------------------------------------
 
