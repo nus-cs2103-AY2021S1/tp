@@ -1,5 +1,7 @@
 package seedu.address.model.exceptions;
 
+import java.util.Objects;
+
 import seedu.address.model.project.Status;
 
 /**
@@ -16,5 +18,31 @@ public class InvalidScopeException extends RuntimeException {
         super();
         this.expected = expected;
         this.actual = actual;
+    }
+
+    public Status getExpected() {
+        return expected;
+    }
+
+    public Status getActual() {
+        return actual;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof InvalidScopeException)) {
+            return false;
+        }
+        InvalidScopeException that = (InvalidScopeException) o;
+        return getExpected() == that.getExpected()
+                && getActual() == that.getActual();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getExpected(), getActual());
     }
 }
