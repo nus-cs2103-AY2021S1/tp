@@ -63,7 +63,6 @@ public class Fridge implements Iterable<Food> {
      */
     public void setFoods(List<Food> foods) {
         requireAllNonNull(foods);
-
         internalList.setAll(foods);
     }
 
