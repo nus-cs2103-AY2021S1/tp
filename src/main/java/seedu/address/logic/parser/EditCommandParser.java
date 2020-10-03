@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
@@ -47,7 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditProjectDescriptor editProjectDescriptor = new EditProjectDescriptor();
         if (argMultimap.getValue(PREFIX_PROJECT_NAME).isPresent()) {
-            editProjectDescriptor.setProjectName(ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
+            editProjectDescriptor.setProjectName(ParserUtil.parseProjectName(
+                    argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editProjectDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));

@@ -21,7 +21,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the main catalogue. "
             + "Parameters: "
-            + PREFIX_PROJECT_NAME + "NAME "
+            + PREFIX_PROJECT_NAME + "PROJECT NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "

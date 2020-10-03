@@ -7,7 +7,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import seedu.address.model.project.*;
+import seedu.address.model.project.Address;
+import seedu.address.model.project.Email;
+import seedu.address.model.project.Phone;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -25,7 +28,8 @@ public class SampleDataUtil {
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"), new HashMap<>(),
                 getTaskSet("Brainstorm user stories", "Refine data model")),
-            new Project(new ProjectName("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Project(new ProjectName("Charlotte Oliveiro"), new Phone("93210283"),
+                new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), new HashMap<>(), getTaskSet("Write UG")),
             new Project(new ProjectName("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
