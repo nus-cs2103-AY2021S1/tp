@@ -83,7 +83,7 @@ Edits an existing log in the application.
 
 Format: `edit INDEX [r/REPS] [c/COMMENT]`
 
-* Edits the existing log at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the existing log at the specified `INDEX`. The index refers to the index number shown in the displayed log list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
