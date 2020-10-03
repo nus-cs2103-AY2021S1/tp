@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -46,20 +47,26 @@ public class ProjectCard extends UiPart<Region> {
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
-    public ProjectCard(Project project, int displayedIndex) {
+    public ProjectCard(Project project, int displayedIndex, Status status) {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
         name.setText(project.getName().fullName);
         phone.setText(project.getPhone().value);
-        address.setText(project.getAddress().value);
-        email.setText(project.getEmail().value);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        project.getTasks().stream()
-                .sorted(Comparator.comparing(task -> task.taskName))
-                .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+        if (status == Status.PROJECT) {
+            address.setText(project.getAddress().value);
+            email.setText(project.getEmail().value);
+            project.getTasks().stream()
+                    .sorted(Comparator.comparing(task -> task.taskName))
+                    .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+        } else {
+            address.setVisible(false);
+            email.setVisible(false);
+            tasks.setVisible(false);
+        }
     }
 
     @Override
