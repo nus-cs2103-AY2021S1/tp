@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 
 /**
  * Panel containing the list of projects.
@@ -23,7 +24,7 @@ public class ProjectListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ProjectListPanel} with the given {@code ObservableList}.
      */
-    public ProjectListPanel(ObservableList<Project> projectList) {
+    public ProjectListPanel(ObservableList<Project> projectList, Status status) {
         super(FXML);
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
@@ -41,7 +42,7 @@ public class ProjectListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ProjectCard(project, getIndex() + 1).getRoot());
+                setGraphic(new ProjectCard(project, getIndex() + 1, Status.CATALOGUE).getRoot());
             }
         }
     }
