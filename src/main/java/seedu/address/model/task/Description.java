@@ -11,7 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions should only contain alphanumerical values"
-            + "as well as comma, period, question mark and exclamation mark.";
+            + "as well as comma, period, question mark and exclamation mark\n"
+            + "example => desc:Tell Zijian to review my PR!!! Repeat, this is urgent!!! You get it?";
 
     /*
      * The first character of the address must not be a whitespace,
