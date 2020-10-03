@@ -24,4 +24,9 @@ public interface ReadOnlyMainCatalogue {
      * Enters a designated project.
      */
     void enter(Project project);
+
+    /**
+     * Quits the current project view.
+     */
+    void quit();
 }

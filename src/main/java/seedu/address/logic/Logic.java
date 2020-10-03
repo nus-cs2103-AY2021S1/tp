@@ -58,4 +58,9 @@ public interface Logic {
      * Enters the designated project.
      */
     void enter(Project project);
+
+    /**
+     * Quits the current project view.
+     */
+    void quit();
 }

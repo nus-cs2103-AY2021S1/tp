@@ -126,6 +126,12 @@ public class ModelManager implements Model {
         updateFilteredProjectList(p -> p.isSameProject(project));
     }
 
+    @Override
+    public void quit() {
+        mainCatalogue.quit();
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
     //=========== Filtered Project List Accessors =============================================================
 
     /**

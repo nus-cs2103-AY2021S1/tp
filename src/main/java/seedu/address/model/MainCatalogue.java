@@ -118,6 +118,15 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         this.project = Optional.of(projects.getProject(project));
     }
 
+    @Override
+    public void quit() {
+        if (status != Status.PROJECT) {
+            throw new InvalidScopeException(Status.PROJECT, status);
+        }
+        status = Status.CATALOGUE;
+        this.project = Optional.empty();
+    }
+
     //// util methods
 
     @Override

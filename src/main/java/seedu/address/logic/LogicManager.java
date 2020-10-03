@@ -89,4 +89,9 @@ public class LogicManager implements Logic {
     public void enter(Project project) {
         model.enter(project);
     }
+
+    @Override
+    public void quit() {
+        model.quit();
+    }
 }
