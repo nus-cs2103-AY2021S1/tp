@@ -1,10 +1,9 @@
 package nustorage.logic.commands;
 
-import nustorage.logic.commands.exceptions.CommandException;
-import nustorage.model.FinanceAccount;
-import nustorage.model.Model;
-
 import static java.util.Objects.requireNonNull;
+
+import nustorage.logic.commands.exceptions.CommandException;
+import nustorage.model.Model;
 
 public class ListFinanceRecordsCommand extends Command {
 
