@@ -106,6 +106,11 @@ public class AddCommandTest {
         public void addInventoryRecord(InventoryRecord newRecord) {}
 
         @Override
+        public ObservableList<InventoryRecord> getFilteredInventory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addFinanceRecord(FinanceRecord newRecord) {
 
         }
@@ -164,6 +169,13 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
+
+        }
+
+
     }
 
     /**
