@@ -166,6 +166,12 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+#### Clearing command history : `clearhistory`
+
+Clears command history from the address book.
+
+Format: `clearhistory`
+
 #### Exiting the program : `exit`
 
 Exits the program.
@@ -214,8 +220,9 @@ When a patient is tagged with a color tag, the background of the patient will be
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/COLOR_TAG] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**addProfilePicture** | `addProfilePicture 1 f/data/profile_picture.png`
+**Add profile picture** | `addProfilePicture 1 f/data/profile_picture.png`
 **Clear** | `clear`
+**Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/COLOR_TAG] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
