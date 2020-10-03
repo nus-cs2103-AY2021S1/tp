@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/GabrielTeo)] [[portfolio](team/gabrielteo.md)]
 
 * Role: Developer
-* Responsibilities: Documentation + Deliverables and deadlines
+* Responsibilities: Documentation + Deliverables and deadlines + UI
 
 ### Cedric Lim Jun Wei
 
