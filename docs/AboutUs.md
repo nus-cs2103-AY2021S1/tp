@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/BobbyZhouZijian)]
 [[portfolio](team/bobbyzhouzijian.md)]
 
-* Role: Tech Lead, Git expert
+* Role: Tech Lead, Git Expert
 * Responsibilities: Scheduling and Tracking
 
 ### Marcus Tan
@@ -34,7 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/gabriellateh.png" width="200px">
 
-[[github](http://github.com/GabriellaTeh)] [[portfolio](team/gabriellateh.md)]
+[[github](http://github.com/GabriellaTeh)]
+[[portfolio](team/gabriellateh.md)]
 
 * Role: Developer
 * Responsibilities: Documentation, deliverables and deadlines
@@ -46,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/dearvae)]
 [[portfolio](team/dearvae.md)]
 
-* Role: Developer, Figma expert
+* Role: Developer, Figma Expert
 * Responsibilities: Integration 
 
 ### Li Gangwei
@@ -56,5 +57,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/nuovonatura)]
 [[portfolio](team/nuovonatura.md)]
 
-* Role: Developer, JavaFX expert
+* Role: Developer, JavaFX Expert
 * Responsibilities: UI and Code Quality
