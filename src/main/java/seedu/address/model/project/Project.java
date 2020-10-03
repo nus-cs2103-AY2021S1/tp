@@ -83,6 +83,9 @@ public class Project {
         return Collections.unmodifiableSet(tasks);
     }
 
+    /**
+     * Adds a participation instance of a Person to a project
+     */
     public void addParticipation(Person p) {
         listOfParticipations.put(
             p.getPersonName(), new Participation(p, this));
