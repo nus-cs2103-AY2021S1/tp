@@ -2,6 +2,9 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.StringUtil;
@@ -11,10 +14,6 @@ import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

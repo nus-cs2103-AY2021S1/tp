@@ -23,13 +23,18 @@ public class DeleteCommand extends Command {
             + "Parameters: SERIAL NUMBER (must be a valid serial number)\n"
             + "Example: " + COMMAND_WORD + " sn/Kc company1";
 
-    public static final String MESSAGE_DELETE_STOCK_SUCCESS = "All serial number(s) are found.\n" +
-                                                                    "Deleted Stock(s): %1$s";
-    public static final String MESSAGE_DELETE_STOCK_SOME_SUCCESS = "Some serial number(s) are not found.\n" +
-                                                                    "Deleted Stock(s): %1$s";
+    public static final String MESSAGE_DELETE_STOCK_SUCCESS = "All serial number(s) are found.\n"
+                                                                    + "Deleted Stock(s): %1$s";
+    public static final String MESSAGE_DELETE_STOCK_SOME_SUCCESS = "Some serial number(s) are not found.\n"
+                                                                    + "Deleted Stock(s): %1$s";
 
     private final List<SerialNumber> targetSerialNumbers;
 
+    /**
+     * Constructor for a new delete command.
+     *
+     * @param targetSerialNumbers The list of target serial numbers to delete.
+     */
     public DeleteCommand(List<SerialNumber> targetSerialNumbers) {
         assert(targetSerialNumbers.size() > 0);
         this.targetSerialNumbers = targetSerialNumbers;
@@ -63,6 +68,7 @@ public class DeleteCommand extends Command {
                 unknownSerialNumbers.add(targetSerialNumber);
             }
         }
+
         //deletion of multiple stocks is only successful if the number of deleted stocks is equals
         //to number of serial numbers provided, ensuring all given serial numbers are used.
         if (stocksDeleted.size() == targetSerialNumbers.size()) {

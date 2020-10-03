@@ -6,7 +6,12 @@ import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.stock.logic.commands.*;
+
+import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.Command;
+import seedu.stock.logic.commands.DeleteCommand;
+import seedu.stock.logic.commands.ExitCommand;
+import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 /**

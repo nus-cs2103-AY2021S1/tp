@@ -2,11 +2,13 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.List;
+
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
 
-import java.util.List;
+
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
