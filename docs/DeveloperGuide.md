@@ -260,7 +260,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | user                                       | find tasks by module                           |                                  |
 | `* *  `  | user                                       | find tasks by due date                         |                                  |
 | `* *  `  | user                                       | mark my task as done after it is completed     |                                  |
-| `* * *`  | user                                       | find tasks by name                             |                                  |
+| `* * *`  | user                                       | find tasks by title                             |                                  |
 | `* *  `  | user                                       | find tasks by category                         |                                  |
 | `* * *`  | user                                       | edit my tasks                                  |                                  |
   
