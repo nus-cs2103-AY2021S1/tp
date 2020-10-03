@@ -10,7 +10,7 @@ public class Protein extends Macronutrient {
      * @param amount A valid amount.
      */
     public Protein(int amount) {
-        super("Protein", amount, PROTEIN_MULTIPLIER);
+        super(amount, PROTEIN_MULTIPLIER);
     }
 
 }

@@ -10,7 +10,7 @@ public class Carbohydrate extends Macronutrient {
      * @param amount A valid amount.
      */
     public Carbohydrate(int amount) {
-        super("Carbohydrate", amount, CARBOHYDRATE_MULTIPLIER);
+        super(amount, CARBOHYDRATE_MULTIPLIER);
     }
 
 }

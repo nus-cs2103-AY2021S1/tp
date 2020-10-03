@@ -1,9 +1,9 @@
 package seedu.address.model.food;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Macronutrient {
-    private String name;
     private int amount;
     private int caloricMultiplier;
     private int totalCalories;
@@ -11,32 +11,57 @@ public abstract class Macronutrient {
     /**
      * Represents macronutrients of 3 types
      *
-     * @param amount
-     * @param caloricMultiplier
+     * @param amount The amount of the macronutrient
+     * @param caloricMultiplier This value varies for each macronutrient type
      */
-    public Macronutrient(String name, int amount, int caloricMultiplier) {
-        requireAllNonNull(name, amount, caloricMultiplier);
-        assert amount >= 0 : "Negative Macronutrient Amount";
+    public Macronutrient(int amount, int caloricMultiplier) {
+        requireAllNonNull(amount, caloricMultiplier);
+
+        // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
+        checkArgument(isValidAmount(amount), getMessageContraint());
 
         assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
-        this.name = name;
         this.amount = amount;
         this.caloricMultiplier = caloricMultiplier;
         this.totalCalories = caloricMultiplier * amount;
 
     }
 
-    @Override
-    public String toString() {
-        return "MacronutrientType:" + this.name + "\n"
-            + "Amount: "
-            + this.amount + "\n"
-            + "Caloric Count: " + this.totalCalories + "\n";
+    private boolean isValidAmount(int amount) {
+        return amount > 0;
     }
 
-    public String getName() {
-        return name;
+    private String getMessageContraint() {
+        return this.getMacronutrientType() + " amount can only take in value larger than 0";
+    }
+
+    @Override
+    public String toString() {
+        return "MacronutrientType:" + this.getMacronutrientType() + "\n"
+            + "Amount: "
+            + this.getAmount() + "\n"
+            + "Caloric Count: " + this.getTotalCalories() + "\n";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Macronutrient)) {
+            return false;
+        }
+
+        Macronutrient otherMacronutrient = (Macronutrient) other;
+        return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
+            && this.getAmount() == otherMacronutrient.getAmount()
+            && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
+    }
+
+    // take the type from the class name
+    public String getMacronutrientType() {
+        return this.getClass().getName();
     }
 
     public int getAmount() {
