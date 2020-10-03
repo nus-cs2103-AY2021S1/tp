@@ -73,7 +73,7 @@ public class DeleteCommand extends Command {
         //to number of serial numbers provided, ensuring all given serial numbers are used.
         if (stocksDeleted.size() == targetSerialNumbers.size()) {
             return new CommandResult(String.format(MESSAGE_DELETE_STOCK_SUCCESS, stocksAsString(stocksDeleted)));
-        } else if (stocksDeleted.size() > 0){
+        } else if (stocksDeleted.size() > 0) {
             String serialNumbersNotFound = String.format(Messages.MESSAGE_SOME_SERIAL_NUMBER_NOT_FOUND,
                     serialNumberListAsString(unknownSerialNumbers));
             return new CommandResult(String.format(MESSAGE_DELETE_STOCK_SOME_SUCCESS, stocksAsString(stocksDeleted))
