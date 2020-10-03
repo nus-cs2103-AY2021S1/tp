@@ -23,13 +23,13 @@ public class InventoryPanel extends UiPart<Region> {
     public InventoryPanel(ObservableList<InventoryRecord> recordList) {
         super(FXML);
         inventoryView.setItems(recordList);
-        inventoryView.setCellFactory(listView -> new InventoryPanel.inventoryViewCell());
+        inventoryView.setCellFactory(listView -> new InventoryPanel.InventoryViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class inventoryViewCell extends ListCell<InventoryRecord> {
+    class InventoryViewCell extends ListCell<InventoryRecord> {
         @Override
         protected void updateItem(InventoryRecord record, boolean empty) {
             super.updateItem(record, empty);

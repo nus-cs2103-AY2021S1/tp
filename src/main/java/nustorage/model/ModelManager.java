@@ -98,6 +98,10 @@ public class ModelManager implements Model {
         return filteredInventory;
     }
 
+    /**
+     * Applies a predicate to the Inventory and returns those that pass it.
+     * @param predicate the predicate used to filter Inventory
+     */
     public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
         requireNonNull(predicate);
         filteredInventory.setPredicate(predicate);

@@ -10,7 +10,7 @@ import nustorage.model.record.InventoryRecord;
 /**
  * Class to store different InventoryRecords.
  */
-public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory{
+public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
 
     private final ObservableList<InventoryRecord> internalList = FXCollections.observableArrayList();
     private final ObservableList<InventoryRecord> internalUnmodifiableList =
