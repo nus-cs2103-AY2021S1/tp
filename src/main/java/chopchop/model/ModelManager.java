@@ -136,7 +136,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
+    public void updateFilteredRecipeList(Predicate<FoodEntry> predicate) {
         requireNonNull(predicate);
         filteredRecipes.setPredicate(predicate);
     }
@@ -208,8 +208,9 @@ public class ModelManager implements Model {
         return filteredIngredients;
     }
 
+
     @Override
-    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+    public void updateFilteredIngredientList(Predicate<FoodEntry> predicate) {
         requireNonNull(predicate);
         filteredIngredients.setPredicate(predicate);
 

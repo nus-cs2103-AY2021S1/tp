@@ -19,7 +19,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     /**
      * Creates a {@code UserPrefs} with default values.
-     */
+     */ 
     public UserPrefs() {}
 
     /**
