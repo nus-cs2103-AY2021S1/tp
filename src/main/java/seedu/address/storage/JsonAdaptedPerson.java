@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedWitness> witnesses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +38,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (witnesses != null) {
+            this.witnesses.addAll(witnesses);
         }
     }
 
@@ -56,6 +62,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        witnesses.addAll(source.getWitnesses().stream()
+                .map(JsonAdaptedWitness::new)
                 .collect(Collectors.toList()));
     }
 
@@ -103,7 +112,11 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final List<Witness> modelWitnesses = new ArrayList<>();
+        for (JsonAdaptedWitness witness : witnesses) {
+            modelWitnesses.add(witness.toModelType());
+        }
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelWitnesses);
     }
 
 }

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -98,8 +100,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        List<Witness> updatedWitnesses =
+                editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail,
+                          updatedAddress, updatedTags, updatedWitnesses);
     }
 
     @Override
@@ -130,6 +135,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private ArrayList<Witness> witnesses;
 
         public EditPersonDescriptor() {}
 
@@ -143,6 +149,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -199,6 +206,21 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code witnesses} to this object's {@code witnesses}.
+         * A defensive copy of {@code witnesses} is used internally.
+         */
+        public void setWitnesses(ArrayList<Witness> witnesses) {
+            this.witnesses = (witnesses != null) ? new ArrayList<>(witnesses) : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code witnesses} is null.
+         */
+        public Optional<List<Witness>> getWitnesses() {
+            return (witnesses != null) ? Optional.of(witnesses) : Optional.empty();
         }
 
         @Override
