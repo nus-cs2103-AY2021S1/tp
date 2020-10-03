@@ -64,11 +64,11 @@ public class AddModCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, VALID_MODULE_CODE_CS50 + INVALID_MODULE_NAME_DESC,
+        assertParseFailure(parser, CODE_DESC_CS50 + INVALID_MODULE_NAME_DESC,
                 ModuleName.MESSAGE_CONSTRAINTS);
 
         // invalid code
-        assertParseFailure(parser, INVALID_MODULE_CODE_DESC + VALID_MODULE_NAME_CS50,
+        assertParseFailure(parser, INVALID_MODULE_CODE_DESC + NAME_DESC_CS50,
                 ModuleCode.MESSAGE_CONSTRAINTS);
 
     }
