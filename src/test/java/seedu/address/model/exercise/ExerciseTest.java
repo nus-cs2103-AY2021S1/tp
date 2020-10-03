@@ -30,9 +30,5 @@ public class ExerciseTest {
         // different name -> returns false
         Exercise editedSitUp = new ExerciseBuilder(SIT_UP).withName(VALID_EXERCISE_CRUNCHES).build();
         assertFalse(SIT_UP.equals(editedSitUp));
-
-        // different caloriesPerRep -> returns false
-        editedSitUp = new ExerciseBuilder(SIT_UP).withCaloriesPerRep(15).build();
-        assertFalse(SIT_UP.equals(editedSitUp));
     }
 }
