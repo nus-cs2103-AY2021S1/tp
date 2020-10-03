@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.stock.commons.exceptions.IllegalValueException;
-import seedu.stock.model.stock.AccQuantity;
+import seedu.stock.model.stock.AccumulatedQuantity;
 import seedu.stock.model.stock.SerialNumberSet;
 import seedu.stock.model.stock.Source;
 
@@ -16,16 +16,16 @@ class JsonAdaptedSerialNumberSet {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "SerialNumberSet's %s field is missing!";
 
     private final String source;
-    private final String accQuantity;
+    private final String accumulatedQuantity;
 
     /**
      * Constructs a {@code JsonAdaptedSerialNumberSet} with the given SerialNumberSet details.
      */
     @JsonCreator
     public JsonAdaptedSerialNumberSet(@JsonProperty("source") String source,
-                                      @JsonProperty("accQuantity") String accQuantity) {
+                                      @JsonProperty("accumulatedQuantity") String accumulatedQuantity) {
         this.source = source;
-        this.accQuantity = accQuantity;
+        this.accumulatedQuantity = accumulatedQuantity;
     }
 
     /**
@@ -33,7 +33,7 @@ class JsonAdaptedSerialNumberSet {
      */
     public JsonAdaptedSerialNumberSet(SerialNumberSet serialNumberSet) {
         this.source = serialNumberSet.getSource().value;
-        this.accQuantity = serialNumberSet.getAccQuantity().getAccQuantity();
+        this.accumulatedQuantity = serialNumberSet.getAccumulatedQuantity().getAccumulatedQuantity();
     }
 
     /**
@@ -50,14 +50,14 @@ class JsonAdaptedSerialNumberSet {
         }
         final Source modelSource = new Source(source);
 
-        if (accQuantity == null) {
+        if (accumulatedQuantity == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    AccQuantity.class.getSimpleName()));
+                    AccumulatedQuantity.class.getSimpleName()));
         }
-        if (!AccQuantity.isValidAccQuantity(accQuantity)) {
-            throw new IllegalValueException(AccQuantity.MESSAGE_CONSTRAINTS);
+        if (!AccumulatedQuantity.isValidAccQuantity(accumulatedQuantity)) {
+            throw new IllegalValueException(AccumulatedQuantity.MESSAGE_CONSTRAINTS);
         }
-        final AccQuantity modelAccQuantity = new AccQuantity(accQuantity);
+        final AccumulatedQuantity modelAccQuantity = new AccumulatedQuantity(accumulatedQuantity);
 
         return new SerialNumberSet(modelSource, modelAccQuantity);
     }

@@ -14,7 +14,7 @@ import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.stock.SerialNumberSet;
 
 /**
- * An Immutable SerialNumberSets that is serializable to JSON format.
+ * An immutable SerialNumberSets that is serializable to JSON format.
  */
 @JsonRootName(value = "serialNumberSets")
 class JsonSerializableSerialNumberSetsBook {

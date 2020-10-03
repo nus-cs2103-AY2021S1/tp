@@ -7,28 +7,28 @@ import java.util.Objects;
 public class SerialNumberSet {
 
     private Source source;
-    private AccQuantity accQuantity;
+    private AccumulatedQuantity accumulatedQuantity;
 
     /**
      * Constructor for a serialNumberSet.
      *
      * @param source The source company name.
-     * @param accQuantity The accumulated quantity of stocks the source company has in relation to
-     *     the local warehouse.
+     * @param accumulatedQuantity The accumulated quantity of stocks the source company has in relation to
+     * the local warehouse.
      */
-    public SerialNumberSet(Source source, AccQuantity accQuantity) {
+    public SerialNumberSet(Source source, AccumulatedQuantity accumulatedQuantity) {
         requireNonNull(source);
-        requireNonNull(accQuantity);
+        requireNonNull(accumulatedQuantity);
         this.source = source;
-        this.accQuantity = accQuantity;
+        this.accumulatedQuantity = accumulatedQuantity;
     }
 
     public Source getSource() {
         return this.source;
     }
 
-    public AccQuantity getAccQuantity() {
-        return this.accQuantity;
+    public AccumulatedQuantity getAccumulatedQuantity() {
+        return this.accumulatedQuantity;
     }
 
     /**
@@ -53,7 +53,7 @@ public class SerialNumberSet {
 
         return otherSerialNumberSet != null
                 && otherSerialNumberSet.getSource().equals(getSource())
-                && otherSerialNumberSet.getAccQuantity().equals(getAccQuantity());
+                && otherSerialNumberSet.getAccumulatedQuantity().equals(getAccumulatedQuantity());
     }
 
     /**
@@ -63,7 +63,7 @@ public class SerialNumberSet {
      */
     public SerialNumberSet getNewIncrementedSerialNumberSet() {
         Source newSource = this.source;
-        AccQuantity newAccQuantity = this.accQuantity.getIncrementedAccQuantity();
+        AccumulatedQuantity newAccQuantity = this.accumulatedQuantity.getIncrementedAccumulatedQuantity();
         return new SerialNumberSet(newSource, newAccQuantity);
     }
 
@@ -83,13 +83,13 @@ public class SerialNumberSet {
 
         SerialNumberSet otherSerialNumberSet = (SerialNumberSet) other;
         return otherSerialNumberSet.getSource().equals(getSource())
-                && otherSerialNumberSet.getAccQuantity().equals(getAccQuantity());
+                && otherSerialNumberSet.getAccumulatedQuantity().equals(getAccumulatedQuantity());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(source, accQuantity);
+        return Objects.hash(source, accumulatedQuantity);
     }
 
     @Override
@@ -97,8 +97,8 @@ public class SerialNumberSet {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Source: ")
                 .append(getSource())
-                .append(" AccQuantity: ")
-                .append(getAccQuantity());
+                .append(" AccumulatedQuantity: ")
+                .append(getAccumulatedQuantity());
         return builder.toString();
     }
 

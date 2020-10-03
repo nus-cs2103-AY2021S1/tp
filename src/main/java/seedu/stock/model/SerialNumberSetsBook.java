@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.stock.model.stock.AccQuantity;
+import seedu.stock.model.stock.AccumulatedQuantity;
 import seedu.stock.model.stock.SerialNumberSet;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.UniqueSerialNumberSetList;
@@ -112,7 +112,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
             SerialNumberSet updated = current.getNewIncrementedSerialNumberSet();
             setSerialNumberSet(current, updated);
         } else {
-            SerialNumberSet toAdd = new SerialNumberSet(source, new AccQuantity("1"));
+            SerialNumberSet toAdd = new SerialNumberSet(source, new AccumulatedQuantity("1"));
             //adds the desired serial number set by calling the addSerialNumberSet method.
             addSerialNumberSet(toAdd);
         }
@@ -127,7 +127,8 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         Optional<SerialNumberSet> serialNumberSetOptional = serialNumberSets.getSerialNumberSet(source);
         if (serialNumberSetOptional.isPresent()) {
             SerialNumberSet current = serialNumberSetOptional.get();
-            String numberSection = current.getAccQuantity().getIncrementedAccQuantity().getAccQuantity();
+            String numberSection = current.getAccumulatedQuantity().getIncrementedAccumulatedQuantity()
+                                        .getAccumulatedQuantity();
             return source.value + numberSection;
         } else {
             return source.value + "1";

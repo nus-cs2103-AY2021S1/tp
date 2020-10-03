@@ -38,6 +38,8 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
     /**
      * Adds a serial number set to the list.
      * The serial number set's source must not already exist in the list.
+     *
+     * @param toAdd The serialNumberSet to add.
      */
     public void add(SerialNumberSet toAdd) {
         requireNonNull(toAdd);
@@ -61,7 +63,7 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
      * Replaces the serial number set {@code target} in the list with {@code editedSerialNumberSet}.
      * {@code target} must exist in the list.
      * The source identity of {@code editedSerialNumberSet} must not be the same as
-     *     another existing serial number set in the list.
+     * another existing serial number set in the list.
      */
     public void setSerialNumberSet(SerialNumberSet target, SerialNumberSet editedSerialNumberSet) {
         requireAllNonNull(target, editedSerialNumberSet);
@@ -95,8 +97,8 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
     }
 
     /**
-     * Replaces the contents of this list with {@code serial number sets}.
-     * {@code serial number sets} must not contain duplicate serial number sets.
+     * Replaces the contents of this list with {@code serialNumberSets}.
+     * {@code serialNumberSets} must not contain duplicate serial number sets.
      */
     public void setSerialNumberSets(List<SerialNumberSet> serialNumberSets) {
         requireAllNonNull();

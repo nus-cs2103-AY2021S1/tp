@@ -3,7 +3,7 @@ package seedu.stock.model.stock;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents the serial number in the stock book.
+ * Represents the serial number in the serialNumberSets Book.
  * Guarantees: immutable;
  */
 public class SerialNumber {
@@ -14,12 +14,12 @@ public class SerialNumber {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public final String serialNumber;
+    private final String serialNumber;
 
 
     /**
      * Constructs an {@code SerialNumber}.
-     * SerialNumber can only be created by calling {@link SerialNumber#generateSerialNumber()}
+     * SerialNumber can only be created by calling {@link SerialNumber#generateDefaultSerialNumber()}
      *
      * @param serialNumber A valid serial number.
      */
@@ -40,8 +40,7 @@ public class SerialNumber {
     }
 
     /**
-     * Generates the serial number of the product.
-     * params to be filled in later
+     * Generates the default serial number of the product.
      *
      * @return SerialNumber of the object.
      */
