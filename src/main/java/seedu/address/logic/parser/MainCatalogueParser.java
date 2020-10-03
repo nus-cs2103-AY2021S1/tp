@@ -14,6 +14,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LeaveCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -71,6 +72,9 @@ public class MainCatalogueParser {
 
         case StartCommand.COMMAND_WORD:
             return new StartCommandParser().parse(arguments);
+
+        case LeaveCommand.COMMAND_WORD:
+            return new LeaveCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
