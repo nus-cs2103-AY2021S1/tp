@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -21,7 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -39,12 +35,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DESCRIPTION + "johndoe,example.com";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +91,11 @@ public class EditCommand extends Command {
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
-        Email updatedEmail = editTaskDescriptor.getEmail().orElse(taskToEdit.getEmail());
+        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Task(updatedTitle, updatedPhone, updatedDescription, updatedAddress, updatedTags);
     }
 
     @Override
@@ -127,7 +123,7 @@ public class EditCommand extends Command {
     public static class EditTaskDescriptor {
         private Title title;
         private Phone phone;
-        private Email email;
+        private Description description;
         private Address address;
         private Set<Tag> tags;
 
@@ -140,7 +136,7 @@ public class EditCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setDescription(toCopy.description);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -149,7 +145,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(title, phone, description, address, tags);
         }
 
         public void setTitle(Title title) {
@@ -168,12 +164,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setAddress(Address address) {
@@ -218,7 +214,7 @@ public class EditCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
+                    && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Title;
 
@@ -26,7 +26,7 @@ public class JsonAdaptedTaskTest {
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
+    private static final String VALID_EMAIL = BENSON.getDescription().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -72,14 +72,14 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

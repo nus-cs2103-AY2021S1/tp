@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -23,7 +23,7 @@ public class TaskBuilder {
 
     private Title title;
     private Phone phone;
-    private Email email;
+    private Description description;
     private Address address;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        description = new Description(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
         phone = taskToCopy.getPhone();
-        email = taskToCopy.getEmail();
+        description = taskToCopy.getDescription();
         address = taskToCopy.getAddress();
         tags = new HashSet<>(taskToCopy.getTags());
     }
@@ -82,15 +82,15 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Task} that we are building.
+     * Sets the {@code Description} of the {@code Task} that we are building.
      */
     public TaskBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.description = new Description(email);
         return this;
     }
 
     public Task build() {
-        return new Task(title, phone, email, address, tags);
+        return new Task(title, phone, description, address, tags);
     }
 
 }
