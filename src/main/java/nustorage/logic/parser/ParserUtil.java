@@ -8,13 +8,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import nustorage.commons.core.index.Index;
 import nustorage.commons.util.StringUtil;
 import nustorage.logic.parser.exceptions.ParseException;
-import nustorage.model.person.Address;
 import nustorage.model.person.Email;
 import nustorage.model.person.Name;
 import nustorage.model.person.Phone;
@@ -82,39 +80,37 @@ public class ParserUtil {
      * Parses {@code datetimeList} into an {@code LocalDateTime} and returns it.
      * @throws ParseException if the specified input is invalid (not correctly formatted).
      */
-    public static LocalDateTime parseDatetime(Optional<String> datetime) throws ParseException {
+    public static LocalDateTime parseDatetime(String datetime) throws ParseException {
         requireNonNull(datetime);
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
-        if (datetime.isPresent()) {
-            String[] datetimeArray = datetime.get().split(" ");
+        String[] datetimeArray = datetime.split(" ");
 
-            if (datetimeArray.length == 1) {
+        if (datetimeArray.length == 1) {
 
+            try {
+                date = LocalDate.parse(datetimeArray[0]);
+            } catch (DateTimeParseException ex1) {
                 try {
-                    date = LocalDate.parse(datetimeArray[0]);
-                } catch (DateTimeParseException ex1) {
-                    try {
-                        time = LocalTime.parse(datetimeArray[0]);
-                    } catch (DateTimeParseException ex2) {
-                        throw new ParseException(MESSAGE_INVALID_DATETIME);
-                    }
+                    time = LocalTime.parse(datetimeArray[0]);
+                } catch (DateTimeParseException ex2) {
+                    throw new ParseException(MESSAGE_INVALID_DATETIME);
                 }
+            }
 
-            } else if (datetimeArray.length > 1) {
+        } else if (datetimeArray.length > 1) {
 
+            try {
+                date = LocalDate.parse(datetimeArray[0]);
+                time = LocalTime.parse(datetimeArray[1]);
+            } catch (DateTimeParseException ex1) {
                 try {
-                    date = LocalDate.parse(datetimeArray[0]);
-                    time = LocalTime.parse(datetimeArray[1]);
-                } catch (DateTimeParseException ex1) {
-                    try {
-                        date = LocalDate.parse(datetimeArray[1]);
-                        time = LocalTime.parse(datetimeArray[0]);
-                    } catch (DateTimeParseException ex2) {
-                        throw new ParseException(MESSAGE_INVALID_DATETIME);
-                    }
+                    date = LocalDate.parse(datetimeArray[1]);
+                    time = LocalTime.parse(datetimeArray[0]);
+                } catch (DateTimeParseException ex2) {
+                    throw new ParseException(MESSAGE_INVALID_DATETIME);
                 }
             }
         }
@@ -163,21 +159,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**
