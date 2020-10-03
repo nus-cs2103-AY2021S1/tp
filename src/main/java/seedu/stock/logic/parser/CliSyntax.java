@@ -10,4 +10,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOURCE = new Prefix("s/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
+    public static final Prefix PREFIX_SERIALNUMBER = new Prefix("sn/");
 }
