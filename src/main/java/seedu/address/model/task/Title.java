@@ -18,7 +18,7 @@ public class Title {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullTitle;
+    public final String title;
 
     /**
      * Constructs a {@code Title}.
@@ -28,7 +28,7 @@ public class Title {
     public Title(String title) {
         requireNonNull(title);
         checkArgument(isValidTitle(title), MESSAGE_CONSTRAINTS);
-        fullTitle = title;
+        this.title = title;
     }
 
     /**
@@ -41,19 +41,19 @@ public class Title {
 
     @Override
     public String toString() {
-        return fullTitle;
+        return title;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Title // instanceof handles nulls
-                && fullTitle.equals(((Title) other).fullTitle)); // state check
+                && title.equals(((Title) other).title)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullTitle.hashCode();
+        return title.hashCode();
     }
 
 }

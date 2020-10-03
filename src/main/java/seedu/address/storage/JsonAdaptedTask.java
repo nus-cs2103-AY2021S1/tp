@@ -35,8 +35,8 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
-                           @JsonProperty("email") String email, @JsonProperty("address") String address,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+           @JsonProperty("email") String email, @JsonProperty("address") String address,
+           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.phone = phone;
         this.email = email;
@@ -50,7 +50,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        title = source.getTitle().fullTitle;
+        title = source.getTitle().title;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;

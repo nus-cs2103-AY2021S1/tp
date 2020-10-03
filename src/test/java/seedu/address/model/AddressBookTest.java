@@ -46,9 +46,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAmy = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAmy);
+        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));

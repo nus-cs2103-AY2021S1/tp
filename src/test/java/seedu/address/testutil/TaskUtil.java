@@ -30,7 +30,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
+        sb.append(PREFIX_TITLE + task.getTitle().title + " ");
         sb.append(PREFIX_PHONE + task.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + task.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
@@ -45,7 +45,7 @@ public class TaskUtil {
      */
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
+        descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.title).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
