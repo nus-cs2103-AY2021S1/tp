@@ -26,7 +26,7 @@ public class ProjectCard extends UiPart<Region> {
      */
 
     public final Project project;
-    public Status status;
+    private Status status;
 
     @FXML
     private HBox cardPane;
