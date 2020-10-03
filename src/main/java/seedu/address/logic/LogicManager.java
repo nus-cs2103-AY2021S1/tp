@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.storage.Storage;
 
 /**
@@ -77,5 +78,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Status getStatus() {
+        return model.getStatus();
     }
 }

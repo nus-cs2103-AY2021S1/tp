@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 
 /**
  * The API of the Model component.
@@ -88,4 +89,9 @@ public interface Model {
     //boolean hasPerson(Person person);
     //void deletePerson(Person person);
     //void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Gets the current status for valid scope.
+     */
+    Status getStatus();
 }
