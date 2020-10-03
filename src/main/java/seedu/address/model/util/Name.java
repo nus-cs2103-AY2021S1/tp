@@ -23,12 +23,12 @@ public class Name {
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param value A valid name.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+    public Name(String value) {
+        requireNonNull(value);
+        checkArgument(isValidName(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
