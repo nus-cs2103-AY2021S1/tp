@@ -6,6 +6,8 @@ import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
 
+import java.util.List;
+
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
@@ -18,8 +20,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            SerialNumber serialNumber = ParserUtil.parseSerialNumber(args);
-            return new DeleteCommand(serialNumber);
+            List<SerialNumber> serialNumberList = ParserUtil.parseSerialNumber(args);
+            return new DeleteCommand(serialNumberList);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

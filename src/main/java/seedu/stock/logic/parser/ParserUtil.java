@@ -12,6 +12,10 @@ import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -98,7 +102,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code serialNumber} is invalid.
      */
-    public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
+    public static List<SerialNumber> parseSerialNumber(String serialNumber) throws ParseException {
         requireNonNull(serialNumber);
         String trimmedSerialNumber = serialNumber.trim();
         String[] withoutPrefix = trimmedSerialNumber.split("sn/");
@@ -107,10 +111,14 @@ public class ParserUtil {
         if (withoutPrefix.length < 2) {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        String wantedSerialNumber = withoutPrefix[1];
-        if (!SerialNumber.isValidSerialNumber(wantedSerialNumber)) {
-            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        List<SerialNumber> serialNumberList = new ArrayList<>();
+        for (int i = 1; i < withoutPrefix.length; i++) {
+            String currentSerialNumberInString = withoutPrefix[i];
+            if (!SerialNumber.isValidSerialNumber(currentSerialNumberInString)) {
+                throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+            }
+            serialNumberList.add(new SerialNumber(currentSerialNumberInString.trim()));
         }
-        return new SerialNumber(wantedSerialNumber);
+        return serialNumberList;
     }
 }
