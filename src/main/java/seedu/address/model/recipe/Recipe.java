@@ -14,7 +14,6 @@ public class Recipe {
     // Identity fields
     private final Name name;
     private final IngredientString ingredientString;
-
     // Data fields
     private final Ingredient[] ingredients;
 
