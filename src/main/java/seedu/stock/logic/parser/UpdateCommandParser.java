@@ -6,7 +6,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import seedu.stock.logic.commands.UpdateCommand;
@@ -20,12 +20,12 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SERIAL_NUMBER, PREFIX_QUANTITY, PREFIX_NEW_QUANTITY,
+                        args, PREFIX_SERIALNUMBER, PREFIX_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION
                 );
 
         // If serial number is not provided
-        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_SERIALNUMBER).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 

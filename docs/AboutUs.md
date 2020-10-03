@@ -52,7 +52,7 @@ project documents, Coding standards, format of deliverables
 
 ### Lim Ze Wei Dennis
 
-<img src="images/dennis_profile.jpg" width="200px">
+<img src="images/limzeweidennis.png" width="200px">
 
 [[github](https://github.com/LimZeWeiDennis)]
 [[portfolio](team/dennis.md)]
