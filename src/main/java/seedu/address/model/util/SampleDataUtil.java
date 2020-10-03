@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.exercise.Exercise;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -37,6 +37,17 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
+        };
+    }
+
+    public static Exercise[] getSampleExercises() {
+        return new Exercise[] {
+            new Exercise(new Name("Flying kicks"), 15),
+            new Exercise(new Name("Sit up"), 30),
+            new Exercise(new Name("Pull ups"), 20),
+            new Exercise(new Name("Jumping jacks"), 15),
+            new Exercise(new Name("Run 100m"), 30),
+            new Exercise(new Name("Stretch"), 20),
         };
     }
 
