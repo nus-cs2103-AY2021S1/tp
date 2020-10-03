@@ -113,6 +113,8 @@ public class ModelManager implements Model {
         mainCatalogue.setProject(target, editedProject);
     }
 
+    //=========== Scoping modifiers ===========================================================================
+
     @Override
     public Status getStatus() {
         return mainCatalogue.getStatus();
@@ -121,6 +123,7 @@ public class ModelManager implements Model {
     @Override
     public void enter(Project project) {
         mainCatalogue.enter(project);
+        updateFilteredProjectList(p -> p.isSameProject(project));
     }
 
     //=========== Filtered Project List Accessors =============================================================
