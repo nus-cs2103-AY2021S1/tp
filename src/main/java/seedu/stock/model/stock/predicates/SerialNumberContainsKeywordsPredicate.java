@@ -33,4 +33,9 @@ public class SerialNumberContainsKeywordsPredicate implements Predicate<Stock> {
                 || (other instanceof SerialNumberContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((SerialNumberContainsKeywordsPredicate) other).keywords)); // state check
     }
+
+    @Override
+    public String toString() {
+        return "Serial Number: " + keywords.stream().reduce((keyword, next) -> keyword + " " + next).get();
+    }
 }

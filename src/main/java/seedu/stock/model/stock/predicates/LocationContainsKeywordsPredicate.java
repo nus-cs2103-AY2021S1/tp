@@ -33,4 +33,9 @@ public class LocationContainsKeywordsPredicate implements Predicate<Stock> {
                 || (other instanceof LocationContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((LocationContainsKeywordsPredicate) other).keywords)); // state check
     }
+
+    @Override
+    public String toString() {
+        return "Location: " + keywords.stream().reduce((keyword, next) -> keyword + " " + next).get();
+    }
 }

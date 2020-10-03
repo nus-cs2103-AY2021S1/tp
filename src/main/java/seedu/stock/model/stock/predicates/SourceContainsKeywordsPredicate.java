@@ -34,4 +34,9 @@ public class SourceContainsKeywordsPredicate implements Predicate<Stock> {
                 && keywords.equals(((SourceContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    @Override
+    public String toString() {
+        return "Source: " + keywords.stream().reduce((keyword, next) -> keyword + " " + next).get();
+    }
+
 }

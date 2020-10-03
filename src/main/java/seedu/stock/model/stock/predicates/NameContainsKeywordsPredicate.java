@@ -11,6 +11,7 @@ import seedu.stock.model.stock.Stock;
  * any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Stock> {
+
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -34,5 +35,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Stock> {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + keywords.stream().reduce((keyword, next) -> keyword + " " + next).get();
     }
 }
