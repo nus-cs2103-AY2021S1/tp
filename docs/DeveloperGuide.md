@@ -262,9 +262,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a contact               | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a contact by name         | locate details of contacts without having to go through the entire list|
 | `* * *`  | forgetful user                             | add remarks to contacts        | remember certain details about them                                    |
-| `* * *`  | faculty leader                             | store a contact's building     | keep track of where to find them                                       |
+| `* * *`  | faculty leader                             | store a contact's office     | keep track of where to find them                                       |
 | `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective field                                  |
-| `* * *`  | faculty leader                             | edit a contact's building      | keep the data up to date                                               |
+| `* * *`  | faculty leader                             | edit a contact's office      | keep the data up to date                                               |
 | `* * *`  | faculty leader                             | edit a contact's department    | keep the data up to date                                               |
 | `* * *`  | faculty leader                             | add a new module               |                                                                        |
 | `* * *`  | faculty leader                             | delete a module                | remove modules no longer offered                                       |
@@ -427,7 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, building, remark, tag(s)
+* **Attribute**: A piece of information associated to a contact, i.e. name, contact, number, email, department, office, remark, tag(s)
 * **Contact**: A member of a faculty
 * **Module**: A course held in a college or university. A module can be assigned to a contact
 * **Assignment**: A module handled by a contact. Assignment links a contact with a module
