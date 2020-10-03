@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Email;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -26,7 +26,7 @@ class JsonAdaptedTask {
 
     private final String title;
     private final String phone;
-    private final String email;
+    private final String description;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +35,11 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
-           @JsonProperty("email") String email, @JsonProperty("address") String address,
+           @JsonProperty("description") String description, @JsonProperty("address") String address,
            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.phone = phone;
-        this.email = email;
+        this.description = description;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +52,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().title;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
+        description = source.getDescription().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,13 +86,15 @@ class JsonAdaptedTask {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        // tentatively description field is not allowed to be empty
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Description modelDescription = new Description(description);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -103,7 +105,7 @@ class JsonAdaptedTask {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Task(modelTitle, modelPhone, modelDescription, modelAddress, modelTags);
     }
 
 }

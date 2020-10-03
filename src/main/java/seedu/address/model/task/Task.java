@@ -18,7 +18,7 @@ public class Task {
     // Identity fields
     private final Title title;
     private final Phone phone;
-    private final Email email;
+    private final Description description;
 
     // Data fields
     private final Address address;
@@ -27,11 +27,11 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, phone, email, address, tags);
+    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags) {
+        requireAllNonNull(title, phone, description, address, tags);
         this.title = title;
         this.phone = phone;
-        this.email = email;
+        this.description = description;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -44,8 +44,8 @@ public class Task {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Description getDescription() {
+        return description;
     }
 
     public Address getAddress() {
@@ -71,7 +71,7 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getTitle().equals(getTitle())
-                && (otherTask.getPhone().equals(getPhone()) || otherTask.getEmail().equals(getEmail()));
+                && (otherTask.getPhone().equals(getPhone()) || otherTask.getDescription().equals(getDescription()));
     }
 
     /**
@@ -91,7 +91,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getPhone().equals(getPhone())
-                && otherTask.getEmail().equals(getEmail())
+                && otherTask.getDescription().equals(getDescription())
                 && otherTask.getAddress().equals(getAddress())
                 && otherTask.getTags().equals(getTags());
     }
@@ -99,7 +99,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, email, address, tags);
+        return Objects.hash(title, phone, description, address, tags);
     }
 
     @Override
@@ -108,8 +108,8 @@ public class Task {
         builder.append(getTitle())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" Description: ")
+                .append(getDescription())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");
