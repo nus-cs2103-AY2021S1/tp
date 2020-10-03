@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.stock.commons.core.Messages;
 import seedu.stock.logic.commands.exceptions.CommandException;
@@ -28,14 +30,14 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_STOCK_SOME_SUCCESS = "Some serial number(s) are not found.\n"
                                                                     + "Deleted Stock(s): %1$s";
 
-    private final List<SerialNumber> targetSerialNumbers;
+    private final Set<SerialNumber> targetSerialNumbers;
 
     /**
      * Constructor for a new delete command.
      *
      * @param targetSerialNumbers The list of target serial numbers to delete.
      */
-    public DeleteCommand(List<SerialNumber> targetSerialNumbers) {
+    public DeleteCommand(Set<SerialNumber> targetSerialNumbers) {
         assert(targetSerialNumbers.size() > 0);
         this.targetSerialNumbers = targetSerialNumbers;
     }
@@ -46,8 +48,9 @@ public class DeleteCommand extends Command {
         List<Stock> lastShownList = model.getFilteredStockList();
         List<Stock> stocksDeleted = new ArrayList<>();
         List<SerialNumber> unknownSerialNumbers = new ArrayList<>();
-        for (int j = 0; j < targetSerialNumbers.size(); j++) {
-            SerialNumber targetSerialNumber = targetSerialNumbers.get(j);
+        List<SerialNumber> setToListSerialNumbers = targetSerialNumbers.stream().collect(Collectors.toList());
+        for (int j = 0; j < setToListSerialNumbers.size(); j++) {
+            SerialNumber targetSerialNumber = setToListSerialNumbers.get(j);
             String targetSerialNumberInString = targetSerialNumber.getSerialNumberAsString();
             boolean isStockDeleted = false;
 

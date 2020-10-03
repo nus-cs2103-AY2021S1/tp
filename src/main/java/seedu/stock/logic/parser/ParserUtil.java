@@ -3,7 +3,8 @@ package seedu.stock.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.core.index.Index;
@@ -101,7 +102,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code serialNumber} is invalid.
      */
-    public static List<SerialNumber> parseSerialNumber(String serialNumber) throws ParseException {
+    public static Set<SerialNumber> parseSerialNumber(String serialNumber) throws ParseException {
         requireNonNull(serialNumber);
         String trimmedSerialNumber = serialNumber.trim();
         String[] withoutPrefix = trimmedSerialNumber.split("sn/");
@@ -110,14 +111,15 @@ public class ParserUtil {
         if (withoutPrefix.length < 2) {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        List<SerialNumber> serialNumberList = new ArrayList<>();
+        Set<SerialNumber> serialNumberSet = new HashSet<>();
+
         for (int i = 1; i < withoutPrefix.length; i++) {
             String currentSerialNumberInString = withoutPrefix[i];
             if (!SerialNumber.isValidSerialNumber(currentSerialNumberInString)) {
                 throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
             }
-            serialNumberList.add(new SerialNumber(currentSerialNumberInString.trim()));
+            serialNumberSet.add(new SerialNumber(currentSerialNumberInString.trim()));
         }
-        return serialNumberList;
+        return serialNumberSet;
     }
 }
