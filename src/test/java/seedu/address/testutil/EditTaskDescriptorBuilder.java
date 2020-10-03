@@ -55,8 +55,8 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the {@code Description} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withEmail(String email) {
-        descriptor.setDescription(new Description(email));
+    public EditTaskDescriptorBuilder withDescription(String description) {
+        descriptor.setDescription(new Description(description));
         return this;
     }
 
