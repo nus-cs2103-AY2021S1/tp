@@ -100,6 +100,14 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         projects.remove(key);
     }
 
+    //// project-specific-level operations TODO: may add more
+
+    //// scoping operations
+    @Override
+    public Status getStatus() {
+        return status;
+    }
+
     //// util methods
 
     @Override
