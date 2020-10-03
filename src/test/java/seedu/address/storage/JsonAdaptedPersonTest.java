@@ -96,7 +96,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidDepartment_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        INVALID_DEPARTMENT,  VALID_BUILDING, VALID_TAGS);
+                        INVALID_DEPARTMENT, VALID_BUILDING, VALID_TAGS);
         String expectedMessage = Department.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -113,7 +113,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidBuilding_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_DEPARTMENT,  INVALID_BUILDING, VALID_TAGS);
+                        VALID_DEPARTMENT, INVALID_BUILDING, VALID_TAGS);
         String expectedMessage = Building.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
