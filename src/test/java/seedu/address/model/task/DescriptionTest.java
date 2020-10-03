@@ -34,11 +34,11 @@ public class DescriptionTest {
         assertFalse(Description.isValidDescription(" fdsjkfsd")); // start with space.
 
         // valid description
-        assertTrue(Description.isValidDescription("PeterJack1190!!!example.com"));
+        assertTrue(Description.isValidDescription("amy,example.com"));
         assertTrue(Description.isValidDescription("abc")); // minimal
         assertTrue(Description.isValidDescription("testlocalhost")); // alphabets only
         assertTrue(Description.isValidDescription("123  145")); // white space allowed
-        assertTrue(Description.isValidDescription(" sadf !!!!")); // exclamation mark allowed
+        assertTrue(Description.isValidDescription("sadf !!!!")); // exclamation mark allowed
         assertTrue(Description.isValidDescription("????????sdfsdf ?????adsfaf???")); // question mark allowed
         assertTrue(Description.isValidDescription("this is a trolling test case. Happy debugging! Are you enjoying it?")); // long description
     }

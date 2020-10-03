@@ -148,7 +148,7 @@ public class EditCommandParserTest {
 
         // description
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDescription(DESCRIPTION_DESC_AMY).build();
+        descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

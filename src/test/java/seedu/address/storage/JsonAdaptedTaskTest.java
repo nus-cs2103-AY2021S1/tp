@@ -21,7 +21,7 @@ public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@te movie";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_DESCRIPTION = "example.com";
+    private static final String INVALID_DESCRIPTION = "@example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();

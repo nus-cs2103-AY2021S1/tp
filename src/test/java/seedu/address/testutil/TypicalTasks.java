@@ -24,7 +24,7 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withDescription("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111").withDescription("alice,example.com")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Benson Meier")
@@ -44,9 +44,9 @@ public class TypicalTasks {
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withPhone("8482424")
-            .withDescription("stefan@example.com").withAddress("little india").build();
+            .withDescription("stefan,example.com").withAddress("little india").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withPhone("8482131")
-            .withDescription("hans@example.com").withAddress("chicago ave").build();
+            .withDescription("hans,example.com").withAddress("chicago ave").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY)
