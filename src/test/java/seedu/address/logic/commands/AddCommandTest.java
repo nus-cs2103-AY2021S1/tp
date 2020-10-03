@@ -158,6 +158,11 @@ public class AddCommandTest {
         public void enter(Project project) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void quit() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

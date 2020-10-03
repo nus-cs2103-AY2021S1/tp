@@ -112,6 +112,11 @@ public class MainCatalogueTest {
         public void enter(Project project) {
             // TODO: Add content if test case need this.
         }
+
+        @Override
+        public void quit() {
+            // TODO: Add content if test case need this.
+        }
     }
 
 }
