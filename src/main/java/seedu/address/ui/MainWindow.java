@@ -1,8 +1,7 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
-
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -18,13 +17,15 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.logging.Logger;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final int SLEEP_TIME = 2000;
+    private static final int SLEEP_TIME = 50;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -159,22 +160,24 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() throws InterruptedException {
         Platform.runLater(() -> {
-            try {
-                Thread.sleep(SLEEP_TIME);
-                GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                        (int) primaryStage.getX(), (int) primaryStage.getY());
-                logic.setGuiSettings(guiSettings);
-                helpWindow.hide();
-                primaryStage.hide();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                    (int) primaryStage.getX(), (int) primaryStage.getY());
+            logic.setGuiSettings(guiSettings);
+            helpWindow.hide();
+            primaryStage.hide();
         });
+    }
+
+    public void displayResult(CommandResult commandResult) {
+        System.out.println("display");
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
     }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
+
 
     /**
      * Executes the command and returns the result.
@@ -185,17 +188,23 @@ public class MainWindow extends UiPart<Stage> {
             CommandException, ParseException, InterruptedException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            displayResult(commandResult);
+            Task displayExitMessageTask = new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    displayResult(commandResult);
+                    return null;
+                }
+            };
 
+            if (commandResult.isExit()) {
+                displayExitMessageTask.run();
+                Thread.sleep(SLEEP_TIME);
+                handleExit();
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
