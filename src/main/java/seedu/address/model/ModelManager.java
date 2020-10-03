@@ -219,7 +219,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteItem(Item target) {
-        itemList.removeItem(target);
+        itemList.deleteItem(target);
     }
 
     @Override

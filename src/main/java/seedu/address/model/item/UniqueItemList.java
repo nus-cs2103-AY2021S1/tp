@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
+import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.exceptions.RecipeNotFoundException;
 
 
 /**
@@ -78,6 +80,16 @@ public class UniqueItemList implements Iterable<Item> {
         if (!internalList.remove(toRemove)) {
             throw new ItemNotFoundException();
         }
+    }
+    
+    public void delete(Item toDelete) {
+        requireNonNull(toDelete);
+        if (!internalList.contains(toDelete)) {
+            throw new ItemNotFoundException();
+        }
+        Recipe updatedRecipe = toDelete.delete();
+        remove(toDelete);
+        add(updatedRecipe);
     }
 
     public void setItems(UniqueItemList replacement) {

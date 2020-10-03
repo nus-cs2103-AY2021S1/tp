@@ -10,8 +10,6 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
 
 public class DeleteItemCommand extends Command {
     public static final String COMMAND_WORD = "deli";
@@ -29,11 +27,11 @@ public class DeleteItemCommand extends Command {
 
     /**
      * Creates an DeleteItemCommand to delete the specified {@code Item} and connecting recipes
-     * @param productName
+     * @param itemName The item name to be deleted
      */
-    public DeleteItemCommand(String productName) {
-        requireNonNull(productName);
-        this.productName = productName;
+    public DeleteItemCommand(String itemName) {
+        requireNonNull(itemName);
+        this.productName = itemName;
     }
 
     @Override
@@ -50,6 +48,7 @@ public class DeleteItemCommand extends Command {
                 .filter(x -> !x.isDeleted())
                 .findFirst() // Get the first (and only) item or else throw Error
                 .orElseThrow(()-> new CommandException(MESSAGE_ITEM_ALREADY_DELETED));
+        System.out.println(model.getClass());
         model.deleteItem(itemToDelete);
         List<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
         // remove recipes from consideration that are not deleted, are not the product of a recipe, nor contribute

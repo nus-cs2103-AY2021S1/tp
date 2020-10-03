@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -102,6 +103,14 @@ public class Item {
 
         return otherItem != null
                 && otherItem.getName().equals(getName());
+    }
+    
+    /**
+     * Returns a deleted form of the same recipe.
+     */
+    public Item delete() {
+        return new Item(id, name, quantity, description, Set.copyOf(locationIds),
+                Set.copyOf(recipeIds), tags, true);
     }
 
     /**
