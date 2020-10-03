@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Building;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -20,11 +21,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_DEPARTMENT = "Computer Science";
+    public static final String DEFAULT_BUILDING = "COM2-03-01";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Department department;
+    private Building building;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         department = new Department(DEFAULT_DEPARTMENT);
+        building = new Building(DEFAULT_BUILDING);
         tags = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         department = personToCopy.getDepartment();
+        building = personToCopy.getBuilding();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -74,6 +79,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Building} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBuilding(String building) {
+        this.building = new Building(building);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -90,7 +103,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, department, tags);
+        return new Person(name, phone, email, department, building, tags);
     }
 
 }

@@ -22,17 +22,19 @@ public class Person {
 
     // Data fields
     private final Department department;
+    private final Building building;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Department department, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, department, tags);
+    public Person(Name name, Phone phone, Email email, Department department, Building building, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, department, building, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.department = department;
+        this.building = building;
         this.tags.addAll(tags);
     }
 
@@ -50,6 +52,10 @@ public class Person {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public Building getBuilding() {
+        return building;
     }
 
     /**
@@ -93,13 +99,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getDepartment().equals(getDepartment())
+                && otherPerson.getBuilding().equals(getBuilding())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, department, tags);
+        return Objects.hash(name, phone, email, department, building, tags);
     }
 
     @Override
@@ -112,6 +119,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Department: ")
                 .append(getDepartment())
+                .append(" Building: ")
+                .append(getBuilding())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

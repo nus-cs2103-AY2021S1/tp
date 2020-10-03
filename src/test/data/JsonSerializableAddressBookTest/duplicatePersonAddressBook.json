@@ -4,11 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "department": "Computer Science",
+    "building": "com3-05-01",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "department": "Business Analytics"
+    "department": "Business Analytics",
+    "building": "com3-05-01"
   } ]
 }

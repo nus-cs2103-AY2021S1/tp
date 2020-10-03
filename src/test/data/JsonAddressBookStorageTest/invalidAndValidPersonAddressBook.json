@@ -3,11 +3,13 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "department": "Computer Science"
+    "department": "Computer Science",
+    "building": "S17-02-01"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "department": "Business Analytics"
+    "department": "Business Analytics",
+    "building": "COM2-01-03"
   } ]
 }
