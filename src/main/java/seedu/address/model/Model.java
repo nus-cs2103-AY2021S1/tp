@@ -94,4 +94,9 @@ public interface Model {
      * Gets the current status for valid scope.
      */
     Status getStatus();
+
+    /**
+     * Enters the designated project.
+     */
+    void enter(Project project);
 }

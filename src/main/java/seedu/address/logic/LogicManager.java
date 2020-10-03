@@ -84,4 +84,9 @@ public class LogicManager implements Logic {
     public Status getStatus() {
         return model.getStatus();
     }
+
+    @Override
+    public void enter(Project project) {
+        model.enter(project);
+    }
 }

@@ -118,6 +118,11 @@ public class ModelManager implements Model {
         return mainCatalogue.getStatus();
     }
 
+    @Override
+    public void enter(Project project) {
+        mainCatalogue.enter(project);
+    }
+
     //=========== Filtered Project List Accessors =============================================================
 
     /**

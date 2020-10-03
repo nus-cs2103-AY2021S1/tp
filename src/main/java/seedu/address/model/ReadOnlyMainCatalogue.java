@@ -23,5 +23,5 @@ public interface ReadOnlyMainCatalogue {
     /**
      * Enters a designated project.
      */
-    Project enter(Project project);
+    void enter(Project project);
 }

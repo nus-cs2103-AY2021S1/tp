@@ -110,10 +110,9 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     @Override
-    public Project enter(Project project) {
+    public void enter(Project project) {
         status = Status.PROJECT;
         project = projects.getProject(project);
-        return project;
     }
 
     //// util methods
