@@ -4,6 +4,8 @@ title: ZooKeep
 ---
 
 [![CI Status](https://github.com/AY2021S1-CS2103T-W15-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W15-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-W15-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-W15-4/tp)
+
 
 ![Ui](images/Ui.png)
 
