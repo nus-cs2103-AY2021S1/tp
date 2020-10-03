@@ -1,18 +1,22 @@
-package seedu.address.model.Order;
-
-import seedu.address.model.Vendor.Vendor;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Objects;
+package seedu.address.model.order;
 
 import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+
+import seedu.address.model.vendor.Vendor;
 
 public class Order {
     protected final Vendor vendor;
     protected final List<OrderItem> orderItems;
 
+    /**
+     * Order constructor
+     * @param vendor takes in a vendor
+     */
     public Order(Vendor vendor) {
         this.vendor = vendor;
         this.orderItems = new ArrayList<>();
@@ -44,6 +48,11 @@ public class Order {
         orderItems.add(orderItem);
     }
 
+    /**
+     * Method to updateOrderItem in the list
+     * @param index index of OrderItem
+     * @param quantity Change quantity of OrderItem, any number <= 0 removes it
+     */
     public void updateOrderItem(int index, int quantity) {
         if (quantity <= 0) {
             orderItems.remove(index);

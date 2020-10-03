@@ -1,4 +1,4 @@
-package seedu.address.model.Vendor;
+package seedu.address.model.vendor;
 
 public class Vendor {
     @Override

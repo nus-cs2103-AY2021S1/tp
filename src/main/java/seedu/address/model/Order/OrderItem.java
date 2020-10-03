@@ -1,12 +1,12 @@
-package seedu.address.model.Order;
+package seedu.address.model.order;
 
-import seedu.address.model.food.Food;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.food.Food;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents an OrderItem in the Order.
