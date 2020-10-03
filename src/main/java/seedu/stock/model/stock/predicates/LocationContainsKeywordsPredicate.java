@@ -1,9 +1,9 @@
 package seedu.stock.model.stock.predicates;
 
-import seedu.stock.model.stock.Stock;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.stock.model.stock.Stock;
 
 /**
  * Tests that a {@code Stock}'s {@code Location} matches or contains

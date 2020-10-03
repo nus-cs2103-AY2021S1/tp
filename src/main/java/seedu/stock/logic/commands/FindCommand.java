@@ -1,14 +1,14 @@
 package seedu.stock.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
-
 import seedu.stock.commons.core.Messages;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -33,6 +33,11 @@ public class FindCommand extends Command {
     private final List<Predicate<Stock>> predicates; // list of predicates to filter stocks by
     private final Predicate<Stock> combinedPredicates; // combined predicates to filter stocks by
 
+    /**
+     * Constructs a FindCommand object initialised with
+     * a list of predicates to filter and find stocks by
+     * @param predicates list of predicates to filter stocks
+     */
     public FindCommand(List<Predicate<Stock>> predicates) {
         this.predicates = predicates;
         this.combinedPredicates = predicates.stream().reduce(x -> false, Predicate::or);
