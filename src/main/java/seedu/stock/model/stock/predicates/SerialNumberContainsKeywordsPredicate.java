@@ -17,14 +17,17 @@ public class SerialNumberContainsKeywordsPredicate implements Predicate<Stock> {
         this.keywords = keywords;
     }
 
+    /**
+     * Returns true if stock's serial number matches or contains any of the keywords.
+     * @param stock stock to test
+     * @return boolean true if stock matches keywords
+     */
     @Override
     public boolean test(Stock stock) {
         String stockSerialNumber = stock.getSerialNumber().serialNumber.toLowerCase();
 
-        boolean isPartialMatch = keywords.stream()
+        return keywords.stream()
                 .anyMatch(keyword -> stockSerialNumber.contains(keyword.toLowerCase()));
-
-        return isPartialMatch;
     }
 
     @Override

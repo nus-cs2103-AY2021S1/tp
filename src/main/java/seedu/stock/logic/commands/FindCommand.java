@@ -1,7 +1,9 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.stock.logic.parser.CliSyntax.*;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 
 import seedu.stock.commons.core.Messages;
@@ -28,8 +30,8 @@ public class FindCommand extends Command {
             + PREFIX_LOCATION + " KEYWORD [more KEYWORDS which will be matched with Location field of stock]\n"
             + "Example: " + COMMAND_WORD + " n/ pork 100grams  s/ farm";
 
-    private final List<Predicate<Stock>> predicates;
-    private final Predicate<Stock> combinedPredicates;
+    private final List<Predicate<Stock>> predicates; // list of predicates to filter stocks by
+    private final Predicate<Stock> combinedPredicates; // combined predicates to filter stocks by
 
     public FindCommand(List<Predicate<Stock>> predicates) {
         this.predicates = predicates;
@@ -40,10 +42,13 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
+        // status message to show what user has searched for
         String statusMessage = "Searching for:\n"
                 + predicates.stream().map(Object::toString)
-                .reduce((pred, next) -> pred + ", " + next).get();
+                .reduce((predicate, next) -> predicate + ", " + next).get();
 
+        // updates the filtered stock list based on the combined predicates to test and filter stocks
+        // based on all of user's search fields
         model.updateFilteredStockList(combinedPredicates);
 
         return new CommandResult(statusMessage + "\n"

@@ -3,7 +3,6 @@ package seedu.stock.model.stock.predicates;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.stock.commons.util.StringUtil;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -18,16 +17,17 @@ public class NameContainsKeywordsPredicate implements Predicate<Stock> {
         this.keywords = keywords;
     }
 
+    /**
+     * Returns true if stock's name matches or contains any of the keywords.
+     * @param stock stock to test
+     * @return boolean true if stock matches keywords
+     */
     @Override
     public boolean test(Stock stock) {
         String stockName = stock.getName().fullName.toLowerCase();
 
-//        boolean isFullMatch = keywords.stream()
-//                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(stockName, keyword));
-        boolean isPartialMatch = keywords.stream()
+        return keywords.stream()
                 .anyMatch(keyword -> stockName.contains(keyword.toLowerCase()));
-
-        return isPartialMatch;
     }
 
     @Override

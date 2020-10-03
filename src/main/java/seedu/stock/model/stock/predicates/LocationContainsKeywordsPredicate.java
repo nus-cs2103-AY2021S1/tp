@@ -17,14 +17,18 @@ public class LocationContainsKeywordsPredicate implements Predicate<Stock> {
         this.keywords = keywords;
     }
 
+    /**
+     * Returns true if the location field of stock matches or contains
+     * any of the keywords.
+     * @param stock stock to test
+     * @return boolean true if location field matches keywords
+     */
     @Override
     public boolean test(Stock stock) {
         String stockLocation = stock.getLocation().value.toLowerCase();
 
-        boolean isPartialMatch = keywords.stream()
+        return keywords.stream()
                 .anyMatch(keyword -> stockLocation.contains(keyword.toLowerCase()));
-
-        return isPartialMatch;
     }
 
     @Override
