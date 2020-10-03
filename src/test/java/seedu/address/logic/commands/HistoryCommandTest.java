@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalCliniCal;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ public class HistoryCommandTest {
 
     @BeforeEach
     public void setup() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalCliniCal(), new UserPrefs());
         CommandHistory.clearHistory();
         CommandHistory.addUsedCommand("help");
     }
@@ -27,6 +27,6 @@ public class HistoryCommandTest {
     void execute() {
         HistoryCommand historyCommand = new HistoryCommand();
         CommandHistory.addUsedCommand("history");
-        assertCommandSuccess(historyCommand, model, String.format(CommandHistory.str, "\n -\thelp"), model);
+        assertCommandSuccess(historyCommand, model, String.format(CommandHistory.STRING, "\n -\thelp"), model);
     }
 }
