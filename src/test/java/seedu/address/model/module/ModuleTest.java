@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_CS50;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_NAME_CS50;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS50;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CS50;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS1010S;
 import static seedu.address.testutil.TypicalModules.CS1101S;
@@ -47,12 +47,12 @@ public class ModuleTest {
         assertTrue(CS1010S.isSameModule(editedCs1010S));
 
         // same code, different name, same attributes -> returns true
-        editedCs1010S = new ModuleBuilder(CS1010S).withName(MODULE_NAME_CS50).build();
+        editedCs1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
         assertTrue(CS1010S.isSameModule(editedCs1010S));
 
         // same code, different name, different attributes -> returns true
         editedCs1010S = new ModuleBuilder(CS1010S)
-                .withName(MODULE_NAME_CS50)
+                .withName(VALID_MODULE_NAME_CS50)
                 .withPersons(personsCs1101s).build();
         assertTrue(CS1010S.isSameModule(editedCs1010S));
 
@@ -77,11 +77,11 @@ public class ModuleTest {
         assertNotEquals(CS2030, CS1010S);
 
         // different code -> returns false
-        Module editedCs1010s = new ModuleBuilder(CS1010S).withCode(MODULE_CODE_CS50).build();
+        Module editedCs1010s = new ModuleBuilder(CS1010S).withCode(VALID_MODULE_CODE_CS50).build();
         assertNotEquals(editedCs1010s, CS1010S);
 
         // different name -> returns false
-        editedCs1010s = new ModuleBuilder(CS1010S).withName(MODULE_NAME_CS50).build();
+        editedCs1010s = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
         assertNotEquals(editedCs1010s, CS1010S);
 
         // different persons -> returns false

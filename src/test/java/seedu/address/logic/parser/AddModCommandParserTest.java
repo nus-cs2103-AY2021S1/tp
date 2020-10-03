@@ -6,11 +6,11 @@ import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_CS50;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_CS50;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_NAME_CS50;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS1010S;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS50;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS50;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CS50;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalModules.CS1010S;
@@ -53,11 +53,11 @@ public class AddModCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModCommand.MESSAGE_USAGE);
 
         // missing code prefix
-        assertParseFailure(parser, MODULE_CODE_CS50 + NAME_DESC_CS50,
+        assertParseFailure(parser, VALID_MODULE_CODE_CS50 + NAME_DESC_CS50,
                 expectedMessage);
 
         // missing name prefix
-        assertParseFailure(parser, CODE_DESC_CS50 + MODULE_NAME_CS50,
+        assertParseFailure(parser, CODE_DESC_CS50 + VALID_MODULE_NAME_CS50,
                 expectedMessage);
     }
 
