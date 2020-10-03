@@ -36,7 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_DEPARTMENT_AMY = "Computer Science";
     public static final String VALID_DEPARTMENT_BOB = "Computer Engineering";
     public static final String VALID_BUILDING_AMY = "COM3-02-01";
-    public static final String VALID_BUILDING_BOB = "COM3-02-01";
+    public static final String VALID_BUILDING_BOB = "COM3-03-01";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
