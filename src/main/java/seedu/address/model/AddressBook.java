@@ -3,8 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        modules = new ModuleList();
     }
 
     public AddressBook() {}
@@ -48,12 +53,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setModules(newData.getModuleList());
     }
 
     //// person-level operations
@@ -93,6 +107,43 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// module-level operations
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return modules.contains(module);
+    }
+
+    /**
+     * Adds a module to the address book.
+     * The module must not already exist in the address book.
+     */
+    public void addModule(Module m) {
+        modules.add(m);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedModule}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
+     */
+    public void setModule(Module target, Module editedModule) {
+        requireNonNull(editedModule);
+
+        modules.setModule(target, editedModule);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
+
     //// util methods
 
     @Override
@@ -107,14 +158,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && modules.equals(((AddressBook) other).modules));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons.hashCode(), modules.hashCode());
     }
 }

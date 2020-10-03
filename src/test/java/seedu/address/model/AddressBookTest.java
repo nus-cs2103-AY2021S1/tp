@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CS50;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS1101S;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -18,8 +20,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -83,11 +88,56 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void resetData_withDuplicateModules_throwsDuplicateModuleException() {
+        // Two modules with the same identity fields
+        Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
+        List<Module> newModules = Arrays.asList(CS1101S, editedCs1101s);
+        List<Person> persons = Arrays.asList(ALICE);
+        AddressBookStub newData = new AddressBookStub(persons, newModules);
+
+        assertThrows(DuplicateModuleException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasModule(null));
+    }
+
+    @Test
+    public void hasModule_moduleNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasModule(CS1101S));
+    }
+
+    @Test
+    public void hasModule_moduleInAddressBook_returnsTrue() {
+        addressBook.addModule(CS1101S);
+        assertTrue(addressBook.hasModule(CS1101S));
+    }
+
+    @Test
+    public void hasModule_moduleWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addModule(CS1101S);
+        Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
+        assertTrue(addressBook.hasModule(editedCs1101s));
+    }
+
+    @Test
+    public void getModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getModuleList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
+
+        AddressBookStub(Collection<Person> persons, Collection<Module> modules) {
+            this.persons.setAll(persons);
+            this.modules.setAll(modules);
+        }
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +146,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Module> getModuleList() {
+            return modules;
         }
     }
 

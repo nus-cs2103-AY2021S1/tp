@@ -71,7 +71,9 @@ public class Module {
         }
 
         Module m = (Module) other;
-        return m.moduleCode.equals(moduleCode) && m.moduleName.equals(moduleName) && m.persons.equals(persons);
+        return m.moduleCode.equals(moduleCode)
+                && m.moduleName.equals(moduleName)
+                && m.persons.equals(persons);
 
     }
 
