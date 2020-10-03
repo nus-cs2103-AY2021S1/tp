@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
@@ -17,7 +18,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     private final UniqueProjectList projects;
     private Status status;
-    private Project project;
+    private Optional<Project> project;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,7 +30,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     {
         projects = new UniqueProjectList();
         status = Status.CATALOGUE;
-        project = null;
+        project = Optional.empty();
     }
 
     public MainCatalogue() {}
