@@ -15,7 +15,7 @@ public class AddModCommand extends Command {
 
     public static final String COMMAND_WORD = "addmod";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to FaculType. "
             + "Parameters: "
             + PREFIX_MODULE_CODE + "MODULE CODE "
             + PREFIX_MODULE_NAME + "MODULE NAME "
@@ -24,12 +24,12 @@ public class AddModCommand extends Command {
             + PREFIX_MODULE_NAME + "Software Engineering ";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in FaculType";
 
     private final Module toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Module}
      */
     public AddModCommand(Module module) {
         requireNonNull(module);

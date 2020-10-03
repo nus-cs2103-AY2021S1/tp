@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CS50;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_NAME_CS50;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS1010S;
 import static seedu.address.testutil.TypicalModules.CS2030;
@@ -40,7 +40,7 @@ public class ModuleListTest {
     @Test
     public void contains_moduleWithSameIdentityFieldsInList_returnsTrue() {
         moduleList.add(CS1010S);
-        Module editedCs1010s = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
+        Module editedCs1010s = new ModuleBuilder(CS1010S).withName(MODULE_NAME_CS50).build();
         assertTrue(moduleList.contains(editedCs1010s));
     }
 
@@ -82,7 +82,7 @@ public class ModuleListTest {
     @Test
     public void setModule_editedModuleHasSameIdentity_success() {
         moduleList.add(CS1010S);
-        Module editedCs1010S = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
+        Module editedCs1010S = new ModuleBuilder(CS1010S).withName(MODULE_NAME_CS50).build();
         moduleList.setModule(CS1010S, editedCs1010S);
         ModuleList expectedModuleList = new ModuleList();
         expectedModuleList.add(editedCs1010S);
