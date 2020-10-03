@@ -4,19 +4,13 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.*;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.MeshView;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -71,26 +65,6 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.fridge.setImage(new Image("images/fridge.png"));
-        /*MeshView fridge3D = Loader.loadObj("C:\\Users\\daong\\Dev\\tp\\src\\main\\resources\\obj\\fridge.obj");
-        PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.getTransforms().addAll(
-                new Rotate(-5, Rotate.Y_AXIS),
-                new Rotate(-110 + 270, Rotate.X_AXIS),
-                new Translate(100, -50, 300)
-        );
-        PointLight light = new PointLight();
-        light.setTranslateX(350);
-        light.setTranslateY(100);
-        light.setTranslateZ(300);
-        Group root = new Group(camera, fridge3D, light);
-        Scene subScene = new Scene(root, 500, 600);
-        subScene.setFill(Color.ALICEBLUE);
-        subScene.setCamera(camera);
-        //Group group = new Group();
-        //group.getChildren().add(subScene);
-
-        //this.fridge.getChildren().add(group);
-        */
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
