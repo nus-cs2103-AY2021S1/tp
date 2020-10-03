@@ -16,11 +16,11 @@ import seedu.address.model.tag.Tag;
 public class Food {
 
     // Identity fields
-    private final String name;
-    private final double price;
+    protected final String name;
+    protected final double price;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
