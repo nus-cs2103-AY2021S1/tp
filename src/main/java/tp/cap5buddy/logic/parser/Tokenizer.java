@@ -1,6 +1,5 @@
 package tp.cap5buddy.logic.parser;
 
-
 import tp.cap5buddy.logic.parser.exception.ParseException;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
  * Represents the token of each user input.
  */
 public class Tokenizer {
-    private static final int SIZE = 5; // updates as the number of prefixes increases.
+    private static final int SIZE = 6; // updates as the number of prefixes increases.
     private String[] words = new String[SIZE];
     private String input;
 
@@ -64,7 +63,9 @@ public class Tokenizer {
 
     public String[] extractArguments(String userInput, List<PrefixPosition> prefixPositions) {
         String[] results = new String[SIZE];
-        for (int i = 0; i < SIZE - 1; i++) {
+        PrefixPosition endPositionMarker = new PrefixPosition(userInput.length(), new Prefix(""));
+        prefixPositions.add(endPositionMarker);
+        for (int i = 0; i < prefixPositions.size() - 1; i++) {
             String argument = extractArgument(userInput, prefixPositions.get(i), prefixPositions.get(i + 1));
             results[i] = argument;
         }
