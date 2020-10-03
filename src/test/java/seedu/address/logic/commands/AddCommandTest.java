@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddCommandTest {
@@ -145,6 +146,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Status getStatus() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void enter(Project project) {
             throw new AssertionError("This method should not be called.");
         }
     }

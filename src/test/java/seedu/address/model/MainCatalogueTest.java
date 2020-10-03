@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.testutil.ProjectBuilder;
 
@@ -91,6 +92,7 @@ public class MainCatalogueTest {
      */
     private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private Status status = Status.CATALOGUE;
 
         MainCatalogueStub(Collection<Project> projects) {
             this.projects.setAll(projects);
@@ -99,6 +101,16 @@ public class MainCatalogueTest {
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;
+        }
+
+        @Override
+        public Status getStatus() {
+            return status;
+        }
+
+        @Override
+        public void enter(Project project) {
+            // TODO: Add content if test case need this.
         }
     }
 
