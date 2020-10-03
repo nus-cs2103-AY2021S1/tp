@@ -32,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PHONE, PREFIX_DESCRIPTION, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PHONE,
+                        PREFIX_DESCRIPTION, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -50,7 +51,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editTaskDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editTaskDescriptor.setDescription(ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
+                    .get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editTaskDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));

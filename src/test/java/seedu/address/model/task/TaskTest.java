@@ -32,7 +32,9 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // different phone and description -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB).withDescription(VALID_DESCRIPTION_BOB).build();
+        Task editedAlice = new TaskBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                                                 .withDescription(VALID_DESCRIPTION_BOB)
+                                                 .build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
         // different title -> returns false

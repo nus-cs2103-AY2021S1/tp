@@ -40,6 +40,7 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("123  145")); // white space allowed
         assertTrue(Description.isValidDescription("sadf !!!!")); // exclamation mark allowed
         assertTrue(Description.isValidDescription("????????sdfsdf ?????adsfaf???")); // question mark allowed
-        assertTrue(Description.isValidDescription("this is a trolling test case. Happy debugging! Are you enjoying it?")); // long description
+        assertTrue(Description.isValidDescription("this is a trolling test case."
+                + "Happy debugging! Are you enjoying it?")); // long description
     }
 }
