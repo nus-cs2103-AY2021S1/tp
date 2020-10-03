@@ -59,6 +59,7 @@ public abstract class Macronutrient {
             && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
     }
 
+    // take the type from the class name
     public String getMacronutrientType() {
         return this.getClass().getName();
     }
