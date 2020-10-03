@@ -30,7 +30,7 @@ public class Source {
     //    + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
     // Condition can be refined later.
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Sources should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the source must not be a whitespace,
@@ -43,11 +43,11 @@ public class Source {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid source.
+     * @param source A valid source.
      */
-    public Source(String email) {
-        requireNonNull(email);
-        value = email;
+    public Source(String source) {
+        requireNonNull(source);
+        value = source;
     }
 
     @Override
@@ -72,6 +72,10 @@ public class Source {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public boolean isSameSource(Source source) {
+        return this.value.equals(source.value);
     }
 
 }
