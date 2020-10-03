@@ -13,7 +13,7 @@ public class Stock {
 
     // Identity fields
     private final Name name;
-    private final SerialNumber serialNumber;
+    private SerialNumber serialNumber;
     private final Source source;
     private final Quantity quantity;
     private final Location location;
@@ -50,6 +50,10 @@ public class Stock {
 
     public Location getLocation() {
         return location;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = new SerialNumber(serialNumber);
     }
 
     /**

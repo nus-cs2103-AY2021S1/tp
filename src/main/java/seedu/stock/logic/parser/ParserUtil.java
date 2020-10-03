@@ -8,6 +8,7 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
 /**
@@ -76,7 +77,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String source} into an {@code Email}.
+     * Parses a {@code String source} into an {@code Source}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code source} is invalid.
@@ -88,5 +89,20 @@ public class ParserUtil {
             throw new ParseException(Source.MESSAGE_CONSTRAINTS);
         }
         return new Source(trimmedSource);
+    }
+
+    /**
+     * Parses a {@code String serialNumber} into an {@code SerialNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code serialNumber} is invalid.
+     */
+    public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
+        requireNonNull(serialNumber);
+        String trimmedSerialNumber = serialNumber.trim();
+        if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
+            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new SerialNumber(trimmedSerialNumber);
     }
 }
