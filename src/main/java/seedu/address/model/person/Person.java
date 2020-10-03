@@ -22,19 +22,19 @@ public class Person {
 
     // Data fields
     private final Department department;
-    private final Building building;
+    private final Office office;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Department department, Building building, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, department, building, tags);
+    public Person(Name name, Phone phone, Email email, Department department, Office office, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, department, office, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.department = department;
-        this.building = building;
+        this.office = office;
         this.tags.addAll(tags);
     }
 
@@ -54,8 +54,8 @@ public class Person {
         return department;
     }
 
-    public Building getBuilding() {
-        return building;
+    public Office getOffice() {
+        return office;
     }
 
     /**
@@ -99,14 +99,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getDepartment().equals(getDepartment())
-                && otherPerson.getBuilding().equals(getBuilding())
+                && otherPerson.getOffice().equals(getOffice())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, department, building, tags);
+        return Objects.hash(name, phone, email, department, office, tags);
     }
 
     @Override
@@ -119,8 +119,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Department: ")
                 .append(getDepartment())
-                .append(" Building: ")
-                .append(getBuilding())
+                .append(" Office: ")
+                .append(getOffice())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

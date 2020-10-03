@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BUILDING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -20,7 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Building;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
-            + "[" + PREFIX_BUILDING + "BUILDING] "
+            + "[" + PREFIX_OFFICE + "OFFICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -100,10 +100,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(personToEdit.getDepartment());
-        Building updatedBuilding = editPersonDescriptor.getBuilding().orElse(personToEdit.getBuilding());
+        Office updatedOffice = editPersonDescriptor.getOffice().orElse(personToEdit.getOffice());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedDepartment, updatedBuilding, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedDepartment, updatedOffice, updatedTags);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Department department;
-        private Building building;
+        private Office office;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -147,7 +147,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setDepartment(toCopy.department);
-            setBuilding(toCopy.building);
+            setOffice(toCopy.office);
             setTags(toCopy.tags);
         }
 
@@ -155,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, department, building, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, department, office, tags);
         }
 
         public void setName(Name name) {
@@ -190,12 +190,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(department);
         }
 
-        public void setBuilding(Building building) {
-            this.building = building;
+        public void setOffice(Office office) {
+            this.office = office;
         }
 
-        public Optional<Building> getBuilding() {
-            return Optional.ofNullable(building);
+        public Optional<Office> getOffice() {
+            return Optional.ofNullable(office);
         }
 
         /**
@@ -234,7 +234,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getDepartment().equals(e.getDepartment())
-                    && getBuilding().equals(e.getBuilding())
+                    && getOffice().equals(e.getOffice())
                     && getTags().equals(e.getTags());
         }
     }

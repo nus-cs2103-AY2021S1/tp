@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BUILDING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_DEPARTMENT_AMY = "Computer Science";
     public static final String VALID_DEPARTMENT_BOB = "Computer Engineering";
-    public static final String VALID_BUILDING_AMY = "COM3-02-01";
-    public static final String VALID_BUILDING_BOB = "COM3-03-01";
+    public static final String VALID_OFFICE_AMY = "COM3-02-01";
+    public static final String VALID_OFFICE_BOB = "COM3-03-01";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -48,8 +48,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String DEPARTMENT_DESC_AMY = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_AMY;
     public static final String DEPARTMENT_DESC_BOB = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_BOB;
-    public static final String BUILDING_DESC_AMY = " " + PREFIX_BUILDING + VALID_BUILDING_AMY;
-    public static final String BUILDING_DESC_BOB = " " + PREFIX_BUILDING + VALID_BUILDING_BOB;
+    public static final String OFFICE_DESC_AMY = " " + PREFIX_OFFICE + VALID_OFFICE_AMY;
+    public static final String OFFICE_DESC_BOB = " " + PREFIX_OFFICE + VALID_OFFICE_BOB;
 
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -59,7 +59,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEPARTMENT_DESC =
             " " + PREFIX_DEPARTMENT; // empty string not allowed for departments
-    public static final String INVALID_BUILDING_DESC = " " + PREFIX_BUILDING; // empty string not allowed for buildings
+    public static final String INVALID_OFFICE_DESC = " " + PREFIX_OFFICE; // empty string not allowed for offices
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -71,10 +71,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withDepartment(VALID_DEPARTMENT_AMY)
-                .withBuilding(VALID_BUILDING_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withOffice(VALID_OFFICE_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withDepartment(VALID_DEPARTMENT_BOB)
-                .withBuilding(VALID_BUILDING_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withOffice(VALID_OFFICE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Building;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -82,18 +82,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String building} into an {@code Building}.
+     * Parses a {@code String office} into an {@code Office}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code building} is invalid.
+     * @throws ParseException if the given {@code Office} is invalid.
      */
-    public static Building parseBuilding(String building) throws ParseException {
-        requireNonNull(building);
-        String trimmedBuilding = building.trim();
-        if (!Building.isValidBuilding(trimmedBuilding)) {
-            throw new ParseException(Building.MESSAGE_CONSTRAINTS);
+    public static Office parseOffice(String office) throws ParseException {
+        requireNonNull(office);
+        String trimmedOffice = office.trim();
+        if (!Office.isValidOffice(trimmedOffice)) {
+            throw new ParseException(Office.MESSAGE_CONSTRAINTS);
         }
-        return new Building(trimmedBuilding);
+        return new Office(trimmedOffice);
     }
 
     /**

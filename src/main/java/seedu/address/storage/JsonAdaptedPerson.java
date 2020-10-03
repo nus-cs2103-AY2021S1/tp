@@ -10,10 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Building;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -29,7 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String department;
-    private final String building;
+    private final String office;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,12 +39,12 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("department") String department,
-            @JsonProperty("building") String building, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("office") String office, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.department = department;
-        this.building = building;
+        this.office = office;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -57,7 +58,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         department = source.getDepartment().value;
-        building = source.getBuilding().value;
+        office = source.getOffice().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -108,18 +109,18 @@ class JsonAdaptedPerson {
         }
         final Department modelDepartment = new Department(department);
 
-        if (building == null) {
+        if (office == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Building.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Office.class.getSimpleName()));
         }
 
-        if (!Building.isValidBuilding(building)) {
-            throw new IllegalValueException(Building.MESSAGE_CONSTRAINTS);
+        if (!Office.isValidOffice(office)) {
+            throw new IllegalValueException(Office.MESSAGE_CONSTRAINTS);
         }
-        final Building modelBuilding = new Building(building);
+        final Office modelOffice = new Office(office);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelDepartment, modelBuilding, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelDepartment, modelOffice, modelTags);
     }
 
 }

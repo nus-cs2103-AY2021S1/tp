@@ -14,7 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Building;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -25,14 +25,14 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_DEPARTMENT = " ";
-    private static final String INVALID_BUILDING = " ";
+    private static final String INVALID_OFFICE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_DEPARTMENT = "Computer Science";
-    private static final String VALID_BUILDING = "COM2-03-01";
+    private static final String VALID_OFFICE = "COM2-03-01";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -122,19 +122,19 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseBuilding_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseBuilding((String) null));
+    public void parseOffice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOffice((String) null));
     }
 
     @Test
-    public void parseBuilding_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseBuilding(INVALID_BUILDING));
+    public void parseOffice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOffice(INVALID_OFFICE));
     }
 
     @Test
-    public void parseBuilding_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Building expectedBuilding = new Building(VALID_BUILDING);
-        assertEquals(expectedBuilding, ParserUtil.parseBuilding(VALID_BUILDING));
+    public void parseOffice_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        Office expectedOffice = new Office(VALID_OFFICE);
+        assertEquals(expectedOffice, ParserUtil.parseOffice(VALID_OFFICE));
     }
 
     @Test
