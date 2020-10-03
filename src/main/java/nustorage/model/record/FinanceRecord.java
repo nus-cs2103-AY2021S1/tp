@@ -34,6 +34,23 @@ public class FinanceRecord {
         this.datetime = datetime;
     }
 
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param id ID of the transaction.
+     * @param amount Amount of the transaction.
+     * @param datetime Date of the transaction.
+     */
+    public FinanceRecord(int id, double amount, LocalDateTime datetime) {
+        this.id = id;
+        this.amount = amount;
+        this.datetime = datetime;
+    }
+
+    public int getID() {
+        return id;
+    }
+
     public double getAmount() {
         return amount;
     }

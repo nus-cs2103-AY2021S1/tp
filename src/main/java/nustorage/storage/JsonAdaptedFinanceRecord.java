@@ -17,16 +17,18 @@ class JsonAdaptedFinanceRecord {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Finance record's %s field is missing!";
 
+    private final int id;
     private final double amount;
     private final LocalDateTime dateTime;
-
 
     /**
      * Constructs a {@code JsonAdaptedFinanceRecord} with the given record details.
      */
     @JsonCreator
-    public JsonAdaptedFinanceRecord(@JsonProperty("amount") double amount,
+    public JsonAdaptedFinanceRecord(@JsonProperty("amount") int id,
+                                    @JsonProperty("amount") double amount,
                                     @JsonProperty("dateTime") LocalDateTime dateTime) {
+        this.id = id;
         this.amount = amount;
         this.dateTime = dateTime;
     }
@@ -37,6 +39,7 @@ class JsonAdaptedFinanceRecord {
      */
     @JsonCreator
     public JsonAdaptedFinanceRecord(FinanceRecord source) {
+        this.id = source.getID();
         this.amount = source.getAmount();
         this.dateTime = source.getDate();
     }
@@ -48,6 +51,7 @@ class JsonAdaptedFinanceRecord {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public FinanceRecord toModelType() throws IllegalValueException {
+
         if (this.amount < 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "amount"));
         }
@@ -58,7 +62,7 @@ class JsonAdaptedFinanceRecord {
         }
         final LocalDateTime modelDateTime = this.dateTime;
 
-        return new FinanceRecord(modelAmount, modelDateTime);
+        return new FinanceRecord(id, modelAmount, modelDateTime);
 
     }
 
