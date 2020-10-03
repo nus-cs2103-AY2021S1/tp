@@ -10,34 +10,34 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
 import seedu.address.model.account.entry.Entry;
-import seedu.address.model.account.entry.Profit;
+import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.tag.Tag;
 
-public class JsonAdaptedProfit extends JsonAdaptedEntry {
+public class JsonAdaptedRevenue extends JsonAdaptedEntry {
 
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given entry's details.
      */
-    public JsonAdaptedProfit(String type, String description, String amount, List<JsonAdaptedTag> tags) {
-        super("profit", description, amount, tags);
+    public JsonAdaptedRevenue(String type, String description, String amount, List<JsonAdaptedTag> tags) {
+        super("revenue", description, amount, tags);
     }
 
     /**
      * Converts a given {@code Entry} into this class for Jackson use.
      */
-    public JsonAdaptedProfit(Entry source) {
+    public JsonAdaptedRevenue(Entry source) {
         super("expense", source.getDescription().toString(),
                 source.getAmount().toString(),
                 source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted profit object into the model's {@code Profit} object.
+     * Converts this Jackson-friendly adapted revenue object into the model's {@code Revenue} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted profit.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted revenue.
      */
     @Override
-    public Profit toModelType() throws IllegalValueException {
+    public Revenue toModelType() throws IllegalValueException {
         final List<Tag> entryTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             entryTags.add(tag.toModelType());
@@ -59,7 +59,7 @@ public class JsonAdaptedProfit extends JsonAdaptedEntry {
         }
 
         final Set<Tag> modelTags = new HashSet<>(entryTags);
-        return new Profit(modelDescription, modelAmount, modelTags);
+        return new Revenue(modelDescription, modelAmount, modelTags);
     }
 
 }

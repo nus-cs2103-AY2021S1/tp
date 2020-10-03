@@ -12,8 +12,8 @@ import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.ExpenseList;
-import seedu.address.model.account.entry.Profit;
-import seedu.address.model.account.entry.ProfitList;
+import seedu.address.model.account.entry.Revenue;
+import seedu.address.model.account.entry.RevenueList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,10 +22,10 @@ import seedu.address.model.tag.Tag;
 public class SampleCommonCentsUtilData {
     public static Account[] getSampleAccount() {
         Account acc1 = new Account(new Name("Lulu - store acc"));
-        ProfitList acc1Profits = new ProfitList();
-        acc1Profits.add(new Profit(new Description("earrings sales"),
+        RevenueList acc1Profits = new RevenueList();
+        acc1Profits.add(new Revenue(new Description("earrings sales"),
                 new Amount("13.50"), getTagSet("craft", "accessories")));
-        acc1Profits.add(new Profit(new Description("phone cases sales"),
+        acc1Profits.add(new Revenue(new Description("phone cases sales"),
                 new Amount("15.70"), getTagSet("phone", "accessories")));
         ExpenseList acc1ExpenseList = new ExpenseList();
         acc1ExpenseList.add(new Expense(new Description("Watercolours"),
@@ -34,7 +34,7 @@ public class SampleCommonCentsUtilData {
                 new Amount("20.15"), getTagSet("art")));
 
         Account acc2 = new Account(new Name("Lulu - nonbiz acc"));
-        ProfitList acc2Profits = new ProfitList();
+        RevenueList acc2Profits = new RevenueList();
         ExpenseList acc2ExpenseList = new ExpenseList();
         acc1ExpenseList.add(new Expense(new Description("lunch"),
                 new Amount("5.45"), getTagSet("food", "hawker")));
