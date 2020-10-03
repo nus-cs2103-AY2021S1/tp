@@ -12,8 +12,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 /**
@@ -71,6 +73,17 @@ public class StartCommandTest {
 
         StartCommand startCommand = new StartCommand(outOfBoundIndex);
 
+        assertCommandFailure(startCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidScope_throwsCommandException() {
+        model.enter(model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getOneBased()));
+        StartCommand startCommand = new StartCommand(INDEX_FIRST_PROJECT);
+        assertCommandFailure(startCommand, model, String.format(Messages.MESSAGE_INVALID_SCOPE_COMMAND,
+                Status.CATALOGUE, Status.PROJECT));
+
+        startCommand = new StartCommand(INDEX_THIRD_PROJECT);
         assertCommandFailure(startCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
