@@ -77,9 +77,9 @@ Format: `archive FILE_LOCATION`
 The file location takes reference from the home folder that the .jar file is located at.
 
 Examples:  
-archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.
+archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.  
+   
 ---
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
