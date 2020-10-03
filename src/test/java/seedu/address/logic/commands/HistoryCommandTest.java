@@ -26,7 +26,14 @@ public class HistoryCommandTest {
     @Test
     void execute() {
         HistoryCommand historyCommand = new HistoryCommand();
-        CommandHistory.addUsedCommand("history");
+        CommandHistory.addUsedCommand("help");
         assertCommandSuccess(historyCommand, model, String.format(CommandHistory.STRING, "\n -\thelp"), model);
+    }
+
+    @Test
+    void empty() {
+        CommandHistory.clearHistory();
+        HistoryCommand historyCommand = new HistoryCommand();
+        assertCommandSuccess(historyCommand, model, "Here are your command history:", model);
     }
 }
