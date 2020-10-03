@@ -8,17 +8,19 @@ title: About Us
 
 <img src="images/li-s.png" width="200px" alt="Li Shuo's profile picture">
 
-[github](https://github.com/li-s)
+[[github](https://github.com/li-s)]
 
-* Role: Developer
+* Role: Documentation
+* Responsibility: Logic
 
 ### Lu Luoyi
 
 <img src="images/luo-git.png" width="200px" alt="Luoyi's profile picture">
 
-[github](https://github.com/luo-git)
+[[github](https://github.com/luo-git)]
 
-* Role: Developer
+* Role: Testing
+* Responsibility: Logic
 
 ### Ma Yueran
 
@@ -26,19 +28,21 @@ title: About Us
 
 [[github](https://github.com/Ma-Yueran)]
 
-* Role: Developer
-* Responsibilities: Not available
+* Role: Code quality
+* Responsibility: Ui
 
 ### Anthony Lie
 <img src="images/anthony6401.png" width="200px">
 
-[github](https://github.com/Anthony6401)
+[[github](https://github.com/Anthony6401)]
 
-* Role: Developer
+* Role: Testing
+* Responsibility: Storage
 
 ### Heinrich
 <img src="images/HynRidge.png" width="200px">
 
-[github](https://github.com/HynRidge)
+[[github](https://github.com/HynRidge)]
 
-* Role: Developer
+* Role: Scheduling and tracking
+* Responsibility: Model
