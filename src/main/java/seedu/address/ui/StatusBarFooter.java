@@ -15,14 +15,14 @@ public class StatusBarFooter extends UiPart<Region> {
     private static final String FXML = "StatusBarFooter.fxml";
 
     @FXML
-    private Label saveLocationStatus;
+    private Label randomQuote;
 
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        randomQuote.setText("Stop spending like you are rich.");
     }
 
 }
