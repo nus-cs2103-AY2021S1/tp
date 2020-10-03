@@ -183,7 +183,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + DEPARTMENT_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + DEPARTMENT_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + BUILDING_DESC_AMY + PHONE_DESC_BOB + DEPARTMENT_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + BUILDING_DESC_AMY + PHONE_DESC_BOB + DEPARTMENT_DESC_BOB
+                + BUILDING_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withDepartment(VALID_DEPARTMENT_BOB).withBuilding(VALID_BUILDING_BOB)
