@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 class MacronutrientTest {
 
     private static class MacronutrientStub extends Macronutrient {
-        MacronutrientStub(String name, int amount, int caloricMultiplier) {
-            super(name, amount, caloricMultiplier);
+        MacronutrientStub(int amount, int caloricMultiplier) {
+            super(amount, caloricMultiplier);
         }
     }
 
@@ -21,19 +21,13 @@ class MacronutrientTest {
 
     private static final Protein DEFAULT_PROTEIN_1 = new Protein(1);
 
-    private static final Macronutrient MACRONUTRIENT_1 = new MacronutrientStub("dummy", 4, 9);
-    private static final Macronutrient MACRONUTRIENT_2 = new MacronutrientStub("dummy", 9, 4);
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () ->
-            new MacronutrientStub(null, 1, 4));
-    }
+    private static final Macronutrient MACRONUTRIENT_1 = new MacronutrientStub(4, 9);
+    private static final Macronutrient MACRONUTRIENT_2 = new MacronutrientStub(9, 4);
 
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-            new MacronutrientStub("dummy", -1, 4));
+            new MacronutrientStub(-1, 4));
     }
 
     @Test

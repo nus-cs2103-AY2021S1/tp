@@ -10,7 +10,7 @@ public class Carbohydrate extends Macronutrient {
      * @param amount A valid amount.
      */
     public Carbohydrate(int amount) {
-        super(Carbohydrate.class.getName(), amount, CARBOHYDRATE_MULTIPLIER);
+        super(amount, CARBOHYDRATE_MULTIPLIER);
     }
 
 }
