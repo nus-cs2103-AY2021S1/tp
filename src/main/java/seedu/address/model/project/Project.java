@@ -36,7 +36,8 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(ProjectName projectName, Phone phone, Email email, ProjectDescription projectDescription, Set<Tag> tags,
+    public Project(ProjectName projectName, Phone phone, Email email, ProjectDescription projectDescription,
+                   Set<Tag> tags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
         requireAllNonNull(projectName, phone, email, projectDescription, tags, listOfParticipations, tasks);
         this.projectName = projectName;
