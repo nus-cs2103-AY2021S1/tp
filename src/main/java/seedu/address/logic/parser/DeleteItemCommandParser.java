@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.DeleteItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class DeleteItemCommandParser {
+public class DeleteItemCommandParser implements Parser<DeleteItemCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteRecipeCommand
      * and returns a DeleteRecipeCommand object for execution.

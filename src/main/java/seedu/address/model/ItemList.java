@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.UniqueItemList;
-import seedu.address.model.recipe.Recipe;
 
 /**
  * Wraps all data at the item-list level

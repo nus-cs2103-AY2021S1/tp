@@ -59,6 +59,23 @@ public class UniqueItemListTest {
         uList.add(BANANA);
         assertThrows(DuplicateItemException.class, () -> uList.setItem(BANANA, APPLE));
     }
+    
+    @Test
+    public void delete() {
+        UniqueItemList uList = new UniqueItemList();
+        uList.add(APPLE);
+        uList.delete(APPLE);
+        assertTrue(uList.contains(APPLE)); 
+        // Item is still in the list,
+        // but boolean delete flag is set to true 
+    }
+    
+    @Test
+    public void delete_throwsItemNotFoundException() {
+        UniqueItemList uList = new UniqueItemList();
+        uList.add(APPLE);
+        assertThrows(ItemNotFoundException.class, ()-> uList.delete(BANANA));
+    }
 
     @Test
     public void remove() {
