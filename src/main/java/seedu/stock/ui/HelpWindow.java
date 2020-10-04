@@ -2,11 +2,12 @@ package seedu.stock.ui;
 
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.LogsCenter;
 
@@ -15,17 +16,72 @@ import seedu.stock.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String ADD = "ADD \n---------------------------\n";
+    public static final String DELETE = "---------------------------\nDELETE\n---------------------------\n";
+    public static final String FIND = "---------------------------\nFIND\n---------------------------\n";
+    public static final String UPDATE = "---------------------------\nUPDATE\n---------------------------\n";
+    public static final String EXIT = "---------------------------\nEXIT\n---------------------------\n";
+
+    public static final String ADD_DESCRIPTION =
+            "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n" ;
+
+    public static final String DELETE_DESCRIPTION =
+            "format: \ndelete sn/<serial number>\n\n" ;
+
+    public static final String FIND_DESCRIPTION =
+            "format(any): \nfind n/<name> find sn/<serial number> find l/<location> find s/<source of the stock>\n\n" ;
+
+    public static final String UPDATE_DESCRIPTION =
+            "format(multiple): \nupdate sn/<Serial Number of product> (followed by one of):\n" +
+            "q/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name> " +
+            "l/<new location in warehouse> s/<new source of stock>\n\n";
+
+    public static final String EXIT_DESCRIPTION =
+            "format: \nexit\n\n" ;
+
+    public static final String DISCLAIMER = "---------------------------\nFor more information refer to the guide :";
+    public static final String USERGUIDE_URL = "https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/docs/UserGuide.md";
+    public static final Hyperlink USERGUIDE_LINK = new Hyperlink(USERGUIDE_URL);
+
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
+    private Label addMethod;
 
     @FXML
-    private Label helpMessage;
+    private Label addMessage;
+
+    @FXML
+    private Label deleteMethod;
+
+    @FXML
+    private Label deleteMessage;
+
+    @FXML
+    private Label findMethod;
+
+    @FXML
+    private Label findMessage;
+
+    @FXML
+    private Label updateMethod;
+
+    @FXML
+    private Label updateMessage;
+
+    @FXML
+    private Label exitMethod;
+
+    @FXML
+    private Label exitMessage;
+
+    @FXML
+    private Label url;
+
+    @FXML
+    private Label disclaimer;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +90,53 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        //Add Method
+        addMethod.setText(ADD);
+        addMethod.setStyle("-fx-font-size: 130%;");
+        addMessage.setText(ADD_DESCRIPTION);
+
+        //Delete Method
+        deleteMethod.setText(DELETE);
+        deleteMethod.setStyle("-fx-font-size: 130%;");
+        deleteMessage.setText(DELETE_DESCRIPTION);
+
+        //Update Method
+        updateMethod.setText(UPDATE);
+        updateMethod.setStyle("-fx-font-size: 130%;");
+        updateMessage.setText(UPDATE_DESCRIPTION);
+
+        //Find Method
+        findMethod.setText(FIND);
+        findMethod.setStyle("-fx-font-size: 130%;");
+        findMessage.setText(FIND_DESCRIPTION);
+
+        //Exit Method
+        exitMethod.setText(EXIT);
+        exitMethod.setStyle("-fx-font-size: 130%;");
+        exitMessage.setText(EXIT_DESCRIPTION);
+
+
+        //Disclaimer on where to click
+        disclaimer.setText(DISCLAIMER);
+        disclaimer.setStyle("-fx-font-size: 110%;");
+
+        // setting the colours for the link
+        url.setText(USERGUIDE_URL);
+        url.setStyle("-fx-text-fill: #0b6ae0;");
+        url.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Application a = new Application() {
+
+                    @Override
+                    public void start(Stage stage)
+                    {
+                    }
+                };
+                a.getHostServices().showDocument(USERGUIDE_LINK.getText());
+
+            }
+        });
     }
 
     /**
@@ -89,14 +191,5 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
-    }
+
 }
