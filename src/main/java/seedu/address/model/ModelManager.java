@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.attendance.AttendanceList;
+import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.student.Student;
 
 /**
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final Taskmaster taskmaster;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final AttendanceList attendanceList;
 
     /**
      * Initializes a ModelManager with the given taskmaster and userPrefs.
@@ -35,6 +38,7 @@ public class ModelManager implements Model {
         this.taskmaster = new Taskmaster(taskmaster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
+        attendanceList = AttendanceList.of(this.taskmaster.getStudentList());
     }
 
     public ModelManager() {
@@ -110,6 +114,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         taskmaster.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public void markStudent(Student target, AttendanceType attendanceType) {
+        requireAllNonNull(target, attendanceType);
+        attendanceList.markStudentAttendance(target.getNusnetId(), attendanceType);
     }
 
     //=========== Filtered Student List Accessors =============================================================

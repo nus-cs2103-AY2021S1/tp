@@ -98,6 +98,19 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Returns the name of the student with the given {@code nusnetId}.
+     * The student must exist in the list.
+     */
+    public Name getNameByNusnetId(NusnetId nusnetId) {
+        for (Student student : internalList) {
+            if (student.getNusnetId().equals(nusnetId)) {
+                return student.getName();
+            }
+        }
+
+        throw new StudentNotFoundException();
+    }
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Student> asUnmodifiableObservableList() {
