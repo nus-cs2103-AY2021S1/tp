@@ -1,5 +1,6 @@
 package tp.cap5buddy.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,10 @@ public class ModuleList {
      */
     public ModuleList(List<Module> modules) {
         this.modules = modules;
+    }
+
+    public ModuleList() {
+        this.modules = new ArrayList<>();
     }
 
     /**
@@ -45,6 +50,11 @@ public class ModuleList {
         }
         return null;
     }
+
+    public List<Module> getModules() {
+        return this.modules;
+    }
+
 
     /**
      * Adds a module.

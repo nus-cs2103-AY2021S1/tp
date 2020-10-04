@@ -18,7 +18,7 @@ public class DeleteModuleParser extends Parser {
     public Command parse(String userInput) {
         Tokenizer token = new Tokenizer(userInput);
         String[] mod = token.getWords();
-        int position = Integer.parseInt(mod[2]);
+        int position = Integer.parseInt(mod[4]);
         return new DeleteModuleCommand(position);
     }
 }
