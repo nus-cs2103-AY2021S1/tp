@@ -121,4 +121,23 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    public static String parsePropertyId(String propertyId) throws ParseException {
+        requireNonNull(propertyId);
+        String trimmedPropertyId = propertyId.trim();
+        return trimmedPropertyId;
+    }
+
+    public static String parseBidderId(String bidderId) throws ParseException {
+        requireNonNull(bidderId);
+        String trimmedBidderId = bidderId.trim();
+        return trimmedBidderId;
+    }
+
+    public static double parseBidAmount(String bidAmount) throws ParseException {
+        requireNonNull(bidAmount);
+        String trimmedBidAmount = bidAmount.trim();
+        double numericalBidAmount = Double.parseDouble(trimmedBidAmount);
+        return numericalBidAmount;
+    }
 }
