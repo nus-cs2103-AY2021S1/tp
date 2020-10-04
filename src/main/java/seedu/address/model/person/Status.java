@@ -3,10 +3,10 @@ package seedu.address.model.person;
 public enum Status {
     ACTIVE, COLD, CLOSED;
 
-    public static final String MESSAGE_CONSTRAINTS = "Status can only be either ACTIVE, COLD or CLOSED";
+    public static final String MESSAGE_CONSTRAINTS = "Status can only be either active, cold or closed";
 
     public static Status createStatus(String status) {
-        return Status.valueOf(status);
+        return Status.valueOf(status.toUpperCase());
     }
 
     /**
@@ -14,7 +14,7 @@ public enum Status {
      */
     public static boolean isValidStatus(String test) {
         for (Status s : Status.values()) {
-            if (s.name().equals(test)) {
+            if (s.name().equals(test.toUpperCase())) {
                 return true;
             }
         }

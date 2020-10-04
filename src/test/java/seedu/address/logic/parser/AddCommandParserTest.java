@@ -91,7 +91,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // no status
-        expectedPerson = new PersonBuilder(expectedPerson).withStatus("ACTIVE").build();
+        expectedPerson = new PersonBuilder(expectedPerson).withStatus("active").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
