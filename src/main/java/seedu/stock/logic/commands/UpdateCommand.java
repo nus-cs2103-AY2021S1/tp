@@ -20,6 +20,7 @@ import seedu.stock.model.Model;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
@@ -101,7 +102,8 @@ public class UpdateCommand extends Command {
      * @param updateStockDescriptor The collection of values to be updated.
      * @return The stock with updated attributes.
      */
-    private static Stock createUpdatedStock(Stock stockToUpdate, UpdateStockDescriptor updateStockDescriptor) {
+    private static Stock createUpdatedStock(Stock stockToUpdate, UpdateStockDescriptor updateStockDescriptor)
+            throws CommandException {
         assert stockToUpdate != null;
 
         Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(stockToUpdate.getQuantity());
@@ -109,11 +111,12 @@ public class UpdateCommand extends Command {
         Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
         SerialNumber stockSerialNumber = stockToUpdate.getSerialNumber();
-        boolean isIncrement = updateStockDescriptor.getIsIncrement();
+        Optional<QuantityAdder> quantityAdder = updateStockDescriptor.getQuantityAdder();
 
-        if (isIncrement) {
-            Quantity originalQuantity = stockToUpdate.getQuantity();
-            updatedQuantity = originalQuantity.incrementQuantity(updatedQuantity);
+        if (!quantityAdder.isEmpty()) {
+            QuantityAdder valueToBeAdded = quantityAdder.get();
+            Optional<Quantity> result = valueToBeAdded.incrementQuantity(updatedQuantity);
+            updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS));
         }
 
         return new Stock(updatedName, stockSerialNumber, updatedSource, updatedQuantity, updatedLocation);
@@ -144,12 +147,9 @@ public class UpdateCommand extends Command {
         private Source source;
         private Quantity quantity;
         private Location location;
+        private QuantityAdder quantityAdder;
 
-        private boolean isIncrement;
-
-        public UpdateStockDescriptor() {
-            isIncrement = false;
-        }
+        public UpdateStockDescriptor() { }
 
         /**
          * Copy constructor.
@@ -161,7 +161,7 @@ public class UpdateCommand extends Command {
             setSource(toCopy.source);
             setQuantity(toCopy.quantity);
             setLocation(toCopy.location);
-            setIsIncrement(toCopy.isIncrement);
+            setQuantityAdder(toCopy.quantityAdder);
         }
 
         /**
@@ -206,12 +206,12 @@ public class UpdateCommand extends Command {
             return Optional.ofNullable(quantity);
         }
 
-        public void setIsIncrement(boolean isIncrement) {
-            this.isIncrement = isIncrement;
+        public void setQuantityAdder(QuantityAdder quantityAdder) {
+            this.quantityAdder = quantityAdder;
         }
 
-        public boolean getIsIncrement() {
-            return isIncrement;
+        public Optional<QuantityAdder> getQuantityAdder() {
+            return Optional.ofNullable(quantityAdder);
         }
 
         public void setLocation(Location location) {
@@ -242,7 +242,7 @@ public class UpdateCommand extends Command {
                     && getSource().equals(castedOther.getSource())
                     && getQuantity().equals(castedOther.getQuantity())
                     && getLocation().equals(castedOther.getLocation())
-                    && (getIsIncrement() == castedOther.getIsIncrement());
+                    && getQuantityAdder().equals(castedOther.getQuantityAdder());
         }
     }
 }

@@ -12,6 +12,7 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
@@ -120,5 +121,14 @@ public class ParserUtil {
             serialNumberSet.add(new SerialNumber(currentSerialNumberInString.trim()));
         }
         return serialNumberSet;
+    }
+
+    public static QuantityAdder parseQuantityAdder(String valueToBeAdded) throws ParseException {
+        requireNonNull(valueToBeAdded);
+        String trimmedValue = valueToBeAdded.trim();
+        if (!QuantityAdder.isValidValue(trimmedValue)) {
+            throw new ParseException(QuantityAdder.MESSAGE_CONSTRAINTS);
+        }
+        return new QuantityAdder(trimmedValue);
     }
 }

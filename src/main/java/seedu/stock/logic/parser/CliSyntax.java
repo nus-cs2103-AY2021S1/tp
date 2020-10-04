@@ -12,4 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
     public static final Prefix PREFIX_SERIALNUMBER = new Prefix("sn/");
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
+    public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
 }

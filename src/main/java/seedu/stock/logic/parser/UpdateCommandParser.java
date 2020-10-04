@@ -2,10 +2,10 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
@@ -21,7 +21,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SERIALNUMBER, PREFIX_QUANTITY, PREFIX_NEW_QUANTITY,
+                        args, PREFIX_SERIALNUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION
                 );
 
@@ -52,11 +52,9 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         // Increment quantity with increment value provided
-        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()
-                && !argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
-            updateStockDescriptor.setQuantity(
-                    ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
-            updateStockDescriptor.setIsIncrement(true);
+        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()) {
+            updateStockDescriptor.setQuantityAdder(
+                    ParserUtil.parseQuantityAdder(argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).get()));
         }
 
         // Update location with new location provided

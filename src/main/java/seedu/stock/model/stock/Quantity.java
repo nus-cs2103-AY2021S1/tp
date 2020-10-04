@@ -3,8 +3,6 @@ package seedu.stock.model.stock;
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.AppUtil.checkArgument;
 
-import java.math.BigInteger;
-
 /**
  * Represents a Stock's quantity in the stock book.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)} } (to be changed)
@@ -49,17 +47,5 @@ public class Quantity {
     @Override
     public int hashCode() {
         return quantity.hashCode();
-    }
-
-    /**
-     * Returns the incremented or decremented quantity.
-     * @param toIncrement The value to be added.
-     * @return The incremented or decremented quantity.
-     */
-    public Quantity incrementQuantity(Quantity toIncrement) {
-        BigInteger currentQuantity = new BigInteger(quantity);
-        BigInteger incrementValue = new BigInteger(toIncrement.quantity);
-        currentQuantity = currentQuantity.add(incrementValue);
-        return new Quantity(currentQuantity.toString());
     }
 }
