@@ -33,11 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandParserTest {
@@ -123,7 +123,7 @@ public class AddCommandParserTest {
 
         // invalid address
         assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + DESCRIPTION_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Type.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB

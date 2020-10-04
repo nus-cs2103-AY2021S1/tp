@@ -21,18 +21,18 @@ public class Task {
     private final Description description;
 
     // Data fields
-    private final Address address;
+    private final Type type;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, phone, description, address, tags);
+    public Task(Title title, Phone phone, Description description, Type type, Set<Tag> tags) {
+        requireAllNonNull(title, phone, description, type, tags);
         this.title = title;
         this.phone = phone;
         this.description = description;
-        this.address = address;
+        this.type = type;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +48,8 @@ public class Task {
         return description;
     }
 
-    public Address getAddress() {
-        return address;
+    public Type getAddress() {
+        return type;
     }
 
     /**
@@ -99,7 +99,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, description, address, tags);
+        return Objects.hash(title, phone, description, type, tags);
     }
 
     @Override
