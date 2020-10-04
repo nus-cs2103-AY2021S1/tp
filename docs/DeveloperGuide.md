@@ -264,7 +264,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 For all use cases (unless specified otherwise):
 - The **System** is `NUStorage`
-- The **Actor** is `User` 
+- The **Actor** is `User`
 
 
 **Use case: Add an inventory item**
@@ -277,7 +277,7 @@ For all use cases (unless specified otherwise):
 4.  NUStorage adds the item to the list
 
     Use case ends.
-    
+
 **Use case: Remove an inventory item**
 
 **MSS**
@@ -330,7 +330,7 @@ For all use cases (unless specified otherwise):
     * 3a1. NUStorage shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: List finance/inventory records**
 
 **MSS**
@@ -341,7 +341,7 @@ For all use cases (unless specified otherwise):
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 **Use case: Save finance / inventory records**
 
 **MSS**
@@ -356,7 +356,7 @@ For all use cases (unless specified otherwise):
 1. User requests to exit NUStorage
 2. NUStorage saves both finance and inventory records and shows a goodbye message
 3. NUStorage terminates after 1.5 seconds
-  
+
 
 
 ### Non-Functional Requirements
@@ -371,7 +371,7 @@ For all use cases (unless specified otherwise):
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object
-* **Finances**: A record that allows a user to monitor his earnings and spending. 
+* **Finances**: A record that allows a user to monitor his earnings and spending.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -403,7 +403,7 @@ testers are expected to do more *exploratory* testing.
 1. Shutting Down
 
     1. If you would like to save your records prior to shutting down, remember to enter the `save` command
-    
+
     1. Close the app by simply clicking on the close button or enter the `exit` command.
 
 ### Deleting a record
@@ -426,13 +426,13 @@ testers are expected to do more *exploratory* testing.
 1. Adding a financial/inventory record.
 
     1. Prerequisites: None
-    
+
     1. Test case: `add_inventory i/MacBook n/10`<br>
         Expected: An inventory item 'MacBook' is added with the quantity of 10. Details of the added record shown in the status message.
-        
+
     1. Test case: `add_finance op/in amt/1000`
         Expected: A finance record of an increase by $1000.00 is added. Details of the added record shown in status message.
-        
+
     1. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` <br>
         Expected: No record is added. Error details shown in the status message.
 

@@ -31,6 +31,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<InventoryRecord> filteredInventory;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.inventory = new Inventory();
+        filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
         this.financeAccount = new FinanceAccount();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -91,6 +93,19 @@ public class ModelManager implements Model {
 
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
+    }
+
+    public ObservableList<InventoryRecord> getFilteredInventory() {
+        return filteredInventory;
+    }
+
+    /**
+     * Applies a predicate to the Inventory and returns those that pass it.
+     * @param predicate the predicate used to filter Inventory
+     */
+    public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
+        requireNonNull(predicate);
+        filteredInventory.setPredicate(predicate);
     }
 
     //=========== FinanceAccount ================================================================================
@@ -162,6 +177,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {

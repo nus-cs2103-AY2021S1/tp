@@ -9,6 +9,7 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.person.Person;
+import nustorage.model.record.InventoryRecord;
 
 /**
  * API of the Logic component
@@ -32,6 +33,8 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<InventoryRecord> getFilteredInventory();
 
     /**
      * Returns the user prefs' address book file path.
