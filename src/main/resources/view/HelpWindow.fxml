@@ -17,81 +17,66 @@
     <Scene>
          <VBox alignment="CENTER_LEFT">
             <children>
-
                 <Label fx:id="addMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="1.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="addMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="deleteMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="deleteMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="findMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="findMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="updateMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="updateMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="exitMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="exitMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
-
                 <Label fx:id="disclaimer" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
                 <Label fx:id="url" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
-
-
             </children>
             <opaqueInsets>
                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
