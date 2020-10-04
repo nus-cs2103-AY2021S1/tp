@@ -18,6 +18,7 @@ import nustorage.logic.commands.ExitCommand;
 import nustorage.logic.commands.FindCommand;
 import nustorage.logic.commands.HelpCommand;
 import nustorage.logic.commands.ListCommand;
+import nustorage.logic.commands.ListInventoryCommand;
 import nustorage.logic.commands.ListFinanceRecordsCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 
@@ -47,6 +48,8 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case ListInventoryCommand.COMMAND_WORD:
+            return new ListInventoryCommand();
 
         case AddInventoryCommand.COMMAND_WORD:
             return new AddInventoryCommandParser().parse(arguments);
