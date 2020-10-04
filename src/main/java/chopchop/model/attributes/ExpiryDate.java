@@ -3,12 +3,15 @@ package chopchop.model.attributes;
 import static chopchop.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 public class ExpiryDate {
     public static final String MESSAGE_CONSTRAINTS =
         "Expiry date should be in the form, yyyy-MM-dd";
     //temporary using 1 fixed date format before parser is integrated.
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ISO_DATE;
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}";
     private final LocalDate date;
 
@@ -23,8 +26,22 @@ public class ExpiryDate {
         this.date = LocalDate.parse(date);
     }
 
-    public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+    /**
+     * Checks if the input date is valid.
+     *
+     * @param inputDate A string of unknown date format
+     * @return true if the date format is valid. Otherwise, false.
+     */
+    public static boolean isValidDate(String inputDate) {
+        if (!inputDate.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        try {
+            LocalDate.parse(inputDate , FORMAT);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     public LocalDate getDate() {

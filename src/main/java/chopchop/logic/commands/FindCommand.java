@@ -15,6 +15,11 @@ public abstract class FindCommand extends Command {
 
     protected final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs {@code FindCommand} with the given predicate.
+     *
+     * @param predicate condition to test for.
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

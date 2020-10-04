@@ -1,7 +1,6 @@
 package chopchop.model.ingredient;
 
 import chopchop.model.ReadOnlyFoodEntryBook;
-import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ObservableList;
 
 public interface ReadOnlyIngredientBook extends ReadOnlyFoodEntryBook {
