@@ -39,6 +39,22 @@ public class Inventory implements Iterable<InventoryRecord>, ReadOnlyInventory {
         internalList.remove(inventoryRecord);
     }
 
+    /**
+     * Checks if Inventory contains given InventoryRecord
+     */
+    public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
+        return internalList.contains(inventoryRecord);
+    }
+
+    /**
+     * Edit target with edited Inventory record
+     */
+    public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
+        int index = internalList.indexOf(target);
+        internalList.remove(index);
+        internalList.add(index, editedInventoryRecord);
+    }
+
     public ObservableList<InventoryRecord> getInventoryList() {
         return internalList;
     }
