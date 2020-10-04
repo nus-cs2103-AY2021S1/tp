@@ -203,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().clear();
         questionPlaceholder.setPrefHeight(100);
         answerPlaceholder.setPrefHeight(100);
-        showReviewFlashcard(logic.getFilteredFlashcardList().get(0), 1);
+        showReviewFlashcard(reviewManager.getCurrentFlashcard(), 1);
     }
 
     /**
