@@ -6,6 +6,6 @@ package seedu.address.model.log.exceptions;
  */
 public class DuplicateLogException extends RuntimeException {
     public DuplicateLogException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate logs");
     }
 }

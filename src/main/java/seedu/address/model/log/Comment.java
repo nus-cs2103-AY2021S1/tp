@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Log's phone number in the address book.
+ * Represents a Log's phone number in the log book.
  * Guarantees: immutable.
  */
 public class Comment {
