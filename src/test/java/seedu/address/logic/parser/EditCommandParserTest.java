@@ -38,7 +38,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -82,17 +82,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid title
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, DateTime.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid desc
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid description
-        assertParseFailure(parser, "1" + INVALID_DATE_DESC + DESCRIPTION_DESC_AMY, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC + DESCRIPTION_DESC_AMY, DateTime.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid dateTime followed by invalid dateTime. The test case for invalid dateTime followed by valid dateTime
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + DATE_DESC_BOB + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DATE_DESC_BOB + INVALID_DATE_DESC, DateTime.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
                 + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withDate(VALID_DATE_BOB).withDescription(VALID_DESCRIPTION_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withDateTime(VALID_DATE_BOB).withDescription(VALID_DESCRIPTION_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -124,7 +124,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + DESCRIPTION_DESC_AMY;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB)
                 .withDescription(VALID_DESCRIPTION_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -140,9 +140,9 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // dateTime
         userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_AMY).build();
+        descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -172,7 +172,7 @@ public class EditCommandParserTest {
                 + TAG_DESC_FRIEND + DATE_DESC_AMY + ADDRESS_DESC_AMY + DESCRIPTION_DESC_AMY + TAG_DESC_FRIEND
                 + DATE_DESC_BOB + ADDRESS_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -185,14 +185,14 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_BOB;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB + INVALID_DATE_DESC + ADDRESS_DESC_BOB
                 + DATE_DESC_BOB;
-        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB).withDescription(VALID_DESCRIPTION_BOB)
+        descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB).withDescription(VALID_DESCRIPTION_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

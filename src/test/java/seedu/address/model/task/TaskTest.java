@@ -31,8 +31,8 @@ public class TaskTest {
         // null -> returns false
         assertFalse(ALICE.isSameTask(null));
 
-        // different date and description -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB)
+        // different dateTime and description -> returns false
+        Task editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_BOB)
                                                  .withDescription(VALID_DESCRIPTION_BOB)
                                                  .build();
         assertFalse(ALICE.isSameTask(editedAlice));
@@ -41,17 +41,17 @@ public class TaskTest {
         editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.isSameTask(editedAlice));
 
-        // same title, same date, different attributes -> returns true
+        // same title, same dateTime, different attributes -> returns true
         editedAlice = new TaskBuilder(ALICE).withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // same title, same email, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
-        // same title, same date, same email, different attributes -> returns true
+        // same title, same dateTime, same email, different attributes -> returns true
         editedAlice = new TaskBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
     }
@@ -78,8 +78,8 @@ public class TaskTest {
         Task editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different date -> returns false
-        editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB).build();
+        // different dateTime -> returns false
+        editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different description -> returns false

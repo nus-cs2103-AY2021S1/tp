@@ -39,8 +39,8 @@ public class EditTaskDescriptorTest {
         EditTaskDescriptor editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withTitle(VALID_TITLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different date -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDate(VALID_DATE_BOB).build();
+        // different dateTime -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDateTime(VALID_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different description -> returns false

@@ -54,11 +54,11 @@ public class EditCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDate(VALID_DATE_BOB)
+        Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDateTime(VALID_DATE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withDate(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withDateTime(VALID_DATE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);

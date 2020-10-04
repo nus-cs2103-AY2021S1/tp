@@ -17,7 +17,7 @@ public class Task {
 
     // Identity fields
     private final Title title;
-    private final Date date;
+    private final DateTime dateTime;
     private final Description description;
 
     // Data fields
@@ -27,10 +27,10 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Date date, Description description, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, date, description, address, tags);
+    public Task(Title title, DateTime dateTime, Description description, Address address, Set<Tag> tags) {
+        requireAllNonNull(title, dateTime, description, address, tags);
         this.title = title;
-        this.date = date;
+        this.dateTime = dateTime;
         this.description = description;
         this.address = address;
         this.tags.addAll(tags);
@@ -40,8 +40,8 @@ public class Task {
         return title;
     }
 
-    public Date getDate() {
-        return date;
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
     public Description getDescription() {
@@ -71,7 +71,8 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getTitle().equals(getTitle())
-                && (otherTask.getDate().equals(getDate()) || otherTask.getDescription().equals(getDescription()));
+                && (otherTask.getDateTime().equals(getDateTime())
+                || otherTask.getDescription().equals(getDescription()));
     }
 
     /**
@@ -90,7 +91,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getDate().equals(getDate())
+                && otherTask.getDateTime().equals(getDateTime())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getAddress().equals(getAddress())
                 && otherTask.getTags().equals(getTags());
@@ -99,7 +100,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, date, description, address, tags);
+        return Objects.hash(title, dateTime, description, address, tags);
     }
 
     @Override
@@ -107,7 +108,7 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append(" Date: ")
-                .append(getDate())
+                .append(getDateTime())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Address: ")

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -22,7 +22,7 @@ public class TaskBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Title title;
-    private Date date;
+    private DateTime dateTime;
     private Description description;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
-        date = new Date(DEFAULT_DATE);
+        dateTime = new DateTime(DEFAULT_DATE);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
-        date = taskToCopy.getDate();
+        dateTime = taskToCopy.getDateTime();
         description = taskToCopy.getDescription();
         address = taskToCopy.getAddress();
         tags = new HashSet<>(taskToCopy.getTags());
@@ -76,8 +76,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code date} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDate(String date) {
-        this.date = new Date(date);
+    public TaskBuilder withDateTime(String dateTime) {
+        this.dateTime = new DateTime(dateTime);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, date, description, address, tags);
+        return new Task(title, dateTime, description, address, tags);
     }
 
 }

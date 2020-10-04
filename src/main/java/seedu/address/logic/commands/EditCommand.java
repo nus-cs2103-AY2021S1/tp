@@ -21,7 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -94,12 +94,12 @@ public class EditCommand extends Command {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
-        Date updatedDate = editTaskDescriptor.getDate().orElse(taskToEdit.getDate());
+        DateTime updatedDateTime = editTaskDescriptor.getDateTime().orElse(taskToEdit.getDateTime());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedDate, updatedDescription, updatedAddress, updatedTags);
+        return new Task(updatedTitle, updatedDateTime, updatedDescription, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Title title;
-        private Date date;
+        private DateTime dateTime;
         private Description description;
         private Address address;
         private Set<Tag> tags;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
-            setDate(toCopy.date);
+            setDateTime(toCopy.dateTime);
             setDescription(toCopy.description);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, date, description, address, tags);
+            return CollectionUtil.isAnyNonNull(title, dateTime, description, address, tags);
         }
 
         public void setTitle(Title title) {
@@ -160,12 +160,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public void setDate(Date date) {
-            this.date = date;
+        public void setDateTime(DateTime dateTime) {
+            this.dateTime = dateTime;
         }
 
-        public Optional<Date> getDate() {
-            return Optional.ofNullable(date);
+        public Optional<DateTime> getDateTime() {
+            return Optional.ofNullable(dateTime);
         }
 
         public void setDescription(Description description) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getDate().equals(e.getDate())
+                    && getDateTime().equals(e.getDateTime())
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());

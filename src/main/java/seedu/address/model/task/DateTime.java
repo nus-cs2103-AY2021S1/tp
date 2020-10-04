@@ -4,33 +4,33 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's date in PlaNUS.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Represents a Task's dateTime in PlaNUS.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class Date {
+public class DateTime {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format of dd-MM-yyyy-HHmm.";
+            "DateTime should be in the format of dd-MM-yyyy-HHmm.";
     public static final String VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}-(2[0-3]|[01]?[0-9])([0-5]?[0-9])$";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code DateTime}.
      *
-     * @param date A valid phone number.
+     * @param dateTime A valid date and time.
      */
-    public Date(String date) {
-        requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = date;
+    public DateTime(String dateTime) {
+        requireNonNull(dateTime);
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        value = dateTime;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -42,8 +42,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && value.equals(((Date) other).value)); // state check
+                || (other instanceof DateTime // instanceof handles nulls
+                && value.equals(((DateTime) other).value)); // state check
     }
 
     @Override

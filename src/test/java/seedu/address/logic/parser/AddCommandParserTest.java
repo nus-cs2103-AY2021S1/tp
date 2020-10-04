@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Address;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -55,7 +55,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + DATE_DESC_BOB + DESCRIPTION_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
-        // multiple dates - last date accepted
+        // multiple dateTimes - last dateTime accepted
         assertParseSuccess(parser, TITLE_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB + DESCRIPTION_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
@@ -90,7 +90,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_TITLE_BOB + DATE_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
+        // missing dateTime prefix
         assertParseFailure(parser, TITLE_DESC_BOB + VALID_DATE_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
@@ -113,9 +113,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_TITLE_DESC + DATE_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid dateTime
         assertParseFailure(parser, TITLE_DESC_BOB + INVALID_DATE_DESC + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, DateTime.MESSAGE_CONSTRAINTS);
 
         // invalid description
         assertParseFailure(parser, TITLE_DESC_BOB + DATE_DESC_BOB + INVALID_DESCRIPTION_DESC + ADDRESS_DESC_BOB
