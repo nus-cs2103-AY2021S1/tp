@@ -50,7 +50,6 @@ public class StringUtil {
 
         String preppedKeyword = keyword.trim().toLowerCase();
         checkArgument(!preppedKeyword.isEmpty(), "Keyword parameter cannot be empty");
-        checkArgument(preppedKeyword.split("\\s+").length == 1, "Keyword parameter should be a single word");
 
         String preppedCategory = category.toLowerCase();
 

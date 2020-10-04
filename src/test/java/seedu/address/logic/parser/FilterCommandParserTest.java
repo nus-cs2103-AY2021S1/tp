@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.model.flashcard.CategoryEqualsKeywordsPredicate;
-import seedu.address.model.flashcard.NameContainsKeywordsPredicate;
 
 import java.util.Arrays;
 
@@ -25,10 +24,10 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommand =
-                new FilterCommand(new CategoryEqualsKeywordsPredicate(Arrays.asList("SDLC", "RevisionHistory")));
-        assertParseSuccess(parser, "SDLC RevisionHistory", expectedFilterCommand);
+                new FilterCommand(new CategoryEqualsKeywordsPredicate(Arrays.asList("SDLC", "Revision History")));
+        assertParseSuccess(parser, "c/SDLC c/Revision History", expectedFilterCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n SDLC \n \t RevisionHistory  \t", expectedFilterCommand);
+        assertParseSuccess(parser, " \n c/SDLC \n \t c/Revision History  \t", expectedFilterCommand);
     }
 }

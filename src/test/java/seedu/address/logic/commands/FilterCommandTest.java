@@ -63,7 +63,7 @@ public class FilterCommandTest {
     @Test
     public void execute_multipleKeywords_flashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
-        CategoryEqualsKeywordsPredicate predicate = preparePredicate("SDLC");
+        CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/SDLC");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -73,7 +73,7 @@ public class FilterCommandTest {
     @Test
     public void execute_multipleKeywords_multipleFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-        CategoryEqualsKeywordsPredicate predicate = preparePredicate("SDLC RevisionHistory");
+        CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/SDLC c/Revision History");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -83,7 +83,7 @@ public class FilterCommandTest {
     @Test
     public void execute_lowercaseKeyword() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
-        CategoryEqualsKeywordsPredicate predicate = preparePredicate("sdlc");
+        CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/sdlc");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -94,6 +94,8 @@ public class FilterCommandTest {
      * Parses {@code userInput} into a {@code CategoryEqualsKeywordsPredicate}.
      */
     private CategoryEqualsKeywordsPredicate preparePredicate(String userInput) {
-        return new CategoryEqualsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        String[] categoryKeywords = userInput.split("c/");
+        categoryKeywords = Arrays.copyOfRange(categoryKeywords, 1, categoryKeywords.length);
+        return new CategoryEqualsKeywordsPredicate(Arrays.asList(categoryKeywords));
     }
 }
