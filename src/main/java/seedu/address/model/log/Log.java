@@ -48,6 +48,10 @@ public class Log {
         return comment;
     }
 
+    public int getCalories() {
+        return exercise.getCaloriesPerRep() * reps.getReps();
+    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
