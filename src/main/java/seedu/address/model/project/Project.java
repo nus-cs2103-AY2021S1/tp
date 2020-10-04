@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -66,7 +67,23 @@ public class Project {
     public Set<Meeting> getMeetings() {
         return meetings;
     }
+    public boolean addMeeting(Meeting meeting) {
+        return meetings.add(meeting);
+    }
+    public boolean addTask(Task task) {
+        return tasks.add(task);
+    }
 
+    /**
+     * Gets all attendees of a specific meeting
+     */
+    public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
+        HashSet<Person> attendees = new HashSet<Person>();
+        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+            attendees.add(entry.getValue().getPerson());
+        }
+        return attendees;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

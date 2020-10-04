@@ -33,19 +33,65 @@ public class Participation {
     }
 
     /**
-     * indicates attendance for the meeting
+     * Alternative constructor that allows specifying the role of the person
+     */
+    public Participation(Person person, Project project, Role role) {
+        this.person = person;
+        this.project = project;
+        this.role = role;
+        tasks = new HashSet<>();
+        meetings = new HashSet<>();
+    }
+    public void changeRole(Role role) {
+        this.role = role;
+    }
+    /**
+     * Indicates attendance for the meeting.
      *
      * @param meeting meeting to attend
      */
     public void attends(Meeting meeting) {
-        meeting.addAttendee(person);
         meetings.add(meeting);
-        project.getMeetings().add(meeting);
+        project.addMeeting(meeting);
     }
 
-    enum Role {
-        LEADER, MEMBER;
+    /**
+     * Assigns task to the person
+     * @param task  task to be assigned
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+        project.addTask(task);
+    }
+    /**
+     * Checks whether the person is an attendee of the meeting.
+     * @param meeting   meeting to check
+     * @return  true if the person is an attendee of the meeting, and false otherwise
+     */
+    public boolean isAttendeeOf(Meeting meeting) {
+        return meetings.contains(meeting);
     }
 
+    /**
+     * Checks whether the person has the given task.
+     * @param task  the task to check
+     * @return  true if the person is assigned to do the task, and false otherwise.
+     */
+    public boolean hasTask(Task task) {
+        return tasks.contains(task);
+    }
+    public Person getPerson() {
+        return person;
+    }
+    public Project getProject() {
+        return project;
+    }
+    public Role getRole() {
+        return role;
+    }
+}
+
+enum Role {
+    LEADER, MEMBER;
 }
 
