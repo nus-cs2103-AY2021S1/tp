@@ -41,6 +41,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (argMultimap.getValue(PREFIX_SUPPLIER).isPresent()) {
             trimmedArgs = ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).get()).value;
             type = "Supplier";
+        } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            trimmedArgs = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName;
+            type = "Tag";
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

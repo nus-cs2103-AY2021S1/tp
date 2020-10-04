@@ -1,9 +1,12 @@
 package seedu.address.model.item;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Item}'s {@code Name} matches any of the keywords given.
@@ -24,9 +27,16 @@ public class NameContainsKeywordsPredicate implements Predicate<Item> {
         case "Name":
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getName().fullName, keyword));
-        case "Supplier":
+        case "Supplier": ;
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getSupplier().value, keyword));
+        case "Tag":
+            StringBuilder tags = new StringBuilder();
+            for (Tag tag : item.getTags()) {
+                tags.append(tag);
+            }
+            return keywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tags.toString(), keyword));
         }
         return false;
     }
