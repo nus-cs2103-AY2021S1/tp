@@ -20,7 +20,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_QUANTITY + "QUANTITY "
-            + PREFIX_SUPPLIER + "SUPPLIER "
+            + "[" + PREFIX_SUPPLIER + "SUPPLIER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Chicken "
