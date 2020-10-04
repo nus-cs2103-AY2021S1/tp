@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -13,9 +14,11 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.ReviewManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.flashcard.Flashcard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -29,9 +32,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private ReviewManager reviewManager;
+    private EventHandler<KeyEvent> keyDownEventHandler;
 
     // Independent Ui parts residing in this Ui container
     private FlashcardListPanel flashcardListPanel;
+    private FlashcardAnswerCard flashcardAnswerCard;
+    private FlashcardQuestionCard flashcardQuestionCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +50,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane flashcardListPanelPlaceholder;
+
+    @FXML
+    private StackPane questionPlaceholder;
+
+    @FXML
+    private StackPane answerPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,6 +91,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -163,6 +177,96 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Cleans up window back to command mode.
+     */
+    @FXML
+    private void exitReviewMode() {
+        getRoot().removeEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
+        flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        questionPlaceholder.getChildren().clear();
+        answerPlaceholder.getChildren().clear();
+        questionPlaceholder.setPrefHeight(0);
+        answerPlaceholder.setPrefHeight(0);
+        resultDisplay.setFeedbackToUser(ReviewManager.EXIT_MESSAGE);
+    }
+
+    /**
+     * Sets up window for review mode.
+     */
+    @FXML
+    private void enterReviewMode() {
+        reviewManager = new ReviewManager(logic.getFilteredFlashcardList());
+        flashcardListPanelPlaceholder.getChildren().clear();
+        commandBoxPlaceholder.getChildren().clear();
+        questionPlaceholder.setPrefHeight(100);
+        answerPlaceholder.setPrefHeight(100);
+        showReviewFlashcard(logic.getFilteredFlashcardList().get(0), 1);
+    }
+
+    /**
+     * Makes window show the current flashcard being reviewed.
+     * @param flashcard the FlashCard being reviewed.
+     * @param displayedIndex the displayed index of the Flashcard being reviewed.
+     */
+    @FXML
+    private void showReviewFlashcard(Flashcard flashcard, int displayedIndex) {
+        questionPlaceholder.getChildren().clear();
+        flashcardQuestionCard = new FlashcardQuestionCard(flashcard, displayedIndex);
+        questionPlaceholder.getChildren().add(flashcardQuestionCard.getRoot());
+        answerPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Executes review function.
+     */
+    @FXML
+    private void handleReview() {
+        enterReviewMode();
+        keyDownEventHandler = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (!(event.getTarget() instanceof TextInputControl)) {
+                    return;
+                }
+                switch (event.getCode().getCode()) {
+                case 39: // right arrow key down
+                    if (!reviewManager.hasNext()) {
+                        exitReviewMode();
+                    } else {
+                        showReviewFlashcard(reviewManager.getNextFlashCard(),
+                                reviewManager.getCurrentIndex() + 1);
+                    }
+                    break;
+                case 37: // left arrow key down
+                    if (!reviewManager.hasPrevious()) {
+                        exitReviewMode();
+                    } else {
+                        showReviewFlashcard(reviewManager.getPrevFlashCard(),
+                                reviewManager.getCurrentIndex() + 1);
+                    }
+                    break;
+                case 40: // up arrow key down
+                    flashcardAnswerCard = new FlashcardAnswerCard(reviewManager.getCurrentFlashcard());
+                    answerPlaceholder.getChildren().add(flashcardAnswerCard.getRoot());
+                    break;
+                case 38: // down arrow key down
+                    answerPlaceholder.getChildren().clear();
+                    break;
+                case 81: // 'q' key down
+                    exitReviewMode();
+                    break;
+                default:
+                    break;
+                }
+                event.consume();
+            }
+        };
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
+    }
+
     public FlashcardListPanel getFlashcardListPanel() {
         return flashcardListPanel;
     }
@@ -184,6 +288,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isReviewMode()) {
+                handleReview();
             }
 
             return commandResult;
