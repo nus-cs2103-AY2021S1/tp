@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddCommandTest {
@@ -52,8 +53,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Project alice = new ProjectBuilder().withName("Alice").build();
-        Project bob = new ProjectBuilder().withName("Bob").build();
+        Project alice = new ProjectBuilder().withProjectName("Alice").build();
+        Project bob = new ProjectBuilder().withProjectName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -145,6 +146,21 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Status getStatus() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void enter(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void quit() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_REPOURL,
+                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_PHONE, PREFIX_REPOURL,
                         PREFIX_ADDRESS, PREFIX_TAG, PREFIX_TASK);
 
         Index index;
@@ -46,8 +46,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditProjectDescriptor editProjectDescriptor = new EditProjectDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editProjectDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_PROJECT_NAME).isPresent()) {
+            editProjectDescriptor.setProjectName(ParserUtil.parseProjectName(
+                    argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editProjectDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.project.Address;
-import seedu.address.model.project.Name;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.RepoUrl;
@@ -18,12 +18,12 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class ProjectBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_PROJECT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_REPOURL = "https://github.com/a/b.git";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private ProjectName projectName;
     private Phone phone;
     private RepoUrl repoUrl;
     private Address address;
@@ -34,7 +34,7 @@ public class ProjectBuilder {
      * Creates a {@code ProjectBuilder} with the default details.
      */
     public ProjectBuilder() {
-        name = new Name(DEFAULT_NAME);
+        projectName = new ProjectName(DEFAULT_PROJECT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         repoUrl = new RepoUrl(DEFAULT_REPOURL);
         address = new Address(DEFAULT_ADDRESS);
@@ -46,7 +46,7 @@ public class ProjectBuilder {
      * Initializes the ProjectBuilder with the data of {@code projectToCopy}.
      */
     public ProjectBuilder(Project projectToCopy) {
-        name = projectToCopy.getName();
+        projectName = projectToCopy.getProjectName();
         phone = projectToCopy.getPhone();
         repoUrl = projectToCopy.getRepoUrl();
         address = projectToCopy.getAddress();
@@ -55,10 +55,10 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Project} that we are building.
+     * Sets the {@code ProjectName} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withName(String name) {
-        this.name = new Name(name);
+    public ProjectBuilder withProjectName(String projectName) {
+        this.projectName = new ProjectName(projectName);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(name, phone, repoUrl, address, tags, new HashMap<>(), tasks);
+        return new Project(ProjectName, phone, repoUrl, address, tags, new HashMap<>(), tasks);
     }
 
 }

@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Project's name in the main catalogue.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPersonName(String)}
  */
 public class PersonName {
 
@@ -18,42 +18,42 @@ public class PersonName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String fullPersonName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code PersonName}.
      *
-     * @param name A valid name.
+     * @param personName A valid personName.
      */
-    public PersonName(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+    public PersonName(String personName) {
+        requireNonNull(personName);
+        checkArgument(isValidPersonName(personName), MESSAGE_CONSTRAINTS);
+        fullPersonName = personName;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidPersonName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return fullName;
+        return fullPersonName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonName // instanceof handles nulls
-                && fullName.equals(((PersonName) other).fullName)); // state check
+                && fullPersonName.equals(((PersonName) other).fullPersonName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return fullPersonName.hashCode();
     }
 
 }

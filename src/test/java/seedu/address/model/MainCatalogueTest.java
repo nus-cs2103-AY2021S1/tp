@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
@@ -19,8 +20,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ProjectNotFoundException;
 import seedu.address.testutil.ProjectBuilder;
 
 public class MainCatalogueTest {
@@ -86,11 +90,59 @@ public class MainCatalogueTest {
         assertThrows(UnsupportedOperationException.class, () -> mainCatalogue.getProjectList().remove(0));
     }
 
+    @Test
+    public void enterQuit_correctScope_success() {
+        try {
+            mainCatalogue.addProject(ALICE);
+            mainCatalogue.enter(ALICE);
+            mainCatalogue.quit();
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void enterQuit_incorrectScope_throwInvalidScopeException() {
+        mainCatalogue.addProject(ALICE);
+        try {
+            mainCatalogue.quit();
+        } catch (InvalidScopeException e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+        } catch (Exception e) {
+            fail();
+        }
+        mainCatalogue.enter(ALICE);
+        try {
+            mainCatalogue.enter(ALICE);
+        } catch (InvalidScopeException e) {
+            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void enter_nonExistingProject_throwProjectNotFoundException() {
+        assertThrows(ProjectNotFoundException.class, () -> mainCatalogue.enter(ALICE));
+    }
+
+    @Test
+    public void enter_sameButNotEqualProject_success() {
+        mainCatalogue.addProject(ALICE);
+        Project adapted = new ProjectBuilder(ALICE).withTags().build();
+        try {
+            mainCatalogue.enter(adapted);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
     /**
      * A stub ReadOnlyMainCatalogue whose projects list can violate interface constraints.
      */
     private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private Status status = Status.CATALOGUE;
 
         MainCatalogueStub(Collection<Project> projects) {
             this.projects.setAll(projects);
@@ -99,6 +151,21 @@ public class MainCatalogueTest {
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;
+        }
+
+        @Override
+        public Status getStatus() {
+            return status;
+        }
+
+        @Override
+        public void enter(Project project) {
+            // TODO: Add content if test case need this.
+        }
+
+        @Override
+        public void quit() {
+            // TODO: Add content if test case need this.
         }
     }
 

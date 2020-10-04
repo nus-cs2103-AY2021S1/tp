@@ -29,7 +29,7 @@ public class TypicalProjects {
             .withAddress("123, Jurong West Ave 6, #08-111").withRepoUrl("https://github.com/a/a.git")
             .withPhone("94351253")
             .withTags("friends").withTasks("Write DG", "Write user stories").build();
-    public static final Project BENSON = new ProjectBuilder().withName("Benson Meier")
+    public static final Project BENSON = new ProjectBuilder().withProjectName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withRepoUrl("https://github.com/b/b.git").withPhone("98765432")
             .withTags("owesMoney", "friends").withTasks("Practice presentation").build();

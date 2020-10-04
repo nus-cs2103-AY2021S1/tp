@@ -39,7 +39,7 @@ public class ProjectTest {
         assertFalse(ALICE.isSameProject(editedAlice));
 
         // different name -> returns false
-        editedAlice = new ProjectBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new ProjectBuilder(ALICE).withProjectName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameProject(editedAlice));
 
         // same name, same phone, different attributes -> returns true
@@ -79,7 +79,7 @@ public class ProjectTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Project editedAlice = new ProjectBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Project editedAlice = new ProjectBuilder(ALICE).withProjectName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

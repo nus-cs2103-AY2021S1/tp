@@ -21,7 +21,9 @@ import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LeaveCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
@@ -86,6 +88,19 @@ public class MainCatalogueParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_start() throws Exception {
+        StartCommand command = (StartCommand) parser.parseCommand(
+                StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased());
+        assertEquals(new StartCommand(INDEX_FIRST_PROJECT), command);
+    }
+
+    @Test
+    public void parseCommand_leave() throws Exception {
+        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD) instanceof LeaveCommand);
+        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3") instanceof LeaveCommand);
     }
 
     @Test
