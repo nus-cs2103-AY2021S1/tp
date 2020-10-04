@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
@@ -14,11 +15,13 @@ public class ItemBuilder {
     public static final String DEFAULT_NAME = "Bob's Iridescent Grape";
     public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
+    public static final Set<Integer> DEFAULT_RECIPES = new HashSet<>();
 
     private int id;
     private String name;
     private Quantity quantity;
     private String description;
+    private Set<Integer> recipes;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -28,6 +31,7 @@ public class ItemBuilder {
         this.name = DEFAULT_NAME;
         this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.description = DEFAULT_DESCRIPTION;
+        this.recipes = DEFAULT_RECIPES;
     }
 
     /**
@@ -38,6 +42,7 @@ public class ItemBuilder {
         name = itemToCopy.getName();
         quantity = itemToCopy.getQuantity();
         description = itemToCopy.getDescription();
+        recipes = new HashSet<>(itemToCopy.getRecipeIds());
     }
 
     /**
@@ -79,6 +84,6 @@ public class ItemBuilder {
      */
     public Item build() {
         return new Item(id, name, quantity, description,
-                new HashSet<>(), new HashSet<>(), new HashSet<>(), false);
+                new HashSet<>(), recipes, new HashSet<>(), false);
     }
 }

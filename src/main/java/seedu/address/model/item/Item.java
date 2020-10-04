@@ -87,8 +87,13 @@ public class Item {
         return isDeleted;
     }
 
+    /**
+     * Adds recipe with given id to the item.
+     */
     public void addRecipeId(int recipeId) {
-        recipeIds.add(recipeId);
+        if (!recipeIds.contains(recipeId)) {
+            recipeIds.add(recipeId);
+        }
     }
 
     /**
@@ -119,10 +124,6 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-
-        System.out.println(otherItem.getRecipeIds().equals(getRecipeIds()));
-        System.out.println(getRecipeIds());
-        System.out.println(otherItem.getRecipeIds());
 
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals((getQuantity()))
