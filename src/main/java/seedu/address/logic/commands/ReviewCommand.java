@@ -11,12 +11,12 @@ public class ReviewCommand extends Command {
 
     public static final String COMMAND_WORD = "review";
 
-    public static final String MESSAGE_SUCCESS = "Entered review mode";
+    public static final String MESSAGE_START_REVIEW_SUCCESS = "Entered review mode";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_START_REVIEW_SUCCESS, false, false, true);
     }
 }
