@@ -39,8 +39,8 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String DATE_DESC_AMY = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_AMY;
-    public static final String DATE_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
+    public static final String DATE_TIME_DESC_AMY = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_AMY;
+    public static final String DATE_TIME_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
@@ -49,7 +49,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Homework&"; // '&' not allowed in titles
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE_TIME + "32-11-2000 19:00"; // 32nd day not allowed
+    public static final String INVALID_DATE_TIME_DESC = " " + PREFIX_DATE_TIME
+            + "32-11-2000 19:00"; // 32nd day not allowed
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob@yahoo"; // '@' not allowed
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
