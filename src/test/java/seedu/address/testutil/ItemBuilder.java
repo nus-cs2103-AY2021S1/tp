@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Collections;
 import java.util.HashSet;
 
 import seedu.address.model.item.Item;
