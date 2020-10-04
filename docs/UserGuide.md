@@ -52,10 +52,14 @@ Format: `sell_inventory i/ITEM n/NUMBER`
 
 
 ### List inventory records: `list_inventory`
-
-Adds and stores finance records into finance records
+Shows the items in the current Inventory
 
 Format: `list_inventory`
+
+### List inventory records: `view_inventory_records`
+Shows the movement of inventory
+
+Format: `view_inventory_records`
 
 
 ### Add finance records: `add_finance`
