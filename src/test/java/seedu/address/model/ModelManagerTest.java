@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
@@ -118,7 +119,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = CHICKEN.getName().fullName.split("\\s+");
-        modelManager.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(keywords), PREFIX_NAME));
         assertFalse(modelManager.equals(new ModelManager(inventoryBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
