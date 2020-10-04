@@ -169,19 +169,17 @@ NOT Supported as of v1.1 yet
 
 
 ### Deleting a item : `deli`
-NOT Supported as of v1.1 yet
 **NAME:**
-- `del` - delete an item
+- `deli` - delete an item
 
 **SYNOPSIS:**
-- `del` \<item name\> \[-r index\]
+- `deli` \<item name\>
 
 **DESCRIPTION:**
 - **deletes** the item in the inventory with the corresponding item name
-- **index:** 	if provided, deletes the <u>recipe</u> numbered <u>index</u>, 
 
 **EXAMPLE:**
-- `del` <u>Bob’s 28th finger</u>
+- `deli` <u>Bob’s 28th finger</u>
 - Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
 ### Deleting a Recipe : `delr`
