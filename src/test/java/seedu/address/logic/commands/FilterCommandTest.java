@@ -24,8 +24,8 @@ import seedu.address.testutil.TypicalFlashcards;
  * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
-    private Model model = new ModelManager(TypicalFlashcards.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalFlashcards.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalFlashcards.getTypicalFlashcardDeck(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalFlashcards.getTypicalFlashcardDeck(), new UserPrefs());
 
     @Test
     public void equals() {
