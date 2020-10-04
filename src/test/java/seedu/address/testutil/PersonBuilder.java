@@ -68,8 +68,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Species} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSpecies(String address) {
-        this.species = new Species(address);
+    public PersonBuilder withSpecies(String species) {
+        this.species = new Species(species);
         return this;
     }
 
