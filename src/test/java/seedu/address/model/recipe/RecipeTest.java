@@ -60,13 +60,9 @@ public class RecipeTest {
         // different item -> returns false
         assertFalse(APPLE_PIE.equals(BANANA_PIE));
 
-        // different id -> returns false
-        Recipe editedApplePie = new RecipeBuilder(APPLE_PIE).withId(VALID_RECIPE_ID_TWO).build();
-        assertFalse(APPLE_PIE.equals(editedApplePie));
-
         // different ingredients -> returns false
         IngredientList ingredientList = new IngredientList();
-        editedApplePie = new RecipeBuilder(APPLE_PIE).withIngredients(ingredientList).build();
+        Recipe editedApplePie = new RecipeBuilder(APPLE_PIE).withIngredients(ingredientList).build();
         assertFalse(APPLE_PIE.equals(editedApplePie));
 
         // different quantity -> returns false

@@ -3,7 +3,6 @@ package seedu.address.model.recipe;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC_APPLE_PIE_ALTERNATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_ID_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_QUANTITY_APPLE_PIE_ALTERNATE;
 import static seedu.address.testutil.TypicalRecipePrecursors.APPLE_PIE_PRECURSOR;
 import static seedu.address.testutil.TypicalRecipePrecursors.BANANA_PIE_PRECURSOR;
@@ -38,14 +37,9 @@ public class RecipePrecursorTest {
         // different item -> returns false
         assertFalse(APPLE_PIE_PRECURSOR.equals(BANANA_PIE_PRECURSOR));
 
-        // different id -> returns false
-        RecipePrecursor editedApplePiePrecursor = new RecipePrecursorBuilder(APPLE_PIE_PRECURSOR)
-                .withId(VALID_RECIPE_ID_TWO).build();
-        assertFalse(APPLE_PIE_PRECURSOR.equals(editedApplePiePrecursor));
-
         // different ingredients -> returns false
         List<IngredientPrecursor> ingredientList = new ArrayList<>();
-        editedApplePiePrecursor = new RecipePrecursorBuilder(APPLE_PIE_PRECURSOR)
+        RecipePrecursor editedApplePiePrecursor = new RecipePrecursorBuilder(APPLE_PIE_PRECURSOR)
                 .withIngredients(ingredientList).build();
         assertFalse(APPLE_PIE_PRECURSOR.equals(editedApplePiePrecursor));
 
