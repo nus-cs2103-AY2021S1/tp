@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TutorialGroup;
-import seedu.address.model.person.Person;
 
-import static java.util.Objects.requireNonNull;
 
-public class AddTGCommand extends Command {
+public class AddTutorialGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "addTG";
     public static final String MESSAGE_SUCCESS = "Tutorial Grp has been added";
@@ -17,7 +17,11 @@ public class AddTGCommand extends Command {
 
     private final TutorialGroup toAdd;
 
-    public AddTGCommand(TutorialGroup tutorialGroup) {
+    /**
+     * Main constuctor, called by the AddTutorialGroupCommand Parser
+     * @param tutorialGroup
+     */
+    public AddTutorialGroupCommand(TutorialGroup tutorialGroup) {
         requireNonNull(tutorialGroup);
         toAdd = tutorialGroup;
     }
@@ -31,6 +35,6 @@ public class AddTGCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddTGCommand) other).toAdd));
+                && toAdd.equals(((AddTutorialGroupCommand) other).toAdd));
     }
 }
