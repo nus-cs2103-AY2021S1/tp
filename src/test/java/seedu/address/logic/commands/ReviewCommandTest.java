@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ReviewCommand.MESSAGE_START_REVIEW_SUCCESS;
+import static seedu.address.logic.commands.ReviewCommand.MESSAGE_INITIATE_REVIEW_SUCCESS;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ public class ReviewCommandTest {
 
     @Test
     public void execute_review_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_START_REVIEW_SUCCESS, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_INITIATE_REVIEW_SUCCESS, false, false, true);
         assertCommandSuccess(new ReviewCommand(), model, expectedCommandResult, expectedModel);
     }
 }
