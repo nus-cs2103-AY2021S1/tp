@@ -44,7 +44,6 @@ public class HelpWindow extends UiPart<Stage> {
             + "/blob/master/docs/UserGuide.md";
     public static final Hyperlink USERGUIDE_LINK = new Hyperlink(USERGUIDE_URL);
 
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 

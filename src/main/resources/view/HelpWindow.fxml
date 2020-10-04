@@ -22,46 +22,55 @@
                         <Insets right="1.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="addMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="deleteMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="deleteMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="findMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="findMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="updateMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="updateMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="exitMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
                     </VBox.margin>
                 </Label>
+
                 <Label fx:id="exitMessage" text="Label" >
                     <VBox.margin>
                         <Insets right="5.0" />
