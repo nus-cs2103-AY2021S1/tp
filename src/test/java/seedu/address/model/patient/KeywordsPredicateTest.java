@@ -72,4 +72,54 @@ public class KeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
+
+    @Test
+    public void test_nricMatchesKeywords_returnsTrue() {
+        // One keyword
+        KeywordsPredicate predicate = new KeywordsPredicate(Collections.singletonList("S12345678D"));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S12345678D").build()));
+
+        // Multiple keywords
+        predicate = new KeywordsPredicate(Arrays.asList("S12345678D", "S00000001A"));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S12345678D").build()));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S00000001A").build()));
+
+        // Mixed-case keywords
+        predicate = new KeywordsPredicate(Arrays.asList("s12345678d", "S00000001e"));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S12345678D").build()));
+    }
+
+    @Test
+    public void test_nricDoesNotMatchKeywords_returnsFalse() {
+        // Zero keywords
+        KeywordsPredicate predicate = new KeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new PersonBuilder().withNric("S12345678D").build()));
+
+        // Non-matching keyword
+        predicate = new KeywordsPredicate(Arrays.asList("S12345678D"));
+        assertFalse(predicate.test(new PersonBuilder().withNric("S00000001A").build()));
+        assertFalse(predicate.test(new PersonBuilder().withNric("S00000002B").build()));
+
+        // Keywords match phone, email and address, but does not match nric
+        predicate = new KeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new PersonBuilder().withNric("S00000001A").withPhone("12345")
+                .withEmail("alice@email.com").withAddress("Main Street").build()));
+    }
+
+    @Test
+    public void test_nameAndNricContainsKeywords_returnsTrue() {
+        // Mix of name and nric keywords
+        KeywordsPredicate predicate = new KeywordsPredicate(Arrays.asList("Alice", "S12345678D", "Bob", "S00000001A"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Li").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("Bob Ng").build()));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S12345678D").build()));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S00000001A").build()));
+
+        // Mixed-case keywords
+        predicate = new KeywordsPredicate(Arrays.asList("alICe", "S12345678d", "bOB", "s00000001A"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Li").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("Bob Ng").build()));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S12345678D").build()));
+        assertTrue(predicate.test(new PersonBuilder().withNric("S00000001A").build()));
+    }
 }
