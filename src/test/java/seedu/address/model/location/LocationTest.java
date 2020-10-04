@@ -2,6 +2,7 @@ package seedu.address.model.location;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLocations.DENVER;
 import static seedu.address.testutil.TypicalLocations.NEW_YORK;
 
@@ -10,6 +11,32 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.LocationBuilder;
 
 public class LocationTest {
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Location(null));
+    }
+
+    @Test
+    public void constructor_invalidAddress_throwsIllegalArgumentException() {
+        String invalidLocation = "";
+        assertThrows(IllegalArgumentException.class, () -> new Location(invalidLocation));
+    }
+
+    @Test
+    public void isValidLocation() {
+        // null locations
+        assertThrows(NullPointerException.class, () -> Location.isValidLocation(null));
+
+        // invalid locations
+        assertFalse(Location.isValidLocation("")); // empty string
+        assertFalse(Location.isValidLocation(" ")); // spaces only
+
+        // valid locations
+        assertTrue(Location.isValidLocation("Desire Town"));
+        assertTrue(Location.isValidLocation("-")); // one character
+        assertTrue(Location.isValidLocation("Bob's Vineyard in Cornwall, UK")); // long location
+    }
+
     /**
      * Tests for location equality, defined as two locations having the same name.
      */
