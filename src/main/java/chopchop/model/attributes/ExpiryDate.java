@@ -11,7 +11,7 @@ public class ExpiryDate {
     public static final String MESSAGE_CONSTRAINTS =
         "Expiry date should be in the form, yyyy-MM-dd";
     //temporary using 1 fixed date format before parser is integrated.
-    public static final DateTimeFormatter format = DateTimeFormatter.ISO_DATE;
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ISO_DATE;
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}";
     private final LocalDate date;
 
@@ -37,7 +37,7 @@ public class ExpiryDate {
             return false;
         }
         try {
-            LocalDate.parse(inputDate , format);
+            LocalDate.parse(inputDate , FORMAT);
         } catch (DateTimeParseException e) {
             return false;
         }
