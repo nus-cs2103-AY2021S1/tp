@@ -9,7 +9,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 * [Quick start](#qs)
 * [Features](#features)
-  * [Viewing help](#help) (coming soon)
+  * [Viewing help](#help)
   * [Adding a students](#add)
   * [Listing all students](#list)
   * [Locating students by name](#find)
@@ -75,7 +75,7 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 Shows a message explaining how to access the help page.
 
-[insert help message image]
+!["print"](.\images\helpDialog.png)
 
 ```
 help
