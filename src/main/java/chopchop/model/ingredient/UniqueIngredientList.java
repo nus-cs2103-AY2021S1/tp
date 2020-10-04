@@ -74,7 +74,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
      * Replaces the contents of this list with {@code Ingredients}.
      * {@code Ingredients} must not contain duplicate Ingredients.
      */
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredientEntries(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
         if (!ingredientsAreUnique(ingredients)) {
             throw new chopchop.model.ingredient.exceptions.DuplicateIngredientException();

@@ -6,7 +6,7 @@ import static chopchop.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Lists all recipes in the recipe book to the user.
+ * Lists all ingredients in the ingredient book to the user.
  */
 public class ListIngredientCommand extends ListCommand {
 

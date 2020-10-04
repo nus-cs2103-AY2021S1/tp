@@ -1,8 +1,5 @@
 package chopchop.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static chopchop.model.Model.PREDICATE_SHOW_ALL_RECIPES;
-
 import chopchop.model.Model;
 
 /**

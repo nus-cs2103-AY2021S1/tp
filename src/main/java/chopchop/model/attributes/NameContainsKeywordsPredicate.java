@@ -5,11 +5,9 @@ import java.util.function.Predicate;
 
 import chopchop.commons.util.StringUtil;
 import chopchop.model.FoodEntry;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.Recipe;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code FoodEntry}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<FoodEntry> {
     private final List<String> keywords;
