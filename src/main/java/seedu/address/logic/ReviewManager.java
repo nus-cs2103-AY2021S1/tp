@@ -23,16 +23,16 @@ public class ReviewManager {
         currentIndex = 0;
     }
 
-    public boolean hasNext() {
+    public boolean hasNextFlashcard() {
         return currentIndex < flashcardList.size() - 1;
     }
 
-    public boolean hasPrevious() {
+    public boolean hasPreviousFlashcard() {
         return currentIndex > 0;
     }
 
     public Flashcard getNextFlashcard() {
-        if (!hasNext()) {
+        if (!hasNextFlashcard()) {
             return null;
         }
         currentIndex++;
@@ -44,7 +44,7 @@ public class ReviewManager {
     }
 
     public Flashcard getPrevFlashcard() {
-        if (!hasPrevious()) {
+        if (!hasPreviousFlashcard()) {
             return null;
         }
         currentIndex--;

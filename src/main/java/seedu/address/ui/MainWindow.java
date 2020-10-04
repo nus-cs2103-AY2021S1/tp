@@ -233,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
                 }
                 switch (event.getCode().getCode()) {
                 case 39: // right arrow key down
-                    if (!reviewManager.hasNext()) {
+                    if (!reviewManager.hasNextFlashcard()) {
                         exitReviewMode(ReviewManager.NO_NEXT_FLASHCARD_MESSAGE + "\n");
                     } else {
                         showReviewFlashcard(reviewManager.getNextFlashcard(),
@@ -241,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
                     }
                     break;
                 case 37: // left arrow key down
-                    if (!reviewManager.hasPrevious()) {
+                    if (!reviewManager.hasPreviousFlashcard()) {
                         exitReviewMode(ReviewManager.NO_PREVIOUS_FLASHCARD_MESSAGE + "\n");
                     } else {
                         showReviewFlashcard(reviewManager.getPrevFlashcard(),
