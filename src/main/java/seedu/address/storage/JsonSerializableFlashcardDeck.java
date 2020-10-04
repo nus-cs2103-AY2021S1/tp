@@ -9,53 +9,53 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.FlashcardDeck;
+import seedu.address.model.ReadOnlyFlashcardDeck;
 import seedu.address.model.flashcard.Flashcard;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable FlashcardDeck that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableFlashcardDeck {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcard list contains duplicate flashcard(s).";
 
     private final List<JsonAdaptedFlashcard> flashcards = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given flashcards.
+     * Constructs a {@code JsonSerializableFlashcardDeck} with the given flashcards.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
+    public JsonSerializableFlashcardDeck(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
         this.flashcards.addAll(flashcards);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFlashcardDeck} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableFlashcardDeck}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableFlashcardDeck(ReadOnlyFlashcardDeck source) {
         flashcards.addAll(source.getFlashcardList().stream().map(JsonAdaptedFlashcard::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this flash card deck into the model's {@code Flashcard} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public FlashcardDeck toModelType() throws IllegalValueException {
+        FlashcardDeck flashcardDeck = new FlashcardDeck();
         for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
             Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
-            if (addressBook.hasFlashcard(flashcard)) {
+            if (flashcardDeck.hasFlashcard(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            addressBook.addFlashcard(flashcard);
+            flashcardDeck.addFlashcard(flashcard);
         }
-        return addressBook;
+        return flashcardDeck;
     }
 
 }
