@@ -10,6 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -71,9 +75,18 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
     public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
 
+    public static final String VALID_RECIPE_PRODUCT_NAME_APPLE_PIE = "Apple Pie";
+    public static final String VALID_RECIPE_PRODUCT_NAME_BANANA_PIE = "Banana Pie";
     public static final int VALID_RECIPE_ID_TWO = 2;
-    public static final String VALID_RECIPE_QUANTITY_TWO = "2";
-    public static final String VALID_RECIPE_DESC = "Definitely would eat!";
+    public static final String VALID_RECIPE_QUANTITY_APPLE_PIE = "1";
+    public static final String VALID_RECIPE_QUANTITY_APPLE_PIE_ALTERNATE = "2";
+    public static final String VALID_RECIPE_QUANTITY_BANANA_PIE = "3";
+    public static final String VALID_RECIPE_DESC_APPLE_PIE = "Apple-y!";
+    public static final String VALID_RECIPE_DESC_APPLE_PIE_ALTERNATE = "Not Apple-y!";
+    public static final String VALID_RECIPE_DESC_BANANA_PIE = "Banana-y!";
+    public static final String VALID_RECIPE_INGREDIENTS_APPLE_PIE = "Apple[1] Banana[2]";
+    public static final String VALID_RECIPE_INGREDIENTS_BANANA_PIE = "Apple[2] Banana[1]";
+    public static final String INVALID_RECIPE_QUANTITY_APPLE_PIE = "-1";
 
     public static final String ITEM_NAME_DESC_APPLE = " "
             + PREFIX_ITEM_NAME + VALID_ITEM_NAME_APPLE;
@@ -91,6 +104,25 @@ public class CommandTestUtil {
             + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_PEACH_ORCHARD;
     public static final String ITEM_LOCATION_DESC_SPINACH_GARDEN = " "
             + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+
+    public static final String RECIPE_PRODUCT_NAME_APPLE_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_NAME + VALID_RECIPE_PRODUCT_NAME_APPLE_PIE;
+    public static final String RECIPE_PRODUCT_NAME_BANANA_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_NAME + VALID_RECIPE_PRODUCT_NAME_BANANA_PIE;
+    public static final String RECIPE_QUANTITY_APPLE_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_QUANTITY + VALID_RECIPE_QUANTITY_APPLE_PIE;
+    public static final String RECIPE_QUANTITY_BANANA_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_QUANTITY + VALID_RECIPE_QUANTITY_BANANA_PIE;
+    public static final String RECIPE_DESCRIPTION_APPLE_PIE = " "
+            + PREFIX_RECIPE_DESCRIPTION + VALID_RECIPE_DESC_APPLE_PIE;
+    public static final String RECIPE_DESCRIPTION_BANANA_PIE = " "
+            + PREFIX_RECIPE_DESCRIPTION + VALID_RECIPE_DESC_BANANA_PIE;
+    public static final String RECIPE_INGREDIENTS_APPLE_PIE = " "
+            + PREFIX_RECIPE_INGREDIENTS + VALID_RECIPE_INGREDIENTS_APPLE_PIE;
+    public static final String RECIPE_INGREDIENTS_BANANA_PIE = " "
+            + PREFIX_RECIPE_INGREDIENTS + VALID_RECIPE_INGREDIENTS_BANANA_PIE;
+    public static final String INVALID_RECIPE_QUANTITY = " "
+            + PREFIX_RECIPE_PRODUCT_QUANTITY + INVALID_RECIPE_QUANTITY_APPLE_PIE;
 
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_ITEM_QUANTITY + "9a"; // 'a' not allowed in quantity
 
