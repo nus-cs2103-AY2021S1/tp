@@ -5,8 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;*/
 
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
-//import seedu.address.model.recipe.Address;
-//import seedu.address.model.recipe.Email;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
@@ -52,7 +51,13 @@ public class EditRecipeDescriptorBuilder {
         return this;
     }
 
-
+    /**
+     * Sets the {@code Calories} of the {@code EditRecipeDescriptor} that we are building.
+     */
+    public EditRecipeDescriptorBuilder withCalories(Integer calories) {
+        descriptor.setCalories(new Calories(calories));
+        return this;
+    }
 
     public EditRecipeDescriptor build() {
         return descriptor;

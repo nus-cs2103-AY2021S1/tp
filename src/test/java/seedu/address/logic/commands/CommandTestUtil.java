@@ -72,9 +72,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withIngredient(VALID_INGREDIENT_AMY).build();
+                .withIngredient(VALID_INGREDIENT_AMY).withCalories(VALID_CALORIES_AMY).build();
         DESC_BOB = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB).build();
+                .withIngredient(VALID_INGREDIENT_BOB).withCalories(VALID_CALORIES_BOB).build();
     }
 
     /**
