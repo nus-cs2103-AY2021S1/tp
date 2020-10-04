@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[Visit our homepage](https://ay2021s1-cs2103t-w10-3.github.io/tp/)]
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the repoUrl `seer[at]comp.nus.edu.sg`
 
 ## Project team
 

@@ -23,7 +23,7 @@ public class Project {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final RepoUrl repoUrl;
 
     // Data fields
     private final Address address;
@@ -35,12 +35,12 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Project(Name name, Phone phone, RepoUrl repoUrl, Address address, Set<Tag> tags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(name, phone, email, address, tags, listOfParticipations, tasks);
+        requireAllNonNull(name, phone, repoUrl, address, tags, listOfParticipations, tasks);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.repoUrl = repoUrl;
         this.address = address;
         this.tags.addAll(tags);
         this.listOfParticipations.putAll(listOfParticipations);
@@ -55,8 +55,8 @@ public class Project {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public RepoUrl getRepoUrl() {
+        return repoUrl;
     }
 
     public Address getAddress() {
@@ -98,7 +98,7 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getName().equals(getName())
-                && (otherProject.getPhone().equals(getPhone()) || otherProject.getEmail().equals(getEmail()));
+                && (otherProject.getPhone().equals(getPhone()) || otherProject.getRepoUrl().equals(getRepoUrl()));
     }
 
     /**
@@ -118,7 +118,7 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getName().equals(getName())
                 && otherProject.getPhone().equals(getPhone())
-                && otherProject.getEmail().equals(getEmail())
+                && otherProject.getRepoUrl().equals(getRepoUrl())
                 && otherProject.getAddress().equals(getAddress())
                 && otherProject.getTags().equals(getTags())
                 && otherProject.getTasks().equals(getTasks());
@@ -127,7 +127,7 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, tasks);
+        return Objects.hash(name, phone, repoUrl, address, tags, tasks);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class Project {
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
-                .append(getEmail())
+                .append(getRepoUrl())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");

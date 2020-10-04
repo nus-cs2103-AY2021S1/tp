@@ -188,9 +188,9 @@ Adds a new teammate to a project
 Format: `new NAME p/PHONE_NUMBER e/EMAIL`
 - `NAME` refers to the name of the teammate
 - `PHONE_NUMBER` refers to the teammate's contact number
-- `EMAIL` refers to the teammate's email
+- `EMAIL` refers to the teammate's repoUrl
 
-Example: `new Lucas p/94311421 e/lucastai98@gmail.com` Instantiates teammate Lucas with the specified contact number and email
+Example: `new Lucas p/94311421 e/lucastai98@gmail.com` Instantiates teammate Lucas with the specified contact number and repoUrl
 
 #### Add existing teammates of other projects to participate in this project `involves `
 Involves an existing teammate in other projects to the current project

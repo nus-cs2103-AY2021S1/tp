@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
@@ -22,10 +22,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Address;
-import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
@@ -42,13 +42,13 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_REPOURL + "REPOURL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_REPOURL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -99,12 +99,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
         Phone updatedPhone = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
-        Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
+        RepoUrl updatedRepoUrl = editProjectDescriptor.getRepoUrl().orElse(projectToEdit.getRepoUrl());
         Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
-        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Project(updatedName, updatedPhone, updatedRepoUrl, updatedAddress,
                 updatedTags, new HashMap<>(), updatedTasks);
     }
 
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
     public static class EditProjectDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private RepoUrl repoUrl;
         private Address address;
         private Set<Tag> tags;
         private Set<Task> tasks;
@@ -147,7 +147,7 @@ public class EditCommand extends Command {
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setRepoUrl(toCopy.repoUrl);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setTasks(toCopy.tasks);
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, tasks);
+            return CollectionUtil.isAnyNonNull(name, phone, repoUrl, address, tags, tasks);
         }
 
         public void setName(Name name) {
@@ -176,12 +176,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setRepoUrl(RepoUrl repoUrl) {
+            this.repoUrl = repoUrl;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<RepoUrl> getRepoUrl() {
+            return Optional.ofNullable(repoUrl);
         }
 
         public void setAddress(Address address) {
@@ -243,7 +243,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
+                    && getRepoUrl().equals(e.getRepoUrl())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getTasks().equals(e.getTasks());
