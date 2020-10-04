@@ -5,7 +5,7 @@ title: ZooKeep
 
 [![CI Status](https://github.com/AY2021S1-CS2103T-W15-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W15-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S1-CS2103T-W15-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-W15-4/tp)
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0f70aafdfeb84814a92b76d5182cc82a)](https://www.codacy.com/gh/AY2021S1-CS2103T-W15-4/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2103T-W15-4/tp&amp;utm_campaign=Badge_Grade)
 
 ![Ui](images/Ui.png)
 
