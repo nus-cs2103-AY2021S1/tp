@@ -22,25 +22,25 @@ import seedu.address.model.log.Log;
 import seedu.address.model.log.exceptions.DuplicateLogException;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class LogBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final LogBook logBook = new LogBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), logBook.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> logBook.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        LogBook newData = getTypicalAddressBook();
+        logBook.resetData(newData);
+        assertEquals(newData, logBook);
     }
 
     @Test
@@ -51,36 +51,36 @@ public class AddressBookTest {
         List<Log> newLogs = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newLogs);
 
-        assertThrows(DuplicateLogException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateLogException.class, () -> logBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> logBook.hasPerson(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(logBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        logBook.addPerson(ALICE);
+        assertTrue(logBook.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        logBook.addPerson(ALICE);
         Log editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(logBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logBook.getPersonList().remove(0));
     }
 
     /**

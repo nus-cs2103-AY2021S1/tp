@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.LogBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -163,7 +163,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Log log) {
             requireNonNull(log);
-            return this.log.isSamePerson(log);
+            return this.log.isSameLog(log);
         }
     }
 
@@ -176,7 +176,7 @@ public class AddCommandTest {
         @Override
         public boolean hasPerson(Log log) {
             requireNonNull(log);
-            return personsAdded.stream().anyMatch(log::isSamePerson);
+            return personsAdded.stream().anyMatch(log::isSameLog);
         }
 
         @Override
@@ -187,7 +187,7 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+            return new LogBook();
         }
     }
 

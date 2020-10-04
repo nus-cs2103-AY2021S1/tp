@@ -13,14 +13,14 @@ import seedu.address.model.log.exceptions.LogNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A log is considered unique by comparing using {@code Log#isSamePerson(Log)}. As such, adding and updating of
- * persons uses Log#isSamePerson(Log) for equality so as to ensure that the log being added or updated is
+ * A log is considered unique by comparing using {@code Log#isSameLog(Log)}. As such, adding and updating of
+ * persons uses Log#isSameLog(Log) for equality so as to ensure that the log being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a log uses Log#equals(Object) so
  * as to ensure that the log with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Log#isSamePerson(Log)
+ * @see Log#isSameLog(Log)
  */
 public class UniquePersonList implements Iterable<Log> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Log> {
      */
     public boolean contains(Log toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameLog);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Log> {
             throw new LogNotFoundException();
         }
 
-        if (!target.isSamePerson(editedLog) && contains(editedLog)) {
+        if (!target.isSameLog(editedLog) && contains(editedLog)) {
             throw new DuplicateLogException();
         }
 
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Log> {
     private boolean personsAreUnique(List<Log> logs) {
         for (int i = 0; i < logs.size() - 1; i++) {
             for (int j = i + 1; j < logs.size(); j++) {
-                if (logs.get(i).isSamePerson(logs.get(j))) {
+                if (logs.get(i).isSameLog(logs.get(j))) {
                     return false;
                 }
             }

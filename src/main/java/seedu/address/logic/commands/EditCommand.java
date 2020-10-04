@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         Log logToEdit = lastShownList.get(index.getZeroBased());
         Log editedLog = createEditedPerson(logToEdit, editPersonDescriptor);
 
-        if (!logToEdit.isSamePerson(editedLog) && model.hasPerson(editedLog)) {
+        if (!logToEdit.isSameLog(editedLog) && model.hasPerson(editedLog)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
