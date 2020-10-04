@@ -2,9 +2,6 @@ package seedu.address.model.meeting;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
-import java.util.ArrayList;
-
-import seedu.address.model.person.Person;
 
 public class Meeting {
     private String name;
@@ -17,7 +14,6 @@ public class Meeting {
     private LocalDate endDate;
     private String note;
     private boolean isDone;
-    private ArrayList<Person> attendees = new ArrayList<>();
 
     /**
      * Constructor for meeting.
@@ -36,17 +32,10 @@ public class Meeting {
         isDone = true;
     }
 
-    public ArrayList<Person> getAttendees() {
-        return attendees;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void addAttendee(Person person) {
-        attendees.add(person);
-    }
 
     public String getDescription() {
         return description;
