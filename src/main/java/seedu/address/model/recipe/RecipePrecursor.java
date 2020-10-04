@@ -67,8 +67,7 @@ public class RecipePrecursor {
         }
 
         RecipePrecursor otherRecipe = (RecipePrecursor) other;
-        return otherRecipe.getId() == getId()
-                && otherRecipe.getIngredientPrecursors().equals(getIngredientPrecursors())
+        return otherRecipe.getIngredientPrecursors().equals(getIngredientPrecursors())
                 && otherRecipe.getProductName().equals(getProductName())
                 && otherRecipe.getProductQuantity().equals(getProductQuantity())
                 && otherRecipe.getDescription().equals(getDescription());
