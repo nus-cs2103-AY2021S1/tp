@@ -12,14 +12,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
- * Tests that a {@code Item}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Item}'s {@code Name} or {@code Supplier} or {@code Tags} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Item> {
+public class ItemContainsKeywordsPredicate implements Predicate<Item> {
 
     private final List<String> keywords;
     private final Prefix prefix;
 
-    public NameContainsKeywordsPredicate(List<String> keywords, Prefix prefix) {
+    public ItemContainsKeywordsPredicate(List<String> keywords, Prefix prefix) {
         this.keywords = keywords;
         this.prefix = prefix;
     }
@@ -35,7 +35,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Item> {
         } else if (PREFIX_TAG.equals(prefix)) {
             StringBuilder tags = new StringBuilder();
             for (Tag tag : item.getTags()) {
-                tags.append(tag);
+                tags.append(tag).append(" ");
             }
             return keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tags.toString(), keyword));
@@ -46,8 +46,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Item> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof ItemContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((ItemContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

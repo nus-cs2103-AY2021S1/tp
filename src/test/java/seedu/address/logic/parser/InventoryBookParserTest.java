@@ -25,7 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.NameContainsKeywordsPredicate;
+import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
 import seedu.address.testutil.ItemUtil;
@@ -74,7 +74,7 @@ public class InventoryBookParserTest {
         List<String> keywords = Arrays.asList("CHICKEN","FEET");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "n/chicken feet");
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
+        assertEquals(new FindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
     }
 
     @Test

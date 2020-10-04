@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.item.NameContainsKeywordsPredicate;
+import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -27,10 +27,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"), PREFIX_NAME);
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"), PREFIX_NAME);
+        ItemContainsKeywordsPredicate firstPredicate =
+                new ItemContainsKeywordsPredicate(Collections.singletonList("first"), PREFIX_NAME);
+        ItemContainsKeywordsPredicate secondPredicate =
+                new ItemContainsKeywordsPredicate(Collections.singletonList("second"), PREFIX_NAME);
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,7 +55,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noItemFound() {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), PREFIX_NAME);
+    private ItemContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new ItemContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), PREFIX_NAME);
     }
 }

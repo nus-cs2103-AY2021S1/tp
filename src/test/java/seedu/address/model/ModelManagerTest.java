@@ -16,7 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.item.NameContainsKeywordsPredicate;
+import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.InventoryBookBuilder;
 
 public class ModelManagerTest {
@@ -119,7 +119,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = CHICKEN.getName().fullName.split("\\s+");
-        modelManager.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(keywords), PREFIX_NAME));
+        modelManager.updateFilteredItemList(new ItemContainsKeywordsPredicate(Arrays.asList(keywords), PREFIX_NAME));
         assertFalse(modelManager.equals(new ModelManager(inventoryBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -1,13 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.item.NameContainsKeywordsPredicate;
+import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
 /**
  * Finds and lists all items in inventory book whose name contains any of the argument keywords.
@@ -23,9 +20,9 @@ public class FindCommand extends Command {
             + "Parameters: " + "PREFIX " + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " n/chicken";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ItemContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(ItemContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
