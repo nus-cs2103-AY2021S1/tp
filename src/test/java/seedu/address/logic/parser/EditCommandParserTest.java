@@ -183,8 +183,8 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + TASK_DESC_MODEL;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withProjectDescription(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .withTasks(VALID_TASK_DG, VALID_TASK_MODEL)
+                .withEmail(VALID_EMAIL_BOB).withProjectDescription(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND,
+                VALID_TAG_HUSBAND).withTasks(VALID_TASK_DG, VALID_TASK_MODEL)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
