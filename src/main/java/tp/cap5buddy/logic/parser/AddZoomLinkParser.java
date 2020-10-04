@@ -16,7 +16,7 @@ public class AddZoomLinkParser extends Parser {
         Tokenizer token = new Tokenizer(userInput);
         String[] parsedArguments = token.getWords();
         try {
-            int moduleID = Integer.parseInt(parsedArguments[2]);
+            int moduleID = Integer.parseInt(parsedArguments[4]);
             String zoomLink = parsedArguments[1];
             return new AddZoomLinkCommand(moduleID, zoomLink);
         } catch (NumberFormatException ex) {
