@@ -11,7 +11,7 @@ public class Step {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Recipe steps should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "^(?=\\s*\\S).*$";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][a-zA-Z0-9\\s\\W]*";
 
     public final String step;
 
