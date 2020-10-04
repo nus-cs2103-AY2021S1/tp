@@ -19,8 +19,6 @@ public class FindRecipeCommand extends FindCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " sugar tomato orange";
 
-    private NameContainsKeywordsPredicate predicate;
-
     public FindRecipeCommand(NameContainsKeywordsPredicate predicate) {
         super(predicate);
     }

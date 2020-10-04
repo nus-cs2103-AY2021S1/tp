@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 /**
  * Unmodifiable view of a food entry book
  */
-public interface ReadOnlyFoodEntryBook {
+public interface ReadOnlyFoodEntryBook <FoodEntry> {
 
     /**
      * Returns an unmodifiable view of the food entry list.

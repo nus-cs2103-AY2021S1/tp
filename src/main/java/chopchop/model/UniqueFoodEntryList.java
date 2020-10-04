@@ -67,22 +67,22 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
         }
     }
 
-    public void setFoodEntrys(UniqueFoodEntryList replacement) {
+    public void setFoodEntries(UniqueFoodEntryList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code FoodEntrys}.
-     * {@code FoodEntrys} must not contain duplicate FoodEntrys.
+     * Replaces the contents of this list with {@code FoodEntries}.
+     * {@code FoodEntries} must not contain duplicate FoodEntries.
      */
-    public void setFoodEntries(List<FoodEntry> ingredients) {
-        requireAllNonNull(ingredients);
-        if (!ingredientsAreUnique(ingredients)) {
+    public void setFoodEntries(List<FoodEntry> entries) {
+        requireAllNonNull(entries);
+        if (!ingredientsAreUnique(entries)) {
             throw new DuplicateEntryException();
         }
 
-        internalList.setAll(ingredients);
+        internalList.setAll(entries);
     }
 
     /**
@@ -110,7 +110,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
     }
 
     /**
-     * Returns true if {@code FoodEntrys} contains only unique FoodEntrys.
+     * Returns true if {@code FoodEntries} contains only unique FoodEntries.
      */
     private boolean ingredientsAreUnique(List<FoodEntry> ingredients) {
         for (int i = 0; i < ingredients.size() - 1; i++) {
