@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Chia Qian
 
-<img src="images/TCQian.png" width="200px">
+<img src="images/tcqian.png" width="200px">
 
 [[github](http://github.com/TCQian)]
 
