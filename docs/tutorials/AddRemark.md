@@ -5,7 +5,8 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the MainCatalogue application to add optional remarks to people in their main catalogue and edit it if required. The command should have the following format:
+This command allows users of the MainCatalogue application to add optional remarks to people in their main 
+catalogue and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -14,7 +15,9 @@ We’ll assume that you have already set up the development environment as outli
 
 ## Create a new `remark` command
 
-Looking in the `logic.command` package, you will notice that each existing command have their own class. All the commands inherit from the abstract class `Command` which means that they must override `execute()`. Each `Command` returns an instance of `CommandResult` upon success and `CommandResult#feedbackToUser` is printed to the `ResultDisplay`.
+Looking in the `logic.command` package, you will notice that each existing command have their own class. All 
+the commands inherit from the abstract class `Command` which means that they must override `execute()`. Each `Command` returns an instance of `CommandResult` upon success and `CommandResult#feedbackToUser` is printed to the 
+`ResultDisplay`.
 
 Let’s start by creating a new `RemarkCommand` class in the `src/main/java/seedu/address/logic/command` directory.
 
@@ -86,7 +89,8 @@ Let’s change `RemarkCommand` to parse input from the user.
 
 ### Make the command accept parameters
 
-We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`. While we are at it, let’s change the error message to echo the values. While this is not a replacement for tests, it is an obvious way to tell if our code is functioning as intended.
+We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`. While we are at it, let’s change the error message to echo the values. While this is not a replacement for tests, it is an obvious way to tell 
+if our code is functioning as intended.
 
 ``` java
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -143,7 +147,8 @@ Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package
 
 ![The relationship between Parser and RemarkCommandParser](../images/add-remark/ParserInterface.png)
 
-Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.
+Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc 
+provided for the function to understand what it does.
 
 **`ArgumentTokenizer.java`:**
 
@@ -161,7 +166,8 @@ Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input.
  */
 ```
 
-We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` and it will return us an instance of `ArgumentMultimap`. Now let’s find out what we need to do in order to obtain the Index and String that we need. Let’s look through `ArgumentMultimap` :
+We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` and it will return us an instance of `ArgumentMultimap`. Now let’s find out what we need to do in order to obtain the Index and String that we need. Let’s
+ look through `ArgumentMultimap` :
 
 **`ArgumentMultimap.java`:**
 
@@ -176,7 +182,8 @@ public Optional<String> getValue(Prefix prefix) {
 }
 ```
 
-This appears to be what we need to get a String of the remark. But what about the Index? Let's take a quick peek at existing `Command` that uses an index to see how it is done.
+This appears to be what we need to get a String of the remark. But what about the Index? Let's take a quick peek at
+ existing `Command` that uses an index to see how it is done.
 
 **`DeleteCommandParser.java`:**
 
@@ -187,7 +194,8 @@ return new DeleteCommand(index);
 
 There appears to be another utility class that obtains an `Index` from the input provided by the user.
 
-Now that we have the know-how to extract the data that we need from the user’s input, we can parse the user command and create a new instance of `RemarkCommand`, as given below.
+Now that we have the know-how to extract the data that we need from the user’s input, we can parse the user command
+ and create a new instance of `RemarkCommand`, as given below.
 
 **`RemarkCommandParser.java`:**
 
@@ -222,18 +230,22 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of project data. We achieve that by working with the `Project` model. Each field in a Project is implemented as a separate class (e.g. a `Name` object represents the project’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a project.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of project data. We achieve that by working with the `Project` model. Each field in a Project is implemented as a separate class (e.g. a `Name` object represents the project’s projectName). That means we should add
+ a `Remark` class so that we can use a `Remark` object to represent a remark given to a project.
 
 ### Add a new `Remark` class
 
 Create a new `Remark` in `seedu.address.model.project`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
-A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no constrains and thus does not require input
+A copy-paste and search-replace later, you should have something like 
+[this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no 
+constrains and thus does not require input
 validation.
 
 ### Make use of `Remark`
 
-Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark` class instead of plain `String`. These should be relatively simple changes.
+Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark` class instead of plain `String`. 
+These should be relatively simple changes.
 
 ## Add a placeholder element for remark to the UI
 
@@ -249,7 +261,8 @@ private Label remark;
 ```
 
 
-`@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
+`@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like 
+Greek to you right now, don’t worry — we will get back to it later.
 
 Then insert the following into [`main/resources/view/ProjectListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-12580431f55d7880578aa4c16f249e71).
 
@@ -269,11 +282,13 @@ Since `ProjectCard` displays data from a `Project`, we need to update `Project` 
 
 ### Modify `Project`
 
-We change the constructor of `Project` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Project` to take a `Remark`. We will also need to define new fields and accessors 
+accordingly to store our new addition.
 
 ### Update other usages of `Project`
 
-Unfortunately, a change to `Project` will cause other commands to break, you will have to modify these commands to use the updated `Project`!
+Unfortunately, a change to `Project` will cause other commands to break, you will have to modify these commands to use
+ the updated `Project`!
 
 <div markdown="span" class="alert alert-primary">
 
@@ -292,7 +307,8 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete MainCatalogue’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause MainCatalogue to default to an empty main catalogue!
+:exclamation: You must delete MainCatalogue’s storage file located at `/data/addressbook.json` before running it! Not
+ doing so will cause MainCatalogue to default to an empty main catalogue!
 
 </div>
 
@@ -318,11 +334,13 @@ public ProjectCard(Project project, int displayedIndex) {
 
 ## Putting everything together
 
-After the previous step, we notice a peculiar regression — we went from displaying something to nothing at all. However, this is expected behavior as we are yet to update the `RemarkCommand` to make use of the code we've been adding in the last few steps.
+After the previous step, we notice a peculiar regression — we went from displaying something to nothing at all. However, this is expected behavior as we are yet to update the `RemarkCommand` to make use of the code we've been
+ adding in the last few steps.
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Project`. Since all fields in a `Project` are immutable, we create a new instance of a `Project` with the values that we want and
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Project`. Since all fields in a
+ `Project` are immutable, we create a new instance of a `Project` with the values that we want and
 save it with `Model#setProject()`.
 
 **`RemarkCommand.java`:**
@@ -364,7 +382,8 @@ save it with `Model#setProject()`.
 
 ## Writing tests
 
-Tests are crucial to ensuring that bugs don’t slip into the codebase unnoticed. This is especially true for large code bases where a change might lead to unintended behavior.
+Tests are crucial to ensuring that bugs don’t slip into the codebase unnoticed. This is especially true for large
+ code bases where a change might lead to unintended behavior.
 
 Let’s verify the correctness of our code by writing some tests!
 
@@ -375,7 +394,8 @@ The goal is to write effective and efficient tests to ensure that `RemarkCommand
 The convention for test names is `methodName_testScenario_expectedResult`. An example would be
 `execute_filteredList_success`.
 
-Let’s create a test for `RemarkCommand#execute()` to test that adding a remark works. On `IntelliJ IDEA` you can bring up the context menu and choose to `Go To` \> `Test` or use the appropriate keyboard shortcut.
+Let’s create a test for `RemarkCommand#execute()` to test that adding a remark works. On `IntelliJ IDEA` you can
+ bring up the context menu and choose to `Go To` \> `Test` or use the appropriate keyboard shortcut.
 
 ![Using the context menu to jump to tests](../images/add-remark/ContextMenu.png)
 
@@ -383,9 +403,10 @@ Then, create a test for the `execute` method.
 
 ![Creating a test for `execute`.](../images/add-remark/CreateTest.png)
 
-Following convention, let’s change the name of the generated method to `execute_addRemarkUnfilteredList_success`.
+Following convention, let’s change the projectName of the generated method to `execute_addRemarkUnfilteredList_success`.
 
-Let’s use the utility functions provided in `CommandTestUtil`. The functions ensure that commands produce the expected `CommandResult` and output the correct message. In this case, `CommandTestUtil#assertCommandSuccess` is the best fit as we are testing that a `RemarkCommand` will successfully add a `Remark`.
+Let’s use the utility functions provided in `CommandTestUtil`. The functions ensure that commands produce the expected `CommandResult` and output the correct message. In this case, `CommandTestUtil#assertCommandSuccess` is the best fit
+ as we are testing that a `RemarkCommand` will successfully add a `Remark`.
 
 You should end up with a test that looks something like [this](https://github.com/se-edu/addressbook-level3/commit/fac8f3fd855d55831ca0cc73313b5943d49d4d6e#diff-d749de38392f7ea504da7824641ba8d9).
 

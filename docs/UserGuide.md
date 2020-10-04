@@ -85,7 +85,7 @@ Adds a project to the project list.
 Format: `add project n/NAME d/DUEDATE t/TEAM`
 TEAM is any number of names separated by “ “ spaces.
 
-Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the name Taskmania, due
+Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due
  date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
 
 ### Starting work on an existing project `start `
@@ -149,9 +149,9 @@ Format: `find KEYWORD`
 
 Instruction: 
 
-1. Type the command `find` with the `KEYWORD` which might be found in the name of the task that the user is looking for.(eg. `find read` to find  the task 'todo reading')
+1. Type the command `find` with the `KEYWORD` which might be found in the projectName of the task that the user is looking for.(eg. `find read` to find  the task 'todo reading')
 
-Outcome: List of tasks with the name containing the keyword will be shown.
+Outcome: List of tasks with the projectName containing the keyword will be shown.
 
 #### Giving a task a certain level of priority `prioritise `
 
@@ -175,7 +175,7 @@ Outcome: The task is assigned with the priority level.
 Displays a list of tasks allocated to the specified members.
 
 Format: `view NAME`
-- NAME refers to the name of the team member when it was first input during project creation.
+- NAME refers to the projectName of the team member when it was first input during project creation.
 
 Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
 
@@ -186,7 +186,7 @@ Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
 Adds a new teammate to a project
 
 Format: `new NAME p/PHONE_NUMBER e/EMAIL`
-- `NAME` refers to the name of the teammate
+- `NAME` refers to the projectName of the teammate
 - `PHONE_NUMBER` refers to the teammate's contact number
 - `EMAIL` refers to the teammate's email
 
@@ -196,7 +196,7 @@ Example: `new Lucas p/94311421 e/lucastai98@gmail.com` Instantiates teammate Luc
 Involves an existing teammate in other projects to the current project
 
 Format: `involves NAME`
-- `NAME` refers to the name of the teammate; by this, we should guarantee that teammates of all projects have different names if they are different people
+- `NAME` refers to the projectName of the teammate; by this, we should guarantee that teammates of all projects have different names if they are different people
 
 Example: `involves Lucas` for `Lucas` that participates in another existing project
 

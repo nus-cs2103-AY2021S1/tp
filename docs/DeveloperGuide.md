@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same projectName as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -275,7 +275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS:**
 
 1. Team leader creates a new project profile.
-2. PTS asks for the details of project such as project name, project due date and project team members.
+2. PTS asks for the details of project such as project projectName, project due date and project team members.
 3. Team leader keys in the details.
 4. PTS stores the project profile into the data file.
 
@@ -296,9 +296,9 @@ Use case ends.
 
 **MSS:**
 1. Team leader chooses to edit a project profile.
-2. PTS asks for the name of the project which project profile is to be edited.
-3. Team leader keys in the name of the project.
-4. PTS asks for the new infomation of project such as project name, project due date and project team members.
+2. PTS asks for the projectName of the project which project profile is to be edited.
+3. Team leader keys in the projectName of the project.
+4. PTS asks for the new infomation of project such as project projectName, project due date and project team members.
 5. Team leader keys in the details.
 6. PTS stores the team member's profile into the data file. 
 
@@ -306,7 +306,7 @@ Use case ends.
  
 **Extensions**
       
- * 3a. The given name is not found.
+ * 3a. The given projectName is not found.
    * 3a1. PTS shows an error message.
     
 Use case ends.
@@ -326,7 +326,7 @@ Use case ends.
 **MSS:**
 
 1. Team leader create a new team member profile.
-2. TMTS asks for the details of the team member such as name, phone number and email address.
+2. TMTS asks for the details of the team member such as projectName, phone number and email address.
 3. Team leader keys in the details.
 4. TMTS stores the team member's profile into the data file.
 
@@ -349,9 +349,9 @@ Use case ends.
 **MSS:**
 
 1. Team leader chooses to edit a team member's profile.
-2. PTS asks for the name of the team member whose profile is to be edited.
-3. Team leader keys in the name of the team member.
-4. TMTS asks for the new information of team member such as name, phone number and email address.
+2. PTS asks for the projectName of the team member whose profile is to be edited.
+3. Team leader keys in the projectName of the team member.
+4. TMTS asks for the new information of team member such as projectName, phone number and email address.
 5. Team leader keys in the details.
 6. TMTS stores the team member's profile into the data file.
 
@@ -359,7 +359,7 @@ Use case ends.
 
 **Extensions**
       
- * 3a. The given name is not found.
+ * 3a. The given projectName is not found.
    * 3a1. PTS shows an error message.
     
 Use case ends.
@@ -415,7 +415,7 @@ Use case ends.
 
 **MSS:**
 
-1. User requests to add a task in a project with specifications such as name, deadline, etc.
+1. User requests to add a task in a project with specifications such as projectName, deadline, etc.
 2. PMS adds the task with given specifications.
 
 Use case ends.
@@ -461,7 +461,7 @@ Use case ends.
 
 **MSS:**
 
-1. User requests to find a task based on its name, description, deadline, etc.
+1. User requests to find a task based on its projectName, description, deadline, etc.
 2. PMS shows the list of filtered tasks with given specifications.
 
 Use case ends.
@@ -517,7 +517,7 @@ Use case ends
 
 Use case ends.
 
- * 2c. The name of person does not exist in the project.
+ * 2c. The projectName of person does not exist in the project.
    * 2c1. PMS shows an error message. 
 
 Use case ends.

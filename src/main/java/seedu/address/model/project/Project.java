@@ -21,7 +21,7 @@ import seedu.address.model.task.Task;
 public class Project {
 
     // Identity fields
-    private final Name name;
+    private final ProjectName projectName;
     private final Phone phone;
     private final Email email;
 
@@ -35,10 +35,10 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Project(ProjectName projectName, Phone phone, Email email, Address address, Set<Tag> tags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(name, phone, email, address, tags, listOfParticipations, tasks);
-        this.name = name;
+        requireAllNonNull(projectName, phone, email, address, tags, listOfParticipations, tasks);
+        this.projectName = projectName;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -47,8 +47,8 @@ public class Project {
         this.tasks.addAll(tasks);
     }
 
-    public Name getName() {
-        return name;
+    public ProjectName getProjectName() {
+        return projectName;
     }
 
     public Phone getPhone() {
@@ -83,12 +83,16 @@ public class Project {
         return Collections.unmodifiableSet(tasks);
     }
 
+    /**
+     * Adds a participation instance of a Person to a project
+     */
     public void addParticipation(Person p) {
-        listOfParticipations.put(p.getName(), new Participation(p, this));
+        listOfParticipations.put(
+            p.getPersonName(), new Participation(p, this));
     }
 
     /**
-     * Returns true if both projects of the same name have at least one other identity field that is the same.
+     * Returns true if both projects of the same projectName have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.
      */
     public boolean isSameProject(Project otherProject) {
@@ -97,7 +101,7 @@ public class Project {
         }
 
         return otherProject != null
-                && otherProject.getName().equals(getName())
+                && otherProject.getProjectName().equals(getProjectName())
                 && (otherProject.getPhone().equals(getPhone()) || otherProject.getEmail().equals(getEmail()));
     }
 
@@ -116,7 +120,7 @@ public class Project {
         }
 
         Project otherProject = (Project) other;
-        return otherProject.getName().equals(getName())
+        return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
                 && otherProject.getAddress().equals(getAddress())
@@ -127,13 +131,14 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, tasks);
+        return Objects.hash(projectName, phone, email, address, tags, tasks);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(" Project Name: ")
+                .append(getProjectName())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")

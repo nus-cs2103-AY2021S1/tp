@@ -31,7 +31,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label projectName;
     @FXML
     private Label id;
     @FXML
@@ -53,7 +53,7 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         this.status = status;
         id.setText(displayedIndex + ". ");
-        name.setText(project.getName().fullName);
+        projectName.setText(project.getProjectName().fullProjectName);
         phone.setText(project.getPhone().value);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
