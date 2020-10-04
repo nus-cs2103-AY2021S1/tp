@@ -279,16 +279,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `InventoryBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a item**
+**Use case: Delete an item**
 
 **MSS**
 
 1.  User requests to list items
-2.  AddressBook shows a list of items
+2.  InventoryBook shows a list of items
 3.  User requests to delete a specific item in the list
-4.  AddressBook deletes the item
+4.  InventoryBook deletes the item
 
     Use case ends.
 
@@ -300,24 +300,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. InventoryBook shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Update existing item quantity or tags**
+
+**MSS**
+
+1. User request to update item.
+2. InventoryBook updates the item accordingly.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. InventoryBook detect invalid data input.
+
+  * 1a1. InventoryBook shows an error message.
+
+  Use case ends.
+
+* 1b. InventoryBook unable to detect existing item name and supplier.
+
+  * 1b1. InventoryBook adds a new item into the inventory.
+
+  Use case ends.
+
+**Use case: Editing an item**
+
+**MSS**
+
+1. User request to list all item or specific item using the find-command
+2. InventoryBook show the list of corresponding items.
+3. User request to edit a specific item in the list.
+4. InventoryBook edits the item.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+  * 3a1. InventoryBook shows an error message.
+
+        Use case resumes at step 2.
+
+* 3b. The given data to edit is invalid.
+
+  * 3b1. InventoryBook shows an error message.
+
+        Use case resumes at step 2.
+
+* 3c. InventoryBook detects a duplicate after editing.
+
+  * 3c1. InventoryBook shows an error message.
+ 
+        Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Project should not cost any money
+5.  Should work on 32-bit and 64-bit environments
+6.  Should not take up more than 50 MB of disk space
+7.  Should not take up more than 250 MB of RAM
+8.  Commands should receive a response within 1 second
+9.  The system is not required to change the physical inventory
+10. The system should operate within a local network
+11. The data should be secured using a password
+12. Users should be able to get fluent with the syntax by their 10th usage
+13. The system should not provide functionality that breaks and local laws within a country it is distributed to
+14. The system should still be able to function without connection to a network
+15. The system should only be used by one user
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 

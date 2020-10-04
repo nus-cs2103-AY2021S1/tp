@@ -55,13 +55,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Quantity parseQuantity(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Quantity.isValidQuantity(trimmedPhone)) {
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(trimmedPhone);
+        return new Quantity(trimmedQuantity);
     }
 
     /**
