@@ -1,13 +1,40 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Aizat's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ZooKeep
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI), created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
+
+<!-- 
+  TODO: Update links for pull requests 
+-->
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=aizatazhar&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=aizatazhar&zR=AY2021S1-CS2103T-W15-4%2Ftp%5Bmaster%5D&zACS=74.66666666666667&zS=2020-08-14&zFS=aizat&zU=2020-10-04&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+
+* **Enhancements to existing features**:
+  * Morphed Address class to Species class ([\#60]())
+
+* **Documentation**:
+  * User Guide:
+      * Added documentation for all our proposed features for milestone 1.2 ([\#26](), [\#32]())
+
+* **Tools**:
+  * Integrated Codecov to the team repo to monitor code coverage ([\#45]())
+  * Integrated Codacy to the team repo to enforce code quality ([\#56]())
+
+* **Project management**:
+  * Created issues detailing the high-level tasks for milestone 1.2
+
+* **Community**:
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/219), [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/245))
+  * Reported typos found on various parts of module website (examples: [1](https://github.com/se-edu/se-book/issues/94), [2](https://github.com/se-edu/guides/pull/1), [3](https://github.com/nus-cs2103-AY2021S1/website/issues/6), [4](https://github.com/se-edu/addressbook-level3/issues/52))
+  * Reported broken link on module website ([1](https://github.com/nus-cs2103-AY2021S1/website/issues/7))
+
+<!--- Templates/Suggestions
 
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
@@ -44,3 +71,5 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
+
+-->

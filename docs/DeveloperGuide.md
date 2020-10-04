@@ -244,11 +244,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: 
 *  Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
-    
+
 *   It is easy to lose track without a structured database.
-    
+
 *   We have thus decided to morph the app into a tracker for an individual zookeeper.
-    
+
 *   Easier to transfer a large amount of animal information when zookeepers change shifts.
 * Manage animals faster than a typical mouse/GUI driven app.
 
@@ -338,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Use case: Exit program** 
+**Use case: Exit program**
 
 **MSS**
 
