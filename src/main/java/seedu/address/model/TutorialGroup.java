@@ -34,9 +34,17 @@ public class TutorialGroup {
     }
 
     //    public Module getModule() { return this.module; }
-    public LocalTime getStartTime() { return this.startTime; }
-    public LocalTime getEndTime() { return endTime; }
-    public int getDurationInHours() { return this.durationInHours; }
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public int getDurationInHours() {
+        return this.durationInHours;
+    }
 //    public ArrayList<Student> getStudentList() {
 //        ArrayList<Student> returnList = new ArrayList<Student>();
 //        for (Student student: studentList.values()) {
