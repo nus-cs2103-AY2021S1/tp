@@ -9,6 +9,8 @@ import seedu.address.model.flashcard.Flashcard;
 public class ReviewManager {
 
     public static final String EXIT_MESSAGE = "Exited review mode";
+    public static final String NO_NEXT_FLASHCARD_MESSAGE = "There are no more more flashcards to review";
+    public static final String NO_PREVIOUS_FLASHCARD_MESSAGE = "No previous flashcards available for review";
     private ObservableList<Flashcard> flashcardList;
     private int currentIndex;
 

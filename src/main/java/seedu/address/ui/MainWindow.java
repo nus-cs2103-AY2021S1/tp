@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      * Cleans up window back to command mode.
      */
     @FXML
-    private void exitReviewMode() {
+    private void exitReviewMode(String exitReason) {
         getRoot().removeEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -190,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         answerPlaceholder.getChildren().clear();
         questionPlaceholder.setPrefHeight(0);
         answerPlaceholder.setPrefHeight(0);
-        resultDisplay.setFeedbackToUser(ReviewManager.EXIT_MESSAGE);
+        resultDisplay.setFeedbackToUser(exitReason + ReviewManager.EXIT_MESSAGE);
     }
 
     /**
@@ -234,7 +234,7 @@ public class MainWindow extends UiPart<Stage> {
                 switch (event.getCode().getCode()) {
                 case 39: // right arrow key down
                     if (!reviewManager.hasNext()) {
-                        exitReviewMode();
+                        exitReviewMode(ReviewManager.NO_NEXT_FLASHCARD_MESSAGE + "\n");
                     } else {
                         showReviewFlashcard(reviewManager.getNextFlashcard(),
                                 reviewManager.getCurrentIndex() + 1);
@@ -242,7 +242,7 @@ public class MainWindow extends UiPart<Stage> {
                     break;
                 case 37: // left arrow key down
                     if (!reviewManager.hasPrevious()) {
-                        exitReviewMode();
+                        exitReviewMode(ReviewManager.NO_PREVIOUS_FLASHCARD_MESSAGE + "\n");
                     } else {
                         showReviewFlashcard(reviewManager.getPrevFlashcard(),
                                 reviewManager.getCurrentIndex() + 1);
@@ -256,7 +256,7 @@ public class MainWindow extends UiPart<Stage> {
                     answerPlaceholder.getChildren().clear();
                     break;
                 case 81: // 'q' key down
-                    exitReviewMode();
+                    exitReviewMode("");
                     break;
                 default:
                     break;
