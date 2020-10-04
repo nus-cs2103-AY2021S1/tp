@@ -110,6 +110,12 @@ public class AddCommandTest {
         public ObservableList<InventoryRecord> getFilteredInventory() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
+            return true;
+        }
+        @Override
+        public void setInventoryRecord(InventoryRecord a, InventoryRecord b) {}
 
         @Override
         public void addFinanceRecord(FinanceRecord newRecord) {
