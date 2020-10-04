@@ -48,28 +48,6 @@ public class Log {
         return comment;
     }
 
-    // functions to be deleted
-//    public Name getName() {
-//        return name;
-//    }
-//
-//    public Phone getPhone() {
-//        return phone;
-//    }
-//
-//    public Email getEmail() {
-//        return email;
-//    }
-//
-//    public Address getAddress() {
-//        return address;
-//    }
-//
-//    public Set<Tag> getTags() {
-//        return Collections.unmodifiableSet(tags);
-//    }
-    // end functions to be deleted
-
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
