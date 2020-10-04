@@ -19,7 +19,7 @@ public class TypicalFlashcards {
     public static final Flashcard FLASHCARD_2 = new FlashcardBuilder()
             .withQuestion("What is a revision control software?")
             .withAnswer("It is the software tool that automate the process of Revision Control")
-            .withCategory("Revision history")
+            .withCategory("Revision History")
             .build();
 
     public static final Flashcard FLASHCARD_3 = new FlashcardBuilder()
@@ -40,6 +40,6 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2));
+        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3));
     }
 }

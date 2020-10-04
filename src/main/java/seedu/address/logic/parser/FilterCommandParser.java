@@ -15,7 +15,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
-     * and returns a FindCommand object for execution.
+     * and returns a FilterCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
@@ -25,7 +25,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        String[] categoryKeywords = trimmedArgs.split("\\s+");
+        String[] categoryKeywords = trimmedArgs.split("c/");
+
+        categoryKeywords = Arrays.copyOfRange(categoryKeywords, 1, categoryKeywords.length);
+
+        for (int i = 0; i < categoryKeywords.length; i++) {
+            categoryKeywords[i] = categoryKeywords[i].trim();
+        }
 
         return new FilterCommand(new CategoryEqualsKeywordsPredicate(Arrays.asList(categoryKeywords)));
     }
