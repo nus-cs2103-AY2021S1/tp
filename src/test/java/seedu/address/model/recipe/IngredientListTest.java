@@ -8,8 +8,6 @@ import static seedu.address.testutil.TypicalIngredients.INGREDIENT_2;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ItemList;
-import seedu.address.model.item.UniqueItemList;
 import seedu.address.model.recipe.exceptions.DuplicateIngredientException;
 import seedu.address.testutil.TypicalIngredients;
 

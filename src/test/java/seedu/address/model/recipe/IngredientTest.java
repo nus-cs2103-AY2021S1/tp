@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIngredients.INGREDIENT_1;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
 
 public class IngredientTest {
     @Test
