@@ -1,6 +1,7 @@
 package tp.cap5buddy.logic;
 
 import java.io.IOException;
+
 import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.commands.ResultCommand;
 import tp.cap5buddy.logic.commands.exception.CommandException;
