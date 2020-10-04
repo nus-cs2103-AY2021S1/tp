@@ -49,7 +49,9 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        ingredients.setText(recipe.getIngredientString().value);
+        ingredients.setText(recipe.getIngredient().stream()
+                .map(item -> item.value)
+                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
 
     }
 

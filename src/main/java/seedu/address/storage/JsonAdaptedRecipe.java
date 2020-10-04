@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 //import java.util.stream.Collectors;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,16 +22,16 @@ class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
-    private final String ingredientString;
+    private final ArrayList<Ingredient> ingredients;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
-                             @JsonProperty("ingredients") String ingredients) {
+                             @JsonProperty("ingredients") ArrayList<Ingredient> ingredients) {
         this.name = name;
-        this.ingredientString = ingredients;
+        this.ingredients = ingredients;
     }
 
     /**
@@ -38,9 +39,7 @@ class JsonAdaptedRecipe {
      */
     public JsonAdaptedRecipe(Recipe source) {
         name = source.getName().fullName;
-        ingredientString = Arrays.stream(source.getIngredient())
-                .map(item -> item.value)
-                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a);
+        ingredients = source.getIngredient();
 
     }
 
@@ -58,20 +57,6 @@ class JsonAdaptedRecipe {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
-        if (ingredientString == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Ingredient.class.getSimpleName()));
-        }
-        if (!IngredientString.isValidIngredient(ingredientString)) {
-            throw new IllegalValueException(IngredientString.MESSAGE_CONSTRAINTS);
-        }
-        String[] ingredientsToken = ingredientString.split(",");
-        Ingredient[] ingredients = new Ingredient[ingredientsToken.length];
-        for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients[i] = new Ingredient(ingredientsToken[i].trim());
-        }
-
 
         return new Recipe(modelName, ingredients);
     }

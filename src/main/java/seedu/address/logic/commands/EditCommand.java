@@ -10,6 +10,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 //import java.util.Collections;
 //import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 //import java.util.Set;
@@ -93,7 +94,7 @@ public class EditCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        Ingredient[] updatedIngredient = editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
+        ArrayList<Ingredient> updatedIngredient = editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
 
         return new Recipe(updatedName, updatedIngredient);
     }
@@ -122,7 +123,7 @@ public class EditCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
-        private Ingredient[] ingredients;
+        private ArrayList<Ingredient> ingredients;
         private IngredientString ingredientString;
 
 
@@ -153,14 +154,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setIngredient(Ingredient[] ingredients) {
+        public void setIngredient(ArrayList<Ingredient> ingredients) {
             this.ingredients = ingredients;
         }
         public void setIngredientString(IngredientString ingredientString) {
             this.ingredientString = ingredientString;
         }
 
-        public Optional<Ingredient[]> getIngredient() {
+        public Optional<ArrayList<Ingredient>> getIngredient() {
             return Optional.ofNullable(ingredients);
         }
         public Optional<IngredientString> getIngredientString() {

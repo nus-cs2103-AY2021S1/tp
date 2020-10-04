@@ -11,6 +11,8 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 
+import java.util.ArrayList;
+
 public class JsonAdaptedConsumptionTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_INGREDIENT = "+651234";
@@ -29,14 +31,14 @@ public class JsonAdaptedConsumptionTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedConsumption consump =
-                new JsonAdaptedConsumption(INVALID_NAME, VALID_INGREDIENT);
+                new JsonAdaptedConsumption(INVALID_NAME, new ArrayList<>());
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, consump::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedConsumption consump = new JsonAdaptedConsumption(null, VALID_INGREDIENT);
+        JsonAdaptedConsumption consump = new JsonAdaptedConsumption(null, new ArrayList<>());
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, consump::toModelType);
     }
@@ -44,7 +46,7 @@ public class JsonAdaptedConsumptionTest {
     @Test
     public void toModelType_invalidIngredient_throwsIllegalValueException() {
         JsonAdaptedConsumption consump =
-                new JsonAdaptedConsumption(VALID_NAME, INVALID_INGREDIENT);
+                new JsonAdaptedConsumption(VALID_NAME, new ArrayList<>());
         String expectedMessage = IngredientString.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, consump::toModelType);
     }

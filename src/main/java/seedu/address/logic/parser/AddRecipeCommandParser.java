@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 //import java.util.Set;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecipeCommand;
@@ -40,9 +41,9 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         IngredientString ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
         String[] ingredientsToken = ingredientString.value.split(",");
-        Ingredient[] ingredients = new Ingredient[ingredientsToken.length];
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients[i] = new Ingredient(ingredientsToken[i].trim());
+            ingredients.add(new Ingredient(ingredientsToken[i].trim()));
         }
         //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         //Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
