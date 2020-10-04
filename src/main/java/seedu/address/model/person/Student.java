@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,8 +18,8 @@ public class Student extends Person {
 
     /* to be implemented
     private final Module module;
-    private final TutorialGroup tutorialGroup;
-     */
+    */
+    private TutorialGroup tutorialGroup;
 
     /**
      * Constructor for StudentId.
@@ -38,11 +39,11 @@ public class Student extends Person {
     public Module getModule() {
         return module;
     }
+    */
 
     public TutorialGroup getTutorialGroup() {
         return tutorialGroup;
     }
-     */
 
     /**
      * Returns true if both students of the same name have at least one other identity field that is the same.
