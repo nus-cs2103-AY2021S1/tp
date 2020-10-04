@@ -93,6 +93,10 @@ public class Task {
                 && (otherTask.getPhone().equals(getPhone()) || otherTask.getDescription().equals(getDescription()));
     }
 
+    public Task markAsDone() {
+        return new Task(title, phone, description, address, tags, new Status(State.DONE));
+    }
+
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
