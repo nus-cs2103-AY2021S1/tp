@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
@@ -40,7 +40,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different dateTime -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDateTime(VALID_DATE_BOB).build();
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDateTime(VALID_DATE_TIME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different description -> returns false

@@ -27,14 +27,14 @@ public class DateTimeTest {
         // invalid date numbers
         assertFalse(DateTime.isValidDateTime("")); // empty string
         assertFalse(DateTime.isValidDateTime(" ")); // spaces only
-        assertFalse(DateTime.isValidDateTime("12-13-2000-1200")); // month greater than 12
+        assertFalse(DateTime.isValidDateTime("12-13-2000 12:00")); // month greater than 12
         assertFalse(DateTime.isValidDateTime("date")); // non-numeric
         assertFalse(DateTime.isValidDateTime("32-01-1200")); // day greater than 31
         assertFalse(DateTime.isValidDateTime("12-12-2020")); // no time
-        assertFalse(DateTime.isValidDateTime("5-6-2020-1200")); // no leading zero for day and month
+        assertFalse(DateTime.isValidDateTime("5-6-2020 12:00")); // no leading zero for day and month
 
         // valid date numbers
-        assertTrue(DateTime.isValidDateTime("05-09-2020-1800")); // date and month with leading zero
-        assertTrue(DateTime.isValidDateTime("12-12-2020-1200"));
+        assertTrue(DateTime.isValidDateTime("05-09-2020 18:00")); // date and month with leading zero
+        assertTrue(DateTime.isValidDateTime("12-12-2020 12:00"));
     }
 }

@@ -1,12 +1,12 @@
 {
   "tasks": [ {
     "title": "Valid Task",
-    "dateTime": "01-01-2020-1200",
+    "dateTime": "01-01-2020 12:00",
     "description": "hans,example.com",
     "address": "4th street"
   }, {
     "title": "Task With Invalid Phone Field",
-    "dateTime": "1-1-2020-1200",
+    "dateTime": "1-1-2020 12:00",
     "description": "hans,example.com",
     "address": "4th street"
   } ]

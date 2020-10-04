@@ -49,7 +49,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);
-        dateTime.setText(task.getDateTime().value);
+        dateTime.setText(task.getDateTime().value.toString());
         address.setText(task.getAddress().value);
         description.setText(task.getDescription().value);
         task.getTags().stream()

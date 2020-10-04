@@ -17,8 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -102,7 +102,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC + VALID_ADDRESS_AMY
-                        + VALID_DATE_AMY, Title.MESSAGE_CONSTRAINTS);
+                        + VALID_DATE_TIME_AMY, Title.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
                 + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withDateTime(VALID_DATE_BOB).withDescription(VALID_DESCRIPTION_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -124,7 +124,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + DESCRIPTION_DESC_AMY;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_TIME_BOB)
                 .withDescription(VALID_DESCRIPTION_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -142,7 +142,7 @@ public class EditCommandParserTest {
 
         // dateTime
         userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_AMY).build();
+        descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_TIME_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -172,7 +172,7 @@ public class EditCommandParserTest {
                 + TAG_DESC_FRIEND + DATE_DESC_AMY + ADDRESS_DESC_AMY + DESCRIPTION_DESC_AMY + TAG_DESC_FRIEND
                 + DATE_DESC_BOB + ADDRESS_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_TIME_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -185,14 +185,15 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_BOB;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_TIME_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_BOB + INVALID_DATE_DESC + ADDRESS_DESC_BOB
                 + DATE_DESC_BOB;
-        descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_BOB).withDescription(VALID_DESCRIPTION_BOB)
+        descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_TIME_BOB)
+                .withDescription(VALID_DESCRIPTION_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

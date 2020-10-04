@@ -3,7 +3,7 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
@@ -32,7 +32,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // different dateTime and description -> returns false
-        Task editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_BOB)
+        Task editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB)
                                                  .withDescription(VALID_DESCRIPTION_BOB)
                                                  .build();
         assertFalse(ALICE.isSameTask(editedAlice));
@@ -47,7 +47,7 @@ public class TaskTest {
         assertTrue(ALICE.isSameTask(editedAlice));
 
         // same title, same email, different attributes -> returns true
-        editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
+        editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
 
@@ -79,7 +79,7 @@ public class TaskTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different dateTime -> returns false
-        editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_BOB).build();
+        editedAlice = new TaskBuilder(ALICE).withDateTime(VALID_DATE_TIME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different description -> returns false

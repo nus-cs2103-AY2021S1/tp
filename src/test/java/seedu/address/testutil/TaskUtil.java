@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -31,7 +31,7 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().title + " ");
-        sb.append(PREFIX_DATE + task.getDateTime().value + " ");
+        sb.append(PREFIX_DATE_TIME + task.getDateTime().value.toString() + " ");
         sb.append(PREFIX_DESCRIPTION + task.getDescription().value + " ");
         sb.append(PREFIX_ADDRESS + task.getAddress().value + " ");
         task.getTags().stream().forEach(
@@ -46,7 +46,7 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.title).append(" "));
-        descriptor.getDateTime().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
+        descriptor.getDateTime().ifPresent(date -> sb.append(PREFIX_DATE_TIME).append(date.value).append(" "));
         descriptor.getDescription().ifPresent(desc -> sb.append(PREFIX_DESCRIPTION).append(desc.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {

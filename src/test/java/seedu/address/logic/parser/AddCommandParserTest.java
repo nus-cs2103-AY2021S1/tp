@@ -19,7 +19,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -91,7 +91,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing dateTime prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + VALID_DATE_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, TITLE_DESC_BOB + VALID_DATE_TIME_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
@@ -103,7 +103,7 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_TITLE_BOB + VALID_DATE_BOB + VALID_DESCRIPTION_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_TITLE_BOB + VALID_DATE_TIME_BOB + VALID_DESCRIPTION_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
     }
 
