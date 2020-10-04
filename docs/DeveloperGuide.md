@@ -251,48 +251,108 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add an exercise                | keep track of calories burnt through the day                           |
+| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command      |                                                                        |
+| `* * *`  | data conscious user                        | list down all the exercises for the day       | monitor the calories burned accurately                                   |
+| `* * *`  | user                                       | delete an exercise in case I key in wrongly          |  |
+| `* *`    | user                                       | update an exercise             |                 |
+| `* *`    | user                                       | save my data in a file         | import the saved data into the new computer                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+  #### **Use case: add an exercise**
+  
+  **MSS**
+  
+1.  User requests to add an exercise
+
+2.  Calo adds the exercise
+  
+  Use case ends.
+      
+#### **Use case: Find exercises with a keyword**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to find exercises with a keyword
+2.  Calo shows a list of exercises which contain the keyword
 
     Use case ends.
 
 **Extensions**
+<p>
+    The list is empty <br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
+  
+#### **Use case: Update an exercise**
 
-* 2a. The list is empty.
+**MSS**
 
-  Use case ends.
+1.  User requests to update a specific exercise in the list
+2.  Calo updates the exercise
 
-* 3a. The given index is invalid.
+    Use case ends.  
 
-    * 3a1. AddressBook shows an error message.
+**Extensions**
+<p>
+    1a. The index is invalid<br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
+  
+#### **Use case: Delete an exercise**
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1.  User requests to delete a specific exercise in the list.
+2.  Calo deletes the exercise
+
+    Use case ends.
+
+**Extensions**
+<p>
+    1a. The index is invalid<br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
+  
+  #### **Use case: Archive data**
+  **MSS**
+    
+  1.  User requests to archive data to a different file location
+  2.  Calo archives data to the specified location
+      Use case ends.
+      
+**Extensions**
+    1a. File can't be created at specified location.  
+      1a1. Calo shows a message indicating that file can't be created.  
+    Use case ends.
+  
+**Extensions**
+<p>
+    1a. User does not have permission to create file at specified location <br>
+      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+    Use case ends.
+</p>
+  
+  #### **Use case: List exercises**
+  
+  **MSS**
+  
+  1.  User requests to list exercises
+  2.  Calo shows a list of exercises
+      Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -300,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories) 
 
 --------------------------------------------------------------------------------------------------------------------
 
