@@ -8,7 +8,7 @@ import nustorage.model.Model;
 import nustorage.model.record.InventoryRecord;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all inventory in the address book to the user.
  */
 public class ListInventoryCommand extends Command {
 
