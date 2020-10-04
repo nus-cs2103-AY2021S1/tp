@@ -74,7 +74,7 @@ public class ParserUtil {
     public static Type parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Type.isValidAddress(trimmedAddress)) {
+        if (!Type.isValidType(trimmedAddress)) {
             throw new ParseException(Type.MESSAGE_CONSTRAINTS);
         }
         return new Type(trimmedAddress);

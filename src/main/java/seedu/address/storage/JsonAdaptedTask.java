@@ -99,7 +99,7 @@ class JsonAdaptedTask {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
         }
-        if (!Type.isValidAddress(address)) {
+        if (!Type.isValidType(address)) {
             throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
         }
         final Type modelType = new Type(address);

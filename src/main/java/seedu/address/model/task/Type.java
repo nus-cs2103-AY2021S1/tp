@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Task's type in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
  */
 public class Type {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Type can take any strings, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the type must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -20,20 +20,20 @@ public class Type {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Type}.
      *
-     * @param address A valid address.
+     * @param type A valid type.
      */
-    public Type(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Type(String type) {
+        requireNonNull(type);
+        checkArgument(isValidType(type), MESSAGE_CONSTRAINTS);
+        value = type;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidType(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
