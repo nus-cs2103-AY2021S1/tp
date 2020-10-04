@@ -17,13 +17,18 @@ public class Log {
     private final Exercise exercise;
     private final LocalDateTime dateTime;
 
+    // Data fields
+    private final Rep reps;
+    private final Comment comment;
+
     /**
      * Every field must be present and not null.
      */
-    public Log(Exercise exercise) {
+    public Log(Exercise exercise, Rep reps) {
         requireAllNonNull(exercise);
         this.exercise = exercise;
         this.dateTime = LocalDateTime.now();
+        this.reps = reps;
     }
 
     public Exercise getExercise() {
@@ -32,6 +37,10 @@ public class Log {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public Rep getReps() {
+        return reps;
     }
 
     // functions to be deleted
@@ -67,7 +76,7 @@ public class Log {
 
         return otherLog != null
                 && otherLog.getExercise().equals(getExercise())
-                && (otherLog.getDateTime().equals(getDateTime()));
+                && (otherLog.getDateTime().equals(getDateTime()) || otherLog.getReps().equals(getReps()));
     }
 
     /**
@@ -87,23 +96,25 @@ public class Log {
         Log otherLog = (Log) other;
 
         return otherLog.getExercise().equals(getExercise())
-                && otherLog.getDateTime().equals(getDateTime());
+                && otherLog.getDateTime().equals(getDateTime())
+                && otherLog.getReps().equals((getReps()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(exercise, dateTime);
+        return Objects.hash(exercise, dateTime, reps);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Exercise: ")
-//                .append(getExercise())
+                .append(getExercise())
                 .append(" DateTime: ")
-//                .append(getDateTime())
-                .append(" Reps: ")
+                .append(getDateTime())
+                .append(" Rep: ")
+                .append(getReps())
                 .append(" Comments: ");
 
         return builder.toString();
