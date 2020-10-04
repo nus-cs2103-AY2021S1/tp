@@ -21,6 +21,10 @@ public class FinanceAccount {
         this.financeRecords = financeRecords;
     }
 
+    public List<FinanceRecord> getFinanceRecords() {
+        return this.financeRecords;
+    }
+
     public void addRecord(FinanceRecord record) {
         financeRecords.add(record);
     }
@@ -57,6 +61,10 @@ public class FinanceAccount {
 
     public List<FinanceRecord> filterRecords (Predicate<FinanceRecord> filter) {
         return financeRecords.stream().filter(filter).collect(Collectors.toList());
+    }
+
+    public boolean isEmpty() {
+        return financeRecords.isEmpty();
     }
 
     @Override

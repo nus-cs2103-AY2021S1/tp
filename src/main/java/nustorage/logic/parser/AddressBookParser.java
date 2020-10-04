@@ -19,6 +19,7 @@ import nustorage.logic.commands.FindCommand;
 import nustorage.logic.commands.HelpCommand;
 import nustorage.logic.commands.ListCommand;
 import nustorage.logic.commands.ListInventoryCommand;
+import nustorage.logic.commands.ListFinanceRecordsCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,9 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case ListFinanceRecordsCommand.COMMAND_WORD:
+            return new ListFinanceRecordsCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
