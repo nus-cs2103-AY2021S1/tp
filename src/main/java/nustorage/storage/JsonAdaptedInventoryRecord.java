@@ -2,6 +2,7 @@ package nustorage.storage;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -17,8 +18,7 @@ class JsonAdaptedInventoryRecord {
 
     private final int quantity;
     private final String itemName;
-    private final LocalDate date;
-    private final LocalTime time;
+    private final LocalDateTime dateTime;
 
 
     /**
@@ -26,12 +26,10 @@ class JsonAdaptedInventoryRecord {
      */
     public JsonAdaptedInventoryRecord(@JsonProperty("itemName") String itemName,
                                       @JsonProperty("quantity") int quantity,
-                                      @JsonProperty("date") LocalDate date,
-                                      @JsonProperty("time") LocalTime time) {
+                                      @JsonProperty("dateTime") LocalDateTime dateTime) {
         this.quantity = quantity;
         this.itemName = itemName;
-        this.date = date;
-        this.time = time;
+        this.dateTime = dateTime;
     }
 
 
@@ -42,8 +40,7 @@ class JsonAdaptedInventoryRecord {
     public JsonAdaptedInventoryRecord(InventoryRecord source) {
         this.quantity = source.getQuantity();
         this.itemName = source.getItemName();
-        this.date = source.getDate();
-        this.time = source.getTime();
+        this.dateTime = source.getDateTime();
     }
 
 
@@ -62,17 +59,12 @@ class JsonAdaptedInventoryRecord {
         }
         final int modelQuantity = this.quantity;
 
-        if (this.date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
+        if (this.dateTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime"));
         }
-        final LocalDate modelDate = this.date;
+        final LocalDateTime modelDateTime = this.dateTime;
 
-        if (this.time == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "time"));
-        }
-        final LocalTime modelTime = this.time;
-
-        return new InventoryRecord(modelItemName, modelQuantity, modelDate, modelTime);
+        return new InventoryRecord(modelItemName, modelQuantity, modelDateTime);
 
     }
 
