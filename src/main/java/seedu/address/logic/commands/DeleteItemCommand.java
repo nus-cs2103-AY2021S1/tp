@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
@@ -7,6 +8,7 @@ import seedu.address.model.recipe.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
@@ -46,15 +48,13 @@ public class DeleteItemCommand extends Command {
         Item itemToDelete;
         itemToDelete = itemList.stream()
                 .filter(x -> !x.isDeleted())
-                .findFirst() // Get the first (and only) item or else throw Error
+                .findFirst() // Get the first (and only) item matching or else throw Error
                 .orElseThrow(()-> new CommandException(MESSAGE_ITEM_ALREADY_DELETED));
-        System.out.println(model.getClass());
         model.deleteItem(itemToDelete);
         List<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
         // remove recipes from consideration that are not deleted, are not the product of a recipe, nor contribute
         // to a recipe.
-        recipeList.removeIf(y -> !itemToDelete.getRecipeIds().contains(y.getId())
-                || y.isDeleted()
+        recipeList.removeIf(y -> y.isDeleted()
                 || y.getIngredients()
                 .asUnmodifiableObservableList()
                 .stream()

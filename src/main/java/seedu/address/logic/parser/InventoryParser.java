@@ -7,18 +7,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.ClearItemCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteRecipeCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListItemCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -78,6 +67,9 @@ public class InventoryParser {
         case AddRecipeCommand.COMMAND_WORD:
             return new AddRecipeCommandParser().parse(arguments);
 
+        case DeleteItemCommand.COMMAND_WORD:
+            return new DeleteItemCommandParser().parse(arguments);
+            
         case DeleteRecipeCommand.COMMAND_WORD:
             return new DeleteRecipeCommandParser().parse(arguments);
 

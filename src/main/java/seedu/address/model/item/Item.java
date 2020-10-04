@@ -104,6 +104,15 @@ public class Item {
         return otherItem != null
                 && otherItem.getName().equals(getName());
     }
+
+    /**
+     * Returns true if both items have same name, and can be replaced
+     * @param otherItem Other item to compare to this item
+     * @return true if the item of this name can be replaced.
+     */
+    public boolean isReplacable(Item otherItem) {
+        return isSameItem(otherItem) && this.isDeleted();
+    }
     
     /**
      * Returns a deleted form of the same recipe.
