@@ -2,7 +2,6 @@ package chopchop.model.recipe;
 
 import chopchop.model.ReadOnlyFoodEntryBook;
 import javafx.collections.ObservableList;
-import chopchop.model.recipe.Recipe;
 
 /**
  * Unmodifiable view of an address book

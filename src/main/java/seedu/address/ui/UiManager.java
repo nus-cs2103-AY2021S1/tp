@@ -25,6 +25,9 @@ public class UiManager implements Ui {
     private Logic logic;
     private MainWindow mainWindow;
 
+    /**
+     * Constructs {@code UiManager}
+     */
     public UiManager(Logic logic) {
         super();
         this.logic = logic;
