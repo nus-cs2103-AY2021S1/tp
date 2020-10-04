@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -25,6 +28,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private List<Document> documents;
     private Set<Tag> tags;
 
     /**
@@ -35,6 +39,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        documents = new ArrayList<>();
         tags = new HashSet<>();
     }
 
@@ -46,6 +51,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        documents = new ArrayList<>(personToCopy.getDocuments());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +95,17 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Adds a {@code Document} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDocument(String name, String ref) {
+        this.documents.add(new Document(name, ref));
+        return this;
     }
+
+    public Person build() {
+        return new Person(name, phone, email, address, documents, tags);
+    }
+
 
 }

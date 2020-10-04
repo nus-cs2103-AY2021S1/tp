@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -23,16 +25,18 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Document> documents = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, List<Document> documents, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, documents, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.documents.addAll(documents);
         this.tags.addAll(tags);
     }
 
@@ -50,6 +54,11 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+
+    public List<Document> getDocuments() {
+        return documents;
     }
 
     /**
@@ -93,13 +102,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getDocuments().equals(getDocuments())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, documents, tags);
     }
 
     @Override
@@ -112,6 +122,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Documents: ")
+                .append(getDocuments())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
