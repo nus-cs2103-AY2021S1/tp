@@ -63,7 +63,7 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the stock book.
      */
-    void deletePerson(Stock target);
+    void deleteStock(Stock target);
 
     /**
      * Adds the given stock.

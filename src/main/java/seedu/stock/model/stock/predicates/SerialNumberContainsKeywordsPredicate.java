@@ -25,7 +25,7 @@ public class SerialNumberContainsKeywordsPredicate implements Predicate<Stock> {
      */
     @Override
     public boolean test(Stock stock) {
-        String stockSerialNumber = stock.getSerialNumber().getSerialNumber().toLowerCase();
+        String stockSerialNumber = stock.getSerialNumber().getSerialNumberAsString().toLowerCase();
 
         return keywords.stream()
                 .anyMatch(keyword -> stockSerialNumber.contains(keyword.toLowerCase()));
