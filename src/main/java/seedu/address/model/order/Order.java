@@ -10,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.exceptions.DuplicateOrderItemException;
 import seedu.address.model.order.exceptions.OrderItemNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.vendor.Vendor;
 
 public class Order implements Iterable<OrderItem> {
@@ -26,7 +24,7 @@ public class Order implements Iterable<OrderItem> {
     }
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent OrderItem as the given argument.
      */
     public boolean contains(OrderItem toCheck) {
         requireNonNull(toCheck);
@@ -34,40 +32,44 @@ public class Order implements Iterable<OrderItem> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds OrderItem to the list.
      */
     public void add(OrderItem toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            OrderItem existingItem = internalList.stream()
+                    .filter(toAdd::isSameOrderItem)
+                    .findFirst()
+                    .get();
+            existingItem.setQuantity(existingItem.getQuantity() + toAdd.getQuantity());
+        } else {
+            internalList.add(toAdd);
         }
-        internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the OrderItem {@code target} in the list with {@code editedOrderItem}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The OrderItem identity of {@code editedOrderItem} must not be the same as another existing OrderItem in the list.
      */
     public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
         requireAllNonNull(target, editedOrderItem);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new OrderItemNotFoundException();
         }
 
         if (!target.isSameOrderItem(editedOrderItem) && contains(editedOrderItem)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateOrderItemException();
         }
 
         internalList.set(index, editedOrderItem);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent OrderItem from the list.
+     * The OrderItem must exist in the list.
      */
     public void remove(OrderItem toRemove) {
         requireNonNull(toRemove);
@@ -79,19 +81,6 @@ public class Order implements Iterable<OrderItem> {
     public void setOrderItems(Order replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<OrderItem> orderItems) {
-        requireAllNonNull(orderItems);
-        if (!orderItemsAreUnique(orderItems)) {
-            throw new DuplicateOrderItemException();
-        }
-
-        internalList.setAll(orderItems);
     }
 
     /**

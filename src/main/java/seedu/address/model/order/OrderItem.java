@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  */
 public class OrderItem extends Food {
     // Identity fields
-    protected int quantity;
+    private int quantity;
 
     /**
      * Every field must be present and not null.
@@ -29,13 +29,13 @@ public class OrderItem extends Food {
         return quantity;
     }
 
-    public void setQuantity(int qty) {
-        this.quantity = qty;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both OrderItems of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two OrderItems.
      */
     public boolean isSameOrderItem(OrderItem orderItem) {
         if (orderItem == this) {
