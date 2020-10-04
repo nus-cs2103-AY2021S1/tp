@@ -23,13 +23,13 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXIT = "---------------------------\nEXIT\n---------------------------\n";
 
     public static final String ADD_DESCRIPTION =
-            "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n" ;
+            "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
 
     public static final String DELETE_DESCRIPTION =
-            "format: \ndelete sn/<serial number>\n\n" ;
+            "format: \ndelete sn/<serial number>\n\n";
 
     public static final String FIND_DESCRIPTION =
-            "format(any): \nfind n/<name> find sn/<serial number> find l/<location> find s/<source of the stock>\n\n" ;
+            "format(any): \nfind n/<name> find sn/<serial number> find l/<location> find s/<source of the stock>\n\n";
 
     public static final String UPDATE_DESCRIPTION =
             "format(multiple): \nupdate sn/<Serial Number of product> (followed by one of):\n" +
@@ -37,7 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
             "l/<new location in warehouse> s/<new source of stock>\n\n";
 
     public static final String EXIT_DESCRIPTION =
-            "format: \nexit\n\n" ;
+            "format: \nexit\n\n";
 
     public static final String DISCLAIMER = "---------------------------\nFor more information refer to the guide :";
     public static final String USERGUIDE_URL = "https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/docs/UserGuide.md";
