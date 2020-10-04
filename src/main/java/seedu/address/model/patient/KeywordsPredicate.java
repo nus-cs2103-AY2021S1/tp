@@ -19,7 +19,7 @@ public class KeywordsPredicate implements Predicate<Patient> {
     public boolean test(Patient patient) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getName().fullName, keyword)
-                || keyword.toLowerCase().equals(patient.getNric().value.toLowerCase()));
+                        || StringUtil.containsWordIgnoreCase(patient.getNric().value, keyword));
     }
 
     @Override

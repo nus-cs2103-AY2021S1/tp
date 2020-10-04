@@ -45,12 +45,12 @@ public class DeleteCommand extends Command {
         if (targetNric != null) {
             model.updateFilteredPersonList(patient -> patient.getNric().equals(targetNric));
             if (model.getFilteredPersonList().size() != 1) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NRIC);
+                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
             }
             patientToDelete = model.getFilteredPersonList().get(0);
         } else {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
             }
             patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         }

@@ -10,7 +10,7 @@ public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Starts with an alphabet, followed by 8 digits and ends with another alphabet";
-    public static final String VALIDATION_REGEX = "\\D\\d{8}\\D$";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]\\d{8}[a-zA-Z]$";
     public final String value;
 
     /**
