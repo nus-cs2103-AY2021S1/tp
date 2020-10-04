@@ -27,9 +27,9 @@ public class Phone {
     }
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a default {@code Phone}.
      */
-    public Phone() {
+    private Phone() {
         value = "";
     }
 

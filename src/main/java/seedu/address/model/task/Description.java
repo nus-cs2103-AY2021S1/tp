@@ -20,7 +20,7 @@ public class Description {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum},.!? ]*";
-
+    private static final String DEFAULT_DESCRIPTION = "";
     public final String value;
 
     /**
@@ -35,10 +35,10 @@ public class Description {
     }
 
     /**
-     * Constructs a {@code Description}.
+     * Constructs a default {@code Description}.
      */
-    public Description() {
-        value = "";
+    private Description() {
+        value = DEFAULT_DESCRIPTION;
     }
 
     /**
