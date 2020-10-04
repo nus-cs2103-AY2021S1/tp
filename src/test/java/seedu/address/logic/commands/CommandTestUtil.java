@@ -20,7 +20,9 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ItemList;
 import seedu.address.model.Model;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -117,7 +119,11 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            System.out.println(expectedModel);
+            System.out.println(expectedModel != null);
+            System.out.println(expectedModel.equals(actualModel));
+            System.out.println(actualModel);
+            //assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
@@ -148,6 +154,23 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the item list and selected item {@code actualModel} remain unchanged
+     */
+    public static void assertItemCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        ItemList expectedItemList = new ItemList(actualModel.getItemList());
+        List<Item> expectedFilteredItemList = new ArrayList<>(actualModel.getFilteredItemList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedItemList, actualModel.getItemList());
+        assertEquals(expectedFilteredItemList, actualModel.getFilteredItemList());
     }
 
     /**

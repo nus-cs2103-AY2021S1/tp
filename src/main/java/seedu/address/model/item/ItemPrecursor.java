@@ -90,8 +90,7 @@ public class ItemPrecursor {
 
         ItemPrecursor otherItem = (ItemPrecursor) other;
 
-        return otherItem.getId() == getId()
-                && otherItem.getName().equals(getName())
+        return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals(getQuantity())
                 && otherItem.getDescription().equals(getDescription())
                 && otherItem.getLocationNames().equals(getLocationNames())

@@ -37,7 +37,7 @@ public class AddItemCommand extends Command {
     private final ItemPrecursor itemPre;
 
     /**
-     * Creates an AddCommand to add the specified {@code Item}
+     * Creates an AddItemCommand to add the specified {@code Item}
      */
     public AddItemCommand(ItemPrecursor itemPrecursor) {
         requireNonNull(itemPrecursor);

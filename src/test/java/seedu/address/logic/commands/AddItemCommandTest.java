@@ -307,7 +307,7 @@ public class AddItemCommandTest {
     }
 
     /**
-     * A Model stub that contains a single item precursor.
+     * A Model stub that contains a single item.
      */
     private class ModelStubWithItem extends ModelStub {
         private final Item item;
@@ -325,7 +325,7 @@ public class AddItemCommandTest {
     }
 
     /**
-     * A Model stub that always accept the item precursor being added.
+     * A Model stub that always accepts the item being added.
      */
     private class ModelStubAcceptingItemAdded extends ModelStub {
         final ArrayList<Item> itemsAdded = new ArrayList<>();
