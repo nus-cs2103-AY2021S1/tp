@@ -24,11 +24,12 @@ public class Log {
     /**
      * Every field must be present and not null.
      */
-    public Log(Exercise exercise, Rep reps) {
+    public Log(Exercise exercise, Rep reps, Comment comment) {
         requireAllNonNull(exercise);
         this.exercise = exercise;
         this.dateTime = LocalDateTime.now();
         this.reps = reps;
+        this.comment = comment;
     }
 
     public Exercise getExercise() {
@@ -41,6 +42,10 @@ public class Log {
 
     public Rep getReps() {
         return reps;
+    }
+
+    public Comment getComment() {
+        return comment;
     }
 
     // functions to be deleted
@@ -76,7 +81,9 @@ public class Log {
 
         return otherLog != null
                 && otherLog.getExercise().equals(getExercise())
-                && (otherLog.getDateTime().equals(getDateTime()) || otherLog.getReps().equals(getReps()));
+                && (otherLog.getDateTime().equals(getDateTime())
+                || otherLog.getReps().equals(getReps())
+                || otherLog.getComment().equals(getComment()));
     }
 
     /**
@@ -97,13 +104,14 @@ public class Log {
 
         return otherLog.getExercise().equals(getExercise())
                 && otherLog.getDateTime().equals(getDateTime())
-                && otherLog.getReps().equals((getReps()));
+                && otherLog.getReps().equals(getReps())
+                && otherLog.getComment().equals(getComment());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(exercise, dateTime, reps);
+        return Objects.hash(exercise, dateTime, reps, comment);
     }
 
     @Override
@@ -115,7 +123,8 @@ public class Log {
                 .append(getDateTime())
                 .append(" Rep: ")
                 .append(getReps())
-                .append(" Comments: ");
+                .append(" Comments: ")
+                .append(getComment());
 
         return builder.toString();
     }
