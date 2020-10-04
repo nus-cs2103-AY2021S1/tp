@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -97,6 +98,11 @@ public class ModelManager implements Model {
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addRecord(newRecord);
+    }
+
+    @Override
+    public List<FinanceRecord> viewFinanceRecords() {
+        return financeAccount.getFinanceRecords();
     }
 
     @Override
