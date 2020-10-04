@@ -10,10 +10,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class StudentId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Student IDs should only contain alphanumeric characters (with capital alphabets)" 
+            "Student IDs should only contain alphanumeric characters (with capital alphabets)"
                     + " and no spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
+
     public final String value;
 
     /**
@@ -32,7 +33,7 @@ public class StudentId {
     public static boolean isValidStudentId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-    
+
     @Override
     public String toString() {
         return value;

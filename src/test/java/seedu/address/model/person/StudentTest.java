@@ -2,16 +2,15 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +18,10 @@ import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
-    Student amy = new Student(new Name(VALID_NAME_AMY), new Phone(VALID_PHONE_AMY),
+    private Student amy = new Student(new Name(VALID_NAME_AMY), new Phone(VALID_PHONE_AMY),
             new Email(VALID_EMAIL_AMY), SampleDataUtil.getTagSet(), new StudentId(VALID_STUDENT_ID_AMY));
 
-    Student bob = new Student(new Name(VALID_NAME_BOB), new Phone(VALID_PHONE_BOB),
+    private Student bob = new Student(new Name(VALID_NAME_BOB), new Phone(VALID_PHONE_BOB),
             new Email(VALID_EMAIL_BOB), SampleDataUtil.getTagSet(), new StudentId(VALID_STUDENT_ID_BOB));
 
     @Test

@@ -1,11 +1,11 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Student in the app.
@@ -26,7 +26,7 @@ public class Student extends Person {
      */
     public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId) {
         super(name, phone, email, tags);
-        requireAllNonNull( studentId);
+        requireAllNonNull(studentId);
         this.studentId = studentId;
     }
 
