@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Phone;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 
 public class JsonAdaptedProjectTest {
