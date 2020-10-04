@@ -9,6 +9,7 @@ import seedu.address.model.UserPrefs;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFlashcardAtIndex;
 import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -29,9 +30,9 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-//    @Test
-//    public void execute_listIsFiltered_showsEverything() {
-//        showFlashcardAtIndex(model, INDEX_FIRST_PERSON);
-//        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-//    }
+    @Test
+    public void execute_listIsFiltered_showsEverything() {
+        showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 }
