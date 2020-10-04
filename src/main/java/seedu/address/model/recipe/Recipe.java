@@ -20,7 +20,7 @@ public class Recipe {
      * Every field must be present and not null.
      */
     public Recipe(Name name, ArrayList<Ingredient> ingredients) {
-         requireAllNonNull(name, ingredients);
+        requireAllNonNull(name, ingredients);
         this.name = name;
         this.ingredients = ingredients;
     }

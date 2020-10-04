@@ -5,17 +5,14 @@ import static seedu.address.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.BENSON;
 
-/*import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;*/
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
-
-import java.util.ArrayList;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "R@chel";
@@ -52,8 +49,9 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidIngredient_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(VALID_NAME, new ArrayList<>());
-        String expectedMessage = IngredientString.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedRecipe(VALID_NAME, null);
+        String expectedMessage =  String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Ingredient.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

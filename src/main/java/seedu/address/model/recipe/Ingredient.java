@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Recipe's ingredients in the Wishful Shrinking.
  */
 public class Ingredient {
-    public final String value;
+    public String value;
 
     /**
      * Constructs a {@code Ingredient}.
@@ -17,6 +17,12 @@ public class Ingredient {
     public Ingredient(String ingredient) {
         requireNonNull(ingredient);
         value = ingredient;
+    }
+    public Ingredient() {
+
+    }
+    public void setValue(String _value) {
+        value = _value;
     }
 
     public String getValue() {

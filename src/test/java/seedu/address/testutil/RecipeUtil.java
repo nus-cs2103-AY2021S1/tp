@@ -30,7 +30,9 @@ public class RecipeUtil {
     public static String getRecipeDetails(Recipe recipe) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + recipe.getName().fullName + " ");
-        sb.append(PREFIX_INGREDIENT + recipe.getIngredientString().value + " ");
+        sb.append(PREFIX_INGREDIENT + recipe.getIngredient().stream()
+                .map(item -> item.value)
+                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a) + " ");
         return sb.toString();
     }
 

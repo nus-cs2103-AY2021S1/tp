@@ -94,7 +94,8 @@ public class EditCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        ArrayList<Ingredient> updatedIngredient = editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
+        ArrayList<Ingredient> updatedIngredient =
+                editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
 
         return new Recipe(updatedName, updatedIngredient);
     }

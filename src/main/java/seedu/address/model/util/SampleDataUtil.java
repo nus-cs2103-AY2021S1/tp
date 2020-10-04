@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
-import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
