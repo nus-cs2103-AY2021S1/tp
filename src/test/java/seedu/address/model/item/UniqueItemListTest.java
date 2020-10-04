@@ -22,14 +22,12 @@ public class UniqueItemListTest {
         assertTrue(uList.contains(APPLE));
         assertFalse(uList.contains(BANANA));
     }
-
     @Test
     public void add() {
         UniqueItemList uList = new UniqueItemList();
         uList.add(APPLE);
         assertEquals(1, uList.asUnmodifiableObservableList().size());
     }
-
     @Test
     public void setItem() {
         UniqueItemList uList = new UniqueItemList();
@@ -38,7 +36,6 @@ public class UniqueItemListTest {
         assertTrue(uList.contains(BANANA));
         assertFalse(uList.contains(APPLE));
     }
-
     /**
      * Tests that setItem throws an exception when item is not found.
      */
@@ -48,7 +45,6 @@ public class UniqueItemListTest {
         uList.add(APPLE);
         assertThrows(ItemNotFoundException.class, () -> uList.setItem(BANANA, APPLE));
     }
-
     /**
      * Tests that setItem throws an exception when input is a duplicate item.
      */
@@ -59,7 +55,6 @@ public class UniqueItemListTest {
         uList.add(BANANA);
         assertThrows(DuplicateItemException.class, () -> uList.setItem(BANANA, APPLE));
     }
-    
     @Test
     public void delete() {
         UniqueItemList uList = new UniqueItemList();
@@ -69,14 +64,12 @@ public class UniqueItemListTest {
         // Item is still in the list,
         // but boolean delete flag is set to true 
     }
-    
     @Test
     public void delete_throwsItemNotFoundException() {
         UniqueItemList uList = new UniqueItemList();
         uList.add(APPLE);
         assertThrows(ItemNotFoundException.class, ()-> uList.delete(BANANA));
     }
-
     @Test
     public void remove() {
         UniqueItemList uList = new UniqueItemList();
@@ -84,7 +77,6 @@ public class UniqueItemListTest {
         uList.remove(APPLE);
         assertFalse(uList.contains(APPLE));
     }
-
     /**
      * Tests that exception is thrown when attempting to
      * remove item which does not exist.
@@ -95,7 +87,6 @@ public class UniqueItemListTest {
         uList.add(APPLE);
         assertThrows(ItemNotFoundException.class, ()-> uList.remove(BANANA));
     }
-
     /**
      * Tests replacing a UniqueItemList with another.
      */
@@ -107,7 +98,6 @@ public class UniqueItemListTest {
         uList.setItems(uList2);
         assertTrue(uList.contains(APPLE));
     }
-
     /**
      * Tests replacing a UniqueItemList with a list.
      */
@@ -119,7 +109,6 @@ public class UniqueItemListTest {
         uList.setItems(arr);
         assertTrue(uList.contains(APPLE));
     }
-
     @Test
     public void setItems_throwsDuplicateItemException() {
         UniqueItemList uList = new UniqueItemList();
@@ -128,22 +117,18 @@ public class UniqueItemListTest {
         arr.add(APPLE);
         assertThrows(DuplicateItemException.class, () -> uList.setItems(arr));
     }
-
     @Test
     public void equals() {
         UniqueItemList uList = new UniqueItemList();
         uList.add(APPLE);
         // same object -> returns true
         assertTrue(uList.equals(uList));
-
         // null -> returns false
         assertFalse(uList.equals(null));
-
         // same internal lists
         UniqueItemList uList2 = new UniqueItemList();
         uList2.add(APPLE);
         assertTrue(uList.equals(uList2));
-
         // different internal lists
         UniqueItemList uList3 = new UniqueItemList();
         uList3.add(BANANA);

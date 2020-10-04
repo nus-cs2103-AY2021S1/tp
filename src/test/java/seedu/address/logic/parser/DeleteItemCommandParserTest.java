@@ -10,12 +10,10 @@ import static seedu.address.testutil.TypicalItems.APPLE;
 
 public class DeleteItemCommandParserTest {
     private final DeleteItemCommandParser parser = new DeleteItemCommandParser();
-    
     @Test
     public void parse_validArgs_returnsDeleteItemCommand() {
         assertParseSuccess(parser, "Apple", new DeleteItemCommand(APPLE.getName()));
     }
-    
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,

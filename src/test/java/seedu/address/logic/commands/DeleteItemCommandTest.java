@@ -18,18 +18,14 @@ import static seedu.address.testutil.TypicalRecipes.getTypicalRecipeList;
 public class DeleteItemCommandTest {
     private Model model = new ModelManager(getTypicalItemList(), getTypicalLocationsList()
             , getTypicalRecipeList(), new UserPrefs());
-    
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemToDelete.getName());
-        
         String expectedMessage = String.format(DeleteItemCommand.MESSAGE_SUCCESS, itemToDelete);
-        
         ModelManager expectedModel = new ModelManager(model.getItemList(), model.getLocationList(),
                 model.getRecipeList(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
-        
         assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
     
@@ -37,7 +33,6 @@ public class DeleteItemCommandTest {
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         String itemName = "Someone's Toenail";
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemName);
-        
         assertCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
     }
     

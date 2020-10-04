@@ -9,19 +9,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 
 public class IngredientTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Ingredient(null, null));
     }
-    
     @Test
     public void constructor_invalidIngredient_throwsAssertionException() {
         Integer x = 1;
         Integer y = -1;
         assertThrows(AssertionError.class, () -> new Ingredient(x, y));
     }
-    
     @Test
     public void isItem() {
         Ingredient i = INGREDIENT_1;
@@ -32,5 +29,4 @@ public class IngredientTest {
         // Known item id and non equivilent int value returns false.
         assertFalse(INGREDIENT_1.isItem(differentItemId));
     }
-    
 }
