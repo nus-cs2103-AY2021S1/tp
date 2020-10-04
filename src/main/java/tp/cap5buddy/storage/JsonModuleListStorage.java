@@ -1,5 +1,12 @@
 package tp.cap5buddy.storage;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -7,21 +14,13 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import tp.cap5buddy.modules.ModuleList;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access CAP5Buddy data stored as a json file on the hard disk.
  */
-public class JsonModuleListStorage {
-
+public class JsonModuleListStorage implements ModuleListStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonModuleListStorage.class);
-
     private Path filePath;
 
     public JsonModuleListStorage(Path filePath) {
@@ -36,6 +35,7 @@ public class JsonModuleListStorage {
         return readModuleList(filePath);
     }
 
+    @Override
     public Optional<ModuleList> readModuleList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -52,10 +52,17 @@ public class JsonModuleListStorage {
         }
     }
 
+    @Override
     public void saveModuleList(ModuleList moduleList) throws IOException {
         saveModuleList(moduleList, filePath);
     }
 
+    /**
+     * Similar to {@link #saveModuleList(ModuleList)}.
+     * @param moduleList
+     * @param filePath
+     * @throws IOException
+     */
     public void saveModuleList(ModuleList moduleList, Path filePath) throws IOException {
         requireNonNull(moduleList);
         requireNonNull(filePath);

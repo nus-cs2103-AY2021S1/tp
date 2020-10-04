@@ -17,6 +17,7 @@ public class Prefix {
 
     /**
      * Checks if the given word contains a prefix.
+     *
      * @param word word to check.
      * @return boolean is prefix or not.
      */
@@ -25,12 +26,15 @@ public class Prefix {
         boolean res = false;
         switch (possiblePrefix) {
         case "n/":
-            res = true;
-            break;
         case "l/":
+        case "i/":
+        case "e/":
+        case "v/":
             res = true;
             break;
-
+        case "d/":
+            res = true;
+            break;
         default:
             res = false;
         }

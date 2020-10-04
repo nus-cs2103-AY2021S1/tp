@@ -5,21 +5,20 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
-
+import tp.cap5buddy.modules.ModuleList;
 
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage {
+public interface Storage extends ModuleListStorage {
     @Override
-    Path getAddressBookFilePath();
+    Path getModuleListFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ModuleList> readModuleList() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveModuleList(ModuleList moduleList) throws IOException;
 
 }
