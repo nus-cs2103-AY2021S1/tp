@@ -42,8 +42,8 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Phone;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
