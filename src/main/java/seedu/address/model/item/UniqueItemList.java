@@ -10,9 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
-import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.exceptions.RecipeNotFoundException;
-
 
 /**
  * A list of items that enforces uniqueness between its elements and does not allow nulls.

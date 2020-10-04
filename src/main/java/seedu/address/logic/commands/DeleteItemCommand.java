@@ -1,18 +1,20 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.Recipe;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
-
+/**
+ * DeleteItemCommand represents a delete item command with hidden
+ * internal logic and the ability to be executed.
+ */
 public class DeleteItemCommand extends Command {
     public static final String COMMAND_WORD = "deli";
 
@@ -24,9 +26,7 @@ public class DeleteItemCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Item and Recipes of the item Deleted: %1$s";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list";
     public static final String MESSAGE_ITEM_ALREADY_DELETED = "Item was already previously deleted";
-    
     private final String productName;
-
     /**
      * Creates an DeleteItemCommand to delete the specified {@code Item} and connecting recipes
      * @param itemName The item name to be deleted
@@ -35,7 +35,6 @@ public class DeleteItemCommand extends Command {
         requireNonNull(itemName);
         this.productName = itemName;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
-
 /**
  * Represents an Item in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -96,7 +94,6 @@ public class Item {
             recipeIds.add(recipeId);
         }
     }
-
     /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
@@ -109,7 +106,6 @@ public class Item {
         return otherItem != null
                 && otherItem.getName().equals(getName());
     }
-
     /**
      * Returns true if both items have same name, and can be replaced
      * @param otherItem Other item to compare to this item
@@ -118,7 +114,6 @@ public class Item {
     public boolean isReplacable(Item otherItem) {
         return isSameItem(otherItem) && this.isDeleted();
     }
-    
     /**
      * Returns a deleted form of the same recipe.
      */
@@ -142,7 +137,6 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals((getQuantity()))
                 && otherItem.getDescription().equals(getDescription())
