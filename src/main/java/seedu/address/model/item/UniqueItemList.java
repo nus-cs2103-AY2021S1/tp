@@ -33,12 +33,12 @@ public class UniqueItemList implements Iterable<Item> {
 
     /**
      * Returns true if the list contains an equivalent item as the given argument.
+     * @param toCheck The item to check against.
      */
     public boolean contains(Item toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameItem);
     }
-
     /**
      * Adds a item to the list.
      * The item must not already exist in the list.
@@ -74,6 +74,7 @@ public class UniqueItemList implements Iterable<Item> {
     /**
      * Removes the equivalent item from the list.
      * The item must exist in the list.
+     * @param toRemove Item to remove from the list
      */
     public void remove(Item toRemove) {
         requireNonNull(toRemove);
@@ -81,15 +82,20 @@ public class UniqueItemList implements Iterable<Item> {
             throw new ItemNotFoundException();
         }
     }
-    
+
+    /**
+     * Deletes the equivilent item from the list, sets deleted flag to true
+     * The item must exist in the list
+     * @param toDelete item to delete
+     */
     public void delete(Item toDelete) {
         requireNonNull(toDelete);
         if (!internalList.contains(toDelete)) {
             throw new ItemNotFoundException();
         }
-        Recipe updatedRecipe = toDelete.delete();
+        Item updatedItem = toDelete.delete();
         remove(toDelete);
-        add(updatedRecipe);
+        add(updatedItem);
     }
 
     public void setItems(UniqueItemList replacement) {

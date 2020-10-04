@@ -82,7 +82,6 @@ public class ItemList implements ReadOnlyItemList {
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
-
         items.setItem(target, editedItem);
     }
 
