@@ -1,15 +1,15 @@
 package seedu.address.model.item;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Tests that a {@code Item}'s {@code Name} or {@code Supplier} or {@code Tags} matches any of the keywords given.
@@ -19,6 +19,11 @@ public class ItemContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
     private final Prefix prefix;
 
+    /**
+     * Constructor for ItemContainsKeywordsPredicate.
+     * @param keywords List of keywords
+     * @param prefix Prefix
+     */
     public ItemContainsKeywordsPredicate(List<String> keywords, Prefix prefix) {
         this.keywords = keywords;
         this.prefix = prefix;

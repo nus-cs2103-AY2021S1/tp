@@ -21,14 +21,17 @@ public class ItemContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        ItemContainsKeywordsPredicate firstPredicate = new ItemContainsKeywordsPredicate(firstPredicateKeywordList, PREFIX_NAME);
-        ItemContainsKeywordsPredicate secondPredicate = new ItemContainsKeywordsPredicate(secondPredicateKeywordList, PREFIX_NAME);
+        ItemContainsKeywordsPredicate firstPredicate = new ItemContainsKeywordsPredicate(
+                firstPredicateKeywordList, PREFIX_NAME);
+        ItemContainsKeywordsPredicate secondPredicate = new ItemContainsKeywordsPredicate(
+                secondPredicateKeywordList, PREFIX_NAME);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ItemContainsKeywordsPredicate firstPredicateCopy = new ItemContainsKeywordsPredicate(firstPredicateKeywordList, PREFIX_NAME);
+        ItemContainsKeywordsPredicate firstPredicateCopy = new ItemContainsKeywordsPredicate(
+                firstPredicateKeywordList, PREFIX_NAME);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -64,7 +67,8 @@ public class ItemContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(Collections.emptyList(), PREFIX_NAME);
+        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(
+                Collections.emptyList(), PREFIX_NAME);
         assertFalse(predicate.test(new ItemBuilder().withName("Chicken").build()));
 
         // Non-matching keyword
@@ -100,7 +104,8 @@ public class ItemContainsKeywordsPredicateTest {
     @Test
     public void test_supplierDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(Collections.emptyList(), PREFIX_SUPPLIER);
+        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(
+                Collections.emptyList(), PREFIX_SUPPLIER);
         assertFalse(predicate.test(new ItemBuilder().withSupplier("NTUC").build()));
 
         // Non-matching keyword
@@ -118,7 +123,7 @@ public class ItemContainsKeywordsPredicateTest {
         // One keyword
         ItemContainsKeywordsPredicate predicate =
                 new ItemContainsKeywordsPredicate(Collections.singletonList("meat"), PREFIX_TAG);
-        assertTrue(predicate.test(new ItemBuilder().withTags("meat","premium").build()));
+        assertTrue(predicate.test(new ItemBuilder().withTags("meat", "premium").build()));
 
         // Mixed-case keywords
         predicate = new ItemContainsKeywordsPredicate(Collections.singletonList("Meat"), PREFIX_TAG);
@@ -128,7 +133,8 @@ public class ItemContainsKeywordsPredicateTest {
     @Test
     public void test_tagsDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(Collections.emptyList(), PREFIX_TAG);
+        ItemContainsKeywordsPredicate predicate = new ItemContainsKeywordsPredicate(
+                Collections.emptyList(), PREFIX_TAG);
         assertFalse(predicate.test(new ItemBuilder().withTags("meat").build()));
 
         // Non-matching keyword

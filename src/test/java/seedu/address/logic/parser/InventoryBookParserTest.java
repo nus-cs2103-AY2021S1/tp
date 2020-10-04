@@ -9,9 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +69,7 @@ public class InventoryBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("CHICKEN","FEET");
+        List<String> keywords = Arrays.asList("CHICKEN", "FEET");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "n/chicken feet");
         assertEquals(new FindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
