@@ -46,7 +46,7 @@ public class IngredientBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public IngredientBuilder withQuantity(int qty) {
+    public IngredientBuilder withQuantity(double qty) {
         this.qty = new Quantity(qty);
         return this;
     }
