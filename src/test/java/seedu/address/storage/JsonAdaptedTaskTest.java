@@ -20,14 +20,14 @@ import seedu.address.model.task.Type;
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@te movie";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_TYPE = " ";
     private static final String INVALID_DESCRIPTION = "@example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = BENSON.getTitle().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_TYPE = BENSON.getType().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -41,14 +41,14 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(INVALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedTask(INVALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_PHONE, VALID_DESCRIPTION, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_PHONE, VALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -56,14 +56,14 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, INVALID_PHONE, VALID_DESCRIPTION, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedTask(VALID_TITLE, INVALID_PHONE, VALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_DESCRIPTION, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -71,28 +71,28 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, INVALID_DESCRIPTION, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, INVALID_DESCRIPTION, VALID_TYPE, VALID_TAGS);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, null, VALID_TYPE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_invalidType_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, INVALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, INVALID_TYPE, VALID_TAGS);
         String expectedMessage = Type.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
+    public void toModelType_nullType_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -103,7 +103,7 @@ public class JsonAdaptedTaskTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, VALID_ADDRESS, invalidTags);
+                new JsonAdaptedTask(VALID_TITLE, VALID_PHONE, VALID_DESCRIPTION, VALID_TYPE, invalidTags);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 

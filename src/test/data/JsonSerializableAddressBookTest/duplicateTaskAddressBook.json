@@ -3,12 +3,12 @@
     "title": "Alice Pauline",
     "phone": "94351253",
     "description": "alice,example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "type": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "title": "Alice Pauline",
     "phone": "94351253",
     "description": "pauline,example.com",
-    "address": "4th street"
+    "type": "4th street"
   } ]
 }

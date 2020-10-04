@@ -27,7 +27,7 @@ class JsonAdaptedTask {
     private final String title;
     private final String phone;
     private final String description;
-    private final String address;
+    private final String type;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +35,12 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
-           @JsonProperty("description") String description, @JsonProperty("address") String address,
+           @JsonProperty("description") String description, @JsonProperty("type") String type,
            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.phone = phone;
         this.description = description;
-        this.address = address;
+        this.type = type;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +53,7 @@ class JsonAdaptedTask {
         title = source.getTitle().title;
         phone = source.getPhone().value;
         description = source.getDescription().value;
-        address = source.getAddress().value;
+        type = source.getType().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -96,13 +96,13 @@ class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
-        if (address == null) {
+        if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Type.class.getSimpleName()));
         }
-        if (!Type.isValidType(address)) {
+        if (!Type.isValidType(type)) {
             throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
         }
-        final Type modelType = new Type(address);
+        final Type modelType = new Type(type);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
         return new Task(modelTitle, modelPhone, modelDescription, modelType, modelTags);

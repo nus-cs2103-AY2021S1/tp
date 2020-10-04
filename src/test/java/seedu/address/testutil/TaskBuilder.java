@@ -19,7 +19,7 @@ public class TaskBuilder {
     public static final String DEFAULT_TITLE = "School work";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TYPE = "123, Jurong West Ave 6, #08-111";
 
     private Title title;
     private Phone phone;
@@ -34,7 +34,7 @@ public class TaskBuilder {
         title = new Title(DEFAULT_TITLE);
         phone = new Phone(DEFAULT_PHONE);
         description = new Description(DEFAULT_DESCRIPTION);
-        type = new Type(DEFAULT_ADDRESS);
+        type = new Type(DEFAULT_TYPE);
         tags = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class TaskBuilder {
         title = taskToCopy.getTitle();
         phone = taskToCopy.getPhone();
         description = taskToCopy.getDescription();
-        type = taskToCopy.getAddress();
+        type = taskToCopy.getType();
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -66,10 +66,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Task} that we are building.
+     * Sets the {@code Type} of the {@code Task} that we are building.
      */
-    public TaskBuilder withAddress(String address) {
-        this.type = new Type(address);
+    public TaskBuilder withType(String type) {
+        this.type = new Type(type);
         return this;
     }
 

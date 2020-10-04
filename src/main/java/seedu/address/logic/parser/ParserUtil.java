@@ -66,18 +66,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String type} into an {@code Type}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code type} is invalid.
      */
-    public static Type parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Type.isValidType(trimmedAddress)) {
+    public static Type parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (!Type.isValidType(trimmedType)) {
             throw new ParseException(Type.MESSAGE_CONSTRAINTS);
         }
-        return new Type(trimmedAddress);
+        return new Type(trimmedType);
     }
 
     /**

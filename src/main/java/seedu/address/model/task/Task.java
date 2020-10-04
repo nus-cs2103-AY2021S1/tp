@@ -48,7 +48,7 @@ public class Task {
         return description;
     }
 
-    public Type getAddress() {
+    public Type getType() {
         return type;
     }
 
@@ -92,7 +92,7 @@ public class Task {
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getAddress().equals(getAddress())
+                && otherTask.getType().equals(getType())
                 && otherTask.getTags().equals(getTags());
     }
 
@@ -110,8 +110,8 @@ public class Task {
                 .append(getPhone())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Type: ")
+                .append(getType())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

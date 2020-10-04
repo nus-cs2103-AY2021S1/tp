@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TYPE + "TYPE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -96,7 +96,7 @@ public class EditCommand extends Command {
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Type updatedType = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
+        Type updatedType = editTaskDescriptor.getType().orElse(taskToEdit.getType());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedTitle, updatedPhone, updatedDescription, updatedType, updatedTags);
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setTitle(toCopy.title);
             setPhone(toCopy.phone);
             setDescription(toCopy.description);
-            setAddress(toCopy.type);
+            setType(toCopy.type);
             setTags(toCopy.tags);
         }
 
@@ -176,11 +176,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setAddress(Type type) {
+        public void setType(Type type) {
             this.type = type;
         }
 
-        public Optional<Type> getAddress() {
+        public Optional<Type> getType() {
             return Optional.ofNullable(type);
         }
 
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getPhone().equals(e.getPhone())
                     && getDescription().equals(e.getDescription())
-                    && getAddress().equals(e.getAddress())
+                    && getType().equals(e.getType())
                     && getTags().equals(e.getTags());
         }
     }

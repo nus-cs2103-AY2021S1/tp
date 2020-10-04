@@ -14,23 +14,23 @@ public class TypeTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Type(invalidAddress));
+    public void constructor_invalidType_throwsIllegalArgumentException() {
+        String invalidType = "";
+        assertThrows(IllegalArgumentException.class, () -> new Type(invalidType));
     }
 
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidType() {
+        // null type
         assertThrows(NullPointerException.class, () -> Type.isValidType(null));
 
-        // invalid addresses
+        // invalid types
         assertFalse(Type.isValidType("")); // empty string
         assertFalse(Type.isValidType(" ")); // spaces only
 
-        // valid addresses
+        // valid types
         assertTrue(Type.isValidType("Blk 456, Den Road, #01-355"));
         assertTrue(Type.isValidType("-")); // one character
-        assertTrue(Type.isValidType("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Type.isValidType("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long type
     }
 }
