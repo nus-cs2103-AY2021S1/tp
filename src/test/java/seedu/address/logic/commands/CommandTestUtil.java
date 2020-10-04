@@ -15,7 +15,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.LogBook;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.log.Log;
 import seedu.address.model.util.NameContainsKeywordsPredicate;
@@ -107,11 +107,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        LogBook expectedLogBook = new LogBook(actualModel.getAddressBook());
+        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Log> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedLogBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

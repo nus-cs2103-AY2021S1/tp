@@ -19,12 +19,12 @@ import seedu.address.model.log.Log;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final LogBook logBook;
+    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Log> filteredLogs;
 
     /**
-     * Initializes a ModelManager with the given logBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -32,13 +32,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.logBook = new LogBook(addressBook);
+        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredLogs = new FilteredList<>(this.logBook.getPersonList());
+        filteredLogs = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new LogBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,32 +76,32 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== LogBook ================================================================================
+    //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.logBook.resetData(addressBook);
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return logBook;
+        return addressBook;
     }
 
     @Override
     public boolean hasPerson(Log log) {
         requireNonNull(log);
-        return logBook.hasPerson(log);
+        return addressBook.hasPerson(log);
     }
 
     @Override
     public void deletePerson(Log target) {
-        logBook.removePerson(target);
+        addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Log log) {
-        logBook.addPerson(log);
+        addressBook.addPerson(log);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setPerson(Log target, Log editedLog) {
         requireAllNonNull(target, editedLog);
 
-        logBook.setPerson(target, editedLog);
+        addressBook.setPerson(target, editedLog);
     }
 
     //=========== Filtered Log List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return logBook.equals(other.logBook)
+        return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredLogs.equals(other.filteredLogs);
     }

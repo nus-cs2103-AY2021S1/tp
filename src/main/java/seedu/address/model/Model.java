@@ -49,7 +49,7 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the LogBook */
+    /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
     /**

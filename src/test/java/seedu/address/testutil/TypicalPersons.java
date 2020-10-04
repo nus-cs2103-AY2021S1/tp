@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.LogBook;
+import seedu.address.model.AddressBook;
 import seedu.address.model.log.Log;
 
 /**
@@ -60,10 +60,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code LogBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static LogBook getTypicalAddressBook() {
-        LogBook ab = new LogBook();
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
         for (Log log : getTypicalPersons()) {
             ab.addPerson(log);
         }

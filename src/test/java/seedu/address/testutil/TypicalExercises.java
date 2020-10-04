@@ -21,11 +21,11 @@ public class TypicalExercises {
     private TypicalExercises() {} // prevents instantiation
 
     /**
-     * Returns an {@code LogBook} with all the typical exercises.
+     * Returns an {@code AddressBook} with all the typical exercises.
      */
     // TODO: Add test method for addressbook for exercises
-    //    public static LogBook getTypicalAddressBook() {
-    //        LogBook ab = new LogBook();
+    //    public static AddressBook getTypicalAddressBook() {
+    //        AddressBook ab = new AddressBook();
     //        for (Exercise exercise : getTypicalExercises()) {
     //            ab.addExercise(exercise);
     //        }

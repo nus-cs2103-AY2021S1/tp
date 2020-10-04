@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.LogBook;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.log.Address;
@@ -14,7 +14,7 @@ import seedu.address.model.log.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code LogBook} with sample data.
+ * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
     public static Log[] getSamplePersons() {
@@ -52,7 +52,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
-        LogBook sampleAb = new LogBook();
+        AddressBook sampleAb = new AddressBook();
         for (Log sampleLog : getSamplePersons()) {
             sampleAb.addPerson(sampleLog);
         }
