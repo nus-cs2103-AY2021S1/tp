@@ -1,7 +1,6 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
