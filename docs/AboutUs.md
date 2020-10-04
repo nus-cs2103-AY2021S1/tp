@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/BobbyZhouZijian)]
 [[portfolio](team/bobbyzhouzijian.md)]
 
-* Role: Tech Lead, Git expert
+* Role: Tech Lead, Git Expert
 * Responsibilities: Scheduling and Tracking
 
 ### Marcus Tan
@@ -32,29 +32,30 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Gabriella Teh
 
-<img src="images/GabriellaTeh.png" width="200px">
+<img src="images/gabriellateh.png" width="200px">
 
-[[github](http://github.com/GabriellaTeh)] [[portfolio](team/GabriellaTeh.md)]
+[[github](http://github.com/GabriellaTeh)]
+[[portfolio](team/gabriellateh.md)]
 
 * Role: Developer
 * Responsibilities: Documentation, deliverables and deadlines
 
-### Jean Doe
+### Li Beining
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dearvae.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/dearvae)]
+[[portfolio](team/dearvae.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer, Figma Expert
+* Responsibilities: Integration 
 
-### James Doe
+### Li Gangwei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nuovonatura.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nuovonatura)]
+[[portfolio](team/nuovonatura.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer, JavaFX Expert
+* Responsibilities: UI and Code Quality
