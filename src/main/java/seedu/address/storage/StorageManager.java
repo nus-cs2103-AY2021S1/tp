@@ -1,9 +1,14 @@
 package seedu.address.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Base64;
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -74,6 +79,32 @@ public class StorageManager implements Storage {
     public void saveCliniCal(ReadOnlyCliniCal cliniCal, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         cliniCalStorage.saveCliniCal(cliniCal, filePath);
+    }
+
+    /**
+     * Adds profile picture to patient and returns destination file path.
+     *
+     * @param patientName Patient's name
+     * @param profilePic Patient's profile picture
+     * @return String destination file path
+     */
+    public static String addPictureToProfile(String patientName, File profilePic) {
+        try {
+            String profilePicPath = profilePic.getPath();
+            String profilePicExtension = FilenameUtils.getExtension(profilePicPath);
+            String destinationPath = "data/" + patientName.replaceAll(" ", "_") + "."
+                                     + profilePicExtension;
+
+            byte[] profilePicInBytes = FileUtils.readFileToByteArray(profilePic);
+            String profilePicInString = Base64.getEncoder().encodeToString(profilePicInBytes);
+
+            File finalProfilePic = new File(destinationPath);
+            byte[] decodedBytes = Base64.getDecoder().decode(profilePicInString);
+            FileUtils.writeByteArrayToFile(finalProfilePic, decodedBytes);
+            return destinationPath;
+        } catch (IOException error) {
+            return error.getMessage();
+        }
     }
 
 }

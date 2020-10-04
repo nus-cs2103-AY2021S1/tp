@@ -8,6 +8,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,12 +21,14 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PROFILE_PICTURE = "data/stock_picture.png";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private ProfilePicture profilePicture;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -36,6 +39,7 @@ public class PatientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        profilePicture = new ProfilePicture(DEFAULT_PROFILE_PICTURE);
     }
 
     /**
@@ -47,6 +51,7 @@ public class PatientBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         tags = new HashSet<>(patientToCopy.getTags());
+        profilePicture = patientToCopy.getProfilePicture();
     }
 
     /**
@@ -89,8 +94,16 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Profile Picture} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withProfilePicture(String profilePic) {
+        this.profilePicture = new ProfilePicture(profilePic);
+        return this;
+    }
+
     public Patient build() {
-        return new Patient(name, phone, email, address, tags);
+        return new Patient(name, phone, email, address, tags, profilePicture);
     }
 
 }

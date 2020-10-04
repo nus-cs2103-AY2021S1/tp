@@ -89,15 +89,15 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Adding profile picture: `addProfilePicture`
+#### Adding profile picture: `addPicture`
 
 Adds a profile picture to the patient’s profile. 
 
-Format: `addProfilePicture INDEX f/FILE_PATH`
+Format: `addPicture INDEX f/FILE_PATH`
 
 Examples:
-*  `addProfilePicture 1 f/data/profile_picture.png` Adds the specified profile picture to the 1st patient.
-*  `addProfilePicture 1 f/downloads/profile_picture.png` Replaces the existing profile picture with an updated profile picture for the 1st patient
+*  `addPicture 1 f/data/profile_picture.png` Adds the specified profile picture to the 1st patient.
+*  `addPicture 1 f/downloads/profile_picture.png` Replaces the existing profile picture with an updated profile picture for the 1st patient
 
 #### Listing all patients: `list`
 

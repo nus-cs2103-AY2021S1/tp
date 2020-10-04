@@ -24,6 +24,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -98,8 +99,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        ProfilePicture updatedProfilePicture = editPatientDescriptor.getProfilePicture()
+                                               .orElse(patientToEdit.getProfilePicture());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProfilePicture);
     }
 
     @Override
@@ -130,6 +133,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private ProfilePicture profilePicture;
 
         public EditPatientDescriptor() {}
 
@@ -143,6 +147,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setProfilePicture(toCopy.profilePicture);
         }
 
         /**
@@ -184,6 +189,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setProfilePicture(ProfilePicture profilePicture) {
+            this.profilePicture = profilePicture;
+        }
+
+        public Optional<ProfilePicture> getProfilePicture() {
+            return Optional.ofNullable(profilePicture);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -220,7 +233,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getProfilePicture().equals(e.getProfilePicture());
         }
     }
 }

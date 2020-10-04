@@ -15,6 +15,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ class JsonAdaptedPatient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String profilePicture;
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -36,11 +38,13 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("profilePicture") String profilePicture) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.profilePicture = profilePicture;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        profilePicture = source.getProfilePicture().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,7 +108,18 @@ class JsonAdaptedPatient {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(patientTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (profilePicture == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                                          ProfilePicture.class.getSimpleName()));
+        }
+
+        if (!ProfilePicture.isValidFilePath(profilePicture)) {
+            throw new IllegalValueException(ProfilePicture.MESSAGE_CONSTRAINTS);
+        }
+        final ProfilePicture modelProfilePicture = new ProfilePicture(profilePicture);
+
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProfilePicture);
     }
 
 }
