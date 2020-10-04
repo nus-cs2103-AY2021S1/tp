@@ -27,6 +27,6 @@ public interface Storage extends FlashcardDeckStorage, UserPrefsStorage {
     Optional<ReadOnlyFlashcardDeck> readFlashcardDeck() throws DataConversionException, IOException;
 
     @Override
-    void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck) throws IOException;
+    void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck) throws IOException;
 
 }

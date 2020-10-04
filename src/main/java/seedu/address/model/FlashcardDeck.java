@@ -90,7 +90,7 @@ public class FlashcardDeck implements ReadOnlyFlashcardDeck {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Flashcard key) {
+    public void removeFlashcard(Flashcard key) {
         flashcards.remove(key);
     }
 

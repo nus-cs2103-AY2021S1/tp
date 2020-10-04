@@ -17,15 +17,15 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private FlashcardDeckStorage flashCardDeckStorage;
+    private FlashcardDeckStorage flashcardDeckStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code FlashcardDeckStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(FlashcardDeckStorage flashCardDeckStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(FlashcardDeckStorage flashcardDeckStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.flashCardDeckStorage = flashCardDeckStorage;
+        this.flashcardDeckStorage = flashcardDeckStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,30 +51,30 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getFlashcardDeckFilePath() {
-        return flashCardDeckStorage.getFlashcardDeckFilePath();
+        return flashcardDeckStorage.getFlashcardDeckFilePath();
     }
 
     @Override
     public Optional<ReadOnlyFlashcardDeck> readFlashcardDeck() throws DataConversionException, IOException {
-        return readFlashcardDeck(flashCardDeckStorage.getFlashcardDeckFilePath());
+        return readFlashcardDeck(flashcardDeckStorage.getFlashcardDeckFilePath());
     }
 
     @Override
     public Optional<ReadOnlyFlashcardDeck> readFlashcardDeck(Path filePath) throws DataConversionException,
             IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return flashCardDeckStorage.readFlashcardDeck(filePath);
+        return flashcardDeckStorage.readFlashcardDeck(filePath);
     }
 
     @Override
-    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck) throws IOException {
-        saveFlashcardDeck(flashCardDeck, flashCardDeckStorage.getFlashcardDeckFilePath());
+    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck) throws IOException {
+        saveFlashcardDeck(flashcardDeck, flashcardDeckStorage.getFlashcardDeckFilePath());
     }
 
     @Override
-    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck, Path filePath) throws IOException {
+    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        flashCardDeckStorage.saveFlashcardDeck(flashCardDeck, filePath);
+        flashcardDeckStorage.saveFlashcardDeck(flashcardDeck, filePath);
     }
 
 }

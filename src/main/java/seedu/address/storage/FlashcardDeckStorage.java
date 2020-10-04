@@ -19,8 +19,8 @@ public interface FlashcardDeckStorage {
     Path getFlashcardDeckFilePath();
 
     /**
-     * Returns FlashCardDeck data as a {@link ReadOnlyFlashcardDeck}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns FlashcardDeck data as a {@link ReadOnlyFlashcardDeck}.
+     * Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,14 +33,14 @@ public interface FlashcardDeckStorage {
 
     /**
      * Saves the given {@link ReadOnlyFlashcardDeck} to the storage.
-     * @param flashCardDeck cannot be null.
+     * @param flashcardDeck cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck) throws IOException;
+    void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck) throws IOException;
 
     /**
      * @see #saveFlashcardDeck(ReadOnlyFlashcardDeck)
      */
-    void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck, Path filePath) throws IOException;
+    void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck, Path filePath) throws IOException;
 
 }

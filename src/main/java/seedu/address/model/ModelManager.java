@@ -96,7 +96,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        addressBook.removePerson(target);
+        addressBook.removeFlashcard(target);
     }
 
     @Override

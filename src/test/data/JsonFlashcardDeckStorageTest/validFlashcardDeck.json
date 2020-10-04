@@ -1,5 +1,4 @@
 {
-  "_comment": "AddressBook save file which contains the same Flashcard values as in TypicalFlashcard#getTypicalAddressBook()",
   "flashcards" : [ {
     "question" : "What does SDLC stand for?",
     "answer" : "Software development life cycle",
@@ -8,5 +7,9 @@
     "question" : "What is a revision control software?",
     "answer" : "It is the software tool that automate the process of Revision Control",
     "category" : "Revision history"
+  }, {
+    "question" : "What does OOP2 stand for?",
+    "answer" : "Object Oriented Programming",
+    "category" : "General"
   } ]
 }

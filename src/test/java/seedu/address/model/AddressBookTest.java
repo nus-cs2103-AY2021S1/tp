@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        FlashcardDeck newData = getTypicalAddressBook();
+        FlashcardDeck newData = getTypicalFlashcardDeck();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }

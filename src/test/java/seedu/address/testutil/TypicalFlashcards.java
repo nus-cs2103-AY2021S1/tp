@@ -31,7 +31,7 @@ public class TypicalFlashcards {
     /**
      * Returns an {@code AddressBook} with all the typical flashcards.
      */
-    public static FlashcardDeck getTypicalAddressBook() {
+    public static FlashcardDeck getTypicalFlashcardDeck() {
         FlashcardDeck ab = new FlashcardDeck();
         for (Flashcard flashcard : getTypicalFlashcards()) {
             ab.addFlashcard(flashcard);

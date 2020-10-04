@@ -19,7 +19,7 @@ import seedu.address.model.flashcard.Flashcard;
 @JsonRootName(value = "addressbook")
 class JsonSerializableFlashcardDeck {
 
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcard list contains duplicate flashcard(s).";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcard deck contains duplicate flashcard(s).";
 
     private final List<JsonAdaptedFlashcard> flashcards = new ArrayList<>();
 

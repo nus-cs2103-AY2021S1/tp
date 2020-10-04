@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyFlashcardDeck;
 
 /**
- * A class to access FlashCardDeck data stored as a json file on the hard disk.
+ * A class to access FlashcardDeck data stored as a json file on the hard disk.
  */
 public class JsonFlashcardDeckStorage implements FlashcardDeckStorage {
 
@@ -60,8 +60,8 @@ public class JsonFlashcardDeckStorage implements FlashcardDeckStorage {
     }
 
     @Override
-    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck) throws IOException {
-        saveFlashcardDeck(flashCardDeck, filePath);
+    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck) throws IOException {
+        saveFlashcardDeck(flashcardDeck, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonFlashcardDeckStorage implements FlashcardDeckStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashCardDeck, Path filePath) throws IOException {
-        requireNonNull(flashCardDeck);
+    public void saveFlashcardDeck(ReadOnlyFlashcardDeck flashcardDeck, Path filePath) throws IOException {
+        requireNonNull(flashcardDeck);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableFlashcardDeck(flashCardDeck), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableFlashcardDeck(flashcardDeck), filePath);
     }
 
 }
