@@ -23,11 +23,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Assignment;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AssignmentBuilder;
-import seedu.address.testutil.EditAssignmentDescriptorBuilder;
 import seedu.address.testutil.AssignmentUtil;
+import seedu.address.testutil.EditAssignmentDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -58,7 +58,8 @@ public class AddressBookParserTest {
         Assignment assignment = new AssignmentBuilder().build();
         EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder(assignment).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ASSIGNMENT.getOneBased() + " " + AssignmentUtil.getEditAssignmentDescriptorDetails(descriptor));
+                + INDEX_FIRST_ASSIGNMENT.getOneBased() + " "
+                + AssignmentUtil.getEditAssignmentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_ASSIGNMENT, descriptor), command);
     }
 

@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicateAssignmentException;
 import seedu.address.model.person.exceptions.AssignmentNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateAssignmentException;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class UniqueAssignmentListTest {
@@ -129,7 +129,8 @@ public class UniqueAssignmentListTest {
 
     @Test
     public void setAssignments_nullUniqueAssignmentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAssignmentList.setAssignments((UniqueAssignmentList) null));
+        assertThrows(NullPointerException.class, () -> uniqueAssignmentList
+                .setAssignments((UniqueAssignmentList) null));
     }
 
     @Test
@@ -143,7 +144,8 @@ public class UniqueAssignmentListTest {
 
     @Test
     public void setAssignments_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAssignmentList.setAssignments((List<Assignment>) null));
+        assertThrows(NullPointerException.class, () -> uniqueAssignmentList
+                .setAssignments((List<Assignment>) null));
     }
 
     @Test
@@ -159,7 +161,8 @@ public class UniqueAssignmentListTest {
     @Test
     public void setAssignments_listWithDuplicateAssignments_throwsDuplicateAssignmentException() {
         List<Assignment> listWithDuplicateAssignments = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateAssignmentException.class, () -> uniqueAssignmentList.setAssignments(listWithDuplicateAssignments));
+        assertThrows(DuplicateAssignmentException.class, () -> uniqueAssignmentList
+                .setAssignments(listWithDuplicateAssignments));
     }
 
     @Test

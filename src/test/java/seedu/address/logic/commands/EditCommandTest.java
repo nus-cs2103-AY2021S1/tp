@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
+import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -85,7 +85,8 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
-        Assignment assignmentInFilteredList = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment assignmentInFilteredList = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment editedAssignment = new AssignmentBuilder(assignmentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ASSIGNMENT,
                 new EditAssignmentDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -112,7 +113,8 @@ public class EditCommandTest {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
         // edit assignment in filtered list into a duplicate in address book
-        Assignment assignmentInList = model.getAddressBook().getAssignmentList().get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+        Assignment assignmentInList = model.getAddressBook().getAssignmentList()
+                .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ASSIGNMENT,
                 new EditAssignmentDescriptorBuilder(assignmentInList).build());
 

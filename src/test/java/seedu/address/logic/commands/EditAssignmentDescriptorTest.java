@@ -36,7 +36,8 @@ public class EditAssignmentDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditAssignmentDescriptor editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditAssignmentDescriptor editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY)
+                .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

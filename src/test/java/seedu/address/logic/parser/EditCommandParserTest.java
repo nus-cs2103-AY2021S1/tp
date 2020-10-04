@@ -124,8 +124,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ASSIGNMENT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -185,7 +185,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ASSIGNMENT;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder()
+                .withPhone(VALID_PHONE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

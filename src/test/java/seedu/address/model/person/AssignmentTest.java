@@ -32,7 +32,8 @@ public class AssignmentTest {
         assertFalse(ALICE.isSameAssignment(null));
 
         // different phone and email -> returns false
-        Assignment editedAlice = new AssignmentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        Assignment editedAlice = new AssignmentBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameAssignment(editedAlice));
 
         // different name -> returns false

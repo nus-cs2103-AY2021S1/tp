@@ -19,8 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Assignment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -87,7 +90,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Assignment} with the details of {@code assignmentToEdit}
      * edited with {@code editAssignmentDescriptor}.
      */
-    private static Assignment createEditedAssignment(Assignment assignmentToEdit, EditAssignmentDescriptor editAssignmentDescriptor) {
+    private static Assignment createEditedAssignment(Assignment assignmentToEdit,
+                                                     EditAssignmentDescriptor editAssignmentDescriptor) {
         assert assignmentToEdit != null;
 
         Name updatedName = editAssignmentDescriptor.getName().orElse(assignmentToEdit.getName());

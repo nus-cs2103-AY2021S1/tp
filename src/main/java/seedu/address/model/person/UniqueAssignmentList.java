@@ -8,14 +8,15 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateAssignmentException;
 import seedu.address.model.person.exceptions.AssignmentNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateAssignmentException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A assignment is considered unique by comparing using {@code Assignment#isSameAssignment(Assignment)}. As such, adding and updating of
- * persons uses Assignment#isSameAssignment(Assignment) for equality so as to ensure that the assignment being added or updated is
- * unique in terms of identity in the UniqueAssignmentList. However, the removal of a assignment uses Assignment#equals(Object) so
+ * A assignment is considered unique by comparing using {@code Assignment#isSameAssignment(Assignment)}. As such,
+ * adding and updating of persons uses Assignment#isSameAssignment(Assignment) for equality so as to ensure
+ * that the assignment being added or updated is unique in terms of identity in the UniqueAssignmentList.
+ * However, the removal of a assignment uses Assignment#equals(Object) so
  * as to ensure that the assignment with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -51,7 +52,8 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
     /**
      * Replaces the assignment {@code target} in the list with {@code editedAssignment}.
      * {@code target} must exist in the list.
-     * The assignment identity of {@code editedAssignment} must not be the same as another existing assignment in the list.
+     * The assignment identity of {@code editedAssignment} must not be the same as
+     * another existing assignment in the list.
      */
     public void setAssignment(Assignment target, Assignment editedAssignment) {
         requireAllNonNull(target, editedAssignment);
