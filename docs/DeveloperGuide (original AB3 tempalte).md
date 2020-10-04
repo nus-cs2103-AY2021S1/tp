@@ -19,15 +19,20 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview
+ of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the
+ [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to 
+ create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and 
+[`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -43,15 +48,18 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same projectName as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding 
+API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface 
+and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
+issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -64,9 +72,14 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, 
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+that are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in 
+[`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,30 +97,37 @@ The `UI` component,
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a project).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying 
+help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API 
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : 
+[`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the main catalogue data.
-* exposes an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that
+ the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `MainCatalogue`, which `Project` references. This allows `MainCatalogue` to only require one `Tag` object per unique `Tag`, instead of each `Project` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
+ is given below. It has a `Tag` list in the `MainCatalogue`, which `Project` references. This allows `MainCatalogue` 
+ to only require one `Tag` object per unique `Tag`, instead of each `Project` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,7 +137,9 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** :
+ [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address
+ /storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -137,37 +159,53 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedMainCatalogue`. It extends `MainCatalogue` with an undo/redo history, stored internally as an `mainCatalogueStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedMainCatalogue`. It extends `MainCatalogue` with an 
+undo/redo history, stored internally as an `mainCatalogueStateList` and `currentStatePointer`. Additionally, it 
+implements the following operations:
 
 * `VersionedMainCatalogue#commit()` — Saves the current main catalogue state in its history.
 * `VersionedMainCatalogue#undo()` — Restores the previous main catalogue state from its history.
 * `VersionedMainCatalogue#redo()` — Restores a previously undone main catalogue state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitMainCatalogue()`, `Model#undoMainCatalogue()` and `Model#redoMainCatalogue()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitMainCatalogue()`, `Model#undoMainCatalogue()` 
+and `Model#redoMainCatalogue()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedMainCatalogue` will be initialized with the initial main catalogue state, and the `currentStatePointer` pointing to that single main catalogue state.
+Step 1. The user launches the application for the first time. The `VersionedMainCatalogue` will be initialized with the 
+initial main catalogue state, and the `currentStatePointer` pointing to that single main catalogue state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th project in the main catalogue. The `delete` command calls `Model#commitMainCatalogue()`, causing the modified state of the main catalogue after the `delete 5` command executes to be saved in the `mainCatalogueStateList`, and the `currentStatePointer` is shifted to the newly inserted main catalogue state.
+Step 2. The user executes `delete 5` command to delete the 5th project in the main catalogue. The `delete` command 
+calls `Model#commitMainCatalogue()`, causing the modified state of the main catalogue after the `delete 5` command 
+executes 
+to be saved in the `mainCatalogueStateList`, and the `currentStatePointer` is shifted to the newly inserted main 
+catalogue state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new project. The `add` command also calls `Model#commitMainCatalogue()`, causing another modified main catalogue state to be saved into the `mainCatalogueStateList`.
+Step 3. The user executes `add n/David …​` to add a new project. The `add` command also calls 
+`Model#commitMainCatalogue()`, causing another modified main catalogue state to be saved into the 
+`mainCatalogueStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitMainCatalogue()`, so the main catalogue state will not be saved into the `mainCatalogueStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
+not call `Model#commitMainCatalogue()`, so the main catalogue state will not be saved into the `mainCatalogueStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMainCatalogue()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous main catalogue state, and restores the main catalogue to that state.
+Step 4. The user now decides that adding the project was a mistake, and decides to undo that action by executing the
+ `undo` command. The `undo` command will call `Model#undoMainCatalogue()`, which will shift the `currentStatePointer`
+  once to the left, pointing it to the previous main catalogue state, and restores the main catalogue to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial MainCatalogue state, then there are no previous MainCatalogue states to restore. The `undo` command uses `Model#canUndoMainCatalogue()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
+0, pointing to the initial MainCatalogue state, then there are no previous MainCatalogue states to restore. The `undo` 
+command uses `Model#canUndoMainCatalogue()` to check if this is the case. If so, it will return an error to the user
+ rather
 than attempting to perform the undo.
 
 </div>
@@ -176,21 +214,31 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoMainCatalogue()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the main catalogue to that state.
+The `redo` command does the opposite — it calls `Model#redoMainCatalogue()`, which shifts the
+ `currentStatePointer` once to the right, pointing to the previously undone state, and restores the main catalogue to
+  that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `mainCatalogueStateList.size() - 1`, pointing to the latest main catalogue state, then there are no undone MainCatalogue states to restore. The `redo` command uses `Model#canRedoMainCatalogue()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `mainCatalogueStateList.size() - 1`, pointing to the latest main catalogue state, then there are no undone
+ MainCatalogue states to restore. The `redo` command uses `Model#canRedoMainCatalogue()` to check if this is the case.
+  If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the main catalogue, such as `list`, will usually not call `Model#commitMainCatalogue()`, `Model#undoMainCatalogue()` or `Model#redoMainCatalogue()`. Thus, the `mainCatalogueStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the main catalogue, such as 
+`list`, will usually not call `Model#commitMainCatalogue()`, `Model#undoMainCatalogue()` or `Model#redoMainCatalogue()`.
+ Thus, the `mainCatalogueStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitMainCatalogue()`. Since the `currentStatePointer` is not pointing at the end of the `mainCatalogueStateList`, all main catalogue states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitMainCatalogue()`. Since the `currentStatePointer` is not 
+pointing at the end of the `mainCatalogueStateList`, all main catalogue states after the `currentStatePointer` will be 
+purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+ desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -262,7 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MainCatalogue` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MainCatalogue` and the **Actor** is the `user`, unless specified 
+otherwise)
 
 **Use case: Delete a project**
 
@@ -293,7 +342,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
+be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
@@ -308,7 +358,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting
+ point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
@@ -319,7 +370,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    optimum.
 
 1. Saving window preferences
 
@@ -337,7 +389,8 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all projects using the `list` command. Multiple projects in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
