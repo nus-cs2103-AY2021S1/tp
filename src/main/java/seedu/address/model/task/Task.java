@@ -23,6 +23,7 @@ public class Task {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Status status;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +35,20 @@ public class Task {
         this.description = description;
         this.address = address;
         this.tags.addAll(tags);
+        this.status = Status.defaultStatus();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags, Status status) {
+        requireAllNonNull(title, phone, description, address, tags);
+        this.title = title;
+        this.phone = phone;
+        this.description = description;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.status = status;
     }
 
     public Title getTitle() {
@@ -58,6 +73,10 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -93,13 +112,14 @@ public class Task {
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getAddress().equals(getAddress())
-                && otherTask.getTags().equals(getTags());
+                && otherTask.getTags().equals(getTags())
+                && otherTask.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, description, address, tags);
+        return Objects.hash(title, phone, description, address, tags, status);
     }
 
     @Override
@@ -114,6 +134,7 @@ public class Task {
                 .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Status: ").append(getStatus());
         return builder.toString();
     }
 
