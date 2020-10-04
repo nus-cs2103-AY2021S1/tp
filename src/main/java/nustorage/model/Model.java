@@ -90,6 +90,19 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given InventoryRecord {@code target} with {@code editedInventoryRecord}.
+     * {@code target} must exist in the Inventory.
+     * The description of {@code editedInventoryRecord} must not be the same as another existing InventoryRecord.
+     */
+    void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord);
+
+    /**
+     *
+     * Returns true if a record with the same identity as {@code InventoryRecord} exists in the Inventory.
+     */
+    boolean hasInventoryRecord(InventoryRecord inventoryRecord);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

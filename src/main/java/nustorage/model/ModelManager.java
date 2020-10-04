@@ -108,8 +108,20 @@ public class ModelManager implements Model {
         filteredInventory.setPredicate(predicate);
     }
 
-    //=========== FinanceAccount ================================================================================
+    @Override
+    public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
+        requireNonNull(inventoryRecord);
+        return inventory.hasInventoryRecord(inventoryRecord);
+    }
 
+    @Override
+    public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
+        requireAllNonNull(target, editedInventoryRecord);
+
+        inventory.setInventoryRecord(target, editedInventoryRecord);
+    }
+
+    //=========== FinanceAccount ================================================================================
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addRecord(newRecord);
