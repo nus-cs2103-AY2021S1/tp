@@ -1,9 +1,9 @@
 package seedu.address.model.flashcard;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Flashcard}'s {@code Category} is equivalent to any of the keywords given.
@@ -17,8 +17,8 @@ public class CategoryEqualsKeywordsPredicate implements Predicate<Flashcard> {
 
     @Override
     public boolean test(Flashcard flashcard) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.equalsToCategoryIgnoreCase(flashcard.getCategory().toString(), keyword));
+        return keywords.stream().anyMatch(keyword -> StringUtil
+                .equalsToCategoryIgnoreCase(flashcard.getCategory().toString(), keyword));
     }
 
     @Override
