@@ -7,24 +7,24 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
         "The quantity should be at least 1";
 
-    private final int num;
+    public final int value;
 
     /**
      * Constructs a {@code Quantity}.
      *
-     * @param num A valid integer of arbitrary unit.
+     * @param value A valid integer of arbitrary unit.
      */
-    public Quantity(int num) {
-        assert num > 0;
-        checkArgument(isValidNum(num), MESSAGE_CONSTRAINTS);
-        this.num = num;
+    public Quantity(int value) {
+        assert value > 0;
+        checkArgument(isValidNum(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
      * Returns true if a given int is a valid number.
      */
-    public static boolean isValidNum(int num) {
-        return num > 0;
+    public static boolean isValidNum(int value) {
+        return value > 0;
     }
 
 }

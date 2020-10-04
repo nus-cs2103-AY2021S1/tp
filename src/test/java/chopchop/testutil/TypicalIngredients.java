@@ -8,6 +8,6 @@ public class TypicalIngredients {
         .withDate("2020-12-20").withQuantity(3)
         .build();
     public static final Ingredient BANANA = new IngredientBuilder().withName("Banana")
-        .withDate("2020-12-21").withQuantity(2)
+        .withDate("2021-01-13").withQuantity(2)
         .build();
 }
