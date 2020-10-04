@@ -47,7 +47,7 @@ public class JsonFlashcardDeckStorageTest {
 
     @Test
     public void readFlashcardDeck_invalidFlashcard_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readFlashcardDeck("invalidFlashCardFlashcardDeck.json"));
+        assertThrows(DataConversionException.class, () -> readFlashcardDeck("invalidFlashcardFlashcardDeck.json"));
     }
 
     @Test

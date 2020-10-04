@@ -20,7 +20,7 @@ public class JsonSerializableFlashcardDeckTest {
     private static final Path TYPICAL_FLASHCARDS_FILE = TEST_DATA_FOLDER.resolve("typicalFlashcardsFlashcardDeck.json");
     private static final Path DUPLICATE_FLASHCARDS_FILE = TEST_DATA_FOLDER
             .resolve("duplicateFlashcardsFlashcardDeck.json");
-    private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidFlashCardFlashcardDeck.json");
+    private static final Path INVALID_FLASHCARD_FILE = TEST_DATA_FOLDER.resolve("invalidFlashcardFlashcardDeck.json");
 
     @Test
     public void toModelType_typicalFlashcardsFile_success() throws Exception {
