@@ -28,14 +28,12 @@ public class DeleteItemCommandTest {
         expectedModel.deleteItem(itemToDelete);
         assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
-    
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         String itemName = "Someone's Toenail";
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemName);
         assertCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
     }
-    
     @Test
     public void execute_deleteAnDeletedItem_throwsCommandException() throws Exception{
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
