@@ -148,7 +148,6 @@ public class EditInventoryCommand extends Command {
         public Optional<String> getDescription() {
             return Optional.ofNullable(description);
         }
-        
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
