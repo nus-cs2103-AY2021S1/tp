@@ -27,7 +27,19 @@ Given below are my contributions to the project.
     * added dependencies of it in Project, Participation, and related collections;
     * added related test cases.
 
-* **New Feature**: 
+* **UI modification**: Added another status for Project card. (Pull request: Pull request [\#63](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/63))
+  * What changes made: 
+    * added status field in relevant model and logic classes;
+    * modified the ProjectCard to accommodate 2 different scope status;
+    * allowed the GUI to output different status of ProjectCard;
+    * added relevant test cases.
+
+* **New Feature**: Added navigation commands. (Pull request: Pull request [\#63](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/63))
+  * What changes made: 
+    * created StartCommand and LeaveCommand;
+    * created relevant parsers;
+    * allowed change of scope status and ProjectCard status by these commands;
+    * added relevant test cases.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=lll-jy&tabRepo=AY2021S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
@@ -38,12 +50,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added the teammate-related features' guide.
+    * Added the teammate-related features' guide. (Pull Request [\#46](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/46))
   * Developer Guide:
-    * Wrote the Use Cases for first draft of Project Management System.
+    * Wrote the Use Cases for first draft of Project Management System. (Pull Request [\#49](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/49))
 
 * **Community**:
-  * Updated the first draft for `AboutUs.md`.
+  * Updated the first draft for `AboutUs.md`. (Pull Request [\#46](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/46))
 
 * **Tools**:
 

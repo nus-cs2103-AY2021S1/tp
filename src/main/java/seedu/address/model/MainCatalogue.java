@@ -3,9 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.model.project.UniqueProjectList;
 
 /**
@@ -15,6 +18,8 @@ import seedu.address.model.project.UniqueProjectList;
 public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     private final UniqueProjectList projects;
+    private Status status;
+    private Optional<Project> project;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +30,8 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      */
     {
         projects = new UniqueProjectList();
+        status = Status.CATALOGUE;
+        project = Optional.empty();
     }
 
     public MainCatalogue() {}
@@ -92,6 +99,32 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      */
     public void removeProject(Project key) {
         projects.remove(key);
+    }
+
+    //// project-specific-level operations TODO: may add more
+
+    //// scoping operations
+    @Override
+    public Status getStatus() {
+        return status;
+    }
+
+    @Override
+    public void enter(Project project) {
+        if (status != Status.CATALOGUE) {
+            throw new InvalidScopeException(Status.CATALOGUE, status);
+        }
+        status = Status.PROJECT;
+        this.project = Optional.of(projects.getProject(project));
+    }
+
+    @Override
+    public void quit() {
+        if (status != Status.PROJECT) {
+            throw new InvalidScopeException(Status.PROJECT, status);
+        }
+        status = Status.CATALOGUE;
+        this.project = Optional.empty();
     }
 
     //// util methods

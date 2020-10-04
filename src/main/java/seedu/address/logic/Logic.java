@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 
 /**
  * API of the Logic component
@@ -47,4 +48,19 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the current status for valid scope.
+     */
+    Status getStatus();
+
+    /**
+     * Enters the designated project.
+     */
+    void enter(Project project);
+
+    /**
+     * Quits the current project view.
+     */
+    void quit();
 }

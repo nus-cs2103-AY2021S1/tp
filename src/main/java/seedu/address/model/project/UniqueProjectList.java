@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +47,15 @@ public class UniqueProjectList implements Iterable<Project> {
             throw new DuplicateProjectException();
         }
         internalList.add(toAdd);
+    }
+
+    public Project getProject(Project project) {
+        requireNonNull(project);
+        if (!contains(project)) {
+            throw new ProjectNotFoundException();
+        }
+        Stream<Project> filtered = internalList.stream().filter(project::isSameProject);
+        return internalList.get(0);
     }
 
     /**

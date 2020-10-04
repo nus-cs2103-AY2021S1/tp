@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 
 /**
  * Represents the in-memory model of the main catalogue data.
@@ -110,6 +111,25 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         mainCatalogue.setProject(target, editedProject);
+    }
+
+    //=========== Scoping modifiers ===========================================================================
+
+    @Override
+    public Status getStatus() {
+        return mainCatalogue.getStatus();
+    }
+
+    @Override
+    public void enter(Project project) {
+        mainCatalogue.enter(project);
+        updateFilteredProjectList(p -> p.isSameProject(project));
+    }
+
+    @Override
+    public void quit() {
+        mainCatalogue.quit();
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
     //=========== Filtered Project List Accessors =============================================================

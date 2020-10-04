@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -25,6 +26,7 @@ public class ProjectCard extends UiPart<Region> {
      */
 
     public final Project project;
+    private Status status;
 
     @FXML
     private HBox cardPane;
@@ -46,20 +48,31 @@ public class ProjectCard extends UiPart<Region> {
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
      */
-    public ProjectCard(Project project, int displayedIndex) {
+    public ProjectCard(Project project, int displayedIndex, Status status) {
         super(FXML);
         this.project = project;
+        this.status = status;
         id.setText(displayedIndex + ". ");
         name.setText(project.getName().fullName);
         phone.setText(project.getPhone().value);
-        address.setText(project.getAddress().value);
-        email.setText(project.getEmail().value);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        address.setText(project.getAddress().value);
+        email.setText(project.getEmail().value);
         project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+        //System.out.println(status + name.getText());
+        if (status == Status.CATALOGUE) {
+            address.setVisible(false);
+            email.setVisible(false);
+            tasks.setVisible(false);
+            address.setManaged(false);
+            email.setManaged(false);
+            tasks.setManaged(false);
+        }
     }
 
     @Override
@@ -77,6 +90,7 @@ public class ProjectCard extends UiPart<Region> {
         // state check
         ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
+                && project.equals(card.project)
+                && status.equals(card.status);
     }
 }
