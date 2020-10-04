@@ -119,6 +119,11 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
+
+        System.out.println(otherItem.getRecipeIds().equals(getRecipeIds()));
+        System.out.println(getRecipeIds());
+        System.out.println(otherItem.getRecipeIds());
+
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals((getQuantity()))
                 && otherItem.getDescription().equals(getDescription())

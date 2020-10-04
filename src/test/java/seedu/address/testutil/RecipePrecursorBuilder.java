@@ -74,7 +74,7 @@ public class RecipePrecursorBuilder {
      * @return a sample RecipePrecursor
      */
     public RecipePrecursor build() {
-        return new RecipePrecursor(id, ingredients, "Test",
+        return new RecipePrecursor(id, ingredients, "Apple",
                 quantity, description);
     }
 }

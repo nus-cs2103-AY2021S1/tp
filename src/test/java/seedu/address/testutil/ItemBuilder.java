@@ -11,10 +11,12 @@ import seedu.address.model.item.Quantity;
  */
 public class ItemBuilder {
 
+    public static final int DEFAULT_ID = 1;
     public static final String DEFAULT_NAME = "Bob's Iridescent Grape";
     public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
 
+    private int id;
     private String name;
     private Quantity quantity;
     private String description;
@@ -23,6 +25,7 @@ public class ItemBuilder {
      * Creates a {@code ItemBuilder} with the default details.
      */
     public ItemBuilder() {
+        this.id = DEFAULT_ID;
         this.name = DEFAULT_NAME;
         this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.description = DEFAULT_DESCRIPTION;
@@ -32,9 +35,18 @@ public class ItemBuilder {
      * Initializes the ItemBuilder with the data of {@code itemToCopy}.
      */
     public ItemBuilder(Item itemToCopy) {
+        id = itemToCopy.getId();
         name = itemToCopy.getName();
         quantity = itemToCopy.getQuantity();
         description = itemToCopy.getDescription();
+    }
+
+    /**
+     * Sets the {@code id} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withId(int id) {
+        this.id = id;
+        return this;
     }
 
     /**
@@ -67,7 +79,7 @@ public class ItemBuilder {
      * @return a sample Item
      */
     public Item build() {
-        return new Item(0, name, quantity, description,
-                new HashSet<>(Collections.singletonList(1)), new HashSet<>(), new HashSet<>(), false);
+        return new Item(id, name, quantity, description,
+                new HashSet<>(), new HashSet<>(), new HashSet<>(), false);
     }
 }

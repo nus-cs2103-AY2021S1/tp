@@ -2,15 +2,15 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertItemCommandFailure;
-import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 import static seedu.address.testutil.TypicalLocations.getTypicalLocationsList;
-import static seedu.address.testutil.TypicalRecipes.getTypicalRecipeList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.ItemList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.ItemPrecursor;
@@ -21,8 +21,8 @@ public class AddItemCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalItemList(), getTypicalLocationsList(),
-                getTypicalRecipeList(), new UserPrefs());
+        model = new ModelManager(new ItemList(), getTypicalLocationsList(),
+                new RecipeList(), new UserPrefs());
     }
 
     @Test
