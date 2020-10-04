@@ -74,7 +74,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Deadline} of the {@code Person} that we are building.
      */
     public PersonBuilder withDeadline(String deadline) {
         this.deadline = new Deadline(deadline);

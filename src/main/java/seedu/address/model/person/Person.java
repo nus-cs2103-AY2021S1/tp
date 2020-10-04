@@ -106,7 +106,7 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append(" Deadline: ")
                 .append(getDeadline())
                 .append(" Email: ")
                 .append(getEmail())

@@ -48,7 +48,7 @@ public class DeadlineTest {
         assertFalse(Deadline.isValidDeadline("01-01-20 18:00")); // invalid format ("dd-MM-y HH:mm")
         assertFalse(Deadline.isValidDeadline("01-01-2020 06:00 PM")); // invalid format ("dd-MM-uuuu hh:mm a")
 
-        // valid phone numbers
+        // valid deadline dates and time
         assertTrue(Deadline.isValidDeadline("30-04-2020 1800")); // exactly of format "dd-MM-uuuu HHmm"
         assertTrue(Deadline.isValidDeadline("31-12-2020 2359"));
     }

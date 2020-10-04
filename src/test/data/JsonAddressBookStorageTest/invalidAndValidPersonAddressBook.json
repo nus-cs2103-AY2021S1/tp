@@ -5,7 +5,7 @@
     "email": "hans@example.com",
     "address": "4th street"
   }, {
-    "name": "Person With Invalid Phone Field",
+    "name": "Person With Invalid Deadline Field",
     "deadline": "99-99-9999 9999",
     "email": "hans@example.com",
     "address": "4th street"

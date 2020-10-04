@@ -90,16 +90,16 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDeadlineparsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
     @Test
-    public void parseDeadline_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
+    public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
+        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDeadline(phoneWithWhitespace));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 
     @Test
