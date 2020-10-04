@@ -32,15 +32,16 @@ public class HelpWindow extends UiPart<Stage> {
             "format(any): \nfind n/<name> find sn/<serial number> find l/<location> find s/<source of the stock>\n\n";
 
     public static final String UPDATE_DESCRIPTION =
-            "format(multiple): \nupdate sn/<Serial Number of product> (followed by one of):\n" +
-            "q/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name> " +
-            "l/<new location in warehouse> s/<new source of stock>\n\n";
+            "format(multiple): \nupdate sn/<Serial Number of product> (followed by one of):\n"
+                    + "q/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name> "
+                    + "l/<new location in warehouse> s/<new source of stock>\n\n";
 
     public static final String EXIT_DESCRIPTION =
             "format: \nexit\n\n";
 
     public static final String DISCLAIMER = "---------------------------\nFor more information refer to the guide :";
-    public static final String USERGUIDE_URL = "https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/docs/UserGuide.md";
+    public static final String USERGUIDE_URL = "https://github.com/AY2021S1-CS2103T-T15-3/tp"
+            + "/blob/master/docs/UserGuide.md";
     public static final Hyperlink USERGUIDE_LINK = new Hyperlink(USERGUIDE_URL);
 
 
