@@ -39,7 +39,7 @@ public class AddCommandTest {
     }
 
     /**
-     * tests for successful add
+     * Tests for successful add.
      */
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
@@ -53,7 +53,7 @@ public class AddCommandTest {
     }
 
     /**
-     * tests for duplicate persons
+     * Tests for duplicate persons.
      */
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
@@ -65,7 +65,7 @@ public class AddCommandTest {
     }
 
     /**
-     * tests for equals
+     * Tests for equals.
      */
     @Test
     public void equals() {

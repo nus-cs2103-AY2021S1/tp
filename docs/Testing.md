@@ -1,13 +1,44 @@
 ---
 layout: page
-title: Testing guide
+title: Testing Documentation
 ---
 
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
+# Testing Documentation
+This page will document our testing for classes in Inventoryinator. Segmented into:
+* Unittesting
+* Integration Testing
+* Hybrid Testing
+* Acceptance Testing
 
+### Launch and shutdown
+
+1. Initial launch
+
+   1. Download the jar file and copy into an empty folder
+   ```
+    java -jar InvInator.java
+   ```
+
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample items and recipes.
+    The window size may not be optimum.
+
+1. Saving window preferences
+
+   1. Resize the window to an pre-set size. Move the window to a different location. Close the window.
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. TODO
+### Saving data
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+TODO
 ## Running tests
 
 There are two ways to run tests.
@@ -19,8 +50,7 @@ There are two ways to run tests.
 * **Method 2: Using Gradle**
   * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
 
-<div markdown="span" class="alert alert-secondary">:link: **Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
-</div>
+**Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,3 +64,12 @@ This project has three types of tests:
    e.g. `seedu.address.storage.StorageManagerTest`
 1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
    e.g. `seedu.address.logic.LogicManagerTest`
+
+## UnitTesting
+TODO
+## Integration Testing
+TODO
+## Hybrid Testing
+TODO
+## Acceptance testing
+TODO

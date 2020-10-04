@@ -13,7 +13,7 @@ public class ItemBuilder {
 
     public static final String DEFAULT_NAME = "Bob's Iridescent Grape";
     public static final String DEFAULT_QUANTITY = "25";
-    public static final String DEFAULT_DESCRIPTION = "Rare drop from bob";
+    public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
 
     private String name;
     private Quantity quantity;
@@ -62,12 +62,12 @@ public class ItemBuilder {
     }
 
     /**
-     * builds an item
-     * @return an Item
+     * Builds an item.
+     *
+     * @return a sample Item
      */
     public Item build() {
         return new Item(0, name, quantity, description,
                 new HashSet<>(Collections.singletonList(1)), new HashSet<>(), new HashSet<>(), false);
     }
-
 }

@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-F13-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-F13-1/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![inventoryinator](docs/images/inventoryinator.jpg)
 
 Inventoryinator is built for dedicated and experienced gamers of MMORPGs who want
 fast inventory management with CLI.
@@ -11,6 +11,8 @@ of their inventory through quick commands that support many types of shortcuts.
 Users can also save recipes and check if they have sufficient materials in
 their inventory to utilise a recipe.
 
+![Ui](docs/images/Ui.png)
+
 **Prerequisites**
 * Java 11
 
@@ -19,7 +21,10 @@ their inventory to utilise a recipe.
 ```
 java -jar InvInator.jar
 ```
-* Use the `help` command to access the user guide, or go there [_directly_](UserGuide.html#quick-start).
+* Use the `help` command to access the user guide, or go there [_directly_](docs/UserGuide.md).
+
+**Want to help develop Inventoryinator?**
+* Go [_here_](docs/DeveloperGuide.md) to access the Developer Guide
 
 This project is based on the AddressBook-Level3 project created by
 the [SE-EDU initiative](https://se-education.org).

@@ -69,6 +69,10 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
     public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
 
+    public static final int VALID_RECIPE_ID_TWO = 2;
+    public static final String VALID_RECIPE_QUANTITY_TWO = "2";
+    public static final String VALID_RECIPE_DESC = "Definitely would eat!";
+
     public static final String ITEM_NAME_DESC_APPLE = " "
             + PREFIX_ITEM_NAME + VALID_ITEM_NAME_APPLE;
     public static final String ITEM_NAME_DESC_BANANA = " "

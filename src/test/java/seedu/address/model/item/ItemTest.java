@@ -16,7 +16,8 @@ import seedu.address.testutil.ItemBuilder;
 public class ItemTest {
 
     /**
-     * test for unsupported operation
+     * Tests that UnsupportedOperationException is thrown when
+     * operation is not supported.
      */
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -25,7 +26,7 @@ public class ItemTest {
     }
 
     /**
-     * test for same item
+     * Tests for item equality, defined as two items having the same name.
      */
     @Test
     public void isSameItem() {
@@ -54,13 +55,14 @@ public class ItemTest {
     }
 
     /**
-     * equals test
+     * Test for strict item equality, defined as two items having the exact
+     * same fields.
      */
     @Test
     public void equals() {
         // same values -> returns true
-        Item aliceCopy = new ItemBuilder(APPLE).build();
-        assertTrue(APPLE.equals(aliceCopy));
+        Item appleCopy = new ItemBuilder(APPLE).build();
+        assertTrue(APPLE.equals(appleCopy));
 
         // same object -> returns true
         assertTrue(APPLE.equals(APPLE));
@@ -85,6 +87,5 @@ public class ItemTest {
         // different description -> returns false
         editedApple = new ItemBuilder(APPLE).withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
         assertFalse(APPLE.equals(editedApple));
-
     }
 }

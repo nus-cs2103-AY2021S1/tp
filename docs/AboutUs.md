@@ -2,58 +2,79 @@
 layout: page
 title: About Us
 ---
+* Table of Contents
+{:toc}
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us via the issues tracker of this [repository](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues).
 
 ## Project team
 
-### John Doe
+### Shi Jing Lin
 
-<img src="images/johndoe.png" width="200px">
+![shijinglin](images/aqcd.png)
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://aqcd.github.io/)]
 
-* Role: Project Advisor
+[[github](https://github.com/aqcd)]
 
-### Jane Doe
+[[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
 
-<img src="images/johndoe.png" width="200px">
+* Role: Project Manager
+* Responsibilities: 
+    * Workflow Assignment
+    * Team Lead
+    * Git Expert
+    
+### Stephen Tan
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+![stephentan](images/blackonyyx.png)
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](http://github.com/blackonyyx)]
 
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[portfolio](team/stephentan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: 
+    * Documentation
+    * Javadoc Standards
 
-### Jean Doe
+### Liu Zhengdao
 
-<img src="images/johndoe.png" width="200px">
+![liuzhengdao](images/justacasul.png)
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/justacasul)] 
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/liuzhengdao.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: 
+    * GUI Expert
+    * Code Quality
+
+### Kheng Hun
+
+![siewkhenghun](images/khenghun.png)
+
+[[github](https://github.com/khenghun)]
+[[portfolio](team/siewkhenghun.md)]
+
+* Role: Developer
+* Responsibilities: 
+    * Scheduling and Tracking
+    * Deliverables and deadlines
+    * Testing
+    
+### Rahul
+
+![rahul](images/rahul0506.png)
+
+[[github](https://github.com/Rahul0506)]
+
+[[portfolio](team/rahul.md)]
+
+* Role: Developer
+* Responsibilities: 
+    * Continuous Integration
+    * DevOps
