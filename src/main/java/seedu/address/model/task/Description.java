@@ -35,10 +35,24 @@ public class Description {
     }
 
     /**
+     * Constructs a {@code Description}.
+     */
+    public Description() {
+        value = "";
+    }
+
+    /**
      * Returns if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns if a default Description with empty value;
+     */
+    public static Description defaultDescription() {
+        return new Description();
     }
 
     @Override

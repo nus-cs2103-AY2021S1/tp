@@ -90,14 +90,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_TITLE_BOB + PHONE_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + VALID_PHONE_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + VALID_DESCRIPTION_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
         // missing address prefix
         assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + DESCRIPTION_DESC_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);

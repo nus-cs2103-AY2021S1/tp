@@ -27,10 +27,24 @@ public class Phone {
     }
 
     /**
+     * Constructs a {@code Phone}.
+     */
+    public Phone() {
+        value = "";
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a default phone object which have empty value
+     */
+    public static Phone defaultPhone() {
+        return new Phone();
     }
 
     @Override
