@@ -85,7 +85,7 @@ class JsonAdaptedTask {
         if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        final DateTime modelDate = new DateTime(dateTime);
+        final DateTime modelDateTime = new DateTime(dateTime);
 
         // tentatively description field is not allowed to be empty
         if (description == null) {
@@ -106,7 +106,7 @@ class JsonAdaptedTask {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDate, modelDescription, modelAddress, modelTags);
+        return new Task(modelTitle, modelDateTime, modelDescription, modelAddress, modelTags);
     }
 
 }
