@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Address;
-import seedu.address.model.project.PrrojectName;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -37,7 +37,7 @@ class JsonAdaptedProject {
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
     @JsonCreator
-    public JsonAdaptedProject(@JsonProperty("projectName") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("phone") String phone,
                               @JsonProperty("repoUrl") String repoUrl, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {

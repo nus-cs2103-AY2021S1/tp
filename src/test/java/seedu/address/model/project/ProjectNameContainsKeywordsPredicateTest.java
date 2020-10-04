@@ -70,7 +70,7 @@ public class ProjectNameContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345",
                 "https://github.com/a/a.git", "Main", "Street"));
-        assertFalse(predicate.test(new ProjectBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new ProjectBuilder().withProjectName("Alice").withPhone("12345")
                 .withRepoUrl("https://github.com/a/a.git").withAddress("Main Street").build()));
     }
 }

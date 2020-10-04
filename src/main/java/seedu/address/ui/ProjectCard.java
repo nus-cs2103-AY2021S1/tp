@@ -60,19 +60,16 @@ public class ProjectCard extends UiPart<Region> {
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        address.setText(project.getAddress().value);
-        email.setText(project.getEmail().value);
         project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         //System.out.println(status + name.getText());
         if (status == Status.CATALOGUE) {
             address.setVisible(false);
-            email.setVisible(false);
+            id.setVisible(false);
             tasks.setVisible(false);
             address.setManaged(false);
-            email.setManaged(false);
+            id.setManaged(false);
             tasks.setManaged(false);
         }
     }

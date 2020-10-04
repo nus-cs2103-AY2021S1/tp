@@ -25,7 +25,7 @@ import seedu.address.model.project.Project;
  */
 public class TypicalProjects {
 
-    public static final Project ALICE = new ProjectBuilder().withName("Alice Pauline")
+    public static final Project ALICE = new ProjectBuilder().withProjectName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withRepoUrl("https://github.com/a/a.git")
             .withPhone("94351253")
             .withTags("friends").withTasks("Write DG", "Write user stories").build();
@@ -33,28 +33,28 @@ public class TypicalProjects {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withRepoUrl("https://github.com/b/b.git").withPhone("98765432")
             .withTags("owesMoney", "friends").withTasks("Practice presentation").build();
-    public static final Project CARL = new ProjectBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Project CARL = new ProjectBuilder().withProjectName("Carl Kurz").withPhone("95352563")
             .withRepoUrl("https://github.com/c/c.git").withAddress("wall street").withTasks("Read info pack").build();
-    public static final Project DANIEL = new ProjectBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Project DANIEL = new ProjectBuilder().withProjectName("Daniel Meier").withPhone("87652533")
             .withRepoUrl("https://github.com/d/d.git").withAddress("10th street").withTags("friends").build();
-    public static final Project ELLE = new ProjectBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Project ELLE = new ProjectBuilder().withProjectName("Elle Meyer").withPhone("9482224")
             .withRepoUrl("https://github.com/e/e.git").withAddress("michegan ave").build();
-    public static final Project FIONA = new ProjectBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Project FIONA = new ProjectBuilder().withProjectName("Fiona Kunz").withPhone("9482427")
             .withRepoUrl("https://github.com/f/f.git").withAddress("little tokyo").build();
-    public static final Project GEORGE = new ProjectBuilder().withName("George Best").withPhone("9482442")
+    public static final Project GEORGE = new ProjectBuilder().withProjectName("George Best").withPhone("9482442")
             .withRepoUrl("https://github.com/g/g.git").withAddress("4th street").build();
 
     // Manually added
-    public static final Project HOON = new ProjectBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Project HOON = new ProjectBuilder().withProjectName("Hoon Meier").withPhone("8482424")
             .withRepoUrl("https://github.com/h/h.git").withAddress("little india").build();
-    public static final Project IDA = new ProjectBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Project IDA = new ProjectBuilder().withProjectName("Ida Mueller").withPhone("8482131")
             .withRepoUrl("https://github.com/i/i.git").withAddress("chicago ave").build();
 
     // Manually added - Project's details found in {@code CommandTestUtil}
-    public static final Project AMY = new ProjectBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Project AMY = new ProjectBuilder().withProjectName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withRepoUrl(VALID_REPOURL_A).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
             .withTasks(VALID_TASK_DG, VALID_TASK_MODEL).build();
-    public static final Project BOB = new ProjectBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Project BOB = new ProjectBuilder().withProjectName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withRepoUrl(VALID_REPOURL_B).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withTasks(VALID_TASK_DG).build();
 

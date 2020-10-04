@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.project.Address;
-import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -103,7 +103,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(ProjectName, phone, repoUrl, address, tags, new HashMap<>(), tasks);
+        return new Project(projectName, phone, repoUrl, address, tags, new HashMap<>(), tasks);
     }
 
 }

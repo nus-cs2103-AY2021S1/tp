@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -68,11 +68,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditProjectDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withRepoUrl(VALID_REPOURL_A)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
                 .withTasks(VALID_TASK_DG, VALID_TASK_MODEL).build();
-        DESC_BOB = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withRepoUrl(VALID_REPOURL_B)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withTasks(VALID_TASK_DG).build();
