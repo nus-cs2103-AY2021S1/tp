@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Suspect;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,9 +99,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSuspects, updatedTags);
     }
 
     @Override
@@ -129,6 +132,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private List<Suspect> suspects;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setSuspects(toCopy.suspects);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, suspects, tags);
         }
 
         public void setName(Name name) {
@@ -182,6 +187,21 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets {@code suspects} to this object's {@code suspects}.
+         * A defensive copy of {@code suspects} is used internally.
+         */
+        public void setSuspects(List<Suspect> suspects) {
+            this.suspects = (suspects != null) ? new ArrayList<>() : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code suspects} is null.
+         */
+        public Optional<List<Suspect>> getSuspects() {
+            return (suspects != null) ? Optional.of(suspects) : Optional.empty();
         }
 
         /**
@@ -220,6 +240,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getSuspects().equals(e.getSuspects())
                     && getTags().equals(e.getTags());
         }
     }
