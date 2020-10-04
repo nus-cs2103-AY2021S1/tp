@@ -8,9 +8,12 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import seedu.stock.commons.util.CollectionUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -20,6 +23,7 @@ import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
+import seedu.stock.model.stock.predicates.SerialNumberContainsKeywordsPredicate;
 
 public class UpdateCommand extends Command {
 
@@ -48,6 +52,7 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_UPDATE_STOCK_SUCCESS = "Updated Stock: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the address book.";
+    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
 
     private final UpdateStockDescriptor updateStockDescriptor;
 
@@ -66,8 +71,18 @@ public class UpdateCommand extends Command {
         requireNonNull(model);
         List<Stock> lastShownInventory = model.getFilteredStockList();
 
-        // Dummy stock for now
-        Stock stockToUpdate = lastShownInventory.get(0);
+        SerialNumber index = updateStockDescriptor.getSerialNumber();
+        String[] serial = new String[]{index.getSerialNumberAsString()};
+        Predicate<Stock> findStock = new SerialNumberContainsKeywordsPredicate(Arrays.asList(serial));
+        model.updateFilteredStockList(findStock);
+        ObservableList<Stock> filteredStockList = model.getFilteredStockList();
+
+        // Stock with given serial number does not exist
+        if (filteredStockList.size() == 0) {
+            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+        }
+
+        Stock stockToUpdate = model.getFilteredStockList().get(0);
         Stock updatedStock = createUpdatedStock(stockToUpdate, updateStockDescriptor);
 
         if (!stockToUpdate.isSameStock(updatedStock) && model.hasStock(updatedStock)) {
@@ -93,6 +108,7 @@ public class UpdateCommand extends Command {
         Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
         Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
+        SerialNumber stockSerialNumber = stockToUpdate.getSerialNumber();
         boolean isIncrement = updateStockDescriptor.getIsIncrement();
 
         if (isIncrement) {
@@ -100,7 +116,7 @@ public class UpdateCommand extends Command {
             updatedQuantity = originalQuantity.incrementQuantity(updatedQuantity);
         }
 
-        return new Stock(updatedName, new SerialNumber("12"), updatedSource, updatedQuantity, updatedLocation);
+        return new Stock(updatedName, stockSerialNumber, updatedSource, updatedQuantity, updatedLocation);
     }
 
     @Override
@@ -168,8 +184,10 @@ public class UpdateCommand extends Command {
             this.serialNumber = serialNumber;
         }
 
-        public Optional<SerialNumber> getSerialNumber() {
-            return Optional.ofNullable(serialNumber);
+        public SerialNumber getSerialNumber() {
+            assert serialNumber != null;
+
+            return serialNumber;
         }
 
         public void setSource(Source source) {

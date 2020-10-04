@@ -12,6 +12,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.SerialNumber;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
 
@@ -29,9 +30,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 
-        // TODO: wait for find command, implement logic to obtain the stock with desired serial number
-
         UpdateStockDescriptor updateStockDescriptor = new UpdateStockDescriptor();
+
+        // Store the serial number provided
+        updateStockDescriptor.setSerialNumber(new SerialNumber(argMultimap.getValue(PREFIX_SERIALNUMBER).get()));
 
         // Update name with new name provided
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

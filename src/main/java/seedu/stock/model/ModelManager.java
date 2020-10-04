@@ -167,7 +167,7 @@ public class ModelManager implements Model {
         serialNumberSetsBook.setSerialNumberSet(target, editedSerialNumberSet);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Stock List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Stock} backed by the internal list of
