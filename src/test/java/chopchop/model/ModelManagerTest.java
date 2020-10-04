@@ -7,12 +7,9 @@ import static chopchop.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import chopchop.commons.core.GuiSettings;
-import chopchop.model.ModelManager;
-import chopchop.model.UserPrefs;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.recipe.RecipeBook;
@@ -53,7 +50,8 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         RecipeBook recipeBook = new RecipeBook();
-        IngredientBook ingredientBook = new IngredientBookBuilder().withIngredient(APRICOT).withIngredient(BANANA).build();
+        IngredientBook ingredientBook = new IngredientBookBuilder()
+                                            .withIngredient(APRICOT).withIngredient(BANANA).build();
         IngredientBook differentIngredientBook = new IngredientBook();
         UserPrefs userPrefs = new chopchop.model.UserPrefs();
 
@@ -72,7 +70,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different ingredientBook -> returns false
-        assertFalse(modelManager.equals(new chopchop.model.ModelManager(recipeBook, differentIngredientBook, userPrefs)));
+        assertFalse(modelManager.equals(new chopchop.model
+            .ModelManager(recipeBook, differentIngredientBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = APRICOT.getName().fullName.split("\\s+");

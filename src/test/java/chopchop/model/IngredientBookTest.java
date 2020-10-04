@@ -1,7 +1,6 @@
 package chopchop.model;
 
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_BANANA;
-import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BANANA;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_BANANA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

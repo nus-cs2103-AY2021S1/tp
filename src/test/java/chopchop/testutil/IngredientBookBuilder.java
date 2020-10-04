@@ -2,9 +2,6 @@ package chopchop.testutil;
 
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientBook;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.AddressBookBuilder;
 
 public class IngredientBookBuilder {
 

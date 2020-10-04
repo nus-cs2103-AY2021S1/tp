@@ -28,10 +28,10 @@ public class IngredientBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public IngredientBuilder(Ingredient IndToCopy) {
-        name = IndToCopy.getName();
-        qty = IndToCopy.getQuantity();
-        expDate = IndToCopy.getExpiryDate();
+    public IngredientBuilder(Ingredient indToCopy) {
+        name = indToCopy.getName();
+        qty = indToCopy.getQuantity();
+        expDate = indToCopy.getExpiryDate();
 
     }
 

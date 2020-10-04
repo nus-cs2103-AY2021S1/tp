@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import chopchop.testutil.IngredientBuilder;
 
 public class NameContainsKeywordsPredicateTest {
@@ -39,7 +38,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Apricot"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections
+                                                            .singletonList("Apricot"));
         assertTrue(predicate.test(new IngredientBuilder().withName("Apricot").build()));
 
         // Multiple keywords

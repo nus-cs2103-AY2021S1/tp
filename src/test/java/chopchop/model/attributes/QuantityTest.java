@@ -19,7 +19,7 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity(-1)); // negative
 
         // valid qty
-        assertTrue(Quantity.isValidQuantity(200000));// large int
-        assertTrue(Quantity.isValidQuantity(0.23));// floating point num
+        assertTrue(Quantity.isValidQuantity(200000)); // large int
+        assertTrue(Quantity.isValidQuantity(0.23)); // floating point num
     }
 }
