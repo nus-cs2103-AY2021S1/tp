@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
@@ -22,9 +22,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Address;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Name;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -41,13 +41,13 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_DEADLINE + "29-02-2020 00:00:00 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
@@ -98,13 +98,13 @@ public class EditCommand extends Command {
         assert projectToEdit != null;
 
         Name updatedName = editProjectDescriptor.getName().orElse(projectToEdit.getName());
-        Phone updatedPhone = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
+        Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
         Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
         Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
-        return new Project(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Project(updatedName, updatedDeadline, updatedEmail, updatedAddress,
                 updatedTags, new HashMap<>(), updatedTasks);
     }
 
@@ -132,7 +132,7 @@ public class EditCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Name name;
-        private Phone phone;
+        private Deadline deadline;
         private Email email;
         private Address address;
         private Set<Tag> tags;
@@ -146,7 +146,7 @@ public class EditCommand extends Command {
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setDeadline(toCopy.deadline);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, tasks);
+            return CollectionUtil.isAnyNonNull(name, deadline, email, address, tags, tasks);
         }
 
         public void setName(Name name) {
@@ -168,12 +168,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
         }
 
         public void setEmail(Email email) {
@@ -242,7 +242,7 @@ public class EditCommand extends Command {
             EditProjectDescriptor e = (EditProjectDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
+                    && getDeadline().equals(e.getDeadline())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
