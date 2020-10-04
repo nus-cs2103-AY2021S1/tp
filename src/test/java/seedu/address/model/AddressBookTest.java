@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,7 +24,7 @@ import seedu.address.testutil.FlashcardBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final FlashcardDeck addressBook = new FlashcardDeck();
 
     @Test
     public void constructor() {
@@ -38,7 +38,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        FlashcardDeck newData = getTypicalFlashcardDeck();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -47,7 +47,7 @@ public class AddressBookTest {
     public void resetData_withDuplicateFlashcard_throwsDuplicateFlashcardException() {
         Flashcard copiedFlashcardOne = new FlashcardBuilder(FLASHCARD_1).build();
         List<Flashcard> newFlashcards = Arrays.asList(FLASHCARD_1, copiedFlashcardOne);
-        AddressBookStub newData = new AddressBookStub(newFlashcards);
+        FlashcardDeckStub newData = new FlashcardDeckStub(newFlashcards);
 
         assertThrows(DuplicateFlashcardException.class, () -> addressBook.resetData(newData));
     }
@@ -84,10 +84,10 @@ public class AddressBookTest {
     /**
      * A stub ReadOnlyAddressBook whose flashcards list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class FlashcardDeckStub implements ReadOnlyFlashcardDeck {
         private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Flashcard> flashcards) {
+        FlashcardDeckStub(Collection<Flashcard> flashcards) {
             this.flashcards.setAll(flashcards);
         }
 

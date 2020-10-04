@@ -6,7 +6,7 @@ import seedu.address.model.flashcard.Flashcard;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyFlashcardDeck {
 
     /**
      * Returns an unmodifiable view of the persons list.

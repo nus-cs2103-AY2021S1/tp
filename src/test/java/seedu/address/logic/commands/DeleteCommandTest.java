@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFlashcardAtIndex;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
 
@@ -24,7 +24,7 @@ import seedu.address.model.flashcard.Flashcard;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

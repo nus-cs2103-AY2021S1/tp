@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.FlashcardDeck;
+import seedu.address.model.ReadOnlyFlashcardDeck;
 import seedu.address.model.flashcard.Answer;
 import seedu.address.model.flashcard.Category;
 import seedu.address.model.flashcard.Flashcard;
@@ -26,8 +26,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyFlashcardDeck getSampleAddressBook() {
+        FlashcardDeck sampleAb = new FlashcardDeck();
         for (Flashcard sampleFlashcard : getSampleFlashcards()) {
             sampleAb.addFlashcard(sampleFlashcard);
         }

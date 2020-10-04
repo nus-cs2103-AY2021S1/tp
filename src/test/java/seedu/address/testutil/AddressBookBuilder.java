@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.FlashcardDeck;
 import seedu.address.model.flashcard.Flashcard;
 
 /**
@@ -10,13 +10,13 @@ import seedu.address.model.flashcard.Flashcard;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private FlashcardDeck addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new FlashcardDeck();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(FlashcardDeck addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public FlashcardDeck build() {
         return addressBook;
     }
 }
