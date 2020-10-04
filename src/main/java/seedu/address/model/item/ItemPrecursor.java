@@ -65,6 +65,19 @@ public class ItemPrecursor {
         return new Item(id, name, quantity, description, locationIds, recipeIds, tags, false);
     }
 
+    /**
+     * Returns true if both item precursors have the same name.
+     * This defines a weaker notion of equality between two item precursors.
+     */
+    public boolean isSameItem(ItemPrecursor otherItem) {
+        if (otherItem == this) {
+            return true;
+        }
+
+        return otherItem != null
+                && otherItem.getName().equals(getName());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -76,6 +89,7 @@ public class ItemPrecursor {
         }
 
         ItemPrecursor otherItem = (ItemPrecursor) other;
+
         return otherItem.getId() == getId()
                 && otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals(getQuantity())

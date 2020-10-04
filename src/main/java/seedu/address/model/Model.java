@@ -249,7 +249,13 @@ public interface Model {
      */
     int findLocationID(Location toFind);
 
+    /**
+     * Processes a RecipePrecursor into a Recipe.
+     */
     Recipe processPrecursor(RecipePrecursor recipePrecursor);
 
+    /**
+     * Processes an ItemPrecursor into an Item.
+     */
     Item processPrecursor(ItemPrecursor itemPrecursor);
 }
