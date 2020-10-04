@@ -18,6 +18,7 @@ public class DeleteItemCommandParser implements Parser<DeleteItemCommand> {
 
     public DeleteItemCommand parse(String args) throws ParseException {
         String productName;
+        System.out.println(args);
         try {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_ITEM_NAME);

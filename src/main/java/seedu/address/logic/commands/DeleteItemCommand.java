@@ -62,4 +62,10 @@ public class DeleteItemCommand extends Command {
         recipeList.forEach(model::deleteRecipe);
         return new CommandResult(String.format(MESSAGE_SUCCESS, itemToDelete));
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteItemCommand // instanceof handles nulls
+                && productName.equals(((DeleteItemCommand) other).productName));
+    }
 }
