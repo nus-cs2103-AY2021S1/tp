@@ -17,8 +17,8 @@ public class UiPartTest {
 
     private static final String MISSING_FILE_PATH = "UiPartTest/missingFile.fxml";
     private static final String INVALID_FILE_PATH = "UiPartTest/invalidFile.fxml";
-    private static final String VALID_FILE_PATH = "UiPartTest/validFile.fxml";
-    private static final String VALID_FILE_WITH_FX_ROOT_PATH = "UiPartTest/validFileWithFxRoot.fxml";
+    private static final String VALID_FILE_PATH = "UiPartTest/validFileWithoutFxRoot.fxml";
+    private static final String VALID_FILE_WITH_FX_ROOT_PATH = "UiPartTest/validFileFxRoot.fxml";
     private static final TestFxmlObject VALID_FILE_ROOT = new TestFxmlObject("Hello World!");
 
     @TempDir

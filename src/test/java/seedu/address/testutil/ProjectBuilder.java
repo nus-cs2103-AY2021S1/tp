@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.project.Address;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
@@ -26,7 +26,7 @@ public class ProjectBuilder {
     private ProjectName projectName;
     private Phone phone;
     private Email email;
-    private Address address;
+    private ProjectDescription projectDescription;
     private Set<Tag> tags;
     private Set<Task> tasks;
 
@@ -37,7 +37,7 @@ public class ProjectBuilder {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         tasks = new HashSet<>();
     }
@@ -49,7 +49,7 @@ public class ProjectBuilder {
         projectName = projectToCopy.getProjectName();
         phone = projectToCopy.getPhone();
         email = projectToCopy.getEmail();
-        address = projectToCopy.getAddress();
+        projectDescription = projectToCopy.getProjectDescription();
         tags = new HashSet<>(projectToCopy.getTags());
         tasks = new HashSet<>(projectToCopy.getTasks());
     }
@@ -79,10 +79,10 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Project} that we are building.
+     * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
     public ProjectBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.projectDescription = new ProjectDescription(address);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, phone, email, address, tags, new HashMap<>(), tasks);
+        return new Project(projectName, phone, email, projectDescription, tags, new HashMap<>(), tasks);
     }
 
 }

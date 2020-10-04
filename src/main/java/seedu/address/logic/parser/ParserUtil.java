@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Address;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.ProjectName;
@@ -67,18 +67,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String projectDescription} into an {@code ProjectDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code projectDescription} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static ProjectDescription projectDescription(String projectDescription) throws ParseException {
+        requireNonNull(projectDescription);
+        String trimmedProjectDescription = projectDescription.trim();
+        if (!ProjectDescription.isValidProjectDescription(trimmedProjectDescription)) {
+            throw new ParseException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new ProjectDescription(trimmedProjectDescription);
     }
 
     /**

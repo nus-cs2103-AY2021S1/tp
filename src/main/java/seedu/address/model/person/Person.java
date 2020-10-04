@@ -138,7 +138,7 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
+                .append(" ProjectDescription: ")
                 .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

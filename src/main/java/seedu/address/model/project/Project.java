@@ -26,7 +26,7 @@ public class Project {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final ProjectDescription projectDescription;
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
     private final Set<Task> tasks = new HashSet<>();
@@ -35,13 +35,13 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(ProjectName projectName, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Project(ProjectName projectName, Phone phone, Email email, ProjectDescription projectDescription, Set<Tag> tags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(projectName, phone, email, address, tags, listOfParticipations, tasks);
+        requireAllNonNull(projectName, phone, email, projectDescription, tags, listOfParticipations, tasks);
         this.projectName = projectName;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.projectDescription = projectDescription;
         this.tags.addAll(tags);
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
@@ -59,8 +59,8 @@ public class Project {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public ProjectDescription getProjectDescription() {
+        return projectDescription;
     }
 
     public Set<Meeting> getMeetings() {
@@ -123,7 +123,7 @@ public class Project {
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
-                && otherProject.getAddress().equals(getAddress())
+                && otherProject.getProjectDescription().equals(getProjectDescription())
                 && otherProject.getTags().equals(getTags())
                 && otherProject.getTasks().equals(getTasks());
     }
@@ -131,7 +131,7 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(projectName, phone, email, address, tags, tasks);
+        return Objects.hash(projectName, phone, email, projectDescription, tags, tasks);
     }
 
     @Override
@@ -143,8 +143,8 @@ public class Project {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" ProjectDescription: ")
+                .append(getProjectDescription())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append(" Tasks: ");

@@ -37,7 +37,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label projectDescription;
     @FXML
     private Label email;
     @FXML
@@ -59,17 +59,17 @@ public class ProjectCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        address.setText(project.getAddress().value);
+        projectDescription.setText(project.getProjectDescription().value);
         email.setText(project.getEmail().value);
         project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         //System.out.println(status + name.getText());
         if (status == Status.CATALOGUE) {
-            address.setVisible(false);
+            projectDescription.setVisible(false);
             email.setVisible(false);
             tasks.setVisible(false);
-            address.setManaged(false);
+            projectDescription.setManaged(false);
             email.setManaged(false);
             tasks.setManaged(false);
         }
