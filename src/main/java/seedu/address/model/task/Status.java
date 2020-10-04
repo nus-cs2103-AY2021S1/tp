@@ -10,7 +10,7 @@ public class Status {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "can only be true or false";
+            "the value is from the enum class State";
     public final State value;
 
     /**
