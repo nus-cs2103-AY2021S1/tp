@@ -32,18 +32,18 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String type = null;
+        Prefix type = null;
         String trimmedArgs = null;
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName;
-            type = "Name";
+            type = PREFIX_NAME;
         } else if (argMultimap.getValue(PREFIX_SUPPLIER).isPresent()) {
             trimmedArgs = ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).get()).value;
-            type = "Supplier";
+            type = PREFIX_SUPPLIER;
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             trimmedArgs = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName;
-            type = "Tag";
+            type = PREFIX_TAG;
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

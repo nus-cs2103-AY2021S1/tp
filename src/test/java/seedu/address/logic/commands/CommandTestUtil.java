@@ -114,7 +114,7 @@ public class CommandTestUtil {
 
         Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        model.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
         assertEquals(1, model.getFilteredItemList().size());
     }
