@@ -1,11 +1,9 @@
-package seedu.address.model.bid;
+package seedu.address.model;
 
 
 import javafx.collections.ObservableList;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.UniqueBidList;
 
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class BidBook implements ReadOnlyBidBook {
         this.listOfBids.setBids(bids);
     }
 
-    public void addBids(Bid b) {
+    public void addBid(Bid b) {
         listOfBids.add(b);
     }
 

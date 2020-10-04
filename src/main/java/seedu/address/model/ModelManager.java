@@ -12,8 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
-import seedu.address.model.bid.BidBook;
-import seedu.address.model.bid.ReadOnlyBidBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -96,6 +94,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyBidBook getBidBook() {
+        return bidBook;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -131,6 +134,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Bid> getFilteredBidList() {
+        return filteredBids;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -144,8 +152,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addBid(Bid bid) {
-        bidBook.addBids(bid);
-        //
+        bidBook.addBid(bid);
+        updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
     }
 
     @Override

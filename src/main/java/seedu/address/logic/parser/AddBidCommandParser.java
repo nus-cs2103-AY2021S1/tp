@@ -22,7 +22,7 @@ public class AddBidCommandParser implements Parser<AddBidCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROPERTY_ID, PREFIX_CLIENT, PREFIX_MONEY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBidCommand.MESSAGE_USAGE));
         }
 
         String propertyId = ParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get());

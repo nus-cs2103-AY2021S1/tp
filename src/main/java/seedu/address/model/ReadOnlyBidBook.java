@@ -1,7 +1,7 @@
-package seedu.address.model.bid;
+package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.bid.Bid;
 
 public interface ReadOnlyBidBook {
 
