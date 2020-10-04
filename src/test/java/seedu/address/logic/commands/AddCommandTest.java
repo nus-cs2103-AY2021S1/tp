@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.FlashcardDeck;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyFlashcardDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.flashcard.Flashcard;
 import seedu.address.testutil.FlashcardBuilder;
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyFlashcardDeck newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyFlashcardDeck getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,8 +187,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyFlashcardDeck getAddressBook() {
+            return new FlashcardDeck();
         }
     }
 

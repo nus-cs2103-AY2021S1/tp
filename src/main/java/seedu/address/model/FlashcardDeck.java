@@ -12,7 +12,7 @@ import seedu.address.model.flashcard.UniqueFlashcardList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameQuestion comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class FlashcardDeck implements ReadOnlyFlashcardDeck {
 
     private final UniqueFlashcardList flashcards;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         flashcards = new UniqueFlashcardList();
     }
 
-    public AddressBook() {}
+    public FlashcardDeck() {}
 
     /**
      * Creates an AddressBook using the Flashcards in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public FlashcardDeck(ReadOnlyFlashcardDeck toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyFlashcardDeck newData) {
         requireNonNull(newData);
 
         setFlashcards(newData.getFlashcardList());
@@ -90,7 +90,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Flashcard key) {
+    public void removeFlashcard(Flashcard key) {
         flashcards.remove(key);
     }
 
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && flashcards.equals(((AddressBook) other).flashcards));
+                || (other instanceof FlashcardDeck // instanceof handles nulls
+                && flashcards.equals(((FlashcardDeck) other).flashcards));
     }
 
     @Override

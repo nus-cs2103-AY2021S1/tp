@@ -1,0 +1,15 @@
+{
+  "flashcards" : [ {
+    "question" : "What does SDLC stand for?",
+    "answer" : "",
+    "category" : "SDLC"
+  }, {
+    "question" : "What is a revision control software?",
+    "answer" : "It is the software tool that automate the process of Revision Control",
+    "category" : "Revision history"
+  }, {
+    "question" : "What does OOP2 stand for?",
+    "answer" : "Object Oriented Programming",
+    "category" : "General"
+  } ]
+}
