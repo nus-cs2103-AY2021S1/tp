@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 
 public class JsonAdaptedRecipeTest {
@@ -50,8 +49,7 @@ public class JsonAdaptedRecipeTest {
     public void toModelType_invalidIngredient_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
                 new JsonAdaptedRecipe(VALID_NAME, null);
-        String expectedMessage =  String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Ingredient.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Ingredient.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

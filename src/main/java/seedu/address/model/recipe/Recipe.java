@@ -78,7 +78,7 @@ public class Recipe {
         builder.append(getName())
                 .append(" Ingredient: ")
                 .append(ingredients.stream()
-                        .map(item -> item.value)
+                        .map(item -> item.getValue())
                         .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         return builder.toString();
     }

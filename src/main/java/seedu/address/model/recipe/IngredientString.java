@@ -43,7 +43,7 @@ public class IngredientString {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ingredient // instanceof handles nulls
-                && value.equals(((Ingredient) other).value)); // state check
+                && value.equals(((Ingredient) other).getValue())); // state check
     }
 
     @Override

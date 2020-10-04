@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 
 
