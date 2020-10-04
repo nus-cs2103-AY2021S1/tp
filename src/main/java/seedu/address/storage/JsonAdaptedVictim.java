@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Victim;
 
 /**
  * Jackson-friendly version of {@link Victim}.
  */
 public class JsonAdaptedVictim {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Victim's %s field is missing!";
 
     private final String name;
 
@@ -25,7 +28,7 @@ public class JsonAdaptedVictim {
      * Converts a given {@code Victim} into this class for Jackson use.
      */
     public JsonAdaptedVictim(Victim source) {
-        name = source.name;
+        name = source.getName().fullName;
     }
 
     @JsonValue
@@ -39,9 +42,14 @@ public class JsonAdaptedVictim {
      * @throws IllegalValueException if there were any data constraints violated in the adapted victim.
      */
     public Victim toModelType() throws IllegalValueException {
-        if (!Victim.isValidName(name)) {
-            throw new IllegalValueException(Victim.MESSAGE_CONSTRAINTS);
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        return new Victim(name);
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelName = new Name(name);
+
+        return new Victim(modelName);
     }
 }

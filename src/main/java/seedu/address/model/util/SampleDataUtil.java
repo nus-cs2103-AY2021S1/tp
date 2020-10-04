@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -21,8 +20,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    private static List<Victim> sampleVictims = new ArrayList<>(List.of(new Victim("Tom"),
-            new Victim("John")));
+    private static List<Victim> sampleVictims = getVictimList("Tom", "John");
 
     public static Person[] getSamplePersons() {
         return new Person[] {
@@ -69,7 +67,7 @@ public class SampleDataUtil {
      */
     public static List<Victim> getVictimList(String... strings) {
         return Arrays.stream(strings)
-                .map(Victim::new)
+                .map(string -> new Victim(new Name(string)))
                 .collect(Collectors.toList());
     }
 
