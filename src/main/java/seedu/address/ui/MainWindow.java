@@ -236,7 +236,7 @@ public class MainWindow extends UiPart<Stage> {
                     if (!reviewManager.hasNext()) {
                         exitReviewMode();
                     } else {
-                        showReviewFlashcard(reviewManager.getNextFlashCard(),
+                        showReviewFlashcard(reviewManager.getNextFlashcard(),
                                 reviewManager.getCurrentIndex() + 1);
                     }
                     break;
@@ -244,7 +244,7 @@ public class MainWindow extends UiPart<Stage> {
                     if (!reviewManager.hasPrevious()) {
                         exitReviewMode();
                     } else {
-                        showReviewFlashcard(reviewManager.getPrevFlashCard(),
+                        showReviewFlashcard(reviewManager.getPrevFlashcard(),
                                 reviewManager.getCurrentIndex() + 1);
                     }
                     break;

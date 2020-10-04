@@ -29,7 +29,7 @@ public class ReviewManager {
         return currentIndex > 0;
     }
 
-    public Flashcard getNextFlashCard() {
+    public Flashcard getNextFlashcard() {
         if (!hasNext()) {
             return null;
         }
@@ -41,7 +41,7 @@ public class ReviewManager {
         return flashcardList.get(currentIndex);
     }
 
-    public Flashcard getPrevFlashCard() {
+    public Flashcard getPrevFlashcard() {
         if (!hasPrevious()) {
             return null;
         }
