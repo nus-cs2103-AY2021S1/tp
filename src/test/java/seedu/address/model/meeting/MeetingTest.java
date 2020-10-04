@@ -3,9 +3,8 @@ package seedu.address.model.meeting;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.project.Email;
 
-import java.time.LocalDateTime;
+import seedu.address.model.project.Email;
 
 public class MeetingTest {
 
