@@ -1,12 +1,14 @@
 package nustorage.model.record;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
 
-    private LocalDate date;
-    private LocalTime time;
+    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+
+    private final int id;
+    private LocalDateTime datetime;
     private double amount;
 
     /**
@@ -15,58 +17,63 @@ public class FinanceRecord {
      * @param amount Amount of the transaction.
      */
     public FinanceRecord(double amount) {
+        id = this.hashCode();
         this.amount = amount;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
+        this.datetime = LocalDateTime.now();
     }
 
     /**
      * Constructs a {@code Finance Record}.
      *
      * @param amount Amount of the transaction.
-     * @param date Date of the transaction.
+     * @param datetime Date of the transaction.
      */
-    public FinanceRecord(double amount, LocalDate date) {
+    public FinanceRecord(double amount, LocalDateTime datetime) {
+        id = this.hashCode();
         this.amount = amount;
-        this.date = date;
-        this.time = LocalTime.now();
+        this.datetime = datetime;
     }
 
     /**
      * Constructs a {@code Finance Record}.
      *
+     * @param id ID of the transaction.
      * @param amount Amount of the transaction.
-     * @param date Date of the transaction.
-     * @param time Time of the transaction.
+     * @param datetime Date of the transaction.
      */
-    public FinanceRecord(double amount, LocalDate date, LocalTime time) {
+    public FinanceRecord(int id, double amount, LocalDateTime datetime) {
+        this.id = id;
         this.amount = amount;
-        this.date = date;
-        this.time = time;
+        this.datetime = datetime;
+    }
+
+    public int getID() {
+        return id;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getTime() {
-        return time;
+    public LocalDateTime getDate() {
+        return datetime;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof FinanceRecord) {
-            return ((FinanceRecord) obj).amount == this.amount;
+            return ((FinanceRecord) obj).id == this.id
+                    && ((FinanceRecord) obj).amount == this.amount
+                    && ((FinanceRecord) obj).datetime.equals(this.datetime);
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return "Record on " + date + " at " + time + ": $" + String.format("%.2f", amount);
+        return String.format("Transaction #%d on %s: $%.2f",
+                id,
+                DATETIME_FORMAT.format(datetime),
+                amount);
     }
 }
