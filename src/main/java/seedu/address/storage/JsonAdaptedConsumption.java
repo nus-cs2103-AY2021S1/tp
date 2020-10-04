@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientString;
@@ -17,15 +18,18 @@ public class JsonAdaptedConsumption {
 
     private final String name;
     private final String ingredientString;
+    private final Integer calories;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
     public JsonAdaptedConsumption(@JsonProperty("name") String name,
-                             @JsonProperty("ingredients") String ingredients) {
+                                  @JsonProperty("ingredients") String ingredients,
+                                  @JsonProperty("calories") Integer calories) {
         this.name = name;
         this.ingredientString = ingredients;
+        this.calories = calories;
     }
 
     /**
@@ -36,7 +40,7 @@ public class JsonAdaptedConsumption {
         ingredientString = Arrays.stream(source.getIngredient())
                 .map(item -> item.value)
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a);
-
+        calories = source.getCalories().value;
     }
 
     /**
@@ -67,7 +71,12 @@ public class JsonAdaptedConsumption {
             ingredients[i] = new Ingredient(ingredientsToken[i].trim());
         }
 
+        if (calories == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Calories.class.getSimpleName()));
+        }
+        final Calories modelCalories = new Calories(calories);
 
-        return new Consumption(new Recipe(modelName, ingredients));
+        return new Consumption(new Recipe(modelName, ingredients, modelCalories));
     }
 }

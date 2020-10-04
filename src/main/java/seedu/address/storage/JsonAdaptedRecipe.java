@@ -1,12 +1,14 @@
 package seedu.address.storage;
 
 //import java.util.stream.Collectors;
+
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
@@ -22,15 +24,18 @@ class JsonAdaptedRecipe {
 
     private final String name;
     private final String ingredientString;
+    private final Integer calories;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
-                             @JsonProperty("ingredients") String ingredients) {
+                             @JsonProperty("ingredients") String ingredients,
+                             @JsonProperty("calories") Integer calories) {
         this.name = name;
         this.ingredientString = ingredients;
+        this.calories = calories;
     }
 
     /**
@@ -41,7 +46,7 @@ class JsonAdaptedRecipe {
         ingredientString = Arrays.stream(source.getIngredient())
                 .map(item -> item.value)
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a);
-
+        calories = source.getCalories().value;
     }
 
     /**
@@ -72,8 +77,13 @@ class JsonAdaptedRecipe {
             ingredients[i] = new Ingredient(ingredientsToken[i].trim());
         }
 
+        if (calories == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Calories.class.getSimpleName()));
+        }
+        final Calories modelCalories = new Calories(calories);
 
-        return new Recipe(modelName, ingredients);
+        return new Recipe(modelName, ingredients, modelCalories);
     }
 
 }

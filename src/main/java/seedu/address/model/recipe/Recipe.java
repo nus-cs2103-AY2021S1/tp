@@ -1,8 +1,11 @@
 package seedu.address.model.recipe;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
 import java.util.Objects;
+
+import seedu.address.model.commons.Calories;
 
 
 /**
@@ -14,6 +17,7 @@ public class Recipe {
     // Identity fields
     private final Name name;
     private final IngredientString ingredientString;
+    private final Calories calories;
 
     // Data fields
     private final Ingredient[] ingredients;
@@ -21,7 +25,7 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Ingredient[] ingredients) {
+    public Recipe(Name name, Ingredient[] ingredients, Calories calories) {
         requireAllNonNull(name, ingredients);
         this.name = name;
         this.ingredients = ingredients;
@@ -29,6 +33,7 @@ public class Recipe {
                 new IngredientString(Arrays.stream(ingredients)
                         .map(item -> item.value)
                         .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+        this.calories = calories;
     }
 
     public Name getName() {
@@ -42,6 +47,10 @@ public class Recipe {
         return ingredientString;
     }
 
+    public Calories getCalories() {
+        return calories;
+    }
+
     /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two recipes.
@@ -53,7 +62,8 @@ public class Recipe {
 
         return otherRecipe != null
                 && otherRecipe.getName().equals(getName())
-                && (otherRecipe.getIngredient().equals(getIngredient()));
+                && (otherRecipe.getIngredient().equals(getIngredient()))
+                && otherRecipe.getCalories().equals(getCalories());
     }
 
     /**
@@ -72,13 +82,14 @@ public class Recipe {
 
         Recipe otherRecipe = (Recipe) other;
         return otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredient().equals(getIngredient());
+                && otherRecipe.getIngredient().equals(getIngredient())
+                && otherRecipe.getCalories().equals(getCalories());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, ingredients);
+        return Objects.hash(name, ingredients, calories);
     }
 
     @Override
@@ -86,7 +97,9 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                .append(getIngredientString());
+                .append(getIngredientString())
+                .append(" Calories: ")
+                .append(getCalories() + " cal");
         return builder.toString();
     }
 

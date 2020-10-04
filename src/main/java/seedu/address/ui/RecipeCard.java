@@ -37,6 +37,8 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label calories;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -50,7 +52,7 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
         ingredients.setText(recipe.getIngredientString().value);
-
+        calories.setText(recipe.getCalories().value.toString() + " cal");
     }
 
     @Override

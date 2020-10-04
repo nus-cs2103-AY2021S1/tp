@@ -1,17 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-//import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
@@ -30,9 +28,9 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
      */
     public AddRecipeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INGREDIENT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));
         }
@@ -44,11 +42,12 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         for (int i = 0; i < ingredientsToken.length; i++) {
             ingredients[i] = new Ingredient(ingredientsToken[i].trim());
         }
+        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
         //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         //Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Recipe recipe = new Recipe(name, ingredients);
+        Recipe recipe = new Recipe(name, ingredients, calories);
 
         return new AddRecipeCommand(recipe);
     }

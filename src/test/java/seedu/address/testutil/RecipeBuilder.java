@@ -1,9 +1,8 @@
 package seedu.address.testutil;
 
 import java.util.Arrays;
-//import java.util.HashSet;
-//import java.util.Set;
 
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
@@ -18,10 +17,12 @@ public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_INGREDIENT_STRING = "Something, something";
+    public static final Integer DEFAULT_CALORIES = 10;
 
     private Name name;
     private Ingredient[] ingredients;
     private IngredientString ingredientString;
+    private Calories calories;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -29,6 +30,7 @@ public class RecipeBuilder {
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
         ingredientString = new IngredientString(DEFAULT_INGREDIENT_STRING);
+        calories = new Calories(DEFAULT_CALORIES);
     }
 
     /**
@@ -39,6 +41,7 @@ public class RecipeBuilder {
         ingredientString = new IngredientString(Arrays.stream(recipeToCopy.getIngredient())
                 .map(item -> item.value)
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+        calories = recipeToCopy.getCalories();
     }
 
     /**
@@ -59,6 +62,14 @@ public class RecipeBuilder {
     }
 
     /**
+     * Sets the {@code Calories} of the {@code Recipe} that we are building.
+     */
+    public RecipeBuilder withCalories(Integer calories) {
+        this.calories = new Calories(calories);
+        return this;
+    }
+
+    /**
      * Builds Recipe
      * @return built Recipe
      */
@@ -68,7 +79,7 @@ public class RecipeBuilder {
         for (int i = 0; i < ingredientsToken.length; i++) {
             ingredients[i] = new Ingredient(ingredientsToken[i].trim());
         }
-        return new Recipe(name, ingredients);
+        return new Recipe(name, ingredients, calories);
     }
 
 }
