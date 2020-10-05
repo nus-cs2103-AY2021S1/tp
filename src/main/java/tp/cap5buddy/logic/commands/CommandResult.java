@@ -3,7 +3,7 @@ package tp.cap5buddy.logic.commands;
 /**
  * Represents the command that stores the success or failure message.
  */
-public class ResultCommand {
+public class CommandResult {
     private String result;
     private boolean isExit;
 
@@ -12,7 +12,7 @@ public class ResultCommand {
      *
      * @param result the message to store.
      */
-    public ResultCommand(String result, boolean isExit) {
+    public CommandResult(String result, boolean isExit) {
         this.result = result;
         this.isExit = isExit;
     }

@@ -1,37 +1,37 @@
-package tp.cap5buddy.model.person;
-import tp.cap5buddy.model.person.exceptions.DuplicatePersonException;
-import tp.cap5buddy.model.person.exceptions.PersonNotFoundException;
+package tp.cap5buddy.contacts;
+import tp.cap5buddy.contacts.exceptions.DuplicateContactException;
+import tp.cap5buddy.contacts.exceptions.ContactNotFoundException;
 
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-public class PersonList {
+public class ContactList {
 
-    private final List<Person> persons;
+    public final List<Contact> contacts;
 
-    public PersonList(List<Person> persons) {
-        this.persons = persons;
+    public ContactList(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
-    public boolean contains(Person toCheck) {
+    public boolean hasContact(Contact toCheck) {
         requireNonNull(toCheck);
-        return persons.stream().anyMatch(toCheck::isSamePerson);
+        return contacts.stream().anyMatch(toCheck::isSameContact);
     }
 
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void addContact(Contact toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (hasContact(toAdd)) {
             // throw new DuplicatePersonException();
         }
-        persons.add(toAdd);
+        contacts.add(toAdd);
     }
 
     /**
@@ -39,42 +39,46 @@ public class PersonList {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void editPerson(Person target, Person editedPerson) throws PersonNotFoundException, DuplicatePersonException {
+    public void editContact(Contact target, Contact editedContact) throws ContactNotFoundException, DuplicateContactException {
         // requireAllNonNull(target, editedPerson);
 
-        int index = persons.indexOf(target);
+        int index = contacts.indexOf(target);
         if (index == -1) {
             String error = "Invalid Person!";
-            throw new PersonNotFoundException(error);
+            throw new ContactNotFoundException(error);
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameContact(editedContact) && hasContact(editedContact)) {
             String error = "The operation could not be completed as a similar person is already in the contact list!";
-            throw new DuplicatePersonException(error);
+            throw new DuplicateContactException(error);
         }
 
-        persons.set(index, editedPerson);
+        contacts.set(index, editedContact);
     }
 
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public void remove(Person toRemove) throws PersonNotFoundException {
+    public void removeContact(Contact toRemove) throws ContactNotFoundException {
         requireNonNull(toRemove);
-        if (!persons.remove(toRemove)) {
+        if (!contacts.remove(toRemove)) {
             String error = "The contact does not exist!";
-            throw new PersonNotFoundException(error);
+            throw new ContactNotFoundException(error);
         }
+    }
+
+    public List<Contact> getContactList() {
+        return this.contacts;
     }
 
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Person> persons) {
+    private boolean contactsAreUnique(List<Contact> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                if (persons.get(i).isSameContact(persons.get(j))) {
                     return false;
                 }
             }

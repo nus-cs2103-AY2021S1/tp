@@ -1,4 +1,4 @@
-package tp.cap5buddy.model.person;
+package tp.cap5buddy.contacts;
 
 import static java.util.Objects.requireNonNull;
 

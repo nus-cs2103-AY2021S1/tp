@@ -1,5 +1,6 @@
 package tp.cap5buddy.logic.commands;
 
+import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
@@ -30,7 +31,7 @@ public class AddZoomLinkCommand extends Command {
      * @return ResultCommand ResultCommand object.
      */
     @Override
-    public ResultCommand execute(ModuleList modules) throws CommandException {
+    public CommandResult execute(ModuleList modules, ContactList contacts) throws CommandException {
         if (this.moduleID > modules.getListSize() || this.moduleID <= 0) {
             String error = "Invalid module. The module ID you provided is not valid.";
             throw new CommandException(error);
@@ -40,7 +41,7 @@ public class AddZoomLinkCommand extends Command {
         Module updatedModule = module.addZoomLink(this.zoomLink);
         modules.updateModule(index, updatedModule);
         String successMessage = createSuccessMessage(updatedModule.getName());
-        return new ResultCommand(successMessage, isExit());
+        return new CommandResult(successMessage, isExit());
     }
 
     /**
