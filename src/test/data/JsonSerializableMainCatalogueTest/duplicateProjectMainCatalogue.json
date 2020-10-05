@@ -1,13 +1,13 @@
 {
   "projects": [ {
     "projectName": "Alice Pauline",
-    "phone": "94351253",
+    "deadline": "29-02-2020 00:00:00",
     "email": "alice@example.com",
     "projectDescription": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "projectName": "Alice Pauline",
-    "phone": "94351253",
+    "deadline": "29-02-2020 00:00:00",
     "email": "pauline@example.com",
     "projectDescription": "4th street",
     "occupied": ["write DG"]

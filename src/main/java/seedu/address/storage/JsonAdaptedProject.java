@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -27,7 +27,7 @@ class JsonAdaptedProject {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
 
     private final String projectName;
-    private final String phone;
+    private final String deadline;
     private final String email;
     private final String projectDescription;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -38,13 +38,13 @@ class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
-                              @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email,
-                              @JsonProperty("projectDescription") String projectDescription,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
+                                @JsonProperty("deadline") String deadline,
+                                @JsonProperty("email") String email,
+                                @JsonProperty("projectDescription") String projectDescription,
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
         this.projectName = projectName;
-        this.phone = phone;
+        this.deadline = deadline;
         this.email = email;
         this.projectDescription = projectDescription;
         if (tagged != null) {
@@ -60,7 +60,7 @@ class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().fullProjectName;
-        phone = source.getPhone().value;
+        deadline = source.getDeadline().value;
         email = source.getEmail().value;
         projectDescription = source.getProjectDescription().value;
         tagged.addAll(source.getTags().stream()
@@ -95,13 +95,14 @@ class JsonAdaptedProject {
         }
         final ProjectName modelProjectName = new ProjectName(projectName);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Deadline modelDeadline = new Deadline(deadline);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -122,7 +123,7 @@ class JsonAdaptedProject {
 
         final Set<Tag> modelTags = new HashSet<>(projectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
-        return new Project(modelProjectName, modelPhone, modelEmail, modelProjectDescription,
+        return new Project(modelProjectName, modelDeadline, modelEmail, modelProjectDescription,
                 modelTags, new HashMap<>(), modelTasks);
     }
 

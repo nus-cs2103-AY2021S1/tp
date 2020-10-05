@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -19,12 +19,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class ProjectBuilder {
 
     public static final String DEFAULT_PROJECT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_DEADLINE = "29-02-2020 00:00:00";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private ProjectName projectName;
-    private Phone phone;
+    private Deadline deadline;
     private Email email;
     private ProjectDescription projectDescription;
     private Set<Tag> tags;
@@ -35,7 +35,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        deadline = new Deadline(DEFAULT_DEADLINE);
         email = new Email(DEFAULT_EMAIL);
         projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -47,7 +47,7 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         projectName = projectToCopy.getProjectName();
-        phone = projectToCopy.getPhone();
+        deadline = projectToCopy.getDeadline();
         email = projectToCopy.getEmail();
         projectDescription = projectToCopy.getProjectDescription();
         tags = new HashSet<>(projectToCopy.getTags());
@@ -87,10 +87,10 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Project} that we are building.
+     * Sets the {@code Deadline} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public ProjectBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, phone, email, projectDescription, tags, new HashMap<>(), tasks);
+        return new Project(projectName, deadline, email, projectDescription, tags, new HashMap<>(), tasks);
     }
 
 }
