@@ -34,7 +34,6 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Animal> lastShownList = model.getFilteredAnimalList();
-      
         Animal animalToDelete = null;
         for (Animal animal : lastShownList) {
             if (animal.getId().equals(targetID)) {
