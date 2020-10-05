@@ -22,8 +22,8 @@
    * **`vendor i/1`** : Select the first vendor to make a supper order for.
 
    * **`create`** : Creates a new supper order.
- 
-   * **`add i/1 q/1`** : Adds one quantity of the first item from the vendor's menu to your supper menu. 
+
+   * **`add i/1 q/1`** : Adds one quantity of the first item from the vendor's menu to your supper menu.
 
    * **`exit`** : Exits the app.
 
