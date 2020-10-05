@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -60,20 +59,20 @@ public class AddModCommandTest {
         AddModCommand addCs2103Command = new AddModCommand(cs2103);
 
         // same object -> returns true
-        assertTrue(addCs2103Command.equals(addCs2103Command));
+        assertEquals(addCs2103Command, addCs2103Command);
 
         // same values -> returns true
         AddModCommand addCs2103CommandCopy = new AddModCommand(cs2103);
-        assertTrue(addCs2103Command.equals(addCs2103CommandCopy));
+        assertEquals(addCs2103CommandCopy, addCs2103Command);
 
         // different types -> returns false
-        assertFalse(addCs2103Command.equals(1));
+        assertNotEquals(addCs2103Command, 1);
 
         // null -> returns false
-        assertFalse(addCs2103Command.equals(null));
+        assertNotEquals(addCs2103Command, null);
 
         // different module -> returns false
-        assertFalse(addCs2103Command.equals(addCs2102Command));
+        assertNotEquals(addCs2102Command, addCs2103Command);
     }
 
     /**
