@@ -1,16 +1,16 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 
 import java.util.ArrayList;
@@ -58,12 +58,14 @@ public class TypicalProjects {
             .withProjectDescription("chicago ave").build();
 
     // Manually added - Project's details found in {@code CommandTestUtil}
-    public static final Project AMY = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_AMY)
-            .withDeadline(VALID_DEADLINE_A).withEmail(VALID_EMAIL_AMY).withProjectDescription(VALID_ADDRESS_AMY)
-            .withTags(VALID_PROJECT_TAG_FRIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
-    public static final Project BOB = new ProjectBuilder().withProjectName(VALID_NAME_BOB)
-            .withDeadline(VALID_DEADLINE_B).withEmail(VALID_EMAIL_BOB).withProjectDescription(VALID_ADDRESS_BOB)
-            .withTags(VALID_PROJECT_TAG_HUSBAND, VALID_PROJECT_TAG_FRIEND).withTasks(VALID_PROJECT_TAG_DG).build();
+    public static final Project AMY = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_AI)
+            .withDeadline(VALID_DEADLINE_AI).withEmail(VALID_EMAIL_AI).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_AI)
+            .withTags(VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
+    public static final Project BOB = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
+            .withDeadline(VALID_DEADLINE_BOT).withEmail(VALID_EMAIL_BOT).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT)
+            .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

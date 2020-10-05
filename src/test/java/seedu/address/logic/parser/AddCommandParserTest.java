@@ -20,13 +20,13 @@ import static seedu.address.logic.commands.CommandTestUtil.PROJECT_TAG_DESC_FRIE
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_MODEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -49,7 +49,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Project expectedProject = new ProjectBuilder(BOB).withTags(VALID_PROJECT_TAG_FRIEND).withTasks(
+        Project expectedProject = new ProjectBuilder(BOB).withTags(VALID_PROJECT_TAG_FIEND).withTasks(
             VALID_PROJECT_TAG_DG).build();
 
         // whitespace only preamble
@@ -83,8 +83,8 @@ public class AddCommandParserTest {
             expectedProject));
 
         // multiple project tags - all accepted
-        Project expectedProjectMultipleTags = new ProjectBuilder(BOB).withTags(VALID_PROJECT_TAG_FRIEND,
-            VALID_PROJECT_TAG_HUSBAND)
+        Project expectedProjectMultipleTags = new ProjectBuilder(BOB).withTags(VALID_PROJECT_TAG_FIEND,
+            VALID_PROJECT_TAG_HANG)
             .build();
         assertParseSuccess(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + EMAIL_DESC_BOB
             + PROJECT_DESCRIPTION_DESC_BOB
@@ -114,28 +114,28 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + DEADLINE_DESC_B + EMAIL_DESC_BOB
+        assertParseFailure(parser, VALID_PROJECT_NAME_BOT + DEADLINE_DESC_B + EMAIL_DESC_BOB
                 + PROJECT_DESCRIPTION_DESC_BOB,
             expectedMessage);
 
         // missing deadline prefix
-        assertParseFailure(parser, PROJECT_NAME_DESC_BOB + VALID_DEADLINE_B + EMAIL_DESC_BOB
+        assertParseFailure(parser, PROJECT_NAME_DESC_BOB + VALID_DEADLINE_BOT + EMAIL_DESC_BOB
                 + PROJECT_DESCRIPTION_DESC_BOB,
             expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + VALID_EMAIL_BOB
+        assertParseFailure(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + VALID_EMAIL_BOT
                 + PROJECT_DESCRIPTION_DESC_BOB,
             expectedMessage);
 
         // missing address prefix
         assertParseFailure(parser, PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + EMAIL_DESC_BOB
-                + VALID_ADDRESS_BOB,
+                + VALID_PROJECT_DESCRIPTION_BOT,
             expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_DEADLINE_B + VALID_EMAIL_BOB
-                + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_PROJECT_NAME_BOT + VALID_DEADLINE_BOT + VALID_EMAIL_BOT
+                + VALID_PROJECT_DESCRIPTION_BOT,
             expectedMessage);
     }
 
@@ -166,7 +166,7 @@ public class AddCommandParserTest {
         // invalid project tag
         assertParseFailure(parser,
             PROJECT_NAME_DESC_BOB + DEADLINE_DESC_B + EMAIL_DESC_BOB + PROJECT_DESCRIPTION_DESC_BOB
-                + INVALID_PROJECT_TAG_DESC + VALID_PROJECT_TAG_FRIEND, ProjectTag.MESSAGE_CONSTRAINTS);
+                + INVALID_PROJECT_TAG_DESC + VALID_PROJECT_TAG_FIEND, ProjectTag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_B + EMAIL_DESC_BOB
