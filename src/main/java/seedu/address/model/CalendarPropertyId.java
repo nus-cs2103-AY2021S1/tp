@@ -55,5 +55,4 @@ public class CalendarPropertyId {
     public int hashCode() {
         return propertyId.hashCode();
     }
-
 }
