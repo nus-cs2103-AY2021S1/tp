@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -19,7 +18,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Amount;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Description;
@@ -41,7 +39,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "NAME] "
             + "[" + PREFIX_AMOUNT + "PHONE] "
             + "[" + PREFIX_DATE + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AMOUNT + "91234567 "
@@ -97,11 +94,10 @@ public class EditCommand extends Command {
         Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
         Amount updatedAmount = editPersonDescriptor.getAmount().orElse(personToEdit.getAmount());
         Date updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedDescription, updatedAmount, updatedDate, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedDescription, updatedAmount, updatedDate, updatedRemark, updatedTags);
     }
 
     @Override
@@ -130,7 +126,6 @@ public class EditCommand extends Command {
         private Description description;
         private Amount amount;
         private Date date;
-        private Address address;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -144,7 +139,6 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setAmount(toCopy.amount);
             setDate(toCopy.date);
-            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -152,7 +146,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, amount, date, address, tags);
+            return CollectionUtil.isAnyNonNull(description, amount, date, tags);
         }
 
         public void setDescription(Description description) {
@@ -177,14 +171,6 @@ public class EditCommand extends Command {
 
         public Optional<Date> getDate() {
             return Optional.ofNullable(date);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -222,7 +208,6 @@ public class EditCommand extends Command {
             return getDescription().equals(e.getDescription())
                     && getAmount().equals(e.getAmount())
                     && getDate().equals(e.getDate())
-                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

@@ -21,19 +21,17 @@ public class Person {
     private final Date date;
 
     // Data fields
-    private final Address address;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Description description, Amount amount, Date date, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(description, amount, date, address, tags);
+    public Person(Description description, Amount amount, Date date, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(description, amount, date, tags);
         this.description = description;
         this.amount = amount;
         this.date = date;
-        this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -48,10 +46,6 @@ public class Person {
 
     public Date getDate() {
         return date;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     public Remark getRemark() {
@@ -98,14 +92,13 @@ public class Person {
         return otherPerson.getDescription().equals(getDescription())
                 && otherPerson.getAmount().equals(getAmount())
                 && otherPerson.getDate().equals(getDate())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, amount, date, address, tags);
+        return Objects.hash(description, amount, date, tags);
     }
 
     @Override
@@ -116,8 +109,6 @@ public class Person {
                 .append(getAmount())
                 .append(" Date: ")
                 .append(getDate())
-                .append(" Address: ")
-                .append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Tags: ");

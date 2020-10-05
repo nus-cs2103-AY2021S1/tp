@@ -14,7 +14,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Amount;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.Description;
@@ -23,13 +22,11 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_AMOUNT = "+3a";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_DATE = "23 June 2020";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_DESCRIPTION = "Lunch Bak Chor Mee";
     private static final String VALID_AMOUNT = "3.00";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_DATE = "04-10-2020";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -100,29 +97,6 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_AMOUNT + WHITESPACE;
         Amount expectedAmount = new Amount(VALID_AMOUNT);
         assertEquals(expectedAmount, ParserUtil.parseAmount(phoneWithWhitespace));
-    }
-
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
