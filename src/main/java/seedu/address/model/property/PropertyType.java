@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a property's type in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPropertyType(String)}
  */
 public class PropertyType {
 
@@ -27,14 +27,14 @@ public class PropertyType {
      */
     public PropertyType(String type) {
         requireNonNull(type);
-        checkArgument(isValidType(type), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPropertyType(type), MESSAGE_CONSTRAINTS);
         this.type = type;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidType(String test) {
+    public static boolean isValidPropertyType(String test) {
         // TODO: add more validation
         return test.matches(VALIDATION_REGEX);
     }

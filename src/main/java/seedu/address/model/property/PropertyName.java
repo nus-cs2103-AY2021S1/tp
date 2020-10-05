@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a property's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPropertyName(String)}
  */
 public class PropertyName {
 
@@ -27,14 +27,14 @@ public class PropertyName {
      */
     public PropertyName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPropertyName(name), MESSAGE_CONSTRAINTS);
         propertyName = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidPropertyName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -17,10 +17,13 @@ public class Property {
     // TODO: should be managed somewhere else to access last id in storage
     private static final IdManager ID_MANAGER = new IdManager(PREFIX);
 
+    // Identity fields
     private final Id propertyId;
     private final PropertyName propertyName;
-    private final Id sellerId;
     private final Address address;
+
+    // Data fields
+    private final Id sellerId;
     private final Price askingPrice;
     private final PropertyType propertyType;
     private final boolean isRental;
