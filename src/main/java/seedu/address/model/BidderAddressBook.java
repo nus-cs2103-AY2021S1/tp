@@ -10,7 +10,7 @@ import seedu.address.model.person.Bidder;
 public class BidderAddressBook implements ReadOnlyBidderAddressBook {
 
     @Override
-    public ObservableList<Bidder> getPersonList() {
+    public ObservableList<Bidder> getBidderList() {
         // TODO
         return null;
     }

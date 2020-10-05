@@ -10,7 +10,7 @@ import seedu.address.model.person.Seller;
 public class SellerAddressBook implements ReadOnlySellerAddressBook {
 
     @Override
-    public ObservableList<Seller> getPersonList() {
+    public ObservableList<Seller> getSellerList() {
         // TODO
         return null;
     }
