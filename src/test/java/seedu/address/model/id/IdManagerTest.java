@@ -12,7 +12,7 @@ public class IdManagerTest {
     public void getNextId() {
 
         // using constructor with an initial id
-        String prefix = "p";
+        String prefix = "P";
         int previousIdNumber = 1024;
         Id previousId = new Id(prefix, previousIdNumber);
         IdManager idManager = new IdManager(previousId);
