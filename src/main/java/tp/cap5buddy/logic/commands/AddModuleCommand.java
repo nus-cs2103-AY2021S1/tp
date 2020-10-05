@@ -14,12 +14,11 @@ public class AddModuleCommand extends Command {
     /**
      * Represents the constructor to making the AddModuleCommand object.
      *
-     * @param modName name of the module to add.
-     * @param modLink the link to attach to this module.
+     * @param info array of tokenised info.
      */
-    public AddModuleCommand(String modName, String modLink) {
-        this.name = modName;
-        this.link = modLink;
+    public AddModuleCommand(String[] info) {
+        this.name = info[0];
+        this.link = info[1];
     }
 
     /**
@@ -28,7 +27,6 @@ public class AddModuleCommand extends Command {
      * @return ResultCommand ResultCommand object.
      */
     public ResultCommand execute(ModuleList modules) {
-        System.out.println("Execute accessed");
         if (this.link == null) {
             Module mod = new Module(this.name);
             modules.addModule(mod);
