@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -21,10 +21,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.project.Address;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PROJECT_NAME + "PROJECTNAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PROJECT_DESCRIPTION + "PROJECTDESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -100,11 +100,12 @@ public class EditCommand extends Command {
         ProjectName updatedProjectName = editProjectDescriptor.getProjectName().orElse(projectToEdit.getProjectName());
         Phone updatedPhone = editProjectDescriptor.getPhone().orElse(projectToEdit.getPhone());
         Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
-        Address updatedAddress = editProjectDescriptor.getAddress().orElse(projectToEdit.getAddress());
+        ProjectDescription updatedProjectDescription = editProjectDescriptor.getProjectDescription()
+            .orElse(projectToEdit.getProjectDescription());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
-        return new Project(updatedProjectName, updatedPhone, updatedEmail, updatedAddress,
+        return new Project(updatedProjectName, updatedPhone, updatedEmail, updatedProjectDescription,
                 updatedTags, new HashMap<>(), updatedTasks);
     }
 
@@ -134,7 +135,7 @@ public class EditCommand extends Command {
         private ProjectName projectName;
         private Phone phone;
         private Email email;
-        private Address address;
+        private ProjectDescription projectDescription;
         private Set<Tag> tags;
         private Set<Task> tasks;
 
@@ -148,7 +149,7 @@ public class EditCommand extends Command {
             setProjectName(toCopy.projectName);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setProjectDescription(toCopy.projectDescription);
             setTags(toCopy.tags);
             setTasks(toCopy.tasks);
         }
@@ -157,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(projectName, phone, email, address, tags, tasks);
+            return CollectionUtil.isAnyNonNull(projectName, phone, email, projectDescription, tags, tasks);
         }
 
         public void setProjectName(ProjectName projectName) {
@@ -184,12 +185,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setProjectDescription(ProjectDescription projectDescription) {
+            this.projectDescription = projectDescription;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<ProjectDescription> getProjectDescription() {
+            return Optional.ofNullable(projectDescription);
         }
 
         /**
@@ -244,7 +245,7 @@ public class EditCommand extends Command {
             return getProjectName().equals(e.getProjectName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getProjectDescription().equals(e.getProjectDescription())
                     && getTags().equals(e.getTags())
                     && getTasks().equals(e.getTasks());
         }

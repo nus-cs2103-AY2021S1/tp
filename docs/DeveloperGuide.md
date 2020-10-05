@@ -27,7 +27,9 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java
+/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu
+/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -326,7 +328,7 @@ Use case ends.
 **MSS:**
 
 1. Team leader create a new team member profile.
-2. TMTS asks for the details of the team member such as projectName, phone number and email address.
+2. TMTS asks for the details of the team member such as projectName, phone number and email projectDescription.
 3. Team leader keys in the details.
 4. TMTS stores the team member's profile into the data file.
 
@@ -351,7 +353,7 @@ Use case ends.
 1. Team leader chooses to edit a team member's profile.
 2. PTS asks for the projectName of the team member whose profile is to be edited.
 3. Team leader keys in the projectName of the team member.
-4. TMTS asks for the new information of team member such as projectName, phone number and email address.
+4. TMTS asks for the new information of team member such as projectName, phone number and email projectDescription.
 5. Team leader keys in the details.
 6. TMTS stores the team member's profile into the data file.
 
