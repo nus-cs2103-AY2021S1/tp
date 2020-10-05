@@ -2,6 +2,7 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.stock.logic.commands.UpdateCommand.MESSAGE_TOO_MANY_QUANTITY_PREFIXES;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -34,6 +35,12 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         // If serial number is not provided
         if (!argMultimap.getValue(PREFIX_SERIALNUMBER).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
+
+        //If both increment and new quantity prefix provided
+        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
+                && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+            throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES);
         }
 
         UpdateStockDescriptor updateStockDescriptor = new UpdateStockDescriptor();

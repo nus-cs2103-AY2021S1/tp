@@ -55,6 +55,7 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the address book.";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
+    public static final String MESSAGE_TOO_MANY_QUANTITY_PREFIXES = "You can only use one of the prefix iq/ or nq/";
 
     private final UpdateStockDescriptor updateStockDescriptor;
 

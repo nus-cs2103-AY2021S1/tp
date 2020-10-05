@@ -6,6 +6,10 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 import java.math.BigInteger;
 import java.util.Optional;
 
+/**
+ * Represents functionalities to add value to an quantity object.
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)} } (to be changed)
+ */
 public class QuantityAdder {
 
     public static final String MESSAGE_CONSTRAINTS =
