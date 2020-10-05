@@ -5,11 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a property's address in the property book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCalendarTime(String)}
  */
 public class CalendarVenue {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Calendar Venue should only contain alphanumeric characters" +
+            " and spaces, and it should not be blank";
 
     /*
      * The first character of the CalendarVenue must not be a whitespace,
@@ -26,14 +27,14 @@ public class CalendarVenue {
      */
     public CalendarVenue(String venue) {
         requireNonNull(venue);
-        checkArgument(isValidAddress(venue), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidCalendarTime(venue), MESSAGE_CONSTRAINTS);
         value = venue;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid venue.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidCalendarTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
