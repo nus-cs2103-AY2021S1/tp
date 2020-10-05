@@ -37,7 +37,7 @@ Format: `help`
 
 Adds a contact to FaculType.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT b/BUILDING [t/TAG]…​
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​
 ​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -58,7 +58,7 @@ Format: `list`
 
 Edits an existing contact in FaculType.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [b/BUILDING] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -68,7 +68,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [b/BUILDING] [t/
     specifying any tags after it.
 
 Examples:
-*  `edit 1 d/Computing b/COM2` edits the department and building of the 1st contact to be `Computing` and `COM2` respectively.
+*  `edit 1 d/Computing b/COM2` edits the department and office of the 1st contact to be `Computing` and `COM2` respectively.
 *  `edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 ### Adding or updating a remark : `remark`
@@ -169,10 +169,10 @@ FaculType data are saved in the hard disk automatically after any command that c
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT b/BUILDING [t/TAG]…​` <br> e.g., `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [b/BUILDING] [t/TAG]…​`<br> e.g.,`edit 1 d/Computing b/COM2`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g.,`edit 1 d/Computing b/COM2`
 **Remark** | `remark INDEX [r/REMARK]`<br> e.g., `remark 1 r/Wears red glasses`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Addmod** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g., `addmod m/CS2103 n/Software Engineering`

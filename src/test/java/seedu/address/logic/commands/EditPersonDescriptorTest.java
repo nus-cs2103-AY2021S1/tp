@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_OFFICE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -49,6 +50,10 @@ public class EditPersonDescriptorTest {
 
         // different department -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDepartment(VALID_DEPARTMENT_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different office -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withOffice(VALID_OFFICE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
