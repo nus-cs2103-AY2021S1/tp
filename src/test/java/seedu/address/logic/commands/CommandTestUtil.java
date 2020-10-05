@@ -20,9 +20,15 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ItemList;
+import seedu.address.model.LocationList;
 import seedu.address.model.Model;
+import seedu.address.model.RecipeList;
+import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -148,6 +154,33 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    }
+
+    /**
+     * Version for ItemListCommands
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the item list, filtered item list, recipe list, filtered recipe list,
+     *   location list, filtered location list {@code actualModel} remain unchanged
+     * @param command Command to execute
+     * @param actualModel the actual model
+     * @param expectedMessage expected error message from execution
+     */
+    public static void assertItemCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        ItemList expectedItemList = new ItemList(actualModel.getItemList());
+        List<Item> expectedFilteredItemList = new ArrayList<>(actualModel.getFilteredItemList());
+        RecipeList expectedRecipeList = new RecipeList(actualModel.getRecipeList());
+        List<Recipe> expectedFilteredRecipeList = new ArrayList<>(actualModel.getFilteredRecipeList());
+        LocationList expectedLocationList = new LocationList(actualModel.getLocationList());
+        List<Location> expectedFilteredLocationList = new ArrayList<>(actualModel.getFilteredLocationList());
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedItemList, actualModel.getItemList());
+        assertEquals(expectedFilteredItemList, actualModel.getFilteredItemList());
+        assertEquals(expectedRecipeList, actualModel.getRecipeList());
+        assertEquals(expectedFilteredRecipeList, actualModel.getFilteredRecipeList());
+        assertEquals(expectedLocationList, actualModel.getLocationList());
+        assertEquals(expectedFilteredLocationList, actualModel.getFilteredLocationList());
     }
 
     /**
