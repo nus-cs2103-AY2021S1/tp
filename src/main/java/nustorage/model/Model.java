@@ -18,6 +18,7 @@ import nustorage.model.record.InventoryRecord;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<InventoryRecord> PREDICATE_SHOW_ALL_INVENTORY = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,12 +90,29 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given InventoryRecord {@code target} with {@code editedInventoryRecord}.
+     * {@code target} must exist in the Inventory.
+     * The description of {@code editedInventoryRecord} must not be the same as another existing InventoryRecord.
+     */
+    void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord);
+
+    /**
+     *
+     * Returns true if a record with the same identity as {@code InventoryRecord} exists in the Inventory.
+     */
+    boolean hasInventoryRecord(InventoryRecord inventoryRecord);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<InventoryRecord> getFilteredInventory();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredInventoryList(Predicate<InventoryRecord> predicate);
 }

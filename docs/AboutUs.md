@@ -3,7 +3,7 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg), formed 
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg), formed
 to fulfill the team project requirements of [CS2103T](https://nusmods.com/modules/CS2103T/software-engineering)
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
@@ -64,7 +64,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/howtoosee.png" width="200px">
 
-[[github](https://github.com/howtoosee)] 
+[[github](https://github.com/howtoosee)]
 [[portfolio](team/xihao.md)]
 
 * Role: Developer

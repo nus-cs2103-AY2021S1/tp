@@ -1,6 +1,7 @@
 package nustorage.model.record;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import nustorage.model.item.exceptions.NegativeNumberOfItemException;
@@ -10,8 +11,7 @@ import nustorage.model.item.exceptions.NegativeNumberOfItemException;
  */
 public class InventoryRecord {
 
-    private final LocalDate date;
-    private final LocalTime time;
+    private final LocalDateTime dateTime;
     private int quantity;
     private final String itemName;
 
@@ -22,8 +22,7 @@ public class InventoryRecord {
     public InventoryRecord(String itemName) {
         this.itemName = itemName;
         this.quantity = 0;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
+        this.dateTime = LocalDateTime.now();
     }
 
     /**
@@ -34,36 +33,21 @@ public class InventoryRecord {
     public InventoryRecord(String itemName, int quantity) {
         this.itemName = itemName;
         this.quantity = quantity;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
+        this.dateTime = LocalDateTime.now();
     }
 
     /**
      * Constructs an InventoryRecord.
      * @param itemName Item added.
      * @param quantity Number of items added/removed.
-     * @param date Date movement.
+     * @param dateTime Date and time movement.
      */
-    public InventoryRecord(String itemName, int quantity, LocalDate date) {
+    public InventoryRecord(String itemName, int quantity, LocalDateTime dateTime) {
         this.itemName = itemName;
         this.quantity = quantity;
-        this.date = date;
-        this.time = LocalTime.of(0, 0);
+        this.dateTime = dateTime;
     }
 
-    /**
-     * Constructs an InventoryRecord.
-     * @param itemName Item added.
-     * @param quantity Number of items added/removed.
-     * @param date Date movement.
-     * @param time Time of movement.
-     */
-    public InventoryRecord(String itemName, int quantity, LocalDate date, LocalTime time) {
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.date = date;
-        this.time = time;
-    }
 
     /**
      * Increase or decrease the number of this item in stock.
@@ -88,12 +72,16 @@ public class InventoryRecord {
         return itemName;
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
     public LocalDate getDate() {
-        return date;
+        return dateTime.toLocalDate();
     }
 
     public LocalTime getTime() {
-        return time;
+        return dateTime.toLocalTime();
     }
 
     @Override
@@ -106,7 +94,8 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Record on " + date + " at " + time + ": " + itemName + ", " + quantity + " in stock";
+        return "Record on " + getDate() + " at " + getTime()
+                + ": " + itemName + ", " + quantity + " in stock";
     }
 
 }
