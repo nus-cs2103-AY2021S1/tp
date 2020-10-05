@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private final Id OUT_OF_BOUNDS_ID = new Id("99999999999999999999999999999999");
+    private static final Id OUT_OF_BOUNDS_ID = new Id("99999999999999999999999999999999");
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
