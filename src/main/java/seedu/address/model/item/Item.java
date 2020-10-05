@@ -87,7 +87,8 @@ public class Item {
     }
 
     /**
-     * Adds recipe with given id to the item.
+     * Adds Recipe Id to item ids
+     * @param recipeId recipe id connected to this item
      */
     public void addRecipeId(int recipeId) {
         if (!recipeIds.contains(recipeId)) {
