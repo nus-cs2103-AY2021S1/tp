@@ -40,7 +40,6 @@ public class AddZoomLinkCommand extends Command {
         Module updatedModule = module.addZoomLink(this.zoomLink);
         modules.updateModule(index, updatedModule);
         String successMessage = createSuccessMessage(updatedModule.getName());
-        System.out.println("link is" + updatedModule.getLink());
         return new ResultCommand(successMessage, isExit());
     }
 
