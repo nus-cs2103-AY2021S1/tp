@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Module;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.person.Module;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -48,6 +48,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         tags = new HashSet<>(studentToCopy.getTags());
         studentId = studentToCopy.getStudentId();
+        module = studentToCopy.getModule();
     }
 
     /**
