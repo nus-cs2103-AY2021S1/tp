@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.ALICE;
+import static seedu.address.testutil.TypicalAssignments.CS1231S_HW;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateAssignments_throwsDuplicateAssignmentException() {
         // Two assignments with the same identity fields
-        Assignment editedAlice = new AssignmentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Assignment> newAssignments = Arrays.asList(ALICE, editedAlice);
+        List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
         AddressBookStub newData = new AddressBookStub(newAssignments);
 
         assertThrows(DuplicateAssignmentException.class, () -> addressBook.resetData(newData));
@@ -61,21 +61,21 @@ public class AddressBookTest {
 
     @Test
     public void hasAssignment_assignmentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasAssignment(ALICE));
+        assertFalse(addressBook.hasAssignment(CS1231S_HW));
     }
 
     @Test
     public void hasAssignment_assignmentInAddressBook_returnsTrue() {
-        addressBook.addAssignment(ALICE);
-        assertTrue(addressBook.hasAssignment(ALICE));
+        addressBook.addAssignment(CS1231S_HW);
+        assertTrue(addressBook.hasAssignment(CS1231S_HW));
     }
 
     @Test
     public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addAssignment(ALICE);
-        Assignment editedAlice = new AssignmentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addAssignment(CS1231S_HW);
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasAssignment(editedAlice));
+        assertTrue(addressBook.hasAssignment(editedCs1231sHw));
     }
 
     @Test

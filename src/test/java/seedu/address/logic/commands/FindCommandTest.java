@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAssignments.CARL;
-import static seedu.address.testutil.TypicalAssignments.ELLE;
-import static seedu.address.testutil.TypicalAssignments.FIONA;
+import static seedu.address.testutil.TypicalAssignments.CS2106_LAB;
+import static seedu.address.testutil.TypicalAssignments.IS1103_MISSION;
+import static seedu.address.testutil.TypicalAssignments.PEER_REVIEW;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleAssignmentsFound() {
         String expectedMessage = String.format(MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Lab Mission Peer");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredAssignmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredAssignmentList());
+        assertEquals(Arrays.asList(CS2106_LAB, IS1103_MISSION, PEER_REVIEW), model.getFilteredAssignmentList());
     }
 
     /**

@@ -42,7 +42,7 @@ public class AssignmentCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Assignment} and index to display.
+     * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
      */
     public AssignmentCard(Assignment assignment, int displayedIndex) {
         super(FXML);

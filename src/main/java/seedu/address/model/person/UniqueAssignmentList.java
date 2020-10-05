@@ -12,9 +12,9 @@ import seedu.address.model.person.exceptions.AssignmentNotFoundException;
 import seedu.address.model.person.exceptions.DuplicateAssignmentException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of assignments that enforces uniqueness between its elements and does not allow nulls.
  * A assignment is considered unique by comparing using {@code Assignment#isSameAssignment(Assignment)}. As such,
- * adding and updating of persons uses Assignment#isSameAssignment(Assignment) for equality so as to ensure
+ * adding and updating of assignments uses Assignment#isSameAssignment(Assignment) for equality so as to ensure
  * that the assignment being added or updated is unique in terms of identity in the UniqueAssignmentList.
  * However, the removal of a assignment uses Assignment#equals(Object) so
  * as to ensure that the assignment with exactly the same fields will be removed.

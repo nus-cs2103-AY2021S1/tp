@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_HW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_HW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_HW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -23,44 +23,42 @@ import seedu.address.model.person.Assignment;
  */
 public class TypicalAssignments {
 
-    public static final Assignment ALICE = new AssignmentBuilder().withName("Alice Pauline")
+    public static final Assignment CS1231S_HW = new AssignmentBuilder().withName("CS1231S Homework")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
-    public static final Assignment BENSON = new AssignmentBuilder().withName("Benson Meier")
+    public static final Assignment CS2103T_TUT = new AssignmentBuilder().withName("CS2103T Tutorial")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Assignment CARL = new AssignmentBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Assignment CS2106_LAB = new AssignmentBuilder().withName("CS2106 Lab").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Assignment DANIEL = new AssignmentBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Assignment CS2106_TUTORIAL_QUIZ = new AssignmentBuilder().withName("CS2106 Tutorial Quiz").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Assignment ELLE = new AssignmentBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Assignment IS1103_MISSION = new AssignmentBuilder().withName("IS1103 Mission").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Assignment FIONA = new AssignmentBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Assignment PEER_REVIEW = new AssignmentBuilder().withName("Peer review").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Assignment GEORGE = new AssignmentBuilder().withName("George Best").withPhone("9482442")
+    public static final Assignment ORAL_PRESENTATION = new AssignmentBuilder().withName("Oral presentation").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Assignment HOON = new AssignmentBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Assignment READ = new AssignmentBuilder().withName("Read notes").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Assignment IDA = new AssignmentBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Assignment SLIDE = new AssignmentBuilder().withName("Prepare slide").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Assignment's details found in {@code CommandTestUtil}
-    public static final Assignment AMY = new AssignmentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Assignment BOB = new AssignmentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Assignment HW = new AssignmentBuilder().withName(VALID_NAME_HW).withPhone(VALID_PHONE_HW)
+            .withEmail(VALID_EMAIL_HW).withAddress(VALID_ADDRESS_HW).withTags(VALID_TAG_FRIEND).build();
+    public static final Assignment LAB = new AssignmentBuilder().withName(VALID_NAME_LAB).withPhone(VALID_PHONE_LAB)
+            .withEmail(VALID_EMAIL_LAB).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalAssignments() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical assignments.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
@@ -71,6 +69,6 @@ public class TypicalAssignments {
     }
 
     public static List<Assignment> getTypicalAssignments() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(CS1231S_HW, CS2103T_TUT, CS2106_LAB, CS2106_TUTORIAL_QUIZ, IS1103_MISSION, PEER_REVIEW, ORAL_PRESENTATION));
     }
 }

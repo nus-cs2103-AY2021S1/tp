@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Assignment;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of assignments.
  */
 public class AssignmentListPanel extends UiPart<Region> {
     private static final String FXML = "AssignmentListPanel.fxml";
