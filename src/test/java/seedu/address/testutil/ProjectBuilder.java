@@ -63,7 +63,8 @@ public class ProjectBuilder {
     }
 
     /**
-     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code Project} that we are building.
+     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code Project}
+     * that we are building.
      */
     public ProjectBuilder withTags(String ... projectTags) {
         this.projectTags = SampleDataUtil.getTagSet(projectTags);
@@ -81,8 +82,8 @@ public class ProjectBuilder {
     /**
      * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withAddress(String address) {
-        this.projectDescription = new ProjectDescription(address);
+    public ProjectBuilder withProjectDescription(String projectDescription) {
+        this.projectDescription = new ProjectDescription(projectDescription);
         return this;
     }
 

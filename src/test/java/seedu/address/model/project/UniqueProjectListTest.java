@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.ALICE;
 import static seedu.address.testutil.TypicalProjects.BOB;
@@ -43,7 +43,7 @@ public class UniqueProjectListTest {
     @Test
     public void contains_projectWithSameIdentityFieldsInList_returnsTrue() {
         uniqueProjectList.add(ALICE);
-        Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(
+        Project editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_ADDRESS_BOB).withTags(
             VALID_PROJECT_TAG_HUSBAND)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
@@ -88,7 +88,7 @@ public class UniqueProjectListTest {
     @Test
     public void setProject_editedProjectHasSameIdentity_success() {
         uniqueProjectList.add(ALICE);
-        Project editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(
+        Project editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_ADDRESS_BOB).withTags(
             VALID_PROJECT_TAG_HUSBAND)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();

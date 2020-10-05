@@ -27,7 +27,7 @@ import seedu.address.testutil.EditProjectDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
+    public static final String VALID_PROJECT_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_DEADLINE_A = "21-03-2020 10:00:00";
     public static final String VALID_DEADLINE_B = "31-12-2020 10:00:00";
@@ -41,7 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_TASK_MODEL = "model";
     //TODO: after Parsing of tasks is refined, may update these to be more meaningful
 
-    public static final String PROJECT_NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_NAME_AMY;
+    public static final String PROJECT_NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_AMY;
     public static final String PROJECT_NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_NAME_BOB;
     public static final String DEADLINE_DESC_A = " " + PREFIX_DEADLINE + VALID_DEADLINE_A;
     public static final String DEADLINE_DESC_B = " " + PREFIX_DEADLINE + VALID_DEADLINE_B;
@@ -58,9 +58,11 @@ public class CommandTestUtil {
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "29/02/1999 00:00:00"; // '-' is used instead of '/'
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_PROJECT_DESCRIPTION_DESC = " " + PREFIX_PROJECT_DESCRIPTION; // empty string not allowed
+    public static final String INVALID_PROJECT_DESCRIPTION_DESC = " "
+        + PREFIX_PROJECT_DESCRIPTION; // empty string not allowed
     // for addresses
-    public static final String INVALID_PROJECT_TAG_DESC = " " + PREFIX_PROJECT_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PROJECT_TAG_DESC = " " + PREFIX_PROJECT_TAG
+        + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -69,7 +71,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditProjectDescriptor DESC_B;
 
     static {
-        DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_AMY)
+        DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_AMY)
                 .withDeadline(VALID_DEADLINE_A).withEmail(VALID_EMAIL_AMY).withProjectDescription(VALID_ADDRESS_AMY)
                 .withTags(VALID_PROJECT_TAG_FRIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
         DESC_B = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB)
