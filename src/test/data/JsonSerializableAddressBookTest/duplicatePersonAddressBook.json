@@ -4,13 +4,15 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "suspects": [],
     "victims": [],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "victims": [],
-    "address": "4th street"
+    "address": "4th street",
+    "suspects": [],
+    "victims": []
   } ]
 }
