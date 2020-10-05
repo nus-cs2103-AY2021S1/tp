@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.animal.exceptions.DuplicateAnimalException;
 import seedu.address.model.animal.exceptions.AnimalNotFoundException;
+import seedu.address.model.animal.exceptions.DuplicateAnimalException;
 import seedu.address.testutil.AnimalBuilder;
 
 public class UniqueAnimalListTest {

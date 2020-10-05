@@ -3,10 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Email;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
-import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;

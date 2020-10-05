@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
+import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
-import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.animal.Animal;
-import seedu.address.testutil.EditAnimalDescriptorBuilder;
 import seedu.address.testutil.AnimalBuilder;
+import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.

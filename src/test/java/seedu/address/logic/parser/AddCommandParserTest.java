@@ -32,10 +32,10 @@ import static seedu.address.testutil.TypicalAnimals.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Email;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
-import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.AnimalBuilder;

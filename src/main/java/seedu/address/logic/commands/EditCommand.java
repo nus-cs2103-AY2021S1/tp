@@ -19,10 +19,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Email;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
-import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Species;
 import seedu.address.model.tag.Tag;
 

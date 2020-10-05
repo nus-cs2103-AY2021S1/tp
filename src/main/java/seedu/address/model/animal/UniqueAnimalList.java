@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.animal.exceptions.DuplicateAnimalException;
 import seedu.address.model.animal.exceptions.AnimalNotFoundException;
+import seedu.address.model.animal.exceptions.DuplicateAnimalException;
 
 /**
  * A list of animals that enforces uniqueness between its elements and does not allow nulls.
