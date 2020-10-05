@@ -2,12 +2,10 @@
   "persons": [ {
     "name": "Valid Person",
     "deadline": "01-01-2020 1800",
-    "email": "hans@example.com",
     "moduleCode": "CS2103T"
   }, {
     "name": "Person With Invalid Deadline Field",
     "deadline": "99-99-9999 9999",
-    "email": "hans@example.com",
     "moduleCode": "CS2103T"
   } ]
 }

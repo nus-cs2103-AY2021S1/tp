@@ -1,8 +1,7 @@
 {
   "persons": [ {
     "name": "Hans Muster",
-    "deadline": "04-04-2020 1400",
-    "email": "invalid@email!3e",
+    "deadline": "04-04-2020 invalid23:59",
     "moduleCode": "CS2030"
   } ]
 }

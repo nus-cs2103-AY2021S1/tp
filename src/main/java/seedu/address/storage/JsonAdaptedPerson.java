@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -26,7 +25,6 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String deadline;
-    private final String email;
     private final String moduleCode;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +33,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-            @JsonProperty("email") String email, @JsonProperty("module") String moduleCode,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("module") String moduleCode, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.deadline = deadline;
-        this.email = email;
         this.moduleCode = moduleCode;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -51,8 +47,8 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+
         deadline = source.getDeadline().value;
-        email = source.getEmail().value;
         moduleCode = source.getModuleCode().moduleCode;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -87,14 +83,6 @@ class JsonAdaptedPerson {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
@@ -106,7 +94,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelDeadline, modelEmail, modelModuleCode, modelTags);
+        return new Person(modelName, modelDeadline, modelModuleCode, modelTags);
     }
 
 }

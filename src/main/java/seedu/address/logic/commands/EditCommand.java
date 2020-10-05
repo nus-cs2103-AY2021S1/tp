@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,7 +19,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -39,12 +37,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_MODULE_CODE + "MODULE CODE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DEADLINE + "01-01-2020 1800 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DEADLINE + "01-01-2020 1800 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,11 +91,10 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Deadline updatedDeadline = editPersonDescriptor.getDeadline().orElse(personToEdit.getDeadline());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         ModuleCode updatedModuleCode = editPersonDescriptor.getModuleCode().orElse(personToEdit.getModuleCode());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedDeadline, updatedEmail, updatedModuleCode, updatedTags);
+        return new Person(updatedName, updatedDeadline, updatedModuleCode, updatedTags);
     }
 
     @Override
@@ -127,7 +122,6 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Deadline deadline;
-        private Email email;
         private ModuleCode moduleCode;
         private Set<Tag> tags;
 
@@ -140,7 +134,6 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
-            setEmail(toCopy.email);
             setModuleCode(toCopy.moduleCode);
             setTags(toCopy.tags);
         }
@@ -149,7 +142,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, email, moduleCode, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, moduleCode, tags);
         }
 
         public void setName(Name name) {
@@ -166,14 +159,6 @@ public class EditCommand extends Command {
 
         public Optional<Deadline> getDeadline() {
             return Optional.ofNullable(deadline);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
@@ -218,7 +203,6 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDeadline().equals(e.getDeadline())
-                    && getEmail().equals(e.getEmail())
                     && getModuleCode().equals(e.getModuleCode())
                     && getTags().equals(e.getTags());
         }

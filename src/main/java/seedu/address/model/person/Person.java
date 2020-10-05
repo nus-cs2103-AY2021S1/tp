@@ -18,7 +18,6 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Deadline deadline;
-    private final Email email;
 
     // Data fields
     private final ModuleCode moduleCode;
@@ -27,11 +26,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Deadline deadline, Email email, ModuleCode moduleCode, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, email, moduleCode, tags);
+    public Person(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, moduleCode, tags);
         this.name = name;
         this.deadline = deadline;
-        this.email = email;
         this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
@@ -42,10 +40,6 @@ public class Person {
 
     public Deadline getDeadline() {
         return deadline;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public ModuleCode getModuleCode() {
@@ -71,7 +65,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getDeadline().equals(getDeadline()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getDeadline().equals(getDeadline()));
     }
 
     /**
@@ -91,7 +85,6 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getDeadline().equals(getDeadline())
-                && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getModuleCode().equals(getModuleCode())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -99,7 +92,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, email, moduleCode, tags);
+        return Objects.hash(name, deadline, moduleCode, tags);
     }
 
     @Override
@@ -109,7 +102,6 @@ public class Person {
                 .append(" Deadline: ")
                 .append(getDeadline())
                 .append(" Email: ")
-                .append(getEmail())
                 .append(" Module: ")
                 .append(getModuleCode())
                 .append(" Tags: ");

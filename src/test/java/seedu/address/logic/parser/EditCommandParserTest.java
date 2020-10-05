@@ -3,10 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -17,8 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -37,7 +32,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -83,13 +77,9 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS); // invalid module code
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // invalid deadline followed by valid email
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + EMAIL_DESC_AMY, Deadline.MESSAGE_CONSTRAINTS);
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -103,33 +93,29 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_MODULE_CODE_AMY
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_MODULE_CODE_AMY
                         + VALID_DEADLINE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + MODULE_CODE_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
-
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HUSBAND + MODULE_CODE_DESC_AMY
+                + NAME_DESC_AMY + TAG_DESC_FRIEND;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withDeadline(VALID_DEADLINE_BOB).withEmail(VALID_EMAIL_AMY).withModuleCode(VALID_MODULE_CODE_AMY)
+                .withDeadline(VALID_DEADLINE_BOB).withModuleCode(VALID_MODULE_CODE_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + EMAIL_DESC_AMY;
-
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+                .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -145,12 +131,6 @@ public class EditCommandParserTest {
         // deadline
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withDeadline(VALID_DEADLINE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -170,12 +150,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + MODULE_CODE_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + DEADLINE_DESC_AMY + MODULE_CODE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + MODULE_CODE_DESC_AMY
+                + TAG_DESC_FRIEND + DEADLINE_DESC_AMY + MODULE_CODE_DESC_AMY + TAG_DESC_FRIEND
+                + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withModuleCode(VALID_MODULE_CODE_BOB)
+                .withModuleCode(VALID_MODULE_CODE_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -193,9 +173,9 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_BOB
+        userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_BOB
                 + DEADLINE_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB).withEmail(VALID_EMAIL_BOB)
+        descriptor = new EditPersonDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
                 .withModuleCode(VALID_MODULE_CODE_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

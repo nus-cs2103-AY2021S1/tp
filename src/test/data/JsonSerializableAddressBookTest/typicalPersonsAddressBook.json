@@ -3,43 +3,36 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "deadline" : "01-01-2020 1800",
-    "email" : "alice@example.com",
     "moduleCode" : "CS2103T",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "deadline" : "02-03-2020 2359",
-    "email" : "johnd@example.com",
     "moduleCode" : "CS2100",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "deadline" : "12-12-2020 1200",
-    "email" : "heinz@example.com",
     "moduleCode" : "CS2040S",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "deadline" : "03-03-2020 0300",
-    "email" : "cornelia@example.com",
     "moduleCode" : "MA1521",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "deadline" : "12-10-2020 1900",
-    "email" : "werner@example.com",
     "moduleCode" : "GER1000",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "deadline" : "10-10-2020 1700",
-    "email" : "lydia@example.com",
     "moduleCode" : "CS2030",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "deadline" : "03-12-2020 0400",
-    "email" : "anna@example.com",
     "moduleCode" : "CS3243",
     "tagged" : [ ]
   } ]

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -18,12 +17,10 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_DEADLINE = "01-02-2020 1800";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
 
     private Name name;
     private Deadline deadline;
-    private Email email;
     private ModuleCode moduleCode;
     private Set<Tag> tags;
 
@@ -33,7 +30,6 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         deadline = new Deadline(DEFAULT_DEADLINE);
-        email = new Email(DEFAULT_EMAIL);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         tags = new HashSet<>();
     }
@@ -44,7 +40,6 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         deadline = personToCopy.getDeadline();
-        email = personToCopy.getEmail();
         moduleCode = personToCopy.getModuleCode();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -81,16 +76,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public Person build() {
-        return new Person(name, deadline, email, moduleCode, tags);
+        return new Person(name, deadline, moduleCode, tags);
     }
 
 }
