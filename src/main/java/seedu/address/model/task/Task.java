@@ -41,12 +41,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags, Status status) {
-        requireAllNonNull(title, phone, description, address, tags);
+    public Task(Title title, Phone phone, Description description, Type type, Set<Tag> tags, Status status) {
+        requireAllNonNull(title, phone, description, type, tags);
         this.title = title;
         this.phone = phone;
         this.description = description;
-        this.address = address;
+        this.type = type;
         this.tags.addAll(tags);
         this.status = status;
     }
