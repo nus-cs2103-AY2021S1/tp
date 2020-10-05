@@ -39,6 +39,24 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code category} is equal to the {@code keyword}.
+     *   Ignores case
+     * @param category cannot be null
+     * @param keyword cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean equalsToCategoryIgnoreCase(String category, String keyword) {
+        requireNonNull(category);
+        requireNonNull(keyword);
+
+        String preppedKeyword = keyword.trim().toLowerCase();
+        checkArgument(!preppedKeyword.isEmpty(), "Keyword parameter cannot be empty");
+
+        String preppedCategory = category.toLowerCase();
+
+        return preppedCategory.equals(preppedKeyword);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

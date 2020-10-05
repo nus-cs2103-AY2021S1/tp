@@ -90,6 +90,19 @@ Format: `delete INDEX`
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
 
+### Filtering out flashcards  : `filter`
+
+Filters the specified flashcard based on category input(s) by user.
+
+Format: `filter c/CATEGORY`
+
+* Filters the specified flashcard based on category.
+* Supports filtering of one or more categories. For example:
+* `filter c/SDLC c/Revision History`
+
+Examples:
+*  `filter` followed by `c/SDLC` filters and lists all flashcards belonging n the SDLC category.
+
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards.
