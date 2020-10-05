@@ -407,6 +407,20 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+#### List: `list`
+Lists out all the exercises that the user has keyed in
+
+Format: `list`
+
+#### Find exercises: `find`
+Finds exercises whose name contain any of the given keywords.
+
+Format: `find KEYWORD`
+- The search is case-insensitive. e.g Squats will match squats.
+
+Example:
+- find Push up
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
