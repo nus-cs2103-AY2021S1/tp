@@ -98,7 +98,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Description description = new Description("");
+        Description updatedDescription = new Description("");
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, description, updatedPhone, updatedEmail, updatedAddress, updatedSuspects,
+        return new Person(updatedName, updatedDescription, updatedPhone, updatedEmail, updatedAddress, updatedSuspects,
                 updatedVictims, updatedTags);
     }
 
