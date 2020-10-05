@@ -77,7 +77,8 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     /**
      * Replaces the given property {@code target} in the list with {@code editedProperty}.
      * {@code target} must exist in the property book.
-     * The property identity of {@code editedProperty} must not be the same as another existing property in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another existing
+     * property in the property book.
      */
     public void setProperty(Property target, Property editedProperty) {
         requireNonNull(editedProperty);

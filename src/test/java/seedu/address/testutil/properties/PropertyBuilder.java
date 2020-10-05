@@ -124,7 +124,11 @@ public class PropertyBuilder {
         return this;
     }
 
-
+    /**
+     * Builds the property.
+     *
+     * @return The property.
+     */
     public Property build() {
         return new Property(propertyId, propertyName, sellerId, address,
                 askingPrice, propertyType, isRental, isClosedDeal);
