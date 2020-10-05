@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Task;
-import seedu.address.model.person.Person;
 
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";

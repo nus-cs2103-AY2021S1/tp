@@ -1,13 +1,10 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.AddTutorialGroupCommand;
-import seedu.address.model.Task;
-import seedu.address.model.TutorialGroup;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
+
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.model.Task;
 
 public class AddTaskCommandParser {
     /**
