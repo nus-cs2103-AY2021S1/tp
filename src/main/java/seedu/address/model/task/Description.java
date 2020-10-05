@@ -21,6 +21,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum},.!? ]*";
     private static final String DEFAULT_DESCRIPTION = "";
+
     public final String value;
 
     /**
@@ -36,6 +37,7 @@ public class Description {
 
     /**
      * Constructs a default {@code Description}.
+     * Caveat: Only called by defaultDescription method.
      */
     private Description() {
         value = DEFAULT_DESCRIPTION;
@@ -49,7 +51,8 @@ public class Description {
     }
 
     /**
-     * Returns if a default Description with empty value;
+     * Construct an empty Description when user didn't provide the description field.
+     * Caveat: Only called when the user didn't key in this field.
      */
     public static Description defaultDescription() {
         return new Description();

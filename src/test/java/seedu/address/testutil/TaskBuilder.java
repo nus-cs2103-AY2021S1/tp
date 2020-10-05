@@ -83,6 +83,7 @@ public class TaskBuilder {
 
     /**
      * Sets the {@code Phone} of the {@code Task} that we are building to be default phone.
+     * Simulates the situation that the task is created without a phone field.
      */
     public TaskBuilder withDefaultPhone() {
         this.phone = Phone.defaultPhone();
@@ -99,6 +100,7 @@ public class TaskBuilder {
 
     /**
      * Sets the {@code Description} of the {@code Task} that we are building to be default description.
+     * Simulates the situation that the task is created without a description field.
      */
     public TaskBuilder withDefaultDescription() {
         this.description = Description.defaultDescription();
