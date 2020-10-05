@@ -16,7 +16,7 @@ import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -30,7 +30,7 @@ class JsonAdaptedProject {
     private final String phone;
     private final String email;
     private final String projectDescription;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
     private final List<JsonAdaptedTask> occupied = new ArrayList<>();
 
     /**
@@ -41,14 +41,14 @@ class JsonAdaptedProject {
                               @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email,
                               @JsonProperty("projectDescription") String projectDescription,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
                               @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
         this.projectName = projectName;
         this.phone = phone;
         this.email = email;
         this.projectDescription = projectDescription;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (projectTagged != null) {
+            this.projectTagged.addAll(projectTagged);
         }
         if (occupied != null) {
             this.occupied.addAll(occupied);
@@ -63,7 +63,7 @@ class JsonAdaptedProject {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         projectDescription = source.getProjectDescription().value;
-        tagged.addAll(source.getTags().stream()
+        projectTagged.addAll(source.getProjectTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         occupied.addAll(source.getTasks().stream()
@@ -77,9 +77,9 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Tag> projectTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            projectTags.add(tag.toModelType());
+        final List<ProjectTag> projectProjectTags = new ArrayList<>();
+        for (JsonAdaptedTag projectTag : projectTagged) {
+            projectProjectTags.add(projectTag.toModelType());
         }
         final List<Task> projectTasks = new ArrayList<>();
         for (JsonAdaptedTask task : occupied) {
@@ -120,10 +120,10 @@ class JsonAdaptedProject {
         }
         final ProjectDescription modelProjectDescription = new ProjectDescription(projectDescription);
 
-        final Set<Tag> modelTags = new HashSet<>(projectTags);
+        final Set<ProjectTag> modelProjectTags = new HashSet<>(projectProjectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
         return new Project(modelProjectName, modelPhone, modelEmail, modelProjectDescription,
-                modelTags, new HashMap<>(), modelTasks);
+            modelProjectTags, new HashMap<>(), modelTasks);
     }
 
 }

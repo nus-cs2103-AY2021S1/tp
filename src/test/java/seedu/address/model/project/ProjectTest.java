@@ -22,7 +22,7 @@ public class ProjectTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Project project = new ProjectBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> project.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> project.getProjectTags().remove(0));
     }
 
     @Test

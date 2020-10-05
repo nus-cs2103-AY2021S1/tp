@@ -10,7 +10,7 @@ import seedu.address.model.project.Phone;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -37,7 +37,7 @@ public class EditProjectDescriptorBuilder {
         descriptor.setPhone(project.getPhone());
         descriptor.setEmail(project.getEmail());
         descriptor.setProjectDescription(project.getProjectDescription());
-        descriptor.setTags(project.getTags());
+        descriptor.setTags(project.getProjectTags());
         descriptor.setTasks(project.getTasks());
     }
 
@@ -74,12 +74,12 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditProjectDescriptor}
+     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code EditProjectDescriptor}
      * that we are building.
      */
-    public EditProjectDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditProjectDescriptorBuilder withTags(String... projectTags) {
+        Set<ProjectTag> projectTagSet = Stream.of(projectTags).map(ProjectTag::new).collect(Collectors.toSet());
+        descriptor.setTags(projectTagSet);
         return this;
     }
 

@@ -13,7 +13,7 @@ import seedu.address.model.project.Email;
 import seedu.address.model.project.Phone;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -97,30 +97,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String projectTag} into a {@code ProjectTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code projectTag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static ProjectTag parseProjectTag(String projectTag) throws ParseException {
+        requireNonNull(projectTag);
+        String trimmedTag = projectTag.trim();
+        if (!ProjectTag.isValidProjectTagName(trimmedTag)) {
+            throw new ParseException(ProjectTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new ProjectTag(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> projectTags} into a {@code Set<ProjectTag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<ProjectTag> parseTags(Collection<String> projectTags) throws ParseException {
+        requireNonNull(projectTags);
+        final Set<ProjectTag> projectTagSet = new HashSet<>();
+        for (String tagName : projectTags) {
+            projectTagSet.add(parseProjectTag(tagName));
         }
-        return tagSet;
+        return projectTagSet;
     }
 
     /**

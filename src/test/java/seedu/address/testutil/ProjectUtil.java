@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Set;
@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Project;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -36,8 +36,8 @@ public class ProjectUtil {
         sb.append(PREFIX_PHONE + project.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + project.getEmail().value + " ");
         sb.append(PREFIX_PROJECT_DESCRIPTION + project.getProjectDescription().value + " ");
-        project.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        project.getProjectTags().stream().forEach(
+            s -> sb.append(PREFIX_PROJECT_TAG + s.projectTagName + " ")
         );
         project.getTasks().stream().forEach(
             s -> sb.append(PREFIX_TASK + s.taskName + " ")
@@ -57,11 +57,11 @@ public class ProjectUtil {
         descriptor.getProjectDescription().ifPresent(address -> sb.append(PREFIX_PROJECT_DESCRIPTION).append(
             address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+            Set<ProjectTag> projectTags = descriptor.getTags().get();
+            if (projectTags.isEmpty()) {
+                sb.append(PREFIX_PROJECT_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                projectTags.forEach(s -> sb.append(PREFIX_PROJECT_TAG).append(s.projectTagName).append(" "));
             }
         }
         sb.append(" ");
