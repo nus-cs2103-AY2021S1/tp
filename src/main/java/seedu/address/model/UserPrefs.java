@@ -83,6 +83,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.itemListFilePath = itemListFilePath;
     }
 
+    public void setLocationListFilePath(Path locationListFilePath) {
+        requireNonNull(locationListFilePath);
+        this.locationListFilePath = locationListFilePath;
+    }
+
     public void setRecipeListFilePath(Path recipeListFilePath) {
         requireNonNull(recipeListFilePath);
         this.recipeListFilePath = recipeListFilePath;

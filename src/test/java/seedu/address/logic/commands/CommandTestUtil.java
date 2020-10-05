@@ -10,6 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -20,7 +24,9 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ItemList;
 import seedu.address.model.Model;
+import seedu.address.model.item.Item;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -69,9 +75,18 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_LOCATION_PEACH_ORCHARD = "Bob's peach orchard";
     public static final String VALID_ITEM_LOCATION_SPINACH_GARDEN = "Bob's spinach garden";
 
+    public static final String VALID_RECIPE_PRODUCT_NAME_APPLE_PIE = "Apple Pie";
+    public static final String VALID_RECIPE_PRODUCT_NAME_BANANA_PIE = "Banana Pie";
     public static final int VALID_RECIPE_ID_TWO = 2;
-    public static final String VALID_RECIPE_QUANTITY_TWO = "2";
-    public static final String VALID_RECIPE_DESC = "Definitely would eat!";
+    public static final String VALID_RECIPE_QUANTITY_APPLE_PIE = "1";
+    public static final String VALID_RECIPE_QUANTITY_APPLE_PIE_ALTERNATE = "2";
+    public static final String VALID_RECIPE_QUANTITY_BANANA_PIE = "3";
+    public static final String VALID_RECIPE_DESC_APPLE_PIE = "Apple-y!";
+    public static final String VALID_RECIPE_DESC_APPLE_PIE_ALTERNATE = "Not Apple-y!";
+    public static final String VALID_RECIPE_DESC_BANANA_PIE = "Banana-y!";
+    public static final String VALID_RECIPE_INGREDIENTS_APPLE_PIE = "Apple[1] Banana[2]";
+    public static final String VALID_RECIPE_INGREDIENTS_BANANA_PIE = "Apple[2] Banana[1]";
+    public static final String INVALID_RECIPE_QUANTITY_APPLE_PIE = "-1";
 
     public static final String ITEM_NAME_DESC_APPLE = " "
             + PREFIX_ITEM_NAME + VALID_ITEM_NAME_APPLE;
@@ -89,6 +104,25 @@ public class CommandTestUtil {
             + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_PEACH_ORCHARD;
     public static final String ITEM_LOCATION_DESC_SPINACH_GARDEN = " "
             + PREFIX_ITEM_LOCATION + VALID_ITEM_LOCATION_SPINACH_GARDEN;
+
+    public static final String RECIPE_PRODUCT_NAME_APPLE_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_NAME + VALID_RECIPE_PRODUCT_NAME_APPLE_PIE;
+    public static final String RECIPE_PRODUCT_NAME_BANANA_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_NAME + VALID_RECIPE_PRODUCT_NAME_BANANA_PIE;
+    public static final String RECIPE_QUANTITY_APPLE_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_QUANTITY + VALID_RECIPE_QUANTITY_APPLE_PIE;
+    public static final String RECIPE_QUANTITY_BANANA_PIE = " "
+            + PREFIX_RECIPE_PRODUCT_QUANTITY + VALID_RECIPE_QUANTITY_BANANA_PIE;
+    public static final String RECIPE_DESCRIPTION_APPLE_PIE = " "
+            + PREFIX_RECIPE_DESCRIPTION + VALID_RECIPE_DESC_APPLE_PIE;
+    public static final String RECIPE_DESCRIPTION_BANANA_PIE = " "
+            + PREFIX_RECIPE_DESCRIPTION + VALID_RECIPE_DESC_BANANA_PIE;
+    public static final String RECIPE_INGREDIENTS_APPLE_PIE = " "
+            + PREFIX_RECIPE_INGREDIENTS + VALID_RECIPE_INGREDIENTS_APPLE_PIE;
+    public static final String RECIPE_INGREDIENTS_BANANA_PIE = " "
+            + PREFIX_RECIPE_INGREDIENTS + VALID_RECIPE_INGREDIENTS_BANANA_PIE;
+    public static final String INVALID_RECIPE_QUANTITY = " "
+            + PREFIX_RECIPE_PRODUCT_QUANTITY + INVALID_RECIPE_QUANTITY_APPLE_PIE;
 
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_ITEM_QUANTITY + "9a"; // 'a' not allowed in quantity
 
@@ -148,6 +182,23 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the item list and selected item {@code actualModel} remain unchanged
+     */
+    public static void assertItemCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        ItemList expectedItemList = new ItemList(actualModel.getItemList());
+        List<Item> expectedFilteredItemList = new ArrayList<>(actualModel.getFilteredItemList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedItemList, actualModel.getItemList());
+        assertEquals(expectedFilteredItemList, actualModel.getFilteredItemList());
     }
 
     /**

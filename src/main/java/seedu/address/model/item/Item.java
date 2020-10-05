@@ -87,8 +87,13 @@ public class Item {
         return isDeleted;
     }
 
+    /**
+     * Adds recipe with given id to the item.
+     */
     public void addRecipeId(int recipeId) {
-        recipeIds.add(recipeId);
+        if (!recipeIds.contains(recipeId)) {
+            recipeIds.add(recipeId);
+        }
     }
 
     /**
@@ -105,7 +110,7 @@ public class Item {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both persons have the same name and data fields.
      * This defines a stronger notion of equality between two items.
      */
     @Override
@@ -119,6 +124,7 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
+
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals((getQuantity()))
                 && otherItem.getDescription().equals(getDescription())
