@@ -3,9 +3,9 @@ layout: page
 title: John Doe's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: McGymmy
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+McGymmy is a desktop diet tracker application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Add documentation for the features `delete` and `find` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.

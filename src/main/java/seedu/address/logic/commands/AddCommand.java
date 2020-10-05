@@ -1,54 +1,64 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.HashSet;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.parameter.Parameter;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * Adds a person to the address book.
  */
 public class AddCommand extends Command {
-
     public static final String COMMAND_WORD = "add";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Person toAdd;
+    private Parameter<Name> nameParameter = this.addParameter(
+        "name",
+        "n",
+        "Name of person to add",
+        "John Doe",
+        ParserUtil::parseName
+    );
+    private Parameter<Phone> phoneParameter = this.addParameter(
+        "phone",
+        "p",
+        "Phone number of person to add",
+        "98765432",
+        ParserUtil::parsePhone
+    );
+    private Parameter<Email> emailParameter = this.addParameter(
+        "email",
+        "e",
+        "Email address of person to add",
+        "johnd@example.com",
+        ParserUtil::parseEmail
 
-    /**
-     * Creates an AddCommand to add the specified {@code Person}
-     */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    );
+
+    void setParameters(Parameter<Name> nameParameter, Parameter<Phone> phoneParameter,
+                       Parameter<Email> emailParameter) {
+        this.nameParameter = nameParameter;
+        this.phoneParameter = phoneParameter;
+        this.emailParameter = emailParameter;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // rewriting this class as an example, address and tags not implemented.
+        Person toAdd = new Person(nameParameter.consume(), phoneParameter.consume(), emailParameter.consume(),
+            new Address("dummy value"), new HashSet<>());
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -56,12 +66,5 @@ public class AddCommand extends Command {
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

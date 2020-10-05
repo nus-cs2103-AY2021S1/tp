@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-McGymmy (MG) is a **desktop app for managing diet and exercise, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, McGimmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
+McGymmy (MG) is a **desktop app for managing diet and exercise, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, McGymmy can log your diet and exercise tasks, goals and progress done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -29,7 +29,7 @@ Refer to the features below for details of each command.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all food items.
 
    * **`add`**`potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100` proteins, `5` carbs, and `0` fats.
 
@@ -93,7 +93,7 @@ Format: `list`
 
 ### Updating a food item : `update`
 
-Update the food item details based on index.
+Update the food item details based on the index.
 
 Format: `update 5 [-n foodItem] [-p protein] [-c carbs] [-f fats]`
 
@@ -108,7 +108,7 @@ Examples:
 
 ![update command example](images/CommandImagesForUG/Update.png)
 
-### Deleting a food : `delete`
+### Deleting a food item: `delete`
 
 Deletes the specified food from McGymmy.
 
@@ -156,11 +156,11 @@ _{explain the feature here}_
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add NAME [-p Proteins] [-f Fats] [-c carbs]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
+Action     | Format, Examples
+-----------|------------------
+**Add**    | `add NAME [-p Proteins] [-f Fats] [-c carbs]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Update** | `update INDEX [-n NAME] [-p Proteins] [-f Fats] [-c carbs]`<br> e.g.,`update 2 -n Chicken Rice -p 30 -f 50 -c 60`
-**List** | `list`
-**Help** | `help`
-**Macro** | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
+**List**   | `list`
+**Help**   | `help`
+**Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
