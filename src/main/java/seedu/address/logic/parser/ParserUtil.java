@@ -116,8 +116,8 @@ public class ParserUtil {
     public static Quantity parseMaxQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidQuantity(trimmedQuantity)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        if (!Quantity.isValidMaxQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_MAX_QUANTITY);
         }
         return new Quantity(trimmedQuantity);
     }
