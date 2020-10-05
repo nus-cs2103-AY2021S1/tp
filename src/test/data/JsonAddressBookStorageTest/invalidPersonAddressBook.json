@@ -3,6 +3,6 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "deadline": "02-02-2020 1900",
     "email": "hans@example.com",
-    "address": "4th street"
+    "moduleCode": "CS2103T"
   } ]
 }
