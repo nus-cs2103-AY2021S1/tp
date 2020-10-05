@@ -22,7 +22,7 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
  *
  * @see Module#isSameModule(Module)
  */
-public class ModuleList implements Iterable<Module> {
+public class UniqueModuleList implements Iterable<Module> {
 
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
@@ -79,7 +79,7 @@ public class ModuleList implements Iterable<Module> {
         }
     }
 
-    public void setModules(ModuleList replacement) {
+    public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -113,8 +113,8 @@ public class ModuleList implements Iterable<Module> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleList // instanceof handles nulls
-                && internalList.equals(((ModuleList) other).internalList));
+                || (other instanceof UniqueModuleList // instanceof handles nulls
+                && internalList.equals(((UniqueModuleList) other).internalList));
     }
 
     @Override
