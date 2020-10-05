@@ -11,6 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +21,12 @@ import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
     private Student amy = new Student(new Name(VALID_NAME_AMY), new Phone(VALID_PHONE_AMY),
-            new Email(VALID_EMAIL_AMY), SampleDataUtil.getTagSet(), new StudentId(VALID_STUDENT_ID_AMY));
+            new Email(VALID_EMAIL_AMY), SampleDataUtil.getTagSet(),
+            new StudentId(VALID_STUDENT_ID_AMY), new Module(VALID_MODULE_AMY));
 
     private Student bob = new Student(new Name(VALID_NAME_BOB), new Phone(VALID_PHONE_BOB),
-            new Email(VALID_EMAIL_BOB), SampleDataUtil.getTagSet(), new StudentId(VALID_STUDENT_ID_BOB));
+            new Email(VALID_EMAIL_BOB), SampleDataUtil.getTagSet(),
+            new StudentId(VALID_STUDENT_ID_BOB), new Module(VALID_MODULE_BOB));
 
     @Test
     public void equals() {

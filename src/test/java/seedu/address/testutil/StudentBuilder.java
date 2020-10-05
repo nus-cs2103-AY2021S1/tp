@@ -8,6 +8,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
+import seedu.address.model.person.Module;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +18,14 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_STUDENT_ID = "A1234567X";
+    public static final String DEFAULT_MODULE = "CS2103T";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Set<Tag> tags;
     private StudentId studentId;
+    private Module module;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -33,6 +36,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
         studentId = new StudentId(DEFAULT_STUDENT_ID);
+        module = new Module(DEFAULT_MODULE);
     }
 
     /**
@@ -86,7 +90,15 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Module} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withModule(String moduleId) {
+        this.module = new Module(moduleId);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, tags, studentId);
+        return new Student(name, phone, email, tags, studentId, module);
     }
 }
