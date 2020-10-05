@@ -29,6 +29,10 @@ public class FinanceAccount {
         financeRecords.add(record);
     }
 
+    public boolean hasRecord(FinanceRecord record) {
+        return this.financeRecords.contains(record);
+    }
+
     /**
      * Removes the finance record with the corresponding index
      *
