@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/EditCommandTest.java
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.CommandParserTestUtil;
@@ -20,6 +21,20 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+=======
+import jimmy.mcgymmy.commons.core.Messages;
+import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ModelManager;
+import jimmy.mcgymmy.model.UserPrefs;
+import jimmy.mcgymmy.model.person.Name;
+import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.testutil.PersonBuilder;
+import jimmy.mcgymmy.testutil.TypicalIndexes;
+import jimmy.mcgymmy.testutil.TypicalPersons;
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/EditCommandTest.java
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -43,7 +58,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new McGymmy(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -67,7 +82,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new McGymmy(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -87,7 +102,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new McGymmy(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -109,7 +124,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new McGymmy(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -126,7 +141,11 @@ public class EditCommandTest {
             new CommandParserTestUtil.OptionalParameterStub<>("e", firstPerson.getEmail())
         );
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/EditCommandTest.java
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+=======
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/EditCommandTest.java
     }
 
     @Test
@@ -134,7 +153,12 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/EditCommandTest.java
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+=======
+        Person personInList =
+            model.getAddressBook().getFoodList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/EditCommandTest.java
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
             new CommandParserTestUtil.ParameterStub<>("", INDEX_FIRST_PERSON),
@@ -143,7 +167,11 @@ public class EditCommandTest {
             new CommandParserTestUtil.OptionalParameterStub<>("e", personInList.getEmail())
         );
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/EditCommandTest.java
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+=======
+        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/EditCommandTest.java
     }
 
     @Test
@@ -169,7 +197,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFoodList().size());
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(

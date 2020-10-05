@@ -20,7 +20,7 @@ public class FindCommand extends Command {
         "keyword",
         "",
         "keywords (case-insensitive).",
-        "alice bob charlie", (s) -> new NameContainsKeywordsPredicate(Arrays.asList(s.split("\\s+")))
+        "chicken beef mutton", (s) -> new NameContainsKeywordsPredicate(Arrays.asList(s.split("\\s+")))
     );
 
     void setParameters(Parameter<NameContainsKeywordsPredicate> predicateParameter) {
@@ -31,8 +31,8 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         NameContainsKeywordsPredicate predicate = predicateParameter.consume();
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredFoodList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
     }
 }

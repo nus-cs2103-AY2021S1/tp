@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+<<<<<<< Updated upstream:src/main/java/seedu/address/model/util/SampleDataUtil.java
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
@@ -12,9 +13,19 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+=======
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.person.Address;
+import jimmy.mcgymmy.model.person.Email;
+import jimmy.mcgymmy.model.person.Name;
+import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.tag.Tag;
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/util/SampleDataUtil.java
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code McGymmy} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,8 +51,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyMcGymmy getSampleAddressBook() {
+        McGymmy sampleAb = new McGymmy();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

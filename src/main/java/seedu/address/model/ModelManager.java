@@ -9,9 +9,16 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+=======
+import jimmy.mcgymmy.commons.core.GuiSettings;
+import jimmy.mcgymmy.commons.core.LogsCenter;
+import jimmy.mcgymmy.commons.util.CollectionUtil;
+import jimmy.mcgymmy.model.food.Food;
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,26 +26,30 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Food> filteredFoodItems;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given mcGymmy and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
         super();
+<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
         requireAllNonNull(addressBook, userPrefs);
+=======
+        CollectionUtil.requireAllNonNull(mcGymmy, userPrefs);
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + mcGymmy + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.mcGymmy = new McGymmy(mcGymmy);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFoodItems = new FilteredList<>(this.mcGymmy.getFoodList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new McGymmy(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +77,72 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMcGymmyFilePath() {
+        return userPrefs.getMcGymmyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMcGymmyFilePath(Path mcGymmyFilePath) {
+        requireNonNull(mcGymmyFilePath);
+        userPrefs.setMcGymmyFilePath(mcGymmyFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== McGymmy ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
+        this.mcGymmy.resetData(mcGymmy);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyMcGymmy getMcGymmy() {
+        return mcGymmy;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasFood(Food food) {
+        requireNonNull(food);
+        return mcGymmy.hasFood(food);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteFood(Food target) {
+        mcGymmy.removeFood(target);
     }
 
     @Override
+    public void addFood(Food food) {
+        mcGymmy.addFood(food);
+        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+    }
+
+    @Override
+<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
+=======
+    public void setFood(Food target, Food editedFood) {
+        CollectionUtil.requireAllNonNull(target, editedFood);
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
 
-        addressBook.setPerson(target, editedPerson);
+        mcGymmy.setFood(target, editedFood);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Food List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Food} backed by the internal list of
+     * {@code versionedMcGymmy}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Food> getFilteredFoodList() {
+        return filteredFoodItems;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredFoodItems.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +159,15 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+=======
+        return mcGymmy.equals(other.mcGymmy)
+            && userPrefs.equals(other.userPrefs)
+            && filteredFoodItems.equals(other.filteredFoodItems);
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
     }
 
 }

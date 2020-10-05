@@ -4,13 +4,19 @@ package seedu.address.model.food;
  * Represents Protein in food item in McGymmy.
  */
 public class Protein extends Macronutrient {
-    private static final int PROTEIN_MULTIPLIER = 4;
+    public static final int MULTIPLIER = 4;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Protein " + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * @param amount A valid amount.
      */
     public Protein(int amount) {
+<<<<<<< Updated upstream:src/main/java/seedu/address/model/food/Protein.java
         super("Protein", amount, PROTEIN_MULTIPLIER);
+=======
+        super(amount, MULTIPLIER);
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/food/Protein.java
     }
 
 }

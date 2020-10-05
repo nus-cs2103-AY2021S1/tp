@@ -10,10 +10,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/storage/StorageManagerTest.java
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+=======
+import jimmy.mcgymmy.commons.core.GuiSettings;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.UserPrefs;
+import jimmy.mcgymmy.testutil.TypicalPersons;
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/storage/StorageManagerTest.java
 
 public class StorageManagerTest {
 
@@ -52,12 +60,16 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMcGymmyStorageTest} class.
          */
+<<<<<<< Updated upstream:src/test/java/seedu/address/storage/StorageManagerTest.java
         AddressBook original = getTypicalAddressBook();
+=======
+        McGymmy original = TypicalPersons.getTypicalAddressBook();
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/storage/StorageManagerTest.java
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyMcGymmy retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new McGymmy(retrieved));
     }
 
     @Test

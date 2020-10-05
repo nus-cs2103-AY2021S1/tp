@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+<<<<<<< Updated upstream:src/main/java/seedu/address/MainApp.java
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
@@ -30,6 +31,28 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+=======
+import jimmy.mcgymmy.commons.core.Config;
+import jimmy.mcgymmy.commons.core.LogsCenter;
+import jimmy.mcgymmy.commons.core.Version;
+import jimmy.mcgymmy.commons.exceptions.DataConversionException;
+import jimmy.mcgymmy.commons.util.ConfigUtil;
+import jimmy.mcgymmy.commons.util.StringUtil;
+import jimmy.mcgymmy.logic.Logic;
+import jimmy.mcgymmy.logic.LogicManager;
+import jimmy.mcgymmy.model.*;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.util.SampleDataUtil;
+import jimmy.mcgymmy.storage.AddressBookStorage;
+import jimmy.mcgymmy.storage.JsonAddressBookStorage;
+import jimmy.mcgymmy.storage.JsonUserPrefsStorage;
+import jimmy.mcgymmy.storage.Storage;
+import jimmy.mcgymmy.storage.StorageManager;
+import jimmy.mcgymmy.storage.UserPrefsStorage;
+import jimmy.mcgymmy.ui.Ui;
+import jimmy.mcgymmy.ui.UiManager;
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/MainApp.java
 
 /**
  * Runs the application.
@@ -48,7 +71,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing McGymmy ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,7 +79,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getMcGymmyFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -74,20 +97,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyMcGymmy> addressBookOptional;
+        ReadOnlyMcGymmy initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample McGymmy");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty McGymmy");
+            initialData = new McGymmy();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty McGymmy");
+            initialData = new McGymmy();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +174,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty McGymmy");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +190,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting McGymmy " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

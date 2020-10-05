@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+<<<<<<< Updated upstream:src/main/java/seedu/address/logic/parser/ParserUtil.java
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -14,6 +15,20 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+=======
+import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.commons.util.StringUtil;
+import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Macronutrient;
+import jimmy.mcgymmy.model.food.Protein;
+import jimmy.mcgymmy.model.person.Address;
+import jimmy.mcgymmy.model.person.Email;
+import jimmy.mcgymmy.model.person.Name;
+import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.tag.Tag;
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/parser/ParserUtil.java
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -41,29 +56,71 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static String parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return name;
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Gets integer from string value.
+     *
+     * @param value String containing value of nutrient.
+     * @param errorMessage String containing the error message.
+     * @return Integer value of string.
+     * @throws ParseException if the value is invalid.
+     */
+    private static int getNutrientValue(String value, String errorMessage) throws ParseException {
+        requireNonNull(value);
+        String trimmedValue = value.trim();
+        //        if (!Protein.isValid(trimmedProtein)) {
+        //            throw new ParseException(Protein.MESSAGE_CONSTRAINTS);
+        //        }
+        int nutrientValue;
+        try {
+            nutrientValue = Integer.parseInt(trimmedValue);
+        } catch (NumberFormatException numberFormatException) {
+            throw new ParseException(errorMessage);
+        }
+        return nutrientValue;
+    }
+
+    /**
+     * Parses a {@code String protein} into a {@code Protein}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code Protein} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
+    public static Protein parseProtein(String protein) throws ParseException {
+        int proteinValue = getNutrientValue(protein, Protein.MESSAGE_CONSTRAINTS);
+        return new Protein(proteinValue);
     }
+
+    /**
+     * Parses a {@code String fat} into a {@code Fat}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Fat} is invalid.
+     */
+    public static Fat parseFat(String fat) throws ParseException {
+        int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
+        return new Fat(fatValue);
+    }
+
+    /**
+     * Parses a {@code String carb} into a {@code Carbohydrate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Carbohydrate} is invalid.
+     */
+    public static Carbohydrate parseCarb(String carb) throws ParseException {
+        int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
+        return new Carbohydrate(carbValue);
+    }
+
 
     /**
      * Parses a {@code String address} into an {@code Address}.

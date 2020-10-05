@@ -8,12 +8,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+=======
+import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.testutil.Assert;
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/CommandTestUtil.java
 
 /**
  * Contains helper methods for testing commands.
@@ -56,11 +66,16 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        McGymmy expectedMcGymmy = new McGymmy(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
+=======
+        Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedMcGymmy, actualModel.getAddressBook());
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/CommandTestUtil.java
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/AddCommandTest.java
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CommandParserTestUtil;
@@ -21,6 +22,18 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+=======
+import jimmy.mcgymmy.commons.core.GuiSettings;
+import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
+import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
+import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.testutil.Assert;
+import jimmy.mcgymmy.testutil.PersonBuilder;
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/AddCommandTest.java
 
 public class AddCommandTest {
     @Test
@@ -93,12 +106,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyMcGymmy newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMcGymmy getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -165,8 +178,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyMcGymmy getAddressBook() {
+            return new McGymmy();
         }
     }
 

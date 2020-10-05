@@ -25,8 +25,13 @@ public class ModelManagerTest {
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
+<<<<<<< Updated upstream:src/test/java/seedu/address/model/ModelManagerTest.java
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+=======
+        Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new McGymmy(), new McGymmy(modelManager.getAddressBook()));
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/model/ModelManagerTest.java
     }
 
     @Test
@@ -37,14 +42,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMcGymmyFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMcGymmyFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -95,13 +100,19 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
+<<<<<<< Updated upstream:src/test/java/seedu/address/model/ModelManagerTest.java
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
+=======
+        McGymmy mcGymmy = new AddressBookBuilder().withPerson(TypicalPersons.ALICE).withPerson(
+            TypicalPersons.BENSON).build();
+        McGymmy differentMcGymmy = new McGymmy();
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/model/ModelManagerTest.java
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(mcGymmy, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(mcGymmy, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +124,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different mcGymmy -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentMcGymmy, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(mcGymmy, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setMcGymmyFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(mcGymmy, differentUserPrefs)));
     }
 }

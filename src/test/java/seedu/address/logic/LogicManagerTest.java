@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/logic/LogicManagerTest.java
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -26,6 +27,24 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
+=======
+import jimmy.mcgymmy.commons.core.Messages;
+import jimmy.mcgymmy.logic.commands.AddCommand;
+import jimmy.mcgymmy.logic.commands.CommandResult;
+import jimmy.mcgymmy.logic.commands.ListCommand;
+import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
+import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ModelManager;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.UserPrefs;
+import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.storage.JsonAddressBookStorage;
+import jimmy.mcgymmy.storage.JsonUserPrefsStorage;
+import jimmy.mcgymmy.storage.StorageManager;
+import jimmy.mcgymmy.testutil.Assert;
+import jimmy.mcgymmy.testutil.PersonBuilder;
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/LogicManagerTest.java
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -150,7 +169,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

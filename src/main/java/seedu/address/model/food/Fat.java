@@ -6,6 +6,8 @@ package seedu.address.model.food;
  */
 public class Fat extends Macronutrient {
     private static final int FAT_MULTIPLIER = 9;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Fat " + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * @param amount A valid amount.

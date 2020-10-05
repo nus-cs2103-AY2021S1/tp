@@ -4,10 +4,17 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+<<<<<<< Updated upstream:src/main/java/seedu/address/storage/Storage.java
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+=======
+import jimmy.mcgymmy.commons.exceptions.DataConversionException;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
+import jimmy.mcgymmy.model.UserPrefs;
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/storage/Storage.java
 
 /**
  * API of the Storage component
@@ -24,9 +31,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMcGymmy> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyMcGymmy addressBook) throws IOException;
 
 }

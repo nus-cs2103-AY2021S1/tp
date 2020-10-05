@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/TypicalPersons.java
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+=======
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.person.Person;
+>>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/testutil/TypicalPersons.java
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -48,10 +53,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code McGymmy} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static McGymmy getTypicalAddressBook() {
+        McGymmy ab = new McGymmy();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

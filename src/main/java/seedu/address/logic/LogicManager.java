@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+<<<<<<< Updated upstream:src/main/java/seedu/address/logic/LogicManager.java
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -16,6 +17,19 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
+=======
+import jimmy.mcgymmy.commons.core.GuiSettings;
+import jimmy.mcgymmy.commons.core.LogsCenter;
+import jimmy.mcgymmy.logic.commands.Command;
+import jimmy.mcgymmy.logic.commands.CommandResult;
+import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
+import jimmy.mcgymmy.logic.parser.McGymmyParser;
+import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.storage.Storage;
+>>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/LogicManager.java
 
 /**
  * The main LogicManager of the app.
@@ -55,7 +69,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyMcGymmy getAddressBook() {
         return model.getAddressBook();
     }
 
