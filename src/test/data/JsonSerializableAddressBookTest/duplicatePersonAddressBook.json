@@ -1,12 +1,12 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "deadline": "03-03-2020 1300",
+    "moduleCode": "CS2103T",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
-    "address": "4th street"
+    "deadline": "03-03-2020 1300",
+    "moduleCode": "CS2103T"
   } ]
 }

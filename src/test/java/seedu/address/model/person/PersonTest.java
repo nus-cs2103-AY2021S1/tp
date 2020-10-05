@@ -2,9 +2,9 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -30,21 +30,27 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // different phone-> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different deadline and email -> returns false
+        Person editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        // same name, same deadline, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withModuleCode(VALID_MODULE_CODE_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        // same name, different attributes -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).withModuleCode(VALID_MODULE_CODE_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
+
+        // same name, same deadline, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withModuleCode(VALID_MODULE_CODE_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }
 
@@ -70,12 +76,12 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different deadline -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        // different module code -> returns false
+        editedAlice = new PersonBuilder(ALICE).withModuleCode(VALID_MODULE_CODE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

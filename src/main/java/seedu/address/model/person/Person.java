@@ -17,20 +17,20 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Deadline deadline;
 
     // Data fields
-    private final Address address;
+    private final ModuleCode moduleCode;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, address, tags);
+    public Person(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, moduleCode, tags);
         this.name = name;
-        this.phone = phone;
-        this.address = address;
+        this.deadline = deadline;
+        this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
 
@@ -38,12 +38,12 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Deadline getDeadline() {
+        return deadline;
     }
 
-    public Address getAddress() {
-        return address;
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     /**
@@ -65,7 +65,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()));
+                && (otherPerson.getDeadline().equals(getDeadline()));
     }
 
     /**
@@ -84,25 +84,26 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getDeadline().equals(getDeadline())
+                && otherPerson.getModuleCode().equals(getModuleCode())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, tags);
+        return Objects.hash(name, deadline, moduleCode, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Deadline: ")
+                .append(getDeadline())
+                .append(" Email: ")
+                .append(" Module: ")
+                .append(getModuleCode())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
