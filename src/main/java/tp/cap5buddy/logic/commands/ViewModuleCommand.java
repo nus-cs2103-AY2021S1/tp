@@ -15,8 +15,8 @@ public class ViewModuleCommand extends Command {
     private ArrayList<Module> modules;
     private String moduleName;
     //need a storage system
-    public ViewModuleCommand(String[] commandArguments) {
-        this.moduleName = commandArguments[3];
+    public ViewModuleCommand(String modName) {
+        this.moduleName = modName;
     }
 
     /**
@@ -24,7 +24,7 @@ public class ViewModuleCommand extends Command {
      * @return String success message.
      */
     public ResultCommand execute(ModuleList modules) {
-        Module moduleToBeDisplayed = modules.getModule(moduleName);
+        Module moduleToBeDisplayed = modules.getModule(this.moduleName);
         return new ResultCommand(moduleToBeDisplayed.toString() + "\n"
                 + SUCCESS_MESSAGE, isExit());
     }
