@@ -13,9 +13,8 @@ public class AddContactParser extends Parser {
      * @throws ParseException If the user input could not be parsed.
      */
     public AddContactCommand parse(String userInput) throws ParseException {
-        Tokenizer tokenizer = new Tokenizer();
-        String[] parsedArguments = tokenizer.tokenize(userInput,
-                PrefixList.CONTACT_NAME_PREFIX, PrefixList.CONTACT_EMAIL_PREFIX);
+        Tokenizer tokenizer = new Tokenizer(userInput, PrefixList.CONTACT_NAME_PREFIX, PrefixList.CONTACT_EMAIL_PREFIX);
+        String[] parsedArguments = tokenizer.tokenize();
         try {
             String contactName = parsedArguments[0];
             String contactEmail = parsedArguments[1];
