@@ -1,11 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSVENUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONALDETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGLINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,14 +28,21 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_SCHOOL + "SCHOOL "
+            + PREFIX_YEAR + "YEAR "
+            + PREFIX_CLASSVENUE + "CLASS_VENUE"
+            + PREFIX_CLASSTIME + "CLASS_TIME"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_SCHOOL + "Commonwealth Secondary School"
+            + PREFIX_CLASSVENUE + "Jurong West Community Centre Level 2 Classroom 2"
+            + PREFIX_YEAR + "Secondary 2"
+            + PREFIX_CLASSTIME + "13:00"
+            + PREFIX_MEETINGLINK + "johnd@example.com "
+            + PREFIX_SUBJECT + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_ADDITIONALDETAILS + "Student likes chocolate"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

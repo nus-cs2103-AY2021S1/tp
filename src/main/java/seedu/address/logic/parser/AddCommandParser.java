@@ -1,10 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSVENUE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONALDETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGLINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -12,11 +17,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.ClassVenue;
-import seedu.address.model.student.MeetingLink;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.Student;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,21 +32,29 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_CLASSVENUE, PREFIX_CLASSTIME,
+                        PREFIX_ADDITIONALDETAILS, PREFIX_MEETINGLINK, PREFIX_SUBJECT, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_YEAR,
+                PREFIX_CLASSVENUE, PREFIX_CLASSTIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        MeetingLink meetingLink = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        ClassVenue classVenue = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
+        Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
+        ClassVenue classVenue = ParserUtil.parseClassVenue(argMultimap.getValue(PREFIX_CLASSVENUE).get());
+        ClassTime classTime = ParserUtil.parseClassTime(argMultimap.getValue(PREFIX_CLASSTIME).get());
+        AdditionalDetails additionalDetails = ParserUtil.parseAdditionalDetails(argMultimap.getValue(PREFIX_ADDITIONALDETAILS).get());
+        MeetingLink meetingLink = ParserUtil.parseMeetingLink(argMultimap.getValue(PREFIX_MEETINGLINK).get());
+        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, phone, null, null, null, null,
-                null, meetingLink, null, tagList);
+        Student student = new Student(name, phone, school, year, classVenue, classTime,
+                additionalDetails, meetingLink, subject, tagList);
 
         return new AddCommand(student);
     }

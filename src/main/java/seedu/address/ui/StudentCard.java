@@ -35,9 +35,9 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label classVenue;
     @FXML
-    private Label email;
+    private Label meetingLink;
     @FXML
     private FlowPane tags;
 
@@ -50,8 +50,8 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
-        address.setText(student.getClassVenue().value);
-        email.setText(student.getMeetingLink().value);
+        classVenue.setText(student.getClassVenue().value);
+        meetingLink.setText(student.getMeetingLink().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

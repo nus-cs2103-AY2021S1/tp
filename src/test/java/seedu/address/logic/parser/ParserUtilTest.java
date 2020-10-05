@@ -127,25 +127,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMeetingLink((String) null));
     }
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetingLink(INVALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         MeetingLink expectedMeetingLink = new MeetingLink(VALID_EMAIL);
-        assertEquals(expectedMeetingLink, ParserUtil.parseEmail(VALID_EMAIL));
+        assertEquals(expectedMeetingLink, ParserUtil.parseMeetingLink(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         MeetingLink expectedMeetingLink = new MeetingLink(VALID_EMAIL);
-        assertEquals(expectedMeetingLink, ParserUtil.parseEmail(emailWithWhitespace));
+        assertEquals(expectedMeetingLink, ParserUtil.parseMeetingLink(emailWithWhitespace));
     }
 
     @Test
