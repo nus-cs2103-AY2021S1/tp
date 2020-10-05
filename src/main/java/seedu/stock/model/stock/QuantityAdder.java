@@ -13,13 +13,22 @@ public class QuantityAdder {
     // Matches any signed integer
     public static final String VALIDATION_REGEX = "^(\\+|-)?\\d+$";
     public final String valueToBeAdded;
-    
+
+    /**
+     * Constructss a new quantity adder object.
+     * @param valueToBeAdded The value to be added into a quantity object.
+     */
     public QuantityAdder(String valueToBeAdded) {
         requireNonNull(valueToBeAdded);
         checkArgument(isValidValue(valueToBeAdded), MESSAGE_CONSTRAINTS);
         this.valueToBeAdded = valueToBeAdded;
     }
 
+    /**
+     * Tests whether {@code test} is valid.
+     * @param test The input to be tested.
+     * @return A boolean value indicating if the test passes.
+     */
     public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }

@@ -1,6 +1,7 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
@@ -35,12 +36,12 @@ public class UpdateCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_SERIALNUMBER + "SERIAL NUMBER "
-            + PREFIX_QUANTITY + "QUANTITY "
+            + PREFIX_INCREMENT_QUANTITY + "QUANTITY "
             + PREFIX_NEW_QUANTITY + "NEW QUANTITY "
             + PREFIX_NAME + "NAME "
             + PREFIX_SOURCE + "SOURCE "
             + PREFIX_LOCATION + "LOCATION \n"
-            + "Note that only one of " + PREFIX_QUANTITY
+            + "Note that only one of " + PREFIX_INCREMENT_QUANTITY
             + "and " + PREFIX_NEW_QUANTITY
             + "can be specified. \n"
             + "Example: " + COMMAND_WORD + " "
@@ -67,6 +68,12 @@ public class UpdateCommand extends Command {
         this.updateStockDescriptor = updateStockDescriptor;
     }
 
+    /**
+     * Executes the update command and returns the result.
+     * @param model {@code Model} which the command should operate on.
+     * @return The result of successful execution.
+     * @throws CommandException If there are any errors.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

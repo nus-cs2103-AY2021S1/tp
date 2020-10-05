@@ -16,6 +16,12 @@ import seedu.stock.model.stock.SerialNumber;
 
 public class UpdateCommandParser implements Parser<UpdateCommand> {
 
+    /**
+     * Parses {@code args} into an update command.
+     * @param args The user input to be parsed.
+     * @return A new update command.
+     * @throws ParseException If a parsing error occurs.
+     */
     @Override
     public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
