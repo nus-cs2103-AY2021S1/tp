@@ -2,12 +2,10 @@
   "persons": [ {
     "description": "Valid Expense",
     "amount": "12.00",
-    "date": "04-10-2020",
-    "address": "4th street"
+    "date": "04-10-2020"
   }, {
     "description": "Expense With Invalid Amount Field",
     "amount": "67s",
-    "date": "04-10-2020",
-    "address": "4th street"
+    "date": "04-10-2020"
   } ]
 }

@@ -4,49 +4,42 @@
     "description" : "Alice Pauline",
     "amount" : "24.00",
     "date": "04-10-2020",
-    "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "description" : "Benson Meier",
     "amount" : "98.00",
     "date": "02-10-2020",
-    "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "description" : "Carl Kurz",
     "amount" : "4.00",
     "date": "28-09-2020",
-    "address" : "wall street",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "description" : "Daniel Meier",
     "amount" : "4.50",
     "date": "11-09-2020",
-    "address" : "10th street",
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "description" : "Elle Meyer",
     "amount" : "2.40",
     "date": "15-09-2020",
-    "address" : "michegan ave",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "description" : "Fiona Kunz",
     "amount" : "65.00",
     "date": "21-09-2020",
-    "address" : "little tokyo",
     "remark" : "",
     "tagged" : [ ]
   }, {
     "description" : "George Best",
     "amount" : "49.00",
     "date": "28-09-2020",
-    "address" : "4th street",
     "remark" : "",
     "tagged" : [ ]
   } ]
