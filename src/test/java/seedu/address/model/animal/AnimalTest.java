@@ -2,7 +2,6 @@ package seedu.address.model.animal;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
@@ -31,8 +30,8 @@ public class AnimalTest {
         // null -> returns false
         assertFalse(ALICE.isSameAnimal(null));
 
-        // different ID and email -> returns false
-        Animal editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).withEmail(VALID_EMAIL_BOB).build();
+        // different ID and species -> returns false
+        Animal editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_BOB).build();
         assertFalse(ALICE.isSameAnimal(editedAlice));
 
         // different name -> returns false
@@ -40,18 +39,13 @@ public class AnimalTest {
         assertFalse(ALICE.isSameAnimal(editedAlice));
 
         // same name, same ID, different attributes -> returns true
-        editedAlice = new AnimalBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withSpecies(VALID_SPECIES_BOB)
+        editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameAnimal(editedAlice));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameAnimal(editedAlice));
-
-        // same name, same ID, same email, different attributes -> returns true
-        editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameAnimal(editedAlice));
+        // same name, different ID, same attributes -> returns false
+        editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).build();
+        assertFalse(ALICE.isSameAnimal(editedAlice));
     }
 
     @Test
@@ -80,11 +74,7 @@ public class AnimalTest {
         editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
+        // different species -> returns false
         editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

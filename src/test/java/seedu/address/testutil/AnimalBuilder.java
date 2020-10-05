@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.animal.Animal;
-import seedu.address.model.animal.Email;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
@@ -18,12 +17,10 @@ public class AnimalBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_ID = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_SPECIES = "Panthera leo";
 
     private Name name;
     private Id id;
-    private Email email;
     private Species species;
     private Set<Tag> tags;
 
@@ -33,7 +30,6 @@ public class AnimalBuilder {
     public AnimalBuilder() {
         name = new Name(DEFAULT_NAME);
         id = new Id(DEFAULT_ID);
-        email = new Email(DEFAULT_EMAIL);
         species = new Species(DEFAULT_SPECIES);
         tags = new HashSet<>();
     }
@@ -44,7 +40,6 @@ public class AnimalBuilder {
     public AnimalBuilder(Animal animalToCopy) {
         name = animalToCopy.getName();
         id = animalToCopy.getId();
-        email = animalToCopy.getEmail();
         species = animalToCopy.getSpecies();
         tags = new HashSet<>(animalToCopy.getTags());
     }
@@ -81,16 +76,8 @@ public class AnimalBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code Animal} that we are building.
-     */
-    public AnimalBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public Animal build() {
-        return new Animal(name, id, email, species, tags);
+        return new Animal(name, id, species, tags);
     }
 
 }

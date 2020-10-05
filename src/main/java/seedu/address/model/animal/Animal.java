@@ -18,7 +18,6 @@ public class Animal {
     // Identity fields
     private final Name name;
     private final Id id;
-    private final Email email;
 
     // Data fields
     private final Species species;
@@ -27,11 +26,10 @@ public class Animal {
     /**
      * Every field must be present and not null.
      */
-    public Animal(Name name, Id id, Email email, Species species, Set<Tag> tags) {
-        requireAllNonNull(name, id, email, species, tags);
+    public Animal(Name name, Id id, Species species, Set<Tag> tags) {
+        requireAllNonNull(name, id, species, tags);
         this.name = name;
         this.id = id;
-        this.email = email;
         this.species = species;
         this.tags.addAll(tags);
     }
@@ -42,10 +40,6 @@ public class Animal {
 
     public Id getId() {
         return id;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Species getSpecies() {
@@ -61,7 +55,7 @@ public class Animal {
     }
 
     /**
-     * Returns true if both animals of the same name have at least one other identity field that is the same.
+     * Returns true if both animals of the same name and id.
      * This defines a weaker notion of equality between two animals.
      */
     public boolean isSameAnimal(Animal otherAnimal) {
@@ -71,7 +65,7 @@ public class Animal {
 
         return otherAnimal != null
                 && otherAnimal.getName().equals(getName())
-                && (otherAnimal.getId().equals(getId()) || otherAnimal.getEmail().equals(getEmail()));
+                && otherAnimal.getId().equals(getId());
     }
 
     /**
@@ -91,7 +85,6 @@ public class Animal {
         Animal otherAnimal = (Animal) other;
         return otherAnimal.getName().equals(getName())
                 && otherAnimal.getId().equals(getId())
-                && otherAnimal.getEmail().equals(getEmail())
                 && otherAnimal.getSpecies().equals(getSpecies())
                 && otherAnimal.getTags().equals(getTags());
     }
@@ -99,7 +92,7 @@ public class Animal {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, email, species, tags);
+        return Objects.hash(name, id, species, tags);
     }
 
     @Override
@@ -108,8 +101,6 @@ public class Animal {
         builder.append(getName())
                 .append(" ID: ")
                 .append(getId())
-                .append(" Email: ")
-                .append(getEmail())
                 .append(" Species: ")
                 .append(getSpecies())
                 .append(" Tags: ");

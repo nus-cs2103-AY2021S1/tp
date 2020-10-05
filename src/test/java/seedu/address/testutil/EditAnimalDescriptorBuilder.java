@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
 import seedu.address.model.animal.Animal;
-import seedu.address.model.animal.Email;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
@@ -34,7 +33,6 @@ public class EditAnimalDescriptorBuilder {
         descriptor = new EditAnimalDescriptor();
         descriptor.setName(animal.getName());
         descriptor.setId(animal.getId());
-        descriptor.setEmail(animal.getEmail());
         descriptor.setSpecies(animal.getSpecies());
         descriptor.setTags(animal.getTags());
     }
@@ -52,14 +50,6 @@ public class EditAnimalDescriptorBuilder {
      */
     public EditAnimalDescriptorBuilder withId(String id) {
         descriptor.setId(new Id(id));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditAnimalDescriptor} that we are building.
-     */
-    public EditAnimalDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 
