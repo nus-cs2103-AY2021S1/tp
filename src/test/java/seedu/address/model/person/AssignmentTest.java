@@ -32,27 +32,28 @@ public class AssignmentTest {
         assertFalse(CS1231S_HW.isSameAssignment(null));
 
         // different phone and email -> returns false
-        Assignment editedCs1231S_hw = new AssignmentBuilder(CS1231S_HW).withPhone(VALID_PHONE_LAB)
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withPhone(VALID_PHONE_LAB)
                 .withEmail(VALID_EMAIL_LAB).build();
-        assertFalse(CS1231S_HW.isSameAssignment(editedCs1231S_hw));
+        assertFalse(CS1231S_HW.isSameAssignment(editedCs1231sHw));
 
         // different name -> returns false
-        editedCs1231S_hw = new AssignmentBuilder(CS1231S_HW).withName(VALID_NAME_LAB).build();
-        assertFalse(CS1231S_HW.isSameAssignment(editedCs1231S_hw));
+        editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withName(VALID_NAME_LAB).build();
+        assertFalse(CS1231S_HW.isSameAssignment(editedCs1231sHw));
 
         // same name, same phone, different attributes -> returns true
-        editedCs1231S_hw = new AssignmentBuilder(CS1231S_HW).withEmail(VALID_EMAIL_LAB).withAddress(VALID_ADDRESS_LAB)
+        editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withEmail(VALID_EMAIL_LAB).withAddress(VALID_ADDRESS_LAB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(CS1231S_HW.isSameAssignment(editedCs1231S_hw));
+        assertTrue(CS1231S_HW.isSameAssignment(editedCs1231sHw));
 
         // same name, same email, different attributes -> returns true
-        editedCs1231S_hw = new AssignmentBuilder(CS1231S_HW).withPhone(VALID_PHONE_LAB).withAddress(VALID_ADDRESS_LAB)
+        editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withPhone(VALID_PHONE_LAB).withAddress(VALID_ADDRESS_LAB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(CS1231S_HW.isSameAssignment(editedCs1231S_hw));
+        assertTrue(CS1231S_HW.isSameAssignment(editedCs1231sHw));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedCs1231S_hw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(CS1231S_HW.isSameAssignment(editedCs1231S_hw));
+        editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(CS1231S_HW.isSameAssignment(editedCs1231sHw));
     }
 
     @Test

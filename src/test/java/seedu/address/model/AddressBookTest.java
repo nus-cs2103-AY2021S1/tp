@@ -46,8 +46,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateAssignments_throwsDuplicateAssignmentException() {
         // Two assignments with the same identity fields
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
         List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
         AddressBookStub newData = new AddressBookStub(newAssignments);
 
@@ -73,8 +73,8 @@ public class AddressBookTest {
     @Test
     public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addAssignment(CS1231S_HW);
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(addressBook.hasAssignment(editedCs1231sHw));
     }
 

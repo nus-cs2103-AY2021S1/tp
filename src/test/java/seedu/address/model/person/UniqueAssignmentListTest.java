@@ -42,8 +42,8 @@ public class UniqueAssignmentListTest {
     @Test
     public void contains_assignmentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAssignmentList.add(CS1231S_HW);
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueAssignmentList.contains(editedCs1231sHw));
     }
 
@@ -60,17 +60,20 @@ public class UniqueAssignmentListTest {
 
     @Test
     public void setAssignment_nullTargetAssignment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAssignmentList.setAssignment(null, CS1231S_HW));
+        assertThrows(NullPointerException.class, () -> uniqueAssignmentList
+                .setAssignment(null, CS1231S_HW));
     }
 
     @Test
     public void setAssignment_nullEditedAssignment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAssignmentList.setAssignment(CS1231S_HW, null));
+        assertThrows(NullPointerException.class, () -> uniqueAssignmentList
+                .setAssignment(CS1231S_HW, null));
     }
 
     @Test
     public void setAssignment_targetAssignmentNotInList_throwsAssignmentNotFoundException() {
-        assertThrows(AssignmentNotFoundException.class, () -> uniqueAssignmentList.setAssignment(CS1231S_HW, CS1231S_HW));
+        assertThrows(AssignmentNotFoundException.class, () -> uniqueAssignmentList
+                .setAssignment(CS1231S_HW, CS1231S_HW));
     }
 
     @Test
@@ -85,8 +88,8 @@ public class UniqueAssignmentListTest {
     @Test
     public void setAssignment_editedAssignmentHasSameIdentity_success() {
         uniqueAssignmentList.add(CS1231S_HW);
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
         uniqueAssignmentList.setAssignment(CS1231S_HW, editedCs1231sHw);
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();
         expectedUniqueAssignmentList.add(editedCs1231sHw);

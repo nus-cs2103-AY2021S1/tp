@@ -33,13 +33,17 @@ public class TypicalAssignments {
             .withTags("owesMoney", "friends").build();
     public static final Assignment CS2106_LAB = new AssignmentBuilder().withName("CS2106 Lab").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Assignment CS2106_TUTORIAL_QUIZ = new AssignmentBuilder().withName("CS2106 Tutorial Quiz").withPhone("87652533")
+    public static final Assignment CS2106_TUTORIAL_QUIZ = new AssignmentBuilder()
+            .withName("CS2106 Tutorial Quiz").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Assignment IS1103_MISSION = new AssignmentBuilder().withName("IS1103 Mission").withPhone("9482224")
+    public static final Assignment IS1103_MISSION = new AssignmentBuilder()
+            .withName("IS1103 Mission").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Assignment PEER_REVIEW = new AssignmentBuilder().withName("Peer review").withPhone("9482427")
+    public static final Assignment PEER_REVIEW = new AssignmentBuilder()
+            .withName("Peer review").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Assignment ORAL_PRESENTATION = new AssignmentBuilder().withName("Oral presentation").withPhone("9482442")
+    public static final Assignment ORAL_PRESENTATION = new AssignmentBuilder()
+            .withName("Oral presentation").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
@@ -69,6 +73,7 @@ public class TypicalAssignments {
     }
 
     public static List<Assignment> getTypicalAssignments() {
-        return new ArrayList<>(Arrays.asList(CS1231S_HW, CS2103T_TUT, CS2106_LAB, CS2106_TUTORIAL_QUIZ, IS1103_MISSION, PEER_REVIEW, ORAL_PRESENTATION));
+        return new ArrayList<>(Arrays.asList(CS1231S_HW, CS2103T_TUT, CS2106_LAB, CS2106_TUTORIAL_QUIZ,
+                IS1103_MISSION, PEER_REVIEW, ORAL_PRESENTATION));
     }
 }
