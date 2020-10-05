@@ -30,7 +30,7 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_DESCRIPTION + person.getDescription().fullDescription + " ");
-        sb.append(PREFIX_AMOUNT + person.getAmount().value + " ");
+        sb.append(PREFIX_AMOUNT + person.getAmount().toString() + " ");
         sb.append(PREFIX_DATE + person.getDate().toString() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -45,7 +45,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description.fullDescription).append(" "));
-        descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.value).append(" "));
+        descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.toString()).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

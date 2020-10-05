@@ -52,7 +52,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         description = source.getDescription().fullDescription;
-        amount = source.getAmount().value;
+        amount = source.getAmount().toString();
         date = source.getDate().toString();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()

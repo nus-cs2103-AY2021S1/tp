@@ -7,5 +7,8 @@
     "description": "Expense With Invalid Amount Field",
     "amount": "67s",
     "date": "04-10-2020"
-  } ]
+  } ],
+  "budget": {
+    "amount": "10.00"
+  }
 }

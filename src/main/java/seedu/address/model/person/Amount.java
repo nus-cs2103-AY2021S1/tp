@@ -14,7 +14,7 @@ public class Amount {
             "Expense amount should only contain numbers and 1 '.', and should be in the {dollars}.{cents} format."
                     + "{.cents} is optional but {dollars} should contain at least 1 digit.";
     public static final String VALIDATION_REGEX = "(?<dollars>\\d+)(.(?<cents>\\d{1,2}))?";
-    public final String value;
+    public final Integer value;
 
     /**
      * Constructs a {@code Amount}.
@@ -24,7 +24,9 @@ public class Amount {
     public Amount(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
-        value = amount;
+
+        float f = Float.parseFloat(amount);
+        value = Math.round(f);
     }
 
     /**
@@ -34,9 +36,22 @@ public class Amount {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a new {@code Amount} as the sum of the current {@code Amount} and the specified {@code Amount}.
+     */
+    public Amount add(Amount amount) {
+        requireNonNull(amount);
+        Integer total = value + amount.value;
+        return new Amount(total.toString());
+    }
+
+    public Double asDouble() {
+        return value / 100.0;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

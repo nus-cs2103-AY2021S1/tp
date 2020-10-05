@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +16,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final Budget budget;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public AddressBook() {
+        budget = new Budget();
     }
 
     /**
@@ -55,6 +58,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBudget(newData.getBudget());
+    }
+
+    //// budget-level operations
+
+    public void setBudget(Budget budget) {
+        requireNonNull(budget);
+
+        this.budget.topupBudget(budget.getAmount());
+    }
+
+    @Override
+    public Budget getBudget() {
+        return budget;
     }
 
     //// person-level operations
