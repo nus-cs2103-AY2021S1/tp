@@ -46,7 +46,6 @@ public class AddressBookParser {
         final String commandWord = commandVerb != null ? commandCategory + commandVerb : commandCategory;
         final String arguments = matcher.group("arguments");
 
-        System.out.println(commandWord);
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
