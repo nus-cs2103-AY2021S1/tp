@@ -15,7 +15,7 @@ public class Property {
 
     private static final String PREFIX = "p";
     // TODO: should be managed somewhere else to access last id in storage
-    private static final IdManager ID_MANAGER = new IdManager(PREFIX);
+    private static final IdManager ID_MANAGER = IdManager.initialize(PREFIX);
 
     // Identity fields
     private final Id propertyId;
