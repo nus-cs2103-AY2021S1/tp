@@ -3,11 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Deadline;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_DEADLINE = "01-02-2020 1800";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
 
     private Name name;
-    private Phone phone;
+    private Deadline deadline;
     private Email email;
     private ModuleCode moduleCode;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        deadline = new Deadline(DEFAULT_DEADLINE);
         email = new Email(DEFAULT_EMAIL);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
+        deadline = personToCopy.getDeadline();
         email = personToCopy.getEmail();
         moduleCode = personToCopy.getModuleCode();
         tags = new HashSet<>(personToCopy.getTags());
@@ -66,7 +66,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Person} that we are building.
      */
     public PersonBuilder withModuleCode(String moduleCode) {
         this.moduleCode = new ModuleCode(moduleCode);
@@ -74,10 +74,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Deadline} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, moduleCode, tags);
+        return new Person(name, deadline, email, moduleCode, tags);
     }
 
 }

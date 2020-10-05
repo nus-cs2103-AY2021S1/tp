@@ -1,13 +1,13 @@
 {
   "persons": [ {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "deadline": "03-03-2020 1300",
     "email": "alice@example.com",
     "moduleCode": "CS2103T",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "phone": "94351253",
+    "deadline": "03-03-2020 1300",
     "email": "pauline@example.com",
     "moduleCode": "CS2103T"
   } ]
