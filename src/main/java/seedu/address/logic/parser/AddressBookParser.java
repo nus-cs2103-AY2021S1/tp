@@ -25,7 +25,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandCategory>\\S+)" +
+            "(?<commandVerb>\\s\\S+)?(?<arguments>.*)"); 
 
     /**
      * Parses user input into command for execution.
@@ -40,8 +41,12 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandCategory = matcher.group("commandCategory");
+        final String commandVerb = matcher.group("commandVerb");
+        final String commandWord = commandVerb != null ? commandCategory + commandVerb : commandCategory;
         final String arguments = matcher.group("arguments");
+
+        System.out.println(commandWord);
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
