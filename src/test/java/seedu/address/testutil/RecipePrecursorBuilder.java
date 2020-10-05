@@ -8,10 +8,12 @@ import seedu.address.model.recipe.RecipePrecursor;
 
 public class RecipePrecursorBuilder {
     public static final int DEFAULT_ID = 1;
+    public static final String DEFAULT_PRODUCT_NAME = "Apple";
     public static final String DEFAULT_PRODUCT_QUANTITY = "1";
     public static final String DEFAULT_DESCRIPTION = "Craftable Material";
 
     private int id;
+    private String productName;
     private ProductQuantity quantity;
     private List<IngredientPrecursor> ingredients;
     private String description;
@@ -21,6 +23,7 @@ public class RecipePrecursorBuilder {
      */
     public RecipePrecursorBuilder() {
         this.id = DEFAULT_ID;
+        this.productName = DEFAULT_PRODUCT_NAME;
         this.quantity = new ProductQuantity(DEFAULT_PRODUCT_QUANTITY);
         this.ingredients = TypicalIngredientPrecursors.getTypicalIngredientList();
         this.description = DEFAULT_DESCRIPTION;
@@ -31,6 +34,7 @@ public class RecipePrecursorBuilder {
      */
     public RecipePrecursorBuilder(RecipePrecursor recipeToCopy) {
         id = recipeToCopy.getId();
+        productName = recipeToCopy.getProductName();
         quantity = recipeToCopy.getProductQuantity();
         ingredients = recipeToCopy.getIngredientPrecursors();
         description = recipeToCopy.getDescription();
@@ -41,6 +45,14 @@ public class RecipePrecursorBuilder {
      */
     public RecipePrecursorBuilder withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Sets the product name of the {@code RecipePrecursor} that we are building.
+     */
+    public RecipePrecursorBuilder withProductName(String productName) {
+        this.productName = productName;
         return this;
     }
 
@@ -74,7 +86,6 @@ public class RecipePrecursorBuilder {
      * @return a sample RecipePrecursor
      */
     public RecipePrecursor build() {
-        return new RecipePrecursor(id, ingredients, "Test",
-                quantity, description);
+        return new RecipePrecursor(id, ingredients, productName, quantity, description);
     }
 }
