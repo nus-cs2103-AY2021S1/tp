@@ -11,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Victim;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private List<Suspect> suspects;
+    private List<Victim> victims;
     private Set<Tag> tags;
 
     /**
@@ -40,6 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         suspects = new ArrayList<>();
+        victims = new ArrayList<>();
         tags = new HashSet<>();
     }
 
@@ -52,6 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         suspects = personToCopy.getSuspects();
+        victims = personToCopy.getVictims();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -103,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withVictims(String ... victims) {
+        this.victims = SampleDataUtil.getVictimList(victims);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, suspects, tags);
+        return new Person(name, phone, email, address, suspects, victims, tags);
     }
 
 }
