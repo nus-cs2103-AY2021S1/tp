@@ -1,10 +1,12 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Document;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Reference;
 
 /**
  * Jackson-friendly version of {@link Document}.
@@ -13,54 +15,46 @@ class JsonAdaptedDocument {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "DOCUMENT's %s field is missing!";
 
-    private String documentName;
-    private String documentReference;
+    private String name;
+    private String reference;
 
     /**
      * Constructs a {@code JsonAdaptedDocument} with the given {@code documentStorageName }.
      */
     @JsonCreator
-    public JsonAdaptedDocument(String documentStorageValue) {
-        String[] doc = documentStorageValue.split(", ");
-        try {
-            Document document = new Document(doc[0], doc[1]);
-            this.documentName = doc[0];
-            this.documentReference = doc[1];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            this.documentName = null;
-            this.documentReference = null;
-        }
+    public JsonAdaptedDocument(@JsonProperty("name") String name, @JsonProperty("reference") String reference) {
+        this.name = name;
+        this.reference = reference;
     }
 
     /**
      * Converts a given {@code Document} into this class for Jackson use.
      */
     public JsonAdaptedDocument(Document source) {
-        documentName = source.getName();
-        documentReference = source.getReference();
+        name = source.getName().fullName;
+        reference = source.getReference().getFileName();
     }
 
-    @JsonValue
-    public String getDocumentStorage() {
-        return documentName + ", " + documentReference;
-    }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted tag object into the model's {@code Document} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Document toModelType() throws IllegalValueException {
-        if (documentName == null) {
+        if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "document name"));
         }
-        if (documentReference == null) {
+        if (reference == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "document reference"));
         }
-        if (!Document.isValidDocumentName(documentName, documentReference)) {
-            throw new IllegalValueException(Document.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Document(documentName, documentReference);
+        if (!Reference.isValidReference(reference)) {
+            throw new IllegalValueException(Reference.MESSAGE_CONSTRAINTS);
+        }
+        return new Document(new Name(name), new Reference(reference));
     }
 
 }

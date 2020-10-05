@@ -22,14 +22,16 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_DOCUMENT = ", reference";
-    private static final String INVALID_DOCUMENT2 = " ";
+    private static final String INVALID_DOCUMENT_REFERENCE = "test1";
+    private static final String INVALID_DOCUMENT_NAME = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_DOCUMENT_NAME = "name";
+    private static final String VALID_DOCUMENT_REFERENCE = "test1.txt";
     private static final List<JsonAdaptedDocument> VALID_DOCUMENTS = BENSON.getDocuments().stream()
             .map(JsonAdaptedDocument::new)
             .collect(Collectors.toList());
@@ -124,12 +126,18 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidDocuments_throwsIllegalValueException() {
         List<JsonAdaptedDocument> invalidDocuments = new ArrayList<>(VALID_DOCUMENTS);
-        invalidDocuments.add(new JsonAdaptedDocument(INVALID_DOCUMENT));
-        invalidDocuments.add(new JsonAdaptedDocument(INVALID_DOCUMENT2));
+        invalidDocuments.add(new JsonAdaptedDocument(VALID_DOCUMENT_NAME, INVALID_DOCUMENT_REFERENCE));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         invalidDocuments, VALID_TAGS);
         assertThrows(IllegalValueException.class, person::toModelType);
+
+        List<JsonAdaptedDocument> invalidDocuments2 = new ArrayList<>(VALID_DOCUMENTS);
+        invalidDocuments2.add(new JsonAdaptedDocument(INVALID_DOCUMENT_NAME, VALID_DOCUMENT_REFERENCE));
+        JsonAdaptedPerson person2 =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        invalidDocuments2, VALID_TAGS);
+        assertThrows(IllegalValueException.class, person2::toModelType);
     }
 
 }

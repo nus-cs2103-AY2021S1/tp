@@ -13,6 +13,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reference;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,7 +21,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    private static List<Document> sampleDocuments = List.of(new Document("doc1", "ref1"));
+    private static List<Document> sampleDocuments = List.of(new Document(new Name("doc1"), new Reference("test1.txt")));
 
 
     public static Person[] getSamplePersons() {

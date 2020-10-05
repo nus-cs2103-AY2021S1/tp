@@ -4,11 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 public class Document {
 
-    public static final String MESSAGE_CONSTRAINTS = "Document names should be alphanumeric";
-    public static final String NAME_VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String name;
-    public final String reference;
+    public final Name name;
+    public final Reference reference;
 
     /**
      * Constructs an {@code Document}.
@@ -16,7 +14,7 @@ public class Document {
      * @param name A valid name.
      * @param reference A valid reference.
      */
-    public Document(String name, String reference) {
+    public Document(Name name, Reference reference) {
         requireNonNull(name);
         requireNonNull(reference);
 
@@ -26,17 +24,12 @@ public class Document {
 
 
 
-    public String getName() {
+    public Name getName() {
         return this.name;
     }
 
-    public String getReference() {
+    public Reference getReference() {
         return this.reference;
-    }
-
-    //Currently only checks for alphanumeric names
-    public static boolean isValidDocumentName(String documentName, String documentReference) {
-        return documentName.matches(NAME_VALIDATION_REGEX) && documentReference != "";
     }
 
 
