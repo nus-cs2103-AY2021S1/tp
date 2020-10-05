@@ -1,4 +1,7 @@
 package seedu.address.model.meeting;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
@@ -17,11 +20,13 @@ public class Meeting {
 
     /**
      * Constructor for meeting.
+     * Date and timing for the meeting should be present and not null.
      *
-     * @param name name of meeting
+     * @param localDateTime date and time of meeting
      */
-    public Meeting(String name) {
-        this.name = name;
+    public Meeting(String localDateTime) {
+        requireAllNonNull(localDateTime);
+        startDateTime = LocalDateTime.parse(localDateTime);
         isDone = false;
     }
 
