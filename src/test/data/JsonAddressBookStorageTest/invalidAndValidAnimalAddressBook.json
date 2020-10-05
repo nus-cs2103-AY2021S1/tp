@@ -1,0 +1,13 @@
+{
+  "animals": [ {
+    "name": "Valid Animal",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "species": "4th street"
+  }, {
+    "name": "Animal With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "species": "4th street"
+  } ]
+}

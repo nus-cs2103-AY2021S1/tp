@@ -1,0 +1,8 @@
+{
+  "animals": [ {
+    "name": "Animal with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "species": "4th street"
+  } ]
+}
