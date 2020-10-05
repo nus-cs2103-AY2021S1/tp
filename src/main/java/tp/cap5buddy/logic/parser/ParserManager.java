@@ -45,7 +45,7 @@ public class ParserManager {
             return command;
         case "addzoom":
             parser = new AddZoomLinkParser();
-            command = parser.parse(input);
+            command = parser.parse(this.nonCommand);
             return command;
         case "editmodule":
             parser = new EditModuleParser();

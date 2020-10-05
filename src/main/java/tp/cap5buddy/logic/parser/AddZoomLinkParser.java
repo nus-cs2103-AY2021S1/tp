@@ -13,19 +13,14 @@ public class AddZoomLinkParser extends Parser {
      * @return
      */
     public AddZoomLinkCommand parse(String userInput) throws ParseException {
-        Tokenizer tokenizer = new Tokenizer();
-        String[] parsedArguments = tokenizer.tokenize(userInput,
-                PrefixList.MODULE_NAME_PREFIX, PrefixList.MODULE_INDEX_PREFIX, PrefixList.MODULE_LINK_PREFIX,
-                PrefixList.MODULE_NEWNAME_PREFIX, PrefixList.MODULE_VIEW_PREFIX, PrefixList.MODULE_DELETE_PREFIX);
+        Tokenizer token = new Tokenizer(userInput);
+        String[] parsedArguments = token.getWords();
         try {
-            int moduleID = Integer.parseInt(parsedArguments[0]);
+            int moduleID = Integer.parseInt(parsedArguments[4]);
             String zoomLink = parsedArguments[1];
             return new AddZoomLinkCommand(moduleID, zoomLink);
         } catch (NumberFormatException ex) {
             String error = "No module ID was provided";
-            throw new ParseException(error);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            String error = "Missing arguments";
             throw new ParseException(error);
         }
     }
