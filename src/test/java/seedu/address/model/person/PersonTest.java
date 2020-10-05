@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_OFFICE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -41,12 +42,12 @@ public class PersonTest {
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withDepartment(VALID_DEPARTMENT_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withOffice(VALID_OFFICE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withDepartment(VALID_DEPARTMENT_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withOffice(VALID_OFFICE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
@@ -86,6 +87,10 @@ public class PersonTest {
 
         // different department -> returns false
         editedAlice = new PersonBuilder(ALICE).withDepartment(VALID_DEPARTMENT_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different office -> returns false
+        editedAlice = new PersonBuilder(ALICE).withOffice(VALID_OFFICE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

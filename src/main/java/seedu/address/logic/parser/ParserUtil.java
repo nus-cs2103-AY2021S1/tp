@@ -14,6 +14,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Office;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -81,6 +82,21 @@ public class ParserUtil {
             throw new ParseException(Department.MESSAGE_CONSTRAINTS);
         }
         return new Department(trimmedDepartment);
+    }
+
+    /**
+     * Parses a {@code String office} into an {@code Office}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Office} is invalid.
+     */
+    public static Office parseOffice(String office) throws ParseException {
+        requireNonNull(office);
+        String trimmedOffice = office.trim();
+        if (!Office.isValidOffice(trimmedOffice)) {
+            throw new ParseException(Office.MESSAGE_CONSTRAINTS);
+        }
+        return new Office(trimmedOffice);
     }
 
     /**
