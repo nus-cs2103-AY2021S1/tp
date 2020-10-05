@@ -44,7 +44,7 @@ class JsonAdaptedItem {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.maxQuantity = maxQuantity;
+        this.maxQuantity = maxQuantity == null ? "0" : maxQuantity;
     }
 
     /**
