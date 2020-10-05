@@ -1,6 +1,6 @@
 package tp.cap5buddy.contacts;
 
-import static java.util.Objects.requireNonNull;
+// import static java.util.Objects.requireNonNull;
 
 public class Name {
 
@@ -17,7 +17,7 @@ public class Name {
      * @param name A valid name.
      */
     public Name(String name) {
-        requireNonNull(name);
+        // requireNonNull(name);
         // checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }

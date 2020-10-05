@@ -9,7 +9,7 @@ import tp.cap5buddy.contacts.exceptions.DuplicateContactException;
 
 public class ContactList {
 
-    public final List<Contact> contacts;
+    private final List<Contact> contacts;
 
     public ContactList(List<Contact> contacts) {
         this.contacts = contacts;
@@ -60,6 +60,17 @@ public class ContactList {
     }
 
     /**
+     * Retrieves the contact at the zero based index argument.
+     *
+     * @param contactID
+     * @return
+     */
+    public Contact getContact(int contactID) {
+        Contact contact = this.contacts.get(contactID);
+        return contact;
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
@@ -69,6 +80,15 @@ public class ContactList {
             String error = "The contact does not exist!";
             throw new ContactNotFoundException(error);
         }
+    }
+
+    /**
+     * Removes the contacts in the contact list at the zero based index argument.
+     *
+     * @param contactID Zero based index of the contact in the contact list.
+     */
+    public void removeContact(int contactID) {
+        this.contacts.remove(contactID);
     }
 
     public List<Contact> getContactList() {

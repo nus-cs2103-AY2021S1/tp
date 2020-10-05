@@ -1,6 +1,6 @@
 package tp.cap5buddy.contacts;
 
-import static java.util.Objects.requireNonNull;
+// import static java.util.Objects.requireNonNull;
 
 public class Email {
 
@@ -30,7 +30,7 @@ public class Email {
      * @param email A valid email address.
      */
     public Email(String email) {
-        requireNonNull(email);
+        // requireNonNull(email);
         // checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         emailAddress = email;
     }
