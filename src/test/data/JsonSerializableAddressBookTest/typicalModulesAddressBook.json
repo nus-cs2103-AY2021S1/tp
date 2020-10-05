@@ -4,35 +4,38 @@
     "moduleCode" : "CS1010S",
     "moduleName" : "Programming Methodology",
     "persons" : [ {
-        "name" : "Benson Meier",
-        "phone" : "98765432",
-        "email" : "johnd@example.com",
-        "department" : "Information Systems",
-        "tagged" : [ "owesMoney", "friends" ]
-      }, {
-        "name" : "Fiona Kunz",
-        "phone" : "9482427",
-        "email" : "lydia@example.com",
-        "department" : "Data Science and Analytics",
-        "tagged" : [ ]
-      }
-    ]
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "department" : "Information Systems",
+      "office" : "S7-04-03",
+      "tagged" : [ "owesMoney", "friends" ]
+    }, {
+      "name" : "Fiona Kunz",
+      "phone" : "9482427",
+      "email" : "lydia@example.com",
+      "department" : "Data Science and Analytics",
+      "office" : "COM2-02-04",
+      "tagged" : [ ]
+    } ]
   }, {
     "moduleCode" : "CS1101S",
     "moduleName" : "Programming Methodology",
     "persons" : [ {
-        "name" : "Alice Pauline",
-        "phone" : "94351253",
-        "email" : "alice@example.com",
-        "department" : "Business Analytics",
-        "tagged" : [ "friends" ]
-      }, {
-        "name" : "Benson Meier",
-        "phone" : "98765432",
-        "email" : "johnd@example.com",
-        "department" : "Information Systems",
-        "tagged" : [ "owesMoney", "friends" ]
-      } ]
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "department" : "Business Analytics",
+      "office" : "S7-05-03",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "department" : "Information Systems",
+      "office" : "S7-04-03",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
   }, {
     "moduleCode" : "CS2030",
     "moduleName" : "Programming Methodology 2",
@@ -41,6 +44,7 @@
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "department" : "Business Analytics",
+      "office" : "S15-02-01",
       "tagged" : [ ]
     } ]
   }, {
@@ -51,12 +55,14 @@
       "phone" : "9482427",
       "email" : "lydia@example.com",
       "department" : "Data Science and Analytics",
+      "office" : "COM2-02-04",
       "tagged" : [ ]
     }, {
       "name" : "George Best",
       "phone" : "9482442",
       "email" : "anna@example.com",
       "department" : "Chemical Engineering",
+      "office" : "E4-02-01",
       "tagged" : [ ]
     } ]
   }, {
@@ -67,18 +73,21 @@
       "phone" : "98765432",
       "email" : "johnd@example.com",
       "department" : "Information Systems",
+      "office" : "S7-04-03",
       "tagged" : [ "owesMoney", "friends" ]
     }, {
       "name" : "Carl Kurz",
       "phone" : "95352563",
       "email" : "heinz@example.com",
       "department" : "Business Analytics",
+      "office" : "S15-02-01",
       "tagged" : [ ]
     }, {
       "name" : "Daniel Meier",
       "phone" : "87652533",
       "email" : "cornelia@example.com",
       "department" : "Information Security",
+      "office" : "S15-02-01",
       "tagged" : [ "friends" ]
     } ]
   } ]

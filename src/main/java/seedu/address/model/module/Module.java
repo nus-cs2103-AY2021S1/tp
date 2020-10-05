@@ -25,6 +25,15 @@ public class Module {
     /**
      * Every field must be present and not null.
      */
+    public Module(ModuleCode moduleCode, ModuleName moduleName) {
+        requireAllNonNull(moduleCode, moduleName);
+        this.moduleCode = moduleCode;
+        this.moduleName = moduleName;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
     public Module(ModuleCode moduleCode, ModuleName moduleName, Set<Person> persons) {
         requireAllNonNull(moduleCode, moduleName, persons);
         this.moduleCode = moduleCode;
