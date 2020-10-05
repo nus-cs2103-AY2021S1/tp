@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import nustorage.commons.exceptions.DataConversionException;
+import nustorage.model.FinanceAccount;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
@@ -28,5 +29,13 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, FinanceAc
 
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+
+    @Override
+    Optional<FinanceAccount> readFinanceAccount() throws DataConversionException, IOException;
+
+    @Override
+    void saveFinanceAccount(FinanceAccount financeAccount) throws IOException;
+
+    // TODO: methods for inventory
 
 }
