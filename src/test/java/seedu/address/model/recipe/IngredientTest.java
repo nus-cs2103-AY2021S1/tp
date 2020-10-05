@@ -6,8 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.AddRecipeCommandParser;
-import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 
 public class IngredientTest {
