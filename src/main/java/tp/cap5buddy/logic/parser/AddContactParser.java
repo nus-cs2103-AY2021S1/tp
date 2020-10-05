@@ -5,6 +5,13 @@ import tp.cap5buddy.logic.parser.exception.ParseException;
 
 public class AddContactParser extends Parser {
 
+    /**
+     * Parses a user input for an AddContactCommand.
+     *
+     * @param userInput User input.
+     * @return AddContactCommand.
+     * @throws ParseException If the user input could not be parsed.
+     */
     public AddContactCommand parse(String userInput) throws ParseException {
         Tokenizer tokenizer = new Tokenizer();
         String[] parsedArguments = tokenizer.tokenize(userInput,

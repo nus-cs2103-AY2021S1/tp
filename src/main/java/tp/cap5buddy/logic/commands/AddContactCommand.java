@@ -12,6 +12,12 @@ public class AddContactCommand extends Command {
     private final Name name;
     private final Email email;
 
+    /**
+     * Creates a AddContactCommand.
+     *
+     * @param name
+     * @param email
+     */
     public AddContactCommand(String name, String email) {
         this.name = new Name(name);
         this.email = new Email(email);

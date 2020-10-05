@@ -1,10 +1,11 @@
 package tp.cap5buddy.contacts;
-import tp.cap5buddy.contacts.exceptions.DuplicateContactException;
-import tp.cap5buddy.contacts.exceptions.ContactNotFoundException;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import tp.cap5buddy.contacts.exceptions.ContactNotFoundException;
+import tp.cap5buddy.contacts.exceptions.DuplicateContactException;
 
 public class ContactList {
 
@@ -37,9 +38,11 @@ public class ContactList {
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing
+     * person in the list.
      */
-    public void editContact(Contact target, Contact editedContact) throws ContactNotFoundException, DuplicateContactException {
+    public void editContact(Contact target, Contact editedContact) throws
+            ContactNotFoundException, DuplicateContactException {
         // requireAllNonNull(target, editedPerson);
 
         int index = contacts.indexOf(target);
