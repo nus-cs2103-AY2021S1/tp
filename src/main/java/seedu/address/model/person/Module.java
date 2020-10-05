@@ -3,10 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.TutorialGroup;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.model.TutorialGroup;
 
 /**
  * Represents a Student's Module in the address book.
@@ -59,13 +59,13 @@ public class Module {
         tutorialGroups.remove(tutorialGroup);
     }
 
-//    public void addTask(Task task) {
-//        tasks.add(task);
-//    }
-//
-//    public void removeTask(Task task) {
-//        tasks.remove(task);
-//    }
+    //    public void addTask(Task task) {
+    //        tasks.add(task);
+    //    }
+    //
+    //    public void removeTask(Task task) {
+    //        tasks.remove(task);
+    //    }
 
     @Override
     public boolean equals(Object other) {

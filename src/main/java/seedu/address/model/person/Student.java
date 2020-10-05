@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.TutorialGroup;
-import seedu.address.model.person.Module;
 import seedu.address.model.tag.Tag;
 
 /**
