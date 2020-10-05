@@ -26,11 +26,11 @@ public class Meeting {
      * Constructor for meeting.
      * Date and timing for the meeting should be present and not null.
      *
-     * @param localDateTime name of meeting
+     * @param localDateTime date and time of meeting
      */
-    public Meeting(LocalDateTime localDateTime) {
+    public Meeting(String localDateTime) {
         requireAllNonNull(localDateTime);
-        startDateTime = localDateTime;
+        startDateTime = LocalDateTime.parse(localDateTime);
         isDone = false;
     }
 

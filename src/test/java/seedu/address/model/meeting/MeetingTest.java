@@ -4,7 +4,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.project.Email;
+import java.time.LocalDateTime;
 
 public class MeetingTest {
 
@@ -15,8 +15,7 @@ public class MeetingTest {
 
     @Test
     public void constructor_invalidMeeting_throwsIllegalArgumentException() {
-        String invalidMeetingTime = "";
-        assertThrows(IllegalArgumentException.class, () -> new Email(invalidMeetingTime));
+        assertThrows(java.time.format.DateTimeParseException.class, () -> new Meeting(""));
 
     }
 
