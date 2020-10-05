@@ -3,6 +3,45 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.background-pink {
+    -fx-background-color:  derive(#F4C2C2, 80%)
+}
+
+.background-mud {
+    -fx-background-color: #534B4B;
+}
+
+.list-pill-cell {
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:3;
+    -fx-border-color: #707070;
+    -fx-background-color: #F4C2C2;
+}
+
+.rounded-border {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+.thin-border {
+    -fx-border-width:2;
+    -fx-border-color: #EEE5E5;
+}
+
+.no-border {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.text-dark {
+    -fx-text-fill: black;
+}
+
+.background-transparent {
+    -fx-background-color: transparent;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -100,11 +139,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: white;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: white;
 }
 
 .list-cell:filled:selected {
@@ -117,7 +156,7 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
@@ -133,11 +172,11 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#534B4B, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#89CFF0, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
@@ -349,4 +388,13 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#personListPanel {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width:3;
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-padding: 0 15 0 20;
 }
