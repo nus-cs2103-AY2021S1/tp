@@ -30,7 +30,7 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // different deadline and email -> returns false
+        // different deadline -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
