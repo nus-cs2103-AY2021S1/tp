@@ -107,7 +107,7 @@ The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st person to be `Alex`, `99999999` and `Meridian Junior College` respectively.
+*  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
 *  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
 ### Locating students: `find`
