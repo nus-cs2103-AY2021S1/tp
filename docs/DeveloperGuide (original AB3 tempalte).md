@@ -31,8 +31,10 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription/Main.java) and 
-[`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription/MainApp.java). It is responsible for,
+**`Main`** has two classes called 
+[`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and 
+[`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is
+ responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -70,14 +72,14 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription/ui/Ui.java)
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, 
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
 that are in the `src/main/resources/view` folder. For example, the layout of the 
-[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription/ui/MainWindow.java) 
+[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
 is specified in 
 [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -91,7 +93,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription/logic/Logic.java)
+[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `MainCatalogueParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -114,7 +116,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : 
-[`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription/model/Model.java)
+[`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -138,7 +140,7 @@ The `Model`,
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **API** :
- [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/projectDescription
+ [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address
  /storage/Storage.java)
 
 The `Storage` component,
