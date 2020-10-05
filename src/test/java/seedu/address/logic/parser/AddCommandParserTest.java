@@ -80,6 +80,17 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
         assertParseSuccess(parser, TITLE_DESC_AMY + PHONE_DESC_AMY + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedTask));
+
+        // missing phone field
+        expectedTask = new TaskBuilder(AMY).withTags().withDefaultPhone().build();
+        assertParseSuccess(parser, TITLE_DESC_AMY + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedTask));
+
+        // missing description field
+        expectedTask = new TaskBuilder(AMY).withTags().withDefaultDescription().build();
+        assertParseSuccess(parser, TITLE_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedTask));
+
     }
 
     @Test

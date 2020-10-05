@@ -3,14 +3,14 @@ package seedu.address.model.task;
 public enum State {
     DONE("done"), PENDING("pending");
 
-    private String string;
+    private String state;
 
-    State(String name) {
-        this.string = name;
+    State(String state) {
+        this.state = state;
     }
 
     @Override
     public String toString() {
-        return string;
+        return state;
     }
 }
