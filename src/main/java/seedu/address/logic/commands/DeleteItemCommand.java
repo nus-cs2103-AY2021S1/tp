@@ -17,7 +17,6 @@ import seedu.address.model.recipe.Recipe;
  */
 public class DeleteItemCommand extends Command {
     public static final String COMMAND_WORD = "deli";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a item in the item list. "
             + "Parameters: "
             + PREFIX_ITEM_NAME + "ITEM NAME\n"
@@ -25,7 +24,6 @@ public class DeleteItemCommand extends Command {
             + PREFIX_ITEM_NAME + "Iron ";
     public static final String MESSAGE_SUCCESS = "Item and Recipes of the item Deleted: %1$s";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list";
-    public static final String MESSAGE_ITEM_ALREADY_DELETED = "Item was already previously deleted";
     private final String productName;
     /**
      * Creates an DeleteItemCommand to delete the specified {@code Item} and connecting recipes
@@ -46,13 +44,12 @@ public class DeleteItemCommand extends Command {
         }
         Item itemToDelete;
         itemToDelete = itemList.stream()
-                .filter(x -> !x.isDeleted())
-                .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(()-> new CommandException(MESSAGE_ITEM_ALREADY_DELETED));
+                .findFirst()// Get the first (and only) item matching or else throw Error
+                .orElseThrow(()-> new CommandException(MESSAGE_ITEM_NOT_FOUND));
         model.deleteItem(itemToDelete);
         List<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
-        // remove recipes from consideration that are not deleted, are not the product of a recipe, nor contribute
-        // to a recipe.
+        // remove recipes from consideration that are not soft deleted,
+        // nor contain deleted item as product or ingredient
         recipeList.removeIf(y -> y.isDeleted()
                 || y.getIngredients()
                 .asUnmodifiableObservableList()
@@ -61,6 +58,9 @@ public class DeleteItemCommand extends Command {
         // delete recipes connected to this identified item as a product, or an ingredient
         recipeList.forEach(model::deleteRecipe);
         return new CommandResult(String.format(MESSAGE_SUCCESS, itemToDelete));
+    }
+    public String getProductName() {
+        return productName;
     }
     @Override
     public boolean equals(Object other) {

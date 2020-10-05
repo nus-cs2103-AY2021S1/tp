@@ -8,7 +8,7 @@ import javafx.util.Pair;
 public class Ingredient extends Pair<Integer, Integer> {
 
     /**
-     * Creates a new ingredient
+     * Creates a new ingredient.
      *
      * @param key   The key for this pair
      * @param value The value to use for this pair
@@ -18,7 +18,7 @@ public class Ingredient extends Pair<Integer, Integer> {
         assert value > 0 : "Value should never be 0 or negative";
     }
     /**
-     * Utilty function to check if itemid is equivelent to contained id
+     * Utilty function to check if itemId is equivalent to contained id.
      * @param id identity key
      * @return boolean check that the id is the item
      */
