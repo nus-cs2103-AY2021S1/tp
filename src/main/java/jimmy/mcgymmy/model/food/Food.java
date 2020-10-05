@@ -2,7 +2,10 @@ package jimmy.mcgymmy.model.food;
 
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
+<<<<<<< HEAD
 import jimmy.mcgymmy.model.person.Person;
+=======
+>>>>>>> a66faaeb3cdf8c8077dc66b6d8232165877fa617
 
 /**
  * Represents a Food item in McGymmy.
@@ -22,7 +25,14 @@ public class Food {
     private final Carbohydrate carbs;
     private final Fat fat;
 
+<<<<<<< HEAD
     public Food(String name, Protein protein, Fat fat, Carbohydrate carbs) {
+=======
+    /**
+     * Every field must be present and not null.
+     */
+    public Food(String name, Protein protein, Carbohydrate carbs, Fat fat) {
+>>>>>>> a66faaeb3cdf8c8077dc66b6d8232165877fa617
         CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
         AppUtil.checkArgument(isValidName(name), FOOD_NAME_MESSAGE_CONTRAINT);
         this.name = name;
@@ -37,8 +47,13 @@ public class Food {
      * Every field must be present and not null.
      * A Constructor made for convenience
      */
+<<<<<<< HEAD
     public Food(String name, int proteinAmount, int fatAmount, int carbsAmount) {
         this(name, new Protein(proteinAmount), new Fat(fatAmount), new Carbohydrate(carbsAmount));
+=======
+    public Food(String name, int proteinAmount, int carbsAmount, int fatAmount) {
+        this(name, new Protein(proteinAmount), new Carbohydrate(carbsAmount), new Fat(fatAmount));
+>>>>>>> a66faaeb3cdf8c8077dc66b6d8232165877fa617
     }
 
     private boolean isValidName(String test) {
@@ -46,6 +61,7 @@ public class Food {
     }
 
     // getters : make when needed
+<<<<<<< HEAD
     public String getName() {
         return this.name;
     }
@@ -66,6 +82,24 @@ public class Food {
         return this.equals(otherFood);
     }
 
+=======
+    private String getName() {
+        return this.name;
+    }
+
+    private Protein getProtein() {
+        return this.protein;
+    }
+
+    private Carbohydrate getCarbs() {
+        return this.carbs;
+    }
+
+    private Fat getFat() {
+        return this.fat;
+    }
+
+>>>>>>> a66faaeb3cdf8c8077dc66b6d8232165877fa617
     @Override
     public boolean equals(Object other) {
         CollectionUtil.requireAllNonNull(protein, carbs, fat);
