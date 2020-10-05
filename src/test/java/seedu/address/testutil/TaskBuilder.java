@@ -82,11 +82,11 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Task} that we are building to be default phone.
-     * Simulates the situation that the task is created without a phone field.
+     * Sets the {@code Phone} of the {@code Task} that we are building to be default DateTime.
+     * Simulates the situation that the task is created without a DateTime field.
      */
-    public TaskBuilder withDefaultPhone() {
-        this.phone = Phone.defaultPhone();
+    public TaskBuilder withDefaultDateTime() {
+        this.dateTime = DateTime.defaultDateTime();
         return this;
     }
 

@@ -82,7 +82,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedTask));
 
         // missing phone field
-        expectedTask = new TaskBuilder(AMY).withTags().withDefaultPhone().build();
+        expectedTask = new TaskBuilder(AMY).withTags().withDefaultDateTime().build();
         assertParseSuccess(parser, TITLE_DESC_AMY + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedTask));
 
