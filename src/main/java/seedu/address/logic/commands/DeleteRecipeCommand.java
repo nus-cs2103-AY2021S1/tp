@@ -31,7 +31,6 @@ public class DeleteRecipeCommand extends Command {
 
     private final String productName;
     private final Index index;
-
     /**
      * Creates an DeleteRecipeCommand to delete the specified {@code Recipe}
      */

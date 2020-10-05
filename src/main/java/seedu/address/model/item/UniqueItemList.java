@@ -81,9 +81,9 @@ public class UniqueItemList implements Iterable<Item> {
     }
 
     /**
-     * Deletes the equivilent item from the list, sets deleted flag to true
-     * The item must exist in the list
-     * @param toDelete item to delete
+     * Deletes the equivalent item from the list and sets deleted flag to true
+     * The item must exist in the list.
+     * @param toDelete item to delete from the list
      */
     public void delete(Item toDelete) {
         requireNonNull(toDelete);

@@ -102,7 +102,6 @@ public class Item {
         if (otherItem == this) {
             return true;
         }
-
         return otherItem != null
                 && otherItem.getName().equals(getName());
     }
