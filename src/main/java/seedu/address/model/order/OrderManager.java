@@ -75,7 +75,8 @@ public class OrderManager implements ReadOnlyOrderManager {
     /**
      * Replaces the given orderItem {@code target} in the list with {@code editedOrderItem}.
      * {@code target} must exist in the address book.
-     * The orderItem identity of {@code editedOrderItem} must not be the same as another existing orderItem in the address book.
+     * The orderItem identity of {@code editedOrderItem} must not be the same as another existing orderItem in the
+     * address book.
      */
     public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
         requireNonNull(editedOrderItem);
