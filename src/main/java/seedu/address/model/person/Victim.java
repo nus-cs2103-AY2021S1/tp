@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Victim {
 
-    public final Name name;
+    private final Name name;
 
     /**
      * Constructs a {@code Victim}.
