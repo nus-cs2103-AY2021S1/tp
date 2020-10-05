@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a bidderId in the address book to be used in calendar.
- * Guarantees: immutable; is valid as declared in {@link #isValidBidderId(String)} 
+ * Guarantees: immutable; is valid as declared in {@link #isValidBidderId(String)}
  */
 public class CalendarBidderId {
 
@@ -21,7 +21,7 @@ public class CalendarBidderId {
     public final String bidderId;
 
     /**
-     * Constructs a {@code PropertyName}.
+     * Constructs a {@code CalendarBidderId}.
      *
      * @param name A valid name.
      */
