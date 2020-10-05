@@ -1,6 +1,6 @@
 package seedu.address.logic;
 
-//import java.io.IOException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -10,11 +10,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.CommonCentsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCommonCents;
-import seedu.address.model.person.Person;
+import seedu.address.model.account.Account;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final CommonCentsParser commonCentsParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,9 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+
+        // To be changed
+        commonCentsParser = new CommonCentsParser();
     }
 
     @Override
@@ -44,17 +46,16 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         // Parses user input from String to Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = commonCentsParser.parseCommand(commandText);
         // Executes the Command and stores the result in commandResult
         commandResult = command.execute(model);
-        /*
+
         try {
             // Since the model is modified previously, the current model is saved through the storage
-            storage.saveAddressBook(model.getCommonCents());
+            storage.saveCommonCents(model.getCommonCents());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-        */
         return commandResult;
     }
 
@@ -64,12 +65,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Account> getFilteredAccountList() {
+        return model.getFilteredAccountList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getCommonCentsFilePath() {
         return model.getCommonCentsFilePath();
     }
 
@@ -82,4 +83,5 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
 }
