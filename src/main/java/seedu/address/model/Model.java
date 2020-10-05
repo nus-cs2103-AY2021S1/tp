@@ -6,7 +6,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+<<<<<<< HEAD
 import seedu.address.model.attendance.Attendance;
+=======
+import seedu.address.model.attendance.AttendanceList;
+>>>>>>> Implement MarkCommandTest
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.attendance.NamedAttendance;
 import seedu.address.model.student.NusnetId;
@@ -109,6 +113,7 @@ public interface Model {
      */
     void markStudent(Student target, AttendanceType attendanceType);
 
+<<<<<<< HEAD
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
 
     /**
@@ -120,4 +125,6 @@ public interface Model {
      * Clears the attendance statuses of all students in the student list.
      */
     void clearAttendance();
+=======
+>>>>>>> Implement MarkCommandTest
 }
