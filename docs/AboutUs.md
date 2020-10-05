@@ -1,11 +1,8 @@
----
-layout: page
-title: About Us
----
+# About Us
+
+Trackr is designed and developed by the [CS2013T-W12-2](https://github.com/AY2021S1-CS2103T-W12-2) team.
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email: `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -17,6 +14,7 @@ You can reach us at the email: `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/juandavinlie)]
 
 -   Role: Programmer
+-   Hobby: Swimming and eating
 
 ### Sean Tay
 
@@ -26,31 +24,26 @@ You can reach us at the email: `seer[at]comp.nus.edu.sg`
 
 -   Role: Programmer
 
-### Johnny Doe
+### Ethan Noah Rozario
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ethanthegoondu.png"  width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ethanthegoondu)]
 
--   Role: Developer
--   Responsibilities: Data
+-   Role: Programmer
 
-### Jean Doe
+### Tan Eu Zin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/euzintan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/euzintan)]
 
--   Role: Developer
--   Responsibilities: Dev Ops + Threading
+-   Role: Programmer   
 
-### James Doe
+### Jian Fanmin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fanminj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/fanminj)]
 
--   Role: Developer
--   Responsibilities: UI
+-   Role: Programmer
