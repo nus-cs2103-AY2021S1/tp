@@ -29,8 +29,7 @@ public class TypeTest {
         assertFalse(Type.isValidType(" ")); // spaces only
 
         // valid types
-        assertTrue(Type.isValidType("Blk 456, Den Road, #01-355"));
-        assertTrue(Type.isValidType("-")); // one character
-        assertTrue(Type.isValidType("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long type
+        assertTrue(Type.isValidType("todo")); // one word
+        assertTrue(Type.isValidType("something-todo")); // a phrase
     }
 }

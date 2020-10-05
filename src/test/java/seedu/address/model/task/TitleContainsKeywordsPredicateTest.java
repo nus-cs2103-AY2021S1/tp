@@ -72,6 +72,6 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match phone, description and type, but does not match title
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice,email.com", "Main", "Street"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withPhone("12345")
-                .withDescription("alice,email.com").withType("Main Street").build()));
+                .withDescription("alice,email.com").withType("event").build()));
     }
 }

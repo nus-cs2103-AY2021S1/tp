@@ -19,7 +19,7 @@ public class TaskBuilder {
     public static final String DEFAULT_TITLE = "School work";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
-    public static final String DEFAULT_TYPE = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TYPE = "todo";
 
     private Title title;
     private Phone phone;

@@ -3,6 +3,6 @@
     "title": "Task with invalid title field: Ha!ns Mu@ster",
     "phone": "9482424",
     "description": "hans,example.com",
-    "type": "4th street"
+    "type": "todo"
   } ]
 }

@@ -14,7 +14,7 @@ public class Type {
     /*
      * Type can only be one word or a phrase connected by '-'.
      */
-    public static final String VALIDATION_REGEX = "^[\\w]*(-[\\w]*)?";
+    public static final String VALIDATION_REGEX = "^[\\w]+(-[\\w]+)?";
 
     public final String value;
 

@@ -4,43 +4,43 @@
     "title" : "Alice Pauline",
     "phone" : "94351253",
     "description" : "alice,example.com",
-    "type" : "123, Jurong West Ave 6, #08-111",
+    "type" : "todo",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Benson Meier",
     "phone" : "98765432",
     "description" : "johnd,example.com",
-    "type" : "311, Clementi Ave 2, #02-25",
+    "type" : "deadline",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "title" : "Carl Kurz",
     "phone" : "95352563",
     "description" : "heinz,example.com",
-    "type" : "wall street",
+    "type" : "event",
     "tagged" : [ ]
   }, {
     "title" : "Daniel Meier",
     "phone" : "87652533",
     "description" : "cornelia,example.com",
-    "type" : "10th street",
+    "type" : "event",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Elle Meyer",
     "phone" : "9482224",
     "description" : "werner,example.com",
-    "type" : "michegan ave",
+    "type" : "lesson",
     "tagged" : [ ]
   }, {
     "title" : "Fiona Kunz",
     "phone" : "9482427",
     "description" : "lydia,example.com",
-    "type" : "little tokyo",
+    "type" : "tutorial",
     "tagged" : [ ]
   }, {
     "title" : "George Best",
     "phone" : "9482442",
     "description" : "anna,example.com",
-    "type" : "4th street",
+    "type" : "session",
     "tagged" : [ ]
   } ]
 }
