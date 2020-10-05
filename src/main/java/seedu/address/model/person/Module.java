@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.TaskList;
 import seedu.address.model.TutorialGroup;
 
 /**
@@ -23,7 +24,7 @@ public class Module {
 
     private final String moduleId;
     private List<TutorialGroup> tutorialGroups;
-    //    private List<Tasks> tasks;
+    private TaskList taskList;
 
     /**
      * Constructs an {@code Module}.
@@ -35,7 +36,7 @@ public class Module {
         checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
         this.tutorialGroups = new ArrayList<>();
-        // this.tasks = new ArrayList<>();
+        this.taskList = new TaskList();
     }
 
     /**
