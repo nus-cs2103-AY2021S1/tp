@@ -16,6 +16,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Victim;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +32,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String status;
     private final String address;
+    private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
+    private final List<JsonAdaptedVictim> victims = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,14 +42,23 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("address") String address,
+            @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
+            @JsonProperty("victims") List<JsonAdaptedVictim> victims,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.status = status;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (suspects != null) {
+            this.suspects.addAll(suspects);
+            if (victims != null) {
+                this.victims.addAll(victims);
+            }
+            if (tagged != null) {
+                this.tagged.addAll(tagged);
+            }
         }
     }
 
@@ -58,6 +71,10 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         status = source.getStatus().name();
         address = source.getAddress().value;
+        suspects.addAll(source.getSuspects().stream().map(JsonAdaptedSuspect::new).collect(Collectors.toList()));
+        victims.addAll(source.getVictims().stream()
+                .map(JsonAdaptedVictim::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,8 +131,21 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final List<Suspect> modelSuspects = new ArrayList<>();
+        for (JsonAdaptedSuspect suspect : suspects) {
+            modelSuspects.add(suspect.toModelType());
+        }
+
+        final List<Victim> modelVictims = new ArrayList<>();
+        for (JsonAdaptedVictim victim : victims) {
+            modelVictims.add(victim.toModelType());
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelAddress,
+                modelSuspects, modelVictims, modelTags);
+
     }
 
 }

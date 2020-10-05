@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,6 +12,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Victim;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,6 +41,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setStatus(person.getStatus());
         descriptor.setAddress(person.getAddress());
+        descriptor.setSuspects(person.getSuspects());
+        descriptor.setVictims(person.getVictims());
         descriptor.setTags(person.getTags());
     }
 
@@ -88,6 +93,28 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withSuspects(String... suspect) {
+        List<Suspect> suspects = Stream.of(suspect).map(string -> new Suspect(new Name(string)))
+                .collect(Collectors.toList());
+        descriptor.setSuspects(suspects);
+        return this;
+    }
+
+    /**
+     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withVictims(String... victims) {
+        List<Victim> victim = Stream.of(victims).map(string -> new Victim(new Name(string)))
+                .collect(Collectors.toList());
+        descriptor.setVictims(victim);
         return this;
     }
 

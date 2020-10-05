@@ -6,6 +6,8 @@
     "email" : "alice@example.com",
     "status": "COLD",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "suspects": [],
+    "victims" : [ "Tom" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +15,8 @@
     "email" : "johnd@example.com",
     "status": "CLOSED",
     "address" : "311, Clementi Ave 2, #02-25",
+    "suspects": [],
+    "victims" : [ "Tom" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +24,8 @@
     "email" : "heinz@example.com",
     "status": "ACTIVE",
     "address" : "wall street",
+    "suspects": [],
+    "victims" : [],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +33,8 @@
     "email" : "cornelia@example.com",
     "status": "ACTIVE",
     "address" : "10th street",
+    "suspects": [],
+    "victims" : [],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +42,8 @@
     "email" : "werner@example.com",
     "status": "ACTIVE",
     "address" : "michegan ave",
+    "suspects": [],
+    "victims" : [],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +51,8 @@
     "email" : "lydia@example.com",
     "status": "ACTIVE",
     "address" : "little tokyo",
+    "suspects": [],
+    "victims" : [],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +60,8 @@
     "email" : "anna@example.com",
     "status": "ACTIVE",
     "address" : "4th street",
+    "suspects": [],
+    "victims" : [],
     "tagged" : [ ]
   } ]
 }

@@ -4,6 +4,8 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "status": "ACTIVE",
-    "address": "4th street"
+    "address": "4th street",
+    "suspects": [],
+    "victims": []
   } ]
 }
