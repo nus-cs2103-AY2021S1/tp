@@ -80,17 +80,21 @@ public class UniqueAssignmentListTest {
     public void setAssignment_editedAssignmentIsSameAssignment_success() {
         uniqueAssignmentList.add(CS1231S_HW);
         uniqueAssignmentList.setAssignment(CS1231S_HW, CS1231S_HW);
+
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();
         expectedUniqueAssignmentList.add(CS1231S_HW);
+
         assertEquals(expectedUniqueAssignmentList, uniqueAssignmentList);
     }
 
     @Test
     public void setAssignment_editedAssignmentHasSameIdentity_success() {
         uniqueAssignmentList.add(CS1231S_HW);
+
         Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
                 .withAddress(VALID_ADDRESS_LAB).withTags(VALID_TAG_HUSBAND).build();
         uniqueAssignmentList.setAssignment(CS1231S_HW, editedCs1231sHw);
+
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();
         expectedUniqueAssignmentList.add(editedCs1231sHw);
         assertEquals(expectedUniqueAssignmentList, uniqueAssignmentList);
@@ -100,8 +104,10 @@ public class UniqueAssignmentListTest {
     public void setAssignment_editedAssignmentHasDifferentIdentity_success() {
         uniqueAssignmentList.add(CS1231S_HW);
         uniqueAssignmentList.setAssignment(CS1231S_HW, LAB);
+
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();
         expectedUniqueAssignmentList.add(LAB);
+
         assertEquals(expectedUniqueAssignmentList, uniqueAssignmentList);
     }
 
