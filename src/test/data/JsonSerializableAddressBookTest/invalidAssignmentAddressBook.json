@@ -1,6 +1,6 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
+  "assignments": [ {
+    "name": "CS2030 Lab",
     "deadline": "04-04-2020 invalid23:59",
     "moduleCode": "CS2030"
   } ]

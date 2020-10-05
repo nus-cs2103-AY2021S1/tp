@@ -1,78 +1,77 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_HW;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_HW;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_HW;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalAssignments.HW;
+import static seedu.address.testutil.TypicalAssignments.LAB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Deadline;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.AssignmentBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Assignment expectedAssignment = new AssignmentBuilder(LAB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + DEADLINE_DESC_BOB
-                + MODULE_CODE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_LAB + DEADLINE_DESC_LAB
+                + MODULE_CODE_DESC_LAB + TAG_DESC_FRIEND, new AddCommand(expectedAssignment));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + DEADLINE_DESC_BOB
-                + MODULE_CODE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_HW + NAME_DESC_LAB + DEADLINE_DESC_LAB
+                + MODULE_CODE_DESC_LAB + TAG_DESC_FRIEND, new AddCommand(expectedAssignment));
 
         // multiple deadlines - last deadline accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_AMY + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_HW + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
+                + TAG_DESC_FRIEND, new AddCommand(expectedAssignment));
 
         // multiple module codes - last module code accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
+                + TAG_DESC_FRIEND, new AddCommand(expectedAssignment));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Assignment expectedAssignmentMultipleTags = new AssignmentBuilder(LAB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
 
-        assertParseSuccess(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedAssignmentMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-
-        assertParseSuccess(parser, NAME_DESC_AMY + DEADLINE_DESC_AMY + MODULE_CODE_DESC_AMY,
-                new AddCommand(expectedPerson));
+        Assignment expectedAssignment = new AssignmentBuilder(HW).withTags().build();
+        assertParseSuccess(parser, NAME_DESC_HW + DEADLINE_DESC_HW + MODULE_CODE_DESC_HW,
+                new AddCommand(expectedAssignment));
     }
 
     @Test
@@ -80,47 +79,47 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB,
+        assertParseFailure(parser, CommandTestUtil.VALID_NAME_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB,
                 expectedMessage);
 
         // missing deadline prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_DEADLINE_BOB + MODULE_CODE_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_LAB + VALID_DEADLINE_LAB + MODULE_CODE_DESC_LAB,
                 expectedMessage);
 
         // missing module code prefix
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + VALID_MODULE_CODE_BOB,
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + DESC_HW,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_DEADLINE_BOB + VALID_MODULE_CODE_BOB,
+        assertParseFailure(parser, CommandTestUtil.VALID_NAME_LAB + VALID_DEADLINE_LAB + DESC_HW,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_LAB + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_LAB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid module code
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + INVALID_MODULE_CODE_DESC
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + INVALID_MODULE_CODE_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + DEADLINE_DESC_BOB + MODULE_CODE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_BOB + INVALID_MODULE_CODE_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_LAB + INVALID_MODULE_CODE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + DEADLINE_DESC_BOB
-                        + MODULE_CODE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_LAB + DEADLINE_DESC_LAB
+                        + MODULE_CODE_DESC_LAB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
