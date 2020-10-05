@@ -43,7 +43,7 @@ public class Phone {
     }
 
     /**
-     * Construct an empty Phone when user didn't provide the phone field.
+     * Constructs an empty Phone when user didn't provide the phone field.
      * Caveat: Only called when the user didn't key in this field.
      */
     public static Phone defaultPhone() {

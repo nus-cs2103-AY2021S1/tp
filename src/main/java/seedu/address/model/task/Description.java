@@ -51,7 +51,7 @@ public class Description {
     }
 
     /**
-     * Construct an empty Description when user didn't provide the description field.
+     * Constructs an empty Description when user didn't provide the description field.
      * Caveat: Only called when the user didn't key in this field.
      */
     public static Description defaultDescription() {
