@@ -12,7 +12,7 @@ import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -54,9 +54,9 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<ProjectTag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(ProjectTag::new)
                 .collect(Collectors.toSet());
     }
 

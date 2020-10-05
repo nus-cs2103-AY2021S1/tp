@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -35,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_EMAIL,
-                    PREFIX_PROJECT_DESCRIPTION, PREFIX_TAG, PREFIX_TASK);
+                    PREFIX_PROJECT_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME,
             PREFIX_PROJECT_DESCRIPTION, PREFIX_DEADLINE, PREFIX_EMAIL)
@@ -48,10 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         ProjectDescription projectDescription = ParserUtil.projectDescription(argMultimap.getValue(
             PREFIX_PROJECT_DESCRIPTION).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<ProjectTag> projectTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_PROJECT_TAG));
         Set<Task> taskList = ParserUtil.parseTasks(argMultimap.getAllValues(PREFIX_TASK));
 
-        Project project = new Project(projectName, deadline, email, projectDescription, tagList,
+        Project project = new Project(projectName, deadline, email, projectDescription, projectTagList,
             new HashMap<>(), taskList);
 
         return new AddCommand(project);

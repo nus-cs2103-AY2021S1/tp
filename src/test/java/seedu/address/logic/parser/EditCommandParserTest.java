@@ -1,34 +1,34 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_B;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROJECT_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESCRIPTION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESCRIPTION_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_DG;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESC_MODEL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
@@ -44,12 +44,12 @@ import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Email;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + PREFIX_PROJECT_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -59,7 +59,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_PROJECT_NAME_AI, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -71,10 +71,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + PROJECT_NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + PROJECT_NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -88,9 +88,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, ProjectName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, "1" + INVALID_PROJECT_DESCRIPTION_DESC,
             ProjectDescription.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_PROJECT_TAG_DESC, ProjectTag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + EMAIL_DESC_AMY, Deadline.MESSAGE_CONSTRAINTS);
@@ -101,28 +101,31 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Project} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
-            Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
-            Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
-            Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PROJECT_TAG_DESC_FRIEND + PROJECT_TAG_DESC_HUSBAND + TAG_EMPTY,
+            ProjectTag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PROJECT_TAG_DESC_FRIEND + TAG_EMPTY + PROJECT_TAG_DESC_HUSBAND,
+            ProjectTag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + PROJECT_TAG_DESC_FRIEND + PROJECT_TAG_DESC_HUSBAND,
+            ProjectTag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
-                + VALID_DEADLINE_A,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PROJECT_DESCRIPTION_AI
+                + VALID_DEADLINE_AI,
                 ProjectName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PROJECT;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_B + TAG_DESC_HUSBAND + TASK_DESC_DG
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + TASK_DESC_MODEL;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_B + PROJECT_TAG_DESC_HUSBAND + TASK_DESC_DG
+                + EMAIL_DESC_AMY + PROJECT_DESCRIPTION_DESC_AMY + PROJECT_NAME_DESC_AMY + PROJECT_TAG_DESC_FRIEND
+            + TASK_DESC_MODEL;
 
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_AMY)
-                .withDeadline(VALID_DEADLINE_B).withEmail(VALID_EMAIL_AMY).withProjectDescription(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withTasks(VALID_TASK_DG, VALID_TASK_MODEL).build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_AI)
+                .withDeadline(VALID_DEADLINE_BOT).withEmail(VALID_EMAIL_AI).withProjectDescription(
+                VALID_PROJECT_DESCRIPTION_AI)
+                .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG,
+                VALID_TASK_MODEL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -133,8 +136,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PROJECT;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_B + EMAIL_DESC_AMY;
 
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_B)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_BOT)
+                .withEmail(VALID_EMAIL_AI).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -144,32 +147,33 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_PROJECT;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + PROJECT_NAME_DESC_AMY;
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(
+            VALID_PROJECT_NAME_AI).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_A;
-        descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_A).build();
+        descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_AI).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditProjectDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new EditProjectDescriptorBuilder().withEmail(VALID_EMAIL_AI).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditProjectDescriptorBuilder().withProjectDescription(VALID_ADDRESS_AMY).build();
+        userInput = targetIndex.getOneBased() + PROJECT_DESCRIPTION_DESC_AMY;
+        descriptor = new EditProjectDescriptorBuilder().withProjectDescription(VALID_PROJECT_DESCRIPTION_AI).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditProjectDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + PROJECT_TAG_DESC_FRIEND;
+        descriptor = new EditProjectDescriptorBuilder().withTags(VALID_PROJECT_TAG_FIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -183,13 +187,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PROJECT;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_A + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + DEADLINE_DESC_A + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND + TASK_DESC_DG
-                + DEADLINE_DESC_B + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND + TASK_DESC_MODEL;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_A + PROJECT_DESCRIPTION_DESC_AMY
+            + EMAIL_DESC_AMY
+                + PROJECT_TAG_DESC_FRIEND + DEADLINE_DESC_A + PROJECT_DESCRIPTION_DESC_AMY + EMAIL_DESC_AMY
+            + PROJECT_TAG_DESC_FRIEND + TASK_DESC_DG
+                + DEADLINE_DESC_B + PROJECT_DESCRIPTION_DESC_BOB + EMAIL_DESC_BOB + PROJECT_TAG_DESC_HUSBAND
+            + TASK_DESC_MODEL;
 
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_B)
-                .withEmail(VALID_EMAIL_BOB).withProjectDescription(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND,
-                VALID_TAG_HUSBAND).withTasks(VALID_TASK_DG, VALID_TASK_MODEL)
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_BOT)
+                .withEmail(VALID_EMAIL_BOT).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+                VALID_PROJECT_TAG_FIEND,
+                VALID_PROJECT_TAG_HANG).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -201,15 +209,15 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PROJECT;
         String userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DEADLINE_DESC_B;
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_B).build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_BOT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_DEADLINE_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_DEADLINE_DESC + PROJECT_DESCRIPTION_DESC_BOB
                 + DEADLINE_DESC_B;
-        descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_B).withEmail(VALID_EMAIL_BOB)
-                .withProjectDescription(VALID_ADDRESS_BOB).build();
+        descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_BOT).withEmail(VALID_EMAIL_BOT)
+                .withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

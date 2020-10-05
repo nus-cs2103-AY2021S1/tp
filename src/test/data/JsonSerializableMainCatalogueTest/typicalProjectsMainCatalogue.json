@@ -5,49 +5,49 @@
     "deadline": "21-03-2020 00:00:00",
     "email" : "alice@example.com",
     "projectDescription" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
+    "projectTagged" : [ "friends" ],
     "occupied" : [ "Write DG", "Write user stories" ]
   }, {
     "projectName" : "Benson Meier",
     "deadline": "21-03-2020 00:00:00",
     "email" : "johnd@example.com",
     "projectDescription" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
+    "projectTagged" : [ "owesMoney", "friends" ],
     "occupied" : [ "Practice presentation" ]
   }, {
     "projectName" : "Carl Kurz",
     "deadline": "21-03-2020 00:00:00",
     "email" : "heinz@example.com",
     "projectDescription" : "wall street",
-    "tagged" : [ ],
+    "projectTagged" : [ ],
     "occupied" : [ "Read info pack" ]
   }, {
     "projectName" : "Daniel Meier",
     "deadline": "21-03-2020 00:00:00",
     "email" : "cornelia@example.com",
     "projectDescription" : "10th street",
-    "tagged" : [ "friends" ],
+    "projectTagged" : [ "friends" ],
     "occupied" : [ ]
   }, {
     "projectName" : "Elle Meyer",
     "deadline":"21-03-2020 00:00:00",
     "email" : "werner@example.com",
     "projectDescription" : "michegan ave",
-    "tagged" : [ ],
+    "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
     "projectName" : "Fiona Kunz",
     "deadline": "21-03-2020 00:00:00",
     "email" : "lydia@example.com",
     "projectDescription" : "little tokyo",
-    "tagged" : [ ],
+    "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
     "projectName" : "George Best",
     "deadline": "21-03-2020 00:00:00",
     "email" : "anna@example.com",
     "projectDescription" : "4th street",
-    "tagged" : [ ],
+    "projectTagged" : [ ],
     "occupied" : [ ]
   } ]
 }

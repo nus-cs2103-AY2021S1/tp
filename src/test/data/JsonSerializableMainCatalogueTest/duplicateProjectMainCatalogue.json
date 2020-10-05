@@ -4,12 +4,12 @@
     "deadline": "29-02-2020 00:00:00",
     "email": "alice@example.com",
     "projectDescription": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "projectTagged": [ "friends" ]
   }, {
     "projectName": "Alice Pauline",
     "deadline": "29-02-2020 00:00:00",
     "email": "pauline@example.com",
     "projectDescription": "4th street",
-    "occupied": ["write DG"]
+    "projectTagged": ["writeDG"]
   } ]
 }

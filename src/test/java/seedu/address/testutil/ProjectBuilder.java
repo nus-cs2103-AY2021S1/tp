@@ -9,7 +9,7 @@ import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -27,7 +27,7 @@ public class ProjectBuilder {
     private Deadline deadline;
     private Email email;
     private ProjectDescription projectDescription;
-    private Set<Tag> tags;
+    private Set<ProjectTag> projectTags;
     private Set<Task> tasks;
 
     /**
@@ -38,7 +38,7 @@ public class ProjectBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE);
         email = new Email(DEFAULT_EMAIL);
         projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        projectTags = new HashSet<>();
         tasks = new HashSet<>();
     }
 
@@ -50,7 +50,7 @@ public class ProjectBuilder {
         deadline = projectToCopy.getDeadline();
         email = projectToCopy.getEmail();
         projectDescription = projectToCopy.getProjectDescription();
-        tags = new HashSet<>(projectToCopy.getTags());
+        projectTags = new HashSet<>(projectToCopy.getProjectTags());
         tasks = new HashSet<>(projectToCopy.getTasks());
     }
 
@@ -63,10 +63,11 @@ public class ProjectBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
+     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code Project}
+     * that we are building.
      */
-    public ProjectBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ProjectBuilder withTags(String ... projectTags) {
+        this.projectTags = SampleDataUtil.getTagSet(projectTags);
         return this;
     }
 
@@ -81,8 +82,8 @@ public class ProjectBuilder {
     /**
      * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withAddress(String address) {
-        this.projectDescription = new ProjectDescription(address);
+    public ProjectBuilder withProjectDescription(String projectDescription) {
+        this.projectDescription = new ProjectDescription(projectDescription);
         return this;
     }
 
@@ -103,7 +104,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, deadline, email, projectDescription, tags, new HashMap<>(), tasks);
+        return new Project(projectName, deadline, email, projectDescription, projectTags, new HashMap<>(), tasks);
     }
 
 }

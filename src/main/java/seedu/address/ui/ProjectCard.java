@@ -41,7 +41,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane projectTags;
     @FXML
     private FlowPane tasks;
 
@@ -55,9 +55,10 @@ public class ProjectCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         projectName.setText(project.getProjectName().fullProjectName);
         deadline.setText(project.getDeadline().value);
-        project.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        project.getProjectTags().stream()
+                .sorted(Comparator.comparing(projectTag -> projectTag.projectTagName))
+                .forEach(projectTag -> this.projectTags.getChildren()
+                .add(new Label(projectTag.projectTagName)));
 
         projectDescription.setText(project.getProjectDescription().value);
         email.setText(project.getEmail().value);
