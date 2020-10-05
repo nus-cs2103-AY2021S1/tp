@@ -16,9 +16,9 @@ public class AddModuleCommand extends Command {
      *
      * @param info array of tokenised info.
      */
-    public AddModuleCommand(String[] info) {
-        this.name = info[0];
-        this.link = info[1];
+    public AddModuleCommand(String modName, String modLink) {
+        this.name = modName;
+        this.link = modLink;
     }
 
     /**
