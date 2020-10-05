@@ -2,7 +2,12 @@
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "school": "NUS High School",
+    "year": "Year 6",
+    "classVenue": "Kent Ridge Road",
+    "classTime": "1 1500 - 1700",
+    "additionalDetails": "He's valid",
+    "meetingLink": "www.zoom123.com",
+    "subject": "Mathematics"
   } ]
 }

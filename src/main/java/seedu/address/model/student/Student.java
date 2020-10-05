@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Represents a Student in Reeve.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -22,20 +23,20 @@ public class Student {
     private final Year year;
     private final ClassVenue classVenue;
     private final ClassTime classTime;
-    private final AdditionalDetails additionalDetails;
-    private final MeetingLink meetingLink;
-    private final Subject subject;
+    private AdditionalDetails additionalDetails;
+    private MeetingLink meetingLink;
+    private Subject subject;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * name, phone, school, year, classVenue, class time must be present and not null.
      */
     public Student(Name name, Phone phone, School school, Year year, ClassVenue classVenue,
                    ClassTime classTime, AdditionalDetails additionalDetails, MeetingLink meetingLink,
                    Subject subject, Set<Tag> tags) {
-        requireAllNonNull(name, phone, meetingLink, classVenue, tags);
+        requireAllNonNull(name, phone, school, year, classVenue, classTime);
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -93,8 +94,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both student of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -107,8 +108,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both student have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -123,8 +124,13 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getSchool().equals(getSchool())
+                && otherStudent.getYear().equals(getYear())
                 && otherStudent.getMeetingLink().equals(getMeetingLink())
                 && otherStudent.getClassVenue().equals(getClassVenue())
+                && otherStudent.getAdditionalDetails().equals(getAdditionalDetails())
+                && otherStudent.getClassTime().equals(getClassTime())
+                && otherStudent.getSubject().equals(getSubject())
                 && otherStudent.getTags().equals(getTags());
     }
 
