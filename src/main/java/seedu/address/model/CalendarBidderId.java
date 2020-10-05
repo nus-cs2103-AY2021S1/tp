@@ -55,5 +55,4 @@ public class CalendarBidderId {
     public int hashCode() {
         return bidderId.hashCode();
     }
-
 }
