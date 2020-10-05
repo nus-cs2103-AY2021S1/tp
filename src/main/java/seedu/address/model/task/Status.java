@@ -24,9 +24,9 @@ public class Status {
     }
 
     /**
-     * Constructs a {@code Status}.
+     * Constructs a default {@code Status} that have a state of pending.
      */
-    public Status() {
+    private Status() {
         value = State.PENDING;
     }
 
