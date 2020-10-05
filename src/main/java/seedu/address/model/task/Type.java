@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Type {
 
-    public static final String MESSAGE_CONSTRAINTS = "Type can take any strings, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Type can only be one word or a phrase connected by \'-\'.";
 
     /*
      * The first character of the type must not be a whitespace,
