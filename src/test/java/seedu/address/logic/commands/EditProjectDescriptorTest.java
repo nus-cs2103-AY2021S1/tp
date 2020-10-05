@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 
 import org.junit.jupiter.api.Test;
 
@@ -54,11 +54,11 @@ public class EditProjectDescriptorTest {
         assertFalse(DESC_A.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withTags(VALID_PROJECT_TAG_HUSBAND).build();
         assertFalse(DESC_A.equals(editedAmy));
 
         // different tasks -> return false
-        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withTasks(VALID_TASK_DG).build();
+        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withTasks(VALID_PROJECT_TAG_DG).build();
         assertFalse(DESC_A.equals(editedAmy));
     }
 }

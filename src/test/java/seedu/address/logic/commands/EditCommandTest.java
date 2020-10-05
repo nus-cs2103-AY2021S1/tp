@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
         Project editedProject = projectInList.withProjectName(VALID_NAME_BOB).withDeadline(VALID_DEADLINE_B)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_PROJECT_TAG_HUSBAND).build();
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withProjectName(VALID_NAME_BOB)
-                .withDeadline(VALID_DEADLINE_B).withTags(VALID_TAG_HUSBAND).build();
+                .withDeadline(VALID_DEADLINE_B).withTags(VALID_PROJECT_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastProject, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);

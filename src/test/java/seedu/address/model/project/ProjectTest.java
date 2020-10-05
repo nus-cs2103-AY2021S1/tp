@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.ALICE;
@@ -44,17 +44,17 @@ public class ProjectTest {
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new ProjectBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).withTasks(VALID_TASK_DG).build();
+                .withTags(VALID_PROJECT_TAG_HUSBAND).withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(ALICE.isSameProject(editedAlice));
 
         // same name, same email, different attributes -> returns true
         editedAlice = new ProjectBuilder(ALICE).withDeadline(VALID_DEADLINE_B).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).withTasks(VALID_TASK_DG).build();
+                .withTags(VALID_PROJECT_TAG_HUSBAND).withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(ALICE.isSameProject(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .withTasks(VALID_TASK_DG).build();
+        editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_PROJECT_TAG_HUSBAND)
+                .withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(ALICE.isSameProject(editedAlice));
     }
 
@@ -93,7 +93,7 @@ public class ProjectTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ProjectBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ProjectBuilder(ALICE).withTags(VALID_PROJECT_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tasks -> returns false

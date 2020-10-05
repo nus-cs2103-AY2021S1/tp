@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PROJECT_DESCRIPTION + "PROJECTDESCRIPTION] "
-            + "[" + PREFIX_PROJECT_TAG + "TAG]...\n"
+            + "[" + PREFIX_PROJECT_TAG + "PROJECT TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "29-02-2020 00:00:00 "
@@ -101,7 +101,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
         ProjectDescription updatedProjectDescription = editProjectDescriptor.getProjectDescription()
             .orElse(projectToEdit.getProjectDescription());
-        Set<ProjectTag> updatedProjectTags = editProjectDescriptor.getTags().orElse(projectToEdit.getProjectTags());
+        Set<ProjectTag> updatedProjectTags = editProjectDescriptor.getProjectTags().orElse(projectToEdit.getProjectTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
         return new Project(updatedProjectName, updatedDeadline, updatedEmail, updatedProjectDescription,
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(projectName, deadline, email, projectDescription, tags, tasks);
+            return CollectionUtil.isAnyNonNull(projectName, deadline, email, projectDescription, projectTags, tasks);
         }
 
         public void setProjectName(ProjectName projectName) {
@@ -201,11 +201,11 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable project tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code projectTags} is null.
          */
-        public Optional<Set<ProjectTag>> getTags() {
+        public Optional<Set<ProjectTag>> getProjectTags() {
             return (projectTags != null) ? Optional.of(Collections.unmodifiableSet(projectTags)) : Optional.empty();
         }
 
@@ -245,7 +245,7 @@ public class EditCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getEmail().equals(e.getEmail())
                     && getProjectDescription().equals(e.getProjectDescription())
-                    && getTags().equals(e.getTags())
+                    && getProjectTags().equals(e.getProjectTags())
                     && getTasks().equals(e.getTasks());
         }
     }

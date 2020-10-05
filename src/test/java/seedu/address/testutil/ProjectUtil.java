@@ -56,8 +56,8 @@ public class ProjectUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getProjectDescription().ifPresent(address -> sb.append(PREFIX_PROJECT_DESCRIPTION).append(
             address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<ProjectTag> projectTags = descriptor.getTags().get();
+        if (descriptor.getProjectTags().isPresent()) {
+            Set<ProjectTag> projectTags = descriptor.getProjectTags().get();
             if (projectTags.isEmpty()) {
                 sb.append(PREFIX_PROJECT_TAG);
             } else {

@@ -8,9 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 
 import java.util.ArrayList;
@@ -58,10 +58,10 @@ public class TypicalProjects {
     // Manually added - Project's details found in {@code CommandTestUtil}
     public static final Project AMY = new ProjectBuilder().withProjectName(VALID_NAME_AMY)
             .withDeadline(VALID_DEADLINE_A).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).withTasks(VALID_TASK_DG, VALID_TASK_MODEL).build();
+            .withTags(VALID_PROJECT_TAG_FRIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
     public static final Project BOB = new ProjectBuilder().withProjectName(VALID_NAME_BOB)
             .withDeadline(VALID_DEADLINE_B).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withTasks(VALID_TASK_DG).build();
+            .withTags(VALID_PROJECT_TAG_HUSBAND, VALID_PROJECT_TAG_FRIEND).withTasks(VALID_PROJECT_TAG_DG).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
