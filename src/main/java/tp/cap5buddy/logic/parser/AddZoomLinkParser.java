@@ -13,10 +13,10 @@ public class AddZoomLinkParser extends Parser {
      * @return
      */
     public AddZoomLinkCommand parse(String userInput) throws ParseException {
-        Tokenizer tokenizer = new Tokenizer();
-        String[] parsedArguments = tokenizer.tokenize(userInput,
+        Tokenizer tokenizer = new Tokenizer(userInput,
                 PrefixList.MODULE_NAME_PREFIX, PrefixList.MODULE_INDEX_PREFIX, PrefixList.MODULE_LINK_PREFIX,
                 PrefixList.MODULE_NEWNAME_PREFIX, PrefixList.MODULE_VIEW_PREFIX, PrefixList.MODULE_DELETE_PREFIX);
+        String[] parsedArguments = tokenizer.tokenize();
         try {
             int moduleID = Integer.parseInt(parsedArguments[0]);
             String zoomLink = parsedArguments[1];
