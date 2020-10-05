@@ -16,13 +16,13 @@ import com.eva.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    protected final Name name;
-    protected final Phone phone;
-    protected final Email email;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
-    protected final Address address;
-    protected final Set<Tag> tags = new HashSet<>();
+    private final Address address;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.

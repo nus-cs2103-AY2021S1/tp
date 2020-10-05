@@ -1,4 +1,4 @@
-package com.eva.model.applicant;
+package com.eva.model.person.applicant;
 
 import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;

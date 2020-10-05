@@ -1,4 +1,4 @@
-package com.eva.model.applicant;
+package com.eva.model.person.applicant;
 
 import java.util.Optional;
 import java.util.Set;
@@ -14,8 +14,8 @@ import com.eva.model.tag.Tag;
  * Represents the Applicant to be stored by Eva.
  */
 public class Applicant extends Person {
-    protected Optional<InterviewDate> interviewDate;
-    protected ApplicationStatus applicationStatus;
+    private Optional<InterviewDate> interviewDate;
+    private ApplicationStatus applicationStatus;
 
     /**
      * Creates of an applicant object with a fixed interview date.

@@ -1,4 +1,4 @@
-package com.eva.model.applicant;
+package com.eva.model.person.applicant;
 
 import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
             "Application Status should only contain the words: processing, accepted, rejected. It should not be blank";
-    public static final String[] POSSIBLE_STATUSES = {"processing", "accepted", "rejected"};
+    public static final String[] POSSIBLE_STATUSES = {"received", "processing", "accepted", "rejected"};
     private String status;
 
     /**
