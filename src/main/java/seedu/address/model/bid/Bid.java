@@ -44,12 +44,13 @@ public class Bid {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Added bid to property: ")
-                .append(getPropertyId())
-                .append(" of ")
+        builder.append("Added bid of $")
                 .append(getBidAmount())
                 .append(" by ")
-                .append(getBidderId());
+                .append(getBidderId())
+                .append(" to property: ")
+                .append(getPropertyId())
+                ;
 
         return builder.toString();
     }

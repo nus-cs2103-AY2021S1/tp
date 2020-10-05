@@ -26,7 +26,7 @@ public class AddBidCommandParser implements Parser<AddBidCommand> {
         }
 
         String propertyId = ParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_PROPERTY_ID).get());
-        String bidderId = ParserUtil.parseBidderId(argMultimap.getValue(PREFIX_PROPERTY_ID).get());
+        String bidderId = ParserUtil.parseBidderId(argMultimap.getValue(PREFIX_CLIENT).get());
         double bidAmount = ParserUtil.parseBidAmount(argMultimap.getValue(PREFIX_MONEY).get());
 
         Bid bid = new Bid(propertyId, bidderId, bidAmount);

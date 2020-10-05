@@ -14,40 +14,39 @@ import seedu.address.model.person.Person;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class BidListPanel extends UiPart<Region> {
+    private static final String FXML = "BidListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(BidListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Bid> bidListView; // changed from Person to Bid
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
 
-    public PersonListPanel(ObservableList<Person> personList) {
+    public BidListPanel(ObservableList<Bid> bidList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        bidListView.setItems(bidList);
+        bidListView.setCellFactory(listView -> new BidListViewCell());
     }
-
-
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Person> { // person to bid
+    class BidListViewCell extends ListCell<Bid> { // person to bid
         @Override
-        protected void updateItem(Person person, boolean empty) {//changed Person to Bid
-            super.updateItem(person, empty);
+        protected void updateItem(Bid bid, boolean empty) {//changed Person to Bid
+            super.updateItem(bid, empty);
 
-            if (empty || person == null) {
+            if (empty || bid == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new BidCard(bid, getIndex() + 1).getRoot());
             }
         }
     }
 
 }
+
