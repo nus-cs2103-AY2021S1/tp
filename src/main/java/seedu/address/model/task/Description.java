@@ -20,6 +20,7 @@ public class Description {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum},.!? ]*";
+    private static final String DEFAULT_DESCRIPTION = "";
 
     public final String value;
 
@@ -35,10 +36,26 @@ public class Description {
     }
 
     /**
+     * Constructs a default {@code Description}.
+     * Caveat: Only called by defaultDescription method.
+     */
+    private Description() {
+        value = DEFAULT_DESCRIPTION;
+    }
+
+    /**
      * Returns if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Constructs an empty Description when user didn't provide the description field.
+     * Caveat: Only called when the user didn't key in this field.
+     */
+    public static Description defaultDescription() {
+        return new Description();
     }
 
     @Override

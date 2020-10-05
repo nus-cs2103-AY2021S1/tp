@@ -34,14 +34,19 @@ public class AddCommandParser implements Parser<AddCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PHONE,
                     PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TYPE, PREFIX_PHONE, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TYPE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
+        Phone phone = Phone.defaultPhone();
+        Description description = Description.defaultDescription();
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
         Type type = ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
