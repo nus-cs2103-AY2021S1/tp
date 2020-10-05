@@ -80,6 +80,17 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder(AMY).withTags().build();
         assertParseSuccess(parser, TITLE_DESC_AMY + PHONE_DESC_AMY + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedTask));
+
+        // missing phone field
+        expectedTask = new TaskBuilder(AMY).withTags().withDefaultPhone().build();
+        assertParseSuccess(parser, TITLE_DESC_AMY + DESCRIPTION_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedTask));
+
+        // missing description field
+        expectedTask = new TaskBuilder(AMY).withTags().withDefaultDescription().build();
+        assertParseSuccess(parser, TITLE_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedTask));
+
     }
 
     @Test
@@ -88,14 +99,6 @@ public class AddCommandParserTest {
 
         // missing title prefix
         assertParseFailure(parser, VALID_TITLE_BOB + PHONE_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + VALID_PHONE_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + PHONE_DESC_BOB + VALID_DESCRIPTION_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix
