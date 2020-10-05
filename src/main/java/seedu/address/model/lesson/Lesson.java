@@ -7,21 +7,21 @@ import java.util.Objects;
 public class Lesson {
 
     // Identity fields
-    private final Name name;
+    private final LessonName name;
     private final Time time;
     private final ModuleCode moduleCode;
 
     /**
      * Every field must be present and not null.
      */
-    public Lesson(Name name, Time time, ModuleCode moduleCode) {
+    public Lesson(LessonName name, Time time, ModuleCode moduleCode) {
         requireAllNonNull(name, time, moduleCode);
         this.name = name;
         this.time = time;
         this.moduleCode = moduleCode;
     }
 
-    public Name getName() {
+    public LessonName getLessonName() {
         return name;
     }
 
@@ -42,7 +42,7 @@ public class Lesson {
         }
 
         return otherLesson != null
-                && otherLesson.getName().equals(getName())
+                && otherLesson.getLessonName().equals(getLessonName())
                 && (otherLesson.getTime().equals(getTime()));
     }
 
@@ -61,7 +61,7 @@ public class Lesson {
         }
 
         Lesson otherLesson = (Lesson) other;
-        return otherLesson.getName().equals(getName())
+        return otherLesson.getLessonName().equals(getLessonName())
                 && otherLesson.getTime().equals(getTime())
                 && otherLesson.getModuleCode().equals(getModuleCode());
     }
@@ -75,7 +75,7 @@ public class Lesson {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getLessonName())
                 .append(" Time: ")
                 .append(getTime())
                 .append(" Module: ")
