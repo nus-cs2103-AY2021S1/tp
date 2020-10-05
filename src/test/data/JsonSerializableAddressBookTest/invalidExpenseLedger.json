@@ -2,7 +2,7 @@
   "persons": [ {
     "description": "Sauna",
     "amount": "4.60",
-    "email": "invalid@email!3e",
+    "date": "04-10-2020",
     "address": "4th street"
   } ]
 }

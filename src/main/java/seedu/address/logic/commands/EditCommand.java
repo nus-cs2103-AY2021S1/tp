@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -21,8 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Description;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
@@ -40,12 +40,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DESCRIPTION + "NAME] "
             + "[" + PREFIX_AMOUNT + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DATE + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AMOUNT + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DATE + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -96,12 +96,12 @@ public class EditCommand extends Command {
 
         Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
         Amount updatedAmount = editPersonDescriptor.getAmount().orElse(personToEdit.getAmount());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Date updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedDescription, updatedAmount, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedDescription, updatedAmount, updatedDate, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Description description;
         private Amount amount;
-        private Email email;
+        private Date date;
         private Address address;
         private Set<Tag> tags;
 
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setDescription(toCopy.description);
             setAmount(toCopy.amount);
-            setEmail(toCopy.email);
+            setDate(toCopy.date);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -152,7 +152,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, amount, email, address, tags);
+            return CollectionUtil.isAnyNonNull(description, amount, date, address, tags);
         }
 
         public void setDescription(Description description) {
@@ -171,12 +171,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(amount);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Date> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setAddress(Address address) {
@@ -221,7 +221,7 @@ public class EditCommand extends Command {
 
             return getDescription().equals(e.getDescription())
                     && getAmount().equals(e.getAmount())
-                    && getEmail().equals(e.getEmail())
+                    && getDate().equals(e.getDate())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
