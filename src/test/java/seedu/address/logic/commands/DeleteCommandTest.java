@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.Id;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -24,12 +25,14 @@ import seedu.address.model.animal.Animal;
  */
 public class DeleteCommandTest {
 
+    private static final Id OUT_OF_BOUNDS_ID = new Id("99999999999999999999999999999999");
+
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Animal animalToDelete = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ANIMAL);
+        Animal animalToDelete = model.getFilteredAnimalList().get(0);
+        DeleteCommand deleteCommand = new DeleteCommand(animalToDelete.getId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete);
 
@@ -42,17 +45,17 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAnimalList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(OUT_OF_BOUNDS_ID);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
-        Animal animalToDelete = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ANIMAL);
+        Animal animalToDelete = model.getFilteredAnimalList().get(0);
+        DeleteCommand deleteCommand = new DeleteCommand(animalToDelete.getId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete);
 
@@ -71,21 +74,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAnimalList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(OUT_OF_BOUNDS_ID);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ANIMAL);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ANIMAL);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(new Id("123"));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(new Id("1234"));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ANIMAL);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new Id("123"));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

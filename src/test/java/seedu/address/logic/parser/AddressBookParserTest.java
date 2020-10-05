@@ -24,6 +24,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.Id;
 import seedu.address.model.animal.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AnimalBuilder;
 import seedu.address.testutil.AnimalUtil;
@@ -49,8 +50,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ANIMAL.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_ANIMAL), command);
+                DeleteCommand.COMMAND_WORD + " " + "1234");
+        assertEquals(new DeleteCommand(new Id("1234")), command);
     }
 
     @Test

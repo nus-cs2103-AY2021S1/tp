@@ -71,7 +71,7 @@ public class EditCommand extends Command {
         List<Animal> lastShownList = model.getFilteredAnimalList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
         }
 
         Animal animalToEdit = lastShownList.get(index.getZeroBased());
