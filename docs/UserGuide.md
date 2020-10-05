@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Calo is a **desktop app that is designed for keeping track of calories burnt throughout the day. It is optimized for use via a Command Line Interface (CLI)** while still having Graphical User Interface (GUI). If you are a skilled typer, you can carry out various tasks such as adding new exercises and checking records for previous days much faster than the traditional GUI apps.
+Calo is a desktop app that is **designed for keeping track of calories burnt throughout the day**. It is optimized for use via a **Command Line Interface (CLI)** while still having Graphical User Interface (GUI). If you are a skilled typer, you can carry out various tasks such as adding new exercises and checking records for previous days much faster than the traditional GUI apps.
 
 - Table of Contents
   {:toc}
@@ -31,24 +31,34 @@ Calo is a **desktop app that is designed for keeping track of calories burnt thr
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add e/EXERCISE c/CALORIES`, `NAME` is a parameter which can be used as `add e/Push Up c/1000`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `e/EXERCISE c/CALORIES`, `c/CALORIES e/EXERCISE` is also acceptable.
 
 </div>
 
-### Update exercises : `update`
+#### Add exercises : `add`
+
+Add an exercise to the application, with calories burnt (optional).
+
+Format: `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]`
+
+- The format for the DATE should be in the form of DD-MM-YYYY.
+
+Examples:
+
+- `add e/Push up d/10 at/14-09-2020 c/30`
+- `add e/Sit up d/10 at/14-09-2020`
+
+#### Update exercises : `update`
 
 Update an existing exercise.
 
-Format: `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES​`
+Format: `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]`
 
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
 - Existing values will be updated to the input values.
@@ -56,15 +66,55 @@ Format: `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES​`
 Examples:
 
 - `update 1 e/Push up d/30 at/09-07-2020 c/260` Updates the exercise, the description, the date and the calories burnt of the 1st exercise to be `push up`, `30`,  `07-09-2020`, `260` respectively.
----
 
+#### Delete : `delete`
+Deletes an exercise that a user has previously added.
+
+Format: `delete INDEX`
+
+- Deletes an exercise at the specified `INDEX`.
+- The index refers to the index number shown in the displayed workout list.
+- The index must be a positive integer: 1, 2, 3, …​
+ 
+Example:
+
+- `delete 2` Deletes the second exercise in the displayed list.
+
+#### List: `list`
+Lists out all the exercises that the user has keyed in
+
+Format: `list`
+
+#### Find exercises: `find`
+Finds exercises whose name contain any of the given keywords.
+
+Format: `find KEYWORD`
+- The search is case-insensitive. e.g Squats will match squats.
+
+Example:
+- find Push up
+
+
+#### Save
+The application will save the data automatically to the default file path after any command that changes the data. There is no need to save the data manually.
+
+#### Archive : `archive`
+Archive the data into a different file location.
+
+Format: `archive FILE_LOCATION`  
+The file location takes reference from the home folder that the .jar file is located at.
+
+Examples:  
+archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.  
+   
+---
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
+*Q*: How do I transfer my data to another Computer?<br>
+*A*: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
 
-**Q**: How to load my archived file?<br>
-**A**: For now, you can delete the `entry.txt` file in the `data` folder and rename the archived file of your choices to `entry.txt`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
+*Q*: How to load my archived file?<br>
+*A*: For now, you can delete the `entry.txt` file in the `data` folder and rename the archived file of your choices to `entry.txt`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
 
 ---
 
@@ -72,9 +122,9 @@ Examples:
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]` <br> e.g. `add e/Push up d/10 at/14-09-2020 c/30` |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
-| **Update**   | `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​`<br> e.g.,`update 1 e/Push up d/30 at/09-07-2020 c/260`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Archive**   | `Archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
+| *Add*    | `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]` <br> e.g. `add e/Push up d/10 at/14-09-2020 c/30` |
+| *Delete* | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
+| *Update*   | `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​`<br> e.g.,`update 1 e/Push up d/30 at/09-07-2020 c/260`                                           |
+| *Find*  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| *List*   | `list`                                                                                                                                                                |
+| *Archive*   | `archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
