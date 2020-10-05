@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Amount;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.Description;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
@@ -27,7 +27,7 @@ class JsonAdaptedPerson {
 
     private final String description;
     private final String amount;
-    private final String email;
+    private final String date;
     private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -37,12 +37,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("description") String description, @JsonProperty("amount") String amount,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("date") String date, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.description = description;
         this.amount = amount;
-        this.email = email;
+        this.date = date;
         this.address = address;
         this.remark = remark;
         if (tagged != null) {
@@ -56,7 +56,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         description = source.getDescription().fullDescription;
         amount = source.getAmount().value;
-        email = source.getEmail().value;
+        date = source.getDate().toString();
         address = source.getAddress().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
@@ -92,13 +92,13 @@ class JsonAdaptedPerson {
         }
         final Amount modelAmount = new Amount(amount);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Date modelDate = new Date(date);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -114,7 +114,7 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelDescription, modelAmount, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Person(modelDescription, modelAmount, modelDate, modelAddress, modelRemark, modelTags);
     }
 
 }
