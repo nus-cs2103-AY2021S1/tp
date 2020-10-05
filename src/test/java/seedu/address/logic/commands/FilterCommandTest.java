@@ -85,7 +85,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_lowercaseKeyword() {
+    public void execute_lowercaseKeyword_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
         CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/sdlc");
         FilterCommand command = new FilterCommand(predicate);
