@@ -10,7 +10,7 @@
   * Adding a new animal under your care.
   * Viewing the list of animals under your care.
   * Removing a specific animal.
-  
+
 * For the detailed documentation of this project, see the **[ZooKeep Product Website](https://ay2021s1-cs2103t-w15-4.github.io/tp/)**.
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
