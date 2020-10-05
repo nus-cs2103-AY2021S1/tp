@@ -1,0 +1,120 @@
+package seedu.address.model.animal;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
+
+/**
+ * Represents a Animal in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
+public class Animal {
+
+    // Identity fields
+    private final Name name;
+    private final Id id;
+    private final Email email;
+
+    // Data fields
+    private final Species species;
+    private final Set<Tag> tags = new HashSet<>();
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Animal(Name name, Id id, Email email, Species species, Set<Tag> tags) {
+        requireAllNonNull(name, id, email, species, tags);
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.species = species;
+        this.tags.addAll(tags);
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Id getId() {
+        return id;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public Species getSpecies() {
+        return species;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if both animals of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two animals.
+     */
+    public boolean isSameAnimal(Animal otherAnimal) {
+        if (otherAnimal == this) {
+            return true;
+        }
+
+        return otherAnimal != null
+                && otherAnimal.getName().equals(getName())
+                && (otherAnimal.getId().equals(getId()) || otherAnimal.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Returns true if both animals have the same identity and data fields.
+     * This defines a stronger notion of equality between two animals.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Animal)) {
+            return false;
+        }
+
+        Animal otherAnimal = (Animal) other;
+        return otherAnimal.getName().equals(getName())
+                && otherAnimal.getId().equals(getId())
+                && otherAnimal.getEmail().equals(getEmail())
+                && otherAnimal.getSpecies().equals(getSpecies())
+                && otherAnimal.getTags().equals(getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, id, email, species, tags);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" ID: ")
+                .append(getId())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Species: ")
+                .append(getSpecies())
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+}

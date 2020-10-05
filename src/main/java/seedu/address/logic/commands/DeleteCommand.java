@@ -7,11 +7,11 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.Person;
+import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.Id;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a animal identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -33,12 +33,11 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        Person animalToDelete = null;
-        for (Person person : lastShownList) {
-            if (person.getId().equals(targetID)) {
-                animalToDelete = person;
+        List<Animal> lastShownList = model.getFilteredAnimalList();
+        Animal animalToDelete = null;
+        for (Animal animal : lastShownList) {
+            if (animal.getId().equals(targetID)) {
+                animalToDelete = animal;
                 break;
             }
         }
@@ -46,7 +45,7 @@ public class DeleteCommand extends Command {
         if (animalToDelete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
         }
-        model.deletePerson(animalToDelete);
+        model.deleteAnimal(animalToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete));
     }
 
