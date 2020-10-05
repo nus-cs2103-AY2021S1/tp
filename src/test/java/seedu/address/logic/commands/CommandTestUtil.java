@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +18,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.exercise.Exercise;
 import seedu.address.model.log.Log;
 import seedu.address.model.util.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ExerciseBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -39,6 +42,30 @@ public class CommandTestUtil {
 
     public static final String VALID_EXERCISE_SIT_UP = "Sit up";
     public static final String VALID_EXERCISE_CRUNCHES = "Crunches";
+
+    public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();
+    public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder().withName(VALID_EXERCISE_CRUNCHES).build();
+    public static final String VALID_REP_A = "5";
+    public static final String VALID_REP_B = "10";
+    public static final String VALID_COMMENT_A = "This exercise is tough";
+    public static final String VALID_COMMENT_B = "Easy";
+
+    public static final int VALID_YEAR_A = 2021;
+    public static final int VALID_MONTH_A = 2; // February
+    public static final int VALID_DAY_A = 2;
+    public static final int VALID_HOUR_A = 2;
+    public static final int VALID_MINUTE_A = 2;
+    public static final LocalDateTime VALID_DATE_TIME_A = LocalDateTime.of(
+            VALID_YEAR_A, VALID_MONTH_A, VALID_DAY_A, VALID_HOUR_A, VALID_MINUTE_A
+    );
+    public static final int VALID_YEAR_B = 2020;
+    public static final int VALID_MONTH_B = 1; // January
+    public static final int VALID_DAY_B = 1;
+    public static final int VALID_HOUR_B = 1;
+    public static final int VALID_MINUTE_B = 1;
+    public static final LocalDateTime VALID_DATE_TIME_B = LocalDateTime.of(
+            VALID_YEAR_B, VALID_MONTH_B, VALID_DAY_B, VALID_HOUR_B, VALID_MINUTE_B
+    );
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

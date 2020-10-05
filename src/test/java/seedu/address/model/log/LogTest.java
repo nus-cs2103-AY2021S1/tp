@@ -2,94 +2,70 @@ package seedu.address.model.log;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalLogs.*;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.LogBuilder;
 
 public class LogTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Log log = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> log.getTags().remove(0));
-    }
-
-    @Test
-    public void isSamePerson() {
+    public void isSameLog() {
         // same object -> returns true
-        assertTrue(ALICE.isSameLog(ALICE));
+        assertTrue(LOG_A.isSameLog(LOG_A));
 
         // null -> returns false
-        assertFalse(ALICE.isSameLog(null));
+        assertFalse(LOG_A.isSameLog(null));
 
-        // different phone and email -> returns false
-        Log editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSameLog(editedAlice));
+        // different exercise and dateTime -> returns false
+        Log editedAlice = new LogBuilder(LOG_A).withExercise(VALID_EXERCISE_B).withDateTime(VALID_DATE_TIME_B).build();
+        assertFalse(LOG_A.isSameLog(editedAlice));
 
-        // different name -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameLog(editedAlice));
+        // different exercise -> returns false
+        editedAlice = new LogBuilder(LOG_A).withExercise(VALID_EXERCISE_B).build();
+        assertFalse(LOG_A.isSameLog(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameLog(editedAlice));
-
-        // same name, same email, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameLog(editedAlice));
-
-        // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameLog(editedAlice));
+        // different dateTime -> returns false
+        editedAlice = new LogBuilder(LOG_A).withDateTime(VALID_DATE_TIME_B).build();
+        assertFalse(LOG_A.isSameLog(editedAlice));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Log aliceCopy = new PersonBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Log aliceCopy = new LogBuilder(LOG_A).build();
+        assertTrue(LOG_A.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(LOG_A.equals(LOG_A));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(LOG_A.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(LOG_A.equals(5));
 
         // different log -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(LOG_A.equals(LOG_B));
 
-        // different name -> returns false
-        Log editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different exercise -> returns false
+        Log editedAlice = new LogBuilder(LOG_A).withExercise(VALID_EXERCISE_B).build();
+        assertFalse(LOG_A.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different reps -> returns false
+        editedAlice = new LogBuilder(LOG_A).withReps(VALID_REP_B).build();
+        assertFalse(LOG_A.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different comment -> returns false
+        editedAlice = new LogBuilder(LOG_A).withComment(VALID_COMMENT_B).build();
+        assertFalse(LOG_A.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different dateTime -> returns false
+        editedAlice = new LogBuilder(LOG_A).withDateTime(VALID_DATE_TIME_B).build();
+        assertFalse(LOG_A.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
     }
 }
