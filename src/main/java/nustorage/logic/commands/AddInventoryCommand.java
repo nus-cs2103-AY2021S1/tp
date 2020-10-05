@@ -2,12 +2,12 @@ package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
-
-import java.util.Optional;
 
 /**
  * An add inventory command class
