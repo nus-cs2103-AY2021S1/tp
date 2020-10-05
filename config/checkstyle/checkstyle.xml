@@ -34,6 +34,7 @@
     <property name="max" value="120"/>
   </module>
 
+
   <!-- All Java AST specific tests live under TreeWalker module. -->
   <module name="TreeWalker">
 
