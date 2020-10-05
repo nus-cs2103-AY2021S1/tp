@@ -26,14 +26,14 @@ public class ListCommandTest {
         expectedModel = new ModelManager(model.getInventoryBook(), new UserPrefs());
     }
 
-    @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+//    @Test
+//    public void execute_listIsNotFiltered_showsSameList() {
+//        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+//    }
 
-    @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+//    @Test
+//    public void execute_listIsFiltered_showsEverything() {
+//        showItemAtIndex(model, INDEX_FIRST_ITEM);
+//        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+//    }
 }
