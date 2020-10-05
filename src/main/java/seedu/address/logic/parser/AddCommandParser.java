@@ -1,10 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -29,7 +26,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG,
+                        PREFIX_MAX_QUANTITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -40,8 +38,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Supplier supplier = ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).orElse("No Supplier"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Quantity maxQuantity = ParserUtil.parseMaxQuantity(argMultimap.getValue(PREFIX_MAX_QUANTITY)
+                .orElse("0"));
 
-        Item item = new Item(name, quantity, supplier, tagList);
+        Item item = new Item(name, quantity, supplier, tagList, maxQuantity);
 
         return new AddCommand(item);
     }

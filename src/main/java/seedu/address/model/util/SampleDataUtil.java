@@ -18,12 +18,16 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[] {
-            new Item(new Name("Chicken"), new Quantity("12"),
+            new Item(new Name("Chicken"),
+                new Quantity("12"),
                 new Supplier("NTUC"),
-                getTagSet("meat")),
-            new Item(new Name("Duck"), new Quantity("33"),
+                getTagSet("meat"),
+                new Quantity("200")),
+            new Item(new Name("Duck"),
+                new Quantity("33"),
                 new Supplier("NTUC"),
-                getTagSet("meat"))
+                getTagSet("meat"),
+                new Quantity("300"))
         };
     }
 

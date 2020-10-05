@@ -1,18 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -23,6 +10,16 @@ import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
 import seedu.address.model.tag.Tag;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 /**
  * Edits the details of an existing item in the inventory book.
@@ -93,8 +90,9 @@ public class EditCommand extends Command {
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         Supplier updatedSupplier = editItemDescriptor.getSupplier().orElse(itemToEdit.getSupplier());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
+        Quantity maxQuantity = editItemDescriptor.getMaxQuantity().orElse(itemToEdit.getMaxQuantity());
 
-        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags);
+        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, maxQuantity);
     }
 
     @Override
@@ -124,6 +122,7 @@ public class EditCommand extends Command {
         private Quantity quantity;
         private Supplier supplier;
         private Set<Tag> tags;
+        private Quantity maxQuantity;
 
         public EditItemDescriptor() {}
 
@@ -136,13 +135,14 @@ public class EditCommand extends Command {
             setQuantity(toCopy.quantity);
             setSupplier(toCopy.supplier);
             setTags(toCopy.tags);
+            setMaxQuantity(toCopy.maxQuantity);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, quantity, supplier, tags);
+            return CollectionUtil.isAnyNonNull(name, quantity, supplier, tags, maxQuantity);
         }
 
         public void setName(Name name) {
@@ -184,6 +184,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setMaxQuantity(Quantity maxQuantity) {
+            this.maxQuantity = maxQuantity;
+        }
+
+        public Optional<Quantity> getMaxQuantity() {
+            return Optional.ofNullable(quantity);
         }
 
         @Override

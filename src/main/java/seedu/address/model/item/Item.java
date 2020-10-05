@@ -22,16 +22,18 @@ public class Item {
     // Data fields
     private final Quantity quantity;
     private final Set<Tag> tags = new HashSet<>();
+    private final Quantity maxQuantity;
 
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags) {
-        requireAllNonNull(name, quantity, supplier, tags);
+    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags, Quantity maxQuantity) {
+        requireAllNonNull(name, quantity, supplier, tags, maxQuantity);
         this.name = name;
         this.quantity = quantity;
         this.supplier = supplier;
         this.tags.addAll(tags);
+        this.maxQuantity = maxQuantity;
     }
 
     public Name getName() {
@@ -52,6 +54,10 @@ public class Item {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Quantity getMaxQuantity() {
+        return maxQuantity;
     }
 
     /**
@@ -105,6 +111,8 @@ public class Item {
                 .append(getSupplier())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Max Quantity: ")
+                .append(getMaxQuantity());
         return builder.toString();
     }
 
