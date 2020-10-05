@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' client list file path.
      */
-    Path getAddressBookFilePath();
+    Path getClientListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' client list file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setClientListFilePath(Path clientListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces client list data with the data in {@code clientList}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setClientList(ReadOnlyClientList clientList);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ClientList */
+    ReadOnlyClientList getClientList();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the client list.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the client list.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the client list.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the client list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the client list.
      */
     void setPerson(Person target, Person editedPerson);
 
