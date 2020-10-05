@@ -266,7 +266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   #### **Use case: add an exercise**
   
-  **MSS**
+  *MSS*
   
 1.  User requests to add an exercise
 
@@ -276,14 +276,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
 #### **Use case: Find exercises with a keyword**
 
-**MSS**
+*MSS*
 
 1.  User requests to find exercises with a keyword
 2.  Calo shows a list of exercises which contain the keyword
 
     Use case ends.
 
-**Extensions**
+*Extensions*
 <p>
     The list is empty <br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
@@ -292,14 +292,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 #### **Use case: Update an exercise**
 
-**MSS**
+*MSS*
 
 1.  User requests to update a specific exercise in the list
 2.  Calo updates the exercise
 
     Use case ends.  
 
-**Extensions**
+*Extensions*
 <p>
     1a. The index is invalid<br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
@@ -308,14 +308,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 #### **Use case: Delete an exercise**
 
-**MSS**
+*MSS*
 
 1.  User requests to delete a specific exercise in the list.
 2.  Calo deletes the exercise
 
     Use case ends.
 
-**Extensions**
+*Extensions*
 <p>
     1a. The index is invalid<br>
       1a1. Calo shows a message indicating that no such exercise exists.<br>
@@ -323,18 +323,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
   
   #### **Use case: Archive data**
-  **MSS**
+  *MSS*
     
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
       Use case ends.
-      
-**Extensions**
-    1a. File can't be created at specified location.  
-      1a1. Calo shows a message indicating that file can't be created.  
-    Use case ends.
   
-**Extensions**
+*Extensions*
 <p>
     1a. User does not have permission to create file at specified location <br>
       1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
@@ -343,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   #### **Use case: List exercises**
   
-  **MSS**
+  *MSS*
   
   1.  User requests to list exercises
   2.  Calo shows a list of exercises
@@ -405,19 +400,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-#### List: `list`
-Lists out all the exercises that the user has keyed in
-
-Format: `list`
-
-#### Find exercises: `find`
-Finds exercises whose name contain any of the given keywords.
-
-Format: `find KEYWORD`
-- The search is case-insensitive. e.g Squats will match squats.
-
-Example:
-- find Push up
 
 ### Saving data
 

@@ -110,11 +110,11 @@ archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the a
 ---
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
+*Q*: How do I transfer my data to another Computer?<br>
+*A*: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
 
-**Q**: How to load my archived file?<br>
-**A**: For now, you can delete the `entry.txt` file in the `data` folder and rename the archived file of your choices to `entry.txt`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
+*Q*: How to load my archived file?<br>
+*A*: For now, you can delete the `entry.txt` file in the `data` folder and rename the archived file of your choices to `entry.txt`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
 
 ---
 
@@ -122,9 +122,9 @@ archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the a
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]` <br> e.g. `add e/Push up d/10 at/14-09-2020 c/30` |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
-| **Update**   | `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​`<br> e.g.,`update 1 e/Push up d/30 at/09-07-2020 c/260`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Archive**   | `Archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
+| *Add*    | `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]` <br> e.g. `add e/Push up d/10 at/14-09-2020 c/30` |
+| *Delete* | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
+| *Update*   | `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​`<br> e.g.,`update 1 e/Push up d/30 at/09-07-2020 c/260`                                           |
+| *Find*  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| *List*   | `list`                                                                                                                                                                |
+| *Archive*   | `archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
