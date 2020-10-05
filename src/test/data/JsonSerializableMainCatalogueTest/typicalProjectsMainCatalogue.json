@@ -2,49 +2,49 @@
   "_comment": "MainCatalogue save file which contains the same Project values as in TypicalProjects#getTypicalMainCatalogue()",
   "projects" : [ {
     "projectName" : "Alice Pauline",
-    "phone" : "94351253",
+    "deadline": "21-03-2020 00:00:00",
     "email" : "alice@example.com",
     "projectDescription" : "123, Jurong West Ave 6, #08-111",
     "projectTagged" : [ "friends" ],
     "occupied" : [ "Write DG", "Write user stories" ]
   }, {
     "projectName" : "Benson Meier",
-    "phone" : "98765432",
+    "deadline": "21-03-2020 00:00:00",
     "email" : "johnd@example.com",
     "projectDescription" : "311, Clementi Ave 2, #02-25",
     "projectTagged" : [ "owesMoney", "friends" ],
     "occupied" : [ "Practice presentation" ]
   }, {
     "projectName" : "Carl Kurz",
-    "phone" : "95352563",
+    "deadline": "21-03-2020 00:00:00",
     "email" : "heinz@example.com",
     "projectDescription" : "wall street",
     "projectTagged" : [ ],
     "occupied" : [ "Read info pack" ]
   }, {
     "projectName" : "Daniel Meier",
-    "phone" : "87652533",
+    "deadline": "21-03-2020 00:00:00",
     "email" : "cornelia@example.com",
     "projectDescription" : "10th street",
     "projectTagged" : [ "friends" ],
     "occupied" : [ ]
   }, {
     "projectName" : "Elle Meyer",
-    "phone" : "9482224",
+    "deadline":"21-03-2020 00:00:00",
     "email" : "werner@example.com",
     "projectDescription" : "michegan ave",
     "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
     "projectName" : "Fiona Kunz",
-    "phone" : "9482427",
+    "deadline": "21-03-2020 00:00:00",
     "email" : "lydia@example.com",
     "projectDescription" : "little tokyo",
     "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
     "projectName" : "George Best",
-    "phone" : "9482442",
+    "deadline": "21-03-2020 00:00:00",
     "email" : "anna@example.com",
     "projectDescription" : "4th street",
     "projectTagged" : [ ],

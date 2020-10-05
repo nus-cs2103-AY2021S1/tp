@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Email;
-import seedu.address.model.project.Phone;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 
 public class JsonAdaptedProjectTest {
     private static final String INVALID_PROJECT_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_DEADLINE = "29022020000000";
     private static final String INVALID_PROJECT_DESCRIPTION = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_PROJECT_TAG = "#friend";
 
     private static final String VALID_PROJECT_NAME = BENSON.getProjectName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_PROJECT_DESCRIPTION = BENSON.getProjectDescription().toString();
     private static final List<JsonAdaptedTag> VALID_PROJECT_TAGS = BENSON.getProjectTags().stream()
@@ -44,7 +44,7 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_invalidProjectName_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(INVALID_PROJECT_NAME, VALID_PHONE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
+                new JsonAdaptedProject(INVALID_PROJECT_NAME, VALID_DEADLINE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
                     VALID_PROJECT_TAGS, VALID_TASKS);
         String expectedMessage = ProjectName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
@@ -52,18 +52,19 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_nullProjectName_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_PHONE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
+        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_DEADLINE, VALID_EMAIL,
+            VALID_PROJECT_DESCRIPTION,
             VALID_PROJECT_TAGS, VALID_TASKS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
-    public void toModelType_invalidPhone_throwsIllegalValueException() {
+    public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_PROJECT_NAME, INVALID_PHONE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
+                new JsonAdaptedProject(VALID_PROJECT_NAME, INVALID_DEADLINE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
                     VALID_PROJECT_TAGS, VALID_TASKS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
@@ -72,14 +73,14 @@ public class JsonAdaptedProjectTest {
         JsonAdaptedProject project = new JsonAdaptedProject(VALID_PROJECT_NAME, null, VALID_EMAIL,
             VALID_PROJECT_DESCRIPTION,
             VALID_PROJECT_TAGS, VALID_TASKS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_PHONE, INVALID_EMAIL, VALID_PROJECT_DESCRIPTION,
+                new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_DEADLINE, INVALID_EMAIL, VALID_PROJECT_DESCRIPTION,
                     VALID_PROJECT_TAGS, VALID_TASKS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
@@ -87,7 +88,7 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_PHONE, null,
+        JsonAdaptedProject project = new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_DEADLINE, null,
             VALID_PROJECT_DESCRIPTION,
             VALID_PROJECT_TAGS, VALID_TASKS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
@@ -97,7 +98,7 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_invalidProjectDescription_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_PHONE, VALID_EMAIL, INVALID_PROJECT_DESCRIPTION,
+            new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_DEADLINE, VALID_EMAIL, INVALID_PROJECT_DESCRIPTION,
                     VALID_PROJECT_TAGS, VALID_TASKS);
         String expectedMessage = ProjectDescription.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
@@ -105,7 +106,7 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_nullProjectDescription_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_PHONE, VALID_EMAIL, null,
+        JsonAdaptedProject project = new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_DEADLINE, VALID_EMAIL, null,
             VALID_PROJECT_TAGS, VALID_TASKS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectDescription.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
@@ -116,7 +117,7 @@ public class JsonAdaptedProjectTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_PROJECT_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_PROJECT_TAG));
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_PHONE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
+                new JsonAdaptedProject(VALID_PROJECT_NAME, VALID_DEADLINE, VALID_EMAIL, VALID_PROJECT_DESCRIPTION,
                         invalidTags, new ArrayList<>());
         assertThrows(IllegalValueException.class, project::toModelType);
     }

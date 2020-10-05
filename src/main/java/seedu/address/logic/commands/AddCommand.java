@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
@@ -22,14 +22,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the main catalogue. "
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
             + "[" + PREFIX_PROJECT_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_DEADLINE + "29-02-2020 00:00:00"
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PROJECT_DESCRIPTION + "311, Clementi Ave 2, #02-25 "
             + PREFIX_PROJECT_TAG + "friends "

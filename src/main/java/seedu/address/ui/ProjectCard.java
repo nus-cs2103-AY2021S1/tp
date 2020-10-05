@@ -35,7 +35,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label deadline;
     @FXML
     private Label projectDescription;
     @FXML
@@ -54,7 +54,7 @@ public class ProjectCard extends UiPart<Region> {
         this.status = status;
         id.setText(displayedIndex + ". ");
         projectName.setText(project.getProjectName().fullProjectName);
-        phone.setText(project.getPhone().value);
+        deadline.setText(project.getDeadline().value);
         project.getProjectTags().stream()
                 .sorted(Comparator.comparing(projectTag -> projectTag.projectTagName))
                 .forEach(projectTag -> this.projectTags.getChildren()
