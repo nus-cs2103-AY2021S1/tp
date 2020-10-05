@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,17 +24,21 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final List<Suspect> suspects = new ArrayList<>();
+    private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, List<Suspect> suspects,
+                  List<Victim> victims, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, suspects, victims, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.suspects.addAll(suspects);
+        this.victims.addAll(victims);
         this.tags.addAll(tags);
     }
 
@@ -50,6 +56,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public List<Suspect> getSuspects() {
+        return suspects;
+    }
+
+    public List<Victim> getVictims() {
+        return victims;
     }
 
     /**
@@ -93,13 +107,15 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getSuspects().equals(getSuspects())
+                && otherPerson.getVictims().equals(getVictims())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, suspects, victims, tags);
     }
 
     @Override
@@ -112,6 +128,10 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Suspects: ")
+                .append(getSuspects())
+                .append(" Victims: ")
+                .append(getVictims())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
