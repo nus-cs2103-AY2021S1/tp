@@ -1,0 +1,28 @@
+package seedu.address.model.budget;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Amount;
+
+class BudgetTest {
+
+    @Test
+    void topupBudget() {
+        Amount amount = new Amount("1");
+        Budget budget = new Budget();
+        budget.topupBudget(amount);
+        assertEquals(budget.getAmount(), amount);
+    }
+
+    @Test
+    void getAmount() {
+        Amount defaultAmount = new Amount("0");
+        Budget budget = new Budget();
+        assertEquals(budget.getAmount(), defaultAmount);
+
+        budget.topupBudget(new Amount("1"));
+        assertEquals(budget.getAmount(), new Amount("1"));
+    }
+}
