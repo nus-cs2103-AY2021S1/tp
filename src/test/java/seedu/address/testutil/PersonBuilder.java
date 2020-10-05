@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -21,11 +22,13 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_DESCRIPTION = "";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
+    private Description description;
     private Phone phone;
     private Email email;
     private Address address;
@@ -38,6 +41,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        description = new Description(DEFAULT_DESCRIPTION);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -51,6 +55,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        description = personToCopy.getDescription();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
@@ -64,6 +69,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Description} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 
@@ -116,7 +129,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, suspects, victims, tags);
+        return new Person(name, description, phone, email, address, suspects, victims, tags);
     }
 
 }
