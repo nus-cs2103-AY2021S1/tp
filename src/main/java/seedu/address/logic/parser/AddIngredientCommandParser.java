@@ -12,14 +12,12 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 //import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddIngredientCommand object
  */
 public class AddIngredientCommandParser implements Parser<AddIngredientCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddIngredientCommand
      * and returns an AddIngredientCommand object for execution.
@@ -34,8 +32,9 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIngredientCommand.MESSAGE_USAGE));
         }
 
-        IngredientString ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
-        String[] ingredientsToken = ingredientString.value.split(",");
+        String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+
+        String[] ingredientsToken = ingredientString.split(",");
         Ingredient[] ingredients = new Ingredient[ingredientsToken.length];
         for (int i = 0; i < ingredientsToken.length; i++) {
             ingredients[i] = new Ingredient(ingredientsToken[i].trim());

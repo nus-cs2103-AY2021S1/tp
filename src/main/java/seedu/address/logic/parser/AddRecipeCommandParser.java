@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.model.tag.Tag;
@@ -23,7 +22,6 @@ import seedu.address.model.recipe.Recipe;
  * Parses input arguments and creates a new AddRecipeCommand object
  */
 public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddRecipeCommand
      * and returns an AddRecipeCommand object for execution.
@@ -39,8 +37,9 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        IngredientString ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
-        String[] ingredientsToken = ingredientString.value.split(",");
+        String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+
+        String[] ingredientsToken = ingredientString.split(",");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsToken.length; i++) {
             ingredients.add(new Ingredient(ingredientsToken[i].trim()));

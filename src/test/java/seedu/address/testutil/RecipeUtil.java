@@ -42,9 +42,11 @@ public class RecipeUtil {
     public static String getEditRecipeDescriptorDetails(EditRecipeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getIngredientString()
-                .ifPresent(ingredientString -> sb.append(PREFIX_INGREDIENT)
-                        .append(ingredientString.value).append(" "));
+        descriptor.getIngredient()
+                .ifPresent(ingredients -> sb.append(PREFIX_INGREDIENT)
+                        .append(ingredients.stream()
+                                .map(item -> item.getValue())
+                                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a)).append(" "));
 
         return sb.toString();
     }

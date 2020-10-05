@@ -32,7 +32,6 @@ import static seedu.address.testutil.TypicalRecipes.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.model.tag.Tag;
@@ -118,7 +117,7 @@ public class AddRecipeCommandParserTest {
         // invalid ingredients
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_INGREDIENT_DESC
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, IngredientString.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ParserUtil.MESSAGE_CONSTRAINTS);
 
         // invalid email
         /*  assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB

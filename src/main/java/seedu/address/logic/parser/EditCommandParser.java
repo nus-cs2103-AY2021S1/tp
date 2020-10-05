@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,8 +51,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             editRecipeDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()) {
-            editRecipeDescriptor.setIngredientString(ParserUtil.parseIngredient(argMultimap
-                    .getValue(PREFIX_INGREDIENT).get()));
+            String ingredientString = ParserUtil.parseIngredient(argMultimap
+                    .getValue(PREFIX_INGREDIENT).get());
+
+            String[] ingredientsToken = ingredientString.split(",");
+            ArrayList<Ingredient> ingredients = new ArrayList<>();
+
+            for (int i = 0; i < ingredientsToken.length; i++) {
+                ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+            }
+            editRecipeDescriptor.setIngredient(ingredients);
         }
 
 

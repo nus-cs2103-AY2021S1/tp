@@ -28,8 +28,9 @@ import seedu.address.testutil.IngredientBuilder;
 public class AddIngredientCommandTest {
 
     @Test
-    public void cocanstructor_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(null));
+    public void constructor_nullRecipe_throwsNullPointerException() {
+        Ingredient[] nullIngredients = null;
+        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(nullIngredients));
     }
 
     @Test

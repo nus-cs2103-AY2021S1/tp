@@ -6,6 +6,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.AddRecipeCommandParser;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+
 public class IngredientTest {
 
     @Test
@@ -21,19 +25,13 @@ public class IngredientTest {
 
     @Test
     public void isValidIngredient() {
-        // null ingredients number
-        assertThrows(NullPointerException.class, () -> IngredientString.isValidIngredient(null));
-
         // invalid ingredients numbers
-        assertFalse(IngredientString.isValidIngredient("")); // empty string
-        //        assertFalse(IngredientString.isValidIngredient("91")); // less than 3 numbers
-        //        assertFalse(IngredientString.isValidIngredient("ingredients")); // non-numeric
-        //        assertFalse(IngredientString.isValidIngredient("9011p041")); // alphabets within digits
-        assertTrue(IngredientString.isValidIngredient("9312 1534")); // spaces within digits
+        assertFalse(ParserUtil.isValidIngredient("")); // empty string
+        assertTrue(ParserUtil.isValidIngredient("9312 1534")); // spaces within digits
 
         // valid ingredients numbers
-        assertTrue(IngredientString.isValidIngredient("911")); // exactly 3 numbers
-        assertTrue(IngredientString.isValidIngredient("93121534"));
-        assertTrue(IngredientString.isValidIngredient("124293842033123")); // long ingredients numbers
+        assertTrue(ParserUtil.isValidIngredient("911")); // exactly 3 numbers
+        assertTrue(ParserUtil.isValidIngredient("93121534"));
+        assertTrue(ParserUtil.isValidIngredient("124293842033123")); // long ingredients numbers
     }
 }

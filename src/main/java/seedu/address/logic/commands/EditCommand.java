@@ -21,7 +21,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.model.tag.Tag;
@@ -125,7 +124,6 @@ public class EditCommand extends Command {
     public static class EditRecipeDescriptor {
         private Name name;
         private ArrayList<Ingredient> ingredients;
-        private IngredientString ingredientString;
 
 
         public EditRecipeDescriptor() {}
@@ -158,16 +156,12 @@ public class EditCommand extends Command {
         public void setIngredient(ArrayList<Ingredient> ingredients) {
             this.ingredients = ingredients;
         }
-        public void setIngredientString(IngredientString ingredientString) {
-            this.ingredientString = ingredientString;
-        }
+
 
         public Optional<ArrayList<Ingredient>> getIngredient() {
             return Optional.ofNullable(ingredients);
         }
-        public Optional<IngredientString> getIngredientString() {
-            return Optional.ofNullable(ingredientString);
-        }
+
 
 
         @Override
