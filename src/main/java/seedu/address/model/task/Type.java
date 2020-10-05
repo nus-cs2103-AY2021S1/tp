@@ -12,10 +12,9 @@ public class Type {
     public static final String MESSAGE_CONSTRAINTS = "Type can only be one word or a phrase connected by \'-\'.";
 
     /*
-     * The first character of the type must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Type can only be one word or a phrase connected by '-'.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[\\w]*(-[\\w]*)?";
 
     public final String value;
 
