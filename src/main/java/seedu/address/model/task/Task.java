@@ -17,7 +17,7 @@ public class Task {
 
     // Identity fields
     private final Title title;
-    private final Phone phone;
+    private final DateTime dateTime;
     private final Description description;
 
     // Data fields
@@ -28,10 +28,10 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, phone, description, address, tags);
+    public Task(Title title, DateTime dateTime, Description description, Address address, Set<Tag> tags) {
+        requireAllNonNull(title, dateTime, description, address, tags);
         this.title = title;
-        this.phone = phone;
+        this.dateTime = dateTime;
         this.description = description;
         this.address = address;
         this.tags.addAll(tags);
@@ -41,10 +41,11 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags, Status status) {
-        requireAllNonNull(title, phone, description, address, tags);
+    public Task(Title title, DateTime dateTime, Description description, Address address, Set<Tag> tags,
+                Status status) {
+        requireAllNonNull(title, dateTime, description, address, tags);
         this.title = title;
-        this.phone = phone;
+        this.dateTime = dateTime;
         this.description = description;
         this.address = address;
         this.tags.addAll(tags);
@@ -55,8 +56,8 @@ public class Task {
         return title;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
     public Description getDescription() {
@@ -90,7 +91,8 @@ public class Task {
 
         return otherTask != null
                 && otherTask.getTitle().equals(getTitle())
-                && (otherTask.getPhone().equals(getPhone()) || otherTask.getDescription().equals(getDescription()));
+                && (otherTask.getDateTime().equals(getDateTime())
+                || otherTask.getDescription().equals(getDescription()));
     }
 
     /**
@@ -109,7 +111,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getPhone().equals(getPhone())
+                && otherTask.getDateTime().equals(getDateTime())
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getAddress().equals(getAddress())
                 && otherTask.getTags().equals(getTags())
@@ -119,15 +121,15 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, description, address, tags, status);
+        return Objects.hash(title, dateTime, description, address, tags, status);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Date: ")
+                .append(getDateTime())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Address: ")
