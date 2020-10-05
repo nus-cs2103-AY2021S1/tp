@@ -46,7 +46,7 @@ A contact can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science b/B01`
-* `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
+* `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/lecturer t/friend`
 
 ### Listing all contacts : `list`
 
