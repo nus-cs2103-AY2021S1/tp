@@ -16,7 +16,7 @@ public class Module {
     public static final String MESSAGE_CONSTRAINTS = "Modules can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the module must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -39,7 +39,7 @@ public class Module {
     }
 
     /**
-     * Returns true if a given string is a valid address.
+     * Returns true if a given string is a valid module.
      * @param test input moduleId to test
      * @return boolean that indicates if string is valid
      */

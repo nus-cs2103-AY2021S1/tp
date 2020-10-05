@@ -90,7 +90,7 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // to add module and tut group
+        // to add tut group
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
