@@ -1,5 +1,6 @@
 package tp.cap5buddy.modules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,21 @@ public class ModuleList {
         this.modules = modules;
     }
 
+    public ModuleList() {
+        this.modules = new ArrayList<>();
+    }
+
+    /**
+     * Retrieves the module matching the input module name from the list of modules.
+     *
+     * @param index Zero based index of the module.
+     * @return Module matching the input module name if it exists, null otherwise.
+     */
+    public Module getModuleByIndex(int index) {
+        Module module = this.modules.get(index);
+        return module;
+    }
+
     /**
      * Retrieves the module matching the input module name from the list of modules.
      *
@@ -34,6 +50,11 @@ public class ModuleList {
         }
         return null;
     }
+
+    public List<Module> getModules() {
+        return this.modules;
+    }
+
 
     /**
      * Adds a module.
@@ -75,11 +96,31 @@ public class ModuleList {
     }
 
     /**
+     * Deletes a module at the stated position starting from 1.
+     *
+     * @param position the position of the module to delete given by the user.
+     */
+    public void deleteModule(int position) {
+        modules.remove(position - 1);
+    }
+
+    /**
      * Returns the size of the list.
+     *
      * @return integer size.
      */
-    public int size() {
+    public int getListSize() {
         return this.modules.size();
+    }
+
+    /**
+     * Updates a module in the list of modules at the given index.
+     *
+     * @param index Zero based index of the module in the list of modules.
+     * @param module Updated module to replace the old module in the list of modules.
+     */
+    public void updateModule(int index, Module module) {
+        this.modules.set(index, module);
     }
 }
 

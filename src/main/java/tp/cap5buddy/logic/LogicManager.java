@@ -1,43 +1,52 @@
 package tp.cap5buddy.logic;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.commands.ResultCommand;
+import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.logic.parser.ParserManager;
 import tp.cap5buddy.logic.parser.exception.ParseException;
-import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
-
-
+import tp.cap5buddy.storage.StorageManager;
 
 
 /**
  * The brain of the program, handles parsing and commands.
  */
 public class LogicManager implements Logic {
-
-    private ModuleList modlist;
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    //private ModuleList modlist;
     private ParserManager pm;
+    private final StorageManager storage;
+    private final ModuleList moduleList;
 
     /**
      * Represents the constructor of the Manager.
      */
-    public LogicManager() {
-        this.modlist = new ModuleList(new ArrayList<Module>());
+    public LogicManager(StorageManager storage, ModuleList moduleList) {
+        //this.modlist = new ModuleList(new ArrayList<Module>());
         this.pm = new ParserManager();
+        this.storage = storage;
+        this.moduleList = moduleList;
     }
 
     /**
      * Returns the result container with all the relevant information.
+     *
      * @param userInput user input of user.
      * @return ResultCommand result container.
      * @throws ParseException invalid command.
      */
     @Override
-    public ResultCommand execute(String userInput) throws ParseException {
+    public ResultCommand execute(String userInput) throws ParseException, CommandException {
         Command command = pm.parse(userInput);
-        ResultCommand result = command.execute(modlist);
+        ResultCommand result = command.execute(moduleList);
+        try {
+            storage.saveModuleList(moduleList);
+        } catch (IOException ioe) {
+            System.out.println(ioe.getMessage());
+        }
         return result;
     }
 }

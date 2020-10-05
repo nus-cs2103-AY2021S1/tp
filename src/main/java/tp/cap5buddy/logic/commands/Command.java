@@ -1,5 +1,6 @@
 package tp.cap5buddy.logic.commands;
 
+import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.ModuleList;
 
 /**
@@ -12,7 +13,7 @@ public abstract class Command {
      *
      * @return ResultCommand object.
      */
-    public abstract ResultCommand execute(ModuleList modules);
+    public abstract ResultCommand execute(ModuleList modules) throws CommandException;
 
     /**
      * Indicates if the application session has ended.
