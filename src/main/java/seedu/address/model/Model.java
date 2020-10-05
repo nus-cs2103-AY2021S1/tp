@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.student.Student;
 
@@ -92,4 +93,5 @@ public interface Model {
      * The student must exist in the student list.
      */
     void markStudent(Student target, AttendanceType attendanceType);
+
 }
