@@ -1,14 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_BIDDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_PROPERTY_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_Calendar_Venue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_Calendar_Time;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_Calendar_Property_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_Calendar_Bidder_ID;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -36,20 +35,20 @@ public class CalendarAddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_Calendar_Property_ID, PREFIX_Calendar_Bidder_ID,
-                        PREFIX_Calendar_Venue, PREFIX_Calendar_Time);
+                ArgumentTokenizer.tokenize(args, PREFIX_CALENDAR_BIDDER_ID, PREFIX_CALENDAR_PROPERTY_ID,
+                        PREFIX_CALENDAR_VENUE, PREFIX_CALENDAR_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_Calendar_Property_ID, PREFIX_Calendar_Bidder_ID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CALENDAR_BIDDER_ID, PREFIX_CALENDAR_PROPERTY_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        CalendarVenue venue = ParserUtil.parseCalendarVenue(argMultimap.getValue(PREFIX_Calendar_Venue).get());
-        CalendarTime time = ParserUtil.parseCalendarTime(argMultimap.getValue(PREFIX_Calendar_Time).get());
+        CalendarVenue venue = ParserUtil.parseCalendarVenue(argMultimap.getValue(PREFIX_CALENDAR_VENUE).get());
+        CalendarTime time = ParserUtil.parseCalendarTime(argMultimap.getValue(PREFIX_CALENDAR_TIME).get());
         CalendarPropertyId propertyId =
-                ParserUtil.parseCalendarPropertyId(argMultimap.getValue(PREFIX_Calendar_Property_ID).get());
+                ParserUtil.parseCalendarPropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
         CalendarBidderId bidderId =
-                ParserUtil.parseCalendarBidderId(argMultimap.getValue(PREFIX_Calendar_Bidder_ID).get());
+                ParserUtil.parseCalendarBidderId(argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get());
 
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
