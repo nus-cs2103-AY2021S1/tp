@@ -24,7 +24,7 @@ public class TypicalExercises {
      * Returns an {@code AddressBook} with all the typical exercises.
      */
     // TODO: Add test method for addressbook for exercises
-    //    public static AddressBook getTypicalAddressBook() {
+    //    public static AddressBook getTypicalLogBook() {
     //        AddressBook ab = new AddressBook();
     //        for (Exercise exercise : getTypicalExercises()) {
     //            ab.addExercise(exercise);
