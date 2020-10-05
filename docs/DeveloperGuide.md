@@ -328,7 +328,7 @@ Use case ends.
 **MSS:**
 
 1. Team leader create a new team member profile.
-2. TMTS asks for the details of the team member such as projectName, phone number and email projectDescription.
+2. TMTS asks for the details of the team member such as projectName, deadline, email and projectDescription.
 3. Team leader keys in the details.
 4. TMTS stores the team member's profile into the data file.
 
@@ -353,7 +353,7 @@ Use case ends.
 1. Team leader chooses to edit a team member's profile.
 2. PTS asks for the projectName of the team member whose profile is to be edited.
 3. Team leader keys in the projectName of the team member.
-4. TMTS asks for the new information of team member such as projectName, phone number and email projectDescription.
+4. TMTS asks for the new information of team member such as projectName, deadline, email and projectDescription.
 5. Team leader keys in the details.
 6. TMTS stores the team member's profile into the data file.
 
