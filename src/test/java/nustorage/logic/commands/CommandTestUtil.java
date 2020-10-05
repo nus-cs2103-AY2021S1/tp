@@ -77,10 +77,13 @@ public class CommandTestUtil {
     public static final int QUANTITY_2 = 0;
     public static final int QUANTITY_3 = 17;
 
+    public static final int ID_1 = 12345789;
+    public static final int ID_2 = 92502649;
+    public static final int ID_3 = 57396892;
+
     public static final double AMOUNT_1 = 0.10;
     public static final double AMOUNT_2 = 17.17;
     public static final double AMOUNT_3 = 128.99;
-
 
     public static final LocalDate DATE_1 = LocalDate.of(2020, 10, 1);
     public static final LocalDate DATE_2 = LocalDate.of(2019, 1, 1);
