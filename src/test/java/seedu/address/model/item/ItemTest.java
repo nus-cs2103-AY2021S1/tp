@@ -1,19 +1,5 @@
 package seedu.address.model.item;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalItems.CHICKEN;
-import static seedu.address.testutil.TypicalItems.DUCK;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.ItemBuilder;
-
 public class ItemTest {
 
 //    @Test
