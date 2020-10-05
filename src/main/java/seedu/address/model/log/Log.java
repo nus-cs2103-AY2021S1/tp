@@ -53,7 +53,7 @@ public class Log {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns true if both logs of the same exercise have the same dateTime.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameLog(Log otherLog) {
@@ -63,13 +63,11 @@ public class Log {
 
         return otherLog != null
                 && otherLog.getExercise().equals(getExercise())
-                && (otherLog.getDateTime().equals(getDateTime())
-                || otherLog.getReps().equals(getReps())
-                || otherLog.getComment().equals(getComment()));
+                && (otherLog.getDateTime().equals(getDateTime()));
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both logs have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
