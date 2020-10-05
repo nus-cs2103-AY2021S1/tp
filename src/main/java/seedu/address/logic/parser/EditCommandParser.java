@@ -2,10 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +28,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG,
+                        PREFIX_MAX_QUANTITY);
 
         Index index;
 
@@ -52,6 +50,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editItemDescriptor.setSupplier(ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_MAX_QUANTITY).isPresent()) {
+            editItemDescriptor.setMaxQuantity(ParserUtil
+                .parseMaxQuantity(argMultimap.getValue(PREFIX_MAX_QUANTITY).get()));
+        }
 
         if (!editItemDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

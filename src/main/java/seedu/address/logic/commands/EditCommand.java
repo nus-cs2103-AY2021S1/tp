@@ -32,10 +32,11 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_QUANTITY + "PHONE] "
-            + "[" + PREFIX_SUPPLIER + "ADDRESS] "
+            + "[" + PREFIX_NAME + "ITEM_NAME] "
+            + "[" + PREFIX_QUANTITY + "QUANTITY] "
+            + "[" + PREFIX_SUPPLIER + "SUPPLIER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MAX_QUANTITY + "MAX_QUANTITY] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUANTITY + "21 ";
 
@@ -90,9 +91,9 @@ public class EditCommand extends Command {
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         Supplier updatedSupplier = editItemDescriptor.getSupplier().orElse(itemToEdit.getSupplier());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
-        Quantity maxQuantity = editItemDescriptor.getMaxQuantity().orElse(itemToEdit.getMaxQuantity());
+        Quantity updatedMaxQuantity = editItemDescriptor.getMaxQuantity().orElse(itemToEdit.getMaxQuantity());
 
-        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, maxQuantity);
+        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity);
     }
 
     @Override
@@ -191,7 +192,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<Quantity> getMaxQuantity() {
-            return Optional.ofNullable(quantity);
+            return Optional.ofNullable(maxQuantity);
         }
 
         @Override
