@@ -28,12 +28,12 @@ public class AddCommand extends Command {
             + "[" + PREFIX_PROJECT_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT_NAME + "John Doe "
+            + PREFIX_PROJECT_NAME + "The Blair project "
             + PREFIX_DEADLINE + "29-02-2020 00:00:00"
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_PROJECT_DESCRIPTION + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_PROJECT_TAG + "friends "
-            + PREFIX_PROJECT_TAG + "owesMoney"
+            + PREFIX_PROJECT_DESCRIPTION + "Coding in Greenwich "
+            + PREFIX_PROJECT_TAG + "challenging "
+            + PREFIX_PROJECT_TAG + "WFH"
             + PREFIX_TASK + "Write User Guide";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
