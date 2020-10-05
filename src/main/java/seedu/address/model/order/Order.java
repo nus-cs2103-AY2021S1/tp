@@ -78,9 +78,18 @@ public class Order implements Iterable<OrderItem> {
         }
     }
 
-    public void setOrderItems(Order replacement) {
+    public void setOrder(Order replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        requireAllNonNull(orderItems);
+        if (!orderItemsAreUnique(orderItems)) {
+            throw new DuplicateOrderItemException();
+        }
+
+        internalList.setAll(orderItems);
     }
 
     /**
