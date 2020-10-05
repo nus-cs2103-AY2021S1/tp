@@ -3,7 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.CS1231S_HW;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
@@ -72,8 +73,8 @@ public class AddressBookTest {
     @Test
     public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addAssignment(CS1231S_HW);
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(addressBook.hasAssignment(editedCs1231sHw));
     }
 

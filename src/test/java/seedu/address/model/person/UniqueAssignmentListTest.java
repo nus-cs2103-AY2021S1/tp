@@ -150,8 +150,8 @@ public class UniqueAssignmentListTest {
     @Test
     public void setAssignments_list_replacesOwnListWithProvidedList() {
         uniqueAssignmentList.add(HW);
-        List<Assignment> AssignmentList = Collections.singletonList(LAB);
-        uniqueAssignmentList.setAssignments(AssignmentList);
+        List<Assignment> assignmentList = Collections.singletonList(LAB);
+        uniqueAssignmentList.setAssignments(assignmentList);
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();
         expectedUniqueAssignmentList.add(LAB);
         assertEquals(expectedUniqueAssignmentList, uniqueAssignmentList);

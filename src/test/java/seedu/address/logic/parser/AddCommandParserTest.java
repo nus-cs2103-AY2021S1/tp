@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -16,7 +17,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -59,8 +59,8 @@ public class AddCommandParserTest {
                 + TAG_DESC_FRIEND, new AddCommand(expectedAssignment));
 
         // multiple tags - all accepted
-        Assignment expectedAssignmentMultipleTags = new AssignmentBuilder(LAB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Assignment expectedAssignmentMultipleTags = new AssignmentBuilder(LAB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
 
         assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedAssignmentMultipleTags));
