@@ -2,7 +2,7 @@
   "persons": [ {
     "description": "Expense with invalid name field: Ha!ns Mu@ster",
     "amount": "3.00",
-    "email": "hans@example.com",
+    "date": "04-10-2020",
     "address": "4th street"
   } ]
 }

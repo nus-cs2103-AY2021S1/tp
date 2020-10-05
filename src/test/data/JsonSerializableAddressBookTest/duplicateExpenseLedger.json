@@ -2,14 +2,14 @@
   "persons": [ {
     "description": "Lunch Bak Chor Mee",
     "amount": "3.00",
-    "email": "alice@example.com",
+    "date": "04-10-2020",
     "address": "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "tagged": [ "friends" ]
   }, {
     "description": "Lunch Bak Chor Mee",
     "amount": "3.00",
-    "email": "pauline@example.com",
+    "date": "05-10-2020",
     "address": "4th street",
     "remark" : ""
   } ]
