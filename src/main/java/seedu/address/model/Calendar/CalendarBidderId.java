@@ -1,13 +1,13 @@
-package seedu.address.model;
+package seedu.address.model.Calendar;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a propertyId in the address book to be used in calendar.
- * Guarantees: immutable; is valid as declared in {@link #isValidPropertyId(String)}
+ * Represents a bidderId in the address book to be used in calendar.
+ * Guarantees: immutable; is valid as declared in {@link #isValidBidderId(String)}
  */
-public class CalendarPropertyId {
+public class CalendarBidderId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,41 +18,41 @@ public class CalendarPropertyId {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String propertyId;
+    public final String bidderId;
 
     /**
-     * Constructs a {@code CalendarPropertyId}.
+     * Constructs a {@code CalendarBidderId}.
      *
      * @param name A valid name.
      */
-    public CalendarPropertyId(String name) {
+    public CalendarBidderId(String name) {
         requireNonNull(name);
-        checkArgument(isValidPropertyId(name), MESSAGE_CONSTRAINTS);
-        propertyId = name;
+        checkArgument(isValidBidderId(name), MESSAGE_CONSTRAINTS);
+        bidderId = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidPropertyId(String test) {
+    public static boolean isValidBidderId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return propertyId;
+        return bidderId;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.CalendarPropertyId // instanceof handles nulls
-                && propertyId.equals(((CalendarPropertyId) other).propertyId)); // state check
+                || (other instanceof CalendarBidderId // instanceof handles nulls
+                && bidderId.equals(((CalendarBidderId) other).bidderId)); // state check
     }
 
     @Override
     public int hashCode() {
-        return propertyId.hashCode();
+        return bidderId.hashCode();
     }
 }
