@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -65,6 +66,14 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void runImageTransfer_validCommandFormat_throwsNullException() throws NullPointerException {
+        Patient expectedPatient = new PatientBuilder(AMY).withTags()
+                                                         .withProfilePicture("f/data/stock_picture.png").build();
+        File profilePic = new File("data/stock_picture.png");
+        assertThrows(CommandException.class, () -> logic.runImageTransfer(expectedPatient, profilePic));
+    }
+
+    @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
@@ -101,6 +110,21 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientList().remove(0));
     }
 
+    @Test
+    public void getCliniCalFilePath_getFilePath_success() {
+        assertDoesNotThrow(() -> logic.getCliniCalFilePath());
+    }
+
+    @Test
+    public void getCliniCal_getFilePath_success() {
+        assertDoesNotThrow(() -> logic.getCliniCal());
+    }
+
+    @Test
+    public void getGuiSettings_getFilePath_success() {
+        assertDoesNotThrow(() -> logic.getGuiSettings());
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -121,14 +145,6 @@ public class LogicManagerTest {
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
-    }
-
-    /**
-     * Executes the command, confirms that a NullException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
-    private void assertNullException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, NullPointerException.class, expectedMessage);
     }
 
     /**

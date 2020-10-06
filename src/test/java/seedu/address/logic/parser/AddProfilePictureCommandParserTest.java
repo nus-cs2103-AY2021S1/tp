@@ -5,8 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROFILE_PICTU
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_PICTURE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
-import java.io.File;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddProfilePictureCommand;
@@ -17,7 +15,6 @@ public class AddProfilePictureCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProfilePictureCommand.MESSAGE_USAGE);
     private static final String INVALID_FILEPATH_DESC = "Test string";
     private AddProfilePictureCommandParser parser = new AddProfilePictureCommandParser();
-    private File profilePicture = new File("data/stock_picture.png");
 
     @Test
     public void parse_missingParts_failure() {
@@ -57,5 +54,11 @@ public class AddProfilePictureCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PROFILE_PICTURE_AMY, MESSAGE_INVALID_FORMAT);
     }
 
+    @Test
+    public void parse_invalidPictureFilePath_failure() {
+        // invalid photo with blank filepath
+        String invalidFilePath = "f/data/nonexistentfile.png";
+        assertParseFailure(parser, "1" + invalidFilePath, MESSAGE_INVALID_FORMAT);
+    }
 }
 
