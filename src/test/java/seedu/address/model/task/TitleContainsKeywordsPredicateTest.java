@@ -72,7 +72,7 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match dateTime, description and address, but does not match title
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("01-01-2020 12:00",
                 "alice,email.com", "Main", "Street"));
-        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDateTime("01-01-2020 12:Ad00")
+        assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").withAddress("Main Street").build()));
     }
 }
