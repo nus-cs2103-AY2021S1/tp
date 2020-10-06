@@ -19,30 +19,30 @@ public class Volume implements Quantity<Volume> {
     private static String UNIT_TEASPOON     = "tsp";
     private static String UNIT_TABLESPOON   = "tbsp";
 
-    private double value = 0;
-    private double ratio = 0;
+    private final double value;
+    private final double ratio;
 
     private Volume(double value, double ratio) {
-        this.value = value;
-        this.ratio = ratio;
-
         // see the comment in Mass.java for an explanation of this.
-        if (this.ratio == 1 || this.ratio == 0.001) {
-            if (this.value > 5000) {
-                this.ratio *= 1000;
-                this.value /= 1000;
+        if (ratio == 1 || ratio == 0.001) {
+            if (value > 5000) {
+                ratio *= 1000;
+                value /= 1000;
             }
         }
+
+        this.value = value;
+        this.ratio = ratio;
     }
 
     @Override
-    public Result<Volume> add(Quantity<Volume> qty) {
+    public Volume add(Quantity<Volume> qty) {
 
         assert qty instanceof Volume;
         var vol = (Volume) qty;
         var newval = this.value + (vol.value * vol.ratio);
 
-        return Result.of(new Volume(newval, this.ratio));
+        return new Volume(newval, this.ratio);
     }
 
     @Override
@@ -66,6 +66,13 @@ public class Volume implements Quantity<Volume> {
         return String.format("%.2f%s", this.value, unit);
     }
 
+    /**
+     * Returns representation of the volume.
+     *
+     * @param value the numerical value of the quantity
+     * @param unit  the unit string, eg. "l" or "cups"
+     * @return      the volume quantity, if the unit was valid.
+     */
     public static Result<Volume> of(double value, String unit) {
 
         double ratio = 1;
@@ -87,22 +94,52 @@ public class Volume implements Quantity<Volume> {
         return Result.of(new Volume(value, ratio));
     }
 
+    /**
+     * Returns a volume in millilitres
+     *
+     * @param value the number of millilitres
+     * @return      the quantity
+     */
     public static Volume millilitres(double value) {
         return new Volume(value, RATIO_MILLILITRE);
     }
 
+    /**
+     * Returns a volume in litres
+     *
+     * @param value the number of litres
+     * @return      the quantity
+     */
     public static Volume litres(double value) {
         return new Volume(value, RATIO_LITRE);
     }
 
+    /**
+     * Returns a volume in (metric) cups -- 250ml.
+     *
+     * @param value the number of (metric) cups
+     * @return      the quantity
+     */
     public static Volume cups(double value) {
         return new Volume(value, RATIO_CUP);
     }
 
+    /**
+     * Returns a volume in (metric) teaspoons -- 5ml
+     *
+     * @param value the number of (metric) teaspoons
+     * @return      the quantity
+     */
     public static Volume teaspoons(double value) {
         return new Volume(value, RATIO_TEASPOON);
     }
 
+    /**
+     * Returns a volume in (metric) tablespoons -- 15ml
+     *
+     * @param value the number of (metric) tablespoons
+     * @return      the quantity
+     */
     public static Volume tablespoons(double value) {
         return new Volume(value, RATIO_TABLESPOON);
     }

@@ -6,18 +6,18 @@ import chopchop.util.Result;
 
 public class Count implements Quantity<Count> {
 
-    private double value = 0;
+    private final double value;
 
     private Count(double value) {
         this.value = value;
     }
 
     @Override
-    public Result<Count> add(Quantity<Count> qty) {
+    public Count add(Quantity<Count> qty) {
 
         assert qty instanceof Count;
         var cnt = (Count) qty;
-        return Result.of(new Count(this.value + cnt.value));
+        return new Count(this.value + cnt.value);
     }
 
     @Override
@@ -25,6 +25,13 @@ public class Count implements Quantity<Count> {
         return String.format("%.2f", this.value);
     }
 
+    /**
+     * Returns representation of the count.
+     *
+     * @param value the numerical value of the quantity
+     * @param unit  the unit string, which should be empty.
+     * @return      the quantity, if the unit was valid.
+     */
     public static Result<Count> of(double value, String unit) {
         if (unit.isEmpty()) {
             return Result.of(new Count(value));
@@ -33,6 +40,12 @@ public class Count implements Quantity<Count> {
         }
     }
 
+    /**
+     * Returns a unitless count
+     *
+     * @param value the number of things
+     * @return      the quantity
+     */
     public static Count of(double value) {
         return new Count(value);
     }

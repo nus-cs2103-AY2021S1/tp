@@ -338,6 +338,15 @@ public class StringView {
     }
 
     /**
+     * Removes whitespace from both the beginning and the end of the string view. 'Whitespace' is
+     * determined by calling {@code Character::isWhitespace}.
+     */
+    public StringView trim() {
+        // there's a more efficient way, but i don't want to write dropWhileBack() right now.
+        return new StringView(this.toString().strip());
+    }
+
+    /**
      * Returns a new view containing {@code n} characters at the front which were previously dropped.
      * For example:
      * {@code
