@@ -18,10 +18,6 @@ public class Lesson extends Task {
         requireAllNonNull(name, deadline, moduleCode);
     }
 
-    public Deadline getDeadline() {
-        return super.getTime();
-    }
-
     /**
      * Returns true if both lessons of the same name and same time.
      */
@@ -32,7 +28,7 @@ public class Lesson extends Task {
 
         return otherLesson != null
                 && otherLesson.getName().equals(getName())
-                && (otherLesson.getDeadline().equals(getDeadline()));
+                && (otherLesson.getTime().equals(getTime()));
     }
 
     /**
@@ -51,14 +47,14 @@ public class Lesson extends Task {
 
         Lesson otherLesson = (Lesson) other;
         return otherLesson.getName().equals(getName())
-                && otherLesson.getDeadline().equals(getDeadline())
+                && otherLesson.getTime().equals(getTime())
                 && otherLesson.getModuleCode().equals(getModuleCode());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(super.getName(), getDeadline(), super.getModuleCode());
+        return Objects.hash(super.getName(), getTime(), super.getModuleCode());
     }
 
     @Override
@@ -66,7 +62,7 @@ public class Lesson extends Task {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Time: ")
-                .append(getDeadline())
+                .append(getTime())
                 .append(" Module: ")
                 .append(getModuleCode());
         return builder.toString();

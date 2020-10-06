@@ -11,11 +11,11 @@ import seedu.address.model.lesson.Lesson;
 public class LessonBuilder {
 
     public static final String DEFAULT_NAME = "CS2103T Lecture";
-    public static final String DEFAULT_DEADLINE = "01-01-2020 1200";
+    public static final String DEFAULT_TIME = "01-01-2020 1200";
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
 
     private Name name;
-    private Deadline deadline;
+    private Deadline time;
     private ModuleCode moduleCode;
 
     /**
@@ -23,7 +23,7 @@ public class LessonBuilder {
      */
     public LessonBuilder() {
         name = new Name(DEFAULT_NAME);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        time = new Deadline(DEFAULT_TIME);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
     }
 
@@ -32,7 +32,7 @@ public class LessonBuilder {
      */
     public LessonBuilder(Lesson lessonToCopy) {
         name = lessonToCopy.getName();
-        deadline = lessonToCopy.getDeadline();
+        time = lessonToCopy.getTime();
         moduleCode = lessonToCopy.getModuleCode();
     }
 
@@ -47,8 +47,8 @@ public class LessonBuilder {
     /**
      * Sets the {@code Time} of the {@code Lesson} that we are building.
      */
-    public LessonBuilder withDeadline(String time) {
-        this.deadline = new Deadline(time);
+    public LessonBuilder withTime(String time) {
+        this.time = new Deadline(time);
         return this;
     }
 
@@ -61,6 +61,6 @@ public class LessonBuilder {
     }
 
     public Lesson build() {
-        return new Lesson(name, deadline, moduleCode);
+        return new Lesson(name, time, moduleCode);
     }
 }

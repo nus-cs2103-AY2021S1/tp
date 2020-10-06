@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLessons.LECTURE;
-import static seedu.address.testutil.TypicalLessons.VALID_DEADLINE;
 import static seedu.address.testutil.TypicalLessons.VALID_MODULE_CODE;
 import static seedu.address.testutil.TypicalLessons.VALID_NAME;
+import static seedu.address.testutil.TypicalLessons.VALID_TIME;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class UniqueLessonListTest {
     @Test
     public void contains_lessonWithDifferentIdentity_returnsFalse() {
         uniqueLessonList.add(LECTURE);
-        Lesson editedLecture = new LessonBuilder(LECTURE).withName(VALID_NAME).withDeadline(VALID_DEADLINE)
+        Lesson editedLecture = new LessonBuilder(LECTURE).withName(VALID_NAME).withTime(VALID_TIME)
                 .withModuleCode(VALID_MODULE_CODE).build();
         assertFalse(uniqueLessonList.contains(editedLecture));
     }
