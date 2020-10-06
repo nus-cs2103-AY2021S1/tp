@@ -46,7 +46,7 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.title).append(" "));
-        descriptor.getDateTime().ifPresent(date -> sb.append(PREFIX_DATE_TIME).append(date.value).append(" "));
+        descriptor.getDateTime().ifPresent(dateTime -> sb.append(PREFIX_DATE_TIME).append(dateTime.value).append(" "));
         descriptor.getDescription().ifPresent(desc -> sb.append(PREFIX_DESCRIPTION).append(desc.value).append(" "));
         descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.value).append(" "));
         if (descriptor.getTags().isPresent()) {
