@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class ReeveTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        List<Student> newStudents = Arrays.asList(AMY, editedAlice);
         ReeveStub newData = new ReeveStub(newStudents);
 
         assertThrows(DuplicateStudentException.class, () -> reeve.resetData(newData));
@@ -61,19 +61,19 @@ public class ReeveTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(reeve.hasPerson(ALICE));
+        assertFalse(reeve.hasPerson(AMY));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        reeve.addPerson(ALICE);
-        assertTrue(reeve.hasPerson(ALICE));
+        reeve.addPerson(AMY);
+        assertTrue(reeve.hasPerson(AMY));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        reeve.addPerson(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        reeve.addPerson(AMY);
+        Student editedAlice = new StudentBuilder(AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(reeve.hasPerson(editedAlice));
     }

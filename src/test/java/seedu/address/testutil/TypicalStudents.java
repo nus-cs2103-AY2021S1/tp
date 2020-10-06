@@ -1,16 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,20 +7,28 @@ import java.util.List;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.Student;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR;
+
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalStudents {
 
-    public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withPhone("94351253")
-            .withSchool("NUS High School")
-            .withYear("Year 6")
+    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withSchool(VALID_SCHOOL_AMY)
+            .withYear(VALID_YEAR)
             .build();
-    public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withPhone("98765432")
-            .withSchool("NUS High School")
-            .withYear("Year 6")
+    public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withSchool(VALID_SCHOOL_BOB)
+            .withYear(VALID_YEAR)
             .build();
 
     // Manually added
@@ -70,6 +67,6 @@ public class TypicalStudents {
     }
 
     public static List<Student> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON));
+        return new ArrayList<>(Arrays.asList(AMY, BOB));
     }
 }

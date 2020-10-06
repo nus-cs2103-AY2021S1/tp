@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.HOON;
 import static seedu.address.testutil.TypicalStudents.IDA;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -73,7 +73,7 @@ public class JsonReeveStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.removePerson(AMY);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new Reeve(readBack));

@@ -11,5 +11,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_SCHOOL = new Prefix("s/");
+    public static final Prefix PREFIX_YEAR = new Prefix("y/");
+
+    public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
+            PREFIX_SCHOOL, PREFIX_YEAR};
 
 }

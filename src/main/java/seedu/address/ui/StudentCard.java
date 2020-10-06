@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -43,6 +45,8 @@ public class StudentCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     *
+     * TODO: Reimplement UI components.
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
@@ -50,11 +54,13 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
-        address.setText(student.getClassVenue().value);
-        email.setText(student.getMeetingLink().value);
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        /*
+         * address.setText("Placeholder for address");
+         * new HashSet<>(Set.of("Placeholder for details")).stream()
+                .sorted(Comparator.comparing(tag -> tag))
+                .forEach(tag -> tags.getChildren().add(new Label(tag)));
+         */
     }
 
     @Override
