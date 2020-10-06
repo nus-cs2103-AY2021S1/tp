@@ -36,7 +36,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
                         PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_TAG);
-      
         Index index;
 
         try {
