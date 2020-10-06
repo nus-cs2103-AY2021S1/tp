@@ -798,7 +798,7 @@ testers are expected to do more *exploratory* testing.
       
    1. Test case: `delete sn/1111111 sn/11111111`<br>
       Expected: Stock with the serial number 1111111 is deleted from the inventory. 
-      Duplicate serial number is ignored. Details of the deleted stock shown in the status message.
+      Duplicate serial number(s) is/are ignored. Details of the deleted stock shown in the status message.
       
    1. Test case: `delete sn/1111111 sn/22222222`<br>
       Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory. 
@@ -806,7 +806,8 @@ testers are expected to do more *exploratory* testing.
       
    1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
         Expected: Only the existing stock with the serial number 1111111 is deleted. 
-        Warenager will tell user that serial number `33333333` does not map to any stock.
+        Details of this deleted stock shown in the status message.  
+        Serial number `33333333` which does not belong to any stock will be shown in status message as well.
         
    1. Test case: `delete 1111111`<br>
       Expected: No stock deleted due to invalid format from missing sn/. 
