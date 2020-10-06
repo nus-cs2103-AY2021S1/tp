@@ -3,6 +3,10 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.admin.AdditionalDetails;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.ClassTime;
+import seedu.address.model.admin.ClassVenue;
 import seedu.address.model.student.*;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
@@ -15,24 +19,19 @@ public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_SCHOOL = "alice@gmail.com";
+    public static final String DEFAULT_SCHOOL = "NUS High School";
     public static final String DEFAULT_YEAR = "Year 4";
-    public static final String DEFAULT_CLASS_VENUE = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_CLASS_TIME = "1 1500 - 1700";
-    public static final String DEFAULT_ADDITIONAL_DETAILS = "She is quiet";
-    public static final String DEFAULT_SUBJECT = "Mathematics";
-    public static final String DEFAULT_MEETING_LINK = "www.zoom123.com";
+    public static final String DEFAULT_FEE = "$50/hr";
+    public static final String DEFAULT_LAST_PAID_DATE = "30-09-2020";
+    public static final String DEFAULT_CLASS_VENUE = "Blk 60 Kent Ridge Rd #20-223";
+    public static final String DEFAULT_CLASS_TIME = "1 1500-1700";//means Monday 3pm - 5pm
+    public static final String DEAFULT_ADDITIONAL_DETAILS = "He's lazy";
 
     private Name name;
     private Phone phone;
     public School school;
     public Year year;
-    private ClassVenue classVenue;
-    private ClassTime classTime;
-    private AdditionalDetails additionalDetails;
-    private MeetingLink meetingLink;
-    private Subject subject;
-    private Set<Tag> tags;
+    public Admin admin;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -42,12 +41,8 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         school = new School(DEFAULT_SCHOOL);
         year = new Year(DEFAULT_YEAR);
-        classTime = new ClassTime(DEFAULT_CLASS_TIME);
-        classVenue = new ClassVenue(DEFAULT_CLASS_VENUE);
-        additionalDetails = new AdditionalDetails(DEFAULT_ADDITIONAL_DETAILS);
-        meetingLink = new MeetingLink(DEFAULT_MEETING_LINK);
-        subject = new Subject(DEFAULT_SUBJECT);
-        tags = new HashSet<>();
+        admin = new Admin();
+        //have to add the admin object here
     }
 
     /**
@@ -58,12 +53,7 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         school = studentToCopy.getSchool();
         year = studentToCopy.getYear();
-        classTime = studentToCopy.getClassTime();
-        classVenue = studentToCopy.getClassVenue();
-        additionalDetails = studentToCopy.getAdditionalDetails();
-        meetingLink = studentToCopy.getMeetingLink();
-        subject = studentToCopy.getSubject();
-        tags = new HashSet<>(studentToCopy.getTags());
+        admin = studentToCopy.getAdmin();
     }
 
     /**
@@ -74,13 +64,6 @@ public class StudentBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
-     */
-    public StudentBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
 
     /**
      * Sets the {@code Phone} of the {@code Student} that we are building.
@@ -90,13 +73,6 @@ public class StudentBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code meetingLink} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withMeetingLink(String meetingLink) {
-        this.meetingLink = new MeetingLink(meetingLink);
-        return this;
-    }
 
     /**
      * Sets the {@code School} of the {@code Student} that we are building.
@@ -105,6 +81,8 @@ public class StudentBuilder {
         this.school = new School(school);
         return this;
     }
+
+
 
     /**
      * Sets the {@code Year} of the {@code Student} that we are building.
@@ -115,42 +93,31 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code classVenue} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withClassVenue(String classVenue) {
-        this.classVenue = new ClassVenue(classVenue);
-        return this;
-    }
-
-    /**
      * Sets the {@code ClassTime} of the {@code Student} that we are building.
      */
-    public StudentBuilder withClassTime(String classTime) {
-        this.classTime = new ClassTime(classTime);
-        return this;
-    }
-
-    /**
-     * Sets the {@code AdditionalDetails} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withAdditionalDetails(String additionalDetails) {
-        this.additionalDetails = new AdditionalDetails(additionalDetails);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Subject} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withSubject(String subject) {
-        this.subject = new Subject(subject);
-        return this;
-    }
-
+//    public StudentBuilder withClassTime(String classTime) {
+//        this.classTime = new ClassTime(classTime);
+//        return this;
+//    }
+//
+//    /**
+//     * Sets the {@code AdditionalDetails} of the {@code Student} that we are building.
+//     */
+//    public StudentBuilder withAdditionalDetails(String additionalDetails) {
+//        this.additionalDetails = new AdditionalDetails(additionalDetails);
+//        return this;
+//    }
+//
+//    /**
+//     * Sets the {@code Subject} of the {@code Student} that we are building.
+//     */
+//    public StudentBuilder withSubject(String subject) {
+//        this.subject = new Subject(subject);
+//        return this;
+//    }
 
     public Student build() {
-        return new Student(name, phone, school, year,
-                classVenue, classTime, additionalDetails,
-                meetingLink, subject, tags);
+        return new Student(name, phone, school, year, admin);
     }
 
 }
