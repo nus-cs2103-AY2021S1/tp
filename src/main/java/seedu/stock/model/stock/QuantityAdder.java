@@ -20,6 +20,7 @@ public class QuantityAdder {
 
     /**
      * Constructss a new quantity adder object.
+     *
      * @param valueToBeAdded The value to be added into a quantity object.
      */
     public QuantityAdder(String valueToBeAdded) {
@@ -30,6 +31,7 @@ public class QuantityAdder {
 
     /**
      * Tests whether {@code test} is valid.
+     *
      * @param test The input to be tested.
      * @return A boolean value indicating if the test passes.
      */
@@ -56,6 +58,7 @@ public class QuantityAdder {
 
     /**
      * Returns the incremented or decremented quantity.
+     *
      * @param toBeAddedInto The quantity to be added.
      * @return The quantity result after being incremented.
      */

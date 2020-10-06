@@ -25,6 +25,9 @@ import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
+/**
+ * Updates an existing stock in the stock book.
+ */
 public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
@@ -59,6 +62,7 @@ public class UpdateCommand extends Command {
 
     /**
      * Constructs a new update command.
+     *
      * @param updateStockDescriptor Details to be updated.
      */
     public UpdateCommand(UpdateStockDescriptor updateStockDescriptor) {
@@ -69,6 +73,7 @@ public class UpdateCommand extends Command {
 
     /**
      * Executes the update command and returns the result.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return The result of successful execution.
      * @throws CommandException If there are any errors.
@@ -136,6 +141,7 @@ public class UpdateCommand extends Command {
 
     /**
      * Creates the stock with updated attributes.
+     *
      * @param stockToUpdate The stock in the list to be updated.
      * @param updateStockDescriptor The collection of values to be updated.
      * @return The stock with updated attributes.
@@ -193,6 +199,7 @@ public class UpdateCommand extends Command {
 
         /**
          * Copy constructor.
+         *
          * @param toCopy Object to be copied.
          */
         public UpdateStockDescriptor(UpdateStockDescriptor toCopy) {
@@ -206,6 +213,7 @@ public class UpdateCommand extends Command {
 
         /**
          * Checks if any updates exists.
+         *
          * @return A boolean value indicating if an update exists.
          */
         public boolean isAnyFieldEdited() {

@@ -19,10 +19,14 @@ import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
 
+/**
+ * Parses user input and creates a new update command.
+ */
 public class UpdateCommandParser implements Parser<UpdateCommand> {
 
     /**
      * Parses {@code args} into an update command.
+     *
      * @param args The user input to be parsed.
      * @return A new update command.
      * @throws ParseException If a parsing error occurs.
@@ -41,7 +45,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 
-        //If both increment and new quantity prefix provided
+        // If both increment and new quantity prefix provided
         if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
                 && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
             throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES);

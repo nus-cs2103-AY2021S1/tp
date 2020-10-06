@@ -125,6 +125,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code valueToBeAdded} into a {@code QuantityAdder}.
+     *
      * @param valueToBeAdded The value to be added into a certain quantity.
      * @return A new quantity adder containing the value to be added.
      * @throws ParseException If there are parsing errors.
