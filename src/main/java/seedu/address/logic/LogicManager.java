@@ -67,8 +67,8 @@ public class LogicManager implements Logic {
     public CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException,
                                                                                    IllegalValueException {
         int patientIndex = 1;
-        ObservableList<Patient> listOfPersons = model.getFilteredPatientList();
-        for (Patient thisPatient: listOfPersons) {
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        for (Patient thisPatient: listOfPatients) {
             Name thisPatientName = thisPatient.getName();
             Name selectedPatientName = patient.getName();
             Phone thisPatientPhone = thisPatient.getPhone();

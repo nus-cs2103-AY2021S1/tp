@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Patient[] getSamplePatients() {
-        ProfilePicture profilePicture = new ProfilePicture("data/empty_profile_picture.png");
+        ProfilePicture profilePicture = new ProfilePicture("data/stock_picture.png");
 
         return new Patient[] {
             new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
