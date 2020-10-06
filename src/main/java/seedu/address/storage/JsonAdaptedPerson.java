@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -18,6 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,9 +34,11 @@ class JsonAdaptedPerson {
     private final String email;
     private final String status;
     private final String address;
+    private final List<JsonAdaptedDocument> documents = new ArrayList<>();
     private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
     private final List<JsonAdaptedVictim> victims = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedWitness> witnesses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,23 +46,31 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
+            @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("address") String address,
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
             @JsonProperty("victims") List<JsonAdaptedVictim> victims,
+            @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.status = status;
         this.address = address;
+        if (documents != null) {
+            this.documents.addAll(documents);
+        }
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
+        if (witnesses != null) {
+            this.witnesses.addAll(witnesses);
+        }
         if (suspects != null) {
             this.suspects.addAll(suspects);
-            if (victims != null) {
-                this.victims.addAll(victims);
-            }
-            if (tagged != null) {
-                this.tagged.addAll(tagged);
-            }
+        }
+        if (victims != null) {
+            this.victims.addAll(victims);
         }
     }
 
@@ -66,14 +78,20 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().alphaNum;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         status = source.getStatus().name();
         address = source.getAddress().value;
+        documents.addAll(source.getDocuments().stream()
+                .map(JsonAdaptedDocument::new)
+                .collect(Collectors.toList()));
         suspects.addAll(source.getSuspects().stream().map(JsonAdaptedSuspect::new).collect(Collectors.toList()));
         victims.addAll(source.getVictims().stream()
                 .map(JsonAdaptedVictim::new)
+                .collect(Collectors.toList()));
+        witnesses.addAll(source.getWitnesses().stream()
+                .map(JsonAdaptedWitness::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -143,8 +161,18 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelAddress,
-                modelSuspects, modelVictims, modelTags);
+        final List<Witness> modelWitnesses = new ArrayList<>();
+        for (JsonAdaptedWitness witness : witnesses) {
+            modelWitnesses.add(witness.toModelType());
+        }
+
+        final List<Document> modelDocument = new ArrayList<>();
+        for (JsonAdaptedDocument document : documents) {
+            modelDocument.add(document.toModelType());
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
+                modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }
 

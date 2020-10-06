@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,12 +106,14 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        List<Document> updatedDocuments = editPersonDescriptor.getDocuments().orElse(personToEdit.getDocuments());
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedAddress, updatedSuspects,
-                updatedVictims, updatedTags);
+        List<Witness> updatedWitnesses =
+                editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
+                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
     @Override
@@ -140,9 +144,11 @@ public class EditCommand extends Command {
         private Email email;
         private Status status;
         private Address address;
+        private List<Document> documents;
         private List<Suspect> suspects;
         private List<Victim> victims;
         private Set<Tag> tags;
+        private ArrayList<Witness> witnesses;
 
         public EditPersonDescriptor() {}
 
@@ -156,9 +162,12 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setStatus(toCopy.status);
             setAddress(toCopy.address);
+            setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
             setVictims(toCopy.victims);
+            setWitnesses(toCopy.witnesses);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -208,6 +217,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setDocuments(List<Document> documents) {
+            this.documents = documents;
+        }
+
+        public Optional<List<Document>> getDocuments() {
+            return (documents != null) ? Optional.of(documents) : Optional.empty();
+        }
+
         /**
          * Sets {@code suspects} to this object's {@code suspects}.
          * A defensive copy of {@code suspects} is used internally.
@@ -236,6 +253,22 @@ public class EditCommand extends Command {
          */
         public Optional<List<Victim>> getVictims() {
             return (victims != null) ? Optional.of(victims) : Optional.empty();
+        }
+
+
+        /**
+         * Sets {@code witnesses} to this object's {@code witnesses}.
+         * A defensive copy of {@code witnesses} is used internally.
+         */
+        public void setWitnesses(ArrayList<Witness> witnesses) {
+            this.witnesses = (witnesses != null) ? new ArrayList<>(witnesses) : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code witnesses} is null.
+         */
+        public Optional<List<Witness>> getWitnesses() {
+            return (witnesses != null) ? Optional.of(witnesses) : Optional.empty();
         }
 
         /**
@@ -275,7 +308,9 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
                     && getAddress().equals(e.getAddress())
+                    && getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
+
     }
 }

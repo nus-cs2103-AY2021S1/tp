@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -23,6 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,12 +52,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("active"));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        List<Document> documents = new ArrayList<>();
         List<Suspect> suspects = new ArrayList<>();
         List<Victim> victims = new ArrayList<>();
+        List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, status, address, suspects, victims, tagList);
-
+        Person person = new Person(name, phone, email, status, documents, address,
+                                   suspects, victims, witnesses, tagList);
         return new AddCommand(person);
     }
 
