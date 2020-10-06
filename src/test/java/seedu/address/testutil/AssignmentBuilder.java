@@ -62,7 +62,7 @@ public class AssignmentBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Assignment} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Assignment} that we are building.
      */
     public AssignmentBuilder withModuleCode(String moduleCode) {
         this.moduleCode = new ModuleCode(moduleCode);

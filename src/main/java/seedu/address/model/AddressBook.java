@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// assignment-level operations
 
     /**
-     * Returns true if a assignment with the same identity as {@code assignment} exists in the address book.
+     * Returns true if an assignment with the same identity as {@code assignment} exists in the address book.
      */
     public boolean hasAssignment(Assignment assignment) {
         requireNonNull(assignment);
@@ -67,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a assignment to the address book.
+     * Adds an assignment to the address book.
      * The assignment must not already exist in the address book.
      */
     public void addAssignment(Assignment p) {
