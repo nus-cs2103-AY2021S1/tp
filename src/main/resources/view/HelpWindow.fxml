@@ -17,6 +17,18 @@
     <Scene>
          <VBox alignment="CENTER_LEFT">
             <children>
+                <Label fx:id="helpMethod" text="Label" >
+                    <VBox.margin>
+                        <Insets right="5.0" />
+                    </VBox.margin>
+                </Label>
+
+                <Label fx:id="helpMessage" text="Label" >
+                    <VBox.margin>
+                        <Insets right="5.0" />
+                    </VBox.margin>
+                </Label>
+
                 <Label fx:id="addMethod" text="Label" >
                     <VBox.margin>
                         <Insets right="1.0" />

@@ -16,11 +16,15 @@ import seedu.stock.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String ADD = "ADD \n---------------------------\n";
+    public static final String HELP = "HELP \n---------------------------\n";
+    public static final String ADD = "---------------------------\nADD \n---------------------------\n";
     public static final String DELETE = "---------------------------\nDELETE\n---------------------------\n";
     public static final String FIND = "---------------------------\nFIND\n---------------------------\n";
     public static final String UPDATE = "---------------------------\nUPDATE\n---------------------------\n";
     public static final String EXIT = "---------------------------\nEXIT\n---------------------------\n";
+
+    public static final String HELP_DESCRIPTION =
+            "format: \nhelp\n\n";
 
     public static final String ADD_DESCRIPTION =
             "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
@@ -78,6 +82,12 @@ public class HelpWindow extends UiPart<Stage> {
     private Label exitMessage;
 
     @FXML
+    private Label helpMethod;
+
+    @FXML
+    private Label helpMessage;
+
+    @FXML
     private Label url;
 
     @FXML
@@ -90,6 +100,12 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+
+        //Help Method
+        helpMethod.setText(HELP);
+        helpMethod.setStyle("-fx-font-size: 130%;");
+        helpMessage.setText(HELP_DESCRIPTION);
+
         //Add Method
         addMethod.setText(ADD);
         addMethod.setStyle("-fx-font-size: 130%;");
