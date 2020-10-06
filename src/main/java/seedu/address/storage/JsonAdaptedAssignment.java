@@ -20,6 +20,7 @@ class JsonAdaptedAssignment {
     private final String name;
     private final String deadline;
     private final String moduleCode;
+    private final boolean isReminded;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
@@ -30,6 +31,7 @@ class JsonAdaptedAssignment {
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
+        this.isReminded = false;
     }
 
     /**
@@ -39,6 +41,7 @@ class JsonAdaptedAssignment {
         name = source.getName().fullName;
         deadline = source.getDeadline().value;
         moduleCode = source.getModuleCode().moduleCode;
+        isReminded = source.getRemind().isReminded();
     }
 
     /**
@@ -72,7 +75,9 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
-        final Remind modelRemind = new Remind();
+
+        final Remind modelRemind = new Remind(isReminded);
+
         return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind);
     }
 

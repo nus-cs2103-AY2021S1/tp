@@ -14,6 +14,10 @@ public class Remind {
         this.isReminded = false;
     }
 
+    public Remind(boolean isReminded) {
+        this.isReminded = isReminded;
+    }
+
     /**
      * Sets remind tag to true.
      *
