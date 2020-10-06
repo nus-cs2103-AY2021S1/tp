@@ -11,7 +11,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.item.Item;
 
 
-
 /**
  * Panel containing the list of items.
  */
@@ -29,6 +28,15 @@ public class InventoryListPanel extends UiPart<Region> {
         super(FXML);
         itemListView.setItems(itemList);
         itemListView.setCellFactory(listView -> new ItemListViewCell());
+
+    }
+
+    public void changeToSimpleCell() {
+        itemListView.setCellFactory(listView -> new ItemListViewCell());
+    }
+
+    public void changeToDetailedCell() {
+        itemListView.setCellFactory(listView -> new ItemListViewDetailedCell());
     }
 
     /**
@@ -48,4 +56,21 @@ public class InventoryListPanel extends UiPart<Region> {
         }
     }
 
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code InventoryCard}.
+     */
+    class ItemListViewDetailedCell extends ListCell<Item> {
+        @Override
+        protected void updateItem(Item item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty || item == null || item.isDeleted()) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new InventoryDetailedCard(item, getIndex() + 1).getRoot());
+            }
+        }
+    }
 }
