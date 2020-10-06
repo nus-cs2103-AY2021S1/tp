@@ -6,15 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
-import seedu.address.model.student.AdditionalDetails;
-import seedu.address.model.student.ClassTime;
-import seedu.address.model.student.ClassVenue;
-import seedu.address.model.student.MeetingLink;
+import seedu.address.model.admin.AdditionalDetails;
+import seedu.address.model.admin.ClassTime;
+import seedu.address.model.admin.ClassVenue;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Subject;
 import seedu.address.model.student.Year;
 import seedu.address.model.tag.Tag;
 

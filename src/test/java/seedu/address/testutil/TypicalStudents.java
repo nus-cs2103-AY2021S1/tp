@@ -27,39 +27,21 @@ public class TypicalStudents {
             .withPhone("94351253")
             .withSchool("NUS High School")
             .withYear("Year 6")
-            .withClassVenue("123, Jurong West Ave 6, #08-111")
-            .withClassTime("1 1500 - 1700")
-            .withAdditionalDetails("She is quiet")
-            .withMeetingLink("www.zoom123.com")
-            .withSubject("Mathematics")
-            .withTags("friends").build();
+            .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withPhone("98765432")
             .withSchool("NUS High School")
             .withYear("Year 6")
-            .withClassVenue("311, Clementi Ave 2, #02-25")
-            .withClassTime("1 1500 - 1700")
-            .withAdditionalDetails("She is quiet")
-            .withMeetingLink("johnd@example.com")
-            .withSubject("Mathematics")
-            .withTags("owesMoney", "friends").build();
+            .build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
             .withSchool("NUS High School")
-            .withYear("Year 6")
-            .withClassVenue("little india")
-            .withClassTime("1 1500 - 1700")
-            .withAdditionalDetails("She is quiet")
-            .withMeetingLink("stefan@example.com")
-            .withSubject("Mathematics").build();
+            .withYear("Year 6").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
             .withSchool("NUS High School")
             .withYear("Year 6")
-            .withClassVenue("chicago ave")
-            .withClassTime("1 1500 - 1700")
-            .withAdditionalDetails("She is quiet")
-            .withMeetingLink("hans@example.com").withSubject("Mathematics").build();
+            .build();
 
 
     /* Commented out as this will be changed when testing the commands

@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.*;
-import seedu.address.model.student.ClassVenue;
+import seedu.address.model.admin.ClassVenue;
 import seedu.address.model.tag.Tag;
 
 /**
