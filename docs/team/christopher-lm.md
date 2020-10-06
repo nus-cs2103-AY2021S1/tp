@@ -1,13 +1,32 @@
----
-layout: page
-title: John Doe's Project Portfolio Page
----
-
-## Project: AddressBook Level 3
-
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+# Christopher Leo Mervyn- Project Portfolio
+___
+## Project: PropertyFree
 
 Given below are my contributions to the project.
+
+Overview:
+
+This document is a project portfolio that documents all contributions made to PropertyFree's development by Christopher.
+___
+
+## Description of Project:
+
+PropertyFree is a real estate management application meant for property agents to organize their properties and meetings more efficiently.
+Other application can keep track of meetings and schedules but there are relatively few applications that help track properties 
+and associate them with meetings with clients.
+
+For our project we hope to make it more streamlined for agents to keep track of their property and have clear information about those properties
+and there clients.
+___
+
+##Developers of PropertyFree:
+
+PropertyFree is developed by a group of second year Computer Science Students from the School of Computing, National
+University if Singapore. This was developed for the team projects assignment fro the module CS2103 and is a
+brown-field project adapting from existing projects.
+___
+
+## My Contributions to PropertyFree
 
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
