@@ -1,5 +1,6 @@
 package nustorage.model;
 
+
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -18,6 +19,7 @@ import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -31,6 +33,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<InventoryRecord> filteredInventory;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -71,11 +74,13 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
+
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -83,15 +88,18 @@ public class ModelManager implements Model {
         this.userPrefs.resetData(userPrefs);
     }
 
+
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
     }
 
+
     @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
     }
+
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
@@ -99,29 +107,22 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
     //=========== Inventory ================================================================================
+
 
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
     }
 
+
     public ObservableList<InventoryRecord> getFilteredInventory() {
         return filteredInventory;
     }
 
+
     /**
      * Applies a predicate to the Inventory and returns those that pass it.
+     *
      * @param predicate the predicate used to filter Inventory
      */
     public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
@@ -129,11 +130,19 @@ public class ModelManager implements Model {
         filteredInventory.setPredicate(predicate);
     }
 
+
+    @Override
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+
     @Override
     public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
         requireNonNull(inventoryRecord);
         return inventory.hasInventoryRecord(inventoryRecord);
     }
+
 
     @Override
     public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
@@ -142,33 +151,60 @@ public class ModelManager implements Model {
         inventory.setInventoryRecord(target, editedInventoryRecord);
     }
 
+
     //=========== FinanceAccount ================================================================================
+
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addRecord(newRecord);
     }
+
 
     @Override
     public List<FinanceRecord> viewFinanceRecords() {
         return financeAccount.getFinanceRecords();
     }
 
+
     @Override
     public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
         return financeAccount.removeRecord(targetIndex);
     }
 
+
+    @Override
+    public FinanceAccount getFinanceAccount() {
+        return financeAccount;
+    }
+
+
     //=========== AddressBook ================================================================================
+
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
+
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
+
+
+    @Override
+    public Path getAddressBookFilePath() {
+        return userPrefs.getAddressBookFilePath();
+    }
+
+
+    @Override
+    public void setAddressBookFilePath(Path addressBookFilePath) {
+        requireNonNull(addressBookFilePath);
+        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
 
     @Override
     public boolean hasPerson(Person person) {
@@ -176,16 +212,19 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
+
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -196,6 +235,7 @@ public class ModelManager implements Model {
 
     //=========== Filtered Person List Accessors =============================================================
 
+
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -204,6 +244,7 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {

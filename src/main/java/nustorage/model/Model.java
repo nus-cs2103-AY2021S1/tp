@@ -20,6 +20,9 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<InventoryRecord> PREDICATE_SHOW_ALL_INVENTORY = unused -> true;
 
+
+    // ---------- UserPrefs ----------
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -40,13 +43,8 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    void addFinanceRecord(FinanceRecord newRecord);
 
-    List<FinanceRecord> viewFinanceRecords();
-
-    Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
-
-    void addInventoryRecord(InventoryRecord inventoryRecord);
+    // ---------- AddressBook ----------
 
     /**
      * Returns the user prefs' address book file path.
@@ -90,6 +88,36 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Person> getFilteredPersonList();
+
+    ObservableList<InventoryRecord> getFilteredInventory();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+
+    // --------- Finance Account ---------
+
+    void addFinanceRecord(FinanceRecord newRecord);
+
+    List<FinanceRecord> viewFinanceRecords();
+
+    Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
+
+    FinanceAccount getFinanceAccount();
+
+
+
+    // --------- Inventory ---------
+
+    void addInventoryRecord(InventoryRecord inventoryRecord);
+
     /**
      * Replaces the given InventoryRecord {@code target} with {@code editedInventoryRecord}.
      * {@code target} must exist in the Inventory.
@@ -103,16 +131,8 @@ public interface Model {
      */
     boolean hasInventoryRecord(InventoryRecord inventoryRecord);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    ObservableList<InventoryRecord> getFilteredInventory();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
     void updateFilteredInventoryList(Predicate<InventoryRecord> predicate);
+
+    Inventory getInventory();
+
 }
