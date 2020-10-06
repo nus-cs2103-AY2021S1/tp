@@ -5,7 +5,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
@@ -45,9 +44,10 @@ public class UpdateCommand extends Command {
             + "Note that only one of " + PREFIX_INCREMENT_QUANTITY
             + "and " + PREFIX_NEW_QUANTITY
             + "can be specified. \n"
+            + "You may provide more than one serial number \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SERIALNUMBER + "CS2103 "
-            + PREFIX_QUANTITY + "2103 "
+            + PREFIX_INCREMENT_QUANTITY + "2103 "
             + PREFIX_NAME + "CS2103 "
             + PREFIX_SOURCE + "National University of Singapore "
             + PREFIX_LOCATION + "Group 3 ";
