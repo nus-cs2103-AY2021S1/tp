@@ -1,7 +1,7 @@
 {
   "animals": [ {
     "name": "Animal with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
+    "id": "9482424",
     "species": "4th street"
   } ]
 }

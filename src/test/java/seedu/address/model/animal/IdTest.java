@@ -14,27 +14,27 @@ public class IdTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new Id(invalidPhone));
+    public void constructor_invalidId_throwsIllegalArgumentException() {
+        String invalidId = "";
+        assertThrows(IllegalArgumentException.class, () -> new Id(invalidId));
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
+    public void isValidId() {
+        // null id number
         assertThrows(NullPointerException.class, () -> Id.isValidId(null));
 
-        // invalid phone numbers
+        // invalid id numbers
         assertFalse(Id.isValidId("")); // empty string
         assertFalse(Id.isValidId(" ")); // spaces only
         assertFalse(Id.isValidId("91")); // less than 3 numbers
-        assertFalse(Id.isValidId("phone")); // non-numeric
+        assertFalse(Id.isValidId("id")); // non-numeric
         assertFalse(Id.isValidId("9011p041")); // alphabets within digits
         assertFalse(Id.isValidId("9312 1534")); // spaces within digits
 
-        // valid phone numbers
+        // valid id numbers
         assertTrue(Id.isValidId("911")); // exactly 3 numbers
         assertTrue(Id.isValidId("93121534"));
-        assertTrue(Id.isValidId("124293842033123")); // long phone numbers
+        assertTrue(Id.isValidId("124293842033123")); // long id numbers
     }
 }
