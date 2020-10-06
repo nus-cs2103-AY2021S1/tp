@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.Collections;
@@ -20,11 +20,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 /**
  * Edits the details of an existing task in the address book.
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TYPE + "TYPE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -96,10 +96,10 @@ public class EditCommand extends Command {
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         Phone updatedPhone = editTaskDescriptor.getPhone().orElse(taskToEdit.getPhone());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Address updatedAddress = editTaskDescriptor.getAddress().orElse(taskToEdit.getAddress());
+        Type updatedType = editTaskDescriptor.getType().orElse(taskToEdit.getType());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedTitle, updatedPhone, updatedDescription, updatedAddress, updatedTags);
+        return new Task(updatedTitle, updatedPhone, updatedDescription, updatedType, updatedTags);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class EditCommand extends Command {
         private Title title;
         private Phone phone;
         private Description description;
-        private Address address;
+        private Type type;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
             setTitle(toCopy.title);
             setPhone(toCopy.phone);
             setDescription(toCopy.description);
-            setAddress(toCopy.address);
+            setType(toCopy.type);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, phone, description, address, tags);
+            return CollectionUtil.isAnyNonNull(title, phone, description, type, tags);
         }
 
         public void setTitle(Title title) {
@@ -176,12 +176,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setType(Type type) {
+            this.type = type;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Type> getType() {
+            return Optional.ofNullable(type);
         }
 
         /**
@@ -219,7 +219,7 @@ public class EditCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getPhone().equals(e.getPhone())
                     && getDescription().equals(e.getDescription())
-                    && getAddress().equals(e.getAddress())
+                    && getType().equals(e.getType())
                     && getTags().equals(e.getTags());
         }
     }

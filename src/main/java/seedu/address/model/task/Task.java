@@ -21,19 +21,19 @@ public class Task {
     private final Description description;
 
     // Data fields
-    private final Address address;
+    private final Type type;
     private final Set<Tag> tags = new HashSet<>();
     private final Status status;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags) {
-        requireAllNonNull(title, phone, description, address, tags);
+    public Task(Title title, Phone phone, Description description, Type type, Set<Tag> tags) {
+        requireAllNonNull(title, phone, description, type, tags);
         this.title = title;
         this.phone = phone;
         this.description = description;
-        this.address = address;
+        this.type = type;
         this.tags.addAll(tags);
         this.status = Status.defaultStatus();
     }
@@ -41,12 +41,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Phone phone, Description description, Address address, Set<Tag> tags, Status status) {
-        requireAllNonNull(title, phone, description, address, tags);
+    public Task(Title title, Phone phone, Description description, Type type, Set<Tag> tags, Status status) {
+        requireAllNonNull(title, phone, description, type, tags);
         this.title = title;
         this.phone = phone;
         this.description = description;
-        this.address = address;
+        this.type = type;
         this.tags.addAll(tags);
         this.status = status;
     }
@@ -63,8 +63,8 @@ public class Task {
         return description;
     }
 
-    public Address getAddress() {
-        return address;
+    public Type getType() {
+        return type;
     }
 
     /**
@@ -111,7 +111,7 @@ public class Task {
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getPhone().equals(getPhone())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getAddress().equals(getAddress())
+                && otherTask.getType().equals(getType())
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getStatus().equals(getStatus());
     }
@@ -119,7 +119,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, description, address, tags, status);
+        return Objects.hash(title, phone, description, type, tags, status);
     }
 
     @Override
@@ -130,8 +130,8 @@ public class Task {
                 .append(getPhone())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Type: ")
+                .append(getType())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append(" Status: ").append(getStatus());
