@@ -1,28 +1,26 @@
 package com.eva.model.person.staff.leave;
 
-import static com.eva.commons.util.AppUtil.checkArgument;
-import static com.eva.commons.util.DateUtil.DATE_TIME_FORMATTER;
-import static com.eva.commons.util.DateUtil.isValidDate;
+import static com.eva.commons.util.DateUtil.dateParsed;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
-
 /**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidLeaveDate(String)}
+ * Represents a Leave period in the address book.
+ * Guarantees: immutable; date is valid if it is made;
  */
 public class Leave {
 
     public static final String MESSAGE_CONSTRAINTS = "Leave date should be in the format dd/mm/yyyy";
-    private static final String SINGLE_DAY_LEAVE = "Leave taken on %s";
-    private static final String MULTIPLE_DAY_LEAVE = "Leave taken from %s to %s";
+    private static final String SINGLE_DAY_LEAVE = "Leave taken on %s for a total of %d days.";
+    private static final int SINGLE_LEAVE_LENGTH = 1;
+    private static final String MULTIPLE_DAY_LEAVE = "Leave taken from %s to %s for a total of %d days.";
 
-    private final LocalDate from;
-    private final LocalDate to;
-    private final Period period;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+    private final int leaveLength;
 
     /**
      * Constructs a {@code Leave}.
@@ -31,55 +29,49 @@ public class Leave {
      */
     public Leave(String date) {
         requireNonNull(date);
-        checkArgument(isValidLeaveDate(date), MESSAGE_CONSTRAINTS);
-        this.from = LocalDate.parse(date, DATE_TIME_FORMATTER);
-        this.to = from;
-        period = Period.ofDays(1);
+        this.startDate = dateParsed(date);
+        this.endDate = startDate;
+        leaveLength = SINGLE_LEAVE_LENGTH;
     }
 
     /**
      * Constructs a {@code Leave}.
      *
-     * @param from A valid leave start date.
-     * @param to   A valid leave end date.
+     * @param startDate A valid leave start date.
+     * @param endDate   A valid leave end date.
      */
-    public Leave(String from, String to) {
-        requireNonNull(from, to);
-        checkArgument(isValidLeaveDate(from), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidLeaveDate(to), MESSAGE_CONSTRAINTS);
-        this.from = LocalDate.parse(from, DATE_TIME_FORMATTER);
-        this.to = LocalDate.parse(to, DATE_TIME_FORMATTER);
-        period = Period.between(this.from, this.to);
+    public Leave(String startDate, String endDate) {
+        requireNonNull(startDate, endDate);
+        this.startDate = dateParsed(startDate);
+        this.endDate = dateParsed(endDate);
+        leaveLength = Period.between(this.startDate, this.endDate).getDays() + 1;
     }
 
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isValidLeaveDate(String test) {
-        return isValidDate(test);
+    public int getLeaveLength() {
+        return leaveLength;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Leave // instanceof handles nulls
-                && (to.equals(((Leave) other).to)
-                && from.equals(((Leave) other).from))); // state check
+                && (endDate.equals(((Leave) other).endDate)
+                && startDate.equals(((Leave) other).startDate))); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(to, from);
+        return Objects.hash(endDate, startDate);
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        if (from.equals(to)) {
-            return String.format(SINGLE_DAY_LEAVE, from);
+        if (startDate.equals(endDate)) {
+            return String.format(SINGLE_DAY_LEAVE, startDate, leaveLength);
         } else {
-            return String.format(MULTIPLE_DAY_LEAVE, from, to);
+            return String.format(MULTIPLE_DAY_LEAVE, startDate, endDate, leaveLength);
         }
     }
 }
