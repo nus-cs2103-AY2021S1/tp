@@ -1,6 +1,6 @@
 package seedu.address.model.budget;
 
-import seedu.address.model.person.Amount;
+import seedu.address.model.expense.Amount;
 
 /**
  * Represents a Budget in the ledger.

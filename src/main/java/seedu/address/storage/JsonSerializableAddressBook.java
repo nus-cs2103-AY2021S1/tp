@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.expense.Expense;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,18 +19,18 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EXPENSE = "Expenses list contains duplicate expense(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
     private final JsonAdaptedBudget budget;
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons and budget.
+     * Constructs a {@code JsonSerializableAddressBook} with the given expenses and budget.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableAddressBook(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
                                        @JsonProperty("budget") JsonAdaptedBudget budget) {
-        this.persons.addAll(persons);
+        this.expenses.addAll(expenses);
         this.budget = budget;
     }
 
@@ -40,7 +40,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
         budget = new JsonAdaptedBudget(source.getBudget());
     }
 
@@ -51,12 +51,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedExpense jsonAdaptedExpense : expenses) {
+            Expense expense = jsonAdaptedExpense.toModelType();
+            if (addressBook.hasExpense(expense)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EXPENSE);
             }
-            addressBook.addPerson(person);
+            addressBook.addExpense(expense);
         }
         addressBook.setBudget(budget.toModelType());
         return addressBook;

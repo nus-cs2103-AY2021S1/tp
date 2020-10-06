@@ -12,8 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.person.Amount;
-import seedu.address.model.person.Person;
+import seedu.address.model.expense.Amount;
+import seedu.address.model.expense.Expense;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Expense> filteredExpenses;
     private final Budget budget;
 
     /**
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredExpenses = new FilteredList<>(this.addressBook.getExpenseList());
         budget = this.addressBook.getBudget();
     }
 
@@ -93,27 +93,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasExpense(Expense expense) {
+        requireNonNull(expense);
+        return addressBook.hasExpense(expense);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteExpense(Expense target) {
+        addressBook.removeExpense(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addExpense(Expense expense) {
+        addressBook.addExpense(expense);
+        updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setExpense(Expense target, Expense editedExpense) {
+        requireAllNonNull(target, editedExpense);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setExpense(target, editedExpense);
     }
 
     @Override
@@ -126,21 +126,21 @@ public class ModelManager implements Model {
         budget.topupBudget(amount);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Expense List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Expense} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return filteredExpenses;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredExpenseList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredExpenses.setPredicate(predicate);
     }
 
     @Override
@@ -159,7 +159,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredExpenses.equals(other.filteredExpenses);
     }
 
 }
