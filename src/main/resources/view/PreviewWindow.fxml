@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <fx:root title="Help Summary" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
-         xmlns:fx="http://javafx.com/fxml/1" minWidth="800" minHeight="800">
+         xmlns:fx="http://javafx.com/fxml/1" minHeight="740" minWidth="1080">
     <scene>
         <Scene stylesheets="@DarkTheme.css">
             <VBox styleClass="popUpBox">
