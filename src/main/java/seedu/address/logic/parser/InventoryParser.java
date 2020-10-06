@@ -16,7 +16,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindItemCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -57,8 +57,8 @@ public class InventoryParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindItemCommand.COMMAND_WORD:
+            return new FindItemCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
