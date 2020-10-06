@@ -79,7 +79,7 @@ public class UniqueStockList implements Iterable<Stock> {
         }
     }
 
-    public void setPersons(UniqueStockList replacement) {
+    public void setStocks(UniqueStockList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +88,7 @@ public class UniqueStockList implements Iterable<Stock> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Stock> stocks) {
+    public void setStocks(List<Stock> stocks) {
         requireAllNonNull(stocks);
         if (!personsAreUnique(stocks)) {
             throw new DuplicateStockException();

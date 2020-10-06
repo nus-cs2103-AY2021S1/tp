@@ -10,7 +10,7 @@ import seedu.stock.model.stock.UniqueStockList;
 
 /**
  * Wraps all data at the stock-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStock comparison)
  */
 public class StockBook implements ReadOnlyStockBook {
 
@@ -30,7 +30,7 @@ public class StockBook implements ReadOnlyStockBook {
     public StockBook() {}
 
     /**
-     * Creates an StockBook using the Persons in the {@code toBeCopied}
+     * Creates an StockBook using the Stocks in the {@code toBeCopied}
      */
     public StockBook(ReadOnlyStockBook toBeCopied) {
         this();
@@ -44,7 +44,7 @@ public class StockBook implements ReadOnlyStockBook {
      * {@code stocks} must not contain duplicate stocks.
      */
     public void setStocks(List<Stock> stocks) {
-        this.stocks.setPersons(stocks);
+        this.stocks.setStocks(stocks);
     }
 
     /**

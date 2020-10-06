@@ -1,6 +1,7 @@
 package seedu.stock.model.stock;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Stock's source in the stock book.
@@ -30,13 +31,13 @@ public class Source {
     //    + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
     // Condition can be refined later.
     public static final String MESSAGE_CONSTRAINTS =
-            "Sources should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Locations can take any values, and it should not be blank";
 
     /*
      * The first character of the source must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 
@@ -47,6 +48,7 @@ public class Source {
      */
     public Source(String source) {
         requireNonNull(source);
+        checkArgument(isValidSource(source), MESSAGE_CONSTRAINTS);
         value = source;
     }
 
