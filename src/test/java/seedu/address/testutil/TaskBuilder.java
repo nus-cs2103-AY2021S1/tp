@@ -74,7 +74,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code date} of the {@code Task} that we are building.
+     * Sets the {@code dateTime} of the {@code Task} that we are building.
      */
     public TaskBuilder withDateTime(String dateTime) {
         this.dateTime = new DateTime(dateTime);
