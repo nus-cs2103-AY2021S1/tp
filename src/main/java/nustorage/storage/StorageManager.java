@@ -135,9 +135,9 @@ public class StorageManager implements Storage {
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException {
-        logger.fine("Attempting to write finance account to data file: " + filepath);
-        financeAccountStorage.saveFinanceAccount(financeAccount, filepath);
+    public void saveFinanceAccount(FinanceAccount financeAccount, Path filePath) throws IOException {
+        logger.fine("Attempting to write finance account to data file: " + filePath);
+        financeAccountStorage.saveFinanceAccount(financeAccount, filePath);
     }
 
 
@@ -170,9 +170,9 @@ public class StorageManager implements Storage {
 
 
     @Override
-    public void saveInventory(Inventory inventory, Path filepath) throws IOException {
-        logger.fine("Attempting to write finance account to data file: " + filepath);
-        inventoryStorage.saveInventory(inventory, filepath);
+    public void saveInventory(Inventory inventory, Path filePath) throws IOException {
+        logger.fine("Attempting to write finance account to data file: " + filePath);
+        inventoryStorage.saveInventory(inventory, filePath);
     }
 
 }
