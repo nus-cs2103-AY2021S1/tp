@@ -1,6 +1,6 @@
 {
-  "_comment": "Ledger save file which contains the same Expense values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
+  "_comment": "Ledger save file which contains the same Expense values as in TypicalExpenses#getTypicalAddressBook()",
+  "expenses" : [ {
     "description" : "Alice Pauline",
     "amount" : "24.00",
     "date": "04-10-2020",

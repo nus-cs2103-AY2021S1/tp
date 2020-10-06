@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Amount;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Description;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
+import seedu.address.model.expense.Amount;
+import seedu.address.model.expense.Date;
+import seedu.address.model.expense.Description;
+import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -50,9 +50,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         } else {
             date = new Date(); // creates a default Date object with date set as now.
         }
-        Person person = new Person(description, amount, date, remark, tagList);
+        Expense expense = new Expense(description, amount, date, remark, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(expense);
     }
 
     /**
