@@ -86,6 +86,8 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + ListCommandParser.TYPE_CASE)
                 instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + ListCommandParser.TYPE_CASE + " 3")
+                instanceof ListCommand);
     }
 
     @Test

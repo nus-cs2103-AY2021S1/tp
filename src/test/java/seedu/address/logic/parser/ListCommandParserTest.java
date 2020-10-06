@@ -23,7 +23,5 @@ public class ListCommandParserTest {
                 ListCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ListCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "case 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ListCommand.MESSAGE_USAGE));
     }
 }
