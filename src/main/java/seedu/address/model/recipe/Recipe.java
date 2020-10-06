@@ -1,8 +1,11 @@
 package seedu.address.model.recipe;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import seedu.address.model.commons.Calories;
 
 
 /**
@@ -13,16 +16,19 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
+
     // Data fields
     private final ArrayList<Ingredient> ingredients;
+    private final Calories calories;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, ArrayList<Ingredient> ingredients) {
-        requireAllNonNull(name, ingredients);
+    public Recipe(Name name, ArrayList<Ingredient> ingredients, Calories calories) {
+        requireAllNonNull(name, ingredients, calories);
         this.name = name;
         this.ingredients = ingredients;
+        this.calories = calories;
     }
 
     public Name getName() {
@@ -31,6 +37,10 @@ public class Recipe {
 
     public ArrayList<Ingredient> getIngredient() {
         return ingredients;
+    }
+
+    public Calories getCalories() {
+        return calories;
     }
 
     /**
@@ -44,7 +54,8 @@ public class Recipe {
 
         return otherRecipe != null
                 && otherRecipe.getName().equals(getName())
-                && (otherRecipe.getIngredient().equals(getIngredient()));
+                && (otherRecipe.getIngredient().equals(getIngredient()))
+                && otherRecipe.getCalories().equals(getCalories());
     }
 
     /**
@@ -63,13 +74,14 @@ public class Recipe {
 
         Recipe otherRecipe = (Recipe) other;
         return otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredient().equals(getIngredient());
+                && otherRecipe.getIngredient().equals(getIngredient())
+                && otherRecipe.getCalories().equals(getCalories());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, ingredients);
+        return Objects.hash(name, ingredients, calories);
     }
 
     @Override
@@ -79,7 +91,9 @@ public class Recipe {
                 .append(" Ingredient: ")
                 .append(ingredients.stream()
                         .map(item -> item.getValue())
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
+                .append(" Calories: ")
+                .append(getCalories() + " cal");
         return builder.toString();
     }
 

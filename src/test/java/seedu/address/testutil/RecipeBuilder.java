@@ -5,6 +5,7 @@ import java.util.List;
 //import java.util.HashSet;
 //import java.util.Set;
 
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
@@ -19,9 +20,11 @@ public class RecipeBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
             new ArrayList<>(List.of(new Ingredient("Veggies"), new Ingredient("Snakes")));
+    public static final Integer DEFAULT_CALORIES = 10;
 
     private Name name;
     private ArrayList<Ingredient> ingredients;
+    private Calories calories;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -29,6 +32,7 @@ public class RecipeBuilder {
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
         ingredients = DEFAULT_INGREDIENTS;
+        calories = new Calories(DEFAULT_CALORIES);
     }
 
     /**
@@ -37,6 +41,7 @@ public class RecipeBuilder {
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
         ingredients = recipeToCopy.getIngredient();
+        calories = recipeToCopy.getCalories();
     }
 
     /**
@@ -62,11 +67,19 @@ public class RecipeBuilder {
     }
 
     /**
+     * Sets the {@code Calories} of the {@code Recipe} that we are building.
+     */
+    public RecipeBuilder withCalories(Integer calories) {
+        this.calories = new Calories(calories);
+        return this;
+    }
+
+    /**
      * Builds Recipe
      * @return built Recipe
      */
     public Recipe build() {
-        return new Recipe(name, ingredients);
+        return new Recipe(name, ingredients, calories);
     }
 
 }

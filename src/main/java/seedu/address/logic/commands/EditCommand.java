@@ -13,13 +13,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-//import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
@@ -95,8 +95,9 @@ public class EditCommand extends Command {
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
         ArrayList<Ingredient> updatedIngredient =
                 editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
+        Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());
 
-        return new Recipe(updatedName, updatedIngredient);
+        return new Recipe(updatedName, updatedIngredient, updatedCalories);
     }
 
     @Override
@@ -124,7 +125,7 @@ public class EditCommand extends Command {
     public static class EditRecipeDescriptor {
         private Name name;
         private ArrayList<Ingredient> ingredients;
-
+        private Calories calories;
 
         public EditRecipeDescriptor() {}
 
@@ -135,20 +136,19 @@ public class EditCommand extends Command {
         public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
             setName(toCopy.name);
             setIngredient(toCopy.ingredients);
-
+            setCalories(toCopy.calories);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, ingredients);
+            return CollectionUtil.isAnyNonNull(name, ingredients, calories);
         }
 
         public void setName(Name name) {
             this.name = name;
         }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
@@ -163,6 +163,12 @@ public class EditCommand extends Command {
         }
 
 
+        public void setCalories(Calories calories) {
+            this.calories = calories;
+        }
+        public Optional<Calories> getCalories() {
+            return Optional.ofNullable(calories);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -180,7 +186,8 @@ public class EditCommand extends Command {
             EditRecipeDescriptor e = (EditRecipeDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getIngredient().equals(e.getIngredient());
+                    && getIngredient().equals(e.getIngredient())
+                    && getCalories().equals(e.getCalories());
         }
     }
 }

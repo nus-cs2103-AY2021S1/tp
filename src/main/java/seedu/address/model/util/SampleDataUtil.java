@@ -1,11 +1,15 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.commons.Calories;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
@@ -15,7 +19,24 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Recipe[] getSampleRecipes() {
         return new Recipe[] {
-
+            new Recipe(new Name("Alex Yeoh"),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new Calories(10)),
+            new Recipe(new Name("Bernice Yu"),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                            new Calories(10)),
+            new Recipe(new Name("Charlotte Oliveiro"),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new Calories(10)),
+            new Recipe(new Name("David Li"),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new Calories(10)),
+            new Recipe(new Name("Irfan Ibrahim"),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new Calories(10)),
+            new Recipe(new Name("Roy Balakrishnan"),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new Calories(10))
         };
     }
 
