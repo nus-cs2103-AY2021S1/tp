@@ -87,6 +87,7 @@ public class UpdateCommand extends Command {
         List<String> serials = indexes.stream().map((serial) -> serial.getSerialNumberAsString().trim())
                 .collect(Collectors.toCollection(ArrayList::new));
         List<Stock> stocksToUpdate = new ArrayList<>();
+        List<Stock> updatedStocks = new ArrayList<>();
 
         // FInd stocks to be updated
         for (Stock currentStock : lastShownStocks) {
@@ -118,11 +119,12 @@ public class UpdateCommand extends Command {
             }
 
             model.setStock(stockToUpdate, updatedStock);
+            updatedStocks.add(updatedStock);
         }
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, stocksAsString(stocksToUpdate)));
+        return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, stocksAsString(updatedStocks)));
     }
 
     /**
