@@ -1,21 +1,33 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Name;
+import seedu.address.model.item.Quantity;
+import seedu.address.model.item.Supplier;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.ItemBuilder;
 
 public class AddCommandTest {
 
@@ -24,52 +36,61 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
-    //    @Test
-    //    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
-    //        Item validItem = new ItemBuilder().build();
-    //
-    //        CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
-    //    }
+    @Test
+    public void execute_itemAcceptedByModel_addSuccessful() throws CommandException {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
+        Item validItem = new ItemBuilder().build();
 
-    //    @Test
-    //    public void execute_duplicateItem_updateQuantitySuccessful() {
-    //        Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").build();
-    //        Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
-    //        ModelStub modelStub = new ModelStubAcceptingDuplicatingItem(currentItem);
-    //
-    //        CommandResult commandResult = new AddCommand(currentItem).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
-    //                commandResult.getFeedbackToUser());
-    //    }
+        CommandResult commandResult = new AddCommand(validItem).execute(modelStub);
 
-    //    @Test
-    //    public void equals() {
-    //        Item chicken = new ItemBuilder().withName("Chicken").build();
-    //        Item duck = new ItemBuilder().withName("Duck").build();
-    //        AddCommand addChickenCommand = new AddCommand(chicken);
-    //        AddCommand addDuckCommand = new AddCommand(duck);
-    //
-    //        // same object -> returns true
-    //        assertTrue(addChickenCommand.equals(addChickenCommand));
-    //
-    //        // same values -> returns true
-    //        AddCommand addChickenCommandCopy = new AddCommand(chicken);
-    //        assertTrue(addChickenCommand.equals(addChickenCommandCopy));
-    //
-    //        // different types -> returns false
-    //        assertFalse(addChickenCommand.equals(1));
-    //
-    //        // null -> returns false
-    //        assertFalse(addChickenCommand.equals(null));
-    //
-    //        // different item -> returns false
-    //        assertFalse(addChickenCommand.equals(addDuckCommand));
-    //    }
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
+    }
+
+    @Test
+    public void execute_duplicateItem_updateQuantitySuccessful() throws CommandException {
+        Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").build();
+        Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").build();
+        ModelStub modelStub = new ModelStubAcceptingDuplicatingItem(currentItem);
+
+        CommandResult commandResult = new AddCommand(currentItem).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_ITEM_ADDED_TO_INVENTORY, finalItem),
+                commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_duplicateItem_updateMaxQuantityUnsuccessful() {
+        Item currentItem = new ItemBuilder().withName("Chicken").withQuantity("2").withMaxQuantity("500").build();
+        Item finalItem = new ItemBuilder().withName("Chicken").withQuantity("4").withMaxQuantity("5000").build();
+        ModelStub modelStub = new ModelStubRejectingDuplicatingMaxQuantityItem(currentItem);
+
+        assertThrows(CommandException.class, () -> new AddCommand(finalItem).execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        Item chicken = new ItemBuilder().withName("Chicken").build();
+        Item duck = new ItemBuilder().withName("Duck").build();
+        AddCommand addChickenCommand = new AddCommand(chicken);
+        AddCommand addDuckCommand = new AddCommand(duck);
+
+        // same object -> returns true
+        assertTrue(addChickenCommand.equals(addChickenCommand));
+
+        // same values -> returns true
+        AddCommand addChickenCommandCopy = new AddCommand(chicken);
+        assertTrue(addChickenCommand.equals(addChickenCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addChickenCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addChickenCommand.equals(null));
+
+        // different item -> returns false
+        assertFalse(addChickenCommand.equals(addDuckCommand));
+    }
 
     /**
      * A default model stub that have all of the methods failing.
@@ -155,7 +176,6 @@ public class AddCommandTest {
      * A Model stub that accepts duplicate item, updating its quantity.
      */
     private class ModelStubAcceptingDuplicatingItem extends ModelStub {
-
         private final Item item;
 
         ModelStubAcceptingDuplicatingItem(Item item) {
@@ -163,16 +183,17 @@ public class AddCommandTest {
             this.item = item;
         }
 
-        //        @Override
-        //        public Item addOnExistingItem(Item item) {
-        //            Name name = item.getName();
-        //            Quantity quantity = item.getQuantity().add(item.getQuantity());
-        //            Supplier supplier = item.getSupplier();
-        //            Set<Tag> providedItemTags = item.getTags();
-        //            Set<Tag> combinedTags = new HashSet<>(providedItemTags);
-        //
-        //            return new Item(name, quantity, supplier, combinedTags);
-        //        }
+        @Override
+        public Item addOnExistingItem(Item item) {
+            Name name = item.getName();
+            Quantity quantity = item.getQuantity().add(item.getQuantity());
+            Supplier supplier = item.getSupplier();
+            Set<Tag> providedItemTags = item.getTags();
+            Set<Tag> combinedTags = new HashSet<>(providedItemTags);
+            Quantity maxQuantity = item.getMaxQuantity().orElse(null);
+
+            return new Item(name, quantity, supplier, combinedTags, maxQuantity);
+        }
 
         @Override
         public boolean hasItem(Item item) {
@@ -202,6 +223,36 @@ public class AddCommandTest {
         @Override
         public ReadOnlyInventoryBook getInventoryBook() {
             return new InventoryBook();
+        }
+    }
+
+    /**
+     * A Model stub that rejects duplicate item if it contains a max quantity
+     */
+    private class ModelStubRejectingDuplicatingMaxQuantityItem extends ModelStub {
+        private final Item item;
+
+        ModelStubRejectingDuplicatingMaxQuantityItem(Item item) {
+            requireNonNull(item);
+            this.item = item;
+        }
+
+        @Override
+        public Item addOnExistingItem(Item item) {
+            Name name = item.getName();
+            Quantity quantity = item.getQuantity().add(item.getQuantity());
+            Supplier supplier = item.getSupplier();
+            Set<Tag> providedItemTags = item.getTags();
+            Set<Tag> combinedTags = new HashSet<>(providedItemTags);
+            Quantity maxQuantity = item.getMaxQuantity().orElse(null);
+
+            return new Item(name, quantity, supplier, combinedTags, maxQuantity);
+        }
+
+        @Override
+        public boolean hasItem(Item item) {
+            requireNonNull(item);
+            return this.item.isSameItem(item);
         }
     }
 

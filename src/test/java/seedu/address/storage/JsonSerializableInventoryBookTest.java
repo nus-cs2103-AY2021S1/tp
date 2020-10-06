@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.InventoryBook;
+import seedu.address.testutil.TypicalItems;
 
 public class JsonSerializableInventoryBookTest {
 
@@ -18,14 +21,14 @@ public class JsonSerializableInventoryBookTest {
     private static final Path DUPLICATE_ITEM_FILE = TEST_DATA_FOLDER.resolve("duplicateItemInventoryBook.json");
 
 
-    //    @Test
-    //    public void toModelType_typicalPersonsFile_success() throws Exception {
-    //        JsonSerializableInventoryBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ITEMS_FILE,
-    //                JsonSerializableInventoryBook.class).get();
-    //        InventoryBook inventoryBookFromFile = dataFromFile.toModelType();
-    //        InventoryBook typicalPersonsInventoryBook = TypicalItems.getTypicalInventoryBook();
-    //        assertEquals(inventoryBookFromFile, typicalPersonsInventoryBook);
-    //    }
+    @Test
+    public void toModelType_typicalPersonsFile_success() throws Exception {
+        JsonSerializableInventoryBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_ITEMS_FILE,
+                JsonSerializableInventoryBook.class).get();
+        InventoryBook inventoryBookFromFile = dataFromFile.toModelType();
+        InventoryBook typicalPersonsInventoryBook = TypicalItems.getTypicalInventoryBook();
+        assertEquals(inventoryBookFromFile, typicalPersonsInventoryBook);
+    }
 
     @Test
     public void toModelType_invalidItemFile_throwsIllegalValueException() throws Exception {

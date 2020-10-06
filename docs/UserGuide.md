@@ -76,7 +76,7 @@ Format: `help`
 Adds item to OneShelf, if there's already an item inside with the same name and supplier, it adds on to existing
 quantity of existing item.
 
-Format: `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​`
+Format: `add n/NAME q/QUANTITY s/SUPPLIER [max/MAX_QUANTITY] [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A item can have any number of tags (including 0)
@@ -102,7 +102,7 @@ Format: `list`
 
 Edits an existing item in the Inventory book.
 
-Format: ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`
+Format: ` edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * Updates ALL the components of an item, UNABLE to update a specific component of an item.
@@ -198,10 +198,10 @@ Notify the user if a certain stock is below threshold
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
-|**Add**    | `add n/NAME q/QUANTITY s/SUPPLIER [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
+|**Add**    | `add n/NAME q/QUANTITY s/SUPPLIER [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
 |**Clear**  | `clear`                                                                                             |
 |**Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                 |
-|**Edit**   | ` edit INDEX n/NAME q/QUANTITY s/SUPPLIER [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
+|**Edit**   | `edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`                                       |
 |**List**   | `list`                                                                                              |
 |**Help**   | `help`                                                                                              |
