@@ -24,11 +24,11 @@ public class AddCommand extends Command {
             + PREFIX_SPECIES + "SPECIES "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_ID + "98765432 "
-            + PREFIX_SPECIES + "Panthera leo "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Thomas "
+            + PREFIX_ID + "0000237 "
+            + PREFIX_SPECIES + "Hummingbird "
+            + PREFIX_TAG + "Healthy "
+            + PREFIX_TAG + "Tame";
 
     public static final String MESSAGE_SUCCESS = "New animal added: %1$s";
     public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal already exists in the address book";
