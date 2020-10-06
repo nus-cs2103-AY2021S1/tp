@@ -1,7 +1,6 @@
-package seedu.address.model;
+package jimmy.mcgymmy.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -9,16 +8,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
-=======
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 import jimmy.mcgymmy.model.food.Food;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -35,11 +29,7 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
         super();
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
-        requireAllNonNull(addressBook, userPrefs);
-=======
         CollectionUtil.requireAllNonNull(mcGymmy, userPrefs);
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
 
         logger.fine("Initializing with address book: " + mcGymmy + " and user prefs " + userPrefs);
 
@@ -117,13 +107,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-=======
     public void setFood(Food target, Food editedFood) {
         CollectionUtil.requireAllNonNull(target, editedFood);
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
 
         mcGymmy.setFood(target, editedFood);
     }
@@ -159,15 +144,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/ModelManager.java
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-=======
+
         return mcGymmy.equals(other.mcGymmy)
             && userPrefs.equals(other.userPrefs)
             && filteredFoodItems.equals(other.filteredFoodItems);
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/ModelManager.java
     }
 
 }

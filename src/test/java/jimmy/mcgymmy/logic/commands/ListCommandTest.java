@@ -7,7 +7,7 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.testutil.TypicalIndexes;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -19,7 +19,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 

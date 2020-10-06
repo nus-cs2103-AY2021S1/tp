@@ -12,10 +12,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.tag.Tag;
 import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.TypicalIndexes;
@@ -91,38 +90,38 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        Protein expectedProtein = new Protein(VALID_PHONE);
+        assertEquals(expectedProtein, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        Protein expectedProtein = new Protein(VALID_PHONE);
+        assertEquals(expectedProtein, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseCarbohydrate((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseCarbohydrate(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        Assertions.assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_ADDRESS);
+        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        Assertions.assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_ADDRESS);
+        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(addressWithWhitespace));
     }
 
     @Test
@@ -137,15 +136,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+        Fat expectedFat = new Fat(VALID_EMAIL);
+        assertEquals(expectedFat, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+        Fat expectedFat = new Fat(VALID_EMAIL);
+        assertEquals(expectedFat, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
     @Test

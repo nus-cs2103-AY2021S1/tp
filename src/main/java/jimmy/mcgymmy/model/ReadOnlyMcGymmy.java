@@ -1,12 +1,7 @@
-package seedu.address.model;
+package jimmy.mcgymmy.model;
 
 import javafx.collections.ObservableList;
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/ReadOnlyAddressBook.java
-import seedu.address.model.person.Person;
-=======
 import jimmy.mcgymmy.model.food.Food;
-import jimmy.mcgymmy.model.person.Person;
->>>>>>> Stashed changes:src/main/java/seedu/address/model/ReadOnlyMcGymmy.java
 
 /**
  * Unmodifiable view of an address book

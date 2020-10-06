@@ -10,7 +10,7 @@ import seedu.address.model.person.Person;
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
 =======
 import jimmy.mcgymmy.model.McGymmy;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
  * A utility class to help with building McGymmy objects.
@@ -31,7 +31,7 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code McGymmy} that we are building.
+     * Adds a new {@code Food} to the {@code McGymmy} that we are building.
      */
     public AddressBookBuilder withPerson(Person person) {
         mcGymmy.addPerson(person);

@@ -1,24 +1,16 @@
-package seedu.address.logic;
+package jimmy.mcgymmy.logic;
 
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
-<<<<<<< Updated upstream:src/main/java/seedu/address/logic/Logic.java
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-=======
+
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
-import jimmy.mcgymmy.model.person.Person;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/Logic.java
+import jimmy.mcgymmy.model.food.Food;
 
 /**
  * API of the Logic component
@@ -36,17 +28,17 @@ public interface Logic {
     /**
      * Returns the McGymmy.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getMcGymmy()
      */
-    ReadOnlyMcGymmy getAddressBook();
+    ReadOnlyMcGymmy getMcGymmy();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Food> getFilteredFoodList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getMcGymmyFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

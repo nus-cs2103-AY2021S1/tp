@@ -1,30 +1,20 @@
-package seedu.address.model;
+package jimmy.mcgymmy.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/Model.java
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
-=======
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.model.food.Food;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/Model.java
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/Model.java
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-=======
     /**
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/Model.java
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -61,15 +51,11 @@ public interface Model {
      */
     void setMcGymmy(ReadOnlyMcGymmy addressBook);
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/Model.java
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
-=======
+
     /**
      * Returns the McGymmy
      */
     ReadOnlyMcGymmy getMcGymmy();
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/Model.java
 
     /**
      * Returns true if a food with the same identity as {@code food} exists in the address book.
@@ -95,13 +81,6 @@ public interface Model {
      */
     void setFood(Food target, Food editedFood);
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/Model.java
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-=======
     /**
      * Returns an unmodifiable view of the filtered food list
      */
@@ -110,7 +89,6 @@ public interface Model {
     /**
      * Updates the filter of the filtered food list to filter by the given {@code predicate}.
      *
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/Model.java
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate);

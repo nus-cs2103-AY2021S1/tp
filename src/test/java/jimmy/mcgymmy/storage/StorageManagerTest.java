@@ -20,7 +20,7 @@ import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.UserPrefs;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 >>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/storage/StorageManagerTest.java
 
 public class StorageManagerTest {
@@ -59,13 +59,13 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
+         * {@link JsonMcGymmyStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMcGymmyStorageTest} class.
          */
 <<<<<<< Updated upstream:src/test/java/seedu/address/storage/StorageManagerTest.java
         AddressBook original = getTypicalAddressBook();
 =======
-        McGymmy original = TypicalPersons.getTypicalAddressBook();
+        McGymmy original = TypicalFoods.getTypicalMcGymmy();
 >>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/storage/StorageManagerTest.java
         storageManager.saveAddressBook(original);
         ReadOnlyMcGymmy retrieved = storageManager.readAddressBook().get();

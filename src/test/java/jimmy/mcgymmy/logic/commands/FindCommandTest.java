@@ -13,14 +13,14 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
@@ -41,7 +41,7 @@ public class FindCommandTest {
         command.setParameters(new CommandParserTestUtil.ParameterStub<>("", predicate));
         expectedModel.updateFilteredPersonList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
+        assertEquals(Arrays.asList(TypicalFoods.CARL, TypicalFoods.ELLE, TypicalFoods.FIONA),
             model.getFilteredPersonList());
     }
 

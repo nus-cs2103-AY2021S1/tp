@@ -1,20 +1,7 @@
-package seedu.address.logic.commands;
+package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/logic/commands/AddCommand.java
-import java.util.HashSet;
-
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.parameter.Parameter;
-import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-=======
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
@@ -24,16 +11,15 @@ import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.Protein;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/commands/AddCommand.java
 
 /**
- * Adds a person to the address book.
+ * Adds a food to the address book.
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New food added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This food already exists in the address book";
 
     private Parameter<String> nameParameter = this.addParameter(
         "name",

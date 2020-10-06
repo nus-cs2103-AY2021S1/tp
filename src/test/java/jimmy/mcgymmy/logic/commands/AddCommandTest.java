@@ -1,8 +1,8 @@
-package seedu.address.logic.commands;
+package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -12,17 +12,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/AddCommandTest.java
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.CommandParserTestUtil;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-=======
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
@@ -30,38 +19,36 @@ import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
-import jimmy.mcgymmy.model.person.Person;
-import jimmy.mcgymmy.testutil.Assert;
-import jimmy.mcgymmy.testutil.PersonBuilder;
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/AddCommandTest.java
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.testutil.FoodBuilder;
 
 public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().withAddress("dummy value").build();
+        Food validFood = new FoodBuilder().withCarb("12345").build();
         AddCommand command = new AddCommand();
         command.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
-            new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
-            new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail()));
+                new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
+                new CommandParserTestUtil.ParameterStub<>("p", validFood.getProtein()),
+                new CommandParserTestUtil.ParameterStub<>("f", validFood.getFat()));
 
         CommandResult commandResult = command.execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validFood), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().withAddress("dummy value").build();
+        Food validFood = new FoodBuilder().withCarb("dummy value").build();
         AddCommand addCommand = new AddCommand();
         addCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
-            new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
-            new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail())
+                new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
+                new CommandParserTestUtil.ParameterStub<>("p", validFood.getPhone()),
+                new CommandParserTestUtil.ParameterStub<>("e", validFood.getEmail())
         );
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validFood);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
@@ -101,7 +88,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,65 +103,65 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Food target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Food target, Food editedFood) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Food> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Food> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single food.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Food food;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Food food) {
+            requireNonNull(food);
+            this.food = food;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasPerson(Food food) {
+            requireNonNull(food);
+            return this.food.isSamePerson(food);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the food being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Food> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasPerson(Food food) {
+            requireNonNull(food);
+            return personsAdded.stream().anyMatch(food::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPerson(Food food) {
+            requireNonNull(food);
+            personsAdded.add(food);
         }
 
         @Override

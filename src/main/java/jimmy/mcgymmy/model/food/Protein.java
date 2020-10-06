@@ -1,4 +1,4 @@
-package seedu.address.model.food;
+package jimmy.mcgymmy.model.food;
 
 /**
  * Represents Protein in food item in McGymmy.
@@ -12,11 +12,11 @@ public class Protein extends Macronutrient {
      * @param amount A valid amount.
      */
     public Protein(int amount) {
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/food/Protein.java
-        super("Protein", amount, PROTEIN_MULTIPLIER);
-=======
         super(amount, MULTIPLIER);
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/food/Protein.java
+    }
+
+    public Protein(String amount) {
+        this(Integer.parseInt(amount));
     }
 
 }

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package jimmy.mcgymmy.storage;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,32 +7,23 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/storage/JsonAddressBookStorage.java
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
-=======
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.FileUtil;
 import jimmy.mcgymmy.commons.util.JsonUtil;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/storage/JsonAddressBookStorage.java
 
 /**
  * A class to access McGymmy data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonMcGymmyStorage implements McGymmyStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonMcGymmyStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonMcGymmyStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -54,8 +45,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     public Optional<ReadOnlyMcGymmy> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableMcGymmy> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableMcGymmy.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -83,7 +74,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMcGymmy(addressBook), filePath);
     }
 
 }

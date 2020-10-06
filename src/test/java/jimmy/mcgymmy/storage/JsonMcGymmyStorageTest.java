@@ -24,7 +24,7 @@ import jimmy.mcgymmy.commons.exceptions.DataConversionException;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.testutil.Assert;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 >>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonMcGymmyStorageTest.java
 
 public class JsonMcGymmyStorageTest {
@@ -74,7 +74,7 @@ public class JsonMcGymmyStorageTest {
 <<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonAddressBookStorageTest.java
         AddressBook original = getTypicalAddressBook();
 =======
-        McGymmy original = TypicalPersons.getTypicalAddressBook();
+        McGymmy original = TypicalFoods.getTypicalMcGymmy();
 >>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonMcGymmyStorageTest.java
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 

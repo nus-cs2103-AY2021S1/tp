@@ -1,23 +1,9 @@
-package seedu.address.logic.commands;
+package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/logic/commands/EditCommand.java
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.parameter.OptionalParameter;
-import seedu.address.logic.parser.parameter.Parameter;
-import seedu.address.model.Model;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-=======
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -29,10 +15,9 @@ import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.Protein;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/commands/EditCommand.java
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing food in the address book.
  */
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
@@ -44,14 +29,14 @@ public class EditCommand extends Command {
     private Parameter<Index> indexParameter = this.addParameter(
         "index",
         "",
-        "index number used in the displayed person list.",
+        "index number used in the displayed food list.",
         "2",
         ParserUtil::parseIndex
     );
     private OptionalParameter<String> nameParameter = this.addOptionalParameter(
         "name",
         "n",
-        "Name of person to add",
+        "Name of food to add",
         "John Doe",
         ParserUtil::parseName
     );
@@ -107,18 +92,12 @@ public class EditCommand extends Command {
         // as with AddCommand, address and get tags left as exercises
         Food editedFood = new Food(newName, newProtein, newFat, newCarb);
 
-        if (!foodToEdit.isSameFood(editedFood) && model.hasFood(editedFood)) {
+        if (foodToEdit != editedFood && model.hasFood(editedFood)) {
             throw new CommandException(MESSAGE_DUPLICATE_FOOD);
         }
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/logic/commands/EditCommand.java
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
-=======
         model.setFood(foodToEdit, editedFood);
         model.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFood));
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/commands/EditCommand.java
     }
 }

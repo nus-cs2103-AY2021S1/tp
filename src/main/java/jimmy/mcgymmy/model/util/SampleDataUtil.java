@@ -1,60 +1,48 @@
-package seedu.address.model.util;
+package jimmy.mcgymmy.model.util;
 
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/util/SampleDataUtil.java
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-=======
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Person;
-import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.tag.Tag;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/util/SampleDataUtil.java
 
 /**
  * Contains utility methods for populating {@code McGymmy} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+    public static Food[] getSamplePersons() {
+        return new Food[] {
+            new Food("Chicken Rice", new Protein(200), new Fat(300),
+                new Carbohydrate(100),
                 getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Food("Rice Bowl", new Protein(300), new Fat(200),
+                new Carbohydrate(100),
                 getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Food("Fried Chicken", new Protein(200), new Fat(100),
+                new Carbohydrate(10),
                 getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Food("David Li", new Protein(132), new Fat(321),
+                new Carbohydrate(125),
                 getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+            new Food("Irfan Ibrahim", new Protein(145), new Fat(432),
+                new Carbohydrate(125),
                 getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+            new Food("Roy Balakrishnan", new Protein(452), new Fat(254),
+                new Carbohydrate(564),
                 getTagSet("colleagues"))
         };
     }
 
     public static ReadOnlyMcGymmy getSampleAddressBook() {
         McGymmy sampleAb = new McGymmy();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Food sampleFood : getSamplePersons()) {
+            sampleAb.addFood(sampleFood);
         }
         return sampleAb;
     }

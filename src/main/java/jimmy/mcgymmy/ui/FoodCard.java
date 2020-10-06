@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Food}.
  */
-public class PersonCard extends UiPart<Region> {
+public class FoodCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -24,7 +24,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on McGymmy level 4</a>
      */
 
-    public final Person person;
+    public final Food food;
 
     @FXML
     private HBox cardPane;
@@ -33,26 +33,26 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label protein;
     @FXML
-    private Label address;
+    private Label carb;
     @FXML
-    private Label email;
+    private Label fat;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Food} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public FoodCard(Food food, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.food = food;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(food.getName());
+        protein.setText(food.getProtein().toString());
+        carb.setText(food.getCarbs().toString());
+        fat.setText(food.getFat().toString());
+        food.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -65,13 +65,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof FoodCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        FoodCard card = (FoodCard) other;
         return id.getText().equals(card.id.getText())
-            && person.equals(card.person);
+            && food.equals(card.food);
     }
 }

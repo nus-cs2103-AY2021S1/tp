@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.testutil.Assert;
+import jimmy.mcgymmy.testutil.FoodBuilder;
 
 public class FoodTest {
     public static final String VALID_FOOD_NAME = "test food";
@@ -72,6 +73,12 @@ public class FoodTest {
 
         // different type -> returns false
         assertFalse(COMPARED_FOOD.equals(PROTEIN));
+    }
+
+    @Test
+    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+        Food food = new FoodBuilder().build();
+        Assert.assertThrows(UnsupportedOperationException.class, () -> food.getTags().remove(0));
     }
 
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package jimmy.mcgymmy.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,29 +6,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/logic/parser/ParserUtil.java
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-=======
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.commons.util.StringUtil;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
-import jimmy.mcgymmy.model.food.Macronutrient;
-import jimmy.mcgymmy.model.food.Protein;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Phone;
 import jimmy.mcgymmy.model.tag.Tag;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/parser/ParserUtil.java
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -58,10 +42,11 @@ public class ParserUtil {
      */
     public static String parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
+        name = name.trim();
+        //        String trimmedName = name.trim();
+        //        if (!Name.isValidName(trimmedName)) {
+        //            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        //        }
         return name;
     }
 
@@ -105,8 +90,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Fat} is invalid.
      */
-    public static Fat parseFat(String fat) throws ParseException {
-        int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
+    public static jimmy.mcgymmy.model.food.Fat parseFat(String fat) throws ParseException {
+        int fatValue = getNutrientValue(fat, jimmy.mcgymmy.model.food.Fat.MESSAGE_CONSTRAINTS);
         return new Fat(fatValue);
     }
 
@@ -116,40 +101,40 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Carbohydrate} is invalid.
      */
-    public static Carbohydrate parseCarb(String carb) throws ParseException {
-        int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
+    public static jimmy.mcgymmy.model.food.Carbohydrate parseCarb(String carb) throws ParseException {
+        int carbValue = getNutrientValue(carb, jimmy.mcgymmy.model.food.Carbohydrate.MESSAGE_CONSTRAINTS);
         return new Carbohydrate(carbValue);
     }
 
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String carb} into an {@code Carbohydrate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code carb} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Carbohydrate parseCarbohydrate(String carb) throws ParseException {
+        requireNonNull(carb);
+        String trimmedCarb = carb.trim();
+        if (!Carbohydrate.isValid(trimmedCarb)) {
+            throw new ParseException(Carbohydrate.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Carbohydrate(Integer.parseInt(trimmedCarb));
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String email} into an {@code Fat}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Fat parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (!Fat.isValid(trimmedEmail)) {
+            throw new ParseException(Fat.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Fat(Integer.parseInt(trimmedEmail));
     }
 
     /**

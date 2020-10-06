@@ -1,29 +1,18 @@
-package seedu.address.logic.commands;
+package jimmy.mcgymmy.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-=======
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
-import jimmy.mcgymmy.model.person.Person;
 import jimmy.mcgymmy.testutil.Assert;
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/CommandTestUtil.java
 
 /**
  * Contains helper methods for testing commands.
@@ -61,35 +50,31 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered food list and selected food in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        McGymmy expectedMcGymmy = new McGymmy(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        McGymmy expectedMcGymmy = new McGymmy(actualModel.getMcGymmy());
+        List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-=======
+
         Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedMcGymmy, actualModel.getAddressBook());
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/commands/CommandTestUtil.java
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedMcGymmy, actualModel.getMcGymmy());
+        assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the food at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
+        final String[] splitName = food.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredFoodList().size());
     }
 
 }

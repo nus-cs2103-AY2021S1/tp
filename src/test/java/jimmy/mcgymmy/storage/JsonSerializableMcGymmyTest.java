@@ -17,8 +17,7 @@ import seedu.address.testutil.TypicalPersons;
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.JsonUtil;
 import jimmy.mcgymmy.model.McGymmy;
-import jimmy.mcgymmy.testutil.Assert;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 >>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonSerializableMcGymmyTest.java
 
 public class JsonSerializableMcGymmyTest {
@@ -34,12 +33,12 @@ public class JsonSerializableMcGymmyTest {
 <<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonSerializableAddressBookTest.java
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        AddressBook typicalPersonsAddressBook = TypicalFoods.getTypicalMcGymmy();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
 =======
             JsonSerializableAddressBook.class).get();
         McGymmy mcGymmyFromFile = dataFromFile.toModelType();
-        McGymmy typicalPersonsMcGymmy = TypicalPersons.getTypicalAddressBook();
+        McGymmy typicalPersonsMcGymmy = TypicalFoods.getTypicalMcGymmy();
         assertEquals(mcGymmyFromFile, typicalPersonsMcGymmy);
 >>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonSerializableMcGymmyTest.java
     }

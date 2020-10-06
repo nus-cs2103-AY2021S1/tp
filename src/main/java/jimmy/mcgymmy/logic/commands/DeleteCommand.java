@@ -1,18 +1,9 @@
-package seedu.address.logic.commands;
+package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-<<<<<<< Updated upstream:src/main/java/seedu/address/logic/commands/DeleteCommand.java
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.parameter.Parameter;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-=======
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -20,7 +11,6 @@ import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.food.Food;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/logic/commands/DeleteCommand.java
 
 /**
  * Deletes a food identified using it's displayed index from the mcgymmy.

@@ -1,9 +1,9 @@
-package seedu.address.logic;
+package jimmy.mcgymmy.logic;
 
+import static jimmy.mcgymmy.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static jimmy.mcgymmy.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,23 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/logic/LogicManagerTest.java
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
-=======
-import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.ListCommand;
@@ -38,13 +21,11 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.UserPrefs;
-import jimmy.mcgymmy.model.person.Person;
-import jimmy.mcgymmy.storage.JsonAddressBookStorage;
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.storage.JsonMcGymmyStorage;
 import jimmy.mcgymmy.storage.JsonUserPrefsStorage;
 import jimmy.mcgymmy.storage.StorageManager;
-import jimmy.mcgymmy.testutil.Assert;
-import jimmy.mcgymmy.testutil.PersonBuilder;
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/logic/LogicManagerTest.java
+import jimmy.mcgymmy.testutil.FoodBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -57,8 +38,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMcGymmyStorage addressBookStorage =
+                new JsonMcGymmyStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -84,9 +65,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-            new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonMcGymmyIoExceptionThrowingStub
+        JsonMcGymmyStorage addressBookStorage =
+            new JsonMcGymmyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -94,17 +75,17 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + " -n amy -p 99999999 -e amy@amy.com";
-        Person expectedPerson = new PersonBuilder().withName("amy").withPhone("99999999")
-            .withEmail("amy@amy.com").withAddress("dummy value").build();
+        Food expectedFood = new FoodBuilder().withName("amy").withProtein("99999999")
+            .withFat("213412").withCarb("123543").build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addFood(expectedFood);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFoodList().remove(0));
     }
 
     /**
@@ -143,7 +124,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -163,8 +144,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonMcGymmyIoExceptionThrowingStub extends JsonMcGymmyStorage {
+        private JsonMcGymmyIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 

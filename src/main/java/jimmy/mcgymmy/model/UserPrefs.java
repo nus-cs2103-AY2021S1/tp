@@ -1,4 +1,4 @@
-package seedu.address.model;
+package jimmy.mcgymmy.model;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import seedu.address.commons.core.GuiSettings;
+import jimmy.mcgymmy.commons.core.GuiSettings;
 
 /**
  * Represents User's preferences.
@@ -14,11 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/UserPrefs.java
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-=======
     private Path mcGymmyFilePath = Paths.get("data", "addressbook.json");
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/UserPrefs.java
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -72,11 +68,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-<<<<<<< Updated upstream:src/main/java/seedu/address/model/UserPrefs.java
-                && addressBookFilePath.equals(o.addressBookFilePath);
-=======
             && mcGymmyFilePath.equals(o.mcGymmyFilePath);
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/model/UserPrefs.java
     }
 
     @Override

@@ -4,11 +4,8 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-<<<<<<< HEAD
     private static final String VALIDATION_REGEX = "(\\d)+";
     public static String MESSAGE_CONSTRAINTS = "values should only contain numbers";
-=======
->>>>>>> a66faaeb3cdf8c8077dc66b6d8232165877fa617
     private int amount;
     private int caloricMultiplier;
     private int totalCalories;
@@ -80,11 +77,9 @@ public abstract class Macronutrient {
     public int getTotalCalories() {
         return totalCalories;
     }
-<<<<<<< HEAD
 
     public static boolean isValid(String value) {
         return value.matches(VALIDATION_REGEX);
     }
-=======
->>>>>>> a66faaeb3cdf8c8077dc66b6d8232165877fa617
+
 }
