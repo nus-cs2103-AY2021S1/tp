@@ -5,20 +5,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Price.
- * Guarantees: immutable; price is valid as declared in {@link #isValidPrice(int)}
+ * Guarantees: immutable; price is valid as declared in {@link #isValidPrice(double)}
  */
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0";
 
-    public final int price;
+    public final double price;
 
     /**
      * Constructs a {@code Price}.
      *
      * @param price A valid price.
      */
-    public Price(int price) {
+    public Price(double price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         this.price = price;
@@ -27,14 +27,14 @@ public class Price {
     /**
      * Returns true if a given integer is a valid price.
      */
-    public static boolean isValidPrice(int test) {
+    public static boolean isValidPrice(double test) {
         return test > 0;
     }
 
 
     @Override
     public String toString() {
-        return String.format("$%d", price);
+        return String.format("$%.2f", price);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Price {
 
     @Override
     public int hashCode() {
-        return price;
+        return Double.hashCode(price);
     }
 
 }

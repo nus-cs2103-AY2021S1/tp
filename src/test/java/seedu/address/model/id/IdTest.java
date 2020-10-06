@@ -12,7 +12,7 @@ public class IdTest {
 
     @Test
     public void increment() {
-        String prefix = "p";
+        String prefix = "P";
         int[] idNumbers = {0, 1, 2, 3, 4, 5};
         Stream<Id> idStream = Stream.iterate(new Id(prefix, 0), Id::increment);
         List<Id> idList = idStream.limit(6).collect(Collectors.toList());

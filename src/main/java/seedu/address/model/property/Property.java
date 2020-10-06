@@ -2,8 +2,9 @@ package seedu.address.model.property;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.address.model.id.Id;
-import seedu.address.model.id.IdManager;
 import seedu.address.model.price.Price;
 
 /**
@@ -13,16 +14,12 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
-    private static final String PREFIX = "p";
-    // TODO: should be managed somewhere else to access last id in storage
-    private static final IdManager ID_MANAGER = new IdManager(PREFIX);
-
     // Identity fields
     private final Id propertyId;
-    private final PropertyName propertyName;
     private final Address address;
 
     // Data fields
+    private final PropertyName propertyName;
     private final Id sellerId;
     private final Price askingPrice;
     private final PropertyType propertyType;
@@ -32,9 +29,10 @@ public class Property {
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
+    public Property(Id propertyId, PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
                     PropertyType propertyType, boolean isRental, boolean isClosedDeal) {
         requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
+        this.propertyId = propertyId;
         this.propertyName = propertyName;
         this.sellerId = sellerId;
         this.address = address;
@@ -42,8 +40,106 @@ public class Property {
         this.propertyType = propertyType;
         this.isRental = isRental;
         this.isClosedDeal = isClosedDeal;
-        this.propertyId = ID_MANAGER.getNextId();
     }
 
+    public Id getPropertyId() {
+        return propertyId;
+    }
 
+    public PropertyName getPropertyName() {
+        return propertyName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Id getSellerId() {
+        return sellerId;
+    }
+
+    public Price getAskingPrice() {
+        return askingPrice;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public boolean isRental() {
+        return isRental;
+    }
+
+    public boolean isClosedDeal() {
+        return isClosedDeal;
+    }
+
+    /**
+     * Returns true if either the property id is the same or if the address is the same.
+     *
+     * @param otherProperty The other property.
+     * @return True if both property objects represent the same property.
+     */
+    public boolean isSameProperty(Property otherProperty) {
+        return this == otherProperty
+                || this.getPropertyId().equals(otherProperty.getPropertyId())
+                || this.getAddress().equals(otherProperty.getAddress());
+    }
+
+    /**
+     * Returns true if both properties have the same identity and data fields.
+     * This defines a stronger notion of equality between two properties.
+     *
+     * @param obj The other object.
+     * @return True if both properties are equal.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Property)) {
+            return false;
+        }
+
+        Property otherProperty = (Property) obj;
+        return this.getPropertyId().equals(otherProperty.getPropertyId())
+                && this.getAddress().equals(otherProperty.getAddress())
+                && this.getAskingPrice().equals(otherProperty.getAskingPrice())
+                && this.getPropertyName().equals(otherProperty.getPropertyName())
+                && this.getPropertyType().equals(otherProperty.getPropertyType())
+                && this.getSellerId().equals(otherProperty.getSellerId())
+                && this.isRental() == otherProperty.isRental()
+                && this.isClosedDeal() == otherProperty.isClosedDeal();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(propertyId, propertyName, address,
+                askingPrice, propertyType, sellerId, isRental, isClosedDeal);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        if (isClosedDeal()) {
+            builder.append("[CLOSED] ");
+        }
+        builder.append(getPropertyName())
+                .append(" Property Id: ")
+                .append(getPropertyId())
+                .append(" Address: ")
+                .append(getAddress())
+                .append(" Property type: ")
+                .append(getPropertyType())
+                .append(" Asking price: ")
+                .append(getAskingPrice())
+                .append(" Seller Id: ")
+                .append(getSellerId());
+        if (isRental()) {
+            builder.append(" Rental");
+        }
+        return builder.toString();
+    }
 }
