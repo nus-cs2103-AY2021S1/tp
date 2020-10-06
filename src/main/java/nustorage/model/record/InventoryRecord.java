@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import nustorage.model.item.exceptions.NegativeNumberOfItemException;
+import nustorage.model.inventory.exceptions.NegativeNumberOfItemException;
 
 /**
  * Class to record movement in the Inventory.
