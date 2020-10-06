@@ -1,6 +1,11 @@
 package tp.cap5buddy.ui;
 
+import javafx.stage.Stage;
+import seedu.address.commons.core.LogsCenter;
+import tp.cap5buddy.ui.gui.MainWindow;
+
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 
 /**
@@ -8,6 +13,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private static final Scanner SC = new Scanner(System.in);
+    private static final Logger logger = LogsCenter.getLogger(Ui.class);
 
     /**
      * Prints the result message.
@@ -30,5 +36,12 @@ public class Ui {
 
     public String getInput() {
         return SC.nextLine();
+    }
+
+    public void start(Stage primaryStage) {
+        logger.info("Starting UI...");
+        MainWindow main = new MainWindow(primaryStage);
+        main.initialize();
+        main.show();
     }
 }
