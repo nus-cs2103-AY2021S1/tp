@@ -29,7 +29,8 @@ public class AddIngredientCommandTest {
 
     @Test
     public void constructor_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(null));
+        Ingredient[] nullIngredients = null;
+        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(nullIngredients));
     }
 
     @Test

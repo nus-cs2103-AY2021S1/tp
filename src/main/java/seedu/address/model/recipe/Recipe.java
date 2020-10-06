@@ -1,7 +1,7 @@
 package seedu.address.model.recipe;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -13,33 +13,24 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
-    private final IngredientString ingredientString;
-
     // Data fields
-    private final Ingredient[] ingredients;
+    private final ArrayList<Ingredient> ingredients;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Ingredient[] ingredients) {
+    public Recipe(Name name, ArrayList<Ingredient> ingredients) {
         requireAllNonNull(name, ingredients);
         this.name = name;
         this.ingredients = ingredients;
-        this.ingredientString =
-                new IngredientString(Arrays.stream(ingredients)
-                        .map(item -> item.value)
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
     }
 
     public Name getName() {
         return name;
     }
 
-    public Ingredient[] getIngredient() {
+    public ArrayList<Ingredient> getIngredient() {
         return ingredients;
-    }
-    public IngredientString getIngredientString() {
-        return ingredientString;
     }
 
     /**
@@ -86,7 +77,9 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                .append(getIngredientString());
+                .append(ingredients.stream()
+                        .map(item -> item.getValue())
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         return builder.toString();
     }
 
