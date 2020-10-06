@@ -39,12 +39,12 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code sentence} contains {@code words}.
+     *   Ignores case, but a exact match is required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsMultipleWordsIgnoreCase("ABc def", "abc def") == true
+     *       containsMultipleWordsIgnoreCase("ABc def", "abc DEF") == true
+     *       containsMultipleWordsIgnoreCase("ABc def", "ABc d") == false //not an exact match
      *       </pre>
      * @param sentence cannot be null
      * @param words cannot be null, cannot be empty, can be multiple words

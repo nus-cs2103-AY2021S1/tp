@@ -28,7 +28,6 @@ public class InventoryListPanel extends UiPart<Region> {
         super(FXML);
         itemListView.setItems(itemList);
         itemListView.setCellFactory(listView -> new ItemListViewCell());
-
     }
 
     public void changeToSimpleCell() {
@@ -55,7 +54,6 @@ public class InventoryListPanel extends UiPart<Region> {
             }
         }
     }
-
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code InventoryCard}.

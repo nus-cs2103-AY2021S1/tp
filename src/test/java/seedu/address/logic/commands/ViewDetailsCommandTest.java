@@ -1,12 +1,20 @@
 package seedu.address.logic.commands;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.item.Item;
 import seedu.address.model.item.NameIsExactlyPredicate;
+import seedu.address.testutil.ItemBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewDetailsCommand}.
@@ -38,5 +46,43 @@ public class ViewDetailsCommandTest {
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void execute_multipleKeywords_multiplePersonsFound() {
+        String expectedMessage = "Displaying searched item";
+        NameIsExactlyPredicate predicate = new NameIsExactlyPredicate(
+                Collections.singletonList("Bob's Iridescent Grape"));
+        ViewDetailsCommand command = new ViewDetailsCommand(predicate);
+        Item validItem = new ItemBuilder().build();
+        ModelStub modelStub = new ModelStubWithItem(validItem);
+        assertEquals(command.execute(modelStub),
+                new CommandResult(expectedMessage, false, false, true));
+        List<Item> expectedList = Collections.singletonList(validItem);
+        ObservableList<Item> expectedObservableList = FXCollections.observableList(expectedList);
+        assertEquals(expectedObservableList, modelStub.getFilteredItemList());
+    }
+
+    /**
+     * A Model stub that contains a single item.
+     */
+    private class ModelStubWithItem extends ModelStub {
+        private final Item item;
+
+        ModelStubWithItem(Item item) {
+            requireNonNull(item);
+            this.item = item;
+        }
+
+        @Override
+        public void updateFilteredItemList(Predicate<Item> predicate) {
+            // do nothing
+        }
+
+        @Override
+        public ObservableList<Item> getFilteredItemList() {
+            List<Item> list = Collections.singletonList(item);
+            return FXCollections.observableList(list);
+        }
     }
 }
