@@ -8,12 +8,12 @@ import static seedu.address.testutil.TypicalAssignments.CS2103T_TUT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 
 public class JsonAdaptedAssignmentTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "Tutori@l";
     private static final String INVALID_DEADLINE = "00-00-0000 2400";
     private static final String INVALID_MODULE_CODE = " ";
 

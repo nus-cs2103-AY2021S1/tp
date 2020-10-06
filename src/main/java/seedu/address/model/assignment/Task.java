@@ -1,14 +1,17 @@
-package seedu.address.model.person;
+package seedu.address.model.assignment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-abstract class Task {
+public abstract class Task {
     // Identity fields
     private final Name name;
     private final Deadline time;
     private final ModuleCode moduleCode;
 
-    Task(Name name, Deadline time, ModuleCode moduleCode) {
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Name name, Deadline time, ModuleCode moduleCode) {
         requireAllNonNull(name, time, moduleCode);
         this.name = name;
         this.time = time;
