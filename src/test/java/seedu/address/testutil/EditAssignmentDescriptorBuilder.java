@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 
 /**
  * A utility class to help with building EditAssignmentDescriptor objects.

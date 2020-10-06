@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.assignment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.AssignmentNotFoundException;
-import seedu.address.model.person.exceptions.DuplicateAssignmentException;
+import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
+import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class UniqueAssignmentListTest {

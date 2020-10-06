@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 
 /**
  * Parses input arguments and creates a new AddCommand object

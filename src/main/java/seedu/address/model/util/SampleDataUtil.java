@@ -2,10 +2,10 @@ package seedu.address.model.util;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

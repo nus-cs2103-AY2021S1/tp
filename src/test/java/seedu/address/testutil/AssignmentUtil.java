@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditAssignmentDescriptor;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * A utility class for Assignment.

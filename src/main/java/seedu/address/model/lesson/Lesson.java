@@ -4,29 +4,35 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
+
 public class Lesson {
 
     // Identity fields
-    private final LessonName name;
-    private final Time time;
+    private final Name name;
+    private final Deadline deadline;
+
+    // Data fields
     private final ModuleCode moduleCode;
 
     /**
      * Every field must be present and not null.
      */
-    public Lesson(LessonName name, Time time, ModuleCode moduleCode) {
-        requireAllNonNull(name, time, moduleCode);
+    public Lesson(Name name, Deadline deadline, ModuleCode moduleCode) {
+        requireAllNonNull(name, deadline, moduleCode);
         this.name = name;
-        this.time = time;
+        this.deadline = deadline;
         this.moduleCode = moduleCode;
     }
 
-    public LessonName getLessonName() {
+    public Name getName() {
         return name;
     }
 
-    public Time getTime() {
-        return time;
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     public ModuleCode getModuleCode() {
@@ -42,8 +48,8 @@ public class Lesson {
         }
 
         return otherLesson != null
-                && otherLesson.getLessonName().equals(getLessonName())
-                && (otherLesson.getTime().equals(getTime()));
+                && otherLesson.getName().equals(getName())
+                && (otherLesson.getDeadline().equals(getDeadline()));
     }
 
     /**
@@ -61,23 +67,23 @@ public class Lesson {
         }
 
         Lesson otherLesson = (Lesson) other;
-        return otherLesson.getLessonName().equals(getLessonName())
-                && otherLesson.getTime().equals(getTime())
+        return otherLesson.getName().equals(getName())
+                && otherLesson.getDeadline().equals(getDeadline())
                 && otherLesson.getModuleCode().equals(getModuleCode());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, time, moduleCode);
+        return Objects.hash(name, deadline, moduleCode);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getLessonName())
+        builder.append(getName())
                 .append(" Time: ")
-                .append(getTime())
+                .append(getDeadline())
                 .append(" Module: ")
                 .append(getModuleCode());
         return builder.toString();

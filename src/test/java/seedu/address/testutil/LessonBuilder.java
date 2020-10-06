@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.lesson.LessonName;
-import seedu.address.model.lesson.ModuleCode;
-import seedu.address.model.lesson.Time;
 
 /**
  * A utility class to help with building Lesson objects.
@@ -11,19 +11,19 @@ import seedu.address.model.lesson.Time;
 public class LessonBuilder {
 
     public static final String DEFAULT_NAME = "CS2103T Lecture";
-    public static final String DEFAULT_TIME = "01-01-2020 1200";
+    public static final String DEFAULT_DEADLINE = "01-01-2020 1200";
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
 
-    private LessonName name;
-    private Time time;
+    private Name name;
+    private Deadline deadline;
     private ModuleCode moduleCode;
 
     /**
      * Creates a {@code LessonBuilder} with the default details.
      */
     public LessonBuilder() {
-        name = new LessonName(DEFAULT_NAME);
-        time = new Time(DEFAULT_TIME);
+        name = new Name(DEFAULT_NAME);
+        deadline = new Deadline(DEFAULT_DEADLINE);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
     }
 
@@ -31,24 +31,24 @@ public class LessonBuilder {
      * Initializes the LessonBuilder with the data of {@code lessonToCopy}.
      */
     public LessonBuilder(Lesson lessonToCopy) {
-        name = lessonToCopy.getLessonName();
-        time = lessonToCopy.getTime();
+        name = lessonToCopy.getName();
+        deadline = lessonToCopy.getDeadline();
         moduleCode = lessonToCopy.getModuleCode();
     }
 
     /**
      * Sets the {@code Name} of the {@code Lesson} that we are building.
      */
-    public LessonBuilder withLessonName(String name) {
-        this.name = new LessonName(name);
+    public LessonBuilder withName(String name) {
+        this.name = new Name(name);
         return this;
     }
 
     /**
      * Sets the {@code Time} of the {@code Lesson} that we are building.
      */
-    public LessonBuilder withTime(String time) {
-        this.time = new Time(time);
+    public LessonBuilder withDeadline(String time) {
+        this.deadline = new Deadline(time);
         return this;
     }
 
@@ -61,6 +61,6 @@ public class LessonBuilder {
     }
 
     public Lesson build() {
-        return new Lesson(name, time, moduleCode);
+        return new Lesson(name, deadline, moduleCode);
     }
 }

@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * Adds an assignment to the address book.

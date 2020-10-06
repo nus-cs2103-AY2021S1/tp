@@ -14,10 +14,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 
 /**
  * Edits the details of an existing assignment in the address book.

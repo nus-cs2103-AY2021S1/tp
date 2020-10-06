@@ -3,9 +3,9 @@ package seedu.address.model.lesson;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalLessons.LECTURE;
+import static seedu.address.testutil.TypicalLessons.VALID_DEADLINE;
 import static seedu.address.testutil.TypicalLessons.VALID_MODULE_CODE;
 import static seedu.address.testutil.TypicalLessons.VALID_NAME;
-import static seedu.address.testutil.TypicalLessons.VALID_TIME;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,12 +22,12 @@ public class LessonTest {
         assertFalse(LECTURE.isSameLesson(null));
 
         // different time and moduleCode -> returns false
-        Lesson editedLecture = new LessonBuilder(LECTURE).withTime(VALID_TIME)
+        Lesson editedLecture = new LessonBuilder(LECTURE).withDeadline(VALID_DEADLINE)
                 .withModuleCode(VALID_MODULE_CODE).build();
         assertFalse(LECTURE.isSameLesson(editedLecture));
 
         // different name -> returns false
-        editedLecture = new LessonBuilder(LECTURE).withLessonName(VALID_NAME).build();
+        editedLecture = new LessonBuilder(LECTURE).withName(VALID_NAME).build();
         assertFalse(LECTURE.isSameLesson(editedLecture));
     }
 }

@@ -1,4 +1,4 @@
-package seedu.address.model.lesson;
+package seedu.address.model.assignment;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,16 +21,22 @@ public class ModuleCodeTest {
 
     @Test
     public void isValidModuleCode() {
-        // null address
+        // null module code
         assertThrows(NullPointerException.class, () -> ModuleCode.isValidModuleCode(null));
 
-        // invalid addresses
+        // invalid module codes
         assertFalse(ModuleCode.isValidModuleCode("")); // empty string
         assertFalse(ModuleCode.isValidModuleCode(" ")); // spaces only
+        assertFalse(ModuleCode.isValidModuleCode("C2300")); // begins with one alphabet
+        assertFalse(ModuleCode.isValidModuleCode("ABCD1000")); // begins with more than 3 alphabets
+        assertFalse(ModuleCode.isValidModuleCode("GER10")); // only has 2 numbers
+        assertFalse(ModuleCode.isValidModuleCode("ABC10000")); // has 5 numbers
 
-        // valid addresses
-        assertTrue(ModuleCode.isValidModuleCode("CS2100"));
-        assertTrue(ModuleCode.isValidModuleCode("CFG1002")); // one character
-        assertTrue(ModuleCode.isValidModuleCode("CS1101S"));
+        // valid module codes
+        assertTrue(ModuleCode.isValidModuleCode("CS2103T"));
+        assertTrue(ModuleCode.isValidModuleCode("CS2040S"));
+        assertTrue(ModuleCode.isValidModuleCode("GER1000"));
+        assertTrue(ModuleCode.isValidModuleCode(
+                "CS2101"));
     }
 }
