@@ -49,6 +49,24 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+    public ModelManager(FinanceAccount financeAccount, Inventory inventory, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(financeAccount, inventory, userPrefs);
+
+        logger.fine("Initializing with finance account " + financeAccount +
+                ", inventory " + inventory + " and user prefs " + userPrefs);
+
+        this.financeAccount = financeAccount;
+
+        this.inventory = inventory;
+        filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
+        this.userPrefs = new UserPrefs(userPrefs);
+
+        // duplicate so programme runs. will be deleted.
+        this.addressBook = new AddressBook();
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
