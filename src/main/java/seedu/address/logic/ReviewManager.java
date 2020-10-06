@@ -9,6 +9,8 @@ import seedu.address.model.flashcard.Flashcard;
 public class ReviewManager {
 
     public static final String EXIT_MESSAGE = "Exited review mode";
+    public static final String NO_NEXT_FLASHCARD_MESSAGE = "There are no more flashcards to review";
+    public static final String NO_PREVIOUS_FLASHCARD_MESSAGE = "No previous flashcards available for review";
     private ObservableList<Flashcard> flashcardList;
     private int currentIndex;
 
@@ -21,16 +23,16 @@ public class ReviewManager {
         currentIndex = 0;
     }
 
-    public boolean hasNext() {
+    public boolean hasNextFlashcard() {
         return currentIndex < flashcardList.size() - 1;
     }
 
-    public boolean hasPrevious() {
+    public boolean hasPreviousFlashcard() {
         return currentIndex > 0;
     }
 
-    public Flashcard getNextFlashCard() {
-        if (!hasNext()) {
+    public Flashcard getNextFlashcard() {
+        if (!hasNextFlashcard()) {
             return null;
         }
         currentIndex++;
@@ -41,8 +43,8 @@ public class ReviewManager {
         return flashcardList.get(currentIndex);
     }
 
-    public Flashcard getPrevFlashCard() {
-        if (!hasPrevious()) {
+    public Flashcard getPrevFlashcard() {
+        if (!hasPreviousFlashcard()) {
             return null;
         }
         currentIndex--;
