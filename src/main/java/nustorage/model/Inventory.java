@@ -1,4 +1,4 @@
-package nustorage.model.item;
+package nustorage.model;
 
 import java.util.Iterator;
 import java.util.stream.Collectors;
