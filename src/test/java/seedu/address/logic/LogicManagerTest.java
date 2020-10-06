@@ -3,7 +3,13 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.MAX_QUANTITY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MAX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalItems.CHICKEN_MANUAL;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,9 +27,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.item.Item;
 import seedu.address.storage.JsonInventoryBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.testutil.ItemBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -60,26 +69,26 @@ public class LogicManagerTest {
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
-    //    @Test
-    //    public void execute_storageThrowsIoException_throwsCommandException() {
-    //        // Setup LogicManager with JsonInventoryBookIoExceptionThrowingStub
-    //        JsonInventoryBookStorage inventoryBookStorage =
-    //            new JsonInventoryBookIoExceptionThrowingStub(
-    //                temporaryFolder.resolve("ioExceptionInventoryBook.json"));
-    //        JsonUserPrefsStorage userPrefsStorage =
-    //                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-    //        StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
-    //        logic = new LogicManager(model, storage);
-    //
-    //        // Execute add command
-    //        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
-    //                + SUPPLIER_DESC_CHICKEN;
-    //        Item expectedItem = new ItemBuilder(CHICKEN_MANUAL).withTags().build();
-    //        ModelManager expectedModel = new ModelManager();
-    //        expectedModel.addItem(expectedItem);
-    //        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-    //        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_storageThrowsIoException_throwsCommandException() {
+        // Setup LogicManager with JsonInventoryBookIoExceptionThrowingStub
+        JsonInventoryBookStorage inventoryBookStorage =
+            new JsonInventoryBookIoExceptionThrowingStub(
+                temporaryFolder.resolve("ioExceptionInventoryBook.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+        StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
+        logic = new LogicManager(model, storage);
+
+        // Execute add command
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
+                + SUPPLIER_DESC_CHICKEN + MAX_QUANTITY_DESC;
+        Item expectedItem = new ItemBuilder(CHICKEN_MANUAL).withTags().withMaxQuantity(VALID_MAX_QUANTITY).build();
+        ModelManager expectedModel = new ModelManager();
+        expectedModel.addItem(expectedItem);
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
 
     @Test
     public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
