@@ -81,8 +81,9 @@ public class RemoveCommand extends Command {
         Quantity updatedQuantity = itemToEdit.getQuantity().subtract(quantity);
         Supplier updatedSupplier = itemToEdit.getSupplier();
         Set<Tag> updatedTags = itemToEdit.getTags();
+        Quantity updatedMaxQuantity = itemToEdit.getMaxQuantity().orElse(null);
 
-        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags);
+        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity);
     }
 
     @Override
