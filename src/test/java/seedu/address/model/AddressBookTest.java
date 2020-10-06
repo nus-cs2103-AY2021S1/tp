@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.CS1231S_HW;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
@@ -21,6 +20,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Assignment;
 import seedu.address.model.person.exceptions.DuplicateAssignmentException;
 import seedu.address.testutil.AssignmentBuilder;
+
 
 public class AddressBookTest {
 
@@ -46,8 +46,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateAssignments_throwsDuplicateAssignmentException() {
         // Two assignments with the same identity fields
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
         AddressBookStub newData = new AddressBookStub(newAssignments);
 
@@ -74,7 +73,7 @@ public class AddressBookTest {
     public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addAssignment(CS1231S_HW);
         Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
-                .withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND).build();
+                .withModuleCode(VALID_MODULE_CODE_HW).build();
         assertTrue(addressBook.hasAssignment(editedCs1231sHw));
     }
 

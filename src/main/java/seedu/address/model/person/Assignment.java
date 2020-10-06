@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Assignment in the address book.
@@ -21,17 +16,15 @@ public class Assignment {
 
     // Data fields
     private final ModuleCode moduleCode;
-    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, moduleCode, tags);
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode) {
+        requireAllNonNull(name, deadline, moduleCode);
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -44,14 +37,6 @@ public class Assignment {
 
     public ModuleCode getModuleCode() {
         return moduleCode;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -85,14 +70,13 @@ public class Assignment {
         Assignment otherAssignment = (Assignment) other;
         return otherAssignment.getName().equals(getName())
                 && otherAssignment.getDeadline().equals(getDeadline())
-                && otherAssignment.getModuleCode().equals(getModuleCode())
-                && otherAssignment.getTags().equals(getTags());
+                && otherAssignment.getModuleCode().equals(getModuleCode());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, moduleCode, tags);
+        return Objects.hash(name, deadline, moduleCode);
     }
 
     @Override
@@ -103,9 +87,7 @@ public class Assignment {
                 .append(getDeadline())
                 .append(" Email: ")
                 .append(" Module: ")
-                .append(getModuleCode())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getModuleCode());
         return builder.toString();
     }
 

@@ -6,20 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_HW;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
@@ -34,12 +28,9 @@ import seedu.address.logic.commands.EditCommand.EditAssignmentDescriptor;
 import seedu.address.model.person.Deadline;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditAssignmentDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -79,18 +70,11 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS); // invalid module code
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(
                 parser, "1" + DEADLINE_DESC_LAB + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Assignment} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_MODULE_CODE_HW
@@ -100,12 +84,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ASSIGNMENT;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_LAB + TAG_DESC_HUSBAND + MODULE_CODE_DESC_HW
-                + NAME_DESC_HW + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_LAB + MODULE_CODE_DESC_HW
+                + NAME_DESC_HW;
         EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder()
                 .withName(VALID_NAME_HW)
-                .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_HW)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_HW).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -140,25 +123,16 @@ public class EditCommandParserTest {
         descriptor = new EditAssignmentDescriptorBuilder().withModuleCode(VALID_MODULE_CODE_HW).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
-        // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditAssignmentDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ASSIGNMENT;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_HW + MODULE_CODE_DESC_HW
-                + TAG_DESC_FRIEND + DEADLINE_DESC_HW + MODULE_CODE_DESC_HW + TAG_DESC_FRIEND
-                + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB + TAG_DESC_HUSBAND;
+                 + DEADLINE_DESC_HW + MODULE_CODE_DESC_HW + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB;
 
         EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withDeadline(VALID_DEADLINE_LAB)
-                .withModuleCode(VALID_MODULE_CODE_LAB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+                .withModuleCode(VALID_MODULE_CODE_LAB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -180,17 +154,6 @@ public class EditCommandParserTest {
         descriptor = new EditAssignmentDescriptorBuilder().withDeadline(VALID_DEADLINE_LAB)
                 .withModuleCode(VALID_MODULE_CODE_LAB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_ASSIGNMENT;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

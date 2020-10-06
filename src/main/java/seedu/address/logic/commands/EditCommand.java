@@ -4,14 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,7 +18,6 @@ import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Deadline;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing assignment in the address book.
@@ -38,7 +33,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_MODULE_CODE + "MODULE CODE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "01-01-2020 1800 ";
 
@@ -94,9 +88,8 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
         ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()
                 .orElse(assignmentToEdit.getModuleCode());
-        Set<Tag> updatedTags = editAssignmentDescriptor.getTags().orElse(assignmentToEdit.getTags());
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedTags);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode);
     }
 
     @Override
@@ -125,26 +118,23 @@ public class EditCommand extends Command {
         private Name name;
         private Deadline deadline;
         private ModuleCode moduleCode;
-        private Set<Tag> tags;
 
         public EditAssignmentDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditAssignmentDescriptor(EditAssignmentDescriptor toCopy) {
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
             setModuleCode(toCopy.moduleCode);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, moduleCode, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, moduleCode);
         }
 
         public void setName(Name name) {
@@ -171,23 +161,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(moduleCode);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -205,8 +178,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDeadline().equals(e.getDeadline())
-                    && getModuleCode().equals(e.getModuleCode())
-                    && getTags().equals(e.getTags());
+                    && getModuleCode().equals(e.getModuleCode());
         }
     }
 }

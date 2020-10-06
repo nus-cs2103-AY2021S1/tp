@@ -6,8 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,17 +20,13 @@ import seedu.address.model.person.Assignment;
 public class TypicalAssignments {
 
     public static final Assignment CS1231S_HW = new AssignmentBuilder().withName("CS1231S Homework")
-            .withModuleCode("CS1231S")
-            .withDeadline("01-01-2020 1800")
-            .withTags("friends").build();
+            .withModuleCode("CS1231S").withDeadline("01-01-2020 1800").build();
     public static final Assignment CS2103T_TUT = new AssignmentBuilder().withName("CS2103T Tutorial")
-            .withModuleCode("CS2103T")
-            .withDeadline("02-03-2020 2359")
-            .withTags("owesMoney", "friends").build();
+            .withModuleCode("CS2103T").withDeadline("02-03-2020 2359").build();
     public static final Assignment CS2106_LAB = new AssignmentBuilder().withName("CS2106 Lab")
             .withDeadline("12-12-2020 1200").withModuleCode("CS2106").build();
     public static final Assignment CS2106_TUTORIAL_QUIZ = new AssignmentBuilder().withName("CS2106 Tutorial Quiz")
-            .withDeadline("03-03-2020 0300").withModuleCode("CS2106").withTags("friends").build();
+            .withDeadline("03-03-2020 0300").withModuleCode("CS2106").build();
     public static final Assignment IS1103_MISSION = new AssignmentBuilder().withName("IS1103 Mission")
             .withDeadline("12-10-2020 1900").withModuleCode("IS1103").build();
     public static final Assignment PEER_REVIEW = new AssignmentBuilder().withName("Peer review")
@@ -48,10 +42,9 @@ public class TypicalAssignments {
 
     // Manually added - Assignment's details found in {@code CommandTestUtil}
     public static final Assignment HW = new AssignmentBuilder().withName(VALID_NAME_HW).withDeadline(VALID_DEADLINE_HW)
-            .withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_FRIEND).build();
+            .withModuleCode(VALID_MODULE_CODE_HW).build();
     public static final Assignment LAB = new AssignmentBuilder().withName(VALID_NAME_LAB)
-            .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB).build();
 
     private TypicalAssignments() {} // prevents instantiation
 

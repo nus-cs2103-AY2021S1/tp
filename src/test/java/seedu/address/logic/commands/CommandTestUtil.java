@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -31,8 +30,6 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_LAB = "02-02-2020 2000";
     public static final String VALID_MODULE_CODE_HW = "CS2103T";
     public static final String VALID_MODULE_CODE_LAB = "CS2100";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NAME_DESC_HW = " " + PREFIX_NAME + VALID_NAME_HW;
     public static final String NAME_DESC_LAB = " " + PREFIX_NAME + VALID_NAME_LAB;
@@ -40,15 +37,11 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_LAB = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB;
     public static final String MODULE_CODE_DESC_HW = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_HW;
     public static final String MODULE_CODE_DESC_LAB = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_LAB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "CS1231&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "31-02-2020 0000"; // 31st Feb does not exist
     public static final String INVALID_MODULE_CODE_DESC = " "
             + PREFIX_MODULE_CODE; // empty string not allowed for module code
-
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -57,11 +50,9 @@ public class CommandTestUtil {
 
     static {
         DESC_HW = new EditAssignmentDescriptorBuilder().withName(VALID_NAME_HW)
-                .withDeadline(VALID_DEADLINE_HW).withModuleCode(VALID_MODULE_CODE_HW)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withDeadline(VALID_DEADLINE_HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         DESC_LAB = new EditAssignmentDescriptorBuilder().withName(VALID_NAME_LAB)
-                .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_LAB).build();
     }
 
     /**

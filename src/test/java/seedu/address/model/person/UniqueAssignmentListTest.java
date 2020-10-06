@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.HW;
 import static seedu.address.testutil.TypicalAssignments.LAB;
@@ -42,8 +41,7 @@ public class UniqueAssignmentListTest {
     @Test
     public void contains_assignmentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAssignmentList.add(HW);
-        Assignment editedHW = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedHW = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         assertTrue(uniqueAssignmentList.contains(editedHW));
     }
 
@@ -85,8 +83,7 @@ public class UniqueAssignmentListTest {
     @Test
     public void setAssignment_editedAssignmentHasSameIdentity_success() {
         uniqueAssignmentList.add(HW);
-        Assignment editedHW = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Assignment editedHW = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         uniqueAssignmentList.setAssignment(HW, editedHW);
         UniqueAssignmentList expectedUniqueAssignmentList = new UniqueAssignmentList();
         expectedUniqueAssignmentList.add(editedHW);

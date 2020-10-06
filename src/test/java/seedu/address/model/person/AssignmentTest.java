@@ -6,8 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.HW;
 import static seedu.address.testutil.TypicalAssignments.LAB;
 
@@ -16,12 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class AssignmentTest {
-
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Assignment assignment = new AssignmentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> assignment.getTags().remove(0));
-    }
 
     @Test
     public void isSameAssignment() {
@@ -40,18 +32,16 @@ public class AssignmentTest {
         assertFalse(HW.isSameAssignment(editedHw));
 
         // same name, same deadline, different attributes -> returns true
-        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND)
-                .build();
+        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         assertTrue(HW.isSameAssignment(editedHw));
 
         // same name, different attributes -> returns false
         editedHw = new AssignmentBuilder(HW).withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_HW)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .build();
         assertFalse(HW.isSameAssignment(editedHw));
 
         // same name, same deadline, different attributes -> returns true
-        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW)
-                .withTags(VALID_TAG_HUSBAND).build();
+        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         assertTrue(HW.isSameAssignment(editedHw));
     }
 
@@ -83,10 +73,6 @@ public class AssignmentTest {
 
         // different module code -> returns false
         editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_LAB).build();
-        assertFalse(HW.equals(editedHw));
-
-        // different tags -> returns false
-        editedHw = new AssignmentBuilder(HW).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(HW.equals(editedHw));
     }
 }
