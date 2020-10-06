@@ -1,6 +1,35 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-F11-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-F11-3/tp/actions)
 
-### User stories
+
+![Ui](docs/images/Ui.png)
+
+## Project scope
+  
+* ProductiveNUS is a desktop application that provides an accessible platform for 
+NUS computing students to manage and keep track of their 
+academic tasks at hand.  
+
+  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) 
+  than what students usually write in beginner-level SE modules, without being overwhelmingly big.
+  * It comes with a **reasonable level of user and developer documentation**.
+## Motivation
+* As a NUS Computing Student, you would probably have had **difficulties managing your
+academic schedule**. You might often feel overwhelmed due to 
+**tight deadlines** for your assignments along with a **high workload** which you might be
+on the verge of being unable to 
+cope with. In events like this, having a **disorganised timeline** makes your
+situation worse. You might often **underestimate the time
+it takes** to complete your assignments and you might be **late for your lessons** as you were preoccupied 
+with completing them. However, all these
+tasks still remain uncompleted. You might have been spinning your wheels.
+* ProductiveNUS minimises such problems by helping you keep track of your schedule easily.
+
+## Aim
+* **Effective time management** among NUS Computing students, resulting in **higher productivity**.
+* **Efficiency** in browsing through all your academic tasks (lessons and assignments) at once.
+* **Better planning** of your academic schedule.
+
+## User stories
 | No. | As a...           | I can...                              | So that I can...                                                          |
 |-----|-------------------|---------------------------------------|---------------------------------------------------------------------------|
 | 1   | Student           | import my timetable from NUSMods      | better schedule my assignments with my lesson  timings taken into account |
@@ -9,26 +38,6 @@
 | 4   | Poor time manager | delete assignments                    | remove assignments that I have completed  or added wrongly                |
 | 5   | Poor time manager | view lessons and assignments together | view all the assignments I have to complete amidst  my lessons            |
 
-![Ui](docs/images/Ui.png)
-
-## Project scope
-  
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing your academic tasks.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-## Motivation
-* As a NUS Computing Student, you would probably have had **difficulties managing your
-academic schedule**. You often feel overwhelmed because you have so many things to do:
-**tight deadlines; high workload; many assignments due**. You often **underestimate the time
-it takes** to complete your assignments. You are often **late for appointments, lessons**. All these
-things just don't get done. You keep spinning your wheels.
-* This is exactly why we develop **ProductiveNUS**, an **Academic Schedule Manager** that 
-will **solve all these problems**.
-### Aim
-* Effective time management = **HIGHER PRODUCTIVITY** + **LESS STRESS**.
-* **`YOU + TASK + SETTING = PEAK PERFORMANCE`**
-* We hope to provide you with the best **SETTING** to manage your academic schedule
-so that you can excel in your University Study.
 
 ## Current features supported
 * Importing timetable from NUSMods
