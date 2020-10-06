@@ -82,10 +82,28 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Phone} of the {@code Task} that we are building to be default DateTime.
+     * Simulates the situation that the task is created without a DateTime field.
+     */
+    public TaskBuilder withDefaultDateTime() {
+        this.dateTime = DateTime.defaultDateTime();
+        return this;
+    }
+
+    /**
      * Sets the {@code Description} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Description} of the {@code Task} that we are building to be default description.
+     * Simulates the situation that the task is created without a description field.
+     */
+    public TaskBuilder withDefaultDescription() {
+        this.description = Description.defaultDescription();
         return this;
     }
 

@@ -14,7 +14,11 @@ public class DateTime {
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
     public static final String VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01]?[0-9]):([0-5]?[0-9])$";
+
+    private static final String DEFAULT_DATETIME = "";
+
     public final String value;
+
 
     /**
      * Constructs a {@code DateTime}.
@@ -28,10 +32,27 @@ public class DateTime {
     }
 
     /**
+     * Constructs a default {@code DateTime}.
+     *
+     * Caveat: Only called by defaultDateTime method.
+     */
+    private DateTime() {
+        value = DEFAULT_DATETIME;
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Constructs an empty Phone when user didn't provide the phone field.
+     * Caveat: Only called when the user didn't key in this field.
+     */
+    public static DateTime defaultDateTime() {
+        return new DateTime();
     }
 
     @Override
