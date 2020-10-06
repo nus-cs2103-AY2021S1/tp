@@ -1,6 +1,7 @@
 package tp.cap5buddy.logic.commands;
 
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 
 /**
  * Represents the DeleteModuleCommand class.
@@ -24,7 +25,7 @@ public class DeleteModuleCommand extends Command {
      *
      * @return ResultCommand ResultCommand object.
      */
-    public ResultCommand execute(ModuleList modules) {
+    public ResultCommand execute(ModuleList modules, TodoList todolist) {
         modules.deleteModule(position);
         return new ResultCommand(SUCCESS_MESSAGE_FIRST + position + SUCCESS_MESSAGE_SECOND, isExit());
     }

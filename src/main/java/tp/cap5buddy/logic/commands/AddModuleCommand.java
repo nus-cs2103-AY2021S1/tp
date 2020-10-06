@@ -2,6 +2,7 @@ package tp.cap5buddy.logic.commands;
 
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 
 /**
  * Represents the AddModuleCommand class.
@@ -26,7 +27,7 @@ public class AddModuleCommand extends Command {
      *
      * @return ResultCommand ResultCommand object.
      */
-    public ResultCommand execute(ModuleList modules) {
+    public ResultCommand execute(ModuleList modules, TodoList todolist) {
         if (this.link == null) {
             Module mod = new Module(this.name);
             modules.addModule(mod);

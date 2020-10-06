@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
-
+import tp.cap5buddy.todolist.TodoList;
 
 
 /**
@@ -23,7 +23,7 @@ public class ViewModuleCommand extends Command {
      * Executes the main function of this command, to view a specified module.
      * @return String success message.
      */
-    public ResultCommand execute(ModuleList modules) {
+    public ResultCommand execute(ModuleList modules, TodoList todoList) {
         Module moduleToBeDisplayed = modules.getModule(moduleName);
         return new ResultCommand(moduleToBeDisplayed.toString() + "\n"
                 + SUCCESS_MESSAGE, isExit());

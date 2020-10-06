@@ -5,6 +5,9 @@ import java.util.Comparator;
 public class TaskComparatorByDate implements Comparator<Task> {
     @Override
     public int compare(Task task, Task otherTask) {
-        return task.getDate().compareTo(otherTask.getDate());
+        Date date = task.getDate();
+        Date otherDate = otherTask.getDate();
+        DateComparator descriptionComparator = new DateComparator();
+        return descriptionComparator.compare(date, otherDate);
     }
 }
