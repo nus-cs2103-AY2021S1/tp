@@ -5,14 +5,12 @@ import static seedu.address.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.BENSON;
 
-/*import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;*/
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 
 public class JsonAdaptedRecipeTest {
@@ -35,14 +33,14 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(INVALID_NAME, VALID_INGREDIENT);
+                new JsonAdaptedRecipe(INVALID_NAME, new ArrayList<Ingredient>());
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(null, VALID_INGREDIENT);
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(null, new ArrayList<>());
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
@@ -50,8 +48,8 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidIngredient_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(VALID_NAME, INVALID_INGREDIENT);
-        String expectedMessage = IngredientString.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedRecipe(VALID_NAME, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Ingredient.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

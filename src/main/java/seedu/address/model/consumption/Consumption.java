@@ -51,7 +51,9 @@ public class Consumption {
         final StringBuilder builder = new StringBuilder();
         builder.append(recipe.getName())
                 .append(" Ingredient: ")
-                .append(recipe.getIngredientString());
+                .append(recipe.getIngredient().stream()
+                        .map(item -> item.getValue())
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         return builder.toString();
     }
 }

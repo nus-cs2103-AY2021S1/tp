@@ -55,7 +55,7 @@ class JsonSerializableWishfulShrinking {
                 .toList()));
         consumption.addAll(source.getConsumptionList().stream().map(consump -> {
             String recipeName = consump.getRecipe().getName().fullName;
-            String ingredients = consump.getRecipe().getIngredientString().value;
+            ArrayList<Ingredient> ingredients = consump.getRecipe().getIngredient();
             return new JsonAdaptedConsumption(recipeName, ingredients);
         }).collect(Collectors
                 .toList()));

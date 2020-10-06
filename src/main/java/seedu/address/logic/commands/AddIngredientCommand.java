@@ -30,7 +30,7 @@ public class AddIngredientCommand extends Command {
     /**
      * Creates an AddIngredientCommand to add the specified {@code Ingredients}
      */
-    public AddIngredientCommand(Ingredient ... ingredients) {
+    public AddIngredientCommand(Ingredient ...ingredients) {
         requireNonNull(ingredients);
         toAdd = ingredients;
     }
