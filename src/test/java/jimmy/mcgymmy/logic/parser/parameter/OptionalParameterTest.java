@@ -12,11 +12,11 @@ public class OptionalParameterTest {
     @Test
     void optionalParameter_storesCorrectValue() throws Exception {
         OptionalParameter<Integer> testParameter = new OptionalParameter<>(
-            "intparam",
-            "i",
-            "test",
-            "test",
-            String::length);
+                "intparam",
+                "i",
+                "test",
+                "test",
+                String::length);
         testParameter.setValue("abcdef");
         assertEquals(testParameter.getValue().map(i -> i + 1), Optional.of(7));
     }

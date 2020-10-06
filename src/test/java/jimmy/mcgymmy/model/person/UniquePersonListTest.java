@@ -59,8 +59,8 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
         assertThrows(
-            PersonNotFoundException.class, () -> uniquePersonList.setPerson(
-                TypicalPersons.ALICE, TypicalPersons.ALICE));
+                PersonNotFoundException.class, () -> uniquePersonList.setPerson(
+                        TypicalPersons.ALICE, TypicalPersons.ALICE));
     }
 
     @Test
@@ -86,7 +86,8 @@ public class UniquePersonListTest {
         uniquePersonList.add(TypicalPersons.ALICE);
         uniquePersonList.add(TypicalPersons.BOB);
         assertThrows(
-            DuplicatePersonException.class, () -> uniquePersonList.setPerson(TypicalPersons.ALICE, TypicalPersons.BOB));
+                DuplicatePersonException.class, () -> uniquePersonList.setPerson(
+                        TypicalPersons.ALICE, TypicalPersons.BOB));
     }
 
     @Test
@@ -144,7 +145,7 @@ public class UniquePersonListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
 }

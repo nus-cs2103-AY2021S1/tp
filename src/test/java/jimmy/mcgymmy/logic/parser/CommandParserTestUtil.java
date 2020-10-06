@@ -52,6 +52,23 @@ public class CommandParserTestUtil {
         return new OptionalParameter<>(name, flag, "test", "test", (s) -> s);
     }
 
+    /**
+     * Retrieves the rawValue of a command's parameter
+     *
+     * @param command the command to inspect
+     * @param flag    the desired flag
+     * @return the raw value of the parameter, Optional.empty() otherwise.
+     */
+    public static Optional<String> commandParameterValue(Command command, String flag) {
+        List<AbstractParameter> parameterList = command.getParameterSet().getParameterList();
+        for (AbstractParameter parameter : parameterList) {
+            if (parameter.getFlag().equals(flag)) {
+                return parameter.getRawValue();
+            }
+        }
+        return Optional.empty();
+    }
+
     public static class ParameterStub<T> extends Parameter<T> {
         private final T value;
 
@@ -100,22 +117,5 @@ public class CommandParserTestUtil {
         public Optional<T> getValue() {
             return this.value;
         }
-    }
-
-    /**
-     * Retrieves the rawValue of a command's parameter
-     *
-     * @param command the command to inspect
-     * @param flag    the desired flag
-     * @return the raw value of the parameter, Optional.empty() otherwise.
-     */
-    public static Optional<String> commandParameterValue(Command command, String flag) {
-        List<AbstractParameter> parameterList = command.getParameterSet().getParameterList();
-        for (AbstractParameter parameter : parameterList) {
-            if (parameter.getFlag().equals(flag)) {
-                return parameter.getRawValue();
-            }
-        }
-        return Optional.empty();
     }
 }

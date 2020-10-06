@@ -28,25 +28,25 @@ public class FoodTest {
     @Test
     public void constructor_nullProtein_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            new Food(VALID_FOOD_NAME, null, CARBOHYDRATE, FAT));
+                new Food(VALID_FOOD_NAME, null, CARBOHYDRATE, FAT));
     }
 
     @Test
     public void constructor_nullCarbohydrate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            new Food(VALID_FOOD_NAME, PROTEIN, null, FAT));
+                new Food(VALID_FOOD_NAME, PROTEIN, null, FAT));
     }
 
     @Test
     public void constructor_nullFat_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, null));
+                new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-            new Food(INVALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT));
+                new Food(INVALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT));
     }
 
     @Test

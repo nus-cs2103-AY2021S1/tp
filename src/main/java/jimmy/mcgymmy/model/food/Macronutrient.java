@@ -39,9 +39,9 @@ public abstract class Macronutrient {
     @Override
     public String toString() {
         return "MacronutrientType:" + this.getMacronutrientType() + "\n"
-            + "Amount: "
-            + this.getAmount() + "\n"
-            + "Caloric Count: " + this.getTotalCalories() + "\n";
+                + "Amount: "
+                + this.getAmount() + "\n"
+                + "Caloric Count: " + this.getTotalCalories() + "\n";
     }
 
     @Override
@@ -55,8 +55,8 @@ public abstract class Macronutrient {
 
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
-            && this.getAmount() == otherMacronutrient.getAmount()
-            && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
+                && this.getAmount() == otherMacronutrient.getAmount()
+                && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
     }
 
     // take the type from the class name

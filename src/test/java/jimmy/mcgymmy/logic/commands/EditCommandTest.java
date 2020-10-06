@@ -31,10 +31,10 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", editedPerson.getName()),
-            new CommandParserTestUtil.OptionalParameterStub<>("p", editedPerson.getPhone()),
-            new CommandParserTestUtil.OptionalParameterStub<>("e", editedPerson.getEmail())
+                new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", editedPerson.getName()),
+                new CommandParserTestUtil.OptionalParameterStub<>("p", editedPerson.getPhone()),
+                new CommandParserTestUtil.OptionalParameterStub<>("e", editedPerson.getEmail())
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", indexLastPerson),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", editedPerson.getName()),
-            new CommandParserTestUtil.OptionalParameterStub<>("p", editedPerson.getPhone()),
-            new CommandParserTestUtil.OptionalParameterStub<>("e")
+                new CommandParserTestUtil.ParameterStub<>("", indexLastPerson),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", editedPerson.getName()),
+                new CommandParserTestUtil.OptionalParameterStub<>("p", editedPerson.getPhone()),
+                new CommandParserTestUtil.OptionalParameterStub<>("e")
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -73,10 +73,10 @@ public class EditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
-            new CommandParserTestUtil.OptionalParameterStub<>("n"),
-            new CommandParserTestUtil.OptionalParameterStub<>("p"),
-            new CommandParserTestUtil.OptionalParameterStub<>("e")
+                new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
+                new CommandParserTestUtil.OptionalParameterStub<>("p"),
+                new CommandParserTestUtil.OptionalParameterStub<>("e")
         );
 
         Person editedPerson = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
@@ -93,15 +93,15 @@ public class EditCommandTest {
         CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
 
         Person personInFilteredList =
-            model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+                model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", editedPerson.getName()),
-            new CommandParserTestUtil.OptionalParameterStub<>("p"),
-            new CommandParserTestUtil.OptionalParameterStub<>("e")
+                new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", editedPerson.getName()),
+                new CommandParserTestUtil.OptionalParameterStub<>("p"),
+                new CommandParserTestUtil.OptionalParameterStub<>("e")
         );
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -117,10 +117,10 @@ public class EditCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_SECOND_PERSON),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", firstPerson.getName()),
-            new CommandParserTestUtil.OptionalParameterStub<>("p", firstPerson.getPhone()),
-            new CommandParserTestUtil.OptionalParameterStub<>("e", firstPerson.getEmail())
+                new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_SECOND_PERSON),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", firstPerson.getName()),
+                new CommandParserTestUtil.OptionalParameterStub<>("p", firstPerson.getPhone()),
+                new CommandParserTestUtil.OptionalParameterStub<>("e", firstPerson.getEmail())
         );
 
         CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
@@ -132,13 +132,13 @@ public class EditCommandTest {
 
         // edit person in filtered list into a duplicate in address book
         Person personInList =
-            model.getAddressBook().getPersonList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+                model.getAddressBook().getPersonList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", personInList.getName()),
-            new CommandParserTestUtil.OptionalParameterStub<>("p", personInList.getPhone()),
-            new CommandParserTestUtil.OptionalParameterStub<>("e", personInList.getEmail())
+                new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", personInList.getName()),
+                new CommandParserTestUtil.OptionalParameterStub<>("p", personInList.getPhone()),
+                new CommandParserTestUtil.OptionalParameterStub<>("e", personInList.getEmail())
         );
 
         CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
@@ -149,10 +149,10 @@ public class EditCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", new Name(VALID_NAME_BOB)),
-            new CommandParserTestUtil.OptionalParameterStub<>("p"),
-            new CommandParserTestUtil.OptionalParameterStub<>("e")
+                new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", new Name(VALID_NAME_BOB)),
+                new CommandParserTestUtil.OptionalParameterStub<>("p"),
+                new CommandParserTestUtil.OptionalParameterStub<>("e")
         );
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -171,10 +171,10 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
-            new CommandParserTestUtil.OptionalParameterStub<>("n", new Name(VALID_NAME_BOB)),
-            new CommandParserTestUtil.OptionalParameterStub<>("p"),
-            new CommandParserTestUtil.OptionalParameterStub<>("e")
+                new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", new Name(VALID_NAME_BOB)),
+                new CommandParserTestUtil.OptionalParameterStub<>("p"),
+                new CommandParserTestUtil.OptionalParameterStub<>("e")
         );
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

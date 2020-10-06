@@ -79,10 +79,10 @@ public class Food {
         Food otherFood = (Food) other;
 
         return otherFood != null
-            && this.getName().equals(otherFood.getName())
-            && this.getProtein().equals(otherFood.getProtein())
-            && this.getCarbs().equals(otherFood.getCarbs())
-            && this.getFat().equals(otherFood.getFat());
+                && this.getName().equals(otherFood.getName())
+                && this.getProtein().equals(otherFood.getProtein())
+                && this.getCarbs().equals(otherFood.getCarbs())
+                && this.getFat().equals(otherFood.getFat());
     }
 
     // Displays
@@ -90,9 +90,9 @@ public class Food {
     @Override
     public String toString() {
         return "Food:" + this.getName() + "\n"
-            + "protein: " + protein.getAmount() + "\n"
-            + "carbs: " + carbs.getAmount() + "\n"
-            + "fat: " + fat.getAmount() + "\n";
+                + "protein: " + protein.getAmount() + "\n"
+                + "carbs: " + carbs.getAmount() + "\n"
+                + "fat: " + fat.getAmount() + "\n";
     }
 
 }

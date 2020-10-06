@@ -24,25 +24,25 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private Parameter<Name> nameParameter = this.addParameter(
-        "name",
-        "n",
-        "Name of person to add",
-        "John Doe",
-        ParserUtil::parseName
+            "name",
+            "n",
+            "Name of person to add",
+            "John Doe",
+            ParserUtil::parseName
     );
     private Parameter<Phone> phoneParameter = this.addParameter(
-        "phone",
-        "p",
-        "Phone number of person to add",
-        "98765432",
-        ParserUtil::parsePhone
+            "phone",
+            "p",
+            "Phone number of person to add",
+            "98765432",
+            ParserUtil::parsePhone
     );
     private Parameter<Email> emailParameter = this.addParameter(
-        "email",
-        "e",
-        "Email address of person to add",
-        "johnd@example.com",
-        ParserUtil::parseEmail
+            "email",
+            "e",
+            "Email address of person to add",
+            "johnd@example.com",
+            ParserUtil::parseEmail
 
     );
 
@@ -58,7 +58,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         // rewriting this class as an example, address and tags not implemented.
         Person toAdd = new Person(nameParameter.consume(), phoneParameter.consume(), emailParameter.consume(),
-            new Address("dummy value"), new HashSet<>());
+                new Address("dummy value"), new HashSet<>());
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

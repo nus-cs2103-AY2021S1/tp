@@ -17,7 +17,7 @@ import jimmy.mcgymmy.commons.util.CollectionUtil;
 public class Fridge implements Iterable<Food> {
     private final ObservableList<Food> internalList = FXCollections.observableArrayList();
     private final ObservableList<Food> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent food item as the given argument.
@@ -81,8 +81,8 @@ public class Fridge implements Iterable<Food> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Fridge // instanceof handles nulls
-            && internalList.equals(((Fridge) other).internalList));
+                || (other instanceof Fridge // instanceof handles nulls
+                && internalList.equals(((Fridge) other).internalList));
     }
 
     @Override

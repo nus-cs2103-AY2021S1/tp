@@ -18,7 +18,7 @@ class MacronutrientTest {
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-            new MacronutrientStub(-1, 4));
+                new MacronutrientStub(-1, 4));
     }
 
     @Test

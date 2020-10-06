@@ -29,9 +29,9 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder().withAddress("dummy value").build();
         AddCommand command = new AddCommand();
         command.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
-            new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
-            new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail()));
+                new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
+                new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
+                new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail()));
 
         CommandResult commandResult = command.execute(modelStub);
 
@@ -44,14 +44,14 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder().withAddress("dummy value").build();
         AddCommand addCommand = new AddCommand();
         addCommand.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
-            new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
-            new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail())
+                new CommandParserTestUtil.ParameterStub<>("n", validPerson.getName()),
+                new CommandParserTestUtil.ParameterStub<>("p", validPerson.getPhone()),
+                new CommandParserTestUtil.ParameterStub<>("e", validPerson.getEmail())
         );
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class,
-            AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     /**

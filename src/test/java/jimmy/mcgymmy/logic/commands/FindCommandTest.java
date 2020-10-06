@@ -42,7 +42,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
-            model.getFilteredPersonList());
+                model.getFilteredPersonList());
     }
 
     /**

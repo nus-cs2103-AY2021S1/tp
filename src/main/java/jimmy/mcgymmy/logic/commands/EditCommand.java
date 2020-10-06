@@ -27,32 +27,32 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private Parameter<Index> indexParameter = this.addParameter(
-        "index",
-        "",
-        "index number used in the displayed person list.",
-        "2",
-        ParserUtil::parseIndex
+            "index",
+            "",
+            "index number used in the displayed person list.",
+            "2",
+            ParserUtil::parseIndex
     );
     private OptionalParameter<Name> nameParameter = this.addOptionalParameter(
-        "name",
-        "n",
-        "Name of person to add",
-        "John Doe",
-        ParserUtil::parseName
+            "name",
+            "n",
+            "Name of person to add",
+            "John Doe",
+            ParserUtil::parseName
     );
     private OptionalParameter<Phone> phoneParameter = this.addOptionalParameter(
-        "phone",
-        "p",
-        "Phone number of person to add",
-        "98765432",
-        ParserUtil::parsePhone
+            "phone",
+            "p",
+            "Phone number of person to add",
+            "98765432",
+            ParserUtil::parsePhone
     );
     private OptionalParameter<Email> emailParameter = this.addOptionalParameter(
-        "email",
-        "e",
-        "Email address of person to add",
-        "johnd@example.com",
-        ParserUtil::parseEmail
+            "email",
+            "e",
+            "Email address of person to add",
+            "johnd@example.com",
+            ParserUtil::parseEmail
     );
 
     void setParameters(Parameter<Index> indexParameter, OptionalParameter<Name> nameParameter,
@@ -81,7 +81,7 @@ public class EditCommand extends Command {
 
         // as with AddCommand, address and get tags left as exercises
         Person editedPerson = new Person(newName, newPhone, newEmail,
-            personToEdit.getAddress(), personToEdit.getTags());
+                personToEdit.getAddress(), personToEdit.getTags());
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

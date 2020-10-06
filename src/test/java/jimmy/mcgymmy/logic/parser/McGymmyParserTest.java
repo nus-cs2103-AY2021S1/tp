@@ -88,7 +88,7 @@ public class McGymmyParserTest {
         private Parameter<String> testParameter1 = CommandParserTestUtil.makeDummyParameter("test1", "t1");
         private Parameter<String> testParameter2 = CommandParserTestUtil.makeDummyParameter("test2", "t2");
         private OptionalParameter<String> testOptionalParameter =
-            CommandParserTestUtil.makeDummyOptionalParameter("opt", "o1");
+                CommandParserTestUtil.makeDummyOptionalParameter("opt", "o1");
 
         {
             this.registerParameter(testParameter1);

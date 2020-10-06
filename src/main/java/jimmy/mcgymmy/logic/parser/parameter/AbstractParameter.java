@@ -23,12 +23,12 @@ public abstract class AbstractParameter {
         this.description = description;
         this.example = example;
         this.option = Option.builder(flag)
-            .longOpt(name)
-            .desc(description)
-            .hasArg()
-            .numberOfArgs(Option.UNLIMITED_VALUES)
-            .required(isRequired)
-            .build();
+                .longOpt(name)
+                .desc(description)
+                .hasArg()
+                .numberOfArgs(Option.UNLIMITED_VALUES)
+                .required(isRequired)
+                .build();
     }
 
     public void setValue(String rawValue) throws ParseException {

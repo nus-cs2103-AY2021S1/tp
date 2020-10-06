@@ -28,14 +28,14 @@ public class OptionalParameter<T> extends AbstractParameter {
         this.converter = converter;
     }
 
+    public Optional<T> getValue() {
+        return value;
+    }
+
     @Override
     public void setValue(String rawValue) throws ParseException {
         super.setValue(rawValue);
         this.value = Optional.of(converter.apply(rawValue));
-    }
-
-    public Optional<T> getValue() {
-        return value;
     }
 }
 
