@@ -82,12 +82,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid title
-        assertParseFailure(parser, "1" + INVALID_DATE_TIME_DESC, DateTime.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_DATE_TIME_DESC, DateTime.MESSAGE_CONSTRAINTS); // invalid dateTime
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid desc
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid description
+        // invalid dateTime followed by valid description
         assertParseFailure(parser, "1" + INVALID_DATE_TIME_DESC + DESCRIPTION_DESC_AMY, DateTime.MESSAGE_CONSTRAINTS);
 
         // valid dateTime followed by invalid dateTime. The test case for invalid dateTime followed by valid dateTime
