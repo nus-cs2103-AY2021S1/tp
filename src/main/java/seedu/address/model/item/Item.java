@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -22,18 +23,18 @@ public class Item {
     // Data fields
     private final Quantity quantity;
     private final Set<Tag> tags = new HashSet<>();
-    private final Quantity maxQuantity;
+    private final Optional<Quantity> maxQuantity;
 
     /**
      * Every field must be present and not null.
      */
     public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags, Quantity maxQuantity) {
-        requireAllNonNull(name, quantity, supplier, tags, maxQuantity);
+        requireAllNonNull(name, quantity, supplier, tags);
         this.name = name;
         this.quantity = quantity;
         this.supplier = supplier;
         this.tags.addAll(tags);
-        this.maxQuantity = maxQuantity;
+        this.maxQuantity = Optional.ofNullable(maxQuantity);
     }
 
     public Name getName() {
@@ -56,7 +57,7 @@ public class Item {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Quantity getMaxQuantity() {
+    public Optional<Quantity> getMaxQuantity() {
         return maxQuantity;
     }
 
@@ -111,8 +112,11 @@ public class Item {
                 .append(getSupplier())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
-        builder.append(" Max Quantity: ")
-                .append(getMaxQuantity());
+        if (maxQuantity.isPresent()) {
+            builder.append(" Max Quantity: ")
+                   .append(getMaxQuantity().get().value);
+        }
+
         return builder.toString();
     }
 

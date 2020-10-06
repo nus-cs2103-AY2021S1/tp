@@ -44,7 +44,7 @@ class JsonAdaptedItem {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.maxQuantity = maxQuantity == null ? "0" : maxQuantity;
+        this.maxQuantity = maxQuantity;
     }
 
     /**
@@ -57,7 +57,7 @@ class JsonAdaptedItem {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        maxQuantity = source.getMaxQuantity().value;
+        maxQuantity = source.getMaxQuantity().map(q -> q.value).orElse(null);
     }
 
     /**
@@ -99,14 +99,10 @@ class JsonAdaptedItem {
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
 
-        if (maxQuantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Quantity.class.getSimpleName()));
-        }
-        if (!Quantity.isValidQuantity(maxQuantity)) {
+        if (maxQuantity != null && !Quantity.isValidMaxQuantity(maxQuantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        final Quantity modelMaxQuantity = new Quantity(maxQuantity);
+        final Quantity modelMaxQuantity = maxQuantity == null ? null : new Quantity(maxQuantity);
         return new Item(modelName, modelQuantity, modelSupplier, modelTags, modelMaxQuantity);
     }
 

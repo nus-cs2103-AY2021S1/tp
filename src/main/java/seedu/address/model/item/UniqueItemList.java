@@ -101,7 +101,9 @@ public class UniqueItemList implements Iterable<Item> {
         Set<Tag> combinedTags = new HashSet<>();
         combinedTags.addAll(providedItemTags);
         combinedTags.addAll(existingItemTags);
-        Quantity maxQuantity = item.getMaxQuantity().add(existingItem.getMaxQuantity());
+        Quantity maxQuantity = existingItem.getMaxQuantity()
+                .flatMap(q1 -> item.getMaxQuantity().map(q2 -> q1.add(q2)))
+                .orElse(null);
 
         Item toReplace = new Item(name, quantity, supplier, combinedTags, maxQuantity);
         internalList.set(index, toReplace);

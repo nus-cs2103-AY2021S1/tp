@@ -42,8 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Supplier supplier = ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).orElse("No Supplier"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Quantity maxQuantity = ParserUtil.parseMaxQuantity(argMultimap.getValue(PREFIX_MAX_QUANTITY)
-                .orElse("0"));
+        String maxQ = argMultimap.getValue(PREFIX_MAX_QUANTITY).orElse(null);
+        Quantity maxQuantity = maxQ == null ? null : ParserUtil.parseMaxQuantity(maxQ);
 
         Item item = new Item(name, quantity, supplier, tagList, maxQuantity);
 

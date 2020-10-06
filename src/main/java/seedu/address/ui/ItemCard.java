@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -52,14 +53,15 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.item = item;
         String itemQuantity = item.getQuantity().value;
-        String itemMaxQuantity = item.getMaxQuantity().value;
+        Optional<String> itemMaxQuantity = item.getMaxQuantity().map(q -> q.value);
 
         id.setText(displayedIndex + ". ");
         name.setText(item.getName().fullName);
         quantity.setText(itemQuantity);
-        if (Integer.parseInt(itemMaxQuantity) > 0) {
-            float percentage = Float.parseFloat(itemQuantity) / Integer.parseInt(itemMaxQuantity) * 100;
-            String stats = String.format("/%s (%.01f%%)", itemMaxQuantity, percentage);
+        if (itemMaxQuantity.isPresent()) {
+            String maxQuantity = itemMaxQuantity.get();
+            float percentage = Float.parseFloat(itemQuantity) / Integer.parseInt(maxQuantity) * 100;
+            String stats = String.format("/%s (%.01f%%)", maxQuantity, percentage);
             quantityStats.setText(stats);
             if (percentage > 100) {
                 quantityStats.setFill(Color.RED);

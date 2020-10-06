@@ -95,7 +95,9 @@ public class EditCommand extends Command {
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(itemToEdit.getQuantity());
         Supplier updatedSupplier = editItemDescriptor.getSupplier().orElse(itemToEdit.getSupplier());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
-        Quantity updatedMaxQuantity = editItemDescriptor.getMaxQuantity().orElse(itemToEdit.getMaxQuantity());
+        Quantity updatedMaxQuantity = editItemDescriptor.getMaxQuantity()
+                .or(() -> itemToEdit.getMaxQuantity())
+                .orElse(null);
 
         return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity);
     }

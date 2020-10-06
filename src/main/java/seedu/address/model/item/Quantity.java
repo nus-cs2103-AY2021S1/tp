@@ -15,7 +15,7 @@ public class Quantity {
             "Max Quantity should only contain numbers, it should be at least 1 digit long, \n"
             + "and it should be greater than 0";
     public static final String VALIDATION_REGEX = "\\d{1,}";
-    public static final String VALIDATION_REGIX_MAX_QUANTITY = "^[1-9]\\d*";
+    public static final String VALIDATION_REGEX_MAX_QUANTITY = "^[1-9]\\d*";
     public final String value;
 
     /**
@@ -40,7 +40,7 @@ public class Quantity {
      * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidMaxQuantity(String test) {
-        return test.matches(VALIDATION_REGIX_MAX_QUANTITY);
+        return test.matches(VALIDATION_REGEX_MAX_QUANTITY);
     }
 
     /**

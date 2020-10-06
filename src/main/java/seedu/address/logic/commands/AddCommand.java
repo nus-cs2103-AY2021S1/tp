@@ -52,7 +52,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasItem(toAdd)) {
-            if (!toAdd.getMaxQuantity().equals("0")) {
+            if (toAdd.getMaxQuantity().isPresent()) {
                 throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
             }
             Item toReplace = model.addOnExistingItem(toAdd);
