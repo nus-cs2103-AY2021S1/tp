@@ -27,10 +27,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Witness;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -113,7 +113,7 @@ public class EditCommand extends Command {
         List<Witness> updatedWitnesses =
                 editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
-                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses,updatedTags);
+                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
     @Override
