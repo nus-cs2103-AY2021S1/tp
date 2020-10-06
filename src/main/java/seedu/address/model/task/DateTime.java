@@ -15,7 +15,7 @@ public class DateTime {
     public static final String VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01]?[0-9]):([0-5]?[0-9])$";
 
-    private static final String DEFAULT_DATETIME = "";
+    private static final String DEFAULT_DATE_TIME = "";
 
     public final String value;
 
@@ -37,18 +37,18 @@ public class DateTime {
      * Caveat: Only called by defaultDateTime method.
      */
     private DateTime() {
-        value = DEFAULT_DATETIME;
+        value = DEFAULT_DATE_TIME;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid dateTime number.
      */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Constructs an empty Phone when user didn't provide the phone field.
+     * Constructs an empty DateTime when user didn't provide the dateTime field.
      * Caveat: Only called when the user didn't key in this field.
      */
     public static DateTime defaultDateTime() {
