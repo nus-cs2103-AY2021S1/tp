@@ -58,11 +58,9 @@ public abstract class Macronutrient {
         if (!(other instanceof Macronutrient)) {
             return false;
         }
-
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
-                && this.getAmount() == otherMacronutrient.getAmount()
-                && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
+                && this.getAmount() == otherMacronutrient.getAmount();
     }
 
     // take the type from the class name
