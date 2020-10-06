@@ -14,18 +14,20 @@ academic tasks at hand.
   * It comes with a **reasonable level of user and developer documentation**.
 ## Motivation
 * As a NUS Computing Student, you would probably have had **difficulties managing your
-academic schedule**. You often feel overwhelmed due to 
-**tight deadlines** for your assignments along with a **high workload** which you are on the verge of being unable to 
+academic schedule**. You might often feel overwhelmed due to 
+**tight deadlines** for your assignments along with a **high workload** which you might be
+on the verge of being unable to 
 cope with. In events like this, having a **disorganised timeline** makes your
-situation worse. You often **underestimate the time
+situation worse. You might often **underestimate the time
 it takes** to complete your assignments and you might be **late for your lessons** as you are preoccupied 
 with completing them. However, all these
-tasks still remain uncompleted. You keep spinning your wheels.
+tasks still remain uncompleted. You might have been spinning your wheels.
+* ProductiveNUS minimises such problems by helping you keep track of your schedule easily.
 
 ## Aim
-* Effective time management among NUS Computing students, resulting in higher productivity.
-* Efficiency in browsing through all your academic tasks (lessons and assignments) at once.
-* Better planning of your academic schedule.
+* **Effective time management** among NUS Computing students, resulting in **higher productivity**.
+* **Efficiency** in browsing through all your academic tasks (lessons and assignments) at once.
+* **Better planning** of your academic schedule.
 
 ## User stories
 | No. | As a...           | I can...                              | So that I can...                                                          |
