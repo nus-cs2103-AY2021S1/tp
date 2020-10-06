@@ -28,16 +28,15 @@ public class Person {
     private final List<Suspect> suspects = new ArrayList<>();
     private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Witness> witnesses = new ArrayList<>();
     private final List<Document> documents = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-
     public Person(Name name, Phone phone, Email email, Status status, List<Document> documents, Address address,
-                  List<Suspect> suspects, List<Victim> victims, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, status, documents, address, suspects, victims, tags);
-
+                  List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, status, documents, address, suspects, victims, witnesses, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +46,7 @@ public class Person {
         this.suspects.addAll(suspects);
         this.victims.addAll(victims);
         this.tags.addAll(tags);
+        this.witnesses.addAll(witnesses);
     }
 
     public Name getName() {
@@ -90,6 +90,11 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    // TODO: Consider using Collections.unmodifiableList(witnessList) here.
+    public List<Witness> getWitnesses() {
+        return witnesses;
+    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
@@ -128,13 +133,15 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getSuspects().equals(getSuspects())
                 && otherPerson.getVictims().equals(getVictims())
+                && otherPerson.getWitnesses().equals(getWitnesses())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, status, documents, address, suspects, victims, tags);
+        return Objects.hash(name, phone, email, status, documents,
+                            address, suspects, victims, witnesses, tags);
     }
 
     @Override
@@ -151,11 +158,13 @@ public class Person {
                 .append(getDocuments())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Suspects: ")
-                .append(getSuspects())
-                .append(" Victims: ")
-                .append(getVictims())
-                .append(" Tags: ");
+                .append(" Suspects: ");
+        getSuspects().forEach(builder::append);
+        builder.append(" Victims: ");
+        getVictims().forEach(builder::append);
+        builder.append(" Witnesses: ");
+        getWitnesses().forEach(builder::append);
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

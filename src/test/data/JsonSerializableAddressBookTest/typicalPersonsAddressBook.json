@@ -10,6 +10,7 @@
       "reference" : "test1.txt"
     } ],
     "address" : "123, Jurong West Ave 6, #08-111",
+    "witnesses": ["Janice"],
     "suspects": [],
     "victims" : [ "Tom" ],
     "tagged" : [ "friends" ]
@@ -23,6 +24,7 @@
       "reference" : "test1.txt"
     } ],
     "address" : "311, Clementi Ave 2, #02-25",
+    "witnesses": ["Mary"],
     "suspects": [],
     "victims" : [ "Tom" ],
     "tagged" : [ "owesMoney", "friends" ]
@@ -33,6 +35,7 @@
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "wall street",
+    "witnesses": [],
     "suspects": [],
     "victims" : [],
     "tagged" : [ ]
@@ -43,6 +46,7 @@
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "10th street",
+    "witnesses": [],
     "suspects": [],
     "victims" : [],
     "tagged" : [ "friends" ]
@@ -53,6 +57,7 @@
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "michegan ave",
+    "witnesses": [],
     "suspects": [],
     "victims" : [],
     "tagged" : [ ]
@@ -63,6 +68,7 @@
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "little tokyo",
+    "witnesses": [],
     "suspects": [],
     "victims" : [],
     "tagged" : [ ]
@@ -73,6 +79,7 @@
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "4th street",
+    "witnesses": [],
     "suspects": [],
     "victims" : [],
     "tagged" : [ ]

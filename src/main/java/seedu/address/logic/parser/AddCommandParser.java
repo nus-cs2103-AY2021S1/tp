@@ -24,6 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,10 +55,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Document> documents = new ArrayList<>();
         List<Suspect> suspects = new ArrayList<>();
         List<Victim> victims = new ArrayList<>();
+        List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, status, documents, address, suspects, victims, tagList);
-
+        Person person = new Person(name, phone, email, status, documents, address,
+                                   suspects, victims, witnesses, tagList);
         return new AddCommand(person);
     }
 
