@@ -17,7 +17,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "School work";
-    public static final String DEFAULT_DATE = "01-01-2020 12:00";
+    public static final String DEFAULT_DATE_TIME = "01-01-2020 12:00";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
@@ -32,7 +32,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
-        dateTime = new DateTime(DEFAULT_DATE);
+        dateTime = new DateTime(DEFAULT_DATE_TIME);
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -82,7 +82,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Task} that we are building to be default DateTime.
+     * Sets the {@code DateTime} of the {@code Task} that we are building to be default DateTime.
      * Simulates the situation that the task is created without a DateTime field.
      */
     public TaskBuilder withDefaultDateTime() {
