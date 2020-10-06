@@ -37,8 +37,6 @@ public class AnimalCard extends UiPart<Region> {
     @FXML
     private Label species;
     @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -51,7 +49,6 @@ public class AnimalCard extends UiPart<Region> {
         name.setText(animal.getName().fullName);
         identity.setText(animal.getId().value);
         species.setText(animal.getSpecies().value);
-        email.setText(animal.getEmail().value);
         animal.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.animal.Animal;
-import seedu.address.model.animal.Email;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
@@ -26,7 +25,6 @@ class JsonAdaptedAnimal {
 
     private final String name;
     private final String id;
-    private final String email;
     private final String species;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +33,10 @@ class JsonAdaptedAnimal {
      */
     @JsonCreator
     public JsonAdaptedAnimal(@JsonProperty("name") String name, @JsonProperty("id") String id,
-            @JsonProperty("email") String email, @JsonProperty("species") String species,
+            @JsonProperty("species") String species,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
-        this.email = email;
         this.species = species;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -52,7 +49,6 @@ class JsonAdaptedAnimal {
     public JsonAdaptedAnimal(Animal source) {
         name = source.getName().fullName;
         id = source.getId().value;
-        email = source.getEmail().value;
         species = source.getSpecies().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -86,14 +82,6 @@ class JsonAdaptedAnimal {
         }
         final Id modelId = new Id(id);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (species == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Species.class.getSimpleName()));
         }
@@ -104,7 +92,7 @@ class JsonAdaptedAnimal {
 
         final Set<Tag> modelTags = new HashSet<>(animalTags);
 
-        return new Animal(modelName, modelId, modelEmail, modelSpecies, modelTags);
+        return new Animal(modelName, modelId, modelSpecies, modelTags);
     }
 
 }
