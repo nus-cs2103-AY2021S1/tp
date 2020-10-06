@@ -103,8 +103,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedTitle, updatedDateTime, updatedDescription, updatedType, updatedTags);
-      
-
+        
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
