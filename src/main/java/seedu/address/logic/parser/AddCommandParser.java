@@ -38,6 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Supplier supplier = ParserUtil.parseSupplier(argMultimap.getValue(PREFIX_SUPPLIER).orElse("No Supplier"));
