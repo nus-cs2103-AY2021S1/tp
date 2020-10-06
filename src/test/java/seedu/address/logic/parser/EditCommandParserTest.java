@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_TIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_TIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -113,7 +112,7 @@ public class EditCommandParserTest {
                 + DESCRIPTION_DESC_AMY + TYPE_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_AMY).withAddress(VALID_TYPE_AMY)
+                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -171,7 +170,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + DATE_TIME_DESC_AMY + TYPE_DESC_AMY + DESCRIPTION_DESC_AMY
                 + TAG_DESC_FRIEND + DATE_TIME_DESC_AMY + TYPE_DESC_AMY + DESCRIPTION_DESC_AMY + TAG_DESC_FRIEND
-                + DATE_TIME_DESC_BOB + TYOE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND;
+                + DATE_TIME_DESC_BOB + TYPE_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDateTime(VALID_DATE_TIME_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)

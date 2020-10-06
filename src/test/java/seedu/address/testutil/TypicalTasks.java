@@ -44,9 +44,9 @@ public class TypicalTasks {
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDateTime("08-08-2020 12:00")
-            .withDescription("stefan,example.com").withAddress("little-india").build();
+            .withDescription("stefan,example.com").withType("little-india").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDateTime("09-09-2020 12:00")
-            .withDescription("hans,example.com").withAddress("chicago-ave").build();
+            .withDescription("hans,example.com").withType("chicago-ave").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDateTime(VALID_DATE_TIME_AMY)

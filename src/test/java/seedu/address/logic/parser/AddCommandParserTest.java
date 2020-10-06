@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.commands.CommandTestUtil.DATE_TIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_TIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
@@ -65,9 +64,9 @@ public class AddCommandParserTest {
                 + TYPE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple types - last type accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + DATE_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_AMY
+        assertParseSuccess(parser, TITLE_DESC_BOB + DATE_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TYPE_DESC_AMY
                 + TYPE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
-        
+
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();

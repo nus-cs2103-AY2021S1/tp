@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,7 +20,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -104,7 +101,7 @@ public class EditCommand extends Command {
 
         return new Task(updatedTitle, updatedDateTime, updatedDescription, updatedType, updatedTags);
     }
-    
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
