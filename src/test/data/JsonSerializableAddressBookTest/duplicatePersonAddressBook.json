@@ -3,7 +3,12 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "status": "ACTIVE",
     "address": "123, Jurong West Ave 6, #08-111",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
     "suspects": [],
     "victims": [],
     "tagged": [ "friends" ]
@@ -11,6 +16,11 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "status": "ACTIVE",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
     "address": "4th street",
     "suspects": [],
     "victims": []
