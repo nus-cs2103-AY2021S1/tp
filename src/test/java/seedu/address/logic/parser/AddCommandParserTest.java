@@ -21,8 +21,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalExpenses.AMY;
+import static seedu.address.testutil.TypicalExpenses.BOB;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,50 +30,50 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Amount;
-import seedu.address.model.person.Date;
-import seedu.address.model.person.Description;
-import seedu.address.model.person.Person;
+import seedu.address.model.expense.Amount;
+import seedu.address.model.expense.Date;
+import seedu.address.model.expense.Description;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.ExpenseBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Expense expectedExpense = new ExpenseBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + DESCRIPTION_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TAG_DESC_FRIEND, new AddCommand(expectedExpense));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_AMY + DESCRIPTION_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TAG_DESC_FRIEND, new AddCommand(expectedExpense));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_BOB + AMOUNT_DESC_AMY + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TAG_DESC_FRIEND, new AddCommand(expectedExpense));
 
         // multiple dates - last date accepted
         assertParseSuccess(parser, DESCRIPTION_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TAG_DESC_FRIEND, new AddCommand(expectedExpense));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Expense expectedExpenseMultipleTags = new ExpenseBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, DESCRIPTION_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedExpenseMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().withDate(LocalDate.now()
+        Expense expectedExpense = new ExpenseBuilder(AMY).withTags().withDate(LocalDate.now()
                 .format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))).build(); // date set to today.
         assertParseSuccess(parser, DESCRIPTION_DESC_AMY + AMOUNT_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedExpense));
     }
 
     @Test

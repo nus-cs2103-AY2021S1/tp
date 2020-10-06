@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "expenses": [ {
     "description": "Sauna",
     "amount": "4.60",
     "date": "04-10-2020"
