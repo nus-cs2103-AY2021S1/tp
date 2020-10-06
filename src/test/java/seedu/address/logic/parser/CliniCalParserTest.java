@@ -64,12 +64,6 @@ public class CliniCalParserTest {
     }
 
     @Test
-    public void parseCommand_addProfilePicture() throws Exception {
-        assertTrue(parser.parseCommand("addPicture 1 f/data/stock_picture.png")
-                                       instanceof AddProfilePictureCommand);
-    }
-
-    @Test
     public void parseCommand_history() throws Exception {
         assertTrue(parser.parseCommand("history") instanceof HistoryCommand);
     }
