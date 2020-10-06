@@ -316,14 +316,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-#### Use case: Delete a stock
+#### Use case: Deleting stocks
 
 **MSS**
 
-1.  User requests to list stocks
-2.  Warenager shows a list of stocks
-3.  User requests to delete a specific stock in the list
-4.  Warenager deletes the stock
+1.  User requests to list stocks.
+2.  Warenager shows a list of stocks.
+3.  User requests to delete stocks in the list.
+4.  Warenager deletes the stock.
 
     Use case ends.
 
@@ -335,15 +335,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given format is missing the field header sn/.
 
-    * 3a1. Warenager shows an error message.
+    * 3a1. Warenager shows an error message and tells user to use the proper format.
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not found.
+* 3b. All inputted serial numbers are not found.
 
-    * 3a1. Warenager shows an error message.
+    * 3b1. Warenager shows an error message and tells user which serial numbers are not found.
 
       Use case resumes at step 2.
+      
+* 3c. Some inputted serial numbers are not found.
+      
+     * 3c1. Warenager deletes the found stocks and tells user which serial numbers are not found.
+      
+       Use case resumes at step 2.
 
 #### Use case: Find a stock by name
 
@@ -780,16 +786,28 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a stock
+### Deleting stocks
 
-1. Deleting a stock while all relevant stock are shown.
+1. Deleting stocks from a given list.
 
    1. Prerequisites: List all stocks by default or use the `find` command. Multiple stocks in the list.
 
    1. Test case: `delete sn/1111111`<br>
-      Expected: Stock of the serial number 1111111 is deleted from the inventory. 
+      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
       Details of the deleted stock shown in the status message.
-
+      
+   1. Test case: `delete sn/1111111 sn/11111111`<br>
+      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Duplicate serial number is ignored. Details of the deleted stock shown in the status message.
+      
+   1. Test case: `delete sn/1111111 sn/22222222`<br>
+      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory. 
+      Details of the deleted stock shown in the status message.
+      
+   1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
+        Expected: Only the existing stock with the serial number 1111111 is deleted. 
+        Warenager will tell user that serial number `33333333` does not map to any stock.
+        
    1. Test case: `delete 1111111`<br>
       Expected: No stock deleted due to invalid format from missing sn/. 
       Error details shown in the status message. Status bar remains the same.
@@ -798,7 +816,6 @@ testers are expected to do more *exploratory* testing.
       (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Finding a stock
 
