@@ -1,11 +1,11 @@
-package jimmy.mcgymmy.model.person;
+package jimmy.mcgymmy.model.food;
 
 import static java.util.Objects.requireNonNull;
 
 import jimmy.mcgymmy.commons.util.AppUtil;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents a Food's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

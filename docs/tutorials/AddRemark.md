@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the AddressBook application to add optional remarks to people in their carbohydrate book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -28,7 +28,7 @@ package jimmy.mcgymmy.logic.commands;
 import jimmy.mcgymmy.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing food in the carbohydrate book.
  */
 public class RemarkCommand extends Command {
 
@@ -64,8 +64,8 @@ Following the convention in other commands, we add relevant messages as constant
 **`RemarkCommand.java`:**
 
 ``` java
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the food identified "
+            + "by the index number used in the last food listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -99,8 +99,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the food in the filtered food list to edit the remark
+     * @param remark of the food to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -222,11 +222,11 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of food data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the food’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a food.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `jimmy.mcgymmy.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `jimmy.mcgymmy.model.food`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -237,9 +237,9 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each food.
 
-Simply add the following to [`jimmy.mcgymmy.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
+Simply add the following to [`jimmy.mcgymmy.ui.FoodCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
 
 **`PersonCard.java`:**
 
@@ -292,7 +292,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty carbohydrate book!
 
 </div>
 
@@ -308,9 +308,9 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Person person, int displayedIndex) {
+public PersonCard(Person food, int displayedIndex) {
     //...
-    remark.setText(person.getRemark().value);
+    remark.setText(food.getRemark().value);
 }
 ```
 
@@ -341,13 +341,13 @@ save it with `Model#setPerson()`.
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        Person editedFood = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), remark, personToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(personToEdit, editedFood);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedFood));
     }
 
     /**

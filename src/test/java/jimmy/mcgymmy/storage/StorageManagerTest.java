@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import jimmy.mcgymmy.commons.core.GuiSettings;
-import jimmy.mcgymmy.model.AddressBook;
-import jimmy.mcgymmy.model.ReadOnlyAddressBook;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.UserPrefs;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class StorageManagerTest {
 
@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonMcGymmyStorage addressBookStorage = new JsonMcGymmyStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -51,18 +51,18 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonMcGymmyStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMcGymmyStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        McGymmy original = TypicalFoods.getTypicalMcGymmy();
+        storageManager.saveMcGymmy(original);
+        ReadOnlyMcGymmy retrieved = storageManager.readMcGymmy().get();
+        assertEquals(original, new McGymmy(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getMcGymmyFilePath() {
+        assertNotNull(storageManager.getMcGymmyFilePath());
     }
 
 }

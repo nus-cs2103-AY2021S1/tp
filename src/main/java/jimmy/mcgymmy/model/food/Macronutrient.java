@@ -4,9 +4,11 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    private int amount;
-    private int caloricMultiplier;
-    private int totalCalories;
+    public static final String MESSAGE_CONSTRAINTS = "values should only contain numbers";
+    private static final String VALIDATION_REGEX = "(\\d)+";
+    private final int amount;
+    private final int caloricMultiplier;
+    private final int totalCalories;
 
     /**
      * Represents macronutrients of 3 types
@@ -26,6 +28,10 @@ public abstract class Macronutrient {
         this.caloricMultiplier = caloricMultiplier;
         this.totalCalories = caloricMultiplier * amount;
 
+    }
+
+    public static boolean isValid(String value) {
+        return value.matches(VALIDATION_REGEX);
     }
 
     private boolean isValidAmount(int amount) {
@@ -52,11 +58,9 @@ public abstract class Macronutrient {
         if (!(other instanceof Macronutrient)) {
             return false;
         }
-
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
-                && this.getAmount() == otherMacronutrient.getAmount()
-                && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
+                && this.getAmount() == otherMacronutrient.getAmount();
     }
 
     // take the type from the class name
@@ -75,4 +79,5 @@ public abstract class Macronutrient {
     public int getTotalCalories() {
         return totalCalories;
     }
+
 }

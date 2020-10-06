@@ -13,8 +13,8 @@ import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.McGymmyParser;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.ReadOnlyAddressBook;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.storage.Storage;
 
 /**
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveMcGymmy(model.getMcGymmy());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyMcGymmy getMcGymmy() {
+        return model.getMcGymmy();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Food> getFilteredFoodList() {
+        return model.getFilteredFoodList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getMcGymmyFilePath() {
+        return model.getMcGymmyFilePath();
     }
 
     @Override

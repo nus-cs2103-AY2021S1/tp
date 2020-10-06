@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 import jimmy.mcgymmy.testutil.TypicalIndexes;
-import jimmy.mcgymmy.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -19,8 +19,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
+        expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
     }
 
     @Test

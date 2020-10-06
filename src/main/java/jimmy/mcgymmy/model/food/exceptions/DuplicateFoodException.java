@@ -1,11 +1,11 @@
-package jimmy.mcgymmy.model.person.exceptions;
+package jimmy.mcgymmy.model.food.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same
  * identity).
  */
-public class DuplicatePersonException extends RuntimeException {
-    public DuplicatePersonException() {
+public class DuplicateFoodException extends RuntimeException {
+    public DuplicateFoodException() {
         super("Operation would result in duplicate persons");
     }
 }

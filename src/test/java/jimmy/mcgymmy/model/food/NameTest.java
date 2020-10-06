@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.person;
+package jimmy.mcgymmy.model.food;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

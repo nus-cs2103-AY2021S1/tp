@@ -7,23 +7,23 @@ import java.util.logging.Logger;
 
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
-import jimmy.mcgymmy.model.ReadOnlyAddressBook;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
 import jimmy.mcgymmy.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of McGymmy data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private McGymmyStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code McGymmyStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(McGymmyStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -47,33 +47,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ McGymmy methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getMcGymmyFilePath() {
+        return addressBookStorage.getMcGymmyFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException, IOException {
+        return readMcGymmy(addressBookStorage.getMcGymmyFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMcGymmy> readMcGymmy(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return addressBookStorage.readMcGymmy(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException {
+        saveMcGymmy(addressBook, addressBookStorage.getMcGymmyFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveMcGymmy(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveMcGymmy(addressBook, filePath);
     }
 
 }

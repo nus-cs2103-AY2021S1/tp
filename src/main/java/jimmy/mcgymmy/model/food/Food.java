@@ -1,7 +1,13 @@
 package jimmy.mcgymmy.model.food;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
+import jimmy.mcgymmy.model.tag.Tag;
+
 
 /**
  * Represents a Food item in McGymmy.
@@ -16,21 +22,24 @@ public class Food {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     // Identity field names
-    private final String name;
+    private final Name name;
     private final Protein protein;
     private final Carbohydrate carbs;
     private final Fat fat;
+    private final Set<Tag> tags = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Food(String name, Protein protein, Carbohydrate carbs, Fat fat) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
-        AppUtil.checkArgument(isValidName(name), FOOD_NAME_MESSAGE_CONTRAINT);
+        AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONTRAINT);
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
         this.fat = fat;
+        this.tags.addAll(tags);
     }
 
     // Constructor for convenience
@@ -39,8 +48,16 @@ public class Food {
      * Every field must be present and not null.
      * A Constructor made for convenience
      */
-    public Food(String name, int proteinAmount, int carbsAmount, int fatAmount) {
-        this(name, new Protein(proteinAmount), new Carbohydrate(carbsAmount), new Fat(fatAmount));
+
+    public Food(String name, int proteinAmount, int fatAmount, int carbsAmount) {
+        this(new Name(name), new Protein(proteinAmount), new Fat(fatAmount), new Carbohydrate(carbsAmount));
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs) {
+        this(name, protein, fat, carbs, new HashSet<Tag>());
     }
 
     private boolean isValidName(String test) {
@@ -48,20 +65,28 @@ public class Food {
     }
 
     // getters : make when needed
-    private String getName() {
+    public Name getName() {
         return this.name;
     }
 
-    private Protein getProtein() {
+    public Protein getProtein() {
         return this.protein;
     }
 
-    private Carbohydrate getCarbs() {
+    public Carbohydrate getCarbs() {
         return this.carbs;
     }
 
-    private Fat getFat() {
+    public Fat getFat() {
         return this.fat;
+    }
+
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    public boolean isSameFood(Object otherFood) {
+        return equals(otherFood);
     }
 
     @Override

@@ -2,7 +2,7 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jimmy.mcgymmy.model.AddressBook;
+import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 
 /**
@@ -11,13 +11,13 @@ import jimmy.mcgymmy.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Carbohydrate book has been cleared!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setMcGymmy(new McGymmy());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
