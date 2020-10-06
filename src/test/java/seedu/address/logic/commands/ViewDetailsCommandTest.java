@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.NameIsExactlyPredicate;
 import seedu.address.testutil.ItemBuilder;
@@ -49,7 +50,7 @@ public class ViewDetailsCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_filterItem_success() {
         String expectedMessage = "Displaying searched item";
         NameIsExactlyPredicate predicate = new NameIsExactlyPredicate(
                 Collections.singletonList("Bob's Iridescent Grape"));
@@ -60,7 +61,8 @@ public class ViewDetailsCommandTest {
                 new CommandResult(expectedMessage, false, false, true));
         List<Item> expectedList = Collections.singletonList(validItem);
         ObservableList<Item> expectedObservableList = FXCollections.observableList(expectedList);
-        assertEquals(expectedObservableList, modelStub.getFilteredItemList());
+        FilteredList<Item> expectedFilteredList = expectedObservableList.filtered(predicate);
+        assertEquals(expectedFilteredList, modelStub.getFilteredItemList());
     }
 
     /**
