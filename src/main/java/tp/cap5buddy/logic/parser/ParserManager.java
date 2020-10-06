@@ -37,11 +37,10 @@ public class ParserManager {
         getNonCommand();
         Parser parser;
         Command command;
-
         switch (this.command) {
         case "addmodule":
             parser = new AddModuleParser();
-            command = parser.parse(this.nonCommand);
+            command = parser.parse(input);
             return command;
         case "addzoom":
             parser = new AddZoomLinkParser();
@@ -58,6 +57,10 @@ public class ParserManager {
         case "deletemodule":
             parser = new DeleteModuleParser();
             command = parser.parse(this.nonCommand);
+            return command;
+        case "addcontact":
+            parser = new AddContactParser();
+            command = parser.parse(input);
             return command;
         default:
             throw new ParseException("Invalid Command");
