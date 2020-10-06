@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.storage;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.JsonUtil;
 import jimmy.mcgymmy.model.AddressBook;
-import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
@@ -33,14 +33,14 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
             JsonSerializableAddressBook.class).get();
-        Assert.assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
             JsonSerializableAddressBook.class).get();
-        Assert.assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
             dataFromFile::toModelType);
     }
 

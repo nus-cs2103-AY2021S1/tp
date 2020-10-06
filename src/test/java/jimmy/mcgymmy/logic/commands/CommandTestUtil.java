@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.logic.commands;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,7 +14,6 @@ import jimmy.mcgymmy.model.AddressBook;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
 import jimmy.mcgymmy.model.person.Person;
-import jimmy.mcgymmy.testutil.Assert;
 
 /**
  * Contains helper methods for testing commands.
@@ -59,7 +59,7 @@ public class CommandTestUtil {
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
-        Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }

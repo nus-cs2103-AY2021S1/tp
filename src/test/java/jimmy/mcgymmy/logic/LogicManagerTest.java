@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.logic;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -23,7 +24,6 @@ import jimmy.mcgymmy.model.person.Person;
 import jimmy.mcgymmy.storage.JsonAddressBookStorage;
 import jimmy.mcgymmy.storage.JsonUserPrefsStorage;
 import jimmy.mcgymmy.storage.StorageManager;
-import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.PersonBuilder;
 
 public class LogicManagerTest {
@@ -84,7 +84,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
     /**
@@ -141,7 +141,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, Model expectedModel) {
-        Assert.assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
 

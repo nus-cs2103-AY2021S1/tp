@@ -1,11 +1,10 @@
 package jimmy.mcgymmy.model.food;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
-
-import jimmy.mcgymmy.testutil.Assert;
 
 public class FoodTest {
     public static final String VALID_FOOD_NAME = "test food";
@@ -28,25 +27,25 @@ public class FoodTest {
 
     @Test
     public void constructor_nullProtein_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () ->
+        assertThrows(NullPointerException.class, () ->
             new Food(VALID_FOOD_NAME, null, CARBOHYDRATE, FAT));
     }
 
     @Test
     public void constructor_nullCarbohydrate_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () ->
+        assertThrows(NullPointerException.class, () ->
             new Food(VALID_FOOD_NAME, PROTEIN, null, FAT));
     }
 
     @Test
     public void constructor_nullFat_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () ->
+        assertThrows(NullPointerException.class, () ->
             new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
-        Assert.assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
             new Food(INVALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT));
     }
 
