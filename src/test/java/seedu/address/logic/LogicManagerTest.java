@@ -66,14 +66,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void runImageTransfer_validCommandFormat_throwsNullException() throws NullPointerException {
-        Patient expectedPatient = new PatientBuilder(AMY).withTags()
-                                                         .withProfilePicture("f/data/stock_picture.png").build();
-        File profilePic = new File("data/stock_picture.png");
-        assertThrows(CommandException.class, () -> logic.runImageTransfer(expectedPatient, profilePic));
-    }
-
-    @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
