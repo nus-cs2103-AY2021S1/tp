@@ -10,7 +10,7 @@ import seedu.address.model.TutorialGroup;
 public class AddTutorialGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "addTG";
-    public static final String MESSAGE_SUCCESS = "Tutorial Grp has been added";
+    public static final String MESSAGE_SUCCESS = "Tutorial Group has been added";
     public static final String MESSAGE_DUPLICATE_TUTGRP = "This Tutorial Group already exists";
     public static final String MESSAGE_USAGE = "This is the message usage";
 
@@ -18,7 +18,7 @@ public class AddTutorialGroupCommand extends Command {
     private final TutorialGroup toAdd;
 
     /**
-     * Main constuctor, called by the AddTutorialGroupCommand Parser
+     * Main constructor, called by the AddTutorialGroupCommand Parser
      * @param tutorialGroup
      */
     public AddTutorialGroupCommand(TutorialGroup tutorialGroup) {
@@ -26,6 +26,7 @@ public class AddTutorialGroupCommand extends Command {
         toAdd = tutorialGroup;
     }
 
+    // todo Implement execution of TG Addition
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException("TG Addition not implemented yet");
