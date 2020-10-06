@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -19,15 +19,15 @@ import seedu.address.model.util.SampleDataUtil;
 public class ProjectBuilder {
 
     public static final String DEFAULT_PROJECT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_DEADLINE = "29-02-2020 00:00:00";
     public static final String DEFAULT_REPOURL = "https://github.com/a/b.git";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private ProjectName projectName;
-    private Phone phone;
+    private Deadline deadline;
     private RepoUrl repoUrl;
-    private Address address;
-    private Set<Tag> tags;
+    private ProjectDescription projectDescription;
+    private Set<ProjectTag> projectTags;
     private Set<Task> tasks;
 
     /**
@@ -35,10 +35,10 @@ public class ProjectBuilder {
      */
     public ProjectBuilder() {
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        deadline = new Deadline(DEFAULT_DEADLINE);
         repoUrl = new RepoUrl(DEFAULT_REPOURL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
+        projectTags = new HashSet<>();
         tasks = new HashSet<>();
     }
 
@@ -47,10 +47,10 @@ public class ProjectBuilder {
      */
     public ProjectBuilder(Project projectToCopy) {
         projectName = projectToCopy.getProjectName();
-        phone = projectToCopy.getPhone();
+        deadline = projectToCopy.getDeadline();
         repoUrl = projectToCopy.getRepoUrl();
-        address = projectToCopy.getAddress();
-        tags = new HashSet<>(projectToCopy.getTags());
+        projectDescription = projectToCopy.getProjectDescription();
+        projectTags = new HashSet<>(projectToCopy.getProjectTags());
         tasks = new HashSet<>(projectToCopy.getTasks());
     }
 
@@ -63,10 +63,11 @@ public class ProjectBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
+     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code Project}
+     * that we are building.
      */
-    public ProjectBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ProjectBuilder withTags(String ... projectTags) {
+        this.projectTags = SampleDataUtil.getTagSet(projectTags);
         return this;
     }
 
@@ -79,18 +80,18 @@ public class ProjectBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Project} that we are building.
+     * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public ProjectBuilder withProjectDescription(String projectDescription) {
+        this.projectDescription = new ProjectDescription(projectDescription);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Project} that we are building.
+     * Sets the {@code Deadline} of the {@code Project} that we are building.
      */
-    public ProjectBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public ProjectBuilder withDeadline(String deadline) {
+        this.deadline = new Deadline(deadline);
         return this;
     }
 
@@ -103,7 +104,7 @@ public class ProjectBuilder {
     }
 
     public Project build() {
-        return new Project(projectName, phone, repoUrl, address, tags, new HashMap<>(), tasks);
+        return new Project(projectName, deadline, repoUrl, projectDescription, projectTags, new HashMap<>(), tasks);
     }
 
 }

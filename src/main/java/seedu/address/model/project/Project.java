@@ -5,13 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -22,12 +23,12 @@ public class Project {
 
     // Identity fields
     private final ProjectName projectName;
-    private final Phone phone;
+    private final Deadline deadline;
     private final RepoUrl repoUrl;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final ProjectDescription projectDescription;
+    private final Set<ProjectTag> projectTags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
@@ -35,14 +36,15 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(ProjectName projectName, Phone phone, RepoUrl repoUrl, Address address, Set<Tag> tags,
+    public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
+                   Set<ProjectTag> projectTags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(projectName, phone, repoUrl, address, tags, listOfParticipations, tasks);
+        requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags, listOfParticipations, tasks);
         this.projectName = projectName;
-        this.phone = phone;
+        this.deadline = deadline;
         this.repoUrl = repoUrl;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.projectDescription = projectDescription;
+        this.projectTags.addAll(projectTags);
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
     }
@@ -51,28 +53,44 @@ public class Project {
         return projectName;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     public RepoUrl getRepoUrl() {
         return repoUrl;
     }
 
-    public Address getAddress() {
-        return address;
+    public ProjectDescription getProjectDescription() {
+        return projectDescription;
     }
 
     public Set<Meeting> getMeetings() {
         return meetings;
     }
+    public boolean addMeeting(Meeting meeting) {
+        return meetings.add(meeting);
+    }
+    public boolean addTask(Task task) {
+        return tasks.add(task);
+    }
 
+    /**
+     * Gets all attendees of a specific meeting
+     */
+    public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
+        HashSet<Person> attendees = new HashSet<Person>();
+        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+            attendees.add(entry.getValue().getPerson());
+        }
+        return attendees;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<ProjectTag> getProjectTags() {
+        return Collections.unmodifiableSet(projectTags);
     }
 
     /**
@@ -102,7 +120,7 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getProjectName().equals(getProjectName())
-                && (otherProject.getPhone().equals(getPhone()) || otherProject.getRepoUrl().equals(getRepoUrl()));
+                && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
     }
 
     /**
@@ -121,17 +139,17 @@ public class Project {
 
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
-                && otherProject.getPhone().equals(getPhone())
+                && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getRepoUrl().equals(getRepoUrl())
-                && otherProject.getAddress().equals(getAddress())
-                && otherProject.getTags().equals(getTags())
+                && otherProject.getProjectDescription().equals(getProjectDescription())
+                && otherProject.getProjectTags().equals(getProjectTags())
                 && otherProject.getTasks().equals(getTasks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(projectName, phone, repoUrl, address, tags, tasks);
+        return Objects.hash(projectName, deadline, repoUrl, projectDescription, projectTags, tasks);
     }
 
     @Override
@@ -139,14 +157,14 @@ public class Project {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Project Name: ")
                 .append(getProjectName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Deadline: ")
+                .append(getDeadline())
                 .append(" Email: ")
                 .append(getRepoUrl())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" ProjectDescription: ")
+                .append(getProjectDescription())
+                .append(" Project Tags: ");
+        getProjectTags().forEach(builder::append);
         builder.append(" Tasks: ");
         getTasks().forEach(builder::append);
         return builder.toString();

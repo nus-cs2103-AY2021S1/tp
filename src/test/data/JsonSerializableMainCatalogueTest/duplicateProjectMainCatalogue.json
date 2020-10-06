@@ -1,15 +1,15 @@
 {
   "projects": [ {
     "projectName": "Alice Pauline",
-    "phone": "94351253",
+    "deadline": "29-02-2020 00:00:00",
     "repoUrl": "https://github.com/a/a.git",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "projectDescription": "123, Jurong West Ave 6, #08-111",
+    "projectTagged": [ "friends" ]
   }, {
     "projectName": "Alice Pauline",
-    "phone": "94351253",
+    "deadline": "29-02-2020 00:00:00",
     "repoUrl": "https://github.com/a/a.git",
-    "address": "4th street",
-    "occupied": ["write DG"]
+    "projectDescription": "4th street",
+    "projectTagged": ["writeDG"]
   } ]
 }

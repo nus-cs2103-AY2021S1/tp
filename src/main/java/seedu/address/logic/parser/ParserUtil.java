@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Deadline;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -52,33 +52,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Deadline(trimmedDeadline);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String projectDescription} into an {@code ProjectDescription}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code projectDescription} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static ProjectDescription projectDescription(String projectDescription) throws ParseException {
+        requireNonNull(projectDescription);
+        String trimmedProjectDescription = projectDescription.trim();
+        if (!ProjectDescription.isValidProjectDescription(trimmedProjectDescription)) {
+            throw new ParseException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new ProjectDescription(trimmedProjectDescription);
     }
 
     /**
@@ -97,30 +97,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String projectTag} into a {@code ProjectTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code projectTag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static ProjectTag parseProjectTag(String projectTag) throws ParseException {
+        requireNonNull(projectTag);
+        String trimmedTag = projectTag.trim();
+        if (!ProjectTag.isValidProjectTagName(trimmedTag)) {
+            throw new ParseException(ProjectTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new ProjectTag(trimmedTag);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> projectTags} into a {@code Set<ProjectTag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<ProjectTag> parseTags(Collection<String> projectTags) throws ParseException {
+        requireNonNull(projectTags);
+        final Set<ProjectTag> projectTagSet = new HashSet<>();
+        for (String tagName : projectTags) {
+            projectTagSet.add(parseProjectTag(tagName));
         }
-        return tagSet;
+        return projectTagSet;
     }
 
     /**

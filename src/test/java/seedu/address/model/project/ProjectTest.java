@@ -2,12 +2,12 @@ package seedu.address.model.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_MODEL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.ALICE;
@@ -22,7 +22,7 @@ public class ProjectTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Project project = new ProjectBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> project.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> project.getProjectTags().remove(0));
     }
 
     @Test
@@ -33,30 +33,31 @@ public class ProjectTest {
         // null -> returns false
         assertFalse(ALICE.isSameProject(null));
 
-        // different phone and email -> returns false
-        Project editedAlice = new ProjectBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withRepoUrl(VALID_REPOURL_B).build();
+        // different deadline and repoUrl -> returns false
+        Project editedAlice = new ProjectBuilder(ALICE)
+                .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).build();
         assertFalse(ALICE.isSameProject(editedAlice));
 
         // different name -> returns false
-        editedAlice = new ProjectBuilder(ALICE).withProjectName(VALID_NAME_BOB).build();
+        editedAlice = new ProjectBuilder(ALICE).withProjectName(VALID_PROJECT_NAME_BOT).build();
         assertFalse(ALICE.isSameProject(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new ProjectBuilder(ALICE).withRepoUrl(VALID_REPOURL_B)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .withTasks(VALID_TASK_DG).build();
+        // same name, same deadline, different attributes -> returns true
+        editedAlice = new ProjectBuilder(ALICE).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT)
+                .withTags(VALID_PROJECT_TAG_HANG).withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(ALICE.isSameProject(editedAlice));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new ProjectBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .withTasks(VALID_TASK_DG).build();
+        // same name, same repoUrl, different attributes -> returns true
+        editedAlice = new ProjectBuilder(ALICE).withDeadline(VALID_DEADLINE_BOT)
+                .withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT)
+                .withTags(VALID_PROJECT_TAG_HANG).withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(ALICE.isSameProject(editedAlice));
 
-        // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).withTasks(VALID_TASK_DG).build();
+        // same name, same deadline, same repoUrl, different attributes -> returns true
+        editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+            VALID_PROJECT_TAG_HANG)
+                .withTasks(VALID_PROJECT_TAG_DG).build();
         assertTrue(ALICE.isSameProject(editedAlice));
     }
 
@@ -79,11 +80,11 @@ public class ProjectTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Project editedAlice = new ProjectBuilder(ALICE).withProjectName(VALID_NAME_BOB).build();
+        Project editedAlice = new ProjectBuilder(ALICE).withProjectName(VALID_PROJECT_NAME_BOT).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new ProjectBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different deadline -> returns false
+        editedAlice = new ProjectBuilder(ALICE).withDeadline(VALID_DEADLINE_BOT).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different repoUrl -> returns false
@@ -91,11 +92,11 @@ public class ProjectTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new ProjectBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        editedAlice = new ProjectBuilder(ALICE).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ProjectBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ProjectBuilder(ALICE).withTags(VALID_PROJECT_TAG_HANG).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tasks -> returns false

@@ -35,9 +35,9 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label deadline;
     @FXML
-    private Label address;
+    private Label projectDescription;
     @FXML
     private Label repoUrl;
     @FXML
@@ -54,22 +54,24 @@ public class ProjectCard extends UiPart<Region> {
         this.status = status;
         id.setText(displayedIndex + ". ");
         projectName.setText(project.getProjectName().fullProjectName);
-        phone.setText(project.getPhone().value);
-        address.setText(project.getAddress().value);
+        deadline.setText(project.getDeadline().value);
+        project.getProjectTags().stream()
+                .sorted(Comparator.comparing(projectTag -> projectTag.projectTagName))
+                .forEach(projectTag -> this.tags.getChildren()
+                .add(new Label(projectTag.projectTagName)));
+
+        projectDescription.setText(project.getProjectDescription().value);
         repoUrl.setText(project.getRepoUrl().value);
-        project.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         //System.out.println(status + name.getText());
         if (status == Status.CATALOGUE) {
-            address.setVisible(false);
-            id.setVisible(false);
+            projectDescription.setVisible(false);
+            repoUrl.setVisible(false);
             tasks.setVisible(false);
-            address.setManaged(false);
-            id.setManaged(false);
+            projectDescription.setManaged(false);
+            repoUrl.setManaged(false);
             tasks.setManaged(false);
         }
     }

@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -34,10 +34,10 @@ public class EditProjectDescriptorBuilder {
     public EditProjectDescriptorBuilder(Project project) {
         descriptor = new EditProjectDescriptor();
         descriptor.setProjectName(project.getProjectName());
-        descriptor.setPhone(project.getPhone());
+        descriptor.setDeadline(project.getDeadline());
         descriptor.setRepoUrl(project.getRepoUrl());
-        descriptor.setAddress(project.getAddress());
-        descriptor.setTags(project.getTags());
+        descriptor.setProjectDescription(project.getProjectDescription());
+        descriptor.setTags(project.getProjectTags());
         descriptor.setTasks(project.getTasks());
     }
 
@@ -50,10 +50,10 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code Deadline} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditProjectDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
         return this;
     }
 
@@ -66,20 +66,20 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code ProjectDescription} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditProjectDescriptorBuilder withProjectDescription(String projectDescription) {
+        descriptor.setProjectDescription(new ProjectDescription(projectDescription));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditProjectDescriptor}
+     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code EditProjectDescriptor}
      * that we are building.
      */
-    public EditProjectDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditProjectDescriptorBuilder withTags(String... projectTags) {
+        Set<ProjectTag> projectTagSet = Stream.of(projectTags).map(ProjectTag::new).collect(Collectors.toSet());
+        descriptor.setTags(projectTagSet);
         return this;
     }
 

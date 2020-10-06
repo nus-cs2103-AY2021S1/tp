@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Set;
@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Project;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -33,11 +33,11 @@ public class ProjectUtil {
     public static String getProjectDetails(Project project) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_PROJECT_NAME + project.getProjectName().fullProjectName + " ");
-        sb.append(PREFIX_PHONE + project.getPhone().value + " ");
+        sb.append(PREFIX_DEADLINE + project.getDeadline().value + " ");
         sb.append(PREFIX_REPOURL + project.getRepoUrl().value + " ");
-        sb.append(PREFIX_ADDRESS + project.getAddress().value + " ");
-        project.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        sb.append(PREFIX_PROJECT_DESCRIPTION + project.getProjectDescription().value + " ");
+        project.getProjectTags().stream().forEach(
+            s -> sb.append(PREFIX_PROJECT_TAG + s.projectTagName + " ")
         );
         project.getTasks().stream().forEach(
             s -> sb.append(PREFIX_TASK + s.taskName + " ")
@@ -52,15 +52,16 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getProjectName().ifPresent(name -> sb.append(PREFIX_PROJECT_NAME).append(name.fullProjectName)
             .append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
         descriptor.getRepoUrl().ifPresent(email -> sb.append(PREFIX_REPOURL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        descriptor.getProjectDescription().ifPresent(address -> sb.append(PREFIX_PROJECT_DESCRIPTION).append(
+            address.value).append(" "));
+        if (descriptor.getProjectTags().isPresent()) {
+            Set<ProjectTag> projectTags = descriptor.getProjectTags().get();
+            if (projectTags.isEmpty()) {
+                sb.append(PREFIX_PROJECT_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                projectTags.forEach(s -> sb.append(PREFIX_PROJECT_TAG).append(s.projectTagName).append(" "));
             }
         }
         sb.append(" ");

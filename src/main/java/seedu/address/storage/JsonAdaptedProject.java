@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.Address;
-import seedu.address.model.project.Phone;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -27,26 +27,28 @@ class JsonAdaptedProject {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
 
     private final String projectName;
-    private final String phone;
+    private final String deadline;
     private final String repoUrl;
-    private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String projectDescription;
+    private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
     private final List<JsonAdaptedTask> occupied = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
     @JsonCreator
-    public JsonAdaptedProject(@JsonProperty("projectName") String projectName, @JsonProperty("phone") String phone,
-                              @JsonProperty("repoUrl") String repoUrl, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
+    public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
+                                @JsonProperty("deadline") String deadline,
+                                @JsonProperty("repoUrl") String repoUrl,
+                                @JsonProperty("projectDescription") String projectDescription,
+                                @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
+                                @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
         this.projectName = projectName;
-        this.phone = phone;
+        this.deadline = deadline;
         this.repoUrl = repoUrl;
-        this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.projectDescription = projectDescription;
+        if (projectTagged != null) {
+            this.projectTagged.addAll(projectTagged);
         }
         if (occupied != null) {
             this.occupied.addAll(occupied);
@@ -58,10 +60,10 @@ class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().fullProjectName;
-        phone = source.getPhone().value;
+        deadline = source.getDeadline().value;
         repoUrl = source.getRepoUrl().value;
-        address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
+        projectDescription = source.getProjectDescription().value;
+        projectTagged.addAll(source.getProjectTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         occupied.addAll(source.getTasks().stream()
@@ -75,9 +77,9 @@ class JsonAdaptedProject {
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
     public Project toModelType() throws IllegalValueException {
-        final List<Tag> projectTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            projectTags.add(tag.toModelType());
+        final List<ProjectTag> projectProjectTags = new ArrayList<>();
+        for (JsonAdaptedTag projectTag : projectTagged) {
+            projectProjectTags.add(projectTag.toModelType());
         }
         final List<Task> projectTasks = new ArrayList<>();
         for (JsonAdaptedTask task : occupied) {
@@ -93,13 +95,14 @@ class JsonAdaptedProject {
         }
         final ProjectName modelProjectName = new ProjectName(projectName);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Deadline modelDeadline = new Deadline(deadline);
 
         if (repoUrl == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RepoUrl.class.getSimpleName()));
@@ -109,18 +112,19 @@ class JsonAdaptedProject {
         }
         final RepoUrl modelRepoUrl = new RepoUrl(repoUrl);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (projectDescription == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ProjectDescription.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!ProjectDescription.isValidProjectDescription(projectDescription)) {
+            throw new IllegalValueException(ProjectDescription.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final ProjectDescription modelProjectDescription = new ProjectDescription(projectDescription);
 
-        final Set<Tag> modelTags = new HashSet<>(projectTags);
+        final Set<ProjectTag> modelProjectTags = new HashSet<>(projectProjectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
-        return new Project(modelProjectName, modelPhone, modelRepoUrl, modelAddress,
-                modelTags, new HashMap<>(), modelTasks);
+        return new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
+            modelProjectTags, new HashMap<>(), modelTasks);
     }
 
 }

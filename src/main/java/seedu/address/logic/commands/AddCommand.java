@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,18 +22,18 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the main catalogue. "
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
-            + PREFIX_PHONE + "PHONE "
+            + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_REPOURL + "REPOURL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
+            + "[" + PREFIX_PROJECT_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
+            + PREFIX_PROJECT_NAME + "The Blair project "
+            + PREFIX_DEADLINE + "29-02-2020 00:00:00"
             + PREFIX_REPOURL + "http://github.com/a/b.git "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_PROJECT_DESCRIPTION + "Coding in Greenwich "
+            + PREFIX_PROJECT_TAG + "challenging "
+            + PREFIX_PROJECT_TAG + "WFH"
             + PREFIX_TASK + "Write User Guide";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
