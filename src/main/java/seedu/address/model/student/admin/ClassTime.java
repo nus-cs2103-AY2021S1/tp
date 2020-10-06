@@ -1,4 +1,4 @@
-package seedu.address.model.admin;
+package seedu.address.model.student.admin;
 
 import seedu.address.model.student.Name;
 

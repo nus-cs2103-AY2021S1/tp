@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.admin.ClassVenue;
+import seedu.address.model.student.admin.ClassVenue;
 
 public class ClassVenueTest {
 
