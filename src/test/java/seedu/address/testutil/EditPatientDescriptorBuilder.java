@@ -10,6 +10,7 @@ import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -83,5 +84,14 @@ public class EditPatientDescriptorBuilder {
 
     public EditCommand.EditPatientDescriptor build() {
         return descriptor;
+    }
+
+    /**
+     * Sets the {@code Profile Picture} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withProfilePicture(String profilePic) {
+        ProfilePicture profilePicture = new ProfilePicture(profilePic);
+        descriptor.setProfilePicture(profilePicture);
+        return this;
     }
 }
