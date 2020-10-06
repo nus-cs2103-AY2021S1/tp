@@ -17,6 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.consumption.Consumption;
+import seedu.address.model.consumption.ConsumptionContainsKeywordsPredicate;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.KeywordsContainIngredientPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
@@ -140,5 +142,19 @@ public class CommandTestUtil {
         model.updateFilteredIngredientList(new KeywordsContainIngredientPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredIngredientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the consumption at the given {@code targetIndex} in the
+     * {@code model}'s consumption list.
+     */
+    public static void showConsumptionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredConsumptionList().size());
+
+        Consumption consumption = model.getFilteredConsumptionList().get(targetIndex.getZeroBased());
+        final String[] splitName = consumption.getRecipe().getName().fullName.split("\\s+");
+        model.updateFilteredConsumptionList(new ConsumptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredConsumptionList().size());
     }
 }

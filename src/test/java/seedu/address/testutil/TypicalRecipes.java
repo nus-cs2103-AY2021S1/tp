@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -59,6 +60,18 @@ public class TypicalRecipes {
         WishfulShrinking ab = new WishfulShrinking();
         for (Recipe recipe : getTypicalRecipes()) {
             ab.addRecipe(recipe);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code WishfulShrinking} with all the typical recipes in the consumption list.
+     */
+    public static WishfulShrinking getTypicalWishfulShrinkingConsumption() {
+        WishfulShrinking ab = new WishfulShrinking();
+        for (Recipe recipe : getTypicalRecipes()) {
+            Consumption consumption = new Consumption(recipe);
+            ab.addConsumption(consumption);
         }
         return ab;
     }
