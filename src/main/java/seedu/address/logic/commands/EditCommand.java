@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
+//import java.util.Collections;
+//import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.model.tag.Tag;
@@ -91,7 +93,8 @@ public class EditCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        Ingredient[] updatedIngredient = editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
+        ArrayList<Ingredient> updatedIngredient =
+                editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
         Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());
 
         return new Recipe(updatedName, updatedIngredient, updatedCalories);
@@ -121,10 +124,8 @@ public class EditCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
-        private Ingredient[] ingredients;
-        private IngredientString ingredientString;
+        private ArrayList<Ingredient> ingredients;
         private Calories calories;
-
 
         public EditRecipeDescriptor() {}
 
@@ -152,19 +153,15 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setIngredient(Ingredient[] ingredients) {
+        public void setIngredient(ArrayList<Ingredient> ingredients) {
             this.ingredients = ingredients;
         }
-        public void setIngredientString(IngredientString ingredientString) {
-            this.ingredientString = ingredientString;
-        }
 
-        public Optional<Ingredient[]> getIngredient() {
+
+        public Optional<ArrayList<Ingredient>> getIngredient() {
             return Optional.ofNullable(ingredients);
         }
-        public Optional<IngredientString> getIngredientString() {
-            return Optional.ofNullable(ingredientString);
-        }
+
 
         public void setCalories(Calories calories) {
             this.calories = calories;

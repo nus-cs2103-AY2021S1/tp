@@ -2,7 +2,7 @@ package seedu.address.model.recipe;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.address.model.commons.Calories;
@@ -16,23 +16,18 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
-    private final IngredientString ingredientString;
-    private final Calories calories;
 
     // Data fields
-    private final Ingredient[] ingredients;
+    private final ArrayList<Ingredient> ingredients;
+    private final Calories calories;
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Ingredient[] ingredients, Calories calories) {
-        requireAllNonNull(name, ingredients);
+    public Recipe(Name name, ArrayList<Ingredient> ingredients, Calories calories) {
+        requireAllNonNull(name, ingredients, calories);
         this.name = name;
         this.ingredients = ingredients;
-        this.ingredientString =
-                new IngredientString(Arrays.stream(ingredients)
-                        .map(item -> item.value)
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         this.calories = calories;
     }
 
@@ -40,11 +35,8 @@ public class Recipe {
         return name;
     }
 
-    public Ingredient[] getIngredient() {
+    public ArrayList<Ingredient> getIngredient() {
         return ingredients;
-    }
-    public IngredientString getIngredientString() {
-        return ingredientString;
     }
 
     public Calories getCalories() {
@@ -97,7 +89,9 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                .append(getIngredientString())
+                .append(ingredients.stream()
+                        .map(item -> item.getValue())
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
                 .append(" Calories: ")
                 .append(getCalories() + " cal");
         return builder.toString();

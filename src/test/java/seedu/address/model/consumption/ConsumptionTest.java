@@ -19,7 +19,7 @@ public class ConsumptionTest {
     public void equals() {
         // same values -> returns true
         Consumption aliceCopy = new Consumption(new RecipeBuilder(ALICE).build());
-        // assertTrue(alice.equals(aliceCopy));
+        assertTrue(alice.equals(aliceCopy));
 
         // same object -> returns true
         assertTrue(alice.equals(new Consumption(ALICE)));
@@ -41,16 +41,5 @@ public class ConsumptionTest {
         editedAlice = new Consumption(new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).build());
         assertFalse(alice.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new Consumption(new RecipeBuilder(ALICE).build());
-        assertFalse(alice.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new Consumption(new RecipeBuilder(ALICE).build());
-        assertFalse(alice.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new Consumption(new RecipeBuilder(ALICE).build());
-        assertFalse(alice.equals(editedAlice));
     }
 }

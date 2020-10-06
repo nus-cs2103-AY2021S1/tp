@@ -12,7 +12,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.tag.Tag;
 
@@ -20,8 +19,16 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
+    public static final String MESSAGE_CONSTRAINTS =
+            "Ingredients should be separated by commas, "
+                    + "and each ingredient should be consisted "
+                    + "of alphanumeric characters only";
+    public static final String VALIDATION_REGEX = "[\\w\\s]+(,\\s*[\\w\\s]*)*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static boolean isValidIngredient(String ingredientString) {
+        return ingredientString.matches(VALIDATION_REGEX);
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -57,13 +64,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ingredients} is invalid.
      */
-    public static IngredientString parseIngredient(String ingredients) throws ParseException {
+    public static String parseIngredient(String ingredients) throws ParseException {
         requireNonNull(ingredients);
         String trimmedIngredient = ingredients.trim();
-        if (!IngredientString.isValidIngredient(trimmedIngredient)) {
-            throw new ParseException(IngredientString.MESSAGE_CONSTRAINTS);
+        if (!trimmedIngredient.matches(VALIDATION_REGEX)) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
         }
-        return new IngredientString(trimmedIngredient);
+        return trimmedIngredient;
     }
 
     /**
@@ -90,7 +97,7 @@ public class ParserUtil {
     public static Calories parseCalories(String calories) throws ParseException {
         requireNonNull(calories);
         String trimmedCalories = calories.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedCalories)) {
+        if (!Calories.isValidCalories(trimmedCalories)) {
             throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
         }
         return new Calories(Integer.parseInt(trimmedCalories));

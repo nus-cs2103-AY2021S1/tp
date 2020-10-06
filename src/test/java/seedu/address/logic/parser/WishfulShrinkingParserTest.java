@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONSUMPTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 //import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteConsumptionCommand;
 import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 //import seedu.address.logic.commands.EditCommand;
@@ -127,6 +129,13 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_listIngredient() throws Exception {
         assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD) instanceof ListIngredientsCommand);
         assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD + " 3") instanceof ListIngredientsCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteConsumption() throws Exception {
+        DeleteConsumptionCommand command = (DeleteConsumptionCommand) parser.parseCommand(
+                DeleteConsumptionCommand.COMMAND_WORD + " " + INDEX_FIRST_CONSUMPTION.getOneBased());
+        assertEquals(new DeleteConsumptionCommand(INDEX_FIRST_CONSUMPTION), command);
     }
 
     @Test

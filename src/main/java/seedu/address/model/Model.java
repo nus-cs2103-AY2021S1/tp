@@ -95,8 +95,20 @@ public interface Model {
      */
     void addConsumption(Consumption target);
 
+    /**
+     * Deletes the given consumption.
+     * The ingredient must exist in the consumption list.
+     */
+    void deleteConsumption(Consumption target);
+
     /** Returns an unmodifiable view of the filtered consumption list */
     ObservableList<Consumption> getFilteredConsumptionList();
+
+    /**
+     * Updates the filter of the filtered consumption list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredConsumptionList(Predicate<Consumption> predicate);
 
     /**
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the fridge.

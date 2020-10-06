@@ -29,7 +29,8 @@ public class AddIngredientCommandTest {
 
     @Test
     public void constructor_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(null));
+        Ingredient[] nullIngredients = null;
+        assertThrows(NullPointerException.class, () -> new AddIngredientCommand(nullIngredients));
     }
 
     @Test
@@ -162,6 +163,18 @@ public class AddIngredientCommandTest {
         public ObservableList<Consumption> getFilteredConsumptionList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteConsumption(Consumption target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public void updateFilteredConsumptionList(Predicate<Consumption> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public boolean hasIngredient(Ingredient ingredient) {

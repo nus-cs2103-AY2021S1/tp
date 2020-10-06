@@ -1,19 +1,19 @@
 package seedu.address.model.consumption;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.recipe.Recipe;
+import seedu.address.model.consumption.exceptions.ConsumptionNotFoundException;
 
 /**
  * A list of consumption that does not allow nulls.
  *
  * Supports a minimal set of list operations.
- *
- * @see Recipe#isSameRecipe(Recipe)
  */
 public class ConsumptionList implements Iterable<Consumption> {
 
@@ -28,6 +28,43 @@ public class ConsumptionList implements Iterable<Consumption> {
     public void eat(Consumption toEat) {
         requireNonNull(toEat);
         internalList.add(toEat);
+    }
+
+    /**
+     * Removes the equivalent food eaten from the list.
+     * The food must exist in the list.
+     */
+    public void remove(Consumption toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new ConsumptionNotFoundException();
+        }
+    }
+
+    public void setConsumption(Consumption target, Consumption editedConsumption) {
+        requireAllNonNull(target, editedConsumption);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ConsumptionNotFoundException();
+        }
+
+        internalList.set(index, editedConsumption);
+    }
+
+    public void setConsumptions(ConsumptionList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code consumptions}.
+     * {@code consumptions} must not contain duplicate consumptions.
+     */
+    public void setConsumptions(List<Consumption> consumptions) {
+        requireAllNonNull(consumptions);
+
+        internalList.setAll(consumptions);
     }
 
     /**

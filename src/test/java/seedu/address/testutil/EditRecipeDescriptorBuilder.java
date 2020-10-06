@@ -3,6 +3,7 @@ package seedu.address.testutil;
 /*import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;*/
+import java.util.ArrayList;
 
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.model.commons.Calories;
@@ -46,8 +47,13 @@ public class EditRecipeDescriptorBuilder {
     /**
      * Sets the {@code Ingredient} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditRecipeDescriptorBuilder withIngredient(String ingredients) {
-        descriptor.setIngredient(new Ingredient[]{new Ingredient(ingredients)});
+    public EditRecipeDescriptorBuilder withIngredient(String ingredientString) {
+        String[] ingredientsToken = ingredientString.split(",");
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        for (int i = 0; i < ingredientsToken.length; i++) {
+            ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+        }
+        descriptor.setIngredient(ingredients);
         return this;
     }
 

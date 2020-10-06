@@ -25,7 +25,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.model.commons.Calories;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
@@ -110,7 +109,7 @@ public class AddRecipeCommandParserTest {
         // invalid ingredients
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_INGREDIENT_DESC + CALORIES_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, IngredientString.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ParserUtil.MESSAGE_CONSTRAINTS);
 
         // invalid calories
         assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + INVALID_CALORIES_DESC

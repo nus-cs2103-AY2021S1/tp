@@ -124,6 +124,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteConsumption(Consumption target) {
+        wishfulShrinking.removeConsumption(target);
+    }
+
+    @Override
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return wishfulShrinking.hasIngredient(ingredient);
@@ -168,6 +173,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Consumption> getFilteredConsumptionList() {
         return filteredConsumption;
+    }
+
+    @Override
+    public void updateFilteredConsumptionList(Predicate<Consumption> predicate) {
+        requireNonNull(predicate);
+        filteredConsumption.setPredicate(predicate);
     }
 
     //=========== Filtered Ingredients List Accessors =============================================================

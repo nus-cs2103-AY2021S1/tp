@@ -73,16 +73,5 @@ public class RecipeTest {
         editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new RecipeBuilder(ALICE).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new RecipeBuilder(ALICE).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new RecipeBuilder(ALICE).build();
-        assertFalse(ALICE.equals(editedAlice));
     }
 }
