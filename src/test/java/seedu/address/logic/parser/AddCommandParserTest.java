@@ -67,7 +67,7 @@ public class AddCommandParserTest {
         // multiple types - last type accepted
         assertParseSuccess(parser, TITLE_DESC_BOB + DATE_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + ADDRESS_DESC_AMY
                 + TYPE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTask));
-      
+        
         // multiple tags - all accepted
         Task expectedTaskMultipleTags = new TaskBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
