@@ -1,4 +1,4 @@
-package chopchop.dispatcher;
+package chopchop.logic;
 
 import java.nio.file.Path;
 

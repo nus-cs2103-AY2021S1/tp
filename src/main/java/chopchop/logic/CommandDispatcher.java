@@ -1,4 +1,4 @@
-package chopchop.dispatcher;
+package chopchop.logic;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
