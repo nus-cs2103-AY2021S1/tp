@@ -201,7 +201,7 @@ Notify the user if a certain stock is below threshold
 |**Add**    | `add n/NAME q/QUANTITY s/SUPPLIER [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
 |**Clear**  | `clear`                                                                                             |
 |**Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                 |
-|**Edit**   | `edit INDEX n/NAME q/QUANTITY s/SUPPLIER [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
+|**Edit**   | `edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Steak`                                       |
 |**List**   | `list`                                                                                              |
 |**Help**   | `help`                                                                                              |
