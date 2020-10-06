@@ -1,15 +1,25 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import seedu.address.Main;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -36,7 +46,10 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandBoxPlaceholder;
+
+    @FXML
+    private Circle accountDisplayPicture;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -62,6 +75,11 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+//        Image img = new Image(this.getClass().getResourceAsStream("/images/sampleDisplayPicture.png"));
+//        accountDisplayPicture.setFill(new ImagePattern(img));
+
+        // Dummy colour, to be changed later
+        accountDisplayPicture.setFill(Color.web("ffb997"));
 
         setAccelerators();
 
@@ -120,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
     }
 
     /**

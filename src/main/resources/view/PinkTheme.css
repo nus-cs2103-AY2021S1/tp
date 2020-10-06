@@ -193,12 +193,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#b5838d, 20%);
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Consolas";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -318,9 +318,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: #B0838D;
+    -fx-background-color: #d6a3a2;
     -fx-background-insets: 0;
-    -fx-border-color: #B0838D #B0838D #ffffff #B0838D;
+    -fx-border-color: #d6a3a2 #d6a3a2 #ffffff #d6a3a2;
     -fx-border-insets: 20 20 25 20;
     -fx-border-width: 1;
     -fx-font-family: "Consolas";
