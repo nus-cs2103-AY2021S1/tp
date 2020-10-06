@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,10 +44,6 @@ public class EditAssignmentDescriptorTest {
 
         // different module code -> returns false
         editedHw = new EditAssignmentDescriptorBuilder(DESC_HW).withModuleCode(VALID_MODULE_CODE_LAB).build();
-        assertFalse(DESC_HW.equals(editedHw));
-
-        // different tags -> returns false
-        editedHw = new EditAssignmentDescriptorBuilder(DESC_HW).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_HW.equals(editedHw));
     }
 }

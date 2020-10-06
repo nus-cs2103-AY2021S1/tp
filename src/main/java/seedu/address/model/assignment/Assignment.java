@@ -1,57 +1,24 @@
-package seedu.address.model.person;
+package seedu.address.model.assignment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Assignment {
-
-    // Identity fields
-    private final Name name;
-    private final Deadline deadline;
-
-    // Data fields
-    private final ModuleCode moduleCode;
-    private final Set<Tag> tags = new HashSet<>();
-
+public class Assignment extends Task {
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
-        requireAllNonNull(name, deadline, moduleCode, tags);
-        this.name = name;
-        this.deadline = deadline;
-        this.moduleCode = moduleCode;
-        this.tags.addAll(tags);
-    }
-
-    public Name getName() {
-        return name;
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode) {
+        super(name, deadline, moduleCode);
+        requireAllNonNull(name, deadline, moduleCode);
     }
 
     public Deadline getDeadline() {
-        return deadline;
-    }
-
-    public ModuleCode getModuleCode() {
-        return moduleCode;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return super.getTime();
     }
 
     /**
@@ -85,14 +52,13 @@ public class Assignment {
         Assignment otherAssignment = (Assignment) other;
         return otherAssignment.getName().equals(getName())
                 && otherAssignment.getDeadline().equals(getDeadline())
-                && otherAssignment.getModuleCode().equals(getModuleCode())
-                && otherAssignment.getTags().equals(getTags());
+                && otherAssignment.getModuleCode().equals(getModuleCode());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, moduleCode, tags);
+        return Objects.hash(super.getName(), getDeadline(), super.getModuleCode());
     }
 
     @Override
@@ -101,11 +67,8 @@ public class Assignment {
         builder.append(getName())
                 .append(" Deadline: ")
                 .append(getDeadline())
-                .append(" Email: ")
                 .append(" Module: ")
-                .append(getModuleCode())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getModuleCode());
         return builder.toString();
     }
 

@@ -1,15 +1,10 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
 
 /**
  * A utility class to help with building EditAssignmentDescriptor objects.
@@ -34,7 +29,6 @@ public class EditAssignmentDescriptorBuilder {
         descriptor.setName(assignment.getName());
         descriptor.setDeadline(assignment.getDeadline());
         descriptor.setModuleCode(assignment.getModuleCode());
-        descriptor.setTags(assignment.getTags());
     }
 
     /**
@@ -58,16 +52,6 @@ public class EditAssignmentDescriptorBuilder {
      */
     public EditAssignmentDescriptorBuilder withModuleCode(String moduleCode) {
         descriptor.setModuleCode(new ModuleCode(moduleCode));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditAssignmentDescriptor}
-     * that we are building.
-     */
-    public EditAssignmentDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

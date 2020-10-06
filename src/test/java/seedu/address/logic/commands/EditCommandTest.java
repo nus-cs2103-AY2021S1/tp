@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
@@ -23,7 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.testutil.EditAssignmentDescriptorBuilder;
 
@@ -55,10 +54,10 @@ public class EditCommandTest {
 
         AssignmentBuilder assignmentInList = new AssignmentBuilder(lastAssignment);
         Assignment editedAssignment = assignmentInList.withName(VALID_NAME_LAB).withDeadline(VALID_DEADLINE_LAB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .build();
 
         EditCommand.EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder().withName(VALID_NAME_LAB)
-                .withDeadline(VALID_DEADLINE_LAB).withTags(VALID_TAG_HUSBAND).build();
+                .withDeadline(VALID_DEADLINE_LAB).build();
         EditCommand editCommand = new EditCommand(indexLastAssignment, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);

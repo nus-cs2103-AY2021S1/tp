@@ -4,11 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Assignment;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * Adds an assignment to the address book.
@@ -22,14 +21,10 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_MODULE_CODE + "MODULE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DEADLINE + "01-01-2020 1800 "
-            + PREFIX_MODULE_CODE + "CS2100 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
-
+            + PREFIX_MODULE_CODE + "CS2100 ";
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the address book";
 

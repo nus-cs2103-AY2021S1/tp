@@ -1,20 +1,20 @@
-package seedu.address.model.person;
+package seedu.address.model.assignment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an assignment's module code in the address book.
+ * Represents a task's module code in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should begin with 2 or 3 alphabets, have 4 numbers and end with an alphabet/number.\n"
+            "Module codes should begin with 2 or 3 alphabets, have 4 numbers and may end with an alphabet.\n"
             + "It should not be left empty.";
 
     /**
-     * Module code should begin with 2 or 3 alphabets, have 4 numbers and end with an alphabet/number.
+     * Module code should begin with 2 or 3 alphabets, have 4 numbers and may end with an alphabet.
      */
     public static final String VALIDATION_REGEX = "[a-zA-Z]{2,3}[0-9]{4}[a-zA-Z]?";
 
