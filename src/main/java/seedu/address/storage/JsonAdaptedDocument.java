@@ -31,7 +31,7 @@ class JsonAdaptedDocument {
      * Converts a given {@code Document} into this class for Jackson use.
      */
     public JsonAdaptedDocument(Document source) {
-        name = source.getName().fullName;
+        name = source.getName().alphaNum;
         reference = source.getReference().getFileName();
     }
 
