@@ -155,7 +155,6 @@ public class ParserUtil {
         }
         return new ModuleCode(trimmedModuleCode);
     }
-
     /**
      * Parses a {@code String moduleName} into a {@code ModuleName}.
      * Leading and trailing whitespaces will be trimmed.

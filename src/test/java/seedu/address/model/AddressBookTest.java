@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -124,21 +125,16 @@ public class AddressBookTest {
         assertTrue(addressBook.hasModule(editedCs1101s));
     }
 
-    @Test
-    public void getModuleList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getModuleList().remove(0));
-    }
-
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Module> modules = FXCollections.observableArrayList();
+        private final UniqueModuleList modules = new UniqueModuleList();
 
         AddressBookStub(Collection<Person> persons, Collection<Module> modules) {
             this.persons.setAll(persons);
-            this.modules.setAll(modules);
+            this.modules.getInternalList().setAll(modules);
         }
 
         AddressBookStub(Collection<Person> persons) {
@@ -151,7 +147,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Module> getModuleList() {
+        public UniqueModuleList getModuleList() {
             return modules;
         }
     }

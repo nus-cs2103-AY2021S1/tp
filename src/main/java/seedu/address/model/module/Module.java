@@ -66,6 +66,14 @@ public class Module {
     }
 
     /**
+     * Returns true if module has the specified module code.
+     */
+    public boolean hasModuleCode(ModuleCode moduleCodeToCheck) {
+        return moduleCodeToCheck != null
+                && moduleCodeToCheck.equals(moduleCode);
+    }
+
+    /**
      * Returns true if both modules have the same identity and data fields.
      * This defines a stronger notion of equality between two modules.
      */
@@ -96,4 +104,5 @@ public class Module {
     public String toString() {
         return moduleCode + " " + moduleName;
     }
+
 }

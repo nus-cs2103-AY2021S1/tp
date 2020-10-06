@@ -28,8 +28,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
-
     public static final String MODULE_NAME_CS1010S = "Programming Methodology";
     public static final String MODULE_NAME_CS2103 = "Software Engineering";
     public static final String VALID_MODULE_CODE_CS50 = "CS50";
@@ -56,7 +54,6 @@ public class CommandTestUtil {
     public static final String CODE_DESC_CS2103 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103;
     public static final String NAME_DESC_CS2103 = " " + PREFIX_MODULE_NAME + MODULE_NAME_CS2103;
 
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -82,6 +79,8 @@ public class CommandTestUtil {
             + "CS*#1"; // '*' and '#' not allowed in module code
     public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_MODULE_NAME
             + "Programming&Fun"; // '&' not allowed in module name
+
+    public static final String INVALID_DELMOD_MISSING_CODE = " " + PREFIX_MODULE_CODE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
