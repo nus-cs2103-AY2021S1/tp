@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_PICTURE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddProfilePictureCommand;
-
-import java.io.File;
 
 public class AddProfilePictureCommandParserTest {
 
