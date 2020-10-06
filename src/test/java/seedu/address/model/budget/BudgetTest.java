@@ -9,7 +9,7 @@ import seedu.address.model.person.Amount;
 class BudgetTest {
 
     @Test
-    void topupBudget() {
+    void topupBudget_amount_changeByEqualAmount() {
         Amount amount = new Amount("1");
         Budget budget = new Budget();
         budget.topupBudget(amount);
@@ -17,7 +17,7 @@ class BudgetTest {
     }
 
     @Test
-    void getAmount() {
+    void getAmount_sameAmount_equalAmount() {
         Amount defaultAmount = new Amount("0");
         Budget budget = new Budget();
         assertEquals(budget.getAmount(), defaultAmount);

@@ -26,4 +26,9 @@ public class Budget {
     public Amount getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Budget: %s", amount.toString());
+    }
 }

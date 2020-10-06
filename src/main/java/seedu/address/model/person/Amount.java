@@ -26,7 +26,7 @@ public class Amount {
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
 
         float f = Float.parseFloat(amount);
-        value = Math.round(f);
+        value = Math.round(f * 100);
     }
 
     /**
@@ -42,7 +42,7 @@ public class Amount {
     public Amount add(Amount amount) {
         requireNonNull(amount);
         Integer total = value + amount.value;
-        return new Amount(total.toString());
+        return new Amount(String.format("%.02f", total / 100.0));
     }
 
     public Double asDouble() {
@@ -51,7 +51,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return value.toString();
+        return asDouble().toString();
     }
 
     @Override
