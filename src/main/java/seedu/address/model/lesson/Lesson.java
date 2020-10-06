@@ -7,36 +7,19 @@ import java.util.Objects;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Task;
 
-public class Lesson {
-
-    // Identity fields
-    private final Name name;
-    private final Deadline deadline;
-
-    // Data fields
-    private final ModuleCode moduleCode;
-
+public class Lesson extends Task {
     /**
      * Every field must be present and not null.
      */
     public Lesson(Name name, Deadline deadline, ModuleCode moduleCode) {
+        super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode);
-        this.name = name;
-        this.deadline = deadline;
-        this.moduleCode = moduleCode;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public Deadline getDeadline() {
-        return deadline;
-    }
-
-    public ModuleCode getModuleCode() {
-        return moduleCode;
+        return super.getTime();
     }
 
     /**
@@ -75,7 +58,7 @@ public class Lesson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, moduleCode);
+        return Objects.hash(super.getName(), getDeadline(), super.getModuleCode());
     }
 
     @Override
