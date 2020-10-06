@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
@@ -15,12 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.CliniCal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.patient.Patient;
-import seedu.address.testutil.PatientBuilder;
 
 public class AddProfilePictureCommandTest {
 
@@ -62,26 +58,5 @@ public class AddProfilePictureCommandTest {
                 outOfBoundIndex);
 
         assertCommandFailure(addProfilePictureCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-    }
-
-
-    @Test
-    public void execute_filteredList_success() {
-        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
-        Index index = Index.fromOneBased(model.getFilteredPatientList().size());
-        Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        Patient editedPatient = new PatientBuilder(patientInFilteredList)
-                                    .withProfilePicture("f/data/stock_picture.png").build();
-        AddProfilePictureCommand addProfilePictureCommand =
-                                 new AddProfilePictureCommand(profilePicture, index);
-
-        String expectedMessage = String.format(AddProfilePictureCommand.MESSAGE_ADD_PROFILE_PICTURE_SUCCESS,
-                                               editedPatient);
-
-        Model expectedModel = new ModelManager(new CliniCal(model.getCliniCal()), new UserPrefs());
-        expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
-        Model actualModel = expectedModel;
-
-        assertEquals(expectedModel, actualModel);
     }
 }

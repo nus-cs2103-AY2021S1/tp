@@ -1,3 +1,4 @@
+
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -10,6 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.storage.StorageManager;
@@ -49,18 +51,23 @@ public class AddProfilePictureCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        int index = patientIndex.getZeroBased();
+        Patient patientToEdit = lastShownList.get(index);
 
-        String filePath = StorageManager.addPictureToProfile(patientToEdit.getName().toString(), profilePicture);
+        Name patientNameObject = patientToEdit.getName();
+        String patientName = patientNameObject.toString();
+        String filePath = StorageManager.addPictureToProfile(patientName, profilePicture);
         ProfilePicture profilePicture = new ProfilePicture(filePath);
 
         Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                                            patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture);
+                patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture);
 
         model.setPatient(patientToEdit, patientEdited);
 
-        String editedPersonName = patientEdited.getName().toString();
-
-        return new CommandResult(String.format(MESSAGE_ADD_PROFILE_PICTURE_SUCCESS, editedPersonName));
+        Name editedPersonNameObject = patientEdited.getName();
+        String editedPersonName = editedPersonNameObject.toString();
+        CommandResult commandResult = new CommandResult(String.format(MESSAGE_ADD_PROFILE_PICTURE_SUCCESS,
+                editedPersonName));
+        return commandResult;
     }
 }
