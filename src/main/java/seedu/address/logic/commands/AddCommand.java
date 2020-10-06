@@ -21,7 +21,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + PREFIX_DATE_TIME + "DATE "
+            + PREFIX_DATE_TIME + "DATE_TIME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_TYPE + "TYPE "
             + "[" + PREFIX_TAG + "TAG]...\n"
