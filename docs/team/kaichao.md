@@ -11,10 +11,15 @@ searching and ordering supplies, via Command Line Interface (CLI).
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to delete existing stock from the inventory.
-  * What it does: Allows the user to delete the chosen stock.
+* **New Feature**: Added the ability to delete existing stock(s) from the inventory.
+  * What it does: Allows the user to delete the chosen stock(s).
   * Justification: This feature enables the user to delete any unwanted or unused stock, so that
     the storage will not be clogged up with outdated stock.
+
+* **New Feature**: Added the ability to generate a unique serial number for each newly added stock.
+  * What it does: Allows the user to perform commands using serial numbers.
+  * Justification: This feature eliminates any confusion that can arise when users reuse field attributes when
+   adding a new stock. Users can then differentiate field inputs clearly when using Warenager commands.    
 
 * **Reviews & Merging**:
   * Ensured code quality when reviewing pull requests, before approving merge.
@@ -25,7 +30,8 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Converted the draft user guide content to markdown file format.
-    * Updated the documentation for `delete` feature.
+    * Update the documentation for `delete` feature.
   * Developer Guide:
     * Update NFR and Appendix section for Warenager.
+    * Added MSS for delete feature.
     * Added implementation details of the `delete` feature.
