@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-public class CommandDispatcher implements Logic{
+public class CommandDispatcher implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(CommandDispatcher.class);
 
