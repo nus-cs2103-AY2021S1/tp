@@ -6,11 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.
@@ -35,7 +35,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setTitle(task.getTitle());
         descriptor.setDateTime(task.getDateTime());
         descriptor.setDescription(task.getDescription());
-        descriptor.setAddress(task.getAddress());
+        descriptor.setType(task.getType());
         descriptor.setTags(task.getTags());
     }
 
@@ -64,10 +64,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Type} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditTaskDescriptorBuilder withType(String type) {
+        descriptor.setType(new Type(type));
         return this;
     }
 

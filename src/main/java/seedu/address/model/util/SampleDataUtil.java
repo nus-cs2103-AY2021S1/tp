@@ -12,6 +12,7 @@ import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

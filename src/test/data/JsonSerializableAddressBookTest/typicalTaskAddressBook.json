@@ -4,43 +4,43 @@
     "title" : "Alice Pauline",
     "dateTime" : "01-01-2020 12:00",
     "description" : "alice,example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "type" : "todo",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Benson Meier",
     "dateTime" : "02-02-2020 12:00",
     "description" : "johnd,example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "type" : "deadline",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "title" : "Carl Kurz",
     "dateTime" : "03-03-2020 12:00",
     "description" : "heinz,example.com",
-    "address" : "wall street",
+    "type" : "event",
     "tagged" : [ ]
   }, {
     "title" : "Daniel Meier",
     "dateTime" : "04-04-2020 12:00",
     "description" : "cornelia,example.com",
-    "address" : "10th street",
+    "type" : "event",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Elle Meyer",
     "dateTime" : "05-05-2020 12:00",
     "description" : "werner,example.com",
-    "address" : "michegan ave",
+    "type" : "lesson",
     "tagged" : [ ]
   }, {
     "title" : "Fiona Kunz",
     "dateTime" : "06-06-2020 12:00",
     "description" : "lydia,example.com",
-    "address" : "little tokyo",
+    "type" : "tutorial",
     "tagged" : [ ]
   }, {
     "title" : "George Best",
     "dateTime" : "07-07-2020 12:00",
     "description" : "anna,example.com",
-    "address" : "4th street",
+    "type" : "session",
     "tagged" : [ ]
   } ]
 }

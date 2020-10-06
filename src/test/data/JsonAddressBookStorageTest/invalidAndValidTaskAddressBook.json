@@ -3,11 +3,11 @@
     "title": "Valid Task",
     "dateTime": "01-01-2020 12:00",
     "description": "hans,example.com",
-    "address": "4th street"
+    "type": "todo"
   }, {
     "title": "Task With Invalid Phone Field",
     "dateTime": "1-1-2020 12:00",
     "description": "hans,example.com",
-    "address": "4th street"
+    "type": "todo"
   } ]
 }

@@ -15,21 +15,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Address;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@te movie";
     private static final String INVALID_DATE_TIME = "1-1-2020 12:00";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_TYPE = " ";
     private static final String INVALID_DESCRIPTION = "@example";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rate movie";
     private static final String VALID_DATE_TIME = "01-01-2020 12:00";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_TYPE = "something-todo";
     private static final String VALID_DESCRIPTION = "rachel,example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -103,26 +103,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseType_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseType((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseType_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseType(INVALID_TYPE));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseType_validValueWithoutWhitespace_returnsType() throws Exception {
+        Type expectedType = new Type(VALID_TYPE);
+        assertEquals(expectedType, ParserUtil.parseType(VALID_TYPE));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseType_validValueWithWhitespace_returnsTrimmedType() throws Exception {
+        String typeWithWhitespace = WHITESPACE + VALID_TYPE + WHITESPACE;
+        Type expectedType = new Type(VALID_TYPE);
+        assertEquals(expectedType, ParserUtil.parseType(typeWithWhitespace));
     }
 
     @Test

@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -32,8 +32,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_TIME_BOB = "01-01-2020 00:00";
     public static final String VALID_DESCRIPTION_AMY = "amy,example.com";
     public static final String VALID_DESCRIPTION_BOB = "bob,example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_TYPE_AMY = "todo";
+    public static final String VALID_TYPE_BOB = "deadline";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -43,8 +43,8 @@ public class CommandTestUtil {
     public static final String DATE_TIME_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String TYPE_DESC_AMY = " " + PREFIX_TYPE + VALID_TYPE_AMY;
+    public static final String TYPE_DESC_BOB = " " + PREFIX_TYPE + VALID_TYPE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -52,7 +52,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_TIME_DESC = " " + PREFIX_DATE_TIME
             + "32-11-2000 19:00"; // 32nd day not allowed
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob@yahoo"; // '@' not allowed
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE; // empty string not allowed for type
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -63,10 +63,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withDateTime(VALID_DATE_TIME_AMY).withDescription(VALID_DESCRIPTION_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withDateTime(VALID_DATE_TIME_AMY).withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

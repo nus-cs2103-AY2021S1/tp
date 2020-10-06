@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,9 +33,10 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
-                        PREFIX_DESCRIPTION, PREFIX_ADDRESS, PREFIX_TAG);
 
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_TAG);
+      
         Index index;
 
         try {
@@ -55,8 +57,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                     .get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editTaskDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            editTaskDescriptor.setType(ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
