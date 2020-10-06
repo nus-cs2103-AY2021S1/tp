@@ -235,15 +235,15 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* NUS Computing Students with poor time management skills who have difficulties managing their weekly academic schedule
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* can type fast and prefer typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* More convenient than typical apps as lessons and assignments are managed in just one app so there is no need to switch between different ones.
+* Faster than typical mouse/GUI driven apps as most features are accomplished by typing simple commands.
+* Easier to manage schedule than typical scheduling apps as assignments are automatically scheduled.
 
 ### User stories
 
@@ -251,56 +251,150 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| `* * *`  | student                                    | import my timetable         | better schedule my assignments with my lesson timings taken into account              |
+| `* * *`  | forgetful student                                       | receive reminders for my lessons and assignments               |  avoid forgetting to attend lessons or do my work                                                                      |
+| `* * *`  | poor time manager                                       | add and schedule assignments                |  keep track of what needs to be done                                 |
+| `* * *`  | poor time manager                                       | delete assignments          | remove assignments that i have completed or added wrongly |
+| `* * *`    | student                                       | view lessons and assignments together   | view all assignments i have to complete amidst my lessons                |
+| `* * *`      | particular student | use a scheduler with a user-friendly interface           | use the application easily and enjoyably                                                 |
+| `* * *`      | new user | navigate the UI easily           | use the application efficiently                                                 |                                      |
+| `* * *`      | slow/confused student | i can access and view my academic duties easily           | quickly find out what i need to do for the week
+| `* * *`      | experienced vim-user | use my keyboard to key in assignments           | save time tracking down my assignments                                                 ||
+| `* * `      | beginner user | view a tutorial           | benefit from the features of ProductiveNUS                                                 ||
+| `* * `      | experienced vim-user | use shortcuts in my commands            | access my academic schedule more quickly                                              ||
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Academic Schedule Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add an assignment**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an assignment.
+2.  Academic Schedule Manager adds the assignment.
+3.  Academic Schedule Manager shows a success message with details of the assignment added.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The user did not supply all required parameters.
 
-  Use case ends.
+    * 1a1. Academic Schedule Manager shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+
+* 1b. The given DEADLINE_OF_ASSIGNMENT parameter is in the wrong format.
+
+    * 1b1. Academic Schedule Manager shows an error message.
+
+      Use case ends.
+
+
+**Use case: UC02 - Delete an assignment**
+
+**MSS**
+
+1.  User <ins>requests to list assignments and lessons (UC05)</ins>.
+2.  User requests to delete a specific assignment in the list.
+3.  Academic Schedule Manager shows a success message with details of the assignment deleted.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid (index is referring to a lesson or index is out of range).
+
+    * 2a1. Academic Schedule Manager shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
 
+**Use case: UC03 - Import timetable**
+
+**MSS**
+
+1.  User retrieves NUSMods timetable URL from the NUSMods website.
+2.  User requests to import NUSMods timetable using their NUSMods timetable URL.
+3.  Academic Schedule Manager adds all the lessons according to the data retrieved.
+4.  Academic Schedule Manager shows a success message with details of the lessons added.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given URL is invalid (not a valid NUSMods timetable URL).
+
+    * 2a1. Academic Schedule Manager shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. User already has a timetable imported before.
+
+    * 2b1. Academic Schedule Manager informs user that previously imported lesson will be deleted.
+    
+      Use case resumes at step 3.
+
+
+**Use case: UC04 - Remind**
+
+**MSS**
+
+1.  User <ins>requests to list assignments and lessons (UC05)</ins>.
+2.  User requests to set reminder for a specific assignment in the list.
+3.  Academic Schedule Manager adds the assignment to the remind list.
+4.  Academic Schedule Manager shows a success message with details of the assignment set as reminder.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid (index is referring to a lesson or index is out of range).
+
+    * 2a1. Academic Schedule Manager shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC05 - List assignments and lessons**
+
+**MSS**
+
+1.  User requests to list assignments and lessons.
+2.  Academic Schedule Manager shows a list of all assignments and lessons.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User requests to list XX day(s) of assignments and lessons.
+
+    * 1a1. Academic Schedule Manager shows a filtered list of assignments and lessons.
+
+        Use case ends.
+      
+* 2a. The list is empty.
+
+        Use case ends.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to `1000 lessons and assignments` without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should respond within two seconds.
+5.  The system should save a user's data `after every user command`.
+6.  The system should be usable by a novice who has never used the app before.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User**: NUS Computing student
 
 --------------------------------------------------------------------------------------------------------------------
 

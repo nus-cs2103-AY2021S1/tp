@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.assignment.Assignment;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,8 +21,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Person> remindedAssignments;
+    private final FilteredList<Assignment> filteredAssignments;
+    private final FilteredList<Assignment> remindedAssignments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,9 +35,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
         remindedAssignments = new FilteredList<>(
-                this.addressBook.getPersonList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
+                this.addressBook.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
     }
 
     public ModelManager() {
@@ -92,54 +92,54 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasAssignment(Assignment assignment) {
+        requireNonNull(assignment);
+        return addressBook.hasAssignment(assignment);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public void deleteAssignment(Assignment target) {
+        addressBook.removeAssignment(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addAssignment(Assignment assignment) {
+        addressBook.addAssignment(assignment);
+        updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setAssignment(Assignment target, Assignment editedAssignment) {
+        requireAllNonNull(target, editedAssignment);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setAssignment(target, editedAssignment);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Assignment List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Assignment} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Assignment> getFilteredAssignmentList() {
+        return filteredAssignments;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredAssignments.setPredicate(predicate);
     }
 
     //=========== Reminded Assignments List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Assignment} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getRemindedAssignmentsList() {
+    public ObservableList<Assignment> getRemindedAssignmentsList() {
         return remindedAssignments;
     }
 
@@ -159,7 +159,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredAssignments.equals(other.filteredAssignments);
     }
 
 }
