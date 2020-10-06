@@ -35,7 +35,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: %1$s";
 
     private static final String MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM =
-            "You cannot change the max quantity when adding items.";
+            "You cannot change the max quantity when adding to existing items.";
 
     private final Item toAdd;
 

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.FXCollections;
@@ -73,16 +74,16 @@ public class UniqueItemList implements Iterable<Item> {
 
     /**
      * Combines quantity and tags of existing item with item provided
-     * @param item item provided to combine with existing item
+     * @param toAdd item provided to combine with existing item
      * @return combined item
      */
-    public Item addOnExistingItem(Item item) {
-        requireAllNonNull(item);
+    public Item addOnExistingItem(Item toAdd) {
+        requireAllNonNull(toAdd);
 
         int index = -1;
         Item existingItem = null;
         for (int i = 0; i < internalList.size(); i++) {
-            if (internalList.get(i).isSameItem(item)) {
+            if (internalList.get(i).isSameItem(toAdd)) {
                 index = i;
                 existingItem = internalList.get(i);
                 break;
@@ -93,17 +94,24 @@ public class UniqueItemList implements Iterable<Item> {
             throw new ItemNotFoundException();
         }
 
-        Name name = item.getName();
-        Quantity quantity = item.getQuantity().add(existingItem.getQuantity());
-        Supplier supplier = item.getSupplier();
-        Set<Tag> providedItemTags = item.getTags();
+        Name name = toAdd.getName();
+        Quantity quantity = toAdd.getQuantity().add(existingItem.getQuantity());
+        Supplier supplier = toAdd.getSupplier();
+        Set<Tag> providedItemTags = toAdd.getTags();
         Set<Tag> existingItemTags = existingItem.getTags();
         Set<Tag> combinedTags = new HashSet<>();
         combinedTags.addAll(providedItemTags);
         combinedTags.addAll(existingItemTags);
-        Quantity maxQuantity = existingItem.getMaxQuantity()
-                .flatMap(q1 -> item.getMaxQuantity().map(q2 -> q1.add(q2)))
-                .orElse(null);
+
+        // four cases for maxQuantity
+        // 1) if existing item have maxQuantity, toAdd item does not
+        // 2) if both existing item and toAdd does not have max quantity
+        // 3) if both existing item and toAdd item have maxQuantity
+        // 4) if existing item does not have maxQuantity, but toAdd does
+        // case 3 and 4 are handled upstream @ AddCommand via throwing MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM
+        // Only need to consider case 1 and 2
+        assert toAdd.getMaxQuantity().isEmpty();
+        Quantity maxQuantity = existingItem.getMaxQuantity().orElse(null);
 
         Item toReplace = new Item(name, quantity, supplier, combinedTags, maxQuantity);
         internalList.set(index, toReplace);
