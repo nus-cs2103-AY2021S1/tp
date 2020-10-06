@@ -1,17 +1,22 @@
 package tp.cap5buddy.logic.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tp.cap5buddy.contacts.Contact;
 import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.ModuleList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FindContactCommand extends Command {
 
     private final String keyword;
 
+    /**
+     * Creates and initialises a new FindContactCommand object.
+     *
+     * @param keyword Search keyword.
+     */
     public FindContactCommand(String keyword) {
         assert keyword != null : "keyword cannot be null";
         this.keyword = keyword.toLowerCase();
