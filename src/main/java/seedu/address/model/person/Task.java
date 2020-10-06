@@ -5,10 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 abstract class Task {
     // Identity fields
     private final Name name;
-    private final Phone time;
-    private final Address moduleCode;
+    private final Deadline time;
+    private final ModuleCode moduleCode;
 
-    Task(Name name, Phone time, Address moduleCode) {
+    Task(Name name, Deadline time, ModuleCode moduleCode) {
         requireAllNonNull(name, time, moduleCode);
         this.name = name;
         this.time = time;
@@ -19,11 +19,11 @@ abstract class Task {
         return name;
     }
 
-    public Phone getTime() {
+    public Deadline getTime() {
         return time;
     }
 
-    public Address getModuleCode() {
+    public ModuleCode getModuleCode() {
         return moduleCode;
     }
 }
