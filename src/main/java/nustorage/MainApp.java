@@ -62,7 +62,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         // AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
 
-        FinanceAccountStorage financeAccountStorage = new JsonFinanceAccountStorage(userPrefs.getFinanceAccountFilePath());
+        FinanceAccountStorage financeAccountStorage =
+                new JsonFinanceAccountStorage(userPrefs.getFinanceAccountFilePath());
         InventoryStorage inventoryStorage = new JsonInventoryStorage(userPrefs.getInventoryFilePath());
 
         // storage = new StorageManager(addressBookStorage, userPrefsStorage);

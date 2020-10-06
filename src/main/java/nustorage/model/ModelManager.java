@@ -49,12 +49,16 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
+
+    /**
+     * Initializes a ModelManagewr with the given financeAccount, inventory and userPrefs
+     */
     public ModelManager(FinanceAccount financeAccount, Inventory inventory, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(financeAccount, inventory, userPrefs);
 
-        logger.fine("Initializing with finance account " + financeAccount +
-                ", inventory " + inventory + " and user prefs " + userPrefs);
+        logger.fine("Initializing with finance account " + financeAccount
+                + ", inventory " + inventory + " and user prefs " + userPrefs);
 
         this.financeAccount = financeAccount;
 
