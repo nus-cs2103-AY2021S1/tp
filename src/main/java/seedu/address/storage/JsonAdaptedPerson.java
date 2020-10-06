@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String status;
     private final String address;
+    private final List<JsonAdaptedDocument> documents = new ArrayList<>();
     private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
     private final List<JsonAdaptedVictim> victims = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -42,6 +44,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
+            @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("address") String address,
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
             @JsonProperty("victims") List<JsonAdaptedVictim> victims,
@@ -51,15 +54,19 @@ class JsonAdaptedPerson {
         this.email = email;
         this.status = status;
         this.address = address;
+        if (documents != null) {
+            this.documents.addAll(documents);
+        }
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
         if (suspects != null) {
             this.suspects.addAll(suspects);
-            if (victims != null) {
-                this.victims.addAll(victims);
-            }
-            if (tagged != null) {
-                this.tagged.addAll(tagged);
-            }
         }
+        if (victims != null) {
+            this.victims.addAll(victims);
+        }
+
     }
 
     /**
@@ -71,6 +78,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         status = source.getStatus().name();
         address = source.getAddress().value;
+        documents.addAll(source.getDocuments().stream()
+                .map(JsonAdaptedDocument::new)
+                .collect(Collectors.toList()));
         suspects.addAll(source.getSuspects().stream().map(JsonAdaptedSuspect::new).collect(Collectors.toList()));
         victims.addAll(source.getVictims().stream()
                 .map(JsonAdaptedVictim::new)
@@ -143,7 +153,12 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelAddress,
+        final List<Document> modelDocument = new ArrayList<>();
+        for (JsonAdaptedDocument document : documents) {
+            modelDocument.add(document.toModelType());
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
                 modelSuspects, modelVictims, modelTags);
 
     }
