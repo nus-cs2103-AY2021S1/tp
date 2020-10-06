@@ -36,7 +36,6 @@ class JsonAdaptedAssignment {
      */
     public JsonAdaptedAssignment(Assignment source) {
         name = source.getName().fullName;
-
         deadline = source.getDeadline().value;
         moduleCode = source.getModuleCode().moduleCode;
     }
@@ -47,7 +46,6 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Assignment toModelType() throws IllegalValueException {
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }

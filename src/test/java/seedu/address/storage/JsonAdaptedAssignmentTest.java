@@ -16,6 +16,7 @@ public class JsonAdaptedAssignmentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_DEADLINE = "00-00-0000 2400";
     private static final String INVALID_MODULE_CODE = " ";
+
     private static final String VALID_NAME = CS2103T_TUT.getName().toString();
     private static final String VALID_DEADLINE = CS2103T_TUT.getDeadline().toString();
     private static final String VALID_MODULE_CODE = CS2103T_TUT.getModuleCode().toString();

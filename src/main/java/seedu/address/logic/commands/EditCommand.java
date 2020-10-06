@@ -83,7 +83,6 @@ public class EditCommand extends Command {
     private static Assignment createEditedAssignment(Assignment assignmentToEdit,
                                                      EditAssignmentDescriptor editAssignmentDescriptor) {
         assert assignmentToEdit != null;
-
         Name updatedName = editAssignmentDescriptor.getName().orElse(assignmentToEdit.getName());
         Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
         ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()

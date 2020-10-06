@@ -8,35 +8,17 @@ import java.util.Objects;
  * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Assignment {
-
-    // Identity fields
-    private final Name name;
-    private final Deadline deadline;
-
-    // Data fields
-    private final ModuleCode moduleCode;
-
+public class Assignment extends Task {
     /**
      * Every field must be present and not null.
      */
     public Assignment(Name name, Deadline deadline, ModuleCode moduleCode) {
+        super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode);
-        this.name = name;
-        this.deadline = deadline;
-        this.moduleCode = moduleCode;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     public Deadline getDeadline() {
-        return deadline;
-    }
-
-    public ModuleCode getModuleCode() {
-        return moduleCode;
+        return super.getTime();
     }
 
     /**
@@ -76,7 +58,7 @@ public class Assignment {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, moduleCode);
+        return Objects.hash(super.getName(), getDeadline(), super.getModuleCode());
     }
 
     @Override
@@ -85,7 +67,6 @@ public class Assignment {
         builder.append(getName())
                 .append(" Deadline: ")
                 .append(getDeadline())
-                .append(" Email: ")
                 .append(" Module: ")
                 .append(getModuleCode());
         return builder.toString();
