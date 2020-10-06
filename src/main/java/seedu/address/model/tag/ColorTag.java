@@ -30,14 +30,19 @@ public class ColorTag {
      */
     public ColorTag(String colorName) {
         requireNonNull(colorName);
-        checkArgument(isValidColorName(colorName), MESSAGE_CONSTRAINTS);
-        Color tempColor = Color.web(colorName).darker();
-        cssColor = String.format("rgba(%d,%d,%d,%d)",
-                (int) (255 * tempColor.getRed()),
-                (int) (255 * tempColor.getGreen()),
-                (int) (255 * tempColor.getBlue()),
-                (int) tempColor.getOpacity());
-        originalColor = colorName;
+        if (colorName.equals("None")) {
+            cssColor = "transparent";
+            originalColor = "None";
+        } else {
+            checkArgument(isValidColorName(colorName), MESSAGE_CONSTRAINTS);
+            Color tempColor = Color.web(colorName).darker();
+            cssColor = String.format("rgba(%d,%d,%d,%d)",
+                    (int) (255 * tempColor.getRed()),
+                    (int) (255 * tempColor.getGreen()),
+                    (int) (255 * tempColor.getBlue()),
+                    (int) tempColor.getOpacity());
+            originalColor = colorName;
+        }
     }
 
     /**
@@ -59,6 +64,10 @@ public class ColorTag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidColorName(String test) {
+        if (test.equals("None")) {
+            return true;
+        }
+
         try {
             Color.web(test);
             return true;
