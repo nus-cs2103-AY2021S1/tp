@@ -25,6 +25,7 @@ public class JsonAdaptedModuleTest {
     private static final String VALID_PERSON_EMAIL = "dcsdamith@comp.nus.edu";
     private static final String VALID_PERSON_DEPARTMENT = "School of Computing";
     private static final String VALID_PERSON_OFFICE = "COM2-02-17";
+    private static final String VALID_PERSON_REMARK = "Loves monkeys";
 
     private static final String VALID_MODULE_CODE = CS1010S.getModuleCode().toString();
     private static final String VALID_MODULE_NAME = CS1010S.getModuleName().toString();
@@ -66,5 +67,15 @@ public class JsonAdaptedModuleTest {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_MODULE_CODE, null, VALID_PERSONS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPersons_throwsIllegalValueException() {
+        List<JsonAdaptedPerson> invalidPersons = new ArrayList<>(VALID_PERSONS);
+        invalidPersons.add(new JsonAdaptedPerson(INVALID_PERSON_NAME, VALID_PERSON_PHONE, VALID_PERSON_EMAIL,
+                VALID_PERSON_DEPARTMENT, VALID_PERSON_OFFICE, VALID_PERSON_REMARK, null));
+        JsonAdaptedModule module =
+                new JsonAdaptedModule(VALID_MODULE_CODE, VALID_MODULE_NAME, invalidPersons);
+        assertThrows(IllegalValueException.class, module::toModelType);
     }
 }
