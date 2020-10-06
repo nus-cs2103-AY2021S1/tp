@@ -36,7 +36,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().withWitnesses("Janice").build();
+        Person editedPerson = new PersonBuilder().withDocument("name", "test1.txt")
+                                                 .withWitnesses("Janice").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

@@ -489,6 +489,87 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PIVOT shows an error message.
     
         Use case resumes at step 1.
+        
+**Use case: Add Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT opens the specified investigation case
+5. User requests to add a person to a specified category (suspect/witness/victim).
+6. PIVOT adds the person to a specified category (suspect/witness/victim).
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+* 5a. The given category of person to add is invalid.
+    * 5a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+**Use case: List Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User requests to list Persons related to the case.
+2. PIVOT shows a list of Persons related to the case.
+
+   Use case ends.
+
+**Use case: Delete Person[Suspect/Witness/Victim] in Investigation Case**
+
+**MSS**
+1. User requests to list all Persons
+2. PIVOT shows a list of all Persons
+3. User requests to delete a specific Person from the list
+4. PIVOT deletes the Person
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. PIVOT shows an error message.
+    
+        Use case resumes at step 1.
+
+**Use case: Return to the Main Page**
+
+**MSS**
+1. User requests to list investigation cases
+2. PIVOT shows a list of investigation cases
+3. User requests to open a specific investigation case in the list
+4. PIVOT navigates to the specified investigation case
+5. User requests to navigate to the main page
+6. PIVOT navigates to the main page
+
+   Use case ends.
+
+**Extensions**
+* 1a. User requests to navigate to the main page.
+
+    Use case ends.
+
+**Use case: Exit Application**
+
+**MSS**
+1. User requests to exit the application
+2. PIVOT terminates.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 

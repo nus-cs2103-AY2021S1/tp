@@ -21,22 +21,30 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Status status;
 
     // Data fields
     private final Address address;
+    private final List<Suspect> suspects = new ArrayList<>();
+    private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
     private final List<Witness> witnesses = new ArrayList<>();
+    private final List<Document> documents = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, List<Witness> witnesses) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Status status, List<Document> documents, Address address,
+                  List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, status, documents, address, suspects, victims, witnesses,tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.status = status;
         this.address = address;
+        this.documents.addAll(documents);
+        this.suspects.addAll(suspects);
+        this.victims.addAll(victims);
         this.tags.addAll(tags);
         this.witnesses.addAll(witnesses);
     }
@@ -53,8 +61,25 @@ public class Person {
         return email;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    public List<Suspect> getSuspects() {
+        return suspects;
+    }
+
+    public List<Victim> getVictims() {
+        return victims;
     }
 
     /**
@@ -81,7 +106,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()))
+                && otherPerson.getStatus().equals(getStatus());
     }
 
     /**
@@ -102,15 +128,20 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getStatus().equals(getStatus())
+                && otherPerson.getDocuments().equals(getDocuments())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getWitnesses().equals(getWitnesses());
+                && otherPerson.getSuspects().equals(getSuspects())
+                && otherPerson.getVictims().equals(getVictims())
+                && otherPerson.getWitnesses().equals(getWitnesses())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, witnesses);
+        return Objects.hash(name, phone, email, status, documents,
+                            address, suspects, victims, witnesses, tags);
     }
 
     @Override
@@ -121,9 +152,19 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
+                .append(" Status: ")
+                .append(getStatus())
+                .append(" Documents: ")
+                .append(getDocuments())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
+                .append(" Suspects: ");
+        getSuspects().forEach(builder::append);
+        builder.append(" Victims: ");
+        getVictims().forEach(builder::append);
+        builder.append(" Witnesses: ");
+        getWitnesses().forEach(builder::append);
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
