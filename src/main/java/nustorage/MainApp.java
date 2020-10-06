@@ -1,5 +1,6 @@
 package nustorage;
 
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -15,21 +16,23 @@ import nustorage.commons.util.ConfigUtil;
 import nustorage.commons.util.StringUtil;
 import nustorage.logic.Logic;
 import nustorage.logic.LogicManager;
-import nustorage.model.AddressBook;
+import nustorage.model.FinanceAccount;
+import nustorage.model.Inventory;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
-import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.UserPrefs;
-import nustorage.model.util.SampleDataUtil;
-import nustorage.storage.AddressBookStorage;
-import nustorage.storage.JsonAddressBookStorage;
+import nustorage.storage.FinanceAccountStorage;
+import nustorage.storage.InventoryStorage;
+import nustorage.storage.JsonFinanceAccountStorage;
+import nustorage.storage.JsonInventoryStorage;
 import nustorage.storage.JsonUserPrefsStorage;
 import nustorage.storage.Storage;
 import nustorage.storage.StorageManager;
 import nustorage.storage.UserPrefsStorage;
 import nustorage.ui.Ui;
 import nustorage.ui.UiManager;
+
 
 /**
  * Runs the application.
@@ -46,6 +49,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
@@ -56,8 +60,13 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        // AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+
+        FinanceAccountStorage financeAccountStorage = new JsonFinanceAccountStorage(userPrefs.getFinanceAccountFilePath());
+        InventoryStorage inventoryStorage = new JsonInventoryStorage(userPrefs.getInventoryFilePath());
+
+        // storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(financeAccountStorage, inventoryStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -68,34 +77,74 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
     }
 
+
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        // Optional<ReadOnlyAddressBook> addressBookOptional;
+        // ReadOnlyAddressBook initialData;
+        // try {
+        //     addressBookOptional = storage.readAddressBook();
+        //     if (!addressBookOptional.isPresent()) {
+        //         logger.info("Data file not found. Will be starting with a sample AddressBook");
+        //     }
+        //     initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        // } catch (DataConversionException e) {
+        //     logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+        //     initialData = new AddressBook();
+        // } catch (IOException e) {
+        //     logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+        //     initialData = new AddressBook();
+        // }
+        //
+        // return new ModelManager(initialData, userPrefs);
+
+        Optional<FinanceAccount> optionalFinanceAccount;
+        FinanceAccount initialFinanceAccount;
+
+        Optional<Inventory> optionalInventory;
+        Inventory initialInventory;
+
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            optionalFinanceAccount = storage.readFinanceAccount();
+            if (optionalFinanceAccount.isEmpty()) {
+                logger.info("Data file not found. Will be starting with an empty finance account!");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialFinanceAccount = optionalFinanceAccount.orElseGet(FinanceAccount::new);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty finance account!");
+            initialFinanceAccount = new FinanceAccount();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty finance account!");
+            initialFinanceAccount = new FinanceAccount();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            optionalInventory = storage.readInventory();
+            if (optionalInventory.isEmpty()) {
+                logger.info("Data file not found. Will be starting with an empty inventory!");
+            }
+            initialInventory = optionalInventory.orElseGet(Inventory::new);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty inventory!");
+            initialInventory = new Inventory();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty inventory!");
+            initialInventory = new Inventory();
+        }
+
+        return new ModelManager(initialFinanceAccount, initialInventory, userPrefs);
+
     }
+
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
+
 
     /**
      * Returns a {@code Config} using the file at {@code configFilePath}. <br>
@@ -133,6 +182,7 @@ public class MainApp extends Application {
         return initializedConfig;
     }
 
+
     /**
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
      * or a new {@code UserPrefs} with default configuration if errors occur when
@@ -165,11 +215,13 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
+
 
     @Override
     public void stop() {
@@ -180,4 +232,5 @@ public class MainApp extends Application {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
+
 }
