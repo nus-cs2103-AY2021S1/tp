@@ -36,6 +36,7 @@ public class EditItemDescriptorBuilder {
         descriptor.setQuantity(item.getQuantity());
         descriptor.setSupplier(item.getSupplier());
         descriptor.setTags(item.getTags());
+        descriptor.setMaxQuantity(item.getMaxQuantity().orElse(null));
     }
 
     /**
@@ -69,6 +70,14 @@ public class EditItemDescriptorBuilder {
     public EditItemDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code maxQuantity} of the {@code EditItemDescriptor} that we are building.
+     */
+    public EditItemDescriptorBuilder withMaxQuantity(String maxQuantity) {
+        descriptor.setMaxQuantity(new Quantity(maxQuantity));
         return this;
     }
 

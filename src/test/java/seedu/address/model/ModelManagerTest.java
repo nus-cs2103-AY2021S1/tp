@@ -78,16 +78,16 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.hasItem(null));
     }
 
-    //    @Test
-    //    public void hasItem_itemNotInInventoryBook_returnsFalse() {
-    //        assertFalse(modelManager.hasItem(CHICKEN));
-    //    }
+    @Test
+    public void hasItem_itemNotInInventoryBook_returnsFalse() {
+        assertFalse(modelManager.hasItem(CHICKEN));
+    }
 
-    //    @Test
-    //    public void hasItem_itemInInventoryBook_returnsTrue() {
-    //        modelManager.addItem(CHICKEN);
-    //        assertTrue(modelManager.hasItem(CHICKEN));
-    //    }
+    @Test
+    public void hasItem_itemInInventoryBook_returnsTrue() {
+        modelManager.addItem(CHICKEN);
+        assertTrue(modelManager.hasItem(CHICKEN));
+    }
 
     @Test
     public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
@@ -130,41 +130,4 @@ public class ModelManagerTest {
         differentUserPrefs.setInventoryBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(inventoryBook, differentUserPrefs)));
     }
-
-    //    @Test
-    //    public void equals() {
-    //        InventoryBook inventoryBook = new InventoryBookBuilder().withItem(CHICKEN).withItem(DUCK).build();
-    //        InventoryBook differentInventoryBook = new InventoryBook();
-    //        UserPrefs userPrefs = new UserPrefs();
-    //
-    //        // same values -> returns true
-    //        modelManager = new ModelManager(inventoryBook, userPrefs);
-    //        ModelManager modelManagerCopy = new ModelManager(inventoryBook, userPrefs);
-    //        assertTrue(modelManager.equals(modelManagerCopy));
-    //
-    //        // same object -> returns true
-    //        assertTrue(modelManager.equals(modelManager));
-    //
-    //        // null -> returns false
-    //        assertFalse(modelManager.equals(null));
-    //
-    //        // different types -> returns false
-    //        assertFalse(modelManager.equals(5));
-    //
-    //        // different inventoryBook -> returns false
-    //        assertFalse(modelManager.equals(new ModelManager(differentInventoryBook, userPrefs)));
-    //
-    //        // different filteredList -> returns false
-    //        String[] keywords = CHICKEN.getName().fullName.split("\\s+");
-    //        modelManager.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-    //        assertFalse(modelManager.equals(new ModelManager(inventoryBook, userPrefs)));
-    //
-    //        // resets modelManager to initial state for upcoming tests
-    //        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-    //
-    //        // different userPrefs -> returns false
-    //        UserPrefs differentUserPrefs = new UserPrefs();
-    //        differentUserPrefs.setInventoryBookFilePath(Paths.get("differentFilePath"));
-    //        assertFalse(modelManager.equals(new ModelManager(inventoryBook, differentUserPrefs)));
-    //    }
 }
