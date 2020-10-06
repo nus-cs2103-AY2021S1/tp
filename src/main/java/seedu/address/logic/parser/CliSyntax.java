@@ -10,5 +10,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
     public static final Prefix PREFIX_SUPPLIER = new Prefix("s/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_MAX_QUANTITY = new Prefix("max/");
 
 }

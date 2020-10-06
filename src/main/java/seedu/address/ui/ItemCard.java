@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import seedu.address.model.item.Item;
 
 /**
@@ -35,6 +38,8 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label quantity;
     @FXML
+    private Text quantityStats;
+    @FXML
     private Label supplier;
     @FXML
     private Label email;
@@ -47,9 +52,21 @@ public class ItemCard extends UiPart<Region> {
     public ItemCard(Item item, int displayedIndex) {
         super(FXML);
         this.item = item;
+        String itemQuantity = item.getQuantity().value;
+        Optional<String> itemMaxQuantity = item.getMaxQuantity().map(q -> q.value);
+
         id.setText(displayedIndex + ". ");
         name.setText(item.getName().fullName);
-        quantity.setText(item.getQuantity().value);
+        quantity.setText(itemQuantity);
+        if (itemMaxQuantity.isPresent()) {
+            String maxQuantity = itemMaxQuantity.get();
+            float percentage = Float.parseFloat(itemQuantity) / Integer.parseInt(maxQuantity) * 100;
+            String stats = String.format("/%s (%.01f%%)", maxQuantity, percentage);
+            quantityStats.setText(stats);
+            if (percentage > 100) {
+                quantityStats.setFill(Color.RED);
+            }
+        }
         supplier.setText(item.getSupplier().value);
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
