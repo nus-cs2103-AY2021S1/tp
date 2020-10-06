@@ -40,6 +40,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                         args, PREFIX_SERIALNUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY
                 );
+        List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
 
         // If unallowed prefixes are provided
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
@@ -49,6 +50,13 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         // If serial number is not provided
         if (!argMultimap.getValue(PREFIX_SERIALNUMBER).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+        }
+
+        // Check if there are unallowed duplicate prefixes
+        for (Prefix prefix: allPrefixes) {
+            if (argMultimap.getAllValues(prefix).size() >= 2 && !prefix.equals(PREFIX_SERIALNUMBER)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
+            }
         }
 
         // If both increment and new quantity prefix provided
