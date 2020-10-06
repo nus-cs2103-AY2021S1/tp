@@ -1,32 +1,34 @@
 package nustorage.model;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 
-public class FinanceAccount {
+public class FinanceAccount implements Iterable<FinanceRecord> {
 
-    private final List<FinanceRecord> financeRecords;
+    private final ObservableList<FinanceRecord> internalList = FXCollections.observableArrayList();
+    private final ObservableList<FinanceRecord> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     public FinanceAccount() {
-        financeRecords = new ArrayList<>();
-    }
 
-    public FinanceAccount(List<FinanceRecord> financeRecords) {
-        this.financeRecords = financeRecords;
-    }
-
-    public List<FinanceRecord> getFinanceRecords() {
-        return this.financeRecords;
     }
 
     public void addRecord(FinanceRecord record) {
-        financeRecords.add(record);
+        internalList.add(record);
+    }
+
+    public void setFinanceRecord(FinanceRecord target, FinanceRecord newRecord) {
+        int index = internalList.indexOf(target);
+        internalList.remove(index);
+        internalList.add(index, newRecord);
     }
 
     /**
@@ -37,15 +39,15 @@ public class FinanceAccount {
      */
     public Optional<FinanceRecord> removeRecord(Index targetIndex) {
 
-        if (targetIndex.getZeroBased() >= financeRecords.size()) {
+        if (targetIndex.getZeroBased() >= internalList.size()) {
             return Optional.empty();
         }
 
-        return Optional.of(financeRecords.remove(targetIndex.getZeroBased()));
+        return Optional.of(internalList.remove(targetIndex.getZeroBased()));
     }
 
     public int count() {
-        return financeRecords.size();
+        return internalList.size();
     }
 
     /**
@@ -54,22 +56,36 @@ public class FinanceAccount {
      * @return Net transaction amount of all finance records
      */
     public double netProfit() {
-        return financeRecords.stream()
+        return internalList.stream()
                 .mapToDouble(FinanceRecord::getAmount)
                 .sum();
     }
 
     public List<FinanceRecord> filterRecords (Predicate<FinanceRecord> filter) {
-        return financeRecords.stream().filter(filter).collect(Collectors.toList());
+        return internalList.stream().filter(filter).collect(Collectors.toList());
     }
 
     public boolean isEmpty() {
-        return financeRecords.isEmpty();
+        return internalList.isEmpty();
+    }
+
+
+    public ObservableList<FinanceRecord> getFinanceList() {
+        return internalList;
+    }
+
+    public ObservableList<FinanceRecord> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    @Override
+    public Iterator<FinanceRecord> iterator() {
+        return internalList.iterator();
     }
 
     @Override
     public String toString() {
-        return financeRecords.stream()
+        return internalList.stream()
                 .map(FinanceRecord::toString)
                 .collect(Collectors.joining("\n"));
     }
