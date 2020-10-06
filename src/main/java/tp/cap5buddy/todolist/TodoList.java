@@ -64,6 +64,24 @@ public class TodoList {
         return this.list.set(index, editedTask);
     }
 
+    public TodoList sortByDescription() {
+        ArrayList<Task> temp = new ArrayList<>(list);
+        temp.sort(new TaskComparatorByDescription());
+        return new TodoList(temp);
+    }
+
+    public TodoList sortByPriority() {
+        ArrayList<Task> temp = new ArrayList<>(list);
+        temp.sort(new TaskComparatorByPriority());
+        return new TodoList(temp);
+    }
+
+    public TodoList sortByDate() {
+        ArrayList<Task> temp = new ArrayList<>(list);
+        temp.sort(new TaskComparatorByDate());
+        return new TodoList(temp);
+    }
+
     public void archive(Task toArchive) {
         remove(toArchive);
         this.archives.add(toArchive);
