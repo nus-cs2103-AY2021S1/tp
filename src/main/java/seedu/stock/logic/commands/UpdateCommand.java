@@ -172,7 +172,9 @@ public class UpdateCommand extends Command {
             return false;
         }
 
-        return false;
+        // state check
+        UpdateCommand castedOther = (UpdateCommand) other;
+        return updateStockDescriptor.equals(((UpdateCommand) other).updateStockDescriptor);
     }
 
     public static class UpdateStockDescriptor {
