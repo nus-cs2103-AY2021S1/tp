@@ -22,7 +22,7 @@ import jimmy.mcgymmy.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PROTEIN = "+651234";
+    private static final String INVALID_PROTEIN = "+651%)234";
     private static final String INVALID_FAT = " ";
     private static final String INVALID_CARB = "example.com";
     private static final String INVALID_TAG = "#friend";

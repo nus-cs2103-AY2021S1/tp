@@ -93,7 +93,11 @@ public class EditCommand extends Command {
         // as with AddCommand, address and get tags left as exercises
         Food editedFood = new Food(newName, newProtein, newFat, newCarb);
 
-        if (foodToEdit != editedFood && model.hasFood(editedFood)) {
+        //        boolean first = !(foodToEdit.equals(editedFood));
+        //        boolean third = (foodToEdit != (editedFood));
+        //        boolean second = (model.hasFood(editedFood));
+
+        if (!(foodToEdit.equals(editedFood)) && model.hasFood(editedFood)) {
             throw new CommandException(MESSAGE_DUPLICATE_FOOD);
         }
 
