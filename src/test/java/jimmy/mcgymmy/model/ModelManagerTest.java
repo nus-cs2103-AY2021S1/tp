@@ -21,13 +21,8 @@ public class ModelManagerTest {
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/ModelManagerTest.java
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
-=======
-        Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new McGymmy(), new McGymmy(modelManager.getAddressBook()));
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/model/ModelManagerTest.java
     }
 
     @Test
@@ -96,15 +91,9 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/ModelManagerTest.java
-        AddressBook addressBook =
-            new seedu.address.testutil.McGymmyBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
-=======
-        McGymmy mcGymmy = new seedu.address.testutil.McGymmyBuilder().withPerson(TypicalPersons.ALICE).withPerson(
-            TypicalPersons.BENSON).build();
+        McGymmy mcGymmy = new McGymmyBuilder().withPerson(TypicalPersons.ALICE).withPerson(
+                TypicalPersons.BENSON).build();
         McGymmy differentMcGymmy = new McGymmy();
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/model/ModelManagerTest.java
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

@@ -17,14 +17,14 @@ public interface Model {
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,10 +47,9 @@ public interface Model {
     void setMcGymmyFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Returns the AddressBook
      */
     void setMcGymmy(ReadOnlyMcGymmy addressBook);
-
 
     /**
      * Returns the McGymmy

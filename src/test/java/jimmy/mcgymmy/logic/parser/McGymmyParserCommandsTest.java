@@ -85,10 +85,10 @@ public class McGymmyParserCommandsTest {
         String phoneString = "9912629";
         String emailString = "test@example.com";
         String commandString = String.format("%s -n %s -p %s -e %s",
-            AddCommand.COMMAND_WORD,
-            nameString,
-            phoneString,
-            emailString);
+                AddCommand.COMMAND_WORD,
+                nameString,
+                phoneString,
+                emailString);
         Command command = parser.parse(commandString);
         assertTrue(command instanceof AddCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, "n"), Optional.of(nameString));
@@ -108,10 +108,10 @@ public class McGymmyParserCommandsTest {
         String phoneString = "88888888";
         String emailString = "test@google.cn";
         String commandString = String.format("%s %s -p %s -e %s",
-            EditCommand.COMMAND_WORD,
-            indexString,
-            phoneString,
-            emailString);
+                EditCommand.COMMAND_WORD,
+                indexString,
+                phoneString,
+                emailString);
         Command command = parser.parse(commandString);
         assertTrue(command instanceof EditCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, ""), Optional.of(indexString));

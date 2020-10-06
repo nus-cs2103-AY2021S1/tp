@@ -53,8 +53,8 @@ public class FoodCard extends UiPart<Region> {
         carb.setText(food.getCarbs().toString());
         fat.setText(food.getFat().toString());
         food.getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -72,6 +72,6 @@ public class FoodCard extends UiPart<Region> {
         // state check
         FoodCard card = (FoodCard) other;
         return id.getText().equals(card.id.getText())
-            && food.equals(card.food);
+                && food.equals(card.food);
     }
 }

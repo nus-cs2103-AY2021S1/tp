@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.storage;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
 import jimmy.mcgymmy.model.UserPrefs;
-import jimmy.mcgymmy.testutil.Assert;
 
 public class JsonUserPrefsStorageTest {
 
@@ -25,7 +25,7 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefs_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> readUserPrefs(null));
+        assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
 
     private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws DataConversionException {
@@ -40,13 +40,13 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefs_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
+        assertThrows(DataConversionException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
     }
 
     private Path addToTestDataPathIfNotNull(String userPrefsFileInTestDataFolder) {
         return userPrefsFileInTestDataFolder != null
-            ? TEST_DATA_FOLDER.resolve(userPrefsFileInTestDataFolder)
-            : null;
+                ? TEST_DATA_FOLDER.resolve(userPrefsFileInTestDataFolder)
+                : null;
     }
 
     @Test
@@ -79,12 +79,12 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void savePrefs_nullPrefs_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveUserPrefs(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveUserPrefs(null, "SomeFile.json"));
     }
 
     @Test
     public void saveUserPrefs_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveUserPrefs(new UserPrefs(), null));
+        assertThrows(NullPointerException.class, () -> saveUserPrefs(new UserPrefs(), null));
     }
 
     /**
@@ -93,7 +93,7 @@ public class JsonUserPrefsStorageTest {
     private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
-                .saveUserPrefs(userPrefs);
+                    .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
         }

@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.commons.util;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import jimmy.mcgymmy.commons.core.Config;
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
-import jimmy.mcgymmy.testutil.Assert;
 
 public class ConfigUtilTest {
 
@@ -25,7 +25,7 @@ public class ConfigUtilTest {
 
     @Test
     public void read_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> read(null));
+        assertThrows(NullPointerException.class, () -> read(null));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ConfigUtilTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
+        assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
     }
 
     @Test
@@ -75,12 +75,12 @@ public class ConfigUtilTest {
 
     @Test
     public void save_nullConfig_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> save(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> save(null, "SomeFile.json"));
     }
 
     @Test
     public void save_nullFile_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> save(new Config(), null));
+        assertThrows(NullPointerException.class, () -> save(new Config(), null));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.logic.commands;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -58,7 +59,6 @@ public class CommandTestUtil {
         // only do so by copying its components.
         McGymmy expectedMcGymmy = new McGymmy(actualModel.getMcGymmy());
         List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
-
 
         Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedMcGymmy, actualModel.getMcGymmy());

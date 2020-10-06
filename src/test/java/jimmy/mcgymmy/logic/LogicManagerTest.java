@@ -67,16 +67,16 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMcGymmyIoExceptionThrowingStub
         JsonMcGymmyStorage addressBookStorage =
-            new JsonMcGymmyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonMcGymmyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
-            new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + " -n amy -p 99999999 -e amy@amy.com";
         Food expectedFood = new FoodBuilder().withName("amy").withProtein("99999999")
-            .withFat("213412").withCarb("123543").build();
+                .withFat("213412").withCarb("123543").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addFood(expectedFood);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

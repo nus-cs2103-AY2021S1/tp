@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.model;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;

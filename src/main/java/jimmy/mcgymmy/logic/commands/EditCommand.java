@@ -56,11 +56,11 @@ public class EditCommand extends Command {
             ParserUtil::parseFat
     );
     private OptionalParameter<Carbohydrate> carbParameter = this.addOptionalParameter(
-        "carb value",
-        "c",
-        "Carbohydrate value of food (g)",
-        "10",
-        ParserUtil::parseCarb
+            "carb value",
+            "c",
+            "Carbohydrate value of food (g)",
+            "10",
+            ParserUtil::parseCarb
     );
 
     void setParameters(Parameter<Index> indexParameter, OptionalParameter<Name> nameParameter,

@@ -1,6 +1,6 @@
-package seedu.address.model;
+package jimmy.mcgymmy.model;
 
-import static seedu.address.testutil.Assert.assertThrows;
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +15,8 @@ public class UserPrefsTest {
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/UserPrefsTest.java
-        assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
-=======
         Assert.assertThrows(NullPointerException.class, () -> userPrefs.setMcGymmyFilePath(null));
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/model/UserPrefsTest.java
+        assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
     }
 
 }

@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.model.food;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.commons.core.index.Index;
-import jimmy.mcgymmy.testutil.Assert;
 
 class FridgeTest {
     private static final Food CHIMKEN = new Food("Chimken", 1, 2, 3);
@@ -26,7 +26,7 @@ class FridgeTest {
 
     @Test
     public void contains_nullFood_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> fridge.contains(null));
+        assertThrows(NullPointerException.class, () -> fridge.contains(null));
     }
 
     @Test
@@ -42,22 +42,22 @@ class FridgeTest {
 
     @Test
     public void add_nullFood_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> fridge.add(null));
+        assertThrows(NullPointerException.class, () -> fridge.add(null));
     }
 
     @Test
     public void setFood_indexLessThanZero_throwsIndexOutOfBoundException() {
-        Assert.assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(Index.fromZeroBased(-1), CHIMKEN));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(Index.fromZeroBased(-1), CHIMKEN));
     }
 
     @Test
     public void setFood_indexLargerThanOrEqualToSize_throwsIndexOutOfBoundException() {
-        Assert.assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(Index.fromZeroBased(1), CHIMKEN));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.setFood(Index.fromZeroBased(1), CHIMKEN));
     }
 
     @Test
     public void setFood_nullEditedFood_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> fridge.setFood(Index.fromZeroBased(1), null));
+        assertThrows(NullPointerException.class, () -> fridge.setFood(Index.fromZeroBased(1), null));
     }
 
     @Test
@@ -71,12 +71,12 @@ class FridgeTest {
 
     @Test
     public void remove_removeIndexLesserThanZero_throwsIndexOutOfBoundException() {
-        Assert.assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(Index.fromZeroBased(-1)));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(Index.fromZeroBased(-1)));
     }
 
     @Test
     public void remove_removeIndexLargerThanOrEqualToSize_throwsIndexOutOfBoundException() {
-        Assert.assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(Index.fromZeroBased(-1)));
+        assertThrows(IndexOutOfBoundsException.class, () -> fridge.remove(Index.fromZeroBased(-1)));
     }
 
     @Test
@@ -89,7 +89,7 @@ class FridgeTest {
 
     @Test
     public void setFoods_nullFridge_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> fridge.setFoods((Fridge) null));
+        assertThrows(NullPointerException.class, () -> fridge.setFoods((Fridge) null));
     }
 
     @Test
@@ -103,7 +103,7 @@ class FridgeTest {
 
     @Test
     public void setFoods_nullList_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> fridge.setFoods((List<Food>) null));
+        assertThrows(NullPointerException.class, () -> fridge.setFoods((List<Food>) null));
     }
 
     @Test
@@ -118,7 +118,7 @@ class FridgeTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, ()
-            -> fridge.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> fridge.asUnmodifiableObservableList().remove(0));
     }
 }

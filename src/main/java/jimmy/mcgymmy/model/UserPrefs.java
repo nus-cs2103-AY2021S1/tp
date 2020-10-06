@@ -68,7 +68,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-            && mcGymmyFilePath.equals(o.mcGymmyFilePath);
+                && mcGymmyFilePath.equals(o.mcGymmyFilePath);
     }
 
     @Override

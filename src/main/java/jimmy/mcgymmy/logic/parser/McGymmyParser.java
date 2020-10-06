@@ -107,8 +107,8 @@ public class McGymmyParser {
                 List<String> unconsumedArgs = cmd.getArgList();
                 if (unconsumedArgs.size() == 0) {
                     String message = parameterSet.getUnnamedParameter()
-                        .map(param -> String.format("Missing required option: %s", param.getName()))
-                        .orElseGet(() -> "");
+                            .map(param -> String.format("Missing required option: %s", param.getName()))
+                            .orElseGet(() -> "");
                     throw new ParseException(message);
                 }
                 parameter.setValue(String.join(" ", unconsumedArgs));
@@ -145,14 +145,14 @@ public class McGymmyParser {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
         formatter.printHelp(
-            printWriter,
-            formatter.getWidth(),
-            commandName,
-            getUnnamedParameterUsage(parameterSet),
-            options,
-            formatter.getLeftPadding(),
-            formatter.getDescPadding(),
-            "");
+                printWriter,
+                formatter.getWidth(),
+                commandName,
+                getUnnamedParameterUsage(parameterSet),
+                options,
+                formatter.getLeftPadding(),
+                formatter.getDescPadding(),
+                "");
         stringWriter.write("\nEXAMPLE: ");
         stringWriter.write(this.createExampleCommand(commandName, parameterList));
         return stringWriter.toString();
@@ -160,14 +160,14 @@ public class McGymmyParser {
 
     private String getUnnamedParameterUsage(ParameterSet parameterSet) {
         return parameterSet.getUnnamedParameter()
-            .map(param -> String.format("<arg> %s: %s", param.getName(), param.getDescription()))
-            .orElseGet(() -> "");
+                .map(param -> String.format("<arg> %s: %s", param.getName(), param.getDescription()))
+                .orElseGet(() -> "");
     }
 
     private String createExampleCommand(String commandName, List<AbstractParameter> parameterList) {
         return commandName + " " + parameterList.stream()
-            .map(p -> p.getFlag().equals("") ? p.getExample() : "-" + p.getFlag() + " " + p.getExample())
-            .collect(Collectors.joining(" "));
+                .map(p -> p.getFlag().equals("") ? p.getExample() : "-" + p.getFlag() + " " + p.getExample())
+                .collect(Collectors.joining(" "));
     }
 
     public Set<String> getRegisteredCommands() {
