@@ -15,11 +15,11 @@ public class IcNumber {
             + "depending on the status of the holder. "
             + "2. xxxxxxx is a 7-digit serial number assigned to the document holder. "
             + "3. # is the checksum letter calculated with respect to @ and xxxxxxx.";
-    // a letter that can be "S", "T", "F" or "G" depending on the status of the holder
+    // a letter that can be "S", "T", "F" or "G" depending on the status of the patient
     private static final String IC_FIRST_CHARACTER_REGEX = "(?i)^[STFG]";
     // a 7-digit serial number assigned to the document holder
     private static final String IC_MIDDLE_REGEX = "\\d{7}";
-    // the checksum letter calculated with respect to first character and 7 digits.
+    // the checksum letter calculated with respect to first character and 7 digits
     private static final String IC_LAST_CHARACTER_REGEX = "[a-zA-Z]$";
     public static final String VALIDATION_REGEX =
             IC_FIRST_CHARACTER_REGEX + IC_MIDDLE_REGEX + IC_LAST_CHARACTER_REGEX;

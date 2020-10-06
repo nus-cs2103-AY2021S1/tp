@@ -11,9 +11,9 @@ public class BloodType {
 
     public static final String MESSAGE_CONSTRAINTS = "Blood type should be 1 of the following : "
             + "A+ | A- | B+ | B-| O+ | O- | AB+ | AB-";
-    // a blood group that can be "A", "B", "O", "AB" depending on the presence of antigens A, B
+    // a blood group that can be "A", "B", "O" or "AB" depending on the presence of antigens A, B
     private static final String BLOOD_TYPE_ABO = "(?i)^(A|B|AB|O)";
-    // a rh system that can be "+", "-" depending on the presence of RhD antigen
+    // a rh system that can be "+" or "-" depending on the presence of RhD antigen
     private static final String BLOOD_TYPE_RHD = "[+-]$";
     public static final String VALIDATION_REGEX = BLOOD_TYPE_ABO + BLOOD_TYPE_RHD;
 
