@@ -16,6 +16,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -119,7 +120,11 @@ class JsonAdaptedPatient {
         }
         final ProfilePicture modelProfilePicture = new ProfilePicture(profilePicture);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProfilePicture);
+        //TODO: actually parse colortag
+        final ColorTag modelColorTag = new ColorTag();
+
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProfilePicture,
+                modelColorTag);
     }
 
 }
