@@ -27,20 +27,24 @@ class JsonAdaptedItem {
     private final String quantity;
     private final String supplier;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String maxQuantity;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
      */
     @JsonCreator
-    public JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("quantity") String quantity,
+    public JsonAdaptedItem(@JsonProperty("name") String name,
+                           @JsonProperty("quantity") String quantity,
                            @JsonProperty("supplier") String supplier,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("maxQuantity") String maxQuantity) {
         this.name = name;
         this.quantity = quantity;
         this.supplier = supplier;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.maxQuantity = maxQuantity;
     }
 
     /**
@@ -53,6 +57,7 @@ class JsonAdaptedItem {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        maxQuantity = source.getMaxQuantity().map(q -> q.value).orElse(null);
     }
 
     /**
@@ -93,7 +98,12 @@ class JsonAdaptedItem {
         final Supplier modelSupplier = new Supplier(supplier);
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelName, modelQuantity, modelSupplier, modelTags);
+
+        if (maxQuantity != null && !Quantity.isValidMaxQuantity(maxQuantity)) {
+            throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        final Quantity modelMaxQuantity = maxQuantity == null ? null : new Quantity(maxQuantity);
+        return new Item(modelName, modelQuantity, modelSupplier, modelTags, modelMaxQuantity);
     }
 
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
         <?import javafx.stage.*?>
 
-<fx:root minHeight="740" minWidth="1080" title="Help" type="javafx.stage.Stage"
+<fx:root minHeight="740" minWidth="1080" title="Help User Guide" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png" />

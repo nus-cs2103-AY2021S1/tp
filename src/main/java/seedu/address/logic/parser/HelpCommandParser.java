@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.help.HelpCommand;
 import seedu.address.logic.commands.help.HelpStartCommand;
+import seedu.address.logic.commands.help.HelpSummaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -19,6 +20,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         switch (args) {
         case "start":
             return new HelpStartCommand();
+        case "summary":
+            return new HelpSummaryCommand();
         default:
             throw new ParseException(HelpCommand.MESSAGE_INVALID_OPTION);
         }

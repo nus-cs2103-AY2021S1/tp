@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.help.HelpCommand.SHOWING_HELP_MESSAGE
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.help.HelpCommand;
+import seedu.address.logic.commands.help.HelpStartCommand;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -15,8 +16,8 @@ public class HelpCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
-        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+    public void execute_helpStart_success() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false);
+        assertCommandSuccess(new HelpStartCommand(), model, expectedCommandResult, expectedModel);
     }
 }

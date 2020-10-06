@@ -8,7 +8,7 @@ import seedu.address.logic.commands.Command;
 public abstract class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
-    public static final String COMMAND_OPTION_SUMMARY = "command";
+    public static final String COMMAND_OPTION_SUMMARY = "summary";
     public static final String COMMAND_OPTION_START = "start";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
