@@ -25,6 +25,15 @@ public class Module {
     /**
      * Every field must be present and not null.
      */
+    public Module(ModuleCode moduleCode, ModuleName moduleName) {
+        requireAllNonNull(moduleCode, moduleName);
+        this.moduleCode = moduleCode;
+        this.moduleName = moduleName;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
     public Module(ModuleCode moduleCode, ModuleName moduleName, Set<Person> persons) {
         requireAllNonNull(moduleCode, moduleName, persons);
         this.moduleCode = moduleCode;
@@ -71,7 +80,9 @@ public class Module {
         }
 
         Module m = (Module) other;
-        return m.moduleCode.equals(moduleCode) && m.moduleName.equals(moduleName) && m.persons.equals(persons);
+        return m.moduleCode.equals(moduleCode)
+                && m.moduleName.equals(moduleName)
+                && m.persons.equals(persons);
 
     }
 

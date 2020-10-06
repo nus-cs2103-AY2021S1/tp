@@ -2,18 +2,16 @@ package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.module.Module;
 
 /**
@@ -23,16 +21,16 @@ public class TypicalModules {
 
     public static final Module CS1010S = new ModuleBuilder()
             .withCode("CS1010S").withName("Programming Methodology")
-            .withPersons(BOB, FIONA).build();
+            .withPersons(BENSON, FIONA).build();
     public static final Module CS1101S = new ModuleBuilder()
             .withCode("CS1101S").withName("Programming Methodology")
-            .withPersons(ALICE, BOB).build();
+            .withPersons(ALICE, BENSON).build();
     public static final Module CS2030 = new ModuleBuilder()
-            .withCode("CS2030").withName("Programing Methodology 2")
-            .withPersons(IDA).build();
+            .withCode("CS2030").withName("Programming Methodology 2")
+            .withPersons(CARL).build();
     public static final Module CS2100 = new ModuleBuilder()
             .withCode("CS2100").withName("Computer Organization")
-            .withPersons(GEORGE, HOON).build();
+            .withPersons(FIONA, GEORGE).build();
     public static final Module CS2103 = new ModuleBuilder()
             .withCode("CS2103").withName("Software Engineering")
             .withPersons(BENSON, CARL, DANIEL).build();
@@ -41,5 +39,16 @@ public class TypicalModules {
 
     public static List<Module> getTypicalModules() {
         return new ArrayList<>(Arrays.asList(CS1010S, CS1101S, CS2030, CS2100, CS2103));
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical modules.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Module module : getTypicalModules()) {
+            ab.addModule(module);
+        }
+        return ab;
     }
 }
