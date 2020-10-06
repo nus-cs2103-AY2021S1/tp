@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TopupCommand;
-import seedu.address.model.person.Amount;
+import seedu.address.model.expense.Amount;
 
 class TopupCommandParserTest {
 

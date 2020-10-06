@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Amount;
+import seedu.address.model.expense.Amount;
 
 /**
  * Tops up the budget by a specified amount.

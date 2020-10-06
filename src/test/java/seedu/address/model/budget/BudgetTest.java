@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Amount;
+import seedu.address.model.expense.Amount;
 
 class BudgetTest {
 

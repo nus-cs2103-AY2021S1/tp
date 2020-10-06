@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.TopupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Amount;
+import seedu.address.model.expense.Amount;
 
 /**
  * Parses input arguments and creates a new TopupCommand object

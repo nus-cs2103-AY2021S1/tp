@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.model.budget.Budget;
-import seedu.address.model.person.Amount;
+import seedu.address.model.expense.Amount;
 
 /**
  * Jackson-friendly version of {@link Budget}.
