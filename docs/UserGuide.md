@@ -119,17 +119,17 @@ Examples:
 
 Finds items whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
-* Only the name is searched.
+* Name, Supplier and Tag can be searched
 * Only full words will be matched e.g. `chicke` will not match `chicken`
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
 
 Examples:
-* `find Chicken` returns `chicken` and `CHICKEN`
+* `find n/Chicken` returns `chicken` and `CHICKEN`
 
 ### Deleting an item : `delete`
 

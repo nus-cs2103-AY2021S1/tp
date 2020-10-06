@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.NameContainsKeywordsPredicate;
+import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
 /**
@@ -122,7 +122,7 @@ public class CommandTestUtil {
 
         Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        model.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
         assertEquals(1, model.getFilteredItemList().size());
     }
