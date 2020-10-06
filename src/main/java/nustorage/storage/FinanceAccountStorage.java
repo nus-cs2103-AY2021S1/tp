@@ -14,7 +14,7 @@ import nustorage.model.FinanceAccount;
  */
 public interface FinanceAccountStorage {
 
-    /*
+    /**
      * @return file path to json data file.
      */
     Path getFinanceAccountFilePath();
@@ -45,9 +45,9 @@ public interface FinanceAccountStorage {
 
 
     /**
-     * @param filepath overrides default storage filepath.
+     * @param filePath overrides default storage filepath.
      * @see #saveFinanceAccount(FinanceAccount)
      */
-    void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException;
+    void saveFinanceAccount(FinanceAccount financeAccount, Path filePath) throws IOException;
 
 }
