@@ -47,7 +47,8 @@ public class LogicManagerTest {
 
         JsonFinanceAccountStorage financeAccountStorage =
                 new JsonFinanceAccountStorage(temporaryFolder.resolve("financeAccount.json"));
-        JsonInventoryStorage inventoryStorage = new JsonInventoryStorage(temporaryFolder.resolve("financeAccount.json"));
+        JsonInventoryStorage inventoryStorage =
+                new JsonInventoryStorage(temporaryFolder.resolve("financeAccount.json"));
 
         StorageManager storage = new StorageManager(financeAccountStorage, inventoryStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
