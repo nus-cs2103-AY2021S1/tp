@@ -1,10 +1,12 @@
 package seedu.address.logic.commands.help;
 
+import static seedu.address.commons.core.Messages.HELP_START;
+
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.commands.results.HelpCommandResult;
 import seedu.address.model.Model;
 
-import static seedu.address.commons.core.Messages.HELP_START;
+
 
 /**
  * Format instructions for getting started.
@@ -19,6 +21,6 @@ public class HelpStartCommand extends HelpCommand {
      */
     @Override
     public CommandResult execute(Model model) {
-        return new HelpCommandResult(SHOWING_HELP_MESSAGE, true, false, false,"", HELP_START);
+        return new HelpCommandResult(SHOWING_HELP_MESSAGE, true, false, false, "", HELP_START);
     }
 }

@@ -18,7 +18,9 @@ public class HelpCommandResult extends CommandResult {
      * @param dataToUser data to show user.
      * @param popUpContent the content to show in UI.
      */
-    public HelpCommandResult(String feedbackToUser, boolean showHelp, boolean showPreview, boolean exit, String dataToUser, String popUpContent) {
+    public HelpCommandResult(String feedbackToUser, boolean showHelp,
+                             boolean showPreview, boolean exit, String dataToUser,
+                             String popUpContent) {
         super(feedbackToUser, showHelp, showPreview, exit);
         this.dataToUser = requireNonNull(dataToUser);
         this.popUpContent = requireNonNull(popUpContent);

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyInventoryBook;

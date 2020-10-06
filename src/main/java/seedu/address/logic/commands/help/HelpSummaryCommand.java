@@ -19,6 +19,6 @@ public class HelpSummaryCommand extends HelpCommand {
     @Override
     public CommandResult execute(Model model) {
         return new HelpCommandResult(SHOWING_HELP_MESSAGE,
-                false, true, false,  "", HELP_SUMMARY);
+                false, true, false, "", HELP_SUMMARY);
     }
 }
