@@ -116,6 +116,9 @@ s/<new source of stock>`
 
 User may pass in more than one serial number to update all at once.
 
+⚠ If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
+will not update anything and shows an error message.
+
 ### Saving data
 Data (all stocks in inventory in csv) is automatically saved to
 `[root directory]/data/inventory.csv` when any of these commands is executed:
