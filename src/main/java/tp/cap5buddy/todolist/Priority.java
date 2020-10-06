@@ -4,6 +4,5 @@ public enum Priority {
     HIGHEST,
     HIGH,
     NORMAL,
-    LOW,
-    LOWEST
+    LOW
 }
