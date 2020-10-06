@@ -1,8 +1,7 @@
 package nustorage.storage;
 
-import static nustorage.testutil.TypicalPersons.getTypicalAddressBook;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.file.Path;
 
@@ -11,9 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import nustorage.commons.core.GuiSettings;
-import nustorage.model.AddressBook;
-import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.UserPrefs;
+
 
 public class StorageManagerTest {
 
@@ -21,6 +19,7 @@ public class StorageManagerTest {
     public Path testFolder;
 
     private StorageManager storageManager;
+
 
     @BeforeEach
     public void setUp() {
@@ -33,9 +32,11 @@ public class StorageManagerTest {
         storageManager = new StorageManager(financeAccountStorage, inventoryStorage, userPrefsStorage);
     }
 
+
     private Path getTempFilePath(String fileName) {
         return testFolder.resolve(fileName);
     }
+
 
     @Test
     public void prefsReadSave() throws Exception {

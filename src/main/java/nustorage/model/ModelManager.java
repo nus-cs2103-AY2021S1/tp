@@ -18,7 +18,6 @@ import nustorage.commons.core.index.Index;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
-import nustorage.storage.FinanceAccountStorage;
 
 
 /**
@@ -79,6 +78,7 @@ public class ModelManager implements Model {
     // public ModelManager() {
     //     this(new AddressBook(), new UserPrefs());
     // }
+
 
     public ModelManager() {
         this(new FinanceAccount(), new Inventory(), new UserPrefs());
@@ -158,6 +158,7 @@ public class ModelManager implements Model {
 
 
     //=========== FinanceAccount ================================================================================
+
 
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
