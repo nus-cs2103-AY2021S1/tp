@@ -9,6 +9,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PatientBuilder {
     private Address address;
     private Set<Tag> tags;
     private ProfilePicture profilePicture;
+    private ColorTag colorTag;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PatientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         profilePicture = new ProfilePicture(DEFAULT_PROFILE_PICTURE);
+        colorTag = new ColorTag();
     }
 
     /**
@@ -52,6 +55,7 @@ public class PatientBuilder {
         address = patientToCopy.getAddress();
         tags = new HashSet<>(patientToCopy.getTags());
         profilePicture = patientToCopy.getProfilePicture();
+        colorTag = patientToCopy.getColorTag();
     }
 
     /**
@@ -102,8 +106,16 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ColorTag} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withColorTag(String colorTag) {
+        this.colorTag = new ColorTag(colorTag);
+        return this;
+    }
+
     public Patient build() {
-        return new Patient(name, phone, email, address, tags, profilePicture);
+        return new Patient(name, phone, email, address, tags, profilePicture, colorTag);
     }
 
 }
