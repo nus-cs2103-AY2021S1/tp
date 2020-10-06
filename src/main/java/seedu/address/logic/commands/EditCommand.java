@@ -267,6 +267,7 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -287,8 +288,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
                     && getAddress().equals(e.getAddress())
-                    && getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
+
     }
 }
