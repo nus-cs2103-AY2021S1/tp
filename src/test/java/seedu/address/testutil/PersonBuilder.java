@@ -110,9 +110,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Adds a {@code Document} of the {@code Person} that we are building.
+     * Sets the {@code Document} of the {@code Person} that we are building.
      */
     public PersonBuilder withDocument(String name, String ref) {
+        this.documents = new ArrayList<>();
         this.documents.add(new Document(new Name(name), new Reference(ref)));
         return this;
     }

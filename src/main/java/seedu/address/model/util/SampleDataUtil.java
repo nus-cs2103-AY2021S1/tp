@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
 
     private static List<Document> sampleDocuments =
-            List.of(new Document(new Name("doc1"), new Reference("test1.txt")));
+            List.of(new Document(new Name("name"), new Reference("test1.txt")));
     private static List<Victim> sampleVictims = getVictimList("Tom", "John");
 
     public static Person[] getSamplePersons() {
