@@ -122,18 +122,36 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * trims off any excess white spaces for a given string
+     * @param propertyId string to trim
+     * @return a string that has no white spaces on the sides
+     * @throws ParseException
+     */
     public static String parsePropertyId(String propertyId) throws ParseException {
         requireNonNull(propertyId);
         String trimmedPropertyId = propertyId.trim();
         return trimmedPropertyId;
     }
 
+    /**
+     * trims off any excess white spaces for a given string
+     * @param bidderId string to trim
+     * @return a string that has no white spaces on the sides
+     * @throws ParseException
+     */
     public static String parseBidderId(String bidderId) throws ParseException {
         requireNonNull(bidderId);
         String trimmedBidderId = bidderId.trim();
         return trimmedBidderId;
     }
 
+    /**
+     * trims off any excess white spaces for a given string
+     * @param bidAmount string to trim
+     * @return a string that has no white spaces on the sides
+     * @throws ParseException
+     */
     public static double parseBidAmount(String bidAmount) throws ParseException {
         requireNonNull(bidAmount);
         String trimmedBidAmount = bidAmount.trim();

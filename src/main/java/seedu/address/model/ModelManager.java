@@ -33,13 +33,14 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, bidBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs + " and bid book: " + bidBook);
+        logger.fine("Initializing with address book: " + addressBook
+                + " and user prefs " + userPrefs + " and bid book: " + bidBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidBook = new BidBook(bidBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredBids  = new FilteredList<>(this.bidBook.getBidList());
+        filteredBids = new FilteredList<>(this.bidBook.getBidList());
     }
 
     public ModelManager() {

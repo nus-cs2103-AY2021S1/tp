@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,6 +14,8 @@ public class AddBidCommand extends Command {
 
 
     public static final String COMMAND_WORD = "add-bid";
+
+    public static final String MESSAGE_SUCCESS = "New bid added: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a bid to the bid book. "
             + "Parameters: "
@@ -26,10 +28,10 @@ public class AddBidCommand extends Command {
             + PREFIX_MONEY + "500000";
 
     private final Bid bid;
-    public static final String MESSAGE_SUCCESS = "New bid added: %1$s";
 
-   public AddBidCommand(Bid bid) {
-       this.bid = bid;
+
+    public AddBidCommand(Bid bid) {
+        this.bid = bid;
     }
 
 

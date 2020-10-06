@@ -1,25 +1,29 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.UniqueBidList;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class BidBook implements ReadOnlyBidBook {
 
     private final UniqueBidList listOfBids;
 
     {
-       listOfBids = new UniqueBidList();
+        listOfBids = new UniqueBidList();
     }
 
     public BidBook() {
     }
 
+    /**
+     * Constructor to create a BidBook
+     * @param toBeCopied item to be contained in teh BidBook Object
+     */
     public BidBook(ReadOnlyBidBook toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -33,6 +37,10 @@ public class BidBook implements ReadOnlyBidBook {
         listOfBids.add(b);
     }
 
+    /**
+     * resets the data inside the bidBook bye setting it as the new bidBook
+     * @param newData data to overwrite the old data
+     */
     public void resetData(ReadOnlyBidBook newData) {
         requireNonNull(newData);
 

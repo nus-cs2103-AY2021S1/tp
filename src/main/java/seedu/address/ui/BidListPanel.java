@@ -9,17 +9,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
-import seedu.address.model.person.Person;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of bids.
  */
 public class BidListPanel extends UiPart<Region> {
     private static final String FXML = "BidListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(BidListPanel.class);
 
     @FXML
-    private ListView<Bid> bidListView; // changed from Person to Bid
+    private ListView<Bid> bidListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -36,7 +35,7 @@ public class BidListPanel extends UiPart<Region> {
      */
     class BidListViewCell extends ListCell<Bid> { // person to bid
         @Override
-        protected void updateItem(Bid bid, boolean empty) {//changed Person to Bid
+        protected void updateItem(Bid bid, boolean empty) { //changed Person to Bid
             super.updateItem(bid, empty);
 
             if (empty || bid == null) {

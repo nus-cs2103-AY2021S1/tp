@@ -1,25 +1,24 @@
 package seedu.address.model.bid;
 
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class UniqueBidList implements Iterable<Bid> {
 
     private final ObservableList<Bid> internalBidList = FXCollections.observableArrayList();
-    private final ObservableList<Bid> internalUnmodifiableBidList = FXCollections.unmodifiableObservableList(internalBidList);
+    private final ObservableList<Bid> internalUnmodifiableBidList =
+            FXCollections.unmodifiableObservableList(internalBidList);
 
-
+    /**
+     * adds a bid to the internal list containing all the bids
+     * @param toAdd the bid to add to the list
+     */
     public void add(Bid toAdd) {
         requireNonNull(toAdd);
 

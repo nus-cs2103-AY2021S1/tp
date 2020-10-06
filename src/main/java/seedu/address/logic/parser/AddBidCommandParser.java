@@ -1,21 +1,24 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddBidCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.bid.Bid;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONEY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ID;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.address.logic.commands.AddBidCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.bid.Bid;
 
 public class AddBidCommandParser implements Parser<AddBidCommand> {
 
+    /**
+     * Parses input from user to create a addBid command
+     * @param args the input from the user
+     * @return AddBidCommand object
+     * @throws ParseException
+     */
     public AddBidCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PROPERTY_ID, PREFIX_CLIENT, PREFIX_MONEY);

@@ -9,6 +9,12 @@ public class Bid {
     private String bidderId;
     private double bidAmount;
 
+    /**
+     * Constructor for Bid Object
+     * @param propertyId string id of the property to bid for
+     * @param bidderId string id of the bidder wanting the property
+     * @param bidAmount double value of the amount the bidder wants the property for
+     */
     public Bid(String propertyId, String bidderId, double bidAmount) {
         this.propertyId = propertyId;
         this.bidderId = bidderId;
@@ -28,11 +34,11 @@ public class Bid {
     }
 
     public boolean isValidPropertyId() {
-        return false;// will check against propertyList to see if propertyId exists
+        return false; //will check against propertyList to see if propertyId exists
     }
 
     public boolean isValidBidderId() {
-        return false;// will check against bidderList to see if propertyId exists
+        return false; //will check against bidderList to see if propertyId exists
     }
 
     @Override
@@ -49,8 +55,7 @@ public class Bid {
                 .append(" by ")
                 .append(getBidderId())
                 .append(" to property: ")
-                .append(getPropertyId())
-                ;
+                .append(getPropertyId());
 
         return builder.toString();
     }
