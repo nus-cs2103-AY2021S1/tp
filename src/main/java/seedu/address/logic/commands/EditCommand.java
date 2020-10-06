@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -104,12 +105,13 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        List<Document> updatedDocuments = editPersonDescriptor.getDocuments().orElse(personToEdit.getDocuments());
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedAddress, updatedSuspects,
-                updatedVictims, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
+                updatedAddress, updatedSuspects, updatedVictims, updatedTags);
     }
 
     @Override
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Status status;
         private Address address;
+        private List<Document> documents;
         private List<Suspect> suspects;
         private List<Victim> victims;
         private Set<Tag> tags;
@@ -156,6 +159,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setStatus(toCopy.status);
             setAddress(toCopy.address);
+            setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
             setVictims(toCopy.victims);
             setTags(toCopy.tags);
@@ -208,6 +212,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setDocuments(List<Document> documents) {
+            this.documents = documents;
+        }
+
+        public Optional<List<Document>> getDocuments() {
+            return (documents != null) ? Optional.of(documents) : Optional.empty();
+        }
+
         /**
          * Sets {@code suspects} to this object's {@code suspects}.
          * A defensive copy of {@code suspects} is used internally.
@@ -255,6 +267,7 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -275,7 +288,9 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
                     && getAddress().equals(e.getAddress())
+                    && getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
+
     }
 }
