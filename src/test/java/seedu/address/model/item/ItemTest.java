@@ -24,6 +24,7 @@ public class ItemTest {
         Item item = new ItemBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> item.getTags().remove(0));
     }
+
     /**
      * Tests for item equality and replacebility of an item
      */
@@ -31,16 +32,20 @@ public class ItemTest {
     public void isReplaceable() {
         // same item (not deleted) -> returns false
         assertFalse(APPLE.isReplacable(APPLE));
+
         //null -> returns false
         assertFalse(APPLE.isReplacable(null));
         Item editedApple = new ItemBuilder(APPLE).build().delete();
+
         // same object and marked deleted -> returns true
         assertTrue(editedApple.isReplacable(APPLE));
         editedApple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_BANANA)
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
+
         //same object name, but different fields, not deleted -> returns false
         assertFalse(editedApple.isReplacable(APPLE));
         editedApple = editedApple.delete();
+
         // same object name, but different fields -> returns true
         assertTrue(editedApple.isReplacable(APPLE));
     }

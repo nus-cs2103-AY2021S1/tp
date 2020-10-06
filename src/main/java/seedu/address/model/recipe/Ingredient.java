@@ -17,6 +17,7 @@ public class Ingredient extends Pair<Integer, Integer> {
         super(key, value);
         assert value > 0 : "Value should never be 0 or negative";
     }
+
     /**
      * Utilty function to check if itemId is equivalent to contained id.
      * @param id identity key
@@ -25,6 +26,7 @@ public class Ingredient extends Pair<Integer, Integer> {
     public boolean isItem(int id) {
         return getKey().equals(id);
     }
+
     @Override
     public String toString() {
         return String.valueOf(this.getKey());

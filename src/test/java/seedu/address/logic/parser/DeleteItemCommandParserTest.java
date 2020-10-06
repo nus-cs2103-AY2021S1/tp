@@ -10,13 +10,18 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.DeleteItemCommand;
 
 public class DeleteItemCommandParserTest {
+
     private final DeleteItemCommandParser parser = new DeleteItemCommandParser();
+
     @Test
     public void parse_validArgs_returnsDeleteItemCommand() {
         String userInput = " -n " + APPLE.getName();
         DeleteItemCommand expectedCommand = new DeleteItemCommand(APPLE.getName());
+
+        //expected userinput constructs successful delete item command
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,

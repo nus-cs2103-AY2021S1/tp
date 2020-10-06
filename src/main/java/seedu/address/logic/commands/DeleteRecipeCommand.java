@@ -31,6 +31,7 @@ public class DeleteRecipeCommand extends Command {
 
     private final String productName;
     private final Index index;
+
     /**
      * Creates an DeleteRecipeCommand to delete the specified {@code Recipe}
      */
@@ -44,17 +45,20 @@ public class DeleteRecipeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Recipe> recipelist = new ArrayList<>(model.getFilteredRecipeList());
+
         // filter to only get matching and not deleted recipes
         recipelist.removeIf(x -> !x.getProductName().equals(productName) || x.isDeleted());
         if (recipelist.isEmpty()) {
             throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
         }
+
         Recipe recipeToDelete;
         try {
             recipeToDelete = recipelist.get(index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INDEX_NOT_FOUND); //index out of range
         }
+
         model.deleteRecipe(recipeToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToDelete));
     }

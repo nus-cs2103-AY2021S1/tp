@@ -176,7 +176,8 @@ NOT Supported as of v1.1 yet
 - `deli` \<item name\>
 
 **DESCRIPTION:**
-- **deletes** the item in the inventory with the corresponding item name
+- **deletes** the item in the inventory with the corresponding item name,
+ and all recipes associated with the item
 
 **EXAMPLE:**
 - `deli` <u>Bob’s 28th finger</u>
