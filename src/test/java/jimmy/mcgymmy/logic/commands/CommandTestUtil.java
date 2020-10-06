@@ -14,7 +14,6 @@ import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
-import jimmy.mcgymmy.testutil.Assert;
 
 /**
  * Contains helper methods for testing commands.
@@ -28,7 +27,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -43,7 +42,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -60,10 +59,11 @@ public class CommandTestUtil {
         McGymmy expectedMcGymmy = new McGymmy(actualModel.getMcGymmy());
         List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
 
-        Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedMcGymmy, actualModel.getMcGymmy());
         assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the food at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -72,7 +72,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
         Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
-        final String[] splitName = food.getName().split("\\s+");
+        final String[] splitName = food.getName().fullName.split("\\s+");
         model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredFoodList().size());

@@ -6,6 +6,7 @@ import java.util.Set;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.tag.Tag;
 import jimmy.mcgymmy.model.util.SampleDataUtil;
@@ -20,7 +21,7 @@ public class FoodBuilder {
     public static final Integer DEFAULT_FAT = 123456;
     public static final Integer DEFAULT_CARB = 123456;
 
-    private String name;
+    private Name name;
     private Protein protein;
     private Fat fat;
     private Carbohydrate carbohydrate;
@@ -30,7 +31,7 @@ public class FoodBuilder {
      * Creates a {@code FoodBuilder} with the default details.
      */
     public FoodBuilder() {
-        name = DEFAULT_NAME;
+        name = new Name(DEFAULT_NAME);
         protein = new Protein(DEFAULT_PROTEIN);
         fat = new Fat(DEFAULT_FAT);
         carbohydrate = new Carbohydrate(DEFAULT_CARB);
@@ -51,7 +52,7 @@ public class FoodBuilder {
     /**
      * Sets the {@code Name} of the {@code Food} that we are building.
      */
-    public FoodBuilder withName(String name) {
+    public FoodBuilder withName(Name name) {
         this.name = name;
         return this;
     }

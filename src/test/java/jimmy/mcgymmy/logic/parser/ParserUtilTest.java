@@ -81,12 +81,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseProtein_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseProtein((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProtein((String) null));
     }
 
     @Test
     public void parseProtein_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseProtein(INVALID_PROTEIN));
+        assertThrows(ParseException.class, () -> ParserUtil.parseProtein(INVALID_PROTEIN));
     }
 
     @Test
@@ -104,12 +104,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseCarbohydrate((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCarbohydrate((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseCarbohydrate(INVALID_FAT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCarbohydrate(INVALID_FAT));
     }
 
     @Test
@@ -132,7 +132,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_CARB));
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_CARB));
     }
 
     @Test

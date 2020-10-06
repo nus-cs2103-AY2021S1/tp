@@ -1,6 +1,8 @@
 package jimmy.mcgymmy.logic.commands;
 
-import static jimmy.mcgymmy.logic.commands.CommandTestUtil.*;
+import static jimmy.mcgymmy.logic.commands.CommandTestUtil.assertCommandFailure;
+import static jimmy.mcgymmy.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static jimmy.mcgymmy.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static jimmy.mcgymmy.testutil.TypicalFoods.getTypicalMcGymmy;
 import static jimmy.mcgymmy.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static jimmy.mcgymmy.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -16,6 +18,7 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 
 /**
@@ -36,10 +39,10 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("n", editedFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", editedFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", editedFood.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c")
+                new CommandParserTestUtil.OptionalParameterStub<>("c", editedFood.getCarbs())
         );
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFood);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
         expectedModel.setFood(model.getFilteredFoodList().get(0), editedFood);
@@ -53,7 +56,7 @@ public class EditCommandTest {
         Food lastFood = model.getFilteredFoodList().get(indexLastPerson.getZeroBased());
 
         FoodBuilder personInList = new FoodBuilder(lastFood);
-        Food editedFood = personInList.withName(VALID_NAME_BOB).withProtein(VALID_PHONE_BOB).build();
+        Food editedFood = personInList.withName(new Name(VALID_NAME_BOB)).withProtein(VALID_PHONE_BOB).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
@@ -64,7 +67,7 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("c")
         );
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFood);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
         expectedModel.setFood(lastFood, editedFood);
@@ -85,7 +88,7 @@ public class EditCommandTest {
 
         Food editedFood = model.getFilteredFoodList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFood);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
 
@@ -97,7 +100,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Food foodInFilteredList = model.getFilteredFoodList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Food editedFood = new FoodBuilder(foodInFilteredList).withName(VALID_NAME_BOB).build();
+        Food editedFood = new FoodBuilder(foodInFilteredList).withName(new Name(VALID_NAME_BOB)).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
@@ -108,7 +111,7 @@ public class EditCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("c")
         );
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedFood);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
         expectedModel.setFood(model.getFilteredFoodList().get(0), editedFood);
@@ -142,7 +145,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", INDEX_FIRST_PERSON),
-                new CommandParserTestUtil.OptionalParameterStub<String>("n", foodInList.getName()),
+                new CommandParserTestUtil.OptionalParameterStub<>("n", foodInList.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("c"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f")
@@ -157,13 +160,13 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
-                new CommandParserTestUtil.OptionalParameterStub<String>("n", VALID_NAME_BOB),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("c"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f")
         );
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
 
     /**
@@ -180,13 +183,13 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
-                new CommandParserTestUtil.OptionalParameterStub<String>("n", VALID_NAME_BOB),
+                new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
                 new CommandParserTestUtil.OptionalParameterStub<>("c"),
                 new CommandParserTestUtil.OptionalParameterStub<>("f")
         );
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
 
 

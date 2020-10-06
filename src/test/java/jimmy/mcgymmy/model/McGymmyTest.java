@@ -2,8 +2,11 @@ package jimmy.mcgymmy.model;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,6 +14,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
+import jimmy.mcgymmy.testutil.FoodBuilder;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class McGymmyTest {
 
@@ -27,63 +34,63 @@ public class McGymmyTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        McGymmy newData = TypicalPersons.getTypicalAddressBook();
+    public void resetData_withValidReadOnlyMcGymmy_replacesData() {
+        McGymmy newData = TypicalFoods.getTypicalMcGymmy();
         mcGymmy.resetData(newData);
         assertEquals(newData, mcGymmy);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress("valid address").build();
-        List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
-        McGymmyStub newData = new McGymmyStub(newPersons);
+        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).withCarb("12345").build();
+        List<Food> newFoods = Arrays.asList(TypicalFoods.ALICE, editedAlice);
+        McGymmyStub newData = new McGymmyStub(newFoods);
 
-        Assert.assertThrows(DuplicatePersonException.class, () -> mcGymmy.resetData(newData));
+        assertThrows(DuplicateFoodException.class, () -> mcGymmy.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> mcGymmy.hasPerson(null));
+    public void hasFood_nullFood_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> mcGymmy.hasFood(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(mcGymmy.hasPerson(TypicalPersons.ALICE));
+    public void hasFood_personNotInMcGymmy_returnsFalse() {
+        assertFalse(mcGymmy.hasFood(TypicalFoods.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        mcGymmy.addPerson(TypicalPersons.ALICE);
-        assertTrue(mcGymmy.hasPerson(TypicalPersons.ALICE));
+    public void hasFood_personInMcGymmy_returnsTrue() {
+        mcGymmy.addFood(TypicalFoods.ALICE);
+        assertTrue(mcGymmy.hasFood(TypicalFoods.ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        mcGymmy.addPerson(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress("valid address2").build();
-        assertTrue(mcGymmy.hasPerson(editedAlice));
+    public void hasFood_personWithSameIdentityFieldsInMcGymmy_returnsTrue() {
+        mcGymmy.addFood(TypicalFoods.ALICE);
+        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).withCarb("12345").build();
+        assertTrue(mcGymmy.hasFood(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> mcGymmy.getFoodList().remove(0));
+    public void getFoodList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> mcGymmy.getFoodList().remove(0));
     }
 
     /**
      * A stub ReadOnlyMcGymmy whose persons list can violate interface constraints.
      */
     private static class McGymmyStub implements ReadOnlyMcGymmy {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Food> foods = FXCollections.observableArrayList();
 
-        McGymmyStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        McGymmyStub(Collection<Food> foods) {
+            this.foods.setAll(foods);
         }
 
         @Override
-        public ObservableList<Person> getFoodList() {
-            return persons;
+        public ObservableList<Food> getFoodList() {
+            return foods;
         }
     }
 

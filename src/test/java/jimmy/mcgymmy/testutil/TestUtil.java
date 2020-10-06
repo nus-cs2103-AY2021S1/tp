@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
  * A utility class for test cases.
@@ -35,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the food in the {@code model}'s food list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredFoodList().size() / 2);
     }
 
     /**
      * Returns the last index of the food in the {@code model}'s food list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredFoodList().size());
     }
 
     /**
      * Returns the food in the {@code model}'s food list at {@code index}.
      */
-    public static Food getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Food getFood(Model model, Index index) {
+        return model.getFilteredFoodList().get(index.getZeroBased());
     }
 }

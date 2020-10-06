@@ -1,31 +1,27 @@
 package jimmy.mcgymmy.model.food;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import jimmy.mcgymmy.model.food.Fat;
-import jimmy.mcgymmy.testutil.Assert;
 
 public class FatTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Fat(null));
+        assertThrows(NumberFormatException.class, () -> new Fat(null));
     }
 
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
         String invalidFat = "12@123";
-        Assert.assertThrows(NumberFormatException.class, () -> new Fat(Integer.parseInt(invalidFat)));
+        assertThrows(NumberFormatException.class, () -> new Fat(Integer.parseInt(invalidFat)));
     }
 
     @Test
     public void isValid() {
         // null fat
-        Assert.assertThrows(NullPointerException.class, () -> Fat.isValid(null));
+        assertThrows(NullPointerException.class, () -> Fat.isValid(null));
 
         // blank fat
         Assertions.assertFalse(Fat.isValid("")); // empty string
@@ -40,8 +36,7 @@ public class FatTest {
         Assertions.assertFalse(Fat.isValid("1234 ")); // trailing space
 
         // valid fat
-        Assertions.assertTrue(Fat.isValid("PeterJack_1190@example.com"));
-        Assertions.assertTrue(Fat.isValid("a@bc")); // minimal
+        Assertions.assertTrue(Fat.isValid("123412"));
         Assertions.assertTrue(Fat.isValid("test@fathost")); // alphabets only
         Assertions.assertTrue(Fat.isValid("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters fat part
         Assertions.assertTrue(Fat.isValid("123@145")); // numeric fat part and fat name

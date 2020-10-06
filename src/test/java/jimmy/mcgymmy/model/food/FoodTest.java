@@ -10,8 +10,8 @@ import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 
 public class FoodTest {
-    public static final String VALID_FOOD_NAME = "test food";
-    public static final String VALID_FOOD_NAME_2 = "test food 2";
+    public static final Name VALID_FOOD_NAME = new Name("test food");
+    public static final Name VALID_FOOD_NAME_2 = new Name("test food 2");
     public static final String INVALID_FOOD_NAME = "";
 
     public static final Protein PROTEIN = new Protein(2);
@@ -21,35 +21,35 @@ public class FoodTest {
     public static final Fat FAT = new Fat(4);
     public static final Fat FAT_1 = new Fat(5);
 
-    public static final Food COMPARED_FOOD = new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT);
-    public static final Food SAME_AS_COMPARED_FOOD = new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT);
-    public static final Food FOOD_W_DIFFERENT_NAME = new Food(VALID_FOOD_NAME_2, PROTEIN, CARBOHYDRATE, FAT);
-    public static final Food FOOD_W_DIFFERENT_PROTEIN = new Food(VALID_FOOD_NAME, PROTEIN_1, CARBOHYDRATE, FAT);
-    public static final Food FOOD_W_DIFFERENT_CARBS = new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE_1, FAT);
-    public static final Food FOOD_W_DIFFERENT_FAT = new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT_1);
+    public static final Food COMPARED_FOOD = new Food(VALID_FOOD_NAME, PROTEIN, FAT, CARBOHYDRATE);
+    public static final Food SAME_AS_COMPARED_FOOD = new Food(VALID_FOOD_NAME, PROTEIN, FAT, CARBOHYDRATE);
+    public static final Food FOOD_W_DIFFERENT_NAME = new Food(VALID_FOOD_NAME_2, PROTEIN, FAT, CARBOHYDRATE);
+    public static final Food FOOD_W_DIFFERENT_PROTEIN = new Food(VALID_FOOD_NAME, PROTEIN_1, FAT, CARBOHYDRATE);
+    public static final Food FOOD_W_DIFFERENT_CARBS = new Food(VALID_FOOD_NAME, PROTEIN, FAT_1, CARBOHYDRATE);
+    public static final Food FOOD_W_DIFFERENT_FAT = new Food(VALID_FOOD_NAME, PROTEIN, FAT, CARBOHYDRATE_1);
 
     @Test
     public void constructor_nullProtein_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new Food(VALID_FOOD_NAME, null, CARBOHYDRATE, FAT));
+                new Food(VALID_FOOD_NAME, null, FAT, CARBOHYDRATE));
     }
 
     @Test
     public void constructor_nullCarbohydrate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new Food(VALID_FOOD_NAME, PROTEIN, null, FAT));
+                new Food(VALID_FOOD_NAME, PROTEIN, FAT, null));
     }
 
     @Test
     public void constructor_nullFat_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new Food(VALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, null));
+                new Food(VALID_FOOD_NAME, PROTEIN, null, CARBOHYDRATE));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
-                new Food(INVALID_FOOD_NAME, PROTEIN, CARBOHYDRATE, FAT));
+                new Food(new Name(INVALID_FOOD_NAME), PROTEIN, FAT, CARBOHYDRATE));
     }
 
     @Test

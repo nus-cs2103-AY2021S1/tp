@@ -1,8 +1,7 @@
-package seedu.address.storage;
+package jimmy.mcgymmy.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -10,18 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/StorageManagerTest.java
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
-=======
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.testutil.TypicalFoods;
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/storage/StorageManagerTest.java
 
 public class StorageManagerTest {
 
@@ -32,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonMcGymmyStorage addressBookStorage = new JsonMcGymmyStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -62,19 +54,15 @@ public class StorageManagerTest {
          * {@link JsonMcGymmyStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMcGymmyStorageTest} class.
          */
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/StorageManagerTest.java
-        AddressBook original = getTypicalAddressBook();
-=======
         McGymmy original = TypicalFoods.getTypicalMcGymmy();
->>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/storage/StorageManagerTest.java
-        storageManager.saveAddressBook(original);
-        ReadOnlyMcGymmy retrieved = storageManager.readAddressBook().get();
+        storageManager.saveMcGymmy(original);
+        ReadOnlyMcGymmy retrieved = storageManager.readMcGymmy().get();
         assertEquals(original, new McGymmy(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getMcGymmyFilePath() {
+        assertNotNull(storageManager.getMcGymmyFilePath());
     }
 
 }

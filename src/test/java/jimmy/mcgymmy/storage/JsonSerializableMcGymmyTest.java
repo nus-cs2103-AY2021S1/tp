@@ -1,24 +1,17 @@
-package seedu.address.storage;
+package jimmy.mcgymmy.storage;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonSerializableAddressBookTest.java
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.AddressBook;
-import seedu.address.testutil.TypicalPersons;
-=======
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.JsonUtil;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.testutil.TypicalFoods;
->>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonSerializableMcGymmyTest.java
 
 public class JsonSerializableMcGymmyTest {
 
@@ -29,32 +22,25 @@ public class JsonSerializableMcGymmyTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonSerializableAddressBookTest.java
-                JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalFoods.getTypicalMcGymmy();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
-=======
-            JsonSerializableAddressBook.class).get();
+        JsonSerializableMcGymmy dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+                JsonSerializableMcGymmy.class).get();
         McGymmy mcGymmyFromFile = dataFromFile.toModelType();
         McGymmy typicalPersonsMcGymmy = TypicalFoods.getTypicalMcGymmy();
         assertEquals(mcGymmyFromFile, typicalPersonsMcGymmy);
->>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonSerializableMcGymmyTest.java
     }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableMcGymmy dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+                JsonSerializableMcGymmy.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+        JsonSerializableMcGymmy dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+                JsonSerializableMcGymmy.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableMcGymmy.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
 

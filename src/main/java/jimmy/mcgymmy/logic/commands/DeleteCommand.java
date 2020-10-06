@@ -39,7 +39,7 @@ public class DeleteCommand extends Command {
         Index targetIndex = indexParameter.consume();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 
         Food foodToDelete = lastShownList.get(targetIndex.getZeroBased());

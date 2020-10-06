@@ -23,7 +23,7 @@ import jimmy.mcgymmy.model.food.Protein;
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Food: %1$s";
+    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the address book.";
 
@@ -80,7 +80,7 @@ public class EditCommand extends Command {
         Index index = indexParameter.consume();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
@@ -99,6 +99,6 @@ public class EditCommand extends Command {
 
         model.setFood(foodToEdit, editedFood);
         model.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedFood));
+        return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood));
     }
 }

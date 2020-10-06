@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.model.food;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
 import jimmy.mcgymmy.model.food.exceptions.FoodNotFoundException;
-import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class UniqueFoodListTest {
@@ -21,7 +21,7 @@ public class UniqueFoodListTest {
 
     @Test
     public void contains_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> uniqueFoodList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.contains(null));
     }
 
     @Test
@@ -37,28 +37,28 @@ public class UniqueFoodListTest {
 
     @Test
     public void add_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> uniqueFoodList.add(null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.add(null));
     }
 
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
         uniqueFoodList.add(TypicalFoods.ALICE);
-        Assert.assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.add(TypicalFoods.ALICE));
+        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.add(TypicalFoods.ALICE));
     }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> uniqueFoodList.setPerson(null, TypicalFoods.ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setPerson(null, TypicalFoods.ALICE));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> uniqueFoodList.setPerson(TypicalFoods.ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setPerson(TypicalFoods.ALICE, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        Assert.assertThrows(
+        assertThrows(
                 FoodNotFoundException.class, () -> uniqueFoodList.setPerson(
                         TypicalFoods.ALICE, TypicalFoods.ALICE));
     }
@@ -85,18 +85,18 @@ public class UniqueFoodListTest {
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueFoodList.add(TypicalFoods.ALICE);
         uniqueFoodList.add(TypicalFoods.BOB);
-        Assert.assertThrows(
+        assertThrows(
                 DuplicateFoodException.class, () -> uniqueFoodList.setPerson(TypicalFoods.ALICE, TypicalFoods.BOB));
     }
 
     @Test
     public void remove_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> uniqueFoodList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.remove(null));
     }
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        Assert.assertThrows(FoodNotFoundException.class, () -> uniqueFoodList.remove(TypicalFoods.ALICE));
+        assertThrows(FoodNotFoundException.class, () -> uniqueFoodList.remove(TypicalFoods.ALICE));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class UniqueFoodListTest {
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> uniqueFoodList.setPersons((UniqueFoodList) null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setPersons((UniqueFoodList) null));
     }
 
     @Test
@@ -123,14 +123,13 @@ public class UniqueFoodListTest {
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class,
-                () -> uniqueFoodList.setPersons((List<jimmy.mcgymmy.model.person.Food>) null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setPersons((List<Food>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueFoodList.add(TypicalFoods.ALICE);
-        List<jimmy.mcgymmy.model.person.Food> foodList = Collections.singletonList(TypicalFoods.BOB);
+        List<Food> foodList = Collections.singletonList(TypicalFoods.BOB);
         uniqueFoodList.setPersons(foodList);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(TypicalFoods.BOB);
@@ -140,13 +139,13 @@ public class UniqueFoodListTest {
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Food> listWithDuplicateFoods = Arrays.asList(TypicalFoods.ALICE, TypicalFoods.ALICE);
-        Assert
-                .assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.setPersons(listWithDuplicateFoods));
+        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.setPersons(listWithDuplicateFoods));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueFoodList.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> uniqueFoodList
+                        .asUnmodifiableObservableList().remove(0));
     }
 }

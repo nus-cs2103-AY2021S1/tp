@@ -1,30 +1,27 @@
 package jimmy.mcgymmy.model.food;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import jimmy.mcgymmy.testutil.Assert;
 
 public class ProteinTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Protein(null));
+        assertThrows(NumberFormatException.class, () -> new Protein(null));
     }
 
     @Test
     public void constructor_invalidProtein_throwsIllegalArgumentException() {
         String invalidProtein = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Protein(invalidProtein));
+        assertThrows(IllegalArgumentException.class, () -> new Protein(invalidProtein));
     }
 
     @Test
     public void isValidProtein() {
         // null phone number
-        Assert.assertThrows(NullPointerException.class, () -> Protein.isValid(null));
+        assertThrows(NullPointerException.class, () -> Protein.isValid(null));
 
         // invalid phone numbers
         Assertions.assertFalse(Protein.isValid("")); // empty string

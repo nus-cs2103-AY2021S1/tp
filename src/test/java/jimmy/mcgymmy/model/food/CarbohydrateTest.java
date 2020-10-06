@@ -18,7 +18,7 @@ public class CarbohydrateTest {
     @Test
     public void isValidCarbohydrate() {
         // null address
-        assertThrows(NumberFormatException.class, () -> Carbohydrate.isValid(null));
+        assertThrows(NullPointerException.class, () -> Carbohydrate.isValid(null));
 
         // invalid addresses
         assertFalse(Carbohydrate.isValid("")); // empty string

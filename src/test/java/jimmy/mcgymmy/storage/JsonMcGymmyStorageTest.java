@@ -1,12 +1,11 @@
-package seedu.address.storage;
+package jimmy.mcgymmy.storage;
 
+import static jimmy.mcgymmy.testutil.Assert.assertThrows;
+import static jimmy.mcgymmy.testutil.TypicalFoods.ALICE;
+import static jimmy.mcgymmy.testutil.TypicalFoods.HOON;
+import static jimmy.mcgymmy.testutil.TypicalFoods.IDA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,17 +14,10 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonAddressBookStorageTest.java
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-=======
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
-import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.TypicalFoods;
->>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonMcGymmyStorageTest.java
 
 public class JsonMcGymmyStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMcGymmyStorageTest");
@@ -34,12 +26,12 @@ public class JsonMcGymmyStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readMcGymmy_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readMcGymmy(null));
     }
 
-    private java.util.Optional<ReadOnlyMcGymmy> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyMcGymmy> readMcGymmy(String filePath) throws Exception {
+        return new JsonMcGymmyStorage(Paths.get(filePath)).readMcGymmy(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -50,77 +42,69 @@ public class JsonMcGymmyStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readMcGymmy("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMcGymmy("notJsonFormatAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readMcGymmy_invalidPersonAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMcGymmy("invalidPersonAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readMcGymmy_invalidAndValidPersonAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMcGymmy("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonAddressBookStorageTest.java
-        AddressBook original = getTypicalAddressBook();
-=======
         McGymmy original = TypicalFoods.getTypicalMcGymmy();
->>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonMcGymmyStorageTest.java
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonMcGymmyStorage jsonAddressBookStorage = new JsonMcGymmyStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyMcGymmy readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveMcGymmy(original, filePath);
+        ReadOnlyMcGymmy readBack = jsonAddressBookStorage.readMcGymmy(filePath).get();
         assertEquals(original, new McGymmy(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        original.addFood(HOON);
+        original.removeFood(ALICE);
+        jsonAddressBookStorage.saveMcGymmy(original, filePath);
+        readBack = jsonAddressBookStorage.readMcGymmy(filePath).get();
         assertEquals(original, new McGymmy(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        original.addFood(IDA);
+        jsonAddressBookStorage.saveMcGymmy(original); // file path not specified
+        readBack = jsonAddressBookStorage.readMcGymmy().get(); // file path not specified
         assertEquals(original, new McGymmy(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveMcGymmy_nullAddressBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveMcGymmy(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyMcGymmy addressBook, String filePath) {
+    private void saveMcGymmy(ReadOnlyMcGymmy addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonMcGymmyStorage(Paths.get(filePath))
+                    .saveMcGymmy(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-<<<<<<< Updated upstream:src/test/java/seedu/address/storage/JsonAddressBookStorageTest.java
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
-=======
-        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(new McGymmy(), null));
->>>>>>> Stashed changes:src/test/java/seedu/address/storage/JsonMcGymmyStorageTest.java
+    public void saveMcGymmy_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveMcGymmy(new McGymmy(), null));
     }
 }

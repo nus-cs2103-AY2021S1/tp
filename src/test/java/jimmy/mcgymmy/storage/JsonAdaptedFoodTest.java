@@ -24,13 +24,13 @@ public class JsonAdaptedFoodTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = TypicalFoods.BENSON.getName();
+    private static final String VALID_NAME = TypicalFoods.BENSON.getName().toString();
     private static final String VALID_PHONE = TypicalFoods.BENSON.getProtein().toString();
     private static final String VALID_EMAIL = TypicalFoods.BENSON.getFat().toString();
     private static final String VALID_ADDRESS = TypicalFoods.BENSON.getCarbs().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalFoods.BENSON.getTags().stream()
-        .map(JsonAdaptedTag::new)
-        .collect(Collectors.toList());
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

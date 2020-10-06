@@ -11,8 +11,8 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.model.food.Food;
-import jimmy.mcgymmy.testutil.TypicalIndexes;
 import jimmy.mcgymmy.testutil.TypicalFoods;
+import jimmy.mcgymmy.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -47,7 +47,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand();
         deleteCommand.setParameters(new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex));
 
-        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand();
         deleteCommand.setParameters(new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex));
 
-        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
 
     /**
