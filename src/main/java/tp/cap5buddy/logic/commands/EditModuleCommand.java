@@ -2,6 +2,7 @@ package tp.cap5buddy.logic.commands;
 
 import java.util.Optional;
 
+import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.todolist.TodoList;
@@ -37,12 +38,12 @@ public class EditModuleCommand extends Command {
      * @return a ResultCommand.
      */
     @Override
-    public ResultCommand execute(ModuleList moduleList, TodoList todoList) {
+    public CommandResult execute(ModuleList moduleList, ContactList contacts, TodoList todolist) {
         Module moduleToEdit = moduleList.getModule(this.moduleName);
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
         moduleList.setModule(moduleName, editedModule);
         String message = createSuccessMessage(moduleToEdit, editedModule);
-        return new ResultCommand(message, isExit());
+        return new CommandResult(message, isExit());
     }
 
     /**

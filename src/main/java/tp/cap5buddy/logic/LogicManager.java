@@ -2,8 +2,9 @@ package tp.cap5buddy.logic;
 
 import java.io.IOException;
 
+import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.commands.Command;
-import tp.cap5buddy.logic.commands.ResultCommand;
+import tp.cap5buddy.logic.commands.CommandResult;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.logic.parser.ParserManager;
 import tp.cap5buddy.logic.parser.exception.ParseException;
@@ -22,16 +23,18 @@ public class LogicManager implements Logic {
     private final StorageManager storage;
     private final ModuleList moduleList;
     private final TodoList todoList;
+    private final ContactList contactList;
 
     /**
      * Represents the constructor of the Manager.
      */
-    public LogicManager(StorageManager storage, ModuleList moduleList, TodoList todoList) {
+    public LogicManager(StorageManager storage, ModuleList moduleList, ContactList contactList, TodoList todoList) {
         //this.modlist = new ModuleList(new ArrayList<Module>());
         this.pm = new ParserManager();
         this.storage = storage;
         this.moduleList = moduleList;
         this.todoList = todoList;
+        this.contactList = contactList;
     }
 
     /**
@@ -42,9 +45,9 @@ public class LogicManager implements Logic {
      * @throws ParseException invalid command.
      */
     @Override
-    public ResultCommand execute(String userInput) throws ParseException, CommandException {
+    public CommandResult execute(String userInput) throws ParseException, CommandException {
         Command command = pm.parse(userInput);
-        ResultCommand result = command.execute(moduleList, todoList);
+        CommandResult result = command.execute(moduleList, contactList, todoList);
         try {
             storage.saveModuleList(moduleList);
         } catch (IOException ioe) {

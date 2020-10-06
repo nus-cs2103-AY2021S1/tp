@@ -1,5 +1,6 @@
 package tp.cap5buddy.logic.commands;
 
+import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.todolist.TodoList;
@@ -15,7 +16,8 @@ public class AddModuleCommand extends Command {
     /**
      * Represents the constructor to making the AddModuleCommand object.
      *
-     * @param info array of tokenised info.
+     * @param modName name of the module.
+     * @param modLink zoom link for the module.
      */
     public AddModuleCommand(String modName, String modLink) {
         this.name = modName;
@@ -27,7 +29,7 @@ public class AddModuleCommand extends Command {
      *
      * @return ResultCommand ResultCommand object.
      */
-    public ResultCommand execute(ModuleList modules, TodoList todolist) {
+    public CommandResult execute(ModuleList modules, ContactList contacts, TodoList todolist) {
         if (this.link == null) {
             Module mod = new Module(this.name);
             modules.addModule(mod);
@@ -35,7 +37,7 @@ public class AddModuleCommand extends Command {
             Module mod = new Module(this.name, this.link);
             modules.addModule(mod);
         }
-        return new ResultCommand(this.name + SUCCESS_MESSAGE, isExit());
+        return new CommandResult(this.name + SUCCESS_MESSAGE, isExit());
     }
 
     @Override
