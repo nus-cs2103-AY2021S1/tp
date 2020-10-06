@@ -1,4 +1,4 @@
-package nustorage.model.item.exceptions;
+package nustorage.model.record.exceptions;
 
 import nustorage.model.record.InventoryRecord;
 
