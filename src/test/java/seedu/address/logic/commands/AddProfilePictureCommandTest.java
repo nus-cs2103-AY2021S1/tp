@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-
 public class AddProfilePictureCommandTest {
 
     private Model model = new ModelManager(getTypicalCliniCal(), new UserPrefs());
@@ -59,4 +58,5 @@ public class AddProfilePictureCommandTest {
 
         assertCommandFailure(addProfilePictureCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
+
 }

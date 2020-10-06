@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.AMY;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -54,6 +55,13 @@ public class LogicManagerTest {
     public void execute_invalidCommandFormat_throwsParseException() {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+    }
+
+    @Test
+    public void runImageTransfer_invalidCommandFormat_throwsNullException() throws NullPointerException {
+        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
+        File profilePic = new File("f/data/stock_picture.png");
+        assertThrows(ParseException.class, () -> logic.runImageTransfer(expectedPatient, profilePic));
     }
 
     @Test
@@ -113,6 +121,14 @@ public class LogicManagerTest {
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
+    }
+
+    /**
+     * Executes the command, confirms that a NullException is thrown and that the result message is correct.
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertNullException(String inputCommand, String expectedMessage) {
+        assertCommandFailure(inputCommand, NullPointerException.class, expectedMessage);
     }
 
     /**

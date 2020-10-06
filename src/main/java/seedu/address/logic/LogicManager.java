@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -66,6 +68,8 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException,
                                                                                    IllegalValueException {
+        requireNonNull(patient);
+        requireNonNull(profilePic);
         int patientIndex = 1;
         ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
         for (Patient thisPatient: listOfPatients) {

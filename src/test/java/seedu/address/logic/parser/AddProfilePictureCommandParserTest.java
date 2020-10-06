@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROFILE_PICTURE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_PICTURE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
@@ -48,6 +49,12 @@ public class AddProfilePictureCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "2" + INVALID_FILEPATH_DESC, MESSAGE_INVALID_FORMAT); // invalid name
+    }
+
+    @Test
+    public void parse_invalidPicture_failure() {
+        // invalid photo with blank filepath
+        assertParseFailure(parser, "1" + INVALID_PROFILE_PICTURE_AMY, MESSAGE_INVALID_FORMAT);
     }
 
 }
