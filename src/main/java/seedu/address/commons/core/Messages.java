@@ -43,8 +43,8 @@ public class Messages {
                 .append(DIVIDER)
                 .append("Add inventory: add n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
                 .append("Delete an inventory item: delete INDEX\n")
-                .append("Edit an inventory item: edit INDEX [n/NAME] [q/QUANTITY]" +
-                        " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
+                .append("Edit an inventory item: edit INDEX [n/NAME] [q/QUANTITY]"
+                        + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
                 .append("Find an inventory item: find KEYWORD [MORE_KEYWORDS]\n");
         return summary.toString();
     }
