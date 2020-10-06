@@ -30,7 +30,7 @@ public class ItemList implements ReadOnlyItemList {
     public ItemList() {}
 
     /**
-     * Creates an ItemList using the Items in the {@code toBeCopied}
+     * Creates an ItemList using the Items in the {@code toBeCopied}.
      */
     public ItemList(ReadOnlyItemList toBeCopied) {
         this();
@@ -81,8 +81,15 @@ public class ItemList implements ReadOnlyItemList {
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
-
         items.setItem(target, editedItem);
+    }
+
+    /**
+     * Deletes {@code item} from this {@code ItemList}.
+     * {@code item} must exist in the item list.
+     */
+    public void deleteItem(Item recipe) {
+        items.delete(recipe);
     }
 
     /**
