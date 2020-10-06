@@ -1,11 +1,11 @@
 {
   "animals": [ {
     "name": "Valid Animal",
-    "phone": "9482424",
+    "id": "9482424",
     "species": "4th street"
   }, {
-    "name": "Animal With Invalid Phone Field",
-    "phone": "948asdf2424",
+    "name": "Animal With Invalid Id Field",
+    "id": "948asdf2424",
     "species": "4th street"
   } ]
 }
