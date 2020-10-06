@@ -4,12 +4,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditAssignmentDescriptor;
-import seedu.address.model.person.Address;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Deadline;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,25 +16,24 @@ import seedu.address.model.tag.Tag;
  */
 public class EditAssignmentDescriptorBuilder {
 
-    private EditAssignmentDescriptor descriptor;
+    private EditCommand.EditAssignmentDescriptor descriptor;
 
     public EditAssignmentDescriptorBuilder() {
-        descriptor = new EditAssignmentDescriptor();
+        descriptor = new EditCommand.EditAssignmentDescriptor();
     }
 
-    public EditAssignmentDescriptorBuilder(EditAssignmentDescriptor descriptor) {
-        this.descriptor = new EditAssignmentDescriptor(descriptor);
+    public EditAssignmentDescriptorBuilder(EditCommand.EditAssignmentDescriptor descriptor) {
+        this.descriptor = new EditCommand.EditAssignmentDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditAssignmentDescriptor} with fields containing {@code assignment}'s details
      */
     public EditAssignmentDescriptorBuilder(Assignment assignment) {
-        descriptor = new EditAssignmentDescriptor();
+        descriptor = new EditCommand.EditAssignmentDescriptor();
         descriptor.setName(assignment.getName());
-        descriptor.setPhone(assignment.getPhone());
-        descriptor.setEmail(assignment.getEmail());
-        descriptor.setAddress(assignment.getAddress());
+        descriptor.setDeadline(assignment.getDeadline());
+        descriptor.setModuleCode(assignment.getModuleCode());
         descriptor.setTags(assignment.getTags());
     }
 
@@ -48,26 +46,18 @@ public class EditAssignmentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditAssignmentDescriptor} that we are building.
+     * Sets the {@code Deadline} of the {@code EditAssignmentDescriptor} that we are building.
      */
-    public EditAssignmentDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditAssignmentDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Deadline(deadline));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditAssignmentDescriptor} that we are building.
+     * Sets the {@code ModuleCode} of the {@code EditAssignmentDescriptor} that we are building.
      */
-    public EditAssignmentDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditAssignmentDescriptor} that we are building.
-     */
-    public EditAssignmentDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditAssignmentDescriptorBuilder withModuleCode(String moduleCode) {
+        descriptor.setModuleCode(new ModuleCode(moduleCode));
         return this;
     }
 
@@ -81,7 +71,7 @@ public class EditAssignmentDescriptorBuilder {
         return this;
     }
 
-    public EditAssignmentDescriptor build() {
+    public EditCommand.EditAssignmentDescriptor build() {
         return descriptor;
     }
 }

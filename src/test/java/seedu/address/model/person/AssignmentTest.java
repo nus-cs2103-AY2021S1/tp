@@ -2,14 +2,14 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.ALICE;
-import static seedu.address.testutil.TypicalAssignments.BOB;
+import static seedu.address.testutil.TypicalAssignments.HW;
+import static seedu.address.testutil.TypicalAssignments.LAB;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,71 +26,67 @@ public class AssignmentTest {
     @Test
     public void isSameAssignment() {
         // same object -> returns true
-        assertTrue(ALICE.isSameAssignment(ALICE));
+        assertTrue(HW.isSameAssignment(HW));
 
         // null -> returns false
-        assertFalse(ALICE.isSameAssignment(null));
+        assertFalse(HW.isSameAssignment(null));
 
-        // different phone and email -> returns false
-        Assignment editedAlice = new AssignmentBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSameAssignment(editedAlice));
+        // different deadline -> returns false
+        Assignment editedHw = new AssignmentBuilder(HW).withDeadline(VALID_DEADLINE_LAB).build();
+        assertFalse(HW.isSameAssignment(editedHw));
 
         // different name -> returns false
-        editedAlice = new AssignmentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameAssignment(editedAlice));
+        editedHw = new AssignmentBuilder(HW).withName(VALID_NAME_LAB).build();
+        assertFalse(HW.isSameAssignment(editedHw));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new AssignmentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        // same name, same deadline, different attributes -> returns true
+        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(HW.isSameAssignment(editedHw));
+
+        // same name, different attributes -> returns false
+        editedHw = new AssignmentBuilder(HW).withDeadline(VALID_DEADLINE_LAB).withModuleCode(VALID_MODULE_CODE_HW)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameAssignment(editedAlice));
+        assertFalse(HW.isSameAssignment(editedHw));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new AssignmentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+        // same name, same deadline, different attributes -> returns true
+        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_HW)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameAssignment(editedAlice));
-
-        // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new AssignmentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameAssignment(editedAlice));
+        assertTrue(HW.isSameAssignment(editedHw));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Assignment aliceCopy = new AssignmentBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Assignment hwCopy = new AssignmentBuilder(HW).build();
+        assertTrue(HW.equals(hwCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(HW.equals(HW));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(HW.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(HW.equals(5));
 
         // different assignment -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(HW.equals(LAB));
 
         // different name -> returns false
-        Assignment editedAlice = new AssignmentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Assignment editedHw = new AssignmentBuilder(HW).withName(VALID_NAME_LAB).build();
+        assertFalse(HW.equals(editedHw));
 
-        // different phone -> returns false
-        editedAlice = new AssignmentBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different deadline -> returns false
+        editedHw = new AssignmentBuilder(HW).withDeadline(VALID_DEADLINE_LAB).build();
+        assertFalse(HW.equals(editedHw));
 
-        // different email -> returns false
-        editedAlice = new AssignmentBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new AssignmentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        // different module code -> returns false
+        editedHw = new AssignmentBuilder(HW).withModuleCode(VALID_MODULE_CODE_LAB).build();
+        assertFalse(HW.equals(editedHw));
 
         // different tags -> returns false
-        editedAlice = new AssignmentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedHw = new AssignmentBuilder(HW).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(HW.equals(editedHw));
     }
 }

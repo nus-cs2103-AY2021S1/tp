@@ -1,8 +1,7 @@
 {
   "assignments": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "name": "Assignment with invalid name field: C$123!S H*mew0rk",
+    "deadline": "02-02-2020 1900",
+    "moduleCode": "CS1231S"
   } ]
 }

@@ -33,25 +33,22 @@ public class AssignmentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label deadline;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label moduleCode;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Assignment} and index to display.
+     * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
      */
     public AssignmentCard(Assignment assignment, int displayedIndex) {
         super(FXML);
         this.assignment = assignment;
         id.setText(displayedIndex + ". ");
         name.setText(assignment.getName().fullName);
-        phone.setText(assignment.getPhone().value);
-        address.setText(assignment.getAddress().value);
-        email.setText(assignment.getEmail().value);
+        deadline.setText(assignment.getDeadline().value);
+        moduleCode.setText(assignment.getModuleCode().moduleCode);
         assignment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

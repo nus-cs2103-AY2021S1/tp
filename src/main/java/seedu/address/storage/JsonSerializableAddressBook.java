@@ -24,7 +24,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedAssignment> assignments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given assignments.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {

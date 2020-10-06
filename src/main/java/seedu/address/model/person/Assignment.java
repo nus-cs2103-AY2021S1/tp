@@ -10,29 +10,27 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Assignment in the address book.
+ * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Assignment {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Deadline deadline;
 
     // Data fields
-    private final Address address;
+    private final ModuleCode moduleCode;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
+        requireAllNonNull(name, deadline, moduleCode, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.deadline = deadline;
+        this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
 
@@ -40,16 +38,12 @@ public class Assignment {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Deadline getDeadline() {
+        return deadline;
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     /**
@@ -61,8 +55,8 @@ public class Assignment {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both assignments of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two assignments.
      */
     public boolean isSameAssignment(Assignment otherAssignment) {
         if (otherAssignment == this) {
@@ -71,12 +65,12 @@ public class Assignment {
 
         return otherAssignment != null
                 && otherAssignment.getName().equals(getName())
-                && (otherAssignment.getPhone().equals(getPhone()) || otherAssignment.getEmail().equals(getEmail()));
+                && (otherAssignment.getDeadline().equals(getDeadline()));
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both assignments have the same identity and data fields.
+     * This defines a stronger notion of equality between two assignments.
      */
     @Override
     public boolean equals(Object other) {
@@ -90,28 +84,26 @@ public class Assignment {
 
         Assignment otherAssignment = (Assignment) other;
         return otherAssignment.getName().equals(getName())
-                && otherAssignment.getPhone().equals(getPhone())
-                && otherAssignment.getEmail().equals(getEmail())
-                && otherAssignment.getAddress().equals(getAddress())
+                && otherAssignment.getDeadline().equals(getDeadline())
+                && otherAssignment.getModuleCode().equals(getModuleCode())
                 && otherAssignment.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, deadline, moduleCode, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
+                .append(" Deadline: ")
+                .append(getDeadline())
                 .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
+                .append(" Module: ")
+                .append(getModuleCode())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

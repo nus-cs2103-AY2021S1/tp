@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
@@ -19,11 +18,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Assignment;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Deadline;
+import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,13 +36,11 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_MODULE_CODE + "MODULE CODE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_DEADLINE + "01-01-2020 1800 ";
 
     public static final String MESSAGE_EDIT_ASSIGNMENT_SUCCESS = "Edited Assignment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,12 +91,12 @@ public class EditCommand extends Command {
         assert assignmentToEdit != null;
 
         Name updatedName = editAssignmentDescriptor.getName().orElse(assignmentToEdit.getName());
-        Phone updatedPhone = editAssignmentDescriptor.getPhone().orElse(assignmentToEdit.getPhone());
-        Email updatedEmail = editAssignmentDescriptor.getEmail().orElse(assignmentToEdit.getEmail());
-        Address updatedAddress = editAssignmentDescriptor.getAddress().orElse(assignmentToEdit.getAddress());
+        Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
+        ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()
+                .orElse(assignmentToEdit.getModuleCode());
         Set<Tag> updatedTags = editAssignmentDescriptor.getTags().orElse(assignmentToEdit.getTags());
 
-        return new Assignment(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedTags);
     }
 
     @Override
@@ -127,9 +123,8 @@ public class EditCommand extends Command {
      */
     public static class EditAssignmentDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Deadline deadline;
+        private ModuleCode moduleCode;
         private Set<Tag> tags;
 
         public EditAssignmentDescriptor() {}
@@ -140,9 +135,8 @@ public class EditCommand extends Command {
          */
         public EditAssignmentDescriptor(EditAssignmentDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setDeadline(toCopy.deadline);
+            setModuleCode(toCopy.moduleCode);
             setTags(toCopy.tags);
         }
 
@@ -150,7 +144,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, deadline, moduleCode, tags);
         }
 
         public void setName(Name name) {
@@ -161,28 +155,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setModuleCode(ModuleCode moduleCode) {
+            this.moduleCode = moduleCode;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<ModuleCode> getModuleCode() {
+            return Optional.ofNullable(moduleCode);
         }
 
         /**
@@ -218,9 +204,8 @@ public class EditCommand extends Command {
             EditAssignmentDescriptor e = (EditAssignmentDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getDeadline().equals(e.getDeadline())
+                    && getModuleCode().equals(e.getModuleCode())
                     && getTags().equals(e.getTags());
         }
     }

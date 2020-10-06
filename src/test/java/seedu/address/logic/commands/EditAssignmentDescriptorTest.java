@@ -2,12 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_HW;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -20,40 +19,36 @@ public class EditAssignmentDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditAssignmentDescriptor descriptorWithSameValues = new EditAssignmentDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditAssignmentDescriptor descriptorWithSameValues = new EditAssignmentDescriptor(DESC_HW);
+        assertTrue(DESC_HW.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_HW.equals(DESC_HW));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_HW.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_HW.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_HW.equals(DESC_LAB));
 
         // different name -> returns false
-        EditAssignmentDescriptor editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY)
-                .withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditAssignmentDescriptor editedHw = new EditAssignmentDescriptorBuilder(DESC_HW)
+                .withName(VALID_NAME_LAB).build();
+        assertFalse(DESC_HW.equals(editedHw));
 
-        // different phone -> returns false
-        editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different deadline -> returns false
+        editedHw = new EditAssignmentDescriptorBuilder(DESC_HW).withDeadline(VALID_DEADLINE_LAB).build();
+        assertFalse(DESC_HW.equals(editedHw));
 
-        // different email -> returns false
-        editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different address -> returns false
-        editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        // different module code -> returns false
+        editedHw = new EditAssignmentDescriptorBuilder(DESC_HW).withModuleCode(VALID_MODULE_CODE_LAB).build();
+        assertFalse(DESC_HW.equals(editedHw));
 
         // different tags -> returns false
-        editedAmy = new EditAssignmentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedHw = new EditAssignmentDescriptorBuilder(DESC_HW).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_HW.equals(editedHw));
     }
 }

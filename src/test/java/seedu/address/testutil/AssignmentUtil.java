@@ -1,9 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -31,9 +30,8 @@ public class AssignmentUtil {
     public static String getAssignmentDetails(Assignment assignment) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + assignment.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + assignment.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + assignment.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + assignment.getAddress().value + " ");
+        sb.append(PREFIX_DEADLINE + assignment.getDeadline().value + " ");
+        sb.append(PREFIX_MODULE_CODE + assignment.getModuleCode().moduleCode + " ");
         assignment.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -46,9 +44,9 @@ public class AssignmentUtil {
     public static String getEditAssignmentDescriptorDetails(EditAssignmentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
+        descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
+                .append(moduleCode.moduleCode).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

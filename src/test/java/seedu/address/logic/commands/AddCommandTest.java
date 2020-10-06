@@ -53,26 +53,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Assignment alice = new AssignmentBuilder().withName("Alice").build();
-        Assignment bob = new AssignmentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Assignment cs1231SHomework = new AssignmentBuilder().withName("CS1231S Homework").build();
+        Assignment cs2103TTutorial = new AssignmentBuilder().withName("CS2103T Tutorial").build();
+        AddCommand addCs1231SHomeworkCommand = new AddCommand(cs1231SHomework);
+        AddCommand addCs2103TTutorialCommand = new AddCommand(cs2103TTutorial);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCs1231SHomeworkCommand.equals(addCs1231SHomeworkCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addCs1231SHomeworkCommandCopy = new AddCommand(cs1231SHomework);
+        assertTrue(addCs1231SHomeworkCommand.equals(addCs1231SHomeworkCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addCs1231SHomeworkCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCs1231SHomeworkCommand.equals(null));
 
         // different assignment -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addCs1231SHomeworkCommand.equals(addCs2103TTutorialCommand));
     }
 
     /**
