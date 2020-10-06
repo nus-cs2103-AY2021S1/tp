@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,7 +26,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -40,6 +40,9 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE_CS1010S = "CS1010S";
     public static final String VALID_MODULE_NAME_CS50 = "Introduction to Computer Science";
     public static final String VALID_MODULE_NAME_CS1010S = "Programming Methodology";
+
+    public static final String CODE_DESC_CS50 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS50;
+    public static final String CODE_DESC_CS1010S = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS1010S;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,6 +61,10 @@ public class CommandTestUtil {
     public static final String INVALID_DEPARTMENT_DESC =
             " " + PREFIX_DEPARTMENT; // empty string not allowed for departments
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE
+            + "CS*#1";
+    public static final String INVALID_DELMOD_MISSING_CODE = " " + PREFIX_MODULE_CODE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

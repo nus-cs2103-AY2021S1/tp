@@ -43,4 +43,11 @@ public class DelModCommand extends Command {
         model.deleteMod(this.moduleCode);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DelModCommand // instanceof handles nulls
+                && moduleCode.equals(((DelModCommand) other).moduleCode));
+    }
 }
