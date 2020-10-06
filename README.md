@@ -19,7 +19,7 @@ academic schedule**. You might often feel overwhelmed due to
 on the verge of being unable to 
 cope with. In events like this, having a **disorganised timeline** makes your
 situation worse. You might often **underestimate the time
-it takes** to complete your assignments and you might be **late for your lessons** as you are preoccupied 
+it takes** to complete your assignments and you might be **late for your lessons** as you were preoccupied 
 with completing them. However, all these
 tasks still remain uncompleted. You might have been spinning your wheels.
 * ProductiveNUS minimises such problems by helping you keep track of your schedule easily.
