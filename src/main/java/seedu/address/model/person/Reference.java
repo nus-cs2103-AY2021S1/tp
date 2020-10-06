@@ -16,7 +16,7 @@ public class Reference {
     public static final String MESSAGE_CONSTRAINTS =
             "File should be placed in the ./data/reference folder. Please only enter the file name.";
 
-    private static final String DEFAULT_FILEPATH = "./data/references/";
+    private static final String DEFAULT_FILEPATH = "./references/";
     private final Path path;
     private final String fileName;
 
