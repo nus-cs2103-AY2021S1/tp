@@ -79,11 +79,17 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     School.class.getSimpleName()));
         }
+        if (!School.isValidSchool(school)) {
+            throw new IllegalValueException(School.MESSAGE_CONSTRAINTS);
+        }
         final School modelSchool = new School(school);
 
         if (year == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Year.class.getSimpleName()));
+        }
+        if (!Year.isValidYear(year)) {
+            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
         }
         final Year modelYear = new Year(year);
 

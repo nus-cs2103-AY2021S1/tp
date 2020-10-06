@@ -15,7 +15,7 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
-    public static final String DEFAULT_YEAR = "Year 4";
+    public static final String DEFAULT_YEAR = "4";
 
     private Name name;
     private Phone phone;

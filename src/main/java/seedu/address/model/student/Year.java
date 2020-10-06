@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Year {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Years should only contain numerical digits, and it should not be blank";
+            "Years should only contain numerical characters, and it should not be blank";
 
     /*
      * The first character of the year must not be a whitespace,
@@ -47,7 +47,7 @@ public class Year {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
+                || (other instanceof Year // instanceof handles nulls
                 && year == ((Year) other).year); // state check
     }
 
