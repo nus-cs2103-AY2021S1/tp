@@ -1,12 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
@@ -37,11 +32,14 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label school;
     @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label year;
+
+    /*
+     * @FXML
+     * private FlowPane tags;
+     */
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,6 +52,8 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
+        school.setText(student.getSchool().school);
+        year.setText(String.valueOf(student.getYear().year));
 
         /*
          * address.setText("Placeholder for address");

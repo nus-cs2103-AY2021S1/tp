@@ -1,9 +1,9 @@
 package seedu.address.model.student.admin;
 
-import seedu.address.model.student.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.student.Name;
 
 /**
  * Represents a Person's name in the address book.
