@@ -17,6 +17,9 @@ import nustorage.commons.util.JsonUtil;
 import nustorage.model.FinanceAccount;
 
 
+/**
+ * A class to access FinanceAccount data stored as a json file on the hard disk.
+ */
 public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonFinanceAccountStorage.class);
@@ -24,6 +27,11 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
     private Path filePath;
 
 
+    /**
+     * Creates a new finance account storage object.
+     *
+     * @param filePath file path to storage file.
+     */
     public JsonFinanceAccountStorage(Path filePath) {
         this.filePath = filePath;
     }
@@ -55,7 +63,7 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
         try {
             return Optional.of(jsonFinanceAccount.get().toModelType());
         } catch (IllegalValueException e) {
-            logger.info("Illegal values found in " + filePath + " " + e.getMessage());
+            logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
             throw new DataConversionException(e);
         }
     }
