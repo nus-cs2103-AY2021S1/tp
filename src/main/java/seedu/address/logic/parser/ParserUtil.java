@@ -54,7 +54,7 @@ public class ParserUtil {
      * Parses a {@code String dateTime} into a {@code dateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
