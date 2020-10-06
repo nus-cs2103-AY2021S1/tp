@@ -24,14 +24,20 @@ public class HistoryCommandTest {
     }
 
     @Test
-    void execute() {
+    void execute_history_success() {
         HistoryCommand historyCommand = new HistoryCommand();
         CommandHistory.addUsedCommand("help");
         assertCommandSuccess(historyCommand, model, String.format(CommandHistory.STRING, "\n -\thelp"), model);
     }
 
     @Test
-    void empty() {
+    void execute_emptyHistory_success() {
+        HistoryCommand historyCommand = new HistoryCommand();
+        assertCommandSuccess(historyCommand, model, "There is no command history.", model);
+    }
+
+    @Test
+    void execute_nonEmptyHistory_success() {
         CommandHistory.clearHistory();
         HistoryCommand historyCommand = new HistoryCommand();
         assertCommandSuccess(historyCommand, model, "Here are your command history:", model);

@@ -1,5 +1,8 @@
 package seedu.address.logic;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -7,6 +10,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,7 +18,9 @@ import seedu.address.logic.parser.CliniCalParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCliniCal;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
 import seedu.address.storage.Storage;
 
 /**
@@ -56,6 +62,32 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        return commandResult;
+    }
+
+    @Override
+    public CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException,
+                                                                                   IllegalValueException {
+        requireNonNull(patient);
+        requireNonNull(profilePic);
+        int patientIndex = 1;
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        for (Patient thisPatient: listOfPatients) {
+            Name thisPatientName = thisPatient.getName();
+            Name selectedPatientName = patient.getName();
+            Phone thisPatientPhone = thisPatient.getPhone();
+            Phone selectedPatientPhone = patient.getPhone();
+            if (thisPatientName.equals(selectedPatientName) && thisPatientPhone.equals(selectedPatientPhone)) {
+                break;
+            } else {
+                patientIndex++;
+            }
+        }
+        String filePath = profilePic.getPath();
+        String commandToRun = "addPicture " + patientIndex + " f/" + filePath;
+        logger.info("----------------[USER COMMAND][" + commandToRun + "]");
+
+        CommandResult commandResult = execute(commandToRun);
         return commandResult;
     }
 

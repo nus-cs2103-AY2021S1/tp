@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -10,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.AMY;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -57,6 +59,13 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void runImageTransfer_invalidCommandFormat_throwsNullException() throws NullPointerException {
+        Patient expectedPatient = new PatientBuilder(AMY).withTags().build();
+        File profilePic = new File("f/data/stock_picture.png");
+        assertThrows(ParseException.class, () -> logic.runImageTransfer(expectedPatient, profilePic));
+    }
+
+    @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
@@ -91,6 +100,21 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPatientList().remove(0));
+    }
+
+    @Test
+    public void getCliniCalFilePath_getFilePath_success() {
+        assertDoesNotThrow(() -> logic.getCliniCalFilePath());
+    }
+
+    @Test
+    public void getCliniCal_getFilePath_success() {
+        assertDoesNotThrow(() -> logic.getCliniCal());
+    }
+
+    @Test
+    public void getGuiSettings_getFilePath_success() {
+        assertDoesNotThrow(() -> logic.getGuiSettings());
     }
 
     /**
