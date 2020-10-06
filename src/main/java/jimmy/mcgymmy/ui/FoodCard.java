@@ -48,7 +48,7 @@ public class FoodCard extends UiPart<Region> {
         super(FXML);
         this.food = food;
         id.setText(displayedIndex + ". ");
-        name.setText(food.getName());
+        name.setText(food.getName().fullName);
         protein.setText(food.getProtein().toString());
         carb.setText(food.getCarbs().toString());
         fat.setText(food.getFat().toString());

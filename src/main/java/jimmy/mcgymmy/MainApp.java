@@ -1,4 +1,4 @@
-package seedu.address;
+package jimmy.mcgymmy;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -7,29 +7,6 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-<<<<<<< Updated upstream:src/main/java/seedu/address/MainApp.java
-import seedu.address.commons.core.Config;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
-=======
 import jimmy.mcgymmy.commons.core.Config;
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.core.Version;
@@ -38,19 +15,21 @@ import jimmy.mcgymmy.commons.util.ConfigUtil;
 import jimmy.mcgymmy.commons.util.StringUtil;
 import jimmy.mcgymmy.logic.Logic;
 import jimmy.mcgymmy.logic.LogicManager;
-import jimmy.mcgymmy.model.*;
 import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
+import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.model.util.SampleDataUtil;
-import jimmy.mcgymmy.storage.AddressBookStorage;
-import jimmy.mcgymmy.storage.JsonAddressBookStorage;
+import jimmy.mcgymmy.storage.JsonMcGymmyStorage;
 import jimmy.mcgymmy.storage.JsonUserPrefsStorage;
+import jimmy.mcgymmy.storage.McGymmyStorage;
 import jimmy.mcgymmy.storage.Storage;
 import jimmy.mcgymmy.storage.StorageManager;
 import jimmy.mcgymmy.storage.UserPrefsStorage;
 import jimmy.mcgymmy.ui.Ui;
 import jimmy.mcgymmy.ui.UiManager;
->>>>>>> Stashed changes:src/main/java/jimmy/mcgymmy/MainApp.java
 
 /**
  * Runs the application.
@@ -74,10 +53,9 @@ public class MainApp extends Application {
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
-
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        seedu.address.storage.McGymmyStorage mcGymmyStorage = new seedu.address.storage.JsonMcGymmyStorage(userPrefs.getMcGymmyFilePath());
+        McGymmyStorage mcGymmyStorage = new JsonMcGymmyStorage(userPrefs.getMcGymmyFilePath());
         storage = new StorageManager(mcGymmyStorage, userPrefsStorage);
 
         initLogging(config);
@@ -95,14 +73,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMcGymmy> addressBookOptional;
+        Optional<ReadOnlyMcGymmy> mcGymmyOptional;
         ReadOnlyMcGymmy initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            mcGymmyOptional = storage.readMcGymmy();
+            if (!mcGymmyOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample McGymmy");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = mcGymmyOptional.orElseGet(SampleDataUtil::getSampleMcGymmy);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty McGymmy");
             initialData = new McGymmy();

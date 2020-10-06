@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.person;
+package jimmy.mcgymmy.model.food;
 
 import static java.util.Objects.requireNonNull;
 

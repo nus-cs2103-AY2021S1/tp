@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 
 public class NameContainsKeywordsPredicateTest {

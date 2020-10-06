@@ -27,32 +27,32 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getMcGymmyFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMcGymmy> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException {
+        return readMcGymmy(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readMcGymmy()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMcGymmy> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMcGymmy> readMcGymmy(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMcGymmy> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableMcGymmy> jsonMcGymmy = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMcGymmy.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonMcGymmy.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMcGymmy.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,16 +60,16 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMcGymmy addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException {
+        saveMcGymmy(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyMcGymmy)}.
+     * Similar to {@link #saveMcGymmy(ReadOnlyMcGymmy)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
+    public void saveMcGymmy(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

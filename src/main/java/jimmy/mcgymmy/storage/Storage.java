@@ -21,12 +21,12 @@ public interface Storage extends McGymmyStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getMcGymmyFilePath();
 
     @Override
-    Optional<ReadOnlyMcGymmy> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyMcGymmy addressBook) throws IOException;
+    void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException;
 
 }

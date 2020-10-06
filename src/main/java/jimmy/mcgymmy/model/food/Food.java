@@ -1,6 +1,5 @@
 package jimmy.mcgymmy.model.food;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +22,7 @@ public class Food {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     // Identity field names
-    private final String name;
+    private final Name name;
     private final Protein protein;
     private final Carbohydrate carbs;
     private final Fat fat;
@@ -33,9 +32,9 @@ public class Food {
     /**
      * Every field must be present and not null.
      */
-    public Food(String name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
-        AppUtil.checkArgument(isValidName(name), FOOD_NAME_MESSAGE_CONTRAINT);
+        AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONTRAINT);
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;
@@ -51,13 +50,13 @@ public class Food {
      */
 
     public Food(String name, int proteinAmount, int fatAmount, int carbsAmount) {
-        this(name, new Protein(proteinAmount), new Fat(fatAmount), new Carbohydrate(carbsAmount));
+        this(new Name(name), new Protein(proteinAmount), new Fat(fatAmount), new Carbohydrate(carbsAmount));
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Food(String name, Protein protein, Fat fat, Carbohydrate carbs) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs) {
         this(name, protein, fat, carbs, new HashSet<Tag>());
     }
 
@@ -66,7 +65,7 @@ public class Food {
     }
 
     // getters : make when needed
-    public String getName() {
+    public Name getName() {
         return this.name;
     }
 

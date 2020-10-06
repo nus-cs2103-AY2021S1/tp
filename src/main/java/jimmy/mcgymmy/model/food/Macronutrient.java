@@ -4,11 +4,11 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
+    public static final String MESSAGE_CONSTRAINTS = "values should only contain numbers";
     private static final String VALIDATION_REGEX = "(\\d)+";
-    public static String MESSAGE_CONSTRAINTS = "values should only contain numbers";
-    private int amount;
-    private int caloricMultiplier;
-    private int totalCalories;
+    private final int amount;
+    private final int caloricMultiplier;
+    private final int totalCalories;
 
     /**
      * Represents macronutrients of 3 types
@@ -30,6 +30,10 @@ public abstract class Macronutrient {
 
     }
 
+    public static boolean isValid(String value) {
+        return value.matches(VALIDATION_REGEX);
+    }
+
     private boolean isValidAmount(int amount) {
         return amount > 0;
     }
@@ -41,9 +45,9 @@ public abstract class Macronutrient {
     @Override
     public String toString() {
         return "MacronutrientType:" + this.getMacronutrientType() + "\n"
-            + "Amount: "
-            + this.getAmount() + "\n"
-            + "Caloric Count: " + this.getTotalCalories() + "\n";
+                + "Amount: "
+                + this.getAmount() + "\n"
+                + "Caloric Count: " + this.getTotalCalories() + "\n";
     }
 
     @Override
@@ -57,8 +61,8 @@ public abstract class Macronutrient {
 
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
-            && this.getAmount() == otherMacronutrient.getAmount()
-            && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
+                && this.getAmount() == otherMacronutrient.getAmount()
+                && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
     }
 
     // take the type from the class name
@@ -76,10 +80,6 @@ public abstract class Macronutrient {
 
     public int getTotalCalories() {
         return totalCalories;
-    }
-
-    public static boolean isValid(String value) {
-        return value.matches(VALIDATION_REGEX);
     }
 
 }

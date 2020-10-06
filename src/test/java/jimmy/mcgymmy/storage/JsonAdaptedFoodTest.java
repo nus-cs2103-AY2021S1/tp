@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
-import jimmy.mcgymmy.model.person.Name;
+import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.TypicalFoods;

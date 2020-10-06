@@ -10,10 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
+import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
-import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.tag.Tag;
 
 /**
@@ -49,7 +50,7 @@ class JsonAdaptedFood {
      * Converts a given {@code Food} into this class for Jackson use.
      */
     public JsonAdaptedFood(Food source) {
-        name = source.getName();
+        name = source.getName().fullName;
         protein = Integer.toString(source.getProtein().getAmount());
         fat = Integer.toString(source.getFat().getAmount());
         carbs = Integer.toString(source.getCarbs().getAmount());
@@ -69,13 +70,13 @@ class JsonAdaptedFood {
             personTags.add(tag.toModelType());
         }
 
-        //        if (name == null) {
-        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        //        }
-        //        if (!Name.isValidName(name)) {
-        //            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        //        }
-        final String modelName = name;
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelName = new Name(name);
 
         if (protein == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Protein.class.getSimpleName()));
@@ -94,7 +95,8 @@ class JsonAdaptedFood {
         final Fat modelFat = new Fat(Integer.parseInt(fat));
 
         if (carbs == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Carbohydrate.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Carbohydrate.class.getSimpleName()));
         }
         if (!Carbohydrate.isValid(carbs)) {
             throw new IllegalValueException(Carbohydrate.MESSAGE_CONSTRAINTS);

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

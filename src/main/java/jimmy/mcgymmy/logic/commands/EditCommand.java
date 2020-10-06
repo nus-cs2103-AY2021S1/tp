@@ -14,6 +14,7 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
 
 /**
@@ -27,32 +28,32 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the address book.";
 
     private Parameter<Index> indexParameter = this.addParameter(
-        "index",
-        "",
-        "index number used in the displayed food list.",
-        "2",
-        ParserUtil::parseIndex
+            "index",
+            "",
+            "index number used in the displayed food list.",
+            "2",
+            ParserUtil::parseIndex
     );
-    private OptionalParameter<String> nameParameter = this.addOptionalParameter(
-        "name",
-        "n",
-        "Name of food to add",
-        "John Doe",
-        ParserUtil::parseName
+    private OptionalParameter<Name> nameParameter = this.addOptionalParameter(
+            "name",
+            "n",
+            "Name of food to add",
+            "John Doe",
+            ParserUtil::parseName
     );
     private OptionalParameter<Protein> proteinParameter = this.addOptionalParameter(
-        "protein value",
-        "p",
-        "Protein value of food (g)",
-        "10",
-        ParserUtil::parseProtein
+            "protein value",
+            "p",
+            "Protein value of food (g)",
+            "10",
+            ParserUtil::parseProtein
     );
     private OptionalParameter<Fat> fatParameter = this.addOptionalParameter(
-        "fat value",
-        "f",
-        "Fat value of food (g)",
-        "10",
-        ParserUtil::parseFat
+            "fat value",
+            "f",
+            "Fat value of food (g)",
+            "10",
+            ParserUtil::parseFat
     );
     private OptionalParameter<Carbohydrate> carbParameter = this.addOptionalParameter(
         "carb value",
@@ -62,7 +63,7 @@ public class EditCommand extends Command {
         ParserUtil::parseCarb
     );
 
-    void setParameters(Parameter<Index> indexParameter, OptionalParameter<String> nameParameter,
+    void setParameters(Parameter<Index> indexParameter, OptionalParameter<Name> nameParameter,
                        OptionalParameter<Protein> proteinParameter, OptionalParameter<Fat> fatParameter,
                        OptionalParameter<Carbohydrate> carbParameter) {
         this.indexParameter = indexParameter;
@@ -84,7 +85,7 @@ public class EditCommand extends Command {
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
 
-        String newName = this.nameParameter.getValue().orElseGet(foodToEdit::getName);
+        Name newName = this.nameParameter.getValue().orElseGet(foodToEdit::getName);
         Protein newProtein = this.proteinParameter.getValue().orElseGet(foodToEdit::getProtein);
         Fat newFat = this.fatParameter.getValue().orElseGet(foodToEdit::getFat);
         Carbohydrate newCarb = this.carbParameter.getValue().orElseGet(foodToEdit::getCarbs);

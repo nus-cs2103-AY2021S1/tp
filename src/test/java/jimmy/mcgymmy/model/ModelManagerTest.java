@@ -1,8 +1,5 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -16,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -101,10 +97,11 @@ public class ModelManagerTest {
     @Test
     public void equals() {
 <<<<<<< Updated upstream:src/test/java/seedu/address/model/ModelManagerTest.java
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook =
+            new seedu.address.testutil.McGymmyBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
 =======
-        McGymmy mcGymmy = new AddressBookBuilder().withPerson(TypicalPersons.ALICE).withPerson(
+        McGymmy mcGymmy = new seedu.address.testutil.McGymmyBuilder().withPerson(TypicalPersons.ALICE).withPerson(
             TypicalPersons.BENSON).build();
         McGymmy differentMcGymmy = new McGymmy();
 >>>>>>> Stashed changes:src/test/java/jimmy/mcgymmy/model/ModelManagerTest.java

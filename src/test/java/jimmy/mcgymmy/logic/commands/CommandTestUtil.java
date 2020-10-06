@@ -11,7 +11,8 @@ import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
 import jimmy.mcgymmy.testutil.Assert;
 
 /**
@@ -71,8 +72,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredFoodList().size());
 
         Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
-        final String[] splitName = food.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = food.getName().split("\\s+");
+        model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredFoodList().size());
     }

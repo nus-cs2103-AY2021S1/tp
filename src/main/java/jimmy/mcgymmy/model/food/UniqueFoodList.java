@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.person;
+package jimmy.mcgymmy.model.food;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,32 +8,32 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
-import jimmy.mcgymmy.model.person.exceptions.DuplicatePersonException;
-import jimmy.mcgymmy.model.person.exceptions.PersonNotFoundException;
+import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
+import jimmy.mcgymmy.model.food.exceptions.FoodNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A food is considered unique by comparing using {@code Food#isSamePerson(Food)}. As such, adding and updating of
- * persons uses Food#isSamePerson(Food) for equality so as to ensure that the food being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a food uses Food#equals(Object) so
+ * A food is considered unique by comparing using {@code Food#isSameFood(Food)}. As such, adding and updating of
+ * persons uses Food#isSameFood(Food) for equality so as to ensure that the food being added or updated is
+ * unique in terms of identity in the UniqueFoodList. However, the removal of a food uses Food#equals(Object) so
  * as to ensure that the food with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Food#isSamePerson(Food)
+ * @see Food#isSameFood(Food)
  */
-public class UniquePersonList implements Iterable<Food> {
+public class UniqueFoodList implements Iterable<Food> {
 
     private final ObservableList<Food> internalList = FXCollections.observableArrayList();
     private final ObservableList<Food> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent food as the given argument.
      */
     public boolean contains(Food toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameFood);
     }
 
     /**
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Food> {
     public void add(Food toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateFoodException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniquePersonList implements Iterable<Food> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new FoodNotFoundException();
         }
 
-        if (!target.isSamePerson(editedFood) && contains(editedFood)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameFood(editedFood) && contains(editedFood)) {
+            throw new DuplicateFoodException();
         }
 
         internalList.set(index, editedFood);
@@ -75,11 +75,11 @@ public class UniquePersonList implements Iterable<Food> {
     public void remove(Food toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new FoodNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueFoodList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -91,7 +91,7 @@ public class UniquePersonList implements Iterable<Food> {
     public void setPersons(List<Food> foods) {
         CollectionUtil.requireAllNonNull(foods);
         if (!personsAreUnique(foods)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateFoodException();
         }
 
         internalList.setAll(foods);
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Food> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniquePersonList // instanceof handles nulls
-            && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueFoodList // instanceof handles nulls
+                && internalList.equals(((UniqueFoodList) other).internalList));
     }
 
     @Override
@@ -127,7 +127,7 @@ public class UniquePersonList implements Iterable<Food> {
     private boolean personsAreUnique(List<Food> foods) {
         for (int i = 0; i < foods.size() - 1; i++) {
             for (int j = i + 1; j < foods.size(); j++) {
-                if (foods.get(i).isSamePerson(foods.get(j))) {
+                if (foods.get(i).isSameFood(foods.get(j))) {
                     return false;
                 }
             }

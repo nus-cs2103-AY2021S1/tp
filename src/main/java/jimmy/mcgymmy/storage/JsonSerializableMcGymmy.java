@@ -12,8 +12,6 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.food.Food;
-import jimmy.mcgymmy.storage.JsonAdaptedFood;
-
 
 /**
  * An Immutable McGymmy that is serializable to JSON format.

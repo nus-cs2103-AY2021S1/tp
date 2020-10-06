@@ -3,7 +3,6 @@ package jimmy.mcgymmy.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
-
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;

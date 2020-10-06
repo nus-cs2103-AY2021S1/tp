@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import jimmy.mcgymmy.model.person.Name;
 import jimmy.mcgymmy.testutil.Assert;
 
 public class NameTest {

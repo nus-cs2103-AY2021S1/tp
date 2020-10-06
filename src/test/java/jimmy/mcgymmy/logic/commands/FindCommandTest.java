@@ -1,7 +1,5 @@
 package jimmy.mcgymmy.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -12,7 +10,7 @@ import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
-import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
 import jimmy.mcgymmy.testutil.TypicalFoods;
 
 /**

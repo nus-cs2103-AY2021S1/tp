@@ -25,13 +25,15 @@ import jimmy.mcgymmy.testutil.FoodBuilder;
 public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
         Food validFood = new FoodBuilder().withCarb("12345").build();
         AddCommand command = new AddCommand();
         command.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
-                new CommandParserTestUtil.ParameterStub<>("p", validFood.getProtein()),
-                new CommandParserTestUtil.ParameterStub<>("f", validFood.getFat()));
+                new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
+                new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
+                new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs())
+        );
 
         CommandResult commandResult = command.execute(modelStub);
 
@@ -40,15 +42,16 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateFood_throwsCommandException() {
         Food validFood = new FoodBuilder().withCarb("dummy value").build();
         AddCommand addCommand = new AddCommand();
         addCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
-                new CommandParserTestUtil.ParameterStub<>("p", validFood.getPhone()),
-                new CommandParserTestUtil.ParameterStub<>("e", validFood.getEmail())
+                new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
+                new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
+                new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs())
         );
-        ModelStub modelStub = new ModelStubWithPerson(validFood);
+        ModelStub modelStub = new ModelStubWithFood(validFood);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
@@ -78,52 +81,52 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getMcGymmyFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setMcGymmyFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Food food) {
+        public void addFood(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyMcGymmy newData) {
+        public ReadOnlyMcGymmy getMcGymmy() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyMcGymmy getAddressBook() {
+        public void setMcGymmy(ReadOnlyMcGymmy newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Food food) {
+        public boolean hasFood(Food food) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Food target) {
+        public void deleteFood(Food target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Food target, Food editedFood) {
+        public void setFood(Food target, Food editedFood) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Food> getFilteredPersonList() {
+        public ObservableList<Food> getFilteredFoodList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Food> predicate) {
+        public void updateFilteredFoodList(Predicate<Food> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -131,41 +134,41 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single food.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithFood extends ModelStub {
         private final Food food;
 
-        ModelStubWithPerson(Food food) {
+        ModelStubWithFood(Food food) {
             requireNonNull(food);
             this.food = food;
         }
 
         @Override
-        public boolean hasPerson(Food food) {
+        public boolean hasFood(Food food) {
             requireNonNull(food);
-            return this.food.isSamePerson(food);
+            return this.food.isSameFood(food);
         }
     }
 
     /**
      * A Model stub that always accept the food being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingFoodAdded extends ModelStub {
         final ArrayList<Food> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Food food) {
+        public boolean hasFood(Food food) {
             requireNonNull(food);
-            return personsAdded.stream().anyMatch(food::isSamePerson);
+            return personsAdded.stream().anyMatch(food::isSameFood);
         }
 
         @Override
-        public void addPerson(Food food) {
+        public void addFood(Food food) {
             requireNonNull(food);
             personsAdded.add(food);
         }
 
         @Override
-        public ReadOnlyMcGymmy getAddressBook() {
+        public ReadOnlyMcGymmy getMcGymmy() {
             return new McGymmy();
         }
     }

@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.model.person;
+package jimmy.mcgymmy.model.food;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<jimmy.mcgymmy.mo
     @Override
     public boolean test(jimmy.mcgymmy.model.food.Food food) {
         return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName().fullName, keyword));
     }
 
     @Override

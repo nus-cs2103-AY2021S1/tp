@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import jimmy.mcgymmy.commons.core.LogsCenter;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
  * Panel containing the list of persons.
