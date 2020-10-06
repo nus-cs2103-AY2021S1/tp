@@ -1,5 +1,6 @@
 package seedu.address.model.location;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -9,6 +10,15 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Location {
+
+    public static final String MESSAGE_CONSTRAINTS = "Location can take any values, and it should not be blank";
+
+    /*
+     * The first character of the location must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     private static int idCounter = 0;
     // Identity fields
     private final int id;
@@ -20,6 +30,7 @@ public class Location {
      */
     public Location(String name) {
         requireAllNonNull(name);
+        checkArgument(isValidLocation(name), MESSAGE_CONSTRAINTS);
         this.id = getIdCounter() + 1;
         this.name = name;
         idCounter++;
@@ -39,6 +50,13 @@ public class Location {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns true if a given string is a valid location.
+     */
+    public static boolean isValidLocation(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

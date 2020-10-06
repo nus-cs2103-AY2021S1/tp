@@ -72,7 +72,7 @@ public class RecipeBuilder {
      * @return a sample Recipe
      */
     public Recipe build() {
-        return new Recipe(id, ingredients, 0, "Test",
+        return new Recipe(id, ingredients, 0, "Apple",
                 quantity, description, false);
     }
 }

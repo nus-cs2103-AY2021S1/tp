@@ -87,8 +87,14 @@ public class Item {
         return isDeleted;
     }
 
+    /**
+     * Adds Recipe Id to item ids.
+     * @param recipeId recipe id connected to this item.
+     */
     public void addRecipeId(int recipeId) {
-        recipeIds.add(recipeId);
+        if (!recipeIds.contains(recipeId)) {
+            recipeIds.add(recipeId);
+        }
     }
 
     /**
@@ -99,13 +105,29 @@ public class Item {
         if (otherItem == this) {
             return true;
         }
-
         return otherItem != null
                 && otherItem.getName().equals(getName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both items have same name, and can be replaced.
+     * @param otherItem Other item to compare to this item.
+     * @return true if the item of this name can be replaced.
+     */
+    public boolean isReplacable(Item otherItem) {
+        return isSameItem(otherItem) && this.isDeleted();
+    }
+
+    /**
+     * Returns a deleted form of the same recipe.
+     */
+    public Item delete() {
+        return new Item(id, name, quantity, description, Set.copyOf(locationIds),
+                Set.copyOf(recipeIds), tags, true);
+    }
+
+    /**
+     * Returns true if both persons have the same name and data fields.
      * This defines a stronger notion of equality between two items.
      */
     @Override

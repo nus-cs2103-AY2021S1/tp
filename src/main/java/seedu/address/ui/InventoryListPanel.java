@@ -39,7 +39,7 @@ public class InventoryListPanel extends UiPart<Region> {
         protected void updateItem(Item item, boolean empty) {
             super.updateItem(item, empty);
 
-            if (empty || item == null) {
+            if (empty || item == null || item.isDeleted()) {
                 setGraphic(null);
                 setText(null);
             } else {
