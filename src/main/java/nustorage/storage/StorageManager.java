@@ -27,14 +27,14 @@ public class StorageManager implements Storage {
     private InventoryStorage inventoryStorage;
 
 
-    /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
-     */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        super();
-        this.addressBookStorage = addressBookStorage;
-        this.userPrefsStorage = userPrefsStorage;
-    }
+    // /**
+    //  * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+    //  */
+    // public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    //     super();
+    //     this.addressBookStorage = addressBookStorage;
+    //     this.userPrefsStorage = userPrefsStorage;
+    // }
 
 
     /**

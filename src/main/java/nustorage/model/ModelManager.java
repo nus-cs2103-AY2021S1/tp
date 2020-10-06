@@ -18,6 +18,7 @@ import nustorage.commons.core.index.Index;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
+import nustorage.storage.FinanceAccountStorage;
 
 
 /**
@@ -54,7 +55,7 @@ public class ModelManager implements Model {
 
 
     /**
-     * Initializes a ModelManagewr with the given financeAccount, inventory and userPrefs
+     * Initializes a ModelManager with the given financeAccount, inventory and userPrefs
      */
     public ModelManager(FinanceAccount financeAccount, Inventory inventory, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -75,8 +76,12 @@ public class ModelManager implements Model {
     }
 
 
+    // public ModelManager() {
+    //     this(new AddressBook(), new UserPrefs());
+    // }
+
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new FinanceAccount(), new Inventory(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
