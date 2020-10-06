@@ -5,6 +5,13 @@ import tp.cap5buddy.logic.parser.exception.ParseException;
 
 public class DeleteContactParser extends Parser {
 
+    /**
+     * Parses the user input to retrieve the necessary command arguments for the execution of a DeleteContactCommand.
+     *
+     * @param userInput User input.
+     * @return DeleteContactCommand to be executed.
+     * @throws ParseException If the user input could not be successfully parsed.
+     */
     public DeleteContactCommand parse(String userInput) throws ParseException {
         Tokenizer tokenizer = new Tokenizer(userInput,
                 PrefixList.CONTACT_INDEX_PREFIX);
