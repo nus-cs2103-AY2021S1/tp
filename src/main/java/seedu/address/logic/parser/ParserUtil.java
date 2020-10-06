@@ -9,9 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exercise.Exercise;
 import seedu.address.model.log.Address;
+import seedu.address.model.log.Comment;
 import seedu.address.model.log.Email;
 import seedu.address.model.log.Phone;
+import seedu.address.model.log.Rep;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.Name;
 
@@ -33,6 +36,42 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    //TODO: Implement this with calories
+    public static Exercise parseExercise(String exerciseName) throws ParseException {
+        Name name = parseName(exerciseName);
+        return new Exercise(name, 1);
+    }
+
+    /**
+     * Parses a {@code String comment} into a {@code Comment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code comment} is invalid.
+     */
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(comment)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        }
+        return new Comment(trimmedComment);
+    }
+
+    /**
+     * Parses a {@code String rep} into a {@code Rep}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rep} is invalid.
+     */
+    public static Rep parseRep(String rep) throws ParseException {
+        requireNonNull(rep);
+        String trimmedRep = rep.trim();
+        if (!Comment.isValidComment(rep)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        }
+        return new Rep(trimmedRep);
     }
 
     /**

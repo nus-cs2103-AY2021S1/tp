@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
         Log validLog = new LogBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validLog);
+        expectedModel.addLog(validLog);
 
         assertCommandSuccess(new AddCommand(validLog), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validLog), expectedModel);
@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Log logInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AddCommand(logInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(logInList), model, AddCommand.MESSAGE_DUPLICATE_LOG);
     }
 
 }

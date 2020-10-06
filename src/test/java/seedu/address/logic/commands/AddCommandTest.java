@@ -47,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validLog);
         ModelStub modelStub = new ModelStubWithPerson(validLog);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_LOG, () -> addCommand.execute(modelStub));
     }
 
     // TODO Edit function
@@ -110,7 +110,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Log log) {
+        public void addLog(Log log) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,27 +125,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Log log) {
+        public boolean hasLog(Log log) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Log target) {
+        public void deleteLog(Log target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Log target, Log editedLog) {
+        public void setLog(Log target, Log editedLog) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Log> getFilteredPersonList() {
+        public ObservableList<Log> getFilteredLogList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Log> predicate) {
+        public void updateFilteredLogList(Predicate<Log> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -162,7 +162,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Log log) {
+        public boolean hasLog(Log log) {
             requireNonNull(log);
             return this.log.isSameLog(log);
         }
@@ -175,13 +175,13 @@ public class AddCommandTest {
         final ArrayList<Log> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Log log) {
+        public boolean hasLog(Log log) {
             requireNonNull(log);
             return personsAdded.stream().anyMatch(log::isSameLog);
         }
 
         @Override
-        public void addPerson(Log log) {
+        public void addLog(Log log) {
             requireNonNull(log);
             personsAdded.add(log);
         }
