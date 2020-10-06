@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.CS1231S_HW;
+import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,9 +17,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Assignment;
+import seedu.address.model.person.exceptions.DuplicateAssignmentException;
+import seedu.address.testutil.AssignmentBuilder;
+
 
 public class AddressBookTest {
 
@@ -27,7 +28,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getAssignmentList());
     }
 
     @Test
@@ -43,56 +44,57 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+    public void resetData_withDuplicateAssignments_throwsDuplicateAssignmentException() {
+        // Two assignments with the same identity fields
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW).build();
+        List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
+        AddressBookStub newData = new AddressBookStub(newAssignments);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateAssignmentException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasAssignment_nullAssignment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasAssignment(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasAssignment_assignmentNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasAssignment(CS1231S_HW));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasAssignment_assignmentInAddressBook_returnsTrue() {
+        addressBook.addAssignment(CS1231S_HW);
+        assertTrue(addressBook.hasAssignment(CS1231S_HW));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+    public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addAssignment(CS1231S_HW);
+        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
+                .withModuleCode(VALID_MODULE_CODE_HW).build();
+        assertTrue(addressBook.hasAssignment(editedCs1231sHw));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getAssignmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getAssignmentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose assignments list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Assignment> assignments = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Assignment> assignments) {
+            this.assignments.setAll(assignments);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Assignment> getAssignmentList() {
+            return assignments;
         }
     }
 
