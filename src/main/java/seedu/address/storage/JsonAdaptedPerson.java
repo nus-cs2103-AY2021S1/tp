@@ -13,11 +13,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.tag.Tag;
 
@@ -28,7 +28,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
+    private final String title;
     private final String phone;
     private final String email;
     private final String status;
@@ -42,14 +42,14 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
             @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("address") String address,
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
             @JsonProperty("victims") List<JsonAdaptedVictim> victims,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
+        this.title = title;
         this.phone = phone;
         this.email = email;
         this.status = status;
@@ -73,7 +73,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().alphaNum;
+        title = source.getTitle().alphaNum;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         status = source.getStatus().name();
@@ -101,13 +101,13 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (title == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Title.isValidName(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Title modelTitle = new Title(title);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -158,7 +158,7 @@ class JsonAdaptedPerson {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
+        return new Person(modelTitle, modelPhone, modelEmail, modelStatus, modelAddress,
                 modelSuspects, modelVictims, modelTags);
 
     }

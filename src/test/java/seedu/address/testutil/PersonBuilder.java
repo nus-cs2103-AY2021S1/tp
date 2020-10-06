@@ -14,6 +14,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reference;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -23,13 +24,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_TITLE = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_STATUS = "active";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private Title title;
     private Phone phone;
     private Email email;
     private Status status;
@@ -43,7 +44,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
+        title = new Title(DEFAULT_TITLE);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         status = Status.createStatus(DEFAULT_STATUS);
@@ -58,7 +59,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
+        title = personToCopy.getTitle();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         status = personToCopy.getStatus();
@@ -72,8 +73,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+    public PersonBuilder withTitle(String title) {
+        this.title = new Title(title);
         return this;
     }
 
@@ -143,7 +144,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, status, documents, address, suspects, victims, tags);
+        return new Person(title, phone, email, status, address, suspects, victims, tags);
     }
 
 
