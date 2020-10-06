@@ -102,7 +102,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Stock target) {
+    public void deleteStock(Stock target) {
         stockBook.removeStock(target);
     }
 

@@ -35,7 +35,7 @@ public class SerialNumber {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getSerialNumber() {
+    public String getSerialNumberAsString() {
         return serialNumber;
     }
 

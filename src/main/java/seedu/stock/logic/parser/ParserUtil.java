@@ -2,6 +2,10 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -97,12 +101,24 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code serialNumber} is invalid.
      */
-    public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
+    public static Set<SerialNumber> parseSerialNumber(String serialNumber) throws ParseException {
         requireNonNull(serialNumber);
         String trimmedSerialNumber = serialNumber.trim();
-        if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
-            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        String[] withoutPrefix = trimmedSerialNumber.split("sn/");
+        //a valid array after splitting should be at length 2, index 0 being an empty string and 1
+        //being the actual serial number.
+        if (withoutPrefix.length < 2) {
+            throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        return new SerialNumber(trimmedSerialNumber);
+        Set<SerialNumber> serialNumberSet = new HashSet<>();
+
+        for (int i = 1; i < withoutPrefix.length; i++) {
+            String currentSerialNumberInString = withoutPrefix[i];
+            if (!SerialNumber.isValidSerialNumber(currentSerialNumberInString)) {
+                throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+            }
+            serialNumberSet.add(new SerialNumber(currentSerialNumberInString.trim()));
+        }
+        return serialNumberSet;
     }
 }
