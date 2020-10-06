@@ -1,13 +1,11 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.model.student.*;
-import seedu.address.model.student.admin.ClassVenue;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.School;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -31,9 +29,8 @@ public class EditStudentDescriptorBuilder {
         descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
-        descriptor.setMeetingLink(student.getMeetingLink());
-        descriptor.setClassVenue(student.getClassVenue());
-        descriptor.setTags(student.getTags());
+        descriptor.setSchool(student.getSchool());
+        descriptor.setYear(student.getYear());
     }
 
     /**
@@ -53,28 +50,18 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code School} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withEmail(String email) {
-        descriptor.setMeetingLink(new MeetingLink(email));
+    public EditStudentDescriptorBuilder withSchool(String school) {
+        descriptor.setSchool(new School(school));
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Year} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withAddress(String address) {
-        descriptor.setClassVenue(new ClassVenue(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditStudentDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditStudentDescriptorBuilder withYear(String year) {
+        descriptor.setYear(new Year(year));
         return this;
     }
 

@@ -1,8 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.student.admin.Admin;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.Admin;
 
 /**
  * A utility class to help with building Student objects.
@@ -13,17 +16,12 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
     public static final String DEFAULT_YEAR = "Year 4";
-    public static final String DEFAULT_FEE = "$50/hr";
-    public static final String DEFAULT_LAST_PAID_DATE = "30-09-2020";
-    public static final String DEFAULT_CLASS_VENUE = "Blk 60 Kent Ridge Rd #20-223";
-    public static final String DEFAULT_CLASS_TIME = "1 1500-1700";//means Monday 3pm - 5pm
-    public static final String DEAFULT_ADDITIONAL_DETAILS = "He's lazy";
 
     private Name name;
     private Phone phone;
-    public School school;
-    public Year year;
-    public Admin admin;
+    private School school;
+    private Year year;
+    private Admin admin;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -87,26 +85,26 @@ public class StudentBuilder {
     /**
      * Sets the {@code ClassTime} of the {@code Student} that we are building.
      */
-//    public StudentBuilder withClassTime(String classTime) {
-//        this.classTime = new ClassTime(classTime);
-//        return this;
-//    }
-//
-//    /**
-//     * Sets the {@code AdditionalDetails} of the {@code Student} that we are building.
-//     */
-//    public StudentBuilder withAdditionalDetails(String additionalDetails) {
-//        this.additionalDetails = new AdditionalDetails(additionalDetails);
-//        return this;
-//    }
-//
-//    /**
-//     * Sets the {@code Subject} of the {@code Student} that we are building.
-//     */
-//    public StudentBuilder withSubject(String subject) {
-//        this.subject = new Subject(subject);
-//        return this;
-//    }
+    //    public StudentBuilder withClassTime(String classTime) {
+    //        this.classTime = new ClassTime(classTime);
+    //        return this;
+    //    }
+    //
+    //    /**
+    //     * Sets the {@code AdditionalDetails} of the {@code Student} that we are building.
+    //     */
+    //    public StudentBuilder withAdditionalDetails(String additionalDetails) {
+    //        this.additionalDetails = new AdditionalDetails(additionalDetails);
+    //        return this;
+    //    }
+    //
+    //    /**
+    //     * Sets the {@code Subject} of the {@code Student} that we are building.
+    //     */
+    //    public StudentBuilder withSubject(String subject) {
+    //        this.subject = new Subject(subject);
+    //        return this;
+    //    }
 
     public Student build() {
         return new Student(name, phone, school, year, admin);

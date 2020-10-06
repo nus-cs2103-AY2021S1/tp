@@ -1,9 +1,5 @@
 package seedu.address.model.student;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-
 public class StudentTest {
 
     /* Student no tags already

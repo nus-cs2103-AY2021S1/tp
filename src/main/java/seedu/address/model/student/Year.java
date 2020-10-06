@@ -16,7 +16,7 @@ public class Year {
      * The first character of the year must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Digit}][\\p{Digit} ]*";
+    public static final String VALIDATION_REGEX = "[0-9]*$";
 
     public final int year;
 
