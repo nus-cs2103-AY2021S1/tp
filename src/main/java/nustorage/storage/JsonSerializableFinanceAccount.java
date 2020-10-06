@@ -20,7 +20,7 @@ import nustorage.model.record.FinanceRecord;
 @JsonRootName("financeAccount")
 class JsonSerializableFinanceAccount {
 
-    public static final String MESAGE_DUPLICATE_FINANCE_RECORD = "Finance record list contains duplicate records!";
+    public static final String MESSAGE_DUPLICATE_FINANCE_RECORD = "Finance record list contains duplicate records!";
 
     public final List<JsonAdaptedFinanceRecord> financeRecords = new ArrayList<>();
 
@@ -69,7 +69,7 @@ class JsonSerializableFinanceAccount {
         for (JsonAdaptedFinanceRecord jsonFinRecord : this.financeRecords) {
             FinanceRecord finRecord = jsonFinRecord.toModelType();
             if (finAccount.hasRecord(finRecord)) {
-                throw new IllegalValueException(MESAGE_DUPLICATE_FINANCE_RECORD);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_FINANCE_RECORD);
             }
             finAccount.addRecord(finRecord);
         }
