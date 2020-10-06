@@ -352,6 +352,19 @@ public class StringView {
         return new StringView(this.chars, Math.max(0, this.begin - n), this.end);
     }
 
+    /**
+     * Returns a lowercase version of this string view.
+     */
+    public StringView lowercase() {
+        return new StringView(this.toString().toLowerCase());
+    }
+
+    /**
+     * Returns an uppercase version of this string view.
+     */
+    public StringView uppercase() {
+        return new StringView(this.toString().toUpperCase());
+    }
 
     /**
      * Attempt to parse an integer from the contents of this string view.

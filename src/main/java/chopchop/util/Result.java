@@ -120,6 +120,26 @@ public class Result<T> extends Either<String, T> {
     }
 
     /**
+     * Flattens a result containing another result into just a single-layer result; this does not
+     * work recursively (eg. {@code flatten(Result<Result<Result<Int>>>)} will only give you
+     * {@code Result<Result<Int>>}.
+     *
+     * NB: I would have liked this to be a non-static method so you could call {@code expr.flatten()},
+     * but by the time you have an expression, generics are already type-erased so there is no way to
+     * check if the value type (T) is actually a Result or not.
+     *
+     * @param result the result to flatten
+     * @return       a Result with one level of nesting removed.
+     */
+    public static <T> Result<T> flatten(Result<Result<T>> result) {
+        if (result.isError()) {
+            return Result.error(result.getError());
+        } else {
+            return result.getValue();
+        }
+    }
+
+    /**
      * Creates a new {@code Result} containing the successfully-computed value.
      *
      * @param value the value
@@ -141,6 +161,18 @@ public class Result<T> extends Either<String, T> {
     }
 
     /**
+     * Creates a new {@code Result} with an error message describing why a value
+     * could not be computed. This version functions like {@code String::format}.
+     *
+     * @param message   the error message (format string)
+     * @param args      the variadic format args
+     * @return          a {@code Result} without a value, with the given error message.
+     */
+    public static <T> Result<T> error(String message, Object... args) {
+        return new Result<T>(null, String.format(message, args));
+    }
+
+    /**
      * Creates a new {@code Result} containing the successfully-computed value if it was
      * non-null, or an error result if it was null.
      *
@@ -150,5 +182,17 @@ public class Result<T> extends Either<String, T> {
      */
     public static <T> Result<T> ofNullable(T value, String error) {
         return new Result<T>(value, value == null ? error : null);
+    }
+
+    /**
+     * Creates a new {@code Result} containing the successfully-computed value if the
+     * optional contained a value, or the error message if it was empty.
+     *
+     * @param value the value-containing optional
+     * @param error the error message to use if the optional was empty
+     * @return      a result.
+     */
+    public static <T> Result<T> ofOptional(Optional<T> value, String error) {
+        return new Result<T>(value.orElse(null), value.isPresent() ? null : error);
     }
 }
