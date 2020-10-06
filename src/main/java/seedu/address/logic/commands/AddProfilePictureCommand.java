@@ -50,23 +50,18 @@ public class AddProfilePictureCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        int index = patientIndex.getZeroBased();
-        Patient patientToEdit = lastShownList.get(index);
+        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
 
-        Name patientNameObject = patientToEdit.getName();
-        String patientName = patientNameObject.toString();
-        String filePath = StorageManager.addPictureToProfile(patientName, profilePicture);
+        String filePath = StorageManager.addPictureToProfile(patientToEdit.getName().toString(), profilePicture);
         ProfilePicture profilePicture = new ProfilePicture(filePath);
 
         Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                                           patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture);
+                                            patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture);
 
         model.setPatient(patientToEdit, patientEdited);
 
-        Name editedPersonNameObject = patientEdited.getName();
-        String editedPersonName = editedPersonNameObject.toString();
-        CommandResult commandResult = new CommandResult(String.format(MESSAGE_ADD_PROFILE_PICTURE_SUCCESS,
-                                                                      editedPersonName));
-        return commandResult;
+        String editedPersonName = patientEdited.getName().toString();
+
+        return new CommandResult(String.format(MESSAGE_ADD_PROFILE_PICTURE_SUCCESS, editedPersonName));
     }
 }

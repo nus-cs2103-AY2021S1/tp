@@ -64,15 +64,16 @@ public class AddProfilePictureCommandTest {
         assertCommandFailure(addProfilePictureCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
+
     @Test
     public void execute_filteredList_success() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
-
+        Index index = Index.fromOneBased(model.getFilteredPatientList().size());
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Patient editedPatient = new PatientBuilder(patientInFilteredList)
                                     .withProfilePicture("f/data/stock_picture.png").build();
         AddProfilePictureCommand addProfilePictureCommand =
-                                 new AddProfilePictureCommand(profilePicture, INDEX_FIRST_PATIENT);
+                                 new AddProfilePictureCommand(profilePicture, index);
 
         String expectedMessage = String.format(AddProfilePictureCommand.MESSAGE_ADD_PROFILE_PICTURE_SUCCESS,
                                                editedPatient);
