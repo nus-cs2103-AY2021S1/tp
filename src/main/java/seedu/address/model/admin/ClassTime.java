@@ -1,4 +1,6 @@
-package seedu.address.model.student;
+package seedu.address.model.admin;
+
+import seedu.address.model.student.Name;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
