@@ -60,7 +60,7 @@ class JsonSerializableFinanceAccount {
 
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this finance account into the model's {@link FinanceAccount} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
