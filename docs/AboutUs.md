@@ -15,7 +15,7 @@ You can reach us at the email `e0417539@u.nus.edu`
 [[portfolio](team/wincenttjoi.md)]
 
 * Role: Developer
-* Responsibilities: Scheduling and tracking, Deliverables and Deadlines, Git Expert
+* Responsibilities: Scheduling and tracking, Deliverables and Deadlines
 
 ### Xing Yu
 

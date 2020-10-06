@@ -15,6 +15,11 @@ Given below are my contributions to the project.
   * Managed releases `v1.1` on GitHub
   * Planned and sketched UI Mock Up using Figma ([\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/63))
 
+* **Added help and preview window**: Help window and summary command window. <<Insert PR>>
+  * What it does: Allows users to have easy reference when they want to start learning OneShelf.
+  * Justification: As OneShelf have a relatively steep learning curve, it is good to have a good guidance at the
+  start to ensure that user can get accustomed to the features easily.
+
 * **Enhancements to existing features**:
   * Updated the GUI layout draft 1 (Pull requests [\#42](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/42),
     [\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/64/files))
@@ -22,7 +27,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * General: Initial Project Readme set up to match our project
   * User Guide:
-    * Added documentation for the features `clear` and `edit`
+    * Added documentation for the features `clear`, `edit` and `help`
   * Developer Guide:
     * Added Glossary
 
