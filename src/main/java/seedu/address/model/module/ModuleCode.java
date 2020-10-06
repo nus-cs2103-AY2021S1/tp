@@ -54,6 +54,4 @@ public class ModuleCode {
     public int hashCode() {
         return moduleCode.hashCode();
     }
-
 }
-

@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        modules = new ModuleList();
     }
 
     public AddressBook() {}
@@ -93,6 +97,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes the module with the specified {@moduleCode module code} from this {@code AddressBook}.
+     * Module with the {@code moduleCode} must exist in the address book.
+     */
+    public void removeModule(ModuleCode moduleCode) {
+        modules.removeModuleWithCode(moduleCode);
+    }
+
     //// util methods
 
     @Override
@@ -106,6 +118,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public ModuleList getModuleList() {
+        // Currently no support for "contains" method for observable list
+        return modules;
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

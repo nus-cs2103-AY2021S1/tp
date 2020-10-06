@@ -37,6 +37,14 @@ public class ModuleList implements Iterable<Module> {
     }
 
     /**
+     * Returns true if the list contains a module with the given module code.
+     */
+    public boolean containsModuleCode(ModuleCode moduleCodeToCheck) {
+        requireNonNull(moduleCodeToCheck);
+        return internalList.stream().anyMatch(module -> module.hasModuleCode(moduleCodeToCheck));
+    }
+
+    /**
      * Adds a module to the list.
      * The module must not already exist in the list.
      */
@@ -77,6 +85,20 @@ public class ModuleList implements Iterable<Module> {
         if (!internalList.remove(toRemove)) {
             throw new ModuleNotFoundException();
         }
+    }
+
+    /**
+     * Removes the module with the equivalent module code from the list.
+     * The module with the module code must exist.
+     */
+    public void removeModuleWithCode(ModuleCode toRemove) {
+        requireNonNull(toRemove);
+        int indexOfModuleToBeRemoved = 0;
+        while (!internalList.get(indexOfModuleToBeRemoved).hasModuleCode(toRemove)
+                && indexOfModuleToBeRemoved < internalList.size()) {
+            indexOfModuleToBeRemoved++;
+        }
+        internalList.remove(indexOfModuleToBeRemoved);
     }
 
     public void setModules(ModuleList replacement) {
