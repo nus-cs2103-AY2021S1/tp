@@ -9,12 +9,11 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-import javafx.collections.ObservableList;
 import seedu.stock.commons.util.CollectionUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -25,7 +24,6 @@ import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
-import seedu.stock.model.stock.predicates.SerialNumberContainsKeywordsPredicate;
 
 public class UpdateCommand extends Command {
 
@@ -78,30 +76,62 @@ public class UpdateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Stock> lastShownInventory = model.getFilteredStockList();
+        List<Stock> lastShownStocks = model.getFilteredStockList();
 
-        SerialNumber index = updateStockDescriptor.getSerialNumber();
-        String[] serial = new String[]{index.getSerialNumberAsString()};
-        Predicate<Stock> findStock = new SerialNumberContainsKeywordsPredicate(Arrays.asList(serial));
-        model.updateFilteredStockList(findStock);
-        ObservableList<Stock> filteredStockList = model.getFilteredStockList();
+        List<SerialNumber> indexes = updateStockDescriptor.getSerialNumbers();
+        List<String> serials = indexes.stream().map((serial) -> serial.getSerialNumberAsString().trim())
+                .collect(Collectors.toCollection(ArrayList::new));
+        List<Stock> stocksToUpdate = new ArrayList<>();
 
-        // Stock with given serial number does not exist
-        if (filteredStockList.size() == 0) {
+        // FInd stocks to be updated
+        for (Stock currentStock : lastShownStocks) {
+            String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
+            boolean anyMatches = false;
+
+            for (String currentSerialNumber : serials) {
+                if (currentSerialNumber.equals(currentStockSerialNumber)) {
+                    anyMatches = true;
+                }
+            }
+
+            if (anyMatches) {
+                stocksToUpdate.add(currentStock);
+            }
+        }
+
+        // Some serial numbers do not exist
+        if (serials.size() != stocksToUpdate.size()) {
             throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        Stock stockToUpdate = model.getFilteredStockList().get(0);
-        Stock updatedStock = createUpdatedStock(stockToUpdate, updateStockDescriptor);
+        // Update stocks
+        for (Stock stockToUpdate: stocksToUpdate) {
+            Stock updatedStock = createUpdatedStock(stockToUpdate, updateStockDescriptor);
 
-        if (!stockToUpdate.isSameStock(updatedStock) && model.hasStock(updatedStock)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STOCK);
+            if (!stockToUpdate.isSameStock(updatedStock) && model.hasStock(updatedStock)) {
+                throw new CommandException(MESSAGE_DUPLICATE_STOCK);
+            }
+
+            model.setStock(stockToUpdate, updatedStock);
         }
 
-        model.setStock(stockToUpdate, updatedStock);
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, updatedStock));
+        return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, stocksAsString(stocksToUpdate)));
+    }
+
+    /**
+     * Displays the list of stocks in a clearer view, with each subsequent stock moved to the next line.
+     *
+     * @param stockList The list of stocks to be converted to String.
+     * @return The String listing all stocks in the list.
+     */
+    private String stocksAsString(List<Stock> stockList) {
+        String stocksAsString = "";
+        for (int i = 0; i < stockList.size(); i++) {
+            stocksAsString += "\n" + stockList.get(i).toString();
+        }
+        return stockList.size() == 0 ? "No stocks updated" : stocksAsString;
     }
 
     /**
@@ -149,7 +179,7 @@ public class UpdateCommand extends Command {
 
         // Identity fields
         private Name name;
-        private SerialNumber serialNumber;
+        private List<SerialNumber> serialNumbers;
 
         // Data fields
         private Source source;
@@ -165,7 +195,7 @@ public class UpdateCommand extends Command {
          */
         public UpdateStockDescriptor(UpdateStockDescriptor toCopy) {
             setName(toCopy.name);
-            setSerialNumber(toCopy.serialNumber);
+            setSerialNumbers(toCopy.serialNumbers);
             setSource(toCopy.source);
             setQuantity(toCopy.quantity);
             setLocation(toCopy.location);
@@ -177,7 +207,7 @@ public class UpdateCommand extends Command {
          * @return A boolean value indicating if an update exists.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, serialNumber, source, quantity, location);
+            return CollectionUtil.isAnyNonNull(name, serialNumbers, source, quantity, location);
         }
 
         public void setName(Name name) {
@@ -188,14 +218,14 @@ public class UpdateCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setSerialNumber(SerialNumber serialNumber) {
-            this.serialNumber = serialNumber;
+        public void setSerialNumbers(List<SerialNumber> serialNumbers) {
+            this.serialNumbers = serialNumbers;
         }
 
-        public SerialNumber getSerialNumber() {
-            assert serialNumber != null;
+        public List<SerialNumber> getSerialNumbers() {
+            assert serialNumbers != null;
 
-            return serialNumber;
+            return serialNumbers;
         }
 
         public void setSource(Source source) {
@@ -246,7 +276,7 @@ public class UpdateCommand extends Command {
             UpdateStockDescriptor castedOther = (UpdateStockDescriptor) other;
 
             return getName().equals(castedOther.getName())
-                    && getSerialNumber().equals(castedOther.getSerialNumber())
+                    && getSerialNumbers().equals(castedOther.getSerialNumbers())
                     && getSource().equals(castedOther.getSource())
                     && getQuantity().equals(castedOther.getQuantity())
                     && getLocation().equals(castedOther.getLocation())

@@ -10,6 +10,10 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -46,7 +50,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         UpdateStockDescriptor updateStockDescriptor = new UpdateStockDescriptor();
 
         // Store the serial number provided
-        updateStockDescriptor.setSerialNumber(new SerialNumber(argMultimap.getValue(PREFIX_SERIALNUMBER).get()));
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIALNUMBER);
+        ArrayList<SerialNumber> serialNumbers = keywords.stream().map((keyword) -> new SerialNumber(keyword))
+                .collect(Collectors.toCollection(ArrayList::new));
+        updateStockDescriptor.setSerialNumbers(serialNumbers);
 
         // Update name with new name provided
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
