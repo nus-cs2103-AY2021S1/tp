@@ -5,8 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleList;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -88,10 +89,22 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered module list */
-    ModuleList getModuleList();
+    UniqueModuleList getModuleList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    boolean hasModule(Module module);
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in the address book.
+     */
+    void addModule(Module module);
+
 }

@@ -19,7 +19,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleList;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleCodeBuilder;
@@ -64,12 +64,16 @@ class DelModCommandTest {
 
     @Test
     void execute_deleteExistentModuleCode_deleteSuccess() throws CommandException {
+        String expectedSuccessMessage1 = String.format(DelModCommand.MESSAGE_SUCCESS, MODULE_CODE_CS2101);
+        String expectedSuccessMessage2 = String.format(DelModCommand.MESSAGE_SUCCESS, MODULE_CODE_CS2102);
+        String expectedSuccessMessage3 = String.format(DelModCommand.MESSAGE_SUCCESS, MODULE_CODE_CS2103);
+
         CommandResult commandResult1 = new DelModCommand(MODULE_CODE_CS2101).execute(modelStubWithModules);
-        assertEquals(DelModCommand.MESSAGE_SUCCESS, commandResult1.getFeedbackToUser());
+        assertEquals(expectedSuccessMessage1, commandResult1.getFeedbackToUser());
         CommandResult commandResult2 = new DelModCommand(MODULE_CODE_CS2102).execute(modelStubWithModules);
-        assertEquals(DelModCommand.MESSAGE_SUCCESS, commandResult2.getFeedbackToUser());
+        assertEquals(expectedSuccessMessage2, commandResult2.getFeedbackToUser());
         CommandResult commandResult3 = new DelModCommand(MODULE_CODE_CS2103).execute(modelStubWithModules);
-        assertEquals(DelModCommand.MESSAGE_SUCCESS, commandResult3.getFeedbackToUser());
+        assertEquals(expectedSuccessMessage3, commandResult3.getFeedbackToUser());
     }
 
 
@@ -146,12 +150,22 @@ class DelModCommandTest {
         }
 
         @Override
-        public ModuleList getModuleList() {
+        public UniqueModuleList getModuleList() {
             return null;
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -177,7 +191,7 @@ class DelModCommandTest {
         }
 
         @Override
-        public ModuleList getModuleList() {
+        public UniqueModuleList getModuleList() {
             return moduleList;
         }
         @Override
@@ -185,7 +199,7 @@ class DelModCommandTest {
             return new AddressBook();
         }
     }
-    private class ModuleListStub extends ModuleList {
+    private class ModuleListStub extends UniqueModuleList {
         private ArrayList<Module> moduleList = new ArrayList<>();
         public void add(Module ... modules) {
             for (Module module : modules) {

@@ -11,8 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleList;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final ModuleList modules;
+    private final UniqueModuleList modules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -121,6 +122,20 @@ public class ModelManager implements Model {
         requireNonNull(targetCode);
         addressBook.removeModule(targetCode);
     }
+
+    /**
+     * Checks if addressBook has the given (@code Module}
+     */
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return addressBook.hasModule(module);
+    }
+
+    @Override
+    public void addModule(Module module) {
+        addressBook.addModule(module);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -136,7 +151,7 @@ public class ModelManager implements Model {
      * Returns a modifiable view of the list of {@code Module}
      */
     @Override
-    public ModuleList getModuleList() {
+    public UniqueModuleList getModuleList() {
         return modules;
     }
 
