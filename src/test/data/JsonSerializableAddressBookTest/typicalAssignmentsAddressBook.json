@@ -1,0 +1,39 @@
+{
+  "_comment": "AddressBook save file which contains the same Assignment values as in TypicalAssignments#getTypicalAddressBook()",
+  "assignments" : [ {
+    "name" : "CS1231S Homework",
+    "deadline" : "01-01-2020 1800",
+    "moduleCode" : "CS1231S",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "CS2103T Tutorial",
+    "deadline" : "02-03-2020 2359",
+    "moduleCode" : "CS2103T",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "CS2106 Lab",
+    "deadline" : "12-12-2020 1200",
+    "moduleCode" : "CS2106",
+    "tagged" : [ ]
+  }, {
+    "name" : "CS2106 Tutorial Quiz",
+    "deadline" : "03-03-2020 0300",
+    "moduleCode" : "CS2106",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "IS1103 Mission",
+    "deadline" : "12-10-2020 1900",
+    "moduleCode" : "IS1103",
+    "tagged" : [ ]
+  }, {
+    "name" : "Peer review",
+    "deadline" : "10-10-2020 1700",
+    "moduleCode" : "CS2101",
+    "tagged" : [ ]
+  }, {
+    "name" : "Oral presentation",
+    "deadline" : "03-12-2020 0400",
+    "moduleCode" : "CS2101",
+    "tagged" : [ ]
+  } ]
+}

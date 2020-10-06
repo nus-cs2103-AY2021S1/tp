@@ -1,10 +1,10 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
+  "assignments": [ {
+    "name": "Valid Assignment",
     "deadline": "01-01-2020 1800",
     "moduleCode": "CS2103T"
   }, {
-    "name": "Person With Invalid Deadline Field",
+    "name": "Assignment With Invalid Deadline Field",
     "deadline": "99-99-9999 9999",
     "moduleCode": "CS2103T"
   } ]

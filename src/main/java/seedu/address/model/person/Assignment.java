@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents an Assignment in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Assignment {
 
     // Identity fields
     private final Name name;
@@ -26,7 +26,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Set<Tag> tags) {
         requireAllNonNull(name, deadline, moduleCode, tags);
         this.name = name;
         this.deadline = deadline;
@@ -55,22 +55,22 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both assignments of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two assignments.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameAssignment(Assignment otherAssignment) {
+        if (otherAssignment == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getDeadline().equals(getDeadline()));
+        return otherAssignment != null
+                && otherAssignment.getName().equals(getName())
+                && (otherAssignment.getDeadline().equals(getDeadline()));
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both assignments have the same identity and data fields.
+     * This defines a stronger notion of equality between two assignments.
      */
     @Override
     public boolean equals(Object other) {
@@ -78,15 +78,15 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Assignment)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getDeadline().equals(getDeadline())
-                && otherPerson.getModuleCode().equals(getModuleCode())
-                && otherPerson.getTags().equals(getTags());
+        Assignment otherAssignment = (Assignment) other;
+        return otherAssignment.getName().equals(getName())
+                && otherAssignment.getDeadline().equals(getDeadline())
+                && otherAssignment.getModuleCode().equals(getModuleCode())
+                && otherAssignment.getTags().equals(getTags());
     }
 
     @Override

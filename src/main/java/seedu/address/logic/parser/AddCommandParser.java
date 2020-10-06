@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Assignment;
 import seedu.address.model.person.Deadline;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,9 +42,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, deadline, moduleCode, tagList);
+        Assignment assignment = new Assignment(name, deadline, moduleCode, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(assignment);
     }
 
     /**
