@@ -93,6 +93,7 @@ public class UniqueItemListTest {
      * Tests that exception is thrown when attempting to
      * remove item which does not exist.
      */
+
     @Test
     public void remove_throwsItemNotFoundException() {
         UniqueItemList uList = new UniqueItemList();
@@ -134,6 +135,7 @@ public class UniqueItemListTest {
 
         assertThrows(DuplicateItemException.class, () -> uList.setItems(arr));
     }
+
     @Test
     public void equals() {
         UniqueItemList uList = new UniqueItemList();

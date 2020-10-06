@@ -19,12 +19,12 @@ public class Ingredient extends Pair<Integer, Integer> {
     }
 
     /**
-     * Utilty function to check if itemId is equivalent to contained id.
-     * @param id identity key
-     * @return boolean check that the id is the item
+     * Utilty function to check if itemId is equivalent to contained key of Ingredient.
+     * @param itemId identity key of item
+     * @return boolean check whether the key stored in this ingredient is the queried item.
      */
-    public boolean isItem(int id) {
-        return getKey().equals(id);
+    public boolean isItem(int itemId) {
+        return getKey().equals(itemId);
     }
 
     @Override

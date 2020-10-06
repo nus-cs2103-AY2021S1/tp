@@ -36,6 +36,7 @@ public class UniqueItemList implements Iterable<Item> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameItem);
     }
+
     /**
      * Adds a item to the list.
      * The item must not already exist in the list.
@@ -87,9 +88,11 @@ public class UniqueItemList implements Iterable<Item> {
      */
     public void delete(Item toDelete) {
         requireNonNull(toDelete);
+
         if (!internalList.contains(toDelete)) {
             throw new ItemNotFoundException();
         }
+
         Item updatedItem = toDelete.delete();
         remove(toDelete);
         add(updatedItem);
