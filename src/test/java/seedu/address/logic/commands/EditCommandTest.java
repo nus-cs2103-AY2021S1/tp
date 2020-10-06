@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExpenseAtIndex;
+import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
-import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +57,8 @@ public class EditCommandTest {
         Expense editedExpense = expenseInList.withDescription(VALID_DESCRIPTION_BOB).withAmount(VALID_AMOUNT_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
+        EditCommand.EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_BOB)
                 .withAmount(VALID_AMOUNT_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastExpense, descriptor);
 
@@ -86,7 +87,8 @@ public class EditCommandTest {
         showExpenseAtIndex(model, INDEX_FIRST_EXPENSE);
 
         Expense expenseInFilteredList = model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased());
-        Expense editedExpense = new ExpenseBuilder(expenseInFilteredList).withDescription(VALID_DESCRIPTION_BOB).build();
+        Expense editedExpense = new ExpenseBuilder(expenseInFilteredList)
+                .withDescription(VALID_DESCRIPTION_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_EXPENSE,
                 new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB).build());
 

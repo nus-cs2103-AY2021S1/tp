@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExpenseAtIndex;
+import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXPENSE;
-import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,8 @@ public class RemarkCommandTest {
         Expense firstExpense = model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased());
         Expense editedExpense = new ExpenseBuilder(firstExpense).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(editedExpense.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EXPENSE,
+                new Remark(editedExpense.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedExpense);
 
@@ -68,10 +69,12 @@ public class RemarkCommandTest {
         showExpenseAtIndex(model, INDEX_FIRST_EXPENSE);
 
         Expense firstExpense = model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased());
-        Expense editedExpense = new ExpenseBuilder(model.getFilteredExpenseList().get(INDEX_FIRST_EXPENSE.getZeroBased()))
+        Expense editedExpense = new ExpenseBuilder(model.getFilteredExpenseList()
+                .get(INDEX_FIRST_EXPENSE.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(editedExpense.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_EXPENSE,
+                new Remark(editedExpense.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedExpense);
 
