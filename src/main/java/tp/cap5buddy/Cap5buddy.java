@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.LogicManager;
-import tp.cap5buddy.logic.commands.ResultCommand;
+import tp.cap5buddy.logic.commands.CommandResult;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 import tp.cap5buddy.modules.Module;
@@ -51,11 +52,11 @@ public class Cap5buddy {
             System.out.println(e.getMessage());
             moduleList = new ModuleList(new ArrayList<Module>());
         }
-        TodoList todoList = new TodoList();
-        LogicManager lm = new LogicManager(storage, moduleList, todoList);
+        LogicManager lm = new LogicManager(storage, moduleList, new ContactList(new ArrayList<>()),
+                new TodoList());
         while (!isExit) {
             String current = ui.getInput();
-            ResultCommand res = lm.execute(current);
+            CommandResult res = lm.execute(current);
             isExit = res.getExit();
             ui.printResult(res.getMessage());
         }
