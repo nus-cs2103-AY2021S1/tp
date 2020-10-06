@@ -33,6 +33,7 @@ public class ItemBuilder {
         quantity = new Quantity(DEFAULT_QUANTITY);
         supplier = new Supplier(DEFAULT_SUPPLIER);
         tags = new HashSet<>();
+        maxQuantity = null;
     }
 
     /**
@@ -43,6 +44,7 @@ public class ItemBuilder {
         quantity = itemToCopy.getQuantity();
         supplier = itemToCopy.getSupplier();
         tags = new HashSet<>(itemToCopy.getTags());
+        maxQuantity = itemToCopy.getMaxQuantity().orElse(null);
     }
 
     /**

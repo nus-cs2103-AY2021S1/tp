@@ -93,13 +93,14 @@ public class Item {
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals(getQuantity())
                 && otherItem.getSupplier().equals(getSupplier())
-                && otherItem.getTags().equals(getTags());
+                && otherItem.getTags().equals(getTags())
+                && otherItem.getMaxQuantity().equals(getMaxQuantity());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, supplier, tags);
+        return Objects.hash(name, quantity, supplier, tags, maxQuantity);
     }
 
     @Override

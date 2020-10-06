@@ -1,7 +1,12 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalItems.CHICKEN;
+import static seedu.address.testutil.TypicalItems.LAMB;
+import static seedu.address.testutil.TypicalItems.TUNA;
+import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -55,32 +60,32 @@ public class JsonInventoryBookStorageTest {
     public void readInventoryBook_invalidAndValidItemInventoryBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readInventoryBook("invalidAndValidItemInventoryBook.json"));
     }
-    //
-    //    @Test
-    //    public void readAndSaveInventoryBook_allInOrder_success() throws Exception {
-    //        Path filePath = testFolder.resolve("TempInventoryBook.json");
-    //        InventoryBook original = getTypicalInventoryBook();
-    //        JsonInventoryBookStorage jsonInventoryBookStorage = new JsonInventoryBookStorage(filePath);
-    //
-    //        // Save in new file and read back
-    //        jsonInventoryBookStorage.saveInventoryBook(original, filePath);
-    //        ReadOnlyInventoryBook readBack = jsonInventoryBookStorage.readInventoryBook(filePath).get();
-    //        assertEquals(original, new InventoryBook(readBack));
-    //
-    //        // Modify data, overwrite exiting file, and read back
-    //        original.addItem(TUNA);
-    //        original.removeItem(CHICKEN);
-    //        jsonInventoryBookStorage.saveInventoryBook(original, filePath);
-    //        readBack = jsonInventoryBookStorage.readInventoryBook(filePath).get();
-    //        assertEquals(original, new InventoryBook(readBack));
-    //
-    //        // Save and read without specifying file path
-    //        original.addItem(LAMB);
-    //        jsonInventoryBookStorage.saveInventoryBook(original); // file path not specified
-    //        readBack = jsonInventoryBookStorage.readInventoryBook().get(); // file path not specified
-    //        assertEquals(original, new InventoryBook(readBack));
-    //
-    //    }
+
+    @Test
+    public void readAndSaveInventoryBook_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempInventoryBook.json");
+        InventoryBook original = getTypicalInventoryBook();
+        JsonInventoryBookStorage jsonInventoryBookStorage = new JsonInventoryBookStorage(filePath);
+
+        // Save in new file and read back
+        jsonInventoryBookStorage.saveInventoryBook(original, filePath);
+        ReadOnlyInventoryBook readBack = jsonInventoryBookStorage.readInventoryBook(filePath).get();
+        assertEquals(original, new InventoryBook(readBack));
+
+        // Modify data, overwrite exiting file, and read back
+        original.addItem(TUNA);
+        original.removeItem(CHICKEN);
+        jsonInventoryBookStorage.saveInventoryBook(original, filePath);
+        readBack = jsonInventoryBookStorage.readInventoryBook(filePath).get();
+        assertEquals(original, new InventoryBook(readBack));
+
+        // Save and read without specifying file path
+        original.addItem(LAMB);
+        jsonInventoryBookStorage.saveInventoryBook(original); // file path not specified
+        readBack = jsonInventoryBookStorage.readInventoryBook().get(); // file path not specified
+        assertEquals(original, new InventoryBook(readBack));
+
+    }
 
     @Test
     public void saveInventoryBook_nullInventoryBook_throwsNullPointerException() {

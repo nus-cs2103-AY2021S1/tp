@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +48,7 @@ public class EditItemDescriptorTest {
         assertFalse(DESC_CHICKEN.equals(editedChicken));
 
         // different tags -> returns false
-        editedChicken = new EditItemDescriptorBuilder(DESC_CHICKEN).withTags(VALID_TAG_MEAT).build();
+        editedChicken = new EditItemDescriptorBuilder(DESC_CHICKEN).withTags(VALID_TAG_DUCK).build();
         assertFalse(DESC_CHICKEN.equals(editedChicken));
     }
 }
