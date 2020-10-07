@@ -39,7 +39,7 @@ public interface Logic {
     ObservableList<Food> getFilteredFoodList();
 
     /** Returns an unmodifiable view of the filtered list of foods */
-    ObservableList<OrderItem> getFilteredOrderList();
+    ObservableList<OrderItem> getFilteredOrderItemList();
 
     /**
      * Returns the user prefs' address book file path.

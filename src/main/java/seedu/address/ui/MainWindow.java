@@ -125,8 +125,8 @@ public class MainWindow extends UiPart<Stage> {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
 
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
-        orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+        //orderListPanel = new OrderListPanel(logic.getFilteredOrderItemList());
+        //orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -168,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
     void displayMenu(boolean bool) {
         setPersonListDisplay(!bool);
         setFoodListDisplay(bool);
-        setOrderListDisplay(bool);
+        //setOrderListDisplay(bool);
     }
 
 

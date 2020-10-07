@@ -20,8 +20,6 @@ public interface Model {
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
     Predicate<OrderItem> PREDICATE_SHOW_ALL_ORDERITEMS = unused -> true;
 
-
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -130,27 +128,27 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code orderManager}.
      */
-    void setOrderManager(ReadOnlyOrderManager orderManager, int index);
+    void setOrderManager(ReadOnlyOrderManager orderManager);
 
     /** Returns the MenuManager at the ith index */
-    ReadOnlyOrderManager getOrderManager(int index);
+    ReadOnlyOrderManager getOrderManager();
 
     /**
      * Returns true if an orderItem with the same identity as {@code orderItem} exists in the address book.
      */
-    boolean hasOrderItem(OrderItem orderItem, int index);
+    boolean hasOrderItem(OrderItem orderItem);
 
     /**
      * Deletes the given orderItem.
      * The orderItem must exist in the order manager.
      */
-    void deleteOrderItem(OrderItem target, int index);
+    void deleteOrderItem(OrderItem target);
 
     /**
      * Adds the given orderItem.
-     * {@code orderItem} if orderItem exists in order manager, add to the current quantity.
+     * {@code orderItem} if orderItem exists in order manageradd to the current quantity.
      */
-    void addOrderItem(OrderItem orderItem, int index);
+    void addOrderItem(OrderItem orderItem);
 
     /**
      * Replaces the given OrderItem {@code target} with {@code editedOrderItem}.
@@ -158,7 +156,7 @@ public interface Model {
      * The OrderItem identity of {@code editedOrderItem}
      * must not be the same as another existing orderItem in the address book.
      */
-    void setOrderItem(OrderItem target, OrderItem editedOrderItem, int index);
+    void setOrderItem(OrderItem target, OrderItem editedOrderItem);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -178,13 +176,13 @@ public interface Model {
      */
     void updateFilteredFoodList(Predicate<Food> predicate, int index);
 
-    /** Returns an unmodifiable view of the filtered order list at the corresponding index */
-    ObservableList<OrderItem> getFilteredOrderList(int index);
+    /** Returns an unmodifiable view of the filtered orderItem list at the corresponding index */
+    ObservableList<OrderItem> getFilteredOrderItemList();
 
     /**
-     * Updates the filter of the filtered order list at the
+     * Updates the filter of the filtered orderItem list at the
      * corresponding index to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredOrderList(Predicate<OrderItem> predicate, int index);
+    void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
 }

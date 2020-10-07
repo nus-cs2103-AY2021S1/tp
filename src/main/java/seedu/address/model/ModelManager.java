@@ -34,7 +34,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private FilteredList<Food> filteredFoods;
-    private FilteredList<OrderItem> filteredOrder;
+    private FilteredList<OrderItem> filteredOrderItems;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -125,7 +125,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(menuManagerFolderPath);
     }
 
-
     //=========== AddressBook ================================================================================
 
     @Override
@@ -162,6 +161,8 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== MenuManager ================================================================================
+
     @Override
     public void setMenuManager(ReadOnlyMenuManager menuManager, int index) {
         this.menuManagers.get(index).resetData(menuManager);
@@ -192,39 +193,40 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Food target, Food editedFood, int index) {
         requireAllNonNull(target, editedFood);
-
         menuManagers.get(index).setFood(target, editedFood);
     }
 
+    //=========== OrderManager ================================================================================
+
     @Override
-    public void setOrderManager(ReadOnlyOrderManager orderManager, int index) {
+    public void setOrderManager(ReadOnlyOrderManager orderManager) {
         this.orderManager.resetData(orderManager);
     }
 
     @Override
-    public ReadOnlyOrderManager getOrderManager(int index) {
+    public ReadOnlyOrderManager getOrderManager() {
         return orderManager;
     }
 
     @Override
-    public boolean hasOrderItem(OrderItem orderItem, int index) {
+    public boolean hasOrderItem(OrderItem orderItem) {
         requireNonNull(orderItem);
         return orderManager.hasOrderItem(orderItem);
     }
 
     @Override
-    public void deleteOrderItem(OrderItem target, int index) {
+    public void deleteOrderItem(OrderItem target) {
         orderManager.removeOrderItem(target);
     }
 
     @Override
-    public void addOrderItem(OrderItem orderItem, int index) {
+    public void addOrderItem(OrderItem orderItem) {
         orderManager.addOrderItem(orderItem);
-        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERITEMS, index);
+        updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
     }
 
     @Override
-    public void setOrderItem(OrderItem target, OrderItem editedOrderItem, int index) {
+    public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
         requireAllNonNull(target, editedOrderItem);
         orderManager.setOrderItem(target, editedOrderItem);
     }
@@ -246,6 +248,8 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Food List Accessors =============================================================
+
     @Override
     public ObservableList<Food> getFilteredFoodList(int index) {
         if (filteredFoods == null) {
@@ -259,19 +263,20 @@ public class ModelManager implements Model {
         filteredFoods = new FilteredList<>(this.menuManagers.get(index).getFoodList());;
     }
 
+    //=========== Filtered OrderItem List Accessors =============================================================
+
     @Override
-    public ObservableList<OrderItem> getFilteredOrderList(int index) {
-        if (filteredOrder == null) {
-            updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERITEMS, index);
+    public ObservableList<OrderItem> getFilteredOrderItemList() {
+        if (filteredOrderItems == null) {
+            updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
         }
-        return filteredOrder;
+        return filteredOrderItems;
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<OrderItem> predicate, int index) {
-        filteredOrder = new FilteredList<>(this.orderManager.getOrderItemList());;
+    public void updateFilteredOrderItemList(Predicate<OrderItem> predicateindex) {
+        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());;
     }
-
 
     @Override
     public boolean equals(Object obj) {

@@ -153,43 +153,43 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setOrderManager(ReadOnlyOrderManager orderManager, int index) {
+        public void setOrderManager(ReadOnlyOrderManager orderManager) {
 
         };
 
         @Override
-        public ReadOnlyOrderManager getOrderManager(int index) {
+        public ReadOnlyOrderManager getOrderManager() {
             return null;
         };
 
         @Override
-        public boolean hasOrderItem(OrderItem orderItem, int index) {
+        public boolean hasOrderItem(OrderItem orderItem) {
             return false;
         };
 
         @Override
-        public void deleteOrderItem(OrderItem target, int index){
+        public void deleteOrderItem(OrderItem target){
 
         };
 
         @Override
-        public void addOrderItem(OrderItem orderItem, int index){
+        public void addOrderItem(OrderItem orderItem){
 
         };
 
         @Override
-        public void setOrderItem(OrderItem target, OrderItem editedOrderItem, int index){
+        public void setOrderItem(OrderItem target, OrderItem editedOrderItem){
 
         };
 
 
         @Override
-        public ObservableList<OrderItem> getFilteredOrderList(int index) {
+        public ObservableList<OrderItem> getFilteredOrderItemList() {
             return null;
         };
 
         @Override
-        public void updateFilteredOrderList(Predicate<OrderItem> predicate, int index){
+        public void updateFilteredOrderItemList(Predicate<OrderItem> predicate){
 
         };
 
