@@ -35,11 +35,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyMcGymmy getSampleMcGymmy() {
-        McGymmy sampleAb = new McGymmy();
+        McGymmy sampleMG = new McGymmy();
         for (Food sampleFood : getSamplePersons()) {
-            sampleAb.addFood(sampleFood);
+            sampleMG.addFood(sampleFood);
         }
-        return sampleAb;
+        return sampleMG;
     }
 
     /**
