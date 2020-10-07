@@ -1,11 +1,18 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
+import seedu.address.model.meeting.Date;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,6 +47,13 @@ public class SampleDataUtil {
         };
     }
 
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[] {
+                new Meeting(new MeetingName("CS2103"), new Date("2020-09-20"), new Time("10:00"),
+                        getPersonSet("Alex Yeoh", "David Li"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -57,4 +71,24 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static ReadOnlyMeetingBook getSampleMeetingBook() {
+        MeetingBook sampleMb = new MeetingBook();
+        for (Meeting sampleMeeting : getSampleMeetings()) {
+            sampleMb.addMeeting(sampleMeeting);
+        }
+        return sampleMb;
+    }
+
+    public static Set<Person> getPersonSet(String... strings) {
+        Set<Person> persons = new HashSet<>();
+        for (String string : strings) {
+            Name name = new Name(string);
+            for (Person person : getSamplePersons()) {
+                if (person.getName().equals(name)) {
+                    persons.add(person);
+                }
+            }
+        }
+        return persons;
+    }
 }
