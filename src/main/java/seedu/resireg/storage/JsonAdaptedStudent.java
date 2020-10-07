@@ -1,22 +1,17 @@
 package seedu.resireg.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import seedu.resireg.commons.exceptions.IllegalValueException;
+import seedu.resireg.model.student.*;
+import seedu.resireg.model.student.faculty.Faculty;
+import seedu.resireg.model.tag.Tag;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import seedu.resireg.commons.exceptions.IllegalValueException;
-import seedu.resireg.model.student.Email;
-import seedu.resireg.model.student.Name;
-import seedu.resireg.model.student.Phone;
-import seedu.resireg.model.student.Student;
-import seedu.resireg.model.student.StudentId;
-import seedu.resireg.model.student.faculty.Faculty;
-import seedu.resireg.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -31,14 +26,17 @@ class JsonAdaptedStudent {
     private final String faculty;
     private final String studentId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private JsonAdaptedRoom room;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("faculty") String faculty,
-            @JsonProperty("studentId") String studentId, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email, @JsonProperty("faculty") String faculty,
+                              @JsonProperty("studentId") String studentId,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("room") JsonAdaptedRoom room) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +44,9 @@ class JsonAdaptedStudent {
         this.studentId = studentId;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (room != null) {
+            this.room = room;
         }
     }
 
@@ -61,6 +62,9 @@ class JsonAdaptedStudent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        if (source.hasRoom()) {
+            room = new JsonAdaptedRoom(source.getRoom());
+        }
     }
 
     /**
@@ -116,7 +120,12 @@ class JsonAdaptedStudent {
         final StudentId modelStudentId = new StudentId(studentId);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelFaculty, modelStudentId, modelTags);
+
+        Student newStudent = new Student(modelName, modelPhone, modelEmail, modelFaculty, modelStudentId, modelTags);
+        if (room != null) {
+            newStudent.setRoom(room.toModelType());
+        }
+        return newStudent;
     }
 
 }

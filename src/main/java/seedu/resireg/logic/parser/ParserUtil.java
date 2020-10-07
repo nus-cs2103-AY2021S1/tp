@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.commons.util.StringUtil;
 import seedu.resireg.logic.parser.exceptions.ParseException;
+import seedu.resireg.model.room.Floor;
+import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -136,5 +138,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String floor} into a {@code floor}.
+     * Leading and training whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code floor} is invalid.
+     */
+    public static Floor parseFloor(String floor) throws ParseException {
+        requireNonNull(floor);
+        String trimmedFloor = floor.trim();
+        if (!Floor.isValidFloor(trimmedFloor)) {
+            throw new ParseException(Floor.MESSAGE_CONSTRAINTS);
+        }
+        return new Floor(trimmedFloor);
+    }
+
+    /**
+     * Parses {@code String roomNumber} into a {@code roomNumber}.
+     * Leading and training whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code floor} is invalid.
+     */
+    public static RoomNumber parseRoomNumber(String roomNumber) throws ParseException {
+        requireNonNull(roomNumber);
+        String trimmedRoomNumber = roomNumber.trim();
+        if (!Floor.isValidFloor(trimmedRoomNumber)) {
+            throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new RoomNumber(trimmedRoomNumber);
     }
 }

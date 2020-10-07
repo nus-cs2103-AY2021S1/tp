@@ -81,6 +81,11 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+    /**
+     * Returns true if a room with the same data as {@code room} exists in the address book.
+     */
+    boolean hasRoom(Room room);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 

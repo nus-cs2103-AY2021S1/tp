@@ -41,7 +41,12 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label roomNumber;
+    @FXML
+    private Label floor;
+    @FXML
     private FlowPane tags;
+
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
@@ -55,6 +60,13 @@ public class StudentCard extends UiPart<Region> {
         faculty.setText(student.getFaculty().value);
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
+        if (student.hasRoom()) {
+            floor.setText(student.getRoom().getFloor().value);
+            roomNumber.setText(student.getRoom().getRoomNumber().value);
+        } else {
+            floor.setText("Unassigned");
+            roomNumber.setText("Unassigned");
+        }
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
