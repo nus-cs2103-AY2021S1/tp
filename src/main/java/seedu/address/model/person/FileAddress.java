@@ -20,7 +20,7 @@ public class FileAddress {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code FileAddress}.
      *
      * @param address A valid address.
      */

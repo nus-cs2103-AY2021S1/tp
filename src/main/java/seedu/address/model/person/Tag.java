@@ -77,7 +77,7 @@ public class Tag {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTagName())
-                .append(" Address: ")
+                .append(" FileAddress: ")
                 .append(getFileAddress());
         return builder.toString();
     }
