@@ -69,7 +69,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + SCHOOL_DESC_AMY + YEAR_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
-
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);

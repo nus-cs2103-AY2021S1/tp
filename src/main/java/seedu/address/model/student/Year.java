@@ -10,16 +10,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Year {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Years should only contain Alphanumerical characters, and it should not be blank";
+            "Years should only contain numerical characters, and it should not be blank";
 
     /*
      * The first character of the year must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
-     * year can be alphanumerical character and must have at least 1 character.
+     * year string contains alphanumerical characters.
      */
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9][a-zA-Z0-9 ]*$";
 
-    public final int year;
+    public final String year;
 
     /**
      * Constructs a {@code Year}.
@@ -29,7 +29,7 @@ public class Year {
     public Year(String year) {
         requireNonNull(year);
         checkArgument(isValidYear(year), MESSAGE_CONSTRAINTS);
-        this.year = Integer.parseInt(year);
+        this.year = year;
     }
 
     /**
@@ -38,7 +38,6 @@ public class Year {
     public static boolean isValidYear(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
 
     @Override
     public String toString() {
@@ -49,12 +48,12 @@ public class Year {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Year // instanceof handles nulls
-                && year == ((Year) other).year); // state check
+                && year.equals (((Year) other).year)); // state check
     }
 
     @Override
     public int hashCode() {
-        return year;
+        return year.hashCode();
     }
 
 }

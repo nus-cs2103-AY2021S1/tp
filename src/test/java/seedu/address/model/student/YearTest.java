@@ -38,6 +38,8 @@ public class YearTest {
         assertTrue(Year.isValidYear("abc")); // only letters
         assertTrue(Year.isValidYear("a b c ")); //letters with spacing
         assertTrue(Year.isValidYear("Primary 1")); // alphanumeric
+        assertTrue(Year.isValidYear("Year 6"));
+        assertTrue(Year.isValidYear("Secondary 4"));
         assertTrue(Year.isValidYear("Primary 1     ")); //spacing behind acceptable
     }
 }
