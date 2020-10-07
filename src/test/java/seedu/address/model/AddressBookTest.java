@@ -3,8 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -46,8 +44,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Tag editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Tag editedAlice = new PersonBuilder(ALICE).build();
         List<Tag> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -56,26 +53,25 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasTag(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+        assertFalse(addressBook.hasTag(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+        assertTrue(addressBook.hasTag(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Tag editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        Tag editedAlice = new PersonBuilder(ALICE).build();
+        assertTrue(addressBook.hasTag(editedAlice));
     }
 
     @Test
@@ -87,15 +83,15 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Tag> persons = FXCollections.observableArrayList();
+        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Tag> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Tag> tags) {
+            this.tags.setAll(tags);
         }
 
         @Override
         public ObservableList<Tag> getPersonList() {
-            return persons;
+            return tags;
         }
     }
 

@@ -12,7 +12,7 @@ import seedu.address.model.person.Tag;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Tag> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -70,11 +70,11 @@ public interface Model {
     void addTag(Tag person);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given person {@code target} with {@code editedTag}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedTag} must not be the same as another existing person in the address book.
      */
-    void setTag(Tag target, Tag editedPerson);
+    void setTag(Tag target, Tag editedTag);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Tag> getFilteredPersonList();

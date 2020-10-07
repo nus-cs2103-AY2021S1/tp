@@ -13,14 +13,14 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A person is considered unique by comparing using {@code Tag#isSamePerson(Tag)}. As such, adding and updating of
+ * persons uses Tag#isSamePerson(Tag) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Tag#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Tag#isSamePerson(Tag)
+ * @see Tag#isSameTag(Tag)
  */
 public class UniquePersonList implements Iterable<Tag> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Tag> {
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameTag);
     }
 
     /**
@@ -49,23 +49,23 @@ public class UniquePersonList implements Iterable<Tag> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the person {@code target} in the list with {@code editedTag}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedTag} must not be the same as another existing person in the list.
      */
-    public void setPerson(Tag target, Tag editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameTag(editedTag) && contains(editedTag)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedTag);
     }
 
     /**
@@ -85,16 +85,16 @@ public class UniquePersonList implements Iterable<Tag> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tags}.
+     * {@code tags} must not contain duplicate tags.
      */
-    public void setPersons(List<Tag> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setPersons(List<Tag> tags) {
+        requireAllNonNull(tags);
+        if (!personsAreUnique(tags)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(tags);
     }
 
     /**
@@ -122,12 +122,12 @@ public class UniquePersonList implements Iterable<Tag> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code tags} contains only unique tags.
      */
-    private boolean personsAreUnique(List<Tag> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean personsAreUnique(List<Tag> tags) {
+        for (int i = 0; i < tags.size() - 1; i++) {
+            for (int j = i + 1; j < tags.size(); j++) {
+                if (tags.get(i).isSameTag(tags.get(j))) {
                     return false;
                 }
             }

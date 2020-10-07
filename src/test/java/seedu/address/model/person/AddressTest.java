@@ -29,8 +29,9 @@ public class AddressTest {
         assertFalse(FileAddress.isValidAddress(" ")); // spaces only
 
         // valid addresses
-        assertTrue(FileAddress.isValidAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(FileAddress.isValidAddress("-")); // one character
-        assertTrue(FileAddress.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(FileAddress.isValidAddress("d:\\a\\b\\abc.txt"));
+        assertTrue(FileAddress.isValidAddress("d:\\a\\b")); // one character
+        assertTrue(FileAddress.isValidAddress(
+                "a:\\b\\c\\d\\e\\f\\g.exe")); // long address
     }
 }

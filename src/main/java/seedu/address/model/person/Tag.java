@@ -62,9 +62,9 @@ public class Tag {
             return false;
         }
 
-        Tag otherPerson = (Tag) other;
-        return otherPerson.getTagName().equals(getTagName())
-                && otherPerson.getFileAddress().equals(getFileAddress());
+        Tag otherTag = (Tag) other;
+        return otherTag.getTagName().equals(getTagName())
+                && otherTag.getFileAddress().equals(getFileAddress());
     }
 
     @Override

@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -11,7 +10,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FileAddress;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
+import seedu.address.model.person.TagName;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -25,17 +25,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+
+
         TagName tagName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         FileAddress fileAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
-        Tag tag = new Tag(tagName,fileAddress);
+        Tag tag = new Tag(tagName, fileAddress);
+
 
         return new AddCommand(tag);
     }

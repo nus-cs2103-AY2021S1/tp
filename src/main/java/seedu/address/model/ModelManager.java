@@ -91,7 +91,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTag(Tag person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return addressBook.hasTag(person);
     }
 
     @Override
@@ -102,20 +102,20 @@ public class ModelManager implements Model {
     @Override
     public void addTag(Tag person) {
         addressBook.addPerson(person);
-        updateFilteredTagList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
 
     @Override
-    public void setTag(Tag target, Tag editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
 
-        addressBook.setPerson(target, editedPerson);
+        addressBook.setPerson(target, editedTag);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Tag List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override

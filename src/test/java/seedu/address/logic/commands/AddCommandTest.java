@@ -52,8 +52,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Tag alice = new PersonBuilder().withName("Alice").build();
-        Tag bob = new PersonBuilder().withName("Bob").build();
+        Tag alice = new PersonBuilder().withTagName("Alice").build();
+        Tag bob = new PersonBuilder().withTagName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addTag(Tag person) {
+        public void addTag(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -163,7 +163,7 @@ public class AddCommandTest {
         @Override
         public boolean hasTag(Tag person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.isSameTag(person);
         }
     }
 
@@ -176,13 +176,13 @@ public class AddCommandTest {
         @Override
         public boolean hasTag(Tag person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isSameTag);
         }
 
         @Override
-        public void addTag(Tag person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTag(Tag tag) {
+            requireNonNull(tag);
+            personsAdded.add(tag);
         }
 
         @Override

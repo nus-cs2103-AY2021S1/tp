@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a description).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -151,11 +151,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the fileAddress book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the fileAddress book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted fileAddress book state.
+Step 2. The user executes `delete 5` command to delete the 5th description in the fileAddress book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the fileAddress book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted fileAddress book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified fileAddress book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new description. The `add` command also calls `Model#commitAddressBook()`, causing another modified fileAddress book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -163,7 +163,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous fileAddress book state, and restores the fileAddress book to that state.
+Step 4. The user now decides that adding the description was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous fileAddress book state, and restores the fileAddress book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -208,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the description being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -253,12 +253,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                        |
 | -------- | ---------------------------------------------------------------| ------------------------------------------------------| ----------------------------------------------------------|
-| `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                             |
+| `* * *`  | Student with lots of file                                      | description my files with a easy to remember description              | get file path                                             |
 | `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                  |
 | `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                          |
 | `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                          |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident   |
-| `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                    |
+| `*`      | Forgetful user who always forget where his files are located   | description frequently used files with a easy to remember description | locate my files easily                                    |
 | `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                  |
 | `*`      | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files             |
 
@@ -276,9 +276,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to tag a certain file using the absolute file path.
+1. User requests to description a certain file using the absolute file path.
 2. HelloFile recognises the file path to be valid.
-3. HelloFile creates the tag and display the fileInfo.
+3. HelloFile creates the description and display the fileInfo.
 
     Use case ends.
 
@@ -290,15 +290,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes from step 1.
 
-* 2b. HelloFile detects no tag input.
+* 2b. HelloFile detects no description input.
 
-    * 2b1. HelloFile prompts the user for a tag.
+    * 2b1. HelloFile prompts the user for a description.
 
         Use case resumes from step 1.
 
-* 2c. HelloFile detects a duplicate tag name.
+* 2c. HelloFile detects a duplicate description name.
 
-    * 2c1. HelloFile prompts the user for another tag name.
+    * 2c1. HelloFile prompts the user for another description name.
 
         Use case resumes from step 1.
 
@@ -312,22 +312,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **User case ID: UC02**
 
-**Use Case: Access file using tag**
+**Use Case: Access file using description**
 
 **MSS**
 
 
-1. User requests to open a file using a tag.
-2. HelloFile recognises the tag to be valid.
+1. User requests to open a file using a description.
+2. HelloFile recognises the description to be valid.
 3. HelloFile opens the specified file using the default application.
 
     Use case ends.
 
 **Extension**
 
-* 2a. HelloFile detects that the tag is invalid.
+* 2a. HelloFile detects that the description is invalid.
 
-	* 2a1. HelloFile prompts the user that the tag is wrong.
+	* 2a1. HelloFile prompts the user that the description is wrong.
 
         Use case resumes from step 1.
 
@@ -359,32 +359,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UseCase ID: UC03**
 
-**Use Case: Rename tag**
+**Use Case: Rename description**
 
 **MSS**
 
-1. User requests to rename the tag of a tagged file.
-2. HelloFile replaces the tag of the file with the new tag.
+1. User requests to rename the description of a tagged file.
+2. HelloFile replaces the description of the file with the new description.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. HelloFile failed to recognize the tag.
+* 2a. HelloFile failed to recognize the description.
 
-	* 2a1. HelloFile prompts that tag does not exist.
+	* 2a1. HelloFile prompts that description does not exist.
 
     	Use case resumes from step 1
 
-* 2b. HelloFile failed to recognize the new tag input.
+* 2b. HelloFile failed to recognize the new description input.
 
-    * 2b1. HelloFile prompts that the new tag is invalid.
+    * 2b1. HelloFile prompts that the new description is invalid.
 
         Use case resumes from step 1. 
 
-* 2c. HelloFile detects a duplicate tag name.
+* 2c. HelloFile detects a duplicate description name.
 
-	* 2c1. HelloFile prompts the user for another tag name. 
+	* 2c1. HelloFile prompts the user for another description name. 
 
         Use case resumes from step 1.
 
@@ -404,14 +404,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to untag a file.
-2. HelloFile recognises that the tag exist.
+2. HelloFile recognises that the description exist.
 3. HelloFile removes the file from access.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. HelloFile fails to recognize the tag.
+* 2a. HelloFile fails to recognize the description.
 
 	* 2a1. HelloFile shows the error message.
 
@@ -433,16 +433,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests the check the path of a tagged file.
-2. HelloFile recognises that the tag exist.
+2. HelloFile recognises that the description exist.
 3. HelloFile shows the path of the file.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. HelloFile failed to recognize the tag.
+* 2a. HelloFile failed to recognize the description.
 
-	* 2a1. HelloFile prompts the user that the tag is wrong.
+	* 2a1. HelloFile prompts the user that the description is wrong.
 
         Use case resumes from step 1.
 
@@ -467,16 +467,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to open parent folder of a tagged file.
-2. HelloFile recognises the tag exist.
-3. HelloFile open the parent folder with the tag.
+2. HelloFile recognises the description exist.
+3. HelloFile open the parent folder with the description.
 
     Use case ends.
 
 **Extension**
 
-* 2a. HelloFile detects that the tag is invalid.
+* 2a. HelloFile detects that the description is invalid.
 
-	* 2a1. HelloFile prompts the user that the tag is wrong.
+	* 2a1. HelloFile prompts the user that the description is wrong.
 
         Use case resumes from step 1.
 
@@ -583,17 +583,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a description
 
-1. Deleting a person while all persons are being shown
+1. Deleting a description while all tags are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tags using the `list` command. Multiple tags in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No description is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

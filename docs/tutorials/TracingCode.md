@@ -47,7 +47,7 @@ Now let’s set the breakpoint. First, double-click the item to reach the corres
 
 ## Tracing the execution path
 
-Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
+Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [t/TAG]…​` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -153,13 +153,13 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    public CommandResult execute(Model model) throws CommandException {
        ...
        Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+       Person editedTag = createEditedPerson(personToEdit, editPersonDescriptor);
+       if (!personToEdit.isSamePerson(editedTag) && model.hasPerson(editedTag)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setPerson(personToEdit, editedPerson);
+       model.setPerson(personToEdit, editedTag);
        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedTag));
    }
    ```
 
@@ -180,7 +180,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     * {@code JsonSerializableAddressBook}.
     */
    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-       persons.addAll(
+       tags.addAll(
            source.getPersonList()
                  .stream()
                  .map(JsonAdaptedPerson::new)

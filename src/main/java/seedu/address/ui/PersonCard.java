@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -10,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Tag;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Tag}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -24,7 +22,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Tag person;
+    public final Tag tag;
 
     @FXML
     private HBox cardPane;
@@ -37,24 +35,17 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Tag} and index to display.
      */
-    public PersonCard(Tag person, int displayedIndex) {
+    public PersonCard(Tag tag, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.tag = tag;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(tag.getTagName().tagName);
+        address.setText(tag.getFileAddress().value);
     }
 
     @Override
@@ -72,6 +63,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && tag.equals(card.tag);
     }
 }

@@ -22,19 +22,19 @@ public class NameTest {
     @Test
     public void isValidName() {
         // null name
-        assertThrows(NullPointerException.class, () -> TagName.isValidName(null));
+        assertThrows(NullPointerException.class, () -> TagName.isValidTagName(null));
 
         // invalid name
-        assertFalse(TagName.isValidName("")); // empty string
-        assertFalse(TagName.isValidName(" ")); // spaces only
-        assertFalse(TagName.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(TagName.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(TagName.isValidTagName("")); // empty string
+        assertFalse(TagName.isValidTagName(" ")); // spaces only
+        assertFalse(TagName.isValidTagName("^")); // only non-alphanumeric characters
+        assertFalse(TagName.isValidTagName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(TagName.isValidName("peter jack")); // alphabets only
-        assertTrue(TagName.isValidName("12345")); // numbers only
-        assertTrue(TagName.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(TagName.isValidName("Capital Tan")); // with capital letters
-        assertTrue(TagName.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(TagName.isValidTagName("peter jack")); // alphabets only
+        assertTrue(TagName.isValidTagName("12345")); // numbers only
+        assertTrue(TagName.isValidTagName("peter the 2nd")); // alphanumeric characters
+        assertTrue(TagName.isValidTagName("Capital Tan")); // with capital letters
+        assertTrue(TagName.isValidTagName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }
