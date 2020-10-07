@@ -83,7 +83,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().alphaNum;
-        description = source.getDescription().description;
+        description = source.getDescription().alphaNum;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         status = source.getStatus().name();
