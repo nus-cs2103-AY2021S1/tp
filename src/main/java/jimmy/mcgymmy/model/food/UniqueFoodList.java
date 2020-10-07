@@ -12,15 +12,15 @@ import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
 import jimmy.mcgymmy.model.food.exceptions.FoodNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of food items that enforces uniqueness between its elements and does not allow nulls.
  * A food is considered unique by comparing using {@code Food#isSameFood(Food)}. As such, adding and updating of
- * persons uses Food#isSameFood(Food) for equality so as to ensure that the food being added or updated is
+ * food items uses Food#isSameFood(Food) for equality so as to ensure that the food being added or updated is
  * unique in terms of identity in the UniqueFoodList. However, the removal of a food uses Food#equals(Object) so
  * as to ensure that the food with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Food#isSameFood(Food)
+ * @see Food#isSameFood(Object)
  */
 public class UniqueFoodList implements Iterable<Food> {
 
@@ -53,7 +53,7 @@ public class UniqueFoodList implements Iterable<Food> {
      * {@code target} must exist in the list.
      * The food identity of {@code editedFood} must not be the same as another existing food in the list.
      */
-    public void setPerson(Food target, Food editedFood) {
+    public void setFood(Food target, Food editedFood) {
         CollectionUtil.requireAllNonNull(target, editedFood);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniqueFoodList implements Iterable<Food> {
         }
     }
 
-    public void setPersons(UniqueFoodList replacement) {
+    public void setFoodItems(UniqueFoodList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniqueFoodList implements Iterable<Food> {
      * Replaces the contents of this list with {@code foods}.
      * {@code foods} must not contain duplicate foods.
      */
-    public void setPersons(List<Food> foods) {
+    public void setFoodItems(List<Food> foods) {
         CollectionUtil.requireAllNonNull(foods);
-        if (!personsAreUnique(foods)) {
+        if (!foodItemsAreUnique(foods)) {
             throw new DuplicateFoodException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueFoodList implements Iterable<Food> {
     /**
      * Returns true if {@code foods} contains only unique foods.
      */
-    private boolean personsAreUnique(List<Food> foods) {
+    private boolean foodItemsAreUnique(List<Food> foods) {
         for (int i = 0; i < foods.size() - 1; i++) {
             for (int j = i + 1; j < foods.size(); j++) {
                 if (foods.get(i).isSameFood(foods.get(j))) {
