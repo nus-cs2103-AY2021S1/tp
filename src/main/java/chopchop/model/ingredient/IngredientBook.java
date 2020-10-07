@@ -79,7 +79,7 @@ public class IngredientBook implements ReadOnlyIngredientBook {
 
     @Override
     public String toString() {
-        return entries.asUnmodifiableObservableList().size() + " persons";
+        return entries.asUnmodifiableObservableList().size() + " ingredients";
         // TODO: refine later
     }
 

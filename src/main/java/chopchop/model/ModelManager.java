@@ -44,7 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.recipeBook = new RecipeBook(recipeBook);
         filteredRecipes = new FilteredList<Recipe>(this.recipeBook.getFoodEntryList());
-        logger.fine("Initializing with ingredient book: " + recipeBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ingredient book: " + ingredientBook + " and user prefs " + userPrefs);
         this.ingredientBook = new IngredientBook(ingredientBook);
         filteredIngredients = new FilteredList<Ingredient>(this.ingredientBook.getFoodEntryList());
 
@@ -142,6 +142,14 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns the user prefs' ingredient book file path.
+     */
+    @Override
+    public Path getIngredientBookFilePath() {
+        return userPrefs.getAddressBookFilePath();
+    }
+
+    /**
      * Sets the user prefs' address book file path.
      *
      * @param addressBookFilePath
@@ -150,16 +158,6 @@ public class ModelManager implements Model {
     public void setIngredientBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setIngredientBookFilePath(addressBookFilePath);
-    }
-
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     *
-     * @param addressBook
-     */
-    @Override
-    public void setAddressBook(ReadOnlyFoodEntryBook addressBook) {
-
     }
 
     //=========== Filtered Ingredient List Accessors =============================================================
