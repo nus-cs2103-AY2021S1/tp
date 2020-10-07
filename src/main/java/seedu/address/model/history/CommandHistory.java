@@ -6,8 +6,9 @@ import java.util.Stack;
  * Represents command history in the address book.
  */
 public class CommandHistory {
-    public static final String STRING = "Here are your command history:%s";
     private static Stack<String> commandHistory = new Stack<>();
+    public static final String STRING = "Here are your command history:%s";
+    private static int stateKey = 0;
 
     /**
      * Adds command to command history.
@@ -16,6 +17,7 @@ public class CommandHistory {
      */
     public static void addUsedCommand(String command) {
         commandHistory.push(command);
+        stateKey = 0;
     }
 
     /**
@@ -44,5 +46,41 @@ public class CommandHistory {
      */
     public static void clearHistory() {
         commandHistory.clear();
+    }
+
+    /**
+     * Peeks at the next command in the command history.
+     *
+     * @return next command in the command box
+     */
+    public static String peekNext() {
+        if (commandHistory.empty()) {
+            return "";
+        } else if (stateKey == commandHistory.size()) {
+            return commandHistory.get(0);
+        } else {
+            stateKey++;
+            int indexNext = commandHistory.size() - stateKey;
+            return commandHistory.get(indexNext);
+        }
+    }
+
+    /**
+     *
+     * Peeks at the previous command in the command history.
+     *
+     * @return previous command in the command box
+     */
+    public static String peekPrev() {
+        if (commandHistory.empty() || stateKey == 0) {
+            return "";
+        } else if (stateKey == 1) {
+            stateKey--;
+            return "";
+        } else {
+            stateKey--;
+            int indexPrev = commandHistory.size() - stateKey;
+            return commandHistory.get(indexPrev);
+        }
     }
 }
