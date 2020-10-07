@@ -1,6 +1,6 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.meeting.Name;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Person;
@@ -14,14 +14,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Meeting {
     // Identity fields
-    private final Name name;
+    private final MeetingName name;
     private final Date date;
     private final Time time;
 
     // Data fields
     private final Set<Person> persons = new HashSet<>();
 
-    public Meeting(Name name, Date date, Time time, Set<Person> persons) {
+    public Meeting(MeetingName name, Date date, Time time, Set<Person> persons) {
         requireAllNonNull(name, date, time, persons);
         this.name = name;
         this.date = date;
@@ -29,7 +29,7 @@ public class Meeting {
         this.persons.addAll(persons);
     }
 
-    public Name getName(){
+    public MeetingName getName(){
         return this.name;
     }
 
