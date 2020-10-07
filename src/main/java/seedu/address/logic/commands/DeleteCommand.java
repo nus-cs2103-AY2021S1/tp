@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -20,8 +21,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + " or deletes the person by his Nric number."
+            + "Parameters: INDEX (must be a positive integer) or NRIC (e.g. A00000001I)\n"
+            + "Example: " + COMMAND_WORD + " 1"
+            + "Example: " + COMMAND_WORD + " A00000001I";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -43,11 +46,12 @@ public class DeleteCommand extends Command {
         Patient patientToDelete;
 
         if (targetNric != null) {
-            model.updateFilteredPersonList(patient -> patient.getNric().equals(targetNric));
-            if (model.getFilteredPersonList().size() != 1) {
+            lastShownList = lastShownList.stream()
+                    .filter(patient -> patient.getNric().equals(targetNric)).collect(Collectors.toList());
+            if (lastShownList.size() != 1) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
             }
-            patientToDelete = model.getFilteredPersonList().get(0);
+            patientToDelete = lastShownList.get(0);
         } else {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
