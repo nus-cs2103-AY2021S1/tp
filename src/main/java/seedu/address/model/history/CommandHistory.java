@@ -6,8 +6,8 @@ import java.util.Stack;
  * Represents command history in the address book.
  */
 public class CommandHistory {
-    private static Stack<String> commandHistory = new Stack<>();
     public static final String STRING = "Here are your command history:%s";
+    private static Stack<String> commandHistory = new Stack<>();
     private static int stateKey = 0;
 
     /**
