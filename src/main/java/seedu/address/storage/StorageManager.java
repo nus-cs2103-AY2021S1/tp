@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
 import java.util.Optional;
@@ -119,6 +120,11 @@ public class StorageManager implements Storage {
         try {
             InputStream is = MainApp.class.getResourceAsStream("/images/stock_picture.png");
             Path targetPath = cliniCalStorage.getCliniCalFilePath().getParent().resolve("stock_picture.png");
+
+            if (Files.exists(targetPath)) {
+                return;
+            }
+
             FileUtils.copyInputStreamToFile(is, targetPath.toFile());
         } catch (IOException error) {
             System.out.println(error.getMessage());
