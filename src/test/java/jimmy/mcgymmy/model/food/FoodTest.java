@@ -62,7 +62,7 @@ public class FoodTest {
             +"fat: 10\n";
         assertEquals(new Food("test food2", 100, 20, 10).toString(),expected2);
     }
-    
+
 
     @Test
     public void equals() {
