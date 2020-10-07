@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Base64;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
+import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyCliniCal;
@@ -92,6 +94,7 @@ public class StorageManager implements Storage {
         try {
             String profilePicPath = profilePic.getPath();
             String profilePicExtension = FilenameUtils.getExtension(profilePicPath);
+            //TODO: replace hardcoded path
             String destinationPath = "data/" + patientName.replaceAll(" ", "_") + "."
                                      + profilePicExtension;
 
@@ -104,6 +107,20 @@ public class StorageManager implements Storage {
             return destinationPath;
         } catch (IOException error) {
             return error.getMessage();
+        }
+    }
+
+    /**
+     * Initialises a placeholder images in the {@code data} folder.
+     */
+    public static void initializePlaceholderImage() {
+        try {
+            InputStream is = MainApp.class.getResourceAsStream("/images/stock_picture.png");
+            //TODO: replace hardcoded path
+            File targetFile = new File("data/stock_picture.png");
+            FileUtils.copyInputStreamToFile(is, targetFile);
+        } catch (IOException error) {
+            System.out.println(error.getMessage());
         }
     }
 

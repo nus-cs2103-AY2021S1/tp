@@ -58,6 +58,7 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         CliniCalStorage cliniCalStorage = new JsonCliniCalStorage(userPrefs.getCliniCalFilePath());
         storage = new StorageManager(cliniCalStorage, userPrefsStorage);
+        StorageManager.initializePlaceholderImage();
 
         initLogging(config);
 
