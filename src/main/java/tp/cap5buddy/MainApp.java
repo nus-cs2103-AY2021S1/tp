@@ -8,7 +8,8 @@ import tp.cap5buddy.logic.LogicManager;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.storage.Storage;
 import tp.cap5buddy.storage.StorageManager;
-import tp.cap5buddy.ui.Ui;
+import tp.cap5buddy.ui.gui.Ui;
+import tp.cap5buddy.ui.gui.UiManager;
 
 import java.util.logging.Logger;
 
@@ -25,7 +26,7 @@ public class MainApp extends Application {
     @Override
     public void init() {
         logger.info("=============================[ Initializing Module Tracker ]===========================");
-        userInterface = new Ui();
+        userInterface = new UiManager();
         storage = null;
         moduleList = null;
         contactList = null;

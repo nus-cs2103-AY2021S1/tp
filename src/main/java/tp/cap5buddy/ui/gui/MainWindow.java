@@ -17,17 +17,6 @@ public class MainWindow extends AnchorPane {
     private static final Logger logger = LogsCenter.getLogger(MainWindow.class);
     private Stage primaryStage;
 
-    @FXML
-    private BorderPane borderPane;
-
-    @FXML
-    private MenuBar menuBar;
-
-    @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
-    private HBox hBox;
 
     public MainWindow(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -47,6 +36,6 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-
+        // link all the vbox and textbox to instance fields.
     }
 }
