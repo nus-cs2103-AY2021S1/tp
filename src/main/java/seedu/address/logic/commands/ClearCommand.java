@@ -2,22 +2,41 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.HistoryManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 
 /**
  * Clears the address book.
  */
-public class ClearCommand extends Command {
+public class ClearCommand extends Command implements Undoable {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_REVERSE_SUCCESS = "Address book has been restored!";
 
+    private ReadOnlyAddressBook addressBook;
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
+        requireNonNull(historyManager);
+        addressBook = new AddressBook(model.getAddressBook());
         model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        requireNonNull(model);
+
+        model.setAddressBook(addressBook);
+        return new CommandResult(MESSAGE_REVERSE_SUCCESS);
+    }
+
+    @Override
+    public CommandResult redo(Model model, HistoryManager historyManager) {
+        return execute(model, historyManager);
     }
 }
