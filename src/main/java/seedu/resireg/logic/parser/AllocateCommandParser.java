@@ -1,7 +1,8 @@
 package seedu.resireg.logic.parser;
 
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.resireg.logic.parser.CliSyntax.*;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 import java.util.stream.Stream;
 
