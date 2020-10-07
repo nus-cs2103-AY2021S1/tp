@@ -2,10 +2,14 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPatients.getTypicalCliniCal;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -65,4 +69,24 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getCliniCalFilePath());
     }
 
+    @Test
+    public void placePlaceholderPicture() throws Exception {
+        storageManager.initializePlaceholderImage();
+
+        Path path = getTempFilePath("stock_picture.png");
+        assertTrue(Files.exists(path));
+
+        assertTrue(FileUtils.contentEquals(
+                new File(this.getClass().getResource("/images/stock_picture.png").toURI()), path.toFile()));
+    }
+
+    @Test
+    public void doNotOverwriteExistingPlaceholderPicture() throws Exception {
+        Path path = getTempFilePath("stock_picture.png");
+        Files.createFile(path);
+
+        storageManager.initializePlaceholderImage();
+
+        assertEquals(path.toFile().length(), 0);
+    }
 }
