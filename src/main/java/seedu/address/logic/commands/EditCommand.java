@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -22,12 +23,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Description;
+import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -101,13 +106,16 @@ public class EditCommand extends Command {
         Description updatedDescription = new Description("");
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        List<Document> updatedDocuments = editPersonDescriptor.getDocuments().orElse(personToEdit.getDocuments());
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedDescription, updatedPhone, updatedEmail, updatedAddress, updatedSuspects,
-                updatedVictims, updatedTags);
+        List<Witness> updatedWitnesses =
+                editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
+        return new Person(updatedName, updatedDescription, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
+                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
     @Override
@@ -137,10 +145,13 @@ public class EditCommand extends Command {
         private Description description;
         private Phone phone;
         private Email email;
+        private Status status;
         private Address address;
+        private List<Document> documents;
         private List<Suspect> suspects;
         private List<Victim> victims;
         private Set<Tag> tags;
+        private ArrayList<Witness> witnesses;
 
         public EditPersonDescriptor() {}
 
@@ -153,17 +164,22 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setStatus(toCopy.status);
             setAddress(toCopy.address);
+            setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
             setVictims(toCopy.victims);
+            setWitnesses(toCopy.witnesses);
             setTags(toCopy.tags);
+
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, phone, email, address, suspects, victims, tags);
+            return CollectionUtil.isAnyNonNull(name, description, phone, email,
+                    status, address, suspects, victims, tags);
         }
 
         public void setName(Name name) {
@@ -198,12 +214,28 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
         public void setAddress(Address address) {
             this.address = address;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDocuments(List<Document> documents) {
+            this.documents = documents;
+        }
+
+        public Optional<List<Document>> getDocuments() {
+            return (documents != null) ? Optional.of(documents) : Optional.empty();
         }
 
         /**
@@ -234,6 +266,22 @@ public class EditCommand extends Command {
          */
         public Optional<List<Victim>> getVictims() {
             return (victims != null) ? Optional.of(victims) : Optional.empty();
+        }
+
+
+        /**
+         * Sets {@code witnesses} to this object's {@code witnesses}.
+         * A defensive copy of {@code witnesses} is used internally.
+         */
+        public void setWitnesses(ArrayList<Witness> witnesses) {
+            this.witnesses = (witnesses != null) ? new ArrayList<>(witnesses) : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code witnesses} is null.
+         */
+        public Optional<List<Witness>> getWitnesses() {
+            return (witnesses != null) ? Optional.of(witnesses) : Optional.empty();
         }
 
         /**
@@ -271,8 +319,11 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getStatus().equals(e.getStatus())
                     && getAddress().equals(e.getAddress())
+                    && getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
+
     }
 }

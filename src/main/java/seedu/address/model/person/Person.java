@@ -22,26 +22,35 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Description description;
+    private final Status status;
 
     // Data fields
     private final Address address;
     private final List<Suspect> suspects = new ArrayList<>();
     private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Witness> witnesses = new ArrayList<>();
+    private final List<Document> documents = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Description description, Phone phone, Email email, Address address, List<Suspect> suspects,
-                  List<Victim> victims, Set<Tag> tags) {
-        requireAllNonNull(name, description, phone, email, address, suspects, victims, tags);
+    public Person(Name name, Description description, Phone phone, Email email, Status status,
+                  List<Document> documents, Address address,
+                  List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+        requireAllNonNull(name, description, phone, email, status, documents,
+                address, suspects, victims, witnesses, tags);
         this.name = name;
         this.description = description;
         this.phone = phone;
         this.email = email;
+        this.status = status;
         this.address = address;
+        this.documents.addAll(documents);
         this.suspects.addAll(suspects);
         this.victims.addAll(victims);
         this.tags.addAll(tags);
+        this.witnesses.addAll(witnesses);
     }
 
     public Name getName() {
@@ -60,8 +69,17 @@ public class Person {
         return email;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+
+    public List<Document> getDocuments() {
+        return documents;
     }
 
     public List<Suspect> getSuspects() {
@@ -80,6 +98,11 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    // TODO: Consider using Collections.unmodifiableList(witnessList) here.
+    public List<Witness> getWitnesses() {
+        return witnesses;
+    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
@@ -91,7 +114,8 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()))
+                && otherPerson.getStatus().equals(getStatus());
     }
 
     /**
@@ -113,16 +137,20 @@ public class Person {
                 && otherPerson.getDescription().equals(getDescription())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getStatus().equals(getStatus())
+                && otherPerson.getDocuments().equals(getDocuments())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getSuspects().equals(getSuspects())
                 && otherPerson.getVictims().equals(getVictims())
+                && otherPerson.getWitnesses().equals(getWitnesses())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, phone, email, address, suspects, victims, tags);
+        return Objects.hash(name, description, phone, email, status, documents,
+                            address, suspects, victims, witnesses, tags);
     }
 
     @Override
@@ -135,13 +163,19 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
+                .append(" Status: ")
+                .append(getStatus())
+                .append(" Documents: ")
+                .append(getDocuments())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Suspects: ")
-                .append(getSuspects())
-                .append(" Victims: ")
-                .append(getVictims())
-                .append(" Tags: ");
+                .append(" Suspects: ");
+        getSuspects().forEach(builder::append);
+        builder.append(" Victims: ");
+        getVictims().forEach(builder::append);
+        builder.append(" Witnesses: ");
+        getWitnesses().forEach(builder::append);
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
