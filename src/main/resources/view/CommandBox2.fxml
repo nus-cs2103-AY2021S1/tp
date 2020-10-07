@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@Style.css" />
+    </stylesheets>
+   <children>
+      <Rectangle arcHeight="20.0" arcWidth="30.0" fill="#ebe1ce" height="160.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
+      <VBox>
+         <children>
+            <StackPane>
+               <children>
+                  <TextField fx:id="commandTextField" maxHeight="30.0" maxWidth="190.0" onAction="#handleCommandEntered" promptText="Enter command here..." />
+               </children>
+            </StackPane>
+            <TextArea prefHeight="134.0" prefWidth="180.0" visible="false" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

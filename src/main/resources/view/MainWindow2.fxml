@@ -10,13 +10,10 @@
 <fx:root onCloseRequest="#handleExit" title="ChopChop" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
       <Scene>
-          <stylesheets>
+         <stylesheets>
               <URL value="@Style.css" />
-          </stylesheets>
+         </stylesheets>
          <BorderPane prefHeight="350.0" prefWidth="550.0" styleClass="main-pane">
-            <center>
-               <VBox prefHeight="325.0" prefWidth="160.0" />
-            </center>
             <top>
                <MenuBar BorderPane.alignment="CENTER">
                  <menus>
@@ -103,6 +100,16 @@
                   </bottom>
                </BorderPane>
             </left>
+            <right>
+               <BorderPane prefHeight="325.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+                  <top>
+                     <StackPane prefHeight="160.0" prefWidth="190.0" BorderPane.alignment="CENTER" fx:id="commandBoxPlaceHolder" />
+                  </top>
+                  <bottom>
+                     <StackPane prefHeight="160.0" prefWidth="190.0" BorderPane.alignment="CENTER" fx:id="pinBoxPlaceHolder"/>
+                  </bottom>
+               </BorderPane>
+            </right>
          </BorderPane>
       </Scene>
    </scene>
