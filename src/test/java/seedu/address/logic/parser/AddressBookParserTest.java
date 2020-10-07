@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -25,9 +27,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.expense.Expense;
-import seedu.address.model.expense.NameContainsKeywordsPredicate;
-import seedu.address.model.expense.Remark;
+import seedu.address.model.expense.*;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditExpenseDescriptorBuilder;
 import seedu.address.testutil.ExpenseBuilder;
 import seedu.address.testutil.ExpenseUtil;
@@ -74,9 +75,22 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String dateString = "09-10-2020";
+        List<String> hs = new ArrayList<>();
+        hs.add("CS");
+        hs.add("bee");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION + " "
+                        + keywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_DATE + dateString + " " + PREFIX_TAG
+                        + "CS " + PREFIX_TAG + "bee"
+        );
+        FindCommand findCommand = new FindCommand(
+                new NameContainsKeywordsPredicate(keywords),
+                new DateMatchesPredicate(dateString),
+                new TagsMatchesPredicate(hs)
+        );
+        assertEquals(findCommand, command);
     }
 
     @Test

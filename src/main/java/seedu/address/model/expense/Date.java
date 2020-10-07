@@ -14,7 +14,7 @@ import java.time.format.DateTimeParseException;
 public class Date {
     // private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format dd-MM-yyyy,"
-            + "and it should adhere to the following constraints: "
+            + "and it should adhere to the following constraints:\n"
             + "1. String should not be blank.\n"
             + "2. Date given should be a valid date that exists.\n"
             + "** Note: Date input is optional.";

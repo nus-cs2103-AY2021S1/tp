@@ -12,17 +12,22 @@ public class DateMatchesPredicate implements Predicate<Expense> {
     private final Date date;
 
     public DateMatchesPredicate(String dateString) {
+        this.date = Date.isValidDate(dateString) ? new Date(dateString) : null;
+        /*
         Date temp;
         try {
             temp = new Date(dateString);
         } catch (IllegalArgumentException e) {
             temp = null;
         }
-        this.date = temp;
+        this.date = temp;*/
     }
 
     @Override
     public boolean test(Expense expense) {
+        if (this.date == null) {
+            return false;
+        }
         return this.date.equals(expense.getDate());
     }
     
