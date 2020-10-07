@@ -14,7 +14,7 @@ class JsonAdaptedAdditionalDetail {
     private final String detail;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedAdditionalDetail} with the given {@code detail}.
      */
     @JsonCreator
     public JsonAdaptedAdditionalDetail(String detail) {
@@ -22,7 +22,7 @@ class JsonAdaptedAdditionalDetail {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code AdditionalDetail} into this class for Jackson use.
      */
     public JsonAdaptedAdditionalDetail(AdditionalDetail source) {
         detail = source.detail;
@@ -34,9 +34,9 @@ class JsonAdaptedAdditionalDetail {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted additionalDetail object into the model's {@code AdditionalDetail} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted detail.
      */
     public AdditionalDetail toModelType() throws IllegalValueException {
         if (!AdditionalDetail.isValidAdditionalDetail(detail)) {

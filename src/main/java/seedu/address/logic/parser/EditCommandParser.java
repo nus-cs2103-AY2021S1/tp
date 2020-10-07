@@ -64,9 +64,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> details} into a {@code Set<Tag>} if {@code details} is non-empty.
+     * Parses {@code Collection<String> details} into a {@code Set<AdditionalDetail>} if {@code details} is non-empty.
      * If {@code details} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero details.
+     * {@code Set<AdditionalDetail>} containing zero details.
      */
     private Optional<Set<AdditionalDetail>> parseDetailsForEdit(Collection<String> details) throws ParseException {
         assert details != null;
@@ -74,8 +74,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (details.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = details.size() == 1 && details.contains("") ? Collections.emptySet() : details;
-        return Optional.of(ParserUtil.parseAdditionalDetails(tagSet));
+        Collection<String> detailSet = details.size() == 1 && details.contains("") ? Collections.emptySet() : details;
+        return Optional.of(ParserUtil.parseAdditionalDetails(detailSet));
     }
 
 }
