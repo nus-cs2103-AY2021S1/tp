@@ -18,17 +18,26 @@ public class EditTaskParser extends Parser {
         String[] parsedArguments = token.tokenize();
 
         int index = ParserUtilTodoList.parseIndex(parsedArguments[0]);
-        Type editedType = ParserUtilTodoList.parseType(parsedArguments[1]);
-        Description editedDescription = ParserUtilTodoList.parseDescription(parsedArguments[2]);
-        Date editedDate = ParserUtilTodoList.parseDate(parsedArguments[3]);
-        Priority editedPriority = ParserUtilTodoList.parsePriority(parsedArguments[4]);
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        editTaskDescriptor.setType(editedType);
-        editTaskDescriptor.setDescription(editedDescription);
-        editTaskDescriptor.setDate(editedDate);
-        editTaskDescriptor.setPriority(editedPriority);
 
+        // Arguments from 0 to (n-1) must be ordered, i.e cannot have empty field in the middle.
+        if (parsedArguments[1] != null) {
+            Type editedType = ParserUtilTodoList.parseType(parsedArguments[1]);
+            editTaskDescriptor.setType(editedType);
+        }
+        if (parsedArguments[2] != null) {
+            Description editedDescription = ParserUtilTodoList.parseDescription(parsedArguments[2]);
+            editTaskDescriptor.setDescription(editedDescription);
+        }
+        if (parsedArguments[3] != null) {
+            Date editedDate = ParserUtilTodoList.parseDate(parsedArguments[3]);
+            editTaskDescriptor.setDate(editedDate);
+        }
+        if (parsedArguments[4] != null) {
+            Priority editedPriority = ParserUtilTodoList.parsePriority(parsedArguments[4]);
+            editTaskDescriptor.setPriority(editedPriority);
+        }
         return new EditTaskCommand(index, editTaskDescriptor);
     }
 }
