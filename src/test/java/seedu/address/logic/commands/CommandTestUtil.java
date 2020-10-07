@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,9 +15,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.TagNameContainsKeywordsPredicate;
 import seedu.address.model.person.Tag;
-
+import seedu.address.model.person.TagNameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -40,7 +39,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_TAG_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_FILE_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_FILE_ADDRESS_DESC = " "
+            + PREFIX_FILE_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

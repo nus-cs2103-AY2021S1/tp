@@ -21,8 +21,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagNameContainsKeywordsPredicate;
 import seedu.address.model.person.Tag;
+import seedu.address.model.person.TagNameContainsKeywordsPredicate;
 import seedu.address.testutil.TagBuilder;
 import seedu.address.testutil.TagUtil;
 

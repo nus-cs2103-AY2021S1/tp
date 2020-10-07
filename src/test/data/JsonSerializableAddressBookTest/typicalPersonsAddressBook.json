@@ -1,5 +1,5 @@
 {
-  "_comment": "fileAddressBook save file which contains the same Person values as in TypicalPersons#getTypicalfileAddressBook()",
+  "_comment": "fileAddressBook save file which contains the same Person values as in TypicalTags#getTypicalfileAddressBook()",
   "persons" : [ {
     "tagName" : "Alice Pauline",
     "fileAddress" : "c:\\a\\b\\alice.txt"

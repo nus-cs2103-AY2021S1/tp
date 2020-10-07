@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.FILE_ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FILE_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -66,12 +66,12 @@ public class AddCommandParserTest {
 
 
         // invalid fileaddress
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_FILE_ADDRESS_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, FileAddress.MESSAGE_CONSTRAINTS);
 
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_FILE_ADDRESS_DESC,
                 TagName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
