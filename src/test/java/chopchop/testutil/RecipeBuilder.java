@@ -7,27 +7,24 @@ import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Egg";
-    public static final Set<Ingredient> DEFAULT_INGREDIENTS = "";
-    public static final List<Step> DEFAULT_STEPS = ;
+    public static final String DEFAULT_STEP = "Heat it for 15 minutes.";
 
     private Name name;
-    private Set<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
     private List<Step> steps;
-
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
      */
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
-        ingredients = new HashSet<>(DEFAULT_QTY);
-        steps = new ArrayList<>(DEFAULT_EXPIRY);
+        ingredients = new ArrayList<>(Arrays.asList(new IngredientBuilder().build()));
+        steps = new ArrayList<>(Arrays.asList(new Step(DEFAULT_STEP)));
     }
 
     /**
@@ -50,21 +47,21 @@ public class RecipeBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public RecipeBuilder with(int qty) {
-        this. = new Quantity(qty);
+    public RecipeBuilder withIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public RecipeBuilder withDate(String date) {
-        this.expDate = new ExpiryDate(date);
+    public RecipeBuilder withSteps(List<Step> steps) {
+        this.steps = steps;
         return this;
     }
 
     public Recipe build() {
-        return new Ingredient(name, ingredients, steps);
+        return new Recipe(name, ingredients, steps);
     }
 
 }

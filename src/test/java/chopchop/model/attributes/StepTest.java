@@ -10,31 +10,31 @@ public class StepTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Name(null));
+        assertThrows(NullPointerException.class, () -> new Step(null));
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+    public void constructor_invalidStep_throwsIllegalArgumentException() {
+        String invalidStep = "";
+        assertThrows(IllegalArgumentException.class, () -> new Step(invalidStep));
     }
 
     @Test
-    public void isValidName() {
-        // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+    public void isValidStep() {
+        // null Step
+        assertThrows(NullPointerException.class, () -> Step.isValidStep(null));
 
-        // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
+        // invalid Step
+        assertFalse(Step.isValidStep("")); // empty string
+        assertFalse(Step.isValidStep(" ")); // spaces only
+        assertFalse(Step.isValidStep("^")); // only non-alphanumeric characters
 
-        // valid name
-        assertTrue(Name.isValidName("corn*")); // contains non-alphanumeric characters
-        assertTrue(Name.isValidName("egg plant")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("eggplant the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Corn Starch")); // with capital letters
-        assertTrue(Name.isValidName("The Great 2nd Corn Starch of the U.K.")); // long names
+        // valid Step
+        assertTrue(Step.isValidStep("recipe*")); // contains non-alphanumeric characters
+        assertTrue(Step.isValidStep("rec recipe")); // alphabets only
+        assertTrue(Step.isValidStep("12345")); // numbers only
+        assertTrue(Step.isValidStep("recipe number seven")); // alphanumeric characters
+        assertTrue(Step.isValidStep("The Most Unhealthy Recipe")); // with capital letters
+        assertTrue(Step.isValidStep("First, place eggs in a large saucepan and cover them with cool water by 1 inch.")); // long Step
     }
 }

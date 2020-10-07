@@ -39,12 +39,11 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(recipeBook, ingredientBook, userPrefs);
 
-
         logger.fine("Initializing with recipe book: " + recipeBook + " and user prefs " + userPrefs);
         this.userPrefs = new UserPrefs(userPrefs);
         this.recipeBook = new RecipeBook(recipeBook);
         filteredRecipes = new FilteredList<Recipe>(this.recipeBook.getFoodEntryList());
-        logger.fine("Initializing with ingredient book: " + recipeBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ingredient book: " + ingredientBook + " and user prefs " + userPrefs);
         this.ingredientBook = new IngredientBook(ingredientBook);
         filteredIngredients = new FilteredList<Ingredient>(this.ingredientBook.getFoodEntryList());
 
@@ -144,12 +143,12 @@ public class ModelManager implements Model {
     /**
      * Sets the user prefs' address book file path.
      *
-     * @param addressBookFilePath
+     * @param indBookFilePath
      */
     @Override
-    public void setIngredientBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setIngredientBookFilePath(addressBookFilePath);
+    public void setIngredientBookFilePath(Path indBookFilePath) {
+        requireNonNull(indBookFilePath);
+        userPrefs.setIngredientBookFilePath(indBookFilePath);
     }
 
     /**
@@ -174,9 +173,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasIngredient(Ingredient person) {
-        requireNonNull(person);
-        return ingredientBook.hasIngredient(person);
+    public boolean hasIngredient(Ingredient ind) {
+        requireNonNull(ind);
+        return ingredientBook.hasIngredient(ind);
     }
 
     @Override

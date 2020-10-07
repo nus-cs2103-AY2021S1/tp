@@ -1,43 +1,50 @@
 package chopchop.model.recipe;
 
+import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalRecipes.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static chopchop.testutil.TypicalIngredients.APRICOT;
-import static chopchop.testutil.TypicalIngredients.BANANA;
-import org.junit.jupiter.api.Test;
+
 import chopchop.testutil.IngredientBuilder;
+import chopchop.testutil.RecipeBuilder;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RecipeTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        Ingredient apricotCopy = new RecipeBuilder(APRICOT).build();
-        assertTrue(APRICOT.equals(apricotCopy));
+        Recipe apricotSaladCopy = new RecipeBuilder(APRICOT_SALAD).build();
+        assertTrue(APRICOT_SALAD.equals(apricotSaladCopy));
 
         // same object -> returns true
-        assertTrue(APRICOT.equals(APRICOT));
+        assertTrue(APRICOT_SALAD.equals(APRICOT_SALAD));
 
         // null -> returns false
-        assertFalse(APRICOT.equals(null));
+        assertFalse(APRICOT_SALAD.equals(null));
 
         // different type -> returns false
-        assertFalse(APRICOT.equals(5));
+        assertFalse(APRICOT_SALAD.equals(new IngredientBuilder().build()));
 
-        // different person -> returns false
-        assertFalse(APRICOT.equals(BANANA));
+        // different recipe -> returns false
+        assertFalse(APRICOT_SALAD.equals(BANANA_SALAD));
 
         // different name -> returns false
-        Ingredient editedApricot = new IngredientBuilder(APRICOT).withName(VALID_NAME_BOB).build();
-        assertFalse(APRICOT.equals(editedApricot));
+        Recipe editedApricotSalad = new RecipeBuilder(APRICOT_SALAD).withName(VALID_NAME_BOB).build();
+        assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
 
-        // different date -> returns false. Different ingredients can be of the same name but different expiry
-        editedApricot = new IngredientBuilder(APRICOT).withDate("2020-12-02").build();
-        assertFalse(APRICOT.equals(editedApricot));
+        // different ingredients -> returns false. Different recipes can be of the same name but different ingredients
+        editedApricotSalad = new RecipeBuilder(APRICOT_SALAD)
+                .withIngredients(new ArrayList<>(Arrays.asList(BANANA))).build();
+        assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
 
-        // different qty -> returns true
-        editedApricot = new IngredientBuilder(APRICOT).withQuantity(5).build();
-        assertTrue(APRICOT.equals(editedApricot));
+        // different steps -> returns false. Different recipes can be of the same name but different steps
+        editedApricotSalad = new RecipeBuilder(APRICOT_SALAD)
+                .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD))).build();
+        assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
     }
 }

@@ -78,7 +78,8 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
      */
     public void setFoodEntries(List<FoodEntry> entries) {
         requireAllNonNull(entries);
-        if (!ingredientsAreUnique(entries)) {
+        //if (!ingredientsAreUnique(entries)) {
+        if (!foodEntriesAreUnique(entries)) {
             throw new DuplicateEntryException();
         }
 
@@ -109,17 +110,47 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
         return internalList.hashCode();
     }
 
+
     /**
      * Returns true if {@code FoodEntries} contains only unique FoodEntries.
      */
-    private boolean ingredientsAreUnique(List<FoodEntry> ingredients) {
-        for (int i = 0; i < ingredients.size() - 1; i++) {
-            for (int j = i + 1; j < ingredients.size(); j++) {
-                if (ingredients.get(i).equals(ingredients.get(j))) {
+    private boolean foodEntriesAreUnique(List<FoodEntry> foodEntries) {
+        for (int i = 0; i < foodEntries.size() - 1; i++) {
+            for (int j = i + 1; j < foodEntries.size(); j++) {
+                if (foodEntries.get(i).equals(foodEntries.get(j))) {
                     return false;
                 }
             }
         }
         return true;
     }
+
+//    Combine??
+//    /**
+//     * Returns true if {@code FoodEntries} contains only unique FoodEntries.
+//     */
+//    private boolean ingredientsAreUnique(List<FoodEntry> ingredients) {
+//        for (int i = 0; i < ingredients.size() - 1; i++) {
+//            for (int j = i + 1; j < ingredients.size(); j++) {
+//                if (ingredients.get(i).equals(ingredients.get(j))) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
+//
+//    /**
+//     * Returns true if {@code FoodEntries} contains only unique FoodEntries.
+//     */
+//    private boolean recipesAreUnique(List<FoodEntry> recipes) {
+//        for (int i = 0; i < recipes.size() - 1; i++) {
+//            for (int j = i + 1; j < recipes.size(); j++) {
+//                if (recipes.get(i).equals(recipes.get(j))) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
 }

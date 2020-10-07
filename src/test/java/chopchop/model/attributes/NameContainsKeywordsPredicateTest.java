@@ -1,10 +1,16 @@
 package chopchop.model.attributes;
 
+import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import chopchop.testutil.RecipeBuilder;
 import org.junit.jupiter.api.Test;
 import chopchop.testutil.IngredientBuilder;
 
@@ -41,18 +47,23 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections
                                                             .singletonList("Apricot"));
         assertTrue(predicate.test(new IngredientBuilder().withName("Apricot").build()));
+        assertTrue(predicate.test(new RecipeBuilder().withName("Apricot").build()));
 
         // Multiple keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Apricot", "Banana"));
         assertTrue(predicate.test(new IngredientBuilder().withName("Apricot Banana").build()));
+        assertTrue(predicate.test(new RecipeBuilder().withName("Apricot Banana").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Apricot", "Caramel"));
         assertTrue(predicate.test(new IngredientBuilder().withName("Alice Caramel").build()));
+        assertTrue(predicate.test(new RecipeBuilder().withName("Apricot Salad").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aPRIcot", "bAnAnA"));
         assertTrue(predicate.test(new IngredientBuilder().withName("Apricot banana").build()));
+        assertTrue(predicate.test(new RecipeBuilder().withName("Apricot Banana").build()));
+
     }
 
     @Test
@@ -60,14 +71,26 @@ public class NameContainsKeywordsPredicateTest {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new IngredientBuilder().withName("Apricot").build()));
+        assertFalse(predicate.test(new RecipeBuilder().withName("Apricot").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Caramel"));
         assertFalse(predicate.test(new IngredientBuilder().withName("Apricot Banana").build()));
+        assertFalse(predicate.test(new RecipeBuilder().withName("Apricot Banana").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
         assertFalse(predicate.test(new IngredientBuilder().withName("Alice")
             .withDate("2020-05-10").build()));
+
+        // For Recipe, keywords match ingredient name and step content, but does not match name
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList(
+                "Banana", "Cut the banana, add salad dressing, and mix well in a bowl."));
+        assertFalse(predicate.test(new RecipeBuilder().withName("Apricot Salad")
+            .withIngredients(new ArrayList<>(Arrays.asList(BANANA)))
+            .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD)))
+            .build()));
     }
+
 }
+

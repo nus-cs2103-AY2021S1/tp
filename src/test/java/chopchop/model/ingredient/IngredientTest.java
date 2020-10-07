@@ -25,7 +25,7 @@ public class IngredientTest {
         // different type -> returns false
         assertFalse(APRICOT.equals(5));
 
-        // different person -> returns false
+        // different ingredient -> returns false
         assertFalse(APRICOT.equals(BANANA));
 
         // different name -> returns false

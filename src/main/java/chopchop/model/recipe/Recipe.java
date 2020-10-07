@@ -2,10 +2,8 @@ package chopchop.model.recipe;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import chopchop.model.attributes.Name;
@@ -17,14 +15,14 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Recipe extends FoodEntry {
 
-    // Data fields
-    private final Set<Ingredient> ingredients = new HashSet<>();
+    // Identity fields
+    private final List<Ingredient> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Set<Ingredient> ingredients, List<Step> steps) {
+    public Recipe(Name name, List<Ingredient> ingredients, List<Step> steps) {
         super(name);
         requireAllNonNull(name, ingredients, steps);
         this.ingredients.addAll(ingredients);
@@ -35,8 +33,8 @@ public class Recipe extends FoodEntry {
      * Returns an immutable ingredient set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Ingredient> getIngredients() {
-        return Collections.unmodifiableSet(ingredients);
+    public List<Ingredient> getIngredients() {
+        return Collections.unmodifiableList(ingredients);
     }
 
     /**

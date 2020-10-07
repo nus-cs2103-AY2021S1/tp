@@ -1,5 +1,7 @@
 package chopchop.model;
 
+import static chopchop.model.Model.PREDICATE_SHOW_ALL_RECIPES;
+import static chopchop.testutil.TypicalRecipes.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,7 +9,10 @@ import static chopchop.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
+
 import java.util.Arrays;
+
+import chopchop.testutil.RecipeBookBuilder;
 import org.junit.jupiter.api.Test;
 import chopchop.commons.core.GuiSettings;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
@@ -24,6 +29,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new IngredientBook(), new IngredientBook(modelManager.getIngredientBook()));
+        assertEquals(new RecipeBook(), new RecipeBook(modelManager.getRecipeBook()));
     }
 
     @Test
@@ -48,15 +54,41 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRecipe(null));
+    }
+
+    @Test
+    public void hasRecipe_recipeNotInRecipeBook_returnsFalse() {
+        assertFalse(modelManager.hasRecipe(APRICOT_SALAD));
+    }
+
+    @Test
+    public void hasRecipe_recipeInRecipeBook_returnsTrue() {
+        modelManager.addRecipe(APRICOT_SALAD);
+        assertTrue(modelManager.hasRecipe(APRICOT_SALAD));
+    }
+
+    @Test
+    public void getFilteredRecipeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRecipeList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        RecipeBook recipeBook = new RecipeBook();
         IngredientBook ingredientBook = new IngredientBookBuilder()
                                             .withIngredient(APRICOT).withIngredient(BANANA).build();
         IngredientBook differentIngredientBook = new IngredientBook();
+
+        RecipeBook recipeBook = new RecipeBookBuilder()
+                .withRecipe(APRICOT_SALAD).withRecipe(BANANA_SALAD).build();
+
+        RecipeBook differentRecipeBook = new RecipeBook();
+
         UserPrefs userPrefs = new chopchop.model.UserPrefs();
 
         // same values -> returns true
-        modelManager = new chopchop.model.ModelManager(recipeBook, ingredientBook, userPrefs);
+        modelManager = new ModelManager(recipeBook, ingredientBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(recipeBook, ingredientBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -70,16 +102,26 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different ingredientBook -> returns false
-        assertFalse(modelManager.equals(new chopchop.model
-            .ModelManager(recipeBook, differentIngredientBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(
+                                            recipeBook, differentIngredientBook, userPrefs)));
 
-        // different filteredList -> returns false
-        String[] keywords = APRICOT.getName().fullName.split("\\s+");
-        modelManager.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        // different recipeBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(
+                                            differentRecipeBook, ingredientBook, userPrefs)));
+
+        // different filteredIngredientList -> returns false
+        String[] ind_keywords = APRICOT.getName().fullName.split("\\s+");
+        modelManager.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(ind_keywords)));
+        assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
+
+        // different filteredRecipeList -> returns false
+        String[] rec_keywords = APRICOT_SALAD.getName().fullName.split("\\s+");
+        modelManager.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(rec_keywords)));
         assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+        modelManager.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
 
     }
 }

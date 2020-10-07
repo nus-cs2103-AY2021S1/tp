@@ -26,7 +26,7 @@ public class FindIngredientCommand extends FindCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredRecipeList(predicate);
+        model.updateFilteredIngredientList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW, model.getFilteredIngredientList().size()));
     }
