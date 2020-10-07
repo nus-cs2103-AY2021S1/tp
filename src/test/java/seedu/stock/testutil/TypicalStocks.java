@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.StockBook;
+import seedu.stock.model.stock.AccumulatedQuantity;
+import seedu.stock.model.stock.SerialNumberSet;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -36,5 +39,15 @@ public class TypicalStocks {
 
     public static List<Stock> getTypicalStocks() {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA));
+    }
+
+    public static SerialNumberSetsBook getTypicalStocksSerialNumbers() {
+        SerialNumberSetsBook serialNumbers = new SerialNumberSetsBook();
+        List<SerialNumberSet> serialNumberSets = new ArrayList<>();
+        for (Stock stock: getTypicalStocks()) {
+            serialNumberSets.add(new SerialNumberSet(stock.getSource(), new AccumulatedQuantity("1")));
+        }
+        serialNumbers.setSerialNumberSets(serialNumberSets);
+        return serialNumbers;
     }
 }
