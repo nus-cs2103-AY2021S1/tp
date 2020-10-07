@@ -29,7 +29,7 @@ public abstract class Macronutrient {
     }
 
     private boolean isValidAmount(int amount) {
-        return amount > 0;
+        return amount >= 0;
     }
 
     private String getMessageContraint() {

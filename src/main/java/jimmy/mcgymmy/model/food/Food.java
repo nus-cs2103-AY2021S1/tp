@@ -51,7 +51,7 @@ public class Food {
      * @return total caloric content of food item
      */
     public int getCalories() {
-        return this.protein.getTotalCalories() + this.carbs.getTotalCalories() + this.fat.getCaloricMultiplier();
+        return this.protein.getTotalCalories() + this.carbs.getTotalCalories() + this.fat.getTotalCalories();
     }
 
     // getters : make when needed

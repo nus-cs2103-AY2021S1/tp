@@ -63,6 +63,15 @@ public class FoodTest {
         assertEquals(new Food("test food2", 100, 20, 10).toString(),expected2);
     }
 
+    @Test
+    public void getCaloriesIsCorrect() {
+        assertEquals(new Food("water",0,0,0).getCalories(), 0);
+        assertEquals(new Food("chimkenbreast",30,0,0).getCalories(), 120);
+        assertEquals(new Food("chimkenRice",0,30,0).getCalories(), 120);
+        assertEquals(new Food("sesameOil",0,0,10).getCalories(), 90);
+        assertEquals(new Food("chimkenRiceSet",30,30,10).getCalories(), 330);
+    }
+
 
     @Test
     public void equals() {
