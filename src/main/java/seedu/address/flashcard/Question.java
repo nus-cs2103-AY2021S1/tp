@@ -1,6 +1,5 @@
 package seedu.address.flashcard;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
