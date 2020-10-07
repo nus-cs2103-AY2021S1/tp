@@ -1,7 +1,5 @@
 package tp.cap5buddy.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
 import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.commands.DeleteTaskCommand;
 import tp.cap5buddy.logic.parser.exception.ParseException;
