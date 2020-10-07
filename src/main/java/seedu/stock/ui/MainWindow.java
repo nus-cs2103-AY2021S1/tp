@@ -2,13 +2,9 @@ package seedu.stock.ui;
 
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -81,10 +77,10 @@ public class MainWindow extends UiPart<Stage> {
 //        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
 //    }
 
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
+//    /**
+//     * Sets the accelerator of a MenuItem.
+//     * @param keyCombination the KeyCombination value of the accelerator
+//     */
 //    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
 //        menuItem.setAccelerator(keyCombination);
 //
@@ -111,7 +107,7 @@ public class MainWindow extends UiPart<Stage> {
 //        });
 //    }
 
-    public HBox commandBox() {
+    public void commandBox() {
         HBox commandBox = new HBox();
         Button enterButton = new Button("Enter");
         enterButton.setPrefSize(100, 20);
