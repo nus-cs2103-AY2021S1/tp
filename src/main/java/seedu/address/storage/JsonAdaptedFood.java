@@ -27,7 +27,7 @@ class JsonAdaptedFood {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedVendor} with the given vendor details.
      */
     @JsonCreator
     public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("price") double price,
@@ -56,9 +56,9 @@ class JsonAdaptedFood {
      * @throws IllegalValueException if there were any data constraints violated in the adapted food.
      */
     public Food toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> vendorTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            vendorTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -71,7 +71,7 @@ class JsonAdaptedFood {
 
 
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(vendorTags);
         return new Food(name, price, modelTags);
     }
 

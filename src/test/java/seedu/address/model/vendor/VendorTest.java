@@ -32,8 +32,7 @@ public class VendorTest {
         assertFalse(ALICE.isSameVendor(null));
 
         // different phone and email -> returns false
-        Vendor editedAlice = new VendorBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withMenu(ALICE.getMenu()).build();
+        Vendor editedAlice = new VendorBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameVendor(editedAlice));
 
         // different name -> returns false
@@ -70,7 +69,7 @@ public class VendorTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different Vendor -> returns false
+        // different vendor -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
