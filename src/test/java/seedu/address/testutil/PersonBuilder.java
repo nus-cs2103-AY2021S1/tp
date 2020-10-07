@@ -5,18 +5,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
-import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reference;
-import seedu.address.model.person.Status;
-import seedu.address.model.person.Suspect;
-import seedu.address.model.person.Victim;
-import seedu.address.model.person.Witness;
+import seedu.address.model.investigationcase.Address;
+import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.Description;
+import seedu.address.model.investigationcase.Document;
+import seedu.address.model.investigationcase.Email;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Phone;
+import seedu.address.model.investigationcase.Reference;
+import seedu.address.model.investigationcase.Status;
+import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Victim;
+import seedu.address.model.investigationcase.Witness;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -64,18 +64,18 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        description = personToCopy.getDescription();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        status = personToCopy.getStatus();
-        address = personToCopy.getAddress();
-        documents = new ArrayList<>(personToCopy.getDocuments());
-        suspects = personToCopy.getSuspects();
-        victims = personToCopy.getVictims();
-        witnesses = new ArrayList<>(personToCopy.getWitnesses());
-        tags = new HashSet<>(personToCopy.getTags());
+    public PersonBuilder(Case caseToCopy) {
+        name = caseToCopy.getName();
+        description = caseToCopy.getDescription();
+        phone = caseToCopy.getPhone();
+        email = caseToCopy.getEmail();
+        status = caseToCopy.getStatus();
+        address = caseToCopy.getAddress();
+        documents = new ArrayList<>(caseToCopy.getDocuments());
+        suspects = caseToCopy.getSuspects();
+        victims = caseToCopy.getVictims();
+        witnesses = new ArrayList<>(caseToCopy.getWitnesses());
+        tags = new HashSet<>(caseToCopy.getTags());
     }
 
     /**
@@ -172,8 +172,8 @@ public class PersonBuilder {
      * Generates a {@code Person} object with existing fields.
      * @return Person object
      */
-    public Person build() {
-        return new Person(name, description, phone, email, status, documents, address,
+    public Case build() {
+        return new Case(name, description, phone, email, status, documents, address,
                 suspects, victims, witnesses, tags);
     }
 

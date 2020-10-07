@@ -18,17 +18,17 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
-import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Status;
-import seedu.address.model.person.Suspect;
-import seedu.address.model.person.Victim;
-import seedu.address.model.person.Witness;
+import seedu.address.model.investigationcase.Address;
+import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.Description;
+import seedu.address.model.investigationcase.Document;
+import seedu.address.model.investigationcase.Email;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Phone;
+import seedu.address.model.investigationcase.Status;
+import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Victim;
+import seedu.address.model.investigationcase.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -74,9 +74,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Victim> victims = new ArrayList<>();
         List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Person person = new Person(name, description, phone, email, status, documents, address,
+        Case investigationCase = new Case(name, description, phone, email, status, documents, address,
                 suspects, victims, witnesses, tagList);
-        return new AddCommand(person);
+        return new AddCommand(investigationCase);
     }
 
     /**

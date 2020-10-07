@@ -36,12 +36,12 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Status;
+import seedu.address.model.investigationcase.Address;
+import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.Email;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Phone;
+import seedu.address.model.investigationcase.Status;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -50,57 +50,57 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Case expectedCase = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + SPECIFIC_COMMAND_WORD + NAME_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedCase));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_AMY + NAME_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedCase));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedCase));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_AMY + EMAIL_DESC_BOB + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedCase));
 
         // multiple statuses - last status accepted
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STATUS_DESC_AMY + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedCase));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedCase));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Case expectedCaseMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + STATUS_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedCaseMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Case expectedCase = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_AMY, new AddCommand(expectedCase));
 
         // no status
-        expectedPerson = new PersonBuilder(expectedPerson).withStatus("active").build();
+        expectedCase = new PersonBuilder(expectedCase).withStatus("active").build();
         assertParseSuccess(parser, SPECIFIC_COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_AMY, new AddCommand(expectedCase));
     }
 
     @Test

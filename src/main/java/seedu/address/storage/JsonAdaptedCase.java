@@ -10,25 +10,25 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Description;
-import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Status;
-import seedu.address.model.person.Suspect;
-import seedu.address.model.person.Victim;
-import seedu.address.model.person.Witness;
+import seedu.address.model.investigationcase.Address;
+import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.Description;
+import seedu.address.model.investigationcase.Document;
+import seedu.address.model.investigationcase.Email;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Phone;
+import seedu.address.model.investigationcase.Status;
+import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Victim;
+import seedu.address.model.investigationcase.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Case}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedCase {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Case's %s field is missing!";
 
     private final String name;
     private final String description;
@@ -43,18 +43,18 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedWitness> witnesses = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedCase} with the given case details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("description") String description,
-            @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("status") String status,
-            @JsonProperty("documents") List<JsonAdaptedDocument> documents,
-            @JsonProperty("address") String address,
-            @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
-            @JsonProperty("victims") List<JsonAdaptedVictim> victims,
-            @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedCase(@JsonProperty("name") String name, @JsonProperty("description") String description,
+                           @JsonProperty("phone") String phone,
+                           @JsonProperty("email") String email, @JsonProperty("status") String status,
+                           @JsonProperty("documents") List<JsonAdaptedDocument> documents,
+                           @JsonProperty("address") String address,
+                           @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
+                           @JsonProperty("victims") List<JsonAdaptedVictim> victims,
+                           @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.description = description;
         this.phone = phone;
@@ -79,9 +79,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Case} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedCase(Case source) {
         name = source.getName().alphaNum;
         description = source.getDescription().alphaNum;
         phone = source.getPhone().value;
@@ -104,14 +104,14 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted case object into the model's {@code Case} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted case.
      */
-    public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+    public Case toModelType() throws IllegalValueException {
+        final List<Tag> caseTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            caseTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -173,7 +173,7 @@ class JsonAdaptedPerson {
             modelVictims.add(victim.toModelType());
         }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(caseTags);
 
         final List<Witness> modelWitnesses = new ArrayList<>();
         for (JsonAdaptedWitness witness : witnesses) {
@@ -185,7 +185,7 @@ class JsonAdaptedPerson {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelName, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
+        return new Case(modelName, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
                 modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }
