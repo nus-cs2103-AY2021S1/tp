@@ -16,7 +16,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Food> {
     }
 
     @Override
-    public boolean test(jimmy.mcgymmy.model.food.Food food) {
+    public boolean test(Food food) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName().fullName, keyword));
     }
