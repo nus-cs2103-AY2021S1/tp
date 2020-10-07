@@ -9,6 +9,7 @@ public abstract class Macronutrient {
     private final int amount;
     private final int caloricMultiplier;
     private final int totalCalories;
+    private String type;
 
     /**
      * Represents macronutrients of 3 types
@@ -44,10 +45,11 @@ public abstract class Macronutrient {
 
     @Override
     public String toString() {
-        return "MacronutrientType:" + this.getMacronutrientType() + "\n"
+        String res = "MacronutrientType:" + this.getMacronutrientType() + "\n"
                 + "Amount: "
                 + this.getAmount() + "\n"
                 + "Caloric Count: " + this.getTotalCalories() + "\n";
+        return res;
     }
 
     @Override
@@ -65,7 +67,7 @@ public abstract class Macronutrient {
 
     // take the type from the class name
     public String getMacronutrientType() {
-        return this.getClass().getName();
+        return this.getClass().getSimpleName();
     }
 
     public int getAmount() {
