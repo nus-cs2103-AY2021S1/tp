@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String description;
     private final String phone;
     private final String email;
     private final String status;
@@ -44,7 +46,8 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("description") String description,
+            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
             @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("address") String address,
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
             @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.description = description;
         this.phone = phone;
         this.email = email;
         this.status = status;
@@ -79,6 +83,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().alphaNum;
+        description = source.getDescription().alphaNum;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         status = source.getStatus().name();
@@ -116,6 +121,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Description modelDescription = new Description(description);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -171,7 +185,7 @@ class JsonAdaptedPerson {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
+        return new Person(modelName, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
                 modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }

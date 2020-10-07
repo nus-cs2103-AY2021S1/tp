@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -102,6 +103,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Description updatedDescription = new Description("");
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
@@ -112,7 +114,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Witness> updatedWitnesses =
                 editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
+        return new Person(updatedName, updatedDescription, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
                 updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Description description;
         private Phone phone;
         private Email email;
         private Status status;
@@ -158,6 +161,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setDescription(toCopy.description);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStatus(toCopy.status);
@@ -174,7 +178,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, status, address, suspects, victims, tags);
+            return CollectionUtil.isAnyNonNull(name, description, phone, email,
+                    status, address, suspects, victims, tags);
         }
 
         public void setName(Name name) {
@@ -183,6 +188,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setPhone(Phone phone) {
