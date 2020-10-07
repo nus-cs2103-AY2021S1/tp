@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -40,7 +39,7 @@ public class EatRecipeCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
         EatRecipeCommand eatRecipeCommand = new EatRecipeCommand(outOfBoundIndex);
 
-        assertCommandFailure(eatRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+        assertCommandFailure(eatRecipeCommand, model, Messages.MESSAGE_INVALID_CONSUMPTION_DISPLAYED_INDEX);
     }
 
     /*@Test
@@ -54,7 +53,7 @@ public class EatRecipeCommandTest {
 
         Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addConsumption(new Consumption(recipeToEat));
-        showNoRecipe(expectedModel);
+        showNoConsumption(expectedModel);
 
         assertCommandSuccess(eatRecipeCommand, model, expectedMessage, expectedModel);
     }*/
@@ -69,7 +68,7 @@ public class EatRecipeCommandTest {
 
         EatRecipeCommand eatRecipeCommand = new EatRecipeCommand(outOfBoundIndex);
 
-        assertCommandFailure(eatRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+        assertCommandFailure(eatRecipeCommand, model, Messages.MESSAGE_INVALID_CONSUMPTION_DISPLAYED_INDEX);
     }
 
     @Test
@@ -90,14 +89,14 @@ public class EatRecipeCommandTest {
         // null -> returns false
         assertFalse(eatFirstCommand.equals(null));
 
-        // different recipe -> returns false
+        // different consumption -> returns false
         assertFalse(eatFirstCommand.equals(eatSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoRecipe(Model model) {
+    private void showNoConsumption(Model model) {
         model.updateFilteredRecipeList(p -> false);
 
         assertTrue(model.getFilteredRecipeList().isEmpty());

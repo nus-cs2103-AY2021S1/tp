@@ -50,10 +50,8 @@ public class Consumption {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(recipe.getName())
-                .append(" Ingredient: ")
-                .append(recipe.getIngredient().stream()
-                        .map(item -> item.getValue())
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+                .append(" Calories: ")
+                .append(recipe.getCalories());
         return builder.toString();
     }
 }

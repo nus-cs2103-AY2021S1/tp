@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showConsumptionAtIndex;
+import static seedu.address.testutil.TypicalConsumption.getTypicalWishfulShrinking;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONSUMPTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONSUMPTION;
-import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinkingConsumption;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.consumption.Consumption;
  */
 public class DeleteConsumptionCommandTest {
 
-    private Model model = new ModelManager(getTypicalWishfulShrinkingConsumption(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
