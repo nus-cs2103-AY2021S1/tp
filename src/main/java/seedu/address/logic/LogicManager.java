@@ -13,6 +13,7 @@ import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.history.CommandHistory;
 import seedu.address.logic.history.History;
 import seedu.address.logic.history.HistoryManager;
 import seedu.address.logic.parser.AddressBookParser;
@@ -31,7 +32,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final HistoryManager historyManager;
+    private final History history;
     private final AddressBookParser addressBookParser;
 
     /**
@@ -40,7 +41,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        historyManager = new HistoryManager();
+        history = new HistoryManager();
         addressBookParser = new AddressBookParser();
     }
 
@@ -50,12 +51,12 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model, historyManager);
+        commandResult = command.execute(model, history);
 
         if (!(command instanceof UndoCommand
                 || command instanceof RedoCommand
                 || command instanceof HistoryCommand)) {
-            historyManager.add(new History(commandText, command));
+            history.add(new CommandHistory(commandText, command));
         }
 
         try {

@@ -1,43 +1,36 @@
 package seedu.address.logic.history;
 
-import java.util.Optional;
-
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.Undoable;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 
 /**
- * Represents a command history.
+ * API of the History component
  */
-public class History {
-    private final String commandText;
-    private final Undoable command;
+public interface History {
+    /**
+     * Adds an undoable command to the history.
+     */
+    void add(CommandHistory command);
 
     /**
-     * @param commandText of the command.
-     * @param command the command.
+     * Undo a command and returns the result. Skips any commands that are not undoable.
+     * @param model {@code Model} which the undo should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during undo execution.
      */
-    public History(String commandText, Command command) {
-        this.commandText = commandText;
-
-        if (command instanceof Undoable) {
-            this.command = (Undoable) command;
-        } else {
-            this.command = null;
-        }
-    }
+    CommandResult undo(Model model) throws CommandException;
 
     /**
-     * Gets the command text.
+     * Redo a command and returns the result. Skips any commands that are not redoable.
+     * @param model {@code Model} which the redo should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If an error occurs during redo execution.
      */
-    public String getCommandText() {
-        return commandText;
-    }
+    CommandResult redo(Model model) throws CommandException;
 
     /**
-     * Gets the undoable command if it exists.
-     * @return An Optional of the undoable command.
+     * Returns the command history in reverse chronological order.
      */
-    public Optional<Undoable> getCommand() {
-        return Optional.ofNullable(command);
-    }
+    String getHistory();
 }

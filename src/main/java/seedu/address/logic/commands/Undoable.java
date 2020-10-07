@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.history.HistoryManager;
+import seedu.address.logic.history.History;
 import seedu.address.model.Model;
 
 /**
@@ -12,11 +12,11 @@ public interface Undoable {
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param historyManager {@code HistoryManager} which the command should record to.
+     * @param history {@code History} which the command should record to.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    CommandResult execute(Model model, HistoryManager historyManager) throws CommandException;
+    CommandResult execute(Model model, History history) throws CommandException;
 
     /**
      * Undo the command and returns the result message.
@@ -31,9 +31,9 @@ public interface Undoable {
      * Redo the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param historyManager {@code HistoryManager} which the command should record to.
+     * @param history {@code History} which the command should record to.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    CommandResult redo(Model model, HistoryManager historyManager) throws CommandException;
+    CommandResult redo(Model model, History history) throws CommandException;
 }

@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.history.HistoryManager;
+import seedu.address.logic.history.History;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -50,9 +50,8 @@ public class AddCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
-        requireNonNull(historyManager);
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -75,8 +74,8 @@ public class AddCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult redo(Model model, HistoryManager historyManager) throws CommandException {
-        return execute(model, historyManager);
+    public CommandResult redo(Model model, History history) throws CommandException {
+        return execute(model, history);
     }
 
     @Override

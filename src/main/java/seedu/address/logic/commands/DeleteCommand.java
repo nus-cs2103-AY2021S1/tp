@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.history.HistoryManager;
+import seedu.address.logic.history.History;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -36,9 +36,8 @@ public class DeleteCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
-        requireNonNull(historyManager);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -63,8 +62,8 @@ public class DeleteCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult redo(Model model, HistoryManager historyManager) throws CommandException {
-        return execute(model, historyManager);
+    public CommandResult redo(Model model, History history) throws CommandException {
+        return execute(model, history);
     }
 
     @Override

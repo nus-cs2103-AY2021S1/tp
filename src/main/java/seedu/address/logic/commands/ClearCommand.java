@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.history.HistoryManager;
+import seedu.address.logic.history.History;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -21,9 +21,8 @@ public class ClearCommand extends Command implements Undoable {
     private ReadOnlyAddressBook addressBook;
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) {
+    public CommandResult execute(Model model, History history) {
         requireNonNull(model);
-        requireNonNull(historyManager);
         addressBook = new AddressBook(model.getAddressBook());
         model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
@@ -42,7 +41,7 @@ public class ClearCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult redo(Model model, HistoryManager historyManager) {
-        return execute(model, historyManager);
+    public CommandResult redo(Model model, History history) {
+        return execute(model, history);
     }
 }
