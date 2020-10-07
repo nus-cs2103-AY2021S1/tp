@@ -5,6 +5,11 @@ package seedu.address.flashcard;
  */
 public class Choice {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Choices should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
     private final String content;
 
     public Choice(String content) {
@@ -13,6 +18,10 @@ public class Choice {
 
     public String getContent() {
         return content;
+    }
+
+    public static boolean isValidChoice(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
