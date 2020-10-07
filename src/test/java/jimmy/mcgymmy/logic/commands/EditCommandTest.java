@@ -17,7 +17,6 @@ import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.UserPrefs;
-import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.testutil.FoodBuilder;
@@ -128,8 +127,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.ParameterStub<>("", INDEX_SECOND_FOOD),
                 new CommandParserTestUtil.OptionalParameterStub<>("n", firstFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", firstFood.getProtein()),
-                new CommandParserTestUtil.OptionalParameterStub<Carbohydrate>("c", firstFood.getCarbs()),
-                new CommandParserTestUtil.OptionalParameterStub<>("f")
+                new CommandParserTestUtil.OptionalParameterStub<>("f", firstFood.getFat()),
+                new CommandParserTestUtil.OptionalParameterStub<>("c", firstFood.getCarbs())
         );
 
 
@@ -147,9 +146,9 @@ public class EditCommandTest {
         editCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", INDEX_FIRST_FOOD),
                 new CommandParserTestUtil.OptionalParameterStub<>("n", foodInList.getName()),
-                new CommandParserTestUtil.OptionalParameterStub<>("p"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c"),
-                new CommandParserTestUtil.OptionalParameterStub<>("f")
+                new CommandParserTestUtil.OptionalParameterStub<>("p", foodInList.getProtein()),
+                new CommandParserTestUtil.OptionalParameterStub<>("f", foodInList.getFat()),
+                new CommandParserTestUtil.OptionalParameterStub<>("c", foodInList.getCarbs())
         );
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
