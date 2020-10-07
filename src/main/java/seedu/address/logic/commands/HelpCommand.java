@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.HistoryManager;
+import seedu.address.logic.history.HistoryManager;
 import seedu.address.model.Model;
 
 /**

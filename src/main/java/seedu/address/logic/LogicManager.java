@@ -9,8 +9,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.Undoable;
+import seedu.address.logic.commands.HistoryCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.history.History;
+import seedu.address.logic.history.HistoryManager;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -48,8 +52,10 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model, historyManager);
 
-        if (command instanceof Undoable) {
-            historyManager.add((Undoable) command);
+        if (!(command instanceof UndoCommand
+                || command instanceof RedoCommand
+                || command instanceof HistoryCommand)) {
+            historyManager.add(new History(commandText, command));
         }
 
         try {

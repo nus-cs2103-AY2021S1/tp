@@ -17,8 +17,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.HistoryManager;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.history.HistoryManager;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -112,7 +112,7 @@ public class EditCommand extends Command implements Undoable {
     public CommandResult undo(Model model) throws CommandException {
         requireNonNull(model);
 
-        if(!model.hasPerson(editedPerson)) {
+        if (!model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_NONEXISTENT_PERSON);
         }
 

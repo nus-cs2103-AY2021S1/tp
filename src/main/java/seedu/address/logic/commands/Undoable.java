@@ -1,14 +1,13 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.HistoryManager;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.history.HistoryManager;
 import seedu.address.model.Model;
 
 /**
  * Represents an undoable command with the ability to be undone and redone.
  */
 public interface Undoable {
-
     /**
      * Executes the command and returns the result message.
      *

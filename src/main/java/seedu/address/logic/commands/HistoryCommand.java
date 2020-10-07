@@ -7,16 +7,23 @@ import seedu.address.logic.history.HistoryManager;
 import seedu.address.model.Model;
 
 /**
- * Undo the last undoable command.
+ * Lists all previous commands.
  */
-public class UndoCommand extends Command {
-    public static final String COMMAND_WORD = "undo";
+public class HistoryCommand extends Command {
+    public static final String COMMAND_WORD = "history";
+
+    public static final String MESSAGE_NO_HISTORY = "No history found";
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        requireNonNull(model);
         requireNonNull(historyManager);
 
-        return historyManager.undo(model);
+        String history = historyManager.getHistory();
+
+        if (history.isBlank()) {
+            throw new CommandException(MESSAGE_NO_HISTORY);
+        }
+
+        return new CommandResult(history);
     }
 }
