@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,7 +68,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BENSON));
+        assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
         Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
