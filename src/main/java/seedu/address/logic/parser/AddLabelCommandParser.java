@@ -34,7 +34,7 @@ public class AddLabelCommandParser implements Parser<AddLabelCommand> {
         Name name;
 
         try {
-            name = ParserUtil.parseName(argMultimap.getPreamble());
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabelCommand.MESSAGE_USAGE), pe);
         }
