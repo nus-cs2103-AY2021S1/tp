@@ -18,5 +18,9 @@ public class Name extends Alphanumeric {
         super(name);
     }
 
+    public static boolean isValidName(String name) {
+        return isValidAlphanum(name);
+    }
+
 
 }
