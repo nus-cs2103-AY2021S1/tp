@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Option;
@@ -82,7 +83,7 @@ public class ParserUtil {
      * @throws ParseException if answer is less than choices and question is invalid.
      */
     public static Question parseMultipleChoiceQuestion(String question,
-                                                       String[] choices) throws ParseException {
+                                                       Choice[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
@@ -172,25 +173,25 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static String parseChoice(String choice) throws ParseException {
+    public static Choice parseChoice(String choice) throws ParseException {
         requireNonNull(choice);
         String trimmedChoice = choice.trim();
         if (choice.equals(" ")) {
             throw new ParseException("Choices cannot be empty");
         }
-        return trimmedChoice;
+        return new Choice(trimmedChoice);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static String[] parseChoices(Collection<String> choices) throws ParseException {
+    public static Choice[] parseChoices(Collection<String> choices) throws ParseException {
         requireNonNull(choices);
-        List<String> choicesList = new ArrayList<>();
+        List<Choice> choicesList = new ArrayList<>();
         for (String choice : choices) {
             choicesList.add(parseChoice(choice));
         }
-        String[] result = new String[choicesList.size()];
+        Choice[] result = new Choice[choicesList.size()];
         if (result.length <= 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));

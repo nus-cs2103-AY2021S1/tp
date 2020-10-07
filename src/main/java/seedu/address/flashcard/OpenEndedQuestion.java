@@ -40,7 +40,7 @@ public class OpenEndedQuestion implements Question {
         return false;
     }
 
-    public Optional<String[]> getChoices() {
+    public Optional<Choice[]> getChoices() {
         return Optional.empty();
     }
 

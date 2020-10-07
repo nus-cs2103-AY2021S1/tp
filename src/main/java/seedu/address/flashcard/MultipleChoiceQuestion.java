@@ -17,23 +17,23 @@ public class MultipleChoiceQuestion implements Question {
     public static final String MESSAGE_CONSTRAINTS = "MultipleChoiceQuestion can take any values, "
             + "and it should not be blank";
 
-    private final String[] options;
+    private final Choice[] choices;
     private final String question;
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(String question, String... options) {
+    public MultipleChoiceQuestion(String question, Choice... choices) {
         this.question = question;
-        this.options = options;
+        this.choices = choices;
     }
 
     @Override
     public String getQuestion() {
         StringBuilder sb = new StringBuilder(question + "\n");
         int i = 1;
-        for (String option : options) {
-            sb.append(i).append(". ").append(option).append("\n");
+        for (Choice choice : choices) {
+            sb.append(i).append(". ").append(choice.getContent()).append("\n");
             i++;
         }
         return sb.toString();
@@ -44,8 +44,8 @@ public class MultipleChoiceQuestion implements Question {
         return sb.toString();
     }
 
-    public Optional<String[]> getChoices() {
-        return Optional.ofNullable(this.options);
+    public Optional<Choice[]> getChoices() {
+        return Optional.ofNullable(this.choices);
     }
 
     public static boolean isValidQuestion(String test) {
@@ -58,8 +58,8 @@ public class MultipleChoiceQuestion implements Question {
      * @return option as an {@code Answer}.
      */
     public Answer getAnswerFromIndex(Index index) {
-        String option = options[index.getZeroBased()];
-        return new Answer(option);
+        Choice choice = choices[index.getZeroBased()];
+        return new Answer(choice.getContent());
     }
 
     @Override
