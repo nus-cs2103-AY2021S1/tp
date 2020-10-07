@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,7 +30,6 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
-    private final String email;
     private final String status;
     private final String address;
     private final List<JsonAdaptedDocument> documents = new ArrayList<>();
@@ -45,7 +43,7 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("status") String status,
+            @JsonProperty("status") String status,
             @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("address") String address,
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
@@ -54,7 +52,6 @@ class JsonAdaptedPerson {
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.status = status;
         this.address = address;
         if (documents != null) {
@@ -80,7 +77,6 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().alphaNum;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
         status = source.getStatus().name();
         address = source.getAddress().value;
         documents.addAll(source.getDocuments().stream()
@@ -125,14 +121,6 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
@@ -171,7 +159,7 @@ class JsonAdaptedPerson {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
+        return new Person(modelName, modelPhone, modelStatus, modelDocument, modelAddress,
                 modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }

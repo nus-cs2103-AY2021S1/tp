@@ -3,7 +3,6 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
-    "email" : "alice@example.com",
     "status": "COLD",
     "documents": [ {
       "name" : "name",
@@ -17,7 +16,6 @@
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
-    "email" : "johnd@example.com",
     "status": "CLOSED",
     "documents": [ {
       "name" : "name",
@@ -31,7 +29,6 @@
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
-    "email" : "heinz@example.com",
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "wall street",
@@ -42,7 +39,6 @@
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
-    "email" : "cornelia@example.com",
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "10th street",
@@ -53,7 +49,6 @@
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
-    "email" : "werner@example.com",
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "michegan ave",
@@ -64,7 +59,6 @@
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
-    "email" : "lydia@example.com",
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "little tokyo",
@@ -75,7 +69,6 @@
   }, {
     "name" : "George Best",
     "phone" : "9482442",
-    "email" : "anna@example.com",
     "status": "ACTIVE",
     "documents" : [ ],
     "address" : "4th street",
