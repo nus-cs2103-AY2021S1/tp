@@ -11,7 +11,7 @@ import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Adds a person to the stock book.
+ * Adds a stock to the stock book.
  */
 public class AddCommand extends Command {
 

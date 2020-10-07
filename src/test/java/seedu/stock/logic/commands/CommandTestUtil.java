@@ -1,7 +1,5 @@
 package seedu.stock.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -36,7 +34,8 @@ public class CommandTestUtil {
     public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
-    public static final String INVALID_SERIAL_NUMBER_DESC = " " + PREFIX_SERIAL_NUMBER; // empty serial number not allowed
+    public static final String INVALID_SERIAL_NUMBER_DESC = " "
+            + PREFIX_SERIAL_NUMBER; // empty serial number not allowed
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE; // missing source
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-100"; // negative quantity not allowed
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // '*' not allowed in tags

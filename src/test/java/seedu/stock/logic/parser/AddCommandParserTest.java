@@ -12,6 +12,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.stock.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_APPLE;
@@ -20,13 +21,12 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_BANANA;
-import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.stock.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.stock.testutil.TypicalStocks.APPLE;
+import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
