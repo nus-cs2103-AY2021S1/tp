@@ -22,6 +22,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -149,6 +151,47 @@ public class AddCommandTest {
         public void updateFilteredFoodList(Predicate<Food> predicate, int index) {
 
         }
+
+        @Override
+        public void setOrderManager(ReadOnlyOrderManager orderManager, int index) {
+
+        };
+
+        @Override
+        public ReadOnlyOrderManager getOrderManager(int index) {
+            return null;
+        };
+
+        @Override
+        public boolean hasOrderItem(OrderItem orderItem, int index) {
+            return false;
+        };
+
+        @Override
+        public void deleteOrderItem(OrderItem target, int index){
+
+        };
+
+        @Override
+        public void addOrderItem(OrderItem orderItem, int index){
+
+        };
+
+        @Override
+        public void setOrderItem(OrderItem target, OrderItem editedOrderItem, int index){
+
+        };
+
+
+        @Override
+        public ObservableList<OrderItem> getFilteredOrderList(int index) {
+            return null;
+        };
+
+        @Override
+        public void updateFilteredOrderList(Predicate<OrderItem> predicate, int index){
+
+        };
 
         @Override
         public Path getMenuManagerFolderPath() {

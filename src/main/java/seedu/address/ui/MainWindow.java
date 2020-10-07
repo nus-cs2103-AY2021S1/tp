@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private FoodListPanel foodListPanel;
+    private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +48,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane foodListPanelPlaceholder;
+
+    @FXML
+    private StackPane orderListPanelPlaceholder;
+
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -120,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
 
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+        orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -149,12 +157,18 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
+    void setOrderListDisplay(boolean bool) {
+        orderListPanel.getRoot().setVisible(bool);
+        orderListPanel.getRoot().setManaged(bool);
+    }
+
     /**
      * Displays menu if boolean is true, otherwise display vendor list.
      */
     void displayMenu(boolean bool) {
         setPersonListDisplay(!bool);
         setFoodListDisplay(bool);
+        setOrderListDisplay(bool);
     }
 
 

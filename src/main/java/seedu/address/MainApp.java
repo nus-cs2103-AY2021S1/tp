@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
+import seedu.address.model.order.OrderManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.FoodStorageStub;
@@ -83,6 +84,7 @@ public class MainApp extends Application {
         List<Optional<ReadOnlyMenuManager>> menuManagersOptional;
         ReadOnlyAddressBook initialData;
         List<MenuManager> initialMenuManagers = new ArrayList<>();
+        OrderManager initialOrderManager = new OrderManager();
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -108,7 +110,7 @@ public class MainApp extends Application {
         }
 
 
-        return new ModelManager(initialData, userPrefs, initialMenuManagers);
+        return new ModelManager(initialData, userPrefs, initialMenuManagers, initialOrderManager);
     }
 
     private void initLogging(Config config) {
