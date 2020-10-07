@@ -2,6 +2,7 @@ package tp.cap5buddy.logic.parser;
 
 import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.commands.DeleteModuleCommand;
+import tp.cap5buddy.logic.parser.exception.ParseException;
 
 /**
  * Represents the parser that handles Delete Module command.
@@ -15,10 +16,10 @@ public class DeleteModuleParser extends Parser {
      * @return Command the respective command type.
      */
     @Override
-    public Command parse(String userInput) {
-        Tokenizer token = new Tokenizer(userInput);
-        String[] mod = token.getWords();
-        int position = Integer.parseInt(mod[4]);
+    public Command parse(String userInput) throws ParseException {
+        Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_DELETE_PREFIX, PrefixList.MODULE_NEWNAME_PREFIX);
+        String[] parsedArguments = token.tokenize();
+        int position = Integer.parseInt(parsedArguments[0]);
         return new DeleteModuleCommand(position);
     }
 }
