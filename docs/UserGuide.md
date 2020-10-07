@@ -89,9 +89,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Adding profile picture using keyboard: `addPicture`
+#### Adding profile picture using command line interface: `addPicture`
 
 Adds a profile picture to the patient’s profile by specifying filepath to desired profile picture.
+
+All patient profiles are preloaded with a stock profile picture.
 
 Format: `addPicture INDEX f/FILE_PATH`
 
@@ -100,7 +102,7 @@ Examples:
 *  `addPicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in 
                                                   'downloads' folder for the 2nd patient
 
-#### Adding profile picture using mouse:
+#### Adding profile picture using drag and drop:
 
 Adds a profile picture to the patient’s profile by using drag and drop with your mouse.
 
