@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -27,11 +26,10 @@ public class AddLabelCommand extends Command {
     public static final String COMMAND_WORD = "label add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a label to the person specified.\n"
-            + "Parameters:"
-            + "[" + PREFIX_NAME + "NAME] "
+            + "Parameters: NAME (must be name of person existing in ModDuke) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + " Roy "
+            + "Roy "
             + PREFIX_TAG + "classmate";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Labelled Person: %1$s";

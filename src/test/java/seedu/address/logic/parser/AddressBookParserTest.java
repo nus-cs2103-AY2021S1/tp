@@ -57,7 +57,7 @@ public class AddressBookParserTest {
     @Test public void parseCommand_label() throws Exception {
         Person person = new PersonBuilder().build();
         LabelPersonDescriptor descriptor = new LabelPersonDescriptorBuilder(person).build();
-        AddLabelCommand command = (AddLabelCommand) parser.parseCommand(AddLabelCommand.COMMAND_WORD + " n/"
+        AddLabelCommand command = (AddLabelCommand) parser.parseCommand(AddLabelCommand.COMMAND_WORD + " "
             + person.getName() + " " + PersonUtil.getLabelPersonDescriptorDetails(descriptor));
         assertEquals(new AddLabelCommand(person.getName(), descriptor), command);
     }

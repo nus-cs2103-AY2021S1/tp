@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -47,26 +46,26 @@ public class AddLabelCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, INVALID_NAME_DESC + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, NAME_DESC_AMY + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "James&" + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, VALID_NAME_AMY + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, NAME_DESC_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+        assertParseFailure(parser, VALID_NAME_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, NAME_DESC_AMY + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, VALID_NAME_AMY + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, NAME_DESC_AMY + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, VALID_NAME_AMY + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
                 Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_TAG_DESC,
+        assertParseFailure(parser, "James&" + INVALID_TAG_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = TAG_DESC_HUSBAND + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = VALID_NAME_AMY + TAG_DESC_HUSBAND + TAG_DESC_FRIEND;
 
         LabelPersonDescriptor descriptor = new LabelPersonDescriptorBuilder()
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
@@ -77,7 +76,7 @@ public class AddLabelCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        String userInput = NAME_DESC_AMY + TAG_EMPTY;
+        String userInput = VALID_NAME_AMY + TAG_EMPTY;
 
         LabelPersonDescriptor descriptor = new LabelPersonDescriptorBuilder().withTags().build();
         AddLabelCommand expectedCommand = new AddLabelCommand(new Name(VALID_NAME_AMY), descriptor);
