@@ -111,12 +111,12 @@ public class ModelManagerTest {
                                             differentRecipeBook, ingredientBook, userPrefs)));
 
         // different filteredIngredientList -> returns false
-        String[] ind_keywords = APRICOT.getName().fullName.split("\\s+");
+        final String[] ind_keywords = APRICOT.getName().fullName.split("\\s+");
         modelManager.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(ind_keywords)));
         assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
 
         // different filteredRecipeList -> returns false
-        String[] rec_keywords = APRICOT_SALAD.getName().fullName.split("\\s+");
+        final String[] rec_keywords = APRICOT_SALAD.getName().fullName.split("\\s+");
         modelManager.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(rec_keywords)));
         assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
 

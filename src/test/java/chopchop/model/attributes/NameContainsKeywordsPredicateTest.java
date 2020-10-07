@@ -85,7 +85,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // For Recipe, keywords match ingredient name and step content, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList(
-                "Banana", "Cut the banana, add salad dressing, and mix well in a bowl."));
+                "Banana", "Cut"));
         assertFalse(predicate.test(new RecipeBuilder().withName("Apricot Salad")
             .withIngredients(new ArrayList<>(Arrays.asList(BANANA)))
             .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD)))
