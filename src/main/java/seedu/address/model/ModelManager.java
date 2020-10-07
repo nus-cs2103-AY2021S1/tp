@@ -81,8 +81,8 @@ public class ModelManager implements Model {
     //=========== CliniCal ================================================================================
 
     @Override
-    public void commitCliniCal() {
-        versionedCliniCal.commit(cliniCal);
+    public void commitCliniCal(String command) {
+        versionedCliniCal.commit(cliniCal, command);
     }
 
     @Override
@@ -93,7 +93,11 @@ public class ModelManager implements Model {
     @Override
     public void undoCliniCal() {
         versionedCliniCal.undo();
-        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+    }
+
+    @Override
+    public String getUndoCommand() {
+        return versionedCliniCal.getUndoCommand();
     }
 
     @Override
@@ -104,6 +108,11 @@ public class ModelManager implements Model {
     @Override
     public void redoCliniCal() {
         versionedCliniCal.redo();
+    }
+
+    @Override
+    public String getRedoCommand() {
+        return versionedCliniCal.getRedoCommand();
     }
 
     @Override

@@ -12,7 +12,7 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_SUCCESS = "Redo-ed the previous command";
+    public static final String MESSAGE_SUCCESS = "Redo-ed the command:\n %1$s";
 
     public static final String MESSAGE_NO_MORE_COMMANDS = "No more commands to redo";
 
@@ -23,6 +23,6 @@ public class RedoCommand extends Command {
             throw new CommandException(MESSAGE_NO_MORE_COMMANDS);
         }
         model.redoCliniCal();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getRedoCommand()));
     }
 }

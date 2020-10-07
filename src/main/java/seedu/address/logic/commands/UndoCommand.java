@@ -12,7 +12,7 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_SUCCESS = "Undo-ed the previous command";
+    public static final String MESSAGE_SUCCESS = "Undo-ed the command:\n %1$s";
 
     public static final String MESSAGE_NO_MORE_COMMANDS = "No more commands to undo";
 
@@ -23,6 +23,6 @@ public class UndoCommand extends Command {
             throw new CommandException(MESSAGE_NO_MORE_COMMANDS);
         }
         model.undoCliniCal();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getUndoCommand()));
     }
 }

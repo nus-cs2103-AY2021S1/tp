@@ -89,7 +89,7 @@ public interface Model {
     /**
      * Saves the current CliniCal application state in its history.
      */
-    void commitCliniCal();
+    void commitCliniCal(String command);
 
 
     /**
@@ -101,6 +101,16 @@ public interface Model {
      * Restores the previous CliniCal application state from its history.
      */
     void undoCliniCal();
+
+    /**
+     * Returns the command that was undone successfully.
+     */
+    String getUndoCommand();
+
+    /**
+     * Returns the command that was redone successfully.
+     */
+    String getRedoCommand();
 
     /**
      * Checks if there are any valid commands to redo.

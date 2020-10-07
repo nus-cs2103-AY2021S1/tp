@@ -18,7 +18,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setCliniCal(new CliniCal());
-        model.commitCliniCal();
+        model.commitCliniCal(COMMAND_WORD);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
