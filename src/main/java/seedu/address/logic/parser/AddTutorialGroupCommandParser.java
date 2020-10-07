@@ -10,9 +10,8 @@ import seedu.address.model.TutorialGroup;
 public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCommand> {
 
     /**
-     * Interprets the user's input
-     * @param args
-     * @return
+     * Parses the given {@code String} of arguments in the context of the AddTutorialGroupCommand
+     * and returns a AddTutorialGroupCommand object for execution.
      */
     public AddTutorialGroupCommand parse(String args) /*throws ParseException*/ {
         requireNonNull(args);
