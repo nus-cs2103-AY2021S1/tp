@@ -22,14 +22,18 @@ public abstract class Alphanumeric {
      */
     public Alphanumeric(String alphaNum) {
         requireNonNull(alphaNum);
-        checkArgument(isValidName(alphaNum), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAlphanum(alphaNum), MESSAGE_CONSTRAINTS);
         this.alphaNum = alphaNum;
+    }
+
+    public Alphanumeric() {
+        this.alphaNum = "";
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidAlphanum(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
