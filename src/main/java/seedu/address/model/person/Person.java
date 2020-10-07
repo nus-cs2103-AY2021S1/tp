@@ -21,6 +21,7 @@ public class Person {
     private final Title title;
     private final Phone phone;
     private final Email email;
+    private final Description description;
     private final Status status;
 
     // Data fields
@@ -28,15 +29,19 @@ public class Person {
     private final List<Suspect> suspects = new ArrayList<>();
     private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Witness> witnesses = new ArrayList<>();
     private final List<Document> documents = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Title title, Phone phone, Email email, Status status, Address address,
-                  List<Suspect> suspects, List<Victim> victims, Set<Tag> tags) {
-        requireAllNonNull(title, phone, email, status, address, suspects, victims, tags);
+    public Person(Title title, Description description, Phone phone, Email email, Status status,
+                  List<Document> documents, Address address,
+                  List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+        requireAllNonNull(title, description, phone, email, status, documents,
+                address, suspects, victims, witnesses, tags);
         this.title = title;
+        this.description = description;
         this.phone = phone;
         this.email = email;
         this.status = status;
@@ -45,10 +50,15 @@ public class Person {
         this.suspects.addAll(suspects);
         this.victims.addAll(victims);
         this.tags.addAll(tags);
+        this.witnesses.addAll(witnesses);
     }
 
     public Title getTitle() {
         return title;
+    }
+
+    public Description getDescription() {
+        return description;
     }
 
     public Phone getPhone() {
@@ -88,6 +98,11 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    // TODO: Consider using Collections.unmodifiableList(witnessList) here.
+    public List<Witness> getWitnesses() {
+        return witnesses;
+    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
@@ -119,6 +134,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getTitle().equals(getTitle())
+                && otherPerson.getDescription().equals(getDescription())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getStatus().equals(getStatus())
@@ -126,19 +142,23 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getSuspects().equals(getSuspects())
                 && otherPerson.getVictims().equals(getVictims())
+                && otherPerson.getWitnesses().equals(getWitnesses())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, phone, email, status, address, suspects, victims, tags);
+        return Objects.hash(title, description, phone, email, status, documents,
+                            address, suspects, victims, witnesses, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
+                .append(" Description: ")
+                .append(getDescription())
                 .append(" Phone: ")
                 .append(getPhone())
                 .append(" Email: ")
@@ -149,11 +169,13 @@ public class Person {
                 .append(getDocuments())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Suspects: ")
-                .append(getSuspects())
-                .append(" Victims: ")
-                .append(getVictims())
-                .append(" Tags: ");
+                .append(" Suspects: ");
+        getSuspects().forEach(builder::append);
+        builder.append(" Victims: ");
+        getVictims().forEach(builder::append);
+        builder.append(" Witnesses: ");
+        getWitnesses().forEach(builder::append);
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

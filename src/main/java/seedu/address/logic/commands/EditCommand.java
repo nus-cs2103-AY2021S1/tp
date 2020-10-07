@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -30,6 +31,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,6 +103,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Title updatedTitle = editPersonDescriptor.getTitle().orElse(personToEdit.getTitle());
+        Description updatedDescription = new Description("");
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
@@ -109,9 +112,10 @@ public class EditCommand extends Command {
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedTitle, updatedPhone, updatedEmail, updatedStatus, updatedAddress, updatedSuspects,
-                updatedVictims, updatedTags);
+        List<Witness> updatedWitnesses =
+                editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
+        return new Person(updatedTitle, updatedDescription, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
+                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
     @Override
@@ -138,6 +142,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Title title;
+        private Description description;
         private Phone phone;
         private Email email;
         private Status status;
@@ -146,6 +151,7 @@ public class EditCommand extends Command {
         private List<Suspect> suspects;
         private List<Victim> victims;
         private Set<Tag> tags;
+        private ArrayList<Witness> witnesses;
 
         public EditPersonDescriptor() {}
 
@@ -155,6 +161,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setTitle(toCopy.title);
+            setDescription(toCopy.description);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStatus(toCopy.status);
@@ -162,14 +169,17 @@ public class EditCommand extends Command {
             setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
             setVictims(toCopy.victims);
+            setWitnesses(toCopy.witnesses);
             setTags(toCopy.tags);
+
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, phone, email, status, address, suspects, victims, tags);
+            return CollectionUtil.isAnyNonNull(title, description, phone, email,
+                    status, address, suspects, victims, tags);
         }
 
         public void setTitle(Title title) {
@@ -178,6 +188,14 @@ public class EditCommand extends Command {
 
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setPhone(Phone phone) {
@@ -250,6 +268,22 @@ public class EditCommand extends Command {
             return (victims != null) ? Optional.of(victims) : Optional.empty();
         }
 
+
+        /**
+         * Sets {@code witnesses} to this object's {@code witnesses}.
+         * A defensive copy of {@code witnesses} is used internally.
+         */
+        public void setWitnesses(ArrayList<Witness> witnesses) {
+            this.witnesses = (witnesses != null) ? new ArrayList<>(witnesses) : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code witnesses} is null.
+         */
+        public Optional<List<Witness>> getWitnesses() {
+            return (witnesses != null) ? Optional.of(witnesses) : Optional.empty();
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -266,7 +300,6 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
 
         @Override
         public boolean equals(Object other) {

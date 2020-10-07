@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.Command.TYPE_CASE;
+import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -11,11 +13,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -24,6 +28,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,8 +42,20 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        if (!commandWord.equals(TYPE_CASE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        final String arguments = matcher.group("arguments");
+
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STATUS,
+                ArgumentTokenizer.tokenize(arguments, PREFIX_TITLE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STATUS,
                         PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
@@ -47,6 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Description description = new Description("");
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("active"));
@@ -54,10 +72,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Document> documents = new ArrayList<>();
         List<Suspect> suspects = new ArrayList<>();
         List<Victim> victims = new ArrayList<>();
+        List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Person person = new Person(title, phone, email, status, address, suspects, victims, tagList);
-
+        Person person = new Person(title, description, phone, email, status, documents, address,
+                suspects, victims, witnesses, tagList);
         return new AddCommand(person);
     }
 

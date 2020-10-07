@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -19,6 +20,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +31,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String title;
+    private final String description;
     private final String phone;
     private final String email;
     private final String status;
@@ -37,19 +40,24 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
     private final List<JsonAdaptedVictim> victims = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedWitness> witnesses = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("title") String title, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("title") String title, @JsonProperty("description") String description,
+            @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
             @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("address") String address,
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
             @JsonProperty("victims") List<JsonAdaptedVictim> victims,
+            @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.title = title;
+        this.description = description;
         this.phone = phone;
         this.email = email;
         this.status = status;
@@ -60,13 +68,15 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (witnesses != null) {
+            this.witnesses.addAll(witnesses);
+        }
         if (suspects != null) {
             this.suspects.addAll(suspects);
         }
         if (victims != null) {
             this.victims.addAll(victims);
         }
-
     }
 
     /**
@@ -74,6 +84,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         title = source.getTitle().alphaNum;
+        description = source.getDescription().alphaNum;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         status = source.getStatus().name();
@@ -84,6 +95,9 @@ class JsonAdaptedPerson {
         suspects.addAll(source.getSuspects().stream().map(JsonAdaptedSuspect::new).collect(Collectors.toList()));
         victims.addAll(source.getVictims().stream()
                 .map(JsonAdaptedVictim::new)
+                .collect(Collectors.toList()));
+        witnesses.addAll(source.getWitnesses().stream()
+                .map(JsonAdaptedWitness::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -104,10 +118,19 @@ class JsonAdaptedPerson {
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        if (!Title.isValidName(title)) {
+        if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Description modelDescription = new Description(description);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -153,13 +176,18 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+        final List<Witness> modelWitnesses = new ArrayList<>();
+        for (JsonAdaptedWitness witness : witnesses) {
+            modelWitnesses.add(witness.toModelType());
+        }
+
         final List<Document> modelDocument = new ArrayList<>();
         for (JsonAdaptedDocument document : documents) {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelTitle, modelPhone, modelEmail, modelStatus, modelAddress,
-                modelSuspects, modelVictims, modelTags);
+        return new Person(modelTitle, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument,
+                modelAddress, modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }
 

@@ -45,7 +45,7 @@ public class ParserUtil {
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();
-        if (!Title.isValidName(trimmedTitle)) {
+        if (!Title.isValidTitle(trimmedTitle)) {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);

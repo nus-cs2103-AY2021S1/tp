@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.Command.TYPE_CASE;
+import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
+
+import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
@@ -18,7 +22,18 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+            if (!matcher.matches()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
+            final String deleteType = matcher.group("commandWord");
+            final String indexString = matcher.group("arguments");
+
+            if (!deleteType.equals(TYPE_CASE)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
+            Index index = ParserUtil.parseIndex(indexString);
+
             return new DeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
