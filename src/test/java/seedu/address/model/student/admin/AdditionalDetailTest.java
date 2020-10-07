@@ -3,7 +3,6 @@ package seedu.address.model.student.admin;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.student.admin.AdditionalDetail;
 
 public class AdditionalDetailTest {
 
