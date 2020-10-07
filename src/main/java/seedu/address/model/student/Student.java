@@ -84,8 +84,7 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getSchool().equals(getSchool())
-                && otherStudent.getYear().equals(getYear())
-                && otherStudent.getAdmin().equals(getAdmin());
+                && otherStudent.getYear().equals(getYear());
     }
 
     @Override
