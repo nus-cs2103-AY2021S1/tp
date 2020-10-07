@@ -1,28 +1,19 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.MultipleChoiceQuestion;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Option;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Tag;
+import seedu.address.flashcard.*;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 
 /**

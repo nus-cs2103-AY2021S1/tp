@@ -1,15 +1,15 @@
 package seedu.address.flashcard;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Iterator;
-import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.flashcard.exceptions.DuplicateFlashcardException;
 import seedu.address.flashcard.exceptions.FlashcardNotFoundException;
+
+import java.util.Iterator;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
 /**
@@ -96,7 +96,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      */
     public void setFlashcards(List<Flashcard> flashcards) {
         requireAllNonNull(flashcards);
-        if (!personsAreUnique(flashcards)) {
+        if (!flashcardsAreUnique(flashcards)) {
             throw new DuplicateFlashcardException();
         }
 
@@ -121,12 +121,12 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code flashcards} contains only unique flashcards.
      */
-    private boolean personsAreUnique(List<Flashcard> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameFlashcard(persons.get(j))) {
+    private boolean flashcardsAreUnique(List<Flashcard> flashcards) {
+        for (int i = 0; i < flashcards.size() - 1; i++) {
+            for (int j = i + 1; j < flashcards.size(); j++) {
+                if (flashcards.get(i).isSameFlashcard(flashcards.get(j))) {
                     return false;
                 }
             }

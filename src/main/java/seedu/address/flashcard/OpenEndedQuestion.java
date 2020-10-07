@@ -1,5 +1,8 @@
 package seedu.address.flashcard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents an open ended question.
  */
@@ -11,6 +14,7 @@ public class OpenEndedQuestion implements Question {
             + "and it should not be blank";
 
     private final String question;
+
     public OpenEndedQuestion(String question) {
         this.question = question;
     }
@@ -20,13 +24,22 @@ public class OpenEndedQuestion implements Question {
     }
 
     @Override
-    public String getQuestion() {
-        return question;
+    public List<String> getQuestion() {
+        List<String> questionArray = new ArrayList<String>();
+        questionArray.add(question);
+        return questionArray;
     }
 
+    @Override
     public String getOnlyQuestion() {
         return question;
     }
+
+    @Override
+    public String getFormatQuestion() {
+        return question;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -1,30 +1,17 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.MultipleChoiceQuestion;
-import seedu.address.flashcard.OpenEndedQuestion;
-import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Tag;
+import seedu.address.flashcard.*;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 
 /**
@@ -107,7 +94,7 @@ public class EditCommand extends Command {
         String[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
         boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
         if (isMcq) {
-            String question = updatedQuestion.getQuestion();
+            String question = updatedQuestion.getOnlyQuestion();
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
             String[] choices = mcq.getChoices();
             if (Arrays.equals(updatedChoices, emptyArray)) {

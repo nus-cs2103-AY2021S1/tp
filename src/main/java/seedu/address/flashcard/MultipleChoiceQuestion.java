@@ -1,8 +1,10 @@
 package seedu.address.flashcard;
 
-import java.util.Arrays;
-
 import seedu.address.commons.core.index.Index;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Represents a mcq question.
@@ -27,17 +29,24 @@ public class MultipleChoiceQuestion implements Question {
         this.options = options;
     }
 
-    @Override
-    public String getQuestion() {
-        StringBuilder sb = new StringBuilder(question + "\n");
-        int i = 1;
-        for (String option : options) {
-            sb.append(i).append(". ").append(option).append("\n");
-            i++;
-        }
-        return sb.toString();
+    /**
+     * A constructor to create MCQ Question object.
+     */
+    public MultipleChoiceQuestion(List<String> question) {
+        int size = question.size();
+        this.question = question.get(0);
+        this.options = question.subList(1, size).toArray(new String[0]);
     }
 
+    @Override
+    public List<String> getQuestion() {
+        List<String> questionArray = new ArrayList<String>();
+        questionArray.add(question);
+        questionArray.addAll(1, Arrays.asList(options));
+        return questionArray;
+    }
+
+    @Override
     public String getOnlyQuestion() {
         StringBuilder sb = new StringBuilder(question);
         return sb.toString();
@@ -45,6 +54,17 @@ public class MultipleChoiceQuestion implements Question {
 
     public String[] getChoices() {
         return this.options;
+    }
+
+    @Override
+    public String getFormatQuestion() {
+        StringBuilder sb = new StringBuilder(question + "\n");
+        int i = 1;
+        for (String option : options) {
+            sb.append(i).append(". ").append(option).append("\n");
+            i++;
+        }
+        return sb.toString();
     }
 
     public static boolean isValidQuestion(String test) {
@@ -73,6 +93,7 @@ public class MultipleChoiceQuestion implements Question {
         return false;
     }
 
+    @Override
     public String toString() {
         return question;
     }
