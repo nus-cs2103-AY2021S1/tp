@@ -52,7 +52,7 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
         ingredients.setText(recipe.getIngredient().stream()
-                .map(item -> item.getValue())
+                .map(item -> item.getQuantity() + " " + item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         calories.setText(recipe.getCalories().value.toString() + " cal");
     }

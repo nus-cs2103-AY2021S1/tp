@@ -33,8 +33,12 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_INGREDIENT_ALICE = "apple";
     public static final String VALID_INGREDIENT_AMY = "11111111";
     public static final String VALID_INGREDIENT_BOB = "22222222";
+    public static final String VALID_QUANTITY_AMY = "2 cups";
+    public static final String VALID_QUANTITY_BOB = "a teaspoon";
+    public static final String VALID_QUANTITY_ALICE = "1 cup";
     public static final Integer VALID_CALORIES_AMY = 10;
     public static final Integer VALID_CALORIES_BOB = 10;
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -74,9 +78,9 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withIngredient(VALID_INGREDIENT_AMY).withCalories(VALID_CALORIES_AMY).build();
+                .withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).withCalories(VALID_CALORIES_AMY).build();
         DESC_BOB = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB).withCalories(VALID_CALORIES_BOB).build();
+                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).withCalories(VALID_CALORIES_BOB).build();
     }
 
     /**

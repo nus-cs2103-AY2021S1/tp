@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONSUMPTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,9 +56,11 @@ public class WishfulShrinkingParserTest {
     @Test
     public void parseCommand_addIngredient() throws Exception {
         Ingredient ingredient = new IngredientBuilder().build();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(ingredient);
         AddIngredientCommand command = (AddIngredientCommand) parser.parseCommand(IngredientUtil
                 .getAddIngredientCommand(ingredient));
-        assertEquals(new AddIngredientCommand(ingredient), command);
+        assertEquals(new AddIngredientCommand(ingredients), command);
     }
 
     @Test

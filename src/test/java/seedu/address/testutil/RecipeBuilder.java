@@ -19,7 +19,7 @@ public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
-            new ArrayList<>(List.of(new Ingredient("Veggies"), new Ingredient("Snakes")));
+            new ArrayList<>(List.of(new Ingredient("Veggies", ""), new Ingredient("Snakes", "")));
     public static final Integer DEFAULT_CALORIES = 10;
 
     private Name name;
@@ -56,11 +56,12 @@ public class RecipeBuilder {
     /**
      * Sets the {@code Ingredient} of the {@code Recipe} that we are building.
      */
-    public RecipeBuilder withIngredient(String ingredientString) {
+    public RecipeBuilder withIngredient(String ingredientString, String ingredientQuantity) {
         String[] ingredientsToken = ingredientString.split(",");
+        String[] ingredientsQuantity = ingredientQuantity.split(",");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+            ingredients.add(new Ingredient(ingredientsToken[i].trim(), ingredientsQuantity[i].trim()));
         }
         this.ingredients = ingredients;
         return this;

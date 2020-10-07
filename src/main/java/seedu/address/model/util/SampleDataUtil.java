@@ -20,22 +20,22 @@ public class SampleDataUtil {
     public static Recipe[] getSampleRecipes() {
         return new Recipe[] {
             new Recipe(new Name("Alex Yeoh"),
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
                     new Calories(10)),
             new Recipe(new Name("Bernice Yu"),
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 teaspoon")})),
                             new Calories(10)),
             new Recipe(new Name("Charlotte Oliveiro"),
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "250g")})),
                     new Calories(10)),
             new Recipe(new Name("David Li"),
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "a pinch")})),
                     new Calories(10)),
             new Recipe(new Name("Irfan Ibrahim"),
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "3 tablespoons")})),
                     new Calories(10)),
             new Recipe(new Name("Roy Balakrishnan"),
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807")})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
                     new Calories(10))
         };
     }

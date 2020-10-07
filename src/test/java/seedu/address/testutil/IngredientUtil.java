@@ -28,7 +28,7 @@ public class IngredientUtil {
      */
     public static String getIngredientDetails(Ingredient ingredient) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_INGREDIENT + ingredient.getValue() + " ");
+        sb.append(PREFIX_INGREDIENT + ingredient.getValue() + " -" + ingredient.getQuantity());
         return sb.toString();
     }
 
