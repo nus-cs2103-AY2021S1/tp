@@ -37,7 +37,6 @@ public class ParserManager {
         getNonCommand();
         Parser parser;
         Command command;
-
         switch (this.command) {
         case "addmodule":
             parser = new AddModuleParser();
@@ -57,6 +56,10 @@ public class ParserManager {
             return command;
         case "deletemodule":
             parser = new DeleteModuleParser();
+            command = parser.parse(input);
+            return command;
+        case "addcontact":
+            parser = new AddContactParser();
             command = parser.parse(input);
             return command;
         default:
