@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.Command.TYPE_CASE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -49,7 +50,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + DeleteCommandParser.TYPE_CASE + " "
+                DeleteCommand.COMMAND_WORD + " " + TYPE_CASE + " "
                         + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
@@ -85,9 +86,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + ListCommandParser.TYPE_CASE)
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + TYPE_CASE)
                 instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + ListCommandParser.TYPE_CASE + " 3")
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + TYPE_CASE + " 3")
                 instanceof ListCommand);
     }
 
