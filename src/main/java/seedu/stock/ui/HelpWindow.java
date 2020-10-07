@@ -30,7 +30,8 @@ public class HelpWindow extends UiPart<Stage> {
             "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
 
     public static final String DELETE_DESCRIPTION =
-            "format: \ndelete sn/<serial number>\n\n";
+            "format: \ndelete sn/<serial number>\n\n"
+            + "format (multiple): \ndelete sn/<serial number> sn/<serial number 2> \n\n";
 
     public static final String FIND_DESCRIPTION =
             "format(any): \nfind n/<name> find sn/<serial number> find l/<location> find s/<source of the stock>\n\n";
