@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+
+<Stage xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <scene>
+      <Scene>
+         <BorderPane prefHeight="350.0" prefWidth="550.0">
+            <center>
+               <VBox />
+            </center>
+            <top>
+               <MenuBar BorderPane.alignment="CENTER">
+                 <menus>
+                   <Menu mnemonicParsing="false" text="File">
+                     <items>
+                       <MenuItem fx:id="handleMenuExit" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                     </items>
+                   </Menu>
+                   <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                       <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" text="Docs" />
+                     </items>
+                   </Menu>
+                 </menus>
+               </MenuBar>
+            </top>
+            <left>
+               <VBox BorderPane.alignment="CENTER" />
+            </left>
+         </BorderPane>
+      </Scene>
+   </scene>
+</Stage>
