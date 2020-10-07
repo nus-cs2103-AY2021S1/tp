@@ -28,7 +28,7 @@ public class JsonAdaptedVictim {
      * Converts a given {@code Victim} into this class for Jackson use.
      */
     public JsonAdaptedVictim(Victim source) {
-        name = source.getName().fullName;
+        name = source.getName().alphaNum;
     }
 
     @JsonValue

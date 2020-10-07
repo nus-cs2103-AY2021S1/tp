@@ -30,6 +30,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Victim;
+import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -109,9 +110,10 @@ public class EditCommand extends Command {
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
+        List<Witness> updatedWitnesses =
+                editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
-                updatedAddress, updatedSuspects, updatedVictims, updatedTags);
+                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
     @Override
@@ -146,6 +148,7 @@ public class EditCommand extends Command {
         private List<Suspect> suspects;
         private List<Victim> victims;
         private Set<Tag> tags;
+        private ArrayList<Witness> witnesses;
 
         public EditPersonDescriptor() {}
 
@@ -162,7 +165,9 @@ public class EditCommand extends Command {
             setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
             setVictims(toCopy.victims);
+            setWitnesses(toCopy.witnesses);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -250,6 +255,22 @@ public class EditCommand extends Command {
             return (victims != null) ? Optional.of(victims) : Optional.empty();
         }
 
+
+        /**
+         * Sets {@code witnesses} to this object's {@code witnesses}.
+         * A defensive copy of {@code witnesses} is used internally.
+         */
+        public void setWitnesses(ArrayList<Witness> witnesses) {
+            this.witnesses = (witnesses != null) ? new ArrayList<>(witnesses) : null;
+        }
+
+        /**
+         * Returns {@code Optional#empty()} if {@code witnesses} is null.
+         */
+        public Optional<List<Witness>> getWitnesses() {
+            return (witnesses != null) ? Optional.of(witnesses) : Optional.empty();
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -266,7 +287,6 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
 
         @Override
         public boolean equals(Object other) {
