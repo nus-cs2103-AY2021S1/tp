@@ -85,14 +85,23 @@ Format: `add q/QUESTION ans/ANSWER`
 Examples:
 * `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
 
-### Adding a flashcard with multiple choice question: `addcdq`
+### Adding a flashcard with multiple choice question: `addmcq`
 
 Adds a new flashcard to the application.
 
-Format: `add q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+Format: `addmcq q/QUESTION ans/ANSWER c/first choice c/second choice ..`
 
 Examples:
 * `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
+
+### Edit a flashcard: `edit`
+
+Edit a flashcard.
+
+Format: `edit INDEX q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+
+Examples:
+* `edit 1 q/Plants give out ___ when they photosynthesise? ans/2 c/Oxygen c/Carbon c/Carbon dioxide`
 
 ### Testing a flashcard : `test`
 
