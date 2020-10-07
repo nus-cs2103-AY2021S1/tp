@@ -15,6 +15,8 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
 import seedu.address.model.tag.Tag;
 
+
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -25,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -66,6 +69,21 @@ public class ParserUtil {
     }
 
     /**
+     *   Parses a {@code String year} into a {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(trimmedYear);
+    }
+
+    /**
      * Parses a {@code String school} into a {@code School}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -78,21 +96,6 @@ public class ParserUtil {
             throw new ParseException(School.MESSAGE_CONSTRAINTS);
         }
         return new School(school);
-    }
-
-    /**
-     * Parses a {@code String year} into a {@code Year}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code year} is invalid.
-     */
-    public static Year parseYear(String year) throws ParseException {
-        requireNonNull(year);
-        String trimmedYear = year.trim();
-        if (!Year.isValidYear(trimmedYear)) {
-            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
-        }
-        return new Year(year);
     }
 
     /**
