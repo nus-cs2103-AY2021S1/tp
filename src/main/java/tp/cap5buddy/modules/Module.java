@@ -1,11 +1,16 @@
 package tp.cap5buddy.modules;
 
+import tp.cap5buddy.grades.FinalGrade;
+import tp.cap5buddy.grades.GradeList;
+
 /**
  * Represents the Module creation class.
  */
 public class Module {
     private final String name;
     private final String zoomLink;
+    private GradeList gradeList;
+    private final FinalGrade grade;
 
     /**
      * Represents the module object constructor.

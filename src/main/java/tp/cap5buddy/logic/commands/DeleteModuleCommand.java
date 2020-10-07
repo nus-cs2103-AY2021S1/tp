@@ -7,8 +7,7 @@ import tp.cap5buddy.modules.ModuleList;
  * Represents the DeleteModuleCommand class.
  */
 public class DeleteModuleCommand extends Command {
-    private static final String SUCCESS_MESSAGE_FIRST = "The module at position ";
-    private static final String SUCCESS_MESSAGE_SECOND = " has been deleted successfully!";
+    private static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Module: %1$s";
     private final int position;
 
     /**
@@ -27,7 +26,7 @@ public class DeleteModuleCommand extends Command {
      */
     public CommandResult execute(ModuleList modules, ContactList contacts) {
         modules.deleteModule(position);
-        return new CommandResult(SUCCESS_MESSAGE_FIRST + position + SUCCESS_MESSAGE_SECOND, isExit());
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, position), isExit());
     }
 
     @Override
