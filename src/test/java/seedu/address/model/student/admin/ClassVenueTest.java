@@ -1,11 +1,10 @@
-package seedu.address.model.student;
+package seedu.address.model.student.admin;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.admin.ClassVenue;
 
 public class ClassVenueTest {
 
@@ -32,6 +31,7 @@ public class ClassVenueTest {
         // valid addresses
         assertTrue(ClassVenue.isValidClassVenue("Blk 456, Den Road, #01-355"));
         assertTrue(ClassVenue.isValidClassVenue("-")); // one character
-        assertTrue(ClassVenue.isValidClassVenue("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(ClassVenue.isValidClassVenue("Leng Inc; 1234 Market St; "
+                + "San Francisco CA 2349879; USA")); // long address
     }
 }
