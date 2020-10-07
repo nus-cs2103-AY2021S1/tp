@@ -80,4 +80,13 @@ public class StorageManagerTest {
                 new File(this.getClass().getResource("/images/stock_picture.png").toURI()), path.toFile()));
     }
 
+    @Test
+    public void doNotOverwriteExistingPlaceholderPicture() throws Exception {
+        Path path = getTempFilePath("stock_picture.png");
+        Files.createFile(path);
+
+        storageManager.initializePlaceholderImage();
+
+        assertEquals(path.toFile().length(), 0);
+    }
 }

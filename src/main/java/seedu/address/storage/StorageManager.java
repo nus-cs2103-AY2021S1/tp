@@ -122,6 +122,7 @@ public class StorageManager implements Storage {
             Path targetPath = cliniCalStorage.getCliniCalFilePath().getParent().resolve("stock_picture.png");
 
             if (Files.exists(targetPath)) {
+                System.out.println("stock_picture.png already exists. Using existing file.");
                 return;
             }
 
