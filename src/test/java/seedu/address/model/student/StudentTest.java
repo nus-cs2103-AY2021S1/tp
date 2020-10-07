@@ -32,24 +32,24 @@ public class StudentTest {
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
-        // same name, same phone, different attributes -> returns true
+        // same name, same phone, different attributes -> returns false
         editedAlice = new StudentBuilder(ALICE).withSchool(VALID_SCHOOL_BOB).withYear(VALID_YEAR_BOB)
                 .build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
         // same name, same school, different attributes -> returns true
         editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withYear(VALID_YEAR_BOB)
                 .build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
         // same name, same year, different attributes -> returns true
         editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withSchool(VALID_SCHOOL_BOB)
                 .build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
         // same name, same phone, same school, different year -> returns true
         editedAlice = new StudentBuilder(ALICE).withYear(VALID_YEAR_BOB).build();
-        assertTrue(ALICE.isSameStudent(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
     }
 
     @Test

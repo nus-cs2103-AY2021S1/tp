@@ -42,7 +42,7 @@ public class UniqueStudentListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
-        Student editedAlice = new StudentBuilder(ALICE).withSchool(VALID_SCHOOL_BOB)
+        Student editedAlice = new StudentBuilder(ALICE)
                 .build();
         assertTrue(uniqueStudentList.contains(editedAlice));
     }

@@ -45,7 +45,7 @@ public class ReeveTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Student editedAlice = new StudentBuilder(AMY).withSchool(VALID_SCHOOL_BOB).build();
+        Student editedAlice = new StudentBuilder(AMY).build();
         List<Student> newStudents = Arrays.asList(AMY, editedAlice);
         ReeveStub newData = new ReeveStub(newStudents);
 
@@ -71,7 +71,7 @@ public class ReeveTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         reeve.addPerson(AMY);
-        Student editedAlice = new StudentBuilder(AMY).withSchool(VALID_SCHOOL_BOB).build();
+        Student editedAlice = new StudentBuilder(AMY).build();
         assertTrue(reeve.hasPerson(editedAlice));
     }
 
