@@ -30,72 +30,72 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     //TODO: pass
-//    @Test
-//    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-//        Vendor editedVendor = new VendorBuilder().build();
-//        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder(editedVendor).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_VENDOR, descriptor);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
-//
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//        expectedModel.setVendor(model.getFilteredVendorList().get(0), editedVendor);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    //        Vendor editedVendor = new VendorBuilder().build();
+    //        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder(editedVendor).build();
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_VENDOR, descriptor);
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
+    //
+    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //        expectedModel.setVendor(model.getFilteredVendorList().get(0), editedVendor);
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //    }
 
     //TODO: pass
-//    @Test
-//    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-//        Index indexLastVendor = Index.fromOneBased(model.getFilteredVendorList().size());
-//        Vendor lastVendor = model.getFilteredVendorList().get(indexLastVendor.getZeroBased());
-//
-//        VendorBuilder vendorInList = new VendorBuilder(lastVendor);
-//        Vendor editedVendor = vendorInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-//                .withTags(VALID_TAG_HUSBAND).build();
-//
-//        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder().withName(VALID_NAME_BOB)
-//                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-//        EditCommand editCommand = new EditCommand(indexLastVendor, descriptor);
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
-//
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//        expectedModel.setVendor(lastVendor, editedVendor);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    //        Index indexLastVendor = Index.fromOneBased(model.getFilteredVendorList().size());
+    //        Vendor lastVendor = model.getFilteredVendorList().get(indexLastVendor.getZeroBased());
+    //
+    //        VendorBuilder vendorInList = new VendorBuilder(lastVendor);
+    //        Vendor editedVendor = vendorInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    //                .withTags(VALID_TAG_HUSBAND).build();
+    //
+    //        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder().withName(VALID_NAME_BOB)
+    //                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+    //        EditCommand editCommand = new EditCommand(indexLastVendor, descriptor);
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
+    //
+    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //        expectedModel.setVendor(lastVendor, editedVendor);
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //    }
 
     //TODO: pass
-//    @Test
-//    public void execute_noFieldSpecifiedUnfilteredList_success() {
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_VENDOR, new EditVendorDescriptor());
-//        Vendor editedVendor = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
-//
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_VENDOR, new EditVendorDescriptor());
+    //        Vendor editedVendor = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
+    //
+    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //    }
 
     //TODO: pass
-//    @Test
-//    public void execute_filteredList_success() {
-//        showVendorAtIndex(model, INDEX_FIRST_VENDOR);
-//
-//        Vendor vendorInFilteredList = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
-//        Vendor editedVendor = new VendorBuilder(vendorInFilteredList).withName(VALID_NAME_BOB).build();
-//        EditCommand editCommand = new EditCommand(INDEX_FIRST_VENDOR,
-//                new EditVendorDescriptorBuilder().withName(VALID_NAME_BOB).build());
-//
-//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
-//
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//        expectedModel.setVendor(model.getFilteredVendorList().get(0), editedVendor);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_filteredList_success() {
+    //        showVendorAtIndex(model, INDEX_FIRST_VENDOR);
+    //
+    //        Vendor vendorInFilteredList = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
+    //        Vendor editedVendor = new VendorBuilder(vendorInFilteredList).withName(VALID_NAME_BOB).build();
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_VENDOR,
+    //                new EditVendorDescriptorBuilder().withName(VALID_NAME_BOB).build());
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_VENDOR_SUCCESS, editedVendor);
+    //
+    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //        expectedModel.setVendor(model.getFilteredVendorList().get(0), editedVendor);
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //    }
 
     @Test
     public void execute_duplicateVendorUnfilteredList_failure() {

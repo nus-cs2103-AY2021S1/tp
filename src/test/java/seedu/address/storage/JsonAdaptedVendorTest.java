@@ -32,11 +32,11 @@ public class JsonAdaptedVendorTest {
             .collect(Collectors.toList());
 
     //TODO: pass
-//    @Test
-//    public void toModelType_validVendorDetails_returnsVendor() throws Exception {
-//        JsonAdaptedVendor vendor = new JsonAdaptedVendor(BENSON);
-//        assertEquals(BENSON, vendor.toModelType());
-//    }
+    //    @Test
+    //    public void toModelType_validVendorDetails_returnsVendor() throws Exception {
+    //        JsonAdaptedVendor vendor = new JsonAdaptedVendor(BENSON);
+    //        assertEquals(BENSON, vendor.toModelType());
+    //    }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
