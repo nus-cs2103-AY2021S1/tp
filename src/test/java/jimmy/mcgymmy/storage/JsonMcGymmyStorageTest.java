@@ -47,17 +47,17 @@ public class JsonMcGymmyStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readMcGymmy("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMcGymmy("notJsonFormatMcGymmy.json"));
     }
 
     @Test
     public void readMcGymmy_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMcGymmy("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMcGymmy("invalidFoodMcGymmy.json"));
     }
 
     @Test
     public void readMcGymmy_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMcGymmy("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMcGymmy("invalidAndValidFoodMcGymmy.json"));
     }
 
     @Test

@@ -14,7 +14,8 @@ import jimmy.mcgymmy.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path mcGymmyFilePath = Paths.get("data", "addressbook.json");
+    // private Path mcGymmyFilePath = Paths.get("data", "addressbook.json");
+    private Path mcGymmyFilePath = Paths.get("addressbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

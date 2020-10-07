@@ -31,7 +31,7 @@ public class ModelManager implements Model {
         super();
         CollectionUtil.requireAllNonNull(mcGymmy, userPrefs);
 
-        logger.fine("Initializing with address book: " + mcGymmy + " and user prefs " + userPrefs);
+        logger.fine("Initializing with food list: " + mcGymmy + " and user prefs " + userPrefs);
 
         this.mcGymmy = new McGymmy(mcGymmy);
         this.userPrefs = new UserPrefs(userPrefs);

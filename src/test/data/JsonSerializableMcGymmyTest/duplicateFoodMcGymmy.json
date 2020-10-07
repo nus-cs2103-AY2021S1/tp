@@ -1,0 +1,19 @@
+{
+  "food": [
+    {
+      "name": "Alice Pauline",
+      "protein": "94351253",
+      "fat": "123",
+      "carbs": "456",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Alice Pauline",
+      "protein": "94351253",
+      "fat": "123",
+      "carbs": "456"
+    }
+  ]
+}

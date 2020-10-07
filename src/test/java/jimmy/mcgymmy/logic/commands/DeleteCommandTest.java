@@ -29,11 +29,11 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Food foodToDelete = model.getFilteredFoodList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        Food foodToDelete = model.getFilteredFoodList().get(TypicalIndexes.INDEX_FIRST_FOOD.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand();
-        deleteCommand.setParameters(new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON));
+        deleteCommand.setParameters(new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_FOOD));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, foodToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FOOD_SUCCESS, foodToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
         expectedModel.deleteFood(foodToDelete);
@@ -52,26 +52,26 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showFoodAtIndex(model, TypicalIndexes.INDEX_FIRST_FOOD);
 
-        Food foodToDelete = model.getFilteredFoodList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
+        Food foodToDelete = model.getFilteredFoodList().get(TypicalIndexes.INDEX_FIRST_FOOD.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand();
-        deleteCommand.setParameters(new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_PERSON));
+        deleteCommand.setParameters(new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_FOOD));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, foodToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_FOOD_SUCCESS, foodToDelete);
 
         Model expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
         expectedModel.deleteFood(foodToDelete);
-        showNoPerson(expectedModel);
+        showNoFood(expectedModel);
 
         CommandTestUtil.assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showFoodAtIndex(model, TypicalIndexes.INDEX_FIRST_FOOD);
 
-        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_FOOD;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMcGymmy().getFoodList().size());
 
@@ -84,7 +84,7 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoFood(Model model) {
         model.updateFilteredFoodList(p -> false);
 
         assertTrue(model.getFilteredFoodList().isEmpty());

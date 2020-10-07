@@ -19,16 +19,16 @@ import jimmy.mcgymmy.model.food.Food;
 @JsonRootName(value = "mcgymmy")
 class JsonSerializableMcGymmy {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate food(s).";
+    public static final String MESSAGE_DUPLICATE_FOOD = "Food list contains duplicate food(s).";
 
-    private final List<JsonAdaptedFood> persons = new ArrayList<>();
+    private final List<JsonAdaptedFood> food = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMcGymmy} with the given persons.
+     * Constructs a {@code JsonSerializableMcGymmy} with the given food.
      */
     @JsonCreator
-    public JsonSerializableMcGymmy(@JsonProperty("persons") List<JsonAdaptedFood> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableMcGymmy(@JsonProperty("food") List<JsonAdaptedFood> food) {
+        this.food.addAll(food);
     }
 
     /**
@@ -37,20 +37,20 @@ class JsonSerializableMcGymmy {
      * @param source future changes to this will not affect the created {@code JsonSerializableMcGymmy}.
      */
     public JsonSerializableMcGymmy(ReadOnlyMcGymmy source) {
-        persons.addAll(source.getFoodList().stream().map(JsonAdaptedFood::new).collect(Collectors.toList()));
+        food.addAll(source.getFoodList().stream().map(JsonAdaptedFood::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code McGymmy} object.
+     * Converts this McGymmy into the model's {@code McGymmy} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public McGymmy toModelType() throws IllegalValueException {
         McGymmy mcGymmy = new McGymmy();
-        for (JsonAdaptedFood jsonAdaptedFood : persons) {
+        for (JsonAdaptedFood jsonAdaptedFood : food) {
             Food food = jsonAdaptedFood.toModelType();
             if (mcGymmy.hasFood(food)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_FOOD);
             }
             mcGymmy.addFood(food);
         }

@@ -18,7 +18,7 @@ import jimmy.mcgymmy.model.food.Food;
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Food: %1$s";
+    public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Deleted Food: %1$s";
 
     private Parameter<Index> indexParameter = this.addParameter(
         "index",
@@ -44,6 +44,6 @@ public class DeleteCommand extends Command {
 
         Food foodToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteFood(foodToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, foodToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_FOOD_SUCCESS, foodToDelete));
     }
 }
