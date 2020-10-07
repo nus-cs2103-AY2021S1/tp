@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-public class MeetingBook {
+public class MeetingBook implements ReadOnlyMeetingBook{
 
     private final UniqueMeetingList meetings;
 
@@ -25,71 +25,42 @@ public class MeetingBook {
 
     public MeetingBook() {}
 
-    /**
-     * Creates an AddressBook using the Meetings in the {@code toBeCopied}
-     */
-    public MeetingBook(ReadOnlyAddressBook toBeCopied) {
+    public MeetingBook(ReadOnlyMeetingBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the meeting list with {@code meetings}.
-     * {@code meetings} must not contain duplicate meetings.
-     */
     public void setMeetings(List<Meeting> meetings) {
         this.meetings.setMeetings(meetings);
     }
 
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyMeetingBook newData) {
         requireNonNull(newData);
         setMeetings(newData.getMeetingList());
     }
 
     //// meeting-level operations
-
-    /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
-     */
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return meetings.contains(meeting);
     }
 
-    /**
-     * Adds a meeting to the address book.
-     * The meeting must not already exist in the address book.
-     */
     public void addMeeting(Meeting m) {
         meetings.add(m);
     }
 
-    /**
-     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
-     * {@code target} must exist in the address book.
-     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the address book.
-     */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);
 
         meetings.setMeeting(target, editedMeeting);
     }
 
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return meetings.asUnmodifiableObservableList().size() + " meetings";
@@ -104,8 +75,8 @@ public class MeetingBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && meetings.equals(((AddressBook) other).meetings));
+                || (other instanceof MeetingBook // instanceof handles nulls
+                && meetings.equals(((MeetingBook) other).meetings));
     }
 
     @Override
