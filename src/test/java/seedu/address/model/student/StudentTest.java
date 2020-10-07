@@ -1,13 +1,17 @@
 package seedu.address.model.student;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.StudentBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
 
