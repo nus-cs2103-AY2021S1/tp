@@ -29,7 +29,7 @@ public class UniqueStockList implements Iterable<Stock> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent stock as the given argument.
+     * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean contains(Stock toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniqueStockList implements Iterable<Stock> {
     }
 
     /**
-     * Adds a stock to the list.
-     * The stock must not already exist in the list.
+     * Adds a person to the list.
+     * The person must not already exist in the list.
      */
     public void add(Stock toAdd) {
         requireNonNull(toAdd);
@@ -49,28 +49,28 @@ public class UniqueStockList implements Iterable<Stock> {
     }
 
     /**
-     * Replaces the stock {@code target} in the list with {@code editedStock}.
+     * Replaces the stock {@code target} in the list with {@code updatedStock}.
      * {@code target} must exist in the list.
-     * The stock identity of {@code editedStock} must not be the same as another existing stock in the list.
+     * The person identity of {@code updatedStock} must not be the same as another existing stock in the list.
      */
-    public void setStock(Stock target, Stock editedStock) {
-        requireAllNonNull(target, editedStock);
+    public void setStock(Stock target, Stock updatedStock) {
+        requireAllNonNull(target, updatedStock);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new StockNotFoundException();
         }
 
-        if (!target.isSameStock(editedStock) && contains(editedStock)) {
+        if (!target.isSameStock(updatedStock) && contains(updatedStock)) {
             throw new DuplicateStockException();
         }
 
-        internalList.set(index, editedStock);
+        internalList.set(index, updatedStock);
     }
 
     /**
-     * Removes the equivalent stock from the list.
-     * The stock must exist in the list.
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
      */
     public void remove(Stock toRemove) {
         requireNonNull(toRemove);
@@ -85,12 +85,12 @@ public class UniqueStockList implements Iterable<Stock> {
     }
 
     /**
-     * Replaces the contents of this list with {@code stock}.
-     * {@code stock} must not contain duplicate stocks.
+     * Replaces the contents of this list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
      */
     public void setStocks(List<Stock> stocks) {
         requireAllNonNull(stocks);
-        if (!stocksAreUnique(stocks)) {
+        if (!personsAreUnique(stocks)) {
             throw new DuplicateStockException();
         }
 
@@ -122,9 +122,9 @@ public class UniqueStockList implements Iterable<Stock> {
     }
 
     /**
-     * Returns true if {@code stock} contains only unique stocks.
+     * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean stocksAreUnique(List<Stock> stocks) {
+    private boolean personsAreUnique(List<Stock> stocks) {
         for (int i = 0; i < stocks.size() - 1; i++) {
             for (int j = i + 1; j < stocks.size(); j++) {
                 if (stocks.get(i).isSameStock(stocks.get(j))) {

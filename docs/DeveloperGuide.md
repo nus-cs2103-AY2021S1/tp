@@ -857,29 +857,40 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
     
-    1. Test case: `update sn/2103 q/50`<br>
-       Expected: The stock with serial number 2103 will have an increase of quantity by 50.
+    1. Test case: `update sn/FLower11 iq/+50`<br>
+       Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
        Details of the updated stock is shown in the status message.
     
-    1. Test case: `update sn/2103 q/-50`<br>
-       Expected: The stock with serial number 2103 will have a decrease of quantity by 50.
+    1. Test case: `update sn/FLower11 iq/-50`<br>
+       Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.
        Details of the updated stock is shown in the status message.
     
-    1. Test case: `update sn/2103 nq/2103`<br>
-       Expected: The stock with serial number 2103 will have a new quantity 2103.
+    1. Test case: `update sn/Flower11 nq/2103`<br>
+       Expected: The stock with serial number Flower11 will have a new quantity 2103.
        Details of the updated stock is shown in the status message.
     
-    1. Test case: `update sn/2103 n/CS2103T`
-       Expected: The stock with serial number 2103 will have a new name CS2103T.
+    1. Test case: `update sn/Flower11 n/Rose`
+       Expected: The stock with serial number Flower11 will have a new name Rose.
        Details of the updated stock is shown in the status message.
     
-    1. Test case: `update sn/2103 l/B1`
-       Expected: The stock with serial number 2103 will have a new location B1.
+    1. Test case: `update sn/Flower11 l/Vase 3`
+       Expected: The stock with serial number Flower11 will have a new location Vase 3.
        Details of the updated stock is shown in the status message.
     
-    1. Test case: `update sn/2103 s/NUS`
-       Expected: The stock with serial number 2103 will have a new source NUS.
+    1. Test case: `update sn/2103 s/Flower Distributor Association`
+       Expected: The stock with serial number Flower11 will have a new source Flower Distributor Association.
        Details of the updated stock is shown in the status message.
+       
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+       Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
+       a new location Vase3, a new source Flower Distributor Association.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+       Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
+       a new location Vase3, a new source Flower Distributor Association.
+       Details of the updated stock is shown in the status message.
+       
 
 1. _{ more test cases …​ }_
 
