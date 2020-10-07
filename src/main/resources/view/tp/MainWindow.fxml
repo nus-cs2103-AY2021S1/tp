@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('images/Background.jpg');" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -43,7 +42,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <Button layoutX="365.0" layoutY="346.0" mnemonicParsing="false" text="Button" />
-                        <TextField layoutX="4.0" layoutY="346.0" prefHeight="25.0" prefWidth="359.0" />
+                        <TextField id="userInput" layoutX="4.0" layoutY="346.0" onAction="#handleUserInput" prefHeight="25.0" prefWidth="359.0" promptText="Enter commands here!" />
                         <ScrollPane prefHeight="346.0" prefWidth="419.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="417.0">
@@ -60,4 +59,4 @@
          </center>
       </BorderPane>
    </children>
-</AnchorPane>
+</fx:root>

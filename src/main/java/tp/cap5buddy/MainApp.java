@@ -6,7 +6,6 @@ import seedu.address.commons.core.LogsCenter;
 import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.LogicManager;
 import tp.cap5buddy.modules.ModuleList;
-import tp.cap5buddy.storage.Storage;
 import tp.cap5buddy.storage.StorageManager;
 import tp.cap5buddy.ui.gui.Ui;
 import tp.cap5buddy.ui.gui.UiManager;
@@ -34,7 +33,7 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         logger.info("Starting Module tracker now!");
         userInterface.start(primaryStage);
     }
