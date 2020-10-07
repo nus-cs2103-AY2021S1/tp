@@ -39,9 +39,9 @@ public class Ui {
     }
 
     public void start(Stage primaryStage) {
-        logger.info("Starting UI...");
-        MainWindow main = new MainWindow(primaryStage);
-        main.initialize();
-        main.show();
+//        logger.info("Starting UI...");
+//        MainWindow main = new MainWindow(primaryStage);
+//        main.initialize();
+//        main.show();
     }
 }

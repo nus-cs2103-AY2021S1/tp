@@ -37,8 +37,6 @@ public class UiManager implements Ui {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
-        MainWindow main = new MainWindow(primaryStage);
-        main.initialize();
-        main.show();
+        MainWindowController main = new MainWindowController(primaryStage);
     }
 }
