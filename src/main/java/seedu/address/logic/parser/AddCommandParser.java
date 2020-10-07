@@ -1,24 +1,23 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.COMPULSORY_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSVENUE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONALDETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGLINK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.School;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.Admin;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -32,12 +31,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_CLASSVENUE, PREFIX_CLASSTIME,
-                        PREFIX_ADDITIONALDETAILS, PREFIX_MEETINGLINK, PREFIX_SUBJECT, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, COMPULSORY_PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_YEAR,
-                PREFIX_CLASSVENUE, PREFIX_CLASSTIME)
+        if (!arePrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -46,15 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        ClassVenue classVenue = ParserUtil.parseClassVenue(argMultimap.getValue(PREFIX_CLASSVENUE).get());
-        ClassTime classTime = ParserUtil.parseClassTime(argMultimap.getValue(PREFIX_CLASSTIME).get());
-        AdditionalDetails additionalDetails = ParserUtil.parseAdditionalDetails(argMultimap.getValue(PREFIX_ADDITIONALDETAILS).get());
-        MeetingLink meetingLink = ParserUtil.parseMeetingLink(argMultimap.getValue(PREFIX_MEETINGLINK).get());
-        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, phone, school, year, classVenue, classTime,
-                additionalDetails, meetingLink, subject, tagList);
+        Student student = new Student(name, phone, school, year, new Admin());
 
         return new AddCommand(student);
     }

@@ -9,8 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.School;
+import seedu.address.model.student.Year;
 import seedu.address.model.tag.Tag;
+
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -22,6 +27,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -62,78 +68,34 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-    public static School parseSchool(String school) throws ParseException {
-        requireNonNull(school);
-        String trimmedSchool = school.trim();
-        if (!Name.isValidName(trimmedSchool)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new School(trimmedSchool);
-    }
-
+    /**
+     *   Parses a {@code String year} into a {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
     public static Year parseYear(String year) throws ParseException {
         requireNonNull(year);
         String trimmedYear = year.trim();
-        if (!Name.isValidName(trimmedYear)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
         return new Year(trimmedYear);
     }
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static ClassVenue parseClassVenue(String classVenue) throws ParseException {
-        requireNonNull(classVenue);
-        String trimmedClassVenue = classVenue.trim();
-        if (!ClassVenue.isValidClassVenue(trimmedClassVenue)) {
-            throw new ParseException(ClassVenue.MESSAGE_CONSTRAINTS);
-        }
-        return new ClassVenue(trimmedClassVenue);
-    }
-
-    public static ClassTime parseClassTime(String classTime) throws ParseException {
-        requireNonNull(classTime);
-        String trimmedClassTime = classTime.trim();
-        if (!Name.isValidName(trimmedClassTime)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new ClassTime(trimmedClassTime);
-    }
-
-    public static AdditionalDetails parseAdditionalDetails(String additionalDetails) throws ParseException {
-        requireNonNull(additionalDetails);
-        String trimmedAdditionalDetails = additionalDetails.trim();
-        if (!Name.isValidName(trimmedAdditionalDetails)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new AdditionalDetails(trimmedAdditionalDetails);
-    }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String school} into a {@code School}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static MeetingLink parseMeetingLink(String meetingLink) throws ParseException {
-        requireNonNull(meetingLink);
-        String trimmedMeetingLink = meetingLink.trim();
-        if (!MeetingLink.isValidEmail(trimmedMeetingLink)) {
-            throw new ParseException(MeetingLink.MESSAGE_CONSTRAINTS);
+    public static School parseSchool(String school) throws ParseException {
+        requireNonNull(school);
+        String trimmedSchool = school.trim();
+        if (!School.isValidSchool(trimmedSchool)) {
+            throw new ParseException(School.MESSAGE_CONSTRAINTS);
         }
-        return new MeetingLink(trimmedMeetingLink);
-    }
-
-    public static Subject parseSubject(String subject) throws ParseException {
-        requireNonNull(subject);
-        String trimmedSubject = subject.trim();
-        if (!Name.isValidName(trimmedSubject)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new Subject(trimmedSubject);
+        return new School(school);
     }
 
     /**
@@ -161,14 +123,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    public static ClassVenue parseAddress(String subject) throws ParseException {
-        requireNonNull(subject);
-        String trimmedSubject = subject.trim();
-        if (!Name.isValidName(trimmedSubject)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new ClassVenue(trimmedSubject);
     }
 }
