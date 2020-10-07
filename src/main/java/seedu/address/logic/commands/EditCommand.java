@@ -22,6 +22,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.Admin;
 
+
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -122,6 +123,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private School school;
         private Year year;
+
 
         public EditStudentDescriptor() {}
 
