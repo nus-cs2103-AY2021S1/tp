@@ -7,12 +7,12 @@
    <bottom>
       <ScrollPane fx:id="recipePanel" pannable="true" prefHeight="277.0" prefWidth="390.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <GridPane fx:id="recipeGridView" gridLinesVisible="true">
+            <GridPane fx:id="recipeGridView" gridLinesVisible="true" hgap="20" vgap="10">
               <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="90.0" percentWidth="100.0" prefWidth="90.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="NEVER" />
               </rowConstraints>
             </GridPane>
          </content>

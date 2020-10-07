@@ -19,6 +19,10 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 10pt;
 }
+.cell-big-label {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 16pt;
+}
 #commandTextField {
     -fx-background-color: rgba(0.96,0.96,0.96,0.7);
     -fx-font-size: 8pt;
