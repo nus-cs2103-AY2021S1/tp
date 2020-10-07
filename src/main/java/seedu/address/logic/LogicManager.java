@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -12,16 +14,13 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyItemList;
-import seedu.address.model.ReadOnlyLocationList;
-import seedu.address.model.ReadOnlyRecipeList;
+import seedu.address.model.*;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
+import seedu.address.ui.View;
 
 /**
  * The main LogicManager of the app.
@@ -139,5 +138,30 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    // test
+    public ArrayList<Inventory> getInventoryList(View.InventoryType inventoryType) {
+        model.updateFilteredItemList(item -> !item.isDeleted());
+        model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
+        ArrayList<Inventory> inventoryList = new ArrayList<>();
+        switch(inventoryType) {
+        case ITEMS:
+            inventoryList.addAll(model.getFilteredItemList());
+            break;
+        case RECIPES:
+            //prepare recipe list to print
+            model.getFilteredRecipeList()
+                    .stream()
+                    .forEach(inventoryList::add);
+            //        .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
+            break;
+        case UNCHANGED:
+            assert false;
+            break;
+        default:
+            throw new IllegalStateException("This inventoryType is not valid" + inventoryType);
+        }
+        return inventoryList;
     }
 }

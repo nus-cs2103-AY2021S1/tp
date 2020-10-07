@@ -309,6 +309,7 @@ public class AddCommandTest {
         public Item processPrecursor(ItemPrecursor itemPrecursor) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

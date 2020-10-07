@@ -16,4 +16,5 @@ public class Ingredient extends Pair<Integer, Integer> {
     public Ingredient(Integer key, Integer value) {
         super(key, value);
     }
+
 }

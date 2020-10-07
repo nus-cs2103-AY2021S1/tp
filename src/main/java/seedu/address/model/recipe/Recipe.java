@@ -1,5 +1,8 @@
 package seedu.address.model.recipe;
 
+import seedu.address.model.Inventory;
+import seedu.address.ui.View;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -8,7 +11,7 @@ import java.util.Objects;
  * Represents an Recipe in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Recipe {
+public class Recipe extends Inventory {
     private static int idCounter = 0;
 
     // Identity fields
@@ -127,6 +130,10 @@ public class Recipe {
     @Override
     public String toString() {
         return String.format("Recipe for: %s. %s", productName, description);
+    }
+
+    public View.InventoryType getType() {
+        return View.InventoryType.RECIPES;
     }
 
 }

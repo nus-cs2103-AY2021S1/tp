@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListItemCommand;
+import seedu.address.logic.commands.ListRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,11 +76,15 @@ public class InventoryParser {
         case ListItemCommand.COMMAND_WORD:
             return new ListItemCommand();
 
+        // Recipe commands start here
         case AddRecipeCommand.COMMAND_WORD:
             return new AddRecipeCommandParser().parse(arguments);
 
         case DeleteRecipeCommand.COMMAND_WORD:
             return new DeleteRecipeCommandParser().parse(arguments);
+
+        case ListRecipeCommand.COMMAND_WORD:
+            return new ListRecipeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

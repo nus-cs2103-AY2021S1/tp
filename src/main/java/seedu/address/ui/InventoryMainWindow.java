@@ -52,6 +52,9 @@ public class InventoryMainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    //
+    private View.InventoryType inventoryType;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -68,6 +71,8 @@ public class InventoryMainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        inventoryType = View.InventoryType.ITEMS;
     }
 
     public Stage getPrimaryStage() {
@@ -112,7 +117,7 @@ public class InventoryMainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        inventoryListPanel = new InventoryListPanel(logic.getFilteredItemList());
+        inventoryListPanel = new InventoryListPanel(logic.getInventoryList(inventoryType), inventoryType);
         itemListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -124,6 +129,7 @@ public class InventoryMainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -188,6 +194,20 @@ public class InventoryMainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            //update the flag
+            switch (commandResult.getInventoryType()) {
+            case ITEMS:
+                inventoryType = View.InventoryType.ITEMS;
+                break;
+            case RECIPES:
+                inventoryType = View.InventoryType.RECIPES;
+                break;
+            case UNCHANGED:
+                //do nothing
+                break;
+            }
+            inventoryListPanel.refresh(logic.getInventoryList(inventoryType), inventoryType);
+
             return commandResult;
         } catch (CommandException | ParseException | IOException e) {
             logger.info("Invalid command: " + commandText);
@@ -195,4 +215,5 @@ public class InventoryMainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

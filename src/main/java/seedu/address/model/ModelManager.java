@@ -23,6 +23,7 @@ import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.IngredientPrecursor;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipePrecursor;
+import seedu.address.ui.View;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -39,7 +40,6 @@ public class ModelManager implements Model {
     private final FilteredList<Location> filteredLocations;
     private final RecipeList recipeList;
     private final FilteredList<Recipe> filteredRecipes;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -83,6 +83,7 @@ public class ModelManager implements Model {
         filteredLocations = new FilteredList<>(this.locationList.getLocationList());
         this.recipeList = new RecipeList(recipeList);
         filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());
+
     }
 
     public ModelManager() {
@@ -391,4 +392,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
 }

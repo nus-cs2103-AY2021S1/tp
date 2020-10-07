@@ -9,13 +9,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.Inventory;
 import seedu.address.model.tag.Tag;
+import seedu.address.ui.View;
 
 /**
  * Represents an Item in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Item {
+public class Item extends Inventory {
     private static int idCounter = 0;
 
     // Identity fields
@@ -138,4 +140,8 @@ public class Item {
         return name;
     }
 
+    @Override
+    public View.InventoryType getType() {
+        return View.InventoryType.ITEMS;
+    }
 }
