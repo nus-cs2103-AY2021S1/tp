@@ -103,26 +103,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCarbohydrate_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCarbohydrate((String) null));
+    public void parseCarb_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCarb((String) null));
     }
 
     @Test
-    public void parseCarbohydrate_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCarbohydrate(INVALID_FAT));
+    public void parseCarb_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCarb(INVALID_FAT));
     }
 
     @Test
-    public void parseCarbohydrate_validValueWithoutWhitespace_returnsCarbohydrate() throws Exception {
+    public void parseCarb_validValueWithoutWhitespace_returnsCarbohydrate() throws Exception {
         Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_FAT);
-        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(VALID_FAT));
+        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarb(VALID_FAT));
     }
 
     @Test
-    public void parseCarbohydrate_validValueWithWhitespace_returnsTrimmedCarbohydrate() throws Exception {
+    public void parseCarb_validValueWithWhitespace_returnsTrimmedCarbohydrate() throws Exception {
         String carbohydrateWithWhitespace = WHITESPACE + VALID_FAT + WHITESPACE;
         Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_FAT);
-        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(carbohydrateWithWhitespace));
+        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarb(carbohydrateWithWhitespace));
     }
 
     @Test

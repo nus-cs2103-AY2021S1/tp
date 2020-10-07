@@ -84,28 +84,6 @@ public class ParserUtil {
         return new Protein(proteinValue);
     }
 
-    /**
-     * Parses a {@code String fat} into a {@code Fat}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Fat} is invalid.
-     */
-    public static jimmy.mcgymmy.model.food.Fat parseFat(String fat) throws ParseException {
-        int fatValue = getNutrientValue(fat, jimmy.mcgymmy.model.food.Fat.MESSAGE_CONSTRAINTS);
-        return new Fat(fatValue);
-    }
-
-    /**
-     * Parses a {@code String carb} into a {@code Carbohydrate}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Carbohydrate} is invalid.
-     */
-    public static jimmy.mcgymmy.model.food.Carbohydrate parseCarb(String carb) throws ParseException {
-        int carbValue = getNutrientValue(carb, jimmy.mcgymmy.model.food.Carbohydrate.MESSAGE_CONSTRAINTS);
-        return new Carbohydrate(carbValue);
-    }
-
 
     /**
      * Parses a {@code String carb} into an {@code Carbohydrate}.
@@ -113,7 +91,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code carb} is invalid.
      */
-    public static Carbohydrate parseCarbohydrate(String carb) throws ParseException {
+    public static Carbohydrate parseCarb(String carb) throws ParseException {
         requireNonNull(carb);
         String trimmedCarb = carb.trim();
         if (!Carbohydrate.isValid(trimmedCarb)) {
@@ -123,14 +101,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Fat}.
+     * Parses a {@code String fat} into an {@code Fat}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code fat} is invalid.
      */
-    public static Fat parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
+    public static Fat parseFat(String fat) throws ParseException {
+        requireNonNull(fat);
+        String trimmedEmail = fat.trim();
         if (!Fat.isValid(trimmedEmail)) {
             throw new ParseException(Fat.MESSAGE_CONSTRAINTS);
         }
