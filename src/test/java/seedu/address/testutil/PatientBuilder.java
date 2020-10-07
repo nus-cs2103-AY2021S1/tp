@@ -21,7 +21,7 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_PROFILE_PICTURE = "docs/images/stock_picture.png";
+    public static final String DEFAULT_PROFILE_PICTURE = "data/stock_picture.png";
 
     private Name name;
     private Phone phone;

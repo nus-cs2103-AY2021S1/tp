@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        ProfilePicture profilePicture = new ProfilePicture("docs/images/stock_picture.png");
+        ProfilePicture profilePicture = new ProfilePicture("data/stock_picture.png");
 
         Patient patient = new Patient(name, phone, email, address, tagList, profilePicture);
 

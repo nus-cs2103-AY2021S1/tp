@@ -33,7 +33,7 @@ public class JsonAdaptedPatientTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_PROFILEPICTURE = "docs/images/stock_picture.png";
+    private static final String VALID_PROFILEPICTURE = "data/stock_picture.png";
 
     @Test
     public void toModelType_validPatientDetails_returnsPatient() throws Exception {
