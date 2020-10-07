@@ -43,7 +43,7 @@ class JsonAdaptedStock {
      */
     public JsonAdaptedStock(Stock source) {
         name = source.getName().fullName;
-        serialNumber = source.getSerialNumber().getSerialNumber();
+        serialNumber = source.getSerialNumber().getSerialNumberAsString();
         this.source = source.getSource().value;
         quantity = source.getQuantity().quantity;
         location = source.getLocation().value;

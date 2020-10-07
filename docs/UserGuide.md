@@ -65,11 +65,12 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
 Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
 
 ### Deleting of stock: `delete`
-Deletes the stock that has the input serial number from the inventory. Requires the user to confirm the deletion of the stock by inputting y/n.
+Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
 * Required fields:
     1. Serial number of product
 
-Format: `delete sn/<serial number>`
+Format (single): `delete sn/<serial number>`  
+Format (multiple): `delete sn/<serial number> sn/<serial number 2>...`
 
 ### Find stocks from inventory: `find`
 Returns a list of found stocks from the inventory that have the following keywords in their details.
@@ -92,19 +93,31 @@ Search is case-insensitive.
 * e.g find n/ash will match Ash.
 
 ### Update inventory: `update`
-Updates the details of the desired stock, requires the serial number of product.
+Updates the details of the desired stock, requires the serial number of products.
 * Fields that can be updated:
     * Name
-    * Serial Number
+    * Quantity
     * Location stored
     * Source of the stock
 
-Format `update sn/<Serial Number of product>` (followed by one of):
-`q/<+/-><quantity to increment/decrement>`
-`nq/<new quantity>`
-`n/<new name>`
-`l/<new location in warehouse>`
-`s/<new source of stock>`
+Format (either):
+
+*`update sn/<Serial Number of product>
+q/<+/-><quantity to increment/decrement>
+n/<new name>
+l/<new location in warehouse>
+s/<new source of stock>`
+
+*`update sn/<Serial Number of product>
+nq/<new quantity>
+n/<new name>
+l/<new location in warehouse>
+s/<new source of stock>`
+
+User may pass in more than one serial number to update all at once.
+
+⚠ If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
+will not update anything and shows an error message.
 
 ### Saving data
 Data (all stocks in inventory in csv) is automatically saved to
@@ -144,6 +157,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete sn/<serial number>`<br> eg. `delete sn/100`
 **Find** | `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of the stock>`<br> e.g. `find n/umbrella`
-**Update** | `update sn/<Serial Number of product>` (followed by one of): <br>`q/<+/-><quantity to increment/decrement>`<br>`nq/<new quantity>`<br>`n/<new name>`<br>`l/<new location in warehouse>`<br>`s/<new source of stock>`
+**Update** | `update sn/<Serial Number of product> q/<+/-><quantity to increment/decrement>n/<new name> l/<new location in warehouse> s/<new source of stock>` <br> `update sn/<Serial Number of product> nq/<new quantity> n/<new name> l/<new location in warehouse> s/<new source of stock>`
 **Help** | `help`
 **Exit** | `exit`
