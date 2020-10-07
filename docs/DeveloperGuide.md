@@ -284,16 +284,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a stock**
+#### Use case: Adding a stock
 
 **MSS**
 
-1.  User requests to list stocks
-2.  Warenager shows a list of stocks
-3.  User requests to delete a specific stock in the list
-4.  Warenager deletes the stock
+1.  User requests to add a stock
+2.  Warenager adds the stock into the inventory
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given format is missing any field header.
+
+    * 1a1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given input to the field header is empty.
+
+    * 1b1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1c. The given input to the field header is invalid.
+
+    * 1c1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+
+
+#### Use case: Deleting stocks
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager shows a list of stocks.
+3.  User requests to delete stocks in the list.
+4.  Warenager deletes the stock.
 
     Use case ends.
 
@@ -305,16 +335,386 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given format is missing the field header sn/.
 
+    * 3a1. Warenager shows an error message and tells user to use the proper format.
+
+      Use case resumes at step 2.
+
+* 3b. All inputted serial numbers are not found.
+
+    * 3b1. Warenager shows an error message and tells user which serial numbers are not found.
+
+      Use case resumes at step 2.
+      
+* 3c. Some inputted serial numbers are not found.
+      
+     * 3c1. Warenager deletes the found stocks and tells user which serial numbers are not found.
+      
+       Use case resumes at step 2.
+
+#### Use case: Find a stock by name
+
+**MSS**
+
+1.  User requests to find a stock with name "umbrella".
+2.  Warenager shows a list of stocks with names that 
+    contain the keyword "umbrella".
+3.  User views desired stock.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format is missing field header n/.
+ 
+    * 1a1. Warenager shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1b. The given command is invalid (wrong find command). 
+
+    * 1b1. Warenager shows an error message.
+        
+      Use case resumes at step 1.
+     
+* 2a. There is no stock with name that matches keyword.
+
+    Use case ends.
+    
+#### Use case: Find a stock by serial number
+
+**MSS**
+
+1.  User requests to find a stock with serial number 111111.
+2.  Warenager shows the stock with serial number 111111.
+3.  User views desired stock.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format is missing field header sn/.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+* 1b. The given command is invalid (wrong find command). 
+
+    * 1b1. Warenager shows an error message.
+        
+    Use case resumes at step 1.
+     
+* 2a. There is no stock with serial number that matches keyword.
+
+    Use case ends.
+    
+#### Use case: Find a stock by location stored
+
+**MSS**
+
+1.  User requests to find a stock stored at location "Section 312".
+2.  Warenager shows all stocks stored at location "Section 312".
+3.  User views desired stock.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format is missing field header l/.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+* 1b. The given command is invalid (wrong find command). 
+
+    * 1b1. Warenager shows an error message.
+        
+    Use case resumes at step 1.
+     
+* 2a. There is no stock with storage location that matches keyword.
+
+    Use case ends.
+    
+#### Use case: Find a stock by source of stock
+
+**MSS**
+
+1.  User requests to find a stock which source is "Company ABC".
+2.  Warenager shows all stocks with source "Company ABC".
+3.  User views desired stock.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format is missing field header s/.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+* 1b. The given command is invalid (wrong find command). 
+
+    * 1b1. Warenager shows an error message.
+        
+    Use case resumes at step 1.
+     
+* 2a. There is no stock with source that matches keyword.
+
+    Use case ends.
+
+#### Use case: Increment or decrement a stock's quantity
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to increment or decrement a specific stock's quantity.
+4.  Warenager updates the stock's quantity.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The given serial number is not an integer.
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header q/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3d. The given increment or decrement value is not an integer.
+    
+    * 3d1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+      
+* 3e. The given increment or decrement value exceeds the integer limit.
+
+    * 3e1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3f. The given increment value plus the stock's current quantity exceeds the integer limit.
+
+    * 3f1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3g. The stock's current quantity minus the given decrement value results in a negative value.
+
+    * 3g1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Rewrite a stock's quantity
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's quantity.
+4.  Warenager updates the stock's quantity.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
 
     * 3a1. Warenager shows an error message.
 
       Use case resumes at step 2.
 
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header nq/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3d. The given quantity value is not an integer.
+    
+    * 3d1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3e. The given quantity value exceeds the integer limit.
+
+    * 3e1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+      
+* 3f. The given quantity value is negative.
+
+    * 3f1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the name of a stock.
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's name.
+4.  Warenager updates the stock's name.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header n/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the location of a stock
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's location.
+4.  Warenager updates the stock's location.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header l/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+#### Use case: Update the source of a stock
+
+**MSS**
+
+1.  User requests to list stocks.
+2.  Warenager lists all stocks including their serial number.
+3.  User requests to change a specific stock's source.
+4.  Warenager updates the stock's source.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of all stocks is empty.
+
+  Use case ends.
+
+* 3a. The given format is missing the field header sn/.
+
+    * 3a1. Warenager shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The stock with the given serial number is not found.
+    
+    * 3b1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+* 3c. The given format is missing the field header s/.
+    
+    * 3c1. Warenager shows an error message.
+    
+      Use case resumes at step 2.
+
+*{More to be added}*
+
+#### Use case: Using the help command
+
+**MSS**
+
+1.  User requests helps from Warenager.
+2.  Warenager shows the user guide as a pop up.
+3.  User views the user guide.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+
+
+#### Use case: Exit Warenager
+
+**MSS**
+
+1.  User requests to exit Warenager.
+2.  Warenager shows exit message.
+3.  User exits Warenager.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+ 
+    * 1a1. Warenager shows an error message.
+    
+     Use case resumes at step 1.
+     
+    
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -324,6 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user without online connection should still be able to run the application.
 5.  Should be easy to pickup so that a user of managerial role can quickly teach their employees should he/she be absent.
+6.  Should have an easy-to-understand interface, for beginner users to use the application comfortably.
 
 *{More to be added}*
 
@@ -331,6 +732,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Stock**: Item in the inventory.
+* **Field**: (name, serial number, quantity, location stored, source) of the stock in inventory 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -356,24 +759,138 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
-### Deleting a stock
+### Adding a stock
 
-1. Deleting a stock while all relevant stock are shown.
+1. Adding a stock into the inventory.
+
+   1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
+      Expected: New stock added: Banana SerialNumber: 12 Source: NUS Quantity: 9999 Location: Fruit Section.
+      Details of the added stock shown in the status message.
+
+   1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
+      Expected: Locations can take any values, and it should not be blank.
+      Error details shown in the status message. Status bar remains the same.
+      
+   1. Test case: ` add n/Banana s/NUS q/9999`<br>
+      Expected: Invalid command format! 
+      add: Adds a stock to the stock book. Parameters: n/NAME s/SOURCE q/QUANTITY l/LOCATION 
+      Example: add n/Umbrella s/Kc company q/100 l/section B,
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `add`, `add sn/absdsa` <br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Deleting stocks
+
+1. Deleting stocks from a given list.
 
    1. Prerequisites: List all stocks by default or use the `find` command. Multiple stocks in the list.
 
    1. Test case: `delete sn/1111111`<br>
-      Expected: Stock of the serial number 1111111 is deleted from the inventory. Details of the deleted stock shown in the status message.
-
+      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Details of the deleted stock shown in the status message.
+      
+   1. Test case: `delete sn/1111111 sn/11111111`<br>
+      Expected: Stock with the serial number 1111111 is deleted from the inventory. 
+      Duplicate serial number(s) is/are ignored. Details of the deleted stock shown in the status message.
+      
+   1. Test case: `delete sn/1111111 sn/22222222`<br>
+      Expected: Both stocks with the serial numbers 1111111 and 22222222 are deleted from the inventory. 
+      Details of the deleted stock shown in the status message.
+      
+   1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
+        Expected: Only the existing stock with the serial number 1111111 is deleted. 
+        Details of this deleted stock shown in the status message.  
+        Serial number `33333333` which does not belong to any stock will be shown in status message as well.
+        
    1. Test case: `delete 1111111`<br>
-      Expected: No stock deleted due to invalid format from missing sn/. Error details shown in the status message. Status bar remains the same.
+      Expected: No stock deleted due to invalid format from missing sn/. 
+      Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa`, `...` (where x is not an integer or is a negative integer)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa` 
+      (where serial number is not an integer or is a negative integer)<br>
       Expected: Similar to previous.
+
+
+### Finding a stock
+
+1. Finding a stock from the inventory.
+
+   1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
+
+   1. Test case: `find sn/1111111`<br>
+      Expected: Stock of the serial number 1111111 is displayed from the inventory. 
+      Status message shows success of command.
+   
+   1. Test case: `find n/umbrella`<br>
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory. 
+      Status message shows success of command.  
+         
+   1. Test case: `find l/section 3`<br>
+      Expected: All stocks with storage location containing "section 3" are displayed from the inventory. 
+      Status message shows success of command.  
+            
+   1. Test case: `find s/company abc`<br>
+      Expected: All stocks with field source containing "company abc" are displayed from the inventory. 
+      Status message shows success of command.  
+            
+   1. Test case: `find 1111111`<br>
+      Expected: No stock deleted due to invalid format from missing field header
+      either n/, sn/, l/ or s/. 
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect find commands to try: `find`, `find sn/absdsa` 
+      (where serial number is not an integer or is a negative integer)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Updating a stock
+
+1. Updating a stock from the inventory.
+
+    1. Prerequisites: Multiple stocks in the list. Stocks exists in inventory.
+    
+    1. Test case: `update sn/FLower11 iq/+50`<br>
+       Expected: The stock with serial number Flower11 will have an increase of quantity by 50.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/FLower11 iq/-50`<br>
+       Expected: The stock with serial number Flower11 will have a decrease of quantity by 50.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/Flower11 nq/2103`<br>
+       Expected: The stock with serial number Flower11 will have a new quantity 2103.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/Flower11 n/Rose`
+       Expected: The stock with serial number Flower11 will have a new name Rose.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/Flower11 l/Vase 3`
+       Expected: The stock with serial number Flower11 will have a new location Vase 3.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/2103 s/Flower Distributor Association`
+       Expected: The stock with serial number Flower11 will have a new source Flower Distributor Association.
+       Details of the updated stock is shown in the status message.
+       
+    1. Test case: `update sn/FLower11 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+       Expected: The stock with serial number Flower11 will have an increase of quantity by 50, a new name Rose,
+       a new location Vase3, a new source Flower Distributor Association.
+       Details of the updated stock is shown in the status message.
+    
+    1. Test case: `update sn/FLower11 sn/Flower12 iq/+50 n/Rose l/Vase 3 s/Flower Distributor Association`
+       Expected: The stock with serial number Flower11 and Flower12 will have an increase of quantity by 50, a new name Rose,
+       a new location Vase3, a new source Flower Distributor Association.
+       Details of the updated stock is shown in the status message.
+       
 
 1. _{ more test cases …​ }_
 

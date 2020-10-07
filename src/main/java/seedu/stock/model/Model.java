@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.stock.commons.core.GuiSettings;
+import seedu.stock.model.stock.SerialNumberSet;
+import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -61,7 +63,7 @@ public interface Model {
      * Deletes the given person.
      * The person must exist in the stock book.
      */
-    void deletePerson(Stock target);
+    void deleteStock(Stock target);
 
     /**
      * Adds the given stock.
@@ -70,11 +72,11 @@ public interface Model {
     void addStock(Stock stock);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given stock {@code target} with {@code updatedStock}.
      * {@code target} must exist in the stock book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The {@code updatedStock} must not be the same as another existing stock in the stock book.
      */
-    void setPerson(Stock target, Stock editedStock);
+    void setStock(Stock target, Stock updatedStock);
 
     /** Returns an unmodifiable view of the filtered stock list */
     ObservableList<Stock> getFilteredStockList();
@@ -84,4 +86,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStockList(Predicate<Stock> predicate);
+
+    void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook);
+
+    ReadOnlySerialNumberSetsBook getSerialNumberSetsBook();
+
+    boolean hasSerialNumberSet(SerialNumberSet serialNumberSet);
+
+    void deleteSerialNumberSet(SerialNumberSet target);
+
+    void setSerialNumberSet(SerialNumberSet target, SerialNumberSet editedSerialNumberSet);
+
+    void updateSerialNumberSet(Source source);
+
+    void addSerialNumberSet(SerialNumberSet serialNumberSet);
+
+    ObservableList<SerialNumberSet> getFilteredSerialNumberSetList();
+
+    void updateFilteredSerialNumberSetList(Predicate<SerialNumberSet> predicate);
+
+    String generateNextSerialNumber(Source source);
 }

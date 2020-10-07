@@ -13,7 +13,7 @@ public class Stock {
 
     // Identity fields
     private final Name name;
-    private final SerialNumber serialNumber;
+    private SerialNumber serialNumber;
     private final Source source;
     private final Quantity quantity;
     private final Location location;
@@ -29,8 +29,6 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
     }
-
-    // might need a new constructor here
 
     public Name getName() {
         return name;
@@ -52,9 +50,13 @@ public class Stock {
         return location;
     }
 
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = new SerialNumber(serialNumber);
+    }
+
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both stocks of the same name, serialnumber and source.
+     * This defines a weaker notion of equality between two stocks.
      */
     public boolean isSameStock(Stock otherStock) {
         if (otherStock == this) {
@@ -64,14 +66,12 @@ public class Stock {
         return otherStock != null
                 && otherStock.getName().equals(getName())
                 && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource())
-                && otherStock.getQuantity().equals(getQuantity())
-                && otherStock.getLocation().equals(getLocation());
+                && otherStock.getSource().equals(getSource());
     }
 
     /**
      * Returns true if both stocks have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two stocks.
      */
     @Override
     public boolean equals(Object other) {
