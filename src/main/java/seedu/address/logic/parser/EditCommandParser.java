@@ -55,7 +55,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             String ingredientString = ParserUtil.parseIngredient(argMultimap
                     .getValue(PREFIX_INGREDIENT).get());
             ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
-            
+
 //            String[] ingredientsToken = ingredientString.split(",");
 //            ArrayList<Ingredient> ingredients = new ArrayList<>();
 //

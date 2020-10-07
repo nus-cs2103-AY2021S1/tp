@@ -31,7 +31,7 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
 
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
-        
+
         return new AddIngredientCommand(ingredients);
     }
 

@@ -28,7 +28,7 @@ public class AddIngredientCommand extends Command {
     public static final String MESSAGE_DUPLICATE_RECIPE = "This ingredient already exists in the fridge";
 
     private final ArrayList<Ingredient> toAdd;
-    
+
     public ArrayList<Ingredient> getToAdd() {
         return toAdd;
     }
@@ -46,7 +46,7 @@ public class AddIngredientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
+
         StringBuilder ingredientsAdded = new StringBuilder();
         for (Ingredient ingredient : toAdd) {
             if (model.hasIngredient(ingredient)) {

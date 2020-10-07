@@ -31,7 +31,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     public static boolean isValidIngredient(Ingredient ingredient) {
-        return ingredient.getValue().matches(VALIDATION_REGEX) 
+        return ingredient.getValue().matches(VALIDATION_REGEX)
                 && ingredient.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
     }
 

@@ -30,16 +30,16 @@ public class IngredientTest {
 
         // valid ingredient names
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("white cabbage", "2 cups"))); // space within name
-        assertTrue(ParserUtil.isValidIngredient(new Ingredient("pea", "2 cups"))); 
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("pea", "2 cups")));
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("93121534", "2 cups")));
-        assertTrue(ParserUtil.isValidIngredient(new Ingredient("loooooooooooongbean", "2 cups"))); // long 
-        
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("loooooooooooongbean", "2 cups"))); // long
+
         // valid ingredient quantities
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "2 cups"))); // space within quantity
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "2cups"))); // no space within quantity
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "pinch"))); // no numbers in quantity
         assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", ""))); // no quantity
-        
+
         // invalid ingredient quantities
         assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishcake", "2 c@ps"))); // empty name
         assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishcake", "2 cups!"))); // empty name

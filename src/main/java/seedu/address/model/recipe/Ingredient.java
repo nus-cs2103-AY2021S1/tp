@@ -40,7 +40,7 @@ public class Ingredient {
     public String getValue() {
         return value.trim();
     }
-    
+
     public String getQuantity() { return quantity.trim(); }
 
     /**
@@ -61,7 +61,7 @@ public class Ingredient {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidIngredient(Ingredient test) {
-        return test.getValue().matches(VALIDATION_REGEX) 
+        return test.getValue().matches(VALIDATION_REGEX)
                 && test.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
     }
 
@@ -79,7 +79,7 @@ public class Ingredient {
     }
 
     @Override
-    public int hashCode() { 
+    public int hashCode() {
         return Objects.hash(value, quantity);
     }
 

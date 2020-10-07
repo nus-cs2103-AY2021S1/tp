@@ -38,11 +38,11 @@ public class RecipeTest {
         editedAlice =
                 new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_ALICE, VALID_QUANTITY_ALICE).build();
         assertTrue(ALICE.isSameRecipe(editedAlice));
-        
+
         // different ingredients and quantity -> returns false
         editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
         assertFalse(ALICE.isSameRecipe(editedAlice));
-        
+    
         // different name -> returns false
         editedAlice = new RecipeBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameRecipe(editedAlice));

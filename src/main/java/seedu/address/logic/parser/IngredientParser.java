@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
  */
 public class IngredientParser {
     /**
-     * Parses a String made of 1 or more ingredient name and optional quantity then 
+     * Parses a String made of 1 or more ingredient name and optional quantity then
      * adds them to an ArrayList<Ingredient> to be returned
      * @param ingredientString String of 1 or more ingredient name and optional quantity
      * @return ArrayList<Ingredient> of the ingredients in the parameter
