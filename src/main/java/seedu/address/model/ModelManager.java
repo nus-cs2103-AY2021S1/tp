@@ -89,24 +89,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Log log) {
+    public boolean hasLog(Log log) {
         requireNonNull(log);
         return addressBook.hasPerson(log);
     }
 
     @Override
-    public void deletePerson(Log target) {
+    public void deleteLog(Log target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Log log) {
+    public void addLog(Log log) {
         addressBook.addPerson(log);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredLogList(PREDICATE_SHOW_ALL_LOGS);
     }
 
     @Override
-    public void setPerson(Log target, Log editedLog) {
+    public void setLog(Log target, Log editedLog) {
         requireAllNonNull(target, editedLog);
 
         addressBook.setPerson(target, editedLog);
@@ -119,12 +119,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Log> getFilteredPersonList() {
+    public ObservableList<Log> getFilteredLogList() {
         return filteredLogs;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Log> predicate) {
+    public void updateFilteredLogList(Predicate<Log> predicate) {
         requireNonNull(predicate);
         filteredLogs.setPredicate(predicate);
     }

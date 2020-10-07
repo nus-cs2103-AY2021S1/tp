@@ -12,7 +12,7 @@ import seedu.address.model.log.Log;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Log> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Log> PREDICATE_SHOW_ALL_LOGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,33 +55,33 @@ public interface Model {
     /**
      * Returns true if a log with the same identity as {@code log} exists in the address book.
      */
-    boolean hasPerson(Log log);
+    boolean hasLog(Log log);
 
     /**
      * Deletes the given log.
      * The log must exist in the address book.
      */
-    void deletePerson(Log target);
+    void deleteLog(Log target);
 
     /**
      * Adds the given log.
      * {@code log} must not already exist in the address book.
      */
-    void addPerson(Log log);
+    void addLog(Log log);
 
     /**
      * Replaces the given log {@code target} with {@code editedLog}.
      * {@code target} must exist in the address book.
      * The log identity of {@code editedLog} must not be the same as another existing log in the address book.
      */
-    void setPerson(Log target, Log editedLog);
+    void setLog(Log target, Log editedLog);
 
     /** Returns an unmodifiable view of the filtered log list */
-    ObservableList<Log> getFilteredPersonList();
+    ObservableList<Log> getFilteredLogList();
 
     /**
      * Updates the filter of the filtered log list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Log> predicate);
+    void updateFilteredLogList(Predicate<Log> predicate);
 }

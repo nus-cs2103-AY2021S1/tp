@@ -1,30 +1,24 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LOGS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPS;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.log.Address;
-import seedu.address.model.log.Email;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.log.Rep;
+import seedu.address.model.log.Comment;
 import seedu.address.model.log.Log;
-import seedu.address.model.log.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.Name;
 
 /**
  * Edits the details of an existing log in the address book.
@@ -37,69 +31,66 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed log list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_EXERCISE + "EXERCISE] "
+            + "[" + PREFIX_REPS + "REPS] "
+            + "[" + PREFIX_COMMENT + "COMMENT] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_REPS + "3000 "
+            + PREFIX_COMMENT + "I love my abs 3000";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Log: %1$s";
+    public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This log already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditLogDescriptor editLogDescriptor;
 
     /**
      * @param index of the log in the filtered log list to edit
-     * @param editPersonDescriptor details to edit the log with
+     * @param editLogDescriptor details to edit the log with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditLogDescriptor editLogDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editLogDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editLogDescriptor = new EditLogDescriptor(editLogDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Log> lastShownList = model.getFilteredPersonList();
+        List<Log> lastShownList = model.getFilteredLogList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Log logToEdit = lastShownList.get(index.getZeroBased());
-        Log editedLog = createEditedPerson(logToEdit, editPersonDescriptor);
+        Log editedLog = createEditedLog(logToEdit, editLogDescriptor);
 
-        if (!logToEdit.isSameLog(editedLog) && model.hasPerson(editedLog)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!logToEdit.isSameLog(editedLog) && model.hasLog(editedLog)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LOG);
         }
 
-        model.setPerson(logToEdit, editedLog);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedLog));
+        model.setLog(logToEdit, editedLog);
+        model.updateFilteredLogList(PREDICATE_SHOW_ALL_LOGS);
+        return new CommandResult(String.format(MESSAGE_EDIT_LOG_SUCCESS, editedLog));
     }
 
     /**
      * Creates and returns a {@code Log} with the details of {@code logToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editLogDescriptor}.
      */
-    private static Log createEditedPerson(Log logToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Log createEditedLog(Log logToEdit, EditLogDescriptor editLogDescriptor) {
         assert logToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(logToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(logToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(logToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(logToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(logToEdit.getTags());
+        Exercise updatedExercise = editLogDescriptor.getExercise().orElse(logToEdit.getExercise());
+        Rep updatedRep = editLogDescriptor.getRep().orElse(logToEdit.getReps());
+        Comment updatedComment = editLogDescriptor.getComment().orElse(logToEdit.getComment());
 
-        return new Log(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+
+        return new Log(updatedExercise, updatedRep, updatedComment);
     }
 
     @Override
@@ -117,89 +108,71 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editLogDescriptor.equals(e.editLogDescriptor);
     }
 
     /**
      * Stores the details to edit the log with. Each non-empty field value will replace the
      * corresponding field value of the log.
      */
-    public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+    public static class EditLogDescriptor {
+        private Exercise exercise;
+        private LocalDateTime dateTime;
+        private Rep rep;
+        private Comment comment;
 
-        public EditPersonDescriptor() {}
+        public EditLogDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+        public EditLogDescriptor(EditLogDescriptor toCopy) {
+            setExercise(toCopy.exercise);
+            setDatetime(toCopy.dateTime);
+            setComment(toCopy.comment);
+            setRep(toCopy.rep);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(exercise, dateTime, comment, rep);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setExercise(Exercise exercise) {
+            this.exercise = exercise;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Exercise> getExercise() {
+            return Optional.ofNullable(exercise);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDatetime(LocalDateTime dateTime) {
+            this.dateTime = dateTime;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<LocalDateTime> getDateTime() {
+            return Optional.ofNullable(this.dateTime);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setRep(Rep rep) {
+            this.rep = rep;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Rep> getRep() {
+            return Optional.ofNullable(rep);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setComment(Comment comment) {
+            this.comment = comment;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Comment> getComment() {
+            return Optional.ofNullable(comment);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -209,18 +182,17 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditLogDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditLogDescriptor e = (EditLogDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+            return getExercise().equals(e.getExercise())
+                    && getDateTime().equals(e.getDateTime())
+                    && getComment().equals(e.getComment())
+                    && getRep().equals(e.getRep());
         }
     }
 }

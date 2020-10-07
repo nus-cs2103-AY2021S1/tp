@@ -32,6 +32,17 @@ public class Log {
         this.comment = comment;
     }
 
+    /**
+     * Constructor uses to get data from files
+     */
+    public Log(Exercise exercise, Rep reps, Comment comment, LocalDateTime dateTime) {
+        requireAllNonNull(exercise, reps, comment, dateTime);
+        this.exercise = exercise;
+        this.dateTime = dateTime;
+        this.reps = reps;
+        this.comment = comment;
+    }
+
     public Exercise getExercise() {
         return exercise;
     }

@@ -10,6 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Comment {
     public final String value;
 
+    //TODO: Find a stricter constraint for comments
+    public static final String MESSAGE_CONSTRAINTS =
+            "Comment should not be black";
+
     /**
      * Constructs a {@code Comment}.
      *
@@ -19,6 +23,12 @@ public class Comment {
         requireNonNull(comment);
         value = comment;
     }
+
+    //TODO: write this according to comments' constraints
+    public static boolean isValidComment(String comment) {
+        return true;
+    }
+
 
     @Override
     public String toString() {

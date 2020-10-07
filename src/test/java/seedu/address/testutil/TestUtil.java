@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the log in the {@code model}'s log list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+        return Index.fromOneBased(model.getFilteredLogList().size() / 2);
     }
 
     /**
      * Returns the last index of the log in the {@code model}'s log list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+        return Index.fromOneBased(model.getFilteredLogList().size());
     }
 
     /**
      * Returns the log in the {@code model}'s log list at {@code index}.
      */
     public static Log getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+        return model.getFilteredLogList().get(index.getZeroBased());
     }
 }
