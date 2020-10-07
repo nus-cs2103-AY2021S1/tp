@@ -23,7 +23,7 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public CommandResult execute(ModuleList moduleList, ContactList contactList, TodoList todoList) {
-        Task toRemove = todoList.get(indexToRemove.getOneBased());
+        Task toRemove = todoList.get(indexToRemove.getZeroBased());
         todoList.remove(toRemove);
         String message = createSuccessMessage(indexToRemove);
         return new CommandResult(message, isExit());
