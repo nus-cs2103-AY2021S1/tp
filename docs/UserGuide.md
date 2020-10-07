@@ -14,6 +14,8 @@ title: User Guide
  who prefers to use the Command Line Interface and needs to keep 
  track of multiple items, OneShelf is for you!
 
+
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -42,6 +44,8 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -62,13 +66,17 @@ title: User Guide
 
 </div>
 
+
+
 ### Viewing help : `help`
+Format: `help summary`
+Shows a summary of all the possible commands in OneShelf.
 
-Shows a message explaning how to access the help page.
+Format: `help start`
+Shows a guide for user to kick-start their journey in OneShelf.
 
-![help message](images/helpMessage.png)
+<<Insert Screenshot in the future to show user what is expected, once GUI of help finalized>>
 
-Format: `help`
 
 
 ### Adding a item: `add`
@@ -76,11 +84,13 @@ Format: `help`
 Adds item to OneShelf, if there's already an item inside with the same name and supplier, it adds on to existing
 quantity of existing item.
 
-Format: `add n/NAME q/QUANTITY s/SUPPLIER [max/MAX_QUANTITY] [t/TAG]...​`
+Format: `add n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A item can have any number of tags (including 0)
 </div>
+
+
 
 ### Removing quantity from an item: `remove`
 
@@ -92,11 +102,15 @@ Format: `remove INDEX q/QUANTITY`
 Examples:
 * `remove n/Chicken q/1`
 
+
+
 ### Listing all items : `list`
 
 Shows a list of all items in the Inventory book.
 
 Format: `list`
+
+
 
 ### Editing an item : `edit`
 
@@ -115,21 +129,25 @@ Examples:
 *  `edit 1 n/Chicken q/50` Edits the name and quantity of the 1st item to be `CHICKEN` and `50` respectively.
 *  `edit 2 n/Spinach t/` Edits the name of the 2nd item to be `Spinach` and clears all existing tags.
 
+
+
 ### Locating items by name: `find`
 
 Finds items whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find PREFIX KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
-* Only the name is searched.
+* Name, Supplier and Tag can be searched
 * Only full words will be matched e.g. `chicke` will not match `chicken`
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
 
 Examples:
-* `find Chicken` returns `chicken` and `CHICKEN`
+* `find n/Chicken` returns `chicken` and `CHICKEN`
+
+
 
 ### Deleting an item : `delete`
 
@@ -145,11 +163,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd item in the inventory book.
 * `find Duck` followed by `delete 1` deletes the 1st item in the results of the `find` command.
 
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the Inventory book.
 
 Format: `clear`
+
+
 
 ### Exiting the program : `exit`
 
@@ -157,33 +179,49 @@ Exits the program.
 
 Format: `exit`
 
+
+
 ### Saving the data
 
 InventoryBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+
 
 ### Undo `[Coming Soon]`
 
 Undo previous command
 
+
+
 ### Sorting items`[Coming Soon]`
 
 Implicit sorting done. Can be explicitly called for lexicographical sorting
+
+
 
 ### Statistics `[Coming Soon]`
 
 Prints the total amount of delivery and reservation for the day
 
+
+
 ### Scheduling `[Coming Soon]`
 
 Allows user to know when to do restocking
+
+
 
 ### Prices of items `[Coming Soon]`
 
 Look up prices on a 'supplier' database
 
+
+
 ### Notification `[Coming Soon]`
 
 Notify the user if a certain stock is below threshold
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -194,11 +232,13 @@ Notify the user if a certain stock is below threshold
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+
 ## Command summary
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
-|**Add**    | `add n/NAME q/QUANTITY s/SUPPLIER [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
+|**Add**    | `add n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
 |**Clear**  | `clear`                                                                                             |
 |**Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                 |
 |**Edit**   | `edit INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
