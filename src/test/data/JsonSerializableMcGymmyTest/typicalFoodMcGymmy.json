@@ -1,5 +1,5 @@
 {
-  "_comment": "McGymmy save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "McGymmy save file which contains the same Food values as in TypicalFoods#getTypicalMcGymmy()",
   "food": [
     {
       "name": "Alice Pauline",
