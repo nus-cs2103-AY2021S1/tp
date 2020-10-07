@@ -39,8 +39,8 @@ public class ArgumentMap {
      * @return
      */
     public boolean arePrefixesPresent(Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> this.argumentMap.containsKey(prefix) &&
-                getValue(prefix).isPresent());
+        return Stream.of(prefixes).allMatch(prefix -> this.argumentMap.containsKey(prefix)
+                && getValue(prefix).isPresent());
     }
 
     /**
