@@ -162,8 +162,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
                 new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c"),
-                new CommandParserTestUtil.OptionalParameterStub<>("f")
+                new CommandParserTestUtil.OptionalParameterStub<>("f"),
+                new CommandParserTestUtil.OptionalParameterStub<>("c")
         );
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
@@ -185,8 +185,8 @@ public class EditCommandTest {
                 new CommandParserTestUtil.ParameterStub<>("", outOfBoundIndex),
                 new CommandParserTestUtil.OptionalParameterStub<>("n"),
                 new CommandParserTestUtil.OptionalParameterStub<>("p"),
-                new CommandParserTestUtil.OptionalParameterStub<>("c"),
-                new CommandParserTestUtil.OptionalParameterStub<>("f")
+                new CommandParserTestUtil.OptionalParameterStub<>("f"),
+                new CommandParserTestUtil.OptionalParameterStub<>("c")
         );
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
