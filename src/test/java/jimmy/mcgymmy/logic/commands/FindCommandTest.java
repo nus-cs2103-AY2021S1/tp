@@ -24,7 +24,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noFoodFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand();
         command.setParameters(new CommandParserTestUtil.ParameterStub<>("", predicate));
@@ -35,7 +35,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleFoodsFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand();
         command.setParameters(new CommandParserTestUtil.ParameterStub<>("", predicate));

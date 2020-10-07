@@ -33,6 +33,6 @@ public class FindCommand extends Command {
         NameContainsKeywordsPredicate predicate = predicateParameter.consume();
         model.updateFilteredFoodList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
+                String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
     }
 }
