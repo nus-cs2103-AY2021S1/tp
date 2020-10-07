@@ -19,6 +19,9 @@ Given below are my contributions to the project.
 * **Project management**:
 
 * **Enhancements to existing features**:
+  * Edited find command to take in both name and NRIC, returning all patients that match the keywords and NRIC (Pull request [\#47]())
+  * Edited delete command to be able to delete by NRIC, in addition to just deleting by index originally (Pull request [\#48]())
+  * Updated the GUI color scheme for base colors (Pull requests [\#50]())
 
 * **Documentation**:
   * User Guide:

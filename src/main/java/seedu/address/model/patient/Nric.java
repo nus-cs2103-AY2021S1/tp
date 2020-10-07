@@ -10,7 +10,7 @@ public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Starts with an alphabet, followed by 8 digits and ends with another alphabet";
-    public static final String VALIDATION_REGEX = "\\D\\d{8}\\D$";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]\\d{8}[a-zA-Z]$";
     public final String value;
 
     /**
@@ -28,7 +28,7 @@ public class Nric {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidNric(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.trim().matches(VALIDATION_REGEX);
     }
 
     @Override
