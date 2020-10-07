@@ -78,7 +78,7 @@ public class LogicManagerTest {
         // String addCommand = AddCommand.COMMAND_WORD + " -n amy -p 99999999 -e amy@amy.com";
         String addCommand = AddCommand.COMMAND_WORD + " -n amy -p 99999999 -f 123 -c 123543";
         Food expectedFood = new FoodBuilder().withName(new Name("amy")).withProtein("99999999")
-                .withFat("213412").withCarb("123543").build();
+                .withFat("123").withCarb("123543").build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addFood(expectedFood);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

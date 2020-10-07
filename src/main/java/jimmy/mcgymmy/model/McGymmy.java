@@ -22,8 +22,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         foodItems = new Fridge();
     }
 
@@ -109,9 +108,10 @@ public class McGymmy implements ReadOnlyMcGymmy {
 
     @Override
     public boolean equals(Object other) {
+
         return other == this // short circuit if same object
-            || (other instanceof McGymmy // instanceof handles nulls
-            && foodItems.equals(((McGymmy) other).foodItems));
+                || (other instanceof McGymmy // instanceof handles nulls
+                && foodItems.equals(((McGymmy) other).foodItems));
     }
 
     @Override

@@ -144,6 +144,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
         return mcGymmy.equals(other.mcGymmy)
                 && userPrefs.equals(other.userPrefs)
                 && filteredFoodItems.equals(other.filteredFoodItems);
