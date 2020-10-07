@@ -24,6 +24,7 @@ public class DeleteCommand extends Command implements Undoable {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     public static final String MESSAGE_REVERSE_SUCCESS = "Person undeleted: %1$s";
 
     private final Index targetIndex;
@@ -50,8 +51,12 @@ public class DeleteCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult undo(Model model) {
+    public CommandResult undo(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasPerson(personToDelete)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
 
         model.addPerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_REVERSE_SUCCESS, personToDelete));

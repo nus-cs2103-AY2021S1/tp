@@ -37,6 +37,7 @@ public class AddCommand extends Command implements Undoable {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
     public static final String MESSAGE_REVERSE_SUCCESS = "Person unadded: %1$s";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "This person does not exist in the address book";
 
     private final Person toAdd;
 
@@ -62,8 +63,12 @@ public class AddCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult undo(Model model) {
+    public CommandResult undo(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_NONEXISTENT_PERSON);
+        }
 
         model.deletePerson(toAdd);
         return new CommandResult(String.format(MESSAGE_REVERSE_SUCCESS, toAdd));

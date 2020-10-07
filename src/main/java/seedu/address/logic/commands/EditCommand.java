@@ -51,6 +51,7 @@ public class EditCommand extends Command implements Undoable {
     public static final String MESSAGE_REVERSE_SUCCESS = "Unedited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "This person does not exist in the address book";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -108,8 +109,16 @@ public class EditCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult undo(Model model) {
+    public CommandResult undo(Model model) throws CommandException {
         requireNonNull(model);
+
+        if(!model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_NONEXISTENT_PERSON);
+        }
+
+        if (!editedPerson.isSamePerson(personToEdit) && model.hasPerson(personToEdit)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
 
         model.setPerson(editedPerson, personToEdit);
         return new CommandResult(String.format(MESSAGE_REVERSE_SUCCESS, personToEdit));
