@@ -2,7 +2,6 @@ package jimmy.mcgymmy.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;

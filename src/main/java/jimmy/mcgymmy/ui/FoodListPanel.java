@@ -13,26 +13,26 @@ import jimmy.mcgymmy.model.food.Food;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class FoodListPanel extends UiPart<Region> {
+    private static final String FXML = "FoodListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(FoodListPanel.class);
 
     @FXML
-    private ListView<Food> personListView;
+    private ListView<Food> foodListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code FoodListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Food> foodList) {
+    public FoodListPanel(ObservableList<Food> foodList) {
         super(FXML);
-        personListView.setItems(foodList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        foodListView.setItems(foodList);
+        foodListView.setCellFactory(listView -> new FoodListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Food} using a {@code FoodCard}.
      */
-    class PersonListViewCell extends ListCell<Food> {
+    class FoodListViewCell extends ListCell<Food> {
         @Override
         protected void updateItem(Food food, boolean empty) {
             super.updateItem(food, empty);

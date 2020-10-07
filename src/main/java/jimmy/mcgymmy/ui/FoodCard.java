@@ -14,7 +14,7 @@ import jimmy.mcgymmy.model.food.Food;
  */
 public class FoodCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "FoodListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,7 +42,7 @@ public class FoodCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Food} and index to display.
+     * Creates a {@code FoodCode} with the given {@code Food} and index to display.
      */
     public FoodCard(Food food, int displayedIndex) {
         super(FXML);
@@ -50,8 +50,8 @@ public class FoodCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(food.getName().fullName);
         protein.setText(food.getProtein().toString());
-        carb.setText(food.getCarbs().toString());
         fat.setText(food.getFat().toString());
+        carb.setText(food.getCarbs().toString());
         food.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
