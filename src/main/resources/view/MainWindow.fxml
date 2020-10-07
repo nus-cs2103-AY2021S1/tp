@@ -13,7 +13,7 @@
 <fx:root xmlns:fx="http://javafx.com/fxml" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx"
          title="McGymmy" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
-        <Image url="@/images/address_book_32.png"/>
+        <Image url="@/images/mcgymmy_32.png"/>
     </icons>
     <scene>
         <Scene>
