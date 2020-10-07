@@ -232,6 +232,15 @@ public class AddCommandTest {
         }
 
 
+        public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
+        }
+
+
+        public ObservableList<FinanceRecord> getFilteredFinanceList() {
+            return null;
+        }
+
+
         @Override
         public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
             return Optional.empty();

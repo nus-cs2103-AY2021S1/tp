@@ -33,6 +33,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<InventoryRecord> filteredInventory;
+    private final FilteredList<FinanceRecord> filteredFinance;
 
 
     /**
@@ -44,9 +45,12 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.financeAccount = new FinanceAccount();
+        filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
+
         this.inventory = new Inventory();
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
-        this.financeAccount = new FinanceAccount();
+
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -64,6 +68,7 @@ public class ModelManager implements Model {
                 + ", inventory " + inventory + " and user prefs " + userPrefs);
 
         this.financeAccount = financeAccount;
+        filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
 
         this.inventory = inventory;
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
@@ -167,8 +172,23 @@ public class ModelManager implements Model {
 
 
     @Override
+    public ObservableList<FinanceRecord> getFilteredFinanceList() {
+        return filteredFinance;
+    }
+
+
+    @Override
+    public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
+        requireAllNonNull(target, editedFinanceRecord);
+
+        financeAccount.setFinanceRecord(target, editedFinanceRecord);
+    }
+
+
+    @Override
     public List<FinanceRecord> viewFinanceRecords() {
-        return financeAccount.getFinanceRecords();
+        // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
+        return null;
     }
 
 

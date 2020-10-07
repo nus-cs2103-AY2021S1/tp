@@ -38,7 +38,7 @@ class JsonSerializableFinanceAccount {
 
     public JsonSerializableFinanceAccount(FinanceAccount source) {
         financeRecords.addAll(
-                source.getFinanceRecords()
+                source.asUnmodifiableObservableList()
                         .stream()
                         .map(JsonAdaptedFinanceRecord::new)
                         .collect(Collectors.toList())

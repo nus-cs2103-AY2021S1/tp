@@ -16,9 +16,9 @@ public class ListFinanceRecordsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.viewFinanceRecords().isEmpty()) {
+        if (model.getFilteredFinanceList().isEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_LIST);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.viewFinanceRecords()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredFinanceList()));
     }
 }
