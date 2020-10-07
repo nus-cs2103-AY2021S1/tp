@@ -22,7 +22,7 @@ public class RedoCommand extends Command {
         if (!model.canRedoCliniCal()) {
             throw new CommandException(MESSAGE_NO_MORE_COMMANDS);
         }
-        model.undoCliniCal();
+        model.redoCliniCal();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -93,6 +93,7 @@ public class ModelManager implements Model {
     @Override
     public void undoCliniCal() {
         versionedCliniCal.undo();
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override
@@ -130,7 +131,6 @@ public class ModelManager implements Model {
     public void addPatient(Patient patient) {
         cliniCal.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        commitCliniCal();
     }
 
     @Override

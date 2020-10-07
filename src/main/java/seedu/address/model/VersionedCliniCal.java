@@ -17,11 +17,11 @@ public class VersionedCliniCal extends CliniCal {
      * {@code currentStatePointer} to it.
      *
      */
-    public VersionedCliniCal(CliniCal initialCliniCal) {
+    public VersionedCliniCal(CliniCal cliniCal) {
         clinicalStateList = new ArrayList<>();
-        cliniCal = initialCliniCal;
         currentStatePointer = INITIAL_POINTER;
-        clinicalStateList.add(cliniCal);
+        this.cliniCal = cliniCal;
+        clinicalStateList.add(new CliniCal(cliniCal));
     }
 
     /**
@@ -31,7 +31,7 @@ public class VersionedCliniCal extends CliniCal {
         if (currentStatePointer != clinicalStateList.size() - 1) {
             clinicalStateList.subList(currentStatePointer + 1, clinicalStateList.size()).clear();
         }
-        clinicalStateList.add(currentCliniCal);
+        clinicalStateList.add(new CliniCal(currentCliniCal));
         currentStatePointer++;
     }
 
