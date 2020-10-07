@@ -21,11 +21,11 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Deleted Food: %1$s";
 
     private Parameter<Index> indexParameter = this.addParameter(
-        "index",
-        "",
-        "index number used in the displayed food list.",
-        "2",
-        ParserUtil::parseIndex
+            "index",
+            "",
+            "index number used in the displayed food list.",
+            "2",
+            ParserUtil::parseIndex
     );
 
     void setParameters(Parameter<Index> indexParameter) {

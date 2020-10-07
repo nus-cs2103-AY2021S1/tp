@@ -54,8 +54,8 @@ public class McGymmy implements ReadOnlyMcGymmy {
      */
     public void resetData(ReadOnlyMcGymmy newData) {
         requireNonNull(newData);
-        for (Food food: newData.getFoodList()) {
-            for (Food comp: newData.getFoodList()) {
+        for (Food food : newData.getFoodList()) {
+            for (Food comp : newData.getFoodList()) {
                 if (food.hashCode() == comp.hashCode()) {
                     continue;
                 }
@@ -120,8 +120,8 @@ public class McGymmy implements ReadOnlyMcGymmy {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof McGymmy // instanceof handles nulls
-            && foodItems.equals(((McGymmy) other).foodItems));
+                || (other instanceof McGymmy // instanceof handles nulls
+                && foodItems.equals(((McGymmy) other).foodItems));
     }
 
     @Override

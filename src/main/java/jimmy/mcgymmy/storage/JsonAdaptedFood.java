@@ -55,8 +55,8 @@ class JsonAdaptedFood {
         fat = Integer.toString(source.getFat().getAmount());
         carbs = Integer.toString(source.getCarbs().getAmount());
         tagged.addAll(source.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**

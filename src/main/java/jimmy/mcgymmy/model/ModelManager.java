@@ -80,13 +80,13 @@ public class ModelManager implements Model {
     //=========== McGymmy ================================================================================
 
     @Override
-    public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
-        this.mcGymmy.resetData(mcGymmy);
+    public ReadOnlyMcGymmy getMcGymmy() {
+        return mcGymmy;
     }
 
     @Override
-    public ReadOnlyMcGymmy getMcGymmy() {
-        return mcGymmy;
+    public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
+        this.mcGymmy.resetData(mcGymmy);
     }
 
     @Override

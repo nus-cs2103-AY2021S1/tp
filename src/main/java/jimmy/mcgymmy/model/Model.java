@@ -47,14 +47,14 @@ public interface Model {
     void setMcGymmyFilePath(Path mcGymmyFilePath);
 
     /**
-     * Set McGymmy
-     */
-    void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
-
-    /**
      * Returns  McGymmy
      */
     ReadOnlyMcGymmy getMcGymmy();
+
+    /**
+     * Set McGymmy
+     */
+    void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
 
     /**
      * Returns true if a food with the same identity as {@code food} exists in mcgymmy.
