@@ -15,9 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Email;
 import seedu.address.model.vendor.Name;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.Vendor;
 
 /**
  * Parses input arguments and creates a new AddCommand object

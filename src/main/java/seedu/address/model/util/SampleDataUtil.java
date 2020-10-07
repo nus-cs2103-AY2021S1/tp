@@ -9,9 +9,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Email;
 import seedu.address.model.vendor.Name;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.model.vendor.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.vendor.Phone;
+import seedu.address.model.vendor.Vendor;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
