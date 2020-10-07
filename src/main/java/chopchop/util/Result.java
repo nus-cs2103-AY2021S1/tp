@@ -106,7 +106,7 @@ public class Result<T> extends Either<String, T> {
      * @return   the new result
      */
     public <R> Result<R> then(Function<? super T, Result<R>> fn) {
-        return super.fromRightOpt().map(fn).orElse(Result.error(this.getError()));
+        return super.fromRightOpt().map(fn).orElseGet(() -> Result.error(this.getError()));
     }
 
     /**
@@ -117,6 +117,30 @@ public class Result<T> extends Either<String, T> {
      */
     public T orElse(T other) {
         return super.fromRightOpt().orElse(other);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s)",
+            this.hasValue() ? "Result" : "Error",
+            this.hasValue() ? this.getValue() : this.getError());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Result<?>)) {
+            return false;
+        }
+
+        var other = (Result<?>) obj;
+        if (other.hasValue() != this.hasValue()) {
+            return false;
+        }
+
+        return this.hasValue()
+            ? this.getValue().equals(other.getValue())
+            : this.getError().equals(other.getError());
+
     }
 
     /**

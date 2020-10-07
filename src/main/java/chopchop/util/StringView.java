@@ -386,7 +386,7 @@ public class StringView {
 
         } catch (NumberFormatException e) {
 
-            return Result.error(e.toString());
+            return Result.error(e.getMessage());
         }
     }
 
@@ -401,7 +401,7 @@ public class StringView {
 
         } catch (NumberFormatException e) {
 
-            return Result.error(e.toString());
+            return Result.error(e.getMessage());
         }
     }
 
