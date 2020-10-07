@@ -42,6 +42,17 @@ public class Meeting {
         return Collections.unmodifiableSet(persons);
     }
 
+    public boolean isSameMeeting(Meeting otherMeeting) {
+        if (otherMeeting == this) {
+            return true;
+        }
+
+        return otherMeeting != null
+                && otherMeeting.getName().equals(getName())
+                && otherMeeting.getDate().equals(getDate())
+                && otherMeeting.getTime().equals(getTime());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
