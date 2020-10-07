@@ -21,16 +21,16 @@ public class SampleDataUtil {
         return new Food[] {
             new Food(new Name("Chicken Rice"), new Protein(200), new Fat(300),
                     new Carbohydrate(100),
-                    getTagSet("friends")),
+                    getTagSet("Lunch")),
             new Food(new Name("Rice Bowl"), new Protein(300), new Fat(200),
                     new Carbohydrate(100),
-                    getTagSet("colleagues", "friends")),
+                    getTagSet("Lunch", "Dinner")),
             new Food(new Name("Fried Chicken"), new Protein(200), new Fat(100),
                     new Carbohydrate(10),
-                    getTagSet("neighbours")),
+                    getTagSet("Tasty")),
             new Food(new Name("Nasi Lemak"), new Protein(20), new Fat(17),
                     new Carbohydrate(31),
-                    getTagSet("family")),
+                    getTagSet("Lunch")),
         };
     }
 
