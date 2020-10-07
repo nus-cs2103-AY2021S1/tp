@@ -15,6 +15,7 @@ import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.storage.JsonModuleListStorage;
 import tp.cap5buddy.storage.StorageManager;
+import tp.cap5buddy.todolist.TodoList;
 import tp.cap5buddy.ui.Ui;
 
 
@@ -51,7 +52,8 @@ public class Cap5buddy {
             System.out.println(e.getMessage());
             moduleList = new ModuleList(new ArrayList<Module>());
         }
-        LogicManager lm = new LogicManager(storage, moduleList, new ContactList(new ArrayList<>()));
+        LogicManager lm = new LogicManager(storage, moduleList, new ContactList(new ArrayList<>()),
+                new TodoList());
         while (!isExit) {
             String current = ui.getInput();
             CommandResult res = lm.execute(current);
