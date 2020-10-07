@@ -17,6 +17,6 @@ public interface Question {
 
     String getFormatQuestion();
 
-    Optional<String[]> getChoices();
+    Optional<Choice[]> getChoices();
 
 }
