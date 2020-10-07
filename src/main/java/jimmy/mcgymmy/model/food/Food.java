@@ -81,6 +81,10 @@ public class Food {
         return this.fat;
     }
 
+    public int getCalories() {
+        return getFat().getTotalCalories() + getCarbs().getTotalCalories() + getProtein().getTotalCalories();
+    }
+
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
