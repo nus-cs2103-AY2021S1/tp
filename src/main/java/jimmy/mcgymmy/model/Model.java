@@ -37,46 +37,46 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' mcgymmy file path.
      */
     Path getMcGymmyFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' mcgymmy file path.
      */
     void setMcGymmyFilePath(Path mcGymmyFilePath);
 
     /**
-     * Returns the AddressBook
+     * Set McGymmy
      */
-    void setMcGymmy(ReadOnlyMcGymmy addressBook);
+    void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
 
     /**
-     * Returns the McGymmy
+     * Returns  McGymmy
      */
     ReadOnlyMcGymmy getMcGymmy();
 
     /**
-     * Returns true if a food with the same identity as {@code food} exists in the address book.
+     * Returns true if a food with the same identity as {@code food} exists in mcgymmy.
      */
     boolean hasFood(Food food);
 
     /**
      * Deletes the given food.
-     * The food must exist in the address book.
+     * The food must exist in mcgymmy.
      */
     void deleteFood(Food food);
 
     /**
      * Adds the given food.
-     * {@code food} must not already exist in the address book.
+     * {@code food} must not already exist in mcgymmy.
      */
     void addFood(Food food);
 
     /**
      * Replaces the given food {@code target} with {@code editedFood}.
-     * {@code target} must exist in the address book.
-     * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
+     * {@code target} must exist in mcgymmy.
+     * The food identity of {@code editedFood} must not be the same as another existing food in mcgymmy.
      */
     void setFood(Food target, Food editedFood);
 

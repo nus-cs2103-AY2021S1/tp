@@ -10,7 +10,7 @@ import jimmy.mcgymmy.model.food.Fridge;
 import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at mcgymmy level
  * Duplicates are not allowed (by .isSameFood comparison)
  */
 public class McGymmy implements ReadOnlyMcGymmy {
@@ -70,7 +70,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
     //// Food-level operations
 
     /**
-     * Returns true if a Food with the same identity as {@code Food} exists in the address book.
+     * Returns true if a Food with the same identity as {@code Food} exists in mcgymmy.
      */
     public boolean hasFood(Food food) {
         requireNonNull(food);
@@ -78,8 +78,8 @@ public class McGymmy implements ReadOnlyMcGymmy {
     }
 
     /**
-     * Adds a Food to the address book.
-     * The Food must not already exist in the address book.
+     * Adds a Food to mcgymmy.
+     * The Food must not already exist in mcgymmy.
      */
     public void addFood(Food food) {
         foodItems.add(food);
@@ -87,8 +87,8 @@ public class McGymmy implements ReadOnlyMcGymmy {
 
     /**
      * Replaces the given Food {@code target} in the list with {@code editedFood}.
-     * {@code target} must exist in the address book.
-     * The Food identity of {@code editedFood} must not be the same as another existing Food in the address book.
+     * {@code target} must exist in mcgymmy.
+     * The Food identity of {@code editedFood} must not be the same as another existing Food in mcgymmy.
      */
     public void setFood(Food target, Food editedFood) {
         requireNonNull(editedFood);
@@ -98,7 +98,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
 
     /**
      * Removes {@code key} from this {@code McGymmy}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in mcgymmy.
      */
     public void removeFood(Food key) {
         foodItems.remove(key);

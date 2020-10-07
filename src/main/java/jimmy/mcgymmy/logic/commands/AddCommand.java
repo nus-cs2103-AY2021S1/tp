@@ -14,13 +14,13 @@ import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
 
 /**
- * Adds a food to the address book.
+ * Adds a food to mcgymmy.
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_SUCCESS = "New food added: %1$s";
-    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in McGymmy";
 
     private Parameter<Name> nameParameter = this.addParameter(
             "name",
@@ -62,7 +62,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // rewriting this class as an example, address and tags not implemented.
+        // rewriting this class as an example, tags not implemented.
         Name newName = nameParameter.consume();
         Protein newProtein = this.proteinParameter.getValue().orElse(new Protein(0));
         Fat newFat = this.fatParameter.getValue().orElse(new Fat(0));

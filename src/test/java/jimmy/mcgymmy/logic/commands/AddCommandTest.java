@@ -101,7 +101,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setMcGymmy(ReadOnlyMcGymmy newData) {
+        public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
             throw new AssertionError("This method should not be called.");
         }
 

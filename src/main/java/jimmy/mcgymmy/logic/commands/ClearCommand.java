@@ -6,7 +6,7 @@ import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
 
 /**
- * Clears the address book.
+ * Clears mcgymmy.
  */
 public class ClearCommand extends Command {
 

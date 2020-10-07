@@ -18,14 +18,14 @@ import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
 
 /**
- * Edits the details of an existing food in the address book.
+ * Edits the details of an existing food in mcgymmy.
  */
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in McGymmy.";
 
     private Parameter<Index> indexParameter = this.addParameter(
             "index",
@@ -90,12 +90,7 @@ public class EditCommand extends Command {
         Fat newFat = this.fatParameter.getValue().orElseGet(foodToEdit::getFat);
         Carbohydrate newCarb = this.carbParameter.getValue().orElseGet(foodToEdit::getCarbs);
 
-        // as with AddCommand, address and get tags left as exercises
         Food editedFood = new Food(newName, newProtein, newFat, newCarb);
-
-        //        boolean first = !(foodToEdit.equals(editedFood));
-        //        boolean third = (foodToEdit != (editedFood));
-        //        boolean second = (model.hasFood(editedFood));
 
         if (!(foodToEdit.equals(editedFood)) && model.hasFood(editedFood)) {
             throw new CommandException(MESSAGE_DUPLICATE_FOOD);

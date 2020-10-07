@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import jimmy.mcgymmy.model.food.Food;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of mcgymmy
  */
 public interface ReadOnlyMcGymmy {
 

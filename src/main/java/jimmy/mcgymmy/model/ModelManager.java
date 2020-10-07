@@ -15,7 +15,7 @@ import jimmy.mcgymmy.model.food.Food;
 
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of mcgymmmy data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

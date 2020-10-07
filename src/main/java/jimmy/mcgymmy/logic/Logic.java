@@ -25,7 +25,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the McGymmy.
+     * Returns McGymmy.
      *
      * @see Model#getMcGymmy()
      */
@@ -35,7 +35,7 @@ public interface Logic {
     ObservableList<Food> getFilteredFoodList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' mcgymmy file path.
      */
     Path getMcGymmyFilePath();
 

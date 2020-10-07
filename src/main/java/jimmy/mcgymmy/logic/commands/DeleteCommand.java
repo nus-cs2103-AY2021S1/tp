@@ -13,7 +13,7 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.food.Food;
 
 /**
- * Deletes a food identified using it's displayed index from the mcgymmy.
+ * Deletes a food identified using it's displayed index from mcgymmy.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
