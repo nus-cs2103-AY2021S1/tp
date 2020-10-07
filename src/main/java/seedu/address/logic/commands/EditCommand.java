@@ -3,7 +3,13 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.flashcard.*;
+import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
+import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.MultipleChoiceQuestion;
+import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -89,15 +95,15 @@ public class EditCommand extends Command {
         //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
         Answer finalAnswer;
         Question updatedQuestion = editFlashcardDescriptor.getQuestion()
-                .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getOnlyQuestion()));
+                .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getQuestion()));
         Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
-        String[] emptyArray = new String[0];
-        String[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
+        Choice[] emptyArray = new Choice[0];
+        Choice[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
         boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
         if (isMcq) {
-            String question = updatedQuestion.getOnlyQuestion();
+            String question = updatedQuestion.getQuestion();
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
-            String[] previousChoices = mcq.getChoices().get();
+            Choice[] previousChoices = mcq.getChoices().get();
             if (Arrays.equals(updatedChoices, emptyArray)) {
                 updatedQuestion = new MultipleChoiceQuestion(question, previousChoices);
                 if (updatedAnswer.isPresent()) {
@@ -110,7 +116,7 @@ public class EditCommand extends Command {
                     } catch (NumberFormatException e) {
                         throw new CommandException("Answer must be integer");
                     }
-                    finalAnswer = new Answer(previousChoices[ans - 1]);
+                    finalAnswer = new Answer(previousChoices[ans - 1].getContent());
                 } else {
                     finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
                 }
@@ -126,18 +132,18 @@ public class EditCommand extends Command {
                     } catch (NumberFormatException e) {
                         throw new CommandException("Answer must be integer");
                     }
-                    finalAnswer = new Answer(updatedChoices[ans - 1]);
+                    finalAnswer = new Answer(updatedChoices[ans - 1].getContent());
                 } else {
                     Answer previousAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
                     String previousAnswerString = previousAnswer.getAnswer();
                     int previousIndex = -1;
                     for (int i = 0; i < previousChoices.length; i++) {
-                        if (previousAnswerString.equals(previousChoices[i].toLowerCase())) {
+                        if (previousAnswerString.equals(previousChoices[i].getContent().toLowerCase())) {
                             previousIndex = i;
                         }
                     }
                     if (previousIndex < updatedChoices.length) {
-                        finalAnswer = new Answer(updatedChoices[previousIndex]);
+                        finalAnswer = new Answer(updatedChoices[previousIndex].getContent());
                     } else {
                         throw new CommandException("Answer must be smaller than number of choices");
                     }
@@ -179,7 +185,7 @@ public class EditCommand extends Command {
     public static class EditFlashcardDescriptor {
         private Answer answer;
         private Question question;
-        private String[] choices;
+        private Choice[] choices;
         private Set<Tag> tags;
         private boolean isMcq;
 
@@ -251,7 +257,7 @@ public class EditCommand extends Command {
         /**
          * Sets {@code choices} to this object's {@code choices}.
          */
-        public void setChoices(String[] choices) {
+        public void setChoices(Choice[] choices) {
             this.choices = (choices != null) ? choices : null;
         }
 
@@ -259,7 +265,7 @@ public class EditCommand extends Command {
          * Returns an unmodifiable String array.
          * Returns {@code Optional#empty()} if {@code choices} is null.
          */
-        public Optional<String[]> getChoices() {
+        public Optional<Choice[]> getChoices() {
             return (choices != null) ? Optional.of(choices) : Optional.empty();
         }
 

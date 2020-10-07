@@ -1,11 +1,11 @@
 package seedu.address.flashcard;
 
-import seedu.address.commons.core.index.Index;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import seedu.address.commons.core.index.Index;
 
 /**
  * Represents a mcq question.
@@ -14,55 +14,61 @@ import java.util.Optional;
  */
 public class MultipleChoiceQuestion implements Question {
 
+    public static final String TYPE = "MCQ";
+
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public static final String MESSAGE_CONSTRAINTS = "MultipleChoiceQuestion can take any values, "
             + "and it should not be blank";
 
-    private final String[] options;
+    private final Choice[] choices;
     private final String question;
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(String question, String... options) {
+    public MultipleChoiceQuestion(String question, Choice... choices) {
         this.question = question;
-        this.options = options;
+        this.choices = choices;
     }
 
     /**
      * A constructor to create MCQ Question object.
      */
-    public MultipleChoiceQuestion(List<String> question) {
-        int size = question.size();
-        this.question = question.get(0);
-        this.options = question.subList(1, size).toArray(new String[0]);
+    public MultipleChoiceQuestion(String question, List<String> choices) {
+        this.question = question;
+        List<Choice> choicesArray = new ArrayList<Choice>();
+        for (String c : choices) {
+            Choice choice = new Choice(c);
+            choicesArray.add(choice);
+        }
+        Choice[] test = choicesArray.toArray(new Choice[choices.size()]);
+        for (int i = 0; i < choices.size(); i++) {
+            test[i] = new Choice(choices.get(i));
+        }
+        this.choices = test;
     }
 
     @Override
-    public List<String> getQuestion() {
-        List<String> questionArray = new ArrayList<String>();
-        questionArray.add(question);
-        questionArray.addAll(1, Arrays.asList(options));
-        return questionArray;
-    }
-
-    @Override
-    public String getOnlyQuestion() {
+    public String getQuestion() {
         StringBuilder sb = new StringBuilder(question);
         return sb.toString();
+        //List<String> questionArray = new ArrayList<String>();
+        //questionArray.add(question);
+        //questionArray.addAll(1, Arrays.stream(choices).map(Choice::toString).collect(Collectors.toList()));
+        //return questionArray;
     }
 
-    public Optional<String[]> getChoices() {
-        return Optional.ofNullable(this.options);
+    public Optional<Choice[]> getChoices() {
+        return Optional.ofNullable(this.choices);
     }
 
     @Override
     public String getFormatQuestion() {
         StringBuilder sb = new StringBuilder(question + "\n");
         int i = 1;
-        for (String option : options) {
-            sb.append(i).append(". ").append(option).append("\n");
+        for (Choice choice : choices) {
+            sb.append(i).append(". ").append(choice.toString()).append("\n");
             i++;
         }
         return sb.toString();
@@ -78,8 +84,8 @@ public class MultipleChoiceQuestion implements Question {
      * @return option as an {@code Answer}.
      */
     public Answer getAnswerFromIndex(Index index) {
-        String option = options[index.getZeroBased()];
-        return new Answer(option);
+        Choice choice = choices[index.getZeroBased()];
+        return new Answer(choice.getContent());
     }
 
     @Override

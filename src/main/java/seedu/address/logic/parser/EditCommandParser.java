@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -81,7 +82,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * {@code String[]} containing zero choices.
      * @return
      */
-    private Optional<String[]> parseChoicesForEdit(Collection<String> choices) throws ParseException {
+    private Optional<Choice[]> parseChoicesForEdit(Collection<String> choices) throws ParseException {
         assert choices != null;
 
         if (choices.isEmpty()) {

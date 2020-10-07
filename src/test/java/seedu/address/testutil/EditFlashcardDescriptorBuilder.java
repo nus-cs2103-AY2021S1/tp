@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
@@ -39,7 +40,7 @@ public class EditFlashcardDescriptorBuilder {
         if (isMcq) {
             descriptor.setChoices(((MultipleChoiceQuestion) flashcard.getQuestion()).getChoices().get());
         } else {
-            String[] emptyArray = new String[0];
+            Choice[] emptyArray = new Choice[0];
             descriptor.setChoices(emptyArray);
         }
     }
@@ -62,7 +63,7 @@ public class EditFlashcardDescriptorBuilder {
     /**
      * Sets the {@code choices} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditFlashcardDescriptorBuilder withChoices(String[] choices) {
+    public EditFlashcardDescriptorBuilder withChoices(Choice[] choices) {
         descriptor.setChoices(choices);
         return this;
     }

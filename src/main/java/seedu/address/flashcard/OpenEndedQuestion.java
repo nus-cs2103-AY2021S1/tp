@@ -1,13 +1,13 @@
 package seedu.address.flashcard;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 /**
  * Represents an open ended question.
  */
 public class OpenEndedQuestion implements Question {
+
+    public static final String TYPE = "OEQ";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -25,15 +25,11 @@ public class OpenEndedQuestion implements Question {
     }
 
     @Override
-    public List<String> getQuestion() {
-        List<String> questionArray = new ArrayList<String>();
-        questionArray.add(question);
-        return questionArray;
-    }
-
-    @Override
-    public String getOnlyQuestion() {
+    public String getQuestion() {
         return question;
+        //List<String> questionArray = new ArrayList<String>();
+        //questionArray.add(question);
+        //return questionArray;
     }
 
     @Override
@@ -52,7 +48,7 @@ public class OpenEndedQuestion implements Question {
         return false;
     }
 
-    public Optional<String[]> getChoices() {
+    public Optional<Choice[]> getChoices() {
         return Optional.empty();
     }
 
