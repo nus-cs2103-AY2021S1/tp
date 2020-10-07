@@ -20,20 +20,20 @@ public abstract class Alphanumeric {
      *
      * @param alphaNum A valid alphaNum.
      */
-    public Alphanumeric(String alphaNum) {
+    protected Alphanumeric(String alphaNum) {
         requireNonNull(alphaNum);
         checkArgument(isValidAlphanum(alphaNum), MESSAGE_CONSTRAINTS);
         this.alphaNum = alphaNum;
     }
 
-    public Alphanumeric() {
+    protected Alphanumeric() {
         this.alphaNum = "";
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidAlphanum(String test) {
+    protected static boolean isValidAlphanum(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
