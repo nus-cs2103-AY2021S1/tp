@@ -45,8 +45,8 @@ A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01`
-* `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/Comp1 t/lecturer t/friend`
+* `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01-A3`
+* `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
 ### Listing all contacts : `list`
 
@@ -68,7 +68,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TA
     specifying any tags after it.
 
 Examples:
-*  `edit 1 d/Computing b/COM2` edits the department and office of the 1st contact to be `Computing` and `COM2` respectively.
+*  `edit 1 d/Computing o/COM2-01-02` edits the department and office of the 1st contact to be `Computing` and `COM2-01-02` respectively.
 *  `edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 ### Adding or updating a remark : `remark`
@@ -154,7 +154,7 @@ Format: `exit`
 
 ### Saving the data
 
-FaculType data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FaculType data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
