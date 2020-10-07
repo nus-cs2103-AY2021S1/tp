@@ -19,9 +19,9 @@ public class TypicalStocks {
             .withSerialNumber("Ntuc1").withSource("Ntuc")
             .withQuantity("2000").withLocation("Fruit Section, Subsection C")
             .build();
-    public static final Stock BANANA = new StockBuilder().withName("Banana Bun")
+    public static final Stock BANANA = new StockBuilder().withName("Banana Cake")
             .withSerialNumber("Fairprice1").withSource("Fairprice")
-            .withQuantity("1000").withLocation("Fruits section, Subsection B")
+            .withQuantity("2103").withLocation("Fruits section, Subsection B")
             .build();
 
     private TypicalStocks() {} // prevents instantiation
