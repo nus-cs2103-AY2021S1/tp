@@ -3,14 +3,15 @@ package tp.cap5buddy.logic.parser;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 
 /**
  * Represents the token of each user input.
  */
 public class Tokenizer {
-    private static final int SIZE = 6; // updates as the number of prefixes increases.
-    private final String[] words = new String[SIZE];
+
     private final String userInput;
     private final Prefix[] prefixes;
 
@@ -31,7 +32,7 @@ public class Tokenizer {
      * @return String array containing command arguments.
      * @throws ParseException If the user input could not be parsed.
      */
-    public String[] tokenize() throws ParseException {
+    public ArgumentMap tokenize() throws ParseException {
         List<PrefixPosition> prefixPositions = findAllPrefixPositions();
         return extractArguments(this.userInput, prefixPositions);
     }
@@ -94,15 +95,28 @@ public class Tokenizer {
      * @param prefixPositions Prefix positions.
      * @return String array containing the command arguments.
      */
-    private String[] extractArguments(String userInput, List<PrefixPosition> prefixPositions) {
-        String[] results = new String[SIZE];
+    private ArgumentMap extractArguments(String userInput, List<PrefixPosition> prefixPositions) {
+
+        // Sort by start position
+        prefixPositions.sort((prefix1, prefix2) -> prefix1.getPrefixIndex() - prefix2.getPrefixIndex());
+
+        // Insert a PrefixPosition to represent the preamble of the user input
+        PrefixPosition preambleMarker = new PrefixPosition(0, new Prefix(""));
+        prefixPositions.add(0, preambleMarker);
+
         PrefixPosition endPositionMarker = new PrefixPosition(userInput.length(), new Prefix(""));
         prefixPositions.add(endPositionMarker);
+
+        // Map prefixes to their argument values (if any)
+        ArgumentMap argumentMap = new ArgumentMap();
+
         for (int i = 0; i < prefixPositions.size() - 1; i++) {
-            String argument = extractArgument(userInput, prefixPositions.get(i), prefixPositions.get(i + 1));
-            results[i] = argument;
+            // Extract and store prefixes and their arguments
+            Prefix prefix = prefixPositions.get(i).getPrefix();
+            String prefixArgument = extractArgument(userInput, prefixPositions.get(i), prefixPositions.get(i + 1));
+            argumentMap.put(prefix, prefixArgument);
         }
-        return results;
+        return argumentMap;
     }
 
     /**
@@ -121,10 +135,6 @@ public class Tokenizer {
         int argumentIndex = currentPrefixPosition.getPrefixIndex() + prefix.getPrefix().length();
         String argument = userInput.substring(argumentIndex, nextPrefixPosition.getPrefixIndex());
         return argument.trim();
-    }
-
-    public String[] getWords() {
-        return this.words;
     }
 
 }

@@ -15,16 +15,19 @@ public class AddZoomLinkParser extends Parser {
     public AddZoomLinkCommand parse(String userInput) throws ParseException {
         Tokenizer tokenizer = new Tokenizer(userInput,
                 PrefixList.MODULE_INDEX_PREFIX, PrefixList.MODULE_LINK_PREFIX);
-        String[] parsedArguments = tokenizer.tokenize();
+        ArgumentMap argumentMap = tokenizer.tokenize();
+
+        if (!argumentMap.arePrefixesPresent(PrefixList.MODULE_INDEX_PREFIX,
+                PrefixList.MODULE_LINK_PREFIX)) {
+            String error = "Missing prefix arguments";
+            throw new ParseException(error);
+        }
         try {
-            int moduleID = Integer.parseInt(parsedArguments[0]);
-            String zoomLink = parsedArguments[1];
+            int moduleID = Integer.parseInt(argumentMap.getValue(PrefixList.MODULE_INDEX_PREFIX).get());
+            String zoomLink = argumentMap.getValue(PrefixList.MODULE_LINK_PREFIX).get();
             return new AddZoomLinkCommand(moduleID, zoomLink);
         } catch (NumberFormatException ex) {
             String error = "No module ID was provided";
-            throw new ParseException(error);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            String error = "Missing arguments";
             throw new ParseException(error);
         }
     }

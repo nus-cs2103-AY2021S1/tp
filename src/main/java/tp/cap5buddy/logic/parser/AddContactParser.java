@@ -14,14 +14,13 @@ public class AddContactParser extends Parser {
      */
     public AddContactCommand parse(String userInput) throws ParseException {
         Tokenizer tokenizer = new Tokenizer(userInput, PrefixList.CONTACT_NAME_PREFIX, PrefixList.CONTACT_EMAIL_PREFIX);
-        String[] parsedArguments = tokenizer.tokenize();
-        try {
-            String contactName = parsedArguments[0];
-            String contactEmail = parsedArguments[1];
-            return new AddContactCommand(contactName, contactEmail);
-        } catch (ArrayIndexOutOfBoundsException ex) {
-            String error = "Missing arguments";
+        ArgumentMap argumentMap = tokenizer.tokenize();
+        if (!argumentMap.arePrefixesPresent(PrefixList.CONTACT_NAME_PREFIX)) {
+            String error = "Missing prefix arguments";
             throw new ParseException(error);
         }
+        String contactName = argumentMap.getValue(PrefixList.CONTACT_NAME_PREFIX).get();
+        String contactEmail = argumentMap.getValue(PrefixList.CONTACT_EMAIL_PREFIX).orElse("");
+        return new AddContactCommand(contactName, contactEmail);
     }
 }

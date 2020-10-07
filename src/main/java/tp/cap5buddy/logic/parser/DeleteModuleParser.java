@@ -17,9 +17,14 @@ public class DeleteModuleParser extends Parser {
      */
     @Override
     public Command parse(String userInput) throws ParseException {
-        Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_DELETE_PREFIX, PrefixList.MODULE_NEWNAME_PREFIX);
-        String[] parsedArguments = token.tokenize();
-        int position = Integer.parseInt(parsedArguments[0]);
+        Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_DELETE_PREFIX);
+        ArgumentMap argumentMap = token.tokenize();
+        if (!argumentMap.arePrefixesPresent(PrefixList.MODULE_DELETE_PREFIX)) {
+            String error = "Missing prefix arguments";
+            throw new ParseException(error);
+        }
+        int position = Integer.parseInt(argumentMap.getValue(PrefixList.MODULE_DELETE_PREFIX).get());
+
         return new DeleteModuleCommand(position);
     }
 }

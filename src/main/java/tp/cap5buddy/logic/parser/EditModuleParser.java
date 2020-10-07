@@ -22,15 +22,19 @@ public class EditModuleParser extends Parser {
                 PrefixList.MODULE_NEWNAME_PREFIX,
                 PrefixList.MODULE_LINK_PREFIX
         );
-        String[] parsedArguments = token.tokenize();
-        String moduleName = parsedArguments[0];
+        ArgumentMap argumentMap = token.tokenize();
+        if (!argumentMap.arePrefixesPresent(PrefixList.MODULE_NAME_PREFIX,
+                PrefixList.MODULE_NEWNAME_PREFIX,
+                PrefixList.MODULE_LINK_PREFIX)) {
+            String error = "Missing prefix arguments";
+            throw new ParseException(error);
+        }
+        String moduleName = argumentMap.getValue(PrefixList.MODULE_NAME_PREFIX).get();
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
-        if (parsedArguments.length >= 2) {
-            editModuleDescriptor.setZoomLink(parsedArguments[2]);
-        }
-        if (parsedArguments.length >= 3) {
-            editModuleDescriptor.setName(parsedArguments[1]);
-        }
+        String zoomLink = argumentMap.getValue(PrefixList.MODULE_LINK_PREFIX).get();
+        editModuleDescriptor.setZoomLink(zoomLink);
+        String newModuleName = argumentMap.getValue(PrefixList.MODULE_NEWNAME_PREFIX).get();
+        editModuleDescriptor.setName(newModuleName);
         return new EditModuleCommand(moduleName, editModuleDescriptor);
     }
 }
