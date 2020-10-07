@@ -62,9 +62,6 @@ public class ParserUtil {
     private static int getNutrientValue(String value, String errorMessage) throws ParseException {
         requireNonNull(value);
         String trimmedValue = value.trim();
-        //        if (!Protein.isValid(trimmedProtein)) {
-        //            throw new ParseException(Protein.MESSAGE_CONSTRAINTS);
-        //        }
         int nutrientValue;
         try {
             nutrientValue = Integer.parseInt(trimmedValue);
