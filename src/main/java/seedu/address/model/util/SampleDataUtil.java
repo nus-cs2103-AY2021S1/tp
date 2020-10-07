@@ -17,7 +17,7 @@ public class SampleDataUtil {
     public static Student[] getSamplePersons() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new School("NUS High School"),
-                    new Year("Year 4"), new Admin())
+                    new Year("4"), new Admin())
 //                    new Year("Year 4"),
 //                    new ClassVenue("Blk 30 Geylang Street 29, #06-40"),
 //                    new ClassTime("1 1500 -1700"),
