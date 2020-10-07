@@ -42,8 +42,8 @@ public class McGymmyTest {
 
     @Test
     public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
-        // Two persons with the same identity fields
-        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).withCarb("12345").build();
+        // Two foods with the same identity fields
+        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).build();
         List<Food> newFoods = Arrays.asList(TypicalFoods.ALICE, editedAlice);
         McGymmyStub newData = new McGymmyStub(newFoods);
 
@@ -56,20 +56,20 @@ public class McGymmyTest {
     }
 
     @Test
-    public void hasFood_personNotInMcGymmy_returnsFalse() {
+    public void hasFood_foodNotInMcGymmy_returnsFalse() {
         assertFalse(mcGymmy.hasFood(TypicalFoods.ALICE));
     }
 
     @Test
-    public void hasFood_personInMcGymmy_returnsTrue() {
+    public void hasFood_foodInMcGymmy_returnsTrue() {
         mcGymmy.addFood(TypicalFoods.ALICE);
         assertTrue(mcGymmy.hasFood(TypicalFoods.ALICE));
     }
 
     @Test
-    public void hasFood_personWithSameIdentityFieldsInMcGymmy_returnsTrue() {
+    public void hasFood_foodWithSameIdentityFieldsInMcGymmy_returnsTrue() {
         mcGymmy.addFood(TypicalFoods.ALICE);
-        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).withCarb("12345").build();
+        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).build();
         assertTrue(mcGymmy.hasFood(editedAlice));
     }
 
@@ -79,7 +79,7 @@ public class McGymmyTest {
     }
 
     /**
-     * A stub ReadOnlyMcGymmy whose persons list can violate interface constraints.
+     * A stub ReadOnlyMcGymmy whose foods list can violate interface constraints.
      */
     private static class McGymmyStub implements ReadOnlyMcGymmy {
         private final ObservableList<Food> foods = FXCollections.observableArrayList();
