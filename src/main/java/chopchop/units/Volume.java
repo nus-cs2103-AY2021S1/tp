@@ -4,7 +4,7 @@ package chopchop.units;
 
 import chopchop.util.Result;
 
-public class Volume implements Quantity<Volume> {
+public class Volume implements Quantity {
 
     private static double RATIO_LITRE       = 1.0;
     private static double RATIO_MILLILITRE  = 0.001;
@@ -36,13 +36,16 @@ public class Volume implements Quantity<Volume> {
     }
 
     @Override
-    public Volume add(Quantity<Volume> qty) {
+    public Result<Volume> add(Quantity qty) {
 
-        assert qty instanceof Volume;
-        var vol = (Volume) qty;
-        var newval = this.value + (vol.value * vol.ratio);
+        if (!(qty instanceof Volume)) {
+            return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
+        } else {
+            var vol = (Volume) qty;
+            var newval = this.value + (vol.value * (vol.ratio / this.ratio));
 
-        return new Volume(newval, this.ratio);
+            return Result.of(new Volume(newval, this.ratio));
+        }
     }
 
     @Override
@@ -63,7 +66,17 @@ public class Volume implements Quantity<Volume> {
             unit = "?";
         }
 
-        return String.format("%.2f%s", this.value, unit);
+        return String.format("%s%s", Quantity.formatDecimalValue(this.value), unit);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Volume)) {
+            return false;
+        }
+
+        var v = (Volume) obj;
+        return (this.value * this.ratio) == (v.value * v.ratio);
     }
 
     /**

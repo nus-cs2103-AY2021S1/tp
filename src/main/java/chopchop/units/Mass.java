@@ -9,7 +9,7 @@ import chopchop.util.Result;
  * a ratio of 1.0 represents the gram (because it is unlikely you will be cooking with kilograms of
  * ingredients).
  */
-public class Mass implements Quantity<Mass> {
+public class Mass implements Quantity {
 
     private final double value;
     private final double ratio;
@@ -40,13 +40,16 @@ public class Mass implements Quantity<Mass> {
     }
 
     @Override
-    public Mass add(Quantity<Mass> qty) {
+    public Result<Mass> add(Quantity qty) {
 
-        assert qty instanceof Mass;
-        var mass = (Mass) qty;
-        var newval = this.value + (mass.value * mass.ratio);
+        if (!(qty instanceof Mass)) {
+            return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
+        } else {
+            var mass = (Mass) qty;
+            var newval = this.value + (mass.value * (mass.ratio / this.ratio));
 
-        return new Mass(newval, this.ratio);
+            return Result.of(new Mass(newval, this.ratio));
+        }
     }
 
     @Override
@@ -62,7 +65,17 @@ public class Mass implements Quantity<Mass> {
             unit = "?";
         }
 
-        return String.format("%.2f%s", this.value, unit);
+        return String.format("%s%s", Quantity.formatDecimalValue(this.value), unit);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Mass)) {
+            return false;
+        }
+
+        var m = (Mass) obj;
+        return (this.value * this.ratio) == (m.value * m.ratio);
     }
 
     /**

@@ -13,11 +13,12 @@ import chopchop.util.StringView;
  * mass, volume, and dimensionless counts.
  *
  * It has no knowledge of how each unit interacts and fits with the others; it simply provides a static
- * method that helps to parse an input, eg. "300 ml" into a {@code Quantity<Volume>}.
+ * method that helps to parse an input, eg. "300 ml" into a {@code Quantity}. Note that the concept of
+ * "units" is different from the idea of "prefixes"; eg. 'kg' and 'g' are conceptually the same unit of
+ * mass, but they have different prefixes (1000 and 1), so it must be possible to add them together.
  *
- * Each class implementing Quantity is expected to be immutable. The template type parameter {@code T}
- * should be the class itself, eg. {@code class Foo implements Quantity<Foo>}. This ensures some level
- * of type safety, such that one cannot add different quantity types together.
+ * Each class implementing Quantity is expected to be immutable. "Type" safety is expected to be enforced
+ * by the implementation, unless it makes sense to add units of different types together (unlikely).
  *
  * There is no restriction on the actual value of the quantity, ie. they are allowed to be negative.
  *
@@ -25,16 +26,17 @@ import chopchop.util.StringView;
  * different ratios (prefixes) of the same unit; eg. it should be possible to add 700g to 2kg to
  * obtain 2.7kg.
  */
-public interface Quantity<T> {
+public interface Quantity {
 
     /**
      * Adds a quantity to this, and returns a new quantity (without modifying the original).
-     * The input quantity can be negative to perform a subtraction.
+     * The input quantity can be negative to perform a subtraction. If the units are incompatible,
+     * it returns an appropriate error message.
      *
      * @param qty the addend
      * @return    a new Quantity after performing the addition.
      */
-    public Quantity<T> add(Quantity<T> qty);
+    public Result<? extends Quantity> add(Quantity qty);
 
     /**
      * Parse a quantity and its associated unit.
@@ -42,14 +44,26 @@ public interface Quantity<T> {
      * @param input the string input
      * @return      the parsed input, or an error message.
      */
-    public static Result<? extends Quantity<?>> parse(String input) {
+    public static Result<? extends Quantity> parse(String input) {
 
-        final List<BiFunction<Double, String, Result<? extends Quantity<?>>>> knownUnits = List.of(
+        final List<BiFunction<Double, String, Result<? extends Quantity>>> knownUnits = List.of(
             Mass::of, Volume::of, Count::of
         );
 
-        var p = new StringView(input).span(Character::isDigit);
+        if (input.isEmpty()) {
+            return Result.error("empty input");
+        }
+
+        // this is a bit iffy, but this condition will accept things like "-31.4-48.145.201-4".
+        // it's up to parseDouble() to return us an intelligible error message from that.
+        var p = new StringView(input).span(c -> Character.isDigit(c) || c == '.' || c == '-');
         var num = p.fst().trim().parseDouble();
+
+        // do-notation would be really nice here.
+        if (num.isError()) {
+            return Result.error("couldn't parse number: %s", num.getError());
+        }
+
         var unit = p.snd().trim();
 
         // this loops through each known unit constructor, and returns the first one
@@ -63,5 +77,20 @@ public interface Quantity<T> {
                     .findFirst(),
                 String.format("unknown unit '%s'", unit))
             );
+    }
+
+    /**
+     * Formats a decimal value in an intelligent manner; mainly by not showing the decimal places if
+     * the input is a whole number.
+     *
+     * @param value the value to format
+     * @return      the formatted value as a string
+     */
+    static String formatDecimalValue(double value) {
+        if (value == (int) value) {
+            return String.format("%d", (int) value);
+        } else {
+            return String.format("%.3f", value);
+        }
     }
 }

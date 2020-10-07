@@ -4,7 +4,7 @@ package chopchop.units;
 
 import chopchop.util.Result;
 
-public class Count implements Quantity<Count> {
+public class Count implements Quantity {
 
     private final double value;
 
@@ -13,16 +13,25 @@ public class Count implements Quantity<Count> {
     }
 
     @Override
-    public Count add(Quantity<Count> qty) {
+    public Result<Count> add(Quantity qty) {
 
-        assert qty instanceof Count;
-        var cnt = (Count) qty;
-        return new Count(this.value + cnt.value);
+        if (!(qty instanceof Count)) {
+            return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
+        } else {
+            var cnt = (Count) qty;
+            return Result.of(new Count(this.value + cnt.value));
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("%.2f", this.value);
+        return Quantity.formatDecimalValue(this.value);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Count)
+            && (((Count) obj).value == this.value);
     }
 
     /**
