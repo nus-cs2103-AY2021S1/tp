@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -56,12 +55,12 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .getValue(PREFIX_INGREDIENT).get());
             ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
-//            String[] ingredientsToken = ingredientString.split(",");
-//            ArrayList<Ingredient> ingredients = new ArrayList<>();
-//
-//            for (int i = 0; i < ingredientsToken.length; i++) {
-//                ingredients.add(new Ingredient(ingredientsToken[i].trim()));
-//            }
+            //String[] ingredientsToken = ingredientString.split(",");
+            //ArrayList<Ingredient> ingredients = new ArrayList<>();
+            //
+            //for (int i = 0; i < ingredientsToken.length; i++) {
+            //  ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+            //}
             editRecipeDescriptor.setIngredient(ingredients);
         }
 

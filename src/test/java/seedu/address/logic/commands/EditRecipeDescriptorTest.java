@@ -42,7 +42,8 @@ public class EditRecipeDescriptorTest {
 
         // different ingredients -> returns false
         editedAmy =
-                new EditRecipeDescriptorBuilder(DESC_AMY).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
+                new EditRecipeDescriptorBuilder(DESC_AMY).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB)
+                        .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false

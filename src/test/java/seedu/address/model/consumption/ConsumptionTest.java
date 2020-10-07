@@ -40,7 +40,8 @@ public class ConsumptionTest {
 
         // different ingredients -> returns false
         editedAlice =
-                new Consumption(new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build());
+                new Consumption(new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB)
+                        .build());
         assertFalse(alice.equals(editedAlice));
 
     }

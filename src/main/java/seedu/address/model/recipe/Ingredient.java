@@ -1,9 +1,9 @@
 package seedu.address.model.recipe;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 //import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Recipe's ingredients in the Wishful Shrinking.
@@ -41,7 +41,9 @@ public class Ingredient {
         return value.trim();
     }
 
-    public String getQuantity() { return quantity.trim(); }
+    public String getQuantity() {
+        return quantity.trim();
+    }
 
     /**
      * Returns true if both ingredients have the same name.

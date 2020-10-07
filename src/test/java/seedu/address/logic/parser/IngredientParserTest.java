@@ -1,17 +1,16 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.recipe.Ingredient;
-import seedu.address.testutil.IngredientBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalIngredients.VALID_INGREDIENT1;
+import static seedu.address.testutil.TypicalIngredients.VALID_INGREDIENT2;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalIngredients.validIngredient1;
-import static seedu.address.testutil.TypicalIngredients.validIngredient2;
+import org.junit.jupiter.api.Test;
 
-
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.Ingredient;
+import seedu.address.testutil.IngredientBuilder;
 
 public class IngredientParserTest {
     private static final String VALID_INGREDIENT_STRING = "apple -2 slices, banana -200g";
@@ -19,15 +18,15 @@ public class IngredientParserTest {
 
 
     @Test
-    public void parser_validInput_withQuantity_success() throws ParseException {
+    public void parser_validInputWithQuantity_success() throws ParseException {
         ArrayList<Ingredient> expectedIngredients = new ArrayList<>();
-        expectedIngredients.add(validIngredient1);
-        expectedIngredients.add(validIngredient2);
+        expectedIngredients.add(VALID_INGREDIENT1);
+        expectedIngredients.add(VALID_INGREDIENT2);
         assertEquals(expectedIngredients, IngredientParser.parse(VALID_INGREDIENT_STRING));
     }
 
     @Test
-    public void parser_validInput_withoutQuantity_success() throws ParseException {
+    public void parser_validInputWithoutQuantity_success() throws ParseException {
         ArrayList<Ingredient> expectedIngredients = new ArrayList<>();
         expectedIngredients.add(new IngredientBuilder().build());
         assertEquals(expectedIngredients, IngredientParser.parse(VALID_INGREDIENT_STRING_WITHOUTQUANTITY));

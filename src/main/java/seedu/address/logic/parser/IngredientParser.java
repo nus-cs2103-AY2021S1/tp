@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.recipe.Ingredient;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.Ingredient;
 
 /**
  * Parse user inputted ingredients.
@@ -13,9 +13,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 public class IngredientParser {
     /**
      * Parses a String made of 1 or more ingredient name and optional quantity then
-     * adds them to an ArrayList<Ingredient> to be returned
+     * adds them to an ArrayList of Ingredient objects to be returned
      * @param ingredientString String of 1 or more ingredient name and optional quantity
-     * @return ArrayList<Ingredient> of the ingredients in the parameter
+     * @return ArrayList of Ingredient objects of the ingredients in the parameter
      * @throws ParseException
      */
     public static ArrayList<Ingredient> parse(String ingredientString) throws ParseException {
@@ -44,9 +44,10 @@ public class IngredientParser {
     private static String getIngredientQuantity(String args) throws ParseException {
         ArgumentMultimap argMultimapQuantity =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY);
-//        if (!argMultimapQuantity.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIngredientCommand.MESSAGE_USAGE));
-//        }
+        //if (!argMultimapQuantity.getPreamble().isEmpty()) {
+        //  throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        //  AddIngredientCommand.MESSAGE_USAGE));
+        //}
         return ParserUtil.parseQuantity(argMultimapQuantity.getValue(PREFIX_QUANTITY).get());
     }
 }

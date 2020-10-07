@@ -25,11 +25,16 @@ public class ParserUtil {
                     + "each ingredient and optional field quantity "
                     + "separated by a hyphen, should be consisted "
                     + "of alphanumeric characters only";
-    public static final String VALIDATION_REGEX = "[\\w\\s-]+" +
-            "(,\\s*[\\w\\s-]*)*";
+    public static final String VALIDATION_REGEX = "[\\w\\s-]+"
+            + "(,\\s*[\\w\\s-]*)*";
     public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s]*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    /**
+     * Checks if ingredient has attributes in the right format.
+     * @param ingredient Ingredient to check.
+     * @return boolean to indicate whether ingredient is valid.
+     */
     public static boolean isValidIngredient(Ingredient ingredient) {
         return ingredient.getValue().matches(VALIDATION_REGEX)
                 && ingredient.getQuantity().matches(VALIDATION_REGEX_QUANTITY);

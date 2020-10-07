@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-
 import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,16 +21,12 @@ public class AddIngredientCommand extends Command {
             + "Parameters: "
             + PREFIX_INGREDIENT + "INGREDIENT "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_INGREDIENT + "bread, oranges" + PREFIX_QUANTITY + "2kg"+ ", cheese ";
+            + PREFIX_INGREDIENT + "bread, oranges" + PREFIX_QUANTITY + "2kg" + ", cheese ";
 
     public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This ingredient already exists in the fridge";
 
     private final ArrayList<Ingredient> toAdd;
-
-    public ArrayList<Ingredient> getToAdd() {
-        return toAdd;
-    }
 
     /**
      * Creates an AddIngredientCommand to add the specified {@code Ingredients}
@@ -41,6 +36,10 @@ public class AddIngredientCommand extends Command {
             requireNonNull(ingredient);
         }
         toAdd = ingredients;
+    }
+
+    public ArrayList<Ingredient> getToAdd() {
+        return toAdd;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class AddIngredientCommand extends Command {
             model.addIngredient(ingredient);
         }
         String ingredientsAddedString = ingredientsAdded.toString();
-//        ingredientsAddedString = ingredientsAddedString.substring(1, ingredientsAddedString.length() - 1);
+        //        ingredientsAddedString = ingredientsAddedString.substring(1, ingredientsAddedString.length() - 1);
         return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientsAddedString));
     }
 

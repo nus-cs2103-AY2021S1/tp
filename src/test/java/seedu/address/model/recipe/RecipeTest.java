@@ -9,9 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 //import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_ALICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
 import static seedu.address.testutil.TypicalRecipes.BOB;
 
