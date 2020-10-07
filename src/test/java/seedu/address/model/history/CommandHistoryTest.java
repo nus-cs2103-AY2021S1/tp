@@ -7,13 +7,19 @@ import org.junit.jupiter.api.Test;
 public class CommandHistoryTest {
 
     @Test
-    void clearHistory() {
+    void clearHistoryTest() {
         CommandHistory.clearHistory();
         assertEquals("Here are your command history:", CommandHistory.getCommandHistory());
     }
 
     @Test
-    void peekNext() {
+    void peekNextTest1() {
+        CommandHistory.clearHistory();
+        assertEquals("", CommandHistory.peekNext());
+    }
+
+    @Test
+    void peekNextTest2() {
         CommandHistory.clearHistory();
         CommandHistory.addUsedCommand("list");
         CommandHistory.addUsedCommand("history");
@@ -24,7 +30,34 @@ public class CommandHistoryTest {
     }
 
     @Test
-    void peekPrev() {
+    void peekNextTest3() {
+        CommandHistory.clearHistory();
+        CommandHistory.addUsedCommand("list");
+        CommandHistory.addUsedCommand("history");
+        CommandHistory.addUsedCommand("clear");
+        assertEquals("clear", CommandHistory.peekNext());
+        assertEquals("history", CommandHistory.peekNext());
+        assertEquals("list", CommandHistory.peekNext());
+        assertEquals("list", CommandHistory.peekNext());
+        assertEquals("list", CommandHistory.peekNext());
+    }
+
+
+    @Test
+    void peekPrevTest1() {
+        CommandHistory.clearHistory();
+        assertEquals("", CommandHistory.peekPrev());
+    }
+
+    @Test
+    void peekPrevTest2() {
+        CommandHistory.clearHistory();
+        CommandHistory.addUsedCommand("list");
+        assertEquals("", CommandHistory.peekPrev());
+    }
+
+    @Test
+    void peekPrevTest3() {
         CommandHistory.clearHistory();
         CommandHistory.addUsedCommand("list");
         CommandHistory.addUsedCommand("history");
