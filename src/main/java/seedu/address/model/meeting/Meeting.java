@@ -1,8 +1,5 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Date;
-import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Person;
 
 import java.util.Collections;
