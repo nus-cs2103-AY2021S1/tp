@@ -11,6 +11,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,6 +74,24 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Profile Picture} of the {@code EditPatientDescriptor} that we are building.
+     */
+    public EditPatientDescriptorBuilder withProfilePicture(String profilePic) {
+        ProfilePicture profilePicture = new ProfilePicture(profilePic);
+        descriptor.setProfilePicture(profilePicture);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ColorTag} of the {@code EditPatientDescriptor} that we're building.
+     */
+    public EditPatientDescriptorBuilder withColorTag(String colorName) {
+        ColorTag colorTag = new ColorTag(colorName);
+        descriptor.setColorTag(colorTag);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPatientDescriptor}
      * that we are building.
      */
@@ -86,12 +105,4 @@ public class EditPatientDescriptorBuilder {
         return descriptor;
     }
 
-    /**
-     * Sets the {@code Profile Picture} of the {@code EditPatientDescriptor} that we are building.
-     */
-    public EditPatientDescriptorBuilder withProfilePicture(String profilePic) {
-        ProfilePicture profilePicture = new ProfilePicture(profilePic);
-        descriptor.setProfilePicture(profilePicture);
-        return this;
-    }
 }
