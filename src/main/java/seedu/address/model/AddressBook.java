@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Tag;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueTagList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        tags = new UniqueTagList();
     }
 
     public AddressBook() {}
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Tag> persons) {
-        this.persons.setPersons(persons);
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setTags(newData.getTagList());
     }
 
     //// person-level operations
@@ -63,15 +63,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        return persons.contains(tag);
+        return tags.contains(tag);
     }
 
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
-    public void addPerson(Tag p) {
-        persons.add(p);
+    public void addTag(Tag p) {
+        tags.add(p);
     }
 
     /**
@@ -79,42 +79,42 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    public void setPerson(Tag target, Tag editedPerson) {
+    public void setTag(Tag target, Tag editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        tags.setTag(target, editedPerson);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Tag key) {
-        persons.remove(key);
+    public void removeTag(Tag key) {
+        tags.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return tags.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Tag> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Tag> getTagList() {
+        return tags.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && tags.equals(((AddressBook) other).tags));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return tags.hashCode();
     }
 }

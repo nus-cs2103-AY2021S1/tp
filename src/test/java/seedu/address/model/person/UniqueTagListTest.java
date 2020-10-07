@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalTags.ALICE;
+import static seedu.address.testutil.TypicalTags.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,154 +14,154 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.exceptions.DuplicateTagException;
+import seedu.address.model.person.exceptions.TagNotFoundException;
+import seedu.address.testutil.TagBuilder;
 
 public class UniqueTagListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueTagList uniqueTagList = new UniqueTagList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+    public void contains_tagNotInList_returnsFalse() {
+        assertFalse(uniqueTagList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_tagInList_returnsTrue() {
+        uniqueTagList.add(ALICE);
+        assertTrue(uniqueTagList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Tag editedAlice = new PersonBuilder(ALICE).build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+    public void contains_tagWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueTagList.add(ALICE);
+        Tag editedAlice = new TagBuilder(ALICE).build();
+        assertTrue(uniqueTagList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateTag_throwsDuplicateTagException() {
+        uniqueTagList.add(ALICE);
+        assertThrows(DuplicateTagException.class, () -> uniqueTagList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setTag_nullTargetTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.setTag(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setTag_nullEditedTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.setTag(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setTag_targetTagNotInList_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> uniqueTagList.setTag(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTag_editedTagIsSameTag_success() {
+        uniqueTagList.add(ALICE);
+        uniqueTagList.setTag(ALICE, ALICE);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        expectedUniqueTagList.add(ALICE);
+        assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Tag editedAlice = new PersonBuilder(ALICE).withFileAddress(VALID_FILE_ADDRESS_BOB).build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTag_editedTagHasSameIdentity_success() {
+        uniqueTagList.add(ALICE);
+        Tag editedAlice = new TagBuilder(ALICE).withFileAddress(VALID_FILE_ADDRESS_BOB).build();
+        uniqueTagList.setTag(ALICE, editedAlice);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        expectedUniqueTagList.add(editedAlice);
+        assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTag_editedTagHasDifferentIdentity_success() {
+        uniqueTagList.add(ALICE);
+        uniqueTagList.setTag(ALICE, BOB);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        expectedUniqueTagList.add(BOB);
+        assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setTag_editedTagHasNonUniqueIdentity_throwsDuplicateTagException() {
+        uniqueTagList.add(ALICE);
+        uniqueTagList.add(BOB);
+        assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTag(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_tagDoesNotExist_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> uniqueTagList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingTag_removesTag() {
+        uniqueTagList.add(ALICE);
+        uniqueTagList.remove(ALICE);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setTag_nullUniqueTagList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.setTags((UniqueTagList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTag_uniqueTagList_replacesOwnListWithProvidedUniqueTagList() {
+        uniqueTagList.add(ALICE);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        expectedUniqueTagList.add(BOB);
+        uniqueTagList.setTags(expectedUniqueTagList);
+        assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Tag>) null));
+    public void setTags_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagList.setTags((List<Tag>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
+    public void setTags_list_replacesOwnListWithProvidedList() {
+        uniqueTagList.add(ALICE);
         List<Tag> tagList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(tagList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTagList.setTags(tagList);
+        UniqueTagList expectedUniqueTagList = new UniqueTagList();
+        expectedUniqueTagList.add(BOB);
+        assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setTags_listWithDuplicateTags_throwsDuplicateTagException() {
         List<Tag> listWithDuplicateTags = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicateTags));
+        assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTags(listWithDuplicateTags));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueTagList.asUnmodifiableObservableList().remove(0));
     }
 }

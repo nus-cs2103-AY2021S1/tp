@@ -8,21 +8,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateTagException;
+import seedu.address.model.person.exceptions.TagNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A person is considered unique by comparing using {@code Tag#isSamePerson(Tag)}. As such, adding and updating of
  * persons uses Tag#isSamePerson(Tag) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Tag#equals(Object) so
+ * unique in terms of identity in the UniqueTagList. However, the removal of a person uses Tag#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Tag#isSameTag(Tag)
  */
-public class UniquePersonList implements Iterable<Tag> {
+public class UniqueTagList implements Iterable<Tag> {
 
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
@@ -43,7 +43,7 @@ public class UniquePersonList implements Iterable<Tag> {
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTagException();
         }
         internalList.add(toAdd);
     }
@@ -53,16 +53,16 @@ public class UniquePersonList implements Iterable<Tag> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedTag} must not be the same as another existing person in the list.
      */
-    public void setPerson(Tag target, Tag editedTag) {
+    public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TagNotFoundException();
         }
 
         if (!target.isSameTag(editedTag) && contains(editedTag)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTagException();
         }
 
         internalList.set(index, editedTag);
@@ -75,11 +75,11 @@ public class UniquePersonList implements Iterable<Tag> {
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TagNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,10 +88,10 @@ public class UniquePersonList implements Iterable<Tag> {
      * Replaces the contents of this list with {@code tags}.
      * {@code tags} must not contain duplicate tags.
      */
-    public void setPersons(List<Tag> tags) {
+    public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
-        if (!personsAreUnique(tags)) {
-            throw new DuplicatePersonException();
+        if (!tagsAreUnique(tags)) {
+            throw new DuplicateTagException();
         }
 
         internalList.setAll(tags);
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Tag> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueTagList // instanceof handles nulls
+                        && internalList.equals(((UniqueTagList) other).internalList));
     }
 
     @Override
@@ -124,7 +124,7 @@ public class UniquePersonList implements Iterable<Tag> {
     /**
      * Returns true if {@code tags} contains only unique tags.
      */
-    private boolean personsAreUnique(List<Tag> tags) {
+    private boolean tagsAreUnique(List<Tag> tags) {
         for (int i = 0; i < tags.size() - 1; i++) {
             for (int j = i + 1; j < tags.size(); j++) {
                 if (tags.get(i).isSameTag(tags.get(j))) {

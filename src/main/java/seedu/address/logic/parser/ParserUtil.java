@@ -34,7 +34,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static TagName parseName(String name) throws ParseException {
+    public static TagName parseTagName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!TagName.isValidTagName(trimmedName)) {
@@ -51,10 +51,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static FileAddress parseAddress(String address) throws ParseException {
+    public static FileAddress parseFileAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!FileAddress.isValidAddress(trimmedAddress)) {
+        if (!FileAddress.isValidFileAddress(trimmedAddress)) {
             throw new ParseException(FileAddress.MESSAGE_CONSTRAINTS);
         }
         return new FileAddress(trimmedAddress);

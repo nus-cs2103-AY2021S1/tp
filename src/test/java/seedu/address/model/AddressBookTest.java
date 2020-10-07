@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTags.ALICE;
+import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Tag;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.exceptions.DuplicateTagException;
+import seedu.address.testutil.TagBuilder;
 
 public class AddressBookTest {
 
@@ -26,7 +26,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getTagList());
     }
 
     @Test
@@ -42,41 +42,41 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateTags_throwsDuplicateTagException() {
         // Two persons with the same identity fields
-        Tag editedAlice = new PersonBuilder(ALICE).build();
+        Tag editedAlice = new TagBuilder(ALICE).build();
         List<Tag> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateTagException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasTag_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasTag(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasTag_tagNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasTag(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasTag_tagInAddressBook_returnsTrue() {
+        addressBook.addTag(ALICE);
         assertTrue(addressBook.hasTag(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Tag editedAlice = new PersonBuilder(ALICE).build();
+    public void hasTag_tagWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addTag(ALICE);
+        Tag editedAlice = new TagBuilder(ALICE).build();
         assertTrue(addressBook.hasTag(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getTagList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagList().remove(0));
     }
 
     /**
@@ -90,7 +90,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Tag> getPersonList() {
+        public ObservableList<Tag> getTagList() {
             return tags;
         }
     }

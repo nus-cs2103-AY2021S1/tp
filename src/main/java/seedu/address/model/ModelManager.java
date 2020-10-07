@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Tag> filteredPersons;
+    private final FilteredList<Tag> filteredTags;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTags = new FilteredList<>(this.addressBook.getTagList());
     }
 
     public ModelManager() {
@@ -89,19 +89,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTag(Tag person) {
-        requireNonNull(person);
-        return addressBook.hasTag(person);
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasTag(tag);
     }
 
     @Override
     public void deleteTag(Tag target) {
-        addressBook.removePerson(target);
+        addressBook.removeTag(target);
     }
 
     @Override
-    public void addTag(Tag person) {
-        addressBook.addPerson(person);
+    public void addTag(Tag tag) {
+        addressBook.addTag(tag);
         updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
-        addressBook.setPerson(target, editedTag);
+        addressBook.setTag(target, editedTag);
     }
 
     //=========== Filtered Tag List Accessors =============================================================
@@ -119,14 +119,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Tag> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
     }
 
     @Override
     public void updateFilteredTagList(Predicate<Tag> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTags.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTags.equals(other.filteredTags);
     }
 
 }

@@ -15,43 +15,43 @@ import seedu.address.model.person.Tag;
 /**
  * A utility class containing a list of {@code Tag} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalTags {
 
 
-    public static final Tag ALICE = new PersonBuilder().withTagName("Alice Pauline")
+    public static final Tag ALICE = new TagBuilder().withTagName("Alice Pauline")
             .withFileAddress("c:\\a\\b\\alice.txt")
             .build();
-    public static final Tag BENSON = new PersonBuilder().withTagName("Benson Meier")
+    public static final Tag BENSON = new TagBuilder().withTagName("Benson Meier")
             .withFileAddress("c:\\a\\b\\benson.txt")
             .build();
 
-    public static final Tag CARL = new PersonBuilder().withTagName("Carl Kurz")
+    public static final Tag CARL = new TagBuilder().withTagName("Carl Kurz")
             .withFileAddress("c:\\a\\b\\carl.txt").build();
-    public static final Tag DANIEL = new PersonBuilder().withTagName("Daniel Meier")
+    public static final Tag DANIEL = new TagBuilder().withTagName("Daniel Meier")
             .withFileAddress("c:\\a\\b\\daniel.txt").build();
-    public static final Tag ELLE = new PersonBuilder().withTagName("Elle Meyer")
+    public static final Tag ELLE = new TagBuilder().withTagName("Elle Meyer")
             .withFileAddress("c:\\a\\b\\elle.txt").build();
-    public static final Tag FIONA = new PersonBuilder().withTagName("Fiona Kunz")
+    public static final Tag FIONA = new TagBuilder().withTagName("Fiona Kunz")
             .withFileAddress("c:\\a\\b\\fiona.txt").build();
-    public static final Tag GEORGE = new PersonBuilder().withTagName("George Best")
+    public static final Tag GEORGE = new TagBuilder().withTagName("George Best")
             .withFileAddress("c:\\a\\b\\george.txt").build();
 
     // Manually added
-    public static final Tag HOON = new PersonBuilder().withTagName("Hoon Meier")
+    public static final Tag HOON = new TagBuilder().withTagName("Hoon Meier")
             .withFileAddress("c:\\a\\b\\hoon.txt").build();
-    public static final Tag IDA = new PersonBuilder().withTagName("Ida Mueller")
+    public static final Tag IDA = new TagBuilder().withTagName("Ida Mueller")
             .withFileAddress("c:\\a\\b\\ida.txt").build();
 
     // Manually added - Tag's details found in {@code CommandTestUtil}
-    public static final Tag AMY = new PersonBuilder().withTagName(VALID_NAME_AMY)
+    public static final Tag AMY = new TagBuilder().withTagName(VALID_NAME_AMY)
             .withFileAddress(VALID_FILE_ADDRESS_AMY).build();
-    public static final Tag BOB = new PersonBuilder().withTagName(VALID_NAME_BOB)
+    public static final Tag BOB = new TagBuilder().withTagName(VALID_NAME_BOB)
             .withFileAddress(VALID_FILE_ADDRESS_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalTags() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
@@ -59,7 +59,7 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Tag tag : getTypicalTags()) {
-            ab.addPerson(tag);
+            ab.addTag(tag);
         }
         return ab;
     }

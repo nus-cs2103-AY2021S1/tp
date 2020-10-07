@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TAG;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,57 +36,57 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_TAG, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_TAG, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTagName((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_FILE_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseTagName(INVALID_FILE_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         TagName expectedName = new TagName(VALID_TAG_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_TAG_NAME));
+        assertEquals(expectedName, ParserUtil.parseTagName(VALID_TAG_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_TAG_NAME + WHITESPACE;
         TagName expectedName = new TagName(VALID_TAG_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        assertEquals(expectedName, ParserUtil.parseTagName(nameWithWhitespace));
     }
 
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFileAddress((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_FILE_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFileAddress(INVALID_FILE_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         FileAddress expectedFileAddress = new FileAddress(VALID_FILE_ADDRESS);
-        assertEquals(expectedFileAddress, ParserUtil.parseAddress(VALID_FILE_ADDRESS));
+        assertEquals(expectedFileAddress, ParserUtil.parseFileAddress(VALID_FILE_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_FILE_ADDRESS + WHITESPACE;
         FileAddress expectedFileAddress = new FileAddress(VALID_FILE_ADDRESS);
-        assertEquals(expectedFileAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedFileAddress, ParserUtil.parseFileAddress(addressWithWhitespace));
     }
 
 }

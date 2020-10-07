@@ -53,9 +53,9 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a tag with the same identity as {@code tag} exists in the address book.
      */
-    boolean hasTag(Tag person);
+    boolean hasTag(Tag tag);
 
     /**
      * Deletes the given person.
@@ -64,10 +64,10 @@ public interface Model {
     void deleteTag(Tag target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given tag.
+     * {@code tag} must not already exist in the address book.
      */
-    void addTag(Tag person);
+    void addTag(Tag tag);
 
     /**
      * Replaces the given person {@code target} with {@code editedTag}.
@@ -77,7 +77,7 @@ public interface Model {
     void setTag(Tag target, Tag editedTag);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Tag> getFilteredPersonList();
+    ObservableList<Tag> getFilteredTagList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

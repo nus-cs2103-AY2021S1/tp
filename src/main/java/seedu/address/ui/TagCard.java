@@ -10,7 +10,7 @@ import seedu.address.model.person.Tag;
 /**
  * An UI component that displays information of a {@code Tag}.
  */
-public class PersonCard extends UiPart<Region> {
+public class TagCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -40,7 +40,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Tag} and index to display.
      */
-    public PersonCard(Tag tag, int displayedIndex) {
+    public TagCard(Tag tag, int displayedIndex) {
         super(FXML);
         this.tag = tag;
         id.setText(displayedIndex + ". ");
@@ -56,12 +56,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof TagCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        TagCard card = (TagCard) other;
         return id.getText().equals(card.id.getText())
                 && tag.equals(card.tag);
     }

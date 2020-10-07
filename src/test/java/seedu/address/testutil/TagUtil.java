@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Tag;
@@ -10,22 +10,22 @@ import seedu.address.model.person.Tag;
 /**
  * A utility class for Tag.
  */
-public class PersonUtil {
+public class TagUtil {
 
     /**
      * Returns an add command string for adding the {@code tag}.
      */
     public static String getAddCommand(Tag tag) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(tag);
+        return AddCommand.COMMAND_WORD + " " + getTagDetails(tag);
     }
 
     /**
      * Returns the part of command string for the given {@code tag}'s details.
      */
-    public static String getPersonDetails(Tag tag) {
+    public static String getTagDetails(Tag tag) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + tag.getTagName().tagName + " ");
-        sb.append(PREFIX_ADDRESS + tag.getFileAddress().value + " ");
+        sb.append(PREFIX_TAG_NAME + tag.getTagName().tagName + " ");
+        sb.append(PREFIX_FILE_ADDRESS + tag.getFileAddress().value + " ");
         return sb.toString();
     }
 }

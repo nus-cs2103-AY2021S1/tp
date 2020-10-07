@@ -21,39 +21,39 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TagBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Tag validPerson = new PersonBuilder().build();
+    public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+        Tag validPerson = new TagBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validPerson), modelStub.tagsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Tag validPerson = new PersonBuilder().build();
+    public void execute_duplicateTag_throwsCommandException() {
+        Tag validPerson = new TagBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        ModelStub modelStub = new ModelStubWithTag(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TAG, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tag alice = new PersonBuilder().withTagName("Alice").build();
-        Tag bob = new PersonBuilder().withTagName("Bob").build();
+        Tag alice = new TagBuilder().withTagName("Alice").build();
+        Tag bob = new TagBuilder().withTagName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -124,7 +124,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasTag(Tag person) {
+        public boolean hasTag(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,12 +134,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTag(Tag target, Tag editedPerson) {
+        public void setTag(Tag target, Tag editedTag) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Tag> getFilteredPersonList() {
+        public ObservableList<Tag> getFilteredTagList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,37 +152,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Tag person;
+    private class ModelStubWithTag extends ModelStub {
+        private final Tag tag;
 
-        ModelStubWithPerson(Tag person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTag(Tag tag) {
+            requireNonNull(tag);
+            this.tag = tag;
         }
 
         @Override
-        public boolean hasTag(Tag person) {
-            requireNonNull(person);
-            return this.person.isSameTag(person);
+        public boolean hasTag(Tag tag) {
+            requireNonNull(tag);
+            return this.tag.isSameTag(tag);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Tag> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTagAdded extends ModelStub {
+        final ArrayList<Tag> tagsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasTag(Tag person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSameTag);
+        public boolean hasTag(Tag tag) {
+            requireNonNull(tag);
+            return tagsAdded.stream().anyMatch(tag::isSameTag);
         }
 
         @Override
         public void addTag(Tag tag) {
             requireNonNull(tag);
-            personsAdded.add(tag);
+            tagsAdded.add(tag);
         }
 
         @Override

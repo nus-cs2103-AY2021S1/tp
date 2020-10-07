@@ -20,18 +20,18 @@ public class AddressTest {
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidFileAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> FileAddress.isValidAddress(null));
+        assertThrows(NullPointerException.class, () -> FileAddress.isValidFileAddress(null));
 
         // invalid addresses
-        assertFalse(FileAddress.isValidAddress("")); // empty string
-        assertFalse(FileAddress.isValidAddress(" ")); // spaces only
+        assertFalse(FileAddress.isValidFileAddress("")); // empty string
+        assertFalse(FileAddress.isValidFileAddress(" ")); // spaces only
 
         // valid addresses
-        assertTrue(FileAddress.isValidAddress("d:\\a\\b\\abc.txt"));
-        assertTrue(FileAddress.isValidAddress("d:\\a\\b")); // one character
-        assertTrue(FileAddress.isValidAddress(
+        assertTrue(FileAddress.isValidFileAddress("d:\\a\\b\\abc.txt"));
+        assertTrue(FileAddress.isValidFileAddress("d:\\a\\b")); // one character
+        assertTrue(FileAddress.isValidFileAddress(
                 "a:\\b\\c\\d\\e\\f\\g.exe")); // long address
     }
 }

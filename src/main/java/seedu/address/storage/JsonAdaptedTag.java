@@ -58,7 +58,7 @@ class JsonAdaptedTag {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     FileAddress.class.getSimpleName()));
         }
-        if (!FileAddress.isValidAddress(fileAddress)) {
+        if (!FileAddress.isValidFileAddress(fileAddress)) {
             throw new IllegalValueException(FileAddress.MESSAGE_CONSTRAINTS);
         }
         final FileAddress modelFileAddress = new FileAddress(fileAddress);

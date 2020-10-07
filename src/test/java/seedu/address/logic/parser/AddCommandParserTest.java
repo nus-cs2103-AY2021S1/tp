@@ -14,7 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_BO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalTags.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,14 +22,14 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.FileAddress;
 import seedu.address.model.person.Tag;
 import seedu.address.model.person.TagName;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TagBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Tag expectedTag = new PersonBuilder(BOB).build();
+        Tag expectedTag = new TagBuilder(BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
