@@ -40,7 +40,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonMcGymmyStorage addressBookStorage =
-                new JsonMcGymmyStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonMcGymmyStorage(temporaryFolder.resolve("mcGymmy.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -68,7 +68,7 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonMcGymmyIoExceptionThrowingStub
         JsonMcGymmyStorage mcGymmyStorage =
-                new JsonMcGymmyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonMcGymmyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMcGymmy.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(mcGymmyStorage, userPrefsStorage);
