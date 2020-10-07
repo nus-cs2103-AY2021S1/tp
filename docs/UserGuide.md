@@ -59,7 +59,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 </div>
 
 
-### Adding a contact: `contact add`
+### Adding a contact : `contact add`
 
 Adds a contact to Modduke.
 
@@ -93,13 +93,13 @@ Examples:
 *  `contact edit John Doe p/91234567 e/johndoe@example.com` Edits the phone number and email address of John Doe to be `91234567` and `johndoe@example.com` respectively.
 *  `contact edit Roy Chan n/Betsy Crower` Edits the name of Roy Chan to be `Betsy Crower` and clears all existing tags.
 
-### Clear all contacts: `contact clear`
+### Clearing all contacts : `contact clear`
 
-Deletes all existing contacts
+Deletes all existing contacts.
 
 Format: NA
 
-Note: Once cleared, contacts are permanently deleted
+Note: Once cleared, contacts are permanently deleted.
 
 ### Viewing all contacts : `contact list`
 
@@ -109,18 +109,18 @@ Format: `contact list`
 
 ### Creating a Module : `module add`
 
-Creates a Module with a given name and members 
+Creates a Module with a given name and members .
 
-Format: `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`
+Format: `module add n/MODULE_NAME [m/MEMBER_NAMES]…`
 
 Note: A Module can have more than 1 member separated by “,” but can only have one name. Members can be optional.
 
 
-### Add a tag to a user: `label add`
+### Adding a tag to a user : `label add`
 
 Adds a label to a contact
 
-Format: ` label add [c/CONTACT_NAME][t/TAG_NAMES]`
+Format: ` label add c/CONTACT_NAME [t/TAG_NAMES]…`
 
 * Only 1 contact name can be used at a time but multiple tags can be added.
 * Tag names are to be separated by a ",".
@@ -128,11 +128,11 @@ Format: ` label add [c/CONTACT_NAME][t/TAG_NAMES]`
 Examples:
 * `label add c/Jay t/2103, teamproject`
 
-### Schedule a meeting : `meeting add`
+### Scheduling a meeting: `meeting add`
 
 Schedules a meeting at a given date and time with specified members and a provided meeting name
 
-Format: `meeting add [n/MEETING_NAME] [d/MEETING_DATE]  [t/MEETING_TIME]  [m/MEMBERS]`
+Format: `meeting add n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME m/MEMBERS`
 
 * Creates a meeting with the provided meeting name
 * All the fields must be provided
@@ -142,7 +142,7 @@ Format: `meeting add [n/MEETING_NAME] [d/MEETING_DATE]  [t/MEETING_TIME]  [m/MEM
 Examples:
 *  `meeting add n/CS2103 weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
 
-### Edit a meeting : `meeting edit`
+### Editing a meeting: `meeting edit`
 
 Edits a given meeting. Listed below are the meeting details that can be changed:
 1. Name
@@ -160,9 +160,9 @@ Format: `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CO
 Examples:
 * `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 
-### List all Meetings : `meeting list`
+### Listing all Meetings : `meeting list`
 
-Views all of the existing meetings
+Views all of the existing meetings.
 
 Format: NA
 
@@ -172,22 +172,22 @@ View all the existing consults
 
 Format: `list`
 
-### Creating New Consultation: consult add
+### Creating a Consultation : `consult add`
 
 Creates a new consultation with given ConsultName.
 
-Format: `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]`
+Format: `consult add n/CONSULT_NAME d/CONSULT_DATE t/CONSULT_TIME m/MEMBERS`
 
 * CONSULT_NAME is a required field.
 * [d/CONSULT_DATE], [t/CONSULT_TIME], [m/MEMBERS] are optional fields
 * Multiple members can join one consultation. 
 * [d/CONSULT_DATE] is in the YYYY:MM:dd format and [t/CONSULT_TIME] is in the HH:mm format.
 
-### Edit the details of a consult: consult edit
+### Editing a Consultation : `consult edit`
 
 Edits any of the details of a consult
 
-Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS] [cA/CONTACTS]`
+Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…`
 
 * [n/NEW_NAME], [d/NEW_DATE], [t/NEW_TIME], [cD/CONTACTS] and [cA/CONTACTS] are all optional fields, 
 * At least one of the optional fields must be provided.
