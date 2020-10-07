@@ -51,9 +51,11 @@ public class UpdateStockDescriptorBuilder {
     /**
      * Sets the {@code SerialNumber} of the {@code UpdateStockDescriptor} that we are building.
      */
-    public UpdateStockDescriptorBuilder withSerialNumber(String serialNumber) {
+    public UpdateStockDescriptorBuilder withSerialNumber(String... serialNumber) {
         List<SerialNumber> currentSerialNumber = new ArrayList<>();
-        currentSerialNumber.add(new SerialNumber(serialNumber));
+        for (String serial : serialNumber) {
+            currentSerialNumber.add(new SerialNumber(serial));
+        }
         descriptor.setSerialNumbers(currentSerialNumber);
         return this;
     }

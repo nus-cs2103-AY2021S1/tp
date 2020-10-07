@@ -1,8 +1,11 @@
 package seedu.stock.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIALNUMBER_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
@@ -96,5 +99,30 @@ public class UpdateCommandTest {
         expectedModel.setStock(model.getFilteredStockList().get(0), updatedStock);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(new StockBuilder().build()).build();
+        UpdateStockDescriptor differentDescriptor = new UpdateStockDescriptorBuilder()
+                .withName(VALID_NAME_APPLE).withSerialNumber(VALID_SERIALNUMBER_APPLE).build();
+        final UpdateCommand standardCommand = new UpdateCommand(descriptor);
+
+        // same values -> returns true
+        UpdateStockDescriptor copyDescriptor = new UpdateStockDescriptor(descriptor);
+        UpdateCommand commandWithSameValues = new UpdateCommand(copyDescriptor);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new UpdateCommand(differentDescriptor)));
     }
 }
