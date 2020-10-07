@@ -60,8 +60,8 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
     }
 
     @Override
-    public void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException {
-        saveMcGymmy(addressBook, filePath);
+    public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy) throws IOException {
+        saveMcGymmy(mcGymmy, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonMcGymmyStorage implements McGymmyStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveMcGymmy(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, Path filePath) throws IOException {
+        requireNonNull(mcGymmy);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMcGymmy(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMcGymmy(mcGymmy), filePath);
     }
 
 }

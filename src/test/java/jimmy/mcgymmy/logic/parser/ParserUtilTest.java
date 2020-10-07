@@ -90,62 +90,62 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseProtein_validValueWithoutWhitespace_returnsPhone() throws Exception {
+    public void parseProtein_validValueWithoutWhitespace_returnsProtein() throws Exception {
         Protein expectedProtein = new Protein(VALID_PROTEIN);
         assertEquals(expectedProtein, ParserUtil.parseProtein(VALID_PROTEIN));
     }
 
     @Test
-    public void parseProtein_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PROTEIN + WHITESPACE;
+    public void parseProtein_validValueWithWhitespace_returnsTrimmedProtein() throws Exception {
+        String proteinWithWhitespace = WHITESPACE + VALID_PROTEIN + WHITESPACE;
         Protein expectedProtein = new Protein(VALID_PROTEIN);
-        assertEquals(expectedProtein, ParserUtil.parseProtein(phoneWithWhitespace));
+        assertEquals(expectedProtein, ParserUtil.parseProtein(proteinWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void parseCarbohydrate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCarbohydrate((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
+    public void parseCarbohydrate_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCarbohydrate(INVALID_FAT));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseCarbohydrate_validValueWithoutWhitespace_returnsCarbohydrate() throws Exception {
         Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_FAT);
         Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(VALID_FAT));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_FAT + WHITESPACE;
+    public void parseCarbohydrate_validValueWithWhitespace_returnsTrimmedCarbohydrate() throws Exception {
+        String carbohydrateWithWhitespace = WHITESPACE + VALID_FAT + WHITESPACE;
         Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_FAT);
-        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(addressWithWhitespace));
+        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarbohydrate(carbohydrateWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseFat_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFat((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_CARB));
+    public void parseFat_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFat(INVALID_CARB));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseFat_validValueWithoutWhitespace_returnsFat() throws Exception {
         Fat expectedFat = new Fat(VALID_CARB);
-        assertEquals(expectedFat, ParserUtil.parseEmail(VALID_CARB));
+        assertEquals(expectedFat, ParserUtil.parseFat(VALID_CARB));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_CARB + WHITESPACE;
+    public void parseFat_validValueWithWhitespace_returnsTrimmedFat() throws Exception {
+        String fatWithWhitespace = WHITESPACE + VALID_CARB + WHITESPACE;
         Fat expectedFat = new Fat(VALID_CARB);
-        assertEquals(expectedFat, ParserUtil.parseEmail(emailWithWhitespace));
+        assertEquals(expectedFat, ParserUtil.parseFat(fatWithWhitespace));
     }
 
     @Test

@@ -86,7 +86,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setMcGymmyFilePath(Path addressBookFilePath) {
+        public void setMcGymmyFilePath(Path mcGymmyFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

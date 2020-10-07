@@ -27,6 +27,6 @@ public interface Storage extends McGymmyStorage, UserPrefsStorage {
     Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException, IOException;
 
     @Override
-    void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException;
+    void saveMcGymmy(ReadOnlyMcGymmy mcGymmy) throws IOException;
 
 }

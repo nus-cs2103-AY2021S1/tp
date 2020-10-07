@@ -51,53 +51,53 @@ public class JsonMcGymmyStorageTest {
     }
 
     @Test
-    public void readMcGymmy_invalidPersonAddressBook_throwDataConversionException() {
+    public void readMcGymmy_invalidFoodMcGymmy_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readMcGymmy("invalidFoodMcGymmy.json"));
     }
 
     @Test
-    public void readMcGymmy_invalidAndValidPersonAddressBook_throwDataConversionException() {
+    public void readMcGymmy_invalidAndValidFoodMcGymmy_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readMcGymmy("invalidAndValidFoodMcGymmy.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveMcGymmy_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempMcGymmy.json");
         McGymmy original = TypicalFoods.getTypicalMcGymmy();
-        JsonMcGymmyStorage jsonAddressBookStorage = new JsonMcGymmyStorage(filePath);
+        JsonMcGymmyStorage jsonMcGymmyStorage = new JsonMcGymmyStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveMcGymmy(original, filePath);
-        ReadOnlyMcGymmy readBack = jsonAddressBookStorage.readMcGymmy(filePath).get();
+        jsonMcGymmyStorage.saveMcGymmy(original, filePath);
+        ReadOnlyMcGymmy readBack = jsonMcGymmyStorage.readMcGymmy(filePath).get();
         assertEquals(original, new McGymmy(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addFood(HOON);
         original.removeFood(ALICE);
-        jsonAddressBookStorage.saveMcGymmy(original, filePath);
-        readBack = jsonAddressBookStorage.readMcGymmy(filePath).get();
+        jsonMcGymmyStorage.saveMcGymmy(original, filePath);
+        readBack = jsonMcGymmyStorage.readMcGymmy(filePath).get();
         assertEquals(original, new McGymmy(readBack));
 
         // Save and read without specifying file path
         original.addFood(IDA);
-        jsonAddressBookStorage.saveMcGymmy(original); // file path not specified
-        readBack = jsonAddressBookStorage.readMcGymmy().get(); // file path not specified
+        jsonMcGymmyStorage.saveMcGymmy(original); // file path not specified
+        readBack = jsonMcGymmyStorage.readMcGymmy().get(); // file path not specified
         assertEquals(original, new McGymmy(readBack));
 
     }
 
     @Test
-    public void saveMcGymmy_nullAddressBook_throwsNullPointerException() {
+    public void saveMcGymmy_nullMcGymmy_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveMcGymmy(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code mcGymmy} at the specified {@code filePath}.
      */
-    private void saveMcGymmy(ReadOnlyMcGymmy addressBook, String filePath) {
+    private void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, String filePath) {
         try {
             new JsonMcGymmyStorage(Paths.get(filePath))
-                    .saveMcGymmy(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveMcGymmy(mcGymmy, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

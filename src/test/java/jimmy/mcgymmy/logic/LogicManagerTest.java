@@ -157,7 +157,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveMcGymmy(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
+        public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

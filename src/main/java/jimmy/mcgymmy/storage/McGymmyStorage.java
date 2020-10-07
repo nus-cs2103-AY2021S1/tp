@@ -35,14 +35,14 @@ public interface McGymmyStorage {
     /**
      * Saves the given {@link ReadOnlyMcGymmy} to the storage.
      *
-     * @param addressBook cannot be null.
+     * @param mcGymmy cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException;
+    void saveMcGymmy(ReadOnlyMcGymmy mcGymmy) throws IOException;
 
     /**
      * @see #saveMcGymmy(ReadOnlyMcGymmy)
      */
-    void saveMcGymmy(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException;
+    void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, Path filePath) throws IOException;
 
 }

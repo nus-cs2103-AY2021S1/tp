@@ -11,7 +11,7 @@ import jimmy.mcgymmy.testutil.TypicalFoods;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyMcGymmy_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -19,7 +19,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyMcGymmy_success() {
         Model model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
         Model expectedModel = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
         expectedModel.setMcGymmy(new McGymmy());

@@ -17,15 +17,15 @@ import jimmy.mcgymmy.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private McGymmyStorage addressBookStorage;
+    private McGymmyStorage mcGymmyStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code McGymmyStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(McGymmyStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(McGymmyStorage mcGymmyStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.mcGymmyStorage = mcGymmyStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,29 +51,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getMcGymmyFilePath() {
-        return addressBookStorage.getMcGymmyFilePath();
+        return mcGymmyStorage.getMcGymmyFilePath();
     }
 
     @Override
     public Optional<ReadOnlyMcGymmy> readMcGymmy() throws DataConversionException, IOException {
-        return readMcGymmy(addressBookStorage.getMcGymmyFilePath());
+        return readMcGymmy(mcGymmyStorage.getMcGymmyFilePath());
     }
 
     @Override
     public Optional<ReadOnlyMcGymmy> readMcGymmy(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readMcGymmy(filePath);
+        return mcGymmyStorage.readMcGymmy(filePath);
     }
 
     @Override
-    public void saveMcGymmy(ReadOnlyMcGymmy addressBook) throws IOException {
-        saveMcGymmy(addressBook, addressBookStorage.getMcGymmyFilePath());
+    public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy) throws IOException {
+        saveMcGymmy(mcGymmy, mcGymmyStorage.getMcGymmyFilePath());
     }
 
     @Override
-    public void saveMcGymmy(ReadOnlyMcGymmy addressBook, Path filePath) throws IOException {
+    public void saveMcGymmy(ReadOnlyMcGymmy mcGymmy, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveMcGymmy(addressBook, filePath);
+        mcGymmyStorage.saveMcGymmy(mcGymmy, filePath);
     }
 
 }

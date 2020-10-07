@@ -44,7 +44,7 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setMcGymmyFilePath(Path addressBookFilePath);
+    void setMcGymmyFilePath(Path mcGymmyFilePath);
 
     /**
      * Returns the AddressBook
