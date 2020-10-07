@@ -105,8 +105,17 @@ public class Result<T> extends Either<String, T> {
      * @param fn the function to bind; it should return a Result.
      * @return   the new result
      */
-    public <R> Result<R> then(Function<? super T, Result<R>> fn) {
-        return super.fromRightOpt().map(fn).orElseGet(() -> Result.error(this.getError()));
+    public <R> Result<R> then(Function<? super T, ? extends Result<? extends R>> fn) {
+        if (this.hasValue()) {
+
+            // well... this is what the jdk does.
+            @SuppressWarnings("unchecked")
+            var ret = (Result<R>) fn.apply(this.getValue());
+            return ret;
+
+        } else {
+            return Result.error(this.getError());
+        }
     }
 
     /**
@@ -117,6 +126,18 @@ public class Result<T> extends Either<String, T> {
      */
     public T orElse(T other) {
         return super.fromRightOpt().orElse(other);
+    }
+
+    /**
+     * Converts a {@code Result<T>} into an {@code Optional<T>}. If the Result contained an error, it
+     * is discarded, and an empty optional is returned.
+     *
+     * @return an Optional version of this result.
+     */
+    public Optional<T> toOptional() {
+        return this.isError()
+            ? Optional.empty()
+            : Optional.of(this.getValue());
     }
 
     @Override
@@ -156,10 +177,50 @@ public class Result<T> extends Either<String, T> {
      * @return       a Result with one level of nesting removed.
      */
     public static <T> Result<T> flatten(Result<Result<T>> result) {
-        if (result.isError()) {
-            return Result.error(result.getError());
+        return result.isError()
+            ? Result.error(result.getError())
+            : result.getValue();
+    }
+
+    /**
+     * Flattens an {@code Optional} containing a {@code Result} into just the optional; if the outer
+     * optional was empty, or it was present but the inner result was an error, then an empty optional
+     * is returned (the error message of the Result, if any, is discarded). Otherwise, it returns
+     * an optional containing the Result's value.
+     *
+     * @param opt the optional to flatten
+     * @return    the flattened optional.
+     */
+    public static <T> Optional<T> flattenOptional(Optional<? extends Result<? extends T>> opt) {
+        return opt.isPresent() && opt.get().hasValue()
+            ? Optional.of(opt.get().getValue())
+            : Optional.empty();
+    }
+
+    /**
+     * Transposes an {@code Optional} containing a {@code Result} into a {@code Result} containing
+     * an {@code Optional}. If the outer optional was empty, then the result is valid, but contains
+     * an empty optional. Otherwise, if the inner result contains an error, then a new Result with
+     * that error is returned. If not then the inner result's value is returned as an optional.
+     *
+     * {@code
+     *      Result(valid: Optional(10))     = transpose(Optional.of(Result.of(10)))
+     *      Result(error: "owo")            = transpose(Optional.of(Result.error("owo")))
+     *      Result(valid: Optiona(empty))   = transpose(Optional.empty())
+     * }
+     *
+     * @param opt the optional to transpose.
+     * @return    the transposed result.
+     */
+    public static <T> Result<Optional<T>> transpose(Optional<Result<T>> opt) {
+        if (opt.isEmpty()) {
+            return Result.of(Optional.empty());
+        }
+
+        if (opt.get().isError()) {
+            return Result.error(opt.get().getError());
         } else {
-            return result.getValue();
+            return Result.of(Optional.of(opt.get().getValue()));
         }
     }
 
