@@ -15,6 +15,10 @@ public class Choice {
 
     private final String choice;
 
+    /**
+     * Instantiates a Choice.
+     * @param choice to be set.
+     */
     public Choice(String choice) {
         requireNonNull(choice);
         checkArgument(isValidChoice(choice), MESSAGE_CONSTRAINTS);
