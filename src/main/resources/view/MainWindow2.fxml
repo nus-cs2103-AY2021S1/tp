@@ -98,15 +98,18 @@
                         </children>
                      </HBox>
                   </bottom>
+                  <center>
+                     <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  </center>
                </BorderPane>
             </left>
             <right>
                <BorderPane prefHeight="325.0" prefWidth="190.0" BorderPane.alignment="CENTER">
                   <top>
-                     <StackPane prefHeight="160.0" prefWidth="190.0" BorderPane.alignment="CENTER" fx:id="commandBoxPlaceHolder" />
+                     <StackPane fx:id="commandBoxPlaceHolder" prefHeight="160.0" prefWidth="190.0" BorderPane.alignment="CENTER" />
                   </top>
                   <bottom>
-                     <StackPane prefHeight="160.0" prefWidth="190.0" BorderPane.alignment="CENTER" fx:id="pinBoxPlaceHolder"/>
+                     <StackPane fx:id="pinBoxPlaceHolder" prefHeight="160.0" prefWidth="190.0" BorderPane.alignment="CENTER" />
                   </bottom>
                </BorderPane>
             </right>
