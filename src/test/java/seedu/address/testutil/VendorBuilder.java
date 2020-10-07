@@ -50,6 +50,7 @@ public class VendorBuilder {
         email = vendorToCopy.getEmail();
         address = vendorToCopy.getAddress();
         tags = new HashSet<>(vendorToCopy.getTags());
+        //TODO: MENU
     }
 
     /**
