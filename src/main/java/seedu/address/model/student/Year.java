@@ -10,14 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Year {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Years should only contain numerical characters, and it should not be blank";
+            "Years should only contain Alphanumerical characters, and it should not be blank";
 
     /*
      * The first character of the year must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
-     * year can be any number and must have at least 1 number.
+     * year can be alphanumerical character and must have at least 1 character.
      */
-    public static final String VALIDATION_REGEX = "^*[0-9][0-9]*$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9][a-zA-Z0-9 ]*$";
 
     public final int year;
 
