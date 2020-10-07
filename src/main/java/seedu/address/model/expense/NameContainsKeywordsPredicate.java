@@ -29,4 +29,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Expense> {
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    public boolean isEmpty() {
+        return this.keywords.isEmpty() || (this.keywords.size() == 1 && this.keywords.get(0).equals(""));
+    }
+
 }
