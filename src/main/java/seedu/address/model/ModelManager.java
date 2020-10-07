@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final CliniCal cliniCal;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
+    private final VersionedCliniCal versionedCliniCal;
 
     /**
      * Initializes a ModelManager with the given cliniCal and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.cliniCal.getPatientList());
+        this.versionedCliniCal = new VersionedCliniCal(this.cliniCal);
     }
 
     public ModelManager() {
@@ -79,6 +81,31 @@ public class ModelManager implements Model {
     //=========== CliniCal ================================================================================
 
     @Override
+    public void commitCliniCal() {
+        versionedCliniCal.commit(cliniCal);
+    }
+
+    @Override
+    public boolean canUndoCliniCal() {
+        return versionedCliniCal.canUndoCliniCal();
+    }
+
+    @Override
+    public void undoCliniCal() {
+        versionedCliniCal.undo();
+    }
+
+    @Override
+    public boolean canRedoCliniCal() {
+        return versionedCliniCal.canRedoCliniCal();
+    }
+
+    @Override
+    public void redoCliniCal() {
+        versionedCliniCal.redo();
+    }
+
+    @Override
     public void setCliniCal(ReadOnlyCliniCal cliniCal) {
         this.cliniCal.resetData(cliniCal);
     }
@@ -103,6 +130,7 @@ public class ModelManager implements Model {
     public void addPatient(Patient patient) {
         cliniCal.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        commitCliniCal();
     }
 
     @Override

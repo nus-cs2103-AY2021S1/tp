@@ -85,4 +85,30 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Saves the current CliniCal application state in its history.
+     */
+    void commitCliniCal();
+
+
+    /**
+     * Checks if there are any valid commands to undo.
+     */
+    boolean canUndoCliniCal();
+
+    /**
+     * Restores the previous CliniCal application state from its history.
+     */
+    void undoCliniCal();
+
+    /**
+     * Checks if there are any valid commands to redo.
+     */
+    boolean canRedoCliniCal();
+
+    /**
+     *  Restores a previously undone CliniCal application state from its history.
+     */
+    void redoCliniCal();
 }

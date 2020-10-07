@@ -55,6 +55,7 @@ public class AddCommand extends Command {
         }
 
         model.addPatient(toAdd);
+        model.commitCliniCal();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
