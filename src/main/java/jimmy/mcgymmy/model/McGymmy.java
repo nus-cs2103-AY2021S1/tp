@@ -2,11 +2,13 @@ package jimmy.mcgymmy.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.Fridge;
+import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
 
 /**
  * Wraps all data at the address-book level
@@ -53,7 +55,16 @@ public class McGymmy implements ReadOnlyMcGymmy {
      */
     public void resetData(ReadOnlyMcGymmy newData) {
         requireNonNull(newData);
-
+        for (Food food: newData.getFoodList()) {
+            for (Food comp: newData.getFoodList()) {
+                if (food.hashCode() == comp.hashCode()) {
+                    continue;
+                }
+                if (food.equals(comp)) {
+                    throw new DuplicateFoodException();
+                }
+            }
+        }
         setFoodItems(newData.getFoodList());
     }
 

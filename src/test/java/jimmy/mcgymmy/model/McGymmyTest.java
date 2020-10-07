@@ -43,7 +43,7 @@ public class McGymmyTest {
     @Test
     public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
         // Two persons with the same identity fields
-        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).withCarb("12345").build();
+        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).build();
         List<Food> newFoods = Arrays.asList(TypicalFoods.ALICE, editedAlice);
         McGymmyStub newData = new McGymmyStub(newFoods);
 
@@ -67,9 +67,9 @@ public class McGymmyTest {
     }
 
     @Test
-    public void hasFood_personWithSameIdentityFieldsInMcGymmy_returnsTrue() {
+    public void hasFood_foodWithSameIdentityFieldsInMcGymmy_returnsTrue() {
         mcGymmy.addFood(TypicalFoods.ALICE);
-        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).withCarb("12345").build();
+        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).build();
         assertTrue(mcGymmy.hasFood(editedAlice));
     }
 
