@@ -24,7 +24,7 @@ import jimmy.mcgymmy.testutil.FoodBuilder;
 
 public class AddCommandTest {
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_foodAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
         Food validFood = new FoodBuilder().withCarb("12345").build();
         AddCommand command = new AddCommand();
@@ -38,12 +38,12 @@ public class AddCommandTest {
         CommandResult commandResult = command.execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFood), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validFood), modelStub.foodAdded);
     }
 
     @Test
     public void execute_duplicateFood_throwsCommandException() {
-        Food validFood = new FoodBuilder().withCarb("dummy value").build();
+        Food validFood = new FoodBuilder().withCarb("12345").build();
         AddCommand addCommand = new AddCommand();
         addCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
@@ -53,7 +53,7 @@ public class AddCommandTest {
         );
         ModelStub modelStub = new ModelStubWithFood(validFood);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
     }
 
     /**
@@ -153,18 +153,18 @@ public class AddCommandTest {
      * A Model stub that always accept the food being added.
      */
     private class ModelStubAcceptingFoodAdded extends ModelStub {
-        final ArrayList<Food> personsAdded = new ArrayList<>();
+        final ArrayList<Food> foodAdded = new ArrayList<>();
 
         @Override
         public boolean hasFood(Food food) {
             requireNonNull(food);
-            return personsAdded.stream().anyMatch(food::isSameFood);
+            return foodAdded.stream().anyMatch(food::isSameFood);
         }
 
         @Override
         public void addFood(Food food) {
             requireNonNull(food);
-            personsAdded.add(food);
+            foodAdded.add(food);
         }
 
         @Override

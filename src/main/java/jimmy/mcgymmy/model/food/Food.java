@@ -13,7 +13,7 @@ import jimmy.mcgymmy.model.tag.Tag;
  * Represents a Food item in McGymmy.
  */
 public class Food {
-    public static final String FOOD_NAME_MESSAGE_CONTRAINT = "Food name can take in any value, and it cannot be blank";
+    public static final String FOOD_NAME_MESSAGE_CONSTRAINT = "Food name can take in any value, and it cannot be blank";
 
     /*
      * The first character of name must not be a whitespace,
@@ -34,7 +34,7 @@ public class Food {
      */
     public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
         CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
-        AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONTRAINT);
+        AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONSTRAINT);
         this.name = name;
         this.protein = protein;
         this.carbs = carbs;

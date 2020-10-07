@@ -82,42 +82,48 @@ public class McGymmyParserCommandsTest {
     @Test
     public void parseCommand_add() throws Exception {
         String nameString = "michale json";
-        String phoneString = "9912629";
-        String emailString = "test@example.com";
-        String commandString = String.format("%s -n %s -p %s -e %s",
+        String proteinString = "9912629";
+        String fatString = "9993";
+        String carbString = "555";
+        String commandString = String.format("%s -n %s -p %s -f %s -c %s",
                 AddCommand.COMMAND_WORD,
                 nameString,
-                phoneString,
-                emailString);
+                proteinString,
+                fatString,
+                carbString);
         Command command = parser.parse(commandString);
         assertTrue(command instanceof AddCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, "n"), Optional.of(nameString));
-        assertEquals(CommandParserTestUtil.commandParameterValue(command, "p"), Optional.of(phoneString));
-        assertEquals(CommandParserTestUtil.commandParameterValue(command, "e"), Optional.of(emailString));
+        assertEquals(CommandParserTestUtil.commandParameterValue(command, "p"), Optional.of(proteinString));
+        assertEquals(CommandParserTestUtil.commandParameterValue(command, "f"), Optional.of(fatString));
+        assertEquals(CommandParserTestUtil.commandParameterValue(command, "c"), Optional.of(carbString));
     }
 
     @Test
     public void parseCommand_addMissingParameters_failure() {
-        String commandString = String.format("%s -n poop", AddCommand.COMMAND_WORD);
+        String commandString = String.format("%s -p 123", AddCommand.COMMAND_WORD);
         assertThrows(ParseException.class, () -> parser.parse(commandString));
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         String indexString = "68";
-        String phoneString = "88888888";
-        String emailString = "test@google.cn";
-        String commandString = String.format("%s %s -p %s -e %s",
+        String proteinString = "123";
+        String fatString = "456";
+        String carbString = "789";
+        String commandString = String.format("%s %s -p %s -f %s -c %s",
                 EditCommand.COMMAND_WORD,
                 indexString,
-                phoneString,
-                emailString);
+                proteinString,
+                fatString,
+                carbString);
         Command command = parser.parse(commandString);
         assertTrue(command instanceof EditCommand);
         assertEquals(CommandParserTestUtil.commandParameterValue(command, ""), Optional.of(indexString));
         assertEquals(CommandParserTestUtil.commandParameterValue(command, "n"), Optional.empty());
-        assertEquals(CommandParserTestUtil.commandParameterValue(command, "p"), Optional.of(phoneString));
-        assertEquals(CommandParserTestUtil.commandParameterValue(command, "e"), Optional.of(emailString));
+        assertEquals(CommandParserTestUtil.commandParameterValue(command, "p"), Optional.of(proteinString));
+        assertEquals(CommandParserTestUtil.commandParameterValue(command, "f"), Optional.of(fatString));
+        assertEquals(CommandParserTestUtil.commandParameterValue(command, "c"), Optional.of(carbString));
     }
 
     @Test

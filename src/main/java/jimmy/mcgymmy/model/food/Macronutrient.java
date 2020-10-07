@@ -20,7 +20,7 @@ public abstract class Macronutrient {
         CollectionUtil.requireAllNonNull(amount, caloricMultiplier);
 
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
-        AppUtil.checkArgument(isValidAmount(amount), getMessageContraint());
+        AppUtil.checkArgument(isValidAmount(amount), getMessageConstraint());
 
         assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
@@ -35,10 +35,10 @@ public abstract class Macronutrient {
     }
 
     private boolean isValidAmount(int amount) {
-        return amount > 0;
+        return amount >= 0;
     }
 
-    private String getMessageContraint() {
+    private String getMessageConstraint() {
         return this.getMacronutrientType() + " amount can only take in value larger than 0";
     }
 

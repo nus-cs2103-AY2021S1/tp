@@ -22,7 +22,7 @@ import jimmy.mcgymmy.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PROTEIN = "+651234";
+    private static final String INVALID_PROTEIN = "+651%)234";
     private static final String INVALID_FAT = " ";
     private static final String INVALID_CARB = "example.com";
     private static final String INVALID_TAG = "#friend";
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(TypicalIndexes.INDEX_FIRST_FOOD, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        Assertions.assertEquals(TypicalIndexes.INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(TypicalIndexes.INDEX_FIRST_FOOD, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

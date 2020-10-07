@@ -34,14 +34,11 @@ public class FatTest {
         Assertions.assertFalse(Fat.isValid("peterjack@exam ple.com")); // spaces in fat name
         Assertions.assertFalse(Fat.isValid(" 1234")); // leading space
         Assertions.assertFalse(Fat.isValid("1234 ")); // trailing space
+        Assertions.assertFalse(Fat.isValid("-1234")); // negative value
 
         // valid fat
         Assertions.assertTrue(Fat.isValid("123412"));
-        Assertions.assertTrue(Fat.isValid("test@fathost")); // alphabets only
-        Assertions.assertTrue(Fat.isValid("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters fat part
-        Assertions.assertTrue(Fat.isValid("123@145")); // numeric fat part and fat name
-        Assertions.assertTrue(Fat.isValid("a1+be!@example1.com")); // mixture of alphanumeric and special characters
-        Assertions.assertTrue(Fat.isValid("peter_jack@very-very-very-long-example.com")); // long fat name
-        Assertions.assertTrue(Fat.isValid("if.you.dream.it_you.can.do.it@example.com")); // long fat part
+        Assertions.assertTrue(Fat.isValid("911"));
+        Assertions.assertTrue(Fat.isValid("123456789"));
     }
 }

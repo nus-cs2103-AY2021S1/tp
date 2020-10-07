@@ -20,17 +20,17 @@ public class ProteinTest {
 
     @Test
     public void isValidProtein() {
-        // null phone number
+        // null protein number
         assertThrows(NullPointerException.class, () -> Protein.isValid(null));
 
-        // invalid phone numbers
+        // invalid protein numbers
         Assertions.assertFalse(Protein.isValid("")); // empty string
         Assertions.assertFalse(Protein.isValid(" ")); // spaces only
-        Assertions.assertFalse(Protein.isValid("phone")); // non-numeric
+        Assertions.assertFalse(Protein.isValid("protein")); // non-numeric
         Assertions.assertFalse(Protein.isValid("9011p041")); // alphabets within digits
         Assertions.assertFalse(Protein.isValid("9312 1534")); // spaces within digits
 
-        // valid phone numbers
+        // valid protein numbers
         Assertions.assertTrue(Protein.isValid("911"));
         Assertions.assertTrue(Protein.isValid("93121534"));
         Assertions.assertTrue(Protein.isValid("124293842033123"));
