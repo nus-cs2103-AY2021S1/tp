@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -120,5 +123,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parse a {@code String pathLocation} into a {@code Path}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code pathLocation} is invalid.
+     */
+    public static Path parsePath(String pathLocation) throws ParseException {
+        requireNonNull(pathLocation);
+        String trimPathDirectory = pathLocation.trim();
+        if (hasFileWithSameName(trimPathDirectory)) {
+            throw new ParseException("A file with same name exists. Please key in a different name");
+        }
+        if (!hasRightToCreate(trimPathDirectory)) {
+            throw new ParseException("You don\'t have right to create at the specified location");
+        }
+        
+        return Paths.get(trimPathDirectory);
+    }
+
+    private static boolean hasFileWithSameName(String filePath) {
+        File targetLocation = new File(filePath);
+        return targetLocation.exists();
+    }
+
+    private static boolean hasRightToCreate(String filePath) {
+        return new File(filePath).canWrite();
     }
 }
