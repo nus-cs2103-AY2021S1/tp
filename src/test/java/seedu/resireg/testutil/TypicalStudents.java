@@ -43,8 +43,8 @@ public class TypicalStudents {
             .withEmail("carl@example.com")
             .withFaculty("FASS")
             .withStudentId("E0111112").build();
-    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").
-            withPhone("87652533")
+    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
             .withFaculty("FASS")
             .withStudentId("E0111113")
             .withEmail("daniel@example.com")

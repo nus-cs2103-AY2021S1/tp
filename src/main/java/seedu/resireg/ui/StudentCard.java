@@ -64,8 +64,8 @@ public class StudentCard extends UiPart<Region> {
             floor.setText(student.getRoom().getFloor().value);
             roomNumber.setText(student.getRoom().getRoomNumber().value);
         } else {
-            floor.setText("Unassigned");
-            roomNumber.setText("Unassigned");
+            floor.setText("Unallocated");
+            roomNumber.setText("Unallocated");
         }
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

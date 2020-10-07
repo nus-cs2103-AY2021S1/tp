@@ -1,5 +1,11 @@
 package seedu.resireg.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+
+import java.util.List;
+
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.exceptions.CommandException;
@@ -7,10 +13,6 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.resireg.logic.parser.CliSyntax.*;
 
 /**
  * Adds a student to the address book.
@@ -64,7 +66,7 @@ public class AllocateCommand extends Command {
 
         if (!model.hasStudent(studentToAllocate)) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        } else if (!model.hasRoom(roomToAllocate)){
+        } else if (!model.hasRoom(roomToAllocate)) {
             throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
         } else if (studentToAllocate.hasRoom()) {
             throw new CommandException(MESSAGE_STUDENT_ALREADY_ALLOCATED);

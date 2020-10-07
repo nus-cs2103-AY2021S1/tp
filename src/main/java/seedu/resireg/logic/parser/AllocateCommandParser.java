@@ -1,20 +1,13 @@
 package seedu.resireg.logic.parser;
 
-import seedu.resireg.commons.core.index.Index;
-import seedu.resireg.logic.commands.AddCommand;
-import seedu.resireg.logic.commands.AllocateCommand;
-import seedu.resireg.logic.parser.exceptions.ParseException;
-import seedu.resireg.model.room.Floor;
-import seedu.resireg.model.room.Room;
-import seedu.resireg.model.room.RoomNumber;
-import seedu.resireg.model.student.*;
-import seedu.resireg.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.resireg.logic.parser.CliSyntax.*;
+
+import java.util.stream.Stream;
+
+import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.commands.AllocateCommand;
+import seedu.resireg.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -30,7 +23,7 @@ public class AllocateCommandParser implements Parser<AllocateCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_INDEX, PREFIX_ROOM_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_INDEX)
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_INDEX, PREFIX_ROOM_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.MESSAGE_USAGE));
         }

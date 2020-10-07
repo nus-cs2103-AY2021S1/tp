@@ -1,17 +1,22 @@
 package seedu.resireg.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.resireg.commons.exceptions.IllegalValueException;
-import seedu.resireg.model.student.*;
-import seedu.resireg.model.student.faculty.Faculty;
-import seedu.resireg.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.resireg.commons.exceptions.IllegalValueException;
+import seedu.resireg.model.student.Email;
+import seedu.resireg.model.student.Name;
+import seedu.resireg.model.student.Phone;
+import seedu.resireg.model.student.Student;
+import seedu.resireg.model.student.StudentId;
+import seedu.resireg.model.student.faculty.Faculty;
+import seedu.resireg.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.
