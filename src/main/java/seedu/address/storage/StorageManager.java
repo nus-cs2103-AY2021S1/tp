@@ -83,6 +83,8 @@ public class StorageManager implements Storage {
         cliniCalStorage.saveCliniCal(cliniCal, filePath);
     }
 
+    // ================ Image methods ==============================
+
     /**
      * Adds profile picture to patient and returns destination file path.
      *
@@ -113,12 +115,11 @@ public class StorageManager implements Storage {
     /**
      * Initialises a placeholder images in the {@code data} folder.
      */
-    public static void initializePlaceholderImage() {
+    public void initializePlaceholderImage() {
         try {
             InputStream is = MainApp.class.getResourceAsStream("/images/stock_picture.png");
-            //TODO: replace hardcoded path
-            File targetFile = new File("data/stock_picture.png");
-            FileUtils.copyInputStreamToFile(is, targetFile);
+            Path targetPath = cliniCalStorage.getCliniCalFilePath().getParent().resolve("stock_picture.png");
+            FileUtils.copyInputStreamToFile(is, targetPath.toFile());
         } catch (IOException error) {
             System.out.println(error.getMessage());
         }
