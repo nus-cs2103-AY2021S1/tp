@@ -56,7 +56,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, List<MenuManager> menuManagers, OrderManager orderManager) {
+    public ModelManager(
+            ReadOnlyAddressBook addressBook,
+            ReadOnlyUserPrefs userPrefs,
+            List<MenuManager> menuManagers,
+            OrderManager orderManager
+    ) {
         super();
         requireAllNonNull(addressBook, userPrefs, menuManagers);
 

@@ -155,7 +155,8 @@ public interface Model {
     /**
      * Replaces the given OrderItem {@code target} with {@code editedOrderItem}.
      * {@code target} must exist in the menu manager.
-     * The OrderItem identity of {@code editedOrderItem} must not be the same as another existing orderItem in the address book.
+     * The OrderItem identity of {@code editedOrderItem}
+     * must not be the same as another existing orderItem in the address book.
      */
     void setOrderItem(OrderItem target, OrderItem editedOrderItem, int index);
 
@@ -181,7 +182,8 @@ public interface Model {
     ObservableList<OrderItem> getFilteredOrderList(int index);
 
     /**
-     * Updates the filter of the filtered order list at the corresponding index to filter by the given {@code predicate}.
+     * Updates the filter of the filtered order list at the
+     * corresponding index to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<OrderItem> predicate, int index);
