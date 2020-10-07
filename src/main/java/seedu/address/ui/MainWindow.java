@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.Question;
 import seedu.address.logic.Logic;
@@ -211,8 +212,9 @@ public class MainWindow extends UiPart<Stage> {
         // initialize question's options into VBox
         optionListPanel = new OptionListPanel(questionToDisplay.map(question -> {
             if (question instanceof MultipleChoiceQuestion) {
-                return FXCollections.observableList(Arrays.stream(((MultipleChoiceQuestion) question)
-                        .getChoices().get()).collect(Collectors.toCollection(ArrayList::new)));
+                return FXCollections.observableList(Arrays.stream(question
+                        .getChoices().orElseGet(() -> new Choice[0])).map(
+                                Choice::toString).collect(Collectors.toCollection(ArrayList::new)));
             } else {
                 return FXCollections.observableArrayList("Open Ended Question has no options");
             }

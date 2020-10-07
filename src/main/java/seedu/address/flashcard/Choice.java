@@ -4,7 +4,8 @@ package seedu.address.flashcard;
  * Represents a MCQ choice.
  */
 public class Choice {
-    final private String content;
+
+    private final String content;
 
     public Choice(String content) {
         this.content = content;
