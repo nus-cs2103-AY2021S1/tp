@@ -92,7 +92,7 @@ public class StorageManager implements Storage {
         try {
             String profilePicPath = profilePic.getPath();
             String profilePicExtension = FilenameUtils.getExtension(profilePicPath);
-            String destinationPath = "data/" + patientName.replaceAll(" ", "_") + "."
+            String destinationPath = "docs/images/" + patientName.replaceAll(" ", "_") + "."
                                      + profilePicExtension;
 
             byte[] profilePicInBytes = FileUtils.readFileToByteArray(profilePic);
