@@ -81,6 +81,42 @@ public class ModelManager implements Model {
     //=========== CliniCal ================================================================================
 
     @Override
+    public void setCliniCal(ReadOnlyCliniCal cliniCal) {
+        this.cliniCal.resetData(cliniCal);
+    }
+
+    @Override
+    public ReadOnlyCliniCal getCliniCal() {
+        return cliniCal;
+    }
+
+    @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return cliniCal.hasPatient(patient);
+    }
+
+    @Override
+    public void deletePatient(Patient target) {
+        cliniCal.removePatient(target);
+    }
+
+    @Override
+    public void addPatient(Patient patient) {
+        cliniCal.addPatient(patient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+    }
+
+    @Override
+    public void setPatient(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
+
+        cliniCal.setPatient(target, editedPatient);
+    }
+
+    //=========== Undo/Redo ===============================================================================
+
+    @Override
     public void commitCliniCal(String command) {
         versionedCliniCal.commit(cliniCal, command);
     }
@@ -113,40 +149,6 @@ public class ModelManager implements Model {
     @Override
     public String getRedoCommand() {
         return versionedCliniCal.getRedoCommand();
-    }
-
-    @Override
-    public void setCliniCal(ReadOnlyCliniCal cliniCal) {
-        this.cliniCal.resetData(cliniCal);
-    }
-
-    @Override
-    public ReadOnlyCliniCal getCliniCal() {
-        return cliniCal;
-    }
-
-    @Override
-    public boolean hasPatient(Patient patient) {
-        requireNonNull(patient);
-        return cliniCal.hasPatient(patient);
-    }
-
-    @Override
-    public void deletePatient(Patient target) {
-        cliniCal.removePatient(target);
-    }
-
-    @Override
-    public void addPatient(Patient patient) {
-        cliniCal.addPatient(patient);
-        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-    }
-
-    @Override
-    public void setPatient(Patient target, Patient editedPatient) {
-        requireAllNonNull(target, editedPatient);
-
-        cliniCal.setPatient(target, editedPatient);
     }
 
     //=========== Filtered Patient List Accessors =============================================================

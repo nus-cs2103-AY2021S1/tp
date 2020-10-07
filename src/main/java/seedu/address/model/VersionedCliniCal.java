@@ -2,6 +2,9 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 
+/**
+ * Keeps track of CliniCal states.
+ */
 public class VersionedCliniCal extends CliniCal {
 
     private static final int INITIAL_POINTER = 0;
@@ -15,9 +18,8 @@ public class VersionedCliniCal extends CliniCal {
     private int currentStatePointer;
 
     /**
-     * Initializes and saves the initial {@code CliniCal} state on running of CliniCal and assigns the
+     * Initializes and saves the initial {@code CliniCal} state on first start of CliniCal and assigns the
      * {@code currentStatePointer} to it.
-     *
      */
     public VersionedCliniCal(CliniCal initialCliniCal) {
         clinicalStateList = new ArrayList<>();
@@ -56,23 +58,29 @@ public class VersionedCliniCal extends CliniCal {
     }
 
     /**
-     * Returns true if the pointer is not at the oldest saved CliniCal state.
+     * Returns true if there are CliniCal states available to undo.
      */
     public boolean canUndoCliniCal() {
         return currentStatePointer != 0;
     }
 
     /**
-     * Returns true if the pointer is not at the newest saved CliniCal state.
+     * Returns true if there are CliniCal states available to redo.
      */
     public boolean canRedoCliniCal() {
         return currentStatePointer != clinicalStateList.size() - 1;
     }
 
+    /**
+     * Returns the input corresponding to the command that is undone.
+     */
     public String getUndoCommand() {
         return commandList.get(currentStatePointer + 1);
     }
 
+    /**
+     * Returns the input corresponding to the command that is redone.
+     */
     public String getRedoCommand() {
         return commandList.get(currentStatePointer);
     }
