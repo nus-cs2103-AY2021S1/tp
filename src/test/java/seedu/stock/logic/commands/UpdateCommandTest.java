@@ -1,5 +1,8 @@
 package seedu.stock.logic.commands;
 
+import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
+import static seedu.stock.testutil.TypicalStocks.getTypicalStocksSerialNumbers;
+
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
@@ -9,5 +12,5 @@ import seedu.stock.model.UserPrefs;
  */
 public class UpdateCommandTest {
 
-//    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), getTypicalStocksSerialNumbers());
 }
