@@ -19,6 +19,7 @@ public class Patient {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final ProfilePicture profilePicture;
 
     // Data fields
     private final Address address;
@@ -27,13 +28,14 @@ public class Patient {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ProfilePicture profilePicture) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.profilePicture = profilePicture;
     }
 
     public Name getName() {
@@ -58,6 +60,10 @@ public class Patient {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public ProfilePicture getProfilePicture() {
+        return profilePicture;
     }
 
     /**
@@ -93,13 +99,14 @@ public class Patient {
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getTags().equals(getTags());
+                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getProfilePicture().equals(getProfilePicture());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, profilePicture);
     }
 
     @Override
