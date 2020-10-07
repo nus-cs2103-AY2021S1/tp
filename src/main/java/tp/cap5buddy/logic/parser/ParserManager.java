@@ -62,6 +62,10 @@ public class ParserManager {
             parser = new AddContactParser();
             command = parser.parse(input);
             return command;
+        case "edittask":
+            parser = new EditTaskParser();
+            command = parser.parse(input);
+            return command;
         default:
             throw new ParseException("Invalid Command");
         }
