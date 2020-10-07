@@ -1,15 +1,14 @@
 package tp.cap5buddy.logic.commands;
 
-import seedu.address.commons.core.index.Index;
 import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.todolist.Task;
 import tp.cap5buddy.todolist.TodoList;
 
 public class DeleteTaskCommand extends Command {
-    private final Index indexToRemove;
+    private final int indexToRemove;
 
-    public DeleteTaskCommand(Index index) {
+    public DeleteTaskCommand(int index) {
         this.indexToRemove = index;
     }
 
@@ -23,7 +22,7 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public CommandResult execute(ModuleList moduleList, ContactList contactList, TodoList todoList) {
-        Task toRemove = todoList.get(indexToRemove.getZeroBased());
+        Task toRemove = todoList.get(indexToRemove);
         todoList.remove(toRemove);
         String message = createSuccessMessage(indexToRemove);
         return new CommandResult(message, isExit());
@@ -35,10 +34,10 @@ public class DeleteTaskCommand extends Command {
      * @param index index of task to be removed.
      * @return A String representing the outcome of the execution.
      */
-    public String createSuccessMessage(Index index) {
+    public String createSuccessMessage(int index) {
         StringBuilder builder = new StringBuilder();
         builder.append("Task ")
-                .append(index.getOneBased())
+                .append(index + 1)
                 .append(" has been successfully removed")
                 .append("\n");
         return builder.toString();
