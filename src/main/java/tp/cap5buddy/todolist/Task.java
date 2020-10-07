@@ -1,6 +1,5 @@
 package tp.cap5buddy.todolist;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Task {
@@ -10,6 +9,15 @@ public class Task {
     private final Date date;
     private final Status status;
 
+    /**
+     * Constructs a Task.
+     *
+     * @param type Type of the task.
+     * @param description Description of the task.
+     * @param priority Priority of the task.
+     * @param date Date or deadline of the task.
+     * @param status Status (completed or not completed)of the task.
+     */
     public Task(Type type, Description description, Priority priority, Date date, Status status) {
         this.type = type; //t
         this.description = description; //n
@@ -62,6 +70,13 @@ public class Task {
         return setStatus(Status.COMPLETED);
     }
 
+    /**
+     * Checks if 2 task have the same type, description, and date/deadline. Weaker than equals() method.
+     *
+     * @param otherTask
+     * @return true if the other task has the same type, description, and date/deadline with this task,
+     *         otherwise false.
+     */
     public boolean isSameTask(Task otherTask) {
         if (this == otherTask) {
             return true;
@@ -97,9 +112,7 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Task: ")
-                .append("\n")
-                .append(" *Type: ")
+        builder.append(" *Type: ")
                 .append(getType())
                 .append("\n")
                 .append(" *Description: ")

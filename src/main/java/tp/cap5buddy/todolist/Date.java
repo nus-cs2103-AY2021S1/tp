@@ -1,20 +1,31 @@
 package tp.cap5buddy.todolist;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
 
 public class Date {
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE;
     private final LocalDate value;
 
+    /**
+     * Constructs a Date.
+     *
+     * @param date date as String.
+     */
     public Date(String date) {
         requireNonNull(date);
         this.value = LocalDate.parse(date);
     }
 
+    /**
+     * Checks if a date is valid.
+     *
+     * @param test date to be checked.
+     * @return true if the date is valid, false otherwise.
+     */
     public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test);
