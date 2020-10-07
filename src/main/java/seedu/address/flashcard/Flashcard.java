@@ -75,6 +75,15 @@ public class Flashcard {
     }
 
     /**
+     * Checks if this flashcard contains the tag.
+     * @param tag the tag to be checked.
+     * @return {@code true} if this flashcard has the tag.
+     */
+    public boolean matchTag(Tag tag) {
+        return tags.contains(tag);
+    }
+
+    /**
      * A method to check if otherFlashcard is the same with the current one.
      */
     @Override

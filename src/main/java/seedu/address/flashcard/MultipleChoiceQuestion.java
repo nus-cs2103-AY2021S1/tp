@@ -5,6 +5,7 @@ import seedu.address.commons.core.index.Index;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a mcq question.
@@ -52,8 +53,8 @@ public class MultipleChoiceQuestion implements Question {
         return sb.toString();
     }
 
-    public String[] getChoices() {
-        return this.options;
+    public Optional<String[]> getChoices() {
+        return Optional.ofNullable(this.options);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class MultipleChoiceQuestion implements Question {
         } else if (o instanceof MultipleChoiceQuestion) {
             MultipleChoiceQuestion temp = (MultipleChoiceQuestion) o;
             return this.toString().equals(temp.toString())
-                    && Arrays.equals(this.getChoices(), temp.getChoices());
+                    && Arrays.equals(this.getChoices().get(), temp.getChoices().get());
         }
         return false;
     }

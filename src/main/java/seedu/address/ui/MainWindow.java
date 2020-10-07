@@ -212,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
         optionListPanel = new OptionListPanel(questionToDisplay.map(question -> {
             if (question instanceof MultipleChoiceQuestion) {
                 return FXCollections.observableList(Arrays.stream(((MultipleChoiceQuestion) question)
-                        .getChoices()).collect(Collectors.toCollection(ArrayList::new)));
+                        .getChoices().get()).collect(Collectors.toCollection(ArrayList::new)));
             } else {
                 return FXCollections.observableArrayList("Open Ended Question has no options");
             }

@@ -1,6 +1,7 @@
 package seedu.address.flashcard;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a question.
@@ -16,5 +17,6 @@ public interface Question {
 
     String getFormatQuestion();
 
+    Optional<String[]> getChoices();
 
 }
