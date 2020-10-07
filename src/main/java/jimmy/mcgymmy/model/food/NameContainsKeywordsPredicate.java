@@ -8,7 +8,7 @@ import jimmy.mcgymmy.commons.util.StringUtil;
 /**
  * Tests that a {@code Food}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<jimmy.mcgymmy.model.food.Food> {
+public class NameContainsKeywordsPredicate implements Predicate<Food> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
