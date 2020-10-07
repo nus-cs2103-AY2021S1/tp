@@ -28,7 +28,7 @@ public class JsonAdaptedSuspect {
      * Converts a given {@code Suspect} into this class for Jackson use.
      */
     public JsonAdaptedSuspect(Suspect source) {
-        this.name = source.getName().fullName;
+        this.name = source.getName().alphaNum;
     }
 
     /**
