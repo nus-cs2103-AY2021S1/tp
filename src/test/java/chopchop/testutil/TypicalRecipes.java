@@ -1,26 +1,24 @@
 package chopchop.testutil;
 
 import chopchop.model.attributes.Step;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.recipe.RecipeBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.HashSet;
 
-import static chopchop.logic.commands.CommandTestUtil.*;
 import static chopchop.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_APRICOT_SALAD;
-import chopchop.testutil.TypicalIngredients;
+import static chopchop.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_BANANA_SALAD;
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
 
 public class TypicalRecipes {
 
-    public static final Step STEP_APRICOT_SALAD = new Step("Cut the apricot, add salad dressing, and mix well in a bowl.");
-    public static final Step STEP_BANANA_SALAD = new Step("Cut the banana, add salad dressing, and mix well in a bowl.");
+    public static final Step STEP_APRICOT_SALAD = new Step(
+            "Cut the apricot, add salad dressing, and mix well in a bowl.");
+    public static final Step STEP_BANANA_SALAD = new Step(
+            "Cut the banana, add salad dressing, and mix well in a bowl.");
 
     public static final Recipe APRICOT_SALAD = new RecipeBuilder().withName(VALID_RECIPE_NAME_APRICOT_SALAD)
             .withIngredients(new ArrayList<>(Arrays.asList(APRICOT)))

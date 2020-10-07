@@ -1,7 +1,6 @@
 package chopchop.model;
 
 import static chopchop.model.Model.PREDICATE_SHOW_ALL_RECIPES;
-import static chopchop.testutil.TypicalRecipes.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,6 +8,8 @@ import static chopchop.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
+import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
 
 import java.util.Arrays;
 

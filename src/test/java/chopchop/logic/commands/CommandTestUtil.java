@@ -1,9 +1,5 @@
 package chopchop.logic.commands;
 
-import chopchop.model.ingredient.Ingredient;
-
-import java.util.Set;
-
 public class CommandTestUtil {
     public static final String VALID_INGREDIENT_NAME_APRICOT = "Apricot";
     public static final String VALID_INGREDIENT_NAME_BANANA = "Banana";

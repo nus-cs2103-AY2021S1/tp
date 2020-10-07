@@ -4,25 +4,28 @@ import chopchop.model.recipe.Recipe;
 import chopchop.model.recipe.RecipeBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.exceptions.DuplicateRecipeException;
-import chopchop.model.recipe.Recipe;
-import chopchop.model.recipe.RecipeBook;
-import chopchop.testutil.RecipeBuilder;
 import chopchop.testutil.RecipeBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
-
-import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_BANANA;
-import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_BANANA;
 import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalIngredients.BANANA;
-import static chopchop.testutil.TypicalIngredients.getTypicalIngredients;
-import static chopchop.testutil.TypicalRecipes.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
+import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
+import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 
-public class recipeBookTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+
+public class RecipeBookTest {
 
     private final RecipeBook recipeBook = new RecipeBook();
 
@@ -48,7 +51,7 @@ public class recipeBookTest {
         // Two recipes with the same identity fields
         Recipe editedRecipe = new RecipeBuilder(APRICOT_SALAD).build();
         List<Recipe> newRecipes = Arrays.asList(APRICOT_SALAD, editedRecipe);
-        recipeBookTest.RecipeBookStub newData = new recipeBookTest.RecipeBookStub(newRecipes);
+        RecipeBookTest.RecipeBookStub newData = new RecipeBookTest.RecipeBookStub(newRecipes);
 
         assertThrows(DuplicateRecipeException.class, () -> recipeBook.resetData(newData));
     }

@@ -35,6 +35,7 @@ public class StepTest {
         assertTrue(Step.isValidStep("12345")); // numbers only
         assertTrue(Step.isValidStep("recipe number seven")); // alphanumeric characters
         assertTrue(Step.isValidStep("The Most Unhealthy Recipe")); // with capital letters
-        assertTrue(Step.isValidStep("First, place eggs in a large saucepan and cover them with cool water by 1 inch.")); // long Step
+        assertTrue(Step.isValidStep(
+                "First, place eggs in a large saucepan and cover them with cool water by 1 inch.")); // long Step
     }
 }

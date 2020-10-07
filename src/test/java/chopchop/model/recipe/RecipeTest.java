@@ -1,7 +1,9 @@
 package chopchop.model.recipe;
 
 import static chopchop.testutil.TypicalIngredients.BANANA;
-import static chopchop.testutil.TypicalRecipes.*;
+import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
+import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
+import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
