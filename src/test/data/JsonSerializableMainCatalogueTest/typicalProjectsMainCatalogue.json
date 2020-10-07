@@ -3,49 +3,49 @@
   "projects" : [ {
     "projectName" : "Alice Pauline",
     "deadline": "21-03-2020 00:00:00",
-    "email" : "alice@example.com",
+    "repoUrl": "https://github.com/a/a.git",
     "projectDescription" : "123, Jurong West Ave 6, #08-111",
     "projectTagged" : [ "friends" ],
     "occupied" : [ "Write DG", "Write user stories" ]
   }, {
     "projectName" : "Benson Meier",
     "deadline": "21-03-2020 00:00:00",
-    "email" : "johnd@example.com",
+    "repoUrl": "https://github.com/b/b.git",
     "projectDescription" : "311, Clementi Ave 2, #02-25",
     "projectTagged" : [ "owesMoney", "friends" ],
     "occupied" : [ "Practice presentation" ]
   }, {
     "projectName" : "Carl Kurz",
     "deadline": "21-03-2020 00:00:00",
-    "email" : "heinz@example.com",
+    "repoUrl": "https://github.com/c/c.git",
     "projectDescription" : "wall street",
     "projectTagged" : [ ],
     "occupied" : [ "Read info pack" ]
   }, {
     "projectName" : "Daniel Meier",
     "deadline": "21-03-2020 00:00:00",
-    "email" : "cornelia@example.com",
+    "repoUrl": "https://github.com/d/d.git",
     "projectDescription" : "10th street",
     "projectTagged" : [ "friends" ],
     "occupied" : [ ]
   }, {
     "projectName" : "Elle Meyer",
     "deadline":"21-03-2020 00:00:00",
-    "email" : "werner@example.com",
+    "repoUrl": "https://github.com/e/e.git",
     "projectDescription" : "michegan ave",
     "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
     "projectName" : "Fiona Kunz",
     "deadline": "21-03-2020 00:00:00",
-    "email" : "lydia@example.com",
+    "repoUrl": "https://github.com/f/f.git",
     "projectDescription" : "little tokyo",
     "projectTagged" : [ ],
     "occupied" : [ ]
   }, {
     "projectName" : "George Best",
     "deadline": "21-03-2020 00:00:00",
-    "email" : "anna@example.com",
+    "repoUrl": "https://github.com/g/g.git",
     "projectDescription" : "4th street",
     "projectTagged" : [ ],
     "occupied" : [ ]

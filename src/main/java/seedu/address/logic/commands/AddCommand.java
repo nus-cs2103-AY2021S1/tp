@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,14 +23,14 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_REPOURL + "REPOURL "
             + PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
             + "[" + PREFIX_PROJECT_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT_NAME + "The Blair project "
             + PREFIX_DEADLINE + "29-02-2020 00:00:00"
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_REPOURL + "http://github.com/a/b.git "
             + PREFIX_PROJECT_DESCRIPTION + "Coding in Greenwich "
             + PREFIX_PROJECT_TAG + "challenging "
             + PREFIX_PROJECT_TAG + "WFH"

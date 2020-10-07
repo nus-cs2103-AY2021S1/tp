@@ -39,7 +39,7 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label projectDescription;
     @FXML
-    private Label email;
+    private Label repoUrl;
     @FXML
     private FlowPane tags;
     @FXML
@@ -61,17 +61,17 @@ public class ProjectCard extends UiPart<Region> {
                 .add(new Label(projectTag.projectTagName)));
 
         projectDescription.setText(project.getProjectDescription().value);
-        email.setText(project.getEmail().value);
+        repoUrl.setText(project.getRepoUrl().value);
         project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         //System.out.println(status + name.getText());
         if (status == Status.CATALOGUE) {
             projectDescription.setVisible(false);
-            email.setVisible(false);
+            repoUrl.setVisible(false);
             tasks.setVisible(false);
             projectDescription.setManaged(false);
-            email.setManaged(false);
+            repoUrl.setManaged(false);
             tasks.setManaged(false);
         }
     }

@@ -2,7 +2,7 @@
   "projects": [ {
     "projectName": "Hans Muster",
     "deadline": "29-02-2020 00:00:00",
-    "email": "invalid@email!3e",
+    "repoUrl": "https://invalid.com/invalid/invalid",
     "projectDescription": "4th street"
   } ]
 }

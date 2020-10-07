@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.HashMap;
@@ -15,10 +15,10 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -34,24 +34,24 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_REPOURL,
                     PREFIX_PROJECT_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME,
-            PREFIX_PROJECT_DESCRIPTION, PREFIX_DEADLINE, PREFIX_EMAIL)
+            PREFIX_PROJECT_DESCRIPTION, PREFIX_DEADLINE, PREFIX_REPOURL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        RepoUrl repoUrl = ParserUtil.parseRepoUrl(argMultimap.getValue(PREFIX_REPOURL).get());
         ProjectDescription projectDescription = ParserUtil.projectDescription(argMultimap.getValue(
             PREFIX_PROJECT_DESCRIPTION).get());
         Set<ProjectTag> projectTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_PROJECT_TAG));
         Set<Task> taskList = ParserUtil.parseTasks(argMultimap.getAllValues(PREFIX_TASK));
 
-        Project project = new Project(projectName, deadline, email, projectDescription, projectTagList,
+        Project project = new Project(projectName, deadline, repoUrl, projectDescription, projectTagList,
             new HashMap<>(), taskList);
 
         return new AddCommand(project);

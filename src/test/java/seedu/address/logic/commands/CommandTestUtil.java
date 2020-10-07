@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_NAME_BOT = "Coders without Borders";
     public static final String VALID_DEADLINE_AI = "21-03-2020 10:00:00";
     public static final String VALID_DEADLINE_BOT = "31-12-2020 10:00:00";
-    public static final String VALID_EMAIL_AI = "amy@example.com";
-    public static final String VALID_EMAIL_BOT = "bob@example.com";
+    public static final String VALID_REPOURL_A = "https://github.com/valid/a.git";
+    public static final String VALID_REPOURL_B = "https://github.com/valid/b.git";
     public static final String VALID_PROJECT_DESCRIPTION_AI = "Bring AI into every toaster";
     public static final String VALID_PROJECT_DESCRIPTION_BOT = "Better people through code";
     public static final String VALID_PROJECT_TAG_HANG = "hang";
@@ -45,8 +45,8 @@ public class CommandTestUtil {
     public static final String PROJECT_NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_BOT;
     public static final String DEADLINE_DESC_A = " " + PREFIX_DEADLINE + VALID_DEADLINE_AI;
     public static final String DEADLINE_DESC_B = " " + PREFIX_DEADLINE + VALID_DEADLINE_BOT;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AI;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOT;
+    public static final String REPOURL_DESC_A = " " + PREFIX_REPOURL + VALID_REPOURL_A;
+    public static final String REPOURL_DESC_B = " " + PREFIX_REPOURL + VALID_REPOURL_B;
     public static final String PROJECT_DESCRIPTION_DESC_AMY = " " + PREFIX_PROJECT_DESCRIPTION
         + VALID_PROJECT_DESCRIPTION_AI;
     public static final String PROJECT_DESCRIPTION_DESC_BOB = " " + PREFIX_PROJECT_DESCRIPTION
@@ -59,7 +59,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_PROJECT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "29/02/1999 00:00:00"; // '-' is used instead of '/'
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_REPOURL_DESC = " " + PREFIX_REPOURL
+            + "https://github.com/a/b"; // missing '.git' part
     public static final String INVALID_PROJECT_DESCRIPTION_DESC = " "
         + PREFIX_PROJECT_DESCRIPTION; // empty string not allowed
     // for addresses
@@ -74,11 +75,11 @@ public class CommandTestUtil {
 
     static {
         DESC_A = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_AI)
-                .withDeadline(VALID_DEADLINE_AI).withEmail(VALID_EMAIL_AI).withProjectDescription(
+                .withDeadline(VALID_DEADLINE_AI).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
                 VALID_PROJECT_DESCRIPTION_AI)
                 .withTags(VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
         DESC_B = new EditProjectDescriptorBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
-                .withDeadline(VALID_DEADLINE_BOT).withEmail(VALID_EMAIL_BOT).withProjectDescription(
+                .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
                 VALID_PROJECT_DESCRIPTION_BOT)
                 .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG).build();
     }

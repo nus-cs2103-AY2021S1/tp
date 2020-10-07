@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -28,7 +28,7 @@ class JsonAdaptedProject {
 
     private final String projectName;
     private final String deadline;
-    private final String email;
+    private final String repoUrl;
     private final String projectDescription;
     private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
     private final List<JsonAdaptedTask> occupied = new ArrayList<>();
@@ -39,13 +39,13 @@ class JsonAdaptedProject {
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
                                 @JsonProperty("deadline") String deadline,
-                                @JsonProperty("email") String email,
+                                @JsonProperty("repoUrl") String repoUrl,
                                 @JsonProperty("projectDescription") String projectDescription,
                                 @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
                                 @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
         this.projectName = projectName;
         this.deadline = deadline;
-        this.email = email;
+        this.repoUrl = repoUrl;
         this.projectDescription = projectDescription;
         if (projectTagged != null) {
             this.projectTagged.addAll(projectTagged);
@@ -61,7 +61,7 @@ class JsonAdaptedProject {
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().fullProjectName;
         deadline = source.getDeadline().value;
-        email = source.getEmail().value;
+        repoUrl = source.getRepoUrl().value;
         projectDescription = source.getProjectDescription().value;
         projectTagged.addAll(source.getProjectTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -104,13 +104,13 @@ class JsonAdaptedProject {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (repoUrl == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RepoUrl.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!RepoUrl.isValidRepoUrl(repoUrl)) {
+            throw new IllegalValueException(RepoUrl.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final RepoUrl modelRepoUrl = new RepoUrl(repoUrl);
 
         if (projectDescription == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -123,7 +123,7 @@ class JsonAdaptedProject {
 
         final Set<ProjectTag> modelProjectTags = new HashSet<>(projectProjectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
-        return new Project(modelProjectName, modelDeadline, modelEmail, modelProjectDescription,
+        return new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
             modelProjectTags, new HashMap<>(), modelTasks);
     }
 

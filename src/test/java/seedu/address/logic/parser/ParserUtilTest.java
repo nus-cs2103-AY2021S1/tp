@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Email;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -25,13 +25,13 @@ public class ParserUtilTest {
     private static final String INVALID_PROJECT_NAME = "R@chel";
     private static final String INVALID_DEADLINE = "21022020 203333";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_REPOURL = "https://github.com/a/b";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_PROJECT_NAME = "Rachel Walker";
     private static final String VALID_DEADLINE = "21-02-2020 20:33:33";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_REPOURL = "https://github.com/a/b.git";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_TASK_1 = "Write DG";
@@ -129,26 +129,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseRepoUrl_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRepoUrl((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseRepoUrl_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRepoUrl(INVALID_REPOURL));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseRepoUrl_validValueWithoutWhitespace_returnsRepoUrl() throws Exception {
+        RepoUrl expectedRepoUrl = new RepoUrl(VALID_REPOURL);
+        assertEquals(expectedRepoUrl, ParserUtil.parseRepoUrl(VALID_REPOURL));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseRepoUrl_validValueWithWhitespace_returnsTrimmedRepoUrl() throws Exception {
+        String repoUrlWithWhitespace = WHITESPACE + VALID_REPOURL + WHITESPACE;
+        RepoUrl expectedRepoUrl = new RepoUrl(VALID_REPOURL);
+        assertEquals(expectedRepoUrl, ParserUtil.parseRepoUrl(repoUrlWithWhitespace));
     }
 
     @Test

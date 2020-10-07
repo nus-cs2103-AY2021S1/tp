@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Set;
@@ -34,7 +34,7 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_PROJECT_NAME + project.getProjectName().fullProjectName + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().value + " ");
-        sb.append(PREFIX_EMAIL + project.getEmail().value + " ");
+        sb.append(PREFIX_REPOURL + project.getRepoUrl().value + " ");
         sb.append(PREFIX_PROJECT_DESCRIPTION + project.getProjectDescription().value + " ");
         project.getProjectTags().stream().forEach(
             s -> sb.append(PREFIX_PROJECT_TAG + s.projectTagName + " ")
@@ -53,7 +53,7 @@ public class ProjectUtil {
         descriptor.getProjectName().ifPresent(name -> sb.append(PREFIX_PROJECT_NAME).append(name.fullProjectName)
             .append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getRepoUrl().ifPresent(email -> sb.append(PREFIX_REPOURL).append(email.value).append(" "));
         descriptor.getProjectDescription().ifPresent(address -> sb.append(PREFIX_PROJECT_DESCRIPTION).append(
             address.value).append(" "));
         if (descriptor.getProjectTags().isPresent()) {

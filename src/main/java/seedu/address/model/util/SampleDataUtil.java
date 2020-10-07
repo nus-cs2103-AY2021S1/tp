@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -22,23 +22,25 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
             new Project(new ProjectName("Alex Yeoh"), new Deadline("21-04-2021 00:00:00"),
-                new Email("alexyeoh@example.com"), new ProjectDescription("Blk 30 Geylang Street 29, #06-40"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"), new HashMap<>(), getTaskSet("Refactor project class")),
             new Project(new ProjectName("Bernice Yu"), new Deadline("21-04-2021 00:00:00"),
-                new Email("berniceyu@example.com"), new ProjectDescription("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new RepoUrl("http://github.com/a/b.git"),
+                new ProjectDescription("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"), new HashMap<>(),
                 getTaskSet("Brainstorm user stories", "Refine data model")),
             new Project(new ProjectName("Charlotte Oliveiro"), new Deadline("21-04-2021 00:00:00"),
-                new Email("charlotte@example.com"), new ProjectDescription("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), new HashMap<>(), getTaskSet("Write UG")),
             new Project(new ProjectName("David Li"), new Deadline("21-04-2021 00:00:00"),
-                new Email("lidavid@example.com"), new ProjectDescription("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new RepoUrl("http://github.com/a/b.git"),
+                new ProjectDescription("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"), new HashMap<>(), getTaskSet("Delete ProjectDescription attribute")),
             new Project(new ProjectName("Irfan Ibrahim"), new Deadline("21-04-2021 00:00:00"),
-                new Email("irfan@example.com"), new ProjectDescription("Blk 47 Tampines Street 20, #17-35"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"), new HashMap<>(), getTaskSet()),
             new Project(new ProjectName("Roy Balakrishnan"), new Deadline("21-04-2021 00:00:00"),
-                new Email("royb@example.com"), new ProjectDescription("Blk 45 Aljunied Street 85, #11-31"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"), new HashMap<>(), getTaskSet("Write DG"))
         };
     }

@@ -2,13 +2,13 @@
   "projects": [ {
     "projectName": "Alice Pauline",
     "deadline": "29-02-2020 00:00:00",
-    "email": "alice@example.com",
+    "repoUrl": "https://github.com/a/a.git",
     "projectDescription": "123, Jurong West Ave 6, #08-111",
     "projectTagged": [ "friends" ]
   }, {
     "projectName": "Alice Pauline",
     "deadline": "29-02-2020 00:00:00",
-    "email": "pauline@example.com",
+    "repoUrl": "https://github.com/a/a.git",
     "projectDescription": "4th street",
     "projectTagged": ["writeDG"]
   } ]

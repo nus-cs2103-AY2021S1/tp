@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
@@ -22,10 +22,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Email;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 /**
@@ -41,13 +41,13 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_PROJECT_NAME + "PROJECTNAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_REPOURL + "REPOURL] "
             + "[" + PREFIX_PROJECT_DESCRIPTION + "PROJECTDESCRIPTION] "
             + "[" + PREFIX_PROJECT_TAG + "PROJECT TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "29-02-2020 00:00:00 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_REPOURL + "https://github.com/a/a.git";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -98,14 +98,14 @@ public class EditCommand extends Command {
 
         ProjectName updatedProjectName = editProjectDescriptor.getProjectName().orElse(projectToEdit.getProjectName());
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
-        Email updatedEmail = editProjectDescriptor.getEmail().orElse(projectToEdit.getEmail());
+        RepoUrl updatedRepoUrl = editProjectDescriptor.getRepoUrl().orElse(projectToEdit.getRepoUrl());
         ProjectDescription updatedProjectDescription = editProjectDescriptor.getProjectDescription()
             .orElse(projectToEdit.getProjectDescription());
         Set<ProjectTag> updatedProjectTags = editProjectDescriptor.getProjectTags().orElse(
             projectToEdit.getProjectTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
 
-        return new Project(updatedProjectName, updatedDeadline, updatedEmail, updatedProjectDescription,
+        return new Project(updatedProjectName, updatedDeadline, updatedRepoUrl, updatedProjectDescription,
                 updatedProjectTags, new HashMap<>(), updatedTasks);
     }
 
@@ -134,7 +134,7 @@ public class EditCommand extends Command {
     public static class EditProjectDescriptor {
         private ProjectName projectName;
         private Deadline deadline;
-        private Email email;
+        private RepoUrl repoUrl;
         private ProjectDescription projectDescription;
         private Set<ProjectTag> projectTags;
         private Set<Task> tasks;
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setProjectName(toCopy.projectName);
             setDeadline(toCopy.deadline);
-            setEmail(toCopy.email);
+            setRepoUrl(toCopy.repoUrl);
             setProjectDescription(toCopy.projectDescription);
             setTags(toCopy.projectTags);
             setTasks(toCopy.tasks);
@@ -158,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(projectName, deadline, email, projectDescription, projectTags, tasks);
+            return CollectionUtil.isAnyNonNull(projectName, deadline, repoUrl, projectDescription, projectTags, tasks);
         }
 
         public void setProjectName(ProjectName projectName) {
@@ -177,12 +177,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(deadline);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setRepoUrl(RepoUrl repoUrl) {
+            this.repoUrl = repoUrl;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<RepoUrl> getRepoUrl() {
+            return Optional.ofNullable(repoUrl);
         }
 
         public void setProjectDescription(ProjectDescription projectDescription) {
@@ -244,7 +244,7 @@ public class EditCommand extends Command {
 
             return getProjectName().equals(e.getProjectName())
                     && getDeadline().equals(e.getDeadline())
-                    && getEmail().equals(e.getEmail())
+                    && getRepoUrl().equals(e.getRepoUrl())
                     && getProjectDescription().equals(e.getProjectDescription())
                     && getProjectTags().equals(e.getProjectTags())
                     && getTasks().equals(e.getTasks());

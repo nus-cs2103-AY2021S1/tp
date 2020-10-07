@@ -24,7 +24,7 @@ public class Project {
     // Identity fields
     private final ProjectName projectName;
     private final Deadline deadline;
-    private final Email email;
+    private final RepoUrl repoUrl;
 
     // Data fields
     private final ProjectDescription projectDescription;
@@ -36,13 +36,13 @@ public class Project {
     /**
      * Every field must be present and not null.
      */
-    public Project(ProjectName projectName, Deadline deadline, Email email, ProjectDescription projectDescription,
+    public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
                    HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(projectName, deadline, email, projectDescription, projectTags, listOfParticipations, tasks);
+        requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags, listOfParticipations, tasks);
         this.projectName = projectName;
         this.deadline = deadline;
-        this.email = email;
+        this.repoUrl = repoUrl;
         this.projectDescription = projectDescription;
         this.projectTags.addAll(projectTags);
         this.listOfParticipations.putAll(listOfParticipations);
@@ -57,8 +57,8 @@ public class Project {
         return deadline;
     }
 
-    public Email getEmail() {
-        return email;
+    public RepoUrl getRepoUrl() {
+        return repoUrl;
     }
 
     public ProjectDescription getProjectDescription() {
@@ -120,7 +120,7 @@ public class Project {
 
         return otherProject != null
                 && otherProject.getProjectName().equals(getProjectName())
-                && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getEmail().equals(getEmail()));
+                && (otherProject.getDeadline().equals(getDeadline()) || otherProject.getRepoUrl().equals(getRepoUrl()));
     }
 
     /**
@@ -140,7 +140,7 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getDeadline().equals(getDeadline())
-                && otherProject.getEmail().equals(getEmail())
+                && otherProject.getRepoUrl().equals(getRepoUrl())
                 && otherProject.getProjectDescription().equals(getProjectDescription())
                 && otherProject.getProjectTags().equals(getProjectTags())
                 && otherProject.getTasks().equals(getTasks());
@@ -149,7 +149,7 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(projectName, deadline, email, projectDescription, projectTags, tasks);
+        return Objects.hash(projectName, deadline, repoUrl, projectDescription, projectTags, tasks);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class Project {
                 .append(" Deadline: ")
                 .append(getDeadline())
                 .append(" Email: ")
-                .append(getEmail())
+                .append(getRepoUrl())
                 .append(" ProjectDescription: ")
                 .append(getProjectDescription())
                 .append(" Project Tags: ");

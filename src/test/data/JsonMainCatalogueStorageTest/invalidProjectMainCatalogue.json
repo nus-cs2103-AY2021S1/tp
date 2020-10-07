@@ -2,7 +2,7 @@
   "projects": [ {
     "name": "Project with invalid name field: Ha!ns Mu@ster",
     "deadline": "9482424",
-    "email": "hans@example.com",
+    "repoUrl": "https://github.con/valid/valid.git",
     "projectDescription": "4th street"
   } ]
 }

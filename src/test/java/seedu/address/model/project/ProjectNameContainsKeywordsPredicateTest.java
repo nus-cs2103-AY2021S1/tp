@@ -71,6 +71,6 @@ public class ProjectNameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("21-03-2020", "00:00:00",
                 "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new ProjectBuilder().withProjectName("Alice").withDeadline("21-03-2020 00:00:00")
-                .withEmail("alice@email.com").withProjectDescription("Main Street").build()));
+                .withRepoUrl("https://github.com/a/a.git").withProjectDescription("Main Street").build()));
     }
 }

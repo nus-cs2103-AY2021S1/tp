@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_BOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_DG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_HANG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +46,7 @@ public class EditProjectDescriptorTest {
         assertFalse(DESC_A.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withEmail(VALID_EMAIL_BOT).build();
+        editedAmy = new EditProjectDescriptorBuilder(DESC_A).withRepoUrl(VALID_REPOURL_B).build();
         assertFalse(DESC_A.equals(editedAmy));
 
         // different address -> returns false
