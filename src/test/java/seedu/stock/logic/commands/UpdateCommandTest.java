@@ -2,6 +2,7 @@ package seedu.stock.logic.commands;
 
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
@@ -80,6 +81,20 @@ public class UpdateCommandTest {
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
-    
-    
+
+    @Test
+    public void execute_filteredList_success() {
+        Stock stockInFilteredList = model.getFilteredStockList().get(0);
+        Stock updatedStock = new StockBuilder(stockInFilteredList).withName(VALID_NAME_BANANA).build();
+        UpdateCommand updateCommand = new UpdateCommand(new UpdateStockDescriptorBuilder().withName(VALID_NAME_BANANA)
+                .withSerialNumber(stockInFilteredList.getSerialNumber().toString()).build());
+
+        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
+
+        Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
+                model.getSerialNumberSetsBook());
+        expectedModel.setStock(model.getFilteredStockList().get(0), updatedStock);
+
+        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
+    }
 }
