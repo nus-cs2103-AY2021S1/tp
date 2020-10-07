@@ -34,7 +34,8 @@ public class AddIngredientCommandIntTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Ingredient personInList = model.getIngredientBook().getFoodEntryList().get(0);
-        assertCommandFailure(new AddIngredientCommand(personInList), model, AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+        assertCommandFailure(new AddIngredientCommand(personInList), model,
+            AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
     }
 
 }
