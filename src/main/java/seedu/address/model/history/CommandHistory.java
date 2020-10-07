@@ -21,10 +21,17 @@ public class CommandHistory {
     }
 
     /**
-     * Returns true if command history is not empty.
+     * Returns true if command history have past commands.
      */
     public static boolean hasCommand() {
         return commandHistory.size() != 1;
+    }
+
+    /**
+     * Returns true if command history is empty.
+     */
+    public static boolean isEmpty() {
+        return commandHistory.size() == 0;
     }
 
     /**
