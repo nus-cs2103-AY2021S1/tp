@@ -9,7 +9,6 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
  */
 public class Quantity {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity numbers should be a number more than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
@@ -49,5 +48,4 @@ public class Quantity {
     public int hashCode() {
         return quantity.hashCode();
     }
-
 }

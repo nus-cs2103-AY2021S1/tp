@@ -12,6 +12,7 @@ import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
 import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.HelpCommand;
+import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,6 +51,15 @@ public class StockBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommandParser().parse(arguments);
+
+        //        case ClearCommand.COMMAND_WORD:
+        //            return new ClearCommand();
+        //
+        //        case ListCommand.COMMAND_WORD:
+        //            return new ListCommand();
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
