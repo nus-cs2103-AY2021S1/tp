@@ -41,7 +41,7 @@ public class Count implements Quantity {
      * @param unit  the unit string, which should be empty.
      * @return      the quantity, if the unit was valid.
      */
-    public static Result<Count> of(double value, String unit) {
+    public static Result<Quantity> of(double value, String unit) {
         if (unit.isEmpty()) {
             return Result.of(new Count(value));
         } else {

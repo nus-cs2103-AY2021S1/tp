@@ -36,7 +36,7 @@ public class Volume implements Quantity {
     }
 
     @Override
-    public Result<Volume> add(Quantity qty) {
+    public Result<Quantity> add(Quantity qty) {
 
         if (!(qty instanceof Volume)) {
             return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
@@ -86,7 +86,7 @@ public class Volume implements Quantity {
      * @param unit  the unit string, eg. "l" or "cups"
      * @return      the volume quantity, if the unit was valid.
      */
-    public static Result<Volume> of(double value, String unit) {
+    public static Result<Quantity> of(double value, String unit) {
 
         double ratio = 1;
 

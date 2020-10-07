@@ -40,7 +40,7 @@ public class Mass implements Quantity {
     }
 
     @Override
-    public Result<Mass> add(Quantity qty) {
+    public Result<Quantity> add(Quantity qty) {
 
         if (!(qty instanceof Mass)) {
             return Result.error("cannot add '%s' to '%s' (incompatbile units)", qty, this);
@@ -85,7 +85,7 @@ public class Mass implements Quantity {
      * @param unit  the unit string, eg. "kg" or "g"
      * @return      the mass quantity, if the unit was valid.
      */
-    public static Result<Mass> of(double value, String unit) {
+    public static Result<Quantity> of(double value, String unit) {
         switch (unit) {
         case "mg":  return Result.of(milligrams(value));
         case "g":   return Result.of(grams(value));

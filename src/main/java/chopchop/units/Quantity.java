@@ -44,9 +44,9 @@ public interface Quantity {
      * @param input the string input
      * @return      the parsed input, or an error message.
      */
-    public static Result<? extends Quantity> parse(String input) {
+    public static Result<Quantity> parse(String input) {
 
-        final List<BiFunction<Double, String, Result<? extends Quantity>>> knownUnits = List.of(
+        final List<BiFunction<Double, String, Result<Quantity>>> knownUnits = List.of(
             Mass::of, Volume::of, Count::of
         );
 
