@@ -236,42 +236,69 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* NUS CS Students 
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* seeking an integrated calendar
+* seeking a task management application to plan their schedule
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: A calendar and scheduling application that assists students in the planning of their lecture and tutorial schedules, as well as keep track of assignments and deadlines.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As …​                                    | I want to …​                     | So that I can…​                                                        |
+|:--------:| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | a new user                                   | have access to user guide/help file easily |learn more about the software easily when I need            |
+| `* * *`  | a student                                  | see the time of my lessons and meetings |      plan my day.                                             |
+| `* * *`  | a student                                  | see my deadlines at a glance   | prioritise my work.                                                    |
+| `* * *`  | a student                                  | assign priorities to my different tasks | know which ones I should do first |
+| `* * *`  | a student                                  | delete tasks    | remove cancelled obligations.        |
+| `* * *`  | a student with many tasks                  |search through my task using keywords   | I can find relevant tasks quickly |
+| `* * *`  | an advanced user                           |edit the source file of todo list directly   |make changes without going through the CLI|
+|`* *`| a NUS student | add my periodic asks at once | avoid adding them repeatedly |
+| `* *` | a student bad at remembering deadlines | sort my deadlines based on date | know which deadline is coming soon |
+| `* *` | an efficient student | type abbreviated commands | type super fast |
+| `* *` | a student | see the statistics of my tasks | preview the workload I will encounter in the coming weeks |
+| `* *` | self-consistent NUS student | add task to different task | make my plan well organised |
+| `* *` | a NUS student |  add class schedule by module code |  |
+| `*` | an every day user | receive a warm welcome when I open the app | feel pleased |
+| `*` | a student likes customisation | customise some parts of UI | feel more comfortable when I use it |
+| `*` | a student | set a free day for my timetable by making proper arrangement | have a long weekend |
+| `*` | a user | get notifications for recent events and coming deadlines | will not miss them |
+| `*` | an organised user | be able to add tags to my task and filter by tags | sort my tasks by topic |
+| `*` | a lazy user | past and add a bunch of different tasks at once through command line | add them fastly |
+| `*` | a student with a lot of group projects | assiciate tasks with people | keep track which group member is doing what |
+| `*` | an advanced user | add dates to todos to convert them to events/deadlines | I don't have to delete and create a new task |
+| `*` | a user | change the description of a task | update them without deleting |
+| `*` | a forgetful user | have duplicate tasks deleted | avoid the same task appearing twice |
+| `*` | a lazy student | have acces to links to websites or file in the description | have access to related resources easily |
+| `*` | a careless student | undo my commands | avoid misoperation |
+| `*` | a normal user |  go through my tasks opon opening the app | be well informed |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ScheDar` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: add a ta's'k**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters add command specifying task type
+2. ScheDar give a response
+
+    Use case ends.
+
+**Use case: delete a task**
+
+**MSS**
+
+1. User requests to delete a specific task in the list
+2. ScheDar deletes the task
 
     Use case ends.
 
@@ -283,16 +310,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ScheDar shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+**Use case: assign priority to a task**
+
+**MSS**
+
+1. User requests to assign priority a specific task in the list
+2. ScheDar gives priority to the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ScheDar shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The task already have a priority.
+
+    * 4a1. ScheDar shows a confirmation about overriding.
+
+         * 4a1a User confirms override
+
+         * ScheDar gives new priority to the task
+
+           Use case ends
+
+         * 4a1a User denies override
+
+           Use case resumes at step 1.
+
+**Use case: mark a task as done**
+
+**MSS**
+
+1. User requests to mark a specific task in the list as done
+2. ScheDar marks the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ScheDar shows an error message.
+
+      Use case resumes at step 1.
+
+* 4a. The task is already done.
+
+    * 3a1. ScheDar shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: retrieve last-deleted task**
+
+**MSS**
+
+1. User requests to retrieve a last-deleted task
+2. ScheDar retrieves the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The rubbish bin is empty.
+
+    * 3a1. ScheDar shows an error message.
+
+  Use case ends.
+
+**Use case: search for tasks by keyword**
+
+**MSS**
+
+1. User requests search with keyward
+2. ScheDar get matched tasks and list them
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The keyword is not found.
+
+   * 3a1. ScheDar shows an warning message.
+
+  Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -300,7 +423,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
