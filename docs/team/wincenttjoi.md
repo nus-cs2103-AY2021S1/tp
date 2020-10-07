@@ -13,24 +13,38 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.1` on GitHub
+  * Planned and sketched UI Mock Up using Figma ([\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/63))
+
+* **Added help and preview window**: Help window and summary command window. <<Insert PR>>
+  * What it does: Allows users to have easy reference when they want to start learning OneShelf.
+  * Justification: As OneShelf have a relatively steep learning curve, it is good to have a good guidance at the
+  start to ensure that user can get accustomed to the features easily.
 
 * **Enhancements to existing features**:
-  * Updated the GUI layout draft 1 (Pull requests [\#42](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/42))
+  * Updated the GUI layout draft 1 (Pull requests [\#42](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/42),
+    [\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/64/files))
 
 * **Documentation**:
   * General: Initial Project Readme set up to match our project
   * User Guide:
-    * Added documentation for the features `clear` and `edit`
+    * Added documentation for the features `clear`, `edit` and `help`
   * Developer Guide:
     * Added Glossary
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments):
-  * Contributed to forum discussions (examples: )
+  * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/71)
+  * Contributed to forum discussions (examples: 
+    [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/193),
+    [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/150),
+    [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/47#issuecomment-678718187),
+    [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/86#issuecomment-681816644),
+    [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/110#issuecomment-683312239),
+    [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502),
+    [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/278))
   * Reported bugs and suggestions for other teams in the class (examples:)
   * Some parts of the history feature I added was adopted by several other class mates ()
 
 * **Tools**:
   * Integrated GitHub Actions CI/CD tools for the team
   * Integrated a new Github plugin (ZenHub) during meeting to the team
-  * Set up GitHub Team Repo
+  * Set up GitHub Organization and Team Repo
