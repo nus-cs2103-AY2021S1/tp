@@ -8,6 +8,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIALNUMBER_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIALNUMBER_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStocksSerialNumbers;
@@ -184,6 +185,33 @@ public class UpdateCommandTest {
         expectedModel.setStock(model.getFilteredStockList().get(1), updatedStockBanana);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_serialNumberNotFound_failure() {
+        Stock updatedStock = new StockBuilder().withSerialNumber("NotFound").build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
+        UpdateCommand updateCommand = new UpdateCommand(descriptor);
+
+        assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_someSerialNumberNotFound_failure() {
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
+                .withSerialNumber(VALID_SERIALNUMBER_APPLE, "Not Found").build();
+        UpdateCommand updateCommand = new UpdateCommand(descriptor);
+
+        assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_allSerialNumberNotFound_failure() {
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
+                .withSerialNumber("Unknown", "Not Found").build();
+        UpdateCommand updateCommand = new UpdateCommand(descriptor);
+
+        assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
     }
 
     @Test
