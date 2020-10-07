@@ -45,10 +45,8 @@ public abstract class Macronutrient {
 
     @Override
     public String toString() {
-        String res = "MacronutrientType:" + this.getMacronutrientType() + "\n"
-                + "Amount: "
-                + this.getAmount() + "\n"
-                + "Caloric Count: " + this.getTotalCalories() + "\n";
+        String res = this.getMacronutrientType() + ": " + this.getAmount() + "\n"
+                + "Calories: " + this.getTotalCalories() + "\n";
         return res;
     }
 
