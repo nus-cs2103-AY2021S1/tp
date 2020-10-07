@@ -2,34 +2,25 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.AdditionalDetails;
-import seedu.address.model.student.ClassTime;
-import seedu.address.model.student.ClassVenue;
-import seedu.address.model.student.MeetingLink;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Subject;
 import seedu.address.model.student.Year;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.admin.Admin;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -44,12 +35,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -102,18 +91,8 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
-        ClassVenue updatedClassVenue = editStudentDescriptor.getClassVenue().orElse(studentToEdit.getClassVenue());
-        ClassTime updatedClassTime = editStudentDescriptor.getClassTime().orElse(studentToEdit.getClassTime());
-        AdditionalDetails updatedAdditionalDetails =
-                editStudentDescriptor.getAdditionalDetails().orElse(studentToEdit.getAdditionalDetails());
-        MeetingLink updatedMeetingLink = editStudentDescriptor.getMeetingLink().orElse(studentToEdit.getMeetingLink());
-        Subject updatedSubject = editStudentDescriptor.getSubject().orElse(studentToEdit.getSubject());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
-                updatedClassVenue,
-                updatedClassTime, updatedAdditionalDetails, updatedMeetingLink,
-                updatedSubject, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, new Admin());
     }
 
     @Override
@@ -143,12 +122,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private School school;
         private Year year;
-        private ClassVenue classVenue;
-        private ClassTime classTime;
-        private AdditionalDetails additionalDetails;
-        private MeetingLink meetingLink;
-        private Subject subject;
-        private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
 
@@ -161,19 +134,13 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setSchool(toCopy.school);
             setYear(toCopy.year);
-            setClassVenue(toCopy.classVenue);
-            setClassTime(toCopy.classTime);
-            setAdditionalDetails(toCopy.additionalDetails);
-            setMeetingLink(toCopy.meetingLink);
-            setSubject(toCopy.subject);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, meetingLink, classVenue, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, school, year);
         }
 
         public void setName(Name name) {
@@ -208,63 +175,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(year);
         }
 
-        public void setClassVenue(ClassVenue classVenue) {
-            this.classVenue = classVenue;
-        }
-
-        public Optional<ClassVenue> getClassVenue() {
-            return Optional.ofNullable(classVenue);
-        }
-
-        public void setClassTime(ClassTime classTime) {
-            this.classTime = classTime;
-        }
-
-        public Optional<ClassTime> getClassTime() {
-            return Optional.ofNullable(classTime);
-        }
-
-        public void setAdditionalDetails(AdditionalDetails additionalDetails) {
-            this.additionalDetails = additionalDetails;
-        }
-
-        public Optional<AdditionalDetails> getAdditionalDetails() {
-            return Optional.ofNullable(additionalDetails);
-        }
-
-        public void setSubject(Subject subject) {
-            this.subject = subject;
-        }
-
-        public Optional<Subject> getSubject() {
-            return Optional.ofNullable(subject);
-        }
-
-        public void setMeetingLink(MeetingLink meetingLink) {
-            this.meetingLink = meetingLink;
-        }
-
-        public Optional<MeetingLink> getMeetingLink() {
-            return Optional.ofNullable(meetingLink);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -283,13 +193,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getSchool().equals(e.getSchool())
-                    && getYear().equals(e.getYear())
-                    && getClassVenue().equals(e.getClassVenue())
-                    && getClassTime().equals(e.getClassTime())
-                    && getAdditionalDetails().equals(e.getAdditionalDetails())
-                    && getMeetingLink().equals(e.getMeetingLink())
-                    && getSubject().equals(e.getSubject())
-                    && getTags().equals(e.getTags());
+                    && getYear().equals(e.getYear());
         }
     }
 }
