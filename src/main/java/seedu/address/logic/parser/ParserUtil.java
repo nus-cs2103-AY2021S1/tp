@@ -13,7 +13,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.admin.AdditionalDetail;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,29 +96,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String detail} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code detail} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static AdditionalDetail parseAdditionalDetail(String detail) throws ParseException {
+        requireNonNull(detail);
+        String trimmedDetail = detail.trim();
+        if (!AdditionalDetail.isValidAdditionalDetail(trimmedDetail)) {
+            throw new ParseException(AdditionalDetail.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new AdditionalDetail(trimmedDetail);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
+            throws ParseException {
+        requireNonNull(additionalDetails);
+        final Set<AdditionalDetail> detailSet = new HashSet<>();
+        for (String detail : additionalDetails) {
+            detailSet.add(parseAdditionalDetail(detail));
         }
-        return tagSet;
+        return detailSet;
     }
 }

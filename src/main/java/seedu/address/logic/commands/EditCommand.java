@@ -22,6 +22,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.Admin;
 
+
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -123,6 +124,7 @@ public class EditCommand extends Command {
         private School school;
         private Year year;
 
+
         public EditStudentDescriptor() {}
 
         /**
@@ -174,6 +176,63 @@ public class EditCommand extends Command {
         public Optional<Year> getYear() {
             return Optional.ofNullable(year);
         }
+
+//        public void setClassVenue(ClassVenue classVenue) {
+//            this.classVenue = classVenue;
+//        }
+//
+//        public Optional<ClassVenue> getClassVenue() {
+//            return Optional.ofNullable(classVenue);
+//        }
+//
+//        public void setClassTime(ClassTime classTime) {
+//            this.classTime = classTime;
+//        }
+//
+//        public Optional<ClassTime> getClassTime() {
+//            return Optional.ofNullable(classTime);
+//        }
+//
+//        public void setAdditionalDetails(AdditionalDetail additionalDetail) {
+//            this.additionalDetail = additionalDetail;
+//        }
+//
+//        public Optional<AdditionalDetail> getAdditionalDetails() {
+//            return Optional.ofNullable(additionalDetail);
+//        }
+//
+//        public void setSubject(Subject subject) {
+//            this.subject = subject;
+//        }
+//
+//        public Optional<Subject> getSubject() {
+//            return Optional.ofNullable(subject);
+//        }
+//
+//        public void setMeetingLink(MeetingLink meetingLink) {
+//            this.meetingLink = meetingLink;
+//        }
+//
+//        public Optional<MeetingLink> getMeetingLink() {
+//            return Optional.ofNullable(meetingLink);
+//        }
+//
+//        /**
+//         * Sets {@code tags} to this object's {@code tags}.
+//         * A defensive copy of {@code tags} is used internally.
+//         */
+//        public void setTags(Set<Tag> tags) {
+//            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+//        }
+//
+//        /**
+//         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+//         * if modification is attempted.
+//         * Returns {@code Optional#empty()} if {@code tags} is null.
+//         */
+//        public Optional<Set<Tag>> getTags() {
+//            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+//        }
 
         @Override
         public boolean equals(Object other) {
