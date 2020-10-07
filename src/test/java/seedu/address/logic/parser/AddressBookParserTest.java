@@ -9,12 +9,16 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddLabelCommand;
+import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.LabelPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -50,6 +54,14 @@ public class AddressBookParserTest {
     //                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
     //        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     //    }
+
+    @Test public void parseCommand_label() throws Exception {
+        Person person = new PersonBuilder().build();
+        LabelPersonDescriptor descriptor = new LabelPersonDescriptorBuilder(person).build();
+        AddLabelCommand command = (AddLabelCommand) parser.parseCommand(AddLabelCommand.COMMAND_WORD + " n/"
+            + person.getName() + " " + PersonUtil.getLabelPersonDescriptorDetails(descriptor));
+        assertEquals(new AddLabelCommand(person.getName(), descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
