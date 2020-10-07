@@ -1,7 +1,7 @@
 package seedu.stock.logic.parser;
 
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
