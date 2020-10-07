@@ -39,7 +39,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
 
     /**
      * Replaces the contents of the Food list with {@code Foods}.
@@ -67,7 +67,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
         setFoodItems(newData.getFoodList());
     }
 
-    //// Food-level operations
+    // Food-level operations
 
     /**
      * Returns true if a Food with the same identity as {@code Food} exists in mcgymmy.
@@ -104,7 +104,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
         foodItems.remove(key);
     }
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {
