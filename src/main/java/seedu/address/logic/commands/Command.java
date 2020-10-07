@@ -8,6 +8,8 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
 
+    public static final String TYPE_CASE = "case";
+
     /**
      * Executes the command and returns the result message.
      *
