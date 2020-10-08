@@ -31,6 +31,12 @@ public abstract class Macronutrient {
 
     }
 
+    /**
+     * Check if the string is a Valid Macronutrient amount.
+     *
+     * @param value String value of Macronutrient.
+     * @return if the String is valid.
+     */
     public static boolean isValid(String value) {
         return value.matches(VALIDATION_REGEX);
     }
