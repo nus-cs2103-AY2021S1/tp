@@ -15,6 +15,11 @@ public class NameIsExactlyPredicate implements Predicate<Item> {
         this.keywords = keywords;
     }
 
+    public String getKeyword() {
+        assert(keywords.size() > 0);
+        return keywords.get(0);
+    }
+
     @Override
     public boolean test(Item item) {
         return keywords.stream()

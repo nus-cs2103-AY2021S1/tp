@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.item.NameIsExactlyPredicate;
 
@@ -28,7 +29,13 @@ public class ViewDetailsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
-        return new CommandResult("Displaying searched item", false, false, true);
+        boolean filteredItemListNotEmpty = model.getFilteredItemList().size() > 0;
+        if (filteredItemListNotEmpty) {
+            return new CommandResult("Displaying searched item", false, false, true);
+        } else {
+            return new CommandResult(String.format(Messages.MESSAGE_NO_ITEM_FOUND, predicate.getKeyword()),
+                    false, false, true);
+        }
     }
 
     @Override
