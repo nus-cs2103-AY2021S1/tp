@@ -17,7 +17,7 @@ public class ListCommand extends Command {
             + "Parameters: TYPE\n"
             + "Example: " + COMMAND_WORD + " case";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all cases";
 
     @Override
     public CommandResult execute(Model model) {
