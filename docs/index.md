@@ -3,8 +3,8 @@ layout: page
 title: Reeve
 ---
 
-[![CI Status](https://github.com/AY2021-W15-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021-W15-2/tp)
-[![codecov](https://codecov.io/gh/AY2021-W15-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021-W15-2/tp)
+[![CI Status](https://github.com/AY2021S1-CS2103T-W15-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W15-2/tp)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-W15-2/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-W15-2/tp)
 
 ![Ui](images/Ui.png)
 
