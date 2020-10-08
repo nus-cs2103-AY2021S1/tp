@@ -1,14 +1,14 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
-public class MeetingBook implements ReadOnlyMeetingBook{
+public class MeetingBook implements ReadOnlyMeetingBook {
 
     private final UniqueMeetingList meetings;
 
@@ -25,37 +25,65 @@ public class MeetingBook implements ReadOnlyMeetingBook{
 
     public MeetingBook() {}
 
+    /**
+     * Creates a MeetingBook using the Meetings in the {@code toBeCopied}
+     */
     public MeetingBook(ReadOnlyMeetingBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
     //// list overwrite operations
+    /**
+     * Replaces the contents of the meeting list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
+     */
     public void setMeetings(List<Meeting> meetings) {
         this.meetings.setMeetings(meetings);
     }
 
+    /**
+     * Resets the existing data of this {@code MeetingBook} with {@code newData}.
+     */
     public void resetData(ReadOnlyMeetingBook newData) {
         requireNonNull(newData);
         setMeetings(newData.getMeetingList());
     }
 
     //// meeting-level operations
+
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the meeting book.
+     */
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return meetings.contains(meeting);
     }
 
+    /**
+     * Adds a meeting to the meeting book.
+     * The meeting must not already exist in the meeting book.
+     */
     public void addMeeting(Meeting m) {
         meetings.add(m);
     }
 
+    /**
+     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the meeting book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another
+     * existing meeting in the address book.
+     */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireNonNull(editedMeeting);
 
         meetings.setMeeting(target, editedMeeting);
     }
 
+    /**
+     * Removes {@code key} from this {@code MeetingBook}.
+     * {@code key} must exist in the meeting book.
+     */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
     }

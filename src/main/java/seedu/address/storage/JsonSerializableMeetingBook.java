@@ -1,15 +1,16 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.meeting.Meeting;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonSerializableMeetingBook {
 
@@ -31,6 +32,11 @@ public class JsonSerializableMeetingBook {
         meetings.addAll(source.getMeetingList().stream().map(JsonAdaptedMeeting::new).collect(Collectors.toList()));
     }
 
+    /**
+     * Converts this meeting book into the model's {@code MeetingBook} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
     public MeetingBook toModelType() throws IllegalValueException {
         MeetingBook meetingBook = new MeetingBook();
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {

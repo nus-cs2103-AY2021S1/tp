@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,7 +24,7 @@ public class AddMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEETINGNAME + "CS2103 weekly meeting "
             + PREFIX_DATE + "2020-09-20 "
-            + PREFIX_TIME+ "10:00 ";
+            + PREFIX_TIME + "10:00 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";

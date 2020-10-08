@@ -41,7 +41,7 @@ public class SampleDataUtil {
 
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
-                new Meeting(new MeetingName("CS2103"), new Date("2020-09-20"), new Time("10:00"))
+            new Meeting(new MeetingName("CS2103"), new Date("2020-09-20"), new Time("10:00"))
         };
     }
 

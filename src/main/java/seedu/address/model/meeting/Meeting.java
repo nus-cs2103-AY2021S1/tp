@@ -1,11 +1,8 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.person.Person;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Meeting {
     // Identity fields
@@ -13,6 +10,9 @@ public class Meeting {
     private final Date date;
     private final Time time;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Meeting(MeetingName name, Date date, Time time) {
         requireAllNonNull(name, date, time);
         this.name = name;
@@ -20,18 +20,21 @@ public class Meeting {
         this.time = time;
     }
 
-    public MeetingName getName(){
+    public MeetingName getName() {
         return this.name;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return this.date;
     }
 
-    public Time getTime(){
+    public Time getTime() {
         return this.time;
     }
 
+    /**
+     * Returns true if both meetings have the same name, date and time.
+     */
     public boolean isSameMeeting(Meeting otherMeeting) {
         if (otherMeeting == this) {
             return true;
@@ -43,6 +46,10 @@ public class Meeting {
                 && otherMeeting.getTime().equals(getTime());
     }
 
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two meetings.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

@@ -1,19 +1,19 @@
 package seedu.address.storage;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyMeetingBook;
-import seedu.address.model.meeting.Meeting;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.ReadOnlyMeetingBook;
+
 
 public class JsonMeetingBookStorage implements MeetingBookStorage {
 
@@ -34,6 +34,12 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
         return readMeetingBook(filePath);
     }
 
+    /**
+     * Similar to {@link #readMeetingBook()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
     public Optional<ReadOnlyMeetingBook> readMeetingBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -56,6 +62,11 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
         saveMeetingBook(meetingBook, filePath);
     }
 
+    /**
+     * Similar to {@link #saveMeetingBook(ReadOnlyMeetingBook)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
     public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
         requireNonNull(meetingBook);
         requireNonNull(filePath);

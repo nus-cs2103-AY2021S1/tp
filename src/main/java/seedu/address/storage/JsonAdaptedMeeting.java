@@ -1,20 +1,16 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Time;
-import seedu.address.model.person.Person;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class JsonAdaptedMeeting {
 
@@ -36,15 +32,24 @@ public class JsonAdaptedMeeting {
         this.time = time;
     }
 
+    /**
+     * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
+     */
     public JsonAdaptedMeeting(Meeting source) {
         name = source.getName().meetingName;
         date = source.getDate().value;
         time = source.getTime().value;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted meeting object into the model's {@code Meeting} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
+     */
     public Meeting toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MeetingName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                                            MeetingName.class.getSimpleName()));
         }
         if (!MeetingName.isValidName(name)) {
             throw new IllegalValueException(MeetingName.MESSAGE_CONSTRAINTS);
