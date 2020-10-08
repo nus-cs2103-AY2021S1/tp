@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Expense}'s {@code Description} matches any of the keywords given.
+ * Tests that any of an {@code Expense}'s {@code Tags} matches any of the tags given.
  */
 public class TagsMatchesPredicate implements Predicate<Expense> {
     private final HashSet<Tag> tags;

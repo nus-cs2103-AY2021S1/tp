@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Expense}'s {@code Description} matches any of the keywords given.
+ * Tests that any of an {@code Expense}'s {@code Dates} matches any of the keywords given.
  */
 public class DateMatchesPredicate implements Predicate<Expense> {
     private final Set<Date> dates;
