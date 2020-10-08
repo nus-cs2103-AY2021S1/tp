@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 public class YearMatchPredicate implements Predicate<Student> {
 
     // Attributes
-    private final Year year;
+    public final Year year;
 
     // Constructor
     public YearMatchPredicate(Year year) {

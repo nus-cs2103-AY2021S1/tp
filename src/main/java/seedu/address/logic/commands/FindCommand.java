@@ -33,20 +33,26 @@ public class FindCommand extends Command {
     public static final String FIELD_NOT_GIVEN = "At least one field to search by must be provided.";
 
 
-    private final List<Predicate<Student>> predicates;
+    private final FindStudentDescriptor findStudentDescriptor;
 
     /**
-     * @param predicates List of predicates that we use to filter Reeve with
+     * @param findStudentDescriptor Details we use to filter Reeve with
      */
-    public FindCommand(List<Predicate<Student>> predicates) {
-        assert predicates.size() > 0;
-        this.predicates = predicates;
+    public FindCommand(FindStudentDescriptor findStudentDescriptor) {
+        requireNonNull(findStudentDescriptor);
+        this.findStudentDescriptor = findStudentDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        predicates.forEach(model::updateFilteredPersonList); // update model for each predicate
+        List<Predicate<Student>> predicates = findStudentDescriptor.getPredicates();
+        assert predicates.size() > 0;
+        Predicate<Student> consolidatedPredicate = student -> true;
+        for (Predicate <Student> currentPredicate : predicates) {
+            consolidatedPredicate = consolidatedPredicate.and(currentPredicate);
+        }
+        model.updateFilteredPersonList(consolidatedPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -55,7 +61,7 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicates.equals(((FindCommand) other).predicates)); // state check
+                && findStudentDescriptor.equals(((FindCommand) other).findStudentDescriptor)); // state check
     }
 
     /**
@@ -66,7 +72,6 @@ public class FindCommand extends Command {
         private NameContainsKeywordsPredicate namePredicate;
         private SchoolContainsKeywordsPredicate schoolPredicate;
         private YearMatchPredicate yearPredicate;
-
 
         public FindStudentDescriptor() {}
 

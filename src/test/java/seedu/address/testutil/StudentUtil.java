@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.Student;
 
 /**
@@ -43,6 +44,27 @@ public class StudentUtil {
         descriptor.getSchool().ifPresent(school -> sb.append(PREFIX_SCHOOL).append(school.school).append(" "));
         descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.year).append(" "));
 
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code FindStudentDescriptor}'s details.
+     */
+    public static String getFindStudentDescriptorDetails(FindCommand.FindStudentDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getNamePredicate().ifPresent(predicate -> {
+            String stringName = predicate.keywords.stream() // Convert the keywords list in predicate into a string
+                    .reduce("", (x, y) -> x + " " + y);
+            sb.append(PREFIX_NAME).append(stringName).append(" ");
+        });
+        descriptor.getSchoolPredicate().ifPresent(predicate -> {
+            String stringSchool = predicate.keywords.stream() // Convert the keywords list in predicate into a string
+                    .reduce("", (x, y) -> x + " " + y);
+            sb.append(PREFIX_SCHOOL).append(stringSchool).append(" ");
+        });
+        descriptor.getYearPredicate().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.year).append(" "));
+
+        System.out.println(sb.toString());
         return sb.toString();
     }
 }
