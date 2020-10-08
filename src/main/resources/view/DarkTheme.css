@@ -340,6 +340,7 @@
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 4 0 4 0;
 }
 
 #tags .label {

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.expense.Expense;
@@ -27,7 +28,7 @@ public class ExpenseCard extends UiPart<Region> {
     public final Expense expense;
 
     @FXML
-    private HBox cardPane;
+    private GridPane cardPane;
     @FXML
     private Label description;
     @FXML
@@ -49,7 +50,7 @@ public class ExpenseCard extends UiPart<Region> {
         this.expense = expense;
         id.setText(displayedIndex + ". ");
         description.setText(expense.getDescription().fullDescription);
-        amount.setText(expense.getAmount().value);
+        amount.setText("$" + expense.getAmount().value);
         date.setText(expense.getDate().toString());
         remark.setText(expense.getRemark().value);
         expense.getTags().stream()
