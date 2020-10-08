@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -37,6 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_INGREDIENT_BOB = "22222222";
     public static final Integer VALID_CALORIES_AMY = 10;
     public static final Integer VALID_CALORIES_BOB = 10;
+    public static final String VALID_INSTRUCTION_AMY = "instruction";
+    public static final String VALID_INSTRUCTION_BOB = "instruction2";
+    public static final String VALID_RECIPE_IMAGE_AMY = "images/healthy1";
+    public static final String VALID_RECIPE_IMAGE_BOB = "images/healthy2";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
@@ -50,6 +56,10 @@ public class CommandTestUtil {
     public static final String INGREDIENT_DESC_BOB = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_BOB;
     public static final String CALORIES_DESC_AMY = " " + PREFIX_CALORIES + VALID_CALORIES_AMY;
     public static final String CALORIES_DESC_BOB = " " + PREFIX_CALORIES + VALID_CALORIES_BOB;
+    public static final String INSTRUCTION_DESC_AMY = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_AMY;
+    public static final String INSTRUCTION_DESC_BOB = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_BOB;
+    public static final String RECIPE_IMAGE_DESC_AMY = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_AMY;
+    public static final String RECIPE_IMAGE_DESC_BOB = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
