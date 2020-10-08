@@ -12,13 +12,13 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
 public class TypicalMeetings {
 
     public static final Meeting CS2103 = new MeetingBuilder().withName("CS2103")
-            .withDate("alice@example.com")
-            .withTime("94351253")
+            .withDate("2020-10-07")
+            .withTime("10:00")
             .withPersons("Alice Pauline").build();
 
-/*
+    /*
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Meeting A = new MeetingBuilder().withName("Meeting A").withDate("8482424")
             .withEmail("stefan@example.com").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -29,12 +29,8 @@ public class TypicalMeetings {
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-*/
 
     private TypicalMeetings() {} // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical persons.
      */
     public static MeetingBook getTypicalMeetingBook() {
         MeetingBook mb = new MeetingBook();
