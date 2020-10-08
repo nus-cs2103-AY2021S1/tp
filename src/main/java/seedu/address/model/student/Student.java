@@ -61,9 +61,9 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && (otherStudent.getPhone().equals(getPhone())
-                    && otherStudent.getSchool().equals(getSchool())
-                        && otherStudent.getYear().equals(getYear()));
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getSchool().equals(getSchool())
+                && otherStudent.getYear().equals(getYear());
     }
 
     /**

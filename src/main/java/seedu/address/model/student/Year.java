@@ -41,7 +41,7 @@ public class Year {
 
     @Override
     public String toString() {
-        return String.valueOf(year);
+        return year;
     }
 
     @Override
