@@ -16,7 +16,7 @@ public class CarbohydrateTest {
     }
 
     @Test
-    public void isValidCarbohydrate() {
+    public void carbohydrate_isValid_correct() {
         // null carbohydrate
         assertThrows(NullPointerException.class, () -> Carbohydrate.isValid(null));
 
