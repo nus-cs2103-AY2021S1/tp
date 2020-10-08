@@ -13,4 +13,5 @@ public class PrefixList {
     public static final Prefix CONTACT_INDEX_PREFIX = new Prefix("r/"); // contact index
     public static final Prefix PRIORITY_PREFIX = new Prefix("p/");
     public static final Prefix TYPE_PREFIX = new Prefix("t/");
+
 }
