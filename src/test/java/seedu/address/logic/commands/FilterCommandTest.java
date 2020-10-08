@@ -95,7 +95,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_uppercaseKeyword_success() {
+    public void execute_multipleKeywordsUppercaseKeyword_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/SDLC c/REVISION HISTORY");
         FilterCommand command = new FilterCommand(predicate);
@@ -105,7 +105,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_uppercaseKeyword_reverseOrder_success() {
+    public void execute_multipleKeywordsmixedOrder_success() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/REVISION HISTORY c/SDLC");
         FilterCommand command = new FilterCommand(predicate);
