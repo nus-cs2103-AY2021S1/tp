@@ -66,6 +66,10 @@ public class ParserManager {
             parser = new DeleteContactParser();
             command = parser.parse(input);
             return command;
+        case "editcontact":
+            parser = new EditContactParser();
+            command = parser.parse(input);
+            return command;
         default:
             throw new ParseException("Invalid Command");
         }
