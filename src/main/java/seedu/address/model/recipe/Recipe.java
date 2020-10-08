@@ -42,11 +42,11 @@ public class Recipe {
     public String getInstruction() {
         return instruction;
     }
-    
+
     public String getRecipeImage() {
         return recipeImage;
     }
-    
+
     public ArrayList<Ingredient> getIngredient() {
         return ingredients;
     }
@@ -111,7 +111,7 @@ public class Recipe {
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")
-                .append(getInstruction()); 
+                .append(getInstruction());
         return builder.toString();
     }
 

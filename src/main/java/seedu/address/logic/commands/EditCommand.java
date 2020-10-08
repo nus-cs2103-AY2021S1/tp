@@ -172,7 +172,7 @@ public class EditCommand extends Command {
         public Optional<String> getRecipeImage() {
             return Optional.ofNullable(recipeImage);
         }
-        
+
         public void setIngredient(ArrayList<Ingredient> ingredients) {
             this.ingredients = ingredients;
         }

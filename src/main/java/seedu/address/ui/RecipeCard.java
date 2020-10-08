@@ -47,7 +47,7 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private ImageView recipeImageView;
 
-    
+
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
      */
@@ -58,12 +58,12 @@ public class RecipeCard extends UiPart<Region> {
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction());
         recipeImage.setText(recipe.getRecipeImage());
-        
+
         //Image image = new Image(recipe.getRecipeImage());
         //recipeImageView = new ImageView(image);
 
         recipeImageView.setImage(new Image(recipe.getRecipeImage()));
-        
+
         ingredients.setText(recipe.getIngredient().stream()
                 .map(item -> item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));

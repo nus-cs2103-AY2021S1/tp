@@ -78,8 +78,8 @@ class JsonAdaptedRecipe {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     String.class.getSimpleName()));
         }
-        final String modelRecipeImage = recipeImage;        
-        
+        final String modelRecipeImage = recipeImage;
+
         if (ingredients == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Ingredient.class.getSimpleName()));

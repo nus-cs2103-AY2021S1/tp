@@ -25,7 +25,7 @@ public class JsonAdaptedConsumption {
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
-    public JsonAdaptedConsumption(@JsonProperty("name") String name, 
+    public JsonAdaptedConsumption(@JsonProperty("name") String name,
                              @JsonProperty("instruction") String instruction,
                              @JsonProperty("recipeImage") String recipeImage,
                              @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
@@ -68,13 +68,13 @@ public class JsonAdaptedConsumption {
                     String.class.getSimpleName()));
         }
         final String modelInstruction = instruction;
-        
+
         if (recipeImage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     String.class.getSimpleName()));
         }
         final String modelRecipeImage = recipeImage;
-        
+
         if (ingredients == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Ingredient.class.getSimpleName()));
