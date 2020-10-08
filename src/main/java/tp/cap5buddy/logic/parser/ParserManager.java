@@ -62,6 +62,10 @@ public class ParserManager {
             parser = new AddContactParser();
             command = parser.parse(input);
             return command;
+        case "findcontact":
+            parser = new FindContactParser();
+            command = parser.parse(input);
+            return command;
         case "deletecontact":
             parser = new DeleteContactParser();
             command = parser.parse(input);

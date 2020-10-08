@@ -33,6 +33,7 @@ public class Prefix {
         case "c/":
         case "a/":
         case "r/":
+        case "k/":
             res = true;
             break;
         case "d/":
