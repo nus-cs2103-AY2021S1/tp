@@ -19,7 +19,7 @@ public class FatTest {
     }
 
     @Test
-    public void isValid() {
+    public void fat_isValid_correct() {
         // null fat
         assertThrows(NullPointerException.class, () -> Fat.isValid(null));
 
@@ -30,7 +30,6 @@ public class FatTest {
         // invalid parts
         Assertions.assertFalse(Fat.isValid("12314-")); // invalid fat name
         Assertions.assertFalse(Fat.isValid("123_345")); // underscore in fat name
-        Assertions.assertFalse(Fat.isValid("123 213423")); // spaces in fat part
         Assertions.assertFalse(Fat.isValid(" 1234")); // leading space
         Assertions.assertFalse(Fat.isValid("1234 ")); // trailing space
         Assertions.assertFalse(Fat.isValid("-1234")); // negative value
