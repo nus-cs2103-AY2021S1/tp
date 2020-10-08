@@ -1,13 +1,13 @@
 {
   "persons": [ {
-    "name": "Valid Person",
+    "title": "Valid Person",
+    "description": "",
     "phone": "9482424",
-    "address": "4th street",
     "suspects": []
   }, {
-    "name": "Person With Invalid Phone Field",
+    "title": "Person With Invalid Phone Field",
+    "description": "",
     "phone": "948asdf2424",
-    "address": "4th street",
     "suspects": []
   } ]
 }

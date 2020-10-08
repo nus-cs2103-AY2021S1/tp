@@ -9,11 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,18 +36,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Title(trimmedTitle);
     }
 
     /**
@@ -64,21 +63,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**
@@ -137,4 +121,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
 }

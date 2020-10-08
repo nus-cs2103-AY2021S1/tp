@@ -1,26 +1,28 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.commands.Command.TYPE_CASE;
+import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
@@ -36,27 +38,38 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_STATUS,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE)
+        final String commandWord = matcher.group("commandWord");
+        if (!commandWord.equals(TYPE_CASE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        final String arguments = matcher.group("arguments");
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_TITLE, PREFIX_PHONE, PREFIX_STATUS,
+                        PREFIX_TAG);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Description description = new Description("");
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("active"));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         List<Document> documents = new ArrayList<>();
         List<Suspect> suspects = new ArrayList<>();
         List<Victim> victims = new ArrayList<>();
         List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Person person = new Person(name, phone, status, documents, address,
-                                   suspects, victims, witnesses, tagList);
+        Person person = new Person(title, description, phone, status, documents,
+                suspects, victims, witnesses, tagList);
         return new AddCommand(person);
     }
 
