@@ -106,11 +106,11 @@ public class ParserUtil {
      */
     public static Fat parseFat(String fat) throws ParseException {
         requireNonNull(fat);
-        String trimmedEmail = fat.trim();
-        if (!Fat.isValid(trimmedEmail)) {
+        String trimmedFat = fat.trim();
+        if (!Fat.isValid(trimmedFat)) {
             throw new ParseException(Fat.MESSAGE_CONSTRAINTS);
         }
-        return new Fat(Integer.parseInt(trimmedEmail));
+        return new Fat(Integer.parseInt(trimmedFat));
     }
 
     /**
