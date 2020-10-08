@@ -25,7 +25,6 @@ public class Person {
     private final Status status;
 
     // Data fields
-    private final Address address;
     private final List<Suspect> suspects = new ArrayList<>();
     private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
@@ -36,16 +35,15 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Title title, Description description, Phone phone, Email email, Status status,
-                  List<Document> documents, Address address,
+                  List<Document> documents,
                   List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
         requireAllNonNull(title, description, phone, email, status, documents,
-                address, suspects, victims, witnesses, tags);
+                suspects, victims, witnesses, tags);
         this.title = title;
         this.description = description;
         this.phone = phone;
         this.email = email;
         this.status = status;
-        this.address = address;
         this.documents.addAll(documents);
         this.suspects.addAll(suspects);
         this.victims.addAll(victims);
@@ -72,11 +70,6 @@ public class Person {
     public Status getStatus() {
         return status;
     }
-
-    public Address getAddress() {
-        return address;
-    }
-
 
     public List<Document> getDocuments() {
         return documents;
@@ -139,7 +132,6 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getStatus().equals(getStatus())
                 && otherPerson.getDocuments().equals(getDocuments())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getSuspects().equals(getSuspects())
                 && otherPerson.getVictims().equals(getVictims())
                 && otherPerson.getWitnesses().equals(getWitnesses())
@@ -150,7 +142,7 @@ public class Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(title, description, phone, email, status, documents,
-                            address, suspects, victims, witnesses, tags);
+                            suspects, victims, witnesses, tags);
     }
 
     @Override
@@ -167,8 +159,6 @@ public class Person {
                 .append(getStatus())
                 .append(" Documents: ")
                 .append(getDocuments())
-                .append(" Address: ")
-                .append(getAddress())
                 .append(" Suspects: ");
         getSuspects().forEach(builder::append);
         builder.append(" Victims: ");
