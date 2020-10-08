@@ -56,4 +56,7 @@ public class Name {
         return fullName.hashCode();
     }
 
+    public String getFirstName() {
+        return fullName.substring(0, fullName.indexOf(" "));
+    }
 }
