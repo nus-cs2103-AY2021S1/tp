@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,8 +41,7 @@ public class SampleDataUtil {
 
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
-                new Meeting(new MeetingName("CS2103"), new Date("2020-09-20"), new Time("10:00"),
-                        getPersonSet("Alex Yeoh", "David Li"))
+                new Meeting(new MeetingName("CS2103"), new Date("2020-09-20"), new Time("10:00"))
         };
     }
 
@@ -70,18 +68,5 @@ public class SampleDataUtil {
             sampleMb.addMeeting(sampleMeeting);
         }
         return sampleMb;
-    }
-
-    public static Set<Person> getPersonSet(String... strings) {
-        Set<Person> persons = new HashSet<>();
-        for (String string : strings) {
-            Name name = new Name(string);
-            for (Person person : getSamplePersons()) {
-                if (person.getName().equals(name)) {
-                    persons.add(person);
-                }
-            }
-        }
-        return persons;
     }
 }

@@ -37,7 +37,6 @@ public class MeetingBuilder {
         meetingName = meetingToCopy.getName();
         date = meetingToCopy.getDate();
         time = meetingToCopy.getTime();
-        persons = new HashSet<>(meetingToCopy.getPersons());
     }
 
     /**
@@ -45,14 +44,6 @@ public class MeetingBuilder {
      */
     public MeetingBuilder withName(String name) {
         this.meetingName = new MeetingName(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public MeetingBuilder withPersons(String ... persons) {
-        this.persons = SampleDataUtil.getPersonSet(persons);
         return this;
     }
 
@@ -73,6 +64,6 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(meetingName, date, time, persons);
+        return new Meeting(meetingName, date, time);
     }
 }

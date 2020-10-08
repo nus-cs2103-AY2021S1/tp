@@ -2,8 +2,6 @@ package seedu.address.model.meeting;
 
 import seedu.address.model.person.Person;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,15 +13,11 @@ public class Meeting {
     private final Date date;
     private final Time time;
 
-    // Data fields
-    private final Set<Person> persons = new HashSet<>();
-
-    public Meeting(MeetingName name, Date date, Time time, Set<Person> persons) {
-        requireAllNonNull(name, date, time, persons);
+    public Meeting(MeetingName name, Date date, Time time) {
+        requireAllNonNull(name, date, time);
         this.name = name;
         this.date = date;
         this.time = time;
-        this.persons.addAll(persons);
     }
 
     public MeetingName getName(){
@@ -36,10 +30,6 @@ public class Meeting {
 
     public Time getTime(){
         return this.time;
-    }
-
-    public Set<Person> getPersons() {
-        return Collections.unmodifiableSet(persons);
     }
 
     public boolean isSameMeeting(Meeting otherMeeting) {
@@ -72,7 +62,7 @@ public class Meeting {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, time, persons);
+        return Objects.hash(name, date, time);
     }
 
     @Override
@@ -82,9 +72,7 @@ public class Meeting {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Time: ")
-                .append(getTime())
-                .append(" Persons: ");
-        getPersons().forEach(builder::append);
+                .append(getTime());
         return builder.toString();
     }
 }

@@ -30,30 +30,19 @@ public class JsonAdaptedMeeting {
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                             @JsonProperty("time") String time, @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+                             @JsonProperty("time") String time) {
         this.name = name;
         this.date = date;
         this.time = time;
-        if (persons != null) {
-            this.persons.addAll(persons);
-        }
     }
 
     public JsonAdaptedMeeting(Meeting source) {
         name = source.getName().meetingName;
         date = source.getDate().value;
         time = source.getTime().value;
-        persons.addAll(source.getPersons().stream()
-                .map(JsonAdaptedPerson::new)
-                .collect(Collectors.toList()));
     }
 
     public Meeting toModelType() throws IllegalValueException {
-        final List<Person> meetingPersons = new ArrayList<>();
-        for (JsonAdaptedPerson person : persons) {
-            meetingPersons.add(person.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MeetingName.class.getSimpleName()));
         }
@@ -78,8 +67,7 @@ public class JsonAdaptedMeeting {
         }
         final Time modelTime = new Time(time);
 
-        final Set<Person> modelPersons = new HashSet<>(meetingPersons);
-        return new Meeting(modelName, modelDate, modelTime, modelPersons);
+        return new Meeting(modelName, modelDate, modelTime);
     }
 
 }

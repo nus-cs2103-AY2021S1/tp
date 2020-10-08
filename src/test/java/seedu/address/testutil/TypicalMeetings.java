@@ -13,8 +13,7 @@ public class TypicalMeetings {
 
     public static final Meeting CS2103 = new MeetingBuilder().withName("CS2103")
             .withDate("2020-10-07")
-            .withTime("10:00")
-            .withPersons("Alice Pauline").build();
+            .withTime("10:00").build();
 
     /*
     // Manually added
