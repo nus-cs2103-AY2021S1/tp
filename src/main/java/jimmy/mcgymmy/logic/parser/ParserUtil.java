@@ -90,7 +90,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code carb} is invalid.
      */
     public static Carbohydrate parseCarb(String carb) throws ParseException {
-        int carbValue = getNutrientValue(carb, Protein.MESSAGE_CONSTRAINTS);
+        int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
         return new Carbohydrate(carbValue);
     }
 
@@ -101,7 +101,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code fat} is invalid.
      */
     public static Fat parseFat(String fat) throws ParseException {
-        int fatValue = getNutrientValue(fat, Protein.MESSAGE_CONSTRAINTS);
+        int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
         return new Fat(fatValue);
     }
 
