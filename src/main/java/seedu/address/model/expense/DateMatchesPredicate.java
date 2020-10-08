@@ -11,6 +11,10 @@ import java.util.function.Predicate;
 public class DateMatchesPredicate implements Predicate<Expense> {
     private final Set<Date> dates;
 
+    /**
+     * Constructor that takes in a list of strings representing dates.
+     * It stores parsable strings into the dates HashSet.
+     */
     public DateMatchesPredicate(List<String> dateStrings) {
         Set<Date> temp = new HashSet<>();
         for (String s: dateStrings) {
@@ -28,7 +32,10 @@ public class DateMatchesPredicate implements Predicate<Expense> {
         }
         return this.dates.contains(expense.getDate());
     }
-    
+
+    /**
+     * Returns true if there are no dates to match in this predicate. Otherwise, return false.
+     */
     public boolean isEmpty() {
         return this.dates.isEmpty();
     }
@@ -39,5 +46,4 @@ public class DateMatchesPredicate implements Predicate<Expense> {
                 || (other instanceof DateMatchesPredicate // instanceof handles nulls
                 && dates.equals(((DateMatchesPredicate) other).dates)); // state check
     }
-
 }

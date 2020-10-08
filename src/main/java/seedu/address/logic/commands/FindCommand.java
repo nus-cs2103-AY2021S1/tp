@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import seedu.address.logic.parser.FindCommandParser;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.expense.DateMatchesPredicate;
 import seedu.address.model.expense.Expense;
@@ -39,7 +36,14 @@ public class FindCommand extends Command {
     private final DateMatchesPredicate datePredicate;
     private final TagsMatchesPredicate tagsPredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate namePredicate, DateMatchesPredicate datePredicate, TagsMatchesPredicate tagsPredicate) {
+    /**
+     * Constructor that takes in the predicates used to filter through
+     * the expenses list and find matching expenses. It matches based on keywords,
+     * date, and tags.
+     */
+    public FindCommand(NameContainsKeywordsPredicate namePredicate,
+                       DateMatchesPredicate datePredicate,
+                       TagsMatchesPredicate tagsPredicate) {
         this.namePredicate = namePredicate;
         this.datePredicate = datePredicate;
         this.tagsPredicate = tagsPredicate;
@@ -47,7 +51,8 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (this.namePredicate.isEmpty() && this.datePredicate.isEmpty() && this.tagsPredicate.isEmpty()) {
+        if (this.namePredicate.isEmpty() && this.datePredicate.isEmpty()
+                && this.tagsPredicate.isEmpty()) {
             model.updateFilteredExpenseList(x -> false);
         }
         Predicate<Expense> predicate = x -> true;
@@ -62,7 +67,8 @@ public class FindCommand extends Command {
         }
         model.updateFilteredExpenseList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()));
+                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW,
+                        model.getFilteredExpenseList().size()));
     }
 
     @Override

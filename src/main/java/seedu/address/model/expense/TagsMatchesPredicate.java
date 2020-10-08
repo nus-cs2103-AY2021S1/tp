@@ -12,6 +12,9 @@ import seedu.address.model.tag.Tag;
 public class TagsMatchesPredicate implements Predicate<Expense> {
     private final HashSet<Tag> tags;
 
+    /**
+     * Constructor that takes in a list of strings to match.
+     */
     public TagsMatchesPredicate(List<String> tagStrings) {
         this.tags = new HashSet<>();
         for (String i: tagStrings) {
@@ -29,6 +32,9 @@ public class TagsMatchesPredicate implements Predicate<Expense> {
         return false;
     }
 
+    /**
+     * Returns true if there are no tags to match in this predicate. Otherwise, return false.
+     */
     public boolean isEmpty() {
         return tags.isEmpty();
     }

@@ -31,6 +31,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Expense> {
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    /**
+     * Returns true if there are no valid keywords in this predicate. Otherwise, return false.
+     */
     public boolean isEmpty() {
         return this.keywords.isEmpty() || (this.keywords.size() == 1 && this.keywords.contains(""));
     }
