@@ -51,7 +51,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return asDouble().toString();
+        return String.format("%.2f", asDouble());
     }
 
     @Override
