@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -120,6 +121,17 @@ public class ModelManager implements Model {
     public void markStudent(Student target, AttendanceType attendanceType) {
         requireAllNonNull(target, attendanceType);
         attendanceList.markStudentAttendance(target.getNusnetId(), attendanceType);
+    }
+
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
+    }
+
+    @Override
+    public void clearAttendance() {
+        attendanceList.markAllAttendance(
+                taskmaster.getStudentList().stream().map(Student::getNusnetId).collect(Collectors.toList()),
+                AttendanceType.NO_RECORD);
     }
 
     //=========== Filtered Student List Accessors =============================================================

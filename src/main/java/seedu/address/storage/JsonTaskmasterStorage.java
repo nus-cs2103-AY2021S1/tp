@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTaskmaster;
+import seedu.address.model.attendance.AttendanceList;
 
 /**
  * A class to access Taskmaster data stored as a json file on the hard disk.
@@ -77,4 +78,38 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
         JsonUtil.saveJsonFile(new JsonSerializableTaskmaster(taskmaster), filePath);
     }
 
+    @Override
+    public void saveAttendance(AttendanceList attendanceList, Path filePath) throws IOException {
+        requireNonNull(attendanceList);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAttendanceList(attendanceList), filePath);
+    }
+
+    /**
+     * Gets an AttendanceList from the filePath specified and maps the attendance entries over to an existing
+     * AttendanceList.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<AttendanceList> readAttendance(Path filePath, AttendanceList existingList)
+            throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableAttendanceList> jsonAttendanceList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableAttendanceList.class);
+
+        if (!jsonAttendanceList.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonAttendanceList.get().toModelType(existingList));
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
 }

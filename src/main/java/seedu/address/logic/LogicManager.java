@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.StorageCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TaskmasterParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -43,7 +44,15 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = taskmasterParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+
+        if (command instanceof StorageCommand) {
+            StorageCommand storageCommand = (StorageCommand) command;
+            storageCommand.initaliseStorage(storage);
+            commandResult = storageCommand.execute(model);
+        } else {
+            commandResult = command.execute(model);
+        }
+
 
         try {
             storage.saveTaskmaster(model.getTaskmaster());

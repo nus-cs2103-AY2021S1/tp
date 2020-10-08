@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskmaster;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Taskmaster;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
@@ -152,6 +153,16 @@ public class AddCommandTest {
         @Override
         public void markStudent(Student student, AttendanceType attendanceType) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AttendanceList getAttendanceList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void clearAttendance() {
+            throw new AssertionError("This method should not be called");
         }
     }
 
