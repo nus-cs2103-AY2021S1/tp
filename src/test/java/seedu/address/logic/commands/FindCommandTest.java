@@ -12,13 +12,20 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.YearMatchPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -34,14 +41,17 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        List<Predicate<Student>> firstGroupOfPredicates = Collections.singletonList(firstPredicate);
+        List<Predicate<Student>> secondGroupOfPredicates = Collections.singletonList(secondPredicate);
+
+        FindCommand findFirstCommand = new FindCommand(firstGroupOfPredicates);
+        FindCommand findSecondCommand = new FindCommand(secondGroupOfPredicates);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstGroupOfPredicates);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -57,8 +67,9 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
+        List<Predicate<Student>> groupOfPredicates = Collections.singletonList(predicate);
+        FindCommand command = new FindCommand(groupOfPredicates);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -67,8 +78,9 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
+        List<Predicate<Student>> groupOfPredicates = Collections.singletonList(predicate);
+        FindCommand command = new FindCommand(groupOfPredicates);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
@@ -77,7 +89,21 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code SchoolContainsKeywordsPredicate}.
+     */
+    private SchoolContainsKeywordsPredicate prepareSchoolPredicate(String userInput) {
+        return new SchoolContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code YearMatchPredicate}.
+     */
+    private YearMatchPredicate prepareYearPredicate(String userInput) throws ParseException {
+        return new YearMatchPredicate(ParserUtil.parseYear(userInput));
     }
 }

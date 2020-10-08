@@ -16,4 +16,6 @@ public class CliSyntax {
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR};
 
+    public static final Prefix[] FIND_SUPPORTED_PREFIXES =
+            new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
 }
