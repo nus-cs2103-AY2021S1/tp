@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ReviewCommand.MESSAGE_INITIATE_REVIEW_SUCCESS;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class ReviewCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
 
     @Test
     public void execute_review_success() {
