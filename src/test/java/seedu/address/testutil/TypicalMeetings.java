@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
-
 public class TypicalMeetings {
 
     public static final Meeting CS2103 = new MeetingBuilder().withName("CS2103")

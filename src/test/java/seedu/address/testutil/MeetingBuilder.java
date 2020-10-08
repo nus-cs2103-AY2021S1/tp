@@ -5,7 +5,6 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.SampleDataUtil;
 
 import java.util.HashSet;
 import java.util.Set;
