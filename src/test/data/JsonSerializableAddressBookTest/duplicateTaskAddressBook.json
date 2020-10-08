@@ -1,13 +1,13 @@
 {
   "tasks": [ {
     "title": "Alice Pauline",
-    "phone": "94351253",
+    "dateTime": "01-01-2020 12:00",
     "description": "alice,example.com",
     "type": "something-todo",
     "tagged": [ "friends" ]
   }, {
     "title": "Alice Pauline",
-    "phone": "94351253",
+    "dateTime": "01-01-2020 12:00",
     "description": "pauline,example.com",
     "type": "event"
   } ]

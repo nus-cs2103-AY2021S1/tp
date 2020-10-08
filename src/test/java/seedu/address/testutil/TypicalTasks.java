@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
@@ -25,33 +25,33 @@ public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Alice Pauline")
             .withType("todo").withDescription("alice,example.com")
-            .withPhone("94351253")
+            .withDateTime("01-01-2020 12:00")
             .withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Benson Meier")
             .withType("deadline")
-            .withDescription("johnd,example.com").withPhone("98765432")
+            .withDescription("johnd,example.com").withDateTime("02-02-2020 12:00")
             .withTags("owesMoney", "friends").build();
-    public static final Task CARL = new TaskBuilder().withTitle("Carl Kurz").withPhone("95352563")
+    public static final Task CARL = new TaskBuilder().withTitle("Carl Kurz").withDateTime("03-03-2020 12:00")
             .withDescription("heinz,example.com").withType("event").build();
-    public static final Task DANIEL = new TaskBuilder().withTitle("Daniel Meier").withPhone("87652533")
+    public static final Task DANIEL = new TaskBuilder().withTitle("Daniel Meier").withDateTime("04-04-2020 12:00")
             .withDescription("cornelia,example.com").withType("event").withTags("friends").build();
-    public static final Task ELLE = new TaskBuilder().withTitle("Elle Meyer").withPhone("9482224")
+    public static final Task ELLE = new TaskBuilder().withTitle("Elle Meyer").withDateTime("05-05-2020 12:00")
             .withDescription("werner,example.com").withType("lesson").build();
-    public static final Task FIONA = new TaskBuilder().withTitle("Fiona Kunz").withPhone("9482427")
+    public static final Task FIONA = new TaskBuilder().withTitle("Fiona Kunz").withDateTime("06-06-2020 12:00")
             .withDescription("lydia,example.com").withType("tutorial").build();
-    public static final Task GEORGE = new TaskBuilder().withTitle("George Best").withPhone("9482442")
+    public static final Task GEORGE = new TaskBuilder().withTitle("George Best").withDateTime("07-07-2020 12:00")
             .withDescription("anna,example.com").withType("session").build();
 
     // Manually added
-    public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withPhone("8482424")
+    public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDateTime("08-08-2020 12:00")
             .withDescription("stefan,example.com").withType("little-india").build();
-    public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withPhone("8482131")
+    public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDateTime("09-09-2020 12:00")
             .withDescription("hans,example.com").withType("chicago-ave").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDateTime(VALID_DATE_TIME_AMY)
             .withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Task BOB = new TaskBuilder().withTitle(VALID_TITLE_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Task BOB = new TaskBuilder().withTitle(VALID_TITLE_BOB).withDateTime(VALID_DATE_TIME_BOB)
             .withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();

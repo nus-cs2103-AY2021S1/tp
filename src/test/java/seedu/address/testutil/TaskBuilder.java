@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.Type;
@@ -17,12 +17,12 @@ import seedu.address.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "School work";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_DATE_TIME = "01-01-2020 12:00";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
     public static final String DEFAULT_TYPE = "todo";
 
     private Title title;
-    private Phone phone;
+    private DateTime dateTime;
     private Description description;
     private Type type;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
-        phone = new Phone(DEFAULT_PHONE);
+        dateTime = new DateTime(DEFAULT_DATE_TIME);
         description = new Description(DEFAULT_DESCRIPTION);
         type = new Type(DEFAULT_TYPE);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
-        phone = taskToCopy.getPhone();
+        dateTime = taskToCopy.getDateTime();
         description = taskToCopy.getDescription();
         type = taskToCopy.getType();
         tags = new HashSet<>(taskToCopy.getTags());
@@ -74,19 +74,19 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Task} that we are building.
+     * Sets the {@code dateTime} of the {@code Task} that we are building.
      */
-    public TaskBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public TaskBuilder withDateTime(String dateTime) {
+        this.dateTime = new DateTime(dateTime);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Task} that we are building to be default phone.
-     * Simulates the situation that the task is created without a phone field.
+     * Sets the {@code DateTime} of the {@code Task} that we are building to be default DateTime.
+     * Simulates the situation that the task is created without a DateTime field.
      */
-    public TaskBuilder withDefaultPhone() {
-        this.phone = Phone.defaultPhone();
+    public TaskBuilder withDefaultDateTime() {
+        this.dateTime = DateTime.defaultDateTime();
         return this;
     }
 
@@ -108,7 +108,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, phone, description, type, tags);
+        return new Task(title, dateTime, description, type, tags);
     }
 
 }

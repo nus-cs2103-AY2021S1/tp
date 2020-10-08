@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
@@ -28,8 +28,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_AMY = "Amy Bee";
     public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_DATE_TIME_AMY = "31-12-2020 17:00";
+    public static final String VALID_DATE_TIME_BOB = "01-01-2020 00:00";
     public static final String VALID_DESCRIPTION_AMY = "amy,example.com";
     public static final String VALID_DESCRIPTION_BOB = "bob,example.com";
     public static final String VALID_TYPE_AMY = "todo";
@@ -39,8 +39,8 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String DATE_TIME_DESC_AMY = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_AMY;
+    public static final String DATE_TIME_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String TYPE_DESC_AMY = " " + PREFIX_TYPE + VALID_TYPE_AMY;
@@ -49,7 +49,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Homework&"; // '&' not allowed in titles
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_DATE_TIME_DESC = " " + PREFIX_DATE_TIME
+            + "32-11-2000 19:00"; // 32nd day not allowed
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob@yahoo"; // '@' not allowed
     public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE; // empty string not allowed for type
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -62,10 +63,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withPhone(VALID_PHONE_AMY).withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY)
+                .withDateTime(VALID_DATE_TIME_AMY).withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withPhone(VALID_PHONE_BOB).withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
+                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

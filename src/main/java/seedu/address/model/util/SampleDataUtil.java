@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Phone;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.Type;
@@ -19,23 +19,23 @@ import seedu.address.model.task.Type;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Alex Yeoh"), new Phone("87438807"), new Description("alexyeoh,example.com"),
-                new Type("Blk 30 Geylang Street 29, #06-40"),
+            new Task(new Title("Alex Yeoh"), new DateTime("01-01-2020 12:00"), new Description("alexyeoh,example.com"),
+                new Type("todo"),
                 getTagSet("friends")),
-            new Task(new Title("Bernice Yu"), new Phone("99272758"), new Description("berniceyu,example.com"),
-                new Type("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Task(new Title("Bernice Yu"), new DateTime("02-02-2020 12:00"),
+                    new Description("berniceyu,example.com"), new Type("deadline"),
                 getTagSet("colleagues", "friends")),
-            new Task(new Title("Charlotte Oliveiro"), new Phone("93210283"), new Description("charlotte,example.com"),
-                new Type("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Task(new Title("Charlotte Oliveiro"), new DateTime("03-03-2020 12:00"),
+                    new Description("charlotte,example.com"), new Type("event"),
                 getTagSet("neighbours")),
-            new Task(new Title("David Li"), new Phone("91031282"), new Description("lidavid,example.com"),
-                new Type("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Task(new Title("David Li"), new DateTime("04-04-2020 12:00"), new Description("lidavid,example.com"),
+                new Type("lesson"),
                 getTagSet("family")),
-            new Task(new Title("Irfan Ibrahim"), new Phone("92492021"), new Description("irfan,example.com"),
-                new Type("Blk 47 Tampines Street 20, #17-35"),
+            new Task(new Title("Irfan Ibrahim"), new DateTime("05-05-2020 12:00"), new Description("irfan,example.com"),
+                new Type("tutorial"),
                 getTagSet("classmates")),
-            new Task(new Title("Roy Balakrishnan"), new Phone("92624417"), new Description("royb,example.com"),
-                new Type("Blk 45 Aljunied Street 85, #11-31"),
+            new Task(new Title("Roy Balakrishnan"), new DateTime("06-06-2020 12:00"),
+                    new Description("royb,example.com"), new Type("session"),
                 getTagSet("colleagues"))
         };
     }

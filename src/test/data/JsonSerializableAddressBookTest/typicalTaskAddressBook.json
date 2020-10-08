@@ -2,43 +2,43 @@
   "_comment": "AddressBook save file which contains the same Tasks values as in TypicalTasks#getTypicalAddressBook()",
   "tasks" : [ {
     "title" : "Alice Pauline",
-    "phone" : "94351253",
+    "dateTime" : "01-01-2020 12:00",
     "description" : "alice,example.com",
     "type" : "todo",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Benson Meier",
-    "phone" : "98765432",
+    "dateTime" : "02-02-2020 12:00",
     "description" : "johnd,example.com",
     "type" : "deadline",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "title" : "Carl Kurz",
-    "phone" : "95352563",
+    "dateTime" : "03-03-2020 12:00",
     "description" : "heinz,example.com",
     "type" : "event",
     "tagged" : [ ]
   }, {
     "title" : "Daniel Meier",
-    "phone" : "87652533",
+    "dateTime" : "04-04-2020 12:00",
     "description" : "cornelia,example.com",
     "type" : "event",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Elle Meyer",
-    "phone" : "9482224",
+    "dateTime" : "05-05-2020 12:00",
     "description" : "werner,example.com",
     "type" : "lesson",
     "tagged" : [ ]
   }, {
     "title" : "Fiona Kunz",
-    "phone" : "9482427",
+    "dateTime" : "06-06-2020 12:00",
     "description" : "lydia,example.com",
     "type" : "tutorial",
     "tagged" : [ ]
   }, {
     "title" : "George Best",
-    "phone" : "9482442",
+    "dateTime" : "07-07-2020 12:00",
     "description" : "anna,example.com",
     "type" : "session",
     "tagged" : [ ]
