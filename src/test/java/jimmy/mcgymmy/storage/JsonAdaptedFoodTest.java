@@ -18,11 +18,11 @@ import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class JsonAdaptedFoodTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PROTEIN = "+6512%)34";
+    private static final String INVALID_NAME = "R@ice";
+    private static final String INVALID_PROTEIN = "512%)34";
     private static final String INVALID_FAT = " ";
-    private static final String INVALID_CARBS = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_CARBS = "123.132";
+    private static final String INVALID_TAG = "##lucnsh";
 
     private static final String VALID_NAME = TypicalFoods.BENSON.getName().toString();
     private static final String VALID_PROTEIN = Integer.toString(TypicalFoods.BENSON.getProtein().getAmount());
