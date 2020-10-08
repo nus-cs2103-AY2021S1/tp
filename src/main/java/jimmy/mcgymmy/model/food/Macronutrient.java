@@ -4,7 +4,7 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    public static final String MESSAGE_CONSTRAINTS = "values should only contain numbers";
+    public static final String MESSAGE_CONSTRAINTS = "values should only contain positive numbers";
     private static final String VALIDATION_REGEX = "(\\d)+";
     private final int amount;
     private final int caloricMultiplier;
