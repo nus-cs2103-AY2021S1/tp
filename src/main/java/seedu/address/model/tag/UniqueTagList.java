@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateTagException;
-import seedu.address.model.person.exceptions.TagNotFoundException;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

@@ -2,10 +2,9 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Tag;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Tag}.
@@ -31,11 +30,7 @@ public class TagCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private FlowPane tags;
+    private Label fileAddress;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Tag} and index to display.
@@ -45,7 +40,7 @@ public class TagCard extends UiPart<Region> {
         this.tag = tag;
         id.setText(displayedIndex + ". ");
         name.setText(tag.getTagName().tagName);
-        address.setText(tag.getFileAddress().value);
+        fileAddress.setText(tag.getFileAddress().value);
     }
 
     @Override

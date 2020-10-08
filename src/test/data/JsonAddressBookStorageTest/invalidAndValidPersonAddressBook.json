@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "tags": [ {
     "tagName": "Valid Person",
     "fileAddress": "c\\:a\\b\\abc.txt"
   }, {

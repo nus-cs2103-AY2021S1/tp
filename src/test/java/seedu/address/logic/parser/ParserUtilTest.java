@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TAG;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FileAddress;
-import seedu.address.model.person.TagName;
+import seedu.address.model.tag.FileAddress;
+import seedu.address.model.tag.TagName;
 
 
 public class ParserUtilTest {

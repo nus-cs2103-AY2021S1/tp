@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalTags.BENSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.FileAddress;
-import seedu.address.model.person.TagName;
+import seedu.address.model.tag.FileAddress;
+import seedu.address.model.tag.TagName;
 
 public class JsonAdaptedTagTest {
     private static final String INVALID_NAME = "R@chel";

@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/ui/Ui.java)
+[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,11 +78,11 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/logic/Logic.java)
+[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a description).
+1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -97,12 +97,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the fileAddress book data.
+* stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -117,11 +117,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/fileAddress/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the fileAddress book data in json format and read it back.
+* can save the address book data in json format and read it back.
 
 ### Common classes
 
@@ -139,31 +139,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current fileAddress book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous fileAddress book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone fileAddress book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial fileAddress book state, and the `currentStatePointer` pointing to that single fileAddress book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th description in the fileAddress book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the fileAddress book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted fileAddress book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new description. The `add` command also calls `Model#commitAddressBook()`, causing another modified fileAddress book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the fileAddress book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the description was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous fileAddress book state, and restores the fileAddress book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the fileAddress book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest fileAddress book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the fileAddress book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all fileAddress book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -202,13 +202,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire fileAddress book.
+* **Alternative 1 (current choice):** Saves the entire a    ddress book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the description being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -253,12 +253,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                                     | I want to …​                                       | So that I can…​                                        |
 | -------- | ---------------------------------------------------------------| ------------------------------------------------------| ----------------------------------------------------------|
-| `* * *`  | Student with lots of file                                      | description my files with a easy to remember description              | get file path                                             |
+| `* * *`  | Student with lots of file                                      | tag my files with a easy to remember tag              | get file path                                             |
 | `* * *`  | First time user                                                | use a help command                                    | start to remember how to use the command                  |
 | `* * *`  | Student who prefers to type                                    | use typing to interact with my file system            | use keyboard as much as possible                          |
 | `* * *`  | Student who is familiar with command line applications         | name my files                                         | access the file easily next time                          |
 | `* *`    | CS student with a lot of project                               | hide private contact details                          | minimize chance of someone else seeing them by accident   |
-| `*`      | Forgetful user who always forget where his files are located   | description frequently used files with a easy to remember description | locate my files easily                                    |
+| `*`      | Forgetful user who always forget where his files are located   | tag frequently used files with a easy to remember tag | locate my files easily                                    |
 | `*`      | Intermediate user                                              | delete file                                           | not be distracted by it.                                  |
 | `*`      | Developer                                                      | open files with a quick command                       | focus on coding and not look to find my files             |
 
@@ -276,9 +276,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to description a certain file using the absolute file path.
+1. User requests to tag a certain file using the absolute file path.
 2. HelloFile recognises the file path to be valid.
-3. HelloFile creates the description and display the fileInfo.
+3. HelloFile creates the tag and display the fileInfo.
 
     Use case ends.
 
@@ -290,15 +290,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes from step 1.
 
-* 2b. HelloFile detects no description input.
+* 2b. HelloFile detects no tag input.
 
-    * 2b1. HelloFile prompts the user for a description.
+    * 2b1. HelloFile prompts the user for a tag.
 
         Use case resumes from step 1.
 
-* 2c. HelloFile detects a duplicate description name.
+* 2c. HelloFile detects a duplicate tag name.
 
-    * 2c1. HelloFile prompts the user for another description name.
+    * 2c1. HelloFile prompts the user for another tag name.
 
         Use case resumes from step 1.
 
@@ -312,22 +312,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **User case ID: UC02**
 
-**Use Case: Access file using description**
+**Use Case: Access file using tag**
 
 **MSS**
 
 
-1. User requests to open a file using a description.
-2. HelloFile recognises the description to be valid.
+1. User requests to open a file using a tag.
+2. HelloFile recognises the tag to be valid.
 3. HelloFile opens the specified file using the default application.
 
     Use case ends.
 
 **Extension**
 
-* 2a. HelloFile detects that the description is invalid.
+* 2a. HelloFile detects that the tag is invalid.
 
-	* 2a1. HelloFile prompts the user that the description is wrong.
+	* 2a1. HelloFile prompts the user that the tag is wrong.
 
         Use case resumes from step 1.
 
@@ -359,32 +359,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **UseCase ID: UC03**
 
-**Use Case: Rename description**
+**Use Case: Rename tag**
 
 **MSS**
 
-1. User requests to rename the description of a tagged file.
-2. HelloFile replaces the description of the file with the new description.
+1. User requests to rename the tag of a tagged file.
+2. HelloFile replaces the tag of the file with the new tag.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. HelloFile failed to recognize the description.
+* 2a. HelloFile failed to recognize the tag.
 
-	* 2a1. HelloFile prompts that description does not exist.
+	* 2a1. HelloFile prompts that tag does not exist.
 
     	Use case resumes from step 1
 
-* 2b. HelloFile failed to recognize the new description input.
+* 2b. HelloFile failed to recognize the new tag input.
 
-    * 2b1. HelloFile prompts that the new description is invalid.
+    * 2b1. HelloFile prompts that the new tag is invalid.
 
         Use case resumes from step 1. 
 
-* 2c. HelloFile detects a duplicate description name.
+* 2c. HelloFile detects a duplicate tag name.
 
-	* 2c1. HelloFile prompts the user for another description name. 
+	* 2c1. HelloFile prompts the user for another tag name. 
 
         Use case resumes from step 1.
 
@@ -404,14 +404,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to untag a file.
-2. HelloFile recognises that the description exist.
+2. HelloFile recognises that the tag exist.
 3. HelloFile removes the file from access.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. HelloFile fails to recognize the description.
+* 2a. HelloFile fails to recognize the tag.
 
 	* 2a1. HelloFile shows the error message.
 
@@ -433,16 +433,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests the check the path of a tagged file.
-2. HelloFile recognises that the description exist.
+2. HelloFile recognises that the tag exist.
 3. HelloFile shows the path of the file.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. HelloFile failed to recognize the description.
+* 2a. HelloFile failed to recognize the tag.
 
-	* 2a1. HelloFile prompts the user that the description is wrong.
+	* 2a1. HelloFile prompts the user that the tag is wrong.
 
         Use case resumes from step 1.
 
@@ -467,16 +467,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to open parent folder of a tagged file.
-2. HelloFile recognises the description exist.
-3. HelloFile open the parent folder with the description.
+2. HelloFile recognises the tag exist.
+3. HelloFile open the parent folder with the tag.
 
     Use case ends.
 
 **Extension**
 
-* 2a. HelloFile detects that the description is invalid.
+* 2a. HelloFile detects that the tag is invalid.
 
-	* 2a1. HelloFile prompts the user that the description is wrong.
+	* 2a1. HelloFile prompts the user that the tag is wrong.
 
         Use case resumes from step 1.
 
@@ -583,9 +583,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a description
+### Deleting a tag
 
-1. Deleting a description while all tags are being shown
+1. Deleting a tag while all tags are being shown
 
    1. Prerequisites: List all tags using the `list` command. Multiple tags in the list.
 
@@ -593,7 +593,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No description is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No tag is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

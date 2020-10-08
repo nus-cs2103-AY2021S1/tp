@@ -173,7 +173,7 @@ public class NewMainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping FileAddress Book ] =============================");
+        logger.info("============================ [ Stopping Address Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

@@ -19,9 +19,9 @@ import static seedu.address.testutil.TypicalTags.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.FileAddress;
-import seedu.address.model.person.Tag;
-import seedu.address.model.person.TagName;
+import seedu.address.model.tag.FileAddress;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagName;
 import seedu.address.testutil.TagBuilder;
 
 public class AddCommandParserTest {

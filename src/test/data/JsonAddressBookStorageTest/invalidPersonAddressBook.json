@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "tags": [ {
     "tagName": "Person with invalid name field: Ha!ns Mu@ster",
     "fileAddress": "c:\\a\\b\\abc.txt"
   } ]

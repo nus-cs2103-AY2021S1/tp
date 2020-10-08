@@ -2,9 +2,9 @@ package seedu.address.model.util;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.FileAddress;
-import seedu.address.model.person.Tag;
-import seedu.address.model.person.TagName;
+import seedu.address.model.tag.FileAddress;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagName;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -13,17 +13,17 @@ public class SampleDataUtil {
     public static Tag[] getSampleTags() {
         return new Tag[] {
             new Tag(new TagName("Alex Yeoh"),
-                new FileAddress("Blk 30 Geylang Street 29, #06-40")),
+                new FileAddress("c:\\a\\b\\alex.txt")),
             new Tag(new TagName("Bernice Yu"),
-                new FileAddress("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
+                new FileAddress("c:\\a\\b\\bernice.txt")),
             new Tag(new TagName("Charlotte Oliveiro"),
-                new FileAddress("Blk 11 Ang Mo Kio Street 74, #11-04")),
+                new FileAddress("c:\\a\\b\\charlotte.txt")),
             new Tag(new TagName("David Li"),
-                new FileAddress("Blk 436 Serangoon Gardens Street 26, #16-43")),
+                new FileAddress("c:\\a\\b\\david.txt")),
             new Tag(new TagName("Irfan Ibrahim"),
-                new FileAddress("Blk 47 Tampines Street 20, #17-35")),
+                new FileAddress("c:\\a\\b\\irfan.txt")),
             new Tag(new TagName("Roy Balakrishnan"),
-                new FileAddress("Blk 45 Aljunied Street 85, #11-31"))
+                new FileAddress("c:\\a\\b\\roy.txt"))
         };
     }
 

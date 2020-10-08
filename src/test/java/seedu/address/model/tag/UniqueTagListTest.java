@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicateTagException;
-import seedu.address.model.person.exceptions.TagNotFoundException;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 import seedu.address.testutil.TagBuilder;
 
 public class UniqueTagListTest {

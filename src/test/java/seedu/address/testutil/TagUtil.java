@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Tag;
+import seedu.address.model.tag.Tag;
 
 
 /**

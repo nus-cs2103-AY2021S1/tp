@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-HelloFile is a desktop app for managing files, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). By being able to description frequently used files/folders with a short nickname, you will be able to manage and access your files with ease.
+HelloFile is a desktop app for managing files, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). By being able to tag frequently used files/folders with a short nickname, you will be able to manage and access your files with ease.
 
 * Table of Contents
 {:toc}
@@ -39,7 +39,7 @@ HelloFile is a desktop app for managing files, optimised for use via a Command L
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Each description name must be unique, but each file can have multiple tags
+* Each tag name must be unique, but each file can have multiple tags
 
 </div>
 
@@ -49,15 +49,15 @@ Shows a command's usage and format, if no command is specified, show help for al
 
 Format: `help [c/COMMAND]`
 
-### Adding a description with filepath : `description`
+### Adding a tag with filepath : `tag`
 
 Shows a message explaning how to access the help page.
 
-Format: `description f/FILE_PATH t/TAG_NAME`
+Format: `tag f/FILE_PATH t/TAG_NAME`
 
-### Showing file path of a description : `show`
+### Showing file path of a tag : `show`
 
-Shows the file path of the specified description.
+Shows the file path of the specified tag.
 
 Format: `show t/TAG_NAME`
 
@@ -67,7 +67,7 @@ Examples:
 
 ### Accessing a tagged file : `open`
 
-Opens the file specified in the filepath of the description.
+Opens the file specified in the filepath of the tag.
 
 Format: `open t/TAG_NAME`
 
@@ -75,7 +75,7 @@ Examples:
 * `open t/my_research`
 * `open t/notes`
 
-### Removing a description : `untag`
+### Removing a tag : `untag`
 
 Removes the file from the list of managed files.
 
@@ -84,9 +84,9 @@ Format: `untag t/TAG_NAME`
 Examples:
 * `untag t/notes`
 
-### Renaming a description : `retag`
+### Renaming a tag : `retag`
 
-Renames the description of the file with a new description.
+Renames the tag of the file with a new tag.
 
 Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 
@@ -120,17 +120,17 @@ Format: `exit`
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HelloFile home folder.
 
 **Q**: What if the name or the directory of the file I tagged is changed? Can I still access the file using HelloFile?<br>
-**A**: No. HelloFile cannot trace the file if its name or directory is changed, but if you still want to manage the file, you can description it again.
+**A**: No. HelloFile cannot trace the file if its name or directory is changed, but if you still want to manage the file, you can tag it again.
 
-**Q**: Can description name be duplicated?<br>
-**A**: No. The description names must be unique for all files being managed.
+**Q**: Can tag name be duplicated?<br>
+**A**: No. The tag names must be unique for all files being managed.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `description f/FILE_NAME t/TAG_NAME` <br> e.g., `description f/c:/myfolder/file.jpg t/newTag`
+**Tag** | `tag f/FILE_NAME t/TAG_NAME` <br> e.g., `tag f/c:/myfolder/file.jpg t/newTag`
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
