@@ -125,6 +125,14 @@ public class InventoryMainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    public void changeToSimpleCell() {
+        inventoryListPanel.changeToSimpleCell();
+    }
+
+    public void changeToDetailedCell() {
+        inventoryListPanel.changeToDetailedCell();
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -176,6 +184,8 @@ public class InventoryMainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException, IOException {
         try {
+            changeToSimpleCell();
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -186,6 +196,10 @@ public class InventoryMainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                changeToDetailedCell();
             }
 
             return commandResult;
