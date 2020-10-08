@@ -11,9 +11,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_ICNUMBER = new Prefix("i/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
+    public static final Prefix PREFIX_FILE_PATH = new Prefix(("f/"));
     public static final Prefix PREFIX_SEX = new Prefix("s/");
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("b/");
     public static final Prefix PREFIX_ALLERGY = new Prefix("g/");
-    public static final Prefix PREFIX_FILE_PATH = new Prefix(("f/"));
 
 }

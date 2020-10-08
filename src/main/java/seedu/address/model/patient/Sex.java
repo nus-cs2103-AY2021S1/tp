@@ -12,7 +12,7 @@ public class Sex {
     public static final String MESSAGE_CONSTRAINTS = "Sex should be one of the two: "
             + "M | F\n";
     // a letter that can be "M" or "F" depending on the sex of the patient
-    private static final String SEX = "(?i)^[MF]";
+    private static final String SEX = "(?i)^[MF]$";
     public static final String VALIDATION_REGEX = SEX;
 
     public final String value;

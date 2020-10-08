@@ -12,8 +12,8 @@ public class IcNumber {
     public static final String MESSAGE_CONSTRAINTS = "IC numbers should be of the format @xxxxxxx# "
             + "where each of the three parts adhere to the following constraints:\n"
             + "1. @ is a letter that can be \"S\", \"T\", \"F\" or \"G\" "
-            + "depending on the status of the holder. "
-            + "2. xxxxxxx is a 7-digit serial number assigned to the document holder. "
+            + "depending on the status of the holder.\n"
+            + "2. xxxxxxx is a 7-digit serial number assigned to the document holder.\n"
             + "3. # is the checksum letter calculated with respect to @ and xxxxxxx.";
     // a letter that can be "S", "T", "F" or "G" depending on the status of the patient
     private static final String IC_FIRST_CHARACTER_REGEX = "(?i)^[STFG]";

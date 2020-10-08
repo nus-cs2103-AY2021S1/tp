@@ -86,7 +86,7 @@ public class Patient {
     }
 
     /**
-     * Returns true if both patients of the same name have at least one other identity field that is the same.
+     * Returns true if both patients of the same name have the same IC number.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {

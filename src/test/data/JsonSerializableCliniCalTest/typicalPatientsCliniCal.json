@@ -3,27 +3,27 @@
   "patients" : [ {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "icNumber": "S1539231A",
+    "icNumber": "S4623454A",
     "address": "123, Jurong West Ave 6, #08-111",
     "email": "alice@example.com",
     "profilePicture" : "data/stock_picture.png",
     "sex": "F",
     "bloodType": "A+",
-    "tagged" : [ "penicillin", "sulfa" ]
+    "tagged" : [ "aspirin" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
-    "icNumber": "S5392348B",
+    "icNumber": "S7435696B",
     "address" : "311, Clementi Ave 2, #02-25",
     "email" : "johnd@example.com",
     "profilePicture" : "data/stock_picture.png",
     "sex": "M",
     "bloodType": "B+",
-    "tagged" : [ "sulfa" ]
+    "tagged" : [ "penicillin", "sulfa" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
-    "icNumber": "S2473455C",
+    "icNumber": "S8864424C",
     "address" : "wall street",
     "email" : "heinz@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -53,7 +53,7 @@
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
-    "icNumber": "T6724346F",
+    "icNumber": "S6787656F",
     "address" : "little tokyo",
     "email" : "lydia@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -63,7 +63,7 @@
   }, {
     "name" : "George Best",
     "phone" : "9482442",
-    "icNumber": "S2347499G",
+    "icNumber": "S2444153G",
     "address" : "4th street",
     "email" : "anna@example.com",
     "profilePicture" : "data/stock_picture.png",

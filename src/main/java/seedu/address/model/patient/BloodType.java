@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class BloodType {
 
-    public static final String MESSAGE_CONSTRAINTS = "Blood type should be 1 of the following : "
+    public static final String MESSAGE_CONSTRAINTS = "Blood type should be 1 of the following: "
             + "A+ | A- | B+ | B-| O+ | O- | AB+ | AB-";
     // a blood group that can be "A", "B", "O" or "AB" depending on the presence of antigens A, B
     private static final String BLOOD_TYPE_ABO = "(?i)^(A|B|AB|O)";

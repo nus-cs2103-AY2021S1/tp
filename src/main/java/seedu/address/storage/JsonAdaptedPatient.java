@@ -109,7 +109,8 @@ class JsonAdaptedPatient {
         final Phone modelPhone = new Phone(phone);
 
         if (icNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IcNumber.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    IcNumber.class.getSimpleName()));
         }
         if (!IcNumber.isValidIcNumber(icNumber)) {
             throw new IllegalValueException(IcNumber.MESSAGE_CONSTRAINTS);

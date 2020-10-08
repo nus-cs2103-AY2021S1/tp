@@ -5,11 +5,14 @@ import java.util.Set;
 
 import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
+import seedu.address.model.patient.BloodType;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.patient.Sex;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -19,16 +22,22 @@ public class PatientBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    public static final String DEFAULT_ICNUMBER = "S1234567A";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_PROFILE_PICTURE = "data/stock_picture.png";
+    public static final String DEFAULT_SEX = "F";
+    public static final String DEFAULT_BLOODTYPE = "A+";
 
     private Name name;
     private Phone phone;
-    private Email email;
+    private IcNumber icNumber;
     private Address address;
-    private Set<Allergy> allergies;
+    private Email email;
     private ProfilePicture profilePicture;
+    private Sex sex;
+    private BloodType bloodType;
+    private Set<Allergy> allergies;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -36,10 +45,13 @@ public class PatientBuilder {
     public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        icNumber = new IcNumber(DEFAULT_ICNUMBER);
         address = new Address(DEFAULT_ADDRESS);
-        allergies = new HashSet<>();
+        email = new Email(DEFAULT_EMAIL);
         profilePicture = new ProfilePicture(DEFAULT_PROFILE_PICTURE);
+        sex = new Sex(DEFAULT_SEX);
+        bloodType = new BloodType(DEFAULT_BLOODTYPE);
+        allergies = new HashSet<>();
     }
 
     /**
@@ -48,10 +60,13 @@ public class PatientBuilder {
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
         phone = patientToCopy.getPhone();
-        email = patientToCopy.getEmail();
+        icNumber = patientToCopy.getIcNumber();
         address = patientToCopy.getAddress();
-        allergies = new HashSet<>(patientToCopy.getAllergies());
+        email = patientToCopy.getEmail();
         profilePicture = patientToCopy.getProfilePicture();
+        sex = patientToCopy.getSex();
+        bloodType = patientToCopy.getBloodType();
+        allergies = new HashSet<>(patientToCopy.getAllergies());
     }
 
     /**
@@ -63,10 +78,18 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Patient} that we are building.
+     * Sets the {@code Phone} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withAllergies(String ... allergies) {
-        this.allergies = SampleDataUtil.getAllergySet(allergies);
+    public PatientBuilder withPhone(String phone) {
+        this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code IcNumber} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withIcNumber(String icNumber) {
+        this.icNumber = new IcNumber(icNumber);
         return this;
     }
 
@@ -75,14 +98,6 @@ public class PatientBuilder {
      */
     public PatientBuilder withAddress(String address) {
         this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Patient} that we are building.
-     */
-    public PatientBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
         return this;
     }
 
@@ -102,8 +117,36 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Sex} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withSex(String sex) {
+        this.sex = new Sex(sex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code BloodType} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withBloodType(String bloodType) {
+        this.bloodType = new BloodType(bloodType);
+        return this;
+    }
+
+    /**
+     * Parses the {@code Allergy} into a {@code Set<Allergy>} and set it to the {@code Patient} that we are building.
+     */
+    public PatientBuilder withAllergies(String ... allergies) {
+        this.allergies = SampleDataUtil.getAllergySet(allergies);
+        return this;
+    }
+
+    /**
+     * Builds {@code Patient} with the given fields.
+     */
     public Patient build() {
-        return new Patient(name, phone, email, address, allergies, profilePicture);
+        return new Patient(name, phone, icNumber, address, email, profilePicture,
+                sex, bloodType, allergies);
     }
 
 }
