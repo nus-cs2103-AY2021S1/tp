@@ -82,6 +82,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getMeetingBookFilePath() {
+        return userPrefs.getMeetingBookFilePath();
+    }
+
+    @Override
+    public void setMeetingBookFilePath(Path meetingBookFilePath) {
+        requireNonNull(meetingBookFilePath);
+        userPrefs.setMeetingBookFilePath(meetingBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -125,6 +136,16 @@ public class ModelManager implements Model {
     }
 
     //=========== Meetings ===================================================================================
+    @Override
+    public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
+        this.meetingBook.resetData(meetingBook);
+    }
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
+    }
+
     @Override
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);

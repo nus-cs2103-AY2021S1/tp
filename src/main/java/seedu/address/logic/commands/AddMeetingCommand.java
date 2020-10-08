@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACTADD;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,16 +18,13 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + PREFIX_NAME + "MEETING NAME "
+            + PREFIX_MEETINGNAME + "MEETING NAME "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
-            + "[" + PREFIX_CONTACTADD + "PERSON]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "CS2103 weekly meeting "
+            + PREFIX_MEETINGNAME + "CS2103 weekly meeting "
             + PREFIX_DATE + "2020-09-20 "
-            + PREFIX_TIME+ "10:00 "
-            + PREFIX_CONTACTADD + "Roy "
-            + PREFIX_CONTACTADD + "Jerryl ";
+            + PREFIX_TIME + "10:00 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";

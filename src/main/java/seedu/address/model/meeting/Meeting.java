@@ -1,13 +1,8 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.person.Person;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 public class Meeting {
     // Identity fields
@@ -15,33 +10,31 @@ public class Meeting {
     private final Date date;
     private final Time time;
 
-    // Data fields
-    private final Set<Person> persons = new HashSet<>();
-
-    public Meeting(MeetingName name, Date date, Time time, Set<Person> persons) {
-        requireAllNonNull(name, date, time, persons);
+    /**
+     * Every field must be present and not null.
+     */
+    public Meeting(MeetingName name, Date date, Time time) {
+        requireAllNonNull(name, date, time);
         this.name = name;
         this.date = date;
         this.time = time;
-        this.persons.addAll(persons);
     }
 
-    public MeetingName getName(){
+    public MeetingName getName() {
         return this.name;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return this.date;
     }
 
-    public Time getTime(){
+    public Time getTime() {
         return this.time;
     }
 
-    public Set<Person> getPersons() {
-        return Collections.unmodifiableSet(persons);
-    }
-
+    /**
+     * Returns true if both meetings have the same name, date and time.
+     */
     public boolean isSameMeeting(Meeting otherMeeting) {
         if (otherMeeting == this) {
             return true;
@@ -53,6 +46,10 @@ public class Meeting {
                 && otherMeeting.getTime().equals(getTime());
     }
 
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two meetings.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -72,7 +69,7 @@ public class Meeting {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, time, persons);
+        return Objects.hash(name, date, time);
     }
 
     @Override
@@ -82,9 +79,7 @@ public class Meeting {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Time: ")
-                .append(getTime())
-                .append(" Persons: ");
-        getPersons().forEach(builder::append);
+                .append(getTime());
         return builder.toString();
     }
 }

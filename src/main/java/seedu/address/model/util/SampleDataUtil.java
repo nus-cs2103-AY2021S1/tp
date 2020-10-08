@@ -5,7 +5,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
+import seedu.address.model.meeting.Date;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -33,6 +39,12 @@ public class SampleDataUtil {
         };
     }
 
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[] {
+            new Meeting(new MeetingName("CS2103"), new Date("2020-09-20"), new Time("10:00"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -50,4 +62,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static ReadOnlyMeetingBook getSampleMeetingBook() {
+        MeetingBook sampleMb = new MeetingBook();
+        for (Meeting sampleMeeting : getSampleMeetings()) {
+            sampleMb.addMeeting(sampleMeeting);
+        }
+        return sampleMb;
+    }
 }

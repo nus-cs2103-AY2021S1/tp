@@ -17,11 +17,18 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     private final ObservableList<Meeting> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /**
+     * Returns true if the list contains an equivalent meeting as the given argument.
+     */
     public boolean contains(Meeting toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameMeeting);
     }
 
+    /**
+     * Adds a meeting to the list.
+     * The meeting must not already exist in the list.
+     */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -30,6 +37,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the list.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the list.
+     */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
 
@@ -45,6 +57,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.set(index, editedMeeting);
     }
 
+    /**
+     * Removes the equivalent meeting from the list.
+     * The meeting must exist in the list.
+     */
     public void remove(Meeting toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
