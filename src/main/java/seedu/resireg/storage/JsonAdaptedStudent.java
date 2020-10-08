@@ -31,14 +31,17 @@ class JsonAdaptedStudent {
     private final String faculty;
     private final String studentId;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private JsonAdaptedRoom room;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("faculty") String faculty,
-            @JsonProperty("studentId") String studentId, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email, @JsonProperty("faculty") String faculty,
+                              @JsonProperty("studentId") String studentId,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("room") JsonAdaptedRoom room) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +49,9 @@ class JsonAdaptedStudent {
         this.studentId = studentId;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (room != null) {
+            this.room = room;
         }
     }
 
@@ -61,6 +67,9 @@ class JsonAdaptedStudent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        if (source.hasRoom()) {
+            room = new JsonAdaptedRoom(source.getRoom());
+        }
     }
 
     /**
@@ -116,7 +125,12 @@ class JsonAdaptedStudent {
         final StudentId modelStudentId = new StudentId(studentId);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelFaculty, modelStudentId, modelTags);
+
+        Student newStudent = new Student(modelName, modelPhone, modelEmail, modelFaculty, modelStudentId, modelTags);
+        if (room != null) {
+            newStudent.setRoom(room.toModelType());
+        }
+        return newStudent;
     }
 
 }

@@ -13,7 +13,12 @@
     "email" : "benson@example.com",
     "faculty": "FASS",
     "studentId": "E0222228",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "room": {
+      "floor": "1",
+      "roomNumber": "101",
+      "roomType": "CN"
+    }
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -49,5 +54,6 @@
     "faculty": "FASS",
     "studentId": "E0111101",
     "tagged" : [ ]
-  } ]
+  } ],
+  "rooms": [ ]
 }

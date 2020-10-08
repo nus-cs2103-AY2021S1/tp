@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
 
@@ -25,6 +26,7 @@ public class Student {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private Room room;
 
     /**
      * Every field must be present and not null.
@@ -67,6 +69,28 @@ public class Student {
         return Collections.unmodifiableSet(tags);
     }
 
+
+    /**
+     * Returns true if a room has been allocated to the student, and false otherwise.
+     */
+    public boolean hasRoom() {
+        return getRoom() != null;
+    }
+
+    /**
+     * Returns the room allocated to the student.
+     */
+    public Room getRoom() {
+        return room;
+    }
+
+    /**
+     * Allocates a room to the student.
+     */
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     /**
      * Returns true if both students have the same student identification number (StudentId).
      * This defines a weaker notion of equality between two students, and includes students that have the same ID,
@@ -77,7 +101,8 @@ public class Student {
             return true;
         }
 
-        return otherStudent != null && otherStudent.getStudentId().equals(getStudentId());
+        return otherStudent != null
+                && otherStudent.getStudentId().equals(getStudentId());
     }
 
     /**
@@ -100,13 +125,15 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getFaculty().equals(getFaculty())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.hasRoom() == hasRoom()
+                && (!otherStudent.hasRoom() && !hasRoom() || otherStudent.getRoom().equals(getRoom()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, faculty, studentId, tags);
+        return Objects.hash(name, phone, email, faculty, studentId, tags, room);
     }
 
     @Override
@@ -123,6 +150,8 @@ public class Student {
                 .append(getFaculty())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Room: ")
+                .append(getRoom());
         return builder.toString();
     }
 

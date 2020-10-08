@@ -115,6 +115,12 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+    @Override
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return addressBook.hasRoom(room);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

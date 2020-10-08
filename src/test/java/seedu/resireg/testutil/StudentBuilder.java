@@ -3,6 +3,7 @@ package seedu.resireg.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -23,13 +24,13 @@ public class StudentBuilder {
     public static final String DEFAULT_FACULTY = "FASS";
     public static final String DEFAULT_STUDENT_ID = "E0407889";
 
-
     private Name name;
     private Phone phone;
     private Email email;
     private Faculty faculty;
     private StudentId studentId;
     private Set<Tag> tags;
+    private Room room;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -41,6 +42,7 @@ public class StudentBuilder {
         faculty = new Faculty(DEFAULT_FACULTY);
         studentId = new StudentId(DEFAULT_STUDENT_ID);
         tags = new HashSet<>();
+        room = null;
     }
 
     /**
@@ -103,8 +105,21 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Room} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withRoom(Room room) {
+        this.room = room;
+        return this;
+    }
+
+    /**
+     * Returns a new {@code Student} created.
+     */
     public Student build() {
-        return new Student(name, phone, email, faculty, studentId, tags);
+        Student newStudent = new Student(name, phone, email, faculty, studentId, tags);
+        newStudent.setRoom(room);
+        return newStudent;
     }
 
 }

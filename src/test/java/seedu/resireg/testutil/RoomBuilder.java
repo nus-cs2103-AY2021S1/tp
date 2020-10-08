@@ -47,7 +47,7 @@ public class RoomBuilder {
     /**
      * Sets the {@code Floor} of the {@code Room} that we are building.
      */
-    public RoomBuilder withName(String floor) {
+    public RoomBuilder withFloor(String floor) {
         this.floor = new Floor(floor);
         return this;
     }

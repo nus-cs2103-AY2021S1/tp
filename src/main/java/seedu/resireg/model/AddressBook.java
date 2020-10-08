@@ -134,7 +134,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setRoom(Room target, Room editedRoom) {
         requireNonNull(editedRoom);
-
         rooms.setRoom(target, editedRoom);
     }
 
