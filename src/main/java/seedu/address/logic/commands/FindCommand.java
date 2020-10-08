@@ -3,10 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import seedu.address.logic.parser.FindCommandParser;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.expense.DateMatchesPredicate;
 import seedu.address.model.expense.Expense;
@@ -31,11 +34,6 @@ public class FindCommand extends Command {
             + PREFIX_DATE + "18-02-2020 "
             + PREFIX_DESCRIPTION + "Lunch at YIH"
             + PREFIX_TAG + "food";
-
-    /*public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all expenses whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";*/
 
     private final NameContainsKeywordsPredicate namePredicate;
     private final DateMatchesPredicate datePredicate;

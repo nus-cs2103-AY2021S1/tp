@@ -22,7 +22,26 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyKeyword_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_DESCRIPTION,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommandParser.MISSING_ARGUMENTS));
+    }
+
+    @Test
+    public void parse_emptyDate_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_DATE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommandParser.MISSING_ARGUMENTS));
+    }
+
+    @Test
+    public void parse_emptyTag_throwsParseException() {
+        assertParseFailure(parser, " " + PREFIX_TAG,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommandParser.MISSING_ARGUMENTS));
     }
 
     @Test
@@ -33,12 +52,9 @@ public class FindCommandParserTest {
                 new DateMatchesPredicate(Arrays.asList("07-09-2020")),
                 new TagsMatchesPredicate(Arrays.asList("crypto", "cs"))
         );
-        String x = "-d Alice Bob -@ 07-09-2020 t/ crypto t/ cs";
+        String x = " " + PREFIX_DESCRIPTION + "Alice Bob " + PREFIX_DATE + " 07-09-2020 " + PREFIX_TAG +
+                " crypto "+ PREFIX_TAG + " cs";
         assertParseSuccess(parser, x, expectedFindCommand);
-
-        // multiple whitespaces between keywords
-        String y = "\n-d Alice \n \t Bob \n \t -@07-09-2020 t/ crypto t/ cs";
-        assertParseSuccess(parser, y, expectedFindCommand);
     }
 
 }

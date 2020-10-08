@@ -1,6 +1,8 @@
 package seedu.address.model.expense;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -9,10 +11,10 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Expense}'s {@code Description} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Expense> {
-    private final List<String> keywords;
+    private final Set<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = new HashSet<>(keywords);
     }
 
     @Override
@@ -30,7 +32,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Expense> {
     }
 
     public boolean isEmpty() {
-        return this.keywords.isEmpty() || (this.keywords.size() == 1 && this.keywords.get(0).isEmpty());
+        return this.keywords.isEmpty() || (this.keywords.size() == 1 && this.keywords.contains(""));
     }
 
 }

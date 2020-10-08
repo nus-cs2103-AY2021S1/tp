@@ -18,6 +18,7 @@ import seedu.address.model.expense.TagsMatchesPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    public static final String MISSING_ARGUMENTS = "You cannot leave arguments empty.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -40,11 +41,20 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+            if (keywords.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MISSING_ARGUMENTS));
+            }
+        }
+        if (dates.size() == 1 && dates.get(0).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MISSING_ARGUMENTS));
         }
         for (String date: dates) {
             if (!Date.isValidDate(date)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Date.MESSAGE_CONSTRAINTS));
             }
+        }
+        if (tags.size() == 1 && tags.get(0).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MISSING_ARGUMENTS));
         }
         if (keywords.isEmpty() && dates.isEmpty() && tags.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

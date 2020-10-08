@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Expense}'s {@code Description} matches any of the keywords given.
  */
@@ -14,28 +12,25 @@ public class DateMatchesPredicate implements Predicate<Expense> {
     private final Set<Date> dates;
 
     public DateMatchesPredicate(List<String> dateStrings) {
-        Set<Date> temp = new HashSet<Date>();
+        Set<Date> temp = new HashSet<>();
         for (String s: dateStrings) {
             if (Date.isValidDate(s)) {
                 temp.add(new Date(s));
             }
-        }
-        if (temp.isEmpty()) {
-            temp = null;
         }
         this.dates = temp;
     }
 
     @Override
     public boolean test(Expense expense) {
-        if (this.dates == null) {
+        if (this.isEmpty()) {
             return false;
         }
         return this.dates.contains(expense.getDate());
     }
     
     public boolean isEmpty() {
-        return this.dates == null;
+        return this.dates.isEmpty();
     }
 
     @Override

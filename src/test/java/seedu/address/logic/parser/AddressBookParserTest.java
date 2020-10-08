@@ -75,7 +75,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        List<String> dateString = Arrays.asList("09-10-2020");
+        String dateString = "09-10-2020";
+        List<String> dateStrings = Arrays.asList(dateString);
         List<String> hs = new ArrayList<>();
         hs.add("CS");
         hs.add("bee");
@@ -87,7 +88,7 @@ public class AddressBookParserTest {
         );
         FindCommand findCommand = new FindCommand(
                 new NameContainsKeywordsPredicate(keywords),
-                new DateMatchesPredicate(dateString),
+                new DateMatchesPredicate(dateStrings),
                 new TagsMatchesPredicate(hs)
         );
         assertEquals(findCommand, command);

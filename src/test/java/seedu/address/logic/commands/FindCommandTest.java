@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.TypicalExpenses.CARL;
 import static seedu.address.testutil.TypicalExpenses.ELLE;
 import static seedu.address.testutil.TypicalExpenses.FIONA;
 import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -67,13 +70,15 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noExpenseFound() {
+    public void execute_noMatchingKeywords_noExpenseFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        DateMatchesPredicate datePredicate = new DateMatchesPredicate(Arrays.asList(""));
-        TagsMatchesPredicate tagsPredicate = new TagsMatchesPredicate(null);
-        FindCommand command = new FindCommand(predicate, datePredicate, tagsPredicate);
-        expectedModel.updateFilteredExpenseList(predicate);
+        DateMatchesPredicate datePredicate =
+                new DateMatchesPredicate(Collections.emptyList());
+        TagsMatchesPredicate tagsPredicate =
+                new TagsMatchesPredicate(Collections.emptyList());
+        NameContainsKeywordsPredicate namePredicate = preparePredicate("CannotBeNotFound");
+        FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
+        expectedModel.updateFilteredExpenseList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredExpenseList());
     }
@@ -82,9 +87,9 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleExpensesFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 3);
         DateMatchesPredicate datePredicate =
-                new DateMatchesPredicate(Arrays.asList("09-08-2020"));
+                new DateMatchesPredicate(Collections.emptyList());
         TagsMatchesPredicate tagsPredicate =
-                new TagsMatchesPredicate(Arrays.asList("tagTwo", "bye"));
+                new TagsMatchesPredicate(Collections.emptyList());
         NameContainsKeywordsPredicate namePredicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
