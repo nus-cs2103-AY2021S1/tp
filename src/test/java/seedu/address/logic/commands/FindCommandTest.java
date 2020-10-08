@@ -26,6 +26,7 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.YearMatchPredicate;
+import seedu.address.testutil.FindStudentDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -41,17 +42,19 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        List<Predicate<Student>> firstGroupOfPredicates = Collections.singletonList(firstPredicate);
-        List<Predicate<Student>> secondGroupOfPredicates = Collections.singletonList(secondPredicate);
+        FindCommand.FindStudentDescriptor firstDescriptor =
+                new FindStudentDescriptorBuilder().withNamePredicate(firstPredicate).build();
+        FindCommand.FindStudentDescriptor secondDescriptor =
+                new FindStudentDescriptorBuilder().withNamePredicate(secondPredicate).build();
 
-        FindCommand findFirstCommand = new FindCommand(firstGroupOfPredicates);
-        FindCommand findSecondCommand = new FindCommand(secondGroupOfPredicates);
+        FindCommand findFirstCommand = new FindCommand(firstDescriptor);
+        FindCommand findSecondCommand = new FindCommand(secondDescriptor);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstGroupOfPredicates);
+        FindCommand findFirstCommandCopy = new FindCommand(firstDescriptor);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -68,9 +71,10 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
-        List<Predicate<Student>> groupOfPredicates = Collections.singletonList(predicate);
-        FindCommand command = new FindCommand(groupOfPredicates);
         expectedModel.updateFilteredPersonList(predicate);
+
+        FindCommand command = new FindCommand(new FindStudentDescriptorBuilder()
+                .withNamePredicate(predicate).build());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -79,11 +83,30 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
-        List<Predicate<Student>> groupOfPredicates = Collections.singletonList(predicate);
-        FindCommand command = new FindCommand(groupOfPredicates);
         expectedModel.updateFilteredPersonList(predicate);
+
+        FindCommand command = new FindCommand(new FindStudentDescriptorBuilder()
+                .withNamePredicate(predicate).build());
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multiplePredicates_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
+        SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
+        List<Predicate<Student>> predicates = Arrays.asList(namePredicate, schoolPredicate);
+        Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
+        expectedModel.updateFilteredPersonList(consolidatedPredicates);
+
+        FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
+                .withNamePredicate(namePredicate).withSchoolPredicate(schoolPredicate).build();
+        FindCommand command = new FindCommand(descriptor);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredPersonList());
     }
 
     /**
@@ -105,5 +128,13 @@ public class FindCommandTest {
      */
     private YearMatchPredicate prepareYearPredicate(String userInput) throws ParseException {
         return new YearMatchPredicate(ParserUtil.parseYear(userInput));
+    }
+
+    /**
+     * Parses {@code List<Predicate<Student>>} into a single {@code Predicate<Student>}.
+     */
+    private Predicate<Student> consolidatePredicates(List<Predicate<Student>> predicates) {
+        Predicate<Student> identity = student -> true; // identity: returns the same predicate when composed with it
+        return predicates.stream().reduce(identity, Predicate::and); // consolidates all predicates
     }
 }

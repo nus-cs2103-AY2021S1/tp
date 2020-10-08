@@ -8,9 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.FindStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
 
@@ -71,10 +70,12 @@ public class ReeveParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords);
+        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywords);
+        FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
+                .withNamePredicate(namePredicate).build();
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(Collections.singletonList(predicate)), command);
+                FindCommand.COMMAND_WORD + " " + StudentUtil.getFindStudentDescriptorDetails(descriptor));
+        assertEquals(new FindCommand(descriptor), command);
     }
 
     @Test
