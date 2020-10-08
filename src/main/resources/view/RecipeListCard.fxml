@@ -35,8 +35,8 @@
       <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />
       <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" />
       <Label fx:id="recipeImage" styleClass="cell_small_label" text="\$recipeImage" />
-      
+
     </VBox>
-    
+
   </GridPane>
 </HBox>
