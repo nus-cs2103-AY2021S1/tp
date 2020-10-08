@@ -70,6 +70,14 @@ public class ParserManager {
             parser = new EditContactParser();
             command = parser.parse(input);
             return command;
+        case "addtask":
+            parser = new AddTaskParser();
+            command = parser.parse(input);
+            return command;
+        case "viewtodolist":
+            parser = new ViewTodoListParser();
+            command = parser.parse("");
+            return command;
         default:
             throw new ParseException("Invalid Command");
         }
