@@ -22,13 +22,16 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_EXPENSE = "Expenses list contains duplicate expense(s).";
 
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
+    private final JsonAdaptedBudget budget;
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given expenses.
+     * Constructs a {@code JsonSerializableAddressBook} with the given expenses and budget.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses) {
+    public JsonSerializableAddressBook(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
+                                       @JsonProperty("budget") JsonAdaptedBudget budget) {
         this.expenses.addAll(expenses);
+        this.budget = budget;
     }
 
     /**
@@ -38,6 +41,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
+        budget = new JsonAdaptedBudget(source.getBudget());
     }
 
     /**
@@ -54,6 +58,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addExpense(expense);
         }
+        addressBook.setBudget(budget.toModelType());
         return addressBook;
     }
 

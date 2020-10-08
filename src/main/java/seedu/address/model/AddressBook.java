@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.UniqueExpenseList;
 
@@ -14,6 +15,8 @@ import seedu.address.model.expense.UniqueExpenseList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+
+    private final Budget budget;
     private final UniqueExpenseList expenses;
 
     /*
@@ -28,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public AddressBook() {
+        budget = new Budget();
     }
 
     /**
@@ -55,6 +59,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setExpenses(newData.getExpenseList());
+        setBudget(newData.getBudget());
+    }
+
+    //// budget-level operations
+
+    public void setBudget(Budget budget) {
+        requireNonNull(budget);
+
+        this.budget.topupBudget(budget.getAmount());
+    }
+
+    @Override
+    public Budget getBudget() {
+        return budget;
     }
 
     //// expense-level operations

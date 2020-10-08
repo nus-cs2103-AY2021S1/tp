@@ -1,85 +1,76 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.expense.Amount;
 import seedu.address.model.expense.Expense;
-import seedu.address.testutil.ExpenseBuilder;
 
-public class AddCommandTest {
+public class TopupCommandTest {
 
     @Test
-    public void constructor_nullExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullAmount_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TopupCommand(null));
     }
 
     @Test
-    public void execute_expenseAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
-        Expense validExpense = new ExpenseBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validExpense).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExpense), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validExpense), modelStub.expensesAdded);
+    void execute_amountAddedToModel_success() {
+        ModelStub modelStub = new ModelStub();
+        Amount validAmount = new Amount("1");
+        CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, validAmount.asDouble()),
+                commandResult.getFeedbackToUser());
+        assertEquals(validAmount, modelStub.budget.getAmount());
     }
 
     @Test
-    public void execute_duplicateExpense_throwsCommandException() {
-        Expense validExpense = new ExpenseBuilder().build();
-        AddCommand addCommand = new AddCommand(validExpense);
-        ModelStub modelStub = new ModelStubWithExpense(validExpense);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EXPENSE, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void equals() {
-        Expense alice = new ExpenseBuilder().withDescription("Alice").build();
-        Expense bob = new ExpenseBuilder().withDescription("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+    void equals() {
+        Amount toAddOne = new Amount("1");
+        Amount toAddTwo = new Amount("2");
+        TopupCommand topupCommandOne = new TopupCommand(toAddOne);
+        TopupCommand topupCommandTwo = new TopupCommand(toAddTwo);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(topupCommandOne.equals(topupCommandOne));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        TopupCommand topupOneCopy = new TopupCommand(toAddOne);
+        assertTrue(topupCommandOne.equals(topupOneCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(topupCommandOne.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(topupCommandOne.equals(null));
 
-        // different expense -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different amount -> returns false
+        assertFalse(topupCommandOne.equals(topupCommandTwo));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A Model stub with a budget that can be topped up.
      */
     private class ModelStub implements Model {
+
+        final Budget budget;
+
+        ModelStub() {
+            budget = new Budget();
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -152,55 +143,12 @@ public class AddCommandTest {
 
         @Override
         public Budget getBudget() {
-            throw new AssertionError("This method should not be called.");
+            return budget;
         }
 
         @Override
         public void topupBudget(Amount amount) {
-            throw new AssertionError("This method should not be called.");
+            budget.topupBudget(amount);
         }
     }
-
-    /**
-     * A Model stub that contains a single expense.
-     */
-    private class ModelStubWithExpense extends ModelStub {
-        private final Expense expense;
-
-        ModelStubWithExpense(Expense expense) {
-            requireNonNull(expense);
-            this.expense = expense;
-        }
-
-        @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return this.expense.isSameExpense(expense);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the expense being added.
-     */
-    private class ModelStubAcceptingExpenseAdded extends ModelStub {
-        final ArrayList<Expense> expensesAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return expensesAdded.stream().anyMatch(expense::isSameExpense);
-        }
-
-        @Override
-        public void addExpense(Expense expense) {
-            requireNonNull(expense);
-            expensesAdded.add(expense);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
 }

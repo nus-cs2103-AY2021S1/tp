@@ -30,7 +30,7 @@ public class ExpenseUtil {
     public static String getExpenseDetails(Expense expense) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_DESCRIPTION + expense.getDescription().fullDescription + " ");
-        sb.append(PREFIX_AMOUNT + expense.getAmount().value + " ");
+        sb.append(PREFIX_AMOUNT + expense.getAmount().toString() + " ");
         sb.append(PREFIX_DATE + expense.getDate().toString() + " ");
         expense.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -45,7 +45,7 @@ public class ExpenseUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description.fullDescription).append(" "));
-        descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.value).append(" "));
+        descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.toString()).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
