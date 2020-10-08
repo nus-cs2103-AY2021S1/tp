@@ -17,7 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.admin.AdditionalDetail;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -66,18 +66,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> details} into a {@code Set<AdditionalDetail>} if {@code details} is non-empty.
+     * If {@code details} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<AdditionalDetail>} containing zero details.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<AdditionalDetail>> parseDetailsForEdit(Collection<String> details) throws ParseException {
+        assert details != null;
 
-        if (tags.isEmpty()) {
+        if (details.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> detailSet = details.size() == 1 && details.contains("") ? Collections.emptySet() : details;
+        return Optional.of(ParserUtil.parseAdditionalDetails(detailSet));
     }
 
 }

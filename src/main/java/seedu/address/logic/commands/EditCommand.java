@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -22,6 +22,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.Admin;
 
+
 /**
  * Edits the details of an existing person in the address book.
  */
@@ -35,8 +36,8 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_SCHOOL + "SCHOOL] "
+            + "[" + PREFIX_YEAR + "YEAR]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
 
@@ -92,7 +93,10 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, new Admin());
+        // Whoever is reworking EditCommand please take note
+        Admin updatedAdmin = editStudentDescriptor.getAdmin().orElse(studentToEdit.getAdmin());
+
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin);
     }
 
     @Override
@@ -122,6 +126,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private School school;
         private Year year;
+        private Admin admin;
+
 
         public EditStudentDescriptor() {}
 
@@ -175,6 +181,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(year);
         }
 
+        public void setAdmin(Admin admin) {
+            this.admin = admin;
+        }
+
+        public Optional<Admin> getAdmin() {
+            return Optional.ofNullable(admin);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -193,7 +207,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getSchool().equals(e.getSchool())
-                    && getYear().equals(e.getYear());
+                    && getYear().equals(e.getYear())
+                    && getAdmin().equals(e.getAdmin());
         }
     }
 }

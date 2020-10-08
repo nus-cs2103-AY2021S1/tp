@@ -1,9 +1,9 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+// import java.util.ArrayList;
+// import java.util.HashSet;
+// import java.util.List;
+// import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,10 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.Admin;
-import seedu.address.model.tag.Tag;
+// import seedu.address.model.student.admin.AdditionalDetail;
+// import seedu.address.model.student.admin.ClassTime;
+// import seedu.address.model.student.admin.ClassVenue;
+
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -57,7 +60,7 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        //   final List<AdditionalDetail> personTags = new ArrayList<>();
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -93,8 +96,8 @@ class JsonAdaptedStudent {
         }
         final Year modelYear = new Year(year);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelSchool, modelYear, new Admin());
+        // Please implement Admin
+        return new Student(modelName, modelPhone, modelSchool, modelYear, Admin.getPlaceholder());
     }
 
 }
