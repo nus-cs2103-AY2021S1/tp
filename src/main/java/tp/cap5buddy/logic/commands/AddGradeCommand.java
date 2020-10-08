@@ -7,6 +7,9 @@ import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.todolist.TodoList;
 
+/**
+ * Represents the AddGradeCommand class.
+ */
 public class AddGradeCommand extends Command {
     private final String moduleName;
     private final Grade grade;
@@ -14,9 +17,9 @@ public class AddGradeCommand extends Command {
     /**
      * Creates an AddGradeCommand.
      *
-     * @param name
-     * @param percentageOfFinalGrade
-     * @param results
+     * @param name name of module the grade is added to.
+     * @param percentageOfFinalGrade the percentage this grade takes of the final grade.
+     * @param results the result awarded to this grade.
      */
     public AddGradeCommand(String name, int percentageOfFinalGrade, double results) {
         this.moduleName = name;
