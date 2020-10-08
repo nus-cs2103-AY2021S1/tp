@@ -86,7 +86,8 @@ public class UniqueFoodListTest {
         uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
         uniqueFoodList.add(TypicalFoods.BEANS);
         assertThrows(
-                DuplicateFoodException.class, () -> uniqueFoodList.setFood(TypicalFoods.CHICKEN_RICE, TypicalFoods.BEANS));
+                DuplicateFoodException.class, () -> uniqueFoodList.setFood(
+                        TypicalFoods.CHICKEN_RICE, TypicalFoods.BEANS));
     }
 
     @Test
