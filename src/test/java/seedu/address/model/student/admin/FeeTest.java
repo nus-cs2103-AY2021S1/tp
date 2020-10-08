@@ -1,5 +1,6 @@
 package seedu.address.model.student.admin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,5 +36,12 @@ public class FeeTest {
         assertTrue(Fee.isValidFee("213123.21"));
         assertTrue(Fee.isValidFee("324"));
         assertTrue(Fee.isValidFee("13.4"));
+    }
+
+    @Test
+    public void toString_equals() {
+        assertEquals(new Fee("10").toString(), "$10.00");
+        assertEquals(new Fee("143.12").toString(), "$143.12");
+        assertEquals(new Fee("1036.5").toString(), "$1036.50");
     }
 }
