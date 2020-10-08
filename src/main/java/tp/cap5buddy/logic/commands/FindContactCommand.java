@@ -7,6 +7,7 @@ import tp.cap5buddy.contacts.Contact;
 import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 
 public class FindContactCommand extends Command {
 
@@ -32,7 +33,7 @@ public class FindContactCommand extends Command {
      * @throws CommandException If the command could not be successfuly executed.
      */
     @Override
-    public CommandResult execute(ModuleList modules, ContactList contacts) throws CommandException {
+    public CommandResult execute(ModuleList modules, ContactList contacts, TodoList todolist) throws CommandException {
         List<Contact> result = new ArrayList<>();
         for (Contact contact : contacts.getContactList()) {
             if (contact.getName().toString().contains(keyword)) {
