@@ -1,5 +1,7 @@
 package jimmy.mcgymmy.logic.commands;
 
+import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
+import static jimmy.mcgymmy.testutil.TypicalFoods.CRISPY_FRIED_FISH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -35,13 +37,13 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleFoodsFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        String expectedMessage = String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("CHICKEN fish");
         FindCommand command = new FindCommand();
         command.setParameters(new CommandParserTestUtil.ParameterStub<>("", predicate));
         expectedModel.updateFilteredFoodList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TypicalFoods.CARL, TypicalFoods.ELLE, TypicalFoods.FIONA),
+        assertEquals(Arrays.asList(CHICKEN_RICE, CRISPY_FRIED_FISH),
                 model.getFilteredFoodList());
     }
 

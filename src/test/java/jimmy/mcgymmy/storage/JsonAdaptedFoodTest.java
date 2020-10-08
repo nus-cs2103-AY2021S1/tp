@@ -24,18 +24,18 @@ public class JsonAdaptedFoodTest {
     private static final String INVALID_CARBS = "123.132";
     private static final String INVALID_TAG = "##lucnsh";
 
-    private static final String VALID_NAME = TypicalFoods.BENSON.getName().toString();
-    private static final String VALID_PROTEIN = Integer.toString(TypicalFoods.BENSON.getProtein().getAmount());
-    private static final String VALID_FAT = Integer.toString(TypicalFoods.BENSON.getFat().getAmount());
-    private static final String VALID_CARBS = Integer.toString(TypicalFoods.BENSON.getCarbs().getAmount());
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalFoods.BENSON.getTags().stream()
+    private static final String VALID_NAME = TypicalFoods.NASI_LEMAK.getName().toString();
+    private static final String VALID_PROTEIN = Integer.toString(TypicalFoods.NASI_LEMAK.getProtein().getAmount());
+    private static final String VALID_FAT = Integer.toString(TypicalFoods.NASI_LEMAK.getFat().getAmount());
+    private static final String VALID_CARBS = Integer.toString(TypicalFoods.NASI_LEMAK.getCarbs().getAmount());
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalFoods.NASI_LEMAK.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validFoodDetails_returnsPerson() throws Exception {
-        JsonAdaptedFood food = new JsonAdaptedFood(TypicalFoods.BENSON);
-        Assertions.assertEquals(TypicalFoods.BENSON, food.toModelType());
+        JsonAdaptedFood food = new JsonAdaptedFood(TypicalFoods.NASI_LEMAK);
+        Assertions.assertEquals(TypicalFoods.NASI_LEMAK, food.toModelType());
     }
 
     @Test

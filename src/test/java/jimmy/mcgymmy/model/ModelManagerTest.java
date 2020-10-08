@@ -1,7 +1,7 @@
 package jimmy.mcgymmy.model;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
-import static jimmy.mcgymmy.testutil.TypicalFoods.ALICE;
+import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -78,13 +78,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasFood_personNotInMcGymmy_returnsFalse() {
-        assertFalse(modelManager.hasFood(ALICE));
+        assertFalse(modelManager.hasFood(CHICKEN_RICE));
     }
 
     @Test
     public void hasFood_personInMcGymmy_returnsTrue() {
-        modelManager.addFood(ALICE);
-        assertTrue(modelManager.hasFood(ALICE));
+        modelManager.addFood(CHICKEN_RICE);
+        assertTrue(modelManager.hasFood(CHICKEN_RICE));
     }
 
     @Test
@@ -94,8 +94,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        McGymmy mcGymmy = new McGymmyBuilder().withFood(TypicalFoods.ALICE).withFood(
-                TypicalFoods.BENSON).build();
+        McGymmy mcGymmy = new McGymmyBuilder().withFood(TypicalFoods.CHICKEN_RICE).withFood(
+                TypicalFoods.NASI_LEMAK).build();
         McGymmy differentMcGymmy = new McGymmy();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentMcGymmy, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = CHICKEN_RICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(mcGymmy, userPrefs)));
 

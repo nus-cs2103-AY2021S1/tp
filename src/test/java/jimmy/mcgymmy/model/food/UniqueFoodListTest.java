@@ -26,13 +26,13 @@ public class UniqueFoodListTest {
 
     @Test
     public void contains_foodNotInList_returnsFalse() {
-        assertFalse(uniqueFoodList.contains(TypicalFoods.ALICE));
+        assertFalse(uniqueFoodList.contains(TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void contains_foodInList_returnsTrue() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        assertTrue(uniqueFoodList.contains(TypicalFoods.ALICE));
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        assertTrue(uniqueFoodList.contains(TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
@@ -42,51 +42,51 @@ public class UniqueFoodListTest {
 
     @Test
     public void add_duplicateFood_throwsDuplicateFoodException() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.add(TypicalFoods.ALICE));
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.add(TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void setFood_nullTargetFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFood(null, TypicalFoods.ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFood(null, TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void setFood_nullEditedFood_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFood(TypicalFoods.ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueFoodList.setFood(TypicalFoods.CHICKEN_RICE, null));
     }
 
     @Test
     public void setFood_targetFoodNotInList_throwsFoodNotFoundException() {
         assertThrows(
                 FoodNotFoundException.class, () -> uniqueFoodList.setFood(
-                        TypicalFoods.ALICE, TypicalFoods.ALICE));
+                        TypicalFoods.CHICKEN_RICE, TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void setFood_editedFoodIsSameFood_success() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        uniqueFoodList.setFood(TypicalFoods.ALICE, TypicalFoods.ALICE);
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        uniqueFoodList.setFood(TypicalFoods.CHICKEN_RICE, TypicalFoods.CHICKEN_RICE);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(TypicalFoods.ALICE);
+        expectedUniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFood_editedFoodHasDifferentIdentity_success() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        uniqueFoodList.setFood(TypicalFoods.ALICE, TypicalFoods.BOB);
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        uniqueFoodList.setFood(TypicalFoods.CHICKEN_RICE, TypicalFoods.BEANS);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(TypicalFoods.BOB);
+        expectedUniqueFoodList.add(TypicalFoods.BEANS);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFood_editedFoodHasNonUniqueIdentity_throwsDuplicateFoodException() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        uniqueFoodList.add(TypicalFoods.BOB);
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        uniqueFoodList.add(TypicalFoods.BEANS);
         assertThrows(
-                DuplicateFoodException.class, () -> uniqueFoodList.setFood(TypicalFoods.ALICE, TypicalFoods.BOB));
+                DuplicateFoodException.class, () -> uniqueFoodList.setFood(TypicalFoods.CHICKEN_RICE, TypicalFoods.BEANS));
     }
 
     @Test
@@ -96,13 +96,13 @@ public class UniqueFoodListTest {
 
     @Test
     public void remove_foodDoesNotExist_throwsFoodNotFoundException() {
-        assertThrows(FoodNotFoundException.class, () -> uniqueFoodList.remove(TypicalFoods.ALICE));
+        assertThrows(FoodNotFoundException.class, () -> uniqueFoodList.remove(TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void remove_existingFood_removesFood() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        uniqueFoodList.remove(TypicalFoods.ALICE);
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        uniqueFoodList.remove(TypicalFoods.CHICKEN_RICE);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
@@ -114,9 +114,9 @@ public class UniqueFoodListTest {
 
     @Test
     public void setFoods_uniqueFoodList_replacesOwnListWithProvidedUniqueFoodList() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(TypicalFoods.BOB);
+        expectedUniqueFoodList.add(TypicalFoods.BEANS);
         uniqueFoodList.setFoodItems(expectedUniqueFoodList);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
@@ -128,17 +128,17 @@ public class UniqueFoodListTest {
 
     @Test
     public void setFoods_list_replacesOwnListWithProvidedList() {
-        uniqueFoodList.add(TypicalFoods.ALICE);
-        List<Food> foodList = Collections.singletonList(TypicalFoods.BOB);
+        uniqueFoodList.add(TypicalFoods.CHICKEN_RICE);
+        List<Food> foodList = Collections.singletonList(TypicalFoods.BEANS);
         uniqueFoodList.setFoodItems(foodList);
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
-        expectedUniqueFoodList.add(TypicalFoods.BOB);
+        expectedUniqueFoodList.add(TypicalFoods.BEANS);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
     @Test
     public void setFoods_listWithDuplicateFoods_throwsDuplicateFoodException() {
-        List<Food> listWithDuplicateFoods = Arrays.asList(TypicalFoods.ALICE, TypicalFoods.ALICE);
+        List<Food> listWithDuplicateFoods = Arrays.asList(TypicalFoods.CHICKEN_RICE, TypicalFoods.CHICKEN_RICE);
         assertThrows(DuplicateFoodException.class, () -> uniqueFoodList.setFoodItems(listWithDuplicateFoods));
     }
 

@@ -13,38 +13,38 @@ import jimmy.mcgymmy.model.food.Name;
  */
 public class TypicalFoods {
 
-    public static final Food ALICE = new FoodBuilder().withName(new Name("Alice Pauline"))
+    public static final Food CHICKEN_RICE = new FoodBuilder().withName(new Name("Chicken Rice"))
             .withProtein("94351253").withFat("123")
             .withCarb("456")
-            .withTags("friends").build();
-    public static final Food BENSON = new FoodBuilder().withName(new Name("Benson Meier"))
+            .withTags("lunch").build();
+    public static final Food NASI_LEMAK = new FoodBuilder().withName(new Name("Nasi Alamak"))
             .withProtein("98765432")
             .withFat("321").withCarb("123")
-            .withTags("owesMoney", "friends").build();
-    public static final Food CARL = new FoodBuilder().withName(new Name("Carl Kurz")).withProtein("95352563")
-            .withFat("456").withCarb("654").build();
-    public static final Food DANIEL = new FoodBuilder().withName(new Name("Daniel Meier")).withProtein("87652533")
-            .withFat("654").withCarb("456").withTags("friends").build();
-    public static final Food ELLE = new FoodBuilder().withName(new Name("Elle Meyer")).withProtein("9482224")
+            .withTags("dinner", "lunch").build();
+    public static final Food CRISPY_FRIED_FISH = new FoodBuilder().withName(new Name("Crispy Fried Fish"))
+            .withProtein("95352563").withFat("456").withCarb("654").build();
+    public static final Food DANISH_COOKIES = new FoodBuilder().withName(new Name("Danish Cookies"))
+            .withProtein("87652533").withFat("654").withCarb("456").withTags("lunch").build();
+    public static final Food EGGS = new FoodBuilder().withName(new Name("Eggs")).withProtein("9482224")
             .withFat("246").withCarb("810").build();
-    public static final Food FIONA = new FoodBuilder().withName(new Name("Fiona Kunz")).withProtein("9482427")
+    public static final Food FRUIT_CAKE = new FoodBuilder().withName(new Name("Fruit Cake")).withProtein("9482427")
             .withFat("987").withCarb("789").build();
-    public static final Food GEORGE = new FoodBuilder().withName(new Name("George Best")).withProtein("9482442")
+    public static final Food GINGERBREAD = new FoodBuilder().withName(new Name("Gingerbread")).withProtein("9482442")
             .withFat("789").withCarb("987").build();
 
     // Manually added
-    public static final Food HOON = new FoodBuilder().withName(new Name("Hoon Meier")).withProtein("8482424")
+    public static final Food HOT_PLATE = new FoodBuilder().withName(new Name("Hot Plate")).withProtein("8482424")
             .withFat("1234").withCarb("1234").build();
-    public static final Food IDA = new FoodBuilder().withName(new Name("Ida Mueller")).withProtein("8482131")
+    public static final Food INDOMEE = new FoodBuilder().withName(new Name("Indomee")).withProtein("8482131")
             .withFat("1234").withCarb("1234").build();
 
     // Manually added - Food's details found in {@code CommandTestUtil}
-    public static final Food AMY = new FoodBuilder().withName(new Name("amy")).withProtein("88888888")
+    public static final Food APPLE = new FoodBuilder().withName(new Name("Apple")).withProtein("88888888")
             .withFat("1234").withCarb("1234").build();
-    public static final Food BOB = new FoodBuilder().withName(new Name("bob")).withProtein("88888888")
+    public static final Food BEANS = new FoodBuilder().withName(new Name("beans")).withProtein("88888888")
             .withFat("1234").withCarb("1234").build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_RICE = "Rice"; // A keyword that matches RICE
 
     private TypicalFoods() {
     } // prevents instantiation
@@ -61,6 +61,7 @@ public class TypicalFoods {
     }
 
     public static List<Food> getTypicalFoodItems() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(CHICKEN_RICE, NASI_LEMAK, CRISPY_FRIED_FISH, DANISH_COOKIES, EGGS,
+                FRUIT_CAKE, GINGERBREAD));
     }
 }

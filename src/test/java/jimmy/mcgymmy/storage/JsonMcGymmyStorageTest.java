@@ -1,9 +1,9 @@
 package jimmy.mcgymmy.storage;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
-import static jimmy.mcgymmy.testutil.TypicalFoods.ALICE;
-import static jimmy.mcgymmy.testutil.TypicalFoods.HOON;
-import static jimmy.mcgymmy.testutil.TypicalFoods.IDA;
+import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
+import static jimmy.mcgymmy.testutil.TypicalFoods.HOT_PLATE;
+import static jimmy.mcgymmy.testutil.TypicalFoods.INDOMEE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -72,14 +72,14 @@ public class JsonMcGymmyStorageTest {
         assertEquals(original, new McGymmy(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addFood(HOON);
-        original.removeFood(ALICE);
+        original.addFood(HOT_PLATE);
+        original.removeFood(CHICKEN_RICE);
         jsonMcGymmyStorage.saveMcGymmy(original, filePath);
         readBack = jsonMcGymmyStorage.readMcGymmy(filePath).get();
         assertEquals(original, new McGymmy(readBack));
 
         // Save and read without specifying file path
-        original.addFood(IDA);
+        original.addFood(INDOMEE);
         jsonMcGymmyStorage.saveMcGymmy(original); // file path not specified
         readBack = jsonMcGymmyStorage.readMcGymmy().get(); // file path not specified
         assertEquals(original, new McGymmy(readBack));

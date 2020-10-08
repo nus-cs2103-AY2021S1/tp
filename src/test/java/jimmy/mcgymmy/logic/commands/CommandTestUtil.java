@@ -74,7 +74,6 @@ public class CommandTestUtil {
         Food food = model.getFilteredFoodList().get(targetIndex.getZeroBased());
         final String[] splitName = food.getName().fullName.split("\\s+");
         model.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
         assertEquals(1, model.getFilteredFoodList().size());
     }
 

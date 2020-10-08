@@ -43,8 +43,8 @@ public class McGymmyTest {
     @Test
     public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
         // Two foods with the same identity fields
-        Food editedFood = new FoodBuilder(TypicalFoods.ALICE).build();
-        List<Food> newFoods = Arrays.asList(TypicalFoods.ALICE, editedFood);
+        Food editedFood = new FoodBuilder(TypicalFoods.CHICKEN_RICE).build();
+        List<Food> newFoods = Arrays.asList(TypicalFoods.CHICKEN_RICE, editedFood);
         McGymmyStub newData = new McGymmyStub(newFoods);
 
         assertThrows(DuplicateFoodException.class, () -> mcGymmy.resetData(newData));
@@ -57,19 +57,19 @@ public class McGymmyTest {
 
     @Test
     public void hasFood_foodNotInMcGymmy_returnsFalse() {
-        assertFalse(mcGymmy.hasFood(TypicalFoods.ALICE));
+        assertFalse(mcGymmy.hasFood(TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void hasFood_foodInMcGymmy_returnsTrue() {
-        mcGymmy.addFood(TypicalFoods.ALICE);
-        assertTrue(mcGymmy.hasFood(TypicalFoods.ALICE));
+        mcGymmy.addFood(TypicalFoods.CHICKEN_RICE);
+        assertTrue(mcGymmy.hasFood(TypicalFoods.CHICKEN_RICE));
     }
 
     @Test
     public void hasFood_foodWithSameIdentityFieldsInMcGymmy_returnsTrue() {
-        mcGymmy.addFood(TypicalFoods.ALICE);
-        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).build();
+        mcGymmy.addFood(TypicalFoods.CHICKEN_RICE);
+        Food editedAlice = new FoodBuilder(TypicalFoods.CHICKEN_RICE).build();
         assertTrue(mcGymmy.hasFood(editedAlice));
     }
 
