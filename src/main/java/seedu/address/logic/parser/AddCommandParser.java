@@ -42,7 +42,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
 
-        Student student = new Student(name, phone, school, year, new Admin());
+        // Whoever is working on Add should implement it properly
+        Admin admin = Admin.getPlaceholder();
+
+        Student student = new Student(name, phone, school, year, admin);
 
         return new AddCommand(student);
     }

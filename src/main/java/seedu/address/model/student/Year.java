@@ -15,10 +15,11 @@ public class Year {
     /*
      * The first character of the year must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     * year string contains alphanumerical characters.
      */
-    public static final String VALIDATION_REGEX = "[0-9]*$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9][a-zA-Z0-9 ]*$";
 
-    public final int year;
+    public final String year;
 
     /**
      * Constructs a {@code Year}.
@@ -28,7 +29,7 @@ public class Year {
     public Year(String year) {
         requireNonNull(year);
         checkArgument(isValidYear(year), MESSAGE_CONSTRAINTS);
-        this.year = Integer.parseInt(year);
+        this.year = year;
     }
 
     /**
@@ -38,22 +39,21 @@ public class Year {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
-        return String.valueOf(year);
+        return year;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Year // instanceof handles nulls
-                && year == ((Year) other).year); // state check
+                && year.equals (((Year) other).year)); // state check
     }
 
     @Override
     public int hashCode() {
-        return year;
+        return year.hashCode();
     }
 
 }
