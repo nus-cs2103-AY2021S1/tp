@@ -1,14 +1,14 @@
 package seedu.address.model.meeting;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.util.SampleDataUtil;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.person.Person;
+import seedu.address.model.util.SampleDataUtil;
 
 public class Meeting {
     // Identity fields
