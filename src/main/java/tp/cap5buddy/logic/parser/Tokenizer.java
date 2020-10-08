@@ -9,7 +9,7 @@ import tp.cap5buddy.logic.parser.exception.ParseException;
  * Represents the token of each user input.
  */
 public class Tokenizer {
-    private static final int SIZE = 6; // updates as the number of prefixes increases.
+    private static final int SIZE = 8; // updates as the number of prefixes increases.
     private final String[] words = new String[SIZE];
     private final String userInput;
     private final Prefix[] prefixes;

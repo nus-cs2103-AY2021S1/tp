@@ -62,6 +62,10 @@ public class ParserManager {
             parser = new AddContactParser();
             command = parser.parse(input);
             return command;
+        case "deletetask":
+            parser = new DeleteTaskParser();
+            command = parser.parse(input);
+            return command;
         case "deletecontact":
             parser = new DeleteContactParser();
             command = parser.parse(input);
@@ -69,6 +73,14 @@ public class ParserManager {
         case "editcontact":
             parser = new EditContactParser();
             command = parser.parse(input);
+            return command;
+        case "addtask":
+            parser = new AddTaskParser();
+            command = parser.parse(input);
+            return command;
+        case "viewtodolist":
+            parser = new ViewTodoListParser();
+            command = parser.parse("");
             return command;
         default:
             throw new ParseException("Invalid Command");

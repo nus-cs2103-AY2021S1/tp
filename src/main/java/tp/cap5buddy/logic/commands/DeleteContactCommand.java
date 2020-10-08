@@ -4,6 +4,7 @@ import tp.cap5buddy.contacts.Contact;
 import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 
 public class DeleteContactCommand extends Command {
 
@@ -14,7 +15,7 @@ public class DeleteContactCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ModuleList modules, ContactList contacts) throws CommandException {
+    public CommandResult execute(ModuleList modules, ContactList contacts, TodoList todoList) throws CommandException {
         if (this.contactID < 0 || this.contactID > contacts.getContactListSize()) {
             String error = "Invalid contact ID";
             throw new CommandException(error);
