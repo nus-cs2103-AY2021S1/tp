@@ -43,8 +43,8 @@ public class McGymmyTest {
     @Test
     public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
         // Two foods with the same identity fields
-        Food editedAlice = new FoodBuilder(TypicalFoods.ALICE).build();
-        List<Food> newFoods = Arrays.asList(TypicalFoods.ALICE, editedAlice);
+        Food editedFood = new FoodBuilder(TypicalFoods.ALICE).build();
+        List<Food> newFoods = Arrays.asList(TypicalFoods.ALICE, editedFood);
         McGymmyStub newData = new McGymmyStub(newFoods);
 
         assertThrows(DuplicateFoodException.class, () -> mcGymmy.resetData(newData));
