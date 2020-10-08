@@ -28,5 +28,4 @@ public interface StorageForExercise extends ExerciseBookStorage, UserPrefsStorag
 
     @Override
     void saveExerciseBook(ReadOnlyExerciseBook exerciseBook) throws IOException;
-
 }
