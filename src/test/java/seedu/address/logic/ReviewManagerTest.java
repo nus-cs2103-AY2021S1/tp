@@ -3,7 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
-import static seedu.address.testutil.TypicalFlashcards.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFlashcards.getTypicalFlashcardDeck;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class ReviewManagerTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
         reviewManager = new ReviewManager(model.getFilteredFlashcardList());
     }
 
