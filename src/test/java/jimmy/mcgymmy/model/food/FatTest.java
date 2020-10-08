@@ -28,10 +28,9 @@ public class FatTest {
         Assertions.assertFalse(Fat.isValid(" ")); // spaces only
 
         // invalid parts
-        Assertions.assertFalse(Fat.isValid("peterjack@-")); // invalid fat name
-        Assertions.assertFalse(Fat.isValid("peterjack@exam_ple.com")); // underscore in fat name
-        Assertions.assertFalse(Fat.isValid("peter jack@example.com")); // spaces in fat part
-        Assertions.assertFalse(Fat.isValid("peterjack@exam ple.com")); // spaces in fat name
+        Assertions.assertFalse(Fat.isValid("12314-")); // invalid fat name
+        Assertions.assertFalse(Fat.isValid("123_345")); // underscore in fat name
+        Assertions.assertFalse(Fat.isValid("123 213423")); // spaces in fat part
         Assertions.assertFalse(Fat.isValid(" 1234")); // leading space
         Assertions.assertFalse(Fat.isValid("1234 ")); // trailing space
         Assertions.assertFalse(Fat.isValid("-1234")); // negative value
