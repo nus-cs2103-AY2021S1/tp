@@ -14,8 +14,8 @@ public class ViewModuleCommand extends Command {
     private ArrayList<Module> modules;
     private String moduleName;
     //need a storage system
-    public ViewModuleCommand(String[] commandArguments) {
-        this.moduleName = commandArguments[3];
+    public ViewModuleCommand(String modName) {
+        this.moduleName = modName;
     }
 
     /**

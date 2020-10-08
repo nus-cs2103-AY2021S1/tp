@@ -22,7 +22,8 @@ public class AddModuleParser extends Parser {
         String[] parsedArguments = token.tokenize();
         String modName = parsedArguments[0];
         String modLink = parsedArguments[1];
-        return new AddModuleCommand(modName, modLink);
+        this.command = new AddModuleCommand(modName, modLink);
+        return this.command;
     }
 
 }

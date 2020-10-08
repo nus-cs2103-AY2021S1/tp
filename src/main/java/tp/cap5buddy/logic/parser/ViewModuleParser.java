@@ -2,6 +2,7 @@ package tp.cap5buddy.logic.parser;
 
 import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.commands.ViewModuleCommand;
+import tp.cap5buddy.logic.parser.exception.ParseException;
 
 /**
  * Represents the parser that handles View Module command.
@@ -14,9 +15,10 @@ public class ViewModuleParser extends Parser {
      * @param userInput
      * @return
      */
-    public Command parse(String userInput) {
-        Tokenizer token = new Tokenizer(userInput);
-        String[] mod = token.getWords();
-        return new ViewModuleCommand(mod);
+    public Command parse(String userInput) throws ParseException {
+        Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_VIEW_PREFIX);
+        String[] parsedArguments = token.tokenize();
+        String modName = parsedArguments[0];
+        return new ViewModuleCommand(modName);
     }
 }
