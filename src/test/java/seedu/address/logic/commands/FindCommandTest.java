@@ -93,7 +93,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multiplePredicates_multipleStudentsFound() {
+    public void execute_multiplePredicates_oneStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
