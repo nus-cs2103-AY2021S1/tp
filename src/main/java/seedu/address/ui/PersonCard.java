@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.log.Log;
@@ -29,17 +26,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label exercise;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label time;
     @FXML
-    private Label address;
+    private Label reps;
     @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    private Label comments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Log} and index to display.
@@ -48,13 +43,10 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.log = log;
         id.setText(displayedIndex + ". ");
-        name.setText(log.getName().value);
-        phone.setText(log.getPhone().value);
-        address.setText(log.getAddress().value);
-        email.setText(log.getEmail().value);
-        log.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        exercise.setText(log.getExercise().getName().value);
+        time.setText(log.getPrettyDateTime());
+        reps.setText(log.getReps().value);
+        comments.setText(log.getComment().value);
     }
 
     @Override
