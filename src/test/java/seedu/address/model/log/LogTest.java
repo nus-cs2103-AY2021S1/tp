@@ -1,16 +1,18 @@
 package seedu.address.model.log;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalLogs.*;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.testutil.LogBuilder;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.TypicalLogs.LOG_A;
+import static seedu.address.testutil.TypicalLogs.LOG_B;
+
 public class LogTest {
+    @Test
+    public void getPrettyDateTime_hasDateTime_returnCorrectFormat() {
+        assertEquals("Wed 1:01AM, 01 Jan 2020", LOG_A.getPrettyDateTime());   assertEquals("Sun 2:02AM, 02 Feb 2020", LOG_B.getPrettyDateTime());
+    }
 
     @Test
     public void isSameLog() {
