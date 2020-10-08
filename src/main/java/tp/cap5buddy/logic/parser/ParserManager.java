@@ -48,15 +48,15 @@ public class ParserManager {
             return command;
         case "editmodule":
             parser = new EditModuleParser();
-            command = parser.parse(this.nonCommand);
+            command = parser.parse(input);
             return command;
         case "viewmodule":
             parser = new ViewModuleParser();
-            command = parser.parse(this.nonCommand);
+            command = parser.parse(input);
             return command;
         case "deletemodule":
             parser = new DeleteModuleParser();
-            command = parser.parse(this.nonCommand);
+            command = parser.parse(input);
             return command;
         case "addcontact":
             parser = new AddContactParser();
@@ -65,6 +65,22 @@ public class ParserManager {
         case "deletetask":
             parser = new DeleteTaskParser();
             command = parser.parse(input);
+            return command;
+        case "deletecontact":
+            parser = new DeleteContactParser();
+            command = parser.parse(input);
+            return command;
+        case "editcontact":
+            parser = new EditContactParser();
+            command = parser.parse(input);
+            return command;
+        case "addtask":
+            parser = new AddTaskParser();
+            command = parser.parse(input);
+            return command;
+        case "viewtodolist":
+            parser = new ViewTodoListParser();
+            command = parser.parse("");
             return command;
         default:
             throw new ParseException("Invalid Command");
