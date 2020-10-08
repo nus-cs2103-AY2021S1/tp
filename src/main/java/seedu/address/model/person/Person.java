@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final Title title;
     private final Phone phone;
     private final Email email;
     private final Description description;
@@ -35,12 +35,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Description description, Phone phone, Email email, Status status,
+    public Person(Title title, Description description, Phone phone, Email email, Status status,
                   List<Document> documents, Address address,
                   List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
-        requireAllNonNull(name, description, phone, email, status, documents,
+        requireAllNonNull(title, description, phone, email, status, documents,
                 address, suspects, victims, witnesses, tags);
-        this.name = name;
+        this.title = title;
         this.description = description;
         this.phone = phone;
         this.email = email;
@@ -53,8 +53,8 @@ public class Person {
         this.witnesses.addAll(witnesses);
     }
 
-    public Name getName() {
-        return name;
+    public Title getTitle() {
+        return title;
     }
 
     public Description getDescription() {
@@ -113,7 +113,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
+                && otherPerson.getTitle().equals(getTitle())
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()))
                 && otherPerson.getStatus().equals(getStatus());
     }
@@ -133,7 +133,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getTitle().equals(getTitle())
                 && otherPerson.getDescription().equals(getDescription())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
@@ -149,14 +149,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, phone, email, status, documents,
+        return Objects.hash(title, description, phone, email, status, documents,
                             address, suspects, victims, witnesses, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getTitle())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Phone: ")

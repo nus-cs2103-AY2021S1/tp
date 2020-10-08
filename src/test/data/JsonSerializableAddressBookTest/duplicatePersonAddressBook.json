@@ -1,6 +1,6 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
+    "title": "Alice Pauline",
     "description": "",
     "phone": "94351253",
     "email": "alice@example.com",
@@ -15,7 +15,7 @@
     "victims": [],
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
+    "title": "Alice Pauline",
     "description": "",
     "phone": "94351253",
     "email": "pauline@example.com",

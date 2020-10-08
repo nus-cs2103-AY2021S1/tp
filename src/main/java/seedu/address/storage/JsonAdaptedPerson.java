@@ -14,11 +14,11 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
+    private final String title;
     private final String description;
     private final String phone;
     private final String email;
@@ -46,7 +46,7 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("description") String description,
+    public JsonAdaptedPerson(@JsonProperty("title") String title, @JsonProperty("description") String description,
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("status") String status,
             @JsonProperty("documents") List<JsonAdaptedDocument> documents,
@@ -55,7 +55,8 @@ class JsonAdaptedPerson {
             @JsonProperty("victims") List<JsonAdaptedVictim> victims,
             @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
+
+        this.title = title;
         this.description = description;
         this.phone = phone;
         this.email = email;
@@ -82,7 +83,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().alphaNum;
+        title = source.getTitle().alphaNum;
         description = source.getDescription().alphaNum;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -114,13 +115,13 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (title == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Title modelTitle = new Title(title);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -185,8 +186,8 @@ class JsonAdaptedPerson {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelName, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
-                modelSuspects, modelVictims, modelWitnesses, modelTags);
+        return new Person(modelTitle, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument,
+                modelAddress, modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }
 
