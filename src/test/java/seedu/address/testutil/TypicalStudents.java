@@ -1,18 +1,10 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.Student;
 
@@ -48,15 +40,19 @@ public class TypicalStudents {
 
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY)
-            .withSchool(VALID_SCHOOL_AMY)
-            .withYear(VALID_YEAR_AMY)
+    public static final Student AMY = new StudentBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
+            .withPhone(CommandTestUtil.VALID_PHONE_AMY)
+            .withSchool(CommandTestUtil.VALID_SCHOOL_AMY)
+            .withYear(CommandTestUtil.VALID_YEAR_AMY)
+            .withClassVenue(CommandTestUtil.VALID_VENUE_AMY)
+            .withClassTime(CommandTestUtil.VALID_TIME_AMY)
+            .withFee(CommandTestUtil.VALID_FEE_AMY)
+            .withPaymentDate(CommandTestUtil.VALID_PAYMENT_AMY)
             .build();
-    public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB)
-            .withSchool(VALID_SCHOOL_BOB)
-            .withYear(VALID_YEAR_BOB)
+    public static final Student BOB = new StudentBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+            .withPhone(CommandTestUtil.VALID_PHONE_BOB)
+            .withSchool(CommandTestUtil.VALID_SCHOOL_BOB)
+            .withYear(CommandTestUtil.VALID_YEAR_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
