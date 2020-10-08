@@ -2,8 +2,7 @@
   "persons": [ {
     "title": "Hans Muster",
     "description": "",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
+    "phone": "abc",
     "status": "ACTIVE",
     "suspects": [],
     "victims": [],

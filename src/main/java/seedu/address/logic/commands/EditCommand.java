@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
@@ -45,12 +43,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + "91234567 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -102,7 +98,6 @@ public class EditCommand extends Command {
         Title updatedTitle = editPersonDescriptor.getTitle().orElse(personToEdit.getTitle());
         Description updatedDescription = new Description("");
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         List<Document> updatedDocuments = editPersonDescriptor.getDocuments().orElse(personToEdit.getDocuments());
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
@@ -110,7 +105,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Witness> updatedWitnesses =
                 editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
-        return new Person(updatedTitle, updatedDescription, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
+        return new Person(updatedTitle, updatedDescription, updatedPhone, updatedStatus, updatedDocuments,
                 updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
@@ -140,7 +135,6 @@ public class EditCommand extends Command {
         private Title title;
         private Description description;
         private Phone phone;
-        private Email email;
         private Status status;
         private List<Document> documents;
         private List<Suspect> suspects;
@@ -158,7 +152,6 @@ public class EditCommand extends Command {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setStatus(toCopy.status);
             setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
@@ -172,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, phone, email,
+            return CollectionUtil.isAnyNonNull(title, description, phone,
                     status, suspects, victims, tags);
         }
 
@@ -198,14 +191,6 @@ public class EditCommand extends Command {
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         public void setStatus(Status status) {
@@ -304,7 +289,6 @@ public class EditCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
                     && getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());

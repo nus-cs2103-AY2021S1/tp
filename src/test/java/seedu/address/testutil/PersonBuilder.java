@@ -7,7 +7,6 @@ import java.util.Set;
 
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,13 +27,11 @@ public class PersonBuilder {
     public static final String DEFAULT_TITLE = "Alice Pauline";
     public static final String DEFAULT_DESCRIPTION = "";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_STATUS = "active";
 
     private Title title;
     private Description description;
     private Phone phone;
-    private Email email;
     private Status status;
     private List<Document> documents;
     private List<Suspect> suspects;
@@ -49,7 +46,6 @@ public class PersonBuilder {
         title = new Title(DEFAULT_TITLE);
         description = new Description(DEFAULT_DESCRIPTION);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         status = Status.createStatus(DEFAULT_STATUS);
         documents = new ArrayList<>();
         suspects = new ArrayList<>();
@@ -65,7 +61,6 @@ public class PersonBuilder {
         title = personToCopy.getTitle();
         description = personToCopy.getDescription();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
         status = personToCopy.getStatus();
         documents = new ArrayList<>(personToCopy.getDocuments());
         suspects = personToCopy.getSuspects();
@@ -106,13 +101,6 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
@@ -161,7 +149,7 @@ public class PersonBuilder {
      * @return Person object
      */
     public Person build() {
-        return new Person(title, description, phone, email, status, documents,
+        return new Person(title, description, phone, status, documents,
                 suspects, victims, witnesses, tags);
     }
 

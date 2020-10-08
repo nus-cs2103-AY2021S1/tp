@@ -3,7 +3,6 @@
     "title": "Alice Pauline",
     "description": "",
     "phone": "94351253",
-    "email": "alice@example.com",
     "status": "ACTIVE",
     "witnesses": [],
     "documents": [ {
@@ -17,7 +16,6 @@
     "title": "Alice Pauline",
     "description": "",
     "phone": "94351253",
-    "email": "pauline@example.com",
     "witnesses": [],
     "status": "ACTIVE",
     "documents": [ {

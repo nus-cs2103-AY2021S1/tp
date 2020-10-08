@@ -20,7 +20,6 @@ public class Person {
     // Identity fields
     private final Title title;
     private final Phone phone;
-    private final Email email;
     private final Description description;
     private final Status status;
 
@@ -34,15 +33,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Title title, Description description, Phone phone, Email email, Status status,
-                  List<Document> documents,
-                  List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
-        requireAllNonNull(title, description, phone, email, status, documents,
+    public Person(Title title, Description description, Phone phone, Status status,
+                  List<Document> documents, List<Suspect> suspects,
+                  List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+        requireAllNonNull(title, description, phone, status, documents,
                 suspects, victims, witnesses, tags);
         this.title = title;
         this.description = description;
         this.phone = phone;
-        this.email = email;
         this.status = status;
         this.documents.addAll(documents);
         this.suspects.addAll(suspects);
@@ -63,9 +61,6 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
-    }
 
     public Status getStatus() {
         return status;
@@ -107,7 +102,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getTitle().equals(getTitle())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()))
+                && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getStatus().equals(getStatus());
     }
 
@@ -129,7 +124,6 @@ public class Person {
         return otherPerson.getTitle().equals(getTitle())
                 && otherPerson.getDescription().equals(getDescription())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getStatus().equals(getStatus())
                 && otherPerson.getDocuments().equals(getDocuments())
                 && otherPerson.getSuspects().equals(getSuspects())
@@ -141,7 +135,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, phone, email, status, documents,
+        return Objects.hash(title, description, phone, status, documents,
                             suspects, victims, witnesses, tags);
     }
 
@@ -153,13 +147,11 @@ public class Person {
                 .append(getDescription())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
                 .append(" Status: ")
                 .append(getStatus())
-                .append(" Documents: ")
-                .append(getDocuments())
-                .append(" Suspects: ");
+                .append(" Documents: ");
+        getDocuments().forEach(builder::append);
+        builder.append(" Suspects: ");
         getSuspects().forEach(builder::append);
         builder.append(" Victims: ");
         getVictims().forEach(builder::append);

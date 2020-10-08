@@ -3,13 +3,11 @@
     "title": "Valid Person",
     "description": "",
     "phone": "9482424",
-    "email": "hans@example.com",
     "suspects": []
   }, {
     "title": "Person With Invalid Phone Field",
     "description": "",
     "phone": "948asdf2424",
-    "email": "hans@example.com",
     "suspects": []
   } ]
 }
