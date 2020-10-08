@@ -13,16 +13,24 @@ public class Choice {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private final String choice;
+    private final String value;
 
+    /**
+     * Instantiates a Choice.
+     * @param choice to be set.
+     */
     public Choice(String choice) {
         requireNonNull(choice);
         checkArgument(isValidChoice(choice), MESSAGE_CONSTRAINTS);
-        this.choice = choice;
+        this.value = choice;
     }
 
-    public String getContent() {
-        return choice;
+    /**
+     * Gets the value associated with the Choice.
+     * @return the value associated with the Choice.
+     */
+    public String getValue() {
+        return value;
     }
 
     public static boolean isValidChoice(String test) {
@@ -31,7 +39,7 @@ public class Choice {
 
     @Override
     public String toString() {
-        return choice;
+        return value;
     }
 
     /**
@@ -48,7 +56,7 @@ public class Choice {
         }
         if (o instanceof Choice) {
             Choice other = (Choice) o;
-            return choice.equals(other.choice);
+            return value.equals(other.value);
         } else {
             return false;
         }

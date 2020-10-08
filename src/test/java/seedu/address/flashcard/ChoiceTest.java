@@ -21,7 +21,7 @@ class ChoiceTest {
     }
 
     @Test
-    public void IsValidChoice() {
+    public void isValidChoice() {
         // null choice
         assertThrows(NullPointerException.class, () -> Choice.isValidChoice(null));
 

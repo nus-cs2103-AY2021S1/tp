@@ -45,7 +45,7 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
 
         int ans;
         try {
-            ans = Integer.parseInt(parsedAnswer.getAnswer());
+            ans = Integer.parseInt(parsedAnswer.getValue());
             if (ans > choicesList.length) {
                 throw new ParseException("Answer must be smaller than number of choices");
             }
@@ -53,7 +53,7 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
             throw new ParseException("Answer must be integer");
         }
 
-        Answer answer = new Answer(choicesList[ans - 1].getContent());
+        Answer answer = new Answer(choicesList[ans - 1].getValue());
         Flashcard flashcard = new Flashcard(question, answer, tagList);
 
         return new AddMultipleChoiceQuestionCommand(flashcard);

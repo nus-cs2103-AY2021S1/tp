@@ -109,7 +109,7 @@ public class EditCommand extends Command {
         Choice[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
         boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
         if (isMcq) {
-            String question = updatedQuestion.getQuestion();
+            String question = updatedQuestion.getValue();
             MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
             Choice[] previousChoices = mcq.getChoices().get();
             if (Arrays.equals(updatedChoices, emptyArray)) {
@@ -117,41 +117,41 @@ public class EditCommand extends Command {
                 if (updatedAnswer.isPresent()) {
                     int ans;
                     try {
-                        ans = Integer.parseInt(updatedAnswer.get().getAnswer());
+                        ans = Integer.parseInt(updatedAnswer.get().getValue());
                         if (ans > previousChoices.length && ans > 0) {
                             throw new CommandException("Answer must be smaller than number of choices");
                         }
                     } catch (NumberFormatException e) {
                         throw new CommandException("Answer must be integer");
                     }
-                    finalAnswer = new Answer(previousChoices[ans - 1].getContent());
+                    finalAnswer = new Answer(previousChoices[ans - 1].getValue());
                 } else {
-                    finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+                    finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
                 }
             } else {
                 updatedQuestion = new MultipleChoiceQuestion(question, updatedChoices);
                 if (updatedAnswer.isPresent()) {
                     int ans;
                     try {
-                        ans = Integer.parseInt(updatedAnswer.get().getAnswer());
+                        ans = Integer.parseInt(updatedAnswer.get().getValue());
                         if (ans > updatedChoices.length && ans > 0) {
                             throw new CommandException("Answer must be smaller than number of choices");
                         }
                     } catch (NumberFormatException e) {
                         throw new CommandException("Answer must be integer");
                     }
-                    finalAnswer = new Answer(updatedChoices[ans - 1].getContent());
+                    finalAnswer = new Answer(updatedChoices[ans - 1].getValue());
                 } else {
-                    Answer previousAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
-                    String previousAnswerString = previousAnswer.getAnswer();
+                    Answer previousAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
+                    String previousAnswerString = previousAnswer.getValue();
                     int previousIndex = -1;
                     for (int i = 0; i < previousChoices.length; i++) {
-                        if (previousAnswerString.equals(previousChoices[i].getContent().toLowerCase())) {
+                        if (previousAnswerString.equals(previousChoices[i].getValue().toLowerCase())) {
                             previousIndex = i;
                         }
                     }
                     if (previousIndex < updatedChoices.length) {
-                        finalAnswer = new Answer(updatedChoices[previousIndex].getContent());
+                        finalAnswer = new Answer(updatedChoices[previousIndex].getValue());
                     } else {
                         throw new CommandException("Answer must be smaller than number of choices");
                     }
@@ -161,7 +161,7 @@ public class EditCommand extends Command {
             if (!Arrays.equals(updatedChoices, emptyArray)) {
                 throw new CommandException(MESSAGE_DIFFERENT_TYPE);
             }
-            finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+            finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
         }
         return new Flashcard(updatedQuestion, finalAnswer, updatedTags);
     }
