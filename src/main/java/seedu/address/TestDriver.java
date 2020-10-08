@@ -41,7 +41,7 @@ public class TestDriver {
 
     public static void main(String[] args) {
         try {
-            JsonExerciseBookStorage jStorage = new JsonExerciseBookStorage(new File("data/testing.json").toPath());
+            JsonExerciseBookStorage jStorage = new JsonExerciseBookStorage(new File("testingForExercise.json").toPath());
             ExerciseBook exerciseBook = new ExerciseBook();
             exerciseBook.resetData(jStorage.readExerciseBook().get());
             exerciseBook.addExercise(new Exercise(new Name("Hello"), new Description("Test 1"),
