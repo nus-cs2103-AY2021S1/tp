@@ -72,9 +72,8 @@ Format: `delete INDEX`
 - Deletes an exercise at the specified `INDEX`.
 - The index refers to the index number shown in the displayed workout list.
 - The index must be a positive integer: 1, 2, 3, …​
- 
-Example:
 
+Example:
 - `delete 2` Deletes the second exercise in the displayed list.
 
 #### List: `list`
@@ -98,12 +97,11 @@ The application will save the data automatically to the default file path after 
 #### Archive : `archive`
 Archive the data into a different file location.
 
-Format: `archive FILE_LOCATION`  
+Format: `archive FILE_LOCATION`<br>
 The file location takes reference from the home folder that the .jar file is located at.
 
-Examples:  
-archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.  
-   
+Examples:<br>
+archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.<br>
 ---
 ## FAQ
 

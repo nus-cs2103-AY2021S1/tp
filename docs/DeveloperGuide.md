@@ -265,15 +265,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
   #### **Use case: add an exercise**
-  
+
   *MSS*
-  
+
 1.  User requests to add an exercise
 
 2.  Calo adds the exercise
-  
   Use case ends.
-      
+
 #### **Use case: Find exercises with a keyword**
 
 *MSS*
@@ -288,16 +287,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
-  
+
 #### **Use case: Update an exercise**
 
 *MSS*
 
 1.  User requests to update a specific exercise in the list
 2.  Calo updates the exercise
-
-    Use case ends.  
-
+    Use case ends.<br>
 *Extensions*
 <p>
     1a. The index is invalid<br>
@@ -323,11 +320,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   #### **Use case: Archive data**
   *MSS*
-    
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
-      Use case ends.
-  
+      Use case ends.  
+
 *Extensions*
 <p>
     1a. User does not have permission to create file at specified location <br>
@@ -336,9 +332,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </p>
   
   #### **Use case: List exercises**
-  
-  *MSS*
-  
+
+  *MSS*<br>
   1.  User requests to list exercises
   2.  Calo shows a list of exercises
       Use case ends.
@@ -351,8 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories) 
-
+* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -389,7 +383,5 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 1. _{ more test cases …​ }_
