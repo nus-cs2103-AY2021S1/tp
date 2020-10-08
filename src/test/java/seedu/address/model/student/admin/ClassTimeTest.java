@@ -24,11 +24,11 @@ public class ClassTimeTest {
         assertThrows(IllegalArgumentException.class, () -> new ClassTime(invalidInput));
 
         // Invalid Day of week (must be 1 - 7)
-        String invalidDayOfWeek_1 = "0 1000-1230";
-        assertThrows(IllegalArgumentException.class, () -> new ClassTime(invalidDayOfWeek_1));
+        String invalidDayOfWeek1 = "0 1000-1230";
+        assertThrows(IllegalArgumentException.class, () -> new ClassTime(invalidDayOfWeek1));
 
-        String invalidDayOfWeek_2 = "9 1000-1200";
-        assertThrows(IllegalArgumentException.class, () -> new ClassTime(invalidDayOfWeek_2));
+        String invalidDayOfWeek2 = "9 1000-1200";
+        assertThrows(IllegalArgumentException.class, () -> new ClassTime(invalidDayOfWeek2));
 
         // Invalid Start time
         String invalidStartTime = "0 2500-1230";

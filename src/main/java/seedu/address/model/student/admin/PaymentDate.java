@@ -14,11 +14,12 @@ import java.time.format.DateTimeParseException;
 public class PaymentDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Payment dates should be strictly in the form dd/mm/yy, and it should not be blank";
+            "Payment dates should be in the form dd/mm/yy, and should not be blank";
 
-    public static final String VALIDATION_REGEX = "(\\d|(\\d\\d))(\\/)(\\d|\\d\\d)(\\/)(\\d\\d)";
+    public static final String VALIDATION_REGEX = "(\\d{1,2})(\\/)(\\d{1,2})(\\/)(\\d{2}|\\d{4})";
 
-    private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("d/M/yy");
+    private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
+    private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
 
     public final LocalDate lastPaid;
@@ -31,8 +32,19 @@ public class PaymentDate {
     public PaymentDate(String lastPaid) {
         requireNonNull(lastPaid);
         checkArgument(isValidDate(lastPaid), MESSAGE_CONSTRAINTS);
+
+        this.lastPaid = parse(lastPaid);
+    }
+
+    private static LocalDate parse(String test) {
         try {
-            this.lastPaid = LocalDate.parse(lastPaid, INPUT);
+            return LocalDate.parse(test, INPUT_DEF);
+        } catch (DateTimeParseException ignored) {
+            // format failed, use the other format.
+        }
+
+        try {
+            return LocalDate.parse(test, INPUT_ALT);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }

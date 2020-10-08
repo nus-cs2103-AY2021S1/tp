@@ -96,8 +96,8 @@ class JsonAdaptedStudent {
         }
         final Year modelYear = new Year(year);
 
-        // final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelSchool, modelYear, new Admin());
+        // Please implement Admin
+        return new Student(modelName, modelPhone, modelSchool, modelYear, Admin.getPlaceholder());
     }
 
 }
