@@ -90,12 +90,8 @@ public class ParserUtil {
      * @throws ParseException if the given {@code carb} is invalid.
      */
     public static Carbohydrate parseCarb(String carb) throws ParseException {
-        requireNonNull(carb);
-        String trimmedCarb = carb.trim();
-        if (!Carbohydrate.isValid(trimmedCarb)) {
-            throw new ParseException(Carbohydrate.MESSAGE_CONSTRAINTS);
-        }
-        return new Carbohydrate(Integer.parseInt(trimmedCarb));
+        int carbValue = getNutrientValue(carb, Protein.MESSAGE_CONSTRAINTS);
+        return new Carbohydrate(carbValue);
     }
 
     /**
@@ -105,12 +101,8 @@ public class ParserUtil {
      * @throws ParseException if the given {@code fat} is invalid.
      */
     public static Fat parseFat(String fat) throws ParseException {
-        requireNonNull(fat);
-        String trimmedFat = fat.trim();
-        if (!Fat.isValid(trimmedFat)) {
-            throw new ParseException(Fat.MESSAGE_CONSTRAINTS);
-        }
-        return new Fat(Integer.parseInt(trimmedFat));
+        int fatValue = getNutrientValue(fat, Protein.MESSAGE_CONSTRAINTS);
+        return new Fat(fatValue);
     }
 
     /**
