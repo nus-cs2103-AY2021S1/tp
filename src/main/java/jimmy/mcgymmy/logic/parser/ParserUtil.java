@@ -9,10 +9,10 @@ import java.util.Set;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.commons.util.StringUtil;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Name;
+import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.tag.Tag;
 
 /**
@@ -52,48 +52,57 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Gets integer from string value.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @param value        String containing value of nutrient.
+     * @param errorMessage String containing the error message.
+     * @return Integer value of string.
+     * @throws ParseException if the value is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    private static int getNutrientValue(String value, String errorMessage) throws ParseException {
+        requireNonNull(value);
+        String trimmedValue = value.trim();
+        int nutrientValue;
+        try {
+            nutrientValue = Integer.parseInt(trimmedValue);
+        } catch (NumberFormatException numberFormatException) {
+            throw new ParseException(errorMessage);
         }
-        return new Phone(trimmedPhone);
+        return nutrientValue;
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String protein} into a {@code Protein}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code Protein} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
+    public static Protein parseProtein(String protein) throws ParseException {
+        int proteinValue = getNutrientValue(protein, Protein.MESSAGE_CONSTRAINTS);
+        return new Protein(proteinValue);
+    }
+
+
+    /**
+     * Parses a {@code String carb} into an {@code Carbohydrate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code carb} is invalid.
+     */
+    public static Carbohydrate parseCarb(String carb) throws ParseException {
+        int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
+        return new Carbohydrate(carbValue);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String fat} into an {@code Fat}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code fat} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
+    public static Fat parseFat(String fat) throws ParseException {
+        int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
+        return new Fat(fatValue);
     }
 
     /**

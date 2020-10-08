@@ -8,8 +8,8 @@ import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.ReadOnlyAddressBook;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
  * API of the Logic component
@@ -26,21 +26,21 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns McGymmy.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getMcGymmy()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyMcGymmy getMcGymmy();
 
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Food> getFilteredFoodList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' mcgymmy file path.
      */
-    Path getAddressBookFilePath();
+    Path getMcGymmyFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

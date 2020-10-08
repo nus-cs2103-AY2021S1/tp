@@ -11,34 +11,35 @@ import javafx.collections.transformation.FilteredList;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.food.Food;
+
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of mcgymmmy data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Food> filteredFoodItems;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given mcGymmy and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
         super();
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+        CollectionUtil.requireAllNonNull(mcGymmy, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with food list: " + mcGymmy + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.mcGymmy = new McGymmy(mcGymmy);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredFoodItems = new FilteredList<>(this.mcGymmy.getFoodList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new McGymmy(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +67,67 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMcGymmyFilePath() {
+        return userPrefs.getMcGymmyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMcGymmyFilePath(Path mcGymmyFilePath) {
+        requireNonNull(mcGymmyFilePath);
+        userPrefs.setMcGymmyFilePath(mcGymmyFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== McGymmy ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyMcGymmy getMcGymmy() {
+        return mcGymmy;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
+        this.mcGymmy.resetData(mcGymmy);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasFood(Food food) {
+        requireNonNull(food);
+        return mcGymmy.hasFood(food);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteFood(Food target) {
+        mcGymmy.removeFood(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        CollectionUtil.requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addFood(Food food) {
+        mcGymmy.addFood(food);
+        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setFood(Food target, Food editedFood) {
+        CollectionUtil.requireAllNonNull(target, editedFood);
+
+        mcGymmy.setFood(target, editedFood);
+    }
+
+    //=========== Filtered Food List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Food} backed by the internal list of
+     * {@code versionedMcGymmy}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Food> getFilteredFoodList() {
+        return filteredFoodItems;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredFoodItems.setPredicate(predicate);
     }
 
     @Override
@@ -143,9 +144,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+
+        return mcGymmy.equals(other.mcGymmy)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredFoodItems.equals(other.filteredFoodItems);
     }
 
 }

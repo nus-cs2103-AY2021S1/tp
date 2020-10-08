@@ -1,0 +1,19 @@
+{
+  "food": [
+    {
+      "name": "chicken rice",
+      "protein": "94351253",
+      "fat": "123",
+      "carbs": "456",
+      "tagged": [
+        "Lunch"
+      ]
+    },
+    {
+      "name": "chicken rice",
+      "protein": "94351253",
+      "fat": "123",
+      "carbs": "456"
+    }
+  ]
+}

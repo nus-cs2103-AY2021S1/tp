@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.GuiSettings;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
  * The API of the Model component.
@@ -14,7 +14,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -37,58 +37,58 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' mcgymmy file path.
      */
-    Path getAddressBookFilePath();
+    Path getMcGymmyFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' mcgymmy file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setMcGymmyFilePath(Path mcGymmyFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns  McGymmy
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyMcGymmy getMcGymmy();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Set McGymmy
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a food with the same identity as {@code food} exists in mcgymmy.
      */
-    boolean hasPerson(Person person);
+    boolean hasFood(Food food);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given food.
+     * The food must exist in mcgymmy.
      */
-    void deletePerson(Person target);
+    void deleteFood(Food food);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given food.
+     * {@code food} must not already exist in mcgymmy.
      */
-    void addPerson(Person person);
+    void addFood(Food food);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given food {@code target} with {@code editedFood}.
+     * {@code target} must exist in mcgymmy.
+     * The food identity of {@code editedFood} must not be the same as another existing food in mcgymmy.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setFood(Food target, Food editedFood);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered food list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Food> getFilteredFoodList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered food list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredFoodList(Predicate<Food> predicate);
 }

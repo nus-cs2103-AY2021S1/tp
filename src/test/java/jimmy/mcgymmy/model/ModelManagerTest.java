@@ -1,6 +1,7 @@
 package jimmy.mcgymmy.model;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
+import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,13 +10,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.commons.core.GuiSettings;
-import jimmy.mcgymmy.model.person.NameContainsKeywordsPredicate;
-import jimmy.mcgymmy.testutil.AddressBookBuilder;
-import jimmy.mcgymmy.testutil.TypicalPersons;
+import jimmy.mcgymmy.model.food.NameContainsKeywordsPredicate;
+import jimmy.mcgymmy.testutil.McGymmyBuilder;
+import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class ModelManagerTest {
 
@@ -24,8 +24,8 @@ public class ModelManagerTest {
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
-        Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new McGymmy(), new McGymmy(modelManager.getMcGymmy()));
     }
 
     @Test
@@ -36,14 +36,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMcGymmyFilePath(Paths.get("jimmy/mcgymmy/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMcGymmyFilePath(Paths.get("new/jimmy/mcgymmy/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -60,48 +60,48 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setMcGymmyFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMcGymmyFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setMcGymmyFilePath_validPath_setsMcGymmyFilePath() {
+        Path path = Paths.get("jimmy/mcgymmy/file/path");
+        modelManager.setMcGymmyFilePath(path);
+        assertEquals(path, modelManager.getMcGymmyFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasFood_nullFood_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasFood(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(TypicalPersons.ALICE));
+    public void hasFood_personNotInMcGymmy_returnsFalse() {
+        assertFalse(modelManager.hasFood(CHICKEN_RICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasPerson(TypicalPersons.ALICE));
+    public void hasFood_personInMcGymmy_returnsTrue() {
+        modelManager.addFood(CHICKEN_RICE);
+        assertTrue(modelManager.hasFood(CHICKEN_RICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredFoodList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredFoodList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(TypicalPersons.ALICE).withPerson(
-                TypicalPersons.BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        McGymmy mcGymmy = new McGymmyBuilder().withFood(TypicalFoods.CHICKEN_RICE).withFood(
+                TypicalFoods.NASI_LEMAK).build();
+        McGymmy differentMcGymmy = new McGymmy();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(mcGymmy, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(mcGymmy, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different mcGymmy -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentMcGymmy, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        String[] keywords = CHICKEN_RICE.getName().fullName.split("\\s+");
+        modelManager.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(mcGymmy, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setMcGymmyFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(mcGymmy, differentUserPrefs)));
     }
 }

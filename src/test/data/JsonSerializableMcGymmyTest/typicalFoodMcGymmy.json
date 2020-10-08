@@ -1,0 +1,61 @@
+{
+  "_comment": "McGymmy save file which contains the same Food values as in TypicalFoods#getTypicalMcGymmy()",
+  "food": [
+    {
+      "name": "Chicken Rice",
+      "protein": "94351253",
+      "fat": "123",
+      "carbs": "456",
+      "tagged": [
+        "lunch"
+      ]
+    },
+    {
+      "name": "Nasi Alamak",
+      "protein": "98765432",
+      "fat": "321",
+      "carbs": "123",
+      "tagged": [
+        "dinner",
+        "lunch"
+      ]
+    },
+    {
+      "name": "Crispy Fried Fish",
+      "protein": "95352563",
+      "fat": "456",
+      "carbs": "654",
+      "tagged": []
+    },
+    {
+      "name": "Danish Cookies",
+      "protein": "87652533",
+      "fat": "654",
+      "carbs": "456",
+      "tagged": [
+        "lunch"
+      ]
+    },
+    {
+      "name": "Eggs",
+      "protein": "9482224",
+      "fat": "246",
+      "carbs": "810",
+      "tagged": []
+    },
+    {
+      "name": "Fruit Cake",
+      "protein": "9482427",
+      "fat": "987",
+      "carbs": "789",
+      "tagged": []
+    },
+    {
+      "name": "Gingerbread",
+      "protein": "9482442",
+      "fat": "789",
+      "carbs": "987",
+      "tagged": []
+    }
+  ]
+}
