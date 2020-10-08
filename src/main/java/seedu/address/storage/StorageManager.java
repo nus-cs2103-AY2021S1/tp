@@ -76,4 +76,14 @@ public class StorageManager implements Storage {
         taskmasterStorage.saveTaskmaster(taskmaster, filePath);
     }
 
+
+    // ================ Util methods ==============================
+
+    public boolean fileExists(Path filePath) {
+        return Files.exists(filePath);
+    }
+
+    public static boolean isValidFilename(String filename) {
+        return filename.matches(VALIDATION_REGEX);
+    }
 }

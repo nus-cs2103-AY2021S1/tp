@@ -19,6 +19,18 @@ public class Attendance {
         this.attendanceType = AttendanceType.NO_RECORD;
     }
 
+    /**
+     * Creates an Attendance object with the AttendanceType already specified.
+     */
+    public Attendance(NusnetId nusnetId, AttendanceType attendanceType) {
+        this.nusnetId = nusnetId;
+        this.attendanceType = attendanceType;
+    }
+
+    public AttendanceType getAttendanceType() {
+        return attendanceType;
+    }
+
     public NusnetId getNusnetId() {
         return nusnetId;
     }

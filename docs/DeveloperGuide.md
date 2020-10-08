@@ -302,6 +302,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 <br>
 
+**Use Case: Mark Student Attendance**
+
+**MSS**
+1. User requests to mark student as present/absent
+2. System shows student attendance as present/absent
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+
+    * 1a1. System shows an error message.
+    
+      Use case resumes at step 1.
+<br>
+
 **Use Case: View all students' details**
 
 **MSS**
@@ -323,6 +340,47 @@ Use case ends.
 * 3a. The given input is invalid.
     * 3a1. System shows an error message.
         Use case resumes at step 2.
+        
+<br>
+
+**Use case: Save attendance of all students**
+
+**MSS**
+1. User requests to save attendance.
+2. System saves attendance of all students.
+
+**Extensions**
+* 1a. The given input is invalid.
+
+    * 1a1. System shows an error message.
+    
+    Use case resumes at step 1.
+        
+<br>
+
+**Use case: Retrieve attendance of all students from storage**
+
+**MSS**
+1. User requests to load attendance.
+2. System loads attendance of all students.
+
+**Extensions**
+* 1a. The given input is invalid.
+    * 1a1. System shows an error message.
+
+    Use case resumes at step 1.
+    
+<br>
+
+**Use case: Retrieve list of all attendances saved in storage**
+
+**MSS**
+1. User requests to get list of all attendances saved.
+2. System shows all attendances saved.
+
+<br>
+
+
 *{More to be added}*
 
 
