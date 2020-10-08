@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CliniCal;
@@ -129,6 +130,18 @@ public class CommandTestUtil {
         model.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPatientList().size());
+    }
+
+    /**
+     * Deletes the last patient in {@code model}'s filtered list from {@code model}'s CliniCal.
+     */
+    public static void deleteLastPatient(Model model) {
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        Index lastPatientIndex = Index.fromZeroBased(listOfPatients.size() - 1);
+        Patient lastPatient = listOfPatients.get(lastPatientIndex.getZeroBased());
+        model.deletePatient(lastPatient);
+        String deleteLastInput = "delete" + lastPatientIndex.getOneBased();
+        model.commitCliniCal(deleteLastInput);
     }
 
 }
