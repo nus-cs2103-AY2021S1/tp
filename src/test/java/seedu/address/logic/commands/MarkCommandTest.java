@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudents.getTypicalTaskmaster;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalTaskmaster;
 
 import org.junit.jupiter.api.Test;
 
