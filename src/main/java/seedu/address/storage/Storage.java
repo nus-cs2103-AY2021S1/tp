@@ -29,4 +29,6 @@ public interface Storage extends CliniCalStorage, UserPrefsStorage {
     @Override
     void saveCliniCal(ReadOnlyCliniCal cliniCal) throws IOException;
 
+    void initializePlaceholderImage();
+
 }
