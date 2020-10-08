@@ -29,11 +29,11 @@ public class MultipleChoiceQuestion implements Question {
     }
 
     @Override
-    public String getQuestion() {
+    public String getValue() {
         StringBuilder sb = new StringBuilder(question + "\n");
         int i = 1;
         for (Choice choice : choices) {
-            sb.append(i).append(". ").append(choice.getContent()).append("\n");
+            sb.append(i).append(". ").append(choice.getValue()).append("\n");
             i++;
         }
         return sb.toString();
@@ -59,7 +59,7 @@ public class MultipleChoiceQuestion implements Question {
      */
     public Answer getAnswerFromIndex(Index index) {
         Choice choice = choices[index.getZeroBased()];
-        return new Answer(choice.getContent());
+        return new Answer(choice.getValue());
     }
 
     @Override
