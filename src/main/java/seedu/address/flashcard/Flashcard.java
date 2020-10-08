@@ -7,15 +7,16 @@ import java.util.Set;
  * one answer. In addition, it can have multiple tags.
  */
 public class Flashcard {
+
+    public static final String TIMES_TESTED_CONSTRAINTS = "Times tested should be a positive integer";
+    public static final String TIMES_TESTED_LESS_THAN_TIMES_TESTED_CORRECT_CONSTRAINT = "Times tested should be more "
+            + "than times tested correctly";
+
     private final Question question;
     private final Answer answer;
     private final Set<Tag> tags;
     private final int timesTested;
     private final int timesTestedCorrect;
-
-    public static final String TIMES_TESTED_CONSTRAINTS = "Times tested should be a positive integer";
-    public static final String TIMES_TESTED_LESS_THAN_TIMES_TESTED_CORRECT_CONSTRAINT = "Times tested should be more "
-        + "than times tested correctly";
 
     /**
      * A constructor to create flashcard object.

@@ -21,12 +21,14 @@ class FlashcardTest {
         assertThrows(IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTested(-1).build());
 
         // negative times tested correct
-        assertThrows(IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(-1).build());
+        assertThrows(
+                IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(-1).build());
     }
 
     @Test
     public void constructor_timesTestedLessThanTimesTestedCorrect_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(1).build());
+        assertThrows(
+                IllegalArgumentException.class, () -> new FlashcardBuilder(RANDOM1).withTimesTestedCorrect(1).build());
     }
 
     @Test
@@ -86,4 +88,5 @@ class FlashcardTest {
         assertTrue(RANDOM1.getFlashcardAfterTestFailure().isSameFlashcard(updatedRandom1));
         assertTrue(RANDOM1.getFlashcardAfterTestFailure().equals(updatedRandom1));
     }
+
 }
