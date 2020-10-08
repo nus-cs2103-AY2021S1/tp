@@ -5,7 +5,7 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.expense.Expense;
 
@@ -27,7 +27,7 @@ public class ExpenseCard extends UiPart<Region> {
     public final Expense expense;
 
     @FXML
-    private HBox cardPane;
+    private GridPane cardPane;
     @FXML
     private Label description;
     @FXML
