@@ -38,10 +38,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -130,9 +130,9 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // invalid title
         assertParseFailure(parser, TYPE_CASE + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, TYPE_CASE + NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
@@ -159,7 +159,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, TYPE_CASE + INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_ADDRESS_DESC, Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TYPE_CASE + NAME_DESC_BOB + PHONE_DESC_BOB

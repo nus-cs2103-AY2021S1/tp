@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.tag.Tag;
 
@@ -36,7 +37,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
+        descriptor.setTitle(person.getTitle());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setStatus(person.getStatus());
@@ -49,8 +50,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+    public EditPersonDescriptorBuilder withTitle(String title) {
+        descriptor.setTitle(new Title(title));
         return this;
     }
 
