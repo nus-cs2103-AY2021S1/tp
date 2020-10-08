@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Person;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class MeetingBuilder {
     public static final String DEFAULT_NAME = "CS2102";

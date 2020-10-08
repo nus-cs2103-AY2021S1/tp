@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.MeetingBook;
-import seedu.address.model.meeting.Meeting;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.MeetingBook;
+import seedu.address.model.meeting.Meeting;
 
 public class TypicalMeetings {
 
