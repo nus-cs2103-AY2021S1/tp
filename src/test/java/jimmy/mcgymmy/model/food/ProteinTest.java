@@ -19,7 +19,7 @@ public class ProteinTest {
     }
 
     @Test
-    public void isValidProtein() {
+    public void protein_isValid_correct() {
         // null protein number
         assertThrows(NullPointerException.class, () -> Protein.isValid(null));
 
