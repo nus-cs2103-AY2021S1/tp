@@ -59,8 +59,10 @@ public class AddProfilePictureCommand extends Command {
         String filePath = StorageManager.addPictureToProfile(patientName, profilePicture);
         ProfilePicture profilePicture = new ProfilePicture(filePath);
 
-        Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture);
+        Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(),
+                patientToEdit.getIcNumber(), patientToEdit.getAddress(), patientToEdit.getEmail(), profilePicture,
+                patientToEdit.getSex(), patientToEdit.getBloodType(),
+                patientToEdit.getAllergies());
 
         model.setPatient(patientToEdit, patientEdited);
 

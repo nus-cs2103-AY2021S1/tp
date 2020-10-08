@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -27,7 +27,7 @@ public class PatientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Allergy> allergies;
     private ProfilePicture profilePicture;
 
     /**
@@ -38,7 +38,7 @@ public class PatientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        allergies = new HashSet<>();
         profilePicture = new ProfilePicture(DEFAULT_PROFILE_PICTURE);
     }
 
@@ -50,7 +50,7 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
-        tags = new HashSet<>(patientToCopy.getTags());
+        allergies = new HashSet<>(patientToCopy.getAllergies());
         profilePicture = patientToCopy.getProfilePicture();
     }
 
@@ -63,10 +63,10 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PatientBuilder withAllergies(String ... allergies) {
+        this.allergies = SampleDataUtil.getAllergySet(allergies);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class PatientBuilder {
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, tags, profilePicture);
+        return new Patient(name, phone, email, address, allergies, profilePicture);
     }
 
 }

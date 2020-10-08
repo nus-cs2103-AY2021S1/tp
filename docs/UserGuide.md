@@ -78,7 +78,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/COLOR_TAG] [t/TAG]…`
 
 :bulb: **Tips:**<br>
 
-* A patient can have any number of tags (including 0)
+* A patient can have any number of allergies (including 0)
 
 * The color tag can be any standard HTML color name, such as red, green or orange.<br>
   Check out [this link](https://www.w3schools.com/colors/colors_names.asp) for an extensive list.
@@ -115,17 +115,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/COLOR_TAG] [t/T
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-* You can remove all the patient’s tags by typing `t/` without specifying any tags after it. The same applies for color tags of a patient.
+* You can remove all the patient’s allergies by typing `t/` without specifying any allergies after it. The same applies for color allergies of a patient.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-* When editing tags (or color tag), the existing tags (or color tag) of the patient will be removed i.e adding of tags (or color tag) is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without specifying any tags after it.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
+* When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
+* You can remove all the patient’s allergies by typing `t/` without specifying any allergies after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 *  `edit 3 ct/red` Clears the existing color tag dits the color tag of the 3rd patient to be `red`.
 
 #### Locating patients by name: `find`
@@ -202,7 +202,7 @@ CliniCal data is saved in the hard disk automatically after any command that cha
 
 ### Color coding patients
 
-When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as orange, for easier reference.
+When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color allergies can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as orange, for easier reference.
 
 ![example of color coded patient](images/colorCodedPatient.png)
 

@@ -2,15 +2,21 @@
   "patients": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "alice@example.com",
+    "icNumber": "S1234567A",
     "address": "123, Jurong West Ave 6, #08-111",
+    "email": "alice@example.com",
     "profilePicture" : "data/stock_picture.png",
-    "tagged": [ "friends" ]
+    "sex": "F",
+    "bloodType": "A+",
+    "tagged": [ "penicillin" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
-    "profilePicture" : "data/stock_picture.png"
+    "icNumber": "S1234567A",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "email": "alice@example.com",
+    "profilePicture" : "data/stock_picture.png",
+    "sex": "F",
+    "bloodType": "A+"
   } ]
 }

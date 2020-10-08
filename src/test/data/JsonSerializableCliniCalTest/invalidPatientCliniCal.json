@@ -2,7 +2,11 @@
   "patients": [ {
     "name": "Hans Muster",
     "phone": "9482424",
+    "icNumber": "S1234567A",
+    "address": "4th street",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "profilePicture" : "data/stock_picture.png",
+    "sex": "M",
+    "bloodType": "A+"
   } ]
 }
