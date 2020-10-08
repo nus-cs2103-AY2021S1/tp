@@ -6,24 +6,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import tp.cap5buddy.modules.Module;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Jackson-friendly version of {@link Module}.
  */
 class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
     private final String name;
     private final String zoomLink;
-
+    private final List<JsonAdaptedGrade> gradeList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("zoomLink") String zoomLink) {
+    public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("zoomLink") String zoomLink,
+                             @JsonProperty("gradeList") List<JsonAdaptedGrade> gradeList) {
         this.name = name;
         this.zoomLink = zoomLink;
+        if (gradeList != null) {
+            this.gradeList.addAll(gradeList);
+        }
     }
 
     /**
@@ -32,6 +39,9 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         name = source.getName();
         zoomLink = source.getLink();
+        gradeList.addAll(source.getGradeList().getGradesList()
+                .stream().map(JsonAdaptedGrade::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -42,5 +52,4 @@ class JsonAdaptedModule {
     public Module toModelType() throws IllegalValueException {
         return new Module(name, zoomLink);
     }
-
 }

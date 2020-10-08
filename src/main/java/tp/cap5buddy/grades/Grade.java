@@ -1,31 +1,31 @@
 package tp.cap5buddy.grades;
 
 public class Grade {
+    private String name;
     private int percentageOfFinalGrade;
-    private int results;
-    private int total;
+    private double results;
 
     /**
      *
+     * @param name
      * @param percentageOfFinalGrade
      * @param results
-     * @param total
      */
-    public Grade( int percentageOfFinalGrade, int results, int total) {
+    public Grade(String name, int percentageOfFinalGrade, double results) {
         this.percentageOfFinalGrade = percentageOfFinalGrade;
         this.results = results;
-        this.total = total;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getPercentageOfFinalGrade() {
         return percentageOfFinalGrade;
     }
 
-    public int getResults() {
+    public double getResults() {
         return results;
     }
 
-    public int getTotal() {
-        return total;
-    }
 }

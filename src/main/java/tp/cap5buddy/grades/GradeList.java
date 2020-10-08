@@ -5,10 +5,30 @@ import java.util.List;
 
 public class GradeList {
     private final String moduleName;
-    private List<Grade> gradeList;
+    private List<Grade> gradesList;
 
-    GradeList(String moduleName) {
+    /**
+     *
+     * @param moduleName
+     */
+    public GradeList(String moduleName) {
         this.moduleName = moduleName;
-        this.gradeList = new ArrayList<Grade>();
+        this.gradesList = new ArrayList<Grade>();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<Grade> getGradesList() {
+        return gradesList;
+    }
+
+    /**
+     *
+     * @param grade
+     */
+    public void addGrade(Grade grade) {
+        gradesList.add(grade);
     }
 }
