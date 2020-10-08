@@ -176,7 +176,7 @@ public class ParserUtil {
     public static Choice parseChoice(String choice) throws ParseException {
         requireNonNull(choice);
         String trimmedChoice = choice.trim();
-        if (choice.equals(" ")) {
+        if (!Choice.isValidChoice(trimmedChoice)) {
             throw new ParseException("Choices cannot be empty");
         }
         return new Choice(trimmedChoice);

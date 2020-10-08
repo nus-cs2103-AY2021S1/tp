@@ -12,7 +12,7 @@ public class Answer {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private final String answer;
+    private final String value;
 
     /**
      * Instantiates an Answer.
@@ -21,7 +21,7 @@ public class Answer {
     public Answer(String answer) {
         requireNonNull(answer);
         checkArgument(isValidAnswer(answer), MESSAGE_CONSTRAINTS);
-        this.answer = normalizeAnswer(answer);
+        this.value = normalizeAnswer(answer);
     }
 
     /**
@@ -44,11 +44,11 @@ public class Answer {
     }
 
     /**
-     * Gets the correct answer.
-     * @return the correct answer.
+     * Gets the correct value of the answer .
+     * @return the correct value of the answer .
      */
-    public String getAnswer() {
-        return answer;
+    public String getValue() {
+        return value;
     }
 
     /**
@@ -71,6 +71,6 @@ public class Answer {
 
     @Override
     public String toString() {
-        return answer;
+        return value;
     }
 }

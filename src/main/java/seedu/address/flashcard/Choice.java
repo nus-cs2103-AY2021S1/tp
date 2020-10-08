@@ -1,23 +1,45 @@
 package seedu.address.flashcard;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a MCQ choice.
  */
 public class Choice {
 
-    private final String content;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Choices should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    public Choice(String content) {
-        this.content = content;
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    private final String value;
+
+    /**
+     * Instantiates a Choice.
+     * @param choice to be set.
+     */
+    public Choice(String choice) {
+        requireNonNull(choice);
+        checkArgument(isValidChoice(choice), MESSAGE_CONSTRAINTS);
+        this.value = choice;
     }
 
-    public String getContent() {
-        return content;
+    /**
+     * Gets the value associated with the Choice.
+     * @return the value associated with the Choice.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    public static boolean isValidChoice(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return content;
+        return value;
     }
 
     /**
@@ -34,7 +56,7 @@ public class Choice {
         }
         if (o instanceof Choice) {
             Choice other = (Choice) o;
-            return content.equals(other.content);
+            return value.equals(other.value);
         } else {
             return false;
         }

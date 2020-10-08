@@ -58,7 +58,7 @@ public class Flashcard {
 
     @Override
     public String toString() {
-        return String.format("Question:\n%s\nAnswer:\n%s", question.getQuestion(), answer.getAnswer());
+        return String.format("Question:\n%s\nAnswer:\n%s", question.getValue(), answer.getValue());
     }
 
     /**

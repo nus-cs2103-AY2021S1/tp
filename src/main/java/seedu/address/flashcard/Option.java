@@ -17,7 +17,7 @@ public class Option {
     public static final String MESSAGE_CONSTRAINTS = "Option should only be numeric, and it should not be blank";
     public static final String VALIDATION_REGEX = "^[0-9]+$";
 
-    public final String option;
+    public final String value;
 
 
     /**
@@ -27,7 +27,7 @@ public class Option {
     public Option(String option) {
         requireNonNull(option);
         checkArgument(isValidOption(option), MESSAGE_CONSTRAINTS);
-        this.option = option;
+        this.value = option;
     }
 
     public static boolean isValidOption(String test) {
@@ -43,16 +43,16 @@ public class Option {
             return false;
         }
         Option option1 = (Option) other;
-        return Objects.equals(option, option1.option);
+        return Objects.equals(value, option1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(option);
+        return Objects.hash(value);
     }
 
     public String toString() {
-        return "Option: " + option;
+        return "Option: " + value;
     }
 
     /**
@@ -60,6 +60,6 @@ public class Option {
      * @return option in {@code Index}.
      */
     public Index getIndex() {
-        return Index.fromOneBased(Integer.parseInt(option));
+        return Index.fromOneBased(Integer.parseInt(value));
     }
 }
