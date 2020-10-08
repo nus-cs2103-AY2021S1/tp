@@ -2,7 +2,6 @@
   "persons": [ {
     "title": "Person with invalid name field: Ha!ns Mu@ster",
     "description": "",
-    "phone": "9482424",
     "suspects": []
   } ]
 }

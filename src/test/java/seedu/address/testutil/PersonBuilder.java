@@ -9,7 +9,6 @@ import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reference;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
@@ -26,12 +25,10 @@ public class PersonBuilder {
 
     public static final String DEFAULT_TITLE = "Alice Pauline";
     public static final String DEFAULT_DESCRIPTION = "";
-    public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_STATUS = "active";
 
     private Title title;
     private Description description;
-    private Phone phone;
     private Status status;
     private List<Document> documents;
     private List<Suspect> suspects;
@@ -45,7 +42,6 @@ public class PersonBuilder {
     public PersonBuilder() {
         title = new Title(DEFAULT_TITLE);
         description = new Description(DEFAULT_DESCRIPTION);
-        phone = new Phone(DEFAULT_PHONE);
         status = Status.createStatus(DEFAULT_STATUS);
         documents = new ArrayList<>();
         suspects = new ArrayList<>();
@@ -60,7 +56,6 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         title = personToCopy.getTitle();
         description = personToCopy.getDescription();
-        phone = personToCopy.getPhone();
         status = personToCopy.getStatus();
         documents = new ArrayList<>(personToCopy.getDocuments());
         suspects = personToCopy.getSuspects();
@@ -92,15 +87,6 @@ public class PersonBuilder {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
-
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
@@ -149,7 +135,7 @@ public class PersonBuilder {
      * @return Person object
      */
     public Person build() {
-        return new Person(title, description, phone, status, documents,
+        return new Person(title, description, status, documents,
                 suspects, victims, witnesses, tags);
     }
 

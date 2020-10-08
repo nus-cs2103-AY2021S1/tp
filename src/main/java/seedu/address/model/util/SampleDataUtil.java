@@ -12,7 +12,6 @@ import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reference;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
@@ -35,23 +34,23 @@ public class SampleDataUtil {
 
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Title("Alex Yeoh"), sampleDescription, new Phone("87438807"),
+            new Person(new Title("Alex Yeoh"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
                     new ArrayList<>(), sampleVictims,
                     sampleWitnesses, getTagSet("friends")),
-            new Person(new Title("Bernice Yu"), sampleDescription, new Phone("99272758"),
+            new Person(new Title("Bernice Yu"), sampleDescription,
                     Status.createStatus("closed"), sampleDocuments,
                     new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("colleagues", "friends")),
-            new Person(new Title("Charlotte Oliveiro"), sampleDescription, new Phone("93210283"),
+            new Person(new Title("Charlotte Oliveiro"), sampleDescription,
                     Status.createStatus("cold"), sampleDocuments,
                     new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("neighbours")),
-            new Person(new Title("David Li"), sampleDescription, new Phone("91031282"),
+            new Person(new Title("David Li"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
                     new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("family")),
-            new Person(new Title("Irfan Ibrahim"), sampleDescription, new Phone("92492021"),
+            new Person(new Title("Irfan Ibrahim"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
                     new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("classmates")),
-            new Person(new Title("Roy Balakrishnan"), sampleDescription, new Phone("92624417"),
+            new Person(new Title("Roy Balakrishnan"), sampleDescription,
                     Status.createStatus("active"), sampleDocuments,
                     new ArrayList<>(), sampleVictims, sampleWitnesses, getTagSet("colleagues"))
         };

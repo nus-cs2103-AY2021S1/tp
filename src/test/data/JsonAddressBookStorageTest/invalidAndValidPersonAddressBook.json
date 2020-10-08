@@ -2,12 +2,10 @@
   "persons": [ {
     "title": "Valid Person",
     "description": "",
-    "phone": "9482424",
     "suspects": []
   }, {
-    "title": "Person With Invalid Phone Field",
-    "description": "",
-    "phone": "948asdf2424",
+    "title": "Person With Invalid Description Field",
+    "description": "@!",
     "suspects": []
   } ]
 }

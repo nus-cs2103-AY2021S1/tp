@@ -3,7 +3,6 @@
   "persons" : [ {
     "title" : "Alice Pauline",
     "description": "",
-    "phone" : "94351253",
     "status": "COLD",
     "documents": [ {
       "name" : "name",
@@ -16,7 +15,6 @@
   }, {
     "title" : "Benson Meier",
     "description": "",
-    "phone" : "98765432",
     "status": "CLOSED",
     "documents": [ {
       "name" : "name",
@@ -29,7 +27,6 @@
   }, {
     "title" : "Carl Kurz",
     "description": "",
-    "phone" : "95352563",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
@@ -39,7 +36,6 @@
   }, {
     "title" : "Daniel Meier",
     "description": "",
-    "phone" : "87652533",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
@@ -49,7 +45,6 @@
   }, {
     "title" : "Elle Meyer",
     "description": "",
-    "phone" : "9482224",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
@@ -59,7 +54,6 @@
   }, {
     "title" : "Fiona Kunz",
     "description": "",
-    "phone" : "9482427",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
@@ -69,7 +63,6 @@
   }, {
     "title" : "George Best",
     "description": "",
-    "phone" : "9482442",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],

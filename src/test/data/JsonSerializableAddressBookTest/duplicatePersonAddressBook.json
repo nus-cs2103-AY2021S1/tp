@@ -2,7 +2,6 @@
   "persons": [ {
     "title": "Alice Pauline",
     "description": "",
-    "phone": "94351253",
     "status": "ACTIVE",
     "witnesses": [],
     "documents": [ {
@@ -15,7 +14,6 @@
   }, {
     "title": "Alice Pauline",
     "description": "",
-    "phone": "94351253",
     "witnesses": [],
     "status": "ACTIVE",
     "documents": [ {

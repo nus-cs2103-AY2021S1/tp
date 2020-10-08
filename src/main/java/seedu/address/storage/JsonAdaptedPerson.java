@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
 import seedu.address.model.person.Title;
@@ -30,7 +29,6 @@ class JsonAdaptedPerson {
 
     private final String title;
     private final String description;
-    private final String phone;
     private final String status;
     private final List<JsonAdaptedDocument> documents = new ArrayList<>();
     private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
@@ -43,7 +41,6 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("title") String title, @JsonProperty("description") String description,
-            @JsonProperty("phone") String phone,
             @JsonProperty("status") String status,
             @JsonProperty("documents") List<JsonAdaptedDocument> documents,
             @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
@@ -53,7 +50,6 @@ class JsonAdaptedPerson {
 
         this.title = title;
         this.description = description;
-        this.phone = phone;
         this.status = status;
         if (documents != null) {
             this.documents.addAll(documents);
@@ -78,7 +74,6 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         title = source.getTitle().alphaNum;
         description = source.getDescription().alphaNum;
-        phone = source.getPhone().value;
         status = source.getStatus().name();
         documents.addAll(source.getDocuments().stream()
                 .map(JsonAdaptedDocument::new)
@@ -123,14 +118,6 @@ class JsonAdaptedPerson {
         }
         final Description modelDescription = new Description(description);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
@@ -161,7 +148,7 @@ class JsonAdaptedPerson {
             modelDocument.add(document.toModelType());
         }
 
-        return new Person(modelTitle, modelDescription, modelPhone, modelStatus, modelDocument,
+        return new Person(modelTitle, modelDescription, modelStatus, modelDocument,
                 modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }

@@ -19,7 +19,6 @@ public class Person {
 
     // Identity fields
     private final Title title;
-    private final Phone phone;
     private final Description description;
     private final Status status;
 
@@ -33,14 +32,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Title title, Description description, Phone phone, Status status,
+    public Person(Title title, Description description, Status status,
                   List<Document> documents, List<Suspect> suspects,
                   List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
-        requireAllNonNull(title, description, phone, status, documents,
+        requireAllNonNull(title, description, status, documents,
                 suspects, victims, witnesses, tags);
         this.title = title;
         this.description = description;
-        this.phone = phone;
         this.status = status;
         this.documents.addAll(documents);
         this.suspects.addAll(suspects);
@@ -56,11 +54,6 @@ public class Person {
     public Description getDescription() {
         return description;
     }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
 
     public Status getStatus() {
         return status;
@@ -102,7 +95,6 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getTitle().equals(getTitle())
-                && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getStatus().equals(getStatus());
     }
 
@@ -123,7 +115,6 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getTitle().equals(getTitle())
                 && otherPerson.getDescription().equals(getDescription())
-                && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getStatus().equals(getStatus())
                 && otherPerson.getDocuments().equals(getDocuments())
                 && otherPerson.getSuspects().equals(getSuspects())
@@ -135,7 +126,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, phone, status, documents,
+        return Objects.hash(title, description, status, documents,
                             suspects, victims, witnesses, tags);
     }
 
@@ -145,8 +136,6 @@ public class Person {
         builder.append(getTitle())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Phone: ")
-                .append(getPhone())
                 .append(" Status: ")
                 .append(getStatus())
                 .append(" Documents: ");

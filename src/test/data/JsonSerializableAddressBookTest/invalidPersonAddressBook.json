@@ -1,8 +1,7 @@
 {
   "persons": [ {
-    "title": "Hans Muster",
+    "title": "H@ns Muster",
     "description": "",
-    "phone": "abc",
     "status": "ACTIVE",
     "suspects": [],
     "victims": [],

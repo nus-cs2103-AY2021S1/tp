@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -21,12 +20,10 @@ public class AddCommand extends Command {
             + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + PREFIX_PHONE + "PHONE "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "John Doe "
-            + PREFIX_PHONE + "98765432 "
             + PREFIX_STATUS + "closed "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
