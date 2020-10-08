@@ -17,7 +17,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -127,7 +126,7 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code YearMatchPredicate}.
      */
     private YearMatchPredicate prepareYearPredicate(String userInput) throws ParseException {
-        return new YearMatchPredicate(ParserUtil.parseYear(userInput));
+        return new YearMatchPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**

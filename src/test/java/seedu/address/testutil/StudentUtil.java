@@ -62,7 +62,11 @@ public class StudentUtil {
                     .reduce("", (x, y) -> x + " " + y);
             sb.append(PREFIX_SCHOOL).append(stringSchool).append(" ");
         });
-        descriptor.getYearPredicate().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.year).append(" "));
+        descriptor.getYearPredicate().ifPresent(predicate -> {
+            String stringYear = predicate.keywords.stream() // Convert the keywords list in predicate into a string
+                    .reduce("", (x, y) -> x + " " + y);
+            sb.append(PREFIX_YEAR).append(stringYear).append(" ");
+        });
 
         System.out.println(sb.toString());
         return sb.toString();

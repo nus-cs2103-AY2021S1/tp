@@ -5,13 +5,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
-import seedu.address.model.student.Year;
 import seedu.address.model.student.YearMatchPredicate;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
 
@@ -45,7 +45,7 @@ public class FindCommandParserTest {
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         SchoolContainsKeywordsPredicate schoolPredicate =
                 new SchoolContainsKeywordsPredicate(Arrays.asList("Changi", "Sec"));
-        YearMatchPredicate yearPredicate = new YearMatchPredicate(new Year("3"));
+        YearMatchPredicate yearPredicate = new YearMatchPredicate(Collections.singletonList("3"));
 
         FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
                 .withNamePredicate(namePredicate)

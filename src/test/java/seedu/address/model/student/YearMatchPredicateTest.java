@@ -5,22 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.StudentBuilder;
 
 public class YearMatchPredicateTest {
 
-    private Year yearOne = new Year("1");
-    private Year yearTwo = new Year("2");
+    private YearMatchPredicate yearMatchPredicateOne = new YearMatchPredicate(Collections.singletonList("1"));
+    private YearMatchPredicate yearMatchPredicateTwo = new YearMatchPredicate(Collections.singletonList("2"));
 
-    private YearMatchPredicate yearMatchPredicateOne = new YearMatchPredicate(yearOne);
-    private YearMatchPredicate yearMatchPredicateTwo = new YearMatchPredicate(yearTwo);
-
-    private YearMatchPredicate yearMatchPredicateOneDuplicate = new YearMatchPredicate(yearOne);
+    private YearMatchPredicate yearMatchPredicateOneDuplicate =
+            new YearMatchPredicate(Collections.singletonList("1"));
 
     private Student yearOneStudent = new StudentBuilder().withName("Alice").withSchool("Changi Junior College")
-            .withYear("1").build();
+            .withYear("sec 1").build();
     private Student yearTwoStudent = new StudentBuilder().withName("Pikachu").withSchool("Trainers School")
             .withYear("2").build();
 
@@ -31,7 +31,7 @@ public class YearMatchPredicateTest {
         assertEquals(yearMatchPredicateOne, yearMatchPredicateOne);
 
         // different type -> return false
-        assertNotEquals(yearOne, yearMatchPredicateOne);
+        assertNotEquals("1", yearMatchPredicateOne);
 
         // null -> returns false
         assertNotEquals(yearMatchPredicateOne, null);

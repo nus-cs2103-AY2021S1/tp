@@ -19,6 +19,9 @@ public class CliSyntax {
     public static final Prefix[] COMPULSORY_PREFIXES =
             new Prefix[] {PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_YEAR};
 
+    public static final Prefix[] FIND_SUPPORTED_PREFIXES =
+            new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
+
     /**
      * Returns a list of all CLI syntax definitions.
      */
@@ -27,7 +30,4 @@ public class CliSyntax {
             PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_DETAILS,
             PREFIX_FEE, PREFIX_PAYMENT};
     }
-
-    public static final Prefix[] FIND_SUPPORTED_PREFIXES =
-            new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
 }
