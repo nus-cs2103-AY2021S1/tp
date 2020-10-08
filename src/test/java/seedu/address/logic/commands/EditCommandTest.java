@@ -5,14 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalCases.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +23,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.investigationcase.Case;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CaseBuilder;
+import seedu.address.testutil.EditCaseDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -36,9 +35,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Case editedCase = new PersonBuilder().withDocument("name", "test1.txt")
+        Case editedCase = new CaseBuilder().withDocument("name", "test1.txt")
                                                  .withWitnesses("Janice").build();
-        EditCommand.EditCaseDescriptor descriptor = new EditPersonDescriptorBuilder(editedCase).build();
+        EditCommand.EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(editedCase).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CASE_SUCCESS, editedCase);
@@ -54,12 +53,12 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredCaseList().size());
         Case lastCase = model.getFilteredCaseList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastCase);
-        Case editedCase = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        CaseBuilder personInList = new CaseBuilder(lastCase);
+        Case editedCase = personInList.withTitle(VALID_NAME_BOB).withTags(VALID_TAG_HUSBAND).build();
+
+        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCaseDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CASE_SUCCESS, editedCase);
@@ -87,9 +86,9 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Case caseInFilteredList = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Case editedCase = new PersonBuilder(caseInFilteredList).withName(VALID_NAME_BOB).build();
+        Case editedCase = new CaseBuilder(caseInFilteredList).withTitle(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CASE_SUCCESS, editedCase);
 
@@ -102,7 +101,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Case firstCase = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCaseDescriptor descriptor = new EditPersonDescriptorBuilder(firstCase).build();
+        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(firstCase).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CASE);
@@ -115,7 +114,7 @@ public class EditCommandTest {
         // edit person in filtered list into a duplicate in address book
         Case caseInList = model.getAddressBook().getCaseList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(caseInList).build());
+                new EditCaseDescriptorBuilder(caseInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CASE);
     }
@@ -123,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
-        EditCommand.EditCaseDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
@@ -141,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCaseList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }

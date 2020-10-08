@@ -1,14 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.AddCommand.SPECIFIC_COMMAND_WORD;
+import static seedu.address.logic.commands.Command.TYPE_CASE;
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +15,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.investigationcase.Address;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Description;
 import seedu.address.model.investigationcase.Document;
-import seedu.address.model.investigationcase.Email;
-import seedu.address.model.investigationcase.Name;
-import seedu.address.model.investigationcase.Phone;
 import seedu.address.model.investigationcase.Status;
 import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Title;
 import seedu.address.model.investigationcase.Victim;
 import seedu.address.model.investigationcase.Witness;
 import seedu.address.model.tag.Tag;
@@ -48,33 +42,30 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         final String commandWord = matcher.group("commandWord");
-        if (!commandWord.equals(SPECIFIC_COMMAND_WORD)) {
+        if (!commandWord.equals(TYPE_CASE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         final String arguments = matcher.group("arguments");
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STATUS,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_TITLE, PREFIX_STATUS,
+                        PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Description description = new Description("");
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("active"));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         List<Document> documents = new ArrayList<>();
         List<Suspect> suspects = new ArrayList<>();
         List<Victim> victims = new ArrayList<>();
         List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Case investigationCase = new Case(name, description, phone, email, status, documents, address,
+        Case investigationCase = new Case(title, description, status, documents,
                 suspects, victims, witnesses, tagList);
         return new AddCommand(investigationCase);
     }

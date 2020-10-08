@@ -10,15 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.investigationcase.Address;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Description;
 import seedu.address.model.investigationcase.Document;
-import seedu.address.model.investigationcase.Email;
-import seedu.address.model.investigationcase.Name;
-import seedu.address.model.investigationcase.Phone;
 import seedu.address.model.investigationcase.Status;
 import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Title;
 import seedu.address.model.investigationcase.Victim;
 import seedu.address.model.investigationcase.Witness;
 import seedu.address.model.tag.Tag;
@@ -30,12 +27,9 @@ class JsonAdaptedCase {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Case's %s field is missing!";
 
-    private final String name;
+    private final String title;
     private final String description;
-    private final String phone;
-    private final String email;
     private final String status;
-    private final String address;
     private final List<JsonAdaptedDocument> documents = new ArrayList<>();
     private final List<JsonAdaptedSuspect> suspects = new ArrayList<>();
     private final List<JsonAdaptedVictim> victims = new ArrayList<>();
@@ -46,21 +40,17 @@ class JsonAdaptedCase {
      * Constructs a {@code JsonAdaptedCase} with the given case details.
      */
     @JsonCreator
-    public JsonAdaptedCase(@JsonProperty("name") String name, @JsonProperty("description") String description,
-                           @JsonProperty("phone") String phone,
-                           @JsonProperty("email") String email, @JsonProperty("status") String status,
-                           @JsonProperty("documents") List<JsonAdaptedDocument> documents,
-                           @JsonProperty("address") String address,
-                           @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
-                           @JsonProperty("victims") List<JsonAdaptedVictim> victims,
-                           @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
+    public JsonAdaptedCase(@JsonProperty("title") String title, @JsonProperty("description") String description,
+            @JsonProperty("status") String status,
+            @JsonProperty("documents") List<JsonAdaptedDocument> documents,
+            @JsonProperty("suspects") List<JsonAdaptedSuspect> suspects,
+            @JsonProperty("victims") List<JsonAdaptedVictim> victims,
+            @JsonProperty("witnesses") List<JsonAdaptedWitness> witnesses,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
+        this.title = title;
         this.description = description;
-        this.phone = phone;
-        this.email = email;
         this.status = status;
-        this.address = address;
         if (documents != null) {
             this.documents.addAll(documents);
         }
@@ -82,12 +72,9 @@ class JsonAdaptedCase {
      * Converts a given {@code Case} into this class for Jackson use.
      */
     public JsonAdaptedCase(Case source) {
-        name = source.getName().alphaNum;
+        title = source.getTitle().alphaNum;
         description = source.getDescription().alphaNum;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
         status = source.getStatus().name();
-        address = source.getAddress().value;
         documents.addAll(source.getDocuments().stream()
                 .map(JsonAdaptedDocument::new)
                 .collect(Collectors.toList()));
@@ -114,13 +101,13 @@ class JsonAdaptedCase {
             caseTags.add(tag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (title == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Title modelTitle = new Title(title);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -131,22 +118,6 @@ class JsonAdaptedCase {
         }
         final Description modelDescription = new Description(description);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
@@ -154,14 +125,6 @@ class JsonAdaptedCase {
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = Status.createStatus(status);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
 
         final List<Suspect> modelSuspects = new ArrayList<>();
         for (JsonAdaptedSuspect suspect : suspects) {
@@ -185,7 +148,7 @@ class JsonAdaptedCase {
             modelDocument.add(document.toModelType());
         }
 
-        return new Case(modelName, modelDescription, modelPhone, modelEmail, modelStatus, modelDocument, modelAddress,
+        return new Case(modelTitle, modelDescription, modelStatus, modelDocument,
                 modelSuspects, modelVictims, modelWitnesses, modelTags);
 
     }

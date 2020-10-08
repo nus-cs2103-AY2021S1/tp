@@ -3,11 +3,10 @@ package seedu.address.model.investigationcase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCases.ALICE;
+import static seedu.address.testutil.TypicalCases.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.investigationcase.exceptions.CaseNotFoundException;
 import seedu.address.model.investigationcase.exceptions.DuplicateCaseException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CaseBuilder;
 
 public class UniqueCaseListTest {
 
@@ -42,7 +41,7 @@ public class UniqueCaseListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCaseList.add(ALICE);
-        Case editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Case editedAlice = new CaseBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueCaseList.contains(editedAlice));
     }
@@ -85,7 +84,7 @@ public class UniqueCaseListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueCaseList.add(ALICE);
-        Case editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Case editedAlice = new CaseBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueCaseList.setCase(ALICE, editedAlice);
         UniqueCaseList expectedUniqueCaseList = new UniqueCaseList();

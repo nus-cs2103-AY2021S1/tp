@@ -18,14 +18,11 @@ import seedu.address.model.tag.Tag;
 public class Case {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final Title title;
     private final Description description;
     private final Status status;
 
     // Data fields
-    private final Address address;
     private final List<Suspect> suspects = new ArrayList<>();
     private final List<Victim> victims = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
@@ -35,17 +32,13 @@ public class Case {
     /**
      * Every field must be present and not null.
      */
-    public Case(Name name, Description description, Phone phone, Email email, Status status,
-                List<Document> documents, Address address,
+
+    public Case(Title title, Description description, Status status, List<Document> documents,
                 List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
-        requireAllNonNull(name, description, phone, email, status, documents,
-                address, suspects, victims, witnesses, tags);
-        this.name = name;
+        requireAllNonNull(title, description, status, documents, suspects, victims, witnesses, tags);
+        this.title = title;
         this.description = description;
-        this.phone = phone;
-        this.email = email;
         this.status = status;
-        this.address = address;
         this.documents.addAll(documents);
         this.suspects.addAll(suspects);
         this.victims.addAll(victims);
@@ -53,30 +46,17 @@ public class Case {
         this.witnesses.addAll(witnesses);
     }
 
-    public Name getName() {
-        return name;
+    public Title getTitle() {
+        return title;
     }
 
     public Description getDescription() {
         return description;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
     public Status getStatus() {
         return status;
     }
-
-    public Address getAddress() {
-        return address;
-    }
-
 
     public List<Document> getDocuments() {
         return documents;
@@ -113,8 +93,7 @@ public class Case {
         }
 
         return otherCase != null
-                && otherCase.getName().equals(getName())
-                && (otherCase.getPhone().equals(getPhone()) || otherCase.getEmail().equals(getEmail()))
+                && otherCase.getTitle().equals(getTitle())
                 && otherCase.getStatus().equals(getStatus());
     }
 
@@ -133,13 +112,10 @@ public class Case {
         }
 
         Case otherCase = (Case) other;
-        return otherCase.getName().equals(getName())
+        return otherCase.getTitle().equals(getTitle())
                 && otherCase.getDescription().equals(getDescription())
-                && otherCase.getPhone().equals(getPhone())
-                && otherCase.getEmail().equals(getEmail())
                 && otherCase.getStatus().equals(getStatus())
                 && otherCase.getDocuments().equals(getDocuments())
-                && otherCase.getAddress().equals(getAddress())
                 && otherCase.getSuspects().equals(getSuspects())
                 && otherCase.getVictims().equals(getVictims())
                 && otherCase.getWitnesses().equals(getWitnesses())
@@ -149,27 +125,21 @@ public class Case {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, phone, email, status, documents,
-                            address, suspects, victims, witnesses, tags);
+        return Objects.hash(title, description, status, documents,
+                            suspects, victims, witnesses, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getTitle())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
                 .append(" Status: ")
                 .append(getStatus())
-                .append(" Documents: ")
-                .append(getDocuments())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Suspects: ");
+                .append(" Documents: ");
+        getDocuments().forEach(builder::append);
+        builder.append(" Suspects: ");
         getSuspects().forEach(builder::append);
         builder.append(" Victims: ");
         getVictims().forEach(builder::append);
