@@ -9,13 +9,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.order.OrderItem;
 
-
 /**
  * An UI component that displays information of a {@code Food}.
  */
-public class OrderCard extends UiPart<Region> {
+public class OrderItemCard extends UiPart<Region> {
 
-    private static final String FXML = "OrderListCard.fxml";
+    private static final String FXML = "OrderItemListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -43,13 +42,13 @@ public class OrderCard extends UiPart<Region> {
     /**
      * Creates a {@code FoodCode} with the given {@code Food} and index to display.
      */
-    public OrderCard(OrderItem orderItem, int displayedIndex) {
+    public OrderItemCard(OrderItem orderItem, int displayedIndex) {
         super(FXML);
         this.orderItem = orderItem;
         id.setText(displayedIndex + ". ");
         name.setText(orderItem.getName());
         price.setText(orderItem.getPriceString());
-        quantity.setText(Integer.toString(orderItem.getQuantity()));
+        quantity.setText("x " + Integer.toString(orderItem.getQuantity()));
         orderItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -63,12 +62,12 @@ public class OrderCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof OrderCard)) {
+        if (!(other instanceof OrderItemCard)) {
             return false;
         }
 
         // state check
-        OrderCard card = (OrderCard) other;
+        OrderItemCard card = (OrderItemCard) other;
         return id.getText().equals(card.id.getText())
                 && orderItem.equals(card.orderItem);
     }

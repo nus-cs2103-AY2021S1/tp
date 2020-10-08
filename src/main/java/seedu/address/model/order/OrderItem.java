@@ -33,6 +33,10 @@ public class OrderItem extends Food {
         this.quantity = quantity;
     }
 
+    public static boolean isValidQuantity(int quantity) {
+        return quantity > 0;
+    }
+
     /**
      * Returns true if both OrderItems of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two OrderItems.

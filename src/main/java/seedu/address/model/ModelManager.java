@@ -63,7 +63,7 @@ public class ModelManager implements Model {
             OrderManager orderManager
     ) {
         super();
-        requireAllNonNull(addressBook, userPrefs, menuManagers);
+        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
