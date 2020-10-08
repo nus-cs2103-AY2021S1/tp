@@ -11,6 +11,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Adding a student: `add`](#Adding-a-student-add "Goto Adding-a-student-add")
     - [Listing all students: `list`](#Listing-all-students-list "Goto Listing-all-students-list")
     - [Deleting a student: `delete`](#Deleting-a-student-delete "Goto Deleting-a-student-delete")
+    - [Marking a student's attendance: `mark`](#Marking-a-student's-attendance "Goto Marking-a-student's-attendance")
     - [Clear all students: `clear`](#Clearing-all-entries-clear "Goto Clearing-all-entries-clear")
     - [Exit the program: `exit`](#Exiting-the-program-exit "Goto Exiting-the-program-exit")
 - [Command Summary](#Command-Summary "Goto Command-Summary")
@@ -49,6 +50,15 @@ delete INDEX
 ```
 - Deletes the student at the specified `INDEX` number shown in the displayed student list.
 - The `INDEX` **must be a positive integer**.
+
+### Marking a student's attendance: `mark`
+Marks the attendance of the specified student from the student list.
+```
+mark INDEX a/ATTENDANCE_TYPE
+```
+- Marks the attendance at the specified `INDEX` number shown in the displayed student list.
+- The `INDEX` **must be a positive integer**.
+- The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
 ### Clearing all entries: `clear`
 Clears all students from the student list.
