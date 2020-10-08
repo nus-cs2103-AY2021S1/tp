@@ -1,15 +1,11 @@
 {
   "persons": [ {
-    "name": "Valid Person",
+    "title": "Valid Person",
     "description": "",
-    "email": "hans@example.com",
-    "address": "4th street",
     "suspects": []
   }, {
-    "name": "Person With Invalid Description Field",
+    "title": "Person With Invalid Description Field",
     "description": "@!",
-    "email": "hans@example.com",
-    "address": "4th street",
     "suspects": []
   } ]
 }
