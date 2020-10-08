@@ -92,4 +92,5 @@ public interface Model {
      * The student must exist in the student list.
      */
     void markStudent(Student target, AttendanceType attendanceType);
+
 }
