@@ -2,13 +2,9 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
-
+import seedu.address.model.student.admin.Admin;
 
 /**
  * Represents a Student in Reeve.
@@ -16,37 +12,22 @@ import seedu.address.model.tag.Tag;
  */
 public class Student {
 
-    // Identity fields
     private final Name name;
     private final Phone phone;
     private final School school;
     private final Year year;
-    private final ClassVenue classVenue;
-    private final ClassTime classTime;
-    private AdditionalDetails additionalDetails;
-    private MeetingLink meetingLink;
-    private Subject subject;
-
-    // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private final Admin admin;
 
     /**
-     * name, phone, school, year, classVenue, class time must be present and not null.
+     *  name, phone, school, year, must be present and not null.
      */
-    public Student(Name name, Phone phone, School school, Year year, ClassVenue classVenue,
-                   ClassTime classTime, AdditionalDetails additionalDetails, MeetingLink meetingLink,
-                   Subject subject, Set<Tag> tags) {
-        requireAllNonNull(name, phone, school, year, classVenue, classTime);
+    public Student(Name name, Phone phone, School school, Year year, Admin admin) {
+        requireAllNonNull(name, phone, school, year, admin);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
-        this.classVenue = classVenue;
-        this.classTime = classTime;
-        this.additionalDetails = additionalDetails;
-        this.meetingLink = meetingLink;
-        this.subject = subject;
-        this.tags.addAll(tags);
+        this.admin = admin;
     }
 
     public Name getName() {
@@ -57,10 +38,6 @@ public class Student {
         return phone;
     }
 
-    public MeetingLink getMeetingLink() {
-        return meetingLink;
-    }
-
     public School getSchool() {
         return school;
     }
@@ -69,28 +46,8 @@ public class Student {
         return year;
     }
 
-    public ClassTime getClassTime() {
-        return classTime;
-    }
-
-    public AdditionalDetails getAdditionalDetails() {
-        return additionalDetails;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public ClassVenue getClassVenue() {
-        return classVenue;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Admin getAdmin() {
+        return admin;
     }
 
     /**
@@ -104,7 +61,9 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone());
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getSchool().equals(getSchool())
+                && otherStudent.getYear().equals(getYear());
     }
 
     /**
@@ -125,20 +84,13 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getSchool().equals(getSchool())
-                && otherStudent.getYear().equals(getYear())
-                && otherStudent.getMeetingLink().equals(getMeetingLink())
-                && otherStudent.getClassVenue().equals(getClassVenue())
-                && otherStudent.getAdditionalDetails().equals(getAdditionalDetails())
-                && otherStudent.getClassTime().equals(getClassTime())
-                && otherStudent.getSubject().equals(getSubject())
-                && otherStudent.getTags().equals(getTags());
+                && otherStudent.getYear().equals(getYear());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, school, year, classVenue, classTime, additionalDetails,
-                meetingLink, subject, tags);
+        return Objects.hash(name, phone, school, year);
     }
 
     @Override
@@ -151,12 +103,7 @@ public class Student {
                 .append(getSchool())
                 .append(" Year: ")
                 .append(getYear())
-                .append(" Class Venue: ")
-                .append(getClassVenue())
-                .append(" Class Time: ")
-                .append(getClassTime())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getAdmin());
         return builder.toString();
     }
 

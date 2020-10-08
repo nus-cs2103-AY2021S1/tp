@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.ClassVenue;
-import seedu.address.model.student.MeetingLink;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.School;
+import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.AdditionalDetail;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -66,59 +66,60 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String school} into a {@code School}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static ClassVenue parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!ClassVenue.isValidClassVenue(trimmedAddress)) {
-            throw new ParseException(ClassVenue.MESSAGE_CONSTRAINTS);
+    public static School parseSchool(String school) throws ParseException {
+        requireNonNull(school);
+        String trimmedSchool = school.trim();
+        if (!School.isValidSchool(trimmedSchool)) {
+            throw new ParseException(School.MESSAGE_CONSTRAINTS);
         }
-        return new ClassVenue(trimmedAddress);
+        return new School(school);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String year} into a {@code Year}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code year} is invalid.
      */
-    public static MeetingLink parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!MeetingLink.isValidEmail(trimmedEmail)) {
-            throw new ParseException(MeetingLink.MESSAGE_CONSTRAINTS);
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new MeetingLink(trimmedEmail);
+        return new Year(year);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String detail} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code detail} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static AdditionalDetail parseAdditionalDetail(String detail) throws ParseException {
+        requireNonNull(detail);
+        String trimmedDetail = detail.trim();
+        if (!AdditionalDetail.isValidAdditionalDetail(trimmedDetail)) {
+            throw new ParseException(AdditionalDetail.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new AdditionalDetail(trimmedDetail);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
+            throws ParseException {
+        requireNonNull(additionalDetails);
+        final Set<AdditionalDetail> detailSet = new HashSet<>();
+        for (String detail : additionalDetails) {
+            detailSet.add(parseAdditionalDetail(detail));
         }
-        return tagSet;
+        return detailSet;
     }
 }

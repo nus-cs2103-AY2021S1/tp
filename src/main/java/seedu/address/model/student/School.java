@@ -4,37 +4,37 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Student's school in Reeve.
+ * Guarantees: immutable; is valid as declared in {@link #isValidSchool(String)}
  */
 public class School {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "School names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * School names must have at least 1 alphabet with spaces in between allowed.
+     * First character cannot be empty string if not empty string becomes valid school.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^[A-Za-z][A-Za-z ]*$";
 
     public final String school;
 
     /**
      * Constructs a {@code Name}.
      *
-     * @param name A valid name.
+     * @param school A valid school.
      */
-    public School(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        school = name;
+    public School(String school) {
+        requireNonNull(school);
+        checkArgument(isValidSchool(school), MESSAGE_CONSTRAINTS);
+        this.school = school;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidSchool(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -47,8 +47,8 @@ public class School {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && school.equals(((Name) other).fullName)); // state check
+                || (other instanceof School // instanceof handles nulls
+                && school.equals(((School) other).school)); // state check
     }
 
     @Override

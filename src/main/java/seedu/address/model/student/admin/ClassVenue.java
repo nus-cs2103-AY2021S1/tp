@@ -1,4 +1,4 @@
-package seedu.address.model.student;
+package seedu.address.model.student.admin;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -17,7 +17,7 @@ public class ClassVenue {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String venue;
 
     /**
      * Constructs an {@code ClassVenue}.
@@ -27,7 +27,7 @@ public class ClassVenue {
     public ClassVenue(String classVenue) {
         requireNonNull(classVenue);
         checkArgument(isValidClassVenue(classVenue), MESSAGE_CONSTRAINTS);
-        value = classVenue;
+        venue = classVenue;
     }
 
     /**
@@ -39,19 +39,19 @@ public class ClassVenue {
 
     @Override
     public String toString() {
-        return value;
+        return venue;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ClassVenue // instanceof handles nulls
-                && value.equals(((ClassVenue) other).value)); // state check
+                && venue.equals(((ClassVenue) other).venue)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return venue.hashCode();
     }
 
 }
