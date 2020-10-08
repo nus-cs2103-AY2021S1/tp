@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalStudents.ELLE;
 import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -92,20 +93,41 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multiplePredicates_multiplePersonsFound() {
+    public void execute_multiplePredicates_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
-        List<Predicate<Student>> predicates = Arrays.asList(namePredicate, schoolPredicate);
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("year 2");
+        List<Predicate<Student>> predicates = Arrays.asList(namePredicate, schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
         expectedModel.updateFilteredPersonList(consolidatedPredicates);
 
         FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
-                .withNamePredicate(namePredicate).withSchoolPredicate(schoolPredicate).build();
+                .withNamePredicate(namePredicate).withSchoolPredicate(schoolPredicate)
+                .withYearPredicate(yearMatchPredicate).build();
         FindCommand command = new FindCommand(descriptor);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multiplePredicates_noStudentFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
+        SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("sec 3");
+        List<Predicate<Student>> predicates = Arrays.asList(namePredicate, schoolPredicate, yearMatchPredicate);
+        Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
+        expectedModel.updateFilteredPersonList(consolidatedPredicates);
+
+        FindCommand.FindStudentDescriptor descriptor = new FindStudentDescriptorBuilder()
+                .withNamePredicate(namePredicate).withSchoolPredicate(schoolPredicate)
+                .withYearPredicate(yearMatchPredicate).build();
+        FindCommand command = new FindCommand(descriptor);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new ArrayList<>(), model.getFilteredPersonList());
     }
 
     /**
@@ -125,7 +147,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code YearMatchPredicate}.
      */
-    private YearMatchPredicate prepareYearPredicate(String userInput) throws ParseException {
+    private YearMatchPredicate prepareYearPredicate(String userInput) {
         return new YearMatchPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
