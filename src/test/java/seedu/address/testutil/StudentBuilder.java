@@ -63,7 +63,6 @@ public class StudentBuilder {
         return this;
     }
 
-
     /**
      * Sets the {@code School} of the {@code Student} that we are building.
      */
@@ -72,8 +71,6 @@ public class StudentBuilder {
         return this;
     }
 
-
-
     /**
      * Sets the {@code Year} of the {@code Student} that we are building.
      */
@@ -81,30 +78,6 @@ public class StudentBuilder {
         this.year = new Year(year);
         return this;
     }
-
-    /**
-     * Sets the {@code ClassTime} of the {@code Student} that we are building.
-     */
-    //    public StudentBuilder withClassTime(String classTime) {
-    //        this.classTime = new ClassTime(classTime);
-    //        return this;
-    //    }
-    //
-    //    /**
-    //     * Sets the {@code AdditionalDetails} of the {@code Student} that we are building.
-    //     */
-    //    public StudentBuilder withAdditionalDetails(String additionalDetails) {
-    //        this.additionalDetails = new AdditionalDetails(additionalDetails);
-    //        return this;
-    //    }
-    //
-    //    /**
-    //     * Sets the {@code Subject} of the {@code Student} that we are building.
-    //     */
-    //    public StudentBuilder withSubject(String subject) {
-    //        this.subject = new Subject(subject);
-    //        return this;
-    //    }
 
     public Student build() {
         return new Student(name, phone, school, year, admin);
