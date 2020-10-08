@@ -14,13 +14,13 @@ public class RedoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Redo-ed the command:\n %1$s";
 
-    public static final String MESSAGE_NO_MORE_COMMANDS = "No more commands to redo";
+    public static final String MESSAGE_FAILURE = "No more commands to redo";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.canRedoCliniCal()) {
-            throw new CommandException(MESSAGE_NO_MORE_COMMANDS);
+            throw new CommandException(MESSAGE_FAILURE);
         }
         model.redoCliniCal();
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getRedoCommand()));

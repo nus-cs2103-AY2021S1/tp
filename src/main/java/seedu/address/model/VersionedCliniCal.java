@@ -85,4 +85,10 @@ public class VersionedCliniCal extends CliniCal {
         return commandList.get(currentStatePointer);
     }
 
+    /**
+     * Returns the current state being pointed at for testing.
+     */
+    public ReadOnlyCliniCal getCurrentCliniCalState() {
+        return clinicalStateList.get(currentStatePointer);
+    }
 }

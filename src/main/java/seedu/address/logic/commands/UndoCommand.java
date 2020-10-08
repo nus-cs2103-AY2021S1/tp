@@ -14,13 +14,13 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Undo-ed the command:\n %1$s";
 
-    public static final String MESSAGE_NO_MORE_COMMANDS = "No more commands to undo";
+    public static final String MESSAGE_FAILURE = "No more commands to undo";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.canUndoCliniCal()) {
-            throw new CommandException(MESSAGE_NO_MORE_COMMANDS);
+            throw new CommandException(MESSAGE_FAILURE);
         }
         model.undoCliniCal();
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getUndoCommand()));
