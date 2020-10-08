@@ -2,15 +2,8 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.logging.Logger;
 
-import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -22,10 +15,8 @@ import seedu.address.logic.parser.MeetingBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.meeting.Date;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -87,14 +78,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getMeetingBookFilePath() {
+        return model.getMeetingBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return model.getMeetingBook();
+    }
+
+    @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
-        ObservableList<Meeting> list = FXCollections.observableArrayList();
-        list.add(new Meeting(
-                new MeetingName("Fake Meeting"),
-                new Date("2020-04-27"),
-                new Time("13:59")
-        ));
-        return list;
+        return model.getFilteredMeetingList();
     }
 
     @Override

@@ -35,7 +35,7 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label time;
+    private Label datetime;
     @FXML
     private FlowPane participants;
 
@@ -47,7 +47,7 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         name.setText(meeting.getName().meetingName);
-        time.setText(meeting.getTime().value);
+        datetime.setText(meeting.getDate().value+ " " + meeting.getTime().value);
         meeting.getParticipants().stream()
                 .sorted(Comparator.comparing(participant -> participant.getName().fullName))
                 .forEach(participant -> participants.getChildren()
