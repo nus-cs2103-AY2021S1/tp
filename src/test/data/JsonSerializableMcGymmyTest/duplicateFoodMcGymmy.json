@@ -1,16 +1,16 @@
 {
   "food": [
     {
-      "name": "Alice Pauline",
+      "name": "chicken rice",
       "protein": "94351253",
       "fat": "123",
       "carbs": "456",
       "tagged": [
-        "friends"
+        "Lunch"
       ]
     },
     {
-      "name": "Alice Pauline",
+      "name": "chicken rice",
       "protein": "94351253",
       "fat": "123",
       "carbs": "456"
