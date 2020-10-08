@@ -145,7 +145,7 @@ public class AddCommandTest {
         @Override
         public boolean hasFood(Food food) {
             requireNonNull(food);
-            return this.food.isSameFood(food);
+            return this.food.equals(food);
         }
     }
 
@@ -158,7 +158,7 @@ public class AddCommandTest {
         @Override
         public boolean hasFood(Food food) {
             requireNonNull(food);
-            return foodAdded.stream().anyMatch(food::isSameFood);
+            return foodAdded.stream().anyMatch(food::equals);
         }
 
         @Override

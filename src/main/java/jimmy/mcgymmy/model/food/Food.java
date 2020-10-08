@@ -89,10 +89,6 @@ public class Food {
         return Collections.unmodifiableSet(tags);
     }
 
-    public boolean isSameFood(Object otherFood) {
-        return equals(otherFood);
-    }
-
     @Override
     public boolean equals(Object other) {
         CollectionUtil.requireAllNonNull(protein, carbs, fat);

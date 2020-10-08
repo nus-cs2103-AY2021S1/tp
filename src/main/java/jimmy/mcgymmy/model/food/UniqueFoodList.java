@@ -20,7 +20,7 @@ import jimmy.mcgymmy.model.food.exceptions.FoodNotFoundException;
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Food#isSameFood(Object)
+ * @see Food#equals(Object)
  */
 public class UniqueFoodList implements Iterable<Food> {
 
@@ -33,7 +33,7 @@ public class UniqueFoodList implements Iterable<Food> {
      */
     public boolean contains(Food toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameFood);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniqueFoodList implements Iterable<Food> {
             throw new FoodNotFoundException();
         }
 
-        if (!target.isSameFood(editedFood) && contains(editedFood)) {
+        if (!target.equals(editedFood) && contains(editedFood)) {
             throw new DuplicateFoodException();
         }
 
@@ -127,7 +127,7 @@ public class UniqueFoodList implements Iterable<Food> {
     private boolean foodItemsAreUnique(List<Food> foods) {
         for (int i = 0; i < foods.size() - 1; i++) {
             for (int j = i + 1; j < foods.size(); j++) {
-                if (foods.get(i).isSameFood(foods.get(j))) {
+                if (foods.get(i).equals(foods.get(j))) {
                     return false;
                 }
             }

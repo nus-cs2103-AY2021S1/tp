@@ -50,7 +50,7 @@ public class Fridge implements Iterable<Food> {
             throw new FoodNotFoundException();
         }
 
-        if (!target.isSameFood(editedFood) && contains(editedFood)) {
+        if (!target.equals(editedFood) && contains(editedFood)) {
             throw new DuplicateFoodException();
         }
 
