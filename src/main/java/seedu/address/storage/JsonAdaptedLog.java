@@ -1,14 +1,16 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.log.Address;
-import seedu.address.model.log.Email;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.log.Comment;
 import seedu.address.model.log.Log;
-import seedu.address.model.log.Phone;
+import seedu.address.model.log.Rep;
 import seedu.address.model.util.Name;
 
 /**
@@ -49,41 +51,47 @@ class JsonAdaptedLog {
      * Converts this Jackson-friendly adapted log object into the model's {@code Log} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted log.
-     * TODO: Refine this later
      */
     public Log toModelType() throws IllegalValueException {
         if (exercise == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Exercise.class.getSimpleName()));
         }
-        if (!Name.isValidName(exercise)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
+        // TODO: Exercise validation
+        /*if (!Exercise.isValidExercise(exercise)) {
+            throw new IllegalValueException(Exercise.MESSAGE_CONSTRAINTS);
+        }*/
+        // TODO: Exercise constructor: convert Name to existing Exercise
+        final Exercise modelExercise = new Exercise(new Name("Sit up"), 30);
 
+        // TODO: CREATE NEW DATETIME CLASS???
         if (dateTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(dateTime)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(dateTime);
+        // TODO: LocalDateTime validation
+        /*if (!LocalDateTime.isValidLocalDateTime(dateTime)) {
+            throw new IllegalValueException(LocalDateTime.MESSAGE_CONSTRAINTS);
+        }*/
+        final LocalDateTime modelLocalDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_DATE_TIME);
 
         if (rep == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rep.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(rep)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Rep.isValidRep(rep)) {
+            throw new IllegalValueException(Rep.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(rep);
+        final Rep modelRep = new Rep(rep);
 
         if (comment == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Comment.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(comment)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Comment.isValidComment(comment)) {
+            throw new IllegalValueException(Comment.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(comment);
+        final Comment modelComment = new Comment(comment);
 
-        return new Log(null, null, null, null);
+        return new Log(modelExercise, modelRep, modelComment, modelLocalDateTime);
     }
 
 }

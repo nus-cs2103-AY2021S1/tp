@@ -1,18 +1,22 @@
 package seedu.address.model.log;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Log's phone number in the log book.
  * Guarantees: immutable.
  */
 public class Comment {
-    public final String value;
-
-    //TODO: Find a stricter constraint for comments
     public static final String MESSAGE_CONSTRAINTS =
-            "Comment should not be black";
+            "Comment should only contain alphanumeric characters and spaces, and it should not be blank";
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+    public final String value;
 
     /**
      * Constructs a {@code Comment}.
@@ -26,7 +30,7 @@ public class Comment {
 
     //TODO: write this according to comments' constraints
     public static boolean isValidComment(String comment) {
-        return true;
+        return comment.matches(VALIDATION_REGEX);
     }
 
 
