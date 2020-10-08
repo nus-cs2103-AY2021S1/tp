@@ -27,9 +27,6 @@ public class AdminTest {
         // different types should return false
         assertFalse(aliceAdmin.equals(6));
 
-        // different admin should return false
-        assertFalse(aliceAdmin.equals(Admin.getPlaceholder()));
-
         // different classVenue should return false
         Admin editedAliceAdmin = new StudentBuilder(ALICE).withClassVenue("Fairyland").build().getAdmin();
         assertFalse(adminCopy.equals(editedAliceAdmin));

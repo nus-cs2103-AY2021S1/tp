@@ -25,10 +25,10 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
     public static final String DEFAULT_YEAR = "4";
-    public static final String DEFAULT_CLASS_VENUE = "Blk 402, Serangoon, #02-01";
-    public static final String DEFAULT_CLASS_TIME = "4 1200-1500";
-    public static final String DEFAULT_FEE = "200.50";
-    public static final String DEFAULT_PAYMENT_DATE = "11/9/2001";
+    public static final String DEFAULT_CLASS_VENUE = "Placeholder venue";
+    public static final String DEFAULT_CLASS_TIME = "1 0000-2359";
+    public static final String DEFAULT_FEE = "123";
+    public static final String DEFAULT_PAYMENT_DATE = "1/1/01";
 
     // Identity fields
     private Name name;
