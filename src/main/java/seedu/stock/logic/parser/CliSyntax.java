@@ -13,7 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOURCE = new Prefix("s/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
-    public static final Prefix PREFIX_SERIALNUMBER = new Prefix("sn/");
+    public static final Prefix PREFIX_SERIAL_NUMBER = new Prefix("sn/");
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
     public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
 
@@ -28,7 +28,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_SOURCE);
         allPrefixes.add(PREFIX_QUANTITY);
         allPrefixes.add(PREFIX_LOCATION);
-        allPrefixes.add(PREFIX_SERIALNUMBER);
+        allPrefixes.add(PREFIX_SERIAL_NUMBER);
         allPrefixes.add(PREFIX_NEW_QUANTITY);
         allPrefixes.add(PREFIX_INCREMENT_QUANTITY);
         return allPrefixes;
