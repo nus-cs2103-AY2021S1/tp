@@ -301,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
-  
+
 #### **Use case: Delete an exercise**
 
 *MSS*
@@ -317,12 +317,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that no such exercise exists.<br>
     Use case ends.
 </p>
-  
+
   #### **Use case: Archive data**
   *MSS*
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
-      Use case ends.  
+    Use case ends.  
 
 *Extensions*
 <p>
@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
     Use case ends.
 </p>
-  
+
   #### **Use case: List exercises**
 
   *MSS*<br>
