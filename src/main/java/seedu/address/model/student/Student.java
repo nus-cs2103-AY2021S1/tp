@@ -12,12 +12,12 @@ import seedu.address.model.student.admin.Admin;
  */
 public class Student {
 
-    // Identity fields
     private final Name name;
     private final Phone phone;
     private final School school;
     private final Year year;
     private final Admin admin;
+
     /**
      *  name, phone, school, year, must be present and not null.
      */
@@ -102,7 +102,8 @@ public class Student {
                 .append(" School: ")
                 .append(getSchool())
                 .append(" Year: ")
-                .append(getYear());
+                .append(getYear())
+                .append(getAdmin());
         return builder.toString();
     }
 
