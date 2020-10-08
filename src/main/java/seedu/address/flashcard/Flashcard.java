@@ -13,6 +13,10 @@ public class Flashcard {
     private final int timesTested;
     private final int timesTestedCorrect;
 
+    public static final String TIMES_TESTED_CONSTRAINTS = "Times tested should be a positive integer";
+    public static final String TIMES_TESTED_LESS_THAN_TIMES_TESTED_CORRECT_CONSTRAINT = "Times tested should be more "
+        + "than times tested correctly";
+
     /**
      * A constructor to create flashcard object.
      * @param question Question of the flashcard.
@@ -36,6 +40,12 @@ public class Flashcard {
      * @param timesTestedCorrect Number of times the flashcard is tested correctly.
      */
     public Flashcard(Question question, Answer answer, Set<Tag> tags, int timesTested, int timesTestedCorrect) {
+        if (timesTested < 0 || timesTestedCorrect < 0) {
+            throw new IllegalArgumentException(TIMES_TESTED_CONSTRAINTS);
+        }
+        if (timesTested < timesTestedCorrect) {
+            throw new IllegalArgumentException(TIMES_TESTED_LESS_THAN_TIMES_TESTED_CORRECT_CONSTRAINT);
+        }
         this.question = question;
         this.answer = answer;
         this.tags = tags;
