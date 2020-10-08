@@ -59,8 +59,8 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Stores the details to find the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to find students with. Each non-empty field will be used to
+     * filter the list of students in Reeve.
      */
     public static class FindStudentDescriptor {
         private NameContainsKeywordsPredicate namePredicate;
