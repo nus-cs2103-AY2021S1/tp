@@ -46,15 +46,13 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
         FindCommand expectedFindCommand = new FindCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
                 new DateMatchesPredicate(Arrays.asList("07-09-2020")),
                 new TagsMatchesPredicate(Arrays.asList("crypto", "cs"))
         );
-        String x = " " + PREFIX_DESCRIPTION + "Alice Bob " + PREFIX_DATE + " 07-09-2020 " + PREFIX_TAG +
-                " crypto "+ PREFIX_TAG + " cs";
+        String x = " " + PREFIX_DESCRIPTION + "Alice Bob " + PREFIX_DATE + " 07-09-2020 " + PREFIX_TAG
+                 + " crypto " + PREFIX_TAG + " cs";
         assertParseSuccess(parser, x, expectedFindCommand);
     }
-
 }

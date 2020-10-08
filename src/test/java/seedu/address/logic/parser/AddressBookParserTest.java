@@ -11,7 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXPENSE;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -27,8 +29,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.expense.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.expense.DateMatchesPredicate;
+import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.NameContainsKeywordsPredicate;
+import seedu.address.model.expense.Remark;
+import seedu.address.model.expense.TagsMatchesPredicate;
 import seedu.address.testutil.EditExpenseDescriptorBuilder;
 import seedu.address.testutil.ExpenseBuilder;
 import seedu.address.testutil.ExpenseUtil;
