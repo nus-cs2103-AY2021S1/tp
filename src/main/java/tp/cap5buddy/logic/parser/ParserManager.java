@@ -92,7 +92,11 @@ public class ParserManager {
             return command;
         case "addgrade":
             parser = new AddGradeParser();
-            command = parser.parse(this.nonCommand);
+            command = parser.parse(input);
+            return command;
+        case "addfinalgrade":
+            parser = new AddFinalGradeParser();
+            command = parser.parse(input);
             return command;
         default:
             throw new ParseException("Invalid Command");
