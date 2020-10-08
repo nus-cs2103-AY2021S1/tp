@@ -32,7 +32,7 @@ public class AddMeetingCommand extends Command {
     private final Meeting toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
     public AddMeetingCommand(Meeting meeting) {
         requireNonNull(meeting);

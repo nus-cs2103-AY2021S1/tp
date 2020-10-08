@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Date;
@@ -28,7 +27,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MEETINGNAME, PREFIX_DATE, PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_MEETINGNAME).get());

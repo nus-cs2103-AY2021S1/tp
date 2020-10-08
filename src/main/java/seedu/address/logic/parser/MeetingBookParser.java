@@ -32,7 +32,7 @@ public class MeetingBookParser {
         switch (commandWord) {
 
         case AddMeetingCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddMeetingCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
