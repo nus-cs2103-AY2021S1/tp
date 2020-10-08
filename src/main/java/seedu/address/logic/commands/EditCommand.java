@@ -93,11 +93,13 @@ public class EditCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
+        String updatedInstruction = editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
+        String updatedRecipeImage = editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
         ArrayList<Ingredient> updatedIngredient =
                 editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
         Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());
 
-        return new Recipe(updatedName, updatedIngredient, updatedCalories);
+        return new Recipe(updatedName, updatedInstruction, updatedRecipeImage, updatedIngredient, updatedCalories);
     }
 
     @Override
@@ -124,6 +126,8 @@ public class EditCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
+        private String instruction;
+        private String recipeImage;
         private ArrayList<Ingredient> ingredients;
         private Calories calories;
 
@@ -135,6 +139,8 @@ public class EditCommand extends Command {
          */
         public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
             setName(toCopy.name);
+            setInstruction(toCopy.instruction);
+            setRecipeImage(toCopy.recipeImage);
             setIngredient(toCopy.ingredients);
             setCalories(toCopy.calories);
         }
@@ -153,6 +159,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
+        public void setInstruction(String instruction) {
+            this.instruction = instruction;
+        }
+        public Optional<String> getInstruction() {
+            return Optional.ofNullable(instruction);
+        }
+
+        public void setRecipeImage(String recipeImage) {
+            this.recipeImage = recipeImage;
+        }
+        public Optional<String> getRecipeImage() {
+            return Optional.ofNullable(recipeImage);
+        }
+        
         public void setIngredient(ArrayList<Ingredient> ingredients) {
             this.ingredients = ingredients;
         }
@@ -186,6 +206,8 @@ public class EditCommand extends Command {
             EditRecipeDescriptor e = (EditRecipeDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getInstruction().equals(e.getInstruction())
+                    && getRecipeImage().equals(e.getRecipeImage())
                     && getIngredient().equals(e.getIngredient())
                     && getCalories().equals(e.getCalories());
         }
