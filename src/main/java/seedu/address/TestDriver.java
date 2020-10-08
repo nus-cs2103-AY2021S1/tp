@@ -1,28 +1,22 @@
 package seedu.address;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.sql.SQLOutput;
-import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
-import seedu.address.model.exercise.*;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.*;
+import seedu.address.model.ExerciseBook;
+import seedu.address.model.Model;
+import seedu.address.model.exercise.Calories;
+import seedu.address.model.exercise.Date;
+import seedu.address.model.exercise.Description;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Name;
+import seedu.address.storage.JsonExerciseBookStorage;
+import seedu.address.storage.StorageForExercise;
 import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.
@@ -35,13 +29,18 @@ public class TestDriver {
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage storage;
+    protected StorageForExercise storage;
     protected Model model;
     protected Config config;
 
+    /**
+     * Driver to test out JsonExerciseBook and its related classes.
+     * @param args
+     */
     public static void main(String[] args) {
         try {
-            JsonExerciseBookStorage jStorage = new JsonExerciseBookStorage(new File("testingForExercise.json").toPath());
+            JsonExerciseBookStorage jStorage = new JsonExerciseBookStorage(
+                    new File("testingForExercise.json").toPath());
             ExerciseBook exerciseBook = new ExerciseBook();
             exerciseBook.resetData(jStorage.readExerciseBook().get());
             exerciseBook.addExercise(new Exercise(new Name("Hello"), new Description("Test 1"),
@@ -59,6 +58,6 @@ public class TestDriver {
         } catch (Exception err) {
             System.out.println("Exceptions");
         }
-
     }
 }
+

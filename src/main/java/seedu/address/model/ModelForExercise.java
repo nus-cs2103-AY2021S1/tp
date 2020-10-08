@@ -6,14 +6,13 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface ModelForExercise {
     /** {@code Exercise} that always evaluate to true */
-    Predicate<Exercise> PREDICATE_SHOW_ALL_Exercise = unused -> true;
+    Predicate<Exercise> PREDICATE_SHOW_ALL_EXERCISE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

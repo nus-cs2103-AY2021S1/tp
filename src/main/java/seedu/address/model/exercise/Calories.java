@@ -10,4 +10,5 @@ public class Calories {
     public static boolean isValidCalories(String val) {
         return true;
     }
+
 }

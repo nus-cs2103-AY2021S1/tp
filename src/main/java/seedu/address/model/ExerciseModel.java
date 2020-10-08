@@ -12,7 +12,7 @@ import seedu.address.model.exercise.Exercise;
  */
 public interface ExerciseModel {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Exercise> PREDICATE_SHOW_ALL_Exercise = unused -> true;
+    Predicate<Exercise> PREDICATE_SHOW_ALL_EXERCISE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -72,7 +72,8 @@ public interface ExerciseModel {
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.
-     * The Exercise identity of {@code editedExercise} must not be the same as another existing Exercise in the address book.
+     * The Exercise identity of {@code editedExercise} must not be the
+     * same as another existing Exercise in the exercise book.
      */
     void setExercise(Exercise target, Exercise editedExercise);
 

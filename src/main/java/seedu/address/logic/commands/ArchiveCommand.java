@@ -7,11 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATH;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.function.Consumer;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ExerciseBook;
-import seedu.address.model.Model;
 import seedu.address.model.ModelForExercise;
 import seedu.address.storage.StorageForExercise;
 

@@ -102,7 +102,7 @@ public class ExerciseModelManager implements ExerciseModel {
     @Override
     public void addExercise(Exercise exercise) {
         exerciseBook.addExercise(exercise);
-        updateFilteredExerciseList(PREDICATE_SHOW_ALL_Exercise);
+        updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
     @Override

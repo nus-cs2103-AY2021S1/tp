@@ -140,7 +140,7 @@ public class ParserUtil {
         if (!hasRightToCreate(trimPathDirectory)) {
             throw new ParseException("You don\'t have right to create at the specified location");
         }
-        
+
         return Paths.get(trimPathDirectory);
     }
 

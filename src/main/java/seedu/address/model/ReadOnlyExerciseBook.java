@@ -13,5 +13,4 @@ public interface ReadOnlyExerciseBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Exercise> getExerciseList();
-
 }
