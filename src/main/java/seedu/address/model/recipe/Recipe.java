@@ -1,6 +1,8 @@
 package seedu.address.model.recipe;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.Inventory;
+import seedu.address.model.item.Item;
 import seedu.address.ui.View;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -136,4 +138,8 @@ public class Recipe extends Inventory {
         return View.InventoryType.RECIPES;
     }
 
+    public PrintableRecipe print(ObservableList<Item> filteredItemList) {
+        return new PrintableRecipe(this.id, this.ingredients, this.productId, this.productName,
+                this.productQuantity, this.description, this.isDeleted, filteredItemList);
+    }
 }

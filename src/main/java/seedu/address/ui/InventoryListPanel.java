@@ -12,8 +12,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Inventory;
 import seedu.address.model.item.Item;
-import seedu.address.model.recipe.Recipe;
-
+import seedu.address.model.recipe.PrintableRecipe;
 
 /**
  * Panel containing the list of inventory.
@@ -28,7 +27,7 @@ public class InventoryListPanel extends UiPart<Region> {
     private View.InventoryType inventoryType;
 
     /**
-     * Creates a {@code InventoryListPanel} with the given {@code ObservableList}.
+     * Creates a {@code InventoryListPanel} with the given {@code ObservableList} and {@code View.InventoryType}.
      */
     public InventoryListPanel(List<Inventory> inventoryList, View.InventoryType inventoryType) {
         super(FXML);
@@ -38,6 +37,10 @@ public class InventoryListPanel extends UiPart<Region> {
         itemListView.setCellFactory(listView -> new ItemListViewCell());
     }
 
+    /**
+     * Updates the InventoryListPanel to display inventory of the given {@code View.InventoryType}
+     * in the given {@code ObservableList}.
+     */
     public void refresh(List<Inventory> inventoryList, View.InventoryType inventoryType) {
         this.inventoryType = inventoryType;
         ObservableList<Inventory> observableInventoryList = FXCollections.observableList(inventoryList);
@@ -53,7 +56,8 @@ public class InventoryListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code InventoryCard}.
+     * Custom {@code ListCell} that displays the graphics of the current inventory, either {@code Item} using an
+     * {@code InventoryCard} or {@code PrintableRecipe} using a {@code RecipeCard}.
      */
     class ItemListViewCell extends ListCell<Inventory> {
 
@@ -70,7 +74,7 @@ public class InventoryListPanel extends UiPart<Region> {
                     setGraphic(new InventoryCard((Item) inventory, getIndex() + 1).getRoot());
                     break;
                 case RECIPES:
-                    setGraphic(new RecipeCard((Recipe) inventory, getIndex() + 1).getRoot());
+                    setGraphic(new RecipeCard((PrintableRecipe) inventory, getIndex() + 1).getRoot());
                     break;
                 default:
                     throw new IllegalStateException("This inventoryType is not valid" + inventoryType);

@@ -52,7 +52,6 @@ public class InventoryMainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    //
     private View.InventoryType inventoryType;
 
     /**
@@ -171,10 +170,6 @@ public class InventoryMainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public InventoryListPanel getItemListPanel() {
-        return inventoryListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -194,7 +189,7 @@ public class InventoryMainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            //update the flag
+            // update the type of inventory to be displayed
             switch (commandResult.getInventoryType()) {
             case ITEMS:
                 inventoryType = View.InventoryType.ITEMS;
@@ -203,9 +198,10 @@ public class InventoryMainWindow extends UiPart<Stage> {
                 inventoryType = View.InventoryType.RECIPES;
                 break;
             case UNCHANGED:
-                //do nothing
+                // inventoryType stays the same
                 break;
             }
+            // updates the panel
             inventoryListPanel.refresh(logic.getInventoryList(inventoryType), inventoryType);
 
             return commandResult;

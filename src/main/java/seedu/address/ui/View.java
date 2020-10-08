@@ -1,19 +1,13 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.Inventory;
-
+/**
+ * Contains the different possible view settings
+ */
 public class View {
+
     public enum InventoryType {
+        // UNCHANGED is used only for commands, to show the current view is UNCHANGED
         UNCHANGED, ITEMS, RECIPES;
     }
-
-//    InventoryType inventoryType;
-//    ObservableList<Inventory> inventoryObservableList;
-//
-//    public View(InventoryType inventoryType, ObservableList<Inventory> inventoryObservableList) {
-//        this.inventoryType = inventoryType;
-//        this.inventoryObservableList = inventoryObservableList;
-//    }
 }
 

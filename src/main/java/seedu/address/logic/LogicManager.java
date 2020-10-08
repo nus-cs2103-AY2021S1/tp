@@ -153,8 +153,7 @@ public class LogicManager implements Logic {
             //prepare recipe list to print
             model.getFilteredRecipeList()
                     .stream()
-                    .forEach(inventoryList::add);
-            //        .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
+                    .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
             break;
         case UNCHANGED:
             assert false;

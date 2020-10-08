@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.recipe.PrintableRecipe;
 import seedu.address.model.recipe.Recipe;
 
 
@@ -22,7 +23,7 @@ public class RecipeCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Recipe recipe;
+    public final PrintableRecipe recipe;
 
     @FXML
     private HBox cardPane;
@@ -38,12 +39,12 @@ public class RecipeCard extends UiPart<Region> {
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
      */
-    public RecipeCard(Recipe recipe, int displayedIndex) {
+    public RecipeCard(PrintableRecipe recipe, int displayedIndex) {
         super(FXML);
         this.recipe = recipe;
         productName.setText(recipe.getProductName());
-        ingredients.setText(recipe.getIngredients().toString());
-        productQuantity.setText(recipe.getProductQuantity().toString());
+        ingredients.setText("Ingredients: " + recipe.getPrintableIngredients());
+        productQuantity.setText("Produces: " + recipe.getProductQuantity().toString() + " " + recipe.getProductName());
         description.setText(recipe.getDescription());
     }
 
