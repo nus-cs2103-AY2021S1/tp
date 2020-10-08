@@ -101,6 +101,17 @@ public class TestCommand extends Command {
 
         requireNonNull(answer);
         boolean isCorrect = flashcardToTest.checkAnswer(answer);
+
+        // Initialize an updated flashcard
+        Flashcard updatedFlashcard = flashcardToTest;
+        if (isCorrect) {
+            updatedFlashcard = flashcardToTest.getFlashcardAfterTestSuccess();
+        } else {
+            updatedFlashcard = flashcardToTest.getFlashcardAfterTestFailure();
+        }
+
+        // Updates the flashcardToTest with the new updatedFlashCard (with incremented test count)
+        model.setFlashcard(flashcardToTest, updatedFlashcard);
         return new CommandResult(getTestResult(
                 flashcardToTest.getAnswer(), answer), question, isCorrect, true);
     }

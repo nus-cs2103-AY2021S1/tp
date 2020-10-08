@@ -98,6 +98,8 @@ public class EditCommand extends Command {
         assert flashcardToEdit != null;
 
         boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
+        int timesTested = flashcardToEdit.getTimesTested();
+        int timesTestedCorrect = flashcardToEdit.getTimesTestedCorrect();
 
         Optional<Answer> updatedAnswer = editFlashcardDescriptor.getAnswer();
         //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
@@ -107,6 +109,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
         Choice[] emptyArray = new Choice[0];
         Choice[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
+
         boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
         if (isMcq) {
             String question = updatedQuestion.getQuestion();
@@ -163,7 +166,7 @@ public class EditCommand extends Command {
             }
             finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
         }
-        return new Flashcard(updatedQuestion, finalAnswer, updatedTags);
+        return new Flashcard(updatedQuestion, finalAnswer, updatedTags, timesTested, timesTestedCorrect);
     }
 
 

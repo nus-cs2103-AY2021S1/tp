@@ -10,6 +10,8 @@ public class Flashcard {
     private final Question question;
     private final Answer answer;
     private final Set<Tag> tags;
+    private final int timesTested;
+    private final int timesTestedCorrect;
 
     /**
      * A constructor to create flashcard object.
@@ -21,6 +23,24 @@ public class Flashcard {
         this.question = question;
         this.answer = answer;
         this.tags = tags;
+        this.timesTested = 0;
+        this.timesTestedCorrect = 0;
+    }
+
+    /**
+     * A constructor to create flashcard object.
+     * @param question Question of the flashcard.
+     * @param answer Answer of the flashcard.
+     * @param tags Tags of the flashcard.
+     * @param timesTested Number of times the flashcard is tested.
+     * @param timesTestedCorrect Number of times the flashcard is tested correctly.
+     */
+    public Flashcard(Question question, Answer answer, Set<Tag> tags, int timesTested, int timesTestedCorrect) {
+        this.question = question;
+        this.answer = answer;
+        this.tags = tags;
+        this.timesTested = timesTested;
+        this.timesTestedCorrect = timesTestedCorrect;
     }
 
     /**
@@ -71,7 +91,10 @@ public class Flashcard {
 
         return otherFlashcard != null
                 && otherFlashcard.getQuestion().equals(getQuestion())
-                && (otherFlashcard.getAnswer().equals(getAnswer()));
+                && otherFlashcard.getAnswer().equals(getAnswer())
+                && otherFlashcard.getTags().equals(getTags())
+                && otherFlashcard.getTimesTested() == getTimesTested()
+                && otherFlashcard.getTimesTestedCorrect() == getTimesTestedCorrect();
     }
 
     /**
@@ -93,8 +116,27 @@ public class Flashcard {
         } else if (otherFlashcard instanceof Flashcard) {
             Flashcard other = (Flashcard) otherFlashcard;
             return other.getAnswer().equals(getAnswer())
-                    && other.getQuestion().equals(getQuestion());
+                    && other.getQuestion().equals(getQuestion())
+                    && other.getTags().equals(getTags())
+                    && other.getTimesTested() == getTimesTested()
+                    && other.getTimesTestedCorrect() == getTimesTestedCorrect();
         }
         return false;
+    }
+
+    public int getTimesTested() {
+        return timesTested;
+    }
+
+    public int getTimesTestedCorrect() {
+        return timesTestedCorrect;
+    }
+
+    public Flashcard getFlashcardAfterTestSuccess() {
+        return new Flashcard(question, answer, tags, timesTested + 1, timesTestedCorrect + 1);
+    }
+
+    public Flashcard getFlashcardAfterTestFailure() {
+        return new Flashcard(question, answer, tags, timesTested + 1, timesTestedCorrect);
     }
 }
