@@ -128,7 +128,9 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find s/yishun` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
-* `find n/alex s/yishun` searches for all students who match `n/alex` and `s/yishun`.
+* `find y/sec 3` matches `pri 3`, `Secondary 3` and `3`.
+* `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
+* '
 
 ### Deleting a student : `delete`
 
