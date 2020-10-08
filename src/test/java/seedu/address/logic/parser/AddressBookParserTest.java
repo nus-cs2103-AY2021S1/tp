@@ -75,7 +75,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        String dateString = "09-10-2020";
+        List<String> dateString = Arrays.asList("09-10-2020");
         List<String> hs = new ArrayList<>();
         hs.add("CS");
         hs.add("bee");

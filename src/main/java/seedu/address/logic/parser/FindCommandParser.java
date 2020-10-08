@@ -31,30 +31,28 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, //PREFIX_AMOUNT,
                         PREFIX_DATE, PREFIX_TAG);
+
         String keywords = "";
-        String date = "";
+        List<String> dates = argMultimap.getAllValues(PREFIX_DATE);
+        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get();
         }
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            if (!Date.isValidDate(argMultimap.getValue(PREFIX_DATE).get())) {
+        for (String date: dates) {
+            if (!Date.isValidDate(date)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Date.MESSAGE_CONSTRAINTS));
             }
-            date = argMultimap.getValue(PREFIX_DATE).get();
         }
-        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
-
-        if (keywords.equals("") && date.equals("") && tags.isEmpty()) {
+        if (keywords.isEmpty() && dates.isEmpty() && tags.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         return new FindCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList(keywords.trim().split("\\s+"))),
-                new DateMatchesPredicate(date),
+                new DateMatchesPredicate(dates),
                 new TagsMatchesPredicate(tags)
         );
     }

@@ -30,7 +30,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Expense> {
     }
 
     public boolean isEmpty() {
-        return this.keywords.isEmpty() || (this.keywords.size() == 1 && this.keywords.get(0).equals(""));
+        return this.keywords.isEmpty() || (this.keywords.size() == 1 && this.keywords.get(0).isEmpty());
     }
 
 }

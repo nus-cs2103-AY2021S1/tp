@@ -30,7 +30,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand = new FindCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
-                new DateMatchesPredicate("07-09-2020"),
+                new DateMatchesPredicate(Arrays.asList("07-09-2020")),
                 new TagsMatchesPredicate(Arrays.asList("crypto", "cs"))
         );
         String x = "-d Alice Bob -@ 07-09-2020 t/ crypto t/ cs";

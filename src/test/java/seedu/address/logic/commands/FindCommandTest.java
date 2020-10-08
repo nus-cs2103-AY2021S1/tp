@@ -36,9 +36,9 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
         DateMatchesPredicate firstDatePredicate =
-                new DateMatchesPredicate("09-08-2020");
+                new DateMatchesPredicate(Arrays.asList("09-08-2020"));
         DateMatchesPredicate secondDatePredicate =
-                new DateMatchesPredicate("09-08-2020");
+                new DateMatchesPredicate(Arrays.asList("09-08-2020"));
         TagsMatchesPredicate firstTagsPredicate =
                 new TagsMatchesPredicate(Arrays.asList("tagOne", "tagThree", "tagFour"));
         TagsMatchesPredicate secondTagsPredicate =
@@ -70,7 +70,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noExpenseFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        DateMatchesPredicate datePredicate = new DateMatchesPredicate("");
+        DateMatchesPredicate datePredicate = new DateMatchesPredicate(Arrays.asList(""));
         TagsMatchesPredicate tagsPredicate = new TagsMatchesPredicate(null);
         FindCommand command = new FindCommand(predicate, datePredicate, tagsPredicate);
         expectedModel.updateFilteredExpenseList(predicate);
@@ -82,7 +82,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleExpensesFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 3);
         DateMatchesPredicate datePredicate =
-                new DateMatchesPredicate("09-08-2020");
+                new DateMatchesPredicate(Arrays.asList("09-08-2020"));
         TagsMatchesPredicate tagsPredicate =
                 new TagsMatchesPredicate(Arrays.asList("tagTwo", "bye"));
         NameContainsKeywordsPredicate namePredicate = preparePredicate("Kurz Elle Kunz");
