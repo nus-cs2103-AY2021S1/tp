@@ -18,7 +18,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -98,7 +97,8 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
         YearMatchPredicate yearMatchPredicate = prepareYearPredicate("year 2");
-        List<Predicate<Student>> predicates = Arrays.asList(namePredicate, schoolPredicate, yearMatchPredicate);
+        List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
+                schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
         expectedModel.updateFilteredPersonList(consolidatedPredicates);
 
@@ -117,7 +117,8 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
         YearMatchPredicate yearMatchPredicate = prepareYearPredicate("sec 3");
-        List<Predicate<Student>> predicates = Arrays.asList(namePredicate, schoolPredicate, yearMatchPredicate);
+        List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
+                schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
         expectedModel.updateFilteredPersonList(consolidatedPredicates);
 
