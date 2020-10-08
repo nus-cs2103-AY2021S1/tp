@@ -1,12 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -21,14 +18,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
@@ -44,15 +39,10 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -101,19 +91,17 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Title updatedTitle = editPersonDescriptor.getTitle().orElse(personToEdit.getTitle());
+        Description updatedDescription = new Description("");
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         List<Document> updatedDocuments = editPersonDescriptor.getDocuments().orElse(personToEdit.getDocuments());
         List<Suspect> updatedSuspects = editPersonDescriptor.getSuspects().orElse(personToEdit.getSuspects());
         List<Victim> updatedVictims = editPersonDescriptor.getVictims().orElse(personToEdit.getVictims());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Witness> updatedWitnesses =
                 editPersonDescriptor.getWitnesses().orElse(personToEdit.getWitnesses());
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedStatus, updatedDocuments,
-                updatedAddress, updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
+        return new Person(updatedTitle, updatedDescription, updatedStatus, updatedDocuments,
+                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
     @Override
@@ -139,11 +127,9 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
+        private Title title;
+        private Description description;
         private Status status;
-        private Address address;
         private List<Document> documents;
         private List<Suspect> suspects;
         private List<Victim> victims;
@@ -157,11 +143,9 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setTitle(toCopy.title);
+            setDescription(toCopy.description);
             setStatus(toCopy.status);
-            setAddress(toCopy.address);
             setDocuments(toCopy.documents);
             setSuspects(toCopy.suspects);
             setVictims(toCopy.victims);
@@ -174,31 +158,24 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, status, address, suspects, victims, tags);
+            return CollectionUtil.isAnyNonNull(title, description,
+                    status, suspects, victims, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setTitle(Title title) {
+            this.title = title;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Title> getTitle() {
+            return Optional.ofNullable(title);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         public void setStatus(Status status) {
@@ -207,14 +184,6 @@ public class EditCommand extends Command {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         public void setDocuments(List<Document> documents) {
@@ -303,11 +272,8 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
+            return getTitle().equals(e.getTitle())
                     && getStatus().equals(e.getStatus())
-                    && getAddress().equals(e.getAddress())
                     && getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }

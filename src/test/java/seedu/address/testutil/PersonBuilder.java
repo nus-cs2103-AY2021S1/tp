@@ -5,15 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Document;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reference;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Suspect;
+import seedu.address.model.person.Title;
 import seedu.address.model.person.Victim;
 import seedu.address.model.person.Witness;
 import seedu.address.model.tag.Tag;
@@ -24,17 +23,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
+    public static final String DEFAULT_TITLE = "Alice Pauline";
+    public static final String DEFAULT_DESCRIPTION = "";
     public static final String DEFAULT_STATUS = "active";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
-    private Phone phone;
-    private Email email;
+    private Title title;
+    private Description description;
     private Status status;
-    private Address address;
     private List<Document> documents;
     private List<Suspect> suspects;
     private List<Victim> victims;
@@ -45,11 +40,9 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        title = new Title(DEFAULT_TITLE);
+        description = new Description(DEFAULT_DESCRIPTION);
         status = Status.createStatus(DEFAULT_STATUS);
-        address = new Address(DEFAULT_ADDRESS);
         documents = new ArrayList<>();
         suspects = new ArrayList<>();
         victims = new ArrayList<>();
@@ -61,11 +54,9 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
+        title = personToCopy.getTitle();
+        description = personToCopy.getDescription();
         status = personToCopy.getStatus();
-        address = personToCopy.getAddress();
         documents = new ArrayList<>(personToCopy.getDocuments());
         suspects = personToCopy.getSuspects();
         victims = personToCopy.getVictims();
@@ -76,8 +67,16 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+    public PersonBuilder withTitle(String title) {
+        this.title = new Title(title);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Description} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 
@@ -86,30 +85,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
         return this;
     }
 
@@ -155,8 +130,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Generates a {@code Person} object with existing fields.
+     * @return Person object
+     */
     public Person build() {
-        return new Person(name, phone, email, status, documents, address, suspects, victims, witnesses, tags);
+        return new Person(title, description, status, documents,
+                suspects, victims, witnesses, tags);
     }
 
 

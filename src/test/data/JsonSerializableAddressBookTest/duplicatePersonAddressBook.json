@@ -1,10 +1,8 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
+    "title": "Alice Pauline",
+    "description": "",
     "status": "ACTIVE",
-    "address": "123, Jurong West Ave 6, #08-111",
     "witnesses": [],
     "documents": [ {
       "name" : "name",
@@ -14,10 +12,8 @@
     "victims": [],
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
+    "title": "Alice Pauline",
+    "description": "",
     "witnesses": [],
     "status": "ACTIVE",
     "documents": [ {
