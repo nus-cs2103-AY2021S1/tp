@@ -51,8 +51,7 @@ public class Exercise {
 
         Exercise otherExercise = (Exercise) other;
         return otherExercise != null
-                && otherExercise.getName().equals(getName())
-                && (otherExercise.getCaloriesPerRep() == getCaloriesPerRep());
+                && otherExercise.getName().equals(getName());
     }
 
     @Override
