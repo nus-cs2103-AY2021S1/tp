@@ -49,11 +49,29 @@ public class UniqueSellerList implements Iterable<Seller> {
     }
 
     /**
+     * Replaces the contents of this list with {@code sellers}.
+     * {@code sellers} must not contain duplicate bidders.
+     */
+    public void setSellers(List<Seller> sellers) {
+        requireAllNonNull(sellers);
+        if (!sellersAreUnique(sellers)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.setAll(sellers);
+    }
+
+    public void setSellers(UniqueSellerList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedSeller}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedSeller} must not be the same as another existing person in the list.
      */
-    public void setPerson(Seller target, Seller editedSeller) {
+    public void setSeller(Seller target, Seller editedSeller) {
         requireAllNonNull(target, editedSeller);
 
         int index = internalList.indexOf(target);
@@ -79,10 +97,6 @@ public class UniqueSellerList implements Iterable<Seller> {
         }
     }
 
-    public void setPersons(UniqueSellerList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
