@@ -62,7 +62,7 @@ public class RemoveCommand extends Command {
         Item itemToEdit = lastShownList.get(index.getZeroBased());
 
         if (Integer.parseInt(itemToEdit.getQuantity().value) < Integer.parseInt(this.quantity.value)) {
-            throw new CommandException(Quantity.MESSAGE_CONSTRAINTS_MAX_QUANTITY);
+            throw new CommandException(Quantity.MESSAGE_CONSTRAINTS);
         }
 
         Item editedItem = createRemovedItem(itemToEdit, quantity);

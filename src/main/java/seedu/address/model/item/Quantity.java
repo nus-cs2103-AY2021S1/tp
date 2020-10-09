@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should only contain numbers, and it should be at least 1 digit long";
+            "Quantity should only contain numbers, and it should be at least 1 digit long, \n"
+            + "and it should be greater than 0";
     public static final String MESSAGE_CONSTRAINTS_MAX_QUANTITY =
             "Max Quantity should only contain numbers, it should be at least 1 digit long, \n"
             + "and it should be greater than 0";
