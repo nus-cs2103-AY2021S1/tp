@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.student.Student;
@@ -137,6 +138,15 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Attendance} backed by the internal list of
+     * {@code versionedTaskmaster}
+     */
+    @Override
+    public ObservableList<Attendance> getFilteredAttendanceList() { //change this to include name
+        return attendanceList.asUnmodifiableObservableList();
     }
 
     @Override
