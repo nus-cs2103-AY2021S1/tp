@@ -3,6 +3,7 @@ package seedu.address.model.recipe;
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.model.item.Item;
+import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 import java.util.HashMap;
 
@@ -23,7 +24,10 @@ public class Ingredient extends Pair<Integer, Integer> {
 
     public String toString(ObservableList<Item> filteredItemList) {
         HashMap<Integer, String> hm = new HashMap<>();
-        filteredItemList.stream().forEach(item -> hm.put(item.getId(), item.getName()));
+        filteredItemList.forEach(item -> hm.put(item.getId(), item.getName()));
+        if (!hm.containsKey(this.getKey())) {
+            throw new IngredientNotFoundException();
+        }
         return hm.get(this.getKey()) + " [" + this.getValue() + "]";
     }
 }
