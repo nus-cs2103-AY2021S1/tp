@@ -3,6 +3,7 @@ package jimmy.mcgymmy.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.commons.core.index.Index;
@@ -16,6 +17,7 @@ import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
+import jimmy.mcgymmy.model.tag.Tag;
 
 /**
  * Edits the details of an existing food in mcgymmy.
@@ -89,8 +91,9 @@ public class EditCommand extends Command {
         Protein newProtein = this.proteinParameter.getValue().orElseGet(foodToEdit::getProtein);
         Fat newFat = this.fatParameter.getValue().orElseGet(foodToEdit::getFat);
         Carbohydrate newCarb = this.carbParameter.getValue().orElseGet(foodToEdit::getCarbs);
+        Set<Tag> tags = foodToEdit.getTags();
 
-        Food editedFood = new Food(newName, newProtein, newFat, newCarb);
+        Food editedFood = new Food(newName, newProtein, newFat, newCarb, tags);
 
         if (!(foodToEdit.equals(editedFood)) && model.hasFood(editedFood)) {
             throw new CommandException(MESSAGE_DUPLICATE_FOOD);
