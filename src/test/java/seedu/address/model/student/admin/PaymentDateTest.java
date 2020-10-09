@@ -30,14 +30,17 @@ public class PaymentDateTest {
         assertFalse(PaymentDate.isValidDate(""));
         assertFalse(PaymentDate.isValidDate("2-2-22"));
         assertFalse(PaymentDate.isValidDate("2/2/2"));
-        assertFalse(PaymentDate.isValidDate("2/2/2002"));
         assertFalse(PaymentDate.isValidDate("12.2.31"));
         assertFalse(PaymentDate.isValidDate("abc"));
 
         // valid date
         assertTrue(PaymentDate.isValidDate("12/12/12"));
         assertTrue(PaymentDate.isValidDate("12/2/12"));
-        assertTrue(PaymentDate.isValidDate("1/12/12"));
-        assertTrue(PaymentDate.isValidDate("1/2/12"));
+        assertTrue(PaymentDate.isValidDate("2/12/12"));
+        assertTrue(PaymentDate.isValidDate("2/2/12"));
+        assertTrue(PaymentDate.isValidDate("12/12/2002"));
+        assertTrue(PaymentDate.isValidDate("12/2/2002"));
+        assertTrue(PaymentDate.isValidDate("2/12/2002"));
+        assertTrue(PaymentDate.isValidDate("2/2/2002"));
     }
 }
