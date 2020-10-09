@@ -21,14 +21,19 @@ import jimmy.mcgymmy.model.Model;
  */
 public class Macro {
     private final String name;
-    private final List<String> rawCommands;
+    private final String[] rawCommands;
     private final Options options;
 
-    // Package private because only NewMacroCommand should create this
-    Macro(String name, List<String> commands, Options options) {
+
+    Macro(String name, String[] macroArguments, String[] commands) throws ParseException {
+        // TODO: use these strings to serialize macro
+        this(name, Macro.parseOptions(macroArguments), commands);
+    }
+
+    Macro(String name, Options options, String[] commands) {
         this.name = name;
-        this.rawCommands = commands;
         this.options = options;
+        this.rawCommands = commands;
     }
 
     public String getName() {
@@ -55,11 +60,11 @@ public class Macro {
         int lastCommandIndex = 0;
         try {
             for (lastCommandIndex = 0; lastCommandIndex < commandExecutables.size(); lastCommandIndex++) {
-                 CommandResult result = commandExecutables.get(lastCommandIndex).execute(model);
-                 if (result.isExit() || result.isShowHelp()) {
-                     return result;
-                 }
-                 messagesToUser.add(result.getFeedbackToUser());
+                CommandResult result = commandExecutables.get(lastCommandIndex).execute(model);
+                if (result.isExit() || result.isShowHelp()) {
+                    return result;
+                }
+                messagesToUser.add(result.getFeedbackToUser());
             }
             return new CommandResult(String.join("\n", messagesToUser));
         } catch (CommandException e) {
@@ -79,10 +84,26 @@ public class Macro {
         }
     }
 
+    private static Options parseOptions(String[] macroArgs) throws ParseException {
+        Options options = new Options();
+        try {
+            for (String name : macroArgs) {
+                String description = "macro argument " + name;
+                Option option = new Option(name, true, description);
+                option.setRequired(true);
+                options.addOption(option);
+            }
+        } catch (IllegalArgumentException e) {
+            // TODO better error message
+            throw new ParseException("Wrong format for macros.");
+        }
+        return options;
+    }
+
     private String[] substituteAll(CommandLine args) {
-        String[] output = new String[this.rawCommands.size()];
-        for (int i = 0; i < this.rawCommands.size(); i++) {
-            output[i] = substitute(args, this.rawCommands.get(i));
+        String[] output = new String[this.rawCommands.length];
+        for (int i = 0; i < this.rawCommands.length; i++) {
+            output[i] = substitute(args, this.rawCommands[i]);
         }
         return output;
     }

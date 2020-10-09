@@ -32,7 +32,7 @@ public class MacroList {
         return this.hasMacro(name) || commandNames.contains(name);
     }
 
-    /** TODO: change to another exception?
+    /**
      * Adds a macro to the MacroList silently (no ui interaction).
      * @param newMacro the macro to add.
      * @throws DuplicateMacroException if the macro's name has already been taken.

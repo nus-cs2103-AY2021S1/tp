@@ -2,14 +2,12 @@ package jimmy.mcgymmy.logic.macro;
 
 import java.util.Arrays;
 
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
+import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
 
 public class NewMacroCommand implements CommandExecutable {
@@ -26,30 +24,12 @@ public class NewMacroCommand implements CommandExecutable {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(argumentDeclaration);
-        Options options = this.parseOptions(headTail.getTail());
-        Macro newMacro = new Macro(headTail.getHead(), Arrays.asList(statements), options);
         try {
+            Macro newMacro = new Macro(headTail.getHead(), headTail.getTail(), this.statements);
             this.macroList.addMacro(newMacro);
             return new CommandResult(newMacro.getName() + " successfully added.");
-        } catch (DuplicateMacroException e) {
+        } catch (DuplicateMacroException | ParseException e) {
             throw new CommandException(e.getMessage());
         }
-    }
-
-    private Options parseOptions(String[] macroArgs) throws CommandException {
-        Options options = new Options();
-        try {
-            for (String name : macroArgs) {
-                String description = "macro argument " + name;
-                Option option = new Option(name, true, description);
-                option.setRequired(true);
-                options.addOption(option);
-            }
-        } catch (IllegalArgumentException e) {
-            // TODO better error message
-            // TODO should we throw a command or parse exception here?
-            throw new CommandException("Wrong format for macros.");
-        }
-        return options;
     }
 }
