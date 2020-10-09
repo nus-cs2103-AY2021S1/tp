@@ -44,7 +44,12 @@
                             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                         </VBox>
 
-                        <AnchorPane minWidth="250.0" prefWidth="250.0" />
+                        <VBox fx:id="caseInformation" minWidth="250" prefWidth="250" styleClass="pane-with-border">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+                            <StackPane fx:id="caseInformationPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        </VBox>
 
                     </items>
                 </SplitPane>
