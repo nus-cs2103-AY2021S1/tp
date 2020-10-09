@@ -1,12 +1,12 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Seller;
-import seedu.address.model.person.UniqueSellerList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Seller;
+import seedu.address.model.person.UniqueSellerList;
 
 /**
  * Wraps all data at the address-book level
