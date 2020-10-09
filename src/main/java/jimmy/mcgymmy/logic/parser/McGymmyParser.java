@@ -1,4 +1,4 @@
-package jimmy.mcgymmy.logic.parser.parameter;
+package jimmy.mcgymmy.logic.parser;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -9,8 +9,6 @@ import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.macro.Macro;
 import jimmy.mcgymmy.logic.macro.MacroList;
 import jimmy.mcgymmy.logic.macro.NewMacroCommand;
-import jimmy.mcgymmy.logic.parser.ParserUtil;
-import jimmy.mcgymmy.logic.parser.PrimitiveCommandParser;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 
 /**
