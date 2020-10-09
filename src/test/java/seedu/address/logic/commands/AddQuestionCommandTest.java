@@ -69,13 +69,12 @@ public class AddQuestionCommandTest {
     @Test
     public void execute_questionAlreadyExists_throwsCommandException() {
         Student asker = new StudentBuilder(ALICE).withQuestions(TEST_QUESTION).build();
-        ModelManager clonedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        clonedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
+        model.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
 
         AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, new Question(TEST_QUESTION));
         String expectedMessage = MESSAGE_DUPLICATE_QUESTION;
 
-        assertCommandFailure(invalidCommand, clonedModel, expectedMessage);
+        assertCommandFailure(invalidCommand, model, expectedMessage);
     }
 
     @Test

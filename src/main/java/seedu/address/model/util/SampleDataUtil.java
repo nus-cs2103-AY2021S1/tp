@@ -52,7 +52,16 @@ public class SampleDataUtil {
      */
     public static List<Question> getQuestions(String... strings) {
         return Arrays.stream(strings)
-                .map(question -> new Question(question))
+                .map(Question::new)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a list of solved {@code Questions} containing the given strings.
+     */
+    public static List<Question> getSolvedQuestions(String... strings) {
+        return Arrays.stream(strings)
+                .map(string -> new Question(string, true))
                 .collect(Collectors.toList());
     }
 

@@ -23,13 +23,13 @@ public abstract class QuestionCommand extends Command {
      */
     public static class QuestionCommandPrefix {
         public static final Prefix ADD_QUESTION_PREFIX = new Prefix("a/");
+        public static final Prefix SOLVE_QUESTION_PREFIX = new Prefix("s/");
 
         /**
          * Returns all prefixes used by QuestionCommand.
          */
-        public static Prefix[] getPrefixes() {
-            return new Prefix[] {ADD_QUESTION_PREFIX};
-        }
+        public static final Prefix[] PREFIX_LIST =
+                new Prefix[] {ADD_QUESTION_PREFIX, SOLVE_QUESTION_PREFIX};
     }
 
 }

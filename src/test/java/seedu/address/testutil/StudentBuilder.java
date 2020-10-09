@@ -164,6 +164,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets some {@code Questions} as solved for the {@code Student} that we are building.
+     */
+    public StudentBuilder withSolved(String... questions) {
+        this.questions = SampleDataUtil.getSolvedQuestions(questions);
+        return this;
+    }
+
+    /**
      * Builds a {@code Student} based on the given information.
      */
     public Student build() {

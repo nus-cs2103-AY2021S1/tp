@@ -61,6 +61,7 @@ public class QuestionTest {
         Question test = new Question("Hello?", false);
         assertTrue(test.isSameQuestion(new Question("Hello?", false)));
         assertTrue(test.isSameQuestion(new Question("Hello?", true)));
+        assertTrue(new Question("Hello?", true).isSameQuestion(test));
 
         assertFalse(test.isSameQuestion(new Question("What?", false)));
     }
