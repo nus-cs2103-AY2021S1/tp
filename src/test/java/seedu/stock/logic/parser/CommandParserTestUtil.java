@@ -2,7 +2,6 @@ package seedu.stock.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -18,7 +17,6 @@ public class CommandParserTestUtil {
     public static void assertParseSuccess(Parser parser, String userInput, Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
-            System.out.println(((AddCommand) command).toAdd.getSerialNumber());
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);

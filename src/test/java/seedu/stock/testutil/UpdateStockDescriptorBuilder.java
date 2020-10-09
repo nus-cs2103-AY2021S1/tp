@@ -7,6 +7,7 @@ import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
@@ -65,6 +66,16 @@ public class UpdateStockDescriptorBuilder {
      */
     public UpdateStockDescriptorBuilder withQuantity(String quantity) {
         descriptor.setQuantity(new Quantity(quantity));
+        return this;
+    }
+
+    /**
+     * Sets the {@code QuantityAdder} of the {@code UpdateStockDescriptor} that we are building.
+     * @param quantityToBeAdded The quantity to be added into a quantity object.
+     * @return A new {@code UpdateStockDescriptor} with the {@code QuantityAdder}
+     */
+    public UpdateStockDescriptorBuilder withQuantityAdder(String quantityToBeAdded) {
+        descriptor.setQuantityAdder(new QuantityAdder(quantityToBeAdded));
         return this;
     }
 
