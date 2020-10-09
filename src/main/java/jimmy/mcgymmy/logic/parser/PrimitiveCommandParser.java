@@ -128,8 +128,9 @@ public class PrimitiveCommandParser {
         }
     }
 
-    /** TODO factor this into parserUtil
+    /**
      * Adds a new command into the parser.
+     * Package private for testing purposes.
      * @param name            Name of command to be added
      * @param commandSupplier a constructor of the command taking no arguments
      */

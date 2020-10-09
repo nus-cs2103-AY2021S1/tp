@@ -24,8 +24,15 @@ public class Macro {
     private final String[] rawCommands;
     private final Options options;
 
-
-    Macro(String name, String[] macroArguments, String[] commands) throws ParseException {
+    /**
+     * Constructor for macros
+     * TODO: more elaboration needed?
+     * @param name name of the macro.
+     * @param macroArguments List of arguments to the macro.
+     * @param commands The commands to be run.
+     * @throws ParseException if the format of the arguments are wrong.
+     */
+    public Macro(String name, String[] macroArguments, String[] commands) throws ParseException {
         // TODO: use these strings to serialize macro
         this(name, Macro.parseOptions(macroArguments), commands);
     }

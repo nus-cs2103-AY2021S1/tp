@@ -44,4 +44,12 @@ public class NewMacroCommand implements CommandExecutable {
             throw new CommandException("Error: missing macro name.");
         }
     }
+
+    public String getArgumentDeclaration() {
+        return argumentDeclaration;
+    }
+
+    public String[] getStatements() {
+        return statements;
+    }
 }

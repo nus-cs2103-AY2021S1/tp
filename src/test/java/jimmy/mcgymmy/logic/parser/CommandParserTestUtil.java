@@ -1,14 +1,9 @@
 package jimmy.mcgymmy.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Assertions;
-
 import jimmy.mcgymmy.logic.commands.Command;
-import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.logic.parser.parameter.AbstractParameter;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;

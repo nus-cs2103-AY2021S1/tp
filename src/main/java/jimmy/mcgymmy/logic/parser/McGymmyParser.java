@@ -1,10 +1,13 @@
 package jimmy.mcgymmy.logic.parser;
 
+import java.util.Arrays;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 
+import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.macro.Macro;
 import jimmy.mcgymmy.logic.macro.MacroList;
@@ -45,9 +48,12 @@ public class McGymmyParser {
         } else if (this.primitiveCommandParser.hasCommand(commandName)) {
             return this.primitiveCommandParser.parsePrimitiveCommand(commandName, headTail.getTail());
         } else {
-            // TODO better message?
-            throw new ParseException("Error: unrecognised command.");
+            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    public MacroList getMacroList() {
+        return macroList;
     }
 
     /**
@@ -60,7 +66,10 @@ public class McGymmyParser {
     private CommandExecutable parseCreateMacro(String declaration) throws ParseException {
         // note: following line also trims whitespace between semicolons.
         ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(declaration, " *; *");
-        return new NewMacroCommand(this.macroList, headTail.getHead(), headTail.getTail());
+        String[] tailWithoutBlanks = Arrays.stream(headTail.getTail())
+                .filter(s->!s.isBlank())
+                .toArray(String[]::new);
+        return new NewMacroCommand(this.macroList, headTail.getHead(), tailWithoutBlanks);
     }
 
     private CommandExecutable parseRunMacro(String commandName, String[] arguments) throws ParseException {
