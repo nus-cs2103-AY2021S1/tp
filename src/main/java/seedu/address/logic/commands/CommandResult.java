@@ -22,16 +22,10 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.inventoryType = View.InventoryType.UNCHANGED;
-    }
-
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, View.InventoryType inventoryType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
@@ -39,12 +33,19 @@ public class CommandResult {
         this.inventoryType = inventoryType;
     }
 
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.inventoryType = View.InventoryType.UNCHANGED;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, View.InventoryType.UNCHANGED);
     }
 
     public String getFeedbackToUser() {

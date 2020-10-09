@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.item.ItemPrecursor;
 import seedu.address.model.item.Quantity;
@@ -13,10 +14,12 @@ public class ItemPrecursorBuilder {
     public static final String DEFAULT_NAME = "Bob's Iridescent Grape";
     public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
+    public static final Set<String> DEFAULT_LOCATIONS = new HashSet<>();
 
     private String name;
     private Quantity quantity;
     private String description;
+    private Set<String> locations;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -25,6 +28,7 @@ public class ItemPrecursorBuilder {
         this.name = DEFAULT_NAME;
         this.quantity = new Quantity(DEFAULT_QUANTITY);
         this.description = DEFAULT_DESCRIPTION;
+        this.locations = DEFAULT_LOCATIONS;
     }
 
     /**
@@ -34,6 +38,9 @@ public class ItemPrecursorBuilder {
         name = itemToCopy.getName();
         quantity = itemToCopy.getQuantity();
         description = itemToCopy.getDescription();
+        Set<String> locationSet = new HashSet<>();
+        locationSet.addAll(itemToCopy.getLocationNames());
+        locations = locationSet;
     }
 
     /**
@@ -61,12 +68,20 @@ public class ItemPrecursorBuilder {
     }
 
     /**
+     * Sets the {@code Locations} of the {@code Item} that we are building.
+     */
+    public ItemPrecursorBuilder withLocations(Set<String> locations) {
+        this.locations = locations;
+        return this;
+    }
+
+    /**
      * Builds an item precursor.
      *
      * @return a sample ItemPrecursor.
      */
     public ItemPrecursor build() {
-        return new ItemPrecursor(0, name, quantity, description,
-                new HashSet<>(), new HashSet<>());
+        return new ItemPrecursor(1, name, quantity, description,
+                locations, new HashSet<>());
     }
 }

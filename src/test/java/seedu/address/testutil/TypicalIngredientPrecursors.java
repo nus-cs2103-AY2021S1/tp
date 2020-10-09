@@ -6,8 +6,8 @@ import java.util.List;
 import seedu.address.model.recipe.IngredientPrecursor;
 
 public class TypicalIngredientPrecursors {
-    public static final IngredientPrecursor INGREDIENT_PRECURSOR_1 = new IngredientPrecursor("TEST_ONE", 1);
-    public static final IngredientPrecursor INGREDIENT_PRECURSOR_2 = new IngredientPrecursor("TEST_TWO", 2);
+    public static final IngredientPrecursor INGREDIENT_PRECURSOR_1 = new IngredientPrecursor("Apple", 1);
+    public static final IngredientPrecursor INGREDIENT_PRECURSOR_2 = new IngredientPrecursor("Banana", 2);
 
     private TypicalIngredientPrecursors() {} // prevents instantiation
 

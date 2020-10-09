@@ -197,6 +197,9 @@ public class InventoryMainWindow extends UiPart<Stage> {
             case RECIPES:
                 inventoryType = View.InventoryType.RECIPES;
                 break;
+            case DETAILED_ITEM:
+                inventoryType = View.InventoryType.DETAILED_ITEM;
+                break;
             case UNCHANGED:
                 // inventoryType stays the same
                 break;

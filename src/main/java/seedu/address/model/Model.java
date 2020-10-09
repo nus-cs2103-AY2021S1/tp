@@ -23,6 +23,7 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
+    Predicate<Location> PREDICATE_SHOW_ALL_LOCATIONS = unused -> true;
     Predicate<Recipe> PREDICATE_SHOW_ALL_RECIPES = unused -> true;
 
     /**
@@ -74,6 +75,11 @@ public interface Model {
      * Sets the user prefs' item list file path.
      */
     void setItemListFilePath(Path itemListFilePath);
+
+    /**
+     * Sets the user prefs' location list file path.
+     */
+    void setLocationListFilePath(Path locationListFilePath);
 
     /**
      * Sets the user prefs' recipe list file path.
@@ -251,8 +257,14 @@ public interface Model {
      */
     int findLocationID(Location toFind);
 
+    /**
+     * Processes a RecipePrecursor into a Recipe.
+     */
     Recipe processPrecursor(RecipePrecursor recipePrecursor);
 
+    /**
+     * Processes an ItemPrecursor into an Item.
+     */
     Item processPrecursor(ItemPrecursor itemPrecursor);
 
 }

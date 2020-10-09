@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.item.exceptions.ItemNotFoundException;
 
-
 /**
  * A list of items that enforces uniqueness between its elements and does not allow nulls.
  * A item is considered unique by comparing using {@code Item#isSameItem(Item)}. As such, adding and updating of
@@ -31,6 +30,7 @@ public class UniqueItemList implements Iterable<Item> {
 
     /**
      * Returns true if the list contains an equivalent item as the given argument.
+     * @param toCheck The item to check against.
      */
     public boolean contains(Item toCheck) {
         requireNonNull(toCheck);
@@ -72,12 +72,30 @@ public class UniqueItemList implements Iterable<Item> {
     /**
      * Removes the equivalent item from the list.
      * The item must exist in the list.
+     * @param toRemove Item to remove from the list
      */
     public void remove(Item toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ItemNotFoundException();
         }
+    }
+
+    /**
+     * Deletes the equivalent item from the list and sets deleted flag to true
+     * The item must exist in the list.
+     * @param toDelete item to delete from the list
+     */
+    public void delete(Item toDelete) {
+        requireNonNull(toDelete);
+
+        if (!internalList.contains(toDelete)) {
+            throw new ItemNotFoundException();
+        }
+
+        Item updatedItem = toDelete.delete();
+        remove(toDelete);
+        add(updatedItem);
     }
 
     public void setItems(UniqueItemList replacement) {

@@ -87,7 +87,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -144,6 +144,12 @@ public class ModelManager implements Model {
     public void setItemListFilePath(Path itemListFilePath) {
         requireNonNull(itemListFilePath);
         userPrefs.setItemListFilePath(itemListFilePath);
+    }
+
+    @Override
+    public void setLocationListFilePath(Path locationListFilePath) {
+        requireNonNull(locationListFilePath);
+        userPrefs.setLocationListFilePath(locationListFilePath);
     }
 
     @Override
@@ -220,7 +226,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteItem(Item target) {
-        itemList.removeItem(target);
+        itemList.deleteItem(target);
     }
 
     @Override
@@ -388,9 +394,13 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        return userPrefs.equals(other.userPrefs)
+                && itemList.equals(other.itemList)
+                && filteredItems.equals(other.filteredItems)
+                && locationList.equals(other.locationList)
+                && filteredLocations.equals(other.filteredLocations)
+                && recipeList.equals(other.recipeList)
+                && filteredRecipes.equals(other.filteredRecipes);
     }
 
 }

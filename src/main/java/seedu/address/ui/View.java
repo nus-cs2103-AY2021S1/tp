@@ -7,7 +7,7 @@ public class View {
 
     public enum InventoryType {
         // UNCHANGED is used only for commands, to show the current view is UNCHANGED
-        UNCHANGED, ITEMS, RECIPES;
+        UNCHANGED, ITEMS, RECIPES, DETAILED_ITEM;
     }
 }
 

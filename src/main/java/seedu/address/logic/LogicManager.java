@@ -142,17 +142,19 @@ public class LogicManager implements Logic {
 
     // test
     public ArrayList<Inventory> getInventoryList(View.InventoryType inventoryType) {
-        model.updateFilteredItemList(item -> !item.isDeleted());
-        model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
+        if (!inventoryType.equals(View.InventoryType.DETAILED_ITEM)) {
+            model.updateFilteredItemList(item -> !item.isDeleted());
+            model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
+        }
         ArrayList<Inventory> inventoryList = new ArrayList<>();
         switch(inventoryType) {
         case ITEMS:
+        case DETAILED_ITEM:
             inventoryList.addAll(model.getFilteredItemList());
             break;
         case RECIPES:
             //prepare recipe list to print
             model.getFilteredRecipeList()
-                    .stream()
                     .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
             break;
         case UNCHANGED:

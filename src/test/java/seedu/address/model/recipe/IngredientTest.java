@@ -1,5 +1,8 @@
 package seedu.address.model.recipe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalItems.APPLE;
 
 import javafx.collections.FXCollections;
@@ -10,9 +13,34 @@ import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIngredients.INGREDIENT_1;
 
 public class IngredientTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Ingredient(null, null));
+    }
+
+    @Test
+    public void constructor_invalidIngredient_throwsAssertionException() {
+        Integer x = 1;
+        Integer y = -1;
+
+        assertThrows(AssertionError.class, () -> new Ingredient(x, y));
+    }
+
+    @Test
+    public void isItem() {
+        int sameItemId = 1;
+        int differentItemId = 2;
+
+        // Ensure that a known item id and equivalent int value returns true
+        assertTrue(INGREDIENT_1.isItem(sameItemId));
+        // Known item id and non equivalent int value returns false.
+        assertFalse(INGREDIENT_1.isItem(differentItemId));
+    }
 
     @Test
     public void testToString_success() {
@@ -28,7 +56,8 @@ public class IngredientTest {
         ArrayList<Item> itemArrayList = new ArrayList<>();
         itemArrayList.add(APPLE);
         ObservableList<Item> itemObservableList = FXCollections.observableList(itemArrayList);
-        Ingredient ind = new Ingredient(1, 5);
+        Ingredient ind = new Ingredient(APPLE.getId() + 1, 5);
+        // ingredient should not be found in the list
         assertThrows(IngredientNotFoundException.class, () -> ind.toString(itemObservableList));
     }
 }

@@ -2,9 +2,11 @@ package seedu.address.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC_APPLE_PIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC_APPLE_PIE_ALTERNATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_ID_TWO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_QUANTITY_TWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_QUANTITY_APPLE_PIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_QUANTITY_APPLE_PIE_ALTERNATE;
 import static seedu.address.testutil.TypicalRecipes.APPLE_PIE;
 import static seedu.address.testutil.TypicalRecipes.BANANA_PIE;
 
@@ -26,8 +28,8 @@ public class RecipeTest {
 
         // different quantity and description -> returns true
         Recipe editedApplePie = new RecipeBuilder(APPLE_PIE)
-                .withDescription(VALID_RECIPE_DESC)
-                .withQuantity(VALID_RECIPE_QUANTITY_TWO)
+                .withDescription(VALID_RECIPE_DESC_APPLE_PIE)
+                .withQuantity(VALID_RECIPE_QUANTITY_APPLE_PIE)
                 .build();
         assertTrue(APPLE_PIE.isSameRecipe(editedApplePie));
 
@@ -58,21 +60,17 @@ public class RecipeTest {
         // different item -> returns false
         assertFalse(APPLE_PIE.equals(BANANA_PIE));
 
-        // different id -> returns false
-        Recipe editedApplePie = new RecipeBuilder(APPLE_PIE).withId(VALID_RECIPE_ID_TWO).build();
-        assertFalse(APPLE_PIE.equals(editedApplePie));
-
         // different ingredients -> returns false
         IngredientList ingredientList = new IngredientList();
-        editedApplePie = new RecipeBuilder(APPLE_PIE).withIngredients(ingredientList).build();
+        Recipe editedApplePie = new RecipeBuilder(APPLE_PIE).withIngredients(ingredientList).build();
         assertFalse(APPLE_PIE.equals(editedApplePie));
 
         // different quantity -> returns false
-        editedApplePie = new RecipeBuilder(APPLE_PIE).withQuantity(VALID_RECIPE_QUANTITY_TWO).build();
+        editedApplePie = new RecipeBuilder(APPLE_PIE).withQuantity(VALID_RECIPE_QUANTITY_APPLE_PIE_ALTERNATE).build();
         assertFalse(APPLE_PIE.equals(editedApplePie));
 
         // different description -> returns false
-        editedApplePie = new RecipeBuilder(APPLE_PIE).withDescription(VALID_RECIPE_DESC).build();
+        editedApplePie = new RecipeBuilder(APPLE_PIE).withDescription(VALID_RECIPE_DESC_APPLE_PIE_ALTERNATE).build();
         assertFalse(APPLE_PIE.equals(editedApplePie));
     }
 }

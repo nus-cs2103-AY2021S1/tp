@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setLocationListFilePath(Path locationListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setRecipeListFilePath(Path recipeListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
