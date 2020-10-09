@@ -1,12 +1,7 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
