@@ -60,6 +60,11 @@ public class RemoveCommand extends Command {
         }
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
+
+        if (Integer.parseInt(itemToEdit.getQuantity().value) < Integer.parseInt(this.quantity.value)) {
+            throw new CommandException(Quantity.MESSAGE_CONSTRAINTS_MAX_QUANTITY);
+        }
+
         Item editedItem = createRemovedItem(itemToEdit, quantity);
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
