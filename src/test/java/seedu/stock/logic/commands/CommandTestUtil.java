@@ -1,8 +1,10 @@
 package seedu.stock.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
@@ -49,6 +51,9 @@ public class CommandTestUtil {
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE; // missing source
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-100"; // negative quantity not allowed
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // '*' not allowed in tags
+    public static final String INVALID_INCREMENT_QUANTITY_DESC = " " + PREFIX_INCREMENT_QUANTITY + "two";
+    public static final String INVALID_NEW_QUANTITY_DESC = " " + PREFIX_NEW_QUANTITY + "-100";
+    public static final String INVALID_NEW_QUANTITY_DESC2 = " " + PREFIX_NEW_QUANTITY + "two";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
