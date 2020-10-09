@@ -1,23 +1,24 @@
 package seedu.address.model.student;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class QuestionTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Question(null));
+        assertThrows(NullPointerException.class, () -> new Question(null, false));
     }
 
     @Test
     public void constructor_invalidString_throwsIllegalArgumentException() {
         String invalidString = " ";
-        assertThrows(IllegalArgumentException.class, () -> new Question(invalidString));
+        assertThrows(IllegalArgumentException.class, () -> new Question(invalidString, false));
     }
 
     @Test
@@ -37,7 +38,24 @@ public class QuestionTest {
 
     @Test
     public void toString_equals() {
-        assertEquals(new Question("Hello").toString(), "[Hello]");
-        assertEquals(new Question("1+1=?").toString(), "[1+1=?]");
+        assertEquals(new Question("Hello", false).toString(), "[(\u2718) Hello]");
+        assertEquals(new Question("1+1=?", true).toString(), "[(\u2713) 1+1=?]");
+    }
+
+    @Test
+    public void equals() {
+        String testString = "1 + 1 = ?";
+        Question test = new Question(testString, false);
+
+        // different isResolved gives false
+        assertNotEquals(test, new Question(testString, true));
+
+        // different question gives false
+        assertNotEquals(test, new Question("test", false));
+        assertNotEquals(new Question(testString, true), new Question(testString, false));
+
+        // true
+        assertEquals(test, test);
+        assertEquals(test, new Question(testString, false));
     }
 }

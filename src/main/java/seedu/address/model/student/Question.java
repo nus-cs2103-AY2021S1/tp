@@ -14,14 +14,16 @@ public class Question {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String question;
+    public final boolean isResolved;
 
     /**
      * Constructs a new Question object.
      */
-    public Question(String question) {
+    public Question(String question, boolean isResolved) {
         requireNonNull(question);
         checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
         this.question = question;
+        this.isResolved = isResolved;
     }
 
     /**
@@ -33,7 +35,9 @@ public class Question {
 
     @Override
     public String toString() {
-        return String.format("[%s]", question);
+        String status = isResolved ? "(\u2713)" : "(\u2718)";
+        System.out.println(status);
+        return String.format("[%1$s %2$s]", status, question);
     }
 
     @Override
@@ -43,8 +47,16 @@ public class Question {
 
     @Override
     public boolean equals(Object obj) {
-        return (this == obj) // short circuit if same object
-                || (obj instanceof Question) // instanceof handles nulls
-                && question.equals(((Question) obj).question); // state check
+        if (this == obj) { // short circuit if same object
+            return true;
+        }
+
+        if (!(obj instanceof Question)) { // instanceof handles nulls
+            return false;
+        }
+
+        // state check
+        Question other = (Question) obj;
+        return question.equals(other.question) && (isResolved == other.isResolved);
     }
 }
