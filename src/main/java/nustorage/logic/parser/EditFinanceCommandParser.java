@@ -1,13 +1,14 @@
 package nustorage.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
+
 import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.EditFinanceCommand;
 import nustorage.logic.commands.EditFinanceCommand.EditFinanceDescriptor;
 import nustorage.logic.parser.exceptions.ParseException;
-
-import static java.util.Objects.requireNonNull;
-import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nustorage.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new EditInventoryCommand object.
