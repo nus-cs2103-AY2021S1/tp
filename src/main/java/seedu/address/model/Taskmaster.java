@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -92,6 +95,20 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+    }
+
+    /**
+     * Returns the name of the student with the given {@code nusnetId}.
+     * The student must exist in the list.
+     */
+    public Name getNameByNusnetId(NusnetId nusnetId) {
+        for (Student student : getStudentList()) {
+            if (student.getNusnetId().equals(nusnetId)) {
+                return student.getName();
+            }
+        }
+
+        throw new StudentNotFoundException();
     }
 
     //// util methods

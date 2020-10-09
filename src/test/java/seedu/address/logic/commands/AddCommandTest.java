@@ -20,8 +20,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskmaster;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Taskmaster;
-import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.attendance.NamedAttendance;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -146,7 +146,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Attendance> getFilteredAttendanceList() {
+        public ObservableList<NamedAttendance> getFilteredAttendanceList() {
             throw new AssertionError("This method should not be called.");
         }
 

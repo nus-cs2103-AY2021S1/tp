@@ -14,7 +14,7 @@ import seedu.address.logic.parser.TaskmasterParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskmaster;
-import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.NamedAttendance;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -66,7 +66,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Attendance> getFilteredAttendanceList() {
+    public ObservableList<NamedAttendance> getFilteredAttendanceList() {
         return model.getFilteredAttendanceList();
     }
 
