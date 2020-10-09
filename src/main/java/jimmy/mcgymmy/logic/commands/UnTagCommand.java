@@ -35,6 +35,11 @@ public class UnTagCommand extends Command {
             ParserUtil::parseTag
     );
 
+    void setParameters(Parameter<Index> indexParameter, Parameter<Tag> tagParameter) {
+        this.indexParameter = indexParameter;
+        this.tagParameter = tagParameter;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
