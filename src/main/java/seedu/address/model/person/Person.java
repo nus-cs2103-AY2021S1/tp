@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,26 +13,26 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public class Person {
 
     // Identity fields
     private final Name name;
-    private final Type type;
-    private final Time time;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
-    private final Remark remark;
+    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Type type, Time time, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, type, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
-        this.type = type;
-        this.time = time;
-        this.remark = remark;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -41,16 +40,16 @@ public class Task {
         return name;
     }
 
-    public Type getType() {
-        return type;
+    public Phone getPhone() {
+        return phone;
     }
 
-    public Time getTime() {
-        return time;
+    public Email getEmail() {
+        return email;
     }
 
-    public Remark getRemark() {
-        return remark;
+    public Address getAddress() {
+        return address;
     }
 
     /**
@@ -65,14 +64,14 @@ public class Task {
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
             return true;
         }
 
-        return otherTask != null
-                && otherTask.getName().equals(getName())
-                && (otherTask.getType().equals(getType()) || otherTask.getTime().equals(getTime()));
+        return otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -85,34 +84,34 @@ public class Task {
             return true;
         }
 
-        if (!(other instanceof Task)) {
+        if (!(other instanceof Person)) {
             return false;
         }
 
-        Task otherTask = (Task) other;
-        return otherTask.getName().equals(getName())
-                && otherTask.getType().equals(getType())
-                && otherTask.getTime().equals(getTime())
-                && otherTask.getRemark().equals(getRemark())
-                && otherTask.getTags().equals(getTags());
+        Person otherPerson = (Person) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, type, time, remark, tags);
+        return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Type: ")
-                .append(getType())
-                .append(" Time: ")
-                .append(getTime())
-                .append(" Remark: ")
-                .append(getRemark())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Address: ")
+                .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
