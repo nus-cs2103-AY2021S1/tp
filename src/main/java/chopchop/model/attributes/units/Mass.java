@@ -1,8 +1,9 @@
 // Mass.java
 
-package chopchop.units;
+package chopchop.model.attributes.units;
 
 import chopchop.util.Result;
+import chopchop.model.attributes.Quantity;
 
 /**
  * This class represents a quantity of mass, eg. grams, kilograms, etc. For the purposes of this class,

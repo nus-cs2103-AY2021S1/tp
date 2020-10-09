@@ -1,12 +1,16 @@
 package chopchop.model.ingredient;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import chopchop.testutil.IngredientBuilder;
+import chopchop.model.attributes.units.Count;
+
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+
 import org.junit.jupiter.api.Test;
-import chopchop.testutil.IngredientBuilder;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IngredientTest {
 
@@ -37,7 +41,7 @@ public class IngredientTest {
         assertFalse(APRICOT.equals(editedApricot));
 
         // different qty -> returns true
-        editedApricot = new IngredientBuilder(APRICOT).withQuantity(5).build();
+        editedApricot = new IngredientBuilder(APRICOT).withQuantity(Count.of(5)).build();
         assertTrue(APRICOT.equals(editedApricot));
     }
 }

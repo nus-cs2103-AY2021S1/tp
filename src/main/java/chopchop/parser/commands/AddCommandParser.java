@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import chopchop.util.Result;
-import chopchop.units.Quantity;
 import chopchop.util.StringView;
 import chopchop.parser.CommandArguments;
+import chopchop.model.attributes.Quantity;
 
 import static chopchop.parser.commands.CommonParser.getFirstUnknownArgument;
 

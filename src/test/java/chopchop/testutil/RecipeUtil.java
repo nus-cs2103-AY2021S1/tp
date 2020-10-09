@@ -25,7 +25,7 @@ public class RecipeUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(recipe.getName().fullName + " ");
         recipe.getIngredients().stream().forEach(ind ->
-                        sb.append(PREFIX_INGREDIENT + Double.toString(ind.getQuantity().value) + " "));
+                        sb.append(PREFIX_INGREDIENT + " " + ind.getQuantity().toString() + " "));
         recipe.getSteps().stream().forEach(step ->
                 sb.append(PREFIX_STEP + step.toString() + " "));
         return sb.toString();

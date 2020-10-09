@@ -1,8 +1,9 @@
 // Volume.java
 
-package chopchop.units;
+package chopchop.model.attributes.units;
 
 import chopchop.util.Result;
+import chopchop.model.attributes.Quantity;
 
 public class Volume implements Quantity {
 
