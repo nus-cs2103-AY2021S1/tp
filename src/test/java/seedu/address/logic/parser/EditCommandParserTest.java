@@ -121,7 +121,6 @@ public class EditCommandParserTest {
         EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BOB)
                 .withDate(VALID_DATE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

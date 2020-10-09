@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.expense.DateMatchesPredicate;
 import seedu.address.model.expense.NameContainsKeywordsPredicate;
+import seedu.address.model.expense.TagsMatchesPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -33,15 +35,25 @@ public class FindCommandTest {
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
-
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        DateMatchesPredicate firstDatePredicate =
+                new DateMatchesPredicate(Arrays.asList("09-08-2020"));
+        DateMatchesPredicate secondDatePredicate =
+                new DateMatchesPredicate(Arrays.asList("09-08-2020"));
+        TagsMatchesPredicate firstTagsPredicate =
+                new TagsMatchesPredicate(Arrays.asList("tagOne", "tagThree", "tagFour"));
+        TagsMatchesPredicate secondTagsPredicate =
+                new TagsMatchesPredicate(Arrays.asList("tagTwo", "bye"));
+        FindCommand findFirstCommand = new FindCommand(
+                firstPredicate, firstDatePredicate, firstTagsPredicate);
+        FindCommand findSecondCommand = new FindCommand(
+                secondPredicate, secondDatePredicate, secondTagsPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(
+                firstPredicate, firstDatePredicate, firstTagsPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,11 +67,15 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noExpenseFound() {
+    public void execute_noMatchingKeywords_noExpenseFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredExpenseList(predicate);
+        DateMatchesPredicate datePredicate =
+                new DateMatchesPredicate(Collections.emptyList());
+        TagsMatchesPredicate tagsPredicate =
+                new TagsMatchesPredicate(Collections.emptyList());
+        NameContainsKeywordsPredicate namePredicate = preparePredicate("CannotBeNotFound");
+        FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
+        expectedModel.updateFilteredExpenseList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredExpenseList());
     }
@@ -67,9 +83,13 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleExpensesFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredExpenseList(predicate);
+        DateMatchesPredicate datePredicate =
+                new DateMatchesPredicate(Collections.emptyList());
+        TagsMatchesPredicate tagsPredicate =
+                new TagsMatchesPredicate(Collections.emptyList());
+        NameContainsKeywordsPredicate namePredicate = preparePredicate("Kurz Elle Kunz");
+        FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
+        expectedModel.updateFilteredExpenseList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredExpenseList());
     }
