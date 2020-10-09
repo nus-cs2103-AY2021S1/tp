@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showItemAtIndex;
@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -56,10 +55,10 @@ public class EditCommandTest {
 
         ItemBuilder itemInList = new ItemBuilder(lastItem);
         Item editedItem = itemInList.withName(VALID_NAME_DUCK).withQuantity(VALID_QUANTITY_DUCK)
-                .withTags(VALID_TAG_MEAT).build();
+                .withTags(VALID_TAG_DUCK).build();
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK)
-                .withQuantity(VALID_QUANTITY_DUCK).withTags(VALID_TAG_MEAT).build();
+                .withQuantity(VALID_QUANTITY_DUCK).withTags(VALID_TAG_DUCK).build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
@@ -102,7 +101,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateItemUnfilteredList_failure() {
         Item firstItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITEM);
@@ -123,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidItemIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
-        EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK).build();
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -151,7 +150,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, DESC_CHICKEN);
 
         // same values -> returns true
-        EditItemDescriptor copyDescriptor = new EditItemDescriptor(DESC_CHICKEN);
+        EditCommand.EditItemDescriptor copyDescriptor = new EditCommand.EditItemDescriptor(DESC_CHICKEN);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ITEM, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

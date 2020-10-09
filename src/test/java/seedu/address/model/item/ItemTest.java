@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
 import static seedu.address.testutil.TypicalItems.DUCK;
@@ -31,21 +31,27 @@ public class ItemTest {
         assertFalse(CHICKEN.isSameItem(null));
 
         // different quantity -> returns true
-        Item editedChicken = new ItemBuilder(CHICKEN).withQuantity(VALID_QUANTITY_DUCK).build();
+        Item editedChicken = new ItemBuilder(CHICKEN)
+                .withQuantity(VALID_QUANTITY_DUCK)
+                .build();
         assertTrue(CHICKEN.isSameItem(editedChicken));
 
         // different name -> returns false
-        editedChicken = new ItemBuilder(CHICKEN).withName(VALID_NAME_DUCK).build();
+        editedChicken = new ItemBuilder(CHICKEN)
+                .withName(VALID_NAME_DUCK)
+                .build();
         assertFalse(CHICKEN.isSameItem(editedChicken));
 
         // same name, same quantity, different supplier -> returns false
-        editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK)
-                .withTags(VALID_TAG_POULTRY).build();
+        editedChicken = new ItemBuilder(CHICKEN)
+                .withSupplier(VALID_SUPPLIER_DUCK)
+                .build();
         assertFalse(CHICKEN.isSameItem(editedChicken));
 
         // same name, same supplier, different quantity -> returns true
-        editedChicken = new ItemBuilder(CHICKEN).withQuantity(VALID_QUANTITY_DUCK)
-                .withTags(VALID_TAG_POULTRY).build();
+        editedChicken = new ItemBuilder(CHICKEN)
+                .withQuantity(VALID_QUANTITY_DUCK)
+                .build();
         assertTrue(CHICKEN.isSameItem(editedChicken));
 
     }
@@ -81,7 +87,7 @@ public class ItemTest {
         assertFalse(CHICKEN.equals(editedChicken));
 
         // different tags -> returns false
-        editedChicken = new ItemBuilder(CHICKEN).withTags(VALID_TAG_POULTRY).build();
+        editedChicken = new ItemBuilder(CHICKEN).withTags(VALID_TAG_CHICKEN).build();
         assertFalse(CHICKEN.equals(editedChicken));
     }
 }

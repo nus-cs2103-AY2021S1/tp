@@ -10,15 +10,15 @@ import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_CHICKEN
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEAT;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_POULTRY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -89,9 +89,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Item} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_POULTRY + TAG_DESC_MEAT + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_POULTRY + TAG_EMPTY + TAG_DESC_MEAT, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_POULTRY + TAG_DESC_MEAT, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_CHICKEN + TAG_DESC_DUCK + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_CHICKEN + TAG_EMPTY + TAG_DESC_DUCK, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_CHICKEN + TAG_DESC_DUCK, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_SUPPLIER_CHICKEN + VALID_QUANTITY_CHICKEN,
@@ -101,12 +101,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITEM;
-        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_DUCK + TAG_DESC_MEAT
-                + SUPPLIER_DESC_CHICKEN + NAME_DESC_CHICKEN + TAG_DESC_POULTRY;
+        String userInput = targetIndex.getOneBased() + QUANTITY_DESC_DUCK + TAG_DESC_DUCK
+                + SUPPLIER_DESC_CHICKEN + NAME_DESC_CHICKEN + TAG_DESC_CHICKEN;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN)
                 .withQuantity(VALID_QUANTITY_DUCK).withSupplier(VALID_SUPPLIER_CHICKEN)
-                .withTags(VALID_TAG_MEAT, VALID_TAG_POULTRY).build();
+                .withTags(VALID_TAG_DUCK, VALID_TAG_CHICKEN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -146,8 +146,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_POULTRY;
-        descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_POULTRY).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_CHICKEN;
+        descriptor = new EditItemDescriptorBuilder().withTags(VALID_TAG_CHICKEN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -156,11 +156,11 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + QUANTITY_DESC_CHICKEN + SUPPLIER_DESC_CHICKEN
-                + TAG_DESC_POULTRY + QUANTITY_DESC_CHICKEN + SUPPLIER_DESC_CHICKEN + TAG_DESC_POULTRY
-                + QUANTITY_DESC_DUCK + SUPPLIER_DESC_DUCK + TAG_DESC_MEAT;
+                + TAG_DESC_CHICKEN + QUANTITY_DESC_CHICKEN + SUPPLIER_DESC_CHICKEN + TAG_DESC_CHICKEN
+                + QUANTITY_DESC_DUCK + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withQuantity(VALID_QUANTITY_DUCK)
-                .withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_POULTRY, VALID_TAG_MEAT)
+                .withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_CHICKEN, VALID_TAG_DUCK)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

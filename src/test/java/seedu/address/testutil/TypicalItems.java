@@ -6,8 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHICKE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POULTRY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,11 +55,15 @@ public class TypicalItems {
             .withSupplier("Sheng Siong").build();
 
     // Manually added - Item's details found in {@code CommandTestUtil}
-    public static final Item CHICKEN_MANUAL = new ItemBuilder().withName(VALID_NAME_CHICKEN)
+    public static final Item CHICKEN_MANUAL = new ItemBuilder()
+            .withName(VALID_NAME_CHICKEN)
             .withQuantity(VALID_QUANTITY_CHICKEN)
-           .withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_POULTRY).build();
-    public static final Item DUCK_MANUAL = new ItemBuilder().withName(VALID_NAME_DUCK).withQuantity(VALID_QUANTITY_DUCK)
-            .withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_MEAT, VALID_TAG_POULTRY)
+            .withSupplier(VALID_SUPPLIER_CHICKEN)
+            .build();
+    public static final Item DUCK_MANUAL = new ItemBuilder()
+            .withName(VALID_NAME_DUCK)
+            .withQuantity(VALID_QUANTITY_DUCK)
+            .withSupplier(VALID_SUPPLIER_DUCK)
             .build();
 
 

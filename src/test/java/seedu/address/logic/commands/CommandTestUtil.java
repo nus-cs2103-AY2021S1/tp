@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
@@ -14,10 +15,11 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.InventoryBook;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.NameContainsKeywordsPredicate;
+import seedu.address.model.item.ItemContainsKeywordsPredicate;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
 /**
@@ -31,8 +33,11 @@ public class CommandTestUtil {
     public static final String VALID_QUANTITY_DUCK = "22222222";
     public static final String VALID_SUPPLIER_CHICKEN = "GIANT";
     public static final String VALID_SUPPLIER_DUCK = "Sheng Siong";
-    public static final String VALID_TAG_MEAT = "meat";
-    public static final String VALID_TAG_POULTRY = "poultry";
+    public static final String VALID_TAG_DUCK = "meat";
+    public static final String VALID_TAG_CHICKEN = "poultry";
+    public static final String VALID_MAX_QUANTITY = "500";
+    public static final String VALID_MAX_QUANTITY_CHICKEN = "50";
+    public static final String VALID_MAX_QUANTITY_DUCK = "30";
 
     public static final String NAME_DESC_CHICKEN = " " + PREFIX_NAME + VALID_NAME_CHICKEN;
     public static final String NAME_DESC_DUCK = " " + PREFIX_NAME + VALID_NAME_DUCK;
@@ -40,13 +45,17 @@ public class CommandTestUtil {
     public static final String QUANTITY_DESC_DUCK = " " + PREFIX_QUANTITY + VALID_QUANTITY_DUCK;
     public static final String SUPPLIER_DESC_CHICKEN = " " + PREFIX_SUPPLIER + VALID_SUPPLIER_CHICKEN;
     public static final String SUPPLIER_DESC_DUCK = " " + PREFIX_SUPPLIER + VALID_SUPPLIER_DUCK;
-    public static final String TAG_DESC_POULTRY = " " + PREFIX_TAG + VALID_TAG_POULTRY;
-    public static final String TAG_DESC_MEAT = " " + PREFIX_TAG + VALID_TAG_MEAT;
+    public static final String TAG_DESC_CHICKEN = " " + PREFIX_TAG + VALID_TAG_CHICKEN;
+    public static final String TAG_DESC_DUCK = " " + PREFIX_TAG + VALID_TAG_DUCK;
+    public static final String MAX_QUANTITY_DESC = " " + PREFIX_MAX_QUANTITY + VALID_MAX_QUANTITY;
+    public static final String MAX_QUANTITY_DESC_CHICKEN = " " + PREFIX_MAX_QUANTITY + VALID_MAX_QUANTITY_CHICKEN;
+    public static final String MAX_QUANTITY_DESC_DUCK = " " + PREFIX_MAX_QUANTITY + VALID_MAX_QUANTITY_DUCK;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
     public static final String INVALID_SUPPLIER_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for suppliers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "liquids*"; // '*' not allowed in tags
+    public static final String INVALID_MAX_QUANTITY_DESC = " " + PREFIX_MAX_QUANTITY + "-30"; // neg num not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -57,10 +66,10 @@ public class CommandTestUtil {
     static {
         DESC_CHICKEN = new EditItemDescriptorBuilder().withName(VALID_NAME_CHICKEN)
                 .withQuantity(VALID_QUANTITY_CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN)
-                .withTags(VALID_TAG_POULTRY).build();
+                .withTags(VALID_TAG_CHICKEN).build();
         DESC_DUCK = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK)
                 .withQuantity(VALID_QUANTITY_DUCK).withSupplier(VALID_SUPPLIER_DUCK)
-                .withTags(VALID_TAG_MEAT, VALID_TAG_POULTRY).build();
+                .withTags(VALID_TAG_DUCK, VALID_TAG_CHICKEN).build();
     }
 
     /**
@@ -114,7 +123,7 @@ public class CommandTestUtil {
 
         Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        model.updateFilteredItemList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
         assertEquals(1, model.getFilteredItemList().size());
     }

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
@@ -46,7 +46,9 @@ public class SupplierBookTest {
     @Test
     public void resetData_withDuplicateItem_throwsItemPersonException() {
         // Two persons with the same identity fields
-        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_MEAT)
+        Item editedChicken = new ItemBuilder(CHICKEN)
+                .withSupplier(VALID_SUPPLIER_CHICKEN)
+                .withTags(VALID_TAG_CHICKEN)
                 .build();
         List<Item> newItems = Arrays.asList(CHICKEN, editedChicken);
         InventoryBookStub newData = new InventoryBookStub(newItems);
@@ -73,8 +75,9 @@ public class SupplierBookTest {
     @Test
     public void hasItem_itemWithSameIdentityFieldsInInventoryBook_returnsTrue() {
         inventoryBook.addItem(CHICKEN);
-        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_MEAT)
-                .build();
+        Item editedChicken = new ItemBuilder(CHICKEN)
+            .withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_CHICKEN)
+            .build();
         assertTrue(inventoryBook.hasItem(editedChicken));
     }
 

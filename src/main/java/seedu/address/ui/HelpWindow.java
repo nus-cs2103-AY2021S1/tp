@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -15,7 +16,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL =
+            "https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/docs/UserGuide.md";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -25,7 +27,13 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private Label helpHeader;
+
+    @FXML
+    private Label userGuideLink;
+
+    @FXML
+    private TextArea helpText;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +42,6 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -42,6 +49,17 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Sets the content of the {@code TextArea} to {@code text}.
+     * @param text the content to be set.
+     */
+    public void setText(String text) {
+        String[] headerAndText = text.split("\n", 2);
+        helpHeader.setText(headerAndText[0]);
+        userGuideLink.setText(HELP_MESSAGE);
+        helpText.setText(headerAndText[1]);
     }
 
     /**

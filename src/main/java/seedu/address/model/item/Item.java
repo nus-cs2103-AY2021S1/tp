@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -22,16 +23,18 @@ public class Item {
     // Data fields
     private final Quantity quantity;
     private final Set<Tag> tags = new HashSet<>();
+    private final Optional<Quantity> maxQuantity;
 
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags) {
+    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags, Quantity maxQuantity) {
         requireAllNonNull(name, quantity, supplier, tags);
         this.name = name;
         this.quantity = quantity;
         this.supplier = supplier;
         this.tags.addAll(tags);
+        this.maxQuantity = Optional.ofNullable(maxQuantity);
     }
 
     public Name getName() {
@@ -52,6 +55,10 @@ public class Item {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Optional<Quantity> getMaxQuantity() {
+        return maxQuantity;
     }
 
     /**
@@ -86,13 +93,14 @@ public class Item {
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals(getQuantity())
                 && otherItem.getSupplier().equals(getSupplier())
-                && otherItem.getTags().equals(getTags());
+                && otherItem.getTags().equals(getTags())
+                && otherItem.getMaxQuantity().equals(getMaxQuantity());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, supplier, tags);
+        return Objects.hash(name, quantity, supplier, tags, maxQuantity);
     }
 
     @Override
@@ -105,6 +113,11 @@ public class Item {
                 .append(getSupplier())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        if (maxQuantity.isPresent()) {
+            builder.append(" Max Quantity: ")
+                   .append(getMaxQuantity().get().value);
+        }
+
         return builder.toString();
     }
 

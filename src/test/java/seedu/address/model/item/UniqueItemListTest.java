@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
 import static seedu.address.testutil.TypicalItems.DUCK;
@@ -43,8 +44,10 @@ public class UniqueItemListTest {
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
         uniqueItemList.add(CHICKEN);
-        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_CHICKEN).withTags(VALID_TAG_MEAT)
-                .build();
+        Item editedChicken = new ItemBuilder(CHICKEN)
+            .withSupplier(VALID_SUPPLIER_CHICKEN)
+            .withTags(VALID_TAG_CHICKEN)
+            .build();
         assertTrue(uniqueItemList.contains(editedChicken));
     }
 
@@ -86,7 +89,7 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
         uniqueItemList.add(CHICKEN);
-        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_MEAT)
+        Item editedChicken = new ItemBuilder(CHICKEN).withSupplier(VALID_SUPPLIER_DUCK).withTags(VALID_TAG_DUCK)
                 .build();
         uniqueItemList.setItem(CHICKEN, editedChicken);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();

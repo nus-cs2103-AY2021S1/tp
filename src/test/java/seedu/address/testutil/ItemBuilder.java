@@ -23,6 +23,7 @@ public class ItemBuilder {
     private Quantity quantity;
     private Supplier supplier;
     private Set<Tag> tags;
+    private Quantity maxQuantity;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -32,6 +33,7 @@ public class ItemBuilder {
         quantity = new Quantity(DEFAULT_QUANTITY);
         supplier = new Supplier(DEFAULT_SUPPLIER);
         tags = new HashSet<>();
+        maxQuantity = null;
     }
 
     /**
@@ -42,6 +44,7 @@ public class ItemBuilder {
         quantity = itemToCopy.getQuantity();
         supplier = itemToCopy.getSupplier();
         tags = new HashSet<>(itemToCopy.getTags());
+        maxQuantity = itemToCopy.getMaxQuantity().orElse(null);
     }
 
     /**
@@ -69,15 +72,24 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the {@code Quantity} of the {@code Item} that we are building.
+     * Sets the {@code quantity} of the {@code Item} that we are building.
      */
     public ItemBuilder withQuantity(String quantity) {
         this.quantity = new Quantity(quantity);
         return this;
     }
 
+    /**
+     * Sets the {@code maxQuantity} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withMaxQuantity(String maxQuantity) {
+        this.maxQuantity = new Quantity(maxQuantity);
+        return this;
+    }
+
+
     public Item build() {
-        return new Item(name, quantity, supplier, tags);
+        return new Item(name, quantity, supplier, tags, maxQuantity);
     }
 
 }

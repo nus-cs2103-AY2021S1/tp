@@ -367,8 +367,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  Project should not cost any money
+5.  Should work on 32-bit and 64-bit environments
+6.  Should not take up more than 50 MB of disk space
+7.  Should not take up more than 250 MB of RAM
+8.  Commands should receive a response within 1 second
+9.  The system is not required to change the physical inventory
+10. The system should operate within a local network
+11. The data should be secured using a password
+12. Users should be able to get fluent with the syntax by their 10th usage
+13. The system should not provide functionality that breaks and local laws within a country it is distributed to
+14. The system should still be able to function without connection to a network
+15. The system should only be used by one user
 
 ### Glossary
 
