@@ -87,6 +87,11 @@ public class EditCommand extends Command {
 
         Food foodToEdit = lastShownList.get(index.getZeroBased());
 
+        if (nameParameter.getValue().isEmpty() && proteinParameter.getValue().isEmpty()
+                && fatParameter.getValue().isEmpty() && carbParameter.getValue().isEmpty()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+
         Name newName = this.nameParameter.getValue().orElseGet(foodToEdit::getName);
         Protein newProtein = this.proteinParameter.getValue().orElseGet(foodToEdit::getProtein);
         Fat newFat = this.fatParameter.getValue().orElseGet(foodToEdit::getFat);

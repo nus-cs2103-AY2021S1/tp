@@ -76,7 +76,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", INDEX_FIRST_FOOD),
@@ -88,11 +88,11 @@ public class EditCommandTest {
 
         Food editedFood = model.getFilteredFoodList().get(INDEX_FIRST_FOOD.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
+        String expectedMessage = EditCommand.MESSAGE_NOT_EDITED;
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
