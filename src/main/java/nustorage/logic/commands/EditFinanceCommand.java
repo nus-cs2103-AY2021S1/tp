@@ -123,7 +123,7 @@ public class EditFinanceCommand extends Command {
             return CollectionUtil.isAnyNonNull(amount, datetime);
         }
 
-        public void setAmount(double quantity) {
+        public void setAmount(double amount) {
             this.amount = amount;
         }
 
