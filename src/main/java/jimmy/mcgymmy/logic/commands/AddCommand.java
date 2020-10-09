@@ -20,7 +20,7 @@ import jimmy.mcgymmy.model.tag.Tag;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_SUCCESS = "New food added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New food added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in McGymmy";
 
     private Parameter<Name> nameParameter = this.addParameter(
