@@ -9,5 +9,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_PROPERTY_ID = new Prefix("b/");
+    public static final Prefix PREFIX_CLIENT = new Prefix("c/");
+    public static final Prefix PREFIX_MONEY = new Prefix("m/");
 
 }

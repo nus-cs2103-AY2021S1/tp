@@ -17,9 +17,12 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.BidBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -114,12 +117,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addBid(Bid bid) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyBidBook getBidBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,7 +157,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Bid> getFilteredBidList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBidList(Predicate<Bid> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -189,6 +212,13 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+        @Override
+        public ReadOnlyBidBook getBidBook() {
+            return new BidBook();
+        }
+
+
     }
 
 }
