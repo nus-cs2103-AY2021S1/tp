@@ -27,6 +27,7 @@ import jimmy.mcgymmy.logic.commands.FindCommand;
 import jimmy.mcgymmy.logic.commands.HelpCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.commands.TagCommand;
+import jimmy.mcgymmy.logic.commands.UnTagCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.logic.parser.parameter.AbstractParameter;
 import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
@@ -59,6 +60,7 @@ public class McGymmyParser {
         this.addCommand(ListCommand.COMMAND_WORD, ListCommand::new);
         this.addCommand(HelpCommand.COMMAND_WORD, HelpCommand::new);
         this.addCommand(TagCommand.COMMAND_WORD, TagCommand::new);
+        this.addCommand(UnTagCommand.COMMAND_WORD, UnTagCommand::new);
     }
 
     /**
