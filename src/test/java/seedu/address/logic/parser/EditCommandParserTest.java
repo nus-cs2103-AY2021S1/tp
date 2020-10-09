@@ -29,11 +29,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditAdminDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
+import seedu.address.testutil.EditAdminDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -104,10 +106,12 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + YEAR_DESC_AMY
                 + SCHOOL_DESC_AMY + NAME_DESC_AMY;
 
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withSchool(VALID_SCHOOL_AMY).withYear(VALID_YEAR_AMY)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder().build();
+
+        EditCommand expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -117,9 +121,10 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + SCHOOL_DESC_AMY;
 
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withSchool(VALID_SCHOOL_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -129,27 +134,28 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // school
         userInput = targetIndex.getOneBased() + SCHOOL_DESC_AMY;
-        descriptor = new EditStudentDescriptorBuilder().withSchool(VALID_SCHOOL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        editStudentDescriptor = new EditStudentDescriptorBuilder().withSchool(VALID_SCHOOL_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // year
         userInput = targetIndex.getOneBased() + YEAR_DESC_AMY;
-        descriptor = new EditStudentDescriptorBuilder().withYear(VALID_YEAR_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        editStudentDescriptor = new EditStudentDescriptorBuilder().withYear(VALID_YEAR_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -160,9 +166,10 @@ public class EditCommandParserTest {
                 + PHONE_DESC_AMY + SCHOOL_DESC_AMY + YEAR_DESC_AMY
                 + PHONE_DESC_BOB + SCHOOL_DESC_BOB + YEAR_DESC_BOB;
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withSchool(VALID_SCHOOL_BOB).withYear(VALID_YEAR_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -172,17 +179,18 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + YEAR_DESC_BOB + INVALID_PHONE_DESC + SCHOOL_DESC_BOB
                 + PHONE_DESC_BOB;
-        descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB).withYear(VALID_YEAR_BOB)
+        editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB).withYear(VALID_YEAR_BOB)
                 .withSchool(VALID_SCHOOL_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIndex, editStudentDescriptor, editAdminDescriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

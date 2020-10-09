@@ -7,8 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -20,8 +23,12 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
-
+import seedu.address.model.student.admin.ClassTime;
+import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Fee;
+import seedu.address.model.student.admin.PaymentDate;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -41,23 +48,26 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
+    private final EditAdminDescriptor editAdminDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editStudentDescriptor details to edit the person with
+     * @param index of the student in the filtered student list to edit
+     * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor,
+                       EditAdminDescriptor editAdminDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
         this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
+        this.editAdminDescriptor = new EditAdminDescriptor(editAdminDescriptor);
     }
 
     @Override
@@ -70,7 +80,7 @@ public class EditCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editStudentDescriptor);
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor, editAdminDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -85,7 +95,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor,
+                                               EditAdminDescriptor editAdminDescriptor) {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
@@ -93,8 +104,18 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        // Whoever is reworking EditCommand please take note
-        Admin updatedAdmin = editStudentDescriptor.getAdmin().orElse(studentToEdit.getAdmin());
+        ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
+                .orElse(studentToEdit.getAdmin().getClassTime());
+        ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
+                .orElse(studentToEdit.getAdmin().getClassVenue());
+        Fee updatedFee = editAdminDescriptor.getFee()
+                .orElse(studentToEdit.getAdmin().getFee());
+        PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
+                .orElse(studentToEdit.getAdmin().getPaymentDate());
+        Set<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
+                .orElse(studentToEdit.getAdmin().getDetails());
+        Admin updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
+                updatedAdditionalDetails);
 
         return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin);
     }
@@ -126,14 +147,11 @@ public class EditCommand extends Command {
         private Phone phone;
         private School school;
         private Year year;
-        private Admin admin;
-
 
         public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
@@ -181,14 +199,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(year);
         }
 
-        public void setAdmin(Admin admin) {
-            this.admin = admin;
-        }
-
-        public Optional<Admin> getAdmin() {
-            return Optional.ofNullable(admin);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -207,8 +217,108 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getSchool().equals(e.getSchool())
-                    && getYear().equals(e.getYear())
-                    && getAdmin().equals(e.getAdmin());
+                    && getYear().equals(e.getYear());
         }
     }
+
+    public static class EditAdminDescriptor {
+        private ClassTime time;
+        private ClassVenue venue;
+        private Fee fee;
+        private PaymentDate paymentDate;
+        private Set<AdditionalDetail> details;
+
+        public EditAdminDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code details} is used internally.
+         */
+        public EditAdminDescriptor(EditAdminDescriptor toCopy) {
+            setTime(toCopy.time);
+            setVenue(toCopy.venue);
+            setFee(toCopy.fee);
+            setPaymentDate(toCopy.paymentDate);
+            setAdditionalDetails(toCopy.details);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(time, venue, fee, paymentDate, details);
+        }
+
+        public void setTime(ClassTime time) {
+            this.time = time;
+        }
+
+        public Optional<ClassTime> getClassTime() {
+            return Optional.ofNullable(time);
+        }
+
+        public void setVenue(ClassVenue venue) {
+            this.venue = venue;
+        }
+
+        public Optional<ClassVenue> getClassVenue() {
+            return Optional.ofNullable(venue);
+        }
+
+        public void setFee(Fee fee) {
+            this.fee = fee;
+        }
+
+        public Optional<Fee> getFee() {
+            return Optional.ofNullable(fee);
+        }
+
+        public void setPaymentDate(PaymentDate paymentDate) {
+            this.paymentDate = paymentDate;
+        }
+
+        public Optional<PaymentDate> getPaymentDate() {
+            return Optional.ofNullable(paymentDate);
+        }
+
+        /**
+         * Sets {@code details} to this object's {@code details}.
+         * A defensive copy of {@code details} is used internally.
+         */
+        public void setAdditionalDetails(Set<AdditionalDetail> details) {
+            this.details = (details != null) ? new HashSet<>(details) : null;
+        }
+
+        /**
+         * Returns an unmodifiable detail set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code details} is null.
+         */
+        public Optional<Set<AdditionalDetail>> getAdditionalDetails() {
+            return (details != null) ? Optional.of(Collections.unmodifiableSet(details)) : Optional.empty();
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditAdminDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditAdminDescriptor e = (EditAdminDescriptor) other;
+
+            return getClassVenue().equals(e.getClassVenue())
+                    && getClassTime().equals(e.getClassTime())
+                    && getFee().equals(e.getFee())
+                    && getPaymentDate().equals(e.getPaymentDate())
+                    && getAdditionalDetails().equals(e.getAdditionalDetails());
+        }
+    }
+
 }

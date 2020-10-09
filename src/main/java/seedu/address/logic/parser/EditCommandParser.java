@@ -2,10 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.COMPULSORY_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collection;
@@ -15,6 +20,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditAdminDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.admin.AdditionalDetail;
@@ -32,8 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, COMPULSORY_PREFIXES);
-
+                ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
         Index index;
 
         try {
@@ -42,7 +47,25 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
+        EditStudentDescriptor editStudentDescriptor = this.parseStudent(argMultimap);
+        EditAdminDescriptor editAdminDescriptor = this.parseAdmin(argMultimap);
+
+        if (!editStudentDescriptor.isAnyFieldEdited() && !editAdminDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditCommand(index, editStudentDescriptor, editAdminDescriptor);
+    }
+
+    /**
+     * Parses given input student fields into discernible values.
+     * @param argMultimap Tokenized input by user.
+     * @return EditStudentDescriptor with parsed values to edit.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private EditStudentDescriptor parseStudent(ArgumentMultimap argMultimap) throws ParseException {
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -56,11 +79,34 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudentDescriptor.setYear(ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get()));
         }
 
-        if (!editStudentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
+        return editStudentDescriptor;
+    }
 
-        return new EditCommand(index, editStudentDescriptor);
+    /**
+     * Parses given input admin fields into discernible values.
+     * @param argMultimap Tokenized input by user.
+     * @return EditAdminDescriptor with parsed values to edit.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private EditAdminDescriptor parseAdmin(ArgumentMultimap argMultimap) throws ParseException {
+        EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptor();
+
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            editAdminDescriptor.setTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
+            editAdminDescriptor.setVenue(ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_FEE).isPresent()) {
+            editAdminDescriptor.setFee(ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PAYMENT).isPresent()) {
+            editAdminDescriptor.setPaymentDate(ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get()));
+        }
+        parseDetailsForEdit(argMultimap.getAllValues(PREFIX_DETAILS))
+                .ifPresent(editAdminDescriptor::setAdditionalDetails);
+
+        return editAdminDescriptor;
     }
 
     /**
