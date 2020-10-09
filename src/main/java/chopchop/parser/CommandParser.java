@@ -12,7 +12,7 @@ import chopchop.util.StringView;
 
 public class CommandParser {
 
-    private Result<List<Pair<String, String>>> parseNamedArguments(StringView input) {
+    private static Result<List<Pair<String, String>>> parseNamedArguments(StringView input) {
 
         var ret = new ArrayList<Pair<String, String>>();
         while (input.size() > 0) {
@@ -56,7 +56,7 @@ public class CommandParser {
      * @param input the input string to parse
      * @return      the parsed components, iff parsing succeeded; an empty optional otherwise.
      */
-    public Result<CommandArguments> parse(String input) {
+    public static Result<CommandArguments> parse(String input) {
 
         var sv = new StringView(input);
 
@@ -70,9 +70,10 @@ public class CommandParser {
             delete recipe NAME
             find recipe KEYWORDS [MORE_KEYWORDS]
             list recipes
+            make RECIPE_NAME [/qty TIMES]
 
             add ingredient NAME [/qty QUANTITY] [/expiry DATE]
-            delete ingredient NAME [/qty QUANTITY]
+            use ingredient NAME [/qty QUANTITY]
             find ingredient KEYWORDS [MORE_KEYWORDS]
             list ingredients
         */

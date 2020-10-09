@@ -1,6 +1,6 @@
-// SpecificCommandParser
+// AddCommandParser.java
 
-package chopchop.parser;
+package chopchop.parser.commands;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,11 @@ import java.util.stream.Collectors;
 import chopchop.util.Result;
 import chopchop.units.Quantity;
 import chopchop.util.StringView;
+import chopchop.parser.CommandArguments;
 
-public class SpecificCommandParser {
+import static chopchop.parser.commands.CommonParser.getFirstUnknownArgument;
+
+public class AddCommandParser {
 
     /**
      * Parses an 'add' command. Syntax(es):
@@ -41,8 +44,6 @@ public class SpecificCommandParser {
             return Result.error("can only add recipes or ingredients ('%s' invalid)", target);
         }
     }
-
-
 
     /**
      * Parses an 'add ingredient' command. Syntax:
@@ -109,7 +110,7 @@ public class SpecificCommandParser {
 
         var name = args.getRemaining().get();
 
-        return parseIngredients(args)
+        return parseIngredientList(args)
             .map(ingrs ->
                 new AddRecipeCommandStub(name, ingrs,
                     args.getAllArguments()
@@ -121,13 +122,10 @@ public class SpecificCommandParser {
             );
     }
 
-
-
-
     /**
      * Parse the list of ingredients.
      */
-    private static Result<List<IngredientUsageStub>> parseIngredients(CommandArguments args) {
+    private static Result<List<IngredientUsageStub>> parseIngredientList(CommandArguments args) {
 
         // what is this, imperative code??
         var arglist = args.getAllArguments();
@@ -172,18 +170,19 @@ public class SpecificCommandParser {
     }
 
 
-    /**
-     * Finds the first named argument in the given {@code args} that isn't part of {@code knownArgs}
-     * and returns it so we can print a nice error message. If all names are part of the given list,
-     * then an empty optional is returned.
-     */
-    private static Optional<String> getFirstUnknownArgument(CommandArguments args, List<String> knownArgs) {
-        return args.getAllArguments()
-            .stream()
-            .filter(p -> !knownArgs.contains(p.fst()))
-            .map(p -> p.fst())
-            .findFirst();
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private static Result<String> dummyParseExpiryDate(String date) {
         return Result.of(date);
