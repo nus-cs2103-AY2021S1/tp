@@ -26,7 +26,11 @@ public class AttendanceCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label attendanceType;
+    private Label id;
+    @FXML
+    private Label nusnetId;
+    @FXML
+    private Label attendanceStatus;
 
     /**
      * Creates a {@code AttendanceCard} with the given {@code AttendanceType} and index to display.
@@ -34,7 +38,9 @@ public class AttendanceCard extends UiPart<Region> {
     public AttendanceCard(Attendance attendance, int displayedIndex) {
         super(FXML);
         this.attendance = attendance;
-        attendanceType.setText("attendance.toString()");
+        id.setText(displayedIndex + ". ");
+        nusnetId.setText(attendance.getNusnetId().value);
+        attendanceStatus.setText(attendance.getAttendanceType().name());
     }
 
     @Override

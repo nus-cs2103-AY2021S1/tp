@@ -145,7 +145,7 @@ public class ModelManager implements Model {
      * {@code versionedTaskmaster}
      */
     @Override
-    public ObservableList<Attendance> getFilteredAttendanceList() {
+    public ObservableList<Attendance> getFilteredAttendanceList() { //change this to include name
         return attendanceList.asUnmodifiableObservableList();
     }
 
