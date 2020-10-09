@@ -74,7 +74,6 @@ public class Question {
     @Override
     public String toString() {
         String status = isResolved ? "(\u2713)" : "(\u2718)";
-        System.out.println(status);
         return String.format("[%1$s %2$s]", status, question);
     }
 
