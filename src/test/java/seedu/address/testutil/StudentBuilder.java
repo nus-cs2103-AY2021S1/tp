@@ -155,6 +155,11 @@ public class StudentBuilder {
         return this;
     }
 
+    public StudentBuilder withQuestions(String... questions) {
+        this.questions = SampleDataUtil.getQuestions(questions);
+        return this;
+    }
+
     /**
      * Builds a {@code Student} based on the given information.
      */

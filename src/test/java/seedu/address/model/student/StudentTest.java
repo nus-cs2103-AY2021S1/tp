@@ -87,4 +87,20 @@ public class StudentTest {
         assertFalse(ALICE.equals(editedAlice));
 
     }
+
+    @Test
+    public void containsQuestion() {
+        String test1 = "What is 1+1?";
+        String test2 = "How do you do grammar?";
+        String test3 = "Do giraffes fart?";
+        String[] questions = new String[] {test1, test2};
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions(questions).build();
+
+        assertTrue(editedAlice.containsQuestion(new Question(test1)));
+        assertTrue(editedAlice.containsQuestion(new Question(test2)));
+        assertTrue(editedAlice.containsQuestion(new Question(test1, true)));
+        assertTrue(editedAlice.containsQuestion(new Question(test2, true)));
+
+        assertFalse(editedAlice.containsQuestion(new Question(test3)));
+    }
 }

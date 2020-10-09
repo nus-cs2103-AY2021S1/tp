@@ -75,6 +75,10 @@ public class Student {
                 && otherStudent.getYear().equals(getYear());
     }
 
+    public boolean containsQuestion(Question question) {
+        return questions.stream().anyMatch(question::isSameQuestion);
+    }
+
     /**
      * Returns true if both student have the same identity and data fields.
      * This defines a stronger notion of equality between two students.

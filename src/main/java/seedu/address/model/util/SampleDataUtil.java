@@ -47,4 +47,13 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a {@code Question} list containing the list of given strings.
+     */
+    public static List<Question> getQuestions(String... strings) {
+        return Arrays.stream(strings)
+                .map(question -> new Question(question))
+                .collect(Collectors.toList());
+    }
+
 }
