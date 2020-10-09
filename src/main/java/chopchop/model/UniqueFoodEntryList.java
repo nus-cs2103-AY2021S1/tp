@@ -76,9 +76,10 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
      * Replaces the contents of this list with {@code FoodEntries}.
      * {@code FoodEntries} must not contain duplicate FoodEntries.
      */
-    public void setFoodEntries(List<FoodEntry> entries) {
+    public void setFoodEntries(List<? extends FoodEntry> entries) {
         requireAllNonNull(entries);
-        if (!ingredientsAreUnique(entries)) {
+        //if (!ingredientsAreUnique(entries)) {
+        if (!foodEntriesAreUnique(entries)) {
             throw new DuplicateEntryException();
         }
 
@@ -112,7 +113,7 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
     /**
      * Returns true if {@code FoodEntries} contains only unique FoodEntries.
      */
-    private boolean ingredientsAreUnique(List<FoodEntry> ingredients) {
+    private boolean ingredientsAreUnique(List<? extends FoodEntry> ingredients) {
         for (int i = 0; i < ingredients.size() - 1; i++) {
             for (int j = i + 1; j < ingredients.size(); j++) {
                 if (ingredients.get(i).equals(ingredients.get(j))) {
@@ -122,4 +123,33 @@ public class UniqueFoodEntryList implements Iterable<FoodEntry> {
         }
         return true;
     }
+
+    /**
+     * Returns true if {@code FoodEntries} contains only unique FoodEntries.
+     */
+    private boolean recipesAreUnique(List<? extends FoodEntry> recipes) {
+        for (int i = 0; i < recipes.size() - 1; i++) {
+            for (int j = i + 1; j < recipes.size(); j++) {
+                if (recipes.get(i).equals(recipes.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code FoodEntries} contains only unique FoodEntries.
+     */
+    private boolean foodEntriesAreUnique(List<? extends FoodEntry> foodEntries) {
+        for (int i = 0; i < foodEntries.size() - 1; i++) {
+            for (int j = i + 1; j < foodEntries.size(); j++) {
+                if (foodEntries.get(i).equals(foodEntries.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

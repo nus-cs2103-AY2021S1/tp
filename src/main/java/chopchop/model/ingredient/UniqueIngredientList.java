@@ -4,6 +4,9 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
+
+import chopchop.model.ingredient.exceptions.DuplicateIngredientException;
+import chopchop.model.ingredient.exceptions.IngredientNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -28,7 +31,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void add(Ingredient toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new chopchop.model.ingredient.exceptions.DuplicateIngredientException();
+            throw new DuplicateIngredientException();
         }
         internalList.add(toAdd);
     }
@@ -44,11 +47,11 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new chopchop.model.ingredient.exceptions.IngredientNotFoundException();
+            throw new IngredientNotFoundException();
         }
 
         if (!target.equals(editedIngredient) && contains(editedIngredient)) {
-            throw new chopchop.model.ingredient.exceptions.DuplicateIngredientException();
+            throw new DuplicateIngredientException();
         }
 
         internalList.set(index, editedIngredient);
@@ -61,7 +64,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void remove(Ingredient toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new chopchop.model.ingredient.exceptions.IngredientNotFoundException();
+            throw new IngredientNotFoundException();
         }
     }
 
@@ -77,7 +80,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void setIngredientEntries(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
         if (!ingredientsAreUnique(ingredients)) {
-            throw new chopchop.model.ingredient.exceptions.DuplicateIngredientException();
+            throw new DuplicateIngredientException();
         }
 
         internalList.setAll(ingredients);
