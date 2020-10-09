@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.SellerAddressBook;
-import seedu.address.model.person.Seller;
+import seedu.address.model.person.seller.Seller;
 
 
 /**
