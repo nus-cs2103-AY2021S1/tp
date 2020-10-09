@@ -12,6 +12,7 @@ import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.model.food.Protein;
+import jimmy.mcgymmy.model.tag.Tag;
 
 /**
  * Adds a food to mcgymmy.
@@ -50,13 +51,22 @@ public class AddCommand extends Command {
             "10",
             ParserUtil::parseCarb
     );
+    private OptionalParameter<Tag> tagParameter = this.addOptionalParameter(
+            "tag",
+            "t",
+            "Tag associated with the Food",
+            "Lunch",
+            ParserUtil::parseTag
+    );
 
     void setParameters(Parameter<Name> nameParameter, OptionalParameter<Protein> proteinParameter,
-                       OptionalParameter<Fat> fatParameter, OptionalParameter<Carbohydrate> carbParameter) {
+                       OptionalParameter<Fat> fatParameter, OptionalParameter<Carbohydrate> carbParameter,
+                       OptionalParameter<Tag> tagParameter) {
         this.nameParameter = nameParameter;
         this.proteinParameter = proteinParameter;
         this.fatParameter = fatParameter;
         this.carbParameter = carbParameter;
+        this.tagParameter = tagParameter;
     }
 
     @Override
@@ -68,6 +78,11 @@ public class AddCommand extends Command {
         Fat newFat = this.fatParameter.getValue().orElse(new Fat(0));
         Carbohydrate newCarb = this.carbParameter.getValue().orElse(new Carbohydrate(0));
         Food toAdd = new Food(newName, newProtein, newFat, newCarb);
+
+        if (this.tagParameter.getValue().isPresent()) {
+            Tag newTag = this.tagParameter.getValue().get();
+            toAdd.addTag(newTag);
+        }
 
         if (model.hasFood(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_FOOD);
