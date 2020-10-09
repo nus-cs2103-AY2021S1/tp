@@ -13,6 +13,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Remind;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -37,9 +38,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
+        Remind remind = new Remind();
 
-        Assignment assignment = new Assignment(name, deadline, moduleCode);
-
+        Assignment assignment = new Assignment(name, deadline, moduleCode, remind);
         return new AddCommand(assignment);
     }
 

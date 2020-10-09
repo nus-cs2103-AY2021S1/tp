@@ -18,6 +18,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Remind;
 
 /**
  * Edits the details of an existing assignment in the address book.
@@ -87,8 +88,9 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
         ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()
                 .orElse(assignmentToEdit.getModuleCode());
+        Remind updatedRemind = assignmentToEdit.getRemind();
 
-        return new Assignment(updatedName, updatedDeadline, updatedModuleCode);
+        return new Assignment(updatedName, updatedDeadline, updatedModuleCode, updatedRemind);
     }
 
     @Override

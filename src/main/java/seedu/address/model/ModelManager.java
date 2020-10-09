@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Assignment> filteredAssignments;
+    private final FilteredList<Assignment> remindedAssignments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList());
+        remindedAssignments = new FilteredList<>(
+                this.addressBook.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
     }
 
     public ModelManager() {
@@ -127,6 +130,17 @@ public class ModelManager implements Model {
     public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
         requireNonNull(predicate);
         filteredAssignments.setPredicate(predicate);
+    }
+
+    //=========== Reminded Assignments List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Assignment} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Assignment> getRemindedAssignmentsList() {
+        return remindedAssignments;
     }
 
     @Override

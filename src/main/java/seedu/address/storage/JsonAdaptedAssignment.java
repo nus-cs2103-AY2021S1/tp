@@ -8,6 +8,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Remind;
 
 /**
  * Jackson-friendly version of {@link Assignment}.
@@ -19,6 +20,7 @@ class JsonAdaptedAssignment {
     private final String name;
     private final String deadline;
     private final String moduleCode;
+    private final boolean isReminded;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
@@ -29,6 +31,7 @@ class JsonAdaptedAssignment {
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
+        this.isReminded = false;
     }
 
     /**
@@ -38,6 +41,7 @@ class JsonAdaptedAssignment {
         name = source.getName().fullName;
         deadline = source.getDeadline().value;
         moduleCode = source.getModuleCode().moduleCode;
+        isReminded = source.getRemind().isReminded();
     }
 
     /**
@@ -72,7 +76,9 @@ class JsonAdaptedAssignment {
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
-        return new Assignment(modelName, modelDeadline, modelModuleCode);
+        final Remind modelRemind = new Remind(isReminded);
+
+        return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind);
     }
 
 }

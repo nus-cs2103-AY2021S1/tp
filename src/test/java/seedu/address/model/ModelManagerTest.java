@@ -94,6 +94,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getRemindedAssignmentsList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(
+                UnsupportedOperationException.class, () -> modelManager.getRemindedAssignmentsList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder()
                 .withAssignment(CS1231S_HW).withAssignment(CS2103T_TUT).build();

@@ -9,16 +9,23 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Assignment extends Task {
+    private final Remind remind;
+
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode) {
+    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind) {
         super(name, deadline, moduleCode);
-        requireAllNonNull(name, deadline, moduleCode);
+        requireAllNonNull(name, deadline, moduleCode, remind);
+        this.remind = remind;
     }
 
     public Deadline getDeadline() {
         return super.getTime();
+    }
+
+    public Remind getRemind() {
+        return remind;
     }
 
     /**
@@ -33,6 +40,15 @@ public class Assignment extends Task {
         return otherAssignment != null
                 && otherAssignment.getName().equals(getName())
                 && (otherAssignment.getDeadline().equals(getDeadline()));
+    }
+
+    /**
+     * Returns true if the assignment already has reminders set. Otherwise, returns false.
+     *
+     * @return true if the assignment already has reminders set. Otherwise, returns false
+     */
+    public boolean isReminded() {
+        return remind.isReminded();
     }
 
     /**

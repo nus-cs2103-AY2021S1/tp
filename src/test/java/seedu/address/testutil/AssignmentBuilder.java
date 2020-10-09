@@ -4,6 +4,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.ModuleCode;
 import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Remind;
 
 /**
  * A utility class to help with building Assignment objects.
@@ -17,6 +18,7 @@ public class AssignmentBuilder {
     private Name name;
     private Deadline deadline;
     private ModuleCode moduleCode;
+    private Remind remind;
 
     /**
      * Creates a {@code AssignmentBuilder} with the default details.
@@ -25,6 +27,7 @@ public class AssignmentBuilder {
         name = new Name(DEFAULT_NAME);
         deadline = new Deadline(DEFAULT_DEADLINE);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
+        remind = new Remind();
     }
 
     /**
@@ -35,6 +38,7 @@ public class AssignmentBuilder {
         name = assignmentToCopy.getName();
         deadline = assignmentToCopy.getDeadline();
         moduleCode = assignmentToCopy.getModuleCode();
+        remind = assignmentToCopy.getRemind();
     }
 
     /**
@@ -61,8 +65,17 @@ public class AssignmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remind} of the {@code Assignment} that we are building.
+     * @return
+     */
+    public AssignmentBuilder withRemindersSet() {
+        this.remind = new Remind().setReminder();
+        return this;
+    }
+
     public Assignment build() {
-        return new Assignment(name, deadline, moduleCode);
+        return new Assignment(name, deadline, moduleCode, remind);
     }
 
 }

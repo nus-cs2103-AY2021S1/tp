@@ -92,10 +92,12 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Assignment> expectedFilteredList = new ArrayList<>(actualModel.getFilteredAssignmentList());
+        List<Assignment> expectedRemindedList = new ArrayList<>(actualModel.getRemindedAssignmentsList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredAssignmentList());
+        assertEquals(expectedRemindedList, actualModel.getRemindedAssignmentsList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the assignment at the given {@code targetIndex} in the

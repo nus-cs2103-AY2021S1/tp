@@ -13,6 +13,7 @@ import seedu.address.model.assignment.Assignment;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Assignment> PREDICATE_SHOW_ALL_ASSIGNMENT = unused -> true;
+    Predicate<Assignment> PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS = assignment -> assignment.isReminded();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,4 +86,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAssignmentList(Predicate<Assignment> predicate);
+
+    /** Returns an unmodifiable view of the reminded assignments list */
+    ObservableList<Assignment> getRemindedAssignmentsList();
 }

@@ -40,6 +40,10 @@ public class TypicalAssignments {
     public static final Assignment SLIDE = new AssignmentBuilder().withName("Prepare slide")
             .withDeadline("02-02-2020 0220").withModuleCode("GER1000").build();
 
+    // Manually added - Assignment with reminders set
+    public static final Assignment QUIZ = new AssignmentBuilder().withName("Prepare for quiz")
+            .withDeadline("10-10-2020 2000").withModuleCode("ST2334").withRemindersSet().build();
+
     // Manually added - Assignment's details found in {@code CommandTestUtil}
     public static final Assignment HW = new AssignmentBuilder().withName(VALID_NAME_HW).withDeadline(VALID_DEADLINE_HW)
             .withModuleCode(VALID_MODULE_CODE_HW).build();

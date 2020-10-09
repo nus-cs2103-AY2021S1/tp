@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_LAB
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
 import static seedu.address.testutil.TypicalAssignments.HW;
 import static seedu.address.testutil.TypicalAssignments.LAB;
+import static seedu.address.testutil.TypicalAssignments.QUIZ;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +46,32 @@ public class AssignmentTest {
         assertTrue(HW.isSameAssignment(editedHw));
     }
 
+    @Test
+    public void isAlreadyReminded() {
+        // new assignment created -> returns false
+        Assignment newAssignment = new AssignmentBuilder().build();
+        assertFalse(newAssignment.isReminded());
+
+        // assignment set to have reminders -> returns true
+        Assignment homeworkCopy = new AssignmentBuilder(HW).withRemindersSet().build();
+        assertTrue(homeworkCopy.isReminded());
+
+        // assignment already has reminders set -> returns true
+        assertTrue(QUIZ.isReminded());
+
+        // already has reminders set, different name -> returns true
+        Assignment editedQuiz = new AssignmentBuilder(QUIZ).withName(VALID_NAME_LAB).build();
+        assertTrue(editedQuiz.isReminded());
+
+        // already has reminders set, different deadline -> returns true
+        editedQuiz = new AssignmentBuilder(QUIZ).withDeadline(VALID_DEADLINE_LAB).build();
+        assertTrue(editedQuiz.isReminded());
+
+        // already has reminders set, different address -> returns true
+        editedQuiz = new AssignmentBuilder(QUIZ).withModuleCode(VALID_MODULE_CODE_LAB).build();
+        assertTrue(editedQuiz.isReminded());
+
+    }
     @Test
     public void equals() {
         // same values -> returns true
