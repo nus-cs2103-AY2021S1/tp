@@ -155,6 +155,9 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Questions} of the {@code Student} that we are building.
+     */
     public StudentBuilder withQuestions(String... questions) {
         this.questions = SampleDataUtil.getQuestions(questions);
         return this;
