@@ -5,6 +5,8 @@ package seedu.address.storage;
 // import java.util.List;
 // import java.util.Set;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -97,7 +99,7 @@ class JsonAdaptedStudent {
         final Year modelYear = new Year(year);
 
         // Please implement Admin
-        return new Student(modelName, modelPhone, modelSchool, modelYear, Admin.getPlaceholder());
+        return new Student(modelName, modelPhone, modelSchool, modelYear, Admin.getPlaceholder(), new ArrayList<>());
     }
 
 }

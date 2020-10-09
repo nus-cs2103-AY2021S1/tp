@@ -17,6 +17,17 @@ public class Question {
     public final boolean isResolved;
 
     /**
+     * Constructs a new Question object. This is the default constructor for adding
+     * a new unresolved Question to a student.
+     */
+    public Question(String question) {
+        requireNonNull(question);
+        checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
+        this.question = question;
+        this.isResolved = false;
+    }
+
+    /**
      * Constructs a new Question object.
      */
     public Question(String question, boolean isResolved) {
@@ -33,18 +44,18 @@ public class Question {
         return test.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public String toString() {
-        String status = isResolved ? "(\u2713)" : "(\u2718)";
-        System.out.println(status);
-        return String.format("[%1$s %2$s]", status, question);
+    /**
+     * Returns true if both questions are the same, regardless of resolution status.
+     * This is a weaker notion of equality between questions.
+     */
+    public boolean isSameQuestion(Question other) {
+        return question.equals(other.question);
     }
 
-    @Override
-    public int hashCode() {
-        return question.hashCode();
-    }
-
+    /**
+     * Returns true if both questions have similar details and resolution status.
+     * This is a stronger notion of equality between questions.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) { // short circuit if same object
@@ -59,4 +70,17 @@ public class Question {
         Question other = (Question) obj;
         return question.equals(other.question) && (isResolved == other.isResolved);
     }
+
+    @Override
+    public String toString() {
+        String status = isResolved ? "(\u2713)" : "(\u2718)";
+        System.out.println(status);
+        return String.format("[%1$s %2$s]", status, question);
+    }
+
+    @Override
+    public int hashCode() {
+        return question.hashCode();
+    }
+
 }

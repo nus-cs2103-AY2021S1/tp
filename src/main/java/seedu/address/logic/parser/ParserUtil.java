@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.AdditionalDetail;
@@ -93,6 +94,18 @@ public class ParserUtil {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
         return new Year(year);
+    }
+
+    /**
+     * Parses a {@code String question} into a {@code Question}.
+     */
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedQuestion = question.trim();
+        if (!Question.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
+        }
+        return new Question(trimmedQuestion);
     }
 
     /**

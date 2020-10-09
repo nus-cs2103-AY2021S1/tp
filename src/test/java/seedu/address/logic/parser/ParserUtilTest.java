@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -10,17 +11,20 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_SCHOOL = " ";
     private static final String INVALID_YEAR = "$4";
+    private static final String INVALID_QUESTION = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_SCHOOL = "Raffles Institution";
     private static final String VALID_YEAR = "6";
+    private static final String VALID_QUESTION = "Why can't humans fly?";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -88,6 +92,35 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseQuestion_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuestion((String) null));
+    }
+
+    @Test
+    public void parseQuestion_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseQuestion(INVALID_QUESTION));
+    }
+
+    @Test
+    public void parseQuestion_validValueWithoutWhiteSpace_returnsQuestion() throws Exception {
+        Question expectedQuestion = new Question(VALID_QUESTION, false);
+        assertEquals(expectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
+    }
+
+    @Test
+    public void parseQuestion_validValueWithWhiteSpace_returnsTrimmedQuestion() throws Exception {
+        String questionwithWhiteSpace = WHITESPACE + VALID_QUESTION + WHITESPACE;
+        Question expectedQuestion = new Question(VALID_QUESTION, false);
+        assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionwithWhiteSpace));
+    }
+
+    @Test
+    public void parseQuestion_valueValue_returnsUnresolvedQuestion() throws Exception {
+        Question unexpectedQuestion = new Question(VALID_QUESTION, true);
+        assertNotEquals(unexpectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
     }
 
 }

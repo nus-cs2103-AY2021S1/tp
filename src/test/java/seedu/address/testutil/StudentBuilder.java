@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
@@ -41,7 +44,9 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private Set<AdditionalDetail> details;
+    private Set<AdditionalDetail> details = new HashSet<>();
+
+    private List<Question> questions = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -56,7 +61,6 @@ public class StudentBuilder {
         time = new ClassTime(DEFAULT_CLASS_TIME);
         fee = new Fee(DEFAULT_FEE);
         paymentDate = new PaymentDate(DEFAULT_PAYMENT_DATE);
-        details = new HashSet<>();
     }
 
     /**
@@ -73,7 +77,9 @@ public class StudentBuilder {
         time = studentAdmin.getClassTime();
         fee = studentAdmin.getFee();
         paymentDate = studentAdmin.getPaymentDate();
-        details = studentAdmin.getDetails();
+        details.addAll(studentAdmin.getDetails());
+
+        questions.addAll(studentToCopy.getQuestions());
     }
 
     /**
@@ -154,7 +160,8 @@ public class StudentBuilder {
      */
     public Student build() {
         return new Student(name, phone, school, year,
-                new Admin(venue, time, fee, paymentDate, details));
+                new Admin(venue, time, fee, paymentDate, details),
+                questions);
     }
 
 }

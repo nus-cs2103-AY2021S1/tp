@@ -22,6 +22,17 @@ public class QuestionTest {
     }
 
     @Test
+    public void defaultConstructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Question(null));
+    }
+
+    @Test
+    public void defaultConstructor_invalidString_throwsIllegalArgumentException() {
+        String invalidString = "  ";
+        assertThrows(IllegalArgumentException.class, () -> new Question(invalidString));
+    }
+
+    @Test
     public void isValidQuestion() {
         // null question
         assertThrows(NullPointerException.class, () -> Question.isValidQuestion(null));
@@ -32,14 +43,26 @@ public class QuestionTest {
 
         // valid questions
         assertTrue(Question.isValidQuestion("what is 1 + 1?"));
-        assertTrue(Question.isValidQuestion("Hello"));
-        assertTrue(Question.isValidQuestion("Explain Newton's Second Law"));
+        assertTrue(Question.isValidQuestion("Hello?"));
+        assertTrue(Question.isValidQuestion("How does Newton's Second Law work?"));
     }
 
     @Test
     public void toString_equals() {
-        assertEquals(new Question("Hello", false).toString(), "[(\u2718) Hello]");
+        // default simplified constructor
+        assertEquals(new Question("Hello?").toString(), "[(\u2718) Hello?]");
+
+        assertEquals(new Question("Hello?", false).toString(), "[(\u2718) Hello?]");
         assertEquals(new Question("1+1=?", true).toString(), "[(\u2713) 1+1=?]");
+    }
+
+    @Test
+    public void isSameQuestion() {
+        Question test = new Question("Hello?", false);
+        assertTrue(test.isSameQuestion(new Question("Hello?", false)));
+        assertTrue(test.isSameQuestion(new Question("Hello?", true)));
+
+        assertFalse(test.isSameQuestion(new Question("What?", false)));
     }
 
     @Test
@@ -51,7 +74,7 @@ public class QuestionTest {
         assertNotEquals(test, new Question(testString, true));
 
         // different question gives false
-        assertNotEquals(test, new Question("test", false));
+        assertNotEquals(test, new Question("Hello?", false));
         assertNotEquals(new Question(testString, true), new Question(testString, false));
 
         // true

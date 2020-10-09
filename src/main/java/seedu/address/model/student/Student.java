@@ -25,13 +25,14 @@ public class Student {
      *  name, phone, school, year, must be present and not null.
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin) {
+                   Admin admin, List<Question> questions) {
         requireAllNonNull(name, phone, school, year, admin);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.admin = admin;
+        this.questions.addAll(questions);
     }
 
     public Name getName() {
