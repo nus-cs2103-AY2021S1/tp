@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -155,6 +156,17 @@ public class ModelManager implements Model {
     };
 
     @Override
+    public boolean hasMeetingName(MeetingName meetingName) {
+        requireNonNull(meetingName);
+        return meetingBook.hasMeetingName(meetingName);
+    }
+
+    @Override
+    public void deleteMeeting(Meeting targetMeeting) {
+        meetingBook.removeMeeting(targetMeeting);
+    }
+
+    @Override
     public void addMeeting(Meeting meeting) {
         meetingBook.addMeeting(meeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -177,7 +189,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Meeting List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

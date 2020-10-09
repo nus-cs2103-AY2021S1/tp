@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -60,6 +61,10 @@ public class Meeting {
                 && otherMeeting.getMeetingName().equals(getMeetingName())
                 && otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getTime().equals(getTime());
+    }
+
+    public boolean isSameMeetingName(MeetingName otherMeetingName) {
+        return meetingName.equals(otherMeetingName);
     }
 
     /**

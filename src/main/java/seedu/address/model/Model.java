@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -113,6 +114,17 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
     void addMeeting(Meeting meeting);
+
+    /**
+     * Returns true if a meeting with the same meeting name as {@code meeting} exists in the address book.
+     */
+    boolean hasMeetingName(MeetingName meetingName);
+
+    /**
+     * Deletes the given meeting.
+     * The person must exist in the address book.
+     */
+    void deleteMeeting(Meeting targetMeeting);
 
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();

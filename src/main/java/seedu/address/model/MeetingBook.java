@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.UniqueMeetingList;
 
 public class MeetingBook implements ReadOnlyMeetingBook {
@@ -58,6 +59,14 @@ public class MeetingBook implements ReadOnlyMeetingBook {
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return meetings.contains(meeting);
+    }
+
+    /**
+     * Returns true if a meeting with the same name as {@code meeting} exists in the meeting book.
+     */
+    public boolean hasMeetingName(MeetingName meetingName) {
+        requireNonNull(meetingName);
+        return meetings.contains(meetingName);
     }
 
     /**
