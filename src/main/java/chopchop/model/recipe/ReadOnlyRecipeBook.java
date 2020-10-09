@@ -12,6 +12,6 @@ public interface ReadOnlyRecipeBook extends ReadOnlyFoodEntryBook {
      * Returns an unmodifiable view of the recipes list.
      * This list will not contain any duplicate recipes.
      */
+    @Override
     ObservableList<Recipe> getFoodEntryList();
-
 }

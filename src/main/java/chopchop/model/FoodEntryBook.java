@@ -28,7 +28,7 @@ public abstract class FoodEntryBook implements ReadOnlyFoodEntryBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setFoodEntries(List<FoodEntry> entries) {
+    public void setFoodEntries(List<? extends FoodEntry> entries) {
         this.entries.setFoodEntries(entries);
     }
 
