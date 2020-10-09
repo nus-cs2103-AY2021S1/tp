@@ -1,8 +1,5 @@
 package jimmy.mcgymmy.logic.parser;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +10,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 import jimmy.mcgymmy.commons.core.Messages;
@@ -31,21 +27,18 @@ import jimmy.mcgymmy.logic.parser.parameter.AbstractParameter;
 import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
 
 /**
- * Parser for McGymmy commands.
+ * Parser for Primitive (non-macro) McGymmy commands.
  */
-public class McGymmyParser {
+public class PrimitiveCommandParser {
     private final Map<String, Supplier<Command>> commandTable;
     private final CommandLineParser parser;
-    private final HelpFormatter formatter;
-
     /**
      * Creates a new McGymmyParser
      */
-    public McGymmyParser() {
+    public PrimitiveCommandParser() {
         this.commandTable = new HashMap<>();
         this.addDefaultCommands();
         this.parser = new DefaultParser();
-        this.formatter = new HelpFormatter();
     }
 
     private void addDefaultCommands() {
@@ -69,20 +62,32 @@ public class McGymmyParser {
      * @throws ParseException if an argument to the command is not in the correct format
      */
     public Command parse(String text) throws ParseException {
-        String[] splitInput = text.split(" ");
-        if (splitInput.length < 1) {
+        ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(text);
+        if (headTail.getHead().equals("")) {
             throw new ParseException("Please enter a command.");
         }
-        String commandName = splitInput[0];
+        return parsePrimitiveCommand(headTail.getHead(), headTail.getTail());
+    }
+
+    /**
+     * Parses a raw input string from the user into an executable Command.
+     *
+     * @param commandName name of the command. Typically the first word in the line.
+     * @param arguments array of String arguments to the command.
+     * @return Command if parsing is successful
+     * @throws ParseException if command is not found
+     * @throws ParseException if a required argument to the command is not supplied
+     * @throws ParseException if an argument to the command is not in the correct format
+     */
+    public Command parsePrimitiveCommand(String commandName, String[] arguments) throws ParseException {
         if (!this.commandTable.containsKey(commandName)) {
-            // TODO: clean up MESSAGE class
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
         Command result = this.commandTable.get(commandName).get();
         ParameterSet parameterSet = result.getParameterSet();
         Options options = parameterSet.asOptions();
         try {
-            CommandLine cmd = this.parser.parse(options, Arrays.copyOfRange(splitInput, 1, splitInput.length));
+            CommandLine cmd = this.parser.parse(options, arguments);
             this.provideValuesToParameterSet(cmd, parameterSet);
             return result;
         } catch (org.apache.commons.cli.ParseException | ParseException e) {
@@ -123,39 +128,22 @@ public class McGymmyParser {
         }
     }
 
-    /**
+    /** TODO factor this into parserUtil
      * Adds a new command into the parser.
-     * TODO: change Command to an 'Executable' interface for macros
-     *
      * @param name            Name of command to be added
      * @param commandSupplier a constructor of the command taking no arguments
      */
-    public void addCommand(String name, Supplier<Command> commandSupplier) {
-        if (this.commandTable.containsKey(name)) {
-            // TODO throw some exception?
-            assert false : "Command has already been added";
-        }
+    void addCommand(String name, Supplier<Command> commandSupplier) {
+        assert !this.commandTable.containsKey(name) : "Command has already been added";
         this.commandTable.put(name, commandSupplier);
     }
 
     // Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function
     private String getUsage(String commandName, ParameterSet parameterSet) {
-        List<AbstractParameter> parameterList = parameterSet.getParameterList();
         Options options = parameterSet.asOptions();
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
-        formatter.printHelp(
-                printWriter,
-                formatter.getWidth(),
-                commandName,
-                getUnnamedParameterUsage(parameterSet),
-                options,
-                formatter.getLeftPadding(),
-                formatter.getDescPadding(),
-                "");
-        stringWriter.write("\nEXAMPLE: ");
-        stringWriter.write(this.createExampleCommand(commandName, parameterList));
-        return stringWriter.toString();
+        String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName,
+                getUnnamedParameterUsage(parameterSet), options);
+        return formattedHelp + "\nEXAMPLE: " + this.createExampleCommand(commandName, parameterSet.getParameterList());
     }
 
     private String getUnnamedParameterUsage(ParameterSet parameterSet) {
@@ -172,5 +160,9 @@ public class McGymmyParser {
 
     public Set<String> getRegisteredCommands() {
         return this.commandTable.keySet();
+    }
+
+    public Boolean hasCommand(String command) {
+        return this.getRegisteredCommands().contains(command);
     }
 }

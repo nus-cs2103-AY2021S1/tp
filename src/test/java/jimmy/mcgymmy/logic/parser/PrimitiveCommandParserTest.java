@@ -17,12 +17,12 @@ import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
 
-public class McGymmyParserTest {
+public class PrimitiveCommandParserTest {
     public static final String DUMMY_VALUE_1 = "abc";
     public static final String DUMMY_VALUE_2 = "cde";
     public static final String DUMMY_VALUE_3 = "fgh";
-    private final McGymmyParser parser = new McGymmyParser();
-    private final McGymmyParser parserWithDummy = new McGymmyParser();
+    private final PrimitiveCommandParser parser = new PrimitiveCommandParser();
+    private final PrimitiveCommandParser parserWithDummy = new PrimitiveCommandParser();
 
     {
         parserWithDummy.addCommand("dummy", StubCommand::new);
