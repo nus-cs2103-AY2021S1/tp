@@ -22,7 +22,7 @@ public class Attendance {
     public NusnetId getNusnetId() {
         return nusnetId;
     }
-    
+
     public AttendanceType getAttendanceType() {
         return attendanceType;
     }

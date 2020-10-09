@@ -161,7 +161,7 @@ public class ModelManager implements Model {
                 namedAttendances.add(new NamedAttendance(name, attendance));
             }
         }
-        
+
         return FXCollections.unmodifiableObservableList(namedAttendances);
     }
 
