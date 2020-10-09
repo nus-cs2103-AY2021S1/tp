@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.NamedAttendance;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -21,7 +22,7 @@ public class AttendanceCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Attendance attendance;
+    public final NamedAttendance attendance;
 
     @FXML
     private HBox cardPane;
@@ -35,12 +36,13 @@ public class AttendanceCard extends UiPart<Region> {
     /**
      * Creates a {@code AttendanceCard} with the given {@code AttendanceType} and index to display.
      */
-    public AttendanceCard(Attendance attendance, int displayedIndex) {
+    public AttendanceCard(NamedAttendance attendance, int displayedIndex) {
         super(FXML);
         this.attendance = attendance;
         id.setText(displayedIndex + ". ");
-        nusnetId.setText(attendance.getNusnetId().value);
-        attendanceStatus.setText(attendance.getAttendanceType().name());
+        nusnetId.setText(attendance.getAttendance().getNusnetId().value);
+        attendanceStatus.setText(attendance.getAttendance().getAttendanceType().name());
+        // get name by attendance.getName().value
     }
 
     @Override

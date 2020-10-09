@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.NamedAttendance;
 
 /**
  * Panel containing the list of attendance.
@@ -18,13 +19,13 @@ public class AttendanceListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(AttendanceListPanel.class);
 
     @FXML
-    private ListView<Attendance> attendanceListView;
+    private ListView<NamedAttendance> attendanceListView;
 
     /**
      * Creates a {@code AttendanceListPanel} with the given {@code ObservableList}.
      * @param attendanceList
      */
-    public AttendanceListPanel(ObservableList<Attendance> attendanceList) {
+    public AttendanceListPanel(ObservableList<NamedAttendance> attendanceList) {
         super(FXML);
         attendanceListView.setItems(attendanceList);
         attendanceListView.setCellFactory(listView -> new AttendanceListViewCell());
@@ -33,9 +34,9 @@ public class AttendanceListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Attendance} using a {@code AttendanceCard}.
      */
-    class AttendanceListViewCell extends ListCell<Attendance> {
+    class AttendanceListViewCell extends ListCell<NamedAttendance> {
         @Override
-        protected void updateItem(Attendance attendance, boolean empty) {
+        protected void updateItem(NamedAttendance attendance, boolean empty) {
             super.updateItem(attendance, empty);
 
             if (empty || attendance == null) {

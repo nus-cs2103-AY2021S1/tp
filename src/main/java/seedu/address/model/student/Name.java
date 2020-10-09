@@ -11,7 +11,8 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
+    public static final String STUDENT_NOT_FOUND_NAME = "STUDENT_NOT_FOUND";
+    
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -38,6 +39,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static Name getStudentNotFoundName() {
+        return new Name(STUDENT_NOT_FOUND_NAME);
+    }
 
     @Override
     public String toString() {

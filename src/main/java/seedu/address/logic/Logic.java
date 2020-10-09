@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTaskmaster;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.NamedAttendance;
 import seedu.address.model.student.Student;
 
 /**
@@ -35,7 +36,7 @@ public interface Logic {
     ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the filtered list of attendance */
-    ObservableList<Attendance> getFilteredAttendanceList();
+    ObservableList<NamedAttendance> getFilteredAttendanceList();
 
     /**
      * Returns the user prefs' student list file path.
