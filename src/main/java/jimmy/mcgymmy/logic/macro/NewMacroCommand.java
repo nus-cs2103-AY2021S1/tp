@@ -1,12 +1,10 @@
 package jimmy.mcgymmy.logic.macro;
 
 import java.util.Arrays;
-
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.macro.exceptions.DuplicateMacroException;
-import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
 
@@ -23,13 +21,19 @@ public class NewMacroCommand implements CommandExecutable {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(argumentDeclaration);
+        String[] splitDeclaration = argumentDeclaration.split("\\s+");
         try {
-            Macro newMacro = new Macro(headTail.getHead(), headTail.getTail(), this.statements);
+            Macro newMacro = new Macro(
+                    splitDeclaration[1],
+                    Arrays.copyOfRange(splitDeclaration, 2, splitDeclaration.length),
+                    this.statements);
             this.macroList.addMacro(newMacro);
             return new CommandResult(newMacro.getName() + " successfully added.");
         } catch (DuplicateMacroException | ParseException e) {
             throw new CommandException(e.getMessage());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // TODO better errors?
+            throw new CommandException("Error: missing macro name.");
         }
     }
 }

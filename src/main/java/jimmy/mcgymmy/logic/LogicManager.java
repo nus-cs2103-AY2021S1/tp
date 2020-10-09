@@ -10,8 +10,8 @@ import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
-import jimmy.mcgymmy.logic.parser.PrimitiveCommandParser;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
+import jimmy.mcgymmy.logic.parser.parameter.McGymmyParser;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.food.Food;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final PrimitiveCommandParser primitiveCommandParser;
+    private final McGymmyParser mcGymmyParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        primitiveCommandParser = new PrimitiveCommandParser();
+        mcGymmyParser = new McGymmyParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        CommandExecutable executable = primitiveCommandParser.parse(commandText);
+        CommandExecutable executable = mcGymmyParser.parse(commandText);
         commandResult = executable.execute(model);
 
         try {

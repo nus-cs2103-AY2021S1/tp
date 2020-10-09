@@ -45,12 +45,7 @@ public class Macro {
     }
 
     public CommandExecutable commandInstance(CommandLine args) {
-        return new CommandExecutable() {
-            @Override
-            public CommandResult execute(Model model) throws CommandException {
-                return executeWith(model, args);
-            }
-        };
+        return model -> executeWith(model, args);
     }
 
     public CommandResult executeWith(Model model, CommandLine args) throws CommandException {

@@ -187,8 +187,12 @@ public class ParserUtil {
          * @return
          */
         public static HeadTailString splitString(String input, String delimiter) {
-            String[] headTail = input.split(delimiter);
-            return new HeadTailString(headTail[0], Arrays.copyOfRange(headTail, 1, headTail.length));
+            try {
+                String[] headTail = input.split(delimiter);
+                return new HeadTailString(headTail[0], Arrays.copyOfRange(headTail, 1, headTail.length));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return new HeadTailString("", new String[]{""});
+            }
         }
 
         /**
