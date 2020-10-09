@@ -128,9 +128,9 @@ Format: ` label add c/CONTACT_NAME [t/TAG_NAMES]…`
 Examples:
 * `label add c/Jay t/2103, teamproject`
 
-### Scheduling a meeting: `meeting add`
+### Adding a meeting: `meeting add`
 
-Schedules a meeting at a given date and time with specified members and a provided meeting name
+Adds a meeting at a given date and time with specified members, and a provided meeting name
 
 Format: `meeting add n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME m/MEMBERS`
 
@@ -141,6 +141,17 @@ Format: `meeting add n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME m/MEMBERS`
 
 Examples:
 *  `meeting add n/CS2103 weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
+
+### Deleting a meeting : `meeting delete`
+
+Deletes the specified meeting from Modduke.
+
+Format: `contact meeting MEETING_NAME`
+
+* Deletes the meeting with the specified meeting name.
+
+Examples:
+* `meeting delete CS2103 Weekly Meeting` deletes `CS2103 Weekly Meeting` meeting from Modduke.
 
 ### Editing a meeting: `meeting edit`
 
@@ -166,13 +177,7 @@ Views all of the existing meetings.
 
 Format: NA
 
-### View all meetings : consult list
-
-View all the existing consults
-
-Format: `list`
-
-### Creating a Consultation : `consult add`
+### Adding a Consultation : `consult add`
 
 Creates a new consultation with given ConsultName.
 
@@ -192,6 +197,12 @@ Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CO
 * [n/NEW_NAME], [d/NEW_DATE], [t/NEW_TIME], [cD/CONTACTS] and [cA/CONTACTS] are all optional fields, 
 * At least one of the optional fields must be provided.
 * If there is more than one contact to be added or deleted in [cA/CONTACTS], they should be separated by “,”
+
+### View all consults : `consult list`
+
+View all the existing consults
+
+Format: `consult list`
 
 ### Exiting the program : `exit`
 
