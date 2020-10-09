@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -20,6 +21,8 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     private TextField userInputTextBox;
+    @FXML
+    private VBox mainDisplayWindowVbox;
 
 
     @FXML
@@ -31,6 +34,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInputTextBox.getText();
+        mainDisplayWindowVbox.getChildren().addAll(new MainWindowResult(input));
         logger.info(input);
     }
 
