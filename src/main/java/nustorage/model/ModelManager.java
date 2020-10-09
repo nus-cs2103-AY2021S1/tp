@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -14,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
 import nustorage.commons.core.index.Index;
-import nustorage.model.item.Inventory;
 import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
@@ -32,6 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<InventoryRecord> filteredInventory;
+    private final FilteredList<FinanceRecord> filteredFinance;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,8 +42,9 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.inventory = new Inventory();
-        filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
         this.financeAccount = new FinanceAccount();
+        filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
+        filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -128,8 +128,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<FinanceRecord> viewFinanceRecords() {
-        return financeAccount.getFinanceRecords();
+    public ObservableList<FinanceRecord> getFilteredFinanceList() {
+        return filteredFinance;
+    }
+
+    @Override
+    public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
+        requireAllNonNull(target, editedFinanceRecord);
+
+        financeAccount.setFinanceRecord(target, editedFinanceRecord);
     }
 
     @Override
