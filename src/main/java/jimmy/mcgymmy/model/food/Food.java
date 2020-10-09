@@ -89,6 +89,10 @@ public class Food {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
+
     @Override
     public boolean equals(Object other) {
         CollectionUtil.requireAllNonNull(protein, carbs, fat);
