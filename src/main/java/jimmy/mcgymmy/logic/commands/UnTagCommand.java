@@ -17,7 +17,7 @@ public class UnTagCommand extends Command {
     public static final String COMMAND_WORD = "untag";
 
     public static final String MESSAGE_SUCCESS = "Tag removed: %s";
-    public static final String MESSAGE_NOT_FOUND_TAG = "Tag %s does not exist exists in %s";
+    public static final String MESSAGE_NOT_FOUND_TAG = "Tag %s does not exist in %s";
 
     private Parameter<Index> indexParameter = this.addParameter(
             "index",
