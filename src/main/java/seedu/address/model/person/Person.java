@@ -16,11 +16,11 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
+    protected final Name name;
+    protected final Phone phone;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
