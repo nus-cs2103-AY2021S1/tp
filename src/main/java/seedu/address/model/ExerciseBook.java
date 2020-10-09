@@ -81,8 +81,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
-
-        exercises.setPerson(target, editedExercise);
+        exercises.setExercise(target, editedExercise);
     }
 
     /**

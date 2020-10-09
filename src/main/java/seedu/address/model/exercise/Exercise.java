@@ -75,6 +75,5 @@ public class Exercise {
                 .append(getCalories());
         return builder.toString();
     }
-
 }
 

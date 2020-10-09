@@ -61,7 +61,7 @@ class JsonAdaptedExercise {
         final Name modelName = new Name(name);
 
         if (description == null) {
-            throw new IllegalValueException("Missing description");
+            throw new IllegalValueException("Person's Description field is missing!");
             //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
@@ -71,7 +71,7 @@ class JsonAdaptedExercise {
         final Description modelDescription = new Description(description);
 
         if (date == null) {
-            throw new IllegalValueException("Missing Date");
+            throw new IllegalValueException("Person's Date field is missing!");
             //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Date.isValidDate(date)) {
@@ -81,7 +81,7 @@ class JsonAdaptedExercise {
         final Date modelDate = new Date(date);
 
         if (calories == null) {
-            throw new IllegalValueException("Missing Calories");
+            throw new IllegalValueException("Person's Calories field is missing!");
             //throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
             // Address.class.getSimpleName()));
         }
