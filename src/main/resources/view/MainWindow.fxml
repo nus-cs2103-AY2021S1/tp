@@ -47,7 +47,7 @@
                     </padding>
                 </StackPane>
 
-                <SplitPane dividerPositions="0.6" styleClass="pane-with-border"
+                <SplitPane fx:id="caseDisplayPlaceholder" dividerPositions="0.6" styleClass="pane-with-border"
                            VBox.vgrow="ALWAYS">
                     <items>
 
@@ -57,7 +57,7 @@
                             </padding>
                             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
-                        
+
                         <AnchorPane minWidth="250.0" prefWidth="250.0"/>
 
                     </items>
