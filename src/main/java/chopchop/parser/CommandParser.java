@@ -95,7 +95,7 @@ public class CommandParser {
             assert xs.at(0) == '/';
         }
 
-        return this.parseNamedArguments(xs)
+        return parseNamedArguments(xs)
             .map(args -> new CommandArguments(command, target, theRest, args));
     }
 }
