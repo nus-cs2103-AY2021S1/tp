@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.address.model.id.Id;
 import seedu.address.model.person.Bidder;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;

@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.BidderBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class UniqueBidderListTest {
 
@@ -164,7 +163,7 @@ public class UniqueBidderListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueBidderList.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> uniqueBidderList.asUnmodifiableObservableList().remove(0));
     }
 }

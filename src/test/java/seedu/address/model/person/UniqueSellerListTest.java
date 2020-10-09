@@ -163,7 +163,7 @@ public class UniqueSellerListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueSellerList.asUnmodifiableObservableList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> uniqueSellerList.asUnmodifiableObservableList().remove(0));
     }
 }
