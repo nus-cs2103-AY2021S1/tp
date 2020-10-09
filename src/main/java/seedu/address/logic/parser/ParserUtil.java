@@ -38,6 +38,11 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses an {@code String exerciseName} into an {@code Exercise}.
+     *
+     * @throws ParseException if the given {@code exerciseName} is invalid.
+     */
     //TODO: Implement this with calories
     public static Exercise parseExercise(String exerciseName) throws ParseException {
         Name name = parseName(exerciseName);

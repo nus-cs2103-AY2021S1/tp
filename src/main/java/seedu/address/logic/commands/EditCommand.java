@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LOGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LOGS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,9 +16,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.log.Rep;
 import seedu.address.model.log.Comment;
 import seedu.address.model.log.Log;
+import seedu.address.model.log.Rep;
 
 /**
  * Edits the details of an existing log in the address book.

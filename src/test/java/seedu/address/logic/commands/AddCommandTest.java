@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -51,29 +49,29 @@ public class AddCommandTest {
     }
 
     // TODO Edit function
-//    @Test
-//    public void equals() {
-//        Log alice = new LogBuilder().withName("Alice").build();
-//        Log bob = new LogBuilder().withName("Bob").build();
-//        AddCommand addAliceCommand = new AddCommand(alice);
-//        AddCommand addBobCommand = new AddCommand(bob);
-//
-//        // same object -> returns true
-//        assertTrue(addAliceCommand.equals(addAliceCommand));
-//
-//        // same values -> returns true
-//        AddCommand addAliceCommandCopy = new AddCommand(alice);
-//        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-//
-//        // different types -> returns false
-//        assertFalse(addAliceCommand.equals(1));
-//
-//        // null -> returns false
-//        assertFalse(addAliceCommand.equals(null));
-//
-//        // different log -> returns false
-//        assertFalse(addAliceCommand.equals(addBobCommand));
-//    }
+    /*@Test
+    public void equals() {
+        Log alice = new LogBuilder().withName("Alice").build();
+        Log bob = new LogBuilder().withName("Bob").build();
+        AddCommand addAliceCommand = new AddCommand(alice);
+        AddCommand addBobCommand = new AddCommand(bob);
+
+        // same object -> returns true
+        assertTrue(addAliceCommand.equals(addAliceCommand));
+
+        // same values -> returns true
+        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addAliceCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addAliceCommand.equals(null));
+
+        // different log -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
+    }*/
 
     /**
      * A default model stub that have all of the methods failing.

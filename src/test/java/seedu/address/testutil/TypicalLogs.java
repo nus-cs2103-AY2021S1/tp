@@ -8,44 +8,50 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.log.Log;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Log} objects to be used in tests.
  */
 public class TypicalLogs {
 
-    public static final Log LOG_A = new LogBuilder().withExercise(new ExerciseBuilder().withName("Jumping Jacks").build())
+    public static final Log LOG_A = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Jumping Jacks").build())
             .withDateTime(LocalDateTime.of(2020, 1, 1, 1, 1))
             .withReps("5")
             .withComment("I love jumping jacks")
             .build();
-    public static final Log LOG_B = new LogBuilder().withExercise(new ExerciseBuilder().withName("Lunges").build())
+    public static final Log LOG_B = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Lunges").build())
             .withDateTime(LocalDateTime.of(2020, 2, 2, 2, 2))
             .withReps("51")
             .withComment("I love Lunges")
             .build();
-    public static final Log LOG_C = new LogBuilder().withExercise(new ExerciseBuilder().withName("Body ups").build())
+    public static final Log LOG_C = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Body ups").build())
             .withDateTime(LocalDateTime.of(2020, 3, 3, 3, 3))
             .withReps("15")
             .withComment("I love Body ups")
             .build();
-    public static final Log LOG_D = new LogBuilder().withExercise(new ExerciseBuilder().withName("Head shakes").build())
+    public static final Log LOG_D = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Head shakes").build())
             .withDateTime(LocalDateTime.of(2020, 4, 4, 4, 4))
             .withReps("52")
             .withComment("I love Head shakes")
             .build();
-    public static final Log LOG_E = new LogBuilder().withExercise(new ExerciseBuilder().withName("Buddha claps").build())
+    public static final Log LOG_E = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Buddha claps").build())
             .withDateTime(LocalDateTime.of(2020, 5, 5, 5, 5))
             .withReps("53")
             .withComment("I love Buddha claps")
             .build();
-    public static final Log LOG_F = new LogBuilder().withExercise(new ExerciseBuilder().withName("Shaking hands").build())
+    public static final Log LOG_F = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Shaking hands").build())
             .withDateTime(LocalDateTime.of(2020, 6, 6, 6, 6))
             .withReps("54")
             .withComment("I love Shaking hands")
             .build();
-    public static final Log LOG_G = new LogBuilder().withExercise(new ExerciseBuilder().withName("Punching").build())
+    public static final Log LOG_G = new LogBuilder()
+            .withExercise(new ExerciseBuilder().withName("Punching").build())
             .withDateTime(LocalDateTime.of(2020, 7, 7, 7, 7))
             .withReps("55")
             .withComment("I love Punching")
