@@ -22,6 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -175,6 +176,17 @@ public class AddCommandTest {
         public boolean hasMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasMeetingName(MeetingName meetingName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting targetMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public Path getMeetingBookFilePath() {

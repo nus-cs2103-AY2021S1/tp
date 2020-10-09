@@ -62,6 +62,10 @@ public class Meeting {
                 && otherMeeting.getTime().equals(getTime());
     }
 
+    public boolean isSameMeetingName(MeetingName otherMeetingName) {
+        return meetingName.equals(otherMeetingName);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.

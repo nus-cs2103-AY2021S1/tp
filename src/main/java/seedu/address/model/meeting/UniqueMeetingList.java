@@ -26,6 +26,14 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Returns true if the list contains a meeting with the same meeting name.
+     */
+    public boolean contains(MeetingName toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(meeting -> meeting.isSameMeetingName(toCheck));
+    }
+
+    /**
      * Adds a meeting to the list.
      * The meeting must not already exist in the list.
      */
