@@ -1,6 +1,7 @@
 package jimmy.mcgymmy.logic.macro;
 
 import java.util.Arrays;
+
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -13,6 +14,13 @@ public class NewMacroCommand implements CommandExecutable {
     private final String argumentDeclaration;
     private final String[] statements;
 
+    /**
+     * Constructor for this unique command.
+     * @param macroList Macro list to add the new macro to.
+     * @param argumentDeclaration The macro declaration containing the name and arguments to the macro.
+     *                            e.g. "macro poop n m".
+     * @param statements The commands to be executed in the macro.
+     */
     public NewMacroCommand(MacroList macroList, String argumentDeclaration, String[] statements) {
         this.macroList = macroList; // should this be part of the model?
         this.argumentDeclaration = argumentDeclaration;

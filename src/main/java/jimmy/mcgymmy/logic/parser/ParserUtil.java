@@ -140,12 +140,12 @@ public class ParserUtil {
 
     /**
      * Helper function for commons-cli's HelpFormatter.
-     * TODO more docs
+     * Generates the usage string from commons-cli options.
      *
-     * @param commandName
-     * @param header
-     * @param options
-     * @return
+     * @param commandName name of the command.
+     * @param header extra text to be included before usage statement.
+     * @param options commons-cli options to format.
+     * @return usage string.
      */
     public static String getUsageFromHelpFormatter(String commandName, String header, Options options) {
         HelpFormatter formatter = new HelpFormatter();
@@ -180,11 +180,12 @@ public class ParserUtil {
         }
 
         /**
-         * TODO
+         * Splits a string using the delimiter,
+         * storing the first string as the head, and the rest as the tail.
          *
-         * @param input
-         * @param delimiter
-         * @return
+         * @param input raw input string.
+         * @param delimiter Java regex string to split the string by.
+         * @return HeadTailString object which is essentially a pair (String, String[]) but with Java cruft.
          */
         public static HeadTailString splitString(String input, String delimiter) {
             try {
@@ -196,10 +197,11 @@ public class ParserUtil {
         }
 
         /**
-         * TODO
+         * Splits a string by whitespaces,
+         * storing the first string as the head, and the rest as the tail.
          *
-         * @param input
-         * @return
+         * @param input raw input string.
+         * @return HeadTailString object which is essentially a pair (String, String[]) but with Java cruft.
          */
         public static HeadTailString splitString(String input) {
             return HeadTailString.splitString(input, "\\s+");

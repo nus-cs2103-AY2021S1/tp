@@ -99,7 +99,7 @@ public class PrimitiveCommandParser {
     /**
      * Helper function that takes values in the commons-cli CommandLine object
      * and puts them in the parameterList
-     *
+     * TODO do we need to refactor this?
      * @param cmd          CommandLine object to take values from
      * @param parameterSet parameterSet to put values in
      * @throws ParseException if any of the parameter's conversion functions breaks (wrongly formatted argument)
@@ -134,7 +134,7 @@ public class PrimitiveCommandParser {
      * @param commandSupplier a constructor of the command taking no arguments
      */
     void addCommand(String name, Supplier<Command> commandSupplier) {
-        assert !this.commandTable.containsKey(name) : "Command has already been added";
+        assert !this.commandTable.containsKey(name) : name + " command has already been added";
         this.commandTable.put(name, commandSupplier);
     }
 

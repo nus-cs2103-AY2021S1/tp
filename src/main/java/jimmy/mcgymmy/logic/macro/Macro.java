@@ -48,6 +48,16 @@ public class Macro {
         return model -> executeWith(model, args);
     }
 
+    /**
+     * Executes the macro on the model.
+     * Returns upon encountering a help or exit function
+     * (i.e. does not attempt to execute any command
+     * after encountering help or exit)
+     * @param model Model to run the macro's commands on.
+     * @param args arguments to the macro.
+     * @return CommandResult produced by concatenating the messages from all the executed commands.
+     * @throws CommandException if any command encounters an error.
+     */
     public CommandResult executeWith(Model model, CommandLine args) throws CommandException {
         String[] rawCommands = this.substituteAll(args);
         List<String> messagesToUser = new ArrayList<>();

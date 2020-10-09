@@ -3,6 +3,9 @@ package jimmy.mcgymmy.logic.commands;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.model.Model;
 
+/**
+ * Interface for generalized Commands run by the user.
+ */
 public interface CommandExecutable {
 
     /**
