@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
-import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIALNUMBER_APPLE;
-import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIALNUMBER_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -166,13 +166,13 @@ public class UpdateCommandTest {
     @Test
     public void execute_multipleStocksUpdated_success() {
         Stock updatedStockApple = new StockBuilder().withName("Ice Cream")
-                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIALNUMBER_APPLE)
+                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE)
                 .withQuantity("2000").build();
         Stock updatedStockBanana = new StockBuilder().withName("Ice Cream")
-                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIALNUMBER_BANANA)
+                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
                 .withQuantity("2103").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName("Ice Cream").withSource("Magnum")
-                .withLocation("Freezer One").withSerialNumber(VALID_SERIALNUMBER_APPLE, VALID_SERIALNUMBER_BANANA)
+                .withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
                 .build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -199,7 +199,7 @@ public class UpdateCommandTest {
     @Test
     public void execute_someSerialNumberNotFound_failure() {
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
-                .withSerialNumber(VALID_SERIALNUMBER_APPLE, "Not Found").build();
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, "Not Found").build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
         assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
@@ -218,7 +218,7 @@ public class UpdateCommandTest {
     public void equals() {
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(new StockBuilder().build()).build();
         UpdateStockDescriptor differentDescriptor = new UpdateStockDescriptorBuilder()
-                .withName(VALID_NAME_APPLE).withSerialNumber(VALID_SERIALNUMBER_APPLE).build();
+                .withName(VALID_NAME_APPLE).withSerialNumber(VALID_SERIAL_NUMBER_APPLE).build();
         final UpdateCommand standardCommand = new UpdateCommand(descriptor);
 
         // same values -> returns true
