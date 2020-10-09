@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.attendance.Attendance;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -20,20 +21,20 @@ public class AttendanceCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final String attendanceType;
+    public final Attendance attendance;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label attendance;
+    private Label attendanceType;
 
     /**
      * Creates a {@code AttendanceCard} with the given {@code AttendanceType} and index to display.
      */
-    public AttendanceCard(String attendanceType, int displayedIndex) {
+    public AttendanceCard(Attendance attendance, int displayedIndex) {
         super(FXML);
-        this.attendanceType = attendanceType;
-        attendance.setText(attendanceType);
+        this.attendance = attendance;
+        attendanceType.setText("attendance.toString()");
     }
 
     @Override
@@ -50,6 +51,6 @@ public class AttendanceCard extends UiPart<Region> {
 
         // state check
         AttendanceCard card = (AttendanceCard) other;
-        return this.attendanceType.equals(card.attendanceType);
+        return this.attendance.equals(card.attendance);
     }
 }

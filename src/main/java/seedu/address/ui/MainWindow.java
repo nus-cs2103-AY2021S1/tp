@@ -140,7 +140,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up with attendance instead.
      */
     void fillInnerParts2() {
-        attendanceListPanel = new AttendanceListPanel(FXCollections.observableList(new ArrayList<String>(Arrays.asList("present", "present", "absent"))));
+        attendanceListPanel = new AttendanceListPanel(logic.getFilteredAttendanceList());
         viewListPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
