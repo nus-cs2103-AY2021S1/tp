@@ -8,13 +8,11 @@ public abstract class QuestionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds, resolves or deletes a question "
             + "from a student in Reeve. "
-            + "Parameters: INDEX (must be a positive integer)\n"
             + "Supported actions: \n"
-            + QuestionCommandPrefix.ADD_QUESTION_PREFIX
-            + " QUESTION: adds an unresolved question.\n"
-            + "Examples:\n"
-            + COMMAND_WORD + " 1 " + QuestionCommandPrefix.ADD_QUESTION_PREFIX
-            + "What is 1 + 1 = ?";
+            + QuestionCommandPrefix.ADD_QUESTION_PREFIX + " QUESTION: adds an unresolved question.\n"
+            + "Examples:\n" + COMMAND_WORD + " 1 " + QuestionCommandPrefix.ADD_QUESTION_PREFIX + "1 + 1 = ?\n"
+            + QuestionCommandPrefix.SOLVE_QUESTION_PREFIX + "QUESTION_INDEX: marks a question as solved.\n"
+            + "Examples:\n" + COMMAND_WORD + " 2 " + QuestionCommandPrefix.SOLVE_QUESTION_PREFIX + " 1 \n";
 
     /**
      * Represents all prefixes used by QuestionCommand.
