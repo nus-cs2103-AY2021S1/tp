@@ -68,6 +68,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
      *
      * @param filePath location of the data. Cannot be null.
+     * @throws IOException if the file or directory cannot be created.
      */
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
