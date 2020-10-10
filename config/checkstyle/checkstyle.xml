@@ -75,7 +75,7 @@
     An import statement is unused if:
       It's not referenced in the file.
     -->
-    <module name="UnusedImports"/>
+<!--    <module name="UnusedImports"/>-->
 
     <module name="AvoidStarImport"/>
 
