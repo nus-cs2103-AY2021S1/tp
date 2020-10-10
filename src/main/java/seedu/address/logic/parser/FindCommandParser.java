@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -17,6 +16,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonHasTagsAndNamePredicate;
+import seedu.address.model.person.PersonHasTagsPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,10 +45,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                     new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>()));
         } else if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
-            List<String> nameList = new ArrayList<>();
-            nameList.add("");
             return new FindCommand(
-                    new PersonHasTagsAndNamePredicate(nameList, new ArrayList<>(tagSet)));
+                    new PersonHasTagsPredicate(new ArrayList<>(tagSet)));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

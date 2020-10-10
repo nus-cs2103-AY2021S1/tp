@@ -23,7 +23,7 @@ public class PersonHasTagsAndNamePredicate implements PersonPredicate {
     public boolean test(Person person) {
         return names.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))
-                &&
+                ||
                 person.getTags().containsAll(tags);
     }
 
