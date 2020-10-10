@@ -2,6 +2,7 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+
 /**
  * Represents a meeting in the calendar book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -39,6 +40,17 @@ public class CalendarMeeting {
     }
     public boolean checkMeetingType() {
         return this.isMeeting;
+    }
+
+
+    /**
+     * Returns true if either the property id is the same or if the address is the same.
+     *
+     * @param otherMeeting The other property.
+     * @return True if both property objects represent the same property.
+     */
+    public boolean isSameMeeting(CalendarMeeting otherMeeting) {
+        return this == otherMeeting;
     }
 }
 
