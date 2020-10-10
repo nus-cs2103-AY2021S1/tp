@@ -13,7 +13,7 @@ import seedu.fma.model.log.Rep;
 public class SampleDataUtil {
     public static Log[] getSamplePersons() {
         return new Log[] {
-            new Log(new Exercise(new Name("Sit up"), 30),
+            new Log(new Exercise(new Name("Sit ups"), 30),
                     new Rep("30"), new Comment("My abs hurt :(")),
             new Log(new Exercise(new Name("Pull ups"), 20),
                     new Rep("10"), new Comment("-"))
@@ -23,7 +23,7 @@ public class SampleDataUtil {
     public static Exercise[] getSampleExercises() {
         return new Exercise[] {
             new Exercise(new Name("Flying kicks"), 15),
-            new Exercise(new Name("Sit up"), 30),
+            new Exercise(new Name("Sit ups"), 30),
             new Exercise(new Name("Pull ups"), 20),
             new Exercise(new Name("Jumping jacks"), 15),
             new Exercise(new Name("Run 100m"), 30),

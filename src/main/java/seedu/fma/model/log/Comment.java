@@ -7,14 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable.
  */
 public class Comment {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Comment should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String MESSAGE_CONSTRAINTS = "Comment is not valid";
 
     public final String value;
 
@@ -30,9 +23,8 @@ public class Comment {
 
     //TODO: write this according to comments' constraints
     public static boolean isValidComment(String comment) {
-        return comment.matches(VALIDATION_REGEX);
+        return true;
     }
-
 
     @Override
     public String toString() {
