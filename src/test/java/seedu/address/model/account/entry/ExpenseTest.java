@@ -1,12 +1,14 @@
 package seedu.address.model.account.entry;
 
-import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
 
 class ExpenseTest {
 
@@ -23,7 +25,8 @@ class ExpenseTest {
         tags.add(new Tag("Food"));
         tags.add(new Tag("Restaurant"));
 
-        assertThrows(IllegalArgumentException.class, () -> new Expense(new Description(invalidDescription), amount, tags));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Expense(new Description(invalidDescription), amount, tags));
     }
 
     @Test
