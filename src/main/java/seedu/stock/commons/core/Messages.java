@@ -11,6 +11,6 @@ public class Messages {
             "No stocks are deleted. The stock serial number(s) provided are not found: " + "%1$s";
     public static final String MESSAGE_SOME_SERIAL_NUMBER_NOT_FOUND =
             "The stock serial number(s) provided are not found: " + "%1$s";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d stock listed!";
+    public static final String MESSAGE_STOCKS_LISTED_OVERVIEW = "%1$d stock listed!";
 
 }

@@ -57,7 +57,7 @@ public class FindCommand extends Command {
         model.updateFilteredStockList(combinedPredicates);
 
         return new CommandResult(statusMessage + "\n"
-                + String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStockList().size()));
+                + String.format(Messages.MESSAGE_STOCKS_LISTED_OVERVIEW, model.getFilteredStockList().size()));
     }
 
     @Override
