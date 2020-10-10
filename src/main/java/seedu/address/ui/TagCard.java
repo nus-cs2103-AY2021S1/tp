@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.tag.Tag;
 
 /**
- * An UI component that displays information of a {@code Tag}.
+ * An UI component that displays idenformation of a {@code Tag}.
  */
 public class TagCard extends UiPart<Region> {
 
