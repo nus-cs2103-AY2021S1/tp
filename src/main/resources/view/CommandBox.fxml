@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
-</StackPane>
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="40" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <TextField fx:id="commandTextField" minWidth="645" maxWidth="-Infinity" onAction="#handleCommandEntered" promptText="How can I assist you?" HBox.hgrow="ALWAYS"/>
+    <Button fx:id="enterButton" prefHeight="40" alignment="CENTER_RIGHT" onAction="#handleCommandEntered" text="ENTER" HBox.hgrow="NEVER"/>
+  </children>
 
+</HBox>
+
+<!--<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">-->
+<!--  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="How can I assist you?" />-->
+<!--  <Button fx:id="enterButton" prefWidth="120" prefHeight="50" alignment="CENTER" onAction="#handleCommandEntered"-->
+<!--          text="ENTER" textAlignment="CENTER"  />-->
+<!--</StackPane>-->

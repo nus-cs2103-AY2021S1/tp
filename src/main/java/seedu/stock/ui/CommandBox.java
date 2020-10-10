@@ -3,10 +3,12 @@ package seedu.stock.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import javafx.scene.control.Button;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -19,7 +21,13 @@ public class CommandBox extends UiPart<Region> {
     private final CommandExecutor commandExecutor;
 
     @FXML
+    private HBox mainPane;
+
+    @FXML
     private TextField commandTextField;
+
+    @FXML
+    private Button enterButton;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -29,6 +37,9 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        enterButton.setStyle("-fx-border-width: 0;" + "-fx-background-radius: 5;");
+
+
     }
 
     /**

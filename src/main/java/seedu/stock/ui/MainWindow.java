@@ -3,8 +3,7 @@ package seedu.stock.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
@@ -33,10 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private MenuItem helpMenuItem;
+    private HBox commandBoxPlaceholder;
 
     @FXML
     private StackPane stockListPanelPlaceholder;
@@ -46,9 +42,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-
-    @FXML
-    private Button Enter;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -76,6 +69,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         stockListPanel = new StockListPanel(logic.getFilteredStockList());
         stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
@@ -87,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -138,6 +133,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.stock.logic.Logic#execute(String)
      */
+    @FXML
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
@@ -159,4 +155,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
