@@ -44,7 +44,7 @@ public class TaskTime {
 
     @Override
     public String toString() {
-        return time.toString();
+        return time.format(FORMATTER);
     }
 
     @Override

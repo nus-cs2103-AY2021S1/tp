@@ -25,6 +25,7 @@ public abstract class Task {
     protected final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Create new Task.
      * Every field must be present and not null.
      */
     public Task(Title title, Description description, Priority priority, Set<Tag> tags) {
@@ -33,6 +34,19 @@ public abstract class Task {
         this.description = description;
         this.priority = priority;
         this.status = new DoneStatus();
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Create new Task with DoneStatus.
+     * Every field must be present and not null.
+     */
+    public Task(Title title, Description description, Priority priority, DoneStatus status, Set<Tag> tags) {
+        requireAllNonNull(title, priority, tags);
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
         this.tags.addAll(tags);
     }
 

@@ -17,6 +17,12 @@ public class Deadline extends Task{
         this.deadlineDate = deadlineDate;
     }
 
+    public Deadline(Title title, Description description, Priority priority, TaskDate deadlineDate,
+                    DoneStatus status, Set<Tag> tags) {
+        super(title, description, priority, status, tags);
+        this.deadlineDate = deadlineDate;
+    }
+
     public TaskDate getDeadlineDate() {
         return deadlineDate;
     }

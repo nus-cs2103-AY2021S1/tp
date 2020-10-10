@@ -12,4 +12,8 @@ public class ToDo extends Task {
     public ToDo(Title title, Description description, Priority priority, Set<Tag> tags) {
         super(title, description, priority, tags);
     }
+
+    public ToDo(Title title, Description description, Priority priority, DoneStatus status, Set<Tag> tags) {
+        super(title, description, priority, status, tags);
+    }
 }

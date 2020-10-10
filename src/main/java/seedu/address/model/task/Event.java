@@ -20,6 +20,13 @@ public class Event extends Task{
         this.eventTime = eventTime;
     }
 
+    public Event(Title title, Description description, Priority priority,
+                 TaskDate eventDate, TaskTime eventTime, DoneStatus status, Set<Tag> tags) {
+        super(title, description, priority, status, tags);
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
+    }
+
     public TaskDate getEventDate() {
         return eventDate;
     }

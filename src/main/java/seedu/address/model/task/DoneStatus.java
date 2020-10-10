@@ -12,7 +12,7 @@ public class DoneStatus {
     public DoneStatus(int statusCode) {
         requireNonNull(statusCode);
         checkArgument(isValidDoneStatus(statusCode), MESSAGE_CONSTRAINTS);
-        this.status = DoneStatusCode.getDoneStatusCode(statusCode);
+        this.status = DoneStatusCode.getDoneStatusByCode(statusCode);
     }
 
     public DoneStatus() {
@@ -20,7 +20,7 @@ public class DoneStatus {
     }
 
     public static boolean isValidDoneStatus(int test) {
-        DoneStatusCode ds = DoneStatusCode.getDoneStatusCode(test);
+        DoneStatusCode ds = DoneStatusCode.getDoneStatusByCode(test);
         return ds != null;
     }
 

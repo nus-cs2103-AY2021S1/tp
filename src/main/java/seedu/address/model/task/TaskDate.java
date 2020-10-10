@@ -3,6 +3,8 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -44,7 +46,7 @@ public class TaskDate {
 
     @Override
     public String toString() {
-        return date.toString();
+        return date.format(FORMATTER);
     }
 
     @Override

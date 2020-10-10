@@ -24,8 +24,12 @@ public enum DoneStatusCode {
         this.label = label;
     }
 
-    public static DoneStatusCode getDoneStatusCode(int statusCode) {
+    public static DoneStatusCode getDoneStatusByCode(int statusCode) {
         return BY_STATUS_CODE.get(statusCode);
+    }
+
+    public int getStatusCode() {
+        return statusCode;
     }
 
     @Override
