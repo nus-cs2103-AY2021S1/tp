@@ -11,6 +11,17 @@ import seedu.address.model.student.Question;
 public class JsonAdaptedQuestionTest {
 
     @Test
+    public void constructor() {
+        Question question = new Question("test", false);
+        String expectedString = "0 | test";
+        assertEquals(expectedString, new JsonAdaptedQuestion(question).getQuestion());
+
+        question = new Question("test | string", true);
+        expectedString = "1 | test | string";
+        assertEquals(expectedString, new JsonAdaptedQuestion(question).getQuestion());
+    }
+
+    @Test
     public void toModelType_invalidString_throwsIllegalArgumentException() {
         JsonAdaptedQuestion question = new JsonAdaptedQuestion("0 |   ");
         assertThrows(IllegalValueException.class, question::toModelType);
