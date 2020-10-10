@@ -25,6 +25,9 @@ public class DoneStatus {
         this.status = DoneStatusCode.NOT_DONE;
     }
 
+    /**
+     * Returns true if a given string is a valid status code.
+     */
     public static boolean isValidDoneStatus(int test) {
         DoneStatusCode ds = DoneStatusCode.getDoneStatusByCode(test);
         return ds != null;
