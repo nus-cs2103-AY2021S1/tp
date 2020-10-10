@@ -9,6 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.calendar.CalendarBidderId;
+import seedu.address.model.calendar.CalendarPropertyId;
+import seedu.address.model.calendar.CalendarTime;
+import seedu.address.model.calendar.CalendarVenue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -80,6 +84,8 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @throws ParseException if there is an error when parsing.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -89,4 +95,102 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * trims off any excess white spaces for a given string
+     * @param propertyId string to trim
+     * @return a string that has no white spaces on the sides
+     * @throws ParseException
+     */
+    public static String parsePropertyId(String propertyId) throws ParseException {
+        requireNonNull(propertyId);
+        String trimmedPropertyId = propertyId.trim();
+        return trimmedPropertyId;
+    }
+
+    /**
+     * trims off any excess white spaces for a given string
+     * @param bidderId string to trim
+     * @return a string that has no white spaces on the sides
+     * @throws ParseException
+     */
+    public static String parseBidderId(String bidderId) throws ParseException {
+        requireNonNull(bidderId);
+        String trimmedBidderId = bidderId.trim();
+        return trimmedBidderId;
+    }
+
+    /**
+     *  trims off any excess white spaces for a given string
+     * @param bidAmount string to trim
+     * @return a string that has no white spaces on the sides
+     * @throws ParseException
+     */
+    public static double parseBidAmount(String bidAmount) throws ParseException {
+        requireNonNull(bidAmount);
+        String trimmedBidAmount = bidAmount.trim();
+        double numericalBidAmount = Double.parseDouble(trimmedBidAmount);
+        return numericalBidAmount;
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code venue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static CalendarVenue parseCalendarVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!Name.isValidName(trimmedVenue)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new CalendarVenue(trimmedVenue);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static CalendarTime parseCalendarTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Phone.isValidPhone(trimmedTime)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new CalendarTime(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static CalendarPropertyId parseCalendarPropertyId(String propertyId) throws ParseException {
+        requireNonNull(propertyId);
+        String trimmedpropertyId = propertyId.trim();
+        if (!Phone.isValidPhone(trimmedpropertyId)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new CalendarPropertyId(trimmedpropertyId);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static CalendarBidderId parseCalendarBidderId(String bidderId) throws ParseException {
+        requireNonNull(bidderId);
+        String trimmedbidderId = bidderId.trim();
+        if (!Phone.isValidPhone(trimmedbidderId)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new CalendarBidderId(trimmedbidderId);
+    }
+
 }
