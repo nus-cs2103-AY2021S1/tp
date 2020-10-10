@@ -25,4 +25,8 @@ public class TimetableImporter {
         TimetableData timetableData = parser.parseTimetableUrl(timetableUrl);
         retriever.retrieveTimetable(timetableData);
     }
+
+    public static void main(String[] args) throws IOException, ParseException {
+        new TimetableImporter().importTimetable(TEST_TIMETABLE);
+    }
 }

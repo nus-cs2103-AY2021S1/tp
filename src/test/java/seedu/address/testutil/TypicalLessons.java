@@ -9,4 +9,5 @@ public class TypicalLessons {
     public static final String VALID_MODULE_CODE = "CS2101";
     public static final String VALID_NAME = "Generic Tutorial";
     public static final String VALID_TIME = "30-12-2019 1200";
+    public static final String VALID_END_TIME = "30-12-2019 1400";
 }
