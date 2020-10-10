@@ -156,9 +156,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
      */
-    public static Set<Name> parsePersons(Collection<String> personNames) throws ParseException {
+    public static Set<Name> parseNames(Collection<String> personNames) throws ParseException {
         requireNonNull(personNames);
         final Set<Name> personNameSet = new HashSet<>();
         for (String personName : personNames) {

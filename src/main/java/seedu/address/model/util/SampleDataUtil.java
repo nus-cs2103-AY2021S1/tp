@@ -1,6 +1,8 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -80,9 +82,16 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Name> getPersonSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Name::new)
-                .collect(Collectors.toSet());
+    public static Set<Person> getPersonSet(String... strings) {
+        Set<Person> personSet = new HashSet<>();
+        for (String string : strings) {
+            Name name = new Name(string);
+            for (Person person : getSamplePersons()) {
+                if (person.isSameName(name)) {
+                    personSet.add(person);
+                }
+            }
+        }
+        return personSet;
     }
 }

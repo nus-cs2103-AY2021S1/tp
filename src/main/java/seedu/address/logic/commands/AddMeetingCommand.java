@@ -8,11 +8,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Adds a meeting to the meeting book.
@@ -38,26 +45,35 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting book";
     public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts";
 
-    private final Meeting toAdd;
+    private final MeetingName meetingName;
+    private final Date date;
+    private final Time time;
+    private final Set<Name> nameList;
 
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
-    public AddMeetingCommand(Meeting meeting) {
-        requireNonNull(meeting);
-        toAdd = meeting;
+    public AddMeetingCommand(MeetingName meetingName, Date date, Time time, Set<Name> nameList) {
+        requireNonNull(meetingName);
+        requireNonNull(date);
+        requireNonNull(time);
+        requireNonNull(nameList);
+        this.meetingName = meetingName;
+        this.date = date;
+        this.time = time;
+        this.nameList = nameList;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasMeeting(toAdd)) {
+        if (model.hasMeetingName(meetingName)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
         List<Name> nonExistentPersonNames = new ArrayList<>();
-        for (Name name : toAdd.getMembers()) {
+        for (Name name : nameList) {
             if (!model.hasPersonName(name)) {
                 nonExistentPersonNames.add(name);
             }
@@ -72,6 +88,15 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString));
         }
 
+        Set<Person> personList = new HashSet<>();
+        for (Name name : nameList) {
+            List<Person> filteredList = model.getFilteredPersonList().stream()
+                    .filter(person -> person.isSameName(name)).collect(Collectors.toList());
+            personList.addAll(filteredList);
+        }
+
+        Meeting toAdd = new Meeting(meetingName, date, time, personList);
+
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
@@ -80,7 +105,10 @@ public class AddMeetingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddMeetingCommand // instanceof handles nulls
-                && toAdd.equals(((AddMeetingCommand) other).toAdd));
+                && meetingName.equals(((AddMeetingCommand) other).meetingName)
+                && date.equals(((AddMeetingCommand) other).date)
+                && time.equals(((AddMeetingCommand) other).time)
+                && nameList.equals(((AddMeetingCommand) other).nameList));
     }
 }
 

@@ -36,11 +36,9 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        Set<Name> personList = ParserUtil.parsePersons(argMultimap.getAllValues(PREFIX_MEMBERS));
+        Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_MEMBERS));
 
-        Meeting meeting = new Meeting(meetingName, date, time, personList);
-
-        return new AddMeetingCommand(meeting);
+        return new AddMeetingCommand(meetingName, date, time, nameList);
     }
 
     /**

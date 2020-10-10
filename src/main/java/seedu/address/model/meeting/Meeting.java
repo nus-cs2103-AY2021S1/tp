@@ -7,19 +7,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 
 public class Meeting {
     // Identity fields
     private final MeetingName meetingName;
     private final Date date;
     private final Time time;
-    private final Set<Name> members = new HashSet<>();
+    private final Set<Person> members = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meeting(MeetingName name, Date date, Time time, Set<Name> members) {
+    public Meeting(MeetingName name, Date date, Time time, Set<Person> members) {
         requireAllNonNull(name, date, time);
         this.meetingName = name;
         this.date = date;
@@ -39,7 +39,7 @@ public class Meeting {
         return this.time;
     }
 
-    public Set<Name> getMembers() {
+    public Set<Person> getMembers() {
         return Collections.unmodifiableSet(members);
     }
 
@@ -62,7 +62,7 @@ public class Meeting {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both meetings have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.
      */
     @Override
@@ -78,13 +78,14 @@ public class Meeting {
         Meeting otherMeeting = (Meeting) other;
         return otherMeeting.getMeetingName().equals(getMeetingName())
                 && otherMeeting.getDate().equals(getDate())
-                && otherMeeting.getTime().equals(getTime());
+                && otherMeeting.getTime().equals(getTime())
+                && otherMeeting.getMembers().equals(getMembers());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(meetingName, date, time);
+        return Objects.hash(meetingName, date, time, members);
     }
 
     @Override
@@ -94,7 +95,9 @@ public class Meeting {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Time: ")
-                .append(getTime());
-        return builder.toString();
+                .append(getTime())
+                .append(" Members: ");
+        getMembers().forEach(member -> builder.append(member.getName() + ", "));
+        return builder.substring(0, builder.length() - 2);
     }
 }
