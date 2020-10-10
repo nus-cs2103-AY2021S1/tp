@@ -154,7 +154,9 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new CalendarBidderId(trimmedbidderId);
-=======
+    }
+    
+    /**
      * trims off any excess white spaces for a given string
      * @param propertyId string to trim
      * @return a string that has no white spaces on the sides
