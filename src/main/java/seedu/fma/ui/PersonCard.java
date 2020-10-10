@@ -34,6 +34,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label reps;
     @FXML
+    private Label cal;
+    @FXML
     private Label comments;
 
     /**
@@ -46,6 +48,7 @@ public class PersonCard extends UiPart<Region> {
         exercise.setText(log.getExercise().getName().value);
         time.setText(log.getPrettyDateTime());
         reps.setText(log.getReps().value);
+        cal.setText(String.valueOf(log.getCalories()));
         comments.setText(log.getComment().value);
     }
 

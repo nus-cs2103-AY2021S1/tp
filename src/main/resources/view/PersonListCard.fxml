@@ -30,6 +30,10 @@
         <Label fx:id="reps" styleClass="cell_small_label" text="\$reps" />
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label styleClass="cell_small_label" text="Cal:"/>
+        <Label fx:id="cal" styleClass="cell_small_label" text="\$cal" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
         <Label styleClass="cell_small_label" text="Comments:"/>
         <Label fx:id="comments" styleClass="cell_small_label" text="\$comments" />
       </HBox>

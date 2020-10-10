@@ -13,9 +13,9 @@ import seedu.fma.model.log.Rep;
 public class SampleDataUtil {
     public static Log[] getSamplePersons() {
         return new Log[] {
-            new Log(new Exercise(new Name("Sit ups"), 30),
+            new Log(Exercise.find(new Name("Sit ups")),
                     new Rep("30"), new Comment("My abs hurt :(")),
-            new Log(new Exercise(new Name("Pull ups"), 20),
+            new Log(Exercise.find(new Name("Pull ups")),
                     new Rep("10"), new Comment("-"))
         };
     }
