@@ -19,6 +19,12 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 14pt;
 }
+
+.cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 15px;
+    -fx-text-fill: #fa47df;
+}
 .cell-big-label {
     -fx-font-family: "Helvetica";
     -fx-font-size: 22pt;
