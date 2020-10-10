@@ -1,20 +1,19 @@
 package com.eva.logic.commands;
 
-import com.eva.logic.commands.exceptions.CommandException;
-import com.eva.model.Model;
-import com.eva.model.person.Person;
-import com.eva.model.person.staff.Staff;
-
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
-public class AddStaffCommand extends Command{
-    public static final String COMMAND_WORD = "addstaff" ;
+import com.eva.logic.commands.exceptions.CommandException;
+import com.eva.model.Model;
+import com.eva.model.person.staff.Staff;
+
+
+public class AddStaffCommand extends Command {
+    public static final String COMMAND_WORD = "addstaff";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to Eva. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -33,6 +32,7 @@ public class AddStaffCommand extends Command{
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff already exists in the address book";
 
     private final Staff toAdd;
+
     /**
      * Creates an AddCommand to add the specified {@code Staff}
      */

@@ -1,5 +1,7 @@
 package com.eva.model.person.staff;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +15,6 @@ import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.person.staff.leave.LeaveBalance;
 import com.eva.model.tag.Tag;
 
-import static java.util.Objects.requireNonNull;
 
 public class Staff extends Person {
     /**
