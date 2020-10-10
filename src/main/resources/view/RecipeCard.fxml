@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <Label fx:id="name" styleClass="cell_big_label"/>
-</HBox>
+<StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="96.0">
+      <graphic>
+         <Label fx:id="name" styleClass="recipe_name_label" text="\$name" />
+      </graphic></Button>
+</StackPane>

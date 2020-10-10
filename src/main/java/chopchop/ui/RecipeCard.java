@@ -11,6 +11,9 @@ import seedu.address.ui.PersonCard;
  * An UI component that displays information of a {@code Recipe}.
  */
 public class RecipeCard extends UiPart<Region> {
+
+    private static final String FXML = "RecipeCard.fxml";
+
     public final Recipe recipe;
 
     @FXML
@@ -33,12 +36,10 @@ public class RecipeCard extends UiPart<Region> {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof RecipeCard)) {
             return false;
         }
-
         // state check
         RecipeCard card = (RecipeCard) other;
         return recipe.equals(card.recipe);
