@@ -37,12 +37,12 @@ public class SampleDataUtil {
 
     public static Bid[] getSampleBids() {
         return new Bid[] {
-                new Bid("P01", "B01", 45000),
-                new Bid("P02", "B23", 123456),
-                new Bid("P31", "B11", 42344),
-                new Bid("P01", "B02", 45100),
-                new Bid("P01", "B45", 65000),
-                new Bid("P12", "B22", 450002),
+            new Bid("P01", "B01", 45000),
+            new Bid("P02", "B23", 123456),
+            new Bid("P31", "B11", 42344),
+            new Bid("P01", "B02", 45100),
+            new Bid("P01", "B45", 65000),
+            new Bid("P12", "B22", 450002),
         };
     }
 

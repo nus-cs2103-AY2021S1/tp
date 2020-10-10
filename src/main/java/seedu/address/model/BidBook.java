@@ -7,8 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.UniqueBidList;
-import seedu.address.model.person.Person;
-
 
 public class BidBook implements ReadOnlyBidBook {
 
@@ -38,6 +36,11 @@ public class BidBook implements ReadOnlyBidBook {
         listOfBids.add(b);
     }
 
+    /**
+     * checks if the listOfBods contains the specified bid
+     * @param bid bid to be compared to the list
+     * @return boolean value if the bid is in the list
+     */
     public boolean hasBid(Bid bid) {
         requireNonNull(bid);
         return listOfBids.contains(bid);

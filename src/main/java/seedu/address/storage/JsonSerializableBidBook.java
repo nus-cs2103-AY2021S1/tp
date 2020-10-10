@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.BidBook;
 import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.bid.Bid;
-import seedu.address.model.person.Person;
 
 /**
  * An Immutable BidBook that is serializable to JSON format.
@@ -49,7 +48,6 @@ class JsonSerializableBidBook {
     public BidBook toModelType() throws IllegalValueException {
         BidBook bidBook = new BidBook();
         for (JsonAdaptedBid jsonAdaptedBid : bids) {
-           // Person person = jsonAdaptedPerson.toModelType();
             Bid bid = jsonAdaptedBid.toModelType();
             if (bidBook.hasBid(bid)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BID);
