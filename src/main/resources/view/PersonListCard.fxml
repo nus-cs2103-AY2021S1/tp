@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -26,9 +21,18 @@
         </Label>
         <Label fx:id="exercise" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
-      <Label fx:id="reps" styleClass="cell_small_label" text="\$reps" />
-      <Label fx:id="comments" styleClass="cell_small_label" text="\$comments" />
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label styleClass="cell_small_label" text="Time:"/>
+        <Label fx:id="time" styleClass="cell_small_label" text="\$time"/>
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label styleClass="cell_small_label" text="Reps:"/>
+        <Label fx:id="reps" styleClass="cell_small_label" text="\$reps" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label styleClass="cell_small_label" text="Comments:"/>
+        <Label fx:id="comments" styleClass="cell_small_label" text="\$comments" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
