@@ -56,8 +56,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
+        String untagCommand = "untag 9";
+        assertCommandException(untagCommand, MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
