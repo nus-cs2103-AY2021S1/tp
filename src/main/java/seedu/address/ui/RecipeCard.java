@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-//import java.util.Comparator;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,8 +10,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.recipe.Recipe;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
