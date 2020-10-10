@@ -32,19 +32,26 @@ import seedu.address.model.recipe.Recipe;
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
  */
 public class TypicalRecipes {
-    public static final Recipe ALICE = new RecipeBuilder().withName("Alice Pauline").withIngredient(VALID_INGREDIENT_ALICE, VALID_QUANTITY_ALICE)
+    public static final Recipe ALICE = new RecipeBuilder().withName("Alice Pauline")
+            .withIngredient(VALID_INGREDIENT_ALICE, VALID_QUANTITY_ALICE)
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
-    public static final Recipe BENSON = new RecipeBuilder().withName("Benson Meier").withIngredient("98765432", "1 cup")
+    public static final Recipe BENSON = new RecipeBuilder().withName("Benson Meier")
+            .withIngredient("98765432", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
-    public static final Recipe CARL = new RecipeBuilder().withName("Carl Kurz").withIngredient("95352563", "1 cup")
+    public static final Recipe CARL = new RecipeBuilder().withName("Carl Kurz")
+            .withIngredient("95352563", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
-    public static final Recipe DANIEL = new RecipeBuilder().withName("Daniel Meier").withIngredient("87652533", "1 cup")
+    public static final Recipe DANIEL = new RecipeBuilder().withName("Daniel Meier")
+            .withIngredient("87652533", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
-    public static final Recipe ELLE = new RecipeBuilder().withName("Elle Meyer").withIngredient("9482224", "1 cup")
+    public static final Recipe ELLE = new RecipeBuilder().withName("Elle Meyer")
+            .withIngredient("9482224", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
-    public static final Recipe FIONA = new RecipeBuilder().withName("Fiona Kunz").withIngredient("9482427", "1 cup")
+    public static final Recipe FIONA = new RecipeBuilder().withName("Fiona Kunz")
+            .withIngredient("9482427", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
-    public static final Recipe GEORGE = new RecipeBuilder().withName("George Best").withIngredient("9482442", "1 cup")
+    public static final Recipe GEORGE = new RecipeBuilder().withName("George Best")
+            .withIngredient("9482442", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
 
     // Manually added
