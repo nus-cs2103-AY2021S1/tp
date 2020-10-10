@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Amount should be of format Dollar.Cents and adhere "
             + "to the following constrants: \n"
-            + "1. The Dollars part should be all numbers and should not start with the digit 0.\n"
+            + "1. The Dollars part should be all numbers and should not start with the digit 0\n"
             + "2. The . between Dollars and Cents is optional"
             + "3. The Cents part should be all numbers and can only contain 0-2 digits";
     public static final String VALIDATION_REGEX = "(^[1-9][0-9]*(\\.?[0-9]?[0-9]?)|^\\.[1-9][0-9]?|^\\.[0-9][1-9])";

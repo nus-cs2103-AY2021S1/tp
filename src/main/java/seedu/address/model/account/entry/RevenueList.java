@@ -11,16 +11,16 @@ import javafx.collections.ObservableList;
 import seedu.address.model.account.entry.exceptions.EntryNotFoundException;
 
 /**
- * A list that stores the profit entries.
+ * A list that stores the revenue entries.
  * Supports a minimal set of list operations.
  */
-public class ProfitList implements Iterable<Profit> {
-    private final ObservableList<Profit> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Profit> internalUnmodifiableList =
+public class RevenueList implements Iterable<Revenue> {
+    private final ObservableList<Revenue> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Revenue> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent profit as the given argument.
+     * Returns true if the list contains an equivalent revenue as the given argument.
      */
     public boolean contains(Entry toCheck) {
         requireNonNull(toCheck);
@@ -28,69 +28,69 @@ public class ProfitList implements Iterable<Profit> {
     }
 
     /**
-     * Adds a profit to the list.
+     * Adds a revenue to the list.
      */
-    public void add(Profit toAdd) {
+    public void add(Revenue toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the profit {@code target} in the list with {@code editedProfit}.
+     * Replaces the revenue {@code target} in the list with {@code editedRevenue}.
      * {@code target} must exist in the list.
      */
-    public void setProfit(Profit target, Profit editedProfit) {
-        requireAllNonNull(target, editedProfit);
+    public void setRevenue(Revenue target, Revenue editedRevenue) {
+        requireAllNonNull(target, editedRevenue);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new EntryNotFoundException();
         }
 
-        internalList.set(index, editedProfit);
+        internalList.set(index, editedRevenue);
     }
 
     /**
-     * Removes the equivalent profit from the list.
-     * The profit entry must exist in the list.
+     * Removes the equivalent revenue from the list.
+     * The revenue entry must exist in the list.
      */
-    public void remove(Profit toRemove) {
+    public void remove(Revenue toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
         }
     }
 
-    public void setProfits(ProfitList replacement) {
+    public void setRevenues(RevenueList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code profits}.
+     * Replaces the contents of this list with {@code revenues}.
      */
-    public void setProfits(List<Profit> profits) {
-        requireAllNonNull(profits);
-        internalList.setAll(profits);
+    public void setRevenues(List<Revenue> revenues) {
+        requireAllNonNull(revenues);
+        internalList.setAll(revenues);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Profit> asUnmodifiableObservableList() {
+    public ObservableList<Revenue> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Profit> iterator() {
+    public Iterator<Revenue> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProfitList // instanceof handles nulls
-                && internalList.equals(((ProfitList) other).internalList));
+                || (other instanceof RevenueList // instanceof handles nulls
+                && internalList.equals(((RevenueList) other).internalList));
     }
 
     @Override
