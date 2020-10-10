@@ -16,7 +16,8 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
-
+    private final String instruction;
+    private final String recipeImage;
     // Data fields
     private final ArrayList<Ingredient> ingredients;
     private final Calories calories;
@@ -24,15 +25,26 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, ArrayList<Ingredient> ingredients, Calories calories) {
+    public Recipe(Name name, String instruction, String recipeImage,
+                  ArrayList<Ingredient> ingredients, Calories calories) {
         requireAllNonNull(name, ingredients, calories);
         this.name = name;
+        this.instruction = instruction;
+        this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public String getRecipeImage() {
+        return recipeImage;
     }
 
     public ArrayList<Ingredient> getIngredient() {
@@ -54,6 +66,8 @@ public class Recipe {
 
         return otherRecipe != null
                 && otherRecipe.getName().equals(getName())
+                && otherRecipe.getInstruction().equals(getInstruction())
+                && otherRecipe.getRecipeImage().equals(getRecipeImage())
                 && (otherRecipe.getIngredient().equals(getIngredient()))
                 && otherRecipe.getCalories().equals(getCalories());
     }
@@ -74,6 +88,8 @@ public class Recipe {
 
         Recipe otherRecipe = (Recipe) other;
         return otherRecipe.getName().equals(getName())
+                && otherRecipe.getInstruction().equals(getInstruction())
+                && otherRecipe.getRecipeImage().equals(getRecipeImage())
                 && otherRecipe.getIngredient().equals(getIngredient())
                 && otherRecipe.getCalories().equals(getCalories());
     }
@@ -81,7 +97,7 @@ public class Recipe {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, ingredients, calories);
+        return Objects.hash(name, instruction, recipeImage, ingredients, calories);
     }
 
     @Override
@@ -93,7 +109,9 @@ public class Recipe {
                         .map(item -> item.getValue())
                         .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
                 .append(" Calories: ")
-                .append(getCalories() + " cal");
+                .append(getCalories() + " cal")
+                .append(" Instructions: ")
+                .append(getInstruction());
         return builder.toString();
     }
 

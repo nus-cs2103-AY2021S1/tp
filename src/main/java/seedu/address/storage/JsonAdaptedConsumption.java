@@ -16,6 +16,8 @@ public class JsonAdaptedConsumption {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Consumption's %s field is missing!";
 
     private final String name;
+    private final String instruction;
+    private final String recipeImage;
     private final ArrayList<Ingredient> ingredients;
     private final Integer calories;
 
@@ -24,9 +26,13 @@ public class JsonAdaptedConsumption {
      */
     @JsonCreator
     public JsonAdaptedConsumption(@JsonProperty("name") String name,
+                             @JsonProperty("instruction") String instruction,
+                             @JsonProperty("recipeImage") String recipeImage,
                              @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
                              @JsonProperty("calories") Integer calories) {
         this.name = name;
+        this.instruction = instruction;
+        this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
     }
@@ -36,6 +42,8 @@ public class JsonAdaptedConsumption {
      */
     public JsonAdaptedConsumption(Recipe source) {
         name = source.getName().fullName;
+        instruction = source.getInstruction();
+        recipeImage = source.getRecipeImage();
         ingredients = source.getIngredient();
         calories = source.getCalories().value;
     }
@@ -54,6 +62,18 @@ public class JsonAdaptedConsumption {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (instruction == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    String.class.getSimpleName()));
+        }
+        final String modelInstruction = instruction;
+
+        if (recipeImage == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    String.class.getSimpleName()));
+        }
+        final String modelRecipeImage = recipeImage;
 
         if (ingredients == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -75,6 +95,7 @@ public class JsonAdaptedConsumption {
         }
         final Calories modelCalories = new Calories(calories);
 
-        return new Consumption(new Recipe(modelName, modelIngredients, modelCalories));
+        return new Consumption(new Recipe(modelName, modelInstruction, modelRecipeImage,
+                modelIngredients, modelCalories));
     }
 }
