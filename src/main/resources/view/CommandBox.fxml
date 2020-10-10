@@ -8,8 +8,10 @@
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="40" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <TextField fx:id="commandTextField" minWidth="645" maxWidth="-Infinity" onAction="#handleCommandEntered" promptText="How can I assist you?" HBox.hgrow="ALWAYS"/>
-    <Button fx:id="enterButton" prefHeight="40" alignment="CENTER_RIGHT" onAction="#handleCommandEntered" text="ENTER" HBox.hgrow="NEVER"/>
+    <TextField fx:id="commandTextField" minWidth="645" maxWidth="-Infinity" onAction="#handleCommandEntered"
+               promptText="How can I assist you?" HBox.hgrow="ALWAYS"/>
+    <Button fx:id="enterButton" prefHeight="40" alignment="CENTER_RIGHT" onAction="#handleCommandEntered"
+            text="ENTER" HBox.hgrow="NEVER" styleClass="button"/>
   </children>
 
 </HBox>
