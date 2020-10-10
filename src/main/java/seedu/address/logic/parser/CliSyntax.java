@@ -13,4 +13,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_CLIENT = new Prefix("c/");
     public static final Prefix PREFIX_MONEY = new Prefix("m/");
 
+    /* Calendar Prefix definitions */
+    public static final Prefix PREFIX_CALENDAR_VENUE = new Prefix("v/");
+    public static final Prefix PREFIX_CALENDAR_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_CALENDAR_PROPERTY_ID = new Prefix("pID/");
+    public static final Prefix PREFIX_CALENDAR_BIDDER_ID = new Prefix("bID/");
+
 }
