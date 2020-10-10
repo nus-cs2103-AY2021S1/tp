@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -25,6 +26,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
+import seedu.address.model.tag.ColorTag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -39,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ICNUMBER,
-                        PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_SEX, PREFIX_BLOODTYPE, PREFIX_ALLERGY);
+                        PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_SEX, PREFIX_BLOODTYPE, PREFIX_ALLERGY, PREFIX_COLORTAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ICNUMBER,
                 PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_SEX, PREFIX_BLOODTYPE)
@@ -56,9 +58,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
         Set<Allergy> allergyList = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
+        ColorTag colorTag = ParserUtil.parseColorTag(argMultimap.getValue(PREFIX_COLORTAG).orElse(""));
 
         Patient patient = new Patient(name, phone, icNumber, address, email, profilePicture,
-                sex, bloodType, allergyList);
+                sex, bloodType, allergyList, colorTag);
 
         return new AddCommand(patient);
     }

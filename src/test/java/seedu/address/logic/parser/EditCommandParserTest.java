@@ -7,12 +7,14 @@ import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.BLOODTYPE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.BLOODTYPE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.COLORTAG_DESC_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ICNUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BLOODTYPE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COLORTAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ICNUMBER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -24,10 +26,11 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SEX_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_ASPIRIN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COLORTAG_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ICNUMBER_AMY;
@@ -55,6 +58,7 @@ import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Sex;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -105,6 +109,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_BLOODTYPE_DESC,
                 BloodType.MESSAGE_CONSTRAINTS); // invalid blood type
         assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, Allergy.MESSAGE_CONSTRAINTS); // invalid allergy
+        assertParseFailure(parser, "1" + INVALID_COLORTAG_DESC, ColorTag.MESSAGE_CONSTRAINTS); // invalid colorTag
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -131,14 +136,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PATIENT;
+
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + ALLERGY_DESC_BOB
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + ALLERGY_DESC_AMY
-                + SEX_DESC_AMY + ICNUMBER_DESC_AMY + BLOODTYPE_DESC_BOB;
+                + SEX_DESC_AMY + ICNUMBER_DESC_AMY + BLOODTYPE_DESC_BOB + COLORTAG_DESC_ORANGE;
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withIcNumber(VALID_ICNUMBER_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withEmail(VALID_EMAIL_AMY).withSex(VALID_SEX_AMY).withBloodType(VALID_BLOODTYPE_BOB)
-                .withAllergies(VALID_ALLERGY_AMY, VALID_ALLERGY_BOB).build();
+                .withAllergies(VALID_ALLERGY_ASPIRIN, VALID_ALLERGY_PENICILLIN).withColorTag(VALID_COLORTAG_ORANGE)
+                .build();
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -203,7 +211,7 @@ public class EditCommandParserTest {
 
         // allergies
         userInput = targetIndex.getOneBased() + ALLERGY_DESC_BOB;
-        descriptor = new EditPatientDescriptorBuilder().withAllergies(VALID_ALLERGY_BOB).build();
+        descriptor = new EditPatientDescriptorBuilder().withAllergies(VALID_ALLERGY_PENICILLIN).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -218,7 +226,7 @@ public class EditCommandParserTest {
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withAllergies(VALID_ALLERGY_AMY, VALID_ALLERGY_BOB)
+                .withAllergies(VALID_ALLERGY_ASPIRIN, VALID_ALLERGY_PENICILLIN)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

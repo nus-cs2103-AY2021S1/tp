@@ -17,6 +17,7 @@ import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Sex;
+import seedu.address.model.tag.ColorTag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -168,5 +169,24 @@ public class ParserUtil {
             allergySet.add(parseAllergy(allergyName));
         }
         return allergySet;
+    }
+
+    /**
+     * Parses a {@code String colorTag} into a {@code ColorTag}.
+     *
+     * @throws ParseException if the given {@code ColorTag} is invalid.
+     */
+    public static ColorTag parseColorTag(String colorTag) throws ParseException {
+        requireNonNull(colorTag);
+        String trimmedColorTag = colorTag.trim();
+
+        if (trimmedColorTag.equals("")) {
+            return new ColorTag();
+        }
+
+        if (!ColorTag.isValidColorName(colorTag)) {
+            throw new ParseException(ColorTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ColorTag(trimmedColorTag);
     }
 }

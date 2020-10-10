@@ -15,7 +15,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
-
+import seedu.address.model.tag.ColorTag;
 /**
  * A utility class to help with building EditPatientDescriptor objects.
  */
@@ -78,6 +78,7 @@ public class EditPatientDescriptorBuilder {
         return this;
     }
 
+
     /**
      * Sets the {@code Email} of the {@code EditPatientDescriptor} that we are building.
      */
@@ -118,6 +119,15 @@ public class EditPatientDescriptorBuilder {
     public EditPatientDescriptorBuilder withAllergies(String... allergies) {
         Set<Allergy> allergySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
         descriptor.setAllergies(allergySet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ColorTag} of the {@code EditPatientDescriptor} that we're building.
+     */
+    public EditPatientDescriptorBuilder withColorTag(String colorName) {
+        ColorTag colorTag = new ColorTag(colorName);
+        descriptor.setColorTag(colorTag);
         return this;
     }
 

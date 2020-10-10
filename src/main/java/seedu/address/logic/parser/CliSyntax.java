@@ -15,5 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_SEX = new Prefix("s/");
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("b/");
     public static final Prefix PREFIX_ALLERGY = new Prefix("g/");
-
+    public static final Prefix PREFIX_COLORTAG = new Prefix("ct/");
 }

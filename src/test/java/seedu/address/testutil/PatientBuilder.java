@@ -13,6 +13,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -38,6 +39,7 @@ public class PatientBuilder {
     private Sex sex;
     private BloodType bloodType;
     private Set<Allergy> allergies;
+    private ColorTag colorTag;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -52,6 +54,7 @@ public class PatientBuilder {
         sex = new Sex(DEFAULT_SEX);
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
+        colorTag = new ColorTag();
     }
 
     /**
@@ -67,6 +70,7 @@ public class PatientBuilder {
         sex = patientToCopy.getSex();
         bloodType = patientToCopy.getBloodType();
         allergies = new HashSet<>(patientToCopy.getAllergies());
+        colorTag = patientToCopy.getColorTag();
     }
 
     /**
@@ -142,11 +146,19 @@ public class PatientBuilder {
     }
 
     /**
+     * Sets the {@code ColorTag} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withColorTag(String colorTag) {
+        this.colorTag = new ColorTag(colorTag);
+        return this;
+    }
+
+    /**
      * Builds {@code Patient} with the given fields.
      */
     public Patient build() {
         return new Patient(name, phone, icNumber, address, email, profilePicture,
-                sex, bloodType, allergies);
+                sex, bloodType, allergies, colorTag);
     }
 
 }

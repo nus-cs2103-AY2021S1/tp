@@ -147,6 +147,41 @@ public class AddCommandTest {
         public void updateFilteredPatientList(Predicate<Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitCliniCal(String command) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoCliniCal() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoCliniCal() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getUndoCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getRedoCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoCliniCal() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoCliniCal() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -188,6 +223,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyCliniCal getCliniCal() {
             return new CliniCal();
+        }
+
+        @Override
+        public void commitCliniCal(String command) {
+            // Called by AddCommand#execute
         }
     }
 

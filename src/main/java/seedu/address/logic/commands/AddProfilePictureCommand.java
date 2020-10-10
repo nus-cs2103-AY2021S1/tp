@@ -62,7 +62,7 @@ public class AddProfilePictureCommand extends Command {
         Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(),
                 patientToEdit.getIcNumber(), patientToEdit.getAddress(), patientToEdit.getEmail(), profilePicture,
                 patientToEdit.getSex(), patientToEdit.getBloodType(),
-                patientToEdit.getAllergies());
+                patientToEdit.getAllergies(), patientToEdit.getColorTag());
 
         model.setPatient(patientToEdit, patientEdited);
 
@@ -70,6 +70,7 @@ public class AddProfilePictureCommand extends Command {
         String editedPersonName = editedPersonNameObject.toString();
         CommandResult commandResult = new CommandResult(String.format(MESSAGE_ADD_PROFILE_PICTURE_SUCCESS,
                 editedPersonName));
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, editedPersonName));
         return commandResult;
     }
 }

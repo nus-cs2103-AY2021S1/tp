@@ -20,6 +20,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
+import seedu.address.model.tag.ColorTag;
 
 /**
  * Jackson-friendly version of {@link Patient}.
@@ -37,6 +38,7 @@ class JsonAdaptedPatient {
     private final String sex;
     private final String bloodType;
     private final List<JsonAdaptedAllergy> tagged = new ArrayList<>();
+    private final String color;
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -50,7 +52,8 @@ class JsonAdaptedPatient {
                               @JsonProperty("profilePicture") String profilePicture,
                               @JsonProperty("sex") String sex,
                               @JsonProperty("bloodType") String bloodType,
-                              @JsonProperty("tagged") List<JsonAdaptedAllergy> tagged) {
+                              @JsonProperty("tagged") List<JsonAdaptedAllergy> tagged,
+                              @JsonProperty("color") String color) {
         this.name = name;
         this.phone = phone;
         this.icNumber = icNumber;
@@ -62,6 +65,7 @@ class JsonAdaptedPatient {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.color = color;
     }
 
     /**
@@ -79,6 +83,7 @@ class JsonAdaptedPatient {
         tagged.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
+        color = source.getColorTag().originalColor;
     }
 
     /**
@@ -137,7 +142,6 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProfilePicture.class.getSimpleName()));
         }
-
         if (!ProfilePicture.isValidFilePath(profilePicture)) {
             throw new IllegalValueException(ProfilePicture.MESSAGE_CONSTRAINTS);
         }
@@ -162,8 +166,17 @@ class JsonAdaptedPatient {
 
         final Set<Allergy> modelAllergies = new HashSet<>(patientAllergies);
 
+        if (color == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ColorTag.class.getSimpleName()));
+        }
+        if (!ColorTag.isValidColorName(color)) {
+            throw new IllegalValueException(ColorTag.MESSAGE_CONSTRAINTS);
+        }
+        final ColorTag modelColorTag = new ColorTag(color);
+
         return new Patient(modelName, modelPhone, modelIcNumber, modelAddress, modelEmail, modelProfilePicture,
-                modelSex, modelBloodType, modelAllergies);
+                modelSex, modelBloodType, modelAllergies, modelColorTag);
     }
 
 }

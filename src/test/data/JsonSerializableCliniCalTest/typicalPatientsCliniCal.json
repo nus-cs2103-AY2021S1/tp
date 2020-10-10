@@ -9,7 +9,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "F",
     "bloodType": "A+",
-    "tagged" : [ "aspirin" ]
+    "tagged" : [ "aspirin" ],
+    "color" : "None"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -19,7 +20,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "M",
     "bloodType": "B+",
-    "tagged" : [ "penicillin", "sulfa" ]
+    "tagged" : [ "penicillin", "sulfa" ],
+    "color" : "None"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -29,7 +31,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "M",
     "bloodType": "O+",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "color" : "None"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -39,7 +42,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "M",
     "bloodType": "O+",
-    "tagged" : [ "aspirin" ]
+    "tagged" : [ "aspirin" ],
+    "color" : "None"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -49,7 +53,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "F",
     "bloodType": "AB+",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "color" : "None"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -59,7 +64,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "F",
     "bloodType": "A+",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "color" : "None"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -69,6 +75,7 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "M",
     "bloodType": "B+",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "color" : "None"
   } ]
 }

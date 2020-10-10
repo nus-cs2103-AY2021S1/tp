@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -25,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.BloodType;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
@@ -52,6 +54,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SEX + "SEX] "
             + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
             + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
+            + "[" + PREFIX_COLORTAG + "COLORTAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -93,6 +96,7 @@ public class EditCommand extends Command {
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, editedPatient));
         return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
     }
 
@@ -113,10 +117,10 @@ public class EditCommand extends Command {
         Sex updatedSex = editPatientDescriptor.getSex().orElse(patientToEdit.getSex());
         BloodType updatedBloodtype = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergies());
-
+        ColorTag updatedColorTag = editPatientDescriptor.getColorTag().orElse(patientToEdit.getColorTag());
         return new Patient(updatedName, updatedPhone, updatedIcNumber,
                 updatedAddress, updatedEmail, updatedProfilePicture,
-                updatedSex, updatedBloodtype, updatedAllergies);
+                updatedSex, updatedBloodtype, updatedAllergies, updatedColorTag);
     }
 
     @Override
@@ -151,6 +155,7 @@ public class EditCommand extends Command {
         private Sex sex;
         private BloodType bloodType;
         private Set<Allergy> allergies;
+        private ColorTag colorTag;
 
         public EditPatientDescriptor() {}
 
@@ -168,13 +173,15 @@ public class EditCommand extends Command {
             setSex(toCopy.sex);
             setBloodType(toCopy.bloodType);
             setAllergies(toCopy.allergies);
+            setColorTag(toCopy.colorTag);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, icNumber, address, email, sex, bloodType, allergies);
+            return CollectionUtil.isAnyNonNull(name, phone, icNumber, address, email, sex, bloodType,
+                    allergies, colorTag);
         }
 
         public void setName(Name name) {
@@ -258,6 +265,14 @@ public class EditCommand extends Command {
             return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
         }
 
+        public void setColorTag(ColorTag colorTag) {
+            this.colorTag = colorTag;
+        }
+
+        public Optional<ColorTag> getColorTag() {
+            return Optional.ofNullable(colorTag);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -281,7 +296,8 @@ public class EditCommand extends Command {
                     && getProfilePicture().equals(e.getProfilePicture())
                     && getSex().equals(e.getSex())
                     && getBloodType().equals(e.getBloodType())
-                    && getAllergies().equals(e.getAllergies());
+                    && getAllergies().equals(e.getAllergies())
+                    && getColorTag().equals(e.getColorTag());
         }
     }
 }

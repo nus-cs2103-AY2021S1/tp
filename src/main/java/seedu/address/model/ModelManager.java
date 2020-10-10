@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final CliniCal cliniCal;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
+    private final VersionedCliniCal versionedCliniCal;
 
     /**
      * Initializes a ModelManager with the given cliniCal and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.cliniCal.getPatientList());
+        this.versionedCliniCal = new VersionedCliniCal(this.cliniCal);
     }
 
     public ModelManager() {
@@ -110,6 +112,43 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPatient);
 
         cliniCal.setPatient(target, editedPatient);
+    }
+
+    //=========== Undo/Redo ===============================================================================
+
+    @Override
+    public void commitCliniCal(String command) {
+        versionedCliniCal.commit(cliniCal, command);
+    }
+
+    @Override
+    public boolean canUndoCliniCal() {
+        return versionedCliniCal.canUndoCliniCal();
+    }
+
+    @Override
+    public void undoCliniCal() {
+        versionedCliniCal.undo();
+    }
+
+    @Override
+    public String getUndoCommand() {
+        return versionedCliniCal.getUndoCommand();
+    }
+
+    @Override
+    public boolean canRedoCliniCal() {
+        return versionedCliniCal.canRedoCliniCal();
+    }
+
+    @Override
+    public void redoCliniCal() {
+        versionedCliniCal.redo();
+    }
+
+    @Override
+    public String getRedoCommand() {
+        return versionedCliniCal.getRedoCommand();
     }
 
     //=========== Filtered Patient List Accessors =============================================================

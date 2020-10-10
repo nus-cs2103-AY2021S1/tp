@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CliniCal;
@@ -46,8 +48,10 @@ public class CommandTestUtil {
     public static final String VALID_SEX_BOB = "M";
     public static final String VALID_BLOODTYPE_AMY = "A+";
     public static final String VALID_BLOODTYPE_BOB = "B+";
-    public static final String VALID_ALLERGY_AMY = "aspirin";
-    public static final String VALID_ALLERGY_BOB = "penicillin";
+    public static final String VALID_ALLERGY_ASPIRIN = "aspirin";
+    public static final String VALID_ALLERGY_PENICILLIN = "penicillin";
+    public static final String VALID_COLORTAG_ORANGE = "orange";
+    public static final String VALID_COLORTAG_RED = "red";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -65,9 +69,10 @@ public class CommandTestUtil {
     public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_SEX_BOB;
     public static final String BLOODTYPE_DESC_AMY = " " + PREFIX_BLOODTYPE + VALID_BLOODTYPE_AMY;
     public static final String BLOODTYPE_DESC_BOB = " " + PREFIX_BLOODTYPE + VALID_BLOODTYPE_BOB;
-    public static final String ALLERGY_DESC_AMY = " " + PREFIX_ALLERGY + VALID_ALLERGY_AMY;
-    public static final String ALLERGY_DESC_BOB = " " + PREFIX_ALLERGY + VALID_ALLERGY_BOB;
-
+    public static final String ALLERGY_DESC_AMY = " " + PREFIX_ALLERGY + VALID_ALLERGY_ASPIRIN;
+    public static final String ALLERGY_DESC_BOB = " " + PREFIX_ALLERGY + VALID_ALLERGY_PENICILLIN;
+    public static final String COLORTAG_DESC_ORANGE = " " + PREFIX_COLORTAG + VALID_COLORTAG_ORANGE;
+    public static final String COLORTAG_DESC_RED = " " + PREFIX_COLORTAG + VALID_COLORTAG_RED;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -81,6 +86,7 @@ public class CommandTestUtil {
             + "penicillin*"; // '*' not allowed in allergies
 
     public static final String INVALID_PROFILE_PICTURE_AMY = "data/nosuchpictureexists.png";
+    public static final String INVALID_COLORTAG_DESC = " " + PREFIX_COLORTAG + "gibberish"; // non-color name
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -92,12 +98,12 @@ public class CommandTestUtil {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                 .withIcNumber(VALID_ICNUMBER_AMY).withAddress(VALID_ADDRESS_AMY).withEmail(VALID_EMAIL_AMY)
                 .withProfilePicture(VALID_PROFILE_PICTURE_AMY).withSex(VALID_SEX_AMY).withBloodType(VALID_BLOODTYPE_AMY)
-                .withAllergies(VALID_ALLERGY_AMY)
+                .withAllergies(VALID_ALLERGY_ASPIRIN)
                 .build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withIcNumber(VALID_ICNUMBER_BOB).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
                 .withProfilePicture(VALID_PROFILE_PICTURE_BOB).withSex(VALID_SEX_BOB).withBloodType(VALID_BLOODTYPE_BOB)
-                .withAllergies(VALID_ALLERGY_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN)
                 .build();
     }
 
@@ -155,6 +161,18 @@ public class CommandTestUtil {
         model.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPatientList().size());
+    }
+
+    /**
+     * Deletes the last patient in {@code model}'s filtered list from {@code model}'s CliniCal.
+     */
+    public static void deleteLastPatient(Model model) {
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        Index lastPatientIndex = Index.fromZeroBased(listOfPatients.size() - 1);
+        Patient lastPatient = listOfPatients.get(lastPatientIndex.getZeroBased());
+        model.deletePatient(lastPatient);
+        String deleteLastInput = "delete" + lastPatientIndex.getOneBased();
+        model.commitCliniCal(deleteLastInput);
     }
 
 }

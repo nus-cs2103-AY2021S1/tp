@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ICNUMBER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ALLERGY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BLOODTYPE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COLORTAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ICNUMBER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -28,8 +29,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SEX_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SEX_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_ASPIRIN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ICNUMBER_BOB;
@@ -53,6 +54,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Sex;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandParserTest {
@@ -60,7 +62,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Patient expectedPatient = new PatientBuilder(BOB).withAllergies(VALID_ALLERGY_BOB).build();
+        Patient expectedPatient = new PatientBuilder(BOB).withAllergies(VALID_ALLERGY_PENICILLIN).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB
@@ -104,7 +106,7 @@ public class AddCommandParserTest {
 
         // multiple allergies - all accepted
         Patient expectedPatientMultipleAllergies = new PatientBuilder(BOB)
-                .withAllergies(VALID_ALLERGY_AMY, VALID_ALLERGY_BOB).build();
+                .withAllergies(VALID_ALLERGY_ASPIRIN, VALID_ALLERGY_PENICILLIN).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB
                         + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB + ALLERGY_DESC_AMY + ALLERGY_DESC_BOB,
                 new AddCommand(expectedPatientMultipleAllergies));
@@ -205,6 +207,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB
                 + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB + INVALID_ALLERGY_DESC,
                 Allergy.MESSAGE_CONSTRAINTS);
+
+        // invalid colorTag
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB + INVALID_COLORTAG_DESC,
+                ColorTag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB

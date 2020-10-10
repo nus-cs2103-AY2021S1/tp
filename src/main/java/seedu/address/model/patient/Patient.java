@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.allergy.Allergy;
+import seedu.address.model.tag.ColorTag;
 
 /**
  * Represents a Patient in the CliniCal application.
@@ -27,13 +28,15 @@ public class Patient {
     private final Sex sex;
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
+    private final ColorTag colorTag;
 
     /**
      * Name, phone, and IC number must be present and not null.
      */
     public Patient(Name name, Phone phone, IcNumber icNumber, Address address, Email email,
-                   ProfilePicture profilePicture, Sex sex, BloodType bloodType, Set<Allergy> allergies) {
-        requireAllNonNull(name, phone, icNumber);
+                   ProfilePicture profilePicture, Sex sex, BloodType bloodType,
+                   Set<Allergy> allergies, ColorTag colorTag) {
+        requireAllNonNull(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies, colorTag);
         this.name = name;
         this.phone = phone;
         this.icNumber = icNumber;
@@ -43,6 +46,7 @@ public class Patient {
         this.sex = sex;
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
+        this.colorTag = colorTag;
     }
 
     public Name getName() {
@@ -85,6 +89,10 @@ public class Patient {
         return Collections.unmodifiableSet(allergies);
     }
 
+    public ColorTag getColorTag() {
+        return colorTag;
+    }
+
     /**
      * Returns true if both patients of the same name have the same IC number.
      * This defines a weaker notion of equality between two patients.
@@ -122,13 +130,14 @@ public class Patient {
                 && otherPatient.getProfilePicture().equals(getProfilePicture())
                 && otherPatient.getSex().equals(getSex())
                 && otherPatient.getBloodType().equals(getBloodType())
-                && otherPatient.getAllergies().equals(getAllergies());
+                && otherPatient.getAllergies().equals(getAllergies())
+                && otherPatient.getColorTag().equals(getColorTag());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies);
+        return Objects.hash(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies, colorTag);
     }
 
     @Override
@@ -147,6 +156,8 @@ public class Patient {
                 .append(getSex())
                 .append(" Blood Type: ")
                 .append(getBloodType())
+                .append(" ColorTag: ")
+                .append(getColorTag())
                 .append(" Allergies: ");
         getAllergies().forEach(builder::append);
         return builder.toString();

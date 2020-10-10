@@ -3,7 +3,7 @@ package seedu.address.model.patient;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ICNUMBER_BOB;
@@ -45,7 +45,7 @@ public class PatientTest {
 
         // same name, same ic number, different attributes -> returns true
         editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAllergies(VALID_ALLERGY_BOB).build();
+                .withAllergies(VALID_ALLERGY_PENICILLIN).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
     }
@@ -97,7 +97,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different allergies -> returns false
-        editedAlice = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_BOB).build();
+        editedAlice = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_PENICILLIN).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

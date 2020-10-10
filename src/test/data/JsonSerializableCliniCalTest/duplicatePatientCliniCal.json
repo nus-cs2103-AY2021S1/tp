@@ -17,6 +17,7 @@
     "email": "alice@example.com",
     "profilePicture" : "data/stock_picture.png",
     "sex": "F",
-    "bloodType": "A+"
+    "bloodType": "A+",
+    "color" : "green"
   } ]
 }
