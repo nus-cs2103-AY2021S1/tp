@@ -27,7 +27,7 @@ public class Recipe {
      */
     public Recipe(Name name, String instruction, String recipeImage,
                   ArrayList<Ingredient> ingredients, Calories calories) {
-        requireAllNonNull(name, ingredients, calories);
+        requireAllNonNull(name, ingredients, calories, instruction);
         this.name = name;
         this.instruction = instruction;
         this.recipeImage = recipeImage;

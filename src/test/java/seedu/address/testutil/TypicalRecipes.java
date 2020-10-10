@@ -11,16 +11,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.WishfulShrinking;
-import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Recipe;
+
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 /**
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
@@ -65,18 +65,6 @@ public class TypicalRecipes {
         WishfulShrinking ab = new WishfulShrinking();
         for (Recipe recipe : getTypicalRecipes()) {
             ab.addRecipe(recipe);
-        }
-        return ab;
-    }
-
-    /**
-     * Returns an {@code WishfulShrinking} with all the typical recipes in the consumption list.
-     */
-    public static WishfulShrinking getTypicalWishfulShrinkingConsumption() {
-        WishfulShrinking ab = new WishfulShrinking();
-        for (Recipe recipe : getTypicalRecipes()) {
-            Consumption consumption = new Consumption(recipe);
-            ab.addConsumption(consumption);
         }
         return ab;
     }
