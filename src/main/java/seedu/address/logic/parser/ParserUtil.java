@@ -14,9 +14,6 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.AdditionalDetail;
-import seedu.address.model.student.admin.ClassTime;
-import seedu.address.model.student.admin.Fee;
-import seedu.address.model.student.admin.PaymentDate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

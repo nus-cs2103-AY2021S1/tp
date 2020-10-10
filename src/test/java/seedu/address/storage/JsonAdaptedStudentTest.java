@@ -11,11 +11,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
+import seedu.address.model.student.Year;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_SCHOOL = "Ros#th Primary";
+    private static final String INVALID_YEAR = "F!ck!";
 
     private static final String VALID_NAME = BOB.getName().toString();
     private static final String VALID_PHONE = BOB.getPhone().toString();
@@ -25,7 +27,7 @@ public class JsonAdaptedStudentTest {
     private static final JsonAdaptedAdmin ADMIN_STUB = new JsonAdaptedAdmin(BOB.getAdmin());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validStudentDetails_returnsStudent() throws Exception {
         JsonAdaptedStudent student = new JsonAdaptedStudent(BOB);
         assertEquals(BOB, student.toModelType());
     }
@@ -72,6 +74,21 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullSchool_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, null, VALID_YEAR, ADMIN_STUB);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, School.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidYear_throwsIllegalValueException() {
+        JsonAdaptedStudent student =
+                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, INVALID_YEAR, ADMIN_STUB);
+        String expectedMessage = Year.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullYear_throwsIllegalValueException() {
+        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, null, ADMIN_STUB);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Year.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
