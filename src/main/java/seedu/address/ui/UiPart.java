@@ -7,6 +7,7 @@ import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 
 /**
@@ -56,7 +57,7 @@ public abstract class UiPart<T> {
      * Returns the root object of the scene graph of this UiPart.
      * @return
      */
-    public Node getRoot() {
+    public T getRoot() {
         return fxmlLoader.getRoot();
     }
 

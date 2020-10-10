@@ -35,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     // private PersonListPanel personListPanel;
-    private EntryListPanel entryListPanel;
+
+    // TODO: Change this to EntryListPanel
+    private PersonListPanel entryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -123,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // TODO: change logic.getFilteredList()
-        // entryListPanel = new EntryListPanel(logic.getFilteredPersonList());
+        entryListPanel = new PersonListPanel(logic.getFilteredPersonList());
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -176,7 +178,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public EntryListPanel getEntryListPanel() {
+    public PersonListPanel getEntryListPanel() {
         return entryListPanel;
     }
 
