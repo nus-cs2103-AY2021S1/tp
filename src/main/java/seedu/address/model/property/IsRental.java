@@ -46,7 +46,7 @@ public class IsRental {
      * Returns true if a given string is a valid isRental.
      */
     public static boolean isValidIsRental(String test) {
-        return validStrings.stream().anyMatch(valid -> valid.equals(test.toLowerCase()));
+        return VALID_STRINGS.stream().anyMatch(valid -> valid.equals(test.toLowerCase()));
     }
 
     /** Returns the boolean representation of whether the property is a rental. */
