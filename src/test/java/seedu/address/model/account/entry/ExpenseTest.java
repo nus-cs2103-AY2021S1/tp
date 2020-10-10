@@ -3,9 +3,9 @@ package seedu.address.model.account.entry;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
-
 import static seedu.address.testutil.Assert.assertThrows;
+
+import seedu.address.model.tag.Tag;
 
 import org.junit.jupiter.api.Test;
 
