@@ -29,7 +29,7 @@ public class LogicManager implements Logic {
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs {@code LogicManager}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
