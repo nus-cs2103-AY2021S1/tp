@@ -1,10 +1,12 @@
 package seedu.address.model.account.entry;
 
+import static seedu.address.testutil.Assert.assertThrows;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 
 class ExpenseTest {
