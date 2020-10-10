@@ -30,8 +30,8 @@
         <Label fx:id="reps" styleClass="cell_small_label" text="\$reps" />
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label styleClass="cell_small_label" text="Cal:"/>
-        <Label fx:id="cal" styleClass="cell_small_label" text="\$cal" />
+        <Label styleClass="cell_small_label" text="Calories:"/>
+        <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label styleClass="cell_small_label" text="Comments:"/>
