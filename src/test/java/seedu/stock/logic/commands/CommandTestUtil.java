@@ -1,8 +1,10 @@
 package seedu.stock.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
@@ -40,6 +42,10 @@ public class CommandTestUtil {
     public static final String SOURCE_DESC_BANANA = " " + PREFIX_SOURCE + VALID_SOURCE_BANANA;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String QUANTITY_DESC_BANANA = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String NEW_QUANTITY_DESC_APPLE = " " + PREFIX_NEW_QUANTITY + VALID_QUANTITY_APPLE;
+    public static final String NEW_QUANTITY_DESC_BANANA = " " + PREFIX_NEW_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String INCREMENT_QUANTITY_DESC_APPLE = " " + PREFIX_INCREMENT_QUANTITY + VALID_QUANTITY_APPLE;
+    public static final String INCREMENT_QUANTITY_DESC_BANANA = " " + PREFIX_INCREMENT_QUANTITY + VALID_QUANTITY_BANANA;
     public static final String LOCATION_DESC_APPLE = " " + PREFIX_LOCATION + VALID_LOCATION_APPLE;
     public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
 
@@ -49,6 +55,9 @@ public class CommandTestUtil {
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE; // missing source
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-100"; // negative quantity not allowed
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // '*' not allowed in tags
+    public static final String INVALID_INCREMENT_QUANTITY_DESC = " " + PREFIX_INCREMENT_QUANTITY + "two";
+    public static final String INVALID_NEW_QUANTITY_DESC = " " + PREFIX_NEW_QUANTITY + "-100";
+    public static final String INVALID_NEW_QUANTITY_DESC2 = " " + PREFIX_NEW_QUANTITY + "two";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -89,12 +98,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        StockBook expectedAddressBook = new StockBook(actualModel.getStockBook());
+        StockBook expectedStockBook = new StockBook(actualModel.getStockBook());
         List<Stock> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStockList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getStockBook());
+        assertEquals(expectedStockBook, actualModel.getStockBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredStockList());
     }
-
 }
