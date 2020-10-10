@@ -24,10 +24,10 @@ class JsonSerializableReeve {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given students.
      */
     @JsonCreator
-    public JsonSerializableReeve(@JsonProperty("persons") List<JsonAdaptedStudent> students) {
+    public JsonSerializableReeve(@JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.students.addAll(students);
     }
 

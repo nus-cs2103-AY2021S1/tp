@@ -1,13 +1,15 @@
 {
-  "persons": [ {
+  "students": [ {
     "name": "Hans Muster",
     "phone": "9482424!invalid",
     "school": "NUS High School",
     "year": "Year 6",
-    "classVenue": "4th street",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "He is noisy",
-    "meetingLink": "www.zoom123.com",
-    "subject": "Mathematics"
+    "admin" : {
+      "classVenue": "123, Jurong West Ave 6, #08-111",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": ["Clever"]
+    }
   } ]
 }

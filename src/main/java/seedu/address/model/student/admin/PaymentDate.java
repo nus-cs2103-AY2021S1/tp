@@ -32,7 +32,6 @@ public class PaymentDate {
     public PaymentDate(String lastPaid) {
         requireNonNull(lastPaid);
         checkArgument(isValidDate(lastPaid), MESSAGE_CONSTRAINTS);
-
         this.lastPaid = parse(lastPaid);
     }
 
@@ -55,6 +54,10 @@ public class PaymentDate {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String convertPaymentDateToUserInputString() {
+        return this.lastPaid.format(INPUT_ALT);
     }
 
     @Override

@@ -32,6 +32,13 @@ public class Fee {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Converts a Fee object to a the original user input string
+     */
+    public String convertFeeToUserInputString() {
+        return String.valueOf(amount);
+    }
+
     @Override
     public String toString() {
         return String.format("$%.2f", amount);

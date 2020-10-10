@@ -32,7 +32,7 @@ public class JsonAdaptedAdmin {
     private final List<JsonAdaptedAdditionalDetail> additionalDetails = new ArrayList<>();
 
     /**
-     * Contructs a {@code JsonAdaptedAdmin} with admin details
+     * Constructs a {@code JsonAdaptedAdmin} with admin details
      */
     @JsonCreator
     public JsonAdaptedAdmin(@JsonProperty("classVenue") String classVenue,
@@ -54,9 +54,9 @@ public class JsonAdaptedAdmin {
      */
     public JsonAdaptedAdmin(Admin source) {
         this.classVenue = source.getClassVenue().toString();
-        this.classTime = source.getClassTime().toString();
-        this.fee = source.getFee().toString();
-        this.paymentDate = source.getPaymentDate().toString();
+        this.classTime = source.getClassTime().convertClassTimeToUserInputString();
+        this.fee = source.getFee().convertFeeToUserInputString();
+        this.paymentDate = source.getPaymentDate().convertPaymentDateToUserInputString();
         additionalDetails.addAll(source.getDetails().stream()
                 .map(JsonAdaptedAdditionalDetail::new)
                 .collect(Collectors.toList()));

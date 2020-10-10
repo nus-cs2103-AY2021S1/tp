@@ -16,12 +16,13 @@ import seedu.address.model.student.admin.Admin;
  */
 class JsonAdaptedStudent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String school;
     private final String year;
+    @JsonProperty("admin")
     private final JsonAdaptedAdmin jsonAdaptedAdmin;
 
     /**
@@ -39,7 +40,7 @@ class JsonAdaptedStudent {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
