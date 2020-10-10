@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIALNUMBER_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_BANANA;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
@@ -25,7 +25,7 @@ public class StockTest {
         assertFalse(APPLE.isSameStock(null));
 
         // different serialnumber and source -> returns false
-        Stock editedApple = new StockBuilder(APPLE).withSerialNumber(VALID_SERIALNUMBER_BANANA)
+        Stock editedApple = new StockBuilder(APPLE).withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
                 .withSource(VALID_SOURCE_BANANA).build();
         assertFalse(BANANA.isSameStock(editedApple));
 
@@ -62,7 +62,7 @@ public class StockTest {
         assertFalse(APPLE.equals(editedApple));
 
         // different serial number -> returns false
-        editedApple = new StockBuilder(APPLE).withSerialNumber(VALID_SERIALNUMBER_BANANA).build();
+        editedApple = new StockBuilder(APPLE).withSerialNumber(VALID_SERIAL_NUMBER_BANANA).build();
         assertFalse(APPLE.equals(editedApple));
 
         // different email -> returns false

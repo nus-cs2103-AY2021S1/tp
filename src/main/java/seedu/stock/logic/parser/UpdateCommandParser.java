@@ -8,7 +8,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_SERIALNUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
+                        args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY
                 );
         List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
@@ -48,13 +48,13 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         // If serial number is not provided
-        if (!argMultimap.getValue(PREFIX_SERIALNUMBER).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 
         // Check if there are unallowed duplicate prefixes
         for (Prefix prefix: allPrefixes) {
-            if (argMultimap.getAllValues(prefix).size() >= 2 && !prefix.equals(PREFIX_SERIALNUMBER)) {
+            if (argMultimap.getAllValues(prefix).size() >= 2 && !prefix.equals(PREFIX_SERIAL_NUMBER)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
             }
         }
@@ -68,7 +68,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         UpdateStockDescriptor updateStockDescriptor = new UpdateStockDescriptor();
 
         // Store the serial number provided
-        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIALNUMBER);
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
         ArrayList<SerialNumber> serialNumbers = keywords.stream().map((keyword) -> new SerialNumber(keyword))
                 .collect(Collectors.toCollection(ArrayList::new));
         updateStockDescriptor.setSerialNumbers(serialNumbers);
