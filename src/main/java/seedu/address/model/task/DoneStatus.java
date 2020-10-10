@@ -9,12 +9,18 @@ public class DoneStatus {
 
     public final DoneStatusCode status;
 
+    /**
+     * Creates a new DoneStatus given a status code.
+     */
     public DoneStatus(int statusCode) {
         requireNonNull(statusCode);
         checkArgument(isValidDoneStatus(statusCode), MESSAGE_CONSTRAINTS);
         this.status = DoneStatusCode.getDoneStatusByCode(statusCode);
     }
 
+    /**
+     * Creates a new DoneStatus that defaults to NOT_DONE.
+     */
     public DoneStatus() {
         this.status = DoneStatusCode.NOT_DONE;
     }

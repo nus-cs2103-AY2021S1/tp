@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,15 +8,12 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.TaskManager;
-import seedu.address.model.ReadOnlyTaskManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Event;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.DoneStatus;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;
@@ -66,6 +62,9 @@ public class JsonAdaptedTask {
         this.eventTime = eventTime;
     }
 
+    /**
+     * Converts a given {@code Task} into this class for Jackson use.
+     */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().title;
         description = source.getDescription().value;
@@ -113,7 +112,8 @@ public class JsonAdaptedTask {
         final Title modelTitle = new Title(title);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -121,7 +121,8 @@ public class JsonAdaptedTask {
         final Description modelDesc = new Description(description);
 
         if (priority == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
         }
         if (!Priority.isValidPriority(priority)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
@@ -129,7 +130,8 @@ public class JsonAdaptedTask {
         final Priority modelPriority = new Priority(priority);
 
         if (doneStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DoneStatus.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DoneStatus.class.getSimpleName()));
         }
         if (!DoneStatus.isValidDoneStatus(doneStatus)) {
             throw new IllegalValueException(DoneStatus.MESSAGE_CONSTRAINTS);
@@ -141,7 +143,8 @@ public class JsonAdaptedTask {
         switch (type) {
         case Deadline.TASK_TYPE:
             if (deadlineDate == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDate.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        TaskDate.class.getSimpleName()));
             }
             if (!TaskDate.isValidDate(deadlineDate)) {
                 throw new IllegalValueException(TaskDate.MESSAGE_CONSTRAINTS);
@@ -151,7 +154,8 @@ public class JsonAdaptedTask {
 
         case Event.TASK_TYPE:
             if (eventDate == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDate.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        TaskDate.class.getSimpleName()));
             }
             if (!TaskDate.isValidDate(eventDate)) {
                 throw new IllegalValueException(TaskDate.MESSAGE_CONSTRAINTS);
@@ -159,13 +163,15 @@ public class JsonAdaptedTask {
             final TaskDate modelEventDate = new TaskDate(eventDate);
 
             if (eventTime == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskTime.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        TaskTime.class.getSimpleName()));
             }
             if (!TaskTime.isValidTime(eventTime)) {
                 throw new IllegalValueException(TaskTime.MESSAGE_CONSTRAINTS);
             }
             final TaskTime modelEventTime = new TaskTime(eventTime);
-            return new Event(modelTitle, modelDesc, modelPriority, modelEventDate, modelEventTime, modelStatus, modelTags);
+            return new Event(modelTitle, modelDesc, modelPriority,
+                    modelEventDate, modelEventTime, modelStatus, modelTags);
 
         case ToDo.TASK_TYPE:
             return new ToDo(modelTitle, modelDesc, modelPriority, modelStatus, modelTags);

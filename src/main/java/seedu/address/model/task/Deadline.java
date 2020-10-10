@@ -5,13 +5,14 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     public static final String TASK_TYPE = "DEADLINE";
 
     protected final TaskDate deadlineDate;
 
     /**
+     * Constructor without DoneStatus.
      * Every field must be present and not null.
      */
     public Deadline(Title title, Description description, Priority priority, TaskDate deadlineDate, Set<Tag> tags) {
@@ -19,6 +20,10 @@ public class Deadline extends Task{
         this.deadlineDate = deadlineDate;
     }
 
+    /**
+     * Constructor with DoneStatus.
+     * Every field must be present and not null.
+     */
     public Deadline(Title title, Description description, Priority priority, TaskDate deadlineDate,
                     DoneStatus status, Set<Tag> tags) {
         super(title, description, priority, status, tags);

@@ -5,11 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
-public class TaskManager implements ReadOnlyTaskManager{
+public class TaskManager implements ReadOnlyTaskManager {
 
     private final UniqueTaskList tasks;
 

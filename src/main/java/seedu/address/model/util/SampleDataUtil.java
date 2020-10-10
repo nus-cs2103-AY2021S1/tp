@@ -4,13 +4,12 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.TaskManager;
 import seedu.address.model.ReadOnlyTaskManager;
+import seedu.address.model.TaskManager;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Event;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.DoneStatus;
+import seedu.address.model.task.Event;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDate;

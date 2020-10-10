@@ -22,8 +22,16 @@ import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Title;
 
+/**
+ * Parses input arguments and creates a new AddEventCommand object
+ */
 public class AddEventCommandParser implements Parser<AddEventCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddEventCommand
+     * and returns a AddEventCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_PRIORITY,

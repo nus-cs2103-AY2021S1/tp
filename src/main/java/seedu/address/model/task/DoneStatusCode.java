@@ -8,11 +8,11 @@ public enum DoneStatusCode {
     DONE(1, "Done"),
     OVERDUE(2, "Overdue");
 
-    private final int statusCode;
-    private final String label;
-
     private static final Map<Integer, DoneStatusCode> BY_STATUS_CODE = new HashMap<>();
 
+    private final int statusCode;
+    private final String label;
+    
     static {
         for (DoneStatusCode ds : values()) {
             BY_STATUS_CODE.put(ds.statusCode, ds);

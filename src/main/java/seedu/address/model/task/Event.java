@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
-public class Event extends Task{
+public class Event extends Task {
 
     public static final String TASK_TYPE = "EVENT";
 
@@ -13,6 +13,7 @@ public class Event extends Task{
     protected final TaskTime eventTime;
 
     /**
+     * Constructor without DoneStatus.
      * Every field must be present and not null.
      */
     public Event(Title title, Description description, Priority priority,
@@ -22,6 +23,10 @@ public class Event extends Task{
         this.eventTime = eventTime;
     }
 
+    /**
+     * Constructor with DoneStatus.
+     * Every field must be present and not null.
+     */
     public Event(Title title, Description description, Priority priority,
                  TaskDate eventDate, TaskTime eventTime, DoneStatus status, Set<Tag> tags) {
         super(title, description, priority, status, tags);

@@ -20,8 +20,16 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Title;
 
-public class AddDeadlineCommandParser implements Parser<AddDeadlineCommand>{
+/**
+ * Parses input arguments and creates a new AddDeadlineCommand object
+ * */
+public class AddDeadlineCommandParser implements Parser<AddDeadlineCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddDeadlineCommand
+     * and returns a AddDeadlineCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddDeadlineCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
