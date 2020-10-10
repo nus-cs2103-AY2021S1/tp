@@ -11,5 +11,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
     public static final Prefix PREFIX_TASK_DATE = new Prefix("date/");
     public static final Prefix PREFIX_TASK_TIME = new Prefix("time/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_TAG = new Prefix("tag/");
 }
