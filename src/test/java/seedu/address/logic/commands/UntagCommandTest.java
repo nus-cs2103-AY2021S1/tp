@@ -20,47 +20,47 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code UntagCommand}.
  */
-public class DeleteCommandTest {
+public class UntagCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Tag personToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TAG);
+        Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
+        UntagCommand UntagCommand = new UntagCommand(INDEX_FIRST_TAG);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TAG_SUCCESS, personToDelete);
+        String expectedMessage = String.format(UntagCommand.MESSAGE_UNTAG_TAG_SUCCESS, tagToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTag(personToDelete);
+        expectedModel.deleteTag(tagToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(UntagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTagList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        UntagCommand UntagCommand = new UntagCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
+        assertCommandFailure(UntagCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showTagAtIndex(model, INDEX_FIRST_TAG);
 
-        Tag personToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TAG);
+        Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
+        UntagCommand UntagCommand = new UntagCommand(INDEX_FIRST_TAG);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TAG_SUCCESS, personToDelete);
+        String expectedMessage = String.format(UntagCommand.MESSAGE_UNTAG_TAG_SUCCESS, tagToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTag(personToDelete);
+        expectedModel.deleteTag(tagToDelete);
         showNoTag(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(UntagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,21 +71,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTagList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        UntagCommand UntagCommand = new UntagCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
+        assertCommandFailure(UntagCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_TAG);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_TAG);
+        UntagCommand deleteFirstCommand = new UntagCommand(INDEX_FIRST_TAG);
+        UntagCommand deleteSecondCommand = new UntagCommand(INDEX_SECOND_TAG);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_TAG);
+        UntagCommand deleteFirstCommandCopy = new UntagCommand(INDEX_FIRST_TAG);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
