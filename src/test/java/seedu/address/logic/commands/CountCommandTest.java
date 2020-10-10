@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.testutil.PersonBuilder;
 
 public class CountCommandTest {
 
