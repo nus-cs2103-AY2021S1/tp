@@ -36,4 +36,5 @@ class ExpenseTest {
 
         assertThrows(IllegalArgumentException.class, () -> new Expense(description, new Amount(amount), tags));
     }
+
 }
