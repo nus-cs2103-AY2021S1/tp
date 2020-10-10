@@ -13,20 +13,13 @@ import seedu.address.logic.commands.AddLabelCommand;
 import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonHasTagsAndNamePredicate;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.LabelPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddressBookParserTest {
 
