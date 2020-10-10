@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CliniCal;
@@ -39,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_PROFILE_PICTURE_AMY = "data/stock_picture.png";
     public static final String VALID_PROFILE_PICTURE_BOB = "data/stock_picture.png";
+    public static final String VALID_COLORTAG_ORANGE = "orange";
+    public static final String VALID_COLORTAG_RED = "red";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,6 +56,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PROFILE_PICTURE_DESC_AMY = " " + PREFIX_FILE_PATH + VALID_PROFILE_PICTURE_AMY;
     public static final String PROFILE_PICTURE_DESC_BOB = " " + PREFIX_FILE_PATH + VALID_PROFILE_PICTURE_BOB;
+    public static final String COLORTAG_DESC_ORANGE = " " + PREFIX_COLORTAG + VALID_COLORTAG_ORANGE;
+    public static final String COLORTAG_DESC_RED = " " + PREFIX_COLORTAG + VALID_COLORTAG_RED;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -59,6 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PROFILE_PICTURE_AMY = "data/nosuchpictureexists.png";
+    public static final String INVALID_COLORTAG_DESC = " " + PREFIX_COLORTAG + "gibberish"; // non-color name
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -129,6 +136,18 @@ public class CommandTestUtil {
         model.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPatientList().size());
+    }
+
+    /**
+     * Deletes the last patient in {@code model}'s filtered list from {@code model}'s CliniCal.
+     */
+    public static void deleteLastPatient(Model model) {
+        ObservableList<Patient> listOfPatients = model.getFilteredPatientList();
+        Index lastPatientIndex = Index.fromZeroBased(listOfPatients.size() - 1);
+        Patient lastPatient = listOfPatients.get(lastPatientIndex.getZeroBased());
+        model.deletePatient(lastPatient);
+        String deleteLastInput = "delete" + lastPatientIndex.getOneBased();
+        model.commitCliniCal(deleteLastInput);
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,18 +25,21 @@ public class Patient {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final ColorTag colorTag;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ProfilePicture profilePicture) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ProfilePicture profilePicture,
+                   ColorTag colorTag) {
+        requireAllNonNull(name, phone, email, address, tags, colorTag);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.profilePicture = profilePicture;
+        this.colorTag = colorTag;
     }
 
     public Name getName() {
@@ -64,6 +68,10 @@ public class Patient {
 
     public ProfilePicture getProfilePicture() {
         return profilePicture;
+    }
+
+    public ColorTag getColorTag() {
+        return colorTag;
     }
 
     /**
@@ -100,13 +108,14 @@ public class Patient {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
                 && otherPatient.getTags().equals(getTags())
-                && otherPatient.getProfilePicture().equals(getProfilePicture());
+                && otherPatient.getProfilePicture().equals(getProfilePicture())
+                && otherPatient.getColorTag().equals(getColorTag());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, profilePicture);
+        return Objects.hash(name, phone, email, address, tags, profilePicture, colorTag);
     }
 
     @Override
@@ -119,6 +128,8 @@ public class Patient {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" ColorTag: ")
+                .append(getColorTag())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
