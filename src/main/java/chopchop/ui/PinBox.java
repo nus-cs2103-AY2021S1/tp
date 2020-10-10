@@ -19,6 +19,7 @@ public class PinBox extends UiPart<Region> {
      */
     public PinBox() {
         super(FXML);
-        pins.setText("Favourites");
+        // Have to decide what to do with this real estate uwu
+        pins.setText("Pin");
     }
 }

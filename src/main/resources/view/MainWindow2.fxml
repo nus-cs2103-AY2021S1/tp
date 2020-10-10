@@ -24,7 +24,7 @@
                    </Menu>
                    <Menu mnemonicParsing="false" text="Help">
                      <items>
-                       <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" text="Docs" />
+                       <MenuItem fx:id="helpMenuItem" onAction="#handleHelp" mnemonicParsing="false" text="Docs" />
                      </items>
                    </Menu>
                  </menus>
@@ -51,7 +51,8 @@
                                 </VBox>
                             </graphic>
                            </Button>
-                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                                    onAction="#handleIngredients" styleClass="tab-button" HBox.hgrow="ALWAYS">
                                 <graphic>
                                     <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mouseTransparent="true">
                                         <children>
@@ -66,7 +67,8 @@
                                     </VBox>
                                 </graphic>
                             </Button>
-                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                                    onAction="#handleReommendations" styleClass="tab-button" HBox.hgrow="ALWAYS">
                                 <graphic>
                                     <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mouseTransparent="true">
                                         <children>
@@ -81,7 +83,8 @@
                                     </VBox>
                                 </graphic>
                             </Button>
-                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                                    onAction="#handleFavourites" styleClass="tab-button" HBox.hgrow="ALWAYS">
                                 <graphic>
                                     <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mouseTransparent="true">
                                         <children>

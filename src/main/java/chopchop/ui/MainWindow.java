@@ -114,6 +114,7 @@ public class MainWindow extends UiPart<Stage> {
 
         PinBox pinBox = new PinBox();
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
+
         /*
         RecipeViewPanel recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
         this.recipeViewPanel = recipeViewPanel;
@@ -189,6 +190,24 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleIngredients(ActionEvent event) {
+        clearDisplay();
+        // To add more code.
+    }
+
+    /**
+     * Displays the recommendations panel.
+     */
+    @FXML
+    public void handleRecommendations(ActionEvent event) {
+        clearDisplay();
+        // To add more code.
+    }
+
+    /**
+     * Displays the favourites panel.
+     */
+    @FXML
+    public void handleFavourites(ActionEvent event) {
         clearDisplay();
         // To add more code.
     }
