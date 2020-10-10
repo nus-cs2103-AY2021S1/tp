@@ -12,4 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
+    /* Prefixes for Food */
+    public static final Prefix PREFIX_PRICE = new Prefix("pr/");
+
 }

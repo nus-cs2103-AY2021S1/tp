@@ -55,6 +55,7 @@ public class FoodBuilder {
         return this;
     }
 
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Food} that we are building.
      */
