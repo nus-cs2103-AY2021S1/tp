@@ -1,19 +1,20 @@
 package nustorage.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import nustorage.commons.core.LogsCenter;
-import nustorage.model.record.FinanceRecord;
-
 import javafx.scene.layout.Region;
-import java.util.logging.Logger;
+import nustorage.model.record.FinanceRecord;
 
 public class FinanceRecordPanel extends UiPart<Region> {
     private static final String FXML = "FinanceListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FinanceRecordPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<FinanceRecord> financeListView;
 
     /**

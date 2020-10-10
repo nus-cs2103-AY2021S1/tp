@@ -131,6 +131,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Fills up all the placeholders of this window.
+     */
     public void fillInnerPartsWithInventory() {
         inventoryPanel = new InventoryPanel(logic.getFilteredInventory());
         inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
@@ -145,6 +148,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Fills up all the placeholders of this window.
+     */
     public void fillInnerPartsWithFinance() {
         financeRecordPanel = new FinanceRecordPanel(logic.getFilteredFinanceList());
         financeListPanelPlaceholder.getChildren().add(financeRecordPanel.getRoot());

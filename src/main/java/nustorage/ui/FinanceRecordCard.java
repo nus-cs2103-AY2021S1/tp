@@ -3,9 +3,8 @@ package nustorage.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import nustorage.model.record.FinanceRecord;
-
 import javafx.scene.layout.Region;
+import nustorage.model.record.FinanceRecord;
 
 public class FinanceRecordCard extends UiPart<Region> {
     private static final String FXML = "FinanceListCard.fxml";
@@ -41,9 +40,9 @@ public class FinanceRecordCard extends UiPart<Region> {
         this.record = record;
         id.setText(displayedIndex + ". ");
         name.setText(Integer.toString(record.getID()));
-        transactionName.setText(String.format("Transaction no.: #%d",record.getID()));
+        transactionName.setText(String.format("Transaction no.: #%d", record.getID()));
         amount.setText(String.format("Amount: $%.2f", record.getAmount()));
-        dateAndTime.setText(String.format("Date and Time: %s",record.getDatetime().toString()));
+        dateAndTime.setText(String.format("Date and Time: %s", record.getDatetime().toString()));
     }
 
     @Override
