@@ -1,12 +1,16 @@
 ---
 layout: page
-title: User Guide
+title: ProductiveNUS
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It is a convenient platform for you to keep track of your lessons and assignments at hand and being able to type quickly will make the process fast as well.
 
-* Table of Contents
-{:toc}
+### Table of Contents
+1. Quick Start
+2. Features
+3. FAQ
+4. Summary of commands supported
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,25 +18,28 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `productivenus.jar` from [here](https://github.com/AY2021S1-CS2103T-F11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for ProductiveNUS.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list 2`** : Lists all lessons and assignments within 2 weeks (including this week).
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/Lab report 3 d/23-04-2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`import YOUR_NUSMODS_URL`** : Imports your timetable.
+   
+   * **`remind 3`** : Tags your assignment to receive reminders which will be displayed in `Your Reminders` section.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -44,103 +51,82 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME_OF_ASSIGNMENT [mod/MODULE_CODE]` can be used as `n/Assignment 2 mod/CS2100` or as `n/Assignment 2`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE`, `d/DEADLINE n/NAME_OF_ASSIGNMENT` is also acceptable.
 
 </div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds an assignment into your schedule.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+**Tip:**
+You can include the `remind` tag when adding the assignment instead of using the `remind` command after adding the assignment.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
+* `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
 
-### Locating persons by name: `find`
+### Listing all lessons and assignments : `list`
 
-Finds persons whose names contain any of the given keywords.
+Format: `list [NUMBER]`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+- Shows a list of all lessons and assignments in your schedule within `NUMBER` 
+number of weeks.
+- `list` command without `NUMBER` displays your entire list of lessons and assignments 
+stored in ProductiveNUS.
+- A week in this context starts with Monday and ends with Sunday.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Examples: 
+- `list 2` displays all your lessons and assignments within 
+2 weeks (including the current week).
+- `list 3` displays all your lessons and assignments within  
+3 weeks (including the current week).
+- `list ` displays all your lessons and assignments.
 
-### Deleting a person : `delete`
+### Deleting an assignment : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified assignment from the assignment list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd assignment in the assignment list.
 
-### Clearing all entries : `clear`
+### Importing your timetable : `import`
 
-Clears all entries from the address book.
+Imports your NUSMods timetable data.
 
-Format: `clear`
+Format: `import YOUR_NUSMODS_URL`
+
+* Imports lesson data based on your NUSMods timetable data.
+* NUSMods timetable URL used is obtained by clicking on the "Share/Sync" timetable icon at NUSMods.
+
+Examples:
+* `import https://nusmods.com/timetable/sem-2/share?ES2660=SEC:G01`.
+
+### Setting reminders for assignments : `remind`
+Tags the specified assignment to receive reminders which will be displayed in `Your Reminders` section.
+
+Format: `remind INDEX`
+
+* Tags the assignment at the specified `INDEX` to receive reminders.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Exiting the program : `exit`
 
@@ -150,7 +136,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ProductiveNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -161,7 +147,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProductiveNUS app home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,10 +155,8 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE mod/MODULE_CODE` <br> e.g., `add n/Math tutorial d/21/03/2020 11:00 AM mod/ST2334`
+**delete** | `delete INDEX`<br> e.g., `delete 3`
+**list** | `list [NUMBER]` e.g., `list 2`, `list`
+**import** | `import NUSMODS_URL`
+**remind** | `remind INDEX`
