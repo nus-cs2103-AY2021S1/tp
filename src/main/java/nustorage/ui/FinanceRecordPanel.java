@@ -6,8 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import nustorage.commons.core.LogsCenter;
 import javafx.scene.layout.Region;
+import nustorage.commons.core.LogsCenter;
 import nustorage.model.record.FinanceRecord;
 
 public class FinanceRecordPanel extends UiPart<Region> {
