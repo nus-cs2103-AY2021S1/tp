@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -8,13 +9,9 @@
       <ScrollPane fx:id="recipePanel" pannable="true" prefHeight="484.0" prefWidth="624.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
             <GridPane fx:id="recipeGridView" gridLinesVisible="true" hgap="20" vgap="10">
-              <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="96.0" percentWidth="100.0" prefWidth="90.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="80.0" prefHeight="80.0" vgrow="NEVER" />
-              </rowConstraints>
-            </GridPane>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding></GridPane>
          </content>
       </ScrollPane>
    </bottom>
