@@ -14,7 +14,6 @@ import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 

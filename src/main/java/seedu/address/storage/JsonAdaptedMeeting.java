@@ -14,7 +14,6 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 public class JsonAdaptedMeeting {
@@ -31,7 +30,8 @@ public class JsonAdaptedMeeting {
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("meeting name") String meetingName, @JsonProperty("date") String date,
-                             @JsonProperty("time") String time, @JsonProperty("members") List<JsonAdaptedPerson> memberList) {
+                              @JsonProperty("time") String time,
+                              @JsonProperty("members") List<JsonAdaptedPerson> memberList) {
         this.meetingName = meetingName;
         this.date = date;
         this.time = time;
