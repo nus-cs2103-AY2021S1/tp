@@ -44,7 +44,7 @@ public class ModelManager implements Model {
         this.inventory = new Inventory();
         this.financeAccount = new FinanceAccount();
         filteredInventory = new FilteredList<>(this.inventory.asUnmodifiableObservableList());
-        filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
+        filteredFinance = new FilteredList<>(this.financeAccount.asUnmodifiableObservableList());
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -137,6 +137,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedFinanceRecord);
 
         financeAccount.setFinanceRecord(target, editedFinanceRecord);
+    }
+
+    @Override
+    public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
+        requireNonNull(predicate);
+        filteredFinance.setPredicate(predicate);
     }
 
     @Override

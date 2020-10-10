@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private InventoryPanel inventoryPanel;
+    private FinanceRecordPanel financeRecordPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane inventoryPanelPlaceholder;
+
+    @FXML
+    private StackPane financeListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -127,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    void fillInnerPartsWithInventory() {
+    public void fillInnerPartsWithInventory() {
         inventoryPanel = new InventoryPanel(logic.getFilteredInventory());
         inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
 
@@ -139,6 +143,21 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    public void fillInnerPartsWithFinance() {
+        financeRecordPanel = new FinanceRecordPanel(logic.getFilteredFinanceList());
+        financeListPanelPlaceholder.getChildren().add(financeRecordPanel.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
