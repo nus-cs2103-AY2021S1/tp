@@ -22,6 +22,11 @@ public class TypicalIngredients {
     public static final Ingredient ELLE = new IngredientBuilder().withValue("Elle Meyer").build();
     public static final Ingredient FIONA = new IngredientBuilder().withValue("Fiona Kunz").build();
     public static final Ingredient GEORGE = new IngredientBuilder().withValue("George Best").build();
+    public static final Ingredient VALID_INGREDIENT1 =
+            new IngredientBuilder().withValues("apple", "2 slices").build();
+    public static final Ingredient VALID_INGREDIENT2 =
+            new IngredientBuilder().withValues("banana", "200g").build();
+
 
     // Manually added
     public static final Ingredient HOON = new IngredientBuilder().withValue("Hoon Meier").build();

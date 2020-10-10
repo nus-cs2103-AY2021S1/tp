@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -33,8 +34,12 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_INGREDIENT_ALICE = "apple";
     public static final String VALID_INGREDIENT_AMY = "11111111";
     public static final String VALID_INGREDIENT_BOB = "22222222";
+    public static final String VALID_QUANTITY_AMY = "2 cups";
+    public static final String VALID_QUANTITY_BOB = "a teaspoon";
+    public static final String VALID_QUANTITY_ALICE = "1 cup";
     public static final Integer VALID_CALORIES_AMY = 10;
     public static final Integer VALID_CALORIES_BOB = 10;
     public static final String VALID_INSTRUCTION_AMY = "instruction";
@@ -46,8 +51,10 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String INGREDIENT_DESC_AMY = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_AMY;
-    public static final String INGREDIENT_DESC_BOB = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_BOB;
+    public static final String INGREDIENT_DESC_AMY = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_AMY
+            + " " + PREFIX_QUANTITY + VALID_QUANTITY_AMY;
+    public static final String INGREDIENT_DESC_BOB = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_BOB
+            + " " + PREFIX_QUANTITY + VALID_QUANTITY_BOB;
     public static final String CALORIES_DESC_AMY = " " + PREFIX_CALORIES + VALID_CALORIES_AMY;
     public static final String CALORIES_DESC_BOB = " " + PREFIX_CALORIES + VALID_CALORIES_BOB;
     public static final String INSTRUCTION_DESC_AMY = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_AMY;
@@ -72,9 +79,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withIngredient(VALID_INGREDIENT_AMY).withCalories(VALID_CALORIES_AMY).withTags(VALID_TAG_AMY).build();
+                .withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).withCalories(VALID_CALORIES_AMY)
+                .withTags(VALID_TAG_AMY).build();
         DESC_BOB = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB).withCalories(VALID_CALORIES_BOB).withTags(VALID_TAG_AMY).build();
+                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).withCalories(VALID_CALORIES_BOB)
+                .withTags(VALID_TAG_AMY).build();
     }
 
     /**

@@ -22,7 +22,7 @@ import seedu.address.model.recipe.Name;
 public class JsonAdaptedConsumptionTest {
     private static final String INVALID_NAME = "R@chel";
     private static final ArrayList<Ingredient> INVALID_INGREDIENT =
-            new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("@olive oil")}));
+            new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("@olive oil", "")}));
     private static final Integer INVALID_CALORIES = -1;
     private static final String INVALID_TAG = "#friend";
 

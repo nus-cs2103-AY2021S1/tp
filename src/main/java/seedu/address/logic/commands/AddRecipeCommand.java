@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -19,17 +20,18 @@ public class AddRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "addR";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the Wishful Shrinking. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the Wishful Shrinking.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_INGREDIENT + "INGREDIENT "
+            + "[" + PREFIX_QUANTITY + "QUANTITY] "
             + PREFIX_CALORIES + "CALORIES "
             + PREFIX_INSTRUCTION + "INSTRUCTIONS "
             + PREFIX_RECIPE_IMAGE + "IMAGE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Chicken salad "
-            + PREFIX_INGREDIENT + "chicken, lettuce, tomato "
+            + PREFIX_INGREDIENT + "chicken - 100g, lettuce - a bit, tomato "
             + PREFIX_CALORIES + "100 "
             + PREFIX_INSTRUCTION + "1. cook 2. eat "
             + PREFIX_RECIPE_IMAGE + "images/salad.jpg "

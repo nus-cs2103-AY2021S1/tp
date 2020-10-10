@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showRecipeAtIndex;
@@ -53,11 +54,12 @@ public class EditCommandTest {
         Recipe lastRecipe = model.getFilteredRecipeList().get(indexLastRecipe.getZeroBased());
 
         RecipeBuilder recipeInList = new RecipeBuilder(lastRecipe);
-        Recipe editedRecipe = recipeInList.withName(VALID_NAME_BOB).withIngredient(VALID_INGREDIENT_BOB)
+        Recipe editedRecipe = recipeInList.withName(VALID_NAME_BOB)
+                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB)
               .build();
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB).build();
+                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
         EditCommand editCommand = new EditCommand(indexLastRecipe, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);

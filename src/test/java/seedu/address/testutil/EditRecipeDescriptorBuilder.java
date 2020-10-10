@@ -50,11 +50,12 @@ public class EditRecipeDescriptorBuilder {
     /**
      * Sets the {@code Ingredient} of the {@code EditRecipeDescriptor} that we are building.
      */
-    public EditRecipeDescriptorBuilder withIngredient(String ingredientString) {
+    public EditRecipeDescriptorBuilder withIngredient(String ingredientString, String ingredientQuantity) {
         String[] ingredientsToken = ingredientString.split(",");
+        String[] ingredientsQuantity = ingredientQuantity.split(",");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+            ingredients.add(new Ingredient(ingredientsToken[i].trim(), ingredientsQuantity[i].trim()));
         }
         descriptor.setIngredient(ingredients);
         return this;

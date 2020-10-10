@@ -8,14 +8,17 @@ import seedu.address.model.recipe.Ingredient;
 public class IngredientBuilder {
 
     public static final String DEFAULT_VALUE = "food";
+    public static final String DEFAULT_QUANTITY = "2g";
 
     private String value;
+    private String quantity;
 
     /**
      * Creates a {@code IngredientBuilder} with the default details.
      */
     public IngredientBuilder() {
         value = DEFAULT_VALUE;
+        quantity = DEFAULT_QUANTITY;
     }
 
     /**
@@ -30,6 +33,16 @@ public class IngredientBuilder {
      */
     public IngredientBuilder withValue(String value) {
         this.value = value;
+        this.quantity = "";
+        return this;
+    }
+
+    /**
+     * Sets the {@code value} of the {@code Ingredient} that we are building.
+     */
+    public IngredientBuilder withValues(String value, String quantity) {
+        this.value = value;
+        this.quantity = quantity;
         return this;
     }
 
@@ -38,7 +51,7 @@ public class IngredientBuilder {
      * @return built Ingredient
      */
     public Ingredient build() {
-        return new Ingredient(value);
+        return new Ingredient(value, quantity);
     }
 
 }

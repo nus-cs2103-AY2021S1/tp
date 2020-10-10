@@ -68,7 +68,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match ingredients, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new RecipeBuilder().withName("Alice").withIngredient("12345")
+        assertFalse(predicate.test(new RecipeBuilder().withName("Alice").withIngredient("12345", "2g")
               .build()));
     }
 }

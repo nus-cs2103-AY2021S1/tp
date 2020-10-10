@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
 public class ConsumptionBuilder {
     private static final Name DEFAULT_NAME = new Name("Salad");
     private static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
-            new ArrayList<>(List.of(new Ingredient("Veggies"), new Ingredient("veggies")));
+            new ArrayList<>(List.of(new Ingredient("Veggies", "1 cup"), new Ingredient("veggies", "1 cup")));
     private static final Calories DEFAULT_CALORIES = new Calories(10);
     private static final String DEFAULT_INSTRUCTION = "instruction";
     private static final String DEFAULT_RECIPE_IMAGE = "images/healthy1.jpg";
