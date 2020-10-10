@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -33,16 +36,28 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_REMARK_AMY = "She likes aardvarks.";
+    public static final String VALID_REMARK_BOB = "He can't take beer!";
     public static final String VALID_DEPARTMENT_AMY = "Computer Science";
     public static final String VALID_DEPARTMENT_BOB = "Computer Engineering";
     public static final String VALID_OFFICE_AMY = "COM3-02-01";
     public static final String VALID_OFFICE_BOB = "COM3-03-01";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String MODULE_NAME_CS1010S = "Programming Methodology";
+    public static final String MODULE_NAME_CS2103 = "Software Engineering";
     public static final String VALID_MODULE_CODE_CS50 = "CS50";
     public static final String VALID_MODULE_CODE_CS1010S = "CS1010S";
+    public static final String VALID_MODULE_CODE_CS2103 = "CS2103";
     public static final String VALID_MODULE_NAME_CS50 = "Introduction to Computer Science";
-    public static final String VALID_MODULE_NAME_CS1010S = "Programming Methodology";
+
+    public static final String CODE_DESC_CS50 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS50;
+    public static final String NAME_DESC_CS50 = " " + PREFIX_MODULE_NAME + VALID_MODULE_NAME_CS50;
+    public static final String CODE_DESC_CS1010S = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS1010S;
+    public static final String NAME_DESC_CS1010S = " " + PREFIX_MODULE_NAME + MODULE_NAME_CS1010S;
+    public static final String CODE_DESC_CS2103 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103;
+    public static final String NAME_DESC_CS2103 = " " + PREFIX_MODULE_NAME + MODULE_NAME_CS2103;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,6 +69,8 @@ public class CommandTestUtil {
     public static final String DEPARTMENT_DESC_BOB = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_BOB;
     public static final String OFFICE_DESC_AMY = " " + PREFIX_OFFICE + VALID_OFFICE_AMY;
     public static final String OFFICE_DESC_BOB = " " + PREFIX_OFFICE + VALID_OFFICE_BOB;
+    public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
+    public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
 
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -65,6 +82,12 @@ public class CommandTestUtil {
             " " + PREFIX_DEPARTMENT; // empty string not allowed for departments
     public static final String INVALID_OFFICE_DESC = " " + PREFIX_OFFICE; // empty string not allowed for offices
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE
+            + "CS*#1"; // '*' and '#' not allowed in module code
+    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_MODULE_NAME
+            + "Programming&Fun"; // '&' not allowed in module name
+
+    public static final String INVALID_DELMOD_MISSING_CODE = " " + PREFIX_MODULE_CODE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

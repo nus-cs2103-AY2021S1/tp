@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "department" : "Business Analytics",
     "office" : "S7-05-03",
+    "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "department" : "Information Systems",
     "office" : "S7-04-03",
+    "remark" : "",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +22,7 @@
     "email" : "heinz@example.com",
     "department" : "Business Analytics",
     "office" : "S15-02-01",
+    "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "cornelia@example.com",
     "department" : "Information Security",
     "office" : "S15-02-01",
+    "remark" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "department" : "Computer Engineering",
     "office" : "COM2-02-01",
+    "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "department" : "Data Science and Analytics",
     "office" : "COM2-02-04",
+    "remark" : "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "department" : "Chemical Engineering",
     "office" : "E4-02-01",
+    "remark" : "",
     "tagged" : [ ]
   } ]
 }

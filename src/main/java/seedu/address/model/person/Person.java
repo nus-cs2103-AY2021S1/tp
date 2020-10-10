@@ -23,18 +23,21 @@ public class Person {
     // Data fields
     private final Department department;
     private final Office office;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Department department, Office office, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Department department, Office office,
+                  Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, department, office, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.department = department;
         this.office = office;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +59,10 @@ public class Person {
 
     public Office getOffice() {
         return office;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -106,7 +113,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, department, office, tags);
+        return Objects.hash(name, phone, email, department, office, remark, tags);
     }
 
     @Override
@@ -121,6 +128,8 @@ public class Person {
                 .append(getDepartment())
                 .append(" Office: ")
                 .append(getOffice())
+                .append(" Remark: ")
+                .append(getRemark())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

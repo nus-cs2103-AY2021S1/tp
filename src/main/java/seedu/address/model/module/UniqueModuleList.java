@@ -22,7 +22,7 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
  *
  * @see Module#isSameModule(Module)
  */
-public class ModuleList implements Iterable<Module> {
+public class UniqueModuleList implements Iterable<Module> {
 
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
@@ -34,6 +34,14 @@ public class ModuleList implements Iterable<Module> {
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameModule);
+    }
+
+    /**
+     * Returns true if the list contains a module with the given module code.
+     */
+    public boolean containsModuleCode(ModuleCode moduleCodeToCheck) {
+        requireNonNull(moduleCodeToCheck);
+        return internalList.stream().anyMatch(module -> module.hasModuleCode(moduleCodeToCheck));
     }
 
     /**
@@ -79,9 +87,23 @@ public class ModuleList implements Iterable<Module> {
         }
     }
 
-    public void setModules(ModuleList replacement) {
+    /**
+     * Removes the module with the equivalent module code from the list.
+     * The module with the module code must exist.
+     */
+    public void removeModuleWithCode(ModuleCode toRemove) {
+        requireNonNull(toRemove);
+        int indexOfModuleToBeRemoved = 0;
+        while (!internalList.get(indexOfModuleToBeRemoved).hasModuleCode(toRemove)
+                && indexOfModuleToBeRemoved < internalList.size()) {
+            indexOfModuleToBeRemoved++;
+        }
+        internalList.remove(indexOfModuleToBeRemoved);
+    }
+
+    public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        setModules(replacement.getInternalList());
     }
 
 
@@ -113,8 +135,8 @@ public class ModuleList implements Iterable<Module> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleList // instanceof handles nulls
-                && internalList.equals(((ModuleList) other).internalList));
+                || (other instanceof UniqueModuleList // instanceof handles nulls
+                && internalList.equals(((UniqueModuleList) other).internalList));
     }
 
     @Override
@@ -134,5 +156,9 @@ public class ModuleList implements Iterable<Module> {
             }
         }
         return true;
+    }
+
+    public ObservableList<Module> getInternalList() {
+        return internalList;
     }
 }

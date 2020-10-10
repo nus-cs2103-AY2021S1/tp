@@ -25,6 +25,15 @@ public class Module {
     /**
      * Every field must be present and not null.
      */
+    public Module(ModuleCode moduleCode, ModuleName moduleName) {
+        requireAllNonNull(moduleCode, moduleName);
+        this.moduleCode = moduleCode;
+        this.moduleName = moduleName;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
     public Module(ModuleCode moduleCode, ModuleName moduleName, Set<Person> persons) {
         requireAllNonNull(moduleCode, moduleName, persons);
         this.moduleCode = moduleCode;
@@ -57,6 +66,14 @@ public class Module {
     }
 
     /**
+     * Returns true if module has the specified module code.
+     */
+    public boolean hasModuleCode(ModuleCode moduleCodeToCheck) {
+        return moduleCodeToCheck != null
+                && moduleCodeToCheck.equals(moduleCode);
+    }
+
+    /**
      * Returns true if both modules have the same identity and data fields.
      * This defines a stronger notion of equality between two modules.
      */
@@ -71,7 +88,9 @@ public class Module {
         }
 
         Module m = (Module) other;
-        return m.moduleCode.equals(moduleCode) && m.moduleName.equals(moduleName) && m.persons.equals(persons);
+        return m.moduleCode.equals(moduleCode)
+                && m.moduleName.equals(moduleName)
+                && m.persons.equals(persons);
 
     }
 
@@ -85,4 +104,5 @@ public class Module {
     public String toString() {
         return moduleCode + " " + moduleName;
     }
+
 }

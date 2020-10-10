@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Codes should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Codes should only contain alphanumeric characters, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String moduleCode;
 
@@ -54,6 +54,4 @@ public class ModuleCode {
     public int hashCode() {
         return moduleCode.hashCode();
     }
-
 }
-
