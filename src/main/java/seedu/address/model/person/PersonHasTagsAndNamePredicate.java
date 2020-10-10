@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the names given
@@ -11,10 +12,10 @@ import seedu.address.commons.util.StringUtil;
  */
 public class PersonHasTagsAndNamePredicate implements Predicate<Person> {
     private final List<String> names;
-    private final List<String> tags;
+    private final List<Tag> tags;
 
     @SuppressWarnings("CheckStyle")
-    public PersonHasTagsAndNamePredicate(List<String> names, List<String> tags) {
+    public PersonHasTagsAndNamePredicate(List<String> names, List<Tag> tags) {
         this.names = names;
         this.tags = tags;
     }
