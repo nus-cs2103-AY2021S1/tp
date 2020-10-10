@@ -15,6 +15,8 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
+    private static IdManager idManager = IdManager.initialize("P");
+
     // Identity fields
     private final Id propertyId;
     private final Address address;
@@ -26,8 +28,6 @@ public class Property {
     private final PropertyType propertyType;
     private final IsRental isRental;
     private final boolean isClosedDeal;
-
-    public static IdManager idManager = IdManager.initialize("P");
 
     /**
      * Every field must be present and not null.
@@ -69,7 +69,9 @@ public class Property {
         return propertyType;
     }
 
-    public IsRental getIsRental() { return isRental; }
+    public IsRental getIsRental() {
+        return isRental;
+    }
 
     public boolean isRental() {
         return isRental.isRental();

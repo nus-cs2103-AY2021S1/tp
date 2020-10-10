@@ -15,7 +15,7 @@ public class IsRental {
     public static final String MESSAGE_CONSTRAINTS =
             "isRental should be yes / y or no / n only.";
 
-    public static final List<String> validStrings = Arrays.asList("yes", "y", "no", "n");
+    public static final List<String> VALID_STRINGS = Arrays.asList("yes", "y", "no", "n");
 
     public final boolean isRental;
 

@@ -27,6 +27,11 @@ public class Id {
         this.idNumber = idNumber;
     }
 
+    /**
+     * Constructs the Id from a String.
+     *
+     * @param id The id in string format.
+     */
     public Id(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
