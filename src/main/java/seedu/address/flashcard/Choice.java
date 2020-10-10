@@ -17,6 +17,7 @@ public class Choice {
 
     /**
      * Instantiates a Choice.
+     *
      * @param choice to be set.
      */
     public Choice(String choice) {
@@ -25,16 +26,17 @@ public class Choice {
         this.value = choice;
     }
 
+    public static boolean isValidChoice(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     /**
      * Gets the value associated with the Choice.
+     *
      * @return the value associated with the Choice.
      */
     public String getValue() {
         return value;
-    }
-
-    public static boolean isValidChoice(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -46,6 +48,7 @@ public class Choice {
      * Compares this choice to the specified object.
      * The result is true if and only if the argument is not null and is a
      * Choice object that has the same contents as this object
+     *
      * @param o the object to compare this Choice against
      * @return {@code true} if the given object represents a Choice equivalent to this choice, false otherwise
      */

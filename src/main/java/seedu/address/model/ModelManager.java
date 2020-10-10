@@ -46,14 +46,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -81,13 +81,13 @@ public class ModelManager implements Model {
     //=========== QuickCache ================================================================================
 
     @Override
-    public void setQuickCache(ReadOnlyQuickCache quickCache) {
-        this.quickCache.resetData(quickCache);
+    public ReadOnlyQuickCache getQuickCache() {
+        return quickCache;
     }
 
     @Override
-    public ReadOnlyQuickCache getQuickCache() {
-        return quickCache;
+    public void setQuickCache(ReadOnlyQuickCache quickCache) {
+        this.quickCache.resetData(quickCache);
     }
 
     @Override
@@ -102,8 +102,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addFlashcard(Flashcard person) {
-        quickCache.addFlashcard(person);
+    public void addFlashcard(Flashcard flashcard) {
+        quickCache.addFlashcard(flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 

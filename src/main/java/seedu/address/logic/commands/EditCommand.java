@@ -67,27 +67,6 @@ public class EditCommand extends Command {
         this.editFlashcardDescriptor = new EditFlashcardDescriptor(editFlashcardDescriptor);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
-        }
-
-        Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
-        Flashcard editedFlashcard = createEditedFlashcard(flashcardToEdit, editFlashcardDescriptor);
-
-        if (flashcardToEdit.isSameFlashcard(editedFlashcard) || model.hasFlashcard(editedFlashcard)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
-        }
-
-        model.setFlashcard(flashcardToEdit, editedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-        return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
-    }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -105,7 +84,7 @@ public class EditCommand extends Command {
         //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
         Answer finalAnswer;
         Question updatedQuestion = editFlashcardDescriptor.getQuestion()
-                .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getOnlyQuestion()));
+                .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getValue()));
         Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
         Choice[] emptyArray = new Choice[0];
         Choice[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
@@ -169,7 +148,26 @@ public class EditCommand extends Command {
         return new Flashcard(updatedQuestion, finalAnswer, updatedTags, timesTested, timesTestedCorrect);
     }
 
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Flashcard> lastShownList = model.getFilteredFlashcardList();
 
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        }
+
+        Flashcard flashcardToEdit = lastShownList.get(index.getZeroBased());
+        Flashcard editedFlashcard = createEditedFlashcard(flashcardToEdit, editFlashcardDescriptor);
+
+        if (flashcardToEdit.isSameFlashcard(editedFlashcard) || model.hasFlashcard(editedFlashcard)) {
+            throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
+        }
+
+        model.setFlashcard(flashcardToEdit, editedFlashcard);
+        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+        return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -224,20 +222,20 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(answer, question, choices, tags);
         }
 
-        public void setAnswer(Answer answer) {
-            this.answer = answer;
-        }
-
         public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
         }
 
-        public void setQuestion(Question question) {
-            this.question = question;
+        public void setAnswer(Answer answer) {
+            this.answer = answer;
         }
 
         public Optional<Question> getQuestion() {
             return Optional.ofNullable(question);
+        }
+
+        public void setQuestion(Question question) {
+            this.question = question;
         }
 
         public boolean getIsMcq() {
@@ -246,14 +244,6 @@ public class EditCommand extends Command {
 
         public void setIsMcq(Boolean isMcq) {
             this.isMcq = isMcq;
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -266,10 +256,11 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code choices} to this object's {@code choices}.
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
          */
-        public void setChoices(Choice[] choices) {
-            this.choices = (choices != null) ? choices : null;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -278,6 +269,13 @@ public class EditCommand extends Command {
          */
         public Optional<Choice[]> getChoices() {
             return (choices != null) ? Optional.of(choices) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code choices} to this object's {@code choices}.
+         */
+        public void setChoices(Choice[] choices) {
+            this.choices = choices;
         }
 
         @Override

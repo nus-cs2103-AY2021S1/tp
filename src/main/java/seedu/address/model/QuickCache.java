@@ -27,7 +27,8 @@ public class QuickCache implements ReadOnlyQuickCache {
         flashcards = new UniqueFlashcardList();
     }
 
-    public QuickCache() {}
+    public QuickCache() {
+    }
 
     /**
      * Creates an QuickCache using the Persons in the {@code toBeCopied}
@@ -46,6 +47,7 @@ public class QuickCache implements ReadOnlyQuickCache {
     public void setFlashcards(List<Flashcard> flashcards) {
         this.flashcards.setFlashcards(flashcards);
     }
+
     /**
      * Resets the existing data of this {@code QuickCache} with {@code newData}.
      */

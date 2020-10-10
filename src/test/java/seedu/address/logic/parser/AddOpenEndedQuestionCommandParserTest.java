@@ -17,7 +17,7 @@ import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 
 public class AddOpenEndedQuestionCommandParserTest {
-    private AddOpenEndedQuestionCommandParser parser = new AddOpenEndedQuestionCommandParser();
+    private final AddOpenEndedQuestionCommandParser parser = new AddOpenEndedQuestionCommandParser();
 
     /*
     @Test
@@ -54,11 +54,11 @@ public class AddOpenEndedQuestionCommandParserTest {
                 AddOpenEndedQuestionCommand.MESSAGE_USAGE);
 
         // missing question prefix
-        assertParseFailure(parser, VALID_QUESTION_BOB + ANSWER_DESC_BOB ,
+        assertParseFailure(parser, VALID_QUESTION_BOB + ANSWER_DESC_BOB,
                 expectedMessage);
 
         // missing answer prefix
-        assertParseFailure(parser, QUESTION_DESC_BOB + VALID_ANSWER_BOB ,
+        assertParseFailure(parser, QUESTION_DESC_BOB + VALID_ANSWER_BOB,
                 expectedMessage);
 
 

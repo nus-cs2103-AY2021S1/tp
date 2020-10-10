@@ -16,6 +16,7 @@ public class Answer {
 
     /**
      * Instantiates an Answer.
+     *
      * @param answer to be set.
      */
     public Answer(String answer) {
@@ -25,8 +26,16 @@ public class Answer {
     }
 
     /**
+     * Returns if a given string is a valid answer.
+     */
+    public static boolean isValidAnswer(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
      * Checks the given userAnswer with the correct answer.
      * This is done by strictly comparing lower case string equality.
+     *
      * @param userAnswer the user's answer.
      * @return true if the user's answer is equal to the actual answer.
      */
@@ -36,6 +45,7 @@ public class Answer {
 
     /**
      * Lower cases the answer.
+     *
      * @param answer to be normalized.
      * @return lower-cased answer.
      */
@@ -45,17 +55,11 @@ public class Answer {
 
     /**
      * Gets the correct value of the answer .
+     *
      * @return the correct value of the answer .
      */
     public String getValue() {
         return value;
-    }
-
-    /**
-     * Returns if a given string is a valid answer.
-     */
-    public static boolean isValidAnswer(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

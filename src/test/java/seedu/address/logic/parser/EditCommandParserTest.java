@@ -34,7 +34,7 @@ public class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -76,7 +76,6 @@ public class EditCommandParserTest {
         // valid answer followed by invalid question. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + QUESTION_DESC_BOB + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS);
-
 
 
         // multiple invalid values, but only the first invalid value is captured

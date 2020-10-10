@@ -20,6 +20,7 @@ public class Flashcard {
 
     /**
      * A constructor to create flashcard object.
+     *
      * @param question Question of the flashcard.
      * @param answer Answer of the flashcard.
      * @param tags Tags of the flashcard.
@@ -34,6 +35,7 @@ public class Flashcard {
 
     /**
      * A constructor to create flashcard object.
+     *
      * @param question Question of the flashcard.
      * @param answer Answer of the flashcard.
      * @param tags Tags of the flashcard.
@@ -56,6 +58,7 @@ public class Flashcard {
 
     /**
      * Gets the question.
+     *
      * @return the question.
      */
     public Question getQuestion() {
@@ -64,6 +67,7 @@ public class Flashcard {
 
     /**
      * Gets the answer.
+     *
      * @return the answer.
      */
     public Answer getAnswer() {
@@ -72,6 +76,7 @@ public class Flashcard {
 
     /**
      * Checks the given userAnswer with the correct answer.
+     *
      * @param userAnswer the user's answer.
      * @return {@code true} if the user's answer is equal to the actual answer.
      */
@@ -81,6 +86,7 @@ public class Flashcard {
 
     /**
      * Gets the tags of this flashcard.
+     *
      * @return a list of tags.
      */
     public Set<Tag> getTags() {
@@ -89,7 +95,7 @@ public class Flashcard {
 
     @Override
     public String toString() {
-        return String.format("Question:\n%s\nAnswer:\n%s", question.getValue(), answer.getValue());
+        return String.format("Question:\n%s\nAnswer:\n%s", question.getFormatQuestion(), answer.getValue());
     }
 
     /**
@@ -110,6 +116,7 @@ public class Flashcard {
 
     /**
      * Checks if this flashcard contains the tag.
+     *
      * @param tag the tag to be checked.
      * @return {@code true} if this flashcard has the tag.
      */

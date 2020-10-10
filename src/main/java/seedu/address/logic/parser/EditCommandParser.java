@@ -26,6 +26,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
@@ -80,6 +81,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Parses {@code Collection<String> choices} into a {@code String[]} if {@code choices} is non-empty.
      * If {@code choicess} contain only one element which is an empty string, it will be parsed into a
      * {@code String[]} containing zero choices.
+     *
      * @return
      */
     private Optional<Choice[]> parseChoicesForEdit(Collection<String> choices) throws ParseException {

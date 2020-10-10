@@ -22,6 +22,7 @@ public class Option {
 
     /**
      * A constructor to create an Option.
+     *
      * @param option string.
      */
     public Option(String option) {
@@ -57,6 +58,7 @@ public class Option {
 
     /**
      * Transposes the option given into an {@code Index}.
+     *
      * @return option in {@code Index}.
      */
     public Index getIndex() {

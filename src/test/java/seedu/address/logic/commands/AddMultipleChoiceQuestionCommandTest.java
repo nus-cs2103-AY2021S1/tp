@@ -90,12 +90,12 @@ public class AddMultipleChoiceQuestionCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,12 +125,12 @@ public class AddMultipleChoiceQuestionCommandTest {
         }
 
         @Override
-        public void setQuickCache(ReadOnlyQuickCache newData) {
+        public ReadOnlyQuickCache getQuickCache() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyQuickCache getQuickCache() {
+        public void setQuickCache(ReadOnlyQuickCache newData) {
             throw new AssertionError("This method should not be called.");
         }
 

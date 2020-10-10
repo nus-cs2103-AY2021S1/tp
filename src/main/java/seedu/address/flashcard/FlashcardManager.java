@@ -15,6 +15,7 @@ public class FlashcardManager {
 
     /**
      * Adds a flashcard
+     *
      * @param flashcard the flashcard to be added.
      * @return {@code true}
      */
@@ -24,6 +25,7 @@ public class FlashcardManager {
 
     /**
      * Deletes a flashcard at the index in the list.
+     *
      * @param index the index of the flashcard to be deleted.
      * @return the {@code Flashcard} that has been deleted.
      */
@@ -33,11 +35,12 @@ public class FlashcardManager {
 
     /**
      * Lists out the flashcards in a string format.
+     *
      * @return the list of flashcards in a {@code String}.
      */
     public String listFlashcards() {
         StringBuilder sb = new StringBuilder();
-        for (Flashcard flashcard: flashcards) {
+        for (Flashcard flashcard : flashcards) {
             sb.append(flashcard).append("\n");
         }
         return sb.toString();

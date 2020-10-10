@@ -25,7 +25,7 @@ class TestCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, TestCommand.MESSAGE_USAGE);
 
-    private TestCommandParser parser = new TestCommandParser();
+    private final TestCommandParser parser = new TestCommandParser();
 
     @Test
     public void parse_noInput_failure() {

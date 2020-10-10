@@ -17,6 +17,7 @@ public class TestCommandParser implements Parser<TestCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TestCommand
      * and returns an TestCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public TestCommand parse(String args) throws ParseException {
