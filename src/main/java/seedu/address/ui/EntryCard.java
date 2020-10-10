@@ -1,14 +1,13 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import seedu.address.model.account.entry.Entry;
-
-import javax.swing.plaf.synth.Region;
-import java.util.Comparator;
 
 public class EntryCard extends UiPart<Node> {
 
@@ -29,6 +28,9 @@ public class EntryCard extends UiPart<Node> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Creates a {@code EntryCard} with the given {@code entry } and index to display.
+     */
     public EntryCard(Entry entry, int displayIndex) {
         super(FXML);
         this.entry = entry;

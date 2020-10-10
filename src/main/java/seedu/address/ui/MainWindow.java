@@ -71,10 +71,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-//        Image img = new Image(this.getClass().getResourceAsStream("/images/sampleDisplayPicture.png"));
-//        accountDisplayPicture.setFill(new ImagePattern(img));
-
-        // Dummy colour, to be changed later
+        // Image img = new Image(this.getClass().getResourceAsStream("/images/sampleDisplayPicture.png"));
+        // accountDisplayPicture.setFill(new ImagePattern(img));
+        // TODO: Dummy colour, to be changed later
         accountDisplayPicture.setFill(Color.web("ffb997"));
 
         setAccelerators();
