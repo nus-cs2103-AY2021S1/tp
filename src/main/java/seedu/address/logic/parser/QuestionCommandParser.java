@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.QuestionCommand.MESSAGE_USAGE;
 import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.ADD_QUESTION_PREFIX;
+import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.DELETE_QUESTION_PREFIX;
 import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.PREFIX_LIST;
 import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.SOLVE_QUESTION_PREFIX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddQuestionCommand;
+import seedu.address.logic.commands.DeleteQuestionCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,7 +33,7 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_LIST);
 
-        if (hasMoreThanOnePrefix(argMultimap)) {
+        if (!hasOnlyOnePrefix(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
@@ -44,7 +46,11 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
             Index questionIndex = ParserUtil.parseIndex(argMultimap.getValue(SOLVE_QUESTION_PREFIX).get());
             return new SolveQuestionCommand(index, questionIndex);
         }
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        if (argMultimap.getValue(DELETE_QUESTION_PREFIX).isPresent()) {
+            Index questionIndex = ParserUtil.parseIndex(argMultimap.getValue(DELETE_QUESTION_PREFIX).get());
+            return new DeleteQuestionCommand(index, questionIndex);
+        }
+        throw new AssertionError("This stage should not be reachable.");
     }
 
     private Index getIndex(ArgumentMultimap argMultimap) throws ParseException {
@@ -55,13 +61,14 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
         }
     }
 
-    private boolean hasMoreThanOnePrefix(ArgumentMultimap argMultimap) {
+    private boolean hasOnlyOnePrefix(ArgumentMultimap argMultimap) {
         int prefixesDetected = 0;
         for (Prefix prefix : PREFIX_LIST) {
             if (argMultimap.getValue(prefix).isPresent()) {
                 prefixesDetected++;
             }
         }
-        return prefixesDetected > 1;
+        return prefixesDetected == 1;
     }
+
 }

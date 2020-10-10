@@ -12,7 +12,9 @@ public abstract class QuestionCommand extends Command {
             + QuestionCommandPrefix.ADD_QUESTION_PREFIX + " QUESTION: adds an unresolved question.\n"
             + "Examples:\n" + COMMAND_WORD + " 1 " + QuestionCommandPrefix.ADD_QUESTION_PREFIX + "1 + 1 = ?\n"
             + QuestionCommandPrefix.SOLVE_QUESTION_PREFIX + "QUESTION_INDEX: marks a question as solved.\n"
-            + "Examples:\n" + COMMAND_WORD + " 2 " + QuestionCommandPrefix.SOLVE_QUESTION_PREFIX + " 1 \n";
+            + "Examples:\n" + COMMAND_WORD + " 2 " + QuestionCommandPrefix.SOLVE_QUESTION_PREFIX + " 1 \n"
+            + QuestionCommandPrefix.DELETE_QUESTION_PREFIX + "QUESTION_INDEX: deletes a question.\n"
+            + "Examples:\n" + COMMAND_WORD + " 2 " + QuestionCommandPrefix.DELETE_QUESTION_PREFIX + " 1 \n";
 
     /**
      * Represents all prefixes used by QuestionCommand.
@@ -22,12 +24,13 @@ public abstract class QuestionCommand extends Command {
     public static class QuestionCommandPrefix {
         public static final Prefix ADD_QUESTION_PREFIX = new Prefix("a/");
         public static final Prefix SOLVE_QUESTION_PREFIX = new Prefix("s/");
+        public static final Prefix DELETE_QUESTION_PREFIX = new Prefix("d/");
 
         /**
          * Returns all prefixes used by QuestionCommand.
          */
         public static final Prefix[] PREFIX_LIST =
-                new Prefix[] {ADD_QUESTION_PREFIX, SOLVE_QUESTION_PREFIX};
+                new Prefix[] {ADD_QUESTION_PREFIX, SOLVE_QUESTION_PREFIX, DELETE_QUESTION_PREFIX};
     }
 
 }

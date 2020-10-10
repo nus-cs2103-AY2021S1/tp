@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TEST_QUESTIONS;
 import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.ADD_QUESTION_PREFIX;
+import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.DELETE_QUESTION_PREFIX;
 import static seedu.address.logic.commands.QuestionCommand.QuestionCommandPrefix.SOLVE_QUESTION_PREFIX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddQuestionCommand;
+import seedu.address.logic.commands.DeleteQuestionCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
 import seedu.address.model.student.Question;
@@ -55,13 +58,22 @@ public class QuestionCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidAddParameter_failure() {
         // invalid add parameters
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + ADD_QUESTION_PREFIX,
+                Question.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + ADD_QUESTION_PREFIX + " ",
                 Question.MESSAGE_CONSTRAINTS);
+    }
 
+    @Test
+    public void parse_invalidSolveParameter_failure() {
         // invalid solve parameters
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + SOLVE_QUESTION_PREFIX,
+                MESSAGE_INVALID_INDEX);
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + SOLVE_QUESTION_PREFIX + " ",
                 MESSAGE_INVALID_INDEX);
@@ -71,22 +83,58 @@ public class QuestionCommandParserTest {
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + SOLVE_QUESTION_PREFIX + "A1",
                 MESSAGE_INVALID_INDEX);
+    }
 
-        // multiple prefixes detected
+    @Test
+    public void parse_invalidDeleteParameter_failure() {
+        // invalid delete parameters
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + DELETE_QUESTION_PREFIX,
+                MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + DELETE_QUESTION_PREFIX + " ",
+                MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + DELETE_QUESTION_PREFIX + "B",
+                MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + DELETE_QUESTION_PREFIX + "2b",
+                MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_multiplePrefixes_failure() {
+        // multiple fields detected
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " "
                         + SOLVE_QUESTION_PREFIX + "1 "
                         + ADD_QUESTION_PREFIX + "Hello",
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " "
+                        + SOLVE_QUESTION_PREFIX + "1 "
+                        + DELETE_QUESTION_PREFIX + "1",
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " "
+                        + DELETE_QUESTION_PREFIX + "1 "
+                        + ADD_QUESTION_PREFIX + "Hello",
+                MESSAGE_INVALID_FORMAT);
+
+        // all three detected
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " "
+                        + ADD_QUESTION_PREFIX + "Hello "
+                        + SOLVE_QUESTION_PREFIX + "1 "
+                        + DELETE_QUESTION_PREFIX + "2",
                 MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_addQuestionPrefix_success() {
         Index target = INDEX_SECOND_PERSON;
-        String testQuestion = "How do I look?";
-
-        String userInput = target.getOneBased() + " " + ADD_QUESTION_PREFIX + testQuestion;
-        AddQuestionCommand command = new AddQuestionCommand(target, new Question(testQuestion));
+        String userInput = target.getOneBased() + " " + ADD_QUESTION_PREFIX + TEST_QUESTIONS[0];
+        AddQuestionCommand command = new AddQuestionCommand(target, new Question(TEST_QUESTIONS[0]));
 
         assertParseSuccess(parser, userInput, command);
     }
@@ -98,6 +146,17 @@ public class QuestionCommandParserTest {
 
         String userInput = target.getOneBased() + " " + SOLVE_QUESTION_PREFIX + question.getOneBased();
         SolveQuestionCommand command = new SolveQuestionCommand(target, question);
+
+        assertParseSuccess(parser, userInput, command);
+    }
+
+    @Test
+    public void parse_deleteQuestionPrefix_success() {
+        Index target = INDEX_SECOND_PERSON;
+        Index question = INDEX_THIRD_PERSON;
+
+        String userInput = target.getOneBased() + " " + DELETE_QUESTION_PREFIX + question.getOneBased();
+        DeleteQuestionCommand command = new DeleteQuestionCommand(target, question);
 
         assertParseSuccess(parser, userInput, command);
     }

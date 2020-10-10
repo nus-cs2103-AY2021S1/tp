@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.TEST_QUESTIONS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -13,6 +14,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,17 +44,16 @@ public class SolveQuestionCommandTest {
 
     @Test
     void execute_validIndexUnfilteredList_success() {
-        String testQuestion = "What is 1 + 1?";
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withQuestions(testQuestion).build();
+        Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
-        Student expectedStudent = new StudentBuilder(asker).withSolved(testQuestion).build();
-        Question solved = expectedStudent.getQuestions().get(0);
+        Index question = Index.fromOneBased(1);
+        Student expectedStudent = getAnsweredStudent(question, clone);
+        Question solved = expectedStudent.getQuestions().get(question.getZeroBased());
         String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
 
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
-
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);
 
@@ -60,7 +63,8 @@ public class SolveQuestionCommandTest {
     @Test
     void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
         Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, INDEX_FIRST_PERSON);
+        Index question = Index.fromOneBased(1);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, question);
         assertCommandFailure(solveCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
@@ -68,17 +72,16 @@ public class SolveQuestionCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        String testQuestion = "What is 1 + 1?";
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withQuestions(testQuestion).build();
+        Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
-        Student expectedStudent = new StudentBuilder(asker).withSolved(testQuestion).build();
-        Question solved = expectedStudent.getQuestions().get(0);
-        String expectedMessage = String.format(SolveQuestionCommand.MESSAGE_SUCCESS, solved);
+        Index question = Index.fromOneBased(2);
+        Student expectedStudent = getAnsweredStudent(question, clone);
+        Question solved = expectedStudent.getQuestions().get(question.getZeroBased());
+        String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
 
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(Index.fromZeroBased(0), Index.fromZeroBased(0));
-
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setPerson(clone, expectedStudent);
 
@@ -90,32 +93,30 @@ public class SolveQuestionCommandTest {
     public void execute_invalidStudentIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBounds = INDEX_SECOND_PERSON;
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, INDEX_FIRST_PERSON);
+        Index question = Index.fromOneBased(1);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_SECOND_PERSON, question);
         assertCommandFailure(solveCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidQuestionIndex_throwsCommandException() {
-        String testQuestion = "What is 1 + 1?";
-
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withQuestions(testQuestion).build();
+        Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        Index outOfBounds = Index.fromOneBased(TEST_QUESTIONS.length + 1);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, outOfBounds);
         assertCommandFailure(solveCommand, model, MESSAGE_BAD_QUESTION_INDEX);
     }
 
     @Test
     public void execute_alreadySolvedQuestion_throwsCommandException() {
-        String testQuestion = "What is 1 + 1?";
-
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(testQuestion).build();
+        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
         model.setPerson(asker, clone);
 
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+        Index question = Index.fromOneBased(1);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
         assertCommandFailure(solveCommand, model, MESSAGE_SOLVED_QUESTION);
     }
 
@@ -134,5 +135,20 @@ public class SolveQuestionCommandTest {
 
         // different studentIndex -> false
         assertFalse(command.equals(new SolveQuestionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON)));
+    }
+
+    private Student getAnsweredStudent(Index index, Student toCopy) {
+        List<Question> questions = new ArrayList<>();
+        for (int i = 0; i < toCopy.getQuestions().size(); i++) {
+            Question toAdd;
+            if (i == index.getZeroBased()) {
+                toAdd = new Question(TEST_QUESTIONS[i], true);
+            } else {
+                toAdd = new Question(TEST_QUESTIONS[i]);
+            }
+            questions.add(toAdd);
+        }
+        return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
+                toCopy.getYear(), toCopy.getAdmin(), questions);
     }
 }

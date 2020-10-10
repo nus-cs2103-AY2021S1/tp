@@ -43,6 +43,12 @@ public class CommandTestUtil {
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
 
+    public static final String QUESTION_MATH = "What is 1 + 1?";
+    public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";
+    public static final String QUESTION_EMO = "What is the point of life?";
+    public static final String[] TEST_QUESTIONS =
+            new String[] {QUESTION_MATH, QUESTION_PHYSICS, QUESTION_EMO};
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_SCHOOL_DESC = " " + PREFIX_SCHOOL; // empty string not allowed for schools
