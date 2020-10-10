@@ -18,13 +18,16 @@ class JsonAdaptedIngredient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Ingredient's %s field is missing!";
 
     private final String value;
+    private final String quantity;
 
     /**
      * Constructs a {@code JsonAdaptedIngredient} with the given ingredient details.
      */
     @JsonCreator
-    public JsonAdaptedIngredient(@JsonProperty("value") String value) {
+    public JsonAdaptedIngredient(@JsonProperty("value") String value,
+                                 @JsonProperty("quantity") String quantity) {
         this.value = value;
+        this.quantity = quantity;
     }
 
     /**
@@ -32,6 +35,7 @@ class JsonAdaptedIngredient {
      */
     public JsonAdaptedIngredient(Ingredient source) {
         value = source.getValue(); //.fullName;
+        quantity = source.getQuantity();
     }
 
     /**
@@ -49,7 +53,7 @@ class JsonAdaptedIngredient {
         }
         //final Name modelName = new Name(value);
 
-        return new Ingredient(value);
+        return new Ingredient(value, quantity);
     }
 
 }

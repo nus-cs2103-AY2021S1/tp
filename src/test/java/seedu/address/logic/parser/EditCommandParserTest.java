@@ -25,6 +25,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -151,7 +153,7 @@ public class EditCommandParserTest {
 
         // ingredients
         userInput = targetIndex.getOneBased() + INGREDIENT_DESC_AMY;
-        descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_AMY).build();
+        descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -195,7 +197,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + INVALID_INGREDIENT_DESC
                 + INGREDIENT_DESC_BOB;
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder()
-                .withIngredient(VALID_INGREDIENT_BOB).build();
+                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -203,7 +205,7 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_INGREDIENT_DESC
                 + ADDRESS_DESC_BOB
                 + INGREDIENT_DESC_BOB;
-        descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB).build();
+        descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
     }

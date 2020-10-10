@@ -53,13 +53,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()) {
             String ingredientString = ParserUtil.parseIngredient(argMultimap
                     .getValue(PREFIX_INGREDIENT).get());
+            ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
-            String[] ingredientsToken = ingredientString.split(",");
-            ArrayList<Ingredient> ingredients = new ArrayList<>();
-
-            for (int i = 0; i < ingredientsToken.length; i++) {
-                ingredients.add(new Ingredient(ingredientsToken[i].trim()));
-            }
+            //String[] ingredientsToken = ingredientString.split(",");
+            //ArrayList<Ingredient> ingredients = new ArrayList<>();
+            //
+            //for (int i = 0; i < ingredientsToken.length; i++) {
+            //  ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+            //}
             editRecipeDescriptor.setIngredient(ingredients);
         }
 

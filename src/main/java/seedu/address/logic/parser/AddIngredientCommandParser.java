@@ -1,12 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-//import java.util.Set;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddIngredientCommand;
@@ -33,12 +30,8 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
         }
 
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
-        String[] ingredientsToken = ingredientString.split(",");
-        Ingredient[] ingredients = new Ingredient[ingredientsToken.length];
-        for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients[i] = new Ingredient(ingredientsToken[i].trim());
-        }
         return new AddIngredientCommand(ingredients);
     }
 

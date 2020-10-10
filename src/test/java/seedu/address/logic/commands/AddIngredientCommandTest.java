@@ -29,7 +29,8 @@ public class AddIngredientCommandTest {
 
     @Test
     public void constructor_nullRecipe_throwsNullPointerException() {
-        Ingredient[] nullIngredients = null;
+        ArrayList<Ingredient> nullIngredients = new ArrayList<>();
+        nullIngredients.add(null);
         assertThrows(NullPointerException.class, () -> new AddIngredientCommand(nullIngredients));
     }
 
@@ -37,10 +38,12 @@ public class AddIngredientCommandTest {
     public void execute_ingredientAcceptedByModel_addSuccessful() throws Exception {
         AddIngredientCommandTest.ModelStubAcceptingIngredientAdded modelStub = new ModelStubAcceptingIngredientAdded();
         Ingredient validIngredient = new IngredientBuilder().build();
+        ArrayList<Ingredient> validIngredients = new ArrayList<>();
+        validIngredients.add(validIngredient);
 
-        CommandResult commandResult = new AddIngredientCommand(validIngredient).execute(modelStub);
+        CommandResult commandResult = new AddIngredientCommand(validIngredients).execute(modelStub);
 
-        assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient),
+        assertEquals(String.format(AddIngredientCommand.MESSAGE_SUCCESS, validIngredient.toString()),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validIngredient), modelStub.ingredientsAdded);
     }
@@ -48,7 +51,9 @@ public class AddIngredientCommandTest {
     @Test
     public void execute_duplicateIngredient_throwsCommandException() {
         Ingredient validIngredient = new IngredientBuilder().build();
-        AddIngredientCommand addIngredientCommand = new AddIngredientCommand(validIngredient);
+        ArrayList<Ingredient> validIngredients = new ArrayList<>();
+        validIngredients.add(validIngredient);
+        AddIngredientCommand addIngredientCommand = new AddIngredientCommand(validIngredients);
         AddIngredientCommandTest.ModelStub modelStub = new AddIngredientCommandTest
                 .ModelStubWithIngredient(validIngredient);
 
@@ -60,14 +65,18 @@ public class AddIngredientCommandTest {
     public void equals() {
         Ingredient alice = new IngredientBuilder().withValue("Alice").build();
         Ingredient bob = new IngredientBuilder().withValue("Bob").build();
-        AddIngredientCommand addAliceCommand = new AddIngredientCommand(alice);
-        AddIngredientCommand addBobCommand = new AddIngredientCommand(bob);
+        ArrayList<Ingredient> aliceIngredients = new ArrayList<>();
+        aliceIngredients.add(alice);
+        ArrayList<Ingredient> bobIngredients = new ArrayList<>();
+        aliceIngredients.add(bob);
+        AddIngredientCommand addAliceCommand = new AddIngredientCommand(aliceIngredients);
+        AddIngredientCommand addBobCommand = new AddIngredientCommand(bobIngredients);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddIngredientCommand addAliceCommandCopy = new AddIngredientCommand(alice);
+        AddIngredientCommand addAliceCommandCopy = new AddIngredientCommand(aliceIngredients);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
