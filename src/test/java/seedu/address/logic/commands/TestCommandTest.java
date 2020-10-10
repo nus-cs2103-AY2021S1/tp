@@ -24,7 +24,14 @@ class TestCommandTest {
 
     @Test
     public void execute_answerSpecifiedOpenEndedUnfilteredListCorrect_success() {
+        Model expectedModel = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+
         Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        Flashcard expectedFlashcard = flashcard.getFlashcardAfterTestSuccess();
+
+        // updates tested flashcard with new flashcard state
+        expectedModel.setFlashcard(flashcard, expectedFlashcard);
+
         Question question = flashcard.getQuestion();
         Answer answer = flashcard.getAnswer();
         Answer userAnswer = flashcard.getAnswer();
@@ -35,12 +42,19 @@ class TestCommandTest {
         String expectedMessage = String.format(TestCommand.MESSAGE_FORMAT,
                 answer, userAnswer);
 
-        assertCommandSuccess(testCommand, model, expectedMessage, model, question, true, true);
+        assertCommandSuccess(testCommand, model, expectedMessage, expectedModel, question, true, true);
     }
 
     @Test
     public void execute_answerSpecifiedOpenEndedUnfilteredListWrong_success() {
+        Model expectedModel = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+
         Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        Flashcard expectedFlashcard = flashcard.getFlashcardAfterTestFailure();
+
+        // updates tested flashcard with new flashcard state
+        expectedModel.setFlashcard(flashcard, expectedFlashcard);
+
         Question question = flashcard.getQuestion();
         Answer answer = flashcard.getAnswer();
         Answer userAnswer = model.getFilteredFlashcardList().get(1).getAnswer();
@@ -56,7 +70,14 @@ class TestCommandTest {
 
     @Test
     public void execute_optionSpecifiedMcqUnfilteredListCorrect_success() {
+        Model expectedModel = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+
         Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_MCQ_FLASHCARD.getZeroBased());
+        Flashcard expectedFlashcard = flashcard.getFlashcardAfterTestSuccess();
+
+        // updates tested flashcard with new flashcard state
+        expectedModel.setFlashcard(flashcard, expectedFlashcard);
+
         MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcard.getQuestion();
         Answer answer = flashcard.getAnswer();
         Index correctIndex = Index.fromOneBased(3);
@@ -73,7 +94,14 @@ class TestCommandTest {
 
     @Test
     public void execute_optionSpecifiedMcqUnfilteredListWrong_success() {
+        Model expectedModel = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+
         Flashcard flashcard = model.getFilteredFlashcardList().get(INDEX_FIRST_MCQ_FLASHCARD.getZeroBased());
+        Flashcard expectedFlashcard = flashcard.getFlashcardAfterTestFailure();
+
+        // updates tested flashcard with new flashcard state
+        expectedModel.setFlashcard(flashcard, expectedFlashcard);
+
         MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcard.getQuestion();
         Answer answer = flashcard.getAnswer();
         Index incorrectIndex = Index.fromOneBased(2);

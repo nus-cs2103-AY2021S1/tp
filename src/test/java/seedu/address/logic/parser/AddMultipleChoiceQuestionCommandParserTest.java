@@ -31,7 +31,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     public void parse_allFieldsPresent_success() {
         String[] choices = {"First", "Second", "Third", "Fourth"};
         Flashcard expectedFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Alice", choices)
-                .withAnswer("Second").build();
+                .withAnswer("Second").withTags(new String[]{}).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_ALICE + ANSWER_DESC_ALICE + CHOICE_DESC,
