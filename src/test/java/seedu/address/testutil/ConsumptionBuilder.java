@@ -14,8 +14,10 @@ public class ConsumptionBuilder {
     private static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
             new ArrayList<>(List.of(new Ingredient("Veggies"), new Ingredient("veggies")));
     private static final Calories DEFAULT_CALORIES = new Calories(10);
-    public static final Recipe DEFAULT_RECIPE = new Recipe(DEFAULT_NAME, DEFAULT_INGREDIENTS, DEFAULT_CALORIES);
-
+    private static final String DEFAULT_INSTRUCTION = "instruction";
+    private static final String DEFAULT_RECIPE_IMAGE = "images/healthy1.jpg";
+    public static final Recipe DEFAULT_RECIPE = new Recipe(DEFAULT_NAME, DEFAULT_INSTRUCTION, DEFAULT_RECIPE_IMAGE,
+            DEFAULT_INGREDIENTS, DEFAULT_CALORIES);
     private Recipe recipe;
 
     /**
