@@ -6,10 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

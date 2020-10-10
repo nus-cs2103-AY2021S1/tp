@@ -2,9 +2,9 @@ package seedu.address.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.testutil.TypicalRecipes.ALICE;

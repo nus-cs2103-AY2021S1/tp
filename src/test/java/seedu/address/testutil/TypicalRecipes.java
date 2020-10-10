@@ -8,11 +8,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_AMY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
