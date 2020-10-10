@@ -25,10 +25,10 @@ For now, let’s keep `RemarkCommand` as simple as possible and print some outpu
 ``` java
 package seedu.address.logic.commands;
 
-import seedu.adress.model.Model;
+import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing description in the address book.
+ * Changes the remark of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -226,7 +226,7 @@ Now that we have all the information that we need, let’s lay the groundwork fo
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.fileAddress.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -308,7 +308,7 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Person persn, int displayedIndex) {
+public PersonCard(Person person, int displayedIndex) {
     //...
     remark.setText(person.getRemark().value);
 }
@@ -347,7 +347,7 @@ save it with `Model#setPerson()`.
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPeson));
+        return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
     /**

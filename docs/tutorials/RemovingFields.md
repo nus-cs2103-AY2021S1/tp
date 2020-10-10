@@ -20,7 +20,7 @@ Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify 
 
 ### Assisted refactoring
 
-The `address` field in `Person` is actually an instance of the `seedu.address.model.tag.address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `address` field in `Person` is actually an instance of the `seedu.Address.model.tag.address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
@@ -56,7 +56,7 @@ Unfortunately, there are usages of `Address` that IntelliJ IDEA cannot identify.
 
 Places of interest to look out for would be resources used by the application. `main/resources` contains images and `fxml` files used by the application and `test/resources` contains test data. For example, there is a `$address` in each `PersonCard` that has not been removed nor identified.
 
-![$fileAddress](../images/remove/$address.png)
+![$address](../images/remove/$address.png)
 
 A quick look at the `PersonCard` class and its `fxml` file quickly reveals why it slipped past the automated refactoring.
 
@@ -92,7 +92,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 {
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "fileAddress": "4th street"
+    "address": "4th street"
   } ]
 }
 ```
