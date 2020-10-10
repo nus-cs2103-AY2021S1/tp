@@ -1,22 +1,27 @@
 package chopchop.logic;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.storage.Storage;
-
-import java.io.IOException;
+// import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import chopchop.commons.core.GuiSettings;
+import chopchop.commons.core.LogsCenter;
+// import chopchop.logic.commands.Command;
+import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.model.Model;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
+import chopchop.model.recipe.Recipe;
+import javafx.collections.ObservableList;
+import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.Storage;
+
+/**
+ * The main CommandDispatcher governing the logic in the app.
+ */
 public class CommandDispatcher implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(CommandDispatcher.class);
@@ -26,7 +31,7 @@ public class CommandDispatcher implements Logic {
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code CommandDispatcher} with the given {@code Model} and {@code Storage}.
      */
     public CommandDispatcher(Model model, Storage storage) {
         this.model = model;
@@ -34,10 +39,15 @@ public class CommandDispatcher implements Logic {
         addressBookParser = new AddressBookParser();
     }
 
+    /**
+     * Executes the specified command based on the commandText.
+     *
+     * @param commandText The command as entered by the user.
+     */
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
+        /*
         Command command = addressBookParser.parseCommand(commandText);
         CommandResult commandResult = command.execute(model);
 
@@ -46,23 +56,34 @@ public class CommandDispatcher implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
+        */
+        CommandResult commandResult = new CommandResult("stub");
         return commandResult;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyRecipeBook getRecipeBook() {
+        return model.getRecipeBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return model.getFilteredRecipeList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getRecipeBookFilePath() {
+        return model.getRecipeBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyIngredientBook getIngredientBook() {
+        return model.getIngredientBook();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return model.getFilteredIngredientList();
     }
 
     @Override

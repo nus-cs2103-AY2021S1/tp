@@ -2,13 +2,15 @@ package chopchop.logic;
 
 import java.nio.file.Path;
 
+import chopchop.commons.core.GuiSettings;
+import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.commands.CommandResult;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
+import chopchop.model.recipe.Recipe;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component
@@ -25,19 +27,29 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     *
-     * @see seedu.address.model.Model#getAddressBook()
+     * Returns the RecipeBook.
      */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ReadOnlyRecipeBook getRecipeBook();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the IngredientBook.
      */
-    Path getAddressBookFilePath();
+    ReadOnlyIngredientBook getIngredientBook();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of recipes.
+     */
+    ObservableList<Recipe> getFilteredRecipeList();
+
+    /**
+     * Returns an unmodifiable view of the filtered ingredient list.
+     */
+    ObservableList<Ingredient> getFilteredIngredientList();
+
+    /**
+     * Returns the user prefs' recipe book file path.
+     */
+    Path getRecipeBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
