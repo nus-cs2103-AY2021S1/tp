@@ -21,10 +21,14 @@ public class FlashcardBuilder {
     public static final String DEFAULT_QUESTION = "Question 0";
     public static final String DEFAULT_ANSWER = "Answer 0";
     public static final String DEFAULT_TAG = "Tag 0";
+    public static final int DEFAULT_TIMES_TESTED = 0;
+    public static final int DEFAULT_TIMES_TESTED_CORRECT = 0;
 
     private Question question;
     private Answer answer;
     private Set<Tag> tags;
+    private int timesTested;
+    private int timesTestedCorrect;
 
     /**
      * Creates a {@code FlashcardBuilder} with the default details.
@@ -33,6 +37,8 @@ public class FlashcardBuilder {
         question = new OpenEndedQuestion(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>(Collections.singletonList(new Tag(DEFAULT_TAG)));
+        timesTested = DEFAULT_TIMES_TESTED;
+        timesTestedCorrect = DEFAULT_TIMES_TESTED_CORRECT;
     }
 
     /**
@@ -43,6 +49,8 @@ public class FlashcardBuilder {
         question = flashcard.getQuestion();
         answer = flashcard.getAnswer();
         tags = flashcard.getTags();
+        timesTested = flashcard.getTimesTested();
+        timesTestedCorrect = flashcard.getTimesTestedCorrect();
     }
 
     /**
@@ -97,8 +105,24 @@ public class FlashcardBuilder {
         return this;
     }
 
+    /**
+     * Adds a new {@code timesTested} to the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withTimesTested(int timesTested) {
+        this.timesTested = timesTested;
+        return this;
+    }
+
+    /**
+     * Adds a new {@code timesTestedCorrect} to the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withTimesTestedCorrect(int timesTestedCorrect) {
+        this.timesTestedCorrect = timesTestedCorrect;
+        return this;
+    }
+
     public Flashcard build() {
-        return new Flashcard(question, answer, tags);
+        return new Flashcard(question, answer, tags, timesTested, timesTestedCorrect);
     }
 
 }
