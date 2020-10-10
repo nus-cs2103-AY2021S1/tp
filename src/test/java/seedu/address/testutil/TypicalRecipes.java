@@ -7,12 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 */
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;

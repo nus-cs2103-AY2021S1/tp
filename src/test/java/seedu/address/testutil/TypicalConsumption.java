@@ -21,24 +21,24 @@ public class TypicalConsumption {
     // Recipe
     public static final Recipe ALICE_RECIPE = new RecipeBuilder().withName("Alice Pauline")
             .withIngredient("94351253", "1 cup").withCalories(10).build();
-    public static final Recipe BENSON_RECIPE = new RecipeBuilder().withName("Benson Meier").withIngredient("98765432", "1 cup")
-            .build();
-    public static final Recipe CARL_RECIPE = new RecipeBuilder().withName("Carl Kurz").withIngredient("95352563", "1 cup")
-            .withCalories(10).build();
-    public static final Recipe DANIEL_RECIPE = new RecipeBuilder().withName("Daniel Meier").withIngredient("87652533", "1 cup")
-            .withCalories(10).build();
-    public static final Recipe ELLE_RECIPE = new RecipeBuilder().withName("Elle Meyer").withIngredient("9482224", "1 cup")
-            .withCalories(10).build();
-    public static final Recipe FIONA_RECIPE = new RecipeBuilder().withName("Fiona Kunz").withIngredient("9482427", "1 cup")
-            .withCalories(10).build();
-    public static final Recipe GEORGE_RECIPE = new RecipeBuilder().withName("George Best").withIngredient("9482442", "1 cup")
-            .withCalories(10).build();
+    public static final Recipe BENSON_RECIPE = new RecipeBuilder().withName("Benson Meier")
+            .withIngredient("98765432", "1 cup").build();
+    public static final Recipe CARL_RECIPE = new RecipeBuilder().withName("Carl Kurz")
+            .withIngredient("95352563", "1 cup").withCalories(10).build();
+    public static final Recipe DANIEL_RECIPE = new RecipeBuilder().withName("Daniel Meier")
+            .withIngredient("87652533", "1 cup").withCalories(10).build();
+    public static final Recipe ELLE_RECIPE = new RecipeBuilder().withName("Elle Meyer")
+            .withIngredient("9482224", "1 cup").withCalories(10).build();
+    public static final Recipe FIONA_RECIPE = new RecipeBuilder().withName("Fiona Kunz")
+            .withIngredient("9482427", "1 cup").withCalories(10).build();
+    public static final Recipe GEORGE_RECIPE = new RecipeBuilder().withName("George Best")
+            .withIngredient("9482442", "1 cup").withCalories(10).build();
 
     // Manually added
-    public static final Recipe HOON_RECIPE = new RecipeBuilder().withName("Hoon Meier").withIngredient("8482424", "1 cup")
-            .withCalories(10).build();
-    public static final Recipe IDA_RECIPE = new RecipeBuilder().withName("Ida Mueller").withIngredient("8482131", "1 cup")
-            .withCalories(10).build();
+    public static final Recipe HOON_RECIPE = new RecipeBuilder().withName("Hoon Meier")
+            .withIngredient("8482424", "1 cup").withCalories(10).build();
+    public static final Recipe IDA_RECIPE = new RecipeBuilder().withName("Ida Mueller")
+            .withIngredient("8482131", "1 cup").withCalories(10).build();
 
     // Manually added - Recipe's details found in {@code CommandTestUtil}
     public static final Recipe AMY_RECIPE = new RecipeBuilder().withName(VALID_NAME_AMY)
