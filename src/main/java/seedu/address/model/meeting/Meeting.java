@@ -2,34 +2,29 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.util.SampleDataUtil;
 
 public class Meeting {
     // Identity fields
     private final MeetingName meetingName;
     private final Date date;
     private final Time time;
-    private Set<Person> participants;
+    private final Set<Person> members = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meeting(MeetingName name, Date date, Time time) {
+    public Meeting(MeetingName name, Date date, Time time, Set<Person> members) {
         requireAllNonNull(name, date, time);
         this.meetingName = name;
         this.date = date;
         this.time = time;
-
-        this.participants = new HashSet<>();
-
-        HashSet<Person> persons = new HashSet<>(Arrays.asList(SampleDataUtil.getSamplePersons()));
-        participants.addAll(persons);
+        this.members.addAll(members);
     }
 
     public MeetingName getMeetingName() {
@@ -44,8 +39,8 @@ public class Meeting {
         return this.time;
     }
 
-    public Set<Person> getParticipants() {
-        return participants;
+    public Set<Person> getMembers() {
+        return Collections.unmodifiableSet(members);
     }
 
     /**
