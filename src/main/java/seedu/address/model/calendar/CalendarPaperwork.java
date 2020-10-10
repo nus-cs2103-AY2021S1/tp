@@ -1,4 +1,4 @@
-package seedu.address.model.Calendar;
+package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
