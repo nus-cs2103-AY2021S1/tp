@@ -6,7 +6,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FORTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -86,6 +88,22 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validNricFilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Patient patientToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(patientToDelete.getNric());
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(patientToDelete);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
@@ -103,21 +121,34 @@ public class DeleteCommandTest {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
+        Patient thirdToDelete = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        DeleteCommand deleteThirdCommand = new DeleteCommand(thirdToDelete.getNric());
+
+        Patient forthToDelete = model.getFilteredPersonList().get(INDEX_FORTH_PERSON.getZeroBased());
+        DeleteCommand deleteForthCommand = new DeleteCommand(forthToDelete.getNric());
+
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(deleteThirdCommand.equals(deleteThirdCommand));
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
+        DeleteCommand deleteThirdCommandCopy = new DeleteCommand(thirdToDelete.getNric());
+        assertTrue(deleteThirdCommand.equals(deleteThirdCommandCopy));
+
         // different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(deleteThirdCommand.equals(1));
 
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(deleteThirdCommand.equals(null));
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(deleteThirdCommand.equals(deleteForthCommand));
     }
 
     /**
