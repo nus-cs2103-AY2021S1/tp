@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-//import java.util.HashSet;
-//import java.util.Set;
 
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
@@ -13,8 +11,6 @@ import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Recipe objects.

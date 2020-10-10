@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-/*import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;*/
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,7 +11,6 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
-//import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditRecipeDescriptor objects.

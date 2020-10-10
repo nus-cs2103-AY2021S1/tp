@@ -1,16 +1,13 @@
 package seedu.address.testutil;
 
-/*import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-*/
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 
 import java.util.ArrayList;
@@ -19,9 +16,6 @@ import java.util.List;
 
 import seedu.address.model.WishfulShrinking;
 import seedu.address.model.recipe.Recipe;
-
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 /**
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
@@ -60,9 +54,11 @@ public class TypicalRecipes {
 
     // Manually added - Recipe's details found in {@code CommandTestUtil}
     public static final Recipe AMY = new RecipeBuilder().withName(VALID_NAME_AMY).withIngredient(VALID_INGREDIENT_AMY)
-           .withCalories(VALID_CALORIES_AMY).build();
+           .withCalories(VALID_CALORIES_AMY).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe BOB = new RecipeBuilder().withName(VALID_NAME_BOB).withIngredient(VALID_INGREDIENT_BOB)
-            .withCalories(VALID_CALORIES_BOB).withTags(VALID_TAG_BOB).build();
+            .withCalories(VALID_CALORIES_BOB).withInstruction(VALID_INSTRUCTION_BOB)
+            .withRecipeImage(VALID_RECIPE_IMAGE_BOB)
+            .withTags(VALID_TAG_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

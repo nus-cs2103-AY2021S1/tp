@@ -3,8 +3,6 @@ package seedu.address.model.recipe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
 import static seedu.address.testutil.TypicalRecipes.BOB;
@@ -39,13 +37,13 @@ public class UniqueRecipeListTest {
         assertTrue(uniqueRecipeList.contains(ALICE));
     }
 
-    /*@Test
+    @Test
     public void contains_recipeWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRecipeList.add(ALICE);
         Recipe editedAlice = new RecipeBuilder(ALICE)
                 .build();
         assertTrue(uniqueRecipeList.contains(editedAlice));
-    }*/
+    }
 
     @Test
     public void add_nullRecipe_throwsNullPointerException() {

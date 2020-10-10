@@ -19,9 +19,9 @@ public class ConsumptionBuilder {
     private static final Calories DEFAULT_CALORIES = new Calories(10);
     private static final String DEFAULT_INSTRUCTION = "instruction";
     private static final String DEFAULT_RECIPE_IMAGE = "images/healthy1.jpg";
-    private static final Set<Tag> tags = new HashSet<>();
+    private static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
     public static final Recipe DEFAULT_RECIPE = new Recipe(DEFAULT_NAME, DEFAULT_INSTRUCTION, DEFAULT_RECIPE_IMAGE,
-            DEFAULT_INGREDIENTS, DEFAULT_CALORIES, tags);
+            DEFAULT_INGREDIENTS, DEFAULT_CALORIES, DEFAULT_TAGS);
     private Recipe recipe;
 
     /**

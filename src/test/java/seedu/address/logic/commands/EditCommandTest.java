@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showRecipeAtIndex;
@@ -48,7 +47,7 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*@Test
+    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastRecipe = Index.fromOneBased(model.getFilteredRecipeList().size());
         Recipe lastRecipe = model.getFilteredRecipeList().get(indexLastRecipe.getZeroBased());
@@ -67,7 +66,7 @@ public class EditCommandTest {
         expectedModel.setRecipe(lastRecipe, editedRecipe);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -81,7 +80,7 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*@Test
+    @Test
     public void execute_filteredList_success() {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
@@ -96,7 +95,7 @@ public class EditCommandTest {
         expectedModel.setRecipe(model.getFilteredRecipeList().get(0), editedRecipe);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_duplicateRecipeUnfilteredList_failure() {
