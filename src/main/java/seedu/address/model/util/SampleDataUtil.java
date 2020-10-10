@@ -21,7 +21,7 @@ public class SampleDataUtil {
         return new Recipe[] {
             new Recipe(new Name("Alex Yeoh"),
                     "instructions", "images/healthy1.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup"))})),
+                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
                     new Calories(10)),
             new Recipe(new Name("Bernice Yu"),
                     "instructions", "images/healthy2.jpg",
