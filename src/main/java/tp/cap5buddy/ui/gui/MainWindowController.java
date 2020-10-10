@@ -4,8 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
 
+import tp.cap5buddy.commons.LogsCenter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;

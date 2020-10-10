@@ -1,16 +1,12 @@
 package tp.cap5buddy.ui.gui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
+import tp.cap5buddy.commons.LogsCenter;
 
-import java.awt.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Logger;
 

@@ -3,11 +3,9 @@ package tp.cap5buddy.ui.gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import seedu.address.commons.core.LogsCenter;
-import tp.cap5buddy.logic.commands.CommandResult;
+import tp.cap5buddy.commons.LogsCenter;
+
 
 import java.io.IOException;
 import java.net.URL;

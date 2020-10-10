@@ -1,11 +1,11 @@
 package tp.cap5buddy.ui;
 
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
-import tp.cap5buddy.ui.gui.MainWindow;
-
 import java.util.Scanner;
 import java.util.logging.Logger;
+
+import javafx.stage.Stage;
+import tp.cap5buddy.commons.LogsCenter;
+
 
 
 /**
@@ -39,9 +39,6 @@ public class Ui {
     }
 
     public void start(Stage primaryStage) {
-//        logger.info("Starting UI...");
-//        MainWindow main = new MainWindow(primaryStage);
-//        main.initialize();
-//        main.show();
+        //??
     }
 }
