@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Module in the address book.
+ * Represents a Module in the Cap5.0Buddy.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Module {
@@ -14,23 +14,23 @@ public class Module {
     private final Name name;
 
     // Data fields
-    private final Address address;
+    private final ZoomLink zoomLink;
 
     /**
      * Every field must be present and not null.
      */
-    public Module(Name name, Address address) {
-        requireAllNonNull(name, address);
+    public Module(Name name, ZoomLink zoomLink) {
+        requireAllNonNull(name, zoomLink);
         this.name = name;
-        this.address = address;
+        this.zoomLink = zoomLink;
     }
 
     public Name getName() {
         return name;
     }
 
-    public Address getAddress() {
-        return address;
+    public ZoomLink getZoomLink() {
+        return zoomLink;
     }
 
     /**
@@ -62,21 +62,21 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName())
-                && otherModule.getAddress().equals(getAddress());
+                && otherModule.getZoomLink().equals(getZoomLink());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address);
+        return Objects.hash(name, zoomLink);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Address: ")
-                .append(getAddress());
+                .append(" Zoom Link: ")
+                .append(getZoomLink());
         return builder.toString();
     }
 
