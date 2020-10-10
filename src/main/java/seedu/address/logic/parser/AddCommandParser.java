@@ -54,27 +54,35 @@ public class AddCommandParser implements Parser<AddCommand> {
         IcNumber icNumber = ParserUtil.parseIcNumber(argMultimap.getValue(PREFIX_ICNUMBER).get());
 
         // optional fields
-        Address address = new Address();
-        Email email = new Email();
-        Sex sex = new Sex();
-        BloodType bloodType = new BloodType();
+        Address address;
+        Email email;
+        Sex sex;
+        BloodType bloodType;
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        } else {
+            address = new Address();
         }
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        } else {
+            email = new Email();
         }
 
         ProfilePicture profilePicture = new ProfilePicture("data/stock_picture.png");
 
         if (argMultimap.getValue(PREFIX_SEX).isPresent()) {
             sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
+        } else {
+            sex = new Sex();
         }
 
         if (argMultimap.getValue(PREFIX_BLOODTYPE).isPresent()) {
             bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
+        } else {
+            bloodType = new BloodType();
         }
 
         Set<Allergy> allergyList = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
