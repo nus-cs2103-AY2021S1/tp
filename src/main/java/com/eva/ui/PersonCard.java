@@ -1,9 +1,11 @@
 package com.eva.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import com.eva.model.person.Person;
 
+import com.eva.model.person.comment.Comment;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -41,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane comments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,6 +60,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getComments().stream()
+                .forEach(comment -> comments.getChildren().
+                        add(new Label(comment.toString())));
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.comment.Comment;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.person.staff.leave.LeaveBalance;
 import com.eva.model.tag.Tag;
@@ -29,8 +30,8 @@ public class Staff extends Person {
      * @param tags
      * @param leaves
      */
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Leave> leaves) {
-        super(name, phone, email, address, tags);
+    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Leave> leaves, Set<Comment> comments) {
+        super(name, phone, email, address, tags, comments);
         this.leaves.addAll(leaves);
     }
 

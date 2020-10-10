@@ -2,7 +2,9 @@ package com.eva.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.comment.Comment;
 import com.eva.model.tag.Tag;
 
 
@@ -121,5 +124,47 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        String[] descriptions = trimmedComment.split(" ", 3);
+        return new Comment(LocalDate.parse(descriptions[0]), descriptions[1], descriptions[2]);
+    }
+
+    public static Comment parseIncomingComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        System.out.println("hi");
+        String[] descriptions = trimmedComment.substring(3).split(" ", 2);
+        if (descriptions.length > 1) {
+            return new Comment(LocalDate.parse(descriptions[0]), descriptions[1], trimmedComment.substring(0, 2));
+        } else {
+            return new Comment(Integer.parseInt(descriptions[0]), trimmedComment.substring(0, 2));
+        }
+    }
+
+    public static Set<Comment> parseComments(Collection<String> comments) throws ParseException {
+        requireNonNull(comments);
+        final Set<Comment> commentSet = new HashSet<>();
+        for (String comment : comments) {
+            commentSet.add(parseComment(comment));
+        }
+        return commentSet;
+    }
+
+    public static Set<Comment> parseIncomingComments(Collection<String> comments) throws ParseException {
+        requireNonNull(comments);
+        final Set<Comment> commentSet = new HashSet<>();
+        for (String comment : comments) {
+            commentSet.add(parseIncomingComment(comment));
+        }
+        return commentSet;
     }
 }
