@@ -42,13 +42,13 @@ public class SampleDataUtil {
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
             new Meeting(new MeetingName("CS2103 Weekly Meeting"), new Date("2020-09-20"),
-                new Time("10:00")),
+                new Time("10:00"), getPersonSet("Alex Yeoh", "Bernice Yu")),
             new Meeting(new MeetingName("CS2040 Project Meeting"), new Date("2020-10-19"),
-                new Time("17:30")),
+                new Time("17:30"), getPersonSet("Charlotte Oliveiro", "David Li", "Irfan Ibrahim")),
             new Meeting(new MeetingName("CS2103 Emergency Meeting"), new Date("2020-10-10"),
-                new Time("16:00")),
+                new Time("16:00"), getPersonSet("Bernice Yu", "Roy Balakrishnan", "David Li")),
             new Meeting(new MeetingName("CS2102 Report Discussion"), new Date("2020-09-08"),
-                new Time("08:00")),
+                new Time("08:00"), getPersonSet("Roy Balakrishnan", "Charlotte Oliveiro")),
         };
     }
 
@@ -75,5 +75,14 @@ public class SampleDataUtil {
             sampleMb.addMeeting(sampleMeeting);
         }
         return sampleMb;
+    }
+
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Name> getPersonSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Name::new)
+                .collect(Collectors.toSet());
     }
 }

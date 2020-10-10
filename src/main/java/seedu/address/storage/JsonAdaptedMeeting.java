@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,6 +14,7 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
+import seedu.address.model.person.Name;
 
 public class JsonAdaptedMeeting {
 
@@ -19,7 +23,7 @@ public class JsonAdaptedMeeting {
     private final String name;
     private final String date;
     private final String time;
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedName> members = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -30,6 +34,9 @@ public class JsonAdaptedMeeting {
         this.name = name;
         this.date = date;
         this.time = time;
+        if (members != null) {
+            this.members.addAll(members);
+        }
     }
 
     /**
@@ -39,6 +46,9 @@ public class JsonAdaptedMeeting {
         name = source.getMeetingName().meetingName;
         date = source.getDate().value;
         time = source.getTime().value;
+        members.addAll(source.getMembers().stream()
+                .map(JsonAdaptedName::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +57,11 @@ public class JsonAdaptedMeeting {
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
     public Meeting toModelType() throws IllegalValueException {
+        final List<Name> personNames = new ArrayList<>();
+        for (JsonAdaptedName name : members) {
+            personNames.add(name.toModelType());
+        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                                                             MeetingName.class.getSimpleName()));
@@ -72,7 +87,9 @@ public class JsonAdaptedMeeting {
         }
         final Time modelTime = new Time(time);
 
-        return new Meeting(modelName, modelDate, modelTime);
+        final Set<Name> modelMembers = new HashSet<>(personNames);
+
+        return new Meeting(modelName, modelDate, modelTime, modelMembers);
     }
 
 }

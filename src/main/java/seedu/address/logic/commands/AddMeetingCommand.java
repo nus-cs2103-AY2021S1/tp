@@ -11,6 +11,9 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Adds a meeting to the meeting book.
  */
@@ -33,7 +36,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting book";
-    public static final String MESSAGE_NONEXISTENT_PERSON = "This person:%s does not exist in the address book";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts";
 
     private final Meeting toAdd;
 
@@ -53,10 +56,20 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
+        List<Name> nonExistentPersonNames = new ArrayList<>();
         for (Name name : toAdd.getMembers()) {
             if (!model.hasPersonName(name)) {
-                throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, name));
+                nonExistentPersonNames.add(name);
             }
+        }
+
+        if (!nonExistentPersonNames.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Name name : nonExistentPersonNames) {
+                sb.append(name + ", ");
+            }
+            String nonExistentPersonNamesString = sb.substring(0, sb.length() - 2);
+            throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString));
         }
 
         model.addMeeting(toAdd);
