@@ -14,10 +14,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.CalendarBidderId;
-import seedu.address.model.CalendarPropertyId;
-import seedu.address.model.CalendarTime;
-import seedu.address.model.CalendarVenue;
+import seedu.address.model.Calendar.CalendarBidderId;
+import seedu.address.model.Calendar.CalendarPropertyId;
+import seedu.address.model.Calendar.CalendarTime;
+import seedu.address.model.Calendar.CalendarVenue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
