@@ -14,6 +14,7 @@ import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -108,6 +109,7 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
     /**
      * Parses a {@code String meetingName} into a {@code MeetingName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -151,5 +153,32 @@ public class ParserUtil {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Person parsePerson(String personName) throws ParseException {
+        requireNonNull(personName);
+        Name trimmedPersonName = parseName(personName);
+        if (!UniquePersonList.contains(trimmedPersonName)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return UniquePersonList.get(trimmedPersonName);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Person> parsePersons(Collection<String> persons) throws ParseException {
+        requireNonNull(persons);
+        final Set<Person> personSet = new HashSet<>();
+        for (String personName : persons) {
+            personSet.add(parsePerson(personName));
+        }
+        return personSet;
     }
 }
