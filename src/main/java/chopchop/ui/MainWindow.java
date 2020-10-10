@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private HelpWindow helpWindow;
     private CommandBox commandBox;
-    private ReceipeViewPanel receipeViewPanel;
+    private RecipeViewPanel recipeViewPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,9 +43,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane displayListPlaceholder;
-
-    @FXML
-    private StackPane CommandBoxPlaceholder;
 
     @FXML
     private StackPane pinBoxPlaceholder;
