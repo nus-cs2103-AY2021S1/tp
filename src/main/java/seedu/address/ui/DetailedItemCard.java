@@ -10,7 +10,7 @@ import seedu.address.model.item.Item;
 /**
  * An UI component that displays information of a {@code Item}.
  */
-public class InventoryDetailedCard extends UiPart<Region> {
+public class DetailedItemCard extends UiPart<Region> {
 
     private static final String FXML = "InventoryListDetailedCard.fxml";
 
@@ -36,7 +36,7 @@ public class InventoryDetailedCard extends UiPart<Region> {
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
-    public InventoryDetailedCard(Item item, int displayedIndex) {
+    public DetailedItemCard(Item item, int displayedIndex) {
         super(FXML);
         this.item = item;
         name.setText(item.getName());
@@ -52,12 +52,12 @@ public class InventoryDetailedCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof InventoryDetailedCard)) {
+        if (!(other instanceof DetailedItemCard)) {
             return false;
         }
 
         // state check
-        InventoryDetailedCard card = (InventoryDetailedCard) other;
+        DetailedItemCard card = (DetailedItemCard) other;
         return item.equals(card.item);
     }
 }

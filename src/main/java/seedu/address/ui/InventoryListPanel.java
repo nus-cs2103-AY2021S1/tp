@@ -75,10 +75,9 @@ public class InventoryListPanel extends UiPart<Region> {
                 case RECIPES:
                     setGraphic(new RecipeCard((PrintableRecipe) inventory, getIndex() + 1).getRoot());
                     break;
-                    //TODO
-//                case DETAILED_ITEM:
-//                    setGraphic(new InventoryDetailedCard((Item) inventory, getIndex() + 1).getRoot());
-//                    break;
+                case DETAILED_ITEM:
+                    setGraphic(new DetailedItemCard((Item) inventory, getIndex() + 1).getRoot());
+                    break;
                 default:
                     throw new IllegalStateException("This inventoryType is not valid" + inventoryType);
                 }

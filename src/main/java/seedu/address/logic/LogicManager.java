@@ -143,19 +143,21 @@ public class LogicManager implements Logic {
     // test
     public ArrayList<Inventory> getInventoryList(View.InventoryType inventoryType) {
         if (!inventoryType.equals(View.InventoryType.DETAILED_ITEM)) {
+            // ViewDetailsCommand already updates for viewing of one item
             model.updateFilteredItemList(item -> !item.isDeleted());
             model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
         }
         ArrayList<Inventory> inventoryList = new ArrayList<>();
         switch(inventoryType) {
         case ITEMS:
-        case DETAILED_ITEM:
             inventoryList.addAll(model.getFilteredItemList());
             break;
         case RECIPES:
-            //prepare recipe list to print
             model.getFilteredRecipeList()
                     .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
+            break;
+        case DETAILED_ITEM:
+            model.getFilteredItemList().forEach(item -> inventoryList.add(item.DetailedItem()));
             break;
         case UNCHANGED:
             assert false;

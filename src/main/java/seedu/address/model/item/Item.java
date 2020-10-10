@@ -46,7 +46,9 @@ public class Item extends Inventory {
         this.recipeIds.addAll(recipeIds);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
-        idCounter++;
+        if (!this.getType().equals(View.InventoryType.DETAILED_ITEM)) {
+            idCounter++;
+        }
     }
 
     public static int getIdCounter() {
@@ -91,6 +93,7 @@ public class Item extends Inventory {
 
     /**
      * Adds Recipe Id to item ids.
+     *
      * @param recipeId recipe id connected to this item.
      */
     public void addRecipeId(int recipeId) {
@@ -113,6 +116,7 @@ public class Item extends Inventory {
 
     /**
      * Returns true if both items have same name, and can be replaced.
+     *
      * @param otherItem Other item to compare to this item.
      * @return true if the item of this name can be replaced.
      */
@@ -160,6 +164,12 @@ public class Item extends Inventory {
     @Override
     public String toString() {
         return name;
+    }
+
+
+    public DetailedItem DetailedItem() {
+        return new DetailedItem(id, name, quantity, description, Set.copyOf(locationIds),
+                Set.copyOf(recipeIds), tags, isDeleted);
     }
 
     @Override
