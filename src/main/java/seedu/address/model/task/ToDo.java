@@ -6,6 +6,8 @@ import seedu.address.model.tag.Tag;
 
 public class ToDo extends Task {
 
+    public static final String TASK_TYPE = "TODO";
+
     /**
      * Every field must be present and not null.
      */

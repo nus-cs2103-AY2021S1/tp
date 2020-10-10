@@ -7,6 +7,8 @@ import seedu.address.model.tag.Tag;
 
 public class Event extends Task{
 
+    public static final String TASK_TYPE = "EVENT";
+
     protected final TaskDate eventDate;
     protected final TaskTime eventTime;
 
