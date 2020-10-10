@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.Task;
@@ -28,12 +25,12 @@ public class TaskCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-//    @FXML
-//    private Label studentId;
-//    @FXML
-//    private Label email;
-//    @FXML
-//    private FlowPane tags;
+    //    @FXML
+    //    private Label studentId;
+    //    @FXML
+    //    private Label email;
+    //    @FXML
+    //    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -43,11 +40,11 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName());
-//        studentId.setText(task.getStudentId().value);
-//        email.setText(person.getEmail().value);
-//        person.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //        studentId.setText(task.getStudentId().value);
+        //        email.setText(person.getEmail().value);
+        //        person.getTags().stream()
+        //                .sorted(Comparator.comparing(tag -> tag.tagName))
+        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
