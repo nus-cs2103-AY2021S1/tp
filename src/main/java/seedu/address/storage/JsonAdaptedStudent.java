@@ -1,10 +1,5 @@
 package seedu.address.storage;
 
-// import java.util.ArrayList;
-// import java.util.HashSet;
-// import java.util.List;
-// import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,10 +10,6 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.Admin;
-// import seedu.address.model.student.admin.AdditionalDetail;
-// import seedu.address.model.student.admin.ClassTime;
-// import seedu.address.model.student.admin.ClassVenue;
-
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -31,17 +22,20 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String school;
     private final String year;
+    private final JsonAdaptedAdmin jsonAdaptedAdmin;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("school") String school, @JsonProperty("year") String year) {
+                              @JsonProperty("school") String school, @JsonProperty("year") String year,
+                              @JsonProperty("admin") JsonAdaptedAdmin admin) {
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
+        this.jsonAdaptedAdmin = admin;
     }
 
     /**
@@ -52,6 +46,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         school = source.getSchool().school;
         year = String.valueOf(source.getYear().year);
+        jsonAdaptedAdmin = new JsonAdaptedAdmin(source.getAdmin());
     }
 
     /**
@@ -60,7 +55,6 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Student toModelType() throws IllegalValueException {
-        //   final List<AdditionalDetail> personTags = new ArrayList<>();
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -96,8 +90,8 @@ class JsonAdaptedStudent {
         }
         final Year modelYear = new Year(year);
 
-        // Please implement Admin
-        return new Student(modelName, modelPhone, modelSchool, modelYear, Admin.getPlaceholder());
+        Admin admin = jsonAdaptedAdmin.toModelType();
+        return new Student(modelName, modelPhone, modelSchool, modelYear, admin);
     }
 
 }

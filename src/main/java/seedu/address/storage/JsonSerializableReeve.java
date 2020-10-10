@@ -19,16 +19,16 @@ import seedu.address.model.student.Student;
 @JsonRootName(value = "addressbook")
 class JsonSerializableReeve {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
 
-    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableReeve(@JsonProperty("persons") List<JsonAdaptedStudent> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableReeve(@JsonProperty("persons") List<JsonAdaptedStudent> students) {
+        this.students.addAll(students);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableReeve {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableReeve(ReadOnlyReeve source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        students.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,10 +47,10 @@ class JsonSerializableReeve {
      */
     public Reeve toModelType() throws IllegalValueException {
         Reeve reeve = new Reeve();
-        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
+        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (reeve.hasPerson(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             reeve.addPerson(student);
         }
