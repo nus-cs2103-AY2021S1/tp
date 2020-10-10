@@ -220,19 +220,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Documentation**
+## **4. Documentation**
 * [Documentation guide](Documentation.md)
 
-## 5. **Testing**
+## **5. Testing**
 * [Testing guide](Testing.md)
 
-## 6. **Logging**
+## **6. Logging**
 * [Logging guide](Logging.md)
 
-## 7. **Configuration**
+## **7. Configuration**
 * [Configuration guide](Configuration.md)
 
-## 8. **Dev-ops**
+## **8. Dev-ops**
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
