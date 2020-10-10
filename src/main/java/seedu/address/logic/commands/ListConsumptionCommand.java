@@ -16,6 +16,7 @@ public class ListConsumptionCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Recipe ate" + "\n";
 
+    private static int totalCalories = 0;
 
     @Override
     public CommandResult execute(Model model) {
@@ -25,7 +26,10 @@ public class ListConsumptionCommand extends Command {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < consump.size(); i++) {
             builder.append((i + 1) + ". " + consump.get(i).toString() + "\n");
+            totalCalories += consump.get(i).getRecipe().getCalories().value;
         }
+        builder.append("Total Calories: ");
+        builder.append(totalCalories + " cal");
         return new CommandResult(MESSAGE_SUCCESS + builder.toString());
     }
 }
