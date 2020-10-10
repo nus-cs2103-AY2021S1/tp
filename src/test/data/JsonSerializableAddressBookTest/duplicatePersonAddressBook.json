@@ -1,12 +1,9 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+  "tags": [ {
+    "tagName": "Alice Pauline",
+    "fileAddress": "c:\\a\\b\\abc.txt"
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "address": "4th street"
+    "tagName": "Alice Pauline",
+    "fileAddress": "c:\\a\\b\\abc.txt"
   } ]
 }

@@ -1,39 +1,25 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+  "_comment": "fileAddressBook save file which contains the same Person values as in TypicalTags#getTypicalfileAddressBook()",
+  "tags" : [ {
+    "tagName" : "Alice Pauline",
+    "fileAddress" : "c:\\a\\b\\alice.txt"
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagName" : "Benson Meier",
+    "fileAddress" : "c:\\a\\b\\benson.txt"
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "tagName" : "Carl Kurz",
+    "fileAddress" : "c:\\a\\b\\carl.txt"
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagName" : "Daniel Meier",
+    "fileAddress" : "c:\\a\\b\\daniel.txt"
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "tagName" : "Elle Meyer",
+    "fileAddress" : "c:\\a\\b\\elle.txt"
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagName" : "Fiona Kunz",
+    "fileAddress" : "c:\\a\\b\\fiona.txt"
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "tagName" : "George Best",
+    "fileAddress" : "c:\\a\\b\\george.txt"
   } ]
 }

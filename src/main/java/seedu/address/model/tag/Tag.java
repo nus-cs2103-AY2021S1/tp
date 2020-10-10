@@ -1,54 +1,85 @@
 package seedu.address.model.tag;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
+
+
 
 /**
- * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Represents a Tag in the HelloFile.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    // Identity fields
+    private final TagName tagName;
 
-    public final String tagName;
+    // Data fields
+    private final FileAddress fileAddress;
 
     /**
-     * Constructs a {@code Tag}.
-     *
-     * @param tagName A valid tag name.
+     * Every field must be present and not null.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+    public Tag(TagName tagName, FileAddress fileAddress) {
+        requireAllNonNull(tagName, fileAddress);
         this.tagName = tagName;
+        this.fileAddress = fileAddress;
+    }
+
+    public TagName getTagName() {
+        return tagName;
+    }
+
+    public FileAddress getFileAddress() {
+        return fileAddress;
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two persons.
      */
-    public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
+    public boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
 
+        return otherTag != null
+                && otherTag.getTagName().equals(getTagName())
+                && otherTag.getFileAddress().equals(getFileAddress());
+    }
+    /**
+     * Returns true if both tag have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Tag)) {
+            return false;
+        }
+
+        Tag otherTag = (Tag) other;
+        return otherTag.getTagName().equals(getTagName())
+                && otherTag.getFileAddress().equals(getFileAddress());
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(tagName, fileAddress);
     }
 
-    /**
-     * Format state as text for viewing.
-     */
+    @Override
     public String toString() {
-        return '[' + tagName + ']';
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTagName())
+                .append(" FileAddress: ")
+                .append(getFileAddress());
+        return builder.toString();
     }
 
 }
