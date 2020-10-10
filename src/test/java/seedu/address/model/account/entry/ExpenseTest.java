@@ -4,10 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static seedu.address.testutil.Assert.assertThrows;
-
-import seedu.address.model.tag.Tag;
-
 import org.junit.jupiter.api.Test;
+import seedu.address.model.tag.Tag;
 
 class ExpenseTest {
 
