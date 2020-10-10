@@ -8,7 +8,7 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditStudentDescriptor objects.
  */
 public class EditStudentDescriptorBuilder {
 
@@ -23,7 +23,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
      */
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
@@ -34,7 +34,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -42,7 +42,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -50,7 +50,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code School} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code School} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withSchool(String school) {
         descriptor.setSchool(new School(school));
@@ -58,7 +58,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Year} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Year} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withYear(String year) {
         descriptor.setYear(new Year(year));

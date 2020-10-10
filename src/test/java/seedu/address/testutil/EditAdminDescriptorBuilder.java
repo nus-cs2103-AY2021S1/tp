@@ -81,7 +81,6 @@ public class EditAdminDescriptorBuilder {
         return this;
     }
 
-
     public EditAdminDescriptor build() {
         return descriptor;
     }

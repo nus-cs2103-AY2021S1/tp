@@ -118,18 +118,23 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
-                .orElse(studentToEdit.getAdmin().getClassTime());
-        ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
-                .orElse(studentToEdit.getAdmin().getClassVenue());
-        Fee updatedFee = editAdminDescriptor.getFee()
-                .orElse(studentToEdit.getAdmin().getFee());
-        PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
-                .orElse(studentToEdit.getAdmin().getPaymentDate());
-        Set<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
-                .orElse(studentToEdit.getAdmin().getDetails());
-        Admin updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
-                updatedAdditionalDetails);
+        Admin updatedAdmin;
+        if (editAdminDescriptor.isAnyFieldEdited()) {
+            ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
+                    .orElse(studentToEdit.getAdmin().getClassTime());
+            ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
+                    .orElse(studentToEdit.getAdmin().getClassVenue());
+            Fee updatedFee = editAdminDescriptor.getFee()
+                    .orElse(studentToEdit.getAdmin().getFee());
+            PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
+                    .orElse(studentToEdit.getAdmin().getPaymentDate());
+            Set<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
+                    .orElse(studentToEdit.getAdmin().getDetails());
+            updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
+                    updatedAdditionalDetails);
+        } else {
+            updatedAdmin = studentToEdit.getAdmin();
+        }
 
         return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin);
     }
@@ -311,7 +316,8 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code details} is null.
          */
         public Optional<Set<AdditionalDetail>> getAdditionalDetails() {
-            return (details != null) ? Optional.of(Collections.unmodifiableSet(details)) : Optional.empty();
+            return Optional.ofNullable(details).map(Collections::unmodifiableSet);
+            // return (details != null) ? Optional.of(Collections.unmodifiableSet(details)) : Optional.empty();
         }
 
         @Override
