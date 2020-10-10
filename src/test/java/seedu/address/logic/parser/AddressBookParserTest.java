@@ -13,13 +13,20 @@ import seedu.address.logic.commands.AddLabelCommand;
 import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonHasTagsAndNamePredicate;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.LabelPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddressBookParserTest {
 
@@ -67,13 +74,15 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-
+    // TODO: Check why this test fails.
+    //
     //    @Test
     //    public void parseCommand_find() throws Exception {
     //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    //        List<Tag> tags = Arrays.asList(new Tag("tag"));
     //        FindCommand command = (FindCommand) parser.parseCommand(
-    //                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-    //        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    //                FindCommand.COMMAND_WORD + " n/foo n/bar n/baz t/tag");
+    //        assertEquals(new FindCommand(new PersonHasTagsAndNamePredicate(keywords, tags)), command);
     //    }
 
     @Test
