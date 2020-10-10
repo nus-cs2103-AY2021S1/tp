@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * The API of the Model component.
@@ -16,6 +17,10 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Bid> PREDICATE_SHOW_ALL_BIDS = unused -> true;
+
+    Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
+
+    //=========== UserPrefs ================================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -47,6 +52,8 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    //=========== AddressBook ================================================================================
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -55,8 +62,6 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns the BidBook */
-    ReadOnlyBidBook getBidBook();
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -84,6 +89,11 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    //=========== BidBook ================================================================================
+
+    /** Returns the BidBook */
+    ReadOnlyBidBook getBidBook();
+
     ObservableList<Bid> getFilteredBidList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -95,5 +105,48 @@ public interface Model {
 
     void addBid(Bid bid);
 
+    //=========== PropertyBook ================================================================================
+
+    /**
+     * Replaces property book data with the data in {@code propertyBook}.
+     */
+    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
+
+    /** Returns the property book. */
+    ReadOnlyPropertyBook getPropertyBook();
+
+    /**
+     * Returns true if a property with the same identity as {@code property} exists in the property book.
+     */
+    boolean hasProperty(Property property);
+
+    /**
+     * Deletes the given property.
+     * The property must exist in the property book.
+     */
+    void deleteProperty(Property target);
+
+    /**
+     * Adds the given property.
+     * {@code property} must not already exist in the property book.
+     */
+    void addProperty(Property property);
+
+    /**
+     * Replaces the given property {@code target} with {@code editedProperty}.
+     * {@code target} must exist in the property book.
+     * The property identity of {@code editedProperty} must not be the same as another existing property in the
+     * property book.
+     */
+    void setProperty(Property target, Property editedProperty);
+
+    /** Returns an unmodifiable view of the filtered property list */
+    ObservableList<Property> getFilteredPropertyList();
+
+    /**
+     * Updates the filter of the filtered property list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPropertyList(Predicate<Property> predicate);
 
 }

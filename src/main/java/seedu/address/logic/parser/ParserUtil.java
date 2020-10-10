@@ -100,7 +100,7 @@ public class ParserUtil {
      * trims off any excess white spaces for a given string
      * @param propertyId string to trim
      * @return a string that has no white spaces on the sides
-     * @throws ParseException
+     * @throws ParseException If the property id is in the wrong format.
      */
     public static String parsePropertyId(String propertyId) throws ParseException {
         requireNonNull(propertyId);
@@ -112,7 +112,7 @@ public class ParserUtil {
      * trims off any excess white spaces for a given string
      * @param bidderId string to trim
      * @return a string that has no white spaces on the sides
-     * @throws ParseException
+     * @throws ParseException If the bidder id is in the wrong format.
      */
     public static String parseBidderId(String bidderId) throws ParseException {
         requireNonNull(bidderId);
@@ -124,7 +124,7 @@ public class ParserUtil {
      *  trims off any excess white spaces for a given string
      * @param bidAmount string to trim
      * @return a string that has no white spaces on the sides
-     * @throws ParseException
+     * @throws ParseException If the bidAmount is in the wrong format.
      */
     public static double parseBidAmount(String bidAmount) throws ParseException {
         requireNonNull(bidAmount);

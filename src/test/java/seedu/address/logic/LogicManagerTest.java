@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
@@ -126,7 +127,9 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook());
+        // TODO: replace property book
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+                new PropertyBook());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
