@@ -209,10 +209,10 @@ Format: `history`
 #### Retrieve and reuse past commands using arrow keys:
 
 Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
-1. Ensure that the command line interface is working by clicking on the text field.
-2. Press the up arrow key to display the next recent past command on the command line interface.
-3. Press the down arrow key to display the previously shown past command on the command line interface.
-4. Press enter/return key to reuse that past command.
+1. Click on the text field of the command box.
+2. Press the up arrow key to display the next recent past command.
+3. Press the down arrow key to display the previously shown past command.
+4. Press enter/return key to reuse the command.
 
 ### Saving the data
 
