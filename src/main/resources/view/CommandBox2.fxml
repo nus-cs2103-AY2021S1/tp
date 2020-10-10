@@ -10,15 +10,15 @@
         <URL value="@Style.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="20.0" arcWidth="30.0" fill="#ebe1ce" height="160.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
+      <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="304.0" />
       <VBox>
          <children>
             <StackPane>
                <children>
-                  <TextField fx:id="commandTextField" maxHeight="30.0" maxWidth="190.0" onAction="#handleCommandEntered" promptText="Enter command here..." />
+                  <TextField fx:id="commandTextField" maxHeight="48.0" maxWidth="304.0" onAction="#handleCommandEntered" promptText="Enter command here..." />
                </children>
             </StackPane>
-            <TextArea prefHeight="134.0" prefWidth="180.0" visible="false" />
+            <TextArea prefHeight="214.0" prefWidth="288.0" visible="false" />
          </children>
       </VBox>
    </children>

@@ -10,7 +10,7 @@
         <URL value="@Style.css" />
     </stylesheets>
     <children>
-        <Rectangle arcHeight="20.0" arcWidth="30.0" fill="#ebe1ce" height="160.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
-        <TextArea fx:id="favouriteBox" maxHeight="160.0" maxWidth="190.0" prefHeight="200.0" prefWidth="200.0" text="Favourites" />
+        <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
+        <TextArea fx:id="favouriteBox" maxHeight="256.0" maxWidth="304.0" prefHeight="320.0" prefWidth="320.0" text="Favourites" />
     </children>
 </StackPane>

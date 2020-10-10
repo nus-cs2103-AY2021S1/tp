@@ -11,21 +11,21 @@
     -fx-background-radius: 0;
     -fx-background-color: #f6f6f6;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 8pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: #000000;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 .label-button {
     -fx-font-family: "Helvetica";
-    -fx-font-size: 10pt;
+    -fx-font-size: 14pt;
 }
 .cell-big-label {
     -fx-font-family: "Helvetica";
-    -fx-font-size: 16pt;
+    -fx-font-size: 22pt;
 }
 #commandTextField {
     -fx-background-color: rgba(0.96,0.96,0.96,0.7);
-    -fx-font-size: 8pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-color: #575555;
     -fx-prompt-text-fill: #575555;
