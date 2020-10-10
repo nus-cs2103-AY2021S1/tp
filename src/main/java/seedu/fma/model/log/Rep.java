@@ -9,8 +9,6 @@ import static seedu.fma.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidRep(String)}
  */
 public class Rep {
-
-
     public static final String MESSAGE_CONSTRAINTS =
             "Reps should only contain numbers, and it should be at least 1 digit long";
     public static final String VALIDATION_REGEX = "\\d{1,}";
