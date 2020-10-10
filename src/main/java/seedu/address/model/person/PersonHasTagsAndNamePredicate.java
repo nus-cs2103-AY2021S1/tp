@@ -10,7 +10,7 @@ import seedu.address.model.tag.Tag;
  * Tests that a {@code Person}'s {@code Name} matches any of the names given
  * and a {@code Person}'s {@code Tags} matches all of the tags given.
  */
-public class PersonHasTagsAndNamePredicate implements Predicate<Person> {
+public class PersonHasTagsAndNamePredicate implements PersonPredicate {
     private final List<String> names;
     private final List<Tag> tags;
 
