@@ -1,19 +1,16 @@
-package tp.cap5buddy.ui;
+package tp.cap5buddy.ui.gui;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 import javafx.stage.Stage;
 import tp.cap5buddy.commons.LogsCenter;
+import tp.cap5buddy.ui.Messages;
 
 
-
-/**
- * Represents the UI object that the user interacts with.
- */
-public class Ui {
+public class UiManager implements Ui {
     private static final Scanner SC = new Scanner(System.in);
-    private static final Logger logger = LogsCenter.getLogger(Ui.class);
+    private static final Logger logger = LogsCenter.getLogger(tp.cap5buddy.ui.Ui.class);
 
     /**
      * Prints the result message.
@@ -38,7 +35,9 @@ public class Ui {
         return SC.nextLine();
     }
 
+    @Override
     public void start(Stage primaryStage) {
-        //??
+        logger.info("Starting UI...");
+        MainWindowController main = new MainWindowController(primaryStage);
     }
 }
