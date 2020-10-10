@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,16 +25,20 @@ public class AddRecipeCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_INGREDIENT + "INGREDIENT "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_CALORIES + "CALORIES "
+            + PREFIX_INSTRUCTION + "INSTRUCTIONS "
+            + PREFIX_RECIPE_IMAGE + "IMAGE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_INGREDIENT + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_CALORIES + "100 "
+            + PREFIX_INSTRUCTION + "1. cook 2. eat "
+            + PREFIX_RECIPE_IMAGE + "img/pic.png "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
+
+
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Wishful Shrinking";

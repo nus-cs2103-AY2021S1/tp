@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.recipe.Recipe;
 
+import java.util.Comparator;
+
 /**
  * An UI component that displays information of a {@code Recipe}.
  */
@@ -68,6 +70,10 @@ public class RecipeCard extends UiPart<Region> {
                 .map(item -> item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         calories.setText(recipe.getCalories().value.toString() + " cal");
+
+        this.recipe.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
