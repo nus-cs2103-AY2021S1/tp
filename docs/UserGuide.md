@@ -31,19 +31,23 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 
 **:information_source: Brief summary of features:**<br>
 
-* Items contain location, quantities, etc. Item Details presented in a drop down
+* Items contain location, quantities, etc. Item Details presented in a drop down window.
 * Sorting and searching by
     * name of stock
     * serial number
     * source of stock
     * location stored in warehouse
 * Startup default sorted by quantity, highlight item with short quantity.
-* Commands, e.g. save, load, form filling.
+* Commands.<br>
+  e.g. add stock, delete stock and find stock.
 * Storage into a csv file.
-* Adding/Deleting items: Unique serial number generation per item per company
-* Setting up: Personalized GUI. i.e company name displayed in the GUI, predefined color presets
-* Bookmark feature e.g. often used stocks, search bookmark <item>
-
+* Adding/Deleting items: Unique serial number generation per item per company.
+* Setting up: Personalized GUI.<br>
+  e.g. company name displayed in the GUI, predefined color presets.
+* Bookmark feature.<br>
+  e.g. often used stocks, search bookmark<item>.
+* Parameters can be in any order.<br>
+  e.g. if the command specifies n/<name> q/<source>, q/<source> n/<name> is also acceptable.
 
 </div>
 
@@ -64,6 +68,9 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
     4. Location in warehouse
 
 Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
+
+⚠ Each specific fields specified in the `add` command should only be entered once.<br>
+e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
