@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +26,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_COLORTAG + "COLORTAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -102,8 +105,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
         ProfilePicture updatedProfilePicture = editPatientDescriptor.getProfilePicture()
                                                .orElse(patientToEdit.getProfilePicture());
+        ColorTag updatedColorTag = editPatientDescriptor.getColorTag().orElse(patientToEdit.getColorTag());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProfilePicture);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProfilePicture,
+                updatedColorTag);
     }
 
     @Override
@@ -135,6 +140,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private ProfilePicture profilePicture;
+        private ColorTag colorTag;
 
         public EditPatientDescriptor() {}
 
@@ -149,13 +155,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setProfilePicture(toCopy.profilePicture);
+            setColorTag(toCopy.colorTag);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, colorTag);
         }
 
         public void setName(Name name) {
@@ -215,6 +222,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setColorTag(ColorTag colorTag) {
+            this.colorTag = colorTag;
+        }
+
+        public Optional<ColorTag> getColorTag() {
+            return Optional.ofNullable(colorTag);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -235,7 +250,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getProfilePicture().equals(e.getProfilePicture());
+                    && getProfilePicture().equals(e.getProfilePicture())
+                    && getColorTag().equals(e.getColorTag());
         }
     }
 }

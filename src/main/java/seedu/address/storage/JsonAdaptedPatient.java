@@ -16,6 +16,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPatient {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String profilePicture;
+    private final String color;
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
@@ -39,7 +41,8 @@ class JsonAdaptedPatient {
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("profilePicture") String profilePicture) {
+                              @JsonProperty("profilePicture") String profilePicture,
+                              @JsonProperty("color") String color) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,6 +51,7 @@ class JsonAdaptedPatient {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.color = color;
     }
 
     /**
@@ -62,6 +66,7 @@ class JsonAdaptedPatient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        color = source.getColorTag().originalColor;
     }
 
     /**
@@ -113,13 +118,22 @@ class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                                                           ProfilePicture.class.getSimpleName()));
         }
-
         if (!ProfilePicture.isValidFilePath(profilePicture)) {
             throw new IllegalValueException(ProfilePicture.MESSAGE_CONSTRAINTS);
         }
         final ProfilePicture modelProfilePicture = new ProfilePicture(profilePicture);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProfilePicture);
+        if (color == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                                          ColorTag.class.getSimpleName()));
+        }
+        if (!ColorTag.isValidColorName(color)) {
+            throw new IllegalValueException(ColorTag.MESSAGE_CONSTRAINTS);
+        }
+        final ColorTag modelColorTag = new ColorTag(color);
+
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelProfilePicture,
+                modelColorTag);
     }
 
 }

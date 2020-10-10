@@ -60,7 +60,7 @@ public class AddProfilePictureCommand extends Command {
         ProfilePicture profilePicture = new ProfilePicture(filePath);
 
         Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture);
+                patientToEdit.getAddress(), patientToEdit.getTags(), profilePicture, patientToEdit.getColorTag());
 
         model.setPatient(patientToEdit, patientEdited);
 

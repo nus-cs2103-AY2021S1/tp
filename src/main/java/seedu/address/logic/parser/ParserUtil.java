@@ -13,6 +13,7 @@ import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.tag.ColorTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +121,24 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String colorTag} into a {@code ColorTag}.
+     *
+     * @throws ParseException if the given {@code ColorTag} is invalid.
+     */
+    public static ColorTag parseColorTag(String colorTag) throws ParseException {
+        requireNonNull(colorTag);
+        String trimmedColorTag = colorTag.trim();
+
+        if (trimmedColorTag.equals("")) {
+            return new ColorTag();
+        }
+
+        if (!ColorTag.isValidColorName(colorTag)) {
+            throw new ParseException(ColorTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ColorTag(trimmedColorTag);
     }
 }
