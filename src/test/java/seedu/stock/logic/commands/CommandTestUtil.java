@@ -1,6 +1,7 @@
 package seedu.stock.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -11,12 +12,17 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.StockBook;
+import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
+import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -104,5 +110,28 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedStockBook, actualModel.getStockBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredStockList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the stock at the given {@code targetSerialNumber} in the
+     * {@code model}'s stock book.
+     */
+    public static void showStockAtSerialNumber(Model model, SerialNumber targetSerialNumber) {
+        //stocks should exist
+        assertTrue(model.getFilteredStockList().stream().anyMatch(stock ->
+                                                stock.getSerialNumber().equals(targetSerialNumber)));
+
+        String[] splitName = new String[1];
+
+        for (int i = 0; i < model.getFilteredStockList().size(); i++) {
+            Stock curr = model.getFilteredStockList().get(i);
+            if (curr.getSerialNumber().equals(targetSerialNumber)) {
+                splitName[0] = curr.getName().fullName.split("\\s+")[0];
+            }
+        }
+        assertTrue(splitName[0] != null);
+
+        model.updateFilteredStockList((new NameContainsKeywordsPredicate(Arrays.asList(splitName[0]))));
+        assertEquals(1, model.getFilteredStockList().size());
     }
 }
