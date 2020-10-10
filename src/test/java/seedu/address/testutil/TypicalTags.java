@@ -18,6 +18,7 @@ import seedu.address.model.tag.Tag;
 public class TypicalTags {
 
 
+    // TODO These tags could be updated with more descriptive tag names.
     public static final Tag ALICE = new TagBuilder().withTagName("Alice Pauline")
             .withFileAddress("c:\\a\\b\\alice.txt")
             .build();

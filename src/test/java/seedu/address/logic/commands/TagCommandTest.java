@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -23,55 +24,57 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TagBuilder;
 
-public class AddCommandTest {
+public class TagCommandTest {
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new TagCommand(null));
     }
 
     @Test
-    public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
+    @Disabled
+    // This test is using the original idea of tagging person.
+    public void execute_tagAcceptedByModel_tagSuccessful() throws Exception {
         ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
-        Tag validPerson = new TagBuilder().build();
+        Tag validTag = new TagBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new TagCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.tagsAdded);
+        assertEquals(String.format(TagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTag), modelStub.tagsAdded);
     }
 
     @Test
-    public void execute_duplicateTag_throwsCommandException() {
-        Tag validPerson = new TagBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithTag(validPerson);
+    public void execute_duplicateTagName_throwsCommandException() {
+        Tag validTag = new TagBuilder().build();
+        TagCommand tagCommand = new TagCommand(validTag);
+        ModelStub modelStub = new ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TAG, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, TagCommand.MESSAGE_DUPLICATE_TAG, () -> tagCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tag alice = new TagBuilder().withTagName("Alice").build();
-        Tag bob = new TagBuilder().withTagName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Tag t1 = new TagBuilder().withTagName("cs2101").build();
+        Tag t2 = new TagBuilder().withTagName("cs2103").build();
+        TagCommand tagT1Command = new TagCommand(t1);
+        TagCommand tagT2Command = new TagCommand(t2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(tagT1Command.equals(tagT1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        TagCommand tagT1CommandCopy = new TagCommand(t1);
+        assertTrue(tagT1Command.equals(tagT1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(tagT1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(tagT1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(tagT1Command.equals(tagT2Command));
     }
 
     /**
@@ -150,7 +153,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single tag.
      */
     private class ModelStubWithTag extends ModelStub {
         private final Tag tag;
@@ -168,8 +171,9 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the tag being added.
      */
+    @Deprecated
     private class ModelStubAcceptingTagAdded extends ModelStub {
         final ArrayList<Tag> tagsAdded = new ArrayList<>();
 

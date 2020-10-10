@@ -16,7 +16,7 @@ import seedu.address.testutil.TagBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class TagCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addTag(validPerson);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new TagCommand(validPerson), model,
+                String.format(TagCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicateTag_throwsCommandException() {
         Tag personInList = model.getAddressBook().getTagList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_TAG);
+        assertCommandFailure(new TagCommand(personInList), model, TagCommand.MESSAGE_DUPLICATE_TAG);
     }
 
 }

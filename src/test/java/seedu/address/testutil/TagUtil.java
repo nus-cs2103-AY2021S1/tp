@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.model.tag.Tag;
 
 
@@ -15,8 +15,8 @@ public class TagUtil {
     /**
      * Returns an add command string for adding the {@code tag}.
      */
-    public static String getAddCommand(Tag tag) {
-        return AddCommand.COMMAND_WORD + " " + getTagDetails(tag);
+    public static String getTagCommand(Tag tag) {
+        return TagCommand.COMMAND_WORD + " " + getTagDetails(tag);
     }
 
     /**
