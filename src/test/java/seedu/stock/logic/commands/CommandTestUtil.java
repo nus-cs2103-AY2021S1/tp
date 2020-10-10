@@ -14,8 +14,6 @@ import static seedu.stock.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
