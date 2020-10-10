@@ -39,7 +39,7 @@ public class PatientUtil {
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_SEX + patient.getSex().value + " ");
-        sb.append(PREFIX_BLOODTYPE + patient.getBloodType().value + " ");
+        sb.append(PREFIX_BLOODTYPE + patient.getBloodType().type + " ");
         patient.getAllergies().stream().forEach(
             s -> sb.append(PREFIX_ALLERGY + s.allergyName + " ")
         );
@@ -57,7 +57,7 @@ public class PatientUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getSex().ifPresent(sex -> sb.append(PREFIX_SEX).append(sex.value).append(" "));
-        descriptor.getBloodType().ifPresent(bloodType -> sb.append(PREFIX_BLOODTYPE).append(bloodType.value)
+        descriptor.getBloodType().ifPresent(bloodType -> sb.append(PREFIX_BLOODTYPE).append(bloodType.type)
                 .append(" "));
         if (descriptor.getAllergies().isPresent()) {
             Set<Allergy> allergies = descriptor.getAllergies().get();

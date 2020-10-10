@@ -140,29 +140,9 @@ public class AddCommandParserTest {
                         + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + VALID_ADDRESS_BOB
-                        + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB
-                        + VALID_EMAIL_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB,
-                expectedMessage);
-
-        // missing sex prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB
-                        + EMAIL_DESC_BOB + VALID_SEX_BOB + BLOODTYPE_DESC_BOB,
-                expectedMessage);
-
-        // missing bloodType prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ICNUMBER_DESC_BOB + ADDRESS_DESC_BOB
-                        + EMAIL_DESC_BOB + SEX_DESC_BOB + VALID_BLOODTYPE_BOB,
-                expectedMessage);
-
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ICNUMBER_BOB + VALID_ADDRESS_BOB
-                + VALID_EMAIL_BOB + VALID_SEX_BOB + VALID_BLOODTYPE_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_ICNUMBER_BOB + ADDRESS_DESC_BOB
+                        + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
     }
 

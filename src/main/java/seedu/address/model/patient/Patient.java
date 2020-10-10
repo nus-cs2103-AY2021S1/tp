@@ -36,7 +36,7 @@ public class Patient {
     public Patient(Name name, Phone phone, IcNumber icNumber, Address address, Email email,
                    ProfilePicture profilePicture, Sex sex, BloodType bloodType,
                    Set<Allergy> allergies, ColorTag colorTag) {
-        requireAllNonNull(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies, colorTag);
+        requireAllNonNull(name, phone, icNumber);
         this.name = name;
         this.phone = phone;
         this.icNumber = icNumber;

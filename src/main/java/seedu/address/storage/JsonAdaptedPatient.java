@@ -52,7 +52,7 @@ class JsonAdaptedPatient {
                               @JsonProperty("profilePicture") String profilePicture,
                               @JsonProperty("sex") String sex,
                               @JsonProperty("bloodType") String bloodType,
-                              @JsonProperty("tagged") List<JsonAdaptedAllergy> tagged,
+                              @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
                               @JsonProperty("color") String color) {
         this.name = name;
         this.phone = phone;
@@ -62,8 +62,8 @@ class JsonAdaptedPatient {
         this.profilePicture = profilePicture;
         this.sex = sex;
         this.bloodType = bloodType;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (allergies != null) {
+            this.tagged.addAll(allergies);
         }
         this.color = color;
     }
@@ -79,7 +79,7 @@ class JsonAdaptedPatient {
         email = source.getEmail().value;
         profilePicture = source.getProfilePicture().value;
         sex = source.getSex().value;
-        bloodType = source.getBloodType().value;
+        bloodType = source.getBloodType().type;
         tagged.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));

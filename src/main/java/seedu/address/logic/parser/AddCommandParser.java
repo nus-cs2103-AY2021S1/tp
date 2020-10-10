@@ -43,20 +43,40 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ICNUMBER,
                         PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_SEX, PREFIX_BLOODTYPE, PREFIX_ALLERGY, PREFIX_COLORTAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ICNUMBER,
-                PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_SEX, PREFIX_BLOODTYPE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ICNUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        // mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         IcNumber icNumber = ParserUtil.parseIcNumber(argMultimap.getValue(PREFIX_ICNUMBER).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+
+        // optional fields
+        Address address = new Address();
+        Email email = new Email();
+        Sex sex = new Sex();
+        BloodType bloodType = new BloodType();
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        }
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
+
         ProfilePicture profilePicture = new ProfilePicture("data/stock_picture.png");
-        Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
-        BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
+
+        if (argMultimap.getValue(PREFIX_SEX).isPresent()) {
+            sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
+        }
+
+        if (argMultimap.getValue(PREFIX_BLOODTYPE).isPresent()) {
+            bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
+        }
+
         Set<Allergy> allergyList = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
         ColorTag colorTag = ParserUtil.parseColorTag(argMultimap.getValue(PREFIX_COLORTAG).orElse(""));
 

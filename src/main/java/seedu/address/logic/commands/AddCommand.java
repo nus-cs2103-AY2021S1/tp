@@ -22,15 +22,15 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the list of patients. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the list of patients.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ICNUMBER + "NRIC "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_SEX + "SEX "
-            + PREFIX_BLOODTYPE + "BLOODTYPE "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_EMAIL + "EMAIL]"
+            + "[" + PREFIX_SEX + "SEX] "
+            + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
             + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

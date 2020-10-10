@@ -90,7 +90,7 @@ public class PatientCard extends UiPart<Region> {
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
         sex.setText(patient.getSex().value);
-        bloodType.setText(patient.getBloodType().value);
+        bloodType.setText(patient.getBloodType().type);
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(tag -> tag.allergyName))
                 .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));

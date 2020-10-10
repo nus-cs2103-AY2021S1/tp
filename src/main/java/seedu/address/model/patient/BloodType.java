@@ -17,7 +17,7 @@ public class BloodType {
     private static final String BLOOD_TYPE_RHD = "[+-]$";
     public static final String VALIDATION_REGEX = BLOOD_TYPE_ABO + BLOOD_TYPE_RHD;
 
-    public final String value;
+    public final String type;
 
     /**
      * Constructs an {@code BloodType}.
@@ -27,7 +27,15 @@ public class BloodType {
     public BloodType(String bloodType) {
         requireNonNull(bloodType);
         checkArgument(isValidBloodType(bloodType), MESSAGE_CONSTRAINTS);
-        value = bloodType;
+        type = bloodType;
+    }
+
+    /**
+     * Constructs a default {@code BloodType}.
+     *
+     */
+    public BloodType() {
+        type = "N/A";
     }
 
     /**
@@ -39,19 +47,19 @@ public class BloodType {
 
     @Override
     public String toString() {
-        return value;
+        return type;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BloodType // instanceof handles nulls
-                && value.equals(((BloodType) other).value)); // state check
+                && type.equals(((BloodType) other).type)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return type.hashCode();
     }
 
 }
