@@ -23,34 +23,35 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.WishfulShrinking;
-import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Recipe;
+
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 /**
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
  */
 public class TypicalRecipes {
-
-    public static final Recipe ALICE = new RecipeBuilder().withName("Alice Pauline")
-            .withIngredient(VALID_INGREDIENT_ALICE, VALID_QUANTITY_ALICE).withCalories(10).build();
+    public static final Recipe ALICE = new RecipeBuilder().withName("Alice Pauline").withIngredient("94351253", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe BENSON = new RecipeBuilder().withName("Benson Meier").withIngredient("98765432", "1 cup")
-            .build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe CARL = new RecipeBuilder().withName("Carl Kurz").withIngredient("95352563", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe DANIEL = new RecipeBuilder().withName("Daniel Meier").withIngredient("87652533", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe ELLE = new RecipeBuilder().withName("Elle Meyer").withIngredient("9482224", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe FIONA = new RecipeBuilder().withName("Fiona Kunz").withIngredient("9482427", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe GEORGE = new RecipeBuilder().withName("George Best").withIngredient("9482442", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
 
     // Manually added
     public static final Recipe HOON = new RecipeBuilder().withName("Hoon Meier").withIngredient("8482424", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe IDA = new RecipeBuilder().withName("Ida Mueller").withIngredient("8482131", "1 cup")
-            .withCalories(10).build();
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
 
     // Manually added - Recipe's details found in {@code CommandTestUtil}
     public static final Recipe AMY =
@@ -71,18 +72,6 @@ public class TypicalRecipes {
         WishfulShrinking ab = new WishfulShrinking();
         for (Recipe recipe : getTypicalRecipes()) {
             ab.addRecipe(recipe);
-        }
-        return ab;
-    }
-
-    /**
-     * Returns an {@code WishfulShrinking} with all the typical recipes in the consumption list.
-     */
-    public static WishfulShrinking getTypicalWishfulShrinkingConsumption() {
-        WishfulShrinking ab = new WishfulShrinking();
-        for (Recipe recipe : getTypicalRecipes()) {
-            Consumption consumption = new Consumption(recipe);
-            ab.addConsumption(consumption);
         }
         return ab;
     }
