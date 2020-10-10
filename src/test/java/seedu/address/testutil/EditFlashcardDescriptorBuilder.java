@@ -17,7 +17,7 @@ import seedu.address.logic.commands.EditCommand;
  */
 public class EditFlashcardDescriptorBuilder {
 
-    private EditCommand.EditFlashcardDescriptor descriptor;
+    private final EditCommand.EditFlashcardDescriptor descriptor;
 
     public EditFlashcardDescriptorBuilder() {
         descriptor = new EditCommand.EditFlashcardDescriptor(false);
@@ -38,7 +38,7 @@ public class EditFlashcardDescriptorBuilder {
         boolean isMcq = flashcard.getQuestion() instanceof MultipleChoiceQuestion;
         descriptor.setIsMcq(isMcq);
         if (isMcq) {
-            descriptor.setChoices(((MultipleChoiceQuestion) flashcard.getQuestion()).getChoices().get());
+            descriptor.setChoices(flashcard.getQuestion().getChoices().get());
         } else {
             Choice[] emptyArray = new Choice[0];
             descriptor.setChoices(emptyArray);
@@ -60,6 +60,7 @@ public class EditFlashcardDescriptorBuilder {
         descriptor.setAnswer(new Answer(answer));
         return this;
     }
+
     /**
      * Sets the {@code choices} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -77,7 +78,6 @@ public class EditFlashcardDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
-
 
 
     public EditCommand.EditFlashcardDescriptor build() {

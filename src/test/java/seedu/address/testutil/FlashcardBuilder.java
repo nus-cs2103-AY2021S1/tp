@@ -15,7 +15,6 @@ import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
 
 
-
 public class FlashcardBuilder {
 
     public static final String DEFAULT_QUESTION = "Question 0";
@@ -43,6 +42,7 @@ public class FlashcardBuilder {
 
     /**
      * A constructor for the FlashcardBuilder.
+     *
      * @param flashcard
      */
     public FlashcardBuilder(Flashcard flashcard) {
@@ -83,6 +83,7 @@ public class FlashcardBuilder {
 
     /**
      * Adds a new {@code Tag} to the {@code Flashcard} that we are building.
+     *
      * @param tag the tag to be added.
      * @return the FlashcardBuilder
      */
@@ -93,6 +94,7 @@ public class FlashcardBuilder {
 
     /**
      * Adds a few {@code Tag}s to the {@code Flashcard} that we are building.
+     *
      * @param tagArr the array containing the tags.
      * @return the FlashcardBuilder.
      */

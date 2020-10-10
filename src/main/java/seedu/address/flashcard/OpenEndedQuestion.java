@@ -7,12 +7,15 @@ import java.util.Optional;
  */
 public class OpenEndedQuestion implements Question {
 
+    public static final String TYPE = "OEQ";
+
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public static final String MESSAGE_CONSTRAINTS = "OpenEndedQuestion can take any values, "
             + "and it should not be blank";
 
     private final String value;
+
     public OpenEndedQuestion(String question) {
         this.value = question;
     }
@@ -26,9 +29,11 @@ public class OpenEndedQuestion implements Question {
         return value;
     }
 
-    public String getOnlyQuestion() {
-        return value;
+    @Override
+    public String getFormatQuestion() {
+        return this.getValue();
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

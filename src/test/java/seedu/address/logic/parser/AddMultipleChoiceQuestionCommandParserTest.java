@@ -25,7 +25,7 @@ import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class AddMultipleChoiceQuestionCommandParserTest {
-    private AddMultipleChoiceQuestionCommandParser parser = new AddMultipleChoiceQuestionCommandParser();
+    private final AddMultipleChoiceQuestionCommandParser parser = new AddMultipleChoiceQuestionCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -56,14 +56,14 @@ public class AddMultipleChoiceQuestionCommandParserTest {
         // missing question prefix
         assertParseFailure(parser, VALID_QUESTION_ALICE
                         + ANSWER_DESC_ALICE + CHOICE_DESC,
-                        expectedMessage);
+                expectedMessage);
 
         // missing answer prefix
         assertParseFailure(parser, QUESTION_DESC_ALICE + VALID_ANSWER_ALICE + CHOICE_DESC,
                 expectedMessage);
 
         // missing Choices prefix
-        assertParseFailure(parser, QUESTION_DESC_ALICE + ANSWER_DESC_ALICE ,
+        assertParseFailure(parser, QUESTION_DESC_ALICE + ANSWER_DESC_ALICE,
                 expectedMessage);
 
 
@@ -89,7 +89,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_ALICE
                         + ANSWER_DESC_ALICE + CHOICE_DESC,
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
     }
 }

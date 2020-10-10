@@ -27,7 +27,7 @@ import seedu.address.model.UserPrefs;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

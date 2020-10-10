@@ -37,13 +37,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private FlashcardListPanel flashcardListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     private OptionListPanel optionListPanel;
     private QuestionDisplay questionDisplay;
@@ -97,6 +97,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -184,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Changes the content of the placeHolders of this window.
+     *
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
@@ -194,6 +196,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Changes the content of the placeHolders of this window to display an opened flashcard.
+     *
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     private void changeInnerPartsToFlashcardWindow(Feedback feedbackToUser) {
@@ -206,7 +209,7 @@ public class MainWindow extends UiPart<Stage> {
         questionDisplay = new QuestionDisplay();
         displayPlaceholder.getChildren().add(questionDisplay.getRoot());
         // display the question
-        questionDisplay.setQuestion(questionToDisplay.map(Question::getOnlyQuestion)
+        questionDisplay.setQuestion(questionToDisplay.map(Question::getValue)
                 .orElse("There is no question to display"));
 
         // initialize question's options into VBox
@@ -214,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
             if (question instanceof MultipleChoiceQuestion) {
                 return FXCollections.observableList(Arrays.stream(question
                         .getChoices().orElseGet(() -> new Choice[0])).map(
-                                Choice::toString).collect(Collectors.toCollection(ArrayList::new)));
+                        Choice::toString).collect(Collectors.toCollection(ArrayList::new)));
             } else {
                 return FXCollections.observableArrayList("Open Ended Question has no options");
             }
