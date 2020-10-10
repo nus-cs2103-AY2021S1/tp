@@ -88,7 +88,8 @@ public class Item {
     }
 
     /**
-     * Adds recipe with given id to the item.
+     * Adds Recipe Id to item ids.
+     * @param recipeId recipe id connected to this item.
      */
     public void addRecipeId(int recipeId) {
         if (!recipeIds.contains(recipeId)) {
@@ -104,9 +105,25 @@ public class Item {
         if (otherItem == this) {
             return true;
         }
-
         return otherItem != null
                 && otherItem.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both items have same name, and can be replaced.
+     * @param otherItem Other item to compare to this item.
+     * @return true if the item of this name can be replaced.
+     */
+    public boolean isReplacable(Item otherItem) {
+        return isSameItem(otherItem) && this.isDeleted();
+    }
+
+    /**
+     * Returns a deleted form of the same recipe.
+     */
+    public Item delete() {
+        return new Item(id, name, quantity, description, Set.copyOf(locationIds),
+                Set.copyOf(recipeIds), tags, true);
     }
 
     /**
@@ -124,7 +141,6 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals((getQuantity()))
                 && otherItem.getDescription().equals(getDescription())

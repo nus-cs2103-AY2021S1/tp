@@ -39,6 +39,27 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains {@code words}.
+     *   Ignores case, but a exact match is required.
+     *   <br>examples:<pre>
+     *       containsMultipleWordsIgnoreCase("ABc def", "abc def") == true
+     *       containsMultipleWordsIgnoreCase("ABc def", "abc DEF") == true
+     *       containsMultipleWordsIgnoreCase("ABc def", "ABc d") == false //not an exact match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param words cannot be null, cannot be empty, can be multiple words
+     */
+    public static boolean containsMultipleWordsIgnoreCase(String sentence, String words) {
+        requireNonNull(sentence);
+        requireNonNull(words);
+
+        String preppedWord = words.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+
+        return sentence.equalsIgnoreCase(preppedWord);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

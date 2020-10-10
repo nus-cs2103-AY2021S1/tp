@@ -26,6 +26,31 @@ public class ItemTest {
     }
 
     /**
+     * Tests for item equality and replacebility of an item
+     */
+    @Test
+    public void isReplaceable() {
+        // same item (not deleted) -> returns false
+        assertFalse(APPLE.isReplacable(APPLE));
+
+        //null -> returns false
+        assertFalse(APPLE.isReplacable(null));
+        Item editedApple = new ItemBuilder(APPLE).build().delete();
+
+        // same object and marked deleted -> returns true
+        assertTrue(editedApple.isReplacable(APPLE));
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_BANANA)
+                .withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
+
+        //same object name, but different fields, not deleted -> returns false
+        assertFalse(editedApple.isReplacable(APPLE));
+        editedApple = editedApple.delete();
+
+        // same object name, but different fields -> returns true
+        assertTrue(editedApple.isReplacable(APPLE));
+    }
+
+    /**
      * Tests for item equality, defined as two items having the same name.
      */
     @Test
