@@ -7,10 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 */
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_ALICE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -30,7 +32,7 @@ import seedu.address.model.recipe.Recipe;
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
  */
 public class TypicalRecipes {
-    public static final Recipe ALICE = new RecipeBuilder().withName("Alice Pauline").withIngredient("94351253", "1 cup")
+    public static final Recipe ALICE = new RecipeBuilder().withName("Alice Pauline").withIngredient(VALID_INGREDIENT_ALICE, VALID_QUANTITY_ALICE)
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
     public static final Recipe BENSON = new RecipeBuilder().withName("Benson Meier").withIngredient("98765432", "1 cup")
             .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").build();
