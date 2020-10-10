@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
     }
 
     public ModelManager() {
@@ -141,6 +143,17 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Module List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -157,7 +170,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }
