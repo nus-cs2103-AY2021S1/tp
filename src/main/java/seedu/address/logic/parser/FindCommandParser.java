@@ -5,18 +5,18 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddLabelCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonHasTagsAndNamePredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,16 +37,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
+            return new FindCommand(
+                    new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>(tagSet)));
         } else if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
+            return new FindCommand(
+                    new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>()));
         } else if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
+            List<String> nameList = new ArrayList<>();
+            nameList.add("");
+            return new FindCommand(
+                    new PersonHasTagsAndNamePredicate(nameList, new ArrayList<>(tagSet)));
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabelCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
     /**
