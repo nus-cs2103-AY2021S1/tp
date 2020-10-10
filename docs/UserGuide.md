@@ -47,7 +47,7 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 * Bookmark feature.<br>
   e.g. often used stocks, search bookmark<item>.
 * Parameters can be in any order.<br>
-  e.g. if the command specifies n/<name> q/<source>, q/<source> n/<name> is also acceptable.
+  e.g. if the command specifies `n/<name> q/<source of stock>`, `q/<source of stock> n/<name>` is also acceptable.
 
 </div>
 
