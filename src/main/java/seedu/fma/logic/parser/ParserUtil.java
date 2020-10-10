@@ -10,6 +10,7 @@ import seedu.fma.commons.core.index.Index;
 import seedu.fma.commons.util.StringUtil;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Address;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Email;
@@ -42,11 +43,15 @@ public class ParserUtil {
      * Parses an {@code String exerciseName} into an {@code Exercise}.
      *
      * @throws ParseException if the given {@code exerciseName} is invalid.
+     * @throws ExerciseNotFoundException if the given {@code exerciseName} does not match any existing Exercise.
      */
-    //TODO: Implement this with calories
     public static Exercise parseExercise(String exerciseName) throws ParseException {
         Name name = parseName(exerciseName);
-        return new Exercise(name, 1);
+        try {
+            return Exercise.find(name);
+        } catch (ExerciseNotFoundException e) {
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

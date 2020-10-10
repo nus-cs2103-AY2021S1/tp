@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.util.Name;
 import seedu.fma.model.util.SampleDataUtil;
 
@@ -43,13 +44,13 @@ public class Exercise {
     /**
      * Returns an existing exercise with the same Name, or null if none are found.
      */
-    public static Exercise find(Name name) {
+    public static Exercise find(Name name) throws ExerciseNotFoundException {
         for (Exercise e : exerciseList) {
             if (e.getName().equals(name)) {
                 return e;
             }
         }
-        return null;
+        throw new ExerciseNotFoundException();
     }
 
     public Name getName() {

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
@@ -58,8 +59,10 @@ class JsonAdaptedLog {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Exercise.class.getSimpleName()));
         }
-        final Exercise modelExercise = Exercise.find(new Name(exercise));
-        if (modelExercise == null) {
+        Exercise modelExercise;
+        try {
+            modelExercise = Exercise.find(new Name(exercise));
+        } catch (ExerciseNotFoundException e) {
             throw new IllegalValueException(Exercise.MESSAGE_CONSTRAINTS);
         }
 
