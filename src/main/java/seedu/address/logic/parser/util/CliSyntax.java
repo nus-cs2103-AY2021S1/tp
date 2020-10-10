@@ -1,4 +1,6 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.util;
+
+import seedu.address.logic.parser.Prefix;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
@@ -12,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
     /* New Prefix definitions */
-    // To decide between adding an expense or revenue
+    // To determine whether an expense or a revenue is added
     public static final Prefix PREFIX_CATEGORY = new Prefix("c/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_AMOUNT = new Prefix("a/");
