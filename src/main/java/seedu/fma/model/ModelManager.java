@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.commons.core.LogsCenter;
 import seedu.fma.model.log.Log;
@@ -36,7 +37,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredLogs = new FilteredList<>(this.addressBook.getPersonList());
+        // TODO: Sorting order is currently hardcoded
+        SortedList<Log> sortedLogs = new SortedList<>(this.addressBook.getPersonList(), Comparator.comparing(Log::getDateTime).reversed());
+        filteredLogs = new FilteredList<>(sortedLogs);
     }
 
     public ModelManager() {

@@ -21,7 +21,7 @@ public class Comment {
         value = comment;
     }
 
-    //TODO: write this according to comments' constraints
+    //TODO: all Comments currently valid
     public static boolean isValidComment(String comment) {
         return true;
     }
