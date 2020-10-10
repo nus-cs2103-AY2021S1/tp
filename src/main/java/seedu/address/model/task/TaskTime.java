@@ -15,7 +15,7 @@ public class TaskTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Time should be in the format HH:MM";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("hh:mm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:MM");
 
     public final LocalTime time;
 

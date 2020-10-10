@@ -7,6 +7,8 @@ import seedu.address.model.tag.Tag;
 
 public class Deadline extends Task{
 
+    public static final String TASK_TYPE = "DEADLINE";
+
     protected final TaskDate deadlineDate;
 
     /**
