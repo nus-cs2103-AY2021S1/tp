@@ -18,7 +18,7 @@ public class CalendarVenue {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String value;
+    public final String venue;
 
     /**
      * Constructs an {@code CalendarVenue}.
@@ -28,7 +28,7 @@ public class CalendarVenue {
     public CalendarVenue(String venue) {
         requireNonNull(venue);
         checkArgument(isValidCalendarTime(venue), MESSAGE_CONSTRAINTS);
-        value = venue;
+        this.venue = venue;
     }
 
     /**
@@ -40,19 +40,19 @@ public class CalendarVenue {
 
     @Override
     public String toString() {
-        return value;
+        return this.venue;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CalendarVenue // instanceof handles nulls
-                && value.equals(((CalendarVenue) other).value)); // state check
+                && this.venue.equals(((CalendarVenue) other).venue)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.venue.hashCode();
     }
 
 }
