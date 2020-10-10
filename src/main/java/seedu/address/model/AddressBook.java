@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -56,7 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
-    public void setModules(List<Module> modules) {
+    public void setModules(UniqueModuleList modules) {
         this.modules.setModules(modules);
     }
 
@@ -107,6 +108,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes the module with the specified {@code moduleCode} from this {@code AddressBook}.
+     * Module with the {@code moduleCode} must exist in the address book.
+     */
+    public void removeModule(ModuleCode moduleCode) {
+        modules.removeModuleWithCode(moduleCode);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeModule(Module key) {
+        modules.remove(key);
+    }
+
     //// module-level operations
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
@@ -135,15 +152,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.setModule(target, editedModule);
     }
 
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeModule(Module key) {
-        modules.remove(key);
-    }
-
-
     //// util methods
 
     @Override
@@ -157,9 +165,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public ObservableList<Module> getModuleList() {
-        return modules.asUnmodifiableObservableList();
+    public UniqueModuleList getModuleList() {
+        // Currently no support for "contains" method for observable list
+        return modules;
     }
 
     @Override

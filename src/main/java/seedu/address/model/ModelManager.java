@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Module> filteredModules;
+    private final UniqueModuleList modules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
+        modules = this.addressBook.getModuleList();
     }
 
     public ModelManager() {
@@ -116,6 +118,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteMod(ModuleCode targetCode) {
+        requireNonNull(targetCode);
+        addressBook.removeModule(targetCode);
+    }
+
+    /**
+     * Checks if addressBook has the given (@code Module}
+     */
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return addressBook.hasModule(module);
@@ -124,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -146,12 +162,11 @@ public class ModelManager implements Model {
     //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns a modifiable view of the list of {@code Module}
      */
     @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        return filteredModules;
+    public UniqueModuleList getModuleList() {
+        return modules;
     }
 
     @Override
@@ -171,7 +186,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredModules.equals(other.filteredModules);
+                && modules.equals(other.modules);
     }
 
 }
