@@ -1,5 +1,6 @@
 package com.eva.model.util;
 
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 /**
@@ -54,6 +56,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a single date leave set containing the list of strings given.
+     */
+    public static Set<Leave> getLeaveSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Leave::new)
                 .collect(Collectors.toSet());
     }
 

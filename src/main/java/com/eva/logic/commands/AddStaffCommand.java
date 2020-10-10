@@ -14,7 +14,7 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 public class AddStaffCommand extends Command{
-    private static final String COMMAND_WORD = "addstaff" ;
+    public static final String COMMAND_WORD = "addstaff" ;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to Eva. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "

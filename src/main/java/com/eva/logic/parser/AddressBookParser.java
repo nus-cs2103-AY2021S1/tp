@@ -4,15 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.eva.commons.core.Messages;
-import com.eva.logic.commands.AddCommand;
-import com.eva.logic.commands.ClearCommand;
-import com.eva.logic.commands.Command;
-import com.eva.logic.commands.DeleteCommand;
-import com.eva.logic.commands.EditCommand;
-import com.eva.logic.commands.ExitCommand;
-import com.eva.logic.commands.FindCommand;
-import com.eva.logic.commands.HelpCommand;
-import com.eva.logic.commands.ListCommand;
+import com.eva.logic.commands.*;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,6 +36,9 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddStaffCommand.COMMAND_WORD:
+            return new AddStaffCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
