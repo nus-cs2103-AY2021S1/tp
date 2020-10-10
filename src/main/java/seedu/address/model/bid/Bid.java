@@ -1,5 +1,7 @@
 package seedu.address.model.bid;
 
+import seedu.address.model.person.Person;
+
 import java.util.Objects;
 
 public class Bid {
@@ -39,6 +41,17 @@ public class Bid {
 
     public boolean isValidBidderId() {
         return false; //will check against bidderList to see if propertyId exists
+    }
+
+    public boolean isSameBid(Bid otherBid) {
+        if (otherBid == this) {
+            return true;
+        }
+
+        return otherBid != null
+                && otherBid.getPropertyId().equals(getPropertyId())
+                && (otherBid.getBidderId().equals(getBidderId()))
+                && ((otherBid.getBidAmount() == getBidAmount()));// added this in
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 
 public class UniqueBidList implements Iterable<Bid> {
 
@@ -23,6 +24,11 @@ public class UniqueBidList implements Iterable<Bid> {
         requireNonNull(toAdd);
 
         internalBidList.add(toAdd);
+    }
+
+    public boolean contains(Bid toCheck) {
+        requireNonNull(toCheck);
+        return internalBidList.stream().anyMatch(toCheck::isSameBid);
     }
 
     public void setBids(List<Bid> bids) {

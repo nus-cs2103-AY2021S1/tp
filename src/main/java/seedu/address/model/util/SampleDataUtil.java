@@ -5,7 +5,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.BidBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -32,12 +35,31 @@ public class SampleDataUtil {
         };
     }
 
+    public static Bid[] getSampleBids() {
+        return new Bid[] {
+                new Bid("P01", "B01", 45000),
+                new Bid("P02", "B23", 123456),
+                new Bid("P31", "B11", 42344),
+                new Bid("P01", "B02", 45100),
+                new Bid("P01", "B45", 65000),
+                new Bid("P12", "B22", 450002),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyBidBook getSampleBidBook() {
+        BidBook sampleBb = new BidBook();
+        for (Bid sampleBid : getSampleBids()) {
+            sampleBb.addBid(sampleBid);
+        }
+        return sampleBb;
     }
 
     /**
