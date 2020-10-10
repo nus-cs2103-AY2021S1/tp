@@ -35,7 +35,7 @@ public class EatRecipeCommand extends Command {
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CONSUMPTION_DISPLAYED_INDEX);
         }
 
         Recipe recipeToEat = lastShownList.get(targetIndex.getZeroBased());

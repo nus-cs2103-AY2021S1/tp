@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalRecipes.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.ConsumptionBuilder;
 import seedu.address.testutil.RecipeBuilder;
 
 public class ConsumptionTest {
@@ -19,7 +20,7 @@ public class ConsumptionTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Consumption aliceCopy = new Consumption(new RecipeBuilder(ALICE).build());
+        Consumption aliceCopy = new ConsumptionBuilder(alice).build();
         assertTrue(alice.equals(aliceCopy));
 
         // same object -> returns true

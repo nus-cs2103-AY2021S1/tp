@@ -21,10 +21,14 @@ public class RecipeBuilder {
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
             new ArrayList<>(List.of(new Ingredient("Veggies", ""), new Ingredient("Snakes", "")));
     public static final Integer DEFAULT_CALORIES = 10;
+    public static final String DEFAULT_INSTRUCTION = "instruction";
+    public static final String DEFAULT_RECIPE_IMAGE = "images/healthy1.jpg";
 
     private Name name;
     private ArrayList<Ingredient> ingredients;
     private Calories calories;
+    private String instruction;
+    private String recipeImage;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -33,6 +37,8 @@ public class RecipeBuilder {
         name = new Name(DEFAULT_NAME);
         ingredients = DEFAULT_INGREDIENTS;
         calories = new Calories(DEFAULT_CALORIES);
+        instruction = DEFAULT_INSTRUCTION;
+        recipeImage = DEFAULT_RECIPE_IMAGE;
     }
 
     /**
@@ -42,6 +48,8 @@ public class RecipeBuilder {
         name = recipeToCopy.getName();
         ingredients = recipeToCopy.getIngredient();
         calories = recipeToCopy.getCalories();
+        instruction = recipeToCopy.getInstruction();
+        recipeImage = recipeToCopy.getRecipeImage();
     }
 
     /**
@@ -76,11 +84,27 @@ public class RecipeBuilder {
     }
 
     /**
+     * Sets the instruction of the {@code Recipe} that we are building.
+     */
+    public RecipeBuilder withInstruction(String instruction) {
+        this.instruction = instruction;
+        return this;
+    }
+
+    /**
+     * Sets the recipe image of the {@code Recipe} that we are building.
+     */
+    public RecipeBuilder withRecipeImage(String recipeImage) {
+        this.recipeImage = recipeImage;
+        return this;
+    }
+
+    /**
      * Builds Recipe
      * @return built Recipe
      */
     public Recipe build() {
-        return new Recipe(name, ingredients, calories);
+        return new Recipe(name, instruction, recipeImage, ingredients, calories);
     }
 
 }

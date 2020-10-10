@@ -5,12 +5,14 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.RECIPE_IMAGE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -103,16 +105,19 @@ public class AddRecipeCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + INGREDIENT_DESC_BOB + CALORIES_DESC_BOB
+                + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid ingredients
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_INGREDIENT_DESC + CALORIES_DESC_BOB
+                + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ParserUtil.MESSAGE_CONSTRAINTS);
 
         // invalid calories
         assertParseFailure(parser, NAME_DESC_BOB + INGREDIENT_DESC_BOB + INVALID_CALORIES_DESC
+                + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Calories.MESSAGE_CONSTRAINTS);
 
         // invalid email
@@ -129,11 +134,13 @@ public class AddRecipeCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + INGREDIENT_DESC_BOB + CALORIES_DESC_BOB
+                        + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                         + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + CALORIES_DESC_BOB
+                        + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                         + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));

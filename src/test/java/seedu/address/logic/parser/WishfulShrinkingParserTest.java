@@ -17,14 +17,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteConsumptionCommand;
 import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
-//import seedu.address.logic.commands.EditCommand;
-//import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EatRecipeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListIngredientsCommand;
@@ -132,6 +130,13 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_listIngredient() throws Exception {
         assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD) instanceof ListIngredientsCommand);
         assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD + " 3") instanceof ListIngredientsCommand);
+    }
+
+    @Test
+    public void parseCommand_eatRecipe() throws Exception {
+        EatRecipeCommand command = (EatRecipeCommand) parser.parseCommand(
+                EatRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST_CONSUMPTION.getOneBased());
+        assertEquals(new EatRecipeCommand(INDEX_FIRST_CONSUMPTION), command);
     }
 
     @Test
