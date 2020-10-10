@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's priority in the task manager.
- * Guarantees: immutable; is valid as declared in {@link #isValidPriorityLevel(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
 public class Priority {
 
@@ -24,7 +24,7 @@ public class Priority {
      */
     public Priority(String level) {
         requireNonNull(level);
-        checkArgument(isValidPriorityLevel(level), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPriority(level), MESSAGE_CONSTRAINTS);
         switch(level.toUpperCase()) {
         case "LOW":
             this.level = PriorityLevel.LOW;
@@ -43,7 +43,7 @@ public class Priority {
     /**
      * Returns true if a given string is a valid priority level.
      */
-    public static boolean isValidPriorityLevel(String test) {
+    public static boolean isValidPriority(String test) {
         return test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_LOW)
                 || test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_MEDIUM)
                 || test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_HIGH);
