@@ -41,6 +41,7 @@ public class AddLabelCommand extends Command {
 
     /**
      * @param targetName of the person in the filtered person list to label
+     * @param labelPersonDescriptor of the label to be added
      */
     public AddLabelCommand(Name targetName, LabelPersonDescriptor labelPersonDescriptor) {
         requireNonNull(targetName);

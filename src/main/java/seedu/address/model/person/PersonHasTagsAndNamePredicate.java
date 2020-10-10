@@ -12,6 +12,13 @@ import seedu.address.model.tag.Tag;
 public class PersonHasTagsAndNamePredicate implements PersonPredicate {
     private final List<String> names;
     private final List<Tag> tags;
+
+    /**
+     * Constructs a {@code PersonHasTagsAndNamePredicate}.
+     *
+     * @param names to be searched for.
+     * @param tags to be searched for.
+     */
     public PersonHasTagsAndNamePredicate(List<String> names, List<Tag> tags) {
         this.names = names;
         this.tags = tags;

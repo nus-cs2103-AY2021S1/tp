@@ -22,8 +22,8 @@ import seedu.address.model.tag.Tag;
 public class AddLabelCommandParser implements Parser<AddLabelCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddLabelCommand
+     * and returns an AddLabelCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddLabelCommand parse(String args) throws ParseException {
