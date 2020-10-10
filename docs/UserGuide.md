@@ -72,7 +72,7 @@ Adds an expense to the tracker.
 Format: `add c/CATEGORY n/EXPENSE_NAME a/EXPENSE_AMT`
 
 Examples:
-* `add c/expenses n/buying cups a/5.50` 
+* `add c/expenses n/buying cups a/5.50`
 * `add c/earnings n/selling cookies a/10.10`
 
 
@@ -86,7 +86,7 @@ Format: `remove ENTRY_INDEX`
 * The index refers to the index number shown in the displayed expense list.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10)
 
-Example: 
+Example:
 * `remove 1`: Removes the first expense in the tracker
 
 
@@ -99,13 +99,13 @@ Edits an entry in the tracker.
 * Order of whether `[n/EXPENSE_NAME]` or `[a/MONEY_AMT]` would not affect the edit command so long as the `n/` and `a/` tags are used, e.g. `edit 2 n/Cash paid at Zouk a/200` would have the same effect as `edit 2 a/200 and n/Cash paid at Zouk`.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
-Format: 
+Format:
 * `edit ENTRY_NUM [n/EXPENSE_NAME] [a/MONEY_AMT]`
 
 
-Example: 
+Example:
 * `edit 2 n/eating McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 n/eating McNuggets` changes the name of entry 2 to `eating McNuggets` 
+* `edit 2 n/eating McNuggets` changes the name of entry 2 to `eating McNuggets`
 * `edit 2 a/5.50` changes the amount of entry 2 to `$5.50`
 
 
@@ -117,7 +117,7 @@ Finds expenses that have the given keyword in their names.
 * Only the expense name is searched.
 * Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
 
-Format: 
+Format:
 * `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
@@ -126,16 +126,16 @@ Example:
 
 ### Listing out expenses : `list`
 
-Lists out all expenses in a category. 
+Lists out all expenses in a category.
 
 * The search is case-sensitive. e.g `food` will match `food` but not `Food`.
-* All expenses belonging to that category will be shown. 
+* All expenses belonging to that category will be shown.
 
-Format: 
+Format:
 * `list CATEGORY`
 
 Example:
-* `list earning`: Lists expenses that belong to the `earnings` category. 
+* `list earning`: Lists expenses that belong to the `earnings` category.
 
 ### Exiting the program : `exit`
 
@@ -151,7 +151,7 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Add** | `add c/CATEGORY  n/EXPENSE_NAME a/EXPENSE_AMT`
-**Remove** | `remove ENTRY_NUM`<br>`remove n/EXPENSE_NAME`  
+**Remove** | `remove ENTRY_NUM`<br>`remove n/EXPENSE_NAME`
 **Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`
 **List** | `list CATEGORY`

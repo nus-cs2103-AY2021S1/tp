@@ -28,7 +28,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 [[portfolio](team/man-cv.pdf)]
 
 * Role: Scheduling and Tracking/Deliverables and Deadlines
-* Responsibilities: In charge of defining, assigning, and tracking project tasks and 
+* Responsibilities: In charge of defining, assigning, and tracking project tasks and
 ensure project deliverables are done on time and in the right format
 
 ### Cheok Su Anne
@@ -45,7 +45,7 @@ ensure project deliverables are done on time and in the right format
 
 <img src="images/nicholas-gcc.png" width="200px">
 
-[[github](https://github.com/nicholas-gcc)] 
+[[github](https://github.com/nicholas-gcc)]
 [[portfolio](team/nic-cv.pdf)]
 
 * Role: Code Quality
@@ -59,5 +59,5 @@ ensure project deliverables are done on time and in the right format
 [[portfolio](https://jordanyoong.github.io/cv/experience.html)]
 
 
-* Role: Documentation 
+* Role: Documentation
 * Responsibilities: Responsible for the quality of various project documents
