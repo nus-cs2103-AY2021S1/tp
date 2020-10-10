@@ -29,22 +29,22 @@ public class UntagCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
-        UntagCommand UntagCommand = new UntagCommand(INDEX_FIRST_TAG);
+        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_TAG);
 
         String expectedMessage = String.format(UntagCommand.MESSAGE_UNTAG_TAG_SUCCESS, tagToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTag(tagToDelete);
 
-        assertCommandSuccess(UntagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(untagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTagList().size() + 1);
-        UntagCommand UntagCommand = new UntagCommand(outOfBoundIndex);
+        UntagCommand untagCommand = new UntagCommand(outOfBoundIndex);
 
-        assertCommandFailure(UntagCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
+        assertCommandFailure(untagCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
@@ -52,15 +52,15 @@ public class UntagCommandTest {
         showTagAtIndex(model, INDEX_FIRST_TAG);
 
         Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
-        UntagCommand UntagCommand = new UntagCommand(INDEX_FIRST_TAG);
+        UntagCommand untagCommand = new UntagCommand(INDEX_FIRST_TAG);
 
-        String expectedMessage = String.format(UntagCommand.MESSAGE_UNTAG_TAG_SUCCESS, tagToDelete);
+        String expectedMessage = String.format(untagCommand.MESSAGE_UNTAG_TAG_SUCCESS, tagToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTag(tagToDelete);
         showNoTag(expectedModel);
 
-        assertCommandSuccess(UntagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(untagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,9 +71,9 @@ public class UntagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTagList().size());
 
-        UntagCommand UntagCommand = new UntagCommand(outOfBoundIndex);
+        UntagCommand untagCommand = new UntagCommand(outOfBoundIndex);
 
-        assertCommandFailure(UntagCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
+        assertCommandFailure(untagCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
