@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
@@ -28,15 +29,25 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private Index targetIndex;
-    private Nric targetNric;
+    private Optional<Index> targetIndex;
+    private Optional<Nric> targetNric;
 
+    /**
+     * Initialize a DeleteCommand using index, set targetNric to empty Optional
+     * @param targetIndex
+     */
     public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+        this.targetIndex = Optional.ofNullable(targetIndex);
+        this.targetNric = Optional.empty();
     }
 
+    /**
+     * Initialize a DeleteCommand using Nric, set targetIndex to empty Optional
+     * @param targetNric
+     */
     public DeleteCommand(Nric targetNric) {
-        this.targetNric = targetNric;
+        this.targetNric = Optional.ofNullable(targetNric);
+        this.targetIndex = Optional.empty();
     }
 
     @Override
@@ -45,18 +56,18 @@ public class DeleteCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPersonList();
         Patient patientToDelete;
 
-        if (targetNric != null) {
+        if (!targetNric.isEmpty()) {
             lastShownList = lastShownList.stream()
-                    .filter(patient -> patient.getNric().equals(targetNric)).collect(Collectors.toList());
+                    .filter(patient -> patient.getNric().equals(targetNric.get())).collect(Collectors.toList());
             if (lastShownList.size() != 1) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
             }
             patientToDelete = lastShownList.get(0);
         } else {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            if (targetIndex.get().getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
             }
-            patientToDelete = lastShownList.get(targetIndex.getZeroBased());
+            patientToDelete = lastShownList.get(targetIndex.get().getZeroBased());
         }
 
         model.deletePerson(patientToDelete);
@@ -65,10 +76,18 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex))// state check
-                || (other instanceof DeleteCommand
-                && targetNric.equals(((DeleteCommand) other).targetNric)); // state check
+        if (this == other) {
+            return true;
+        }
+
+        if (other instanceof DeleteCommand) {
+            if ((!targetIndex.isEmpty()) && targetIndex.equals(((DeleteCommand) other).targetIndex)) {
+                return true;
+            }
+            if ((!targetNric.isEmpty()) && targetNric.equals(((DeleteCommand) other).targetNric)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
