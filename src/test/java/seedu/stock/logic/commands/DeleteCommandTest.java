@@ -15,20 +15,19 @@ import static seedu.stock.testutil.TypicalStocks.stocksAsString;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.stock.model.stock.SerialNumber;
-import seedu.stock.model.stock.Stock;
+import seedu.stock.commons.core.Messages;
+import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
+import seedu.stock.model.stock.SerialNumber;
+import seedu.stock.model.stock.Stock;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.stock.commons.core.Messages;
-
-import seedu.stock.logic.commands.exceptions.CommandException;
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code DeleteCommand}.
