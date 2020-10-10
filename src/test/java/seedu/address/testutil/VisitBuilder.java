@@ -1,24 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.allergy.Allergy;
-import seedu.address.model.patient.Address;
-import seedu.address.model.patient.BloodType;
-import seedu.address.model.patient.Email;
-import seedu.address.model.patient.IcNumber;
-import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Phone;
-import seedu.address.model.patient.ProfilePicture;
-import seedu.address.model.patient.Sex;
-import seedu.address.model.tag.ColorTag;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.model.visit.Visit;
+import static seedu.address.testutil.PatientBuilder.DEFAULT_NAME;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
-import static seedu.address.testutil.PatientBuilder.DEFAULT_NAME;
+import seedu.address.model.patient.Name;
+import seedu.address.model.visit.Visit;
 
 /**
  * A utility class to help with building Visit objects.
