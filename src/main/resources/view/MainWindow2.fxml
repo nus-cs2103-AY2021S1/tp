@@ -15,7 +15,7 @@
          </stylesheets>
          <BorderPane prefHeight="560.0" prefWidth="880.0" styleClass="main-pane">
             <top>
-               <MenuBar BorderPane.alignment="CENTER">
+               <MenuBar fx:id="menuBar" prefWidth="928.0" BorderPane.alignment="CENTER">
                  <menus>
                    <Menu mnemonicParsing="false" text="File">
                      <items>
@@ -99,17 +99,17 @@
                      </HBox>
                   </bottom>
                   <center>
-                     <StackPane prefHeight="240.0" prefWidth="644.0" BorderPane.alignment="CENTER" />
+                     <StackPane fx:id="displayListPlaceholder" prefHeight="484.0" prefWidth="624.0" BorderPane.alignment="CENTER" />
                   </center>
                </BorderPane>
             </left>
             <right>
                <BorderPane prefHeight="520.0" prefWidth="304.0" BorderPane.alignment="CENTER">
                   <top>
-                     <StackPane fx:id="commandBoxPlaceHolder" prefHeight="256.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
+                     <StackPane fx:id="commandBoxPlaceholder" prefHeight="256.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
                   </top>
                   <bottom>
-                     <StackPane fx:id="pinBoxPlaceHolder" prefHeight="320.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
+                     <StackPane fx:id="pinBoxPlaceholder" prefHeight="320.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
                   </bottom>
                </BorderPane>
             </right>

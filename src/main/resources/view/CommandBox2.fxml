@@ -18,7 +18,7 @@
                   <TextField fx:id="commandTextField" maxHeight="48.0" maxWidth="304.0" onAction="#handleCommandEntered" promptText="Enter command here..." />
                </children>
             </StackPane>
-            <TextArea prefHeight="214.0" prefWidth="288.0" visible="false" />
+            <TextArea fx:id="displayBox" prefHeight="214.0" prefWidth="288.0" text="\$display" visible="true" />
          </children>
       </VBox>
    </children>

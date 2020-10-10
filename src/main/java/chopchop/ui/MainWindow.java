@@ -32,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
+    private ReceipeViewPanel receipeViewPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -40,13 +42,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane displayListPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane CommandBoxPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane pinBoxPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -108,17 +110,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        this.commandBox = commandBox;
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        PinBox pinBox = new PinBox();
+        pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
     }
 
     /**
@@ -171,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandBox.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -184,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            commandBox.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

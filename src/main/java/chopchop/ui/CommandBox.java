@@ -2,6 +2,7 @@ package chopchop.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
@@ -9,23 +10,28 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.UiPart;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
-    private static final String FXML = "CommandBox.fxml";
+    private static final String FXML = "CommandBox2.fxml";
 
-    private final CommandExecutor commandExecutor;
+    private final seedu.address.ui.CommandBox.CommandExecutor commandExecutor;
 
     @FXML
     private TextField commandTextField;
 
+    @FXML
+    private TextArea displayBox;
+
     /**
-     * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
+     * Constructs {@code CommandBox}
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(seedu.address.ui.CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
@@ -63,6 +69,16 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Displays the commandResult to the user.
+     *
+     * @param feedbackToUser
+     */
+    public void setFeedbackToUser(String feedbackToUser) {
+        requireNonNull(feedbackToUser);
+        displayBox.setText(feedbackToUser);
     }
 
     /**
