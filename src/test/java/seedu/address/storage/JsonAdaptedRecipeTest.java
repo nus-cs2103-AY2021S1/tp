@@ -22,8 +22,6 @@ public class JsonAdaptedRecipeTest {
     private static final ArrayList<Ingredient> INVALID_INGREDIENT =
             new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("@olive oil")}));
     private static final int INVALID_CALORIES = -1;
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
@@ -88,21 +86,5 @@ public class JsonAdaptedRecipeTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Calories.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
-
-    /*@Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(VALID_NAME, VALID_INGREDIENT);
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
-    }*/
-
-    /*@Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_INGREDIENT);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
-    }
-    */
 
 }

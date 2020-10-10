@@ -27,7 +27,7 @@ public class EatRecipeCommandTest {
         Recipe recipeToEat = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
         EatRecipeCommand eatRecipeCommand = new EatRecipeCommand(INDEX_FIRST_RECIPE);
 
-        String expectedMessage = String.format(EatRecipeCommand.MESSAGE_EAT_RECIPE_SUCCESS, recipeToEat);
+        String expectedMessage = String.format(EatRecipeCommand.MESSAGE_EAT_RECIPE_SUCCESS, extractString(recipeToEat));
 
         ModelManager expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addConsumption(new Consumption(recipeToEat));
@@ -54,7 +54,7 @@ public class EatRecipeCommandTest {
 
         Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addConsumption(new Consumption(recipeToEat));
-        showNoConsumption(expectedModel);
+        showNoRecipe(expectedModel);
 
         assertCommandSuccess(eatRecipeCommand, model, expectedMessage, expectedModel);
     }*/
@@ -97,9 +97,20 @@ public class EatRecipeCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoConsumption(Model model) {
+    private void showNoRecipe(Model model) {
         model.updateFilteredRecipeList(p -> false);
 
         assertTrue(model.getFilteredRecipeList().isEmpty());
+    }
+
+    /**
+     * Extract the importat information from the Recipe
+     */
+    private String extractString(Recipe recipe) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(recipe.getName())
+                .append(" Calories: ")
+                .append(recipe.getCalories() + " cal");
+        return builder.toString();
     }
 }

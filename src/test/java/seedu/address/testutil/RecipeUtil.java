@@ -1,18 +1,16 @@
 package seedu.address.testutil;
 
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 
-//import java.util.Set;
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.address.model.recipe.Recipe;
+
+//import java.util.Set;
 
 //import seedu.address.model.tag.Tag;
 

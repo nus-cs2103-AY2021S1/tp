@@ -23,10 +23,18 @@ public class EatRecipeCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an AddIngredientCommand to add the specified {@code Ingredients}
+     * Creates an EatRecipeCommand to add the specified {@code Recipe}
      */
     public EatRecipeCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    private String extractString(Recipe recipe) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(recipe.getName())
+                .append(" Calories: ")
+                .append(recipe.getCalories() + " cal");
+        return builder.toString();
     }
 
     @Override
@@ -40,7 +48,7 @@ public class EatRecipeCommand extends Command {
 
         Recipe recipeToEat = lastShownList.get(targetIndex.getZeroBased());
         model.addConsumption(new Consumption(recipeToEat));
-        return new CommandResult(String.format(MESSAGE_EAT_RECIPE_SUCCESS, recipeToEat));
+        return new CommandResult(String.format(MESSAGE_EAT_RECIPE_SUCCESS, extractString(recipeToEat)));
     }
 
     @Override

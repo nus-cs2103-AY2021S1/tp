@@ -2,8 +2,6 @@ package seedu.address.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -25,7 +23,7 @@ public class RecipeTest {
         // null -> returns false
         assertFalse(ALICE.isSameRecipe(null));
 
-        // different ingredients and email -> returns false
+        // different ingredients-> returns false
         Recipe editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).build();
         assertFalse(ALICE.isSameRecipe(editedAlice));
 
@@ -38,11 +36,11 @@ public class RecipeTest {
                .build();
         // assertTrue(ALICE.isSameRecipe(editedAlice));
 
-        // same name, same email, different attributes -> returns true
+        // same name, different attributes -> returns true
         editedAlice = new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).build();
         // assertTrue(ALICE.isSameRecipe(editedAlice));
 
-        // same name, same ingredients, same email, different attributes -> returns true
+        // same name, same ingredients, different attributes -> returns true
         editedAlice = new RecipeBuilder(ALICE).build();
         // assertTrue(ALICE.isSameRecipe(editedAlice));
     }

@@ -16,14 +16,13 @@ public class ListConsumptionCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Recipe ate" + "\n";
 
-    private static int totalCalories = 0;
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredConsumptionList(PREDICATE_SHOW_ALL_CONSUMPTION);
         ObservableList<Consumption> consump = model.getFilteredConsumptionList();
         StringBuilder builder = new StringBuilder();
+        int totalCalories = 0;
         for (int i = 0; i < consump.size(); i++) {
             builder.append((i + 1) + ". " + consump.get(i).toString() + "\n");
             totalCalories += consump.get(i).getRecipe().getCalories().value;

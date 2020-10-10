@@ -47,8 +47,6 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
             ingredients.add(new Ingredient(ingredientsToken[i].trim()));
         }
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        //Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
