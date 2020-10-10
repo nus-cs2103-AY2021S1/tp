@@ -200,11 +200,19 @@ Redoes the most recent command that the user has undone.
 
 Format: `redo` 
 
-#### Retrieve past commands : `history`
+#### Retrieve past commands using command line interface: `history`
 
 Retrieves a list of past commands that the user had used during the session.
 
 Format: `history`
+
+#### Retrieve and reuse past commands using arrow keys:
+
+Reuse past commands using the up arrow (↑) and down arrow (↓) keys on the keyboard.
+1. Ensure that the command line interface is working by clicking on the text field.
+2. Press the up arrow key to display the next recent past command on the command line interface.
+3. Press the down arrow key to display the previously shown past command on the command line interface.
+4. Press enter/return key to reuse that past command.
 
 ### Saving the data
 
