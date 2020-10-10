@@ -10,6 +10,7 @@ import tp.cap5buddy.logic.parser.ParserManager;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.storage.StorageManager;
+import tp.cap5buddy.todolist.TodoList;
 
 
 /**
@@ -20,15 +21,17 @@ public class LogicManager implements Logic {
     private final ParserManager pm;
     private final StorageManager storage;
     private final ModuleList moduleList;
+    private final TodoList todoList;
     private final ContactList contactList;
 
     /**
      * Represents the constructor of the Manager.
      */
-    public LogicManager(StorageManager storage, ModuleList moduleList, ContactList contactList) {
+    public LogicManager(StorageManager storage, ModuleList moduleList, ContactList contactList, TodoList todoList) {
         this.pm = new ParserManager();
         this.storage = storage;
         this.moduleList = moduleList;
+        this.todoList = todoList;
         this.contactList = contactList;
     }
 
@@ -42,7 +45,7 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String userInput) throws ParseException, CommandException {
         Command command = pm.parse(userInput);
-        CommandResult result = command.execute(moduleList, contactList);
+        CommandResult result = command.execute(moduleList, contactList, todoList);
         try {
             storage.saveModuleList(moduleList);
         } catch (IOException ioe) {

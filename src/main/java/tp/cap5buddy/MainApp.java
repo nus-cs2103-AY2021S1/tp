@@ -9,6 +9,7 @@ import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.logic.LogicManager;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.storage.StorageManager;
+import tp.cap5buddy.todolist.TodoList;
 import tp.cap5buddy.ui.gui.Ui;
 import tp.cap5buddy.ui.gui.UiManager;
 
@@ -20,6 +21,7 @@ public class MainApp extends Application {
     protected static StorageManager storage;
     protected static ModuleList moduleList;
     protected static ContactList contactList;
+    protected static TodoList todoList;
     private static final Logger logger = LogsCenter.getLogger(tp.cap5buddy.MainApp.class);
 
     @Override
@@ -29,7 +31,8 @@ public class MainApp extends Application {
         storage = null;
         moduleList = null;
         contactList = null;
-        manager = new LogicManager(storage, moduleList, contactList);
+        todoList = null;
+        manager = new LogicManager(storage, moduleList, contactList, todoList);
     }
 
     @Override
