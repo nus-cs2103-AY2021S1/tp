@@ -16,7 +16,7 @@ import seedu.address.model.student.admin.Admin;
 
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Reeve} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSamplePersons() {
