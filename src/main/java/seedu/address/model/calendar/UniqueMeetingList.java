@@ -83,7 +83,7 @@ public class UniqueMeetingList implements Iterable<CalendarMeeting> {
         }
     }
 
-    public void setMeeting(seedu.address.model.calendar.UniqueMeetingList replacement) {
+    public void setMeetings(seedu.address.model.calendar.UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }

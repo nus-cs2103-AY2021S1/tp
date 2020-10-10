@@ -2,7 +2,6 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.property.Property;
 
 /**
  * Represents a meeting in the calendar book.
