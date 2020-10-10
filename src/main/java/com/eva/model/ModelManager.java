@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -104,6 +106,16 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addStaffLeave(Staff target, Leave leave) {
+        target.getLeaves().add(leave);
+    }
+
+    @Override
+    public boolean hasStaffLeave(Staff target, Leave leave) {
+        return target.getLeaves().contains(leave);
     }
 
     @Override

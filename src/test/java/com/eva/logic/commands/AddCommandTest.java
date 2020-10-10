@@ -20,6 +20,8 @@ import com.eva.model.Model;
 import com.eva.model.ReadOnlyAddressBook;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.PersonBuilder;
 
 import javafx.collections.ObservableList;
@@ -111,6 +113,16 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStaffLeave(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStaffLeave(Staff target, Leave leave) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -4,15 +4,19 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import com.eva.commons.core.index.Index;
+import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 
@@ -121,5 +125,34 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String leaveDates} into a {@code Leave}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Assumption: no more than 2 leave dates are entered.
+     *
+     * @throws ParseException if the given {@code leaveDate} is invalid.
+     */
+    public static Leave parseLeave(List<String> leaveDates) throws ParseException {
+        requireNonNull(leaveDates);
+        String trimmedDate = leaveDates.get(0).trim();
+        if (!DateUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        if (leaveDates.size() > 1) {
+            String trimmedEndDate = leaveDates.get(1).trim();
+            return new Leave(trimmedDate, trimmedEndDate);
+        } else {
+            return new Leave(trimmedDate);
+        }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

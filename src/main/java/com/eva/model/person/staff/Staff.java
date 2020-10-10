@@ -1,6 +1,5 @@
 package com.eva.model.person.staff;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +26,18 @@ public class Staff extends Person {
      * @param email
      * @param address
      * @param tags
+     */
+    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone, email, address, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
      * @param leaves
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Leave> leaves) {
@@ -34,12 +45,8 @@ public class Staff extends Person {
         this.leaves.addAll(leaves);
     }
 
-    /**
-     * Returns an immutable leave set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
     public Set<Leave> getLeaves() {
-        return Collections.unmodifiableSet(leaves);
+        return leaves;
     }
 
     public LeaveBalance getLeaveBalance() {

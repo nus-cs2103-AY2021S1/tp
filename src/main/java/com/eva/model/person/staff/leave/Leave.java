@@ -14,13 +14,13 @@ import java.util.Objects;
 public class Leave {
 
     public static final String MESSAGE_CONSTRAINTS = "Leave date should be in the format dd/mm/yyyy";
-    private static final String SINGLE_DAY_LEAVE = "Leave taken on %s for a total of %d days.";
+    private static final String SINGLE_DAY_LEAVE = "%d day of leave on %s";
     private static final int SINGLE_LEAVE_LENGTH = 1;
-    private static final String MULTIPLE_DAY_LEAVE = "Leave taken from %s to %s for a total of %d days.";
+    private static final String MULTIPLE_DAY_LEAVE = "%d days of leave from %s to %s";
 
-    private final LocalDate startDate;
-    private final LocalDate endDate;
-    private final int leaveLength;
+    public final LocalDate startDate;
+    public final LocalDate endDate;
+    public final int leaveLength;
 
     /**
      * Constructs a {@code Leave}.
@@ -69,9 +69,9 @@ public class Leave {
      */
     public String toString() {
         if (startDate.equals(endDate)) {
-            return String.format(SINGLE_DAY_LEAVE, startDate, leaveLength);
+            return String.format(SINGLE_DAY_LEAVE, leaveLength, startDate);
         } else {
-            return String.format(MULTIPLE_DAY_LEAVE, startDate, endDate, leaveLength);
+            return String.format(MULTIPLE_DAY_LEAVE, leaveLength, startDate, endDate);
         }
     }
 }

@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 
 import javafx.collections.ObservableList;
 
@@ -69,6 +71,17 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given leave to the given staff.
+     * {@code leave} must not already exist in the staff's {@code leaves}.
+     */
+    void addStaffLeave(Staff target, Leave leave);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     */
+    boolean hasStaffLeave(Staff target, Leave leave);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddCommand;
+import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.DeleteCommand;
@@ -65,6 +66,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddLeaveCommand.COMMAND_WORD:
+            return new AddLeaveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
