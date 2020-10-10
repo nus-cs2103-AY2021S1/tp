@@ -10,8 +10,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.ExpenseList;
-import seedu.address.model.account.entry.Profit;
-import seedu.address.model.account.entry.ProfitList;
+import seedu.address.model.account.entry.Revenue;
+import seedu.address.model.account.entry.RevenueList;
 
 /**
  * Wraps all data that represents one business Common Cents.
@@ -22,7 +22,7 @@ public class Account implements ReadOnlyAccount {
 
     // data field
     private final ExpenseList expenses;
-    private final ProfitList profits;
+    private final RevenueList revenues;
 
     /**
      * Constructs an Account object with the given name;
@@ -31,7 +31,7 @@ public class Account implements ReadOnlyAccount {
         requireNonNull(name);
         this.name = name;
         this.expenses = new ExpenseList();
-        this.profits = new ProfitList();
+        this.revenues = new RevenueList();
     }
 
     Account(Name name, ReadOnlyAccount toBeCopied) {
@@ -53,14 +53,14 @@ public class Account implements ReadOnlyAccount {
     }
 
     /**
-     * Replaces the contents of the profit list with {@code profits}.
+     * Replaces the contents of the revenue list with {@code revenues}.
      */
-    public void setProfits(List<Profit> profits) {
-        this.profits.setProfits(profits);
+    public void setRevenues(List<Revenue> revenues) {
+        this.revenues.setRevenues(revenues);
     }
 
-    public void setProfits(ProfitList profits) {
-        this.profits.setProfits(profits);
+    public void setRevenues(RevenueList revenues) {
+        this.revenues.setRevenues(revenues);
     }
 
     /**
@@ -70,7 +70,7 @@ public class Account implements ReadOnlyAccount {
         requireNonNull(newData);
 
         setExpenses(newData.getExpenseList());
-        setProfits(newData.getProfitList());
+        setRevenues(newData.getRevenueList());
     }
 
     //// entry-level operations
@@ -86,9 +86,9 @@ public class Account implements ReadOnlyAccount {
     /**
      * Returns true if a profit entry with the same identity as {@code profit} exists in the ProfitList.
      */
-    public boolean hasProfit(Profit profit) {
-        requireNonNull(profit);
-        return profits.contains(profit);
+    public boolean hasRevenue(Revenue revenue) {
+        requireNonNull(revenue);
+        return revenues.contains(revenue);
     }
 
     /**
@@ -96,7 +96,7 @@ public class Account implements ReadOnlyAccount {
      */
     public boolean hasEntry(Entry entry) {
         requireNonNull(entry);
-        return expenses.contains(entry) || profits.contains(entry);
+        return expenses.contains(entry) || revenues.contains(entry);
     }
 
     /**
@@ -107,10 +107,10 @@ public class Account implements ReadOnlyAccount {
     }
 
     /**
-     * Adds a profit entry to the account.
+     * Adds a revenue entry to the account.
      */
-    public void addProfit(Profit p) {
-        profits.add(p);
+    public void addRevenue(Revenue p) {
+        revenues.add(p);
     }
 
     /**
@@ -125,13 +125,13 @@ public class Account implements ReadOnlyAccount {
     }
 
     /**
-     * Replaces the given profit entry {@code target} in the list with {@code editedProfit}.
+     * Replaces the given revenue entry {@code target} in the list with {@code editedRevenue}.
      * {@code target} must exist in the account.
      */
-    public void setProfit(Profit target, Profit editedProfit) {
-        requireNonNull(editedProfit);
+    public void setRevenue(Revenue target, Revenue editedRevenue) {
+        requireNonNull(editedRevenue);
 
-        profits.setProfit(target, editedProfit);
+        revenues.setRevenue(target, editedRevenue);
     }
 
     /**
@@ -146,8 +146,8 @@ public class Account implements ReadOnlyAccount {
      * Removes {@code key} from this {@code Account}.
      * {@code key} must exist in the account.
      */
-    public void removeProfit(Profit key) {
-        profits.remove(key);
+    public void removeRevenue(Revenue key) {
+        revenues.remove(key);
     }
 
     //// util methods
@@ -155,7 +155,7 @@ public class Account implements ReadOnlyAccount {
     @Override
     public String toString() {
         return expenses.asUnmodifiableObservableList().size() + " expenses\n"
-                + profits.asUnmodifiableObservableList().size() + " profits";
+                + revenues.asUnmodifiableObservableList().size() + " revenues";
         // TODO: refine later
     }
 
@@ -169,8 +169,8 @@ public class Account implements ReadOnlyAccount {
     }
 
     @Override
-    public ObservableList<Profit> getProfitList() {
-        return profits.asUnmodifiableObservableList();
+    public ObservableList<Revenue> getRevenueList() {
+        return revenues.asUnmodifiableObservableList();
     }
 
     /**
@@ -196,13 +196,13 @@ public class Account implements ReadOnlyAccount {
                 || (other instanceof AddressBook // instanceof handles nulls
                 && (name.equals(((Account) other).name)
                 && expenses.equals(((Account) other).expenses)
-                && profits.equals(((Account) other).profits)));
+                && revenues.equals(((Account) other).revenues)));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, expenses, profits);
+        return Objects.hash(name, expenses, revenues);
     }
 
 }

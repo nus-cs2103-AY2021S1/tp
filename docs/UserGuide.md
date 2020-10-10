@@ -113,9 +113,9 @@ Example:
 
 Finds expenses that have the given keyword in their names.
 
-* The search is case-sensitive. e.g grocery will match grocery but not Grocery.
+* The search is case-sensitive. e.g `grocery` will match `grocery` but not `Grocery`.
 * Only the expense name is searched.
-* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. Food will return Hawker Food, Restaurant Food
+* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
 
 Format: 
 * `find KEYWORD [MORE_KEYWORDS]`
@@ -128,7 +128,7 @@ Example:
 
 Lists out all expenses in a category. 
 
-* The search is case-sensitive. e.g food will match food but not Food.
+* The search is case-sensitive. e.g `food` will match `food` but not `Food`.
 * All expenses belonging to that category will be shown. 
 
 Format: 

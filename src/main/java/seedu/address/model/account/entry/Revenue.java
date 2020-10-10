@@ -5,12 +5,12 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a profit entry in Common Cents.
+ * Represents a revenue entry in Common Cents.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Profit extends Entry {
+public class Revenue extends Entry {
 
-    public Profit(Description description, Amount amount, Set<Tag> tags) {
+    public Revenue(Description description, Amount amount, Set<Tag> tags) {
         super(description, amount, tags);
     }
 
@@ -20,20 +20,20 @@ public class Profit extends Entry {
             return true;
         }
 
-        if (!(other instanceof Profit)) {
+        if (!(other instanceof Revenue)) {
             return false;
         }
 
-        Profit otherProfit = (Profit) other;
-        return otherProfit.getDescription().equals(getDescription())
-                && otherProfit.getAmount().equals(getAmount())
-                && otherProfit.getTags().equals(getTags());
+        Revenue otherRevenue = (Revenue) other;
+        return otherRevenue.getDescription().equals(getDescription())
+                && otherRevenue.getAmount().equals(getAmount())
+                && otherRevenue.getTags().equals(getTags());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Profit: ")
+        builder.append("Revenue: ")
                 .append(getDescription())
                 .append(" Amount: ")
                 .append(getAmount())

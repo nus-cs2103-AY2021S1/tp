@@ -11,7 +11,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.Name;
 import seedu.address.model.account.entry.ExpenseList;
-import seedu.address.model.account.entry.ProfitList;
+import seedu.address.model.account.entry.RevenueList;
 
 /**
  * Jackson-friendly version of {@link Account}.
@@ -22,7 +22,7 @@ public class JsonAdaptedAccount {
 
     private final String name;
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
-    private final List<JsonAdaptedProfit> profits = new ArrayList<>();
+    private final List<JsonAdaptedRevenue> revenues = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAccount} with the given account.
@@ -30,10 +30,10 @@ public class JsonAdaptedAccount {
     @JsonCreator
     public JsonAdaptedAccount(@JsonProperty("name") String name,
                               @JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
-                              @JsonProperty("profits") List<JsonAdaptedProfit> profits) {
+                              @JsonProperty("revenues") List<JsonAdaptedRevenue> revenues) {
         this.name = name;
         this.expenses.addAll(expenses);
-        this.profits.addAll(profits);
+        this.revenues.addAll(revenues);
     }
 
     /**
@@ -42,7 +42,7 @@ public class JsonAdaptedAccount {
     public JsonAdaptedAccount(Account source) {
         name = source.getName().toString();
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
-        profits.addAll(source.getProfitList().stream().map(JsonAdaptedProfit::new).collect(Collectors.toList()));
+        revenues.addAll(source.getRevenueList().stream().map(JsonAdaptedRevenue::new).collect(Collectors.toList()));
     }
     /**
      * Converts this account into the model's {@code Account} object.
@@ -51,7 +51,7 @@ public class JsonAdaptedAccount {
      */
     public Account toModelType() throws IllegalValueException {
         ExpenseList accountExpenses = new ExpenseList();
-        ProfitList accountProfits = new ProfitList();
+        RevenueList accountProfits = new RevenueList();
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -61,7 +61,7 @@ public class JsonAdaptedAccount {
         }
         final Name modelName = new Name(name);
 
-        for (JsonAdaptedProfit profit : profits) {
+        for (JsonAdaptedRevenue profit : revenues) {
             accountProfits.add(profit.toModelType());
         }
 
@@ -71,7 +71,7 @@ public class JsonAdaptedAccount {
 
         Account modelAcc = new Account(modelName);
         modelAcc.setExpenses(accountExpenses);
-        modelAcc.setProfits(accountProfits);
+        modelAcc.setRevenues(accountProfits);
         return modelAcc;
     }
 
