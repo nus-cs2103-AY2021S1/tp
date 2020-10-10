@@ -7,105 +7,109 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
-
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+
 <fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
-         <VBox alignment="CENTER_LEFT">
-            <children>
-                <Label fx:id="helpMethod" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+        <ScrollPane>
+            <VBox alignment="CENTER_LEFT">
+                <children>
+                    <Label fx:id="helpMethod" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="helpMessage" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="helpMessage" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="addMethod" text="Label" >
-                    <VBox.margin>
-                        <Insets right="1.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="addMethod" text="Label" >
+                        <VBox.margin>
+                            <Insets right="1.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="addMessage" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="addMessage" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="deleteMethod" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="deleteMethod" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="deleteMessage" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="deleteMessage" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="findMethod" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="findMethod" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="findMessage" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="findMessage" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="updateMethod" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="updateMethod" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="updateMessage" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="updateMessage" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="exitMethod" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
+                    <Label fx:id="exitMethod" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
 
-                <Label fx:id="exitMessage" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
-                <Label fx:id="disclaimer" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
-                <Label fx:id="url" text="Label" >
-                    <VBox.margin>
-                        <Insets right="5.0" />
-                    </VBox.margin>
-                </Label>
-            </children>
-            <opaqueInsets>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </opaqueInsets>
-            <padding>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-            </padding>
-         </VBox>
+                    <Label fx:id="exitMessage" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="disclaimer" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label fx:id="url" text="Label" >
+                        <VBox.margin>
+                            <Insets right="5.0" />
+                        </VBox.margin>
+                    </Label>
+                </children>
+                <opaqueInsets>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+                </padding>
+            </VBox>
+        </ScrollPane>
+
     </Scene>
   </scene>
 </fx:root>
