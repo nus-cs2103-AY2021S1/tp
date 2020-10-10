@@ -126,6 +126,7 @@ public class ModelManager implements Model {
     /**
      * Checks if addressBook has the given (@code Module}
      */
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return addressBook.hasModule(module);
@@ -134,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -147,18 +153,20 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
+
     /**
      * Returns a modifiable view of the list of {@code Module}
      */
     @Override
     public UniqueModuleList getModuleList() {
         return modules;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     @Override
@@ -177,7 +185,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && modules.equals(other.modules);
     }
 
 }
