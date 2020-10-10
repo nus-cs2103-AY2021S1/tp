@@ -17,7 +17,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBidCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.property.AddPropertyCommandParser;
 
 /**
  * Parses user input.
@@ -75,6 +77,9 @@ public class AddressBookParser {
 
         case AddBidCommand.COMMAND_WORD:
             return new AddBidCommandParser().parse(arguments);
+
+        case AddPropertyCommand.COMMAND_WORD:
+            return new AddPropertyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
