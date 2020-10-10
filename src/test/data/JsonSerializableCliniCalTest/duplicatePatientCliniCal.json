@@ -8,7 +8,8 @@
     "profilePicture" : "data/stock_picture.png",
     "sex": "F",
     "bloodType": "A+",
-    "tagged": [ "penicillin" ]
+    "tagged": [ "penicillin" ],
+    "color" : "green"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
