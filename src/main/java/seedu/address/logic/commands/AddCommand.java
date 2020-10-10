@@ -22,7 +22,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Reeve. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to Reeve. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -40,12 +40,12 @@ public class AddCommand extends Command {
             + PREFIX_DETAILS + "Additional details here ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Reeve";
 
     private final Student toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Student}
      */
     public AddCommand(Student student) {
         requireNonNull(student);
@@ -57,7 +57,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.addPerson(toAdd);

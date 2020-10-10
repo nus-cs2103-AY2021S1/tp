@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.reeve.getPersonList());
+        filteredStudents = new FilteredList<>(this.reeve.getStudentList());
     }
 
     public ModelManager() {
@@ -91,17 +91,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Student student) {
         requireNonNull(student);
-        return reeve.hasPerson(student);
+        return reeve.hasStudent(student);
     }
 
     @Override
     public void deletePerson(Student target) {
-        reeve.removePerson(target);
+        reeve.removeStudent(target);
     }
 
     @Override
     public void addPerson(Student student) {
-        reeve.addPerson(student);
+        reeve.addStudent(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setPerson(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        reeve.setPerson(target, editedStudent);
+        reeve.setStudent(target, editedStudent);
     }
 
     //=========== Filtered Person List Accessors =============================================================

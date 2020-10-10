@@ -53,6 +53,10 @@ public class TypicalStudents {
             .withPhone(CommandTestUtil.VALID_PHONE_BOB)
             .withSchool(CommandTestUtil.VALID_SCHOOL_BOB)
             .withYear(CommandTestUtil.VALID_YEAR_BOB)
+            .withClassVenue(CommandTestUtil.VALID_VENUE_BOB)
+            .withClassTime(CommandTestUtil.VALID_TIME_BOB)
+            .withFee(CommandTestUtil.VALID_FEE_BOB)
+            .withPaymentDate(CommandTestUtil.VALID_PAYMENT_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -65,7 +69,7 @@ public class TypicalStudents {
     public static Reeve getTypicalAddressBook() {
         Reeve ab = new Reeve();
         for (Student student : getTypicalPersons()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
         }
         return ab;
     }

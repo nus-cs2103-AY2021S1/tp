@@ -87,8 +87,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-=======
      * Parses a {@code String year} into a {@code Year}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -113,7 +111,7 @@ public class ParserUtil {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
         if (!ClassVenue.isValidClassVenue(trimmedVenue)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ClassVenue.MESSAGE_CONSTRAINTS);
         }
         return new ClassVenue(trimmedVenue);
     }
@@ -128,7 +126,7 @@ public class ParserUtil {
         requireNonNull(time);
         String trimmedTime = time.trim();
         if (!ClassTime.isValidClassTime(trimmedTime)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ClassTime.MESSAGE_CONSTRAINTS);
         }
         return new ClassTime(trimmedTime);
     }
@@ -143,7 +141,7 @@ public class ParserUtil {
         requireNonNull(fee);
         String trimmedFee = fee.trim();
         if (!Fee.isValidFee(trimmedFee)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
         }
         return new Fee(trimmedFee);
     }
@@ -158,7 +156,7 @@ public class ParserUtil {
         requireNonNull(paymentDate);
         String trimmedPaymentDate = paymentDate.trim();
         if (!PaymentDate.isValidDate(trimmedPaymentDate)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PaymentDate.MESSAGE_CONSTRAINTS);
         }
         return new PaymentDate(trimmedPaymentDate);
     }

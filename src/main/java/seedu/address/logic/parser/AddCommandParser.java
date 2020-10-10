@@ -58,12 +58,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         ClassTime classTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
         PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get());
-        Set<AdditionalDetail> tagList =
+        Set<AdditionalDetail> detailList =
                 ParserUtil.parseAdditionalDetails(argMultimap.getAllValues(PREFIX_DETAILS));
 
-
-        Admin admin = new Admin(classVenue, classTime, fee, paymentDate, tagList);
-        //Admin admin = Admin.getPlaceholder();
+        Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
         Student student = new Student(name, phone, school, year, admin);
         return new AddCommand(student);
     }

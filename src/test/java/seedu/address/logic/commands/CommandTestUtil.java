@@ -67,10 +67,10 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_SCHOOL_DESC = " " + PREFIX_SCHOOL; // empty string not allowed for schools
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "$4"; // '$' not allowed in year
-    public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE + "Venue&"; // '&' not allowed in venues
+    public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE + ""; // only empty venues are not allowed
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "1 @100"; // '@' not allowed in times
     public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
-    // 'alphabets' not allowed in year
+    // 'alphabets' not allowed in payment date
     public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
