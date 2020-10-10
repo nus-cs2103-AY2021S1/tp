@@ -191,6 +191,11 @@ public class AddCommandTest {
 
         }
 
+        @Override
+        public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
+
+        }
+
 
     }
 
