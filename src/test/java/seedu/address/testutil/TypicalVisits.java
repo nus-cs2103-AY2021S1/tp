@@ -1,12 +1,34 @@
 package seedu.address.testutil;
 
+import seedu.address.model.CliniCal;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import seedu.address.model.patient.Name;
-import seedu.address.model.visit.Visit;
-import seedu.address.model.visit.VisitHistory;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_ASPIRIN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ICNUMBER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ICNUMBER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_PICTURE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_PICTURE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SEX_BOB;
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.

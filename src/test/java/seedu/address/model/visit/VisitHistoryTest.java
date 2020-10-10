@@ -1,11 +1,12 @@
 package seedu.address.model.visit;
 
+import org.junit.jupiter.api.Test;
+import seedu.address.testutil.TypicalVisits;
+import seedu.address.testutil.VisitBuilder;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.testutil.TypicalVisits;
+import static seedu.address.testutil.TypicalVisits.VISIT_1;
 
 public class VisitHistoryTest {
     @Test
