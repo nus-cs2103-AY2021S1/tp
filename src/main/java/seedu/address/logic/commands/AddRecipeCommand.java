@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -30,13 +28,13 @@ public class AddRecipeCommand extends Command {
             + PREFIX_RECIPE_IMAGE + "IMAGE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_INGREDIENT + "98765432 "
+            + PREFIX_NAME + "Chicken salad "
+            + PREFIX_INGREDIENT + "chicken, lettuce, tomato "
             + PREFIX_CALORIES + "100 "
             + PREFIX_INSTRUCTION + "1. cook 2. eat "
-            + PREFIX_RECIPE_IMAGE + "img/pic.png "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_RECIPE_IMAGE + "images/salad.jpg "
+            + PREFIX_TAG + "healthy "
+            + PREFIX_TAG + "delicious";
 
 
 

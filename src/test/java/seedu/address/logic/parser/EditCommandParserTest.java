@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOB;
 /*import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -168,7 +168,7 @@ public class EditCommandParserTest {
         // assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        userInput = targetIndex.getOneBased() + TAG_DESC_BOB;
         descriptor = new EditRecipeDescriptorBuilder().build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
