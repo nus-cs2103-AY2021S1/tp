@@ -13,6 +13,11 @@ import static seedu.stock.testutil.TypicalStocks.getTypicalStocksSerialNumbers;
 import static seedu.stock.testutil.TypicalStocks.serialNumberListAsString;
 import static seedu.stock.testutil.TypicalStocks.stocksAsString;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.commons.core.Messages;
@@ -22,11 +27,6 @@ import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
-
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -98,8 +98,8 @@ public class DeleteCommandTest {
         showStockAtSerialNumber(model, SERIAL_NUMBER_FIRST_STOCK);
 
         // ensures that SERIAL_NUMBER_SECOND_STOCK is still in the stock book list.
-        assertTrue(model.getStockBook().getStockList().stream().anyMatch(
-                stock -> stock.getSerialNumber().equals(SERIAL_NUMBER_SECOND_STOCK)));
+        assertTrue(model.getStockBook().getStockList().stream()
+                .anyMatch(stock -> stock.getSerialNumber().equals(SERIAL_NUMBER_SECOND_STOCK)));
 
         Set<SerialNumber> secondSerialNumberSet = new LinkedHashSet<>();
         secondSerialNumberSet.add(SERIAL_NUMBER_SECOND_STOCK);
