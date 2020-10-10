@@ -15,11 +15,11 @@ import static seedu.stock.testutil.TypicalStocks.stocksAsString;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.stock.model.stock.SerialNumber;
+import seedu.stock.model.stock.Stock;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
-import seedu.stock.model.stock.SerialNumber;
-import seedu.stock.model.stock.Stock;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
