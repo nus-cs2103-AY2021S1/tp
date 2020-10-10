@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Stock;
@@ -26,11 +25,6 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindExactCommand object
  */
 public class FindExactCommandParser implements Parser<FindExactCommand> {
-    /**
-     * Used for initial separation of prefix and keywords to find.
-     */
-    private static final Pattern BASIC_FIND_FORMAT = Pattern
-            .compile("(?<commandPrefix>.*/)(?<keyWordsToFind>.*)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -43,7 +37,7 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
 
         if (!isAPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIALNUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
         }
 
         List<Predicate<Stock>> getPredicates =
