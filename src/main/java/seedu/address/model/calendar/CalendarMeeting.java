@@ -40,5 +40,34 @@ public class CalendarMeeting {
     public boolean checkMeetingType() {
         return this.isMeeting;
     }
+
+    public CalendarBidderId getCalendarBidderId() {
+        return this.calendarBidderId;
+    }
+
+    public CalendarPropertyId getCalendarPropertyId() {
+        return this.calendarPropertyId;
+    }
+
+    public CalendarTime getCalendarTime() {
+        return this.calendarTime;
+    }
+
+    public CalendarVenue getCalendarVenue() {
+        return this.calendarVenue;
+    }
+
+    public boolean isViewing() {
+        return this.isViewing;
+    }
+
+    public boolean isPaperWork() {
+        return this.isPaperWork;
+    }
+
+    public boolean isAmin() {
+        return this.isAdmin;
+    }
+
 }
 

@@ -1,14 +1,11 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -30,6 +27,10 @@ public class CalendarCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
+    private Label typeOfMeeting;
+    @FXML
     private Label calenderBidderId;
     @FXML
     private Label calenderPropertyId;
@@ -47,11 +48,23 @@ public class CalendarCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        typeOfMeeting.setText(getMeetingType(meeting));
+        calenderBidderId.setText(meeting.getCalendarBidderId().bidderId);
+        calenderPropertyId.setText(meeting.getCalendarPropertyId().propertyId);
+        time.setText(meeting.getCalendarTime().time);
+        venue.setText(meeting.getCalendarVenue().venue);
+    }
+
+    public String getMeetingType(CalendarMeeting meeting) {
+        if (meeting.isAmin()) {
+            return "Admin Meeting:";
+        } else if (meeting.isPaperWork()) {
+            return "PaperWork Meeting:";
+        } else if (meeting.isViewing()) {
+            return "Viewing Meeting:";
+        } else {
+            return "ERROR: Meeting:";
+        }
     }
 
     @Override
@@ -62,13 +75,12 @@ public class CalendarCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof CalendarCard)) {
             return false;
         }
-
         // state check
-        PersonCard card = (PersonCard) other;
+        CalendarCard card = (CalendarCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && meeting.equals(card.meeting);
     }
 }

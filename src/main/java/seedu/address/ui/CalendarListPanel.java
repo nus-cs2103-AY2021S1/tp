@@ -14,7 +14,7 @@ import seedu.address.model.calendar.CalendarMeeting;
 
 public class CalendarListPanel extends UiPart<Region> {
     private static final String FXML = "CalendarListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger( CalendarListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(CalendarListPanel.class);
 
     @FXML
     private ListView<CalendarMeeting> calendarMeetingListView;
