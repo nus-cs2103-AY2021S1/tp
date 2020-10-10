@@ -9,15 +9,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Name;
 
 /**
- * Adds a person to the address book.
+ * Adds a meeting to the meeting book.
  */
 public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "meeting add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the meeting book. "
             + "Parameters: "
             + PREFIX_NAME + "MEETING NAME "
             + PREFIX_DATE + "DATE "
@@ -31,7 +32,8 @@ public class AddMeetingCommand extends Command {
             + PREFIX_MEMBERS + "Roy";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting book";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "This person:%s does not exist in the address book";
 
     private final Meeting toAdd;
 
@@ -49,6 +51,12 @@ public class AddMeetingCommand extends Command {
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+
+        for (Name name : toAdd.getMembers()) {
+            if (!model.hasPersonName(name)) {
+                throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, name));
+            }
         }
 
         model.addMeeting(toAdd);

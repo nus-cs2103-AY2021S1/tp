@@ -15,7 +15,7 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
 
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
@@ -36,7 +36,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_NAME).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        Set<Person> personList = ParserUtil.parsePersons(argMultimap.getAllValues(PREFIX_MEMBERS));
+        Set<Name> personList = ParserUtil.parsePersons(argMultimap.getAllValues(PREFIX_MEMBERS));
 
         Meeting meeting = new Meeting(meetingName, date, time, personList);
 

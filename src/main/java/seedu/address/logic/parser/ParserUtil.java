@@ -156,29 +156,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Person parsePerson(String personName) throws ParseException {
-        requireNonNull(personName);
-        Name trimmedPersonName = parseName(personName);
-        if (!UniquePersonList.contains(trimmedPersonName)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return UniquePersonList.get(trimmedPersonName);
-    }
-
-    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Person> parsePersons(Collection<String> persons) throws ParseException {
-        requireNonNull(persons);
-        final Set<Person> personSet = new HashSet<>();
-        for (String personName : persons) {
-            personSet.add(parsePerson(personName));
+    public static Set<Name> parsePersons(Collection<String> personNames) throws ParseException {
+        requireNonNull(personNames);
+        final Set<Name> personNameSet = new HashSet<>();
+        for (String personName : personNames) {
+            personNameSet.add(parseName(personName));
         }
-        return personSet;
+        return personNameSet;
     }
 }

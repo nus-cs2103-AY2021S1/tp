@@ -7,19 +7,19 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
 
 public class Meeting {
     // Identity fields
     private final MeetingName meetingName;
     private final Date date;
     private final Time time;
-    private final Set<Person> members = new HashSet<>();
+    private final Set<Name> members = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meeting(MeetingName name, Date date, Time time, Set<Person> members) {
+    public Meeting(MeetingName name, Date date, Time time, Set<Name> members) {
         requireAllNonNull(name, date, time);
         this.meetingName = name;
         this.date = date;
@@ -39,7 +39,7 @@ public class Meeting {
         return this.time;
     }
 
-    public Set<Person> getMembers() {
+    public Set<Name> getMembers() {
         return Collections.unmodifiableSet(members);
     }
 
