@@ -169,6 +169,11 @@ class DelModCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Module> getFilteredModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
     /**
      * A Model stub that always accept the person being added.
