@@ -11,7 +11,7 @@ import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
 /**
- * Adds a person to the stock book.
+ * Adds a stock to the stock book.
  */
 public class AddCommand extends Command {
 
@@ -32,7 +32,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New stock added: %1$s";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the stock book";
 
-    private final Stock toAdd;
+    public final Stock toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Stock}
@@ -45,11 +45,12 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        toAdd.setSerialNumber(model.generateNextSerialNumber(toAdd.getSource()));
 
         if (model.hasStock(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STOCK);
         }
-        toAdd.setSerialNumber(model.generateNextSerialNumber(toAdd.getSource()));
+
         model.addStock(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

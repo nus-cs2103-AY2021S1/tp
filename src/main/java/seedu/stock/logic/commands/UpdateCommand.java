@@ -5,7 +5,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class UpdateCommand extends Command {
             + "the given serial number. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + PREFIX_SERIALNUMBER + "SERIAL NUMBER "
+            + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER "
             + PREFIX_INCREMENT_QUANTITY + "QUANTITY "
             + PREFIX_NEW_QUANTITY + "NEW QUANTITY "
             + PREFIX_NAME + "NAME "
@@ -46,7 +46,7 @@ public class UpdateCommand extends Command {
             + "can be specified. \n"
             + "You may provide more than one serial number \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SERIALNUMBER + "CS2103 "
+            + PREFIX_SERIAL_NUMBER + "CS2103 "
             + PREFIX_INCREMENT_QUANTITY + "2103 "
             + PREFIX_NAME + "CS2103 "
             + PREFIX_SOURCE + "National University of Singapore "
