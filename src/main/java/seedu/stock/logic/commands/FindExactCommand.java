@@ -3,7 +3,7 @@ package seedu.stock.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIALNUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class FindExactCommand extends Command {
             + "Parameters (any combination, in any order, of the following four fields):\n"
             + PREFIX_NAME + " KEYWORD [more KEYWORDS which will be matched with Name field of stock]\n"
             + PREFIX_SOURCE + " KEYWORD [more KEYWORDS which will be matched with Source field of stock]\n"
-            + PREFIX_SERIALNUMBER + " KEYWORD [more KEYWORDS which will be matched with SerialNumber field of stock]\n"
+            + PREFIX_SERIAL_NUMBER + " KEYWORD [more KEYWORDS which will be matched with SerialNumber field of stock]\n"
             + PREFIX_LOCATION + " KEYWORD [more KEYWORDS which will be matched with Location field of stock]\n"
             + "Example: " + COMMAND_WORD + " n/ pork 100grams  s/ farm";
 
