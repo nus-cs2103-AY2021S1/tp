@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -38,7 +37,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         // TODO: Sorting order is currently hardcoded
-        SortedList<Log> sortedLogs = new SortedList<>(this.addressBook.getPersonList(), Comparator.comparing(Log::getDateTime).reversed());
+        SortedList<Log> sortedLogs = new SortedList<>(this.addressBook.getPersonList(),
+                Comparator.comparing(Log::getDateTime).reversed());
         filteredLogs = new FilteredList<>(sortedLogs);
     }
 

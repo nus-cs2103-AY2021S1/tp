@@ -20,11 +20,11 @@ public class Exercise {
     public static final String MESSAGE_CONSTRAINTS =
             "Exercise does not exist";
 
+    private static List<Exercise> exerciseList = new ArrayList<>();
+
     // Identity fields
     private final Name name;
     private final int caloriesPerRep;
-
-    private static final List<Exercise> exerciseList = new ArrayList<>();
 
     // TODO: Exercises currently hardcoded
     static {
