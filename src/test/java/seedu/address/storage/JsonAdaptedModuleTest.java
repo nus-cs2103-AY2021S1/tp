@@ -29,7 +29,7 @@ public class JsonAdaptedModuleTest {
 
     private static final String VALID_MODULE_CODE = CS1010S.getModuleCode().toString();
     private static final String VALID_MODULE_NAME = CS1010S.getModuleName().toString();
-    private static final List<JsonAdaptedPerson> VALID_PERSONS = CS1010S.getPersons().stream()
+    private static final List<JsonAdaptedPerson> VALID_PERSONS = CS1010S.getInstructors().stream()
             .map(JsonAdaptedPerson::new)
             .collect(Collectors.toList());
 
@@ -70,12 +70,12 @@ public class JsonAdaptedModuleTest {
     }
 
     @Test
-    public void toModelType_invalidPersons_throwsIllegalValueException() {
-        List<JsonAdaptedPerson> invalidPersons = new ArrayList<>(VALID_PERSONS);
-        invalidPersons.add(new JsonAdaptedPerson(INVALID_PERSON_NAME, VALID_PERSON_PHONE, VALID_PERSON_EMAIL,
+    public void toModelType_invalidInstructors_throwsIllegalValueException() {
+        List<JsonAdaptedPerson> invalidInstructors = new ArrayList<>(VALID_PERSONS);
+        invalidInstructors.add(new JsonAdaptedPerson(INVALID_PERSON_NAME, VALID_PERSON_PHONE, VALID_PERSON_EMAIL,
                 VALID_PERSON_DEPARTMENT, VALID_PERSON_OFFICE, VALID_PERSON_REMARK, null));
         JsonAdaptedModule module =
-                new JsonAdaptedModule(VALID_MODULE_CODE, VALID_MODULE_NAME, invalidPersons);
+                new JsonAdaptedModule(VALID_MODULE_CODE, VALID_MODULE_NAME, invalidInstructors);
         assertThrows(IllegalValueException.class, module::toModelType);
     }
 }

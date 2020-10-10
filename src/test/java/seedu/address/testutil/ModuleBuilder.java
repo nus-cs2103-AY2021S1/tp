@@ -15,7 +15,7 @@ public class ModuleBuilder {
 
     private ModuleCode moduleCode;
     private ModuleName moduleName;
-    private Set<Person> persons;
+    private Set<Person> instructors;
 
     /**
      * Creates a {@code ModuleBuilder} with the default details.
@@ -23,7 +23,7 @@ public class ModuleBuilder {
     public ModuleBuilder() {
         moduleCode = new ModuleCode(DEFAULT_CODE);
         moduleName = new ModuleName(DEFAULT_NAME);
-        persons = new HashSet<>();
+        instructors = new HashSet<>();
     }
 
     /**
@@ -32,7 +32,7 @@ public class ModuleBuilder {
     public ModuleBuilder(Module moduleToCopy) {
         moduleCode = moduleToCopy.getModuleCode();
         moduleName = moduleToCopy.getModuleName();
-        persons = new HashSet<>(moduleToCopy.getPersons());
+        instructors = new HashSet<>(moduleToCopy.getInstructors());
     }
 
     /**
@@ -52,14 +52,14 @@ public class ModuleBuilder {
     }
 
     /**
-     * Parses the {@code persons} into a {@code Set<Person>} and set it to the {@code Module} that we are building.
+     * Parses the {@code instructors} into a {@code Set<Person>} and set it to the {@code Module} that we are building.
      */
-    public ModuleBuilder withPersons(Person ... persons) {
-        this.persons = SampleDataUtil.getPersonSet(persons);
+    public ModuleBuilder withInstructors(Person ... instructors) {
+        this.instructors = SampleDataUtil.getPersonSet(instructors);
         return this;
     }
 
     public Module build() {
-        return new Module(moduleCode, moduleName, persons);
+        return new Module(moduleCode, moduleName, instructors);
     }
 }
