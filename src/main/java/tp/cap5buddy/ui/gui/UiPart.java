@@ -1,13 +1,14 @@
 package tp.cap5buddy.ui.gui;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import seedu.address.MainApp;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.net.URL;
 
-import static java.util.Objects.requireNonNull;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import tp.cap5buddy.MainApp;
+
 
 public abstract class UiPart {
     public static final String FXML_FILE_FOLDER = "/view/tp/";

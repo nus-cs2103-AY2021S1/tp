@@ -1,11 +1,12 @@
 package tp.cap5buddy.ui.gui;
 
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
-import tp.cap5buddy.ui.Messages;
-
 import java.util.Scanner;
 import java.util.logging.Logger;
+
+import javafx.stage.Stage;
+import tp.cap5buddy.commons.LogsCenter;
+import tp.cap5buddy.ui.Messages;
+
 
 public class UiManager implements Ui {
     private static final Scanner SC = new Scanner(System.in);
