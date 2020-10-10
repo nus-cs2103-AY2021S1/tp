@@ -34,7 +34,7 @@ public class IcNumberTest {
         assertFalse(IcNumber.isValidIcNumber("S12334567")); // missing last character
 
         // invalid parts
-        assertFalse(IcNumber.isValidIcNumber("  S1234567Z")); // leading space
+        assertFalse(IcNumber.isValidIcNumber(" S1234567Z")); // leading space
         assertFalse(IcNumber.isValidIcNumber("S1234567Z ")); // trailing space
         assertFalse(IcNumber.isValidIcNumber("A1234567Z")); // invalid alphabet in first character
         assertFalse(IcNumber.isValidIcNumber("01234567Z")); // digit in first character

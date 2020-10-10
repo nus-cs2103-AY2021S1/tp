@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BOB;
@@ -42,7 +42,9 @@ public class UniquePatientListTest {
     @Test
     public void contains_patientWithSameIdentityFieldsInList_returnsTrue() {
         uniquePatientList.add(ALICE);
-        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PatientBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN)
                 .build();
         assertTrue(uniquePatientList.contains(editedAlice));
     }
@@ -85,7 +87,8 @@ public class UniquePatientListTest {
     @Test
     public void setPatient_editedPatientnHasSameIdentity_success() {
         uniquePatientList.add(ALICE);
-        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN)
                 .build();
         uniquePatientList.setPatient(ALICE, editedAlice);
         UniquePatientList expectedUniquePatientList = new UniquePatientList();

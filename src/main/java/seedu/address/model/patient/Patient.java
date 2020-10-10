@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.tag.ColorTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Patient in the CliniCal application.
@@ -16,29 +16,36 @@ import seedu.address.model.tag.Tag;
  */
 public class Patient {
 
-    // Identity fields
+    // Mandatory fields
     private final Name name;
     private final Phone phone;
+    private final IcNumber icNumber;
+
+    // Optional fields
+    private final Address address;
     private final Email email;
     private final ProfilePicture profilePicture;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Sex sex;
+    private final BloodType bloodType;
+    private final Set<Allergy> allergies = new HashSet<>();
     private final ColorTag colorTag;
 
     /**
-     * Every field must be present and not null.
+     * Name, phone, and IC number must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ProfilePicture profilePicture,
-                   ColorTag colorTag) {
-        requireAllNonNull(name, phone, email, address, tags, colorTag);
+    public Patient(Name name, Phone phone, IcNumber icNumber, Address address, Email email,
+                   ProfilePicture profilePicture, Sex sex, BloodType bloodType,
+                   Set<Allergy> allergies, ColorTag colorTag) {
+        requireAllNonNull(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies, colorTag);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.icNumber = icNumber;
         this.address = address;
-        this.tags.addAll(tags);
+        this.email = email;
         this.profilePicture = profilePicture;
+        this.sex = sex;
+        this.bloodType = bloodType;
+        this.allergies.addAll(allergies);
         this.colorTag = colorTag;
     }
 
@@ -50,24 +57,36 @@ public class Patient {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public IcNumber getIcNumber() {
+        return icNumber;
     }
 
     public Address getAddress() {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Email getEmail() {
+        return email;
     }
 
     public ProfilePicture getProfilePicture() {
         return profilePicture;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    /**
+     * Returns an immutable allergy set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Allergy> getAllergies() {
+        return Collections.unmodifiableSet(allergies);
     }
 
     public ColorTag getColorTag() {
@@ -75,7 +94,7 @@ public class Patient {
     }
 
     /**
-     * Returns true if both patients of the same name have at least one other identity field that is the same.
+     * Returns true if both patients of the same name have the same IC number.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
@@ -85,7 +104,7 @@ public class Patient {
 
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
-                && (otherPatient.getPhone().equals(getPhone()) || otherPatient.getEmail().equals(getEmail()));
+                && otherPatient.getIcNumber().equals(getIcNumber());
     }
 
     /**
@@ -105,17 +124,20 @@ public class Patient {
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
                 && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getEmail().equals(getEmail())
+                && otherPatient.getIcNumber().equals(getIcNumber())
                 && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getProfilePicture().equals(getProfilePicture())
+                && otherPatient.getSex().equals(getSex())
+                && otherPatient.getBloodType().equals(getBloodType())
+                && otherPatient.getAllergies().equals(getAllergies())
                 && otherPatient.getColorTag().equals(getColorTag());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, profilePicture, colorTag);
+        return Objects.hash(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies, colorTag);
     }
 
     @Override
@@ -124,14 +146,20 @@ public class Patient {
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
+                .append(" NRIC: ")
+                .append(getIcNumber())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Sex: ")
+                .append(getSex())
+                .append(" Blood Type: ")
+                .append(getBloodType())
                 .append(" ColorTag: ")
                 .append(getColorTag())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Allergies: ");
+        getAllergies().forEach(builder::append);
         return builder.toString();
     }
 

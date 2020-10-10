@@ -46,17 +46,23 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private ImageView profilePicture;
     @FXML
-    private Label name;
-    @FXML
     private Label id;
     @FXML
+    private Label name;
+    @FXML
     private Label phone;
+    @FXML
+    private Label icNumber;
     @FXML
     private Label address;
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private Label sex;
+    @FXML
+    private Label bloodType;
+    @FXML
+    private FlowPane allergies;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
@@ -80,11 +86,14 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         phone.setText(patient.getPhone().value);
+        icNumber.setText(patient.getIcNumber().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
-        patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        sex.setText(patient.getSex().value);
+        bloodType.setText(patient.getBloodType().value);
+        patient.getAllergies().stream()
+                .sorted(Comparator.comparing(tag -> tag.allergyName))
+                .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));
     }
 
     @FXML

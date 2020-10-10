@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROFILE_PICTURE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
@@ -56,10 +56,12 @@ public class EditCommandTest {
 
         PatientBuilder patientInList = new PatientBuilder(lastPatient);
         Patient editedPatient = patientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).withProfilePicture(VALID_PROFILE_PICTURE_BOB).build();
+                .withProfilePicture(VALID_PROFILE_PICTURE_BOB).withAllergies(VALID_ALLERGY_PENICILLIN)
+                .build();
 
-        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withProfilePicture(VALID_PROFILE_PICTURE_BOB)
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
+                .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN).withProfilePicture(VALID_PROFILE_PICTURE_BOB)
                 .build();
         EditCommand editCommand = new EditCommand(indexLastPatient, descriptor);
 

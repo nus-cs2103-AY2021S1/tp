@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PENICILLIN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.getTypicalCliniCal;
@@ -45,8 +45,9 @@ public class CliniCalTest {
 
     @Test
     public void resetData_withDuplicatePatients_throwsDuplicatePatientException() {
-        // Two patients with the same identity fields
-        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        // Two patients with the same ic number
+        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN)
                 .build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
         CliniCalStub newData = new CliniCalStub(newPatients);
@@ -73,7 +74,8 @@ public class CliniCalTest {
     @Test
     public void hasPatient_patientWithSameIdentityFieldsInCliniCal_returnsTrue() {
         cliniCal.addPatient(ALICE);
-        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withAllergies(VALID_ALLERGY_PENICILLIN)
                 .build();
         assertTrue(cliniCal.hasPatient(editedAlice));
     }

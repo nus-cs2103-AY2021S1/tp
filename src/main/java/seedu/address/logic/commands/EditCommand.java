@@ -2,11 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.Collections;
@@ -20,14 +23,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.allergy.Allergy;
 import seedu.address.model.patient.Address;
+import seedu.address.model.patient.BloodType;
 import seedu.address.model.patient.Email;
+import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing patient in the CliniCal application.
@@ -42,9 +48,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ICNUMBER + "NRIC] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_SEX + "SEX] "
+            + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
+            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
             + "[" + PREFIX_COLORTAG + "COLORTAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -100,15 +109,18 @@ public class EditCommand extends Command {
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
-        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        IcNumber updatedIcNumber = editPatientDescriptor.getIcNumber().orElse(patientToEdit.getIcNumber());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         ProfilePicture updatedProfilePicture = editPatientDescriptor.getProfilePicture()
-                                               .orElse(patientToEdit.getProfilePicture());
+                .orElse(patientToEdit.getProfilePicture());
+        Sex updatedSex = editPatientDescriptor.getSex().orElse(patientToEdit.getSex());
+        BloodType updatedBloodtype = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
+        Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergies());
         ColorTag updatedColorTag = editPatientDescriptor.getColorTag().orElse(patientToEdit.getColorTag());
-
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedProfilePicture,
-                updatedColorTag);
+        return new Patient(updatedName, updatedPhone, updatedIcNumber,
+                updatedAddress, updatedEmail, updatedProfilePicture,
+                updatedSex, updatedBloodtype, updatedAllergies, updatedColorTag);
     }
 
     @Override
@@ -136,25 +148,31 @@ public class EditCommand extends Command {
     public static class EditPatientDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private IcNumber icNumber;
         private Address address;
-        private Set<Tag> tags;
+        private Email email;
         private ProfilePicture profilePicture;
+        private Sex sex;
+        private BloodType bloodType;
+        private Set<Allergy> allergies;
         private ColorTag colorTag;
 
         public EditPatientDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code allergies} is used internally.
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setIcNumber(toCopy.icNumber);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setEmail(toCopy.email);
             setProfilePicture(toCopy.profilePicture);
+            setSex(toCopy.sex);
+            setBloodType(toCopy.bloodType);
+            setAllergies(toCopy.allergies);
             setColorTag(toCopy.colorTag);
         }
 
@@ -162,7 +180,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, colorTag);
+            return CollectionUtil.isAnyNonNull(name, phone, icNumber, address, email, sex, bloodType,
+                    allergies, colorTag);
         }
 
         public void setName(Name name) {
@@ -181,12 +200,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setIcNumber(IcNumber icNumber) {
+            this.icNumber = icNumber;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<IcNumber> getIcNumber() {
+            return Optional.ofNullable(icNumber);
         }
 
         public void setAddress(Address address) {
@@ -197,6 +216,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setEmail(Email email) {
+            this.email = email;
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
         public void setProfilePicture(ProfilePicture profilePicture) {
             this.profilePicture = profilePicture;
         }
@@ -205,21 +232,37 @@ public class EditCommand extends Command {
             return Optional.ofNullable(profilePicture);
         }
 
+        public void setSex(Sex sex) {
+            this.sex = sex;
+        }
+
+        public Optional<Sex> getSex() {
+            return Optional.ofNullable(sex);
+        }
+
+        public void setBloodType(BloodType bloodType) {
+            this.bloodType = bloodType;
+        }
+
+        public Optional<BloodType> getBloodType() {
+            return Optional.ofNullable(bloodType);
+        }
+
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code allergies} to this object's {@code allergies}.
+         * A defensive copy of {@code allergies} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAllergies(Set<Allergy> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code allergies} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Allergy>> getAllergies() {
+            return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
         }
 
         public void setColorTag(ColorTag colorTag) {
@@ -247,10 +290,13 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
+                    && getIcNumber().equals(e.getIcNumber())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
+                    && getEmail().equals(e.getEmail())
                     && getProfilePicture().equals(e.getProfilePicture())
+                    && getSex().equals(e.getSex())
+                    && getBloodType().equals(e.getBloodType())
+                    && getAllergies().equals(e.getAllergies())
                     && getColorTag().equals(e.getColorTag());
         }
     }
