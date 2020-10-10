@@ -14,6 +14,7 @@ public class DefaultLeaveBalance {
     public int getDefaultLeave() {
         return defaultLeave;
     }
+
     public void setDefaultLeave(int newDefaultLeave) {
         this.defaultLeave = newDefaultLeave;
     }

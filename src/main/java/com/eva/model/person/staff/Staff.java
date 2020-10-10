@@ -13,12 +13,27 @@ import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.person.staff.leave.LeaveBalance;
 import com.eva.model.tag.Tag;
 
+import static java.util.Objects.requireNonNull;
+
 public class Staff extends Person {
     /**
      * Leave balance is set to DEFAULT
      */
     private final LeaveBalance leaveBalance = new LeaveBalance();
     private final Set<Leave> leaves = new HashSet<>();
+
+
+    /**
+     * Every field must be present and not null.
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
+     */
+    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        super(name, phone, email, address, tags);
+    }
 
     /**
      * Every field must be present and not null.
@@ -31,6 +46,7 @@ public class Staff extends Person {
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Leave> leaves) {
         super(name, phone, email, address, tags);
+        requireNonNull(leaves);
         this.leaves.addAll(leaves);
     }
 

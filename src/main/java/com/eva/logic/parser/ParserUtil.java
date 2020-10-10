@@ -7,12 +7,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.eva.commons.core.index.Index;
+import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 
@@ -122,4 +124,23 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+//    public static Set<Leave> parseLeaves(Collection<String> leaves) throws ParseException {
+//        requireNonNull(leaves);
+//        final Set<Leave> leaveSet = new HashSet<>();
+//        for (String leave : leaves) {
+//            leaveSet.add(parseLeave(leave));
+//        }
+//        return leaveSet;
+//    }
+//
+//    private static Leave parseLeave(String leave) throws ParseException {
+//        requireNonNull(leave);
+//        String trimmedLeave = leave.trim();
+//        if (!DateUtil.isValidDate(trimmedLeave)) {
+//            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+//        }
+//        return new Leave(trimmedLeave);
+//    }
+
 }
