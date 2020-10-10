@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,26 +20,31 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final BidBook bidBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Bid> filteredBids;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, bidBook);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + " and user prefs " + userPrefs + " and bid book: " + bidBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.bidBook = new BidBook(bidBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBids = new FilteredList<>(this.bidBook.getBidList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new BidBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -89,6 +95,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyBidBook getBidBook() {
+        return bidBook;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -124,9 +135,26 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Bid> getFilteredBidList() {
+        return filteredBids;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBidList(Predicate<Bid> predicate) {
+        requireNonNull(predicate);
+        filteredBids.setPredicate(predicate);
+    }
+
+    @Override
+    public void addBid(Bid bid) {
+        bidBook.addBid(bid);
+        updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
     }
 
     @Override
