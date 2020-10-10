@@ -23,10 +23,6 @@ public class TimetableImporter {
      */
     public void importTimetable(String timetableUrl) throws IOException, ParseException {
         TimetableData timetableData = parser.parseTimetableUrl(timetableUrl);
-        retriever.retrieveTimetable(timetableData);
-    }
-
-    public static void main(String[] args) throws IOException, ParseException {
-        new TimetableImporter().importTimetable(TEST_TIMETABLE);
+        retriever.retrieveLessons(timetableData);
     }
 }

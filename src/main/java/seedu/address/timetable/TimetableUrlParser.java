@@ -5,7 +5,7 @@ public class TimetableUrlParser {
     /**
      * Parses timetable url and returns timetable data.
      */
-    public TimetableData parseTimetableUrl(String url) {
+    public static TimetableData parseTimetableUrl(String url) {
         int semester = parseTimetableUrlForSem(url);
         String[] moduleDataArray = parseTimetableUrlForData(url);
         String[] moduleCodeArray = getModuleCodeArray(moduleDataArray);

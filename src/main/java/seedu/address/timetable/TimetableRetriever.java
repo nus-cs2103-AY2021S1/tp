@@ -3,6 +3,8 @@ package seedu.address.timetable;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -10,17 +12,25 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
+import seedu.address.model.lesson.Lesson;
+
 public class TimetableRetriever {
     private static final String JSON_API = "https://api.nusmods.com/v2/2020-2021/modules/";
     private static final String DOT_JSON = ".json";
 
+    private static final String DUMMY_DATE = "01-01-2020 ";
+
     /**
      * Retrieves timetable json information from NUSMods API and prints out the relevant information.
      */
-    public void retrieveTimetable(TimetableData timetableData) throws IOException, ParseException {
+    public static List<Lesson> retrieveLessons(TimetableData timetableData) throws IOException, ParseException {
         int semester = timetableData.getSemester();
         String[] moduleCodeArray = timetableData.getModuleCodeArray();
         String[] moduleLessonArray = timetableData.getModuleLessonArray();
+        List<Lesson> lessons = new ArrayList<>();
 
         for (int moduleIter = 0; moduleIter < moduleCodeArray.length; moduleIter++) {
             String urlString = getUrlString(moduleCodeArray[moduleIter]);
@@ -59,13 +69,13 @@ public class TimetableRetriever {
                         String currentLessonType = (String) currentData.get("lessonType");
                         String currentLessonNum = (String) currentData.get("classNo");
                         if (currentLessonType.equals(lessonType) && currentLessonNum.equals(lessonNum)) {
-                            String module = moduleCodeArray[moduleIter];
                             String day = (String) currentData.get("day");
-                            String startTime = (String) currentData.get("startTime");
-                            String endTime = (String) currentData.get("endTime");
-                            String infoToPrint = module + " - " + lessonType + " " + lessonNum + ", " + day
-                                    + " " + startTime + "-" + endTime;
-                            System.out.println(infoToPrint);
+                            String startTime = DUMMY_DATE + (String) currentData.get("startTime");
+                            String endTime = DUMMY_DATE + (String) currentData.get("endTime");
+                            String module = moduleCodeArray[moduleIter];
+                            String name = module + currentLessonType;
+                            lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
+                                    new ModuleCode(module)));
                         }
                     }
                 }
@@ -73,6 +83,7 @@ public class TimetableRetriever {
 
             sc.close();
         }
+        return lessons;
     }
 
     private static String getUrlString(String moduleCode) {
