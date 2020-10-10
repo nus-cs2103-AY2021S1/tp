@@ -10,7 +10,7 @@ import seedu.address.model.person.StudentId;
 
 public class TutorialGroup {
     private final String id;
-    //    private Module module;
+    private Module module;
     private HashMap<StudentId, Student> studentList;
     private LocalTime startTime;
     private LocalTime endTime;
