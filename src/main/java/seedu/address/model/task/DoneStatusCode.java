@@ -12,7 +12,6 @@ public enum DoneStatusCode {
 
     private final int statusCode;
     private final String label;
-    
     static {
         for (DoneStatusCode ds : values()) {
             BY_STATUS_CODE.put(ds.statusCode, ds);
