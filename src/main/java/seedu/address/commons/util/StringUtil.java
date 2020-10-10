@@ -31,7 +31,7 @@ public class StringUtil {
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        String preppedSentence = sentence;
+        String preppedSentence = sentence.trim();
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
@@ -42,14 +42,14 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains {@code words}.
      *   Ignores case, but a exact match is required.
      *   <br>examples:<pre>
-     *       containsMultipleWordsIgnoreCase("ABc def", "abc def") == true
-     *       containsMultipleWordsIgnoreCase("ABc def", "abc DEF") == true
-     *       containsMultipleWordsIgnoreCase("ABc def", "ABc d") == false //not an exact match
+     *       exactlyMultipleWordsIgnoreCase("ABc def", "abc def") == true
+     *       exactlyMultipleWordsIgnoreCase("ABc def", "abc DEF") == true
+     *       exactlyMultipleWordsIgnoreCase("ABc def", "ABc d") == false //not an exact match
      *       </pre>
      * @param sentence cannot be null
      * @param words cannot be null, cannot be empty, can be multiple words
      */
-    public static boolean containsMultipleWordsIgnoreCase(String sentence, String words) {
+    public static boolean exactlyMultipleWordsIgnoreCase(String sentence, String words) {
         requireNonNull(sentence);
         requireNonNull(words);
 

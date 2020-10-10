@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Inventory;
+import seedu.address.model.item.DetailedItem;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.PrintableRecipe;
 
@@ -21,10 +22,10 @@ public class InventoryListPanel extends UiPart<Region> {
     private static final String FXML = "InventoryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InventoryListPanel.class);
 
+    private View.InventoryType inventoryType;
+
     @FXML
     private ListView<Inventory> itemListView;
-
-    private View.InventoryType inventoryType;
 
     /**
      * Creates a {@code InventoryListPanel} with the given {@code ObservableList} and {@code View.InventoryType}.
@@ -76,10 +77,10 @@ public class InventoryListPanel extends UiPart<Region> {
                     setGraphic(new RecipeCard((PrintableRecipe) inventory, getIndex() + 1).getRoot());
                     break;
                 case DETAILED_ITEM:
-                    setGraphic(new DetailedItemCard((Item) inventory, getIndex() + 1).getRoot());
+                    setGraphic(new DetailedItemCard((DetailedItem) inventory, getIndex() + 1).getRoot());
                     break;
                 default:
-                    throw new IllegalStateException("This inventoryType is not valid" + inventoryType);
+                    throw new IllegalStateException("This inventoryType is not valid");
                 }
             }
         }

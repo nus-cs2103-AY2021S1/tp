@@ -3,18 +3,18 @@ package seedu.address.model.recipe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIngredients.INGREDIENT_1;
 import static seedu.address.testutil.TypicalItems.APPLE;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.item.Item;
-import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 import java.util.ArrayList;
 
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIngredients.INGREDIENT_1;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.item.Item;
+import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 public class IngredientTest {
 

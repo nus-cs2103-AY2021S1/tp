@@ -23,7 +23,6 @@ import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.IngredientPrecursor;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipePrecursor;
-import seedu.address.ui.View;
 
 /**
  * Represents the in-memory model of the address book data.

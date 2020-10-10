@@ -203,6 +203,8 @@ public class InventoryMainWindow extends UiPart<Stage> {
             case UNCHANGED:
                 // inventoryType stays the same
                 break;
+            default:
+                throw new IllegalStateException("This inventoryType is not valid");
             }
             // updates the panel
             inventoryListPanel.refresh(logic.getInventoryList(inventoryType), inventoryType);

@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -14,7 +13,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.*;
+import seedu.address.model.Inventory;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
+import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
@@ -129,7 +133,6 @@ public class LogicManager implements Logic {
     }
 
     // GUI
-
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
@@ -140,7 +143,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    // test
+    // Process for viewing
     public ArrayList<Inventory> getInventoryList(View.InventoryType inventoryType) {
         if (!inventoryType.equals(View.InventoryType.DETAILED_ITEM)) {
             // ViewDetailsCommand already updates for viewing of one item
@@ -157,7 +160,7 @@ public class LogicManager implements Logic {
                     .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
             break;
         case DETAILED_ITEM:
-            model.getFilteredItemList().forEach(item -> inventoryList.add(item.DetailedItem()));
+            model.getFilteredItemList().forEach(item -> inventoryList.add(item.detailedItem()));
             break;
         case UNCHANGED:
             assert false;

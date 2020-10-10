@@ -1,11 +1,13 @@
 package seedu.address.model.recipe;
 
+import java.util.HashMap;
+
 import javafx.collections.ObservableList;
 import javafx.util.Pair;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
-import java.util.HashMap;
+
 
 /**
  * Convenience class to define a {@code Pair<Integer, Integer>}.
@@ -37,6 +39,11 @@ public class Ingredient extends Pair<Integer, Integer> {
         return String.valueOf(this.getKey());
     }
 
+    /**
+     * Displays the name of the ingredient and the quantity, based on the item list given.
+     * @param filteredItemList The current item list in the model.
+     * @return String representation of the ingredient ready for display.
+     */
     public String toString(ObservableList<Item> filteredItemList) {
         HashMap<Integer, String> hm = new HashMap<>();
         filteredItemList.forEach(item -> hm.put(item.getId(), item.getName()));

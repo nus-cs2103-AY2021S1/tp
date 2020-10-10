@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.ui.View;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.ui.View;
 
 /**
  * Represents the result of a command execution.
@@ -13,7 +13,7 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Toggles the current screen displayed */
+    /** Toggles the current display. */
     private final View.InventoryType inventoryType;
 
     /** Help information should be shown to the user. */
@@ -33,6 +33,9 @@ public class CommandResult {
         this.inventoryType = inventoryType;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified fields, and {@code inventoryType} of UNCHANGED.
+     */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;

@@ -166,8 +166,10 @@ public class Item extends Inventory {
         return name;
     }
 
-
-    public DetailedItem DetailedItem() {
+    /**
+     * Creates a DetailedItem with the same fields.
+     */
+    public DetailedItem detailedItem() {
         return new DetailedItem(id, name, quantity, description, Set.copyOf(locationIds),
                 Set.copyOf(recipeIds), tags, isDeleted);
     }

@@ -5,8 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.recipe.PrintableRecipe;
-import seedu.address.model.recipe.Recipe;
-
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -23,7 +21,7 @@ public class RecipeCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final PrintableRecipe recipe;
+    public final PrintableRecipe printableRecipe;
 
     @FXML
     private HBox cardPane;
@@ -39,13 +37,14 @@ public class RecipeCard extends UiPart<Region> {
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
      */
-    public RecipeCard(PrintableRecipe recipe, int displayedIndex) {
+    public RecipeCard(PrintableRecipe printableRecipe, int displayedIndex) {
         super(FXML);
-        this.recipe = recipe;
-        productName.setText(recipe.getProductName());
-        ingredients.setText("Ingredients: " + recipe.getPrintableIngredients());
-        productQuantity.setText("Produces: " + recipe.getProductQuantity().toString() + " " + recipe.getProductName());
-        description.setText(recipe.getDescription());
+        this.printableRecipe = printableRecipe;
+        productName.setText(printableRecipe.getProductName());
+        ingredients.setText("Ingredients: " + printableRecipe.getPrintableIngredients());
+        productQuantity.setText("Produces: " + printableRecipe.getProductQuantity().toString() + " "
+                + printableRecipe.getProductName());
+        description.setText(printableRecipe.getDescription());
     }
 
     @Override
@@ -62,6 +61,6 @@ public class RecipeCard extends UiPart<Region> {
 
         // state check
         RecipeCard card = (RecipeCard) other;
-        return recipe.equals(card.recipe);
+        return printableRecipe.equals(card.printableRecipe);
     }
 }

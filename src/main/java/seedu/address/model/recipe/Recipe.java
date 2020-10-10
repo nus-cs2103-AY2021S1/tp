@@ -1,13 +1,13 @@
 package seedu.address.model.recipe;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.Inventory;
 import seedu.address.model.item.Item;
 import seedu.address.ui.View;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Objects;
 
 /**
  * Represents an Recipe in the Inventoryinator.
@@ -138,6 +138,11 @@ public class Recipe extends Inventory {
         return View.InventoryType.RECIPES;
     }
 
+    /**
+     * Generates a printable recipe for display.
+     * @param filteredItemList The current item list which ingredients reference to.
+     * @return Printable Recipe with the same fields as this recipe.
+     */
     public PrintableRecipe print(ObservableList<Item> filteredItemList) {
         return new PrintableRecipe(this.id, this.ingredients, this.productId, this.productName,
                 this.productQuantity, this.description, this.isDeleted, filteredItemList);

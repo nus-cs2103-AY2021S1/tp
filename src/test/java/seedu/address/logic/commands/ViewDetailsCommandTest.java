@@ -16,6 +16,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.NameIsExactlyPredicate;
 import seedu.address.testutil.ItemBuilder;
+import seedu.address.ui.View;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewDetailsCommand}.
@@ -58,7 +59,7 @@ public class ViewDetailsCommandTest {
         Item validItem = new ItemBuilder().build();
         ModelStub modelStub = new ModelStubWithItem(validItem);
         assertEquals(command.execute(modelStub),
-                new CommandResult(expectedMessage, false, false));
+                new CommandResult(expectedMessage, false, false, View.InventoryType.DETAILED_ITEM));
         List<Item> expectedList = Collections.singletonList(validItem);
         ObservableList<Item> expectedObservableList = FXCollections.observableList(expectedList);
         FilteredList<Item> expectedFilteredList = expectedObservableList.filtered(predicate);
