@@ -53,6 +53,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<String> parseAllNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<String> nameSet = new HashSet<>();
+        for (String name : names) {
+            nameSet.add(name);
+        }
+        return nameSet;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -108,6 +120,7 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
     /**
      * Parses a {@code String meetingName} into a {@code MeetingName}.
      * Leading and trailing whitespaces will be trimmed.
