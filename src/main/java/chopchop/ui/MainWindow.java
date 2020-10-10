@@ -4,10 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -113,6 +115,12 @@ public class MainWindow extends UiPart<Stage> {
 
         PinBox pinBox = new PinBox();
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
+        /*
+        RecipeViewPanel recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
+        this.recipeViewPanel = recipeViewPanel;
+        displayListPlaceholder.getChildren().add(recipeViewPanel.getRoot());
+        recipeViewPanel.getRoot().setVisible(false);
+        */
     }
 
     /**
@@ -155,6 +163,36 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Clears the main display area.
+     */
+    private void clearDisplay() {
+        for (Node node : displayListPlaceholder.getChildren()) {
+            node.setVisible(false);
+        }
+    }
+
+    /**
+     * Displays the recipe panel.
+     */
+    @FXML
+    public void handleRecipe(ActionEvent event) {
+        if (recipeViewPanel.getRoot().isVisible()) {
+            recipeViewPanel.getRoot().requestFocus();
+        } else {
+            clearDisplay();
+            recipeViewPanel.getRoot().setVisible(true);
+        }
+    }
+
+    /**
+     * Displays the recipe panel.
+     */
+    @FXML
+    public void handleIngredients(ActionEvent event) {
+        clearDisplay();
+        // To add more code.
+    }
 
     /**
      * Executes the command and returns the result.
