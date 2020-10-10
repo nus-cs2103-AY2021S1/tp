@@ -14,5 +14,6 @@ public class PrefixList {
     public static final Prefix SEARCH_KEYWORD_PREFIX = new Prefix("k/"); // search keyword
     public static final Prefix PRIORITY_PREFIX = new Prefix("p/");
     public static final Prefix TYPE_PREFIX = new Prefix("t/");
-
+    public static final Prefix GRADE_PERCENTAGE_PREFIX = new Prefix("%/");
+    public static final Prefix GRADE_RESULTS_PREFIX = new Prefix("gr/");
 }
