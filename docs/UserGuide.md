@@ -272,17 +272,19 @@ contains the data of your previous Taskmania home folder.
 
 Action | Format, Examples | Scope
 --------|------------------|-------
-**Get Help** | `help` | any scope
-**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
-**Start** | `start INDEX`<br> e.g., `start 3` | global scope
-**List Out The List Of Tasks** | `list` | project-specific scope
-**Delete Task** | `delete INDEX` <br> eg. `delete 2` | project-specific scope
-**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project-specific scope
-**Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project-specific scope 
-**New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project-specific scope
-**Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project-specific scope
-**Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project-specific scope
-**Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project-specific scope
-**Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project-specific scope
-**View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project-specific scope
+**Get Help** | `help` | global scope
+**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | catalogue scope
+**Start** | `start INDEX`<br> e.g., `start 3` | catalogue scope
+**List Out The List Of Tasks** | `list` | project scope
+**Delete Task** | `delete INDEX` <br> eg. `delete 2` | project scope
+**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
+**Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
+**Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
+**New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
+**Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
+**Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project scope
+**Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project scope
+**Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project scope
+**View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project scope
+**Return To Catalogue Page** | `leave` | project scope
 
