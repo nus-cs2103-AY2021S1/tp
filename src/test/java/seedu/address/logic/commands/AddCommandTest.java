@@ -16,13 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.BidBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyBidBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -118,6 +114,46 @@ public class AddCommandTest {
 
         @Override
         public void addBid(Bid bid) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+
+        }
+
+        @Override
+        public ReadOnlyMeetingManager getMeetingManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(CalendarMeeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(CalendarMeeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(CalendarMeeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
