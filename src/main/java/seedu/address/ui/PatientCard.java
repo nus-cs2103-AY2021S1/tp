@@ -62,6 +62,8 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label bloodType;
     @FXML
+    private Label visitHistory;
+    @FXML
     private FlowPane allergies;
 
     /**
@@ -91,6 +93,7 @@ public class PatientCard extends UiPart<Region> {
         email.setText(patient.getEmail().value);
         sex.setText(patient.getSex().value);
         bloodType.setText(patient.getBloodType().type);
+        visitHistory.setText(patient.getVisitHistory().toString());
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(tag -> tag.allergyName))
                 .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));

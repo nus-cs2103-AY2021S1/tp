@@ -25,7 +25,7 @@ public class Visit implements Comparable<Visit> {
      * Date must be in the correct format.
      */
     public Visit(LocalDate visitDate, Name patientName, String diagnosis, String prescription, String comment) {
-        requireAllNonNull(visitDate, patientName);
+        requireAllNonNull(visitDate, patientName, diagnosis, prescription, comment);
         this.visitDate = visitDate;
         this.patientName = patientName;
         this.diagnosis = diagnosis;

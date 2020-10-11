@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -31,7 +32,8 @@ public class AddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL]"
             + "[" + PREFIX_SEX + "SEX] "
             + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
-            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
+            + "[" + PREFIX_ALLERGY + "ALLERGY]..."
+            + "[" + PREFIX_COLORTAG + "COLOR]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -41,7 +43,8 @@ public class AddCommand extends Command {
             + PREFIX_SEX + "M "
             + PREFIX_BLOODTYPE + "A+ "
             + PREFIX_ALLERGY + "penicillin "
-            + PREFIX_ALLERGY + "sulfa";
+            + PREFIX_ALLERGY + "sulfa"
+            + PREFIX_COLORTAG + "green";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the list of patients";
