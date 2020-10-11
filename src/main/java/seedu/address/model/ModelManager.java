@@ -122,6 +122,13 @@ public class ModelManager implements Model {
         commonCents.setAccount(target, editedAccount);
     }
 
+    @Override
+    public void setAccount(Account editedAccount) {
+        requireAllNonNull(editedAccount);
+
+        commonCents.setAccount(editedAccount);
+    }
+
     //=========== Filtered Account List Accessors =============================================================
 
     /**

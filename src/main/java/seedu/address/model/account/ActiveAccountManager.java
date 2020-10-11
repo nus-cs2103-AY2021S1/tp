@@ -78,7 +78,7 @@ public class ActiveAccountManager implements ActiveAccount {
     public void addExpense(Expense expense) {
         activeAccount.addExpense(expense);
 
-        updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+        updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
     @Override

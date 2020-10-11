@@ -78,6 +78,13 @@ public interface Model {
      */
     void setAccount(Account target, Account editedAccount);
 
+    /**
+     * Replaces the account in the list with the same name as {@code editedAccount}.
+     * The account with the same name must exist in the money-tracker.
+     */
+    void setAccount(Account editedAccount);
+
+
     /** Returns an unmodifiable view of the filtered account list */
     ObservableList<Account> getFilteredAccountList();
 

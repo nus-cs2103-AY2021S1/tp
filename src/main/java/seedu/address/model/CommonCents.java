@@ -90,6 +90,18 @@ public class CommonCents implements ReadOnlyCommonCents {
     }
 
     /**
+     * Replaces the account in the list with the same name as {@code editedAccount}.
+     * The account with the same name must exist in the money-tracker.
+     */
+    public void setAccount(Account editedAccount) {
+        requireNonNull(editedAccount);
+
+        accounts.setAccount(editedAccount);
+    }
+
+
+
+    /**
      * Removes {@code key} from this {@code CommonCents}.
      * {@code key} must exist in the money-tracker.
      */

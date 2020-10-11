@@ -23,6 +23,8 @@ import seedu.address.model.account.exceptions.DuplicateAccountException;
  * @see Account#isSameAccount(Account)
  */
 public class UniqueAccountList implements Iterable<Account> {
+    private static final int ACCOUNT_NOT_FOUND_INDEX = -1;
+
     private final ObservableList<Account> internalList = FXCollections.observableArrayList();
     private final ObservableList<Account> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -47,17 +49,13 @@ public class UniqueAccountList implements Iterable<Account> {
         internalList.add(toAdd);
     }
 
-    public Account getAccount(int index) {
-        return internalList.get(index);
-    }
-
-    public Account getAccount(Name name) {
-        for (Account acc : internalList) {
-            if (acc.getName().equals(name)) {
-                return acc;
+    private int getAccountIndex(Name name) {
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).getName().equals(name)) {
+                return i;
             }
         }
-        throw new AccountNotFoundException();
+        return -1;
     }
 
     /**
@@ -69,7 +67,7 @@ public class UniqueAccountList implements Iterable<Account> {
         requireAllNonNull(target, editedAccount);
 
         int index = internalList.indexOf(target);
-        if (index == -1) {
+        if (index == ACCOUNT_NOT_FOUND_INDEX) {
             throw new AccountNotFoundException();
         }
 
@@ -78,6 +76,23 @@ public class UniqueAccountList implements Iterable<Account> {
         }
 
         internalList.set(index, editedAccount);
+    }
+
+    public void setAccount(Account editedAccount) {
+        Name accountName = editedAccount.getName();
+        int accountIndex = getAccountIndex(accountName);
+
+        if (accountIndex == ACCOUNT_NOT_FOUND_INDEX) {
+            throw new AccountNotFoundException();
+        }
+
+        Account target = internalList.get(accountIndex);
+
+        if (!target.isSameAccount(editedAccount) && contains(editedAccount)) {
+            throw new DuplicateAccountException();
+        }
+
+        internalList.set(accountIndex, editedAccount);
     }
 
     /**
