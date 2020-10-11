@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalProjects.CARL;
-import static seedu.address.testutil.TypicalProjects.ELLE;
-import static seedu.address.testutil.TypicalProjects.FIONA;
+import static seedu.address.testutil.TypicalProjects.CARACTIVE;
+import static seedu.address.testutil.TypicalProjects.ELFIE;
+import static seedu.address.testutil.TypicalProjects.FANS;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import java.util.Arrays;
@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Caractive Elfie Fans");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredProjectList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredProjectList());
+        assertEquals(Arrays.asList(CARACTIVE, ELFIE, FANS), model.getFilteredProjectList());
     }
 
     /**
