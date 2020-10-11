@@ -22,6 +22,14 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Start working on an existing project `start `
     
 - Features in project scope
+  - Task related features
+    - Check the project dashboard `dashboard `
+    - List all tasks `list`
+    - Delete a task `delete `
+    - Locate tasks by keyword `find `
+    - Give a task a certain level of priority `prioritise `
+    - Viewing tasks allocated to a team member `view `
+    - Assign task to a team member `assign `
   - Teammate related features 
     - Create new teammate `new teammate `
     - Add existing teammates of other projects to participate in this project `involves `
@@ -29,8 +37,6 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Update participation details (tasks and project-specific information) `updatept participation `
     - Remove a teammate in the project `remove teammate `
     - View tasks allocated to a particular teammate `task participants `
-  - Task management 
-    - Assign task to a team member `assign task member`
   - Change scope 
     - Return to main catalogue `leave`
 --------------------------------------------------------------------------------------------------------------------
@@ -76,7 +82,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 </div>
 
-## **Features** before project initialisation 
+## **Features** in global scope
 
 ### Viewing help : `help`
 
@@ -85,6 +91,8 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+## **Features** in catalogue scope
 
 ### Creating a new project `add project `
 Adds a project to the project list.
@@ -105,15 +113,15 @@ Format: `start INDEX`
 
 Examples: `start 2` Initialises the second project in the project list.
 
-## **Features** after project initialisation
+## **Features** in project scope
 
-### Task-related features
-#### Checking the project dashboard `dashboard `
+### **Task**-related features
+#### Check the project dashboard `dashboard `
 Shows a summary of the important information regarding the project.
 
 Format: `dashboard`
 
-#### Listing all tasks `list`
+#### List all tasks `list`
 
 Shows a list of all tasks in the task list sorted by priority.
 
@@ -125,7 +133,7 @@ Instruction:
 
 Outcome: A list of tasks will be shown. 
 
-#### Deleting a task `delete `
+#### Delet a task `delete `
 
 Deletes the specified task from your task list.
 
@@ -145,7 +153,7 @@ Instruction:
 
 Outcome: The task is removed from the list.
 
-#### Locating tasks by keyword `find `
+#### Locate tasks by keyword `find `
 
 Finds tasks whose descriptions contain the given keyword.
 
@@ -160,7 +168,7 @@ Instruction:
 
 Outcome: List of tasks with the projectName containing the keyword will be shown.
 
-#### Giving a task a certain level of priority `prioritise `
+#### Give a task a certain level of priority `prioritise `
 
 Assigns a level of priority to the specified task.
 
@@ -178,13 +186,14 @@ Instruction:
 
 Outcome: The task is assigned with the priority level.
 
-#### Viewing tasks allocated to a team member `view `
+#### View tasks allocated to a team member `view `
 Displays a list of tasks allocated to the specified members.
 
 Format: `view NAME`
 - NAME refers to the projectName of the team member when it was first input during project creation.
 
 Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
