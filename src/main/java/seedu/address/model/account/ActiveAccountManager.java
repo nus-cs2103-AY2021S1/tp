@@ -39,7 +39,7 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
-    public ReadOnlyAccount getAccount() {
+    public Account getAccount() {
         return activeAccount;
     }
 
