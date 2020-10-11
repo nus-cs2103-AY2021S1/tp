@@ -1,6 +1,9 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Optional;
 
@@ -17,8 +20,12 @@ public class AddInventoryRecordCommand extends Command {
     public static final String COMMAND_WORD = "add_inventory";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an inventory record to the Inventory. "
-            + "Parameters: ";
-
+            + "Parameters: "
+            + PREFIX_ITEM_DESCRIPTION + "ITEM_DESCRIPTION "
+            + PREFIX_QUANTITY + "QUANTITY "
+            + PREFIX_ITEM_COST + "ITEM_COST"
+            + "(OPTIONAL) 'c/' is optional ";
+    
     public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
 
     private final InventoryRecord newInventoryRecord;
