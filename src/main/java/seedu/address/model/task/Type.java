@@ -3,6 +3,8 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+
 /**
  * Represents a Task's type in the PLaNus.
  * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
@@ -61,17 +63,12 @@ public class Type {
      * @return a String containing all possible types of task a user can create.
      */
     private static String listAcceptedTypes() {
-        StringBuilder sb = new StringBuilder();
-        int numberOfTypes = TypeOfTask.values().length;
-        int counter = 0;
+        ArrayList<String> listOfAcceptedTypes = new ArrayList<>();
         for (TypeOfTask types : TypeOfTask.values()) {
-            sb.append(types.toString());
-            if (counter != numberOfTypes - 1) {
-                sb.append(", ");
-            }
-            counter++;
+            listOfAcceptedTypes.add(types.toString());
         }
-        return sb.toString();
+        String acceptedTypes = String.join(", ", listOfAcceptedTypes);
+        return acceptedTypes;
     }
 
     @Override
