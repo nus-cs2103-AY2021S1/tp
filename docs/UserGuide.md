@@ -37,7 +37,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Update participation details (tasks and project-specific information) `updatept participation `
     - Remove a teammate in the project `remove teammate `
     - View tasks allocated to a particular teammate `task participants `
-  - Change scope 
+  - Scoping related features 
     - Return to main catalogue `leave`
 --------------------------------------------------------------------------------------------------------------------
 
@@ -253,6 +253,12 @@ Format: `task participants TASK_NUMBER`
 - `TASK_NUMBER` refers to the task number in the project
 
 Example: `task participants 1` Displays the teammates that are assigned to do task 1
+
+### **Scoping**-related features
+#### Return to main catalogue `leave`
+Leaves the current project view page and return to the main catalogue of all projects
+
+Format: `leave`
 
 ## FAQ
 
