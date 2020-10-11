@@ -60,7 +60,7 @@ public class AssignCommand extends Command {
 
         if (assignee.hasTask(taskToAssociate)) {
             throw new CommandException(String.format(Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON,
-                    assignee));
+                    assignee.getPerson().getPersonName()));
         }
         assignee.addTask(taskToAssociate);
 
