@@ -111,6 +111,16 @@ public class Project {
             p.getPersonName(), new Participation(p, this));
     }
 
+    /**
+     * Checks whether the project contains a member of the given name.
+     */
+    public boolean hasParticipation(String name) {
+        return listOfParticipations.containsKey(new PersonName(name));
+    }
+
+    /**
+     * Returns the list of tasks that is last shown.
+     */
     public List<Task> getFilteredTaskList() {
         return new ArrayList<>(tasks);
     } // TODO: May update when adding filters
