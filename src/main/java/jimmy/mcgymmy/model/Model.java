@@ -64,9 +64,10 @@ public interface Model {
 
     /**
      * Deletes the given food.
-     * The food must exist in mcgymmy.
+     * The index must be valid
+     * @param index
      */
-    void deleteFood(Food food);
+    void deleteFood(Index index);
 
     /**
      * Adds the given food.
@@ -76,8 +77,7 @@ public interface Model {
 
     /**
      * Replaces the given food {@code target} with {@code editedFood}.
-     * {@code target} must exist in mcgymmy.
-     * The food identity of {@code editedFood} must not be the same as another existing food in mcgymmy.
+     * The index must be valid
      */
     void setFood(Index index, Food editedFood);
 

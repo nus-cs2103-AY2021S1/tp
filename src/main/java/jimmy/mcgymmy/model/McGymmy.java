@@ -67,8 +67,7 @@ public class McGymmy implements ReadOnlyMcGymmy {
 
     /**
      * Replaces the given Food {@code target} in the list with {@code editedFood}.
-     * {@code target} must exist in mcgymmy.
-     * The Food identity of {@code editedFood} must not be the same as another existing Food in mcgymmy.
+     * {@code index} must be valid.
      */
     public void setFood(Index index, Food editedFood) {
         requireNonNull(editedFood);
@@ -78,10 +77,10 @@ public class McGymmy implements ReadOnlyMcGymmy {
 
     /**
      * Removes {@code key} from this {@code McGymmy}.
-     * {@code key} must exist in mcgymmy.
+     * {@code index} must be valid.
      */
-    public void removeFood(Food key) {
-        foodItems.remove(key);
+    public void removeFood(Index index) {
+        foodItems.remove(index);
     }
 
     // util methods

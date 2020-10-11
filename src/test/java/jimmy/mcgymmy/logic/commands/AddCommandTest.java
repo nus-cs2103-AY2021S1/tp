@@ -96,7 +96,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteFood(Food target) {
+        public void deleteFood(Index target) {
             throw new AssertionError("This method should not be called.");
         }
 

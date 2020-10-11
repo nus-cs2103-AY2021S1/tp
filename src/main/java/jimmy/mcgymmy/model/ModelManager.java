@@ -97,8 +97,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteFood(Food target) {
-        mcGymmy.removeFood(target);
+    public void deleteFood(Index index) {
+        mcGymmy.removeFood(index);
     }
 
     @Override
