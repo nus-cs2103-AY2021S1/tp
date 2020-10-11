@@ -17,7 +17,7 @@ public class DeleteModuleParser extends Parser {
      */
     @Override
     public Command parse(String userInput) throws ParseException {
-        Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_DELETE_PREFIX, PrefixList.MODULE_NEWNAME_PREFIX);
+        Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_DELETE_PREFIX);
         String[] parsedArguments = token.tokenize();
         int position = Integer.parseInt(parsedArguments[0]);
         return new DeleteModuleCommand(position);

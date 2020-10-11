@@ -62,8 +62,8 @@ public class ParserManager {
             parser = new AddContactParser();
             command = parser.parse(input);
             return command;
-        case "deletetask":
-            parser = new DeleteTaskParser();
+        case "findcontact":
+            parser = new FindContactParser();
             command = parser.parse(input);
             return command;
         case "deletecontact":
@@ -81,6 +81,22 @@ public class ParserManager {
         case "viewtodolist":
             parser = new ViewTodoListParser();
             command = parser.parse("");
+            return command;
+        case "deletetask":
+            parser = new DeleteTaskParser();
+            command = parser.parse(input);
+            return command;
+        case "edittask":
+            parser = new EditTaskParser();
+            command = parser.parse(input);
+            return command;
+        case "addgrade":
+            parser = new AddGradeParser();
+            command = parser.parse(input);
+            return command;
+        case "addfinalgrade":
+            parser = new AddFinalGradeParser();
+            command = parser.parse(input);
             return command;
         default:
             throw new ParseException("Invalid Command");
