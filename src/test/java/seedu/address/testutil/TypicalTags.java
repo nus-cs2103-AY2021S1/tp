@@ -19,8 +19,8 @@ public class TypicalTags {
 
 
     // TODO These tags could be updated with more descriptive tag names.
-    public static final Tag ALICE = new TagBuilder().withTagName("Alice Pauline")
-            .withFileAddress("c:\\a\\b\\alice.txt")
+    public static final Tag CS2103 = new TagBuilder().withTagName("cs2103")
+            .withFileAddress("c:\\a\\b\\cs2103.txt")
             .build();
     public static final Tag BENSON = new TagBuilder().withTagName("Benson Meier")
             .withFileAddress("c:\\a\\b\\benson.txt")
@@ -66,6 +66,6 @@ public class TypicalTags {
     }
 
     public static List<Tag> getTypicalTags() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(CS2103, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
