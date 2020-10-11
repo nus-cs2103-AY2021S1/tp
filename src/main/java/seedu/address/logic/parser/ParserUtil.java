@@ -2,6 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,6 +25,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -87,6 +94,21 @@ public class ParserUtil {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         return new Category(trimmedCategory);
+    }
+
+    /**
+     * Parses {@code Collection<String> categories} into a {@code List<Category>}.
+     *
+     */
+    public static List<Category> parseCategories(Collection<String> categories) throws ParseException {
+        requireNonNull(categories);
+        final Set<Category> categorySet = new HashSet<>();
+        for (String categoryName : categories) {
+            categorySet.add(parseCategory(categoryName));
+        }
+        List<Category> categoryList = new ArrayList<>();
+        categoryList.addAll(categorySet);
+        return categoryList;
     }
 
     //    /**
