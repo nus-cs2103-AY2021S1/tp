@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESCRIPTION_D
 import static seedu.address.logic.commands.CommandTestUtil.PROJECT_NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.REPOURL_DESC_A;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.AMY;
+import static seedu.address.testutil.TypicalProjects.AI;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + PROJECT_NAME_DESC_AMY + DEADLINE_DESC_A + REPOURL_DESC_A
                 + PROJECT_DESCRIPTION_DESC_AMY;
-        Project expectedProject = new ProjectBuilder(AMY).withTags().withTasks().build();
+        Project expectedProject = new ProjectBuilder(AI).withTags().withTasks().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProject(expectedProject);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
