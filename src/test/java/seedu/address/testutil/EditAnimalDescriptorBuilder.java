@@ -9,7 +9,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * A utility class to help with building EditAnimalDescriptor objects.
@@ -34,7 +34,7 @@ public class EditAnimalDescriptorBuilder {
         descriptor.setName(animal.getName());
         descriptor.setId(animal.getId());
         descriptor.setSpecies(animal.getSpecies());
-        descriptor.setTags(animal.getTags());
+        descriptor.setMedicalConditions(animal.getMedicalConditions());
     }
 
     /**
@@ -62,12 +62,14 @@ public class EditAnimalDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditAnimalDescriptor}
+     * Parses the {@code medicalConditions} into a {@code Set<MedicalCondition>}
+     * and set it to the {@code EditAnimalDescriptor}
      * that we are building.
      */
-    public EditAnimalDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditAnimalDescriptorBuilder withMedicalConditions(String... medicalConditions) {
+        Set<MedicalCondition> medicalConditionSet = Stream.of(medicalConditions).map(MedicalCondition::new)
+                .collect(Collectors.toSet());
+        descriptor.setMedicalConditions(medicalConditionSet);
         return this;
     }
 

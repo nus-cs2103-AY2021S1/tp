@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ANIMALS;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * Edits the details of an existing animal in the address book.
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_SPECIES + "SPECIES] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MEDICALCONDITION + "MEDICALCONDITION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ID + "91234567 ";
 
@@ -92,9 +92,10 @@ public class EditCommand extends Command {
         Name updatedName = editAnimalDescriptor.getName().orElse(animalToEdit.getName());
         Id updatedId = editAnimalDescriptor.getId().orElse(animalToEdit.getId());
         Species updatedSpecies = editAnimalDescriptor.getSpecies().orElse(animalToEdit.getSpecies());
-        Set<Tag> updatedTags = editAnimalDescriptor.getTags().orElse(animalToEdit.getTags());
+        Set<MedicalCondition> updatedMedicalConditions = editAnimalDescriptor.getMedicalConditions()
+                .orElse(animalToEdit.getMedicalConditions());
 
-        return new Animal(updatedName, updatedId, updatedSpecies, updatedTags);
+        return new Animal(updatedName, updatedId, updatedSpecies, updatedMedicalConditions);
     }
 
     @Override
@@ -123,26 +124,26 @@ public class EditCommand extends Command {
         private Name name;
         private Id id;
         private Species species;
-        private Set<Tag> tags;
+        private Set<MedicalCondition> medicalConditions;
 
         public EditAnimalDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code medicalConditions} is used internally.
          */
         public EditAnimalDescriptor(EditAnimalDescriptor toCopy) {
             setName(toCopy.name);
             setId(toCopy.id);
             setSpecies(toCopy.species);
-            setTags(toCopy.tags);
+            setMedicalConditions(toCopy.medicalConditions);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, id, species, tags);
+            return CollectionUtil.isAnyNonNull(name, id, species, medicalConditions);
         }
 
         public void setName(Name name) {
@@ -170,20 +171,21 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code medicalConditions} to this object's {@code medicalConditions}.
+         * A defensive copy of {@code medicalConditions} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setMedicalConditions(Set<MedicalCondition> medicalConditions) {
+            this.medicalConditions = (medicalConditions != null) ? new HashSet<>(medicalConditions) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable medicalCondition set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code medicalConditions} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<MedicalCondition>> getMedicalConditions() {
+            return (medicalConditions != null) ? Optional.of(Collections.unmodifiableSet(medicalConditions))
+                    : Optional.empty();
         }
 
         @Override
@@ -204,7 +206,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getId().equals(e.getId())
                     && getSpecies().equals(e.getSpecies())
-                    && getTags().equals(e.getTags());
+                    && getMedicalConditions().equals(e.getMedicalConditions());
         }
     }
 }

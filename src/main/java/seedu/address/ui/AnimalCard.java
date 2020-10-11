@@ -37,7 +37,9 @@ public class AnimalCard extends UiPart<Region> {
     @FXML
     private Label species;
     @FXML
-    private FlowPane tags;
+    private Label medicalCondition;
+    @FXML
+    private FlowPane medicalConditions;
 
     /**
      * Creates a {@code AnimalCode} with the given {@code Animal} and index to display.
@@ -49,9 +51,11 @@ public class AnimalCard extends UiPart<Region> {
         name.setText(animal.getName().fullName);
         identity.setText("ID: " + animal.getId().value);
         species.setText("Species: " + animal.getSpecies().value);
-        animal.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        medicalCondition.setText("Medical details: ");
+        animal.getMedicalConditions().stream()
+                .sorted(Comparator.comparing(medicalCondition -> medicalCondition.medicalConditionName))
+                .forEach(medicalCondition -> medicalConditions.getChildren()
+                        .add(new Label(medicalCondition.medicalConditionName)));
     }
 
     @Override

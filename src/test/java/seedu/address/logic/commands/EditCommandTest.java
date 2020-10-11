@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         AnimalBuilder animalInList = new AnimalBuilder(lastAnimal);
         Animal editedAnimal = animalInList.withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND).build();
 
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withId(VALID_ID_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withId(VALID_ID_BOB).withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastAnimal, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
