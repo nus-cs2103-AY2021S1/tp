@@ -66,7 +66,6 @@ public interface Logic {
     ReadOnlyMeetingManager getMeetingManager();
 
     ObservableList<CalendarMeeting> getFilteredMeetingList();
-  
     /**
      * Returns the PropertyBook.
      *

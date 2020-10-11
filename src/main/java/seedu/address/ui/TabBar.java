@@ -22,7 +22,7 @@ public class TabBar extends UiPart<Region> {
     @FXML
     private TabPane personCalenderBidTabBar;
 
-   @FXML
+    @FXML
     private TabPane tabBar;
 
     @FXML
@@ -33,7 +33,6 @@ public class TabBar extends UiPart<Region> {
 
     @FXML
     private Tab calenderTab;
-  
     @FXML
     private Tab propertyTab;
 
@@ -71,7 +70,6 @@ public class TabBar extends UiPart<Region> {
         personCalenderBidTabBar.setTabMinWidth(335);
         personCalenderBidTabBar.setTabMaxWidth(335);
     }
-  
     private void setTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");

@@ -104,7 +104,7 @@ public class LogicManager implements Logic {
     public ObservableList<CalendarMeeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
     }
-  
+    @Override
     public ReadOnlyPropertyBook getPropertyBook() {
         return model.getPropertyBook();
     }
