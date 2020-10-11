@@ -10,6 +10,7 @@ import java.util.HashSet;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -53,7 +54,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         /*
         requireNonNull(model);
 
