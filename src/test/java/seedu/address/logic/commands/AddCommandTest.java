@@ -115,7 +115,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyFlashcardDeck newData) {
+        public void setFlashcardDeck(ReadOnlyFlashcardDeck newData) {
             throw new AssertionError("This method should not be called.");
         }
 
