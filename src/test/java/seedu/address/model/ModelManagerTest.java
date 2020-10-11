@@ -79,7 +79,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasProject_projectNotInMainCatalogue_returnsFalse() {
-        assertFalse(modelManager.hasProject(APEAKAPP));
+        assertFalse(modelManager
+            .hasProject(APEAKAPP));
     }
 
     @Test
@@ -90,7 +91,8 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredProjectList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredProjectList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager
+            .getFilteredProjectList().remove(0));
     }
 
     @Test

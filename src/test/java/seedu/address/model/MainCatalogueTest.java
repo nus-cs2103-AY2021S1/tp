@@ -51,7 +51,8 @@ public class MainCatalogueTest {
     @Test
     public void resetData_withDuplicateProjects_throwsDuplicateProjectException() {
         // Two projects with the same identity fields
-        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
@@ -68,7 +69,8 @@ public class MainCatalogueTest {
 
     @Test
     public void hasProject_projectNotInMainCatalogue_returnsFalse() {
-        assertFalse(mainCatalogue.hasProject(APEAKAPP));
+        assertFalse(
+            mainCatalogue.hasProject(APEAKAPP));
     }
 
     @Test
@@ -80,7 +82,8 @@ public class MainCatalogueTest {
     @Test
     public void hasProject_projectWithSameIdentityFieldsInMainCatalogue_returnsTrue() {
         mainCatalogue.addProject(APEAKAPP);
-        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();

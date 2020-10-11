@@ -43,7 +43,8 @@ public class UniqueProjectListTest {
     @Test
     public void contains_projectWithSameIdentityFieldsInList_returnsTrue() {
         uniqueProjectList.add(APEAKAPP);
-        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
@@ -88,7 +89,8 @@ public class UniqueProjectListTest {
     @Test
     public void setProject_editedProjectHasSameIdentity_success() {
         uniqueProjectList.add(APEAKAPP);
-        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(VALID_PROJECT_DESCRIPTION_BOT).withTags(
+        Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
+            VALID_PROJECT_DESCRIPTION_BOT).withTags(
             VALID_PROJECT_TAG_HANG)
                 .withTasks(VALID_PROJECT_TAG_DG)
                 .build();
@@ -164,7 +166,8 @@ public class UniqueProjectListTest {
     @Test
     public void setProjects_listWithDuplicateProjects_throwsDuplicateProjectException() {
         List<Project> listWithDuplicateProjects = Arrays.asList(APEAKAPP, APEAKAPP);
-        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(listWithDuplicateProjects));
+        assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(
+            listWithDuplicateProjects));
     }
 
     @Test
