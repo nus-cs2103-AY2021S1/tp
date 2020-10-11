@@ -90,17 +90,18 @@ public class Visit implements Comparable<Visit> {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Date: ")
-                .append(getVisitDate())
-                .append(" Name: ")
-                .append(getPatientName())
-                .append(" Diagnosis: ")
-                .append(getDiagnosis())
-                .append(" Prescription: ")
-                .append(getPrescription())
-                .append(" Comment: ")
-                .append(getComment()).append("\n");
-        return builder.toString();
+        return "No visit history"; // placeholder String before parser for VisitCommand is implemented
+        //             final StringBuilder builder = new StringBuilder();
+        //             builder.append("Date: ")
+        //                    .append(getVisitDate())
+        //                    .append(" Name: ")
+        //                    .append(getPatientName())
+        //                    .append(" Diagnosis: ")
+        //                    .append(getDiagnosis())
+        //                    .append(" Prescription: ")
+        //                    .append(getPrescription())
+        //                    .append(" Comment: ")
+        //                    .append(getComment()).append("\n");
+        //             return builder.toString();
     }
 }
