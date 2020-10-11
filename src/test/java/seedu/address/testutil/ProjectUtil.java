@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.catalogue.AddCommand;
+import seedu.address.logic.commands.catalogue.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;

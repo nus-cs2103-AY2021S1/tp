@@ -2,9 +2,11 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -108,6 +110,27 @@ public class Project {
         listOfParticipations.put(
             p.getPersonName(), new Participation(p, this));
     }
+
+    /**
+     * Checks whether the project contains a member of the given name.
+     */
+    public boolean hasParticipation(String name) {
+        return listOfParticipations.containsKey(new PersonName(name));
+    }
+
+    /**
+     * Gets the Participation with the member name.
+     */
+    public Participation getParticipation(String name) {
+        return listOfParticipations.get(new PersonName(name));
+    }
+
+    /**
+     * Returns the list of tasks that is last shown.
+     */
+    public List<Task> getFilteredTaskList() {
+        return new ArrayList<>(tasks);
+    } // TODO: May update when adding filters
 
     /**
      * Returns true if both projects of the same projectName have at least one other identity field that is the same.

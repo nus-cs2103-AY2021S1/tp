@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,17 +15,18 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.LeaveCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.StartCommand;
+import seedu.address.logic.commands.catalogue.AddCommand;
+import seedu.address.logic.commands.catalogue.ClearCommand;
+import seedu.address.logic.commands.catalogue.DeleteCommand;
+import seedu.address.logic.commands.catalogue.EditCommand;
+import seedu.address.logic.commands.catalogue.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.catalogue.FindCommand;
+import seedu.address.logic.commands.catalogue.ListCommand;
+import seedu.address.logic.commands.catalogue.StartCommand;
+import seedu.address.logic.commands.global.ExitCommand;
+import seedu.address.logic.commands.global.HelpCommand;
+import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
@@ -111,6 +114,14 @@ public class MainCatalogueParserTest {
     }
 
     @Test
+    public void parseCommand_assign() throws Exception {
+        AssignCommand command = (AssignCommand) parser.parseCommand(
+                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                Status.PROJECT);
+        assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().toString()), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand("", Status.CATALOGUE));
@@ -178,6 +189,14 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(LeaveCommand.COMMAND_WORD, Status.CATALOGUE);
+        } catch (Exception e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+        }
+
+        try {
+            parser.parseCommand(
+                    AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                    Status.CATALOGUE);
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
         }

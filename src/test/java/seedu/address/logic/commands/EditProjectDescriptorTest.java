@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.catalogue.EditCommand.EditProjectDescriptor;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
 public class EditProjectDescriptorTest {
