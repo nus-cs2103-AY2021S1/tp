@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -46,9 +47,16 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
+        toAdd.setId(getLatestId());
         internalList.add(toAdd);
     }
 
+    public Id getLatestId() {
+        if (internalList.size() == 0) {
+            return new Id("S", 1);
+        }
+        return this.internalList.get(internalList.size() - 1).getId().increment();
+    }
     /**
      * Replaces the contents of this list with {@code sellers}.
      * {@code sellers} must not contain duplicate bidders.

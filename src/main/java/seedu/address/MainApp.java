@@ -22,6 +22,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.bidderaddressbook.BidderAddressBook;
+import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
+import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -29,6 +33,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
+import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
+import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
+import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -58,7 +66,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        BidderAddressBookStorage bidderAddressBookStorage =
+                new JsonBidderAddressBookStorage(userPrefs.getBidderAddressBookFilePath());
+        SellerAddressBookStorage sellerAddressBookStorage =
+                new JsonSellerAddressBookStorage(userPrefs.getSellerAddressBookFilePath());
+
+        storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                bidderAddressBookStorage, sellerAddressBookStorage);
 
         initLogging(config);
 
@@ -76,22 +90,43 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyBidderAddressBook> bidderAddressBookOptional;
+        Optional<ReadOnlySellerAddressBook> sellerAddressBookOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyBidderAddressBook initialBidderData;
+        ReadOnlySellerAddressBook initialSellerData;
+
         try {
             addressBookOptional = storage.readAddressBook();
+            bidderAddressBookOptional = storage.readBidderAddressBook();
+            sellerAddressBookOptional = storage.readSellerAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
+            if (!bidderAddressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample bidderAddressBook");
+            }
+            if (!sellerAddressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample sellerAddressBook");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialBidderData = bidderAddressBookOptional.orElseGet(SampleDataUtil::getSampleBidderAddressBook);
+            initialSellerData = sellerAddressBookOptional.orElseGet(SampleDataUtil::getSampleSellerAddressBook);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialBidderData = new BidderAddressBook();
+            initialSellerData = new SellerAddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialBidderData = new BidderAddressBook();
+            initialSellerData = new SellerAddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs, new BidBook());
+        return new ModelManager(initialData, userPrefs,
+                initialBidderData, initialSellerData, new BidBook());
     }
 
     private void initLogging(Config config) {

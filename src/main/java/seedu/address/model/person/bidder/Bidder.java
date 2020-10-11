@@ -17,7 +17,6 @@ public class Bidder extends ClientPerson {
 
     /**
      * Constructs the bidder with the name, phone, tags, and id.
-     *
      * @param name name of the bidder.
      * @param phone phone number.
      * @param tags tags.
@@ -25,6 +24,7 @@ public class Bidder extends ClientPerson {
      */
     public Bidder(Name name, Phone phone, Set<Tag> tags, Id id) {
         super(name, phone, tags, id);
+        tags.add(new Tag("bidder"));
     }
 
     /**

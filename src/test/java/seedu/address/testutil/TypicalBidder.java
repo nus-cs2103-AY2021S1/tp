@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.BidderAddressBook;
+import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.bidder.Bidder;
 
 
@@ -52,7 +52,7 @@ public class TypicalBidder {
     /**
      * Returns an {@code BidderAddressBook} with all the typical persons.
      */
-    public static BidderAddressBook getTypicalAddressBook() {
+    public static BidderAddressBook getTypicalBidderAddressBook() {
         BidderAddressBook ab = new BidderAddressBook();
         for (Bidder bidder : getTypicalBidders()) {
             ab.addBidder(bidder);

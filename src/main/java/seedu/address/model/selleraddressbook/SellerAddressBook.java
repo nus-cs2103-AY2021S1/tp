@@ -1,10 +1,11 @@
-package seedu.address.model;
+package seedu.address.model.selleraddressbook;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.seller.UniqueSellerList;
 
@@ -86,7 +87,7 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
      * Removes {@code key} from this {@code SellerAddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Seller key) {
+    public void removeSeller(Seller key) {
         sellers.remove(key);
     }
 
@@ -94,7 +95,7 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
 
     @Override
     public String toString() {
-        return sellers.asUnmodifiableObservableList().size() + " bidders";
+        return sellers.asUnmodifiableObservableList().size() + " sellers";
     }
 
     @Override
@@ -102,6 +103,9 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
         return sellers.asUnmodifiableObservableList();
     }
 
+    public Id getLastSellerId() {
+        return getSellerList().get(getSellerList().size()).getId().increment();
+    }
 
     @Override
     public boolean equals(Object other) {

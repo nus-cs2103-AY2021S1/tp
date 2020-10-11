@@ -12,39 +12,65 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidderaddressbook.BidderAddressBook;
+import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
+import seedu.address.model.selleraddressbook.SellerAddressBook;
 
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager implements Model {
+public class ModelManager implements Model, SellerModel, BidderModel {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final BidBook bidBook;
     private final AddressBook addressBook;
+    private final BidderAddressBook bidderAddressBook;
+    private final SellerAddressBook sellerAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Seller> filteredSellers;
+    private final FilteredList<Bidder> filteredBidders;
     private final FilteredList<Bid> filteredBids;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyBidderAddressBook bidderAddressBook,
+                        ReadOnlySellerAddressBook sellerAddressBook,
+                        ReadOnlyBidBook bidBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook);
+        requireAllNonNull(addressBook, userPrefs, bidderAddressBook, sellerAddressBook, bidBook);
 
         logger.fine("Initializing with address book: " + addressBook
-                + " and user prefs " + userPrefs + " and bid book: " + bidBook);
+                + " and user prefs " + userPrefs + " and bid book: " + bidBook
+                + "\n bidderAddressBook: " + bidderAddressBook
+                + "\n sellerAddressBook: " + sellerAddressBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.bidderAddressBook = new BidderAddressBook(bidderAddressBook);
+        this.sellerAddressBook = new SellerAddressBook(sellerAddressBook);
         this.bidBook = new BidBook(bidBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredBidders = new FilteredList<>(this.bidderAddressBook.getBidderList());
+        filteredSellers = new FilteredList<>(this.sellerAddressBook.getSellerList());
+
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
     }
 
+    /**
+     * Constructor for the ModelManager.
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new BidBook());
+        this(new AddressBook(), new UserPrefs(),
+                new BidderAddressBook(),
+                new SellerAddressBook(),
+                new BidBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -156,6 +182,124 @@ public class ModelManager implements Model {
         bidBook.addBid(bid);
         updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
     }
+
+    //=========== Bidder =============================================================
+
+    @Override
+    public void setBidderAddressBook(ReadOnlyBidderAddressBook bidderAddressBook) {
+        this.bidderAddressBook.resetData(bidderAddressBook);
+    }
+
+    @Override
+    public ReadOnlyBidderAddressBook getBidderAddressBook() {
+        return bidderAddressBook;
+    }
+
+    @Override
+    public boolean hasBidder(Bidder bidder) {
+        requireNonNull(bidder);
+        return bidderAddressBook.hasBidder(bidder);
+    }
+
+    @Override
+    public void deleteBidder(Bidder target) {
+        bidderAddressBook.removeBidder(target);
+    }
+
+    @Override
+    public void addBidder(Bidder bidder) {
+        bidderAddressBook.addBidder(bidder);
+        updateFilteredBidderList(PREDICATE_SHOW_ALL_BIDDERS);
+    }
+
+    @Override
+    public void setBidder(Bidder target, Bidder editedBidder) {
+        requireAllNonNull(target, editedBidder);
+
+        bidderAddressBook.setBidder(target, editedBidder);
+    }
+
+    @Override
+    public Path getBidderAddressBookFilePath() {
+        return userPrefs.getBidderAddressBookFilePath();
+    }
+
+    @Override
+    public void setBidderAddressBookFilePath(Path bidderAddressBookFilePath) {
+        requireNonNull(bidderAddressBookFilePath);
+        userPrefs.setAddressBookFilePath(bidderAddressBookFilePath);
+    }
+
+    @Override
+    public ObservableList<Bidder> getFilteredBidderList() {
+        return filteredBidders;
+    }
+
+    @Override
+    public void updateFilteredBidderList(Predicate<Bidder> predicate) {
+        requireNonNull(predicate);
+        filteredBidders.setPredicate(predicate);
+    }
+
+    //=========== Seller =============================================================
+
+    @Override
+    public void setSellerAddressBook(ReadOnlySellerAddressBook sellerAddressBook) {
+        this.sellerAddressBook.resetData(sellerAddressBook);
+    }
+
+    @Override
+    public ReadOnlySellerAddressBook getSellerAddressBook() {
+        return sellerAddressBook;
+    }
+
+    @Override
+    public boolean hasSeller(Seller seller) {
+        requireNonNull(seller);
+        return sellerAddressBook.hasSeller(seller);
+    }
+
+    @Override
+    public void deleteSeller(Seller target) {
+        sellerAddressBook.removeSeller(target);
+    }
+
+    @Override
+    public void addSeller(Seller seller) {
+        sellerAddressBook.addSeller(seller);
+        updateFilteredSellerList(PREDICATE_SHOW_ALL_SELLERS);
+    }
+
+    @Override
+    public void setSeller(Seller target, Seller editedSeller) {
+        requireAllNonNull(target, editedSeller);
+
+        sellerAddressBook.setSeller(target, editedSeller);
+    }
+
+    @Override
+    public Path getSellerAddressBookFilePath() {
+        return userPrefs.getSellerAddressBookFilePath();
+    }
+
+    @Override
+    public void setSellerAddressBookFilePath(Path sellerAddressBookFilePath) {
+        requireNonNull(sellerAddressBookFilePath);
+        userPrefs.setAddressBookFilePath(sellerAddressBookFilePath);
+    }
+
+    @Override
+    public ObservableList<Seller> getFilteredSellerList() {
+        return filteredSellers;
+    }
+
+    @Override
+    public void updateFilteredSellerList(Predicate<Seller> predicate) {
+        requireNonNull(predicate);
+        filteredSellers.setPredicate(predicate);
+    }
+
+    //=========== EQUALS =============================================================
 
     @Override
     public boolean equals(Object obj) {

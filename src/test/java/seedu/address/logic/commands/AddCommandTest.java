@@ -23,7 +23,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -168,6 +172,106 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredBidList(Predicate<Bid> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getBidderAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBidderAddressBookFilePath(Path bidderAddressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBidderAddressBook(ReadOnlyBidderAddressBook bidderAddressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyBidderAddressBook getBidderAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasBidder(Bidder bidder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBidder(Bidder target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBidder(Bidder bidder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBidder(Bidder target, Bidder editedBidder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Bidder> getFilteredBidderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBidderList(Predicate<Bidder> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getSellerAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSellerAddressBookFilePath(Path sellerAddressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSellerAddressBook(ReadOnlySellerAddressBook sellerAddressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlySellerAddressBook getSellerAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSeller(Seller seller) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSeller(Seller target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSeller(Seller seller) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSeller(Seller target, Seller editedSeller) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Seller> getFilteredSellerList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredSellerList(Predicate<Seller> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

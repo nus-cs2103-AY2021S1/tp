@@ -15,6 +15,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path bidderAddressBookFilePath = Paths.get("data" , "bidderaddressbook.json");
+    private Path sellerAddressBookFilePath = Paths.get("data" , "selleraddressbook.json");
+
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +39,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setBidderAddressBookFilePath(newUserPrefs.getBidderAddressBookFilePath());
+        setSellerAddressBookFilePath(newUserPrefs.getSellerAddressBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +56,28 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    public Path getBidderAddressBookFilePath() {
+        return bidderAddressBookFilePath;
+    }
+
+    public Path getSellerAddressBookFilePath() {
+        return sellerAddressBookFilePath;
+    }
+
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public void setBidderAddressBookFilePath(Path bidderAddressBookFilePath) {
+        requireNonNull(bidderAddressBookFilePath);
+        this.bidderAddressBookFilePath = bidderAddressBookFilePath;
+    }
+
+    public void setSellerAddressBookFilePath(Path sellerAddressBookFilePath) {
+        requireNonNull(sellerAddressBookFilePath);
+        this.sellerAddressBookFilePath = sellerAddressBookFilePath;
     }
 
     @Override
@@ -73,7 +97,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath,
+                bidderAddressBookFilePath, sellerAddressBookFilePath);
     }
 
     @Override
@@ -81,6 +106,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal Bidder data file location : " + bidderAddressBookFilePath);
+        sb.append("\nLocal Seller data file location : " + sellerAddressBookFilePath);
         return sb.toString();
     }
 

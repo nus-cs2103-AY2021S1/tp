@@ -8,10 +8,11 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
 
+
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends BidderModel, SellerModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -94,6 +95,5 @@ public interface Model {
     void updateFilteredBidList(Predicate<Bid> predicate);
 
     void addBid(Bid bid);
-
 
 }
