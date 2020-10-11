@@ -1,4 +1,4 @@
-package seedu.address.testutil.properties;
+package seedu.address.testutil.property;
 
 import seedu.address.model.property.Property;
 

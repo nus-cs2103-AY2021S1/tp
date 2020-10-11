@@ -1,4 +1,4 @@
-package seedu.address.testutil.properties;
+package seedu.address.testutil.property;
 
 import seedu.address.model.id.Id;
 import seedu.address.model.price.Price;
