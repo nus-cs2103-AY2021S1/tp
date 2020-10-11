@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.Module;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,20 +21,20 @@ public class ModelManager implements Model {
 
     private final ModuleList moduleList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(moduleList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
 
-        this.moduleList = new ModuleList(addressBook);
+        this.moduleList = new ModuleList(moduleList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.moduleList.getPersonList());
+        filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
     }
 
     public ModelManager() {
@@ -76,57 +76,57 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Module List ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.moduleList.resetData(addressBook);
+    public void setModuleList(ReadOnlyModuleList moduleList) {
+        this.moduleList.resetData(moduleList);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyModuleList getModuleList() {
         return moduleList;
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return moduleList.hasPerson(person);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return moduleList.hasModule(module);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        moduleList.removePerson(target);
+    public void deleteModule(Module target) {
+        moduleList.removeModule(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        moduleList.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addModule(Module module) {
+        moduleList.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
 
-        moduleList.setPerson(target, editedPerson);
+        moduleList.setModule(target, editedModule);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

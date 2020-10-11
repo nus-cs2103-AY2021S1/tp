@@ -62,7 +62,7 @@ public class TypicalPersons {
     public static ModuleList getTypicalAddressBook() {
         ModuleList ab = new ModuleList();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            // ab.addPerson(person);
         }
         return ab;
     }
