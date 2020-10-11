@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 
 /**
@@ -32,16 +32,16 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
+    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
+        requireNonNull(inventoryModel);
+        List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteItem(itemToDelete);
+        inventoryModel.deleteItem(itemToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete));
     }
 

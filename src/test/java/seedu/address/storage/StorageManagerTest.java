@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.InventoryBook;
-import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 
 public class StorageManagerTest {
 

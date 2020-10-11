@@ -13,7 +13,7 @@ import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

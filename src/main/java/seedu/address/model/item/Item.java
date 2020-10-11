@@ -8,8 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents a Item in the inventory book.
  * Guarantees: details are present and not null, field values are validated, immutable.

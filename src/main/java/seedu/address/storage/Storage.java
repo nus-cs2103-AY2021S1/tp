@@ -5,14 +5,15 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends InventoryBookStorage, UserPrefsStorage {
+public interface Storage extends InventoryBookStorage, UserPrefsStorage, DeliveryBookStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,8 @@ public interface Storage extends InventoryBookStorage, UserPrefsStorage {
 
     @Override
     void saveInventoryBook(ReadOnlyInventoryBook inventoryBook) throws IOException;
+
+    @Override
+    Optional<ReadOnlyDeliveryBook> readDeliveryBook() throws DataConversionException, IOException;
 
 }

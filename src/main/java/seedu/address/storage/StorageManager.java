@@ -7,9 +7,10 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 
 /**
  * Manages storage of InventoryBook data in local storage.
@@ -75,6 +76,14 @@ public class StorageManager implements Storage {
     public void saveInventoryBook(ReadOnlyInventoryBook inventoryBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         inventoryBookStorage.saveInventoryBook(inventoryBook, filePath);
+    }
+
+    // ================ DeliveryBook methods ==============================
+
+    // TODO
+    @Override
+    public Optional<ReadOnlyDeliveryBook> readDeliveryBook() {
+        return Optional.empty();
     }
 
 }

@@ -1,16 +1,17 @@
-package seedu.address.model;
+package seedu.address.model.inventorymodel;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
 
 /**
- * The API of the Model component.
+ * The API of the InventoryModel component.
  */
-public interface Model {
+public interface InventoryModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
@@ -51,6 +52,8 @@ public interface Model {
 
     /** Returns the InventoryBook */
     ReadOnlyInventoryBook getInventoryBook();
+
+    //================================ METHODS STARTS HERE ================================
 
     /**
      * Returns true if a item with the same identity as {@code item} exists in the inventory book.

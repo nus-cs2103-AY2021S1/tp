@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.InventoryBook;
+import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.item.Item;
 
 /**

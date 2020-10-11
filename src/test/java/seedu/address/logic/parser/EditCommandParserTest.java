@@ -34,7 +34,7 @@ import seedu.address.logic.commands.EditCommand.EditItemDescriptor;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
 public class EditCommandParserTest {

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
+import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 import java.util.Set;
@@ -11,13 +11,13 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 
 /**
  * Removes a quantity from an existing item in the inventory book.
@@ -52,9 +52,9 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
+    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
+        requireNonNull(inventoryModel);
+        List<Item> lastShownList = inventoryModel.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -68,12 +68,12 @@ public class RemoveCommand extends Command {
 
         Item editedItem = createRemovedItem(itemToEdit, quantity);
 
-        if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
+        if (!itemToEdit.isSameItem(editedItem) && inventoryModel.hasItem(editedItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        model.setItem(itemToEdit, editedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        inventoryModel.setItem(itemToEdit, editedItem);
+        inventoryModel.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
