@@ -67,9 +67,9 @@ public class Ingredient extends FoodEntry {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-            .append(" Quantity: ")
+            .append("\nQuantity: ")
             .append(getQuantity())
-            .append(" Expiry Date: ")
+            .append("\nExpiry Date: ")
             .append(getExpiryDate());
         return builder.toString();
     }
