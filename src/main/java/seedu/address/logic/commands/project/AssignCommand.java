@@ -49,10 +49,15 @@ public class AssignCommand extends Command {
         Task taskToAssociate = lastShownTaskList.get(targetIndex.getZeroBased());
 
         if (!project.hasParticipation(assignee)) {
-            throw new CommandException(Messages.MESSAGE_MEMBER_NOT_PRESENT);
+            throw new CommandException(String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, assignee));
         }
 
         Participation assignee = project.getParticipation(this.assignee);
+
+        if (assignee.hasTask(taskToAssociate)) {
+            throw new CommandException(String.format(Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON,
+                    assignee));
+        }
         assignee.addTask(taskToAssociate);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee));
@@ -62,6 +67,7 @@ public class AssignCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignCommand // instanceof handles nulls
-                && targetIndex.equals(((AssignCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((AssignCommand) other).targetIndex)
+                && assignee.equals(((AssignCommand) ((AssignCommand) other)).assignee)); // state check
     }
 }
