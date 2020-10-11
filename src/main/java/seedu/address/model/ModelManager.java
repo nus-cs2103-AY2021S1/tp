@@ -16,6 +16,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
+import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.vendor.Vendor;
 
 /**
@@ -26,9 +29,12 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final List<MenuManager> menuManagers;
+    private final OrderManager orderManager;
+
     private final UserPrefs userPrefs;
     private final FilteredList<Vendor> filteredVendors;
     private FilteredList<Food> filteredFoods;
+    private FilteredList<OrderItem> filteredOrderItems;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -40,28 +46,36 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.menuManagers = new ArrayList<>();
+        this.orderManager = new OrderManager();
+
         this.userPrefs = new UserPrefs(userPrefs);
         filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
 
     }
 
     /**
-     * Initializes a ModelManager with the given addressBook, userPrefs and menuManager.
+     * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, List<MenuManager> menuManagers) {
+    public ModelManager(
+            ReadOnlyAddressBook addressBook,
+            ReadOnlyUserPrefs userPrefs,
+            List<MenuManager> menuManagers,
+            OrderManager orderManager
+    ) {
         super();
-        requireAllNonNull(addressBook, userPrefs, menuManagers);
+        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.menuManagers = menuManagers;
+        this.orderManager = orderManager;
         filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new ArrayList<>());
+        this(new AddressBook(), new UserPrefs(), new ArrayList<>(), new OrderManager());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -110,7 +124,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(menuManagerFolderPath);
     }
 
-
     //=========== AddressBook ================================================================================
 
     @Override
@@ -147,6 +160,8 @@ public class ModelManager implements Model {
         addressBook.setVendor(target, editedVendor);
     }
 
+    //=========== MenuManager ================================================================================
+
     @Override
     public void setMenuManager(ReadOnlyMenuManager menuManager, int index) {
         this.menuManagers.get(index).resetData(menuManager);
@@ -177,8 +192,40 @@ public class ModelManager implements Model {
     @Override
     public void setFood(Food target, Food editedFood, int index) {
         requireAllNonNull(target, editedFood);
-
         menuManagers.get(index).setFood(target, editedFood);
+    }
+
+    @Override
+    public void setOrderManager(ReadOnlyOrderManager orderManager) {
+        this.orderManager.resetData(orderManager);
+    }
+
+    @Override
+    public ReadOnlyOrderManager getOrderManager() {
+        return orderManager;
+    }
+
+    @Override
+    public boolean hasOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        return orderManager.hasOrderItem(orderItem);
+    }
+
+    @Override
+    public void deleteOrderItem(OrderItem target) {
+        orderManager.removeOrderItem(target);
+    }
+
+    @Override
+    public void addOrderItem(OrderItem orderItem) {
+        orderManager.addOrderItem(orderItem);
+        updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
+    }
+
+    @Override
+    public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
+        requireAllNonNull(target, editedOrderItem);
+        orderManager.setOrderItem(target, editedOrderItem);
     }
 
     //=========== Filtered Vendor List Accessors =============================================================
@@ -198,6 +245,8 @@ public class ModelManager implements Model {
         filteredVendors.setPredicate(predicate);
     }
 
+    //=========== Filtered Food List Accessors =============================================================
+
     @Override
     public ObservableList<Food> getFilteredFoodList(int index) {
         if (filteredFoods == null) {
@@ -213,6 +262,20 @@ public class ModelManager implements Model {
         }
     }
 
+    //=========== Filtered OrderItem List Accessors =============================================================
+
+    @Override
+    public ObservableList<OrderItem> getFilteredOrderItemList() {
+        if (filteredOrderItems == null) {
+            updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
+        }
+        return filteredOrderItems;
+    }
+
+    @Override
+    public void updateFilteredOrderItemList(Predicate<OrderItem> predicateindex) {
+        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());;
+    }
 
     @Override
     public boolean equals(Object obj) {

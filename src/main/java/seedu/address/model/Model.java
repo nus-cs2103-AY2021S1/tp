@@ -7,7 +7,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.vendor.Vendor;
+
 
 /**
  * The API of the Model component.
@@ -16,8 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
-
-
+    Predicate<OrderItem> PREDICATE_SHOW_ALL_ORDERITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -123,9 +125,42 @@ public interface Model {
      * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
      */
     void setFood(Food target, Food editedFood, int index);
+    /**
+     * Replaces address book data with the data in {@code orderManager}.
+     */
+    void setOrderManager(ReadOnlyOrderManager orderManager);
+
+    /** Returns the MenuManager at the ith index */
+    ReadOnlyOrderManager getOrderManager();
+
+    /**
+     * Returns true if an orderItem with the same identity as {@code orderItem} exists in the address book.
+     */
+    boolean hasOrderItem(OrderItem orderItem);
+
+    /**
+     * Deletes the given orderItem.
+     * The orderItem must exist in the order manager.
+     */
+    void deleteOrderItem(OrderItem target);
+
+    /**
+     * Adds the given orderItem.
+     * {@code orderItem} if orderItem exists in order manageradd to the current quantity.
+     */
+    void addOrderItem(OrderItem orderItem);
+
+    /**
+     * Replaces the given OrderItem {@code target} with {@code editedOrderItem}.
+     * {@code target} must exist in the menu manager.
+     * The OrderItem identity of {@code editedOrderItem}
+     * must not be the same as another existing orderItem in the address book.
+     */
+    void setOrderItem(OrderItem target, OrderItem editedOrderItem);
 
     /** Returns an unmodifiable view of the filtered vendor list */
     ObservableList<Vendor> getFilteredVendorList();
+
 
     /**
      * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
@@ -141,4 +176,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate, int index);
+
+    /** Returns an unmodifiable view of the filtered orderItem list at the corresponding index */
+    ObservableList<OrderItem> getFilteredOrderItemList();
+
+    /**
+     * Updates the filter of the filtered orderItem list at the
+     * corresponding index to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
 }

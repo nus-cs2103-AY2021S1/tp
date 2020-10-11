@@ -13,8 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.food.Food;
 import seedu.address.model.tag.Tag;
 
-
-
 /**
  * Jackson-friendly version of {@link seedu.address.model.food.Food}.
  */
@@ -68,9 +66,6 @@ class JsonAdaptedFood {
         if (!Food.isValidPrice(price)) {
             throw new IllegalValueException("Price must be a double.");
         }
-
-
-
         final Set<Tag> modelTags = new HashSet<>(vendorTags);
         return new Food(name, price, modelTags);
     }
