@@ -1,5 +1,7 @@
 package seedu.address.timetable;
 
+import java.util.Arrays;
+
 public class TimetableData {
     private int semester;
     private String[] moduleCodeArray;
@@ -24,5 +26,19 @@ public class TimetableData {
 
     public String[] getModuleLessonArray() {
         return this.moduleLessonArray;
+    }
+
+    /**
+     * Returns true if both data is of the same semester and same arrays.
+     */
+    public boolean isSameTimetableData(TimetableData otherData) {
+        if (otherData == this) {
+            return true;
+        }
+
+        return otherData != null
+                && otherData.getSemester() == getSemester()
+                && Arrays.equals(otherData.getModuleCodeArray(), getModuleCodeArray())
+                && Arrays.equals(otherData.getModuleLessonArray(), getModuleLessonArray());
     }
 }
