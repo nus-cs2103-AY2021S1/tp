@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.tag.Tag;
 
@@ -21,13 +22,22 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
     public static final String MESSAGE_CONSTRAINTS =
             "Ingredients should be separated by commas, "
-                    + "and each ingredient should be consisted "
+                    + "each ingredient and optional field quantity "
+                    + "separated by a hyphen, should be consisted "
                     + "of alphanumeric characters only";
-    public static final String VALIDATION_REGEX = "[\\w\\s]+(,\\s*[\\w\\s]*)*";
+    public static final String VALIDATION_REGEX = "[\\w\\s-]+"
+            + "(,\\s*[\\w\\s-]*)*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s]*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static boolean isValidIngredient(String ingredientString) {
-        return ingredientString.matches(VALIDATION_REGEX);
+    /**
+     * Checks if ingredient has attributes in the right format.
+     * @param ingredient Ingredient to check.
+     * @return boolean to indicate whether ingredient is valid.
+     */
+    public static boolean isValidIngredient(Ingredient ingredient) {
+        return ingredient.getValue().matches(VALIDATION_REGEX)
+                && ingredient.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
     }
 
     /**
@@ -71,6 +81,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_CONSTRAINTS);
         }
         return trimmedIngredient;
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static String parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!trimmedQuantity.matches(VALIDATION_REGEX_QUANTITY)) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
+        }
+        return trimmedQuantity;
     }
 
     /**

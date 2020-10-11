@@ -85,7 +85,7 @@ class JsonAdaptedRecipe {
                     Ingredient.class.getSimpleName()));
         }
         for (Ingredient ing: ingredients) {
-            if (!Ingredient.isValidIngredient(ing.toString())) {
+            if (!Ingredient.isValidIngredient(ing)) {
                 throw new IllegalValueException(Ingredient.MESSAGE_CONSTRAINTS);
             }
         }

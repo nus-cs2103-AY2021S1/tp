@@ -106,7 +106,7 @@ public class Recipe {
         builder.append(getName())
                 .append(" Ingredient: ")
                 .append(ingredients.stream()
-                        .map(item -> item.getValue())
+                        .map(item -> item.getQuantity() + " " + item.getValue())
                         .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
                 .append(" Calories: ")
                 .append(getCalories() + " cal")

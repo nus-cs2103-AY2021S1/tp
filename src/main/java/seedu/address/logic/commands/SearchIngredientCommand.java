@@ -34,7 +34,7 @@ public class SearchIngredientCommand extends Command {
         ObservableList<Ingredient> ingredients = model.getFilteredIngredientList();
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < ingredients.size(); i++) {
-            builder.append((i + 1) + ". " + ingredients.get(i).toString() + "\n");
+            builder.append((i + 1) + ". " + ingredients.get(i).toString().trim() + "\n");
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW, model.getFilteredIngredientList().size())

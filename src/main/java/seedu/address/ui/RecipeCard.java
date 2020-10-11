@@ -65,7 +65,7 @@ public class RecipeCard extends UiPart<Region> {
         recipeImageView.setImage(new Image(recipe.getRecipeImage()));
 
         ingredients.setText(recipe.getIngredient().stream()
-                .map(item -> item.getValue())
+                .map(item -> item.getQuantity() + " " + item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         calories.setText(recipe.getCalories().value.toString() + " cal");
     }
