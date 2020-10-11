@@ -1,22 +1,24 @@
-package seedu.address.model.food;
+package seedu.address.model.menu;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.FoodCommandTestUtil.VALID_NAME_PRATA;
 import static seedu.address.logic.commands.FoodCommandTestUtil.VALID_PRICE_MILO;
 import static seedu.address.logic.commands.FoodCommandTestUtil.VALID_TAG_CLASSIC;
-
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalFoods.*;
-
-import org.junit.jupiter.api.Test;
+import static seedu.address.testutil.TypicalFoods.MILO;
+import static seedu.address.testutil.TypicalFoods.PRATA;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.food.Food;
 import seedu.address.model.food.exceptions.DuplicateFoodException;
 import seedu.address.model.food.exceptions.FoodNotFoundException;
-import seedu.address.model.menu.Menu;
 import seedu.address.testutil.FoodBuilder;
 
 public class MenuTest {

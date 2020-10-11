@@ -1,6 +1,8 @@
 package seedu.address.model.food;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFoods.CHEESE_PRATA;
@@ -49,5 +51,11 @@ public class FoodTest {
         // different tags -> returns false
         editedPrata = new FoodBuilder(PRATA).withTags("false").build();
         assertFalse(PRATA.equals(editedPrata));
+    }
+
+    @Test
+    public void getPriceString() {
+        assertEquals(PRATA.getPriceString(), "$1.00");
+        assertNotEquals(PRATA.getPriceString(), "$1.20");
     }
 }

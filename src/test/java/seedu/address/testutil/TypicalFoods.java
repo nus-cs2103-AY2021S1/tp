@@ -30,7 +30,7 @@ public class TypicalFoods {
     /**
      * Returns an {@code MenuManager} with all the typical foods.
      */
-    public static MenuManager getTypicalAddressBook() {
+    public static MenuManager getTypicalMenuManager() {
         MenuManager menuManager = new MenuManager();
         for (Food food : getTypicalFoods()) {
             menuManager.addFood(food);
