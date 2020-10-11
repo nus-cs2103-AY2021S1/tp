@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.ALICE;
+import static seedu.address.testutil.TypicalTags.CS2103;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -44,8 +44,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTags_throwsDuplicateTagException() {
         // Two persons with the same identity fields
-        Tag editedAlice = new TagBuilder(ALICE).build();
-        List<Tag> newPersons = Arrays.asList(ALICE, editedAlice);
+        Tag editedAlice = new TagBuilder(CS2103).build();
+        List<Tag> newPersons = Arrays.asList(CS2103, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicateTagException.class, () -> addressBook.resetData(newData));
@@ -58,19 +58,19 @@ public class AddressBookTest {
 
     @Test
     public void hasTag_tagNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTag(ALICE));
+        assertFalse(addressBook.hasTag(CS2103));
     }
 
     @Test
     public void hasTag_tagInAddressBook_returnsTrue() {
-        addressBook.addTag(ALICE);
-        assertTrue(addressBook.hasTag(ALICE));
+        addressBook.addTag(CS2103);
+        assertTrue(addressBook.hasTag(CS2103));
     }
 
     @Test
     public void hasTag_tagWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addTag(ALICE);
-        Tag editedAlice = new TagBuilder(ALICE).build();
+        addressBook.addTag(CS2103);
+        Tag editedAlice = new TagBuilder(CS2103).build();
         assertTrue(addressBook.hasTag(editedAlice));
     }
 

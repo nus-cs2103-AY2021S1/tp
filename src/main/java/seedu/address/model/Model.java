@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -84,4 +85,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTagList(Predicate<Tag> predicate);
+
+    /**
+     * Finds the filter of the filtered tag list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    List<Tag> findFilteredTagList(Predicate<Tag> predicate);
 }

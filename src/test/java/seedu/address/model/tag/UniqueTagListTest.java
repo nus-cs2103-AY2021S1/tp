@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.ALICE;
 import static seedu.address.testutil.TypicalTags.BOB;
+import static seedu.address.testutil.TypicalTags.CS2103;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,19 +29,19 @@ public class UniqueTagListTest {
 
     @Test
     public void contains_tagNotInList_returnsFalse() {
-        assertFalse(uniqueTagList.contains(ALICE));
+        assertFalse(uniqueTagList.contains(CS2103));
     }
 
     @Test
     public void contains_tagInList_returnsTrue() {
-        uniqueTagList.add(ALICE);
-        assertTrue(uniqueTagList.contains(ALICE));
+        uniqueTagList.add(CS2103);
+        assertTrue(uniqueTagList.contains(CS2103));
     }
 
     @Test
     public void contains_tagWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueTagList.add(ALICE);
-        Tag editedAlice = new TagBuilder(ALICE).build();
+        uniqueTagList.add(CS2103);
+        Tag editedAlice = new TagBuilder(CS2103).build();
         assertTrue(uniqueTagList.contains(editedAlice));
     }
 
@@ -52,39 +52,39 @@ public class UniqueTagListTest {
 
     @Test
     public void add_duplicateTag_throwsDuplicateTagException() {
-        uniqueTagList.add(ALICE);
-        assertThrows(DuplicateTagException.class, () -> uniqueTagList.add(ALICE));
+        uniqueTagList.add(CS2103);
+        assertThrows(DuplicateTagException.class, () -> uniqueTagList.add(CS2103));
     }
 
     @Test
     public void setTag_nullTargetTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTagList.setTag(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueTagList.setTag(null, CS2103));
     }
 
     @Test
     public void setTag_nullEditedTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTagList.setTag(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueTagList.setTag(CS2103, null));
     }
 
     @Test
     public void setTag_targetTagNotInList_throwsTagNotFoundException() {
-        assertThrows(TagNotFoundException.class, () -> uniqueTagList.setTag(ALICE, ALICE));
+        assertThrows(TagNotFoundException.class, () -> uniqueTagList.setTag(CS2103, CS2103));
     }
 
     @Test
     public void setTag_editedTagIsSameTag_success() {
-        uniqueTagList.add(ALICE);
-        uniqueTagList.setTag(ALICE, ALICE);
+        uniqueTagList.add(CS2103);
+        uniqueTagList.setTag(CS2103, CS2103);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
-        expectedUniqueTagList.add(ALICE);
+        expectedUniqueTagList.add(CS2103);
         assertEquals(expectedUniqueTagList, uniqueTagList);
     }
 
     @Test
     public void setTag_editedTagHasSameIdentity_success() {
-        uniqueTagList.add(ALICE);
-        Tag editedAlice = new TagBuilder(ALICE).withFileAddress(VALID_FILE_ADDRESS_BOB).build();
-        uniqueTagList.setTag(ALICE, editedAlice);
+        uniqueTagList.add(CS2103);
+        Tag editedAlice = new TagBuilder(CS2103).withFileAddress(VALID_FILE_ADDRESS_BOB).build();
+        uniqueTagList.setTag(CS2103, editedAlice);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
         expectedUniqueTagList.add(editedAlice);
         assertEquals(expectedUniqueTagList, uniqueTagList);
@@ -92,8 +92,8 @@ public class UniqueTagListTest {
 
     @Test
     public void setTag_editedTagHasDifferentIdentity_success() {
-        uniqueTagList.add(ALICE);
-        uniqueTagList.setTag(ALICE, BOB);
+        uniqueTagList.add(CS2103);
+        uniqueTagList.setTag(CS2103, BOB);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
         expectedUniqueTagList.add(BOB);
         assertEquals(expectedUniqueTagList, uniqueTagList);
@@ -101,9 +101,9 @@ public class UniqueTagListTest {
 
     @Test
     public void setTag_editedTagHasNonUniqueIdentity_throwsDuplicateTagException() {
-        uniqueTagList.add(ALICE);
+        uniqueTagList.add(CS2103);
         uniqueTagList.add(BOB);
-        assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTag(ALICE, BOB));
+        assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTag(CS2103, BOB));
     }
 
     @Test
@@ -113,13 +113,13 @@ public class UniqueTagListTest {
 
     @Test
     public void remove_tagDoesNotExist_throwsTagNotFoundException() {
-        assertThrows(TagNotFoundException.class, () -> uniqueTagList.remove(ALICE));
+        assertThrows(TagNotFoundException.class, () -> uniqueTagList.remove(CS2103));
     }
 
     @Test
     public void remove_existingTag_removesTag() {
-        uniqueTagList.add(ALICE);
-        uniqueTagList.remove(ALICE);
+        uniqueTagList.add(CS2103);
+        uniqueTagList.remove(CS2103);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
         assertEquals(expectedUniqueTagList, uniqueTagList);
     }
@@ -131,7 +131,7 @@ public class UniqueTagListTest {
 
     @Test
     public void setTag_uniqueTagList_replacesOwnListWithProvidedUniqueTagList() {
-        uniqueTagList.add(ALICE);
+        uniqueTagList.add(CS2103);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
         expectedUniqueTagList.add(BOB);
         uniqueTagList.setTags(expectedUniqueTagList);
@@ -145,7 +145,7 @@ public class UniqueTagListTest {
 
     @Test
     public void setTags_list_replacesOwnListWithProvidedList() {
-        uniqueTagList.add(ALICE);
+        uniqueTagList.add(CS2103);
         List<Tag> tagList = Collections.singletonList(BOB);
         uniqueTagList.setTags(tagList);
         UniqueTagList expectedUniqueTagList = new UniqueTagList();
@@ -155,7 +155,7 @@ public class UniqueTagListTest {
 
     @Test
     public void setTags_listWithDuplicateTags_throwsDuplicateTagException() {
-        List<Tag> listWithDuplicateTags = Arrays.asList(ALICE, ALICE);
+        List<Tag> listWithDuplicateTags = Arrays.asList(CS2103, CS2103);
         assertThrows(DuplicateTagException.class, () -> uniqueTagList.setTags(listWithDuplicateTags));
     }
 

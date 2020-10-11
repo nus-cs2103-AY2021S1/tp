@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TAGS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.ALICE;
 import static seedu.address.testutil.TypicalTags.BENSON;
+import static seedu.address.testutil.TypicalTags.CS2103;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTag_tagNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasTag(ALICE));
+        assertFalse(modelManager.hasTag(CS2103));
     }
 
     @Test
     public void hasTag_tagInAddressBook_returnsTrue() {
-        modelManager.addTag(ALICE);
-        assertTrue(modelManager.hasTag(ALICE));
+        modelManager.addTag(CS2103);
+        assertTrue(modelManager.hasTag(CS2103));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withTag(ALICE).withTag(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withTag(CS2103).withTag(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTagName().tagName.split("\\s+");
+        String[] keywords = CS2103.getTagName().tagName.split("\\s+");
         modelManager.updateFilteredTagList(new TagNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
