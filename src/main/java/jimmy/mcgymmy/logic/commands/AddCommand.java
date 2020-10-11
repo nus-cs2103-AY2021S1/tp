@@ -2,7 +2,6 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
