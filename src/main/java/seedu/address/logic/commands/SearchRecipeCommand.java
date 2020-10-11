@@ -30,7 +30,8 @@ public class SearchRecipeCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecipeList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
+                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()),
+                false, false, true, false);
     }
 
     @Override
