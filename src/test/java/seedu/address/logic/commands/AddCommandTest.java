@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -192,8 +193,9 @@ public class AddCommandTest {
             Set<Tag> providedItemTags = item.getTags();
             Set<Tag> combinedTags = new HashSet<>(providedItemTags);
             Quantity maxQuantity = item.getMaxQuantity().orElse(null);
+            Metric metric = item.getMetric().orElse(null);
 
-            return new Item(name, quantity, supplier, combinedTags, maxQuantity);
+            return new Item(name, quantity, supplier, combinedTags, maxQuantity, metric);
         }
 
         @Override
@@ -246,8 +248,9 @@ public class AddCommandTest {
             Set<Tag> providedItemTags = item.getTags();
             Set<Tag> combinedTags = new HashSet<>(providedItemTags);
             Quantity maxQuantity = item.getMaxQuantity().orElse(null);
+            Metric metric = item.getMetric().orElse(null);
 
-            return new Item(name, quantity, supplier, combinedTags, maxQuantity);
+            return new Item(name, quantity, supplier, combinedTags, maxQuantity, metric);
         }
 
         @Override

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -28,6 +29,7 @@ class JsonAdaptedItem {
     private final String supplier;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String maxQuantity;
+    private final String metric;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
@@ -37,7 +39,8 @@ class JsonAdaptedItem {
                            @JsonProperty("quantity") String quantity,
                            @JsonProperty("supplier") String supplier,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                           @JsonProperty("maxQuantity") String maxQuantity) {
+                           @JsonProperty("maxQuantity") String maxQuantity,
+                           @JsonProperty("metric") String metric) {
         this.name = name;
         this.quantity = quantity;
         this.supplier = supplier;
@@ -45,6 +48,7 @@ class JsonAdaptedItem {
             this.tagged.addAll(tagged);
         }
         this.maxQuantity = maxQuantity;
+        this.metric = metric;
     }
 
     /**
@@ -58,6 +62,7 @@ class JsonAdaptedItem {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         maxQuantity = source.getMaxQuantity().map(q -> q.value).orElse(null);
+        metric = source.getMetric().map(m -> m.value).orElse(null);
     }
 
     /**
@@ -103,7 +108,13 @@ class JsonAdaptedItem {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelMaxQuantity = maxQuantity == null ? null : new Quantity(maxQuantity);
-        return new Item(modelName, modelQuantity, modelSupplier, modelTags, modelMaxQuantity);
+
+        if (metric != null && !Metric.isValidMetric(metric)) {
+            throw new IllegalValueException(Metric.MESSAGE_CONSTRAINTS);
+        }
+        final Metric modelMetric = metric == null ? null : new Metric(metric);
+
+        return new Item(modelName, modelQuantity, modelSupplier, modelTags, modelMaxQuantity, modelMetric);
     }
 
 }

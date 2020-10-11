@@ -54,19 +54,38 @@ public class ItemCard extends UiPart<Region> {
         this.item = item;
         String itemQuantity = item.getQuantity().value;
         Optional<String> itemMaxQuantity = item.getMaxQuantity().map(q -> q.value);
+        Optional<String> itemMetric = item.getMetric().map(m -> m.value);
 
         id.setText(displayedIndex + ". ");
         name.setText(item.getName().fullName);
         quantity.setText(itemQuantity);
+
         if (itemMaxQuantity.isPresent()) {
             String maxQuantity = itemMaxQuantity.get();
             float percentage = Float.parseFloat(itemQuantity) / Integer.parseInt(maxQuantity) * 100;
-            String stats = String.format("/%s (%.01f%%)", maxQuantity, percentage);
-            quantityStats.setText(stats);
+
+
+            if (itemMetric.isPresent()) {
+                String met = itemMetric.get();
+                String statsWithMetric = String.format("/%s %s (%.01f%%)", maxQuantity, met, percentage);
+                quantityStats.setText(statsWithMetric);
+            } else {
+                String stats = String.format("/%s (%.01f%%)", maxQuantity, percentage);
+                quantityStats.setText(stats);
+            }
+
             if (percentage > 100) {
                 quantityStats.setFill(Color.RED);
             }
+        } else {
+            if (itemMetric.isPresent()) {
+                String met = itemMetric.get();
+                String quantityWithMetric = String.format("%s %s", itemQuantity, met);
+                quantity.setText(quantityWithMetric);
+            }
         }
+
+
         supplier.setText(item.getSupplier().value);
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
