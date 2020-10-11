@@ -15,4 +15,8 @@ public interface ReadOnlyUserPrefs {
 
     Path getBidBookFilePath();
 
+    Path getSellerAddressBookFilePath();
+
+    Path getBidderAddressBookFilePath();
+
 }

@@ -6,6 +6,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
+import seedu.address.ui.bidder.BidderListPanel;
+import seedu.address.ui.seller.SellerListPanel;
 
 
 public class TabBar extends UiPart<Region> {
@@ -13,6 +15,8 @@ public class TabBar extends UiPart<Region> {
     private static final String FXML = "TabBar.fxml";
     private static final String FXML2 = "PersonListPanel.fxml";
     private static final String FXML3 = "BidListPanel.fxml";
+    private static final String FXML4 = "BidderListPanel.fxml";
+    private static final String FXML5 = "SellerListPanel.fxml";
 
     private Logic logic;
 
@@ -21,6 +25,18 @@ public class TabBar extends UiPart<Region> {
 
     @FXML
     private Tab personTab;
+
+    @FXML
+    private Tab sellerTab;
+
+    @FXML
+    private StackPane sellerListPanelPlaceholder;
+
+    @FXML
+    private Tab bidderTab;
+
+    @FXML
+    private StackPane bidderListPanelPlaceholder;
 
     @FXML
     private Tab bidTab;
@@ -48,6 +64,8 @@ public class TabBar extends UiPart<Region> {
     private void setPersonAndBidTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");
+        bidderTab.setText("Bidders");
+        sellerTab.setText("Sellers");
         personAndBidTabBar.setTabMinWidth(335);
         personAndBidTabBar.setTabMaxWidth(335);
     }
@@ -58,8 +76,12 @@ public class TabBar extends UiPart<Region> {
     private void populateTab() {
         PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         BidListPanel bidListPanel = new BidListPanel(logic.getFilteredBidList());
+        BidderListPanel bidderListPanel = new BidderListPanel(logic.getFilteredBidderList());
+        SellerListPanel sellerListPanel = new SellerListPanel(logic.getFilteredSellerList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         bidListPanelPlaceholder.getChildren().add(bidListPanel.getRoot());
+        bidderListPanelPlaceholder.getChildren().add(bidderListPanel.getRoot());
+        sellerListPanelPlaceholder.getChildren().add(sellerListPanel.getRoot());
     }
 }
 

@@ -9,10 +9,11 @@ import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
 
+
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends BidderModel, SellerModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 

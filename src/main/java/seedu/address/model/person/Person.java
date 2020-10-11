@@ -26,7 +26,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Set<Tag> tags) {
-        requireAllNonNull(name, phone, tags);
+        requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
         this.tags.addAll(tags);

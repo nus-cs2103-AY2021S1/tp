@@ -1,17 +1,17 @@
-package seedu.address.model;
+package seedu.address.model.selleraddressbook;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Bidder;
+import seedu.address.model.person.seller.Seller;
 
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyBidderAddressBook {
+public interface ReadOnlySellerAddressBook {
 
     /**
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Bidder> getBidderList();
+    ObservableList<Seller> getSellerList();
 
 }

@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.person.seller.UniqueSellerList;
 import seedu.address.testutil.SellerBuilder;
 
 public class UniqueSellerListTest {
