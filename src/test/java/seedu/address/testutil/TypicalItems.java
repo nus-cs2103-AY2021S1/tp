@@ -27,6 +27,7 @@ public class TypicalItems {
             .withSupplier("Cold Storage")
             .withQuantity("33")
             .withTags("meat")
+            .withMaxQuantity("500")
             .build();
     public static final Item SALMON = new ItemBuilder().withName("Salmon")
             .withSupplier("No Supplier")

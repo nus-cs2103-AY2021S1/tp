@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-//import seedu.address.model.item.Metric;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -31,8 +31,8 @@ public class JsonAdaptedItemTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = DUCK.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_MAX_QUANTITY = DUCK.getMaxQuantity().toString();
-    private static final String VALID_METRIC = DUCK.getMetric().toString();
+    private static final String VALID_MAX_QUANTITY = DUCK.getMaxQuantity().get().toString();
+    private static final String VALID_METRIC = DUCK.getMetric().get().toString();
 
     @Test
     public void toModelType_validItemDetails_returnsItem() throws Exception {
@@ -105,7 +105,6 @@ public class JsonAdaptedItemTest {
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
-    /*
     @Test
     public void toModelType_invalidMetric_throwsIllegalValueException() {
         JsonAdaptedItem item = new JsonAdaptedItem(VALID_NAME, VALID_QUANTITY, VALID_SUPPLIER,
@@ -113,5 +112,4 @@ public class JsonAdaptedItemTest {
         String expectedMessage = Metric.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
-    */
 }
