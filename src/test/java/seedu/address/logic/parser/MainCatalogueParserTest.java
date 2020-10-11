@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import seedu.address.logic.commands.project.AssignCommand;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.catalogue.ListCommand;
 import seedu.address.logic.commands.catalogue.StartCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
+import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
@@ -33,7 +35,6 @@ import seedu.address.model.project.Status;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 public class MainCatalogueParserTest {
 
@@ -115,8 +116,9 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_assign() throws Exception {
         AssignCommand command = (AssignCommand) parser.parseCommand(
-                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " Alice", Status.PROJECT);
-        assertEquals(new AssignCommand(INDEX_FIRST_TASK, "Alice"), command);
+                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " " + ALICE.getPersonName(),
+                Status.PROJECT);
+        assertEquals(new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().toString()), command);
     }
 
     @Test
