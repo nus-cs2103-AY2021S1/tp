@@ -5,10 +5,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPropertyBook;
+import seedu.address.model.id.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.price.Price;
+import seedu.address.model.property.Address;
+import seedu.address.model.property.IsClosedDeal;
+import seedu.address.model.property.IsRental;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyName;
+import seedu.address.model.property.PropertyType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,6 +48,29 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    // ================ PropertyBook ==============================
+    public static Property[] getSampleProperties() {
+        return new Property[]{
+                new Property(new PropertyName("Sunrise Condo"), new Id("S123"),
+                        new Address("Block 123"), new Price(100), new PropertyType("Condo"),
+                        new IsRental("No"), new IsClosedDeal("Active")),
+                new Property(new PropertyName("Sundown HDB"), new Id("S567"),
+                        new Address("Block 456"), new Price(200), new PropertyType("HDB"),
+                        new IsRental("No"), new IsClosedDeal("Active")),
+                new Property(new PropertyName("Moonshine Mansion"), new Id("S789"),
+                        new Address("Block 789"), new Price(1000), new PropertyType("Mansion"),
+                        new IsRental("No"), new IsClosedDeal("Active"))
+        };
+    }
+
+    public static ReadOnlyPropertyBook getSamplePropertyBook() {
+        PropertyBook samplePb = new PropertyBook();
+        for (Property sampleProperty : getSampleProperties()) {
+            samplePb.addProperty(sampleProperty);
+        }
+        return samplePb;
     }
 
     /**

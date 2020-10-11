@@ -27,13 +27,30 @@ public class Property {
     private final Price askingPrice;
     private final PropertyType propertyType;
     private final IsRental isRental;
-    private final boolean isClosedDeal;
+    private final IsClosedDeal isClosedDeal;
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Property(Id propertyId, PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
+                    PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
+        requireAllNonNull(propertyId, propertyName, sellerId, address, askingPrice, propertyType,
+                isRental, isClosedDeal);
+        this.propertyId = propertyId;
+        this.propertyName = propertyName;
+        this.sellerId = sellerId;
+        this.address = address;
+        this.askingPrice = askingPrice;
+        this.propertyType = propertyType;
+        this.isRental = isRental;
+        this.isClosedDeal = isClosedDeal;
+    }
 
     /**
      * Every field must be present and not null.
      */
     public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
-                    PropertyType propertyType, IsRental isRental, boolean isClosedDeal) {
+                    PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
         requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
         this.propertyId = idManager.getNextId();
         this.propertyName = propertyName;
@@ -77,7 +94,7 @@ public class Property {
         return isRental.isRental();
     }
 
-    public boolean isClosedDeal() {
+    public IsClosedDeal isClosedDeal() {
         return isClosedDeal;
     }
 
@@ -118,7 +135,7 @@ public class Property {
                 && this.getPropertyType().equals(otherProperty.getPropertyType())
                 && this.getSellerId().equals(otherProperty.getSellerId())
                 && this.isRental() == (otherProperty.isRental())
-                && this.isClosedDeal() == otherProperty.isClosedDeal();
+                && this.isClosedDeal().equals(otherProperty.isClosedDeal());
     }
 
     @Override
@@ -130,7 +147,7 @@ public class Property {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        if (isClosedDeal()) {
+        if (isClosedDeal().isClosedDeal) {
             builder.append("[CLOSED] ");
         }
         builder.append(getPropertyName())
