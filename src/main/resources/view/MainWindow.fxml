@@ -24,7 +24,6 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
@@ -44,7 +43,6 @@
               </rowConstraints>
                <children>
              <StackPane fx:id="personListPanelPlaceholder" styleClass="pane-with-border" />
-      
                                       <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" GridPane.columnIndex="1">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
@@ -52,13 +50,11 @@
               </StackPane>
                </children>
             </GridPane>
-
                  <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
                        <StackPane fx:id="statusbarPlaceholder" prefWidth="119.0" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
