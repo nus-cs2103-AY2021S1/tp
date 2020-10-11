@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Module;
+import seedu.address.model.module.Module;
 
 /**
  * Adds a Module to the address book.
@@ -31,9 +31,9 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Module}
      */
-    public AddCommand(Module Module) {
-        requireNonNull(Module);
-        toAdd = Module;
+    public AddCommand(Module module) {
+        requireNonNull(module);
+        toAdd = module;
     }
 
     @Override

@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.ZoomLink;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Name;
+import seedu.address.model.module.ZoomLink;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,9 +34,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
 
-        Module Module = new Module(name, zoomLink);
+        Module module = new Module(name, zoomLink);
 
-        return new AddCommand(Module);
+        return new AddCommand(module);
     }
 
     /**

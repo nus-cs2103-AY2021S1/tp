@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.UniqueModuleList;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 
 /**
  * Wraps all data at the address-book level
@@ -43,8 +43,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the Module list with {@code Modules}.
      * {@code Modules} must not contain duplicate Modules.
      */
-    public void setModules(List<Module> Modules) {
-        this.modules.setModules(Modules);
+    public void setModules(List<Module> modules) {
+        this.modules.setModules(modules);
     }
 
     /**

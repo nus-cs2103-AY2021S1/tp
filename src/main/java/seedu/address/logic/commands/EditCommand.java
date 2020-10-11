@@ -13,9 +13,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Module;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.ZoomLink;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Name;
+import seedu.address.model.module.ZoomLink;
 
 /**
  * Edits the details of an existing Module in the address book.

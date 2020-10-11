@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicateModuleException;
-import seedu.address.model.person.exceptions.ModuleNotFoundException;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * A list of Modules that enforces uniqueness between its elements and does not allow nulls.
