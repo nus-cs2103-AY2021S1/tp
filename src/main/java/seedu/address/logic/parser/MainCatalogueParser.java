@@ -75,6 +75,8 @@ public class MainCatalogueParser {
                 return new HelpCommand();
 
             case StartCommand.COMMAND_WORD:
+                return new StartCommandParser().parse(arguments);
+
             case LeaveCommand.COMMAND_WORD:
                 throw new InvalidScopeException(Status.PROJECT, Status.CATALOGUE);
 
@@ -83,9 +85,6 @@ public class MainCatalogueParser {
             }
         } else if (status == Status.PROJECT) {
             switch (commandWord) {
-
-            case StartCommand.COMMAND_WORD:
-                return new StartCommandParser().parse(arguments);
 
             case LeaveCommand.COMMAND_WORD:
                 return new LeaveCommand();
@@ -102,6 +101,7 @@ public class MainCatalogueParser {
             case ClearCommand.COMMAND_WORD:
             case FindCommand.COMMAND_WORD:
             case ListCommand.COMMAND_WORD:
+            case StartCommand.COMMAND_WORD:
                 throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
 
             default:
