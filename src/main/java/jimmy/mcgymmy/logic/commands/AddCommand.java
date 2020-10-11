@@ -70,7 +70,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         // rewriting this class as an example, tags not implemented.
         Name newName = nameParameter.consume();
@@ -82,10 +82,6 @@ public class AddCommand extends Command {
         if (this.tagParameter.getValue().isPresent()) {
             Tag newTag = this.tagParameter.getValue().get();
             toAdd.addTag(newTag);
-        }
-
-        if (model.hasFood(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FOOD);
         }
 
         model.addFood(toAdd);

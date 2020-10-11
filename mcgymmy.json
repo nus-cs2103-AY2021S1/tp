@@ -23,5 +23,11 @@
     "fat" : "17",
     "carbs" : "31",
     "tagged" : [ "Lunch" ]
+  }, {
+    "name" : "Sushi",
+    "protein" : "200",
+    "fat" : "0",
+    "carbs" : "100",
+    "tagged" : [ ]
   } ]
 }
