@@ -8,11 +8,12 @@ import java.util.regex.Pattern;
 
 import nustorage.logic.commands.AddCommand;
 import nustorage.logic.commands.AddFinanceCommand;
-import nustorage.logic.commands.AddInventoryCommand;
+import nustorage.logic.commands.AddInventoryRecordCommand;
 import nustorage.logic.commands.ClearCommand;
 import nustorage.logic.commands.Command;
 import nustorage.logic.commands.DeleteCommand;
 import nustorage.logic.commands.DeleteFinanceCommand;
+import nustorage.logic.commands.DeleteInventoryRecordCommand;
 import nustorage.logic.commands.EditCommand;
 import nustorage.logic.commands.EditFinanceCommand;
 import nustorage.logic.commands.EditInventoryCommand;
@@ -53,11 +54,14 @@ public class AddressBookParser {
         case ListInventoryCommand.COMMAND_WORD:
             return new ListInventoryCommand();
 
-        case AddInventoryCommand.COMMAND_WORD:
-            return new AddInventoryCommandParser().parse(arguments);
+        case AddInventoryRecordCommand.COMMAND_WORD:
+            return new AddInventoryRecordCommandParser().parse(arguments);
 
         case EditInventoryCommand.COMMAND_WORD:
             return new EditInventoryCommandParser().parse(arguments);
+
+        case DeleteInventoryRecordCommand.COMMAND_WORD:
+            return new DeleteInventoryRecordCommandParser().parse(arguments);
 
         case AddFinanceCommand.COMMAND_WORD:
             return new AddFinanceCommandParser().parse(arguments);
