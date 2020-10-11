@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
     private final UniqueModuleList modules;
 
     /**
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         modules = this.addressBook.getModuleList();
+        filteredModules = new FilteredList<>(this.modules.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -137,11 +139,6 @@ public class ModelManager implements Model {
         addressBook.addModule(module);
     }
 
-    @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        return modules.asUnmodifiableObservableList();
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -167,6 +164,20 @@ public class ModelManager implements Model {
     @Override
     public UniqueModuleList getModuleList() {
         return modules;
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    /**
+     *
+     * @param predicate
+     */
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        this.filteredModules.setPredicate(predicate);
     }
 
     @Override
