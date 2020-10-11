@@ -38,7 +38,7 @@ public class StudentUtil {
         sb.append(PREFIX_YEAR + String.valueOf(student.getYear().year) + " ");
         sb.append(PREFIX_VENUE + student.getAdmin().getClassVenue().venue + " ");
         //There needs to be a way to convert back and forth for the admin details
-        sb.append(PREFIX_TIME + student.getAdmin().getClassTime().dayOfWeek.toString()
+        sb.append(PREFIX_TIME + String.valueOf(student.getAdmin().getClassTime().dayOfWeek.getValue())
                 + " " + student.getAdmin().getClassTime().startTime.toString().replace(":", "")
                 + "-" + student.getAdmin().getClassTime().endTime.toString().replace(":", "") + " ");
         sb.append(PREFIX_FEE + String.valueOf(student.getAdmin().getFee().amount) + " ");

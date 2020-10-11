@@ -1,11 +1,13 @@
 package seedu.address.model.student.admin;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -25,9 +27,10 @@ public class ClassTime {
     public static final String VALIDATION_REGEX = "([1-7])[\\s]" + TIME_VALIDATION + "-" + TIME_VALIDATION;
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHm");
 
-    public final Integer dayOfWeek;
+    public final DayOfWeek dayOfWeek;
     public final LocalTime startTime;
     public final LocalTime endTime;
+
 
     /**
      * Constructs a {@code ClassTime}.
@@ -49,9 +52,9 @@ public class ClassTime {
         return test.matches(VALIDATION_REGEX);
     }
 
-    private static int extractDay(String input) {
+    private static DayOfWeek extractDay(String input) {
         char day = input.charAt(0);
-        return Integer.parseInt(String.valueOf(day));
+        return DayOfWeek.of(Integer.parseInt(String.valueOf(day)));
     }
 
     private static LocalTime extractStartTime(String input) {
@@ -66,8 +69,9 @@ public class ClassTime {
 
     @Override
     public String toString() {
+        String dayDisplayName = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         return String.format("Day of week: %s, Start time: %s, End Time: %s",
-                this.dayOfWeek,
+                dayDisplayName,
                 this.startTime.format(TIME_FORMATTER),
                 this.endTime.format(TIME_FORMATTER));
     }
