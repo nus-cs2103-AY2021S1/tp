@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = mainCatalogueParser.parseCommand(commandText);
+        Command command = mainCatalogueParser.parseCommand(commandText, model.getStatus());
         commandResult = command.execute(model);
 
         try {
