@@ -42,7 +42,7 @@ class JsonAdaptedProject {
                                 @JsonProperty("repoUrl") String repoUrl,
                                 @JsonProperty("projectDescription") String projectDescription,
                                 @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
-                                @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
+                                @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied) {
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -50,8 +50,8 @@ class JsonAdaptedProject {
         if (projectTagged != null) {
             this.projectTagged.addAll(projectTagged);
         }
-        if (occupied != null) {
-            this.occupied.addAll(occupied);
+        if (projectOccupied != null) {
+            this.occupied.addAll(projectOccupied);
         }
     }
 
