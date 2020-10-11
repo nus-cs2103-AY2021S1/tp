@@ -1,0 +1,27 @@
+{
+  "food" : [ {
+    "name" : "Chicken Rice",
+    "protein" : "100",
+    "fat" : "300",
+    "carbs" : "100",
+    "tagged" : [ "Lunch" ]
+  }, {
+    "name" : "Rice Bowl",
+    "protein" : "300",
+    "fat" : "200",
+    "carbs" : "100",
+    "tagged" : [ "Dinner", "Lunch" ]
+  }, {
+    "name" : "Fried Chicken",
+    "protein" : "200",
+    "fat" : "100",
+    "carbs" : "10",
+    "tagged" : [ "Tasty" ]
+  }, {
+    "name" : "Nasi Lemak",
+    "protein" : "20",
+    "fat" : "17",
+    "carbs" : "31",
+    "tagged" : [ "Lunch" ]
+  } ]
+}

@@ -20,7 +20,8 @@ class UnTagCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Food foodToRmTag = model.getFilteredFoodList().get(TypicalIndexes.INDEX_FIRST_FOOD.getZeroBased());
+        Index index = TypicalIndexes.INDEX_FIRST_FOOD;
+        Food foodToRmTag = model.getFilteredFoodList().get(index.getZeroBased());
         UnTagCommand unTagCommand = new UnTagCommand();
         unTagCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_FOOD),
@@ -32,7 +33,7 @@ class UnTagCommandTest {
         ModelManager expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
         Food expFood = new FoodBuilder(foodToRmTag).build();
         expFood.removeTag(new Tag("lunch"));
-        expectedModel.setFood(foodToRmTag, expFood);
+        expectedModel.setFood(index, expFood);
 
         CommandTestUtil.assertCommandSuccess(unTagCommand, model, expectedMessage, expectedModel);
     }
@@ -77,7 +78,7 @@ class UnTagCommandTest {
         ModelManager expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
         Food expFood = new FoodBuilder(foodToTag).build();
         expFood.removeTag(new Tag("lunch"));
-        expectedModel.setFood(model.getFilteredFoodList().get(0), expFood);
+        expectedModel.setFood(TypicalIndexes.INDEX_FIRST_FOOD, expFood);
 
         CommandTestUtil.assertCommandSuccess(unTagCommand, model, expectedMessage, expectedModel);
     }

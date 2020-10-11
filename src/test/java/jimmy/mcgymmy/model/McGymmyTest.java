@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.model.food.Food;
-import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 import jimmy.mcgymmy.testutil.TypicalFoods;
 
@@ -41,13 +40,14 @@ public class McGymmyTest {
     }
 
     @Test
-    public void resetData_withDuplicateFoods_throwsDuplicateFoodException() {
+    public void resetData_withDuplicateFoods_replacesData() {
         // Two foods with the same identity fields
         Food editedFood = new FoodBuilder(TypicalFoods.CHICKEN_RICE).build();
         List<Food> newFoods = Arrays.asList(TypicalFoods.CHICKEN_RICE, editedFood);
         McGymmyStub newData = new McGymmyStub(newFoods);
+        mcGymmy.resetData(newData);
 
-        assertThrows(DuplicateFoodException.class, () -> mcGymmy.resetData(newData));
+        assertEquals(mcGymmy, newData);
     }
 
     @Test

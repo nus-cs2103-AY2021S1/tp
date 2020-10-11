@@ -45,7 +45,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
-        expectedModel.setFood(model.getFilteredFoodList().get(0), editedFood);
+        expectedModel.setFood(Index.fromZeroBased(0), editedFood);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -55,8 +55,8 @@ public class EditCommandTest {
         Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
         Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
 
-        FoodBuilder personInList = new FoodBuilder(lastFood);
-        Food editedFood = personInList.withName(new Name(VALID_NAME_BOB)).withProtein(VALID_PROTEIN_BOB).build();
+        FoodBuilder foodInList = new FoodBuilder(lastFood);
+        Food editedFood = foodInList.withName(new Name(VALID_NAME_BOB)).withProtein(VALID_PROTEIN_BOB).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
@@ -70,7 +70,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
-        expectedModel.setFood(lastFood, editedFood);
+        expectedModel.setFood(indexLastFood, editedFood);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -114,45 +114,45 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FOOD_SUCCESS, editedFood);
 
         Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
-        expectedModel.setFood(model.getFilteredFoodList().get(0), editedFood);
+        expectedModel.setFood(Index.fromZeroBased(0), editedFood);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_duplicateFoodUnfilteredList_failure() {
-        Food firstFood = model.getFilteredFoodList().get(INDEX_FIRST_FOOD.getZeroBased());
-        EditCommand editCommand = new EditCommand();
-        editCommand.setParameters(
-                new CommandParserTestUtil.ParameterStub<>("", INDEX_SECOND_FOOD),
-                new CommandParserTestUtil.OptionalParameterStub<>("n", firstFood.getName()),
-                new CommandParserTestUtil.OptionalParameterStub<>("p", firstFood.getProtein()),
-                new CommandParserTestUtil.OptionalParameterStub<>("f", firstFood.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", firstFood.getCarbs())
-        );
+//    @Test
+//    public void execute_duplicateFoodUnfilteredList_failure() {
+//        Food firstFood = model.getFilteredFoodList().get(INDEX_FIRST_FOOD.getZeroBased());
+//        EditCommand editCommand = new EditCommand();
+//        editCommand.setParameters(
+//                new CommandParserTestUtil.ParameterStub<>("", INDEX_SECOND_FOOD),
+//                new CommandParserTestUtil.OptionalParameterStub<>("n", firstFood.getName()),
+//                new CommandParserTestUtil.OptionalParameterStub<>("p", firstFood.getProtein()),
+//                new CommandParserTestUtil.OptionalParameterStub<>("f", firstFood.getFat()),
+//                new CommandParserTestUtil.OptionalParameterStub<>("c", firstFood.getCarbs())
+//        );
+//
+//
+//        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
+//    }
 
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
-    }
-
-    @Test
-    public void execute_duplicateFoodFilteredList_failure() {
-        showFoodAtIndex(model, INDEX_FIRST_FOOD);
-
-        // edit food in filtered list into a duplicate in address book
-        Food foodInList =
-                model.getMcGymmy().getFoodList().get(INDEX_SECOND_FOOD.getZeroBased());
-        EditCommand editCommand = new EditCommand();
-        editCommand.setParameters(
-                new CommandParserTestUtil.ParameterStub<>("", INDEX_FIRST_FOOD),
-                new CommandParserTestUtil.OptionalParameterStub<>("n", foodInList.getName()),
-                new CommandParserTestUtil.OptionalParameterStub<>("p", foodInList.getProtein()),
-                new CommandParserTestUtil.OptionalParameterStub<>("f", foodInList.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", foodInList.getCarbs())
-        );
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
-    }
+//    @Test
+//    public void execute_duplicateFoodFilteredList_failure() {
+//        showFoodAtIndex(model, INDEX_FIRST_FOOD);
+//
+//        // edit food in filtered list into a duplicate in address book
+//        Food foodInList =
+//                model.getMcGymmy().getFoodList().get(INDEX_SECOND_FOOD.getZeroBased());
+//        EditCommand editCommand = new EditCommand();
+//        editCommand.setParameters(
+//                new CommandParserTestUtil.ParameterStub<>("", INDEX_FIRST_FOOD),
+//                new CommandParserTestUtil.OptionalParameterStub<>("n", foodInList.getName()),
+//                new CommandParserTestUtil.OptionalParameterStub<>("p", foodInList.getProtein()),
+//                new CommandParserTestUtil.OptionalParameterStub<>("f", foodInList.getFat()),
+//                new CommandParserTestUtil.OptionalParameterStub<>("c", foodInList.getCarbs())
+//        );
+//
+//        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
+//    }
 
     @Test
     public void execute_invalidFoodIndexUnfilteredList_failure() {

@@ -20,7 +20,8 @@ class TagCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Food foodToTag = model.getFilteredFoodList().get(TypicalIndexes.INDEX_FIRST_FOOD.getZeroBased());
+        Index index = TypicalIndexes.INDEX_FIRST_FOOD;
+        Food foodToTag = model.getFilteredFoodList().get(index.getZeroBased());
         TagCommand tagCommand = new TagCommand();
         tagCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_FOOD),
@@ -30,7 +31,7 @@ class TagCommandTest {
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, "hello");
 
         ModelManager expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
-        expectedModel.setFood(foodToTag, new FoodBuilder(foodToTag).withTags("hello").build());
+        expectedModel.setFood(index, new FoodBuilder(foodToTag).withTags("hello").build());
 
         CommandTestUtil.assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
@@ -60,10 +61,9 @@ class TagCommandTest {
 
         String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS, "goodbye");
         ModelManager expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
-        expectedModel.setFood(model.getFilteredFoodList().get(0),
+        expectedModel.setFood(Index.fromZeroBased(0),
                 new FoodBuilder(foodToTag).withTags("goodbye").build());
 
         CommandTestUtil.assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
-
 }

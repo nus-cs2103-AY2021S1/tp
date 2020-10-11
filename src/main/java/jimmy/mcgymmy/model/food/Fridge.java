@@ -9,8 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
-import jimmy.mcgymmy.model.food.exceptions.DuplicateFoodException;
-import jimmy.mcgymmy.model.food.exceptions.FoodNotFoundException;
 
 /**
  * A list of food items that allows repeated elements and does not allow nulls.
@@ -35,26 +33,6 @@ public class Fridge implements Iterable<Food> {
     public void add(Food toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
-    }
-
-    /**
-     * Replaces the food {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The food identity of {@code editedPerson} must not be the same as another existing food in the list.
-     */
-    public void setFood(Food target, Food editedFood) {
-        CollectionUtil.requireAllNonNull(target, editedFood);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new FoodNotFoundException();
-        }
-
-        if (!target.equals(editedFood) && contains(editedFood)) {
-            throw new DuplicateFoodException();
-        }
-
-        internalList.set(index, editedFood);
     }
 
     /**

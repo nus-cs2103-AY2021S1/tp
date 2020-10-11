@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.GuiSettings;
+import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.model.food.Food;
 
 /**
@@ -78,7 +79,7 @@ public interface Model {
      * {@code target} must exist in mcgymmy.
      * The food identity of {@code editedFood} must not be the same as another existing food in mcgymmy.
      */
-    void setFood(Food target, Food editedFood);
+    void setFood(Index index, Food editedFood);
 
     /**
      * Returns an unmodifiable view of the filtered food list
