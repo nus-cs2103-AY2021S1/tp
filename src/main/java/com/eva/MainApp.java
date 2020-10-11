@@ -20,9 +20,12 @@ import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
 import com.eva.model.util.SampleDataUtil;
-import com.eva.storage.*;
 import com.eva.storage.EvaStorage;
 import com.eva.storage.JsonEvaStorage;
+import com.eva.storage.JsonUserPrefsStorage;
+import com.eva.storage.Storage;
+import com.eva.storage.StorageManager;
+import com.eva.storage.UserPrefsStorage;
 import com.eva.ui.Ui;
 import com.eva.ui.UiManager;
 

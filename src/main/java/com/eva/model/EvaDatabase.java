@@ -7,8 +7,6 @@ import java.util.List;
 import com.eva.model.person.Person;
 import com.eva.model.person.UniquePersonList;
 
-import com.eva.model.person.staff.Staff;
-import com.eva.storage.EvaStorage;
 import javafx.collections.ObservableList;
 
 /**

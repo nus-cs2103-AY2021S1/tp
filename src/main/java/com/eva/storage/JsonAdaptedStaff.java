@@ -1,18 +1,21 @@
 package com.eva.storage;
 
-import com.eva.commons.exceptions.IllegalValueException;
-import com.eva.model.person.*;
-import com.eva.model.person.staff.Staff;
-import com.eva.model.person.staff.leave.Leave;
-import com.eva.model.tag.Tag;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.eva.commons.exceptions.IllegalValueException;
+import com.eva.model.person.Address;
+import com.eva.model.person.Email;
+import com.eva.model.person.Name;
+import com.eva.model.person.Phone;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.tag.Tag;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**

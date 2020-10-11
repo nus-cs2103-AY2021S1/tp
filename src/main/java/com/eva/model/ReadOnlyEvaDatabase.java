@@ -2,7 +2,6 @@ package com.eva.model;
 
 import com.eva.model.person.Person;
 
-import com.eva.model.person.staff.Staff;
 import javafx.collections.ObservableList;
 
 /**
