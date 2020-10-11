@@ -16,7 +16,7 @@ import seedu.address.logic.commands.catalogue.ListCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
-import seedu.address.logic.commands.project.StartCommand;
+import seedu.address.logic.commands.catalogue.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
