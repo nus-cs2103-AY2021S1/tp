@@ -22,6 +22,7 @@ public class Vendor {
      * Every field must be present and not null.
      */
     public Vendor(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Menu menu) {
+        //TODO: CHECK FOR NULL MENU
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -92,13 +93,14 @@ public class Vendor {
                 && otherVendor.getPhone().equals(getPhone())
                 && otherVendor.getEmail().equals(getEmail())
                 && otherVendor.getAddress().equals(getAddress())
-                && otherVendor.getTags().equals(getTags());
+                && otherVendor.getTags().equals(getTags())
+                && otherVendor.getMenu().equals(getMenu());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, menu);
     }
 
     @Override
@@ -113,6 +115,7 @@ public class Vendor {
                 .append(getAddress())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        //TODO append menu?
         return builder.toString();
     }
 

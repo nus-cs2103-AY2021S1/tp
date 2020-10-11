@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Food in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Food {
@@ -59,8 +59,8 @@ public class Food {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both foods have the same identity and data fields.
+     * This defines a stronger notion of equality between two foods.
      */
     @Override
     public boolean equals(Object other) {
@@ -72,10 +72,10 @@ public class Food {
             return false;
         }
 
-        Food otherPerson = (Food) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPrice() == getPrice()
-                && otherPerson.getTags().equals(getTags());
+        Food otherFood = (Food) other;
+        return otherFood.getName().equals(getName())
+                && otherFood.getPrice() == getPrice()
+                && otherFood.getTags().equals(getTags());
     }
 
     @Override
