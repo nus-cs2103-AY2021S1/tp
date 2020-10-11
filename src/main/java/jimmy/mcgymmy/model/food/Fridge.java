@@ -53,16 +53,6 @@ public class Fridge implements Iterable<Food> {
         internalList.remove(removeIndex.getZeroBased());
     }
 
-    /**
-     * Remove the food item from the list.
-     *
-     * @param food Food item to be removed.
-     */
-    public void remove(Food food) {
-        requireNonNull(food);
-        internalList.remove(internalList.indexOf(food));
-    }
-
     public void setFoods(Fridge replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
