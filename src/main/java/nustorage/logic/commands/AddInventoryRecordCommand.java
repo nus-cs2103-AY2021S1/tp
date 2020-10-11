@@ -25,9 +25,8 @@ public class AddInventoryRecordCommand extends Command {
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_ITEM_COST + "ITEM_COST"
             + "(OPTIONAL) 'c/' is optional ";
-    
-    public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
 
+    public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
     private final InventoryRecord newInventoryRecord;
     private final Optional<FinanceRecord> newFinanceRecord;
 
