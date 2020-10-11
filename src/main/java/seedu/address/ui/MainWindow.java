@@ -31,24 +31,27 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TagListPanel tagListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private TagListPanel tagListPanel;
+    private LastInputDisplay lastInputDisplay;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private StackPane resultDisplayPlaceHolder;
+
+    @FXML
+    private StackPane tagListPlaceholder;
+
+    @FXML
+    private StackPane lastInputPlaceHolder;
+
+    @FXML
+    private StackPane commandBoxPlaceHolder;
+
+    @FXML
+    private StackPane footerbarPlaceHolder;
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane tagListPanelPlaceholder;
-
-    @FXML
-    private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -63,9 +66,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
-
-        helpWindow = new HelpWindow();
+        // setAccelerators();
     }
 
     public Stage getPrimaryStage() {
@@ -73,7 +74,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        // setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
     /**
@@ -110,17 +111,26 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tagListPanel = new TagListPanel(logic.getFilteredTagList());
-        tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
 
+        // result display
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplayPlaceHolder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        // tag list view
+        tagListPanel = new TagListPanel(logic.getFilteredTagList());
+        tagListPlaceholder.getChildren().add(tagListPanel.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        // last input display
+        lastInputDisplay = new LastInputDisplay();
+        lastInputPlaceHolder.getChildren().add(lastInputDisplay.getRoot());
+
+        // command box
+        NewCommandBox commandBox = new NewCommandBox(this::executeCommand);
+        commandBoxPlaceHolder.getChildren().add(commandBox.getRoot());
+
+        // footer bar
+        FooterBar footerBar = new FooterBar("1.2");
+        footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
     }
 
     /**
@@ -140,11 +150,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
+
     }
 
     void show() {
@@ -159,12 +165,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public TagListPanel getTagListPanel() {
-        return tagListPanel;
     }
 
     /**
@@ -176,6 +177,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            lastInputDisplay.setLastInput(commandText);
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
@@ -189,6 +191,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            lastInputDisplay.setLastInput(commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

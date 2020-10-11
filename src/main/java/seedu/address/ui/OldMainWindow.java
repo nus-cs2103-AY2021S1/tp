@@ -21,41 +21,39 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class NewMainWindow extends UiPart<Stage> {
+public class OldMainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "NewMainWindow.fxml";
+    private static final String FXML = "OldMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private ResultDisplay resultDisplay;
-    private LastInputDisplay lastInputDisplay;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private TagListPanel tagListPanel;
+    private ResultDisplay resultDisplay;
+    private HelpWindow helpWindow;
 
     @FXML
-    private StackPane resultDisplayPlaceHolder;
-
-    @FXML
-    private StackPane tagListPlaceholder;
-
-    @FXML
-    private StackPane lastInputPlaceHolder;
-
-    @FXML
-    private StackPane commandBoxPlaceHolder;
-
-    @FXML
-    private StackPane footerbarPlaceHolder;
+    private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
 
+    @FXML
+    private StackPane tagListPanelPlaceholder;
+
+    @FXML
+    private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane statusbarPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public NewMainWindow(Stage primaryStage, Logic logic) {
+    public OldMainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -65,7 +63,9 @@ public class NewMainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        // setAccelerators();
+        setAccelerators();
+
+        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -73,7 +73,7 @@ public class NewMainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        // setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
     /**
@@ -110,22 +110,17 @@ public class NewMainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        tagListPanel = new TagListPanel(logic.getFilteredTagList());
+        tagListPanelPlaceholder.getChildren().add(tagListPanel.getRoot());
 
-        // result display
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceHolder.getChildren().add(resultDisplay.getRoot());
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        // last input display
-        lastInputDisplay = new LastInputDisplay();
-        lastInputPlaceHolder.getChildren().add(lastInputDisplay.getRoot());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        // command box
-        NewCommandBox commandBox = new NewCommandBox(this::executeCommand);
-        commandBoxPlaceHolder.getChildren().add(commandBox.getRoot());
-
-        // footer bar
-        FooterBar footerBar = new FooterBar("1.2");
-        footerbarPlaceHolder.getChildren().add(footerBar.getRoot());
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -145,7 +140,11 @@ public class NewMainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
     }
 
     void show() {
@@ -160,7 +159,12 @@ public class NewMainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
         primaryStage.hide();
+    }
+
+    public TagListPanel getTagListPanel() {
+        return tagListPanel;
     }
 
     /**
@@ -172,7 +176,6 @@ public class NewMainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            lastInputDisplay.setLastInput(commandText);
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
@@ -186,7 +189,6 @@ public class NewMainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            lastInputDisplay.setLastInput(commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
