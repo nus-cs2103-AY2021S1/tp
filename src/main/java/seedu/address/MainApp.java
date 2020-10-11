@@ -168,6 +168,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setResizable(false);
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }

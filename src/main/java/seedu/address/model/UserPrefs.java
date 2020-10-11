@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path commonCentsFilePath = Paths.get("data" , "addressbook.json");
+    private Path commonCentsFilePath = Paths.get("data" , "commonCents.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
