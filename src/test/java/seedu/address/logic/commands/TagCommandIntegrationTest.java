@@ -27,19 +27,19 @@ public class TagCommandIntegrationTest {
 
     @Test
     public void execute_newTag_success() {
-        Tag validPerson = new TagBuilder().build();
+        Tag validTag = new TagBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addTag(validPerson);
+        expectedModel.addTag(validTag);
 
-        assertCommandSuccess(new TagCommand(validPerson), model,
-                String.format(TagCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new TagCommand(validTag), model,
+                String.format(TagCommand.MESSAGE_SUCCESS, validTag), expectedModel);
     }
 
     @Test
     public void execute_duplicateTag_throwsCommandException() {
-        Tag personInList = model.getAddressBook().getTagList().get(0);
-        assertCommandFailure(new TagCommand(personInList), model, TagCommand.MESSAGE_DUPLICATE_TAG);
+        Tag tagInList = model.getAddressBook().getTagList().get(0);
+        assertCommandFailure(new TagCommand(tagInList), model, TagCommand.MESSAGE_DUPLICATE_TAG);
     }
 
 }
