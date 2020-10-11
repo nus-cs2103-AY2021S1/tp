@@ -1,34 +1,34 @@
 package com.eva.testutil;
 
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code EvaDatabase ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private EvaDatabase addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new EvaDatabase();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(EvaDatabase addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code EvaDatabase} that we are building.
      */
     public AddressBookBuilder withPerson(Person person) {
         addressBook.addPerson(person);
         return this;
     }
 
-    public AddressBook build() {
+    public EvaDatabase build() {
         return addressBook;
     }
 }

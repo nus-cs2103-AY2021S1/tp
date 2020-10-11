@@ -13,19 +13,16 @@ import com.eva.commons.util.ConfigUtil;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.Logic;
 import com.eva.logic.LogicManager;
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
 import com.eva.model.util.SampleDataUtil;
-import com.eva.storage.AddressBookStorage;
-import com.eva.storage.JsonAddressBookStorage;
-import com.eva.storage.JsonUserPrefsStorage;
-import com.eva.storage.Storage;
-import com.eva.storage.StorageManager;
-import com.eva.storage.UserPrefsStorage;
+import com.eva.storage.*;
+import com.eva.storage.EvaStorage;
+import com.eva.storage.JsonEvaStorage;
 import com.eva.ui.Ui;
 import com.eva.ui.UiManager;
 
@@ -49,7 +46,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing EvaDatabase ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +54,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        EvaStorage addressBookStorage = new JsonEvaStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -75,20 +72,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyEvaDatabase> addressBookOptional;
+        ReadOnlyEvaDatabase initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readEvaDatabase();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample EvaDatabase");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleEvaDatabase);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty EvaDatabase");
+            initialData = new EvaDatabase();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty EvaDatabase");
+            initialData = new EvaDatabase();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -152,7 +149,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty EvaDatabase");
             initializedPrefs = new UserPrefs();
         }
 
@@ -168,7 +165,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting EvaDatabase " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

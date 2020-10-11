@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.logic.commands.exceptions.CommandException;
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.person.Person;
 import com.eva.testutil.PersonBuilder;
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyEvaDatabase newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyEvaDatabase getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,8 +187,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyEvaDatabase getAddressBook() {
+            return new EvaDatabase();
         }
     }
 

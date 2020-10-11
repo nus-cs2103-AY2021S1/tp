@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.eva.model.AddressBook;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.EvaDatabase;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -14,7 +14,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code EvaDatabase} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -40,8 +40,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyEvaDatabase getSampleEvaDatabase() {
+        EvaDatabase sampleAb = new EvaDatabase();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

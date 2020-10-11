@@ -2,7 +2,7 @@ package com.eva.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setAddressBook(new EvaDatabase());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

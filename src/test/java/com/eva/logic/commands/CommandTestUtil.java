@@ -15,7 +15,7 @@ import java.util.List;
 
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
@@ -104,7 +104,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        EvaDatabase expectedAddressBook = new EvaDatabase(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));

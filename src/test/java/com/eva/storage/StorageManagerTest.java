@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.eva.commons.core.GuiSettings;
-import com.eva.model.AddressBook;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.EvaDatabase;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonEvaStorage addressBookStorage = new JsonEvaStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -51,18 +51,18 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonEvaStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonEvaStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        EvaDatabase original = getTypicalAddressBook();
+        storageManager.saveEvaDatabase(original);
+        ReadOnlyEvaDatabase retrieved = storageManager.readEvaDatabase().get();
+        assertEquals(original, new EvaDatabase(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getEvaDatabaseFilePath());
     }
 
 }

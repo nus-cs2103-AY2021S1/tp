@@ -7,15 +7,17 @@ import java.util.List;
 import com.eva.model.person.Person;
 import com.eva.model.person.UniquePersonList;
 
+import com.eva.model.person.staff.Staff;
+import com.eva.storage.EvaStorage;
 import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class EvaDatabase implements ReadOnlyEvaDatabase {
 
-    private final UniquePersonList persons;
+    private final UniquePersonList staff;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,15 +27,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        staff = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public EvaDatabase() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an EvaDatabase using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public EvaDatabase(ReadOnlyEvaDatabase toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -45,13 +47,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        this.staff.setPersons(persons);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code EvaDatabase} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyEvaDatabase newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -64,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return persons.contains(person);
+        return staff.contains(person);
     }
 
     /**
@@ -72,7 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        staff.add(p);
     }
 
     /**
@@ -83,39 +85,39 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        staff.setPerson(target, editedPerson);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code EvaDatabase}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
-        persons.remove(key);
+        staff.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return staff.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return staff.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof EvaDatabase // instanceof handles nulls
+                && staff.equals(((EvaDatabase) other).staff));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return staff.hashCode();
     }
 }
