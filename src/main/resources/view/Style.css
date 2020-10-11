@@ -37,6 +37,25 @@
     -fx-prompt-text-fill: #575555;
     -fx-background-radius: 10 10 0 0;
 }
+#ingredientDisplay {
+    -fx-background-color: rgba(0.96,0.96,0.96,0.7);
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-color: #575555;
+    -fx-prompt-text-fill: #575555;
+    -fx-background-radius: 20 20 20 20;
+}
+#instructionDisplay {
+    -fx-background-color: rgba(0.96,0.96,0.96,0.7);
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-color: #575555;
+    -fx-prompt-text-fill: #575555;
+    -fx-background-radius: 20 20 20 20;
+}
+#displayBox {
+    -fx-background-color: transparent
+}
 #favouriteBox {
     -fx-background-color:transparent;
 }
