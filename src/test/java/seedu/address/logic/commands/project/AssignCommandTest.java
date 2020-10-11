@@ -62,8 +62,8 @@ public class AssignCommandTest {
 
     @Test
     public void execute_invalidIndexValidPerson_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Index outOfBoundIndex = Index.fromOneBased(project.getFilteredTaskList().size() + 1);
         model.enter(project);
         project.addParticipation(ALICE);
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getPersonName().fullPersonName);
@@ -75,10 +75,24 @@ public class AssignCommandTest {
     public void execute_validIndexInvalidPerson_throwsCommandException() {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PROJECT, ALICE.getPersonName().fullPersonName);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
 
         assertCommandFailure(assignCommand, model,
                 String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, ALICE.getPersonName().fullPersonName));
+    }
+
+    @Test
+    public void execute_validIndexPersonInvalidAssign_throwsCommandException() {
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        project.addParticipation(ALICE);
+        Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
+        assignee.addTask(taskToAssign);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
+
+        assertCommandFailure(assignCommand, model, String.format(
+                Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON, assignee));
     }
 
     @Test
