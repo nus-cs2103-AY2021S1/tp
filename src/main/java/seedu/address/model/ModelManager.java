@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,28 +24,36 @@ public class ModelManager implements Model {
     private final BidBook bidBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final PropertyBook propertyBook;
+
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Bid> filteredBids;
+    private final FilteredList<Property> filteredProperties;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
+                        ReadOnlyPropertyBook propertyBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook);
+        requireAllNonNull(addressBook, userPrefs, bidBook, propertyBook);
 
         logger.fine("Initializing with address book: " + addressBook
-                + " and user prefs " + userPrefs + " and bid book: " + bidBook);
+                + " and user prefs " + userPrefs + " and bid book: " + bidBook
+                + " and property book: " + propertyBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidBook = new BidBook(bidBook);
+        this.propertyBook = new PropertyBook(propertyBook);
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
+        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new BidBook());
+        this(new AddressBook(), new UserPrefs(), new BidBook(), new PropertyBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -157,6 +166,59 @@ public class ModelManager implements Model {
         updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
     }
 
+    //=========== PropertyBook ================================================================================
+
+
+    @Override
+    public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        this.propertyBook.resetData(propertyBook);
+    }
+
+    @Override
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return propertyBook;
+    }
+
+    @Override
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public void deleteProperty(Property target) {
+        propertyBook.removeProperty(target);
+    }
+
+    @Override
+    public void addProperty(Property property) {
+        propertyBook.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
+        propertyBook.setProperty(target, editedProperty);
+    }
+
+    //=========== Filtered Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code versionedPropertyBook}
+     */
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
+    }
+
+    @Override
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
+        requireNonNull(predicate);
+        filteredProperties.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -173,7 +235,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && propertyBook.equals(other.propertyBook)
+                && filteredProperties.equals(filteredProperties);
     }
 
 }
