@@ -53,7 +53,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPatientList();
         Patient patientToDelete;
 
         if (!targetNric.isEmpty()) {
@@ -70,7 +70,7 @@ public class DeleteCommand extends Command {
             patientToDelete = lastShownList.get(targetIndex.get().getZeroBased());
         }
 
-        model.deletePerson(patientToDelete);
+        model.deletePatient(patientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
     }
 

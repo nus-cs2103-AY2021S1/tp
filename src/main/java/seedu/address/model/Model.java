@@ -12,7 +12,7 @@ import seedu.address.model.patient.Patient;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Patient> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,37 +53,37 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a patient with the same identity as {@code person} exists in Hospify.
      */
-    boolean hasPerson(Patient patient);
+    boolean hasPatient(Patient patient);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given patient.
+     * The patient must exist in Hospify.
      */
-    void deletePerson(Patient target);
+    void deletePatient(Patient target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given patient.
+     * {@code patient} must not already exist in Hospify.
      */
-    void addPerson(Patient patient);
+    void addPatient(Patient patient);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given patient {@code target} with {@code editedPatient}.
+     * {@code target} must exist in Hospify.
+     * The person identity of {@code editedPatient} must not be the same as another existing patient in Hospify.
      */
-    void setPerson(Patient target, Patient editedPatient);
+    void setPatient(Patient target, Patient editedPatient);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Patient> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered patient list */
+    ObservableList<Patient> getFilteredPatientList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Patient> predicate);
+    void updateFilteredPatientList(Predicate<Patient> predicate);
 
     /**
      * Gives number of patients in records.
