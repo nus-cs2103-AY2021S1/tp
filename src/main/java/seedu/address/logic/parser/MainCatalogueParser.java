@@ -18,6 +18,7 @@ import seedu.address.logic.commands.LeaveCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Status;
 
 /**
@@ -73,6 +74,10 @@ public class MainCatalogueParser {
                 case HelpCommand.COMMAND_WORD:
                     return new HelpCommand();
 
+                case StartCommand.COMMAND_WORD:
+                case LeaveCommand.COMMAND_WORD:
+                    throw new InvalidScopeException(Status.PROJECT, Status.CATALOGUE);
+
                 default:
                     throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
@@ -83,6 +88,20 @@ public class MainCatalogueParser {
 
                 case LeaveCommand.COMMAND_WORD:
                     return new LeaveCommand();
+
+                case ExitCommand.COMMAND_WORD:
+                    return new ExitCommand();
+
+                case HelpCommand.COMMAND_WORD:
+                    return new HelpCommand();
+
+                case AddCommand.COMMAND_WORD:
+                case EditCommand.COMMAND_WORD:
+                case DeleteCommand.COMMAND_WORD:
+                case ClearCommand.COMMAND_WORD:
+                case FindCommand.COMMAND_WORD:
+                case ListCommand.COMMAND_WORD:
+                    throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
 
                 default:
                     throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
