@@ -15,12 +15,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
+import seedu.address.model.property.Property;
 import seedu.address.storage.Storage;
 
 /**
@@ -132,6 +134,18 @@ public class LogicManager implements Logic {
     @Override
     public Path getSellerAddressBookFilePath() {
         return model.getSellerAddressBookFilePath();
+    }
+
+    // ===================== PROPERTY =====================
+
+    @Override
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return model.getPropertyBook();
+    }
+
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return model.getFilteredPropertyList();
     }
 
 }
