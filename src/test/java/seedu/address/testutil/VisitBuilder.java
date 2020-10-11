@@ -13,7 +13,6 @@ import seedu.address.model.visit.Visit;
 public class VisitBuilder {
 
     public static final LocalDate DEFAULT_VISIT_DATE = LocalDate.of(2020, 11, 11);
-    //    public static final Patient DEFAULT_PATIENT = new PatientBuilder().build();
 
     public static final String DEFAULT_VISIT_DIAGNOSIS = "Asthma";
     public static final String DEFAULT_VISIT_PRESCRIPTION = "Nasal Spray";
@@ -58,8 +57,8 @@ public class VisitBuilder {
     /**
      * Sets the {@code patientName} of the {@code Visit} that we are building.
      */
-    public VisitBuilder withPatientName(Name patientName) {
-        this.patientName = patientName;
+    public VisitBuilder withPatientName(String patientName) {
+        this.patientName = new Name(patientName);
         return this;
     }
 
