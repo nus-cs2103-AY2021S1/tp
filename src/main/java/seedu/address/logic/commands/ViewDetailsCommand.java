@@ -8,7 +8,7 @@ import seedu.address.model.item.NameIsExactlyPredicate;
 import seedu.address.ui.DisplayedInventoryType;
 
 /**
- * Finds the first item that matches what is searched for, and displays it's details.
+ * Finds the first item that matches what is searched for, and displays its details.
  * Keyword matching is case insensitive.
  */
 public class ViewDetailsCommand extends Command {
@@ -16,7 +16,7 @@ public class ViewDetailsCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the first item that matches "
-            + "what is searched for, and displays it's details.\n"
+            + "what is searched for, and displays its details.\n"
             + "Parameters: KEYWORD \n"
             + "Example: " + COMMAND_WORD + "Bob's bone";
 
@@ -29,9 +29,9 @@ public class ViewDetailsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        // show only items which are not deleted and match the predicate
         model.updateFilteredItemList(item -> !item.isDeleted() && predicate.test(item));
-        boolean filteredItemListNotEmpty = model.getFilteredItemList().size() > 0;
-        if (filteredItemListNotEmpty) {
+        if (!model.getFilteredItemList().isEmpty()) {
             return new CommandResult("Displaying searched item", false, false,
                     DisplayedInventoryType.DETAILED_ITEM);
         } else {
