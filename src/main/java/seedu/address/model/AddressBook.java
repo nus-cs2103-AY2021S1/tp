@@ -172,7 +172,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return assignments.hashCode();
-        // TODO: unsure about lessons.hashCode()
+        // multiply sum of fields with prime number 31
+        return 31 * (assignments.hashCode() + lessons.hashCode());
     }
 }
