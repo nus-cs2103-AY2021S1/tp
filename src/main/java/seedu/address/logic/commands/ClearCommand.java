@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import jdk.jfr.Percentage;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 
@@ -11,7 +12,7 @@ import seedu.address.model.ModuleList;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Module list has been cleared!";
 
 
     @Override
@@ -19,5 +20,10 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setModuleList(new ModuleList());
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }
