@@ -28,9 +28,13 @@ public class ListConsumptionCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         ObservableList<Consumption> consump = model.getFilteredConsumptionList();
         StringBuilder builder = new StringBuilder();
+        int totalCalories = 0;
         for (int i = 0; i < consump.size(); i++) {
             builder.append((i + 1) + ". " + consump.get(i).toString() + "\n");
+            totalCalories += consump.get(i).getRecipe().getCalories().value;
         }
+        builder.append("Total Calories: ");
+        builder.append(totalCalories + " cal");
         assertCommandSuccess(new ListConsumptionCommand(), model,
                 ListConsumptionCommand.MESSAGE_SUCCESS + builder.toString(), expectedModel);
     }
@@ -40,9 +44,13 @@ public class ListConsumptionCommandTest {
         showConsumptionAtIndex(model, INDEX_FIRST_CONSUMPTION);
         ObservableList<Consumption> consump = expectedModel.getFilteredConsumptionList();
         StringBuilder builder = new StringBuilder();
+        int totalCalories = 0;
         for (int i = 0; i < consump.size(); i++) {
             builder.append((i + 1) + ". " + consump.get(i).toString() + "\n");
+            totalCalories += consump.get(i).getRecipe().getCalories().value;
         }
+        builder.append("Total Calories: ");
+        builder.append(totalCalories + " cal");
         assertCommandSuccess(new ListConsumptionCommand(), model,
                 ListConsumptionCommand.MESSAGE_SUCCESS + builder.toString(), expectedModel);
     }

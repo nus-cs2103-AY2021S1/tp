@@ -64,13 +64,13 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_INGREDIENT_DESC,
+<<<<<<< HEAD
+        IngredientString.MESSAGE_CONSTRAINTS); // invalid ingredients
+=======
         //IngredientString.MESSAGE_CONSTRAINTS); // invalid ingredients
+>>>>>>> 28ef26c6db44f8717ea885749a69ad068c33a886
         assertParseFailure(parser, "1" + INVALID_TAG_DESC,
          Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        //invalid ingredients followed by valid email
-        assertParseFailure(parser, "1" + INVALID_INGREDIENT_DESC
-        + EMAIL_DESC_AMY, IngredientString.MESSAGE_CONSTRAINTS);
 
         // valid ingredients followed by invalid ingredients.
         //The test case for invalid ingredients followed by valid ingredients
@@ -89,17 +89,26 @@ public class EditCommandParserTest {
         + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
+<<<<<<< HEAD
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_INGREDIENT_AMY,
+=======
         assertParseFailure(parser, "1" + INVALID_NAME_DESC
         + INVALID_INGREDIENT_DESC + VALID_INGREDIENT_AMY,
+>>>>>>> 28ef26c6db44f8717ea885749a69ad068c33a886
                 Name.MESSAGE_CONSTRAINTS);
     }*/
 
     /*@Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_RECIPE;
+<<<<<<< HEAD
+        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB + TAG_DESC_HUSBAND
+                + NAME_DESC_AMY + TAG_DESC_FRIEND;
+=======
         String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB
                 + CALORIES_DESC_BOB + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                 + TAG_DESC_BOB;
+>>>>>>> 28ef26c6db44f8717ea885749a69ad068c33a886
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withIngredient(VALID_INGREDIENT_BOB).build();
@@ -112,8 +121,11 @@ public class EditCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_RECIPE;
         String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB
+<<<<<<< HEAD
+=======
                 + CALORIES_DESC_BOB + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
                 + TAG_DESC_BOB;
+>>>>>>> 28ef26c6db44f8717ea885749a69ad068c33a886
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB)
                 .build();
@@ -147,9 +159,9 @@ public class EditCommandParserTest {
     /*@Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_RECIPE;
-        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + INGREDIENT_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + INGREDIENT_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_AMY
+                + TAG_DESC_FRIEND + INGREDIENT_DESC_AMY+ TAG_DESC_FRIEND
+                + INGREDIENT_DESC_BOB+ TAG_DESC_HUSBAND;
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB)
                 .build();
