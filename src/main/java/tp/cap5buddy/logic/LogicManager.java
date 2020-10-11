@@ -18,8 +18,7 @@ import tp.cap5buddy.todolist.TodoList;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    //private ModuleList modlist;
-    private ParserManager pm;
+    private final ParserManager pm;
     private final StorageManager storage;
     private final ModuleList moduleList;
     private final TodoList todoList;
@@ -29,7 +28,6 @@ public class LogicManager implements Logic {
      * Represents the constructor of the Manager.
      */
     public LogicManager(StorageManager storage, ModuleList moduleList, ContactList contactList, TodoList todoList) {
-        //this.modlist = new ModuleList(new ArrayList<Module>());
         this.pm = new ParserManager();
         this.storage = storage;
         this.moduleList = moduleList;
