@@ -1,25 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-<<<<<<< Updated upstream
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
-=======
-import static seedu.address.logic.parser.util.CliSyntax.*;
->>>>>>> Stashed changes
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ArgumentMultimap;
 import seedu.address.logic.parser.util.ArgumentTokenizer;
-<<<<<<< Updated upstream
+
 import seedu.address.logic.parser.util.ParserUtil;
-=======
 import seedu.address.logic.parser.util.Category;
-import seedu.address.logic.parser.util.ParserUtil;
-import seedu.address.model.account.entry.Entry;
-import seedu.address.model.account.entry.Expense;
-import seedu.address.model.account.entry.Revenue;
+
 
 import java.util.stream.Stream;
 
@@ -44,13 +36,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Entry entry;
 
-        if (category.isExpense()) {
-            return
-        } else {
-
-        }
+        return new DeleteCommand(index, category);
 
 
     }
@@ -61,7 +48,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
->>>>>>> Stashed changes
     }
 
 }
