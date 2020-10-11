@@ -11,6 +11,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.vendor.Vendor;
+
 
 /**
  * API of the Logic component
@@ -32,8 +34,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of vendors */
+    ObservableList<Vendor> getFilteredVendorList();
 
     /** Returns an unmodifiable view of the filtered list of foods */
     ObservableList<Food> getFilteredFoodList();

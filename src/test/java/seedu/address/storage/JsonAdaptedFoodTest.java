@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.food.Food;
-import seedu.address.model.person.Name;
+import seedu.address.model.vendor.Name;
 import seedu.address.testutil.FoodBuilder;
 
 public class JsonAdaptedFoodTest {
@@ -29,7 +29,7 @@ public class JsonAdaptedFoodTest {
 
 
     @Test
-    public void toModelType_validPersonDetails_returnsFood() throws Exception {
+    public void toModelType_validVendorDetails_returnsFood() throws Exception {
         JsonAdaptedFood food = new JsonAdaptedFood(EGG_PRATA);
         assertEquals(EGG_PRATA, food.toModelType());
     }

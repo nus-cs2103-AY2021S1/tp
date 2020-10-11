@@ -13,7 +13,7 @@ import seedu.address.model.vendor.Phone;
 import seedu.address.model.vendor.Vendor;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Vendor objects.
  */
 public class VendorBuilder {
 
@@ -30,7 +30,7 @@ public class VendorBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code VendorBuilder} with the default details.
      */
     public VendorBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -50,6 +50,7 @@ public class VendorBuilder {
         email = vendorToCopy.getEmail();
         address = vendorToCopy.getAddress();
         tags = new HashSet<>(vendorToCopy.getTags());
+        //TODO: MENU
     }
 
     /**
