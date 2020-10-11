@@ -28,17 +28,17 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.NewUiManager;
+import seedu.address.ui.OldUiManager;
 import seedu.address.ui.Ui;
 
 /**
  * Runs the application.
  */
-public class NewMainApp extends Application {
+public class OldMainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(OldMainApp.class);
 
     protected Ui ui;
     protected Logic logic;
@@ -65,7 +65,7 @@ public class NewMainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new NewUiManager(logic);
+        ui = new OldUiManager(logic);
     }
 
     /**
@@ -167,7 +167,7 @@ public class NewMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting AddressBook " + OldMainApp.VERSION);
         ui.start(primaryStage);
     }
 

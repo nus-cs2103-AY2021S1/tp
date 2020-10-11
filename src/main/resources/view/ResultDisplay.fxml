@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display">
+  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" wrapText="true">
       <font>
          <Font size="14.0" />
       </font></TextArea>

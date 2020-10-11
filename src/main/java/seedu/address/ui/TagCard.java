@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "TagCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,7 +26,7 @@ public class TagCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label tagName;
     @FXML
     private Label id;
     @FXML
@@ -39,7 +39,7 @@ public class TagCard extends UiPart<Region> {
         super(FXML);
         this.tag = tag;
         id.setText(displayedIndex + ". ");
-        name.setText(tag.getTagName().tagName);
+        tagName.setText(tag.getTagName().tagName);
         fileAddress.setText(tag.getFileAddress().value);
     }
 

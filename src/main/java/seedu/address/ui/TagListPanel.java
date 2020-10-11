@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.Tag;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of tags.
  */
 public class TagListPanel extends UiPart<Region> {
     private static final String FXML = "TagListPanel.fxml";
@@ -23,9 +23,9 @@ public class TagListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TagListPanel} with the given {@code ObservableList}.
      */
-    public TagListPanel(ObservableList<Tag> personList) {
+    public TagListPanel(ObservableList<Tag> tagList) {
         super(FXML);
-        tagListView.setItems(personList);
+        tagListView.setItems(tagList);
         tagListView.setCellFactory(listView -> new TagListViewCell());
     }
 
