@@ -132,7 +132,8 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, bidBook, meetingBook, propertyBook)));
+        assertFalse(modelManager.equals(
+                new ModelManager(addressBook, differentUserPrefs, bidBook, meetingBook, propertyBook)));
 
     }
 }

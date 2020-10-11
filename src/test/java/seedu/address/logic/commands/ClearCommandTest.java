@@ -5,7 +5,14 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.MeetingBook;
+import seedu.address.model.PropertyBook;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.BidBook;
+import seedu.address.model.AddressBook;
+
 
 public class ClearCommandTest {
 
