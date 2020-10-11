@@ -37,7 +37,7 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
 
     /**
      * Replaces the contents of the delivery list with {@code deliveries}.
-     * {@code deliveries} must not contain duplicate items.
+     * {@code deliveries} must not contain duplicate deliveries.
      */
     public void setDeliveries(List<Delivery> deliveries) {
         this.deliveries.setDeliveries(deliveries);
@@ -72,7 +72,7 @@ public class DeliveryBook implements ReadOnlyDeliveryBook {
     /**
      * Replaces the given delivery {@code target} in the list with {@code editedDelivery}.
      * {@code target} must exist in the delivery book.
-     * The item identity of {@code editedDelivery} must not be the
+     * The delivery identity of {@code editedDelivery} must not be the
      * same as another existing delivery in the delivery book.
      */
     public void setDelivery(Delivery target, Delivery editedDelivery) {

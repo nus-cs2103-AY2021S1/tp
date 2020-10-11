@@ -57,26 +57,26 @@ public interface DeliveryModel {
 
     /**
      * Adds the given delivery.
-     * {@code delivery} must not already exist in the inventory book.
+     * {@code delivery} must not already exist in the delivery book.
      */
     void addDelivery(Delivery delivery);
 
     /**
      * Deletes the given delivery.
-     * The delivery must exist in the inventory book.
+     * The delivery must exist in the delivery book.
      */
     void deleteDelivery(Delivery delivery);
 
     /**
-     * Returns true if a delivery with the same identity as {@code delivery} exists in the inventory book.
+     * Returns true if a delivery with the same identity as {@code delivery} exists in the delivery book.
      */
     boolean hasDelivery(Delivery delivery);
 
     /**
      * Replaces the given delivery {@code target} with {@code editedDelivery}.
-     * {@code target} must exist in the inventory book.
+     * {@code target} must exist in the delivery book.
      * The delivery identity of {@code editedDelivery} must not
-     * be the same as another existing delivery in the inventory book.
+     * be the same as another existing delivery in the delivery book.
      */
     void setDelivery(Delivery target, Delivery editedDelivery);
 

@@ -26,7 +26,7 @@ public class InventoryModelManager implements InventoryModel {
     private final FilteredList<Item> filteredItems;
 
     /**
-     * Initializes a ModelManager with the given inventoryBook and userPrefs.
+     * Initializes a InventoryModelManager with the given inventoryBook and userPrefs.
      */
     public InventoryModelManager(ReadOnlyInventoryBook inventoryBook, ReadOnlyUserPrefs userPrefs) {
         super();
