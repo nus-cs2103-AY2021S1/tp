@@ -28,4 +28,13 @@ public class DateUtil {
         checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
         return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
     }
+
+    /**
+     * Returns the string representation of a LocalDate using {@code DATE_TIME_FORMATTER}.
+     * @param date the LocalDate to be converted.
+     */
+    public static String dateToString(LocalDate date) {
+        requireNonNull(date);
+        return date.format(DATE_TIME_FORMATTER);
+    }
 }
