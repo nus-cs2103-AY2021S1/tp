@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_AMY;
@@ -47,10 +47,10 @@ public class TypicalAnimals {
 
     // Manually added - Animal's details found in {@code CommandTestUtil}
     public static final Animal AMY = new AnimalBuilder().withName(VALID_NAME_AMY).withId(VALID_ID_AMY)
-            .withSpecies(VALID_SPECIES_AMY).withMedicalConditions(VALID_MEDICALCONDITION_FRIEND).build();
+            .withSpecies(VALID_SPECIES_AMY).withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND).build();
     public static final Animal BOB = new AnimalBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
-            .withSpecies(VALID_SPECIES_BOB).withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND,
-                    VALID_MEDICALCONDITION_FRIEND)
+            .withSpecies(VALID_SPECIES_BOB).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND,
+                    VALID_MEDICAL_CONDITION_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

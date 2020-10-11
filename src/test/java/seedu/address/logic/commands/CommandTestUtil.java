@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_ID_BOB = "22222222";
     public static final String VALID_SPECIES_AMY = "Block 312, Amy Street 1";
     public static final String VALID_SPECIES_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_MEDICALCONDITION_HUSBAND = "husband";
-    public static final String VALID_MEDICALCONDITION_FRIEND = "friend";
+    public static final String VALID_MEDICAL_CONDITION_HUSBAND = "husband";
+    public static final String VALID_MEDICAL_CONDITION_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -40,16 +40,16 @@ public class CommandTestUtil {
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
     public static final String SPECIES_DESC_AMY = " " + PREFIX_SPECIES + VALID_SPECIES_AMY;
     public static final String SPECIES_DESC_BOB = " " + PREFIX_SPECIES + VALID_SPECIES_BOB;
-    public static final String MEDICALCONDITION_DESC_FRIEND =
-            " " + PREFIX_MEDICALCONDITION + VALID_MEDICALCONDITION_FRIEND;
-    public static final String MEDICALCONDITION_DESC_HUSBAND =
-            " " + PREFIX_MEDICALCONDITION + VALID_MEDICALCONDITION_HUSBAND;
+    public static final String MEDICAL_CONDITION_DESC_FRIEND =
+            " " + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_FRIEND;
+    public static final String MEDICAL_CONDITION_DESC_HUSBAND =
+            " " + PREFIX_MEDICAL_CONDITION + VALID_MEDICAL_CONDITION_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "911a"; // 'a' not allowed in IDs
     public static final String INVALID_SPECIES_DESC = " " + PREFIX_SPECIES; // empty string not allowed for species
-    public static final String INVALID_MEDICALCONDITION_DESC =
-            " " + PREFIX_MEDICALCONDITION + "hubby*"; // '*' not allowed in medicalConditions
+    public static final String INVALID_MEDICAL_CONDITION_DESC =
+            " " + PREFIX_MEDICAL_CONDITION + "hubby*"; // '*' not allowed in medicalConditions
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -60,10 +60,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditAnimalDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withId(VALID_ID_AMY).withSpecies(VALID_SPECIES_AMY)
-                .withMedicalConditions(VALID_MEDICALCONDITION_FRIEND).build();
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND).build();
         DESC_BOB = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_BOB)
-                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND, VALID_MEDICALCONDITION_FRIEND).build();
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND, VALID_MEDICAL_CONDITION_FRIEND).build();
     }
 
     /**
