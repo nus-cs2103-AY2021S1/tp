@@ -89,8 +89,6 @@ Shows a list of all students in Reeve.
 
 Format: `list`
 
-
-
 ### Editing a student : `edit`
 
 Edits an existing student in Reeve (Written by: Vaishak).
@@ -129,6 +127,25 @@ Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find s/yishun` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
 * `find n/alex s/yishun` searches for all students who match `n/alex` and `s/yishun`.
+
+### Recording questions from a student: `question`
+
+(written by: Ying Gao)
+Adds, resolves or remove questions from a specified student.
+
+Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX] [d/QUESTION_INDEX]`
+
+* Exactly one of the optional fields must be present.
+* The index and question index **must be positive integers** 1, 2, 3, …​
+* The `a/` prefix adds a new unanswered question to the student at the specified `INDEX`.
+* The `s/` prefix marks an unanswered question, of the student at the specified `INDEX`, at the specified 
+`QUESTION_INDEX` as solved.
+* The `d/` prefix deletes the question at the specified `QUESTION_INDEX` from the student at the specified `INDEX`.
+
+Examples:
+* `question 1 a/How do birds fly?` records "How do birds fly?" as a new question from the 1st student in Reeve.
+* `question 2 s/3` marks the 3rd question of the 2nd student in Reeve as answered.
+* `question 1 d/2` removes the 2nd question from the 1st student in Reeve.
 
 ### Deleting a student : `delete`
 
