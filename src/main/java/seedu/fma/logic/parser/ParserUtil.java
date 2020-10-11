@@ -10,7 +10,6 @@ import seedu.fma.commons.core.index.Index;
 import seedu.fma.commons.util.StringUtil;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.exercise.Exercise;
-import seedu.fma.model.log.Address;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Email;
 import seedu.fma.model.log.Phone;
@@ -115,14 +114,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
+//    public static Address parseAddress(String address) throws ParseException {
+//        requireNonNull(address);
+//        String trimmedAddress = address.trim();
+//        if (!Address.isValidAddress(trimmedAddress)) {
+//            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+//        }
+//        return new Address(trimmedAddress);
+//    }
 
     /**
      * Parses a {@code String email} into an {@code Email}.

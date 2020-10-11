@@ -35,18 +35,18 @@ public class CommandTestUtil {
     public static final String VALID_COMMENT_B = "Easy";
 
     public static final int VALID_YEAR_A = 2021;
-    public static final int VALID_MONTH_A = 2; // February
-    public static final int VALID_DAY_A = 2;
-    public static final int VALID_HOUR_A = 2;
-    public static final int VALID_MINUTE_A = 2;
+    public static final int VALID_MONTH_A = 1; // February
+    public static final int VALID_DAY_A = 1;
+    public static final int VALID_HOUR_A = 1;
+    public static final int VALID_MINUTE_A = 1;
     public static final LocalDateTime VALID_DATE_TIME_A = LocalDateTime.of(
             VALID_YEAR_A, VALID_MONTH_A, VALID_DAY_A, VALID_HOUR_A, VALID_MINUTE_A
     );
     public static final int VALID_YEAR_B = 2020;
-    public static final int VALID_MONTH_B = 1; // January
-    public static final int VALID_DAY_B = 1;
-    public static final int VALID_HOUR_B = 1;
-    public static final int VALID_MINUTE_B = 1;
+    public static final int VALID_MONTH_B = 2; // January
+    public static final int VALID_DAY_B = 2;
+    public static final int VALID_HOUR_B = 2;
+    public static final int VALID_MINUTE_B = 2;
     public static final LocalDateTime VALID_DATE_TIME_B = LocalDateTime.of(
             VALID_YEAR_B, VALID_MONTH_B, VALID_DAY_B, VALID_HOUR_B, VALID_MINUTE_B
     );

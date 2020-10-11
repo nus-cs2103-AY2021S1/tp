@@ -9,7 +9,7 @@ import java.util.Objects;
 import seedu.fma.model.exercise.Exercise;
 
 /**
- * Represents a Log in the address book. Guarantees: details are present and not null, field values
+ * Represents a Log in the FixMyAbs. Guarantees: details are present and not null, field values
  * are validated, immutable.
  */
 public class Log {

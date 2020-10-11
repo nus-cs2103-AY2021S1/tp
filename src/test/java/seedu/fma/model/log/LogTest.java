@@ -1,21 +1,19 @@
-// TODO or delete
-/*
-package seedu.address.model.log;
+package seedu.fma.model.log;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.LogBuilder;
+import seedu.fma.testutil.LogBuilder;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalLogs.LOG_A;
-import static seedu.address.testutil.TypicalLogs.LOG_B;
+import static seedu.fma.logic.commands.CommandTestUtil.*;
+import static seedu.fma.testutil.TypicalLogs.LOG_A;
+import static seedu.fma.testutil.TypicalLogs.LOG_B;
 
 public class LogTest {
     @Test
     public void getPrettyDateTime_hasDateTime_returnCorrectFormat() {
-        assertEquals("Wed 1:01AM, 01 Jan 2020", LOG_A.getPrettyDateTime());
-        assertEquals("Sun 2:02AM, 02 Feb 2020", LOG_B.getPrettyDateTime());
+        assertEquals("Wed 1:01am, 01 Jan 2020", LOG_A.getPrettyDateTime());
+        assertEquals("Sun 2:02am, 02 Feb 2020", LOG_B.getPrettyDateTime());
     }
 
     @Test
@@ -72,7 +70,5 @@ public class LogTest {
         // different dateTime -> returns false
         editedAlice = new LogBuilder(LOG_A).withDateTime(VALID_DATE_TIME_B).build();
         assertFalse(LOG_A.equals(editedAlice));
-
     }
 }
-*/
