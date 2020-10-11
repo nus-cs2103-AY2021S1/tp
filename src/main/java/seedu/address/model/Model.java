@@ -176,7 +176,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate, int index);
-    
+
     /** Returns an unmodifiable view of the filtered orderItem list at the corresponding index */
     ObservableList<OrderItem> getFilteredOrderItemList();
 
