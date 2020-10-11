@@ -15,6 +15,11 @@ import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.ClassTime;
+import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Fee;
+import seedu.address.model.student.admin.PaymentDate;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -26,6 +31,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -106,6 +112,66 @@ public class ParserUtil {
             throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
         return new Question(trimmedQuestion);
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code ClassVenue}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static ClassVenue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!ClassVenue.isValidClassVenue(trimmedVenue)) {
+            throw new ParseException(ClassVenue.MESSAGE_CONSTRAINTS);
+        }
+        return new ClassVenue(trimmedVenue);
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code ClassTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static ClassTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!ClassTime.isValidClassTime(trimmedTime)) {
+            throw new ParseException(ClassTime.MESSAGE_CONSTRAINTS);
+        }
+        return new ClassTime(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String fee} into a {@code Fee}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code fee} is invalid.
+     */
+    public static Fee parseFee(String fee) throws ParseException {
+        requireNonNull(fee);
+        String trimmedFee = fee.trim();
+        if (!Fee.isValidFee(trimmedFee)) {
+            throw new ParseException(Fee.MESSAGE_CONSTRAINTS);
+        }
+        return new Fee(trimmedFee);
+    }
+
+    /**
+     * Parses a {@code String paymentDate} into a {@code PaymentDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code paymentDate} is invalid.
+     */
+    public static PaymentDate parsePaymentDate(String paymentDate) throws ParseException {
+        requireNonNull(paymentDate);
+        String trimmedPaymentDate = paymentDate.trim();
+        if (!PaymentDate.isValidDate(trimmedPaymentDate)) {
+            throw new ParseException(PaymentDate.MESSAGE_CONSTRAINTS);
+        }
+        return new PaymentDate(trimmedPaymentDate);
     }
 
     /**

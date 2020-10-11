@@ -112,9 +112,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuestion_validValueWithWhiteSpace_returnsTrimmedQuestion() throws Exception {
-        String questionwithWhiteSpace = WHITESPACE + VALID_QUESTION + WHITESPACE;
+        String questionWithWhiteSpace = WHITESPACE + VALID_QUESTION + WHITESPACE;
         Question expectedQuestion = new Question(VALID_QUESTION, false);
-        assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionwithWhiteSpace));
+        assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionWithWhiteSpace));
     }
 
     @Test
@@ -122,5 +122,4 @@ public class ParserUtilTest {
         Question unexpectedQuestion = new Question(VALID_QUESTION, true);
         assertNotEquals(unexpectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
     }
-
 }
