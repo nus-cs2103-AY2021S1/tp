@@ -63,13 +63,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyModuleList getAddressBook() { {
+    public ReadOnlyModuleList getAddressBook() {
         return model.getModuleList();
     }
 
     @Override
-        public ObservableList<Module> getFilteredPersonList() {
-            return model.getFilteredModuleList();
+    public ObservableList<Module> getFilteredPersonList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
