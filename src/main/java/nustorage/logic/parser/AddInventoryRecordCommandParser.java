@@ -30,7 +30,8 @@ public class AddInventoryRecordCommandParser implements Parser<AddInventoryRecor
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInventoryRecordCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddInventoryRecordCommand.MESSAGE_USAGE));
         }
 
         String itemDescription = ParserUtil.parseItemDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
