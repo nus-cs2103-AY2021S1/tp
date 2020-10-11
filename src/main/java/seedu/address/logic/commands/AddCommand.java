@@ -1,16 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
-
-import java.util.HashSet;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
@@ -23,8 +20,8 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry (revenue or expense) to " +
-                "Common Cents\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry (revenue or expense) to "
+            + "Common Cents\n"
             + "Parameters: "
             + PREFIX_CATEGORY + "CATEGORY "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
@@ -56,8 +53,7 @@ public class AddCommand extends Command {
 
         if (this.entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);
-        }
-        else if (this.entry instanceof Revenue) {
+        } else if (this.entry instanceof Revenue) {
             activeAccount.addRevenue((Revenue) entry);
         }
         model.setAccount(activeAccount.getAccount());
