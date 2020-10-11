@@ -1,10 +1,10 @@
 package seedu.address.model.item;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+
+import seedu.address.commons.util.StringUtil;
 
 
 /**

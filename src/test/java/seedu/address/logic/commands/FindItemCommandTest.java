@@ -1,19 +1,24 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.model.*;
-import seedu.address.model.item.NameMatchesKeywordsPredicate;
-import seedu.address.testutil.TypicalItems;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalItems.getTypicalItemList;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.model.LocationList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.RecipeList;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.item.NameMatchesKeywordsPredicate;
+import seedu.address.testutil.TypicalItems;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindItemCommand}.
