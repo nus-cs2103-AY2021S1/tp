@@ -57,10 +57,7 @@ public class ParserUtil {
      */
     public static Set<String> parseAllNames(Collection<String> names) throws ParseException {
         requireNonNull(names);
-        final Set<String> nameSet = new HashSet<>();
-        for (String name : names) {
-            nameSet.add(name);
-        }
+        Set<String> nameSet = new HashSet<>(names);
         return nameSet;
     }
 
