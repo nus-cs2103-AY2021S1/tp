@@ -7,8 +7,6 @@ import javafx.util.Pair;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
-
-
 /**
  * Convenience class to define a {@code Pair<Integer, Integer>}.
  */
@@ -45,11 +43,13 @@ public class Ingredient extends Pair<Integer, Integer> {
      * @return String representation of the ingredient ready for display.
      */
     public String toString(ObservableList<Item> filteredItemList) {
-        HashMap<Integer, String> hm = new HashMap<>();
-        filteredItemList.forEach(item -> hm.put(item.getId(), item.getName()));
-        if (!hm.containsKey(this.getKey())) {
+        HashMap<Integer, String> ingredientsMap = new HashMap<>();
+        // Store each item id and name as a pair into the hashmap
+        filteredItemList.forEach(item -> ingredientsMap.put(item.getId(), item.getName()));
+        if (!ingredientsMap.containsKey(this.getKey())) {
             throw new IngredientNotFoundException();
         }
-        return hm.get(this.getKey()) + " [" + this.getValue() + "]";
+        // ingredient must be found in item list
+        return ingredientsMap.get(this.getKey()) + " [" + this.getValue() + "]";
     }
 }

@@ -29,7 +29,7 @@ public class ViewDetailsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredItemList(predicate);
+        model.updateFilteredItemList(item -> !item.isDeleted() && predicate.test(item));
         boolean filteredItemListNotEmpty = model.getFilteredItemList().size() > 0;
         if (filteredItemListNotEmpty) {
             return new CommandResult("Displaying searched item", false, false,
