@@ -54,7 +54,6 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         school.setText(student.getSchool().school);
         year.setText(String.valueOf(student.getYear().year));
-
         /*
          * address.setText("Placeholder for address");
          * new HashSet<>(Set.of("Placeholder for details")).stream()
