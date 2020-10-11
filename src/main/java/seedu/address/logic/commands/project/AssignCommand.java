@@ -1,6 +1,9 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -10,8 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
-
-import java.util.List;
 
 /**
  * Assigns a task to a person with participation in the current project.
@@ -31,6 +32,9 @@ public class AssignCommand extends Command {
     private final Index targetIndex;
     private final String assignee;
 
+    /**
+     * Creates an AssignCommand that assigns the task of the given index to the intended assignee.
+     */
     public AssignCommand(Index targetIndex, String assignee) {
         this.targetIndex = targetIndex;
         this.assignee = assignee;
