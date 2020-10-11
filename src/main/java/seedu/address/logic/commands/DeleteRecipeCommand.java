@@ -67,6 +67,7 @@ public class DeleteRecipeCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteRecipeCommand // instanceof handles nulls
-                && productName.equals(((DeleteRecipeCommand) other).productName));
+                && productName.equals(((DeleteRecipeCommand) other).productName))
+                && index.equals(((DeleteRecipeCommand) other).index);
     }
 }

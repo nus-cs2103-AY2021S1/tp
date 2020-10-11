@@ -17,13 +17,12 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class ItemListParser {
+public class InventoryListParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -75,5 +74,5 @@ public class ItemListParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
+

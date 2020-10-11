@@ -15,7 +15,8 @@ public class ListRecipeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " :lists all recipes";
 
     public static final String MESSAGE_SUCCESS = "Listed all recipes";
-    public static final String MESSAGE_NO_RECIPES = "You have no recipes in your inventory now, will you like to add some?";
+    public static final String MESSAGE_NO_RECIPES = "You have no recipes in your inventory now, "
+            + "will you like to add some?";
 
     @Override
     public CommandResult execute(Model model) {

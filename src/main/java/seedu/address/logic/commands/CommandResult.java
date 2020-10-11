@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.ui.DisplayedInventoryType;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Represents the result of a command execution.
