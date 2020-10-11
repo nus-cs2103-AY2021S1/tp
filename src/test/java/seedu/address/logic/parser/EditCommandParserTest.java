@@ -4,22 +4,22 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICALCONDITION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SPECIES_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICALCONDITION_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICALCONDITION_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
@@ -34,12 +34,12 @@ import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String MEDICALCONDITION_EMPTY = " " + PREFIX_MEDICALCONDITION;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -78,7 +78,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid id
         assertParseFailure(parser, "1" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_MEDICALCONDITION_DESC,
+                MedicalCondition.MESSAGE_CONSTRAINTS); // invalid medicalCondition
 
         // invalid id followed by valid species
         assertParseFailure(parser, "1" + INVALID_ID_DESC + SPECIES_DESC_AMY, Id.MESSAGE_CONSTRAINTS);
@@ -87,11 +88,15 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + ID_DESC_BOB + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Animal} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        // while parsing {@code PREFIX_MEDICALCONDITION} alone will reset the
+        // medicalConditions of the {@code Animal} being edited,
+        // parsing it together with a valid medicalCondition results in error
+        assertParseFailure(parser, "1" + MEDICALCONDITION_DESC_FRIEND + MEDICALCONDITION_DESC_HUSBAND
+                + MEDICALCONDITION_EMPTY, MedicalCondition.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MEDICALCONDITION_DESC_FRIEND
+                + MEDICALCONDITION_EMPTY + MEDICALCONDITION_DESC_HUSBAND, MedicalCondition.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MEDICALCONDITION_EMPTY
+                + MEDICALCONDITION_DESC_FRIEND + MEDICALCONDITION_DESC_HUSBAND, MedicalCondition.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SPECIES_DESC + VALID_ID_AMY,
@@ -101,12 +106,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ANIMAL;
-        String userInput = targetIndex.getOneBased() + ID_DESC_BOB + TAG_DESC_HUSBAND
-                + SPECIES_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + ID_DESC_BOB + MEDICALCONDITION_DESC_HUSBAND
+                + SPECIES_DESC_AMY + NAME_DESC_AMY + MEDICALCONDITION_DESC_FRIEND;
 
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND, VALID_MEDICALCONDITION_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -145,9 +150,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditAnimalDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        // medicalConditions
+        userInput = targetIndex.getOneBased() + MEDICALCONDITION_DESC_FRIEND;
+        descriptor = new EditAnimalDescriptorBuilder().withMedicalConditions(VALID_MEDICALCONDITION_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -156,11 +161,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ANIMAL;
         String userInput = targetIndex.getOneBased() + ID_DESC_AMY + SPECIES_DESC_AMY
-                + TAG_DESC_FRIEND + ID_DESC_AMY + SPECIES_DESC_AMY + TAG_DESC_FRIEND
-                + ID_DESC_BOB + SPECIES_DESC_BOB + TAG_DESC_HUSBAND;
+                + MEDICALCONDITION_DESC_FRIEND + ID_DESC_AMY + SPECIES_DESC_AMY + MEDICALCONDITION_DESC_FRIEND
+                + ID_DESC_BOB + SPECIES_DESC_BOB + MEDICALCONDITION_DESC_HUSBAND;
 
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withId(VALID_ID_BOB)
-                .withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withSpecies(VALID_SPECIES_BOB).withMedicalConditions(VALID_MEDICALCONDITION_FRIEND,
+                        VALID_MEDICALCONDITION_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -186,11 +192,11 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetMedicalConditions_success() {
         Index targetIndex = INDEX_THIRD_ANIMAL;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + MEDICALCONDITION_EMPTY;
 
-        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withTags().build();
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withMedicalConditions().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

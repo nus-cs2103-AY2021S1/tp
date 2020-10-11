@@ -4,36 +4,36 @@
     "name" : "Alice Pauline",
     "id" : "94351253",
     "species" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "medicalConditions" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "id" : "98765432",
     "species" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "medicalConditions" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "id" : "95352563",
     "species" : "wall street",
-    "tagged" : [ ]
+    "medicalConditions" : [ ]
   }, {
     "name" : "Daniel Meier",
     "id" : "87652533",
     "species" : "10th street",
-    "tagged" : [ "friends" ]
+    "medicalConditions" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "id" : "9482224",
     "species" : "michegan ave",
-    "tagged" : [ ]
+    "medicalConditions" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "id" : "9482427",
     "species" : "little tokyo",
-    "tagged" : [ ]
+    "medicalConditions" : [ ]
   }, {
     "name" : "George Best",
     "id" : "9482442",
     "species" : "4th street",
-    "tagged" : [ ]
+    "medicalConditions" : [ ]
   } ]
 }

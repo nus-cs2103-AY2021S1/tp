@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -29,7 +29,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICALCONDITION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SPECIES, PREFIX_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -39,9 +39,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Species species = ParserUtil.parseSpecies(argMultimap.getValue(PREFIX_SPECIES).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<MedicalCondition> medicalConditionList = ParserUtil
+                .parseMedicalConditions(argMultimap.getAllValues(PREFIX_MEDICALCONDITION));
 
-        Animal animal = new Animal(name, id, species, tagList);
+        Animal animal = new Animal(name, id, species, medicalConditionList);
 
         return new AddCommand(animal);
     }

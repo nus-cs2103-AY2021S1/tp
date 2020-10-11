@@ -14,7 +14,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * Jackson-friendly version of {@link Animal}.
@@ -26,7 +26,7 @@ class JsonAdaptedAnimal {
     private final String name;
     private final String id;
     private final String species;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMedicalCondition> medicalConditions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAnimal} with the given animal details.
@@ -34,12 +34,12 @@ class JsonAdaptedAnimal {
     @JsonCreator
     public JsonAdaptedAnimal(@JsonProperty("name") String name, @JsonProperty("id") String id,
             @JsonProperty("species") String species,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("medicalConditions") List<JsonAdaptedMedicalCondition> medicalConditions) {
         this.name = name;
         this.id = id;
         this.species = species;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (medicalConditions != null) {
+            this.medicalConditions.addAll(medicalConditions);
         }
     }
 
@@ -50,8 +50,8 @@ class JsonAdaptedAnimal {
         name = source.getName().fullName;
         id = source.getId().value;
         species = source.getSpecies().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        medicalConditions.addAll(source.getMedicalConditions().stream()
+                .map(JsonAdaptedMedicalCondition::new)
                 .collect(Collectors.toList()));
     }
 
@@ -61,9 +61,9 @@ class JsonAdaptedAnimal {
      * @throws IllegalValueException if there were any data constraints violated in the adapted animal.
      */
     public Animal toModelType() throws IllegalValueException {
-        final List<Tag> animalTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            animalTags.add(tag.toModelType());
+        final List<MedicalCondition> animalMedicalConditions = new ArrayList<>();
+        for (JsonAdaptedMedicalCondition medicalCondition : medicalConditions) {
+            animalMedicalConditions.add(medicalCondition.toModelType());
         }
 
         if (name == null) {
@@ -90,9 +90,9 @@ class JsonAdaptedAnimal {
         }
         final Species modelSpecies = new Species(species);
 
-        final Set<Tag> modelTags = new HashSet<>(animalTags);
+        final Set<MedicalCondition> modelMedicalConditions = new HashSet<>(animalMedicalConditions);
 
-        return new Animal(modelName, modelId, modelSpecies, modelTags);
+        return new Animal(modelName, modelId, modelSpecies, modelMedicalConditions);
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * Represents a Animal in the address book.
@@ -21,17 +21,17 @@ public class Animal {
 
     // Data fields
     private final Species species;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<MedicalCondition> medicalConditions = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Animal(Name name, Id id, Species species, Set<Tag> tags) {
-        requireAllNonNull(name, id, species, tags);
+    public Animal(Name name, Id id, Species species, Set<MedicalCondition> medicalConditions) {
+        requireAllNonNull(name, id, species, medicalConditions);
         this.name = name;
         this.id = id;
         this.species = species;
-        this.tags.addAll(tags);
+        this.medicalConditions.addAll(medicalConditions);
     }
 
     public Name getName() {
@@ -47,11 +47,11 @@ public class Animal {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable medicalCondition set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<MedicalCondition> getMedicalConditions() {
+        return Collections.unmodifiableSet(medicalConditions);
     }
 
     /**
@@ -86,13 +86,13 @@ public class Animal {
         return otherAnimal.getName().equals(getName())
                 && otherAnimal.getId().equals(getId())
                 && otherAnimal.getSpecies().equals(getSpecies())
-                && otherAnimal.getTags().equals(getTags());
+                && otherAnimal.getMedicalConditions().equals(getMedicalConditions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, species, tags);
+        return Objects.hash(name, id, species, medicalConditions);
     }
 
     @Override
@@ -103,8 +103,8 @@ public class Animal {
                 .append(getId())
                 .append(" Species: ")
                 .append(getSpecies())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" MedicalConditions: ");
+        getMedicalConditions().forEach(builder::append);
         return builder.toString();
     }
 

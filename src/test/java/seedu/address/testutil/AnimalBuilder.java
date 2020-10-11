@@ -7,7 +7,7 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -22,7 +22,7 @@ public class AnimalBuilder {
     private Name name;
     private Id id;
     private Species species;
-    private Set<Tag> tags;
+    private Set<MedicalCondition> medicalConditions;
 
     /**
      * Creates a {@code AnimalBuilder} with the default details.
@@ -31,7 +31,7 @@ public class AnimalBuilder {
         name = new Name(DEFAULT_NAME);
         id = new Id(DEFAULT_ID);
         species = new Species(DEFAULT_SPECIES);
-        tags = new HashSet<>();
+        medicalConditions = new HashSet<>();
     }
 
     /**
@@ -41,7 +41,7 @@ public class AnimalBuilder {
         name = animalToCopy.getName();
         id = animalToCopy.getId();
         species = animalToCopy.getSpecies();
-        tags = new HashSet<>(animalToCopy.getTags());
+        medicalConditions = new HashSet<>(animalToCopy.getMedicalConditions());
     }
 
     /**
@@ -53,10 +53,11 @@ public class AnimalBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Animal} that we are building.
+     * Parses the {@code medicalConditions} into a {@code Set<MedicalCondition>} and
+     * set it to the {@code Animal} that we are building.
      */
-    public AnimalBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public AnimalBuilder withMedicalConditions(String ... medicalConditions) {
+        this.medicalConditions = SampleDataUtil.getMedicalConditionSet(medicalConditions);
         return this;
     }
 
@@ -77,7 +78,7 @@ public class AnimalBuilder {
     }
 
     public Animal build() {
-        return new Animal(name, id, species, tags);
+        return new Animal(name, id, species, medicalConditions);
     }
 
 }

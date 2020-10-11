@@ -3,8 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAnimals.ALICE;
 import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
@@ -46,7 +46,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateAnimals_throwsDuplicateAnimalException() {
         // Two animals with the same identity fields
-        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_HUSBAND)
+        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND)
                 .build();
         List<Animal> newAnimals = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newAnimals);
@@ -73,7 +74,8 @@ public class AddressBookTest {
     @Test
     public void hasAnimal_animalWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addAnimal(ALICE);
-        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_HUSBAND)
+        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND)
                 .build();
         assertTrue(addressBook.hasAnimal(editedAlice));
     }

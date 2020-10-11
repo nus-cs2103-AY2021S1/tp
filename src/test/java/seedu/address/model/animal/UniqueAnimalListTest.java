@@ -3,8 +3,8 @@ package seedu.address.model.animal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAnimals.ALICE;
 import static seedu.address.testutil.TypicalAnimals.BOB;
@@ -42,7 +42,8 @@ public class UniqueAnimalListTest {
     @Test
     public void contains_animalWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAnimalList.add(ALICE);
-        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_HUSBAND)
+        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND)
                 .build();
         assertTrue(uniqueAnimalList.contains(editedAlice));
     }
@@ -85,7 +86,8 @@ public class UniqueAnimalListTest {
     @Test
     public void setAnimal_editedAnimalHasSameIdentity_success() {
         uniqueAnimalList.add(ALICE);
-        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).withTags(VALID_TAG_HUSBAND)
+        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND)
                 .build();
         uniqueAnimalList.setAnimal(ALICE, editedAlice);
         UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();

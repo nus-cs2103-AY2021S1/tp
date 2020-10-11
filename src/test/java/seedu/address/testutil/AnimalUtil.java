@@ -1,16 +1,16 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
 import seedu.address.model.animal.Animal;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
  * A utility class for Animal.
@@ -32,8 +32,8 @@ public class AnimalUtil {
         sb.append(PREFIX_NAME + animal.getName().fullName + " ");
         sb.append(PREFIX_ID + animal.getId().value + " ");
         sb.append(PREFIX_SPECIES + animal.getSpecies().value + " ");
-        animal.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        animal.getMedicalConditions().stream().forEach(
+            s -> sb.append(PREFIX_MEDICALCONDITION + s.medicalConditionName + " ")
         );
         return sb.toString();
     }
@@ -46,12 +46,13 @@ public class AnimalUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getId().ifPresent(id -> sb.append(PREFIX_ID).append(id.value).append(" "));
         descriptor.getSpecies().ifPresent(species -> sb.append(PREFIX_SPECIES).append(species.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getMedicalConditions().isPresent()) {
+            Set<MedicalCondition> medicalConditions = descriptor.getMedicalConditions().get();
+            if (medicalConditions.isEmpty()) {
+                sb.append(PREFIX_MEDICALCONDITION);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                medicalConditions.forEach(s -> sb.append(PREFIX_MEDICALCONDITION)
+                        .append(s.medicalConditionName).append(" "));
             }
         }
         return sb.toString();
