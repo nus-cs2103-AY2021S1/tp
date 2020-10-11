@@ -12,6 +12,7 @@ import seedu.address.model.account.entry.Revenue;
 
 import static java.util.Objects.requireNonNull;
 
+
 /**
  * Deletes an entry identified using it's displayed index from the revenue/expense list.
  */
