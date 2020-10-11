@@ -19,7 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.vendor.Vendor;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Vendor} objects to be used in tests.
  */
 public class TypicalVendors {
 

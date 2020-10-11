@@ -7,14 +7,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
-import seedu.address.model.person.Person;
+import seedu.address.model.vendor.Vendor;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
 
 
@@ -69,28 +69,28 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasVendor(Vendor vendor);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given vendor.
+     * The vendor must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteVendor(Vendor target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given vendor.
+     * {@code vendor} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addVendor(Vendor vendor);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given vendor {@code target} with {@code editedVendor}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setVendor(Vendor target, Vendor editedVendor);
 
     /**
      * Replaces address book data with the data in {@code menuManager}.
@@ -124,14 +124,14 @@ public interface Model {
      */
     void setFood(Food target, Food editedFood, int index);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered vendor list */
+    ObservableList<Vendor> getFilteredVendorList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredVendorList(Predicate<Vendor> predicate);
 
     /** Returns an unmodifiable view of the filtered food list at the corresponding index */
     ObservableList<Food> getFilteredFoodList(int index);

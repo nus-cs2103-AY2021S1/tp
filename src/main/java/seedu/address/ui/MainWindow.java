@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private VendorListPanel vendorListPanel;
     private FoodListPanel foodListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane vendorListPanelPlaceholder;
 
     @FXML
     private StackPane foodListPanelPlaceholder;
@@ -114,8 +114,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
 
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
@@ -133,11 +133,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets visibility of person list display based on the boolean provided.
+     * Sets visibility of vendor list display based on the boolean provided.
      */
-    void setPersonListDisplay(boolean bool) {
-        personListPanel.getRoot().setVisible(bool);
-        personListPanel.getRoot().setManaged(bool);
+    void setVendorListDisplay(boolean bool) {
+        vendorListPanel.getRoot().setVisible(bool);
+        vendorListPanel.getRoot().setManaged(bool);
     }
 
     /**
@@ -153,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
      * Displays menu if boolean is true, otherwise display vendor list.
      */
     void displayMenu(boolean bool) {
-        setPersonListDisplay(!bool);
+        setVendorListDisplay(bool);
         setFoodListDisplay(bool);
     }
 
@@ -198,8 +198,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public VendorListPanel getVendorListPanel() {
+        return vendorListPanel;
     }
 
     /**
