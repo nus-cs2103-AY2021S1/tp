@@ -16,9 +16,9 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, support fuzzy match
      *   <br>examples:<pre>
-     *       matchesWordIgnoreCase("ABc def", "abc") == true
-     *       matchesWordIgnoreCase("ABc def", "DEF") == true
-     *       matchesWordIgnoreCase("ABc def", "ABadncbas") == false //not a good match
+     *       matchesWordIgnoreCase("ABc def", "abc", true) == true // a full match
+     *       matchesWordIgnoreCase("ABc def", "abb DEF") == true // a partial match
+     *       matchesWordIgnoreCase("ABc def", "ABadncbas") == false //not a match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
