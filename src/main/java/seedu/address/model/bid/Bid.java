@@ -41,6 +41,22 @@ public class Bid {
         return false; //will check against bidderList to see if propertyId exists
     }
 
+    /**
+     * compares one bid with another bid to see if they are the same in content
+     * @param otherBid bid to compare to
+     * @return boolean value if they are the same or not
+     */
+    public boolean isSameBid(Bid otherBid) {
+        if (otherBid == this) {
+            return true;
+        }
+
+        return otherBid != null
+                && otherBid.getPropertyId().equals(getPropertyId())
+                && (otherBid.getBidderId().equals(getBidderId()))
+                && ((otherBid.getBidAmount() == getBidAmount())); // added this in
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
