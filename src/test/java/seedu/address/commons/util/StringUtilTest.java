@@ -102,9 +102,10 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsWordIgnoreCase("", "abc")); // Boundary case
         assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
 
-        // Matches a partial word only
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        // Matches a partial word
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb"));
+        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // no. mismatched words exceed limit
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbbccc")); // no. mismatched words within limit
 
         // Matches word in the sentence, different upper/lower case letters
         assertTrue(StringUtil.containsWordIgnoreCase("aaa bBb ccc", "Bbb")); // First word (boundary case)

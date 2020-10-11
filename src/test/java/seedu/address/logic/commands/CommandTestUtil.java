@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -121,9 +120,11 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitTitle = task.getTitle().title.split("\\s+");
-        // model.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_TITLE, splitTitle[0]);
+        model.updateFilteredTaskList(predicate);
 
-        // assertEquals(1, model.getFilteredTaskList().size());
+        assertEquals(1, model.getFilteredTaskList().size());
     }
 
 }

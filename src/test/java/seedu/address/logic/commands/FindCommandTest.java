@@ -13,13 +13,9 @@ import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -84,9 +80,7 @@ public class FindCommandTest {
      */
     private TaskContainsKeywordsPredicate preparePredicate(String userInput) {
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
-        Arrays.asList(userInput.split("\\s+")).forEach(
-                input -> predicate.setKeyword(PREFIX_TITLE, input)
-        );
+        Arrays.asList(userInput.split("\\s+")).forEach(input -> predicate.setKeyword(PREFIX_TITLE, input));
         return predicate;
     }
 }

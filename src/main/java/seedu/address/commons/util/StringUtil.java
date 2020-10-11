@@ -32,9 +32,11 @@ public class StringUtil {
         return isFuzzyMatched(sentence.toLowerCase(), preppedWord.toLowerCase());
     }
 
-    private static boolean isFuzzyMatched(String word, String keyword) {
+    private static boolean isFuzzyMatched(String sentence, String keyword) {
         int lKeyword = keyword.length();
-        int lTask = word.length();
+        int lTask = sentence.length();
+
+        // allowed a fifth of the characters in the keyword to be mismatched
         final int fuzzyLimit = lKeyword / 5;
 
         // if keyword is longer or is empty, no match can be found
@@ -46,7 +48,7 @@ public class StringUtil {
             boolean matchFound = true;
             int fuzzyCount = 0;
             for (int j = 0; j < lKeyword; ++j) {
-                boolean isCharMatched = word.charAt(i + j) == keyword.charAt(j);
+                boolean isCharMatched = sentence.charAt(i + j) == keyword.charAt(j);
                 if (!isCharMatched && fuzzyCount < fuzzyLimit) {
                     fuzzyCount++;
                     continue;
