@@ -1,15 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -21,14 +16,19 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.ArgumentMultimap;
 import seedu.address.logic.parser.util.ParserUtil;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyCommonCents;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.ReadOnlyAccount;
-import seedu.address.model.account.entry.*;
+import seedu.address.model.account.entry.Amount;
+import seedu.address.model.account.entry.Description;
+import seedu.address.model.account.entry.Entry;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 
@@ -205,6 +205,7 @@ public class AddCommandTest {
         assertEquals(String.format("New entry added!", expenseStub),
                 new AddCommand(expenseStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
     }
+}
 
 //    @Test
 //    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
@@ -368,4 +369,4 @@ public class AddCommandTest {
 //        }
 //    }
 //
-}
+
