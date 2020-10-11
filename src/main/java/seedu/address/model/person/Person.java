@@ -26,19 +26,17 @@ public class Person {
 
     // Data fields
     private Address address;
-    private final Set<ProjectTag> projectTags = new HashSet<>();
     private HashMap<ProjectName, Participation> listOfParticipations = new HashMap<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonName personName, Phone phone, Email email, Address address, Set<ProjectTag> projectTags) {
-        requireAllNonNull(personName, phone, email, address, projectTags);
+    public Person(PersonName personName, Phone phone, Email email, Address address) {
+        requireAllNonNull(personName, phone, email, address);
         this.personName = personName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.projectTags.addAll(projectTags);
     }
 
     public PersonName getPersonName() {
@@ -78,14 +76,6 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<ProjectTag> getTags() {
-        return Collections.unmodifiableSet(projectTags);
-    }
-
-    /**
      * Returns true if both teammates of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.
      */
@@ -119,14 +109,13 @@ public class Person {
         return otherProject.getPersonName().equals(getPersonName())
                 && otherProject.getPhone().equals(getPhone())
                 && otherProject.getEmail().equals(getEmail())
-                && otherProject.getAddress().equals(getAddress())
-                && otherProject.getTags().equals(getTags());
+                && otherProject.getAddress().equals(getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(personName, phone, email, address, projectTags);
+        return Objects.hash(personName, phone, email, address);
     }
 
     @Override
@@ -139,9 +128,7 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getAddress());
         return builder.toString();
     }
 
