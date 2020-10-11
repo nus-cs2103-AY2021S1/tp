@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonHasTagsAndNamePredicate;
 import seedu.address.model.person.PersonHasTagsPredicate;
 import seedu.address.model.tag.Tag;
@@ -37,12 +38,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
+            if ((nameSet.size() == 1 && nameSet.contains("")) || tagSet.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new FindCommand(
                     new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>(tagSet)));
         } else if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             Set<String> nameSet = ParserUtil.parseAllNames(argMultimap.getAllValues(PREFIX_NAME));
+            if (nameSet.size() == 1 && nameSet.contains("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             return new FindCommand(
-                    new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>()));
+                    new NameContainsKeywordsPredicate(new ArrayList<>(nameSet)));
         } else if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
             return new FindCommand(
