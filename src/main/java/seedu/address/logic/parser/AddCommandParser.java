@@ -29,13 +29,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap;
 
         boolean isRemindPresent = args.matches(".*\\bremind\\b$");
-        boolean remindTypo = false;
+        boolean isRemindTypo = false;
 
         if (!isRemindPresent) {
-            remindTypo = args.matches(".*rem[a-z]*$");
+            isRemindTypo = args.matches(".*rem[a-z]*$");
         }
 
-        if (isRemindPresent || remindTypo) {
+        if (isRemindPresent || isRemindTypo) {
             String argsWithoutRemind = args.replace(" remind", "");
             argMultimap = ArgumentTokenizer.tokenize(argsWithoutRemind, PREFIX_NAME, PREFIX_DEADLINE,
                     PREFIX_MODULE_CODE);
@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE)
-                || !argMultimap.getPreamble().isEmpty() || remindTypo) {
+                || !argMultimap.getPreamble().isEmpty() || isRemindTypo) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 

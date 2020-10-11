@@ -10,13 +10,13 @@ import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 
 /**
- * Adds an assignment to the schedule.
+ * Adds an assignment to the academic schedule.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the schedule. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the academic schedule. "
             + "Parameters: "
             + PREFIX_NAME + "ASSIGNMENT NAME "
             + PREFIX_DEADLINE + "DEADLINE "
@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE_CODE + "CS2100 "
             + "remind";
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the academic schedule";
 
     private final Assignment toAdd;
 
