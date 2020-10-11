@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Choice;
@@ -87,27 +88,30 @@ class JsonAdaptedPerson {
             flashcardTags.add(tag.toModelType());
         }
 
-        if (type == null || ((!(type.equals(MultipleChoiceQuestion.TYPE))) &&
-                (!(type.equals(OpenEndedQuestion.TYPE))))) {
+        if (type == null || ((!(type.equals(MultipleChoiceQuestion.TYPE)))
+                && (!(type.equals(OpenEndedQuestion.TYPE))))) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
         }
 
         if (type.equals(MultipleChoiceQuestion.TYPE)) {
 
             if (question == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        String.class.getSimpleName()));
             }
             if (!MultipleChoiceQuestion.isValidQuestion(question)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
 
             if (choices == null || choices.size() == 0) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Choice.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Choice.class.getSimpleName()));
             }
             final Question modelQuestion= new MultipleChoiceQuestion(question, choices);
 
             if (answer == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Answer.class.getSimpleName()));
             }
             if (!Answer.isValidAnswer(answer)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
@@ -120,7 +124,8 @@ class JsonAdaptedPerson {
         } else if (type.equals(OpenEndedQuestion.TYPE)) {
 
             if (question == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        String.class.getSimpleName()));
             }
             if (!OpenEndedQuestion.isValidQuestion(question)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
@@ -129,7 +134,8 @@ class JsonAdaptedPerson {
             final Question modelQuestion= new OpenEndedQuestion(question);
 
             if (answer == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Answer.class.getSimpleName()));
             }
             if (!Answer.isValidAnswer(answer)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
