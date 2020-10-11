@@ -47,8 +47,8 @@ public class AnimalCard extends UiPart<Region> {
         this.animal = animal;
         index.setText(displayedIndex + ". ");
         name.setText(animal.getName().fullName);
-        identity.setText(animal.getId().value);
-        species.setText(animal.getSpecies().value);
+        identity.setText("ID: " + animal.getId().value);
+        species.setText("Species: " + animal.getSpecies().value);
         animal.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
