@@ -5,11 +5,13 @@ import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIngredients.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -29,8 +31,8 @@ public class AddIngredientCommandParserTest {
         Ingredient expectedIngredient = new IngredientBuilder(BOB).build();
 
         // whitespace only preamble
-        /*assertParseSuccess(parser, PREAMBLE_WHITESPACE + INGREDIENT_DESC_BOB,
-                new AddIngredientCommand(expectedIngredient));*/
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + INGREDIENT_DESC_BOB,
+                new AddIngredientCommand(expectedIngredient));
     }
 
     @Test

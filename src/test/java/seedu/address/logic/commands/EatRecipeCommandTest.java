@@ -50,7 +50,7 @@ public class EatRecipeCommandTest {
         Recipe recipeToEat = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
         EatRecipeCommand eatRecipeCommand = new EatRecipeCommand(INDEX_FIRST_RECIPE);
 
-        String expectedMessage = String.format(EatRecipeCommand.MESSAGE_EAT_RECIPE_SUCCESS, recipeToEat);
+        String expectedMessage = String.format(EatRecipeCommand.MESSAGE_EAT_RECIPE_SUCCESS, extractString(recipeToEat));
 
         Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addConsumption(new Consumption(recipeToEat));
