@@ -24,6 +24,7 @@ public class StaffBuilder extends PersonBuilder {
 
     /**
      * Initializes the StaffBuilder with the data of {@code staffToCopy}.
+     *
      * @param staffToCopy
      */
     public StaffBuilder(Staff staffToCopy) {
@@ -34,7 +35,7 @@ public class StaffBuilder extends PersonBuilder {
     /**
      * Parses the {@code leaves} into a {@code Set<Leave>} and set it to the {@code Staff} that we are building.
      */
-    public PersonBuilder withSingleDateLeaves(String ... leaves) {
+    public PersonBuilder withSingleDateLeaves(String... leaves) {
         this.leaves = SampleDataUtil.getLeaveSet(leaves);
         return this;
     }

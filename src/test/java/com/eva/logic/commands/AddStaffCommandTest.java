@@ -1,17 +1,8 @@
 package com.eva.logic.commands;
 
-import com.eva.model.AddressBook;
-import com.eva.model.ReadOnlyAddressBook;
-import com.eva.model.person.Person;
-import com.eva.testutil.PersonBuilder;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static com.eva.testutil.Assert.assertThrows;
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddStaffCommandTest {
     @Test
