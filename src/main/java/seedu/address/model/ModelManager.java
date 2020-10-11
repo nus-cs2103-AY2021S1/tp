@@ -79,7 +79,7 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyFlashcardDeck addressBook) {
+    public void setFlashcardDeck(ReadOnlyFlashcardDeck addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
