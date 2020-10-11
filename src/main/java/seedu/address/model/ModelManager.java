@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,35 +25,44 @@ public class ModelManager implements Model {
     private final BidBook bidBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final PropertyBook propertyBook;
     private final MeetingBook meetingBook;
 
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Bid> filteredBids;
     private final FilteredList<CalendarMeeting> filteredMeetings;
+    private final FilteredList<Property> filteredProperties;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs, bidBook, meetingManager and propertyBook.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyBidBook bidBook,
-                        ReadOnlyMeetingManager meetingManager) {
+                        ReadOnlyMeetingManager meetingManager,
+                        ReadOnlyPropertyBook propertyBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook, meetingManager);
+        requireAllNonNull(addressBook, userPrefs, bidBook, meetingManager, propertyBook);
 
         logger.fine("Initializing with address book: " + addressBook
-                + " and user prefs " + userPrefs + " and bid book: " + bidBook + " and meeting manager" + meetingManager);
+                + " and user prefs " + userPrefs + " and bid book: " + bidBook
+                + " and meeting manager" + meetingManager
+                + " and property book: " + propertyBook);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidBook = new BidBook(bidBook);
         this.meetingBook = new MeetingBook(meetingManager);
+        this.propertyBook = new PropertyBook(propertyBook);
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
+        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new BidBook(), new MeetingBook());
+        this(new AddressBook(), new UserPrefs(), new BidBook(), new MeetingBook(), new PropertyBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -165,25 +175,57 @@ public class ModelManager implements Model {
         updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
     }
 
+    //=========== PropertyBook ================================================================================
+
+
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
+    public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
+        this.propertyBook.resetData(propertyBook);
+    }
 
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
+    @Override
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return propertyBook;
+    }
 
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && meetingBook.equals(other.meetingBook)
-                && filteredMeetings.equals(other.filteredMeetings);
+    @Override
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public void deleteProperty(Property target) {
+        propertyBook.removeProperty(target);
+    }
+
+    @Override
+    public void addProperty(Property property) {
+        propertyBook.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
+        propertyBook.setProperty(target, editedProperty);
+    }
+
+    //=========== Filtered Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code versionedPropertyBook}
+     */
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
+    }
+
+    @Override
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
+        requireNonNull(predicate);
+        filteredProperties.setPredicate(predicate);
     }
 
     //=========== MeetingManager ================================================================================
@@ -237,5 +279,28 @@ public class ModelManager implements Model {
     public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return addressBook.equals(other.addressBook)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+                && meetingBook.equals(other.meetingBook)
+                && filteredMeetings.equals(other.filteredMeetings)
+                && propertyBook.equals(other.propertyBook)
+                && filteredProperties.equals(other.filteredProperties);
     }
 }

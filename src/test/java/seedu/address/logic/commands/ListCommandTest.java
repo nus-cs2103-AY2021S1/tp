@@ -7,7 +7,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.address.model.*;
 
 /**
@@ -20,8 +19,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new MeetingBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(), model.getMeetingManager());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new MeetingBook(),
+                new PropertyBook());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+                model.getMeetingManager(), model.getPropertyBook());
     }
 
     @Test

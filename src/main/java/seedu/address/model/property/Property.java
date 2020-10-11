@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.id.Id;
+import seedu.address.model.id.IdManager;
 import seedu.address.model.price.Price;
 
 /**
@@ -13,6 +14,8 @@ import seedu.address.model.price.Price;
  * Uniquely identified by the property id.
  */
 public class Property {
+
+    private static IdManager idManager = IdManager.initialize("P");
 
     // Identity fields
     private final Id propertyId;
@@ -23,16 +26,16 @@ public class Property {
     private final Id sellerId;
     private final Price askingPrice;
     private final PropertyType propertyType;
-    private final boolean isRental;
+    private final IsRental isRental;
     private final boolean isClosedDeal;
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Id propertyId, PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
-                    PropertyType propertyType, boolean isRental, boolean isClosedDeal) {
+    public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
+                    PropertyType propertyType, IsRental isRental, boolean isClosedDeal) {
         requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
-        this.propertyId = propertyId;
+        this.propertyId = idManager.getNextId();
         this.propertyName = propertyName;
         this.sellerId = sellerId;
         this.address = address;
@@ -66,8 +69,12 @@ public class Property {
         return propertyType;
     }
 
-    public boolean isRental() {
+    public IsRental getIsRental() {
         return isRental;
+    }
+
+    public boolean isRental() {
+        return isRental.isRental();
     }
 
     public boolean isClosedDeal() {
@@ -110,7 +117,7 @@ public class Property {
                 && this.getPropertyName().equals(otherProperty.getPropertyName())
                 && this.getPropertyType().equals(otherProperty.getPropertyType())
                 && this.getSellerId().equals(otherProperty.getSellerId())
-                && this.isRental() == otherProperty.isRental()
+                && this.isRental() == (otherProperty.isRental())
                 && this.isClosedDeal() == otherProperty.isClosedDeal();
     }
 

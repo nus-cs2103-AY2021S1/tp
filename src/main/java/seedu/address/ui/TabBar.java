@@ -38,6 +38,7 @@ public class TabBar extends UiPart<Region> {
     @FXML
     private StackPane meetingListPanelPlaceholder;
 
+
     /**
      * Creates a {@code TabBar} with the given {@code Logic}.
      */
@@ -54,7 +55,7 @@ public class TabBar extends UiPart<Region> {
     private void setPersonCalenderBidTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");
-        calenderTab.setText("Calender");
+        calenderTab.setText("Calendar");
         personCalenderBidTabBar.setTabMinWidth(335);
         personCalenderBidTabBar.setTabMaxWidth(335);
     }

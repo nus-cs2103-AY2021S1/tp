@@ -22,8 +22,10 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new MeetingBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new MeetingBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+            new MeetingBook(), new PropertyBook());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+            new MeetingBook(), new PropertyBook());
 
     @Test
     public void equals() {

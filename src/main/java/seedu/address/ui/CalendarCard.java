@@ -12,7 +12,7 @@ import seedu.address.model.calendar.CalendarMeeting;
  */
 public class CalendarCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "CalendarListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -38,8 +38,7 @@ public class CalendarCard extends UiPart<Region> {
     private Label time;
     @FXML
     private Label venue;
-    @FXML
-    private FlowPane tags;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
