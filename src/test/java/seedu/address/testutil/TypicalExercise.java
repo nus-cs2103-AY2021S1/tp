@@ -49,4 +49,5 @@ public class TypicalExercise {
     public static List<Exercise> getTypicalExercises() {
         return new ArrayList<>(Arrays.asList(PULL_UP,PUSH_UP,SIT_UP,RUN,WALK));
     }
+
 }

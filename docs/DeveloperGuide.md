@@ -322,7 +322,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *MSS*
   1.  User requests to archive data to a different file location
   2.  Calo archives data to the specified location
-    Use case ends.  
+    Use case ends.
 
 *Extensions*
 <p>
