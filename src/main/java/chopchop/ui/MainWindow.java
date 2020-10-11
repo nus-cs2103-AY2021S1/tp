@@ -2,19 +2,18 @@ package chopchop.ui;
 
 import java.util.logging.Logger;
 
+import chopchop.commons.core.GuiSettings;
+import chopchop.commons.core.LogsCenter;
+import chopchop.logic.commands.CommandResult;
+import chopchop.logic.Logic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private HelpWindow helpWindow;
     private CommandBox commandBox;
-    private RecipeViewPanel recipeViewPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane displayListPlaceholder;
+    private StackPane displayPlaceholder;
 
     @FXML
     private StackPane pinBoxPlaceholder;
@@ -115,12 +113,9 @@ public class MainWindow extends UiPart<Stage> {
         PinBox pinBox = new PinBox();
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
 
-        /*
-        RecipeViewPanel recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
-        this.recipeViewPanel = recipeViewPanel;
-        displayListPlaceholder.getChildren().add(recipeViewPanel.getRoot());
-        recipeViewPanel.getRoot().setVisible(false);
-        */
+        DisplayController displayController = new DisplayController(logic);
+        DisplayNavigator.setDisplayController(displayController);
+        displayPlaceholder.getChildren().setAll(displayController.getRoot());
     }
 
     /**
@@ -161,55 +156,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    /**
-     * Clears the main display area.
-     */
-    private void clearDisplay() {
-        for (Node node : displayListPlaceholder.getChildren()) {
-            node.setVisible(false);
-        }
-    }
-
-    /**
-     * Displays the recipe panel.
-     */
-    @FXML
-    public void handleRecipe(ActionEvent event) {
-        if (recipeViewPanel.getRoot().isVisible()) {
-            recipeViewPanel.getRoot().requestFocus();
-        } else {
-            clearDisplay();
-            recipeViewPanel.getRoot().setVisible(true);
-        }
-    }
-
-    /**
-     * Displays the recipe panel.
-     */
-    @FXML
-    public void handleIngredients(ActionEvent event) {
-        clearDisplay();
-        // To add more code.
-    }
-
-    /**
-     * Displays the recommendations panel.
-     */
-    @FXML
-    public void handleRecommendations(ActionEvent event) {
-        clearDisplay();
-        // To add more code.
-    }
-
-    /**
-     * Displays the favourites panel.
-     */
-    @FXML
-    public void handleFavourites(ActionEvent event) {
-        clearDisplay();
-        // To add more code.
     }
 
     /**

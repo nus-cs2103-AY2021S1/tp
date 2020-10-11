@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="chopchop.ui.DisplayController" prefHeight="520.0" prefWidth="624.0">
+    <bottom>
+        <HBox prefHeight="56.0" prefWidth="560.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#handleRecipePanel" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mouseTransparent="true">
+                            <children>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/recipe.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <Label styleClass="label-button" text="Recipes" />
+                            </children>
+                        </VBox>
+                    </graphic>
+                </Button>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#handleIngredients" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7`976931348623157E308" mouseTransparent="true">
+                            <children>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/ingredients.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <Label styleClass="label-button" text="Ingredients" />
+                            </children>
+                        </VBox>
+                    </graphic>
+                </Button>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#handleRecommendations" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mouseTransparent="true">
+                            <children>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/recommendations.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <Label styleClass="label-button" text="Recommendations" />
+                            </children>
+                        </VBox>
+                    </graphic>
+                </Button>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#handleFavourites" styleClass="tab-button" HBox.hgrow="ALWAYS">
+                    <graphic>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mouseTransparent="true">
+                            <children>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/favourites.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane HBox.hgrow="ALWAYS" />
+                                <Label styleClass="label-button" text="Favourites" />
+                            </children>
+                        </VBox>
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+    </bottom>
+    <center>
+        <StackPane fx:id="displayAreaPlaceholder" prefHeight="484.0" prefWidth="624.0" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
