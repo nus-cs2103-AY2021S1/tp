@@ -1,13 +1,14 @@
 package seedu.fma.storage;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
@@ -57,23 +58,23 @@ class JsonAdaptedLog {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Exercise.class.getSimpleName()));
         }
-        // TODO: Exercise validation
-        /*if (!Exercise.isValidExercise(exercise)) {
+        Exercise modelExercise;
+        try {
+            modelExercise = Exercise.find(new Name(exercise));
+        } catch (ExerciseNotFoundException e) {
             throw new IllegalValueException(Exercise.MESSAGE_CONSTRAINTS);
-        }*/
-        // TODO: Exercise constructor: convert Name to existing Exercise
-        final Exercise modelExercise = new Exercise(new Name("Sit up"), 30);
+        }
 
-        // TODO: CREATE NEW DATETIME CLASS???
         if (dateTime == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
         }
-        // TODO: LocalDateTime validation
-        /*if (!LocalDateTime.isValidLocalDateTime(dateTime)) {
-            throw new IllegalValueException(LocalDateTime.MESSAGE_CONSTRAINTS);
-        }*/
-        final LocalDateTime modelLocalDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_DATE_TIME);
+        LocalDateTime modelLocalDateTime;
+        try {
+            modelLocalDateTime = LocalDateTime.parse(dateTime);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException("Date and Time should be in ISO_LOCAL_DATE_TIME format");
+        }
 
         if (rep == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rep.class.getSimpleName()));
@@ -93,5 +94,4 @@ class JsonAdaptedLog {
 
         return new Log(modelExercise, modelRep, modelComment, modelLocalDateTime);
     }
-
 }

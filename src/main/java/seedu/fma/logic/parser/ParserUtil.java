@@ -10,10 +10,8 @@ import seedu.fma.commons.core.index.Index;
 import seedu.fma.commons.util.StringUtil;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.exercise.Exercise;
-import seedu.fma.model.log.Address;
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
 import seedu.fma.model.log.Comment;
-import seedu.fma.model.log.Email;
-import seedu.fma.model.log.Phone;
 import seedu.fma.model.log.Rep;
 import seedu.fma.model.tag.Tag;
 import seedu.fma.model.util.Name;
@@ -42,11 +40,15 @@ public class ParserUtil {
      * Parses an {@code String exerciseName} into an {@code Exercise}.
      *
      * @throws ParseException if the given {@code exerciseName} is invalid.
+     * @throws ExerciseNotFoundException if the given {@code exerciseName} does not match any existing Exercise.
      */
-    //TODO: Implement this with calories
     public static Exercise parseExercise(String exerciseName) throws ParseException {
         Name name = parseName(exerciseName);
-        return new Exercise(name, 1);
+        try {
+            return Exercise.find(name);
+        } catch (ExerciseNotFoundException e) {
+            throw new ParseException(Exercise.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -73,8 +75,8 @@ public class ParserUtil {
     public static Rep parseRep(String rep) throws ParseException {
         requireNonNull(rep);
         String trimmedRep = rep.trim();
-        if (!Comment.isValidComment(rep)) {
-            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        if (!Rep.isValidRep(rep)) {
+            throw new ParseException(Rep.MESSAGE_CONSTRAINTS);
         }
         return new Rep(trimmedRep);
     }
@@ -92,51 +94,6 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**
