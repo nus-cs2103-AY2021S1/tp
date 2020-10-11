@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.catalogue;
 
 import static java.util.Objects.requireNonNull;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
@@ -10,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
