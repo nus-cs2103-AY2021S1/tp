@@ -16,6 +16,7 @@ public class ClassTime {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
+    public static final String TIME_CONSTRAINTS = "End time should always be after Start time";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -37,6 +38,7 @@ public class ClassTime {
     public ClassTime(String inputTime) {
         requireNonNull(inputTime);
         checkArgument(isValidClassTime(inputTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStartAndEndTime(inputTime), TIME_CONSTRAINTS);
         this.dayOfWeek = extractDay(inputTime);
         this.startTime = extractStartTime(inputTime);
         this.endTime = extractEndTime(inputTime);
@@ -62,6 +64,18 @@ public class ClassTime {
     private static LocalTime extractEndTime(String input) {
         String endTime = input.substring(7);
         return LocalTime.parse(endTime, TIME_FORMATTER);
+    }
+
+    /**
+     * Checks if input end time is after start time.
+     * @param input Start and end times input by user.
+     * @return True if times are valid, False if otherwise.
+     */
+    public static boolean isValidStartAndEndTime(String input) {
+        LocalTime startTime = extractStartTime(input);
+        LocalTime endTime = extractEndTime(input);
+
+        return endTime.isAfter(startTime);
     }
 
     @Override
