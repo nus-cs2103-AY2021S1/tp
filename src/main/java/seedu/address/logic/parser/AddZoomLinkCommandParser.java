@@ -37,7 +37,7 @@ public class AddZoomLinkCommandParser implements Parser<AddZoomLinkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddZoomLinkCommand.MESSAGE_USAGE));
         }
         ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_NAME).get());
-        return new AddZoomLinkCommand(index.getZeroBased(), zoomLink);
+        return new AddZoomLinkCommand(index.getOneBased(), zoomLink);
     }
 
     /**

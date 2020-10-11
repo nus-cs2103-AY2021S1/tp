@@ -63,6 +63,9 @@ public class AddressBookParser {
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkCommandParser().parse(arguments);
 
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
