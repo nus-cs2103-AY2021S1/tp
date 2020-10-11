@@ -168,7 +168,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the task being added.
+     * A Model stub that always accepts the task being added.
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();

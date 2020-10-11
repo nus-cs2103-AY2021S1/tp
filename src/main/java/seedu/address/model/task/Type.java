@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's type in the address book.
+ * Represents a Task's type in the PlaNUS task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
  */
 public class Type {
@@ -30,7 +30,7 @@ public class Type {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid type.
      */
     public static boolean isValidType(String test) {
         return test.matches(VALIDATION_REGEX);

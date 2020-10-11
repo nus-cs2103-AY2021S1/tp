@@ -1,5 +1,9 @@
 package seedu.address.model.task;
 
+/**
+ * Represents a Task's state.
+ * A task's state can be either done or pending.
+ */
 public enum State {
     DONE("done"), PENDING("pending");
 
