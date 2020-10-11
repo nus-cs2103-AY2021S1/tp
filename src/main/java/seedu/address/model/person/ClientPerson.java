@@ -29,7 +29,7 @@ public class ClientPerson extends Person {
         this.sellerId = id;
     }
 
-    protected Id getId() {
+    public Id getId() {
         return this.sellerId;
     }
 
