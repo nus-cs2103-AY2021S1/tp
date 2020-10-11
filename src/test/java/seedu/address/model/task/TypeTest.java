@@ -27,9 +27,11 @@ public class TypeTest {
         // invalid types
         assertFalse(Type.isValidType("")); // empty string
         assertFalse(Type.isValidType(" ")); // spaces only
+        assertFalse(Type.isValidType("abcdefg")); // not a valid type of task
 
         // valid types
-        assertTrue(Type.isValidType("todo")); // one word
-        assertTrue(Type.isValidType("something-todo")); // a phrase
+        assertTrue(Type.isValidType("todo"));
+        assertTrue(Type.isValidType("event"));
+        assertTrue(Type.isValidType("deadline"));
     }
 }

@@ -4,13 +4,13 @@
     "title" : "Alice Pauline",
     "dateTime" : "01-01-2020 12:00",
     "description" : "alice,example.com",
-    "type" : "todo",
+    "type" : "event",
     "tagged" : [ "friends" ]
   }, {
     "title" : "Benson Meier",
     "dateTime" : "02-02-2020 12:00",
     "description" : "johnd,example.com",
-    "type" : "deadline",
+    "type" : "event",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "title" : "Carl Kurz",
@@ -28,19 +28,19 @@
     "title" : "Elle Meyer",
     "dateTime" : "05-05-2020 12:00",
     "description" : "werner,example.com",
-    "type" : "lesson",
+    "type" : "event",
     "tagged" : [ ]
   }, {
     "title" : "Fiona Kunz",
     "dateTime" : "06-06-2020 12:00",
     "description" : "lydia,example.com",
-    "type" : "tutorial",
+    "type" : "event",
     "tagged" : [ ]
   }, {
     "title" : "George Best",
     "dateTime" : "07-07-2020 12:00",
     "description" : "anna,example.com",
-    "type" : "session",
+    "type" : "event",
     "tagged" : [ ]
   } ]
 }

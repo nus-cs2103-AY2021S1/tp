@@ -3,7 +3,7 @@
     "title": "Alice Pauline",
     "dateTime": "01-01-2020 12:00",
     "description": "alice,example.com",
-    "type": "something-todo",
+    "type": "event",
     "tagged": [ "friends" ]
   }, {
     "title": "Alice Pauline",
