@@ -43,9 +43,10 @@ public class SampleDataUtil {
     public static ReadOnlyAddressBook getSampleAddressBook() {
         ModuleList sampleAb = new ModuleList();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            // sampleAb.addPerson(samplePerson);
         }
-        return sampleAb;
+        // return sampleAb;
+        return null;
     }
 
     /**
