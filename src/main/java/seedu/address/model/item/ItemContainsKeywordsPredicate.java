@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
-import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Item}'s {@code Name} or {@code Supplier} or {@code Tags} matches any of the keywords given.

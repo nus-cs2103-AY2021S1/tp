@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 
@@ -24,56 +24,56 @@ import seedu.address.model.item.Item;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
+    private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item itemToDelete = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getInventoryBook(), new UserPrefs());
+        InventoryModelManager expectedModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, inventoryModel, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredItemList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, inventoryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
+        showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
 
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item itemToDelete = inventoryModel.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
-        Model expectedModel = new ModelManager(model.getInventoryBook(), new UserPrefs());
-        expectedModel.deleteItem(itemToDelete);
-        showNoItem(expectedModel);
+        InventoryModel expectedInventoryModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
+        expectedInventoryModel.deleteItem(itemToDelete);
+        showNoItem(expectedInventoryModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, inventoryModel, expectedMessage, expectedInventoryModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
+        showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
 
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of inventory book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getInventoryBook().getItemList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < inventoryModel.getInventoryBook().getItemList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, inventoryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
@@ -101,9 +101,9 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoItem(Model model) {
-        model.updateFilteredItemList(p -> false);
+    private void showNoItem(InventoryModel inventoryModel) {
+        inventoryModel.updateFilteredItemList(p -> false);
 
-        assertTrue(model.getFilteredItemList().isEmpty());
+        assertTrue(inventoryModel.getFilteredItemList().isEmpty());
     }
 }

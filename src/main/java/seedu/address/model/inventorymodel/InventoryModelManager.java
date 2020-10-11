@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.inventorymodel;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,13 +11,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 
 /**
  * Represents the in-memory model of the inventory book data.
  */
-public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+public class InventoryModelManager implements InventoryModel {
+    private static final Logger logger = LogsCenter.getLogger(InventoryModelManager.class);
 
     private final InventoryBook inventoryBook;
     private final UserPrefs userPrefs;
@@ -26,7 +28,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given inventoryBook and userPrefs.
      */
-    public ModelManager(ReadOnlyInventoryBook inventoryBook, ReadOnlyUserPrefs userPrefs) {
+    public InventoryModelManager(ReadOnlyInventoryBook inventoryBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(inventoryBook, userPrefs);
 
@@ -37,7 +39,7 @@ public class ModelManager implements Model {
         filteredItems = new FilteredList<>(this.inventoryBook.getItemList());
     }
 
-    public ModelManager() {
+    public InventoryModelManager() {
         this(new InventoryBook(), new UserPrefs());
     }
 
@@ -144,12 +146,12 @@ public class ModelManager implements Model {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
+        if (!(obj instanceof InventoryModelManager)) {
             return false;
         }
 
         // state check
-        ModelManager other = (ModelManager) obj;
+        InventoryModelManager other = (InventoryModelManager) obj;
         return inventoryBook.equals(other.inventoryBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredItems.equals(other.filteredItems);

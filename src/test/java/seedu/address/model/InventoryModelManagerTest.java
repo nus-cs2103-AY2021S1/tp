@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
+import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
 import static seedu.address.testutil.TypicalItems.DUCK_WITH_MAX_QUANTITY;
@@ -16,12 +16,14 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.testutil.InventoryBookBuilder;
 
-public class ModelManagerTest {
+public class InventoryModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private InventoryModelManager modelManager = new InventoryModelManager();
 
     @Test
     public void constructor() {
@@ -102,8 +104,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(inventoryBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(inventoryBook, userPrefs);
+        modelManager = new InventoryModelManager(inventoryBook, userPrefs);
+        InventoryModelManager modelManagerCopy = new InventoryModelManager(inventoryBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -116,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different inventoryBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentInventoryBook, userPrefs)));
+        assertFalse(modelManager.equals(new InventoryModelManager(differentInventoryBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = CHICKEN.getName().fullName.split("\\s+");
         modelManager.updateFilteredItemList(new ItemContainsKeywordsPredicate(Arrays.asList(keywords), PREFIX_NAME));
-        assertFalse(modelManager.equals(new ModelManager(inventoryBook, userPrefs)));
+        assertFalse(modelManager.equals(new InventoryModelManager(inventoryBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
@@ -129,6 +131,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setInventoryBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(inventoryBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new InventoryModelManager(inventoryBook, differentUserPrefs)));
     }
 }

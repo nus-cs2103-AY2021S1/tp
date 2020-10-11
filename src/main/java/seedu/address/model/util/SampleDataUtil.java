@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.InventoryBook;
-import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 
 /**
  * Contains utility methods for populating {@code InventoryBook} with sample data.

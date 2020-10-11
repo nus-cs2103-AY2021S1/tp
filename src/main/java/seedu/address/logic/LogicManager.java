@@ -12,8 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.InventoryBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
 import seedu.address.storage.Storage;
 
@@ -24,15 +24,15 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
+    private final InventoryModel inventoryModel;
     private final Storage storage;
     private final InventoryBookParser inventoryBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
-        this.model = model;
+    public LogicManager(InventoryModel inventoryModel, Storage storage) {
+        this.inventoryModel = inventoryModel;
         this.storage = storage;
         inventoryBookParser = new InventoryBookParser();
     }
@@ -43,10 +43,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = inventoryBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(inventoryModel);
 
         try {
-            storage.saveInventoryBook(model.getInventoryBook());
+            storage.saveInventoryBook(inventoryModel.getInventoryBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,26 +56,26 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyInventoryBook getInventoryBook() {
-        return model.getInventoryBook();
+        return inventoryModel.getInventoryBook();
     }
 
     @Override
     public ObservableList<Item> getFilteredItemList() {
-        return model.getFilteredItemList();
+        return inventoryModel.getFilteredItemList();
     }
 
     @Override
     public Path getInventoryBookFilePath() {
-        return model.getInventoryBookFilePath();
+        return inventoryModel.getInventoryBookFilePath();
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return model.getGuiSettings();
+        return inventoryModel.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        model.setGuiSettings(guiSettings);
+        inventoryModel.setGuiSettings(guiSettings);
     }
 }

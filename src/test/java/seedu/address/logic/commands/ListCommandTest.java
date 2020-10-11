@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -17,23 +17,23 @@ import seedu.address.model.UserPrefs;
  */
 public class ListCommandTest {
 
-    private Model model;
-    private Model expectedModel;
+    private InventoryModel inventoryModel;
+    private InventoryModel expectedInventoryModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getInventoryBook(), new UserPrefs());
+        inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
+        expectedInventoryModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), inventoryModel, ListCommand.MESSAGE_SUCCESS, expectedInventoryModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showItemAtIndex(inventoryModel, INDEX_FIRST_ITEM);
+        assertCommandSuccess(new ListCommand(), inventoryModel, ListCommand.MESSAGE_SUCCESS, expectedInventoryModel);
     }
 }

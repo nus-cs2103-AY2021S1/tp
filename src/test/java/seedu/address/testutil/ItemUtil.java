@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.item.Item;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 
 /**
  * A utility class for Item.

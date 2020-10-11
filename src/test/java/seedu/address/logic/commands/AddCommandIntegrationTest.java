@@ -6,8 +6,8 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.testutil.ItemBuilder;
@@ -17,21 +17,21 @@ import seedu.address.testutil.ItemBuilder;
  */
 public class AddCommandIntegrationTest {
 
-    private Model model;
+    private InventoryModel inventoryModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
+        inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newItem_success() {
         Item validItem = new ItemBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getInventoryBook(), new UserPrefs());
-        expectedModel.addItem(validItem);
+        InventoryModel expectedInventoryModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
+        expectedInventoryModel.addItem(validItem);
 
-        assertCommandSuccess(new AddCommand(validItem), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedModel);
+        assertCommandSuccess(new AddCommand(validItem), inventoryModel,
+                String.format(AddCommand.MESSAGE_SUCCESS, validItem), expectedInventoryModel);
     }
 }

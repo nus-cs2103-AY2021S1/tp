@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Model;
+import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.item.Item;
 
 /**
@@ -51,17 +51,17 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(InventoryModel inventoryModel) throws CommandException {
+        requireNonNull(inventoryModel);
 
-        if (model.hasItem(toAdd)) {
+        if (inventoryModel.hasItem(toAdd)) {
             if (toAdd.getMaxQuantity().isPresent()) {
                 throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
             }
-            Item toReplace = model.addOnExistingItem(toAdd);
+            Item toReplace = inventoryModel.addOnExistingItem(toAdd);
             return new CommandResult(String.format(MESSAGE_ITEM_ADDED_TO_INVENTORY, toReplace));
         } else {
-            model.addItem(toAdd);
+            inventoryModel.addItem(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
     }

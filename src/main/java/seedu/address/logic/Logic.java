@@ -7,7 +7,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
 
 /**
@@ -26,7 +27,7 @@ public interface Logic {
     /**
      * Returns the InventoryBook.
      *
-     * @see seedu.address.model.Model#getInventoryBook()
+     * @see InventoryModel#getInventoryBook()
      */
     ReadOnlyInventoryBook getInventoryBook();
 

@@ -5,10 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.InventoryBook}.
+ * Represents a storage for {@link InventoryBook}.
  */
 public interface InventoryBookStorage {
 

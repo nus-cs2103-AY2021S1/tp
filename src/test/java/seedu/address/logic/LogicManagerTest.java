@@ -25,9 +25,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.storage.JsonInventoryBookStorage;
@@ -41,7 +41,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private InventoryModel inventoryModel = new InventoryModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -50,7 +50,7 @@ public class LogicManagerTest {
                 new JsonInventoryBookStorage(temporaryFolder.resolve("inventoryBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(inventoryModel, storage);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, inventoryModel);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(inventoryModel, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
@@ -89,7 +89,7 @@ public class LogicManagerTest {
                 .withTags()
                 .withMaxQuantity(VALID_MAX_QUANTITY)
                 .withMetric(VALID_METRIC).build();
-        ModelManager expectedModel = new ModelManager();
+        InventoryModelManager expectedModel = new InventoryModelManager();
         expectedModel.addItem(expectedItem);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
@@ -105,18 +105,18 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, Class, String, InventoryModel)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            InventoryModel expectedInventoryModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
-        assertEquals(expectedModel, model);
+        assertEquals(expectedInventoryModel, inventoryModel);
     }
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, Class, String, InventoryModel)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
@@ -124,7 +124,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, Class, String, InventoryModel)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
@@ -132,12 +132,12 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertCommandFailure(String, Class, String, InventoryModel)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getInventoryBook(), new UserPrefs());
-        assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
+        InventoryModel expectedInventoryModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
+        assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedInventoryModel);
     }
 
     /**
@@ -145,12 +145,12 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
-     * @see #assertCommandSuccess(String, String, Model)
+     * @see #assertCommandSuccess(String, String, InventoryModel)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
+            String expectedMessage, InventoryModel expectedInventoryModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
-        assertEquals(expectedModel, model);
+        assertEquals(expectedInventoryModel, inventoryModel);
     }
 
     /**

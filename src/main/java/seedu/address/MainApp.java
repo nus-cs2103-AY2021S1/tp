@@ -15,10 +15,10 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.InventoryBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
+import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
@@ -43,7 +43,7 @@ public class MainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
+    protected InventoryModel inventoryModel;
     protected Config config;
 
     @Override
@@ -61,9 +61,9 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        inventoryModel = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(inventoryModel, storage);
 
         ui = new UiManager(logic);
     }
@@ -73,7 +73,7 @@ public class MainApp extends Application {
      * The data from the sample inventory book will be used instead if {@code storage}'s inventory book is not found,
      * or an empty inventory book will be used instead if errors occur when reading {@code storage}'s inventory book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private InventoryModel initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyInventoryBook> inventoryBookOptional;
         ReadOnlyInventoryBook initialData;
         try {
@@ -90,7 +90,7 @@ public class MainApp extends Application {
             initialData = new InventoryBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new InventoryModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -175,7 +175,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Inventory Book ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            storage.saveUserPrefs(inventoryModel.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

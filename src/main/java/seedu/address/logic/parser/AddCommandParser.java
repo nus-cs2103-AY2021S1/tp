@@ -18,7 +18,7 @@ import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

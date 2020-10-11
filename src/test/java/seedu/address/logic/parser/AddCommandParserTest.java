@@ -37,7 +37,7 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.item.Tag;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddCommandParserTest {

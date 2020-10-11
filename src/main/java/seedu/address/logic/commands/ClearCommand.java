@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.InventoryBook;
-import seedu.address.model.Model;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.InventoryModel;
 
 /**
  * Clears the inventory book.
@@ -16,9 +16,9 @@ public class ClearCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.setInventoryBook(new InventoryBook());
+    public CommandResult execute(InventoryModel inventoryModel) {
+        requireNonNull(inventoryModel);
+        inventoryModel.setInventoryBook(new InventoryBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

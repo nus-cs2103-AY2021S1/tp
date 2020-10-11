@@ -13,8 +13,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
@@ -22,8 +22,8 @@ import seedu.address.model.item.ItemContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
+    private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
+    private InventoryModel expectedInventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -57,9 +57,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
         ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredItemList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredItemList());
+        expectedInventoryModel.updateFilteredItemList(predicate);
+        assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
+        assertEquals(Collections.emptyList(), inventoryModel.getFilteredItemList());
     }
 
     /**

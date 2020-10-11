@@ -5,28 +5,28 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.InventoryBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
 
     @Test
     public void execute_emptyInventoryBook_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        InventoryModel inventoryModel = new InventoryModelManager();
+        InventoryModel expectedInventoryModel = new InventoryModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), inventoryModel, ClearCommand.MESSAGE_SUCCESS, expectedInventoryModel);
     }
 
     @Test
     public void execute_nonEmptyInventoryBook_success() {
-        Model model = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalInventoryBook(), new UserPrefs());
-        expectedModel.setInventoryBook(new InventoryBook());
+        InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
+        InventoryModel expectedInventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
+        expectedInventoryModel.setInventoryBook(new InventoryBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), inventoryModel, ClearCommand.MESSAGE_SUCCESS, expectedInventoryModel);
     }
 
 }
