@@ -72,6 +72,16 @@ public class AssignCommandTest {
     }
 
     @Test
+    public void execute_validIndexInvalidPerson_throwsCommandException() {
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PROJECT, ALICE.getPersonName().fullPersonName);
+
+        assertCommandFailure(assignCommand, model,
+                String.format(Messages.MESSAGE_MEMBER_NOT_PRESENT, ALICE.getPersonName().fullPersonName));
+    }
+
+    @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PROJECT);
