@@ -47,6 +47,14 @@ public class Leave {
         leaveLength = Period.between(this.startDate, this.endDate).getDays() + 1;
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
     public int getLeaveLength() {
         return leaveLength;
     }
