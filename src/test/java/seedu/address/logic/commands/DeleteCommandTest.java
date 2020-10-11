@@ -65,7 +65,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidNricUnfilteredList_throwsCommandException() {
-        Nric noneExistNric = new Nric("N12983298I");
+        Nric noneExistNric = new Nric("N1298329I");
         DeleteCommand deleteCommand = new DeleteCommand(noneExistNric);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);

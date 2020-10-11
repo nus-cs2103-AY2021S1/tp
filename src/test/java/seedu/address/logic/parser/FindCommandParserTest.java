@@ -35,22 +35,22 @@ public class FindCommandParserTest {
     public void parse_validNric_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new KeywordsPredicate(Arrays.asList("S12345678D", "S00000009U")));
-        assertParseSuccess(parser, "S12345678D S00000009U", expectedFindCommand);
+                new FindCommand(new KeywordsPredicate(Arrays.asList("S1234567D", "S0000009U")));
+        assertParseSuccess(parser, "S1234567D S0000009U", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n S12345678D \n \t S00000009U  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n S1234567D \n \t S0000009U  \t", expectedFindCommand);
     }
 
     @Test
     public void parse_validNameAndNric_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new KeywordsPredicate(Arrays.asList("Alice", "S00000009U")));
-        assertParseSuccess(parser, "Alice S00000009U", expectedFindCommand);
+                new FindCommand(new KeywordsPredicate(Arrays.asList("Alice", "S0000009U")));
+        assertParseSuccess(parser, "Alice S0000009U", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t S00000009U  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n Alice \n \t S0000009U  \t", expectedFindCommand);
     }
 
 }

@@ -9,8 +9,8 @@ public class Nric {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Starts with an alphabet, followed by 8 digits and ends with another alphabet";
-    public static final String VALIDATION_REGEX = "[a-zA-Z]\\d{8}[a-zA-Z]$";
+            "Starts with an alphabet, followed by 7 digits and ends with another alphabet";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]\\d{7}[a-zA-Z]$";
     public final String value;
 
     /**

@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **NRIC**: National Registration Identity Card - A unique identification system with 1 alphabet followed by 8 digits, and another alphabet. E.g  X12345678X, where X is an arbitrary Alphabet
+* **NRIC**: National Registration Identity Card - A unique identification system with 1 alphabet followed by 7 digits, and another alphabet. E.g  X1234567X, where X is an arbitrary Alphabet
 
 --------------------------------------------------------------------------------------------------------------------
 

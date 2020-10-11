@@ -15,8 +15,34 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String COMMAND_SUMMARY = "                                          COMMAND SUMMARY"
+            + "                                         \n\n"
+            + "Action │ Format, Examples \n"
+            + "───────┼────────────────"
+            + "────────────────────────"
+            + "────────────────────────"
+            + "────────────────────────\n"
+            + "Add    │ add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ \n"
+            + "       | e.g., add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, \n"
+            + "       | 1234665 t/friend t/colleague \n"
+            + "Clear  │ clear \n"
+            + "Delete │ delete INDEX \n"
+            + "       | e.g., delete 3 \n"
+            + "       | delete NRIC \n"
+            + "       | e.g., delete S1234567A \n"
+            + "Edit   │ edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​ \n"
+            + "       | e.g.,edit 2 n/James Lee e/jameslee@example.com ic/S1234567A \n"
+            + "Find   │ find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs] \n"
+            + "       | e.g., find James Jake \n"
+            + "       | e.g., find Curry Davis Heskey S1234567A \n"
+            + "List   │ list \n"
+            + "Help   │ help \n"
+            + "Count  │ count \n\n";
+
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-w15-3.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = COMMAND_SUMMARY
+            + "For more information, please refer to the user guide: \n"
+            + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
