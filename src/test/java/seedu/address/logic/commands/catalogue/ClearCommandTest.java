@@ -5,7 +5,6 @@ import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.catalogue.ClearCommand;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
