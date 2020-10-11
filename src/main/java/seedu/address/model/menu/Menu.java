@@ -80,10 +80,11 @@ public class Menu implements Iterable<Food> {
         }
     }
 
-    public void setMenu(Menu replacement) {
+    public void setFoods(Menu replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
+
 
     /**
      * Replaces the contents of this list with {@code foods}.
