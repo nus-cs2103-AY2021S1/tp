@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.model.allergy.Allergy;
 import seedu.address.model.tag.ColorTag;
-import seedu.address.model.visit.Visit;
 import seedu.address.model.visit.VisitHistory;
 
 /**

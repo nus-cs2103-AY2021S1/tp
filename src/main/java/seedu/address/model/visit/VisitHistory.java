@@ -21,34 +21,34 @@ public class VisitHistory {
         this.visits = visits;
     }
 
-//    /**
-//     * Adds a new visit to the visit history.
-//     */
-//    public VisitHistory addVisit(Visit toAdd) {
-//        this.visits.add(toAdd);
-//        Collections.sort(this.visits);
-//        return this;
-//    }
-//
-//    /**
-//     * Edits a visit(specified by index) from the visit history.
-//     */
-//    public VisitHistory editVisit(int idx, Visit toEdit) {
-//        this.visits.set(idx - 1, toEdit);
-//        return this;
-//    }
-//
-//    /**
-//     * Deletes a visit(specified by index) from the visit history.
-//     */
-//    public VisitHistory deleteVisit(int idx) throws IndexOutOfBoundsException {
-//        this.visits.remove(idx - 1);
-//        return this;
-//    }
-//
-//    public Visit getVisitByIndex(int idx) throws IndexOutOfBoundsException {
-//        return visits.get(idx - 1);
-//    }
+    //    /**
+    //     * Adds a new visit to the visit history.
+    //     */
+    //    public VisitHistory addVisit(Visit toAdd) {
+    //        this.visits.add(toAdd);
+    //        Collections.sort(this.visits);
+    //        return this;
+    //    }
+    //
+    //    /**
+    //     * Edits a visit(specified by index) from the visit history.
+    //     */
+    //    public VisitHistory editVisit(int idx, Visit toEdit) {
+    //        this.visits.set(idx - 1, toEdit);
+    //        return this;
+    //    }
+    //
+    //    /**
+    //     * Deletes a visit(specified by index) from the visit history.
+    //     */
+    //    public VisitHistory deleteVisit(int idx) throws IndexOutOfBoundsException {
+    //        this.visits.remove(idx - 1);
+    //        return this;
+    //    }
+    //
+    //    public Visit getVisitByIndex(int idx) throws IndexOutOfBoundsException {
+    //        return visits.get(idx - 1);
+    //    }
 
     public ArrayList<Visit> getVisits() {
         return this.visits;
