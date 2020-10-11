@@ -46,9 +46,7 @@ public class Type {
      * Returns true if a given string is a valid type.
      */
     public static boolean isValidType(String testType) {
-        if (testType == null) {
-            throw new NullPointerException("Type cannot be null");
-        }
+        requireNonNull(testType);
         for (TypeOfTask types : TypeOfTask.values()) {
             String type = types.toString();
             if (type.equals(testType)) {
