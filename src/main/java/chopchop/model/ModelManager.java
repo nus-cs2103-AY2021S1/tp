@@ -141,6 +141,14 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns the user prefs' ingredient book file path.
+     */
+    @Override
+    public Path getIngredientBookFilePath() {
+        return userPrefs.getAddressBookFilePath();
+    }
+
+    /**
      * Sets the user prefs' address book file path.
      *
      * @param indBookFilePath
@@ -149,16 +157,6 @@ public class ModelManager implements Model {
     public void setIngredientBookFilePath(Path indBookFilePath) {
         requireNonNull(indBookFilePath);
         userPrefs.setIngredientBookFilePath(indBookFilePath);
-    }
-
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     *
-     * @param addressBook
-     */
-    @Override
-    public void setAddressBook(ReadOnlyFoodEntryBook addressBook) {
-
     }
 
     //=========== Filtered Ingredient List Accessors =============================================================
