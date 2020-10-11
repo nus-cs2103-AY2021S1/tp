@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -28,13 +29,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
             final String deleteType = matcher.group("commandWord");
             final String indexString = matcher.group("arguments");
-
-            if (!deleteType.equals(TYPE_CASE)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-            }
             Index index = ParserUtil.parseIndex(indexString);
 
-            return new DeleteCommand(index);
+            switch(deleteType) {
+            case TYPE_CASE:
+                return new DeleteCaseCommand(index);
+            default:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
