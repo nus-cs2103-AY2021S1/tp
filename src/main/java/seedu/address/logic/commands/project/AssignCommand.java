@@ -24,7 +24,7 @@ public class AssignCommand extends Command {
             + "Parameters: INDEX (must be a positive integer), NAME (must be present in the project)\n"
             + "Example: " + COMMAND_WORD + " 1 Lucas";
 
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
+    public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigns task: %1$s to ";
 
     private final Index targetIndex;
 
@@ -43,7 +43,7 @@ public class AssignCommand extends Command {
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, projectToDelete));
     }
 
     @Override
