@@ -16,6 +16,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -81,14 +83,16 @@ public class EditCommand extends Command {
      */
     private static Module createEditedModule(Module moduleToEdit, EditModuleDescriptor editModuleDescriptor) {
         assert moduleToEdit != null;
-        // TODO: update module fields for edit module descriptor
         // Name updatedName = editModuleDescriptor.getName().orElse(ModuleToEdit.getName());
         // Email updatedEmail = editModuleDescriptor.getEmail().orElse(ModuleToEdit.getEmail());
         // Address updatedAddress = editModuleDescriptor.getAddress().orElse(ModuleToEdit.getAddress());
         // Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(ModuleToEdit.getTags());
 
         // return new Module(updatedName, updatedEmail, updatedAddress, updatedTags);
-        return new Module();
+
+        ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
+        ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
+        return new Module(moduleName, zoomLink);
 
     }
 
@@ -120,9 +124,11 @@ public class EditCommand extends Command {
      * corresponding field value of the module.
      */
     public static class EditModuleDescriptor {
-        private Name name;
-        private Email email;
-        private Set<Tag> tags;
+        //private Name name;
+        //private Email email;
+        //private Set<Tag> tags;
+        private ModuleName moduleName;
+        private ZoomLink zoomLink;
 
         public EditModuleDescriptor() {}
 
@@ -131,19 +137,22 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
-            setName(toCopy.name);
-            setEmail(toCopy.email);
-            setTags(toCopy.tags);
+            //setName(toCopy.name);
+            //setEmail(toCopy.email);
+            //setTags(toCopy.tags);
+            setModuleName(toCopy.moduleName);
+            setZoomLink(toCopy.zoomLink);
         }
 
+        /*
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, tags);
+            return CollectionUtil.isAnyNonNull(moduleName, zoomLink);
         }
 
-        public void setName(Name name) {
+        /*public void setName(Name name) {
             this.name = name;
         }
 
@@ -163,7 +172,7 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
+        /*public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
@@ -172,8 +181,25 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
+        /*public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }*/
+
+
+        public void setModuleName(ModuleName moduleName) {
+            this.moduleName = moduleName;
+        }
+
+        public void setZoomLink(ZoomLink zoomLink) {
+            this.zoomLink = zoomLink;
+        }
+
+        public Optional<ModuleName> getModuleName() {
+            return Optional.ofNullable(moduleName);
+        }
+
+        public Optional<ZoomLink> getZoomLink() {
+            return Optional.ofNullable(zoomLink);
         }
 
         @Override
@@ -191,9 +217,11 @@ public class EditCommand extends Command {
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+            //return getName().equals(e.getName())
+            //       && getEmail().equals(e.getEmail())
+            //       && getTags().equals(e.getTags());
+            return getModuleName().equals(e.getModuleName())
+                    && getZoomLink().equals(e.getZoomLink());
         }
     }
 }
