@@ -1,110 +1,80 @@
 package seedu.address.testutil;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.ProjectTag;
-import seedu.address.model.task.Task;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
+import seedu.address.model.person.Phone;
 
 /**
  * A utility class to help with building Project objects.
  */
-public class ProjectBuilder {
+public class PersonBuilder {
 
-    public static final String DEFAULT_PROJECT_NAME = "Alice Pauline";
-    public static final String DEFAULT_DEADLINE = "29-02-2020 00:00:00";
-    public static final String DEFAULT_REPOURL = "https://github.com/a/b.git";
+    public static final String DEFAULT_PERSON_NAME = "Alice Pauline";
+    public static final String DEFAULT_PHONE = "88888888";
+    public static final String DEFAULT_EMAIL = "alicepauline@sample.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private ProjectName projectName;
-    private Deadline deadline;
-    private RepoUrl repoUrl;
-    private ProjectDescription projectDescription;
-    private Set<ProjectTag> projectTags;
-    private Set<Task> tasks;
+    private PersonName personName;
+    private Phone phone;
+    private Email email;
+    private Address address;
 
     /**
-     * Creates a {@code ProjectBuilder} with the default details.
+     * Creates a {@code PersonBuilder} with the default details.
      */
-    public ProjectBuilder() {
-        projectName = new ProjectName(DEFAULT_PROJECT_NAME);
-        deadline = new Deadline(DEFAULT_DEADLINE);
-        repoUrl = new RepoUrl(DEFAULT_REPOURL);
-        projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
-        projectTags = new HashSet<>();
-        tasks = new HashSet<>();
+    public PersonBuilder() {
+        personName = new PersonName(DEFAULT_PERSON_NAME);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        address = new Address(DEFAULT_ADDRESS);
     }
 
     /**
-     * Initializes the ProjectBuilder with the data of {@code projectToCopy}.
+     * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public ProjectBuilder(Project projectToCopy) {
-        projectName = projectToCopy.getProjectName();
-        deadline = projectToCopy.getDeadline();
-        repoUrl = projectToCopy.getRepoUrl();
-        projectDescription = projectToCopy.getProjectDescription();
-        projectTags = new HashSet<>(projectToCopy.getProjectTags());
-        tasks = new HashSet<>(projectToCopy.getTasks());
+    public PersonBuilder(Person personToCopy) {
+        personName = personToCopy.getPersonName();
+        phone = personToCopy.getPhone();
+        email = personToCopy.getEmail();
+        address = personToCopy.getAddress();
     }
 
     /**
-     * Sets the {@code ProjectName} of the {@code Project} that we are building.
+     * Sets the {@code PersonName} of the {@code Person} that we are building.
      */
-    public ProjectBuilder withProjectName(String projectName) {
-        this.projectName = new ProjectName(projectName);
+    public PersonBuilder withPersonName(String personName) {
+        this.personName = new PersonName(personName);
         return this;
     }
 
     /**
-     * Parses the {@code projectTags} into a {@code Set<ProjectTag>} and set it to the {@code Project}
-     * that we are building.
+     * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public ProjectBuilder withTags(String ... projectTags) {
-        this.projectTags = SampleDataUtil.getTagSet(projectTags);
+    public PersonBuilder withPhone(String phone) {
+        this.phone = new Phone(phone);
         return this;
     }
 
     /**
-     * Parses the {@code tasks} into a {@code Set<Task>} and set it to the {@code Project} that we are building.
+     * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public ProjectBuilder withTasks(String ... tasks) {
-        this.tasks = SampleDataUtil.getTaskSet(tasks);
+    public PersonBuilder withEmail(String email) {
+        this.email = new Email(email);
         return this;
     }
 
     /**
-     * Sets the {@code ProjectDescription} of the {@code Project} that we are building.
+     * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public ProjectBuilder withProjectDescription(String projectDescription) {
-        this.projectDescription = new ProjectDescription(projectDescription);
+    public PersonBuilder withAddress(String address) {
+        this.address = new Address(address);
         return this;
     }
 
-    /**
-     * Sets the {@code Deadline} of the {@code Project} that we are building.
-     */
-    public ProjectBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
-        return this;
-    }
-
-    /**
-     * Sets the {@code RepoUrl} of the {@code Project} that we are building.
-     */
-    public ProjectBuilder withRepoUrl(String repoUrl) {
-        this.repoUrl = new RepoUrl(repoUrl);
-        return this;
-    }
-
-    public Project build() {
-        return new Project(projectName, deadline, repoUrl, projectDescription, projectTags, new HashMap<>(), tasks);
+    public Person build() {
+        return new Person(personName, phone, email, address);
     }
 
 }
