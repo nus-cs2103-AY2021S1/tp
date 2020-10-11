@@ -82,6 +82,14 @@ public interface Model {
     void setStudent(Student target, Student editedStudent);
 
     /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the address book.
+     * The room identity of {@code editedStudent} must not be the same as another existing room
+     * in the address book.
+     */
+    void setRoom(Room target, Room editedRoom);
+
+    /**
      * Returns true if a room with the same data as {@code room} exists in the address book.
      */
     boolean hasRoom(Room room);

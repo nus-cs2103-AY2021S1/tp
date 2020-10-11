@@ -39,6 +39,7 @@ public class Student {
         this.faculty = faculty;
         this.studentId = studentId;
         this.tags.addAll(tags);
+        this.room = null; // defensive check
     }
 
     public Name getName() {
@@ -88,7 +89,21 @@ public class Student {
      * Allocates a room to the student.
      */
     public void setRoom(Room room) {
+        if (room == null) {
+            return;
+        }
+
+        if (room.hasStudent() && !room.getStudent().isSameStudent(this)) {
+            room.unsetStudent();
+        }
         this.room = room;
+    }
+
+    /**
+     * Deallocates the Student from their current Room.
+     */
+    public void unsetRoom() {
+        room = null;
     }
 
     /**

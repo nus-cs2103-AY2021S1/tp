@@ -73,6 +73,14 @@ public class AllocateCommand extends Command {
         }
 
         studentToAllocate.setRoom(roomToAllocate);
+        roomToAllocate.setStudent(studentToAllocate);
+
+        model.setStudent(studentToAllocate, studentToAllocate);
+        model.setRoom(roomToAllocate, roomToAllocate);
+
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAllocate, roomToAllocate));
     }
 

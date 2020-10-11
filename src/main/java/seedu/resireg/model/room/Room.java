@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.model.student.Student;
 import seedu.resireg.model.tag.Tag;
 
 /**
@@ -23,16 +24,19 @@ public class Room {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private Student student;
 
     /**
      * Every field must be present and not null.
      */
-    public Room (Floor floor, RoomNumber number, RoomType roomType, Set<Tag> tags) {
+    public Room(Floor floor, RoomNumber number, RoomType roomType,
+                Set<Tag> tags) {
         requireAllNonNull(floor, number, roomType, tags);
         this.floor = floor;
         this.number = number;
         this.roomType = roomType;
         this.tags.addAll(tags);
+        this.student = null; // defensive check
     }
 
     public Floor getFloor() {
@@ -47,6 +51,21 @@ public class Room {
         return roomType;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        if (student == null) {
+            return;
+        }
+
+        if (student.hasRoom() && !student.getRoom().isSameRoom(this)) {
+            student.unsetRoom();
+        }
+        this.student = student;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -56,17 +75,31 @@ public class Room {
     }
 
     /**
+     * @return true if a Student has been allocated to this room, otherwise false
+     */
+    public boolean hasStudent() {
+        return getStudent() != null;
+    }
+
+    /**
+     * Deallocates the Student currently assigned to this Room.
+     */
+    public void unsetStudent() {
+        student = null;
+    }
+
+    /**
      * Returns true if both rooms have the same floor and room numbers.
-     * This defines a weaker notion of equality between two rooms, and includes rooms that have the same ID,
-     * but different fields (roomtype).
+     * This defines a weaker notion of equality between two rooms, and includes
+     * rooms that have the same ID, but different fields (roomtype).
      */
     public boolean isSameRoom(Room otherRoom) {
         if (otherRoom == this) {
             return true;
         }
 
-        return otherRoom != null && otherRoom.getFloor().equals(getFloor())
-                && otherRoom.getRoomNumber().equals(getRoomNumber());
+        return otherRoom != null && otherRoom.getFloor().equals(getFloor()) &&
+                otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
     /**
@@ -82,16 +115,19 @@ public class Room {
             return false;
         }
 
-        seedu.resireg.model.room.Room otherRoom = (seedu.resireg.model.room.Room) other;
-        return otherRoom.getFloor().equals(getFloor())
-                && otherRoom.getRoomNumber().equals(getRoomNumber())
-                && otherRoom.getRoomType().equals(getRoomType())
-                && otherRoom.getTags().equals(getTags());
+        seedu.resireg.model.room.Room otherRoom =
+                (seedu.resireg.model.room.Room) other;
+        return otherRoom.getFloor().equals(getFloor()) &&
+                otherRoom.getRoomNumber().equals(getRoomNumber()) &&
+                otherRoom.getRoomType().equals(getRoomType()) &&
+                otherRoom.getTags().equals(getTags()) &&
+                otherRoom.getStudent().equals(getStudent());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
+        // use this method for custom fields hashing instead of implementing your
+        // own
         return Objects.hash(floor, number, roomType, tags);
     }
 
@@ -104,10 +140,10 @@ public class Room {
                 .append(getRoomNumber())
                 .append(" Type: ")
                 .append(getRoomType())
+                .append(" Student : ")
+                .append(getStudent())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }
-
