@@ -43,13 +43,16 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code pattern}.
      *   Ignores case, includes checking for partial matches.
      * @param sentence cannot be null
-     * @param pattern cannot be null, matches case-insensitively
+     * @param pattern cannot be null, matches case-sensitively
      */
     public static boolean matchesPatternIgnoreCase(String sentence, Pattern pattern) {
         requireNonNull(sentence);
         requireNonNull(pattern);
 
         return pattern.matcher(sentence).find();
+    }
+
+    /**
      * Returns true if the {@code sentence} contains {@code words}.
      *   Ignores case, but a exact match is required.
      *   <br>examples:<pre>

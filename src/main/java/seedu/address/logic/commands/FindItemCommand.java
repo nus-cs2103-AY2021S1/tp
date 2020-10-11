@@ -29,8 +29,15 @@ public class FindItemCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredItemList().size()));
+        int filteredItemListSize = model.getFilteredItemList().size();
+        boolean filteredItemListNotEmpty = filteredItemListSize > 0;
+
+        if (filteredItemListNotEmpty) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, filteredItemListSize));
+        } else {
+            return new CommandResult(Messages.MESSAGE_NO_ITEM_MATCH);
+        }
     }
 
     @Override
