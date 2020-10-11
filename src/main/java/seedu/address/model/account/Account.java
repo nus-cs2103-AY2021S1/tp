@@ -34,8 +34,8 @@ public class Account implements ReadOnlyAccount {
         this.revenues = new RevenueList();
     }
 
-    Account(Name name, ReadOnlyAccount toBeCopied) {
-        this(name);
+    Account(ReadOnlyAccount toBeCopied) {
+        this(toBeCopied.getName());
         resetData(toBeCopied);
     }
 
@@ -159,6 +159,7 @@ public class Account implements ReadOnlyAccount {
         // TODO: refine later
     }
 
+    @Override
     public Name getName() {
         return name;
     }
