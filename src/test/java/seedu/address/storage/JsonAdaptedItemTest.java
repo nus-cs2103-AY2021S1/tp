@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalItems.DUCK;
+import static seedu.address.testutil.TypicalItems.DUCK_WITH_MAX_QUANTITY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +25,19 @@ public class JsonAdaptedItemTest {
     private static final String INVALID_MAX_QUANTITY = "-3";
     private static final String INVALID_METRIC = " ";
 
-    private static final String VALID_NAME = DUCK.getName().toString();
-    private static final String VALID_QUANTITY = DUCK.getQuantity().toString();
-    private static final String VALID_SUPPLIER = DUCK.getSupplier().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = DUCK.getTags().stream()
+    private static final String VALID_NAME = DUCK_WITH_MAX_QUANTITY.getName().toString();
+    private static final String VALID_QUANTITY = DUCK_WITH_MAX_QUANTITY.getQuantity().toString();
+    private static final String VALID_SUPPLIER = DUCK_WITH_MAX_QUANTITY.getSupplier().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = DUCK_WITH_MAX_QUANTITY.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_MAX_QUANTITY = DUCK.getMaxQuantity().get().toString();
-    private static final String VALID_METRIC = DUCK.getMetric().get().toString();
+    private static final String VALID_MAX_QUANTITY = DUCK_WITH_MAX_QUANTITY.getMaxQuantity().get().toString();
+    private static final String VALID_METRIC = DUCK_WITH_MAX_QUANTITY.getMetric().get().toString();
 
     @Test
     public void toModelType_validItemDetails_returnsItem() throws Exception {
-        JsonAdaptedItem item = new JsonAdaptedItem(DUCK);
-        assertEquals(DUCK, item.toModelType());
+        JsonAdaptedItem item = new JsonAdaptedItem(DUCK_WITH_MAX_QUANTITY);
+        assertEquals(DUCK_WITH_MAX_QUANTITY, item.toModelType());
     }
 
     @Test
