@@ -31,5 +31,4 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }
