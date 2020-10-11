@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -60,6 +61,11 @@ public class RemoveCommand extends Command {
         }
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
+
+        if (Integer.parseInt(itemToEdit.getQuantity().value) < Integer.parseInt(this.quantity.value)) {
+            throw new CommandException(Quantity.MESSAGE_INVALID_QUANTITY_REMOVED);
+        }
+
         Item editedItem = createRemovedItem(itemToEdit, quantity);
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
@@ -83,8 +89,9 @@ public class RemoveCommand extends Command {
         Supplier updatedSupplier = itemToEdit.getSupplier();
         Set<Tag> updatedTags = itemToEdit.getTags();
         Quantity updatedMaxQuantity = itemToEdit.getMaxQuantity().orElse(null);
+        Metric metric = itemToEdit.getMetric().orElse(null);
 
-        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity);
+        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity, metric);
     }
 
     @Override

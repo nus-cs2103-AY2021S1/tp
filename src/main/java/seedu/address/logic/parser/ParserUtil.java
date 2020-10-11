@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -120,6 +121,21 @@ public class ParserUtil {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_MAX_QUANTITY);
         }
         return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code String metric} into an {@code Metric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Metric} is invalid.
+     */
+    public static Metric parseMetric(String metric) throws ParseException {
+        requireNonNull(metric);
+        String trimmedMetric = metric.trim();
+        if (!Metric.isValidMetric(metric)) {
+            throw new ParseException(Metric.MESSAGE_CONSTRAINTS);
+        }
+        return new Metric(trimmedMetric);
     }
 
 }

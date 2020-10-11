@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -31,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG,
-                        PREFIX_MAX_QUANTITY);
+                        PREFIX_MAX_QUANTITY, PREFIX_METRIC);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,8 +47,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String maxQ = argMultimap.getValue(PREFIX_MAX_QUANTITY).orElse(null);
         Quantity maxQuantity = maxQ == null ? null : ParserUtil.parseMaxQuantity(maxQ);
+        String met = argMultimap.getValue(PREFIX_METRIC).orElse(null);
+        Metric metric = met == null ? null : ParserUtil.parseMetric(met);
 
-        Item item = new Item(name, quantity, supplier, tagList, maxQuantity);
+        Item item = new Item(name, quantity, supplier, tagList, maxQuantity, metric);
 
         return new AddCommand(item);
     }

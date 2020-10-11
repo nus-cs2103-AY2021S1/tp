@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
@@ -38,6 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_MAX_QUANTITY = "500";
     public static final String VALID_MAX_QUANTITY_CHICKEN = "50";
     public static final String VALID_MAX_QUANTITY_DUCK = "30";
+    public static final String VALID_METRIC = "kg";
 
     public static final String NAME_DESC_CHICKEN = " " + PREFIX_NAME + VALID_NAME_CHICKEN;
     public static final String NAME_DESC_DUCK = " " + PREFIX_NAME + VALID_NAME_DUCK;
@@ -50,12 +52,15 @@ public class CommandTestUtil {
     public static final String MAX_QUANTITY_DESC = " " + PREFIX_MAX_QUANTITY + VALID_MAX_QUANTITY;
     public static final String MAX_QUANTITY_DESC_CHICKEN = " " + PREFIX_MAX_QUANTITY + VALID_MAX_QUANTITY_CHICKEN;
     public static final String MAX_QUANTITY_DESC_DUCK = " " + PREFIX_MAX_QUANTITY + VALID_MAX_QUANTITY_DUCK;
+    public static final String METRIC_DESC_CHICKEN = " " + PREFIX_METRIC + VALID_METRIC;
+    public static final String METRIC_DESC_DUCK = " " + PREFIX_METRIC + VALID_METRIC;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
     public static final String INVALID_SUPPLIER_DESC = " " + PREFIX_SUPPLIER; // empty string not allowed for suppliers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "liquids*"; // '*' not allowed in tags
     public static final String INVALID_MAX_QUANTITY_DESC = " " + PREFIX_MAX_QUANTITY + "-30"; // neg num not allowed
+    public static final String INVALID_METRIC = " " + PREFIX_METRIC + "kgs*"; // '*' not allowed in metric
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

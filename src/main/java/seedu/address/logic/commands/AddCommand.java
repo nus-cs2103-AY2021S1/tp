@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
@@ -30,7 +31,8 @@ public class AddCommand extends Command {
             + PREFIX_QUANTITY + "12 "
             + PREFIX_SUPPLIER + "NTUC "
             + PREFIX_TAG + "meat "
-            + PREFIX_MAX_QUANTITY + "50";
+            + PREFIX_MAX_QUANTITY + "50"
+            + PREFIX_METRIC + "kg";
 
     public static final String MESSAGE_SUCCESS = "New item added: %1$s";
     public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: %1$s";
