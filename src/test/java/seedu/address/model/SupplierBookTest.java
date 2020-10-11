@@ -18,10 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.item.Item;
-import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.testutil.ItemBuilder;
 
 public class SupplierBookTest {

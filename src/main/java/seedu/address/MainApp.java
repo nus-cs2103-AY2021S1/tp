@@ -15,12 +15,16 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.deliverymodel.DeliveryBook;
+import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
+import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.InventoryBookStorage;
 import seedu.address.storage.JsonInventoryBookStorage;
@@ -44,11 +48,12 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected InventoryModel inventoryModel;
+    protected DeliveryModel deliveryModel;
     protected Config config;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing InventoryBook ]===========================");
+        logger.info("=============================[ Initializing OneShelf ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -61,19 +66,21 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        inventoryModel = initModelManager(storage, userPrefs);
+        inventoryModel = initInventoryModelManager(storage, userPrefs);
+        deliveryModel = initDeliveryManager(storage, userPrefs);
 
-        logic = new LogicManager(inventoryModel, storage);
+        logic = new LogicManager(inventoryModel, deliveryModel, storage);
 
         ui = new UiManager(logic);
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s inventory book and {@code userPrefs}. <br>
+     * Returns a {@code InventoryModelManager}
+     * with the data from {@code storage}'s inventory book and {@code userPrefs}. <br>
      * The data from the sample inventory book will be used instead if {@code storage}'s inventory book is not found,
      * or an empty inventory book will be used instead if errors occur when reading {@code storage}'s inventory book.
      */
-    private InventoryModel initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private InventoryModel initInventoryModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyInventoryBook> inventoryBookOptional;
         ReadOnlyInventoryBook initialData;
         try {
@@ -91,6 +98,30 @@ public class MainApp extends Application {
         }
 
         return new InventoryModelManager(initialData, userPrefs);
+    }
+
+    /**
+     * Returns a {@code DeliveryModel} with the data from {@code storage}'s delivery book and {@code userPrefs}. <br>
+     * The data from the sample delivery book will be used instead if {@code storage}'s delivery book is not found,
+     * or an empty delivery book will be used instead if errors occur when reading {@code storage}'s delivery book.
+     */
+    private DeliveryModel initDeliveryManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyDeliveryBook> deliveryBookOptional;
+        ReadOnlyDeliveryBook initialData;
+        try {
+            deliveryBookOptional = storage.readDeliveryBook();
+            if (!deliveryBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample DeliveryBook");
+            }
+            initialData = deliveryBookOptional.orElseGet(SampleDataUtil::getSampleDeliveryBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty DeliveryBook");
+            initialData = new DeliveryBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty DeliveryBook");
+            initialData = new DeliveryBook();
+        }
+        return new DeliveryModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

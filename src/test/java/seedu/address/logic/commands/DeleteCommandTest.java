@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 
 /**
@@ -33,7 +33,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
-        InventoryModelManager expectedModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
+        InventoryModelManager expectedModel =
+                new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
 
         assertCommandSuccess(deleteCommand, inventoryModel, expectedMessage, expectedModel);
@@ -56,7 +57,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
-        InventoryModel expectedInventoryModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
+        InventoryModel expectedInventoryModel =
+                new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
         expectedInventoryModel.deleteItem(itemToDelete);
         showNoItem(expectedInventoryModel);
 

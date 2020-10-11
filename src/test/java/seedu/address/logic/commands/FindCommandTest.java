@@ -13,9 +13,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
 /**
@@ -23,7 +23,8 @@ import seedu.address.model.item.ItemContainsKeywordsPredicate;
  */
 public class FindCommandTest {
     private InventoryModel inventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
-    private InventoryModel expectedInventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
+    private InventoryModel expectedInventoryModel =
+            new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
 
     @Test
     public void equals() {

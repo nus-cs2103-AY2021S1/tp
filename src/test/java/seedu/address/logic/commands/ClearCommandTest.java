@@ -5,10 +5,10 @@ import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
 

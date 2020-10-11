@@ -16,9 +16,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
-import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.testutil.InventoryBookBuilder;
 
 public class InventoryModelManagerTest {

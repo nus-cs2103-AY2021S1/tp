@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
@@ -42,7 +42,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        InventoryModel expectedInventoryModel = new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
+        InventoryModel expectedInventoryModel =
+                new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
         expectedInventoryModel.setItem(inventoryModel.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, inventoryModel, expectedMessage, expectedInventoryModel);
@@ -63,7 +64,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        InventoryModel expectedInventoryModel = new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
+        InventoryModel expectedInventoryModel =
+                new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
         expectedInventoryModel.setItem(lastItem, editedItem);
 
         assertCommandSuccess(editCommand, inventoryModel, expectedMessage, expectedInventoryModel);
@@ -76,7 +78,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        InventoryModel expectedInventoryModel = new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
+        InventoryModel expectedInventoryModel =
+                new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, inventoryModel, expectedMessage, expectedInventoryModel);
     }
@@ -92,7 +95,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
-        InventoryModel expectedInventoryModel = new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
+        InventoryModel expectedInventoryModel =
+                new InventoryModelManager(new InventoryBook(inventoryModel.getInventoryBook()), new UserPrefs());
         expectedInventoryModel.setItem(inventoryModel.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editCommand, inventoryModel, expectedMessage, expectedInventoryModel);

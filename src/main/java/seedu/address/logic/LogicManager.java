@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.InventoryBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
@@ -25,14 +28,16 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final InventoryModel inventoryModel;
+    private final DeliveryModel deliveryModel;
     private final Storage storage;
     private final InventoryBookParser inventoryBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(InventoryModel inventoryModel, Storage storage) {
+    public LogicManager(InventoryModel inventoryModel, DeliveryModel deliveryModel, Storage storage) {
         this.inventoryModel = inventoryModel;
+        this.deliveryModel = deliveryModel;
         this.storage = storage;
         inventoryBookParser = new InventoryBookParser();
     }
@@ -67,6 +72,21 @@ public class LogicManager implements Logic {
     @Override
     public Path getInventoryBookFilePath() {
         return inventoryModel.getInventoryBookFilePath();
+    }
+
+    @Override
+    public ReadOnlyDeliveryBook getDeliveryBook() {
+        return deliveryModel.getDeliveryBook();
+    }
+
+    @Override
+    public ObservableList<Delivery> getFilteredDeliveryList() {
+        return deliveryModel.getFilteredDeliveryList();
+    }
+
+    @Override
+    public Path getDeliveryBookFilePath() {
+        return deliveryModel.getDeliveryBookFilePath();
     }
 
     @Override

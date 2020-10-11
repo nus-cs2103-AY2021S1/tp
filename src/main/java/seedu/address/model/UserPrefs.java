@@ -37,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setInventoryBookFilePath(newUserPrefs.getInventoryBookFilePath());
+        setDeliveryBookFilePath(newUserPrefs.getDeliveryBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {

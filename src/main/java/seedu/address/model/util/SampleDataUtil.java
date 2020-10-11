@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.delivery.Delivery;
+import seedu.address.model.deliverymodel.DeliveryBook;
+import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
@@ -32,6 +35,19 @@ public class SampleDataUtil {
                 new Quantity("300"),
                 new Metric("kg"))
         };
+    }
+
+    // TODO
+    public static Delivery[] getSampleDeliveries() {
+        return new Delivery[] { new Delivery() };
+    }
+
+    public static ReadOnlyDeliveryBook getSampleDeliveryBook() {
+        DeliveryBook sampleDb = new DeliveryBook();
+        for (Delivery sampleDelivery : getSampleDeliveries()) {
+            sampleDb.addDelivery(sampleDelivery);
+        }
+        return sampleDb;
     }
 
     public static ReadOnlyInventoryBook getSampleInventoryBook() {

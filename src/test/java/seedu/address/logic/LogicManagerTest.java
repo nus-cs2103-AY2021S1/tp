@@ -25,10 +25,12 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.deliverymodel.DeliveryModel;
+import seedu.address.model.deliverymodel.DeliveryModelManager;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.storage.JsonInventoryBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -42,6 +44,7 @@ public class LogicManagerTest {
     public Path temporaryFolder;
 
     private InventoryModel inventoryModel = new InventoryModelManager();
+    private DeliveryModel deliveryModel = new DeliveryModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -50,7 +53,7 @@ public class LogicManagerTest {
                 new JsonInventoryBookStorage(temporaryFolder.resolve("inventoryBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
-        logic = new LogicManager(inventoryModel, storage);
+        logic = new LogicManager(inventoryModel, deliveryModel, storage);
     }
 
     @Test
@@ -80,7 +83,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
-        logic = new LogicManager(inventoryModel, storage);
+        logic = new LogicManager(inventoryModel, deliveryModel, storage);
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
@@ -136,7 +139,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        InventoryModel expectedInventoryModel = new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
+        InventoryModel expectedInventoryModel =
+                new InventoryModelManager(inventoryModel.getInventoryBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedInventoryModel);
     }
 

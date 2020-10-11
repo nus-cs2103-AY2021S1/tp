@@ -82,7 +82,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, InventoryModel actualInventoryModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, InventoryModel actualInventoryModel,
+                                            CommandResult expectedCommandResult,
                                             InventoryModel expectedInventoryModel) {
         try {
             CommandResult result = command.execute(actualInventoryModel);
@@ -97,7 +98,8 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, InventoryModel, CommandResult, InventoryModel)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, InventoryModel actualInventoryModel, String expectedMessage,
+    public static void assertCommandSuccess(Command command, InventoryModel actualInventoryModel,
+                                            String expectedMessage,
                                             InventoryModel expectedInventoryModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualInventoryModel, expectedCommandResult, expectedInventoryModel);
@@ -109,7 +111,8 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the inventory book, filtered item list and selected item in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, InventoryModel actualInventoryModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command,
+                                            InventoryModel actualInventoryModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InventoryBook expectedInventoryBook = new InventoryBook(actualInventoryModel.getInventoryBook());
@@ -128,7 +131,8 @@ public class CommandTestUtil {
 
         Item item = inventoryModel.getFilteredItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
-        inventoryModel.updateFilteredItemList(new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
+        inventoryModel.updateFilteredItemList(
+                new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
 
         assertEquals(1, inventoryModel.getFilteredItemList().size());
     }
