@@ -33,7 +33,7 @@ public class AssignCommandTest {
     private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
     @Test
-    public void execute_validIndex_success() {
+    public void execute_validIndexValidPerson_success() {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.addParticipation(ALICE);
@@ -61,11 +61,14 @@ public class AssignCommandTest {
     // TODO: May add test cases for filtered/unfiltered list of tasks after filters are implemented
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndexValidPerson_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        project.addParticipation(ALICE);
+        AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getPersonName().fullPersonName);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+        assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
     }
 
     @Test
