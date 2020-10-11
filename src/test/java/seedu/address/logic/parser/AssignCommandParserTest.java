@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.address.logic.commands.catalogue.DeleteCommand;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.project.AssignCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -16,15 +19,16 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
  */
 public class AssignCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private AssignCommandParser parser = new AssignCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PROJECT));
+    public void parse_validArgs_returnsAssignCommand() {
+        assertParseSuccess(parser, "1 Alice Pauline",
+                new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().toString()));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
     }
 }
