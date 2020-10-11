@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
@@ -97,24 +98,29 @@ public class AssignCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PROJECT);
+        String name = ALICE.getPersonName().fullPersonName;
+        AssignCommand assignFirstCommand = new AssignCommand(INDEX_FIRST_TASK, name);
+        AssignCommand assignSecondCommand = new AssignCommand(INDEX_SECOND_TASK, name);
+        AssignCommand assignNullPerson = new AssignCommand(INDEX_FIRST_TASK, "");
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(assignFirstCommand.equals(assignFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PROJECT);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        AssignCommand assignFirstCommandCopy = new AssignCommand(INDEX_FIRST_TASK, name);
+        assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(assignFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(assignFirstCommand.equals(null));
 
-        // different project -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        // different task -> returns false
+        assertFalse(assignFirstCommand.equals(assignSecondCommand));
+
+        // different person -> returns false
+        assertFalse(assignFirstCommand.equals(assignNullPerson));
     }
 
     /**
