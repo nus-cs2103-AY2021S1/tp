@@ -3,9 +3,13 @@ package seedu.address.model.recipe;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.commons.Calories;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -21,18 +25,21 @@ public class Recipe {
     // Data fields
     private final ArrayList<Ingredient> ingredients;
     private final Calories calories;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Recipe(Name name, String instruction, String recipeImage,
-                  ArrayList<Ingredient> ingredients, Calories calories) {
-        requireAllNonNull(name, ingredients, calories, instruction);
+                  ArrayList<Ingredient> ingredients, Calories calories,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, ingredients, calories, instruction, tags);
         this.name = name;
         this.instruction = instruction;
         this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -56,6 +63,14 @@ public class Recipe {
     }
 
     /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two recipes.
      */
@@ -69,7 +84,8 @@ public class Recipe {
                 && otherRecipe.getInstruction().equals(getInstruction())
                 && otherRecipe.getRecipeImage().equals(getRecipeImage())
                 && (otherRecipe.getIngredient().equals(getIngredient()))
-                && otherRecipe.getCalories().equals(getCalories());
+                && otherRecipe.getCalories().equals(getCalories())
+                && otherRecipe.getTags().equals(getTags());
     }
 
     /**
@@ -91,13 +107,14 @@ public class Recipe {
                 && otherRecipe.getInstruction().equals(getInstruction())
                 && otherRecipe.getRecipeImage().equals(getRecipeImage())
                 && otherRecipe.getIngredient().equals(getIngredient())
-                && otherRecipe.getCalories().equals(getCalories());
+                && otherRecipe.getCalories().equals(getCalories())
+                && otherRecipe.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, instruction, recipeImage, ingredients, calories);
+        return Objects.hash(name, instruction, recipeImage, ingredients, calories, tags);
     }
 
     @Override
@@ -111,7 +128,9 @@ public class Recipe {
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")
-                .append(getInstruction());
+                .append(getInstruction())
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
         return builder.toString();
     }
 

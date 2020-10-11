@@ -6,8 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecipeCommand;
@@ -16,7 +18,7 @@ import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
-//import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddRecipeCommand object
@@ -30,7 +32,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
     public AddRecipeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
-                        PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE);
+                        PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
                 PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE)
@@ -49,13 +51,13 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         //}
 
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        //Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
-        Recipe recipe = new Recipe(name, instruction, recipeImage, ingredients, calories);
+
+
+        Recipe recipe = new Recipe(name, instruction, recipeImage, ingredients, calories, tagList);
 
         return new AddRecipeCommand(recipe);
     }

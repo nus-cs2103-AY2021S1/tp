@@ -1,6 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,6 +15,7 @@ import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedConsumption {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Consumption's %s field is missing!";
@@ -20,6 +25,7 @@ public class JsonAdaptedConsumption {
     private final String recipeImage;
     private final ArrayList<Ingredient> ingredients;
     private final Integer calories;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -29,12 +35,16 @@ public class JsonAdaptedConsumption {
                              @JsonProperty("instruction") String instruction,
                              @JsonProperty("recipeImage") String recipeImage,
                              @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
-                             @JsonProperty("calories") Integer calories) {
+                             @JsonProperty("calories") Integer calories,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.instruction = instruction;
         this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -46,6 +56,9 @@ public class JsonAdaptedConsumption {
         recipeImage = source.getRecipeImage();
         ingredients = source.getIngredient();
         calories = source.getCalories().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +67,10 @@ public class JsonAdaptedConsumption {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Consumption.
      */
     public Consumption toModelType() throws IllegalValueException {
+        final List<Tag> recipeTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            recipeTags.add(tag.toModelType());
+        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
@@ -95,7 +112,9 @@ public class JsonAdaptedConsumption {
         }
         final Calories modelCalories = new Calories(calories);
 
+        final Set<Tag> modelTags = new HashSet<>(recipeTags);
+
         return new Consumption(new Recipe(modelName, modelInstruction, modelRecipeImage,
-                modelIngredients, modelCalories));
+                modelIngredients, modelCalories, modelTags));
     }
 }
