@@ -20,10 +20,10 @@ import seedu.resireg.model.student.Student;
 public class AllocateCommand extends Command {
 
     public static final String COMMAND_WORD = "allocate";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a student to a room. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a student to a room. \n"
             + "Parameters: "
             + PREFIX_STUDENT_INDEX + "STUDENT INDEX "
-            + PREFIX_ROOM_INDEX + "ROOM INDEX"
+            + PREFIX_ROOM_INDEX + "ROOM INDEX\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_INDEX + "1 "
             + PREFIX_ROOM_INDEX + "1";
