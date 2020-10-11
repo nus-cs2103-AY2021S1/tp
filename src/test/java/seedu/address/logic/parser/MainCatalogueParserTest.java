@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import seedu.address.model.project.Status;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
@@ -28,6 +27,7 @@ import seedu.address.logic.commands.StartCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.Status;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
@@ -61,7 +61,8 @@ public class MainCatalogueParserTest {
         Project project = new ProjectBuilder().build();
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor), Status.CATALOGUE);
+                + INDEX_FIRST_PROJECT.getOneBased() + " " + ProjectUtil.getEditProjectDescriptorDetails(descriptor),
+                Status.CATALOGUE);
         assertEquals(new EditCommand(INDEX_FIRST_PROJECT, descriptor), command);
     }
 
@@ -94,14 +95,14 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_start() throws Exception {
         StartCommand command = (StartCommand) parser.parseCommand(
-                StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
+                StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT);
         assertEquals(new StartCommand(INDEX_FIRST_PROJECT), command);
     }
 
     @Test
     public void parseCommand_leave() throws Exception {
-        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD, Status.CATALOGUE) instanceof LeaveCommand);
-        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3", Status.CATALOGUE) instanceof LeaveCommand);
+        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD, Status.PROJECT) instanceof LeaveCommand);
+        assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3", Status.PROJECT) instanceof LeaveCommand);
     }
 
     @Test
@@ -112,6 +113,7 @@ public class MainCatalogueParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand", Status.CATALOGUE));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand",
+                Status.CATALOGUE));
     }
 }

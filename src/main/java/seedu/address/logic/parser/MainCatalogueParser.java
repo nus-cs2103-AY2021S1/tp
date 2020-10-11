@@ -50,61 +50,62 @@ public class MainCatalogueParser {
         if (status == Status.CATALOGUE) {
             switch (commandWord) {
 
-                case AddCommand.COMMAND_WORD:
-                    return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-                case EditCommand.COMMAND_WORD:
-                    return new EditCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-                case DeleteCommand.COMMAND_WORD:
-                    return new DeleteCommandParser().parse(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
 
-                case ClearCommand.COMMAND_WORD:
-                    return new ClearCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-                case FindCommand.COMMAND_WORD:
-                    return new FindCommandParser().parse(arguments);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-                case ListCommand.COMMAND_WORD:
-                    return new ListCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-                case ExitCommand.COMMAND_WORD:
-                    return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-                case HelpCommand.COMMAND_WORD:
-                    return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-                case StartCommand.COMMAND_WORD:
-                case LeaveCommand.COMMAND_WORD:
-                    throw new InvalidScopeException(Status.PROJECT, Status.CATALOGUE);
+            case StartCommand.COMMAND_WORD:
+            case LeaveCommand.COMMAND_WORD:
+                throw new InvalidScopeException(Status.PROJECT, Status.CATALOGUE);
 
-                default:
-                    throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         } else if (status == Status.PROJECT) {
             switch (commandWord) {
-                case StartCommand.COMMAND_WORD:
-                    return new StartCommandParser().parse(arguments);
 
-                case LeaveCommand.COMMAND_WORD:
-                    return new LeaveCommand();
+            case StartCommand.COMMAND_WORD:
+                return new StartCommandParser().parse(arguments);
 
-                case ExitCommand.COMMAND_WORD:
-                    return new ExitCommand();
+            case LeaveCommand.COMMAND_WORD:
+                return new LeaveCommand();
 
-                case HelpCommand.COMMAND_WORD:
-                    return new HelpCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-                case AddCommand.COMMAND_WORD:
-                case EditCommand.COMMAND_WORD:
-                case DeleteCommand.COMMAND_WORD:
-                case ClearCommand.COMMAND_WORD:
-                case FindCommand.COMMAND_WORD:
-                case ListCommand.COMMAND_WORD:
-                    throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-                default:
-                    throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case AddCommand.COMMAND_WORD:
+            case EditCommand.COMMAND_WORD:
+            case DeleteCommand.COMMAND_WORD:
+            case ClearCommand.COMMAND_WORD:
+            case FindCommand.COMMAND_WORD:
+            case ListCommand.COMMAND_WORD:
+                throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
