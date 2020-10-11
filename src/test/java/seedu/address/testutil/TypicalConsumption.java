@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,33 +22,51 @@ import seedu.address.model.recipe.Recipe;
 public class TypicalConsumption {
     // Recipe
     public static final Recipe ALICE_RECIPE = new RecipeBuilder().withName("Alice Pauline")
-            .withIngredient("94351253", "1 cup").withCalories(10).build();
+            .withIngredient("94351253", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe BENSON_RECIPE = new RecipeBuilder().withName("Benson Meier")
-            .withIngredient("98765432", "1 cup").build();
+            .withIngredient("98765432", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe CARL_RECIPE = new RecipeBuilder().withName("Carl Kurz")
-            .withIngredient("95352563", "1 cup").withCalories(10).build();
+            .withIngredient("95352563", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe DANIEL_RECIPE = new RecipeBuilder().withName("Daniel Meier")
-            .withIngredient("87652533", "1 cup").withCalories(10).build();
+            .withIngredient("87652533", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe ELLE_RECIPE = new RecipeBuilder().withName("Elle Meyer")
-            .withIngredient("9482224", "1 cup").withCalories(10).build();
+            .withIngredient("9482224", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe FIONA_RECIPE = new RecipeBuilder().withName("Fiona Kunz")
-            .withIngredient("9482427", "1 cup").withCalories(10).build();
+            .withIngredient("9482427", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe GEORGE_RECIPE = new RecipeBuilder().withName("George Best")
-            .withIngredient("9482442", "1 cup").withCalories(10).build();
+            .withIngredient("9482442", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
 
     // Manually added
     public static final Recipe HOON_RECIPE = new RecipeBuilder().withName("Hoon Meier")
-            .withIngredient("8482424", "1 cup").withCalories(10).build();
+            .withIngredient("8482424", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
     public static final Recipe IDA_RECIPE = new RecipeBuilder().withName("Ida Mueller")
-            .withIngredient("8482131", "1 cup").withCalories(10).build();
+            .withIngredient("8482131", "1 cup")
+            .withCalories(10).withInstruction("instruction").withRecipeImage("images/healthy1").withTags("healthy")
+            .build();
 
     // Manually added - Recipe's details found in {@code CommandTestUtil}
     public static final Recipe AMY_RECIPE = new RecipeBuilder().withName(VALID_NAME_AMY)
             .withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY)
-            .withCalories(VALID_CALORIES_AMY).build();
+            .withCalories(VALID_CALORIES_AMY).withTags(VALID_TAG_AMY).build();
     public static final Recipe BOB_RECIPE = new RecipeBuilder().withName(VALID_NAME_BOB)
             .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB)
-            .withCalories(VALID_CALORIES_BOB).build();
+            .withCalories(VALID_CALORIES_BOB).withTags(VALID_TAG_BOB).build();
 
     public static final Consumption ALICE = new ConsumptionBuilder().withRecipe(ALICE_RECIPE).build();
     public static final Consumption BENSON = new ConsumptionBuilder().withRecipe(BENSON_RECIPE).build();

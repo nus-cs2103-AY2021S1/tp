@@ -1,37 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-/*import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-*/
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
 
 import org.junit.jupiter.api.Test;
@@ -39,8 +22,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
-//import seedu.address.model.recipe.*;
-//import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -76,18 +57,14 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        //  assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 prefix/ string", MESSAGE_INVALID_FORMAT);
     }
 
     /*@Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_INGREDIENT_DESC,
-        IngredientString.MESSAGE_CONSTRAINTS); // invalid ingredients
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC,
-        Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC,
-        Address.MESSAGE_CONSTRAINTS); // invalid address
+        //IngredientString.MESSAGE_CONSTRAINTS); // invalid ingredients
         assertParseFailure(parser, "1" + INVALID_TAG_DESC,
          Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -113,15 +90,16 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC
-        + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_INGREDIENT_AMY,
+        + INVALID_INGREDIENT_DESC + VALID_INGREDIENT_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }*/
 
     /*@Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_RECIPE;
-        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB
+                + CALORIES_DESC_BOB + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
+                + TAG_DESC_BOB;
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withIngredient(VALID_INGREDIENT_BOB).build();
@@ -133,7 +111,9 @@ public class EditCommandParserTest {
     /*@Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_RECIPE;
-        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB + EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + INGREDIENT_DESC_BOB
+                + CALORIES_DESC_BOB + INSTRUCTION_DESC_BOB + RECIPE_IMAGE_DESC_BOB
+                + TAG_DESC_BOB;
 
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB)
                 .build();
@@ -157,20 +137,8 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditRecipeDescriptorBuilder().build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
-
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditRecipeDescriptorBuilder().build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
-
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
+        userInput = targetIndex.getOneBased() + TAG_DESC_BOB;
         descriptor = new EditRecipeDescriptorBuilder().build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
@@ -202,8 +170,7 @@ public class EditCommandParserTest {
         // assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_INGREDIENT_DESC
-                + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + INVALID_INGREDIENT_DESC
                 + INGREDIENT_DESC_BOB;
         descriptor = new EditRecipeDescriptorBuilder().withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

@@ -22,27 +22,27 @@ public class SampleDataUtil {
             new Recipe(new Name("Alex Yeoh"),
                     "instructions", "images/healthy1.jpg",
                     new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
-                    new Calories(10)),
+                    new Calories(10), getTagSet("healthy", "fast")),
             new Recipe(new Name("Bernice Yu"),
                     "instructions", "images/healthy2.jpg",
                     new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 teaspoon")})),
-                            new Calories(10)),
+                            new Calories(10), getTagSet("yummy")),
             new Recipe(new Name("Charlotte Oliveiro"),
                     "instructions", "images/healthy3.jpg",
                     new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "250g")})),
-                    new Calories(10)),
+                    new Calories(10), getTagSet("can heat up")),
             new Recipe(new Name("David Li"),
                     "instructions", "images/healthy4.jpg",
                     new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "a pinch")})),
-                    new Calories(10)),
+                    new Calories(10), getTagSet("full")),
             new Recipe(new Name("Irfan Ibrahim"),
                     "instructions", "images/healthy5.jpg",
                     new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "3 tablespoons")})),
-                    new Calories(10)),
+                    new Calories(10), getTagSet("can heat up")),
             new Recipe(new Name("Roy Balakrishnan"),
                     "instructions", "images/healthy6.jpg",
                     new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
-                    new Calories(10))
+                    new Calories(10), getTagSet("healthy"))
         };
     }
 

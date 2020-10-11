@@ -7,8 +7,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +19,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
-//import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
-//import seedu.address.testutil.RecipeBuilder;
+import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
+import seedu.address.testutil.RecipeBuilder;
 
 public class WishfulShrinkingTest {
 
@@ -41,7 +43,7 @@ public class WishfulShrinkingTest {
         assertEquals(newData, wishfulShrinking);
     }
 
-    /*@Test
+    @Test
     public void resetData_withDuplicateRecipes_throwsDuplicateRecipeException() {
         // Two recipes with the same identity fields
         Recipe editedAlice = new RecipeBuilder(ALICE)
@@ -50,7 +52,7 @@ public class WishfulShrinkingTest {
         WishfulShrinkingStub newData = new WishfulShrinkingStub(newRecipes);
 
         assertThrows(DuplicateRecipeException.class, () -> wishfulShrinking.resetData(newData));
-    }*/
+    }
 
     @Test
     public void hasRecipe_nullRecipe_throwsNullPointerException() {
@@ -68,13 +70,13 @@ public class WishfulShrinkingTest {
         assertTrue(wishfulShrinking.hasRecipe(ALICE));
     }
 
-    /*@Test
+    @Test
     public void hasRecipe_recipeWithSameIdentityFieldsInWishfulShrinking_returnsTrue() {
         wishfulShrinking.addRecipe(ALICE);
         Recipe editedAlice = new RecipeBuilder(ALICE)
                 .build();
         assertTrue(wishfulShrinking.hasRecipe(editedAlice));
-    }*/
+    }
 
     @Test
     public void getRecipeList_modifyList_throwsUnsupportedOperationException() {

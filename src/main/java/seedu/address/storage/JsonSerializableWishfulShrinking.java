@@ -59,7 +59,15 @@ class JsonSerializableWishfulShrinking {
             String instruction = consump.getRecipe().getInstruction();
             String recipeImage = consump.getRecipe().getRecipeImage();
             int calories = consump.getRecipe().getCalories().value;
-            return new JsonAdaptedConsumption(recipeName, instruction, recipeImage, ingredients, calories);
+            /*Set<Tag> tags = consump.getRecipe().getTags();
+            if (tags != null) {
+                jsonTags.addAll(tags);
+            }*/
+            List<JsonAdaptedTag> jsonTags = new ArrayList<>();
+            jsonTags.addAll(consump.getRecipe().getTags().stream()
+                    .map(JsonAdaptedTag::new)
+                    .collect(Collectors.toList()));
+            return new JsonAdaptedConsumption(recipeName, instruction, recipeImage, ingredients, calories, jsonTags);
         }).collect(Collectors
                 .toList()));
     }
