@@ -20,7 +20,10 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.tag.Tag;
 import jimmy.mcgymmy.testutil.FoodBuilder;
+
+
 
 public class AddCommandTest {
     @Test
@@ -34,6 +37,25 @@ public class AddCommandTest {
                 new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
                 new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs()),
                 new CommandParserTestUtil.OptionalParameterStub<>("t")
+        );
+
+        CommandResult commandResult = command.execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validFood), modelStub.foodAdded);
+    }
+
+    @Test
+    public void execute_validFoodWithTag_addSuccessful() throws Exception {
+        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
+        Food validFood = new FoodBuilder().withCarb("12345").withTags("hello").build();
+        AddCommand command = new AddCommand();
+        command.setParameters(
+            new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
+            new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
+            new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
+            new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs()),
+            new CommandParserTestUtil.OptionalParameterStub<>("t", new Tag("hello"))
         );
 
         CommandResult commandResult = command.execute(modelStub);
