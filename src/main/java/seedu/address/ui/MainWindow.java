@@ -28,12 +28,12 @@ public class MainWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private ResultDisplay resultDisplay;
-    private TagListPanel tagListPanel;
-    private LastInputDisplay lastInputDisplay;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private ResultDisplay resultDisplay;
+    private TagListPanel tagListPanel;
+    private LastInputDisplay lastInputDisplay;
 
     @FXML
     private StackPane resultDisplayPlaceHolder;
