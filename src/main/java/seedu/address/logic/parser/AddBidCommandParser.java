@@ -17,7 +17,7 @@ public class AddBidCommandParser implements Parser<AddBidCommand> {
      * Parses input from user to create a addBid command
      * @param args the input from the user
      * @return AddBidCommand object
-     * @throws ParseException
+     * @throws ParseException If the command is in the wrong format.
      */
     public AddBidCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
