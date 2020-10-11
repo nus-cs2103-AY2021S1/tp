@@ -7,8 +7,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
 import seedu.address.ui.bidder.BidderListPanel;
-import seedu.address.ui.seller.SellerListPanel;
 import seedu.address.ui.property.PropertyListPanel;
+import seedu.address.ui.seller.SellerListPanel;
 
 
 public class TabBar extends UiPart<Region> {
