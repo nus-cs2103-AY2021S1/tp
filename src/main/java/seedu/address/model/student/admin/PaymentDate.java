@@ -33,20 +33,19 @@ public class PaymentDate {
         requireNonNull(lastPaid);
         checkArgument(isValidDate(lastPaid), MESSAGE_CONSTRAINTS);
 
-        this.lastPaid = parse(lastPaid);
+        this.lastPaid = parseToDate(lastPaid);
     }
 
-    private static LocalDate parse(String test) {
+    /*
+     * The {@code String} has already been validated by {@link #isValidDate(String)}.
+     * We just have to find out which format it fits.
+     */
+    private LocalDate parseToDate(String lastPaid) {
         try {
-            return LocalDate.parse(test, INPUT_DEF);
+            return LocalDate.parse(lastPaid, INPUT_DEF);
         } catch (DateTimeParseException ignored) {
-            // format failed, use the other format.
-        }
-
-        try {
-            return LocalDate.parse(test, INPUT_ALT);
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            // date is in d/M/yyyy
+            return LocalDate.parse(lastPaid, INPUT_ALT);
         }
     }
 
@@ -54,7 +53,21 @@ public class PaymentDate {
      * Returns true if a given string is in the correct date format.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        LocalDate testDate = null;
+        for (DateTimeFormatter format : new DateTimeFormatter[] {INPUT_DEF, INPUT_ALT}) {
+            try {
+                testDate = LocalDate.parse(test, format);
+                break;
+            } catch (DateTimeParseException ignored) {
+                // does not match the DateTimeFormat, try the next
+            }
+        }
+
+        return testDate != null;
     }
 
     @Override
