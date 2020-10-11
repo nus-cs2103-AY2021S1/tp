@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindItemCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListItemCommand;
+import seedu.address.logic.commands.ViewDetailsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,7 +45,6 @@ public class InventoryParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
@@ -72,6 +72,8 @@ public class InventoryParser {
             return new DeleteItemCommandParser().parse(arguments);
         case DeleteRecipeCommand.COMMAND_WORD:
             return new DeleteRecipeCommandParser().parse(arguments);
+        case ViewDetailsCommand.COMMAND_WORD:
+            return new ViewDetailsCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
