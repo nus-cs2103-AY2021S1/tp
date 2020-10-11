@@ -16,9 +16,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 import seedu.address.storage.Storage;
 
 /**
@@ -101,5 +103,14 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<CalendarMeeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
+    }
+  
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return model.getPropertyBook();
+    }
+
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return model.getFilteredPropertyList();
     }
 }
