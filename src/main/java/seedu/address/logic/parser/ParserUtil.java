@@ -135,7 +135,7 @@ public class ParserUtil {
         if (!Metric.isValidMetric(metric)) {
             throw new ParseException(Metric.MESSAGE_CONSTRAINTS);
         }
-        return new Metric(metric);
+        return new Metric(trimmedMetric);
     }
 
 }
