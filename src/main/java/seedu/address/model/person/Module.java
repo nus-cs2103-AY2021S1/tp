@@ -75,6 +75,19 @@ public class Module {
                 && getModuleId().equals(((Module) other).getModuleId())); // state check
     }
 
+    /**
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSameModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getModuleId().equals(getModuleId());
+    }
+
     @Override
     public String toString() {
         return getModuleId();
