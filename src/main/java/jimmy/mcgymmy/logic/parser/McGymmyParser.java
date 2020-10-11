@@ -1,6 +1,8 @@
 package jimmy.mcgymmy.logic.parser;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -26,7 +28,9 @@ public class McGymmyParser {
      */
     public McGymmyParser() {
         this.primitiveCommandParser = new PrimitiveCommandParser();
-        this.macroList = new MacroList(this.primitiveCommandParser.getRegisteredCommands());
+        Set<String> takenNames = new HashSet<>(this.primitiveCommandParser.getRegisteredCommands());
+        takenNames.add("macro");
+        this.macroList = new MacroList(takenNames);
     }
 
     /**
