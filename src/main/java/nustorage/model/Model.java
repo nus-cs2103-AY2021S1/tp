@@ -1,7 +1,6 @@
 package nustorage.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -19,6 +18,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<InventoryRecord> PREDICATE_SHOW_ALL_INVENTORY = unused -> true;
+    Predicate<FinanceRecord> PREDICATE_SHOW_ALL_FINANCE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -42,7 +42,7 @@ public interface Model {
 
     void addFinanceRecord(FinanceRecord newRecord);
 
-    List<FinanceRecord> viewFinanceRecords();
+    void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord);
 
     Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
 
@@ -108,6 +108,8 @@ public interface Model {
 
     ObservableList<InventoryRecord> getFilteredInventory();
 
+    ObservableList<FinanceRecord> getFilteredFinanceList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -115,4 +117,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredInventoryList(Predicate<InventoryRecord> predicate);
+
+    void updateFilteredFinanceList(Predicate<FinanceRecord> predicate);
 }
