@@ -12,11 +12,11 @@ import seedu.address.model.project.Project;
 import java.util.List;
 
 /**
- * Deletes a project identified using it's displayed index from the main catalogue.
+ * Assigns a task to a person with participation in the current project.
  */
 public class AssignCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "assign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the project identified by the index number used in the displayed project list.\n"
