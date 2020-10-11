@@ -39,7 +39,7 @@ public class ModuleName {
      */
     public boolean containsKeywords(List<String> keywords) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(this.moduleName, keyword));
+                .anyMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(this.moduleName, keyword));
     }
 
     /**

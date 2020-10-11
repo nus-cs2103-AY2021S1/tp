@@ -39,7 +39,7 @@ public class ModuleCode {
      */
     public boolean containsKeywords(List<String> keywords) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(this.moduleCode, keyword));
+                .anyMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(this.moduleCode, keyword));
     }
 
     /**

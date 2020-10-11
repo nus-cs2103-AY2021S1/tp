@@ -12,4 +12,11 @@ public class CodeOrNameMatchesKeywordPredicate implements Predicate<Module> {
     public boolean test(Module module) {
         return module.codeOrNameContainsKeywords(keywords);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CodeOrNameMatchesKeywordPredicate // instanceof handles nulls
+                && keywords.equals(((CodeOrNameMatchesKeywordPredicate) other).keywords)); // state check
+    }
 }

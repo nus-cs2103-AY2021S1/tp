@@ -171,10 +171,7 @@ public class ModelManager implements Model {
         return filteredModules;
     }
 
-    /**
-     *
-     * @param predicate
-     */
+    @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         this.filteredModules.setPredicate(predicate);

@@ -24,4 +24,11 @@ public class FindModCommand extends Command {
         model.updateFilteredModuleList(this.predicate);
         return new CommandResult(String.format(Messages.MESSAGE_MODULE_LISTED, model.getFilteredModuleList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindModCommand // instanceof handles nulls
+                && predicate.equals(((FindModCommand) other).predicate)); // state check
+    }
 }

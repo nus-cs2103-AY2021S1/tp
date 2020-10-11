@@ -8,7 +8,7 @@ import seedu.address.logic.commands.FindModCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CodeOrNameMatchesKeywordPredicate;
 
-public class FindModCommandParser {
+public class FindModCommandParser implements Parser<FindModCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindModCommand
      * and returns a FindModCommand object for execution.
