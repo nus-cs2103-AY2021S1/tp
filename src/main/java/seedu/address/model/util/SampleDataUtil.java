@@ -29,7 +29,7 @@ public class SampleDataUtil {
     public static ReadOnlyReeve getSampleAddressBook() {
         Reeve sampleAb = new Reeve();
         for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addPerson(sampleStudent);
+            sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
     }

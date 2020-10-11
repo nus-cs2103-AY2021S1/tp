@@ -1,12 +1,19 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.COMPULSORY_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -16,7 +23,13 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.ClassTime;
+import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Fee;
+import seedu.address.model.student.admin.PaymentDate;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -30,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, COMPULSORY_PREFIXES);
+                ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
         if (!arePrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -41,12 +54,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
+        ClassVenue classVenue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        ClassTime classTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
+        PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get());
+        Set<AdditionalDetail> detailList =
+                ParserUtil.parseAdditionalDetails(argMultimap.getAllValues(PREFIX_DETAILS));
 
-        // Whoever is working on Add should implement it properly
-        Admin admin = Admin.getPlaceholder();
-
+        Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
         Student student = new Student(name, phone, school, year, admin);
-
         return new AddCommand(student);
     }
 
