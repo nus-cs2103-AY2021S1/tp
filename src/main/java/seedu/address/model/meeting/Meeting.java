@@ -2,34 +2,29 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.util.SampleDataUtil;
 
 public class Meeting {
     // Identity fields
     private final MeetingName meetingName;
     private final Date date;
     private final Time time;
-    private Set<Person> participants;
+    private final Set<Person> members = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meeting(MeetingName name, Date date, Time time) {
+    public Meeting(MeetingName name, Date date, Time time, Set<Person> members) {
         requireAllNonNull(name, date, time);
         this.meetingName = name;
         this.date = date;
         this.time = time;
-
-        this.participants = new HashSet<>();
-
-        HashSet<Person> persons = new HashSet<>(Arrays.asList(SampleDataUtil.getSamplePersons()));
-        participants.addAll(persons);
+        this.members.addAll(members);
     }
 
     public MeetingName getMeetingName() {
@@ -44,8 +39,8 @@ public class Meeting {
         return this.time;
     }
 
-    public Set<Person> getParticipants() {
-        return participants;
+    public Set<Person> getMembers() {
+        return Collections.unmodifiableSet(members);
     }
 
     /**
@@ -67,7 +62,7 @@ public class Meeting {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both meetings have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.
      */
     @Override
@@ -83,13 +78,14 @@ public class Meeting {
         Meeting otherMeeting = (Meeting) other;
         return otherMeeting.getMeetingName().equals(getMeetingName())
                 && otherMeeting.getDate().equals(getDate())
-                && otherMeeting.getTime().equals(getTime());
+                && otherMeeting.getTime().equals(getTime())
+                && otherMeeting.getMembers().equals(getMembers());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(meetingName, date, time);
+        return Objects.hash(meetingName, date, time, members);
     }
 
     @Override
@@ -99,7 +95,9 @@ public class Meeting {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Time: ")
-                .append(getTime());
-        return builder.toString();
+                .append(getTime())
+                .append(" Members: ");
+        getMembers().forEach(member -> builder.append(member.getName() + ", "));
+        return builder.substring(0, builder.length() - 2);
     }
 }

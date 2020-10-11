@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,34 +14,42 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
+import seedu.address.model.person.Person;
 
 public class JsonAdaptedMeeting {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
+    private final String meetingName;
     private final String date;
     private final String time;
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPerson> memberList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("name") String name, @JsonProperty("date") String date,
-                             @JsonProperty("time") String time) {
-        this.name = name;
+    public JsonAdaptedMeeting(@JsonProperty("meeting name") String meetingName, @JsonProperty("date") String date,
+                              @JsonProperty("time") String time,
+                              @JsonProperty("members") List<JsonAdaptedPerson> memberList) {
+        this.meetingName = meetingName;
         this.date = date;
         this.time = time;
+        if (memberList != null) {
+            this.memberList.addAll(memberList);
+        }
     }
 
     /**
      * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
      */
     public JsonAdaptedMeeting(Meeting source) {
-        name = source.getMeetingName().meetingName;
+        meetingName = source.getMeetingName().meetingName;
         date = source.getDate().value;
         time = source.getTime().value;
+        memberList.addAll(source.getMembers().stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,14 +58,19 @@ public class JsonAdaptedMeeting {
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
     public Meeting toModelType() throws IllegalValueException {
-        if (name == null) {
+        final List<Person> members = new ArrayList<>();
+        for (JsonAdaptedPerson person : memberList) {
+            members.add(person.toModelType());
+        }
+
+        if (meetingName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                                                             MeetingName.class.getSimpleName()));
         }
-        if (!MeetingName.isValidMeetingName(name)) {
+        if (!MeetingName.isValidMeetingName(meetingName)) {
             throw new IllegalValueException(MeetingName.MESSAGE_CONSTRAINTS);
         }
-        final MeetingName modelName = new MeetingName(name);
+        final MeetingName modelName = new MeetingName(meetingName);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
@@ -72,7 +88,9 @@ public class JsonAdaptedMeeting {
         }
         final Time modelTime = new Time(time);
 
-        return new Meeting(modelName, modelDate, modelTime);
+        final Set<Person> modelMembers = new HashSet<>(members);
+
+        return new Meeting(modelName, modelDate, modelTime, modelMembers);
     }
 
 }

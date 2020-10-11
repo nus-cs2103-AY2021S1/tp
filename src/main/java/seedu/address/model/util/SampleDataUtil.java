@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,13 +43,13 @@ public class SampleDataUtil {
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
             new Meeting(new MeetingName("CS2103 Weekly Meeting"), new Date("2020-09-20"),
-                new Time("10:00")),
+                new Time("10:00"), getPersonSet("Alex Yeoh", "Bernice Yu")),
             new Meeting(new MeetingName("CS2040 Project Meeting"), new Date("2020-10-19"),
-                new Time("17:30")),
+                new Time("17:30"), getPersonSet("Charlotte Oliveiro", "David Li", "Irfan Ibrahim")),
             new Meeting(new MeetingName("CS2103 Emergency Meeting"), new Date("2020-10-10"),
-                new Time("16:00")),
+                new Time("16:00"), getPersonSet("Bernice Yu", "Roy Balakrishnan", "David Li")),
             new Meeting(new MeetingName("CS2102 Report Discussion"), new Date("2020-09-08"),
-                new Time("08:00")),
+                new Time("08:00"), getPersonSet("Roy Balakrishnan", "Charlotte Oliveiro")),
         };
     }
 
@@ -75,5 +76,21 @@ public class SampleDataUtil {
             sampleMb.addMeeting(sampleMeeting);
         }
         return sampleMb;
+    }
+
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Person> getPersonSet(String... strings) {
+        Set<Person> personSet = new HashSet<>();
+        for (String string : strings) {
+            Name name = new Name(string);
+            for (Person person : getSamplePersons()) {
+                if (person.isSameName(name)) {
+                    personSet.add(person);
+                }
+            }
+        }
+        return personSet;
     }
 }

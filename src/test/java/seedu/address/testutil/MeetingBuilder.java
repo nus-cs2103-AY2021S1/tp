@@ -17,7 +17,7 @@ public class MeetingBuilder {
     private MeetingName meetingName;
     private Date date;
     private Time time;
-    private Set<Person> persons;
+    private Set<Person> members;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -26,11 +26,11 @@ public class MeetingBuilder {
         meetingName = new MeetingName(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
         time = new Time(DEFAULT_TIME);
-        persons = new HashSet<>();
+        members = new HashSet<>();
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the MeetingBuilder with the data of {@code meetingToCopy}.
      */
     public MeetingBuilder(Meeting meetingToCopy) {
         meetingName = meetingToCopy.getMeetingName();
@@ -39,7 +39,7 @@ public class MeetingBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code MeetingName} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withName(String name) {
         this.meetingName = new MeetingName(name);
@@ -47,7 +47,7 @@ public class MeetingBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Date} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withDate(String date) {
         this.date = new Date(date);
@@ -55,14 +55,22 @@ public class MeetingBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Time} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withTime(String time) {
         this.time = new Time(time);
         return this;
     }
 
+    /**
+     * Sets the {@code Members} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withMembers(Set<Person> members) {
+        this.members = members;
+        return this;
+    }
+
     public Meeting build() {
-        return new Meeting(meetingName, date, time);
+        return new Meeting(meetingName, date, time, members);
     }
 }
