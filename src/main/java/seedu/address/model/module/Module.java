@@ -72,4 +72,5 @@ public class Module {
     public String toString() {
         return String.format("The zoom link for %s is %s", getName(), getLink());
     }
+
 }
