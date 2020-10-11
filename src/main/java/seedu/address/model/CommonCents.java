@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.account.Account;
+import seedu.address.model.account.Name;
 import seedu.address.model.account.UniqueAccountList;
 
 /**
@@ -13,6 +14,8 @@ import seedu.address.model.account.UniqueAccountList;
  * Duplicate accounts are not allowed (by .isSameAccount comparison)
  */
 public class CommonCents implements ReadOnlyCommonCents {
+    private static final String ACCOUNT_NAME = "Starting account";
+    private static final Account STARTING_ACCOUNT = new Account(new Name(ACCOUNT_NAME));
     private final UniqueAccountList accounts;
 
     /*
@@ -24,6 +27,7 @@ public class CommonCents implements ReadOnlyCommonCents {
      */
     {
         accounts = new UniqueAccountList();
+        accounts.add(STARTING_ACCOUNT);
     }
 
     public CommonCents() {}
@@ -84,6 +88,18 @@ public class CommonCents implements ReadOnlyCommonCents {
 
         accounts.setAccount(target, editedAccount);
     }
+
+    /**
+     * Replaces the account in the list with the same name as {@code editedAccount}.
+     * The account with the same name must exist in the money-tracker.
+     */
+    public void setAccount(Account editedAccount) {
+        requireNonNull(editedAccount);
+
+        accounts.setAccount(editedAccount);
+    }
+
+
 
     /**
      * Removes {@code key} from this {@code CommonCents}.
