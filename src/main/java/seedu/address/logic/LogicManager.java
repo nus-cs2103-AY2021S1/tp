@@ -15,6 +15,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCommonCents;
 import seedu.address.model.account.Account;
+import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.ActiveAccountManager;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
 import seedu.address.storage.Storage;
 
 /**
@@ -22,11 +26,13 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    private static final int FIRST_ACCOUNT_INDEX = 0;
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
     private final CommonCentsParser commonCentsParser;
+    private final ActiveAccount activeAccount;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,8 +40,8 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+        this.activeAccount = new ActiveAccountManager(model.getFilteredAccountList().get(FIRST_ACCOUNT_INDEX));
 
-        // To be changed
         commonCentsParser = new CommonCentsParser();
     }
 
@@ -67,6 +73,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Account> getFilteredAccountList() {
         return model.getFilteredAccountList();
+    }
+
+    @Override
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return activeAccount.getFilteredExpenseList();
+    }
+
+    @Override
+    public ObservableList<Revenue> getFilteredRevenueList() {
+        return activeAccount.getFilteredRevenueList();
     }
 
     @Override

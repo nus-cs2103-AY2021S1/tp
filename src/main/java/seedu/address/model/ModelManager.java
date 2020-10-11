@@ -13,17 +13,21 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.account.Account;
+//import seedu.address.model.account.ActiveAccount;
+//import seedu.address.model.account.ActiveAccountManager;
 import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the common cents data.
  */
 public class ModelManager implements Model {
+    private static final int FIRST_ACCOUNT_INDEX = 0;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final CommonCents commonCents;
     private final UserPrefs userPrefs;
     private final FilteredList<Account> filteredAccounts;
+    //private final ActiveAccount activeAccount;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,11 +41,15 @@ public class ModelManager implements Model {
         this.commonCents = new CommonCents(commonCents);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredAccounts = new FilteredList<>(this.commonCents.getAccountList());
+        // Initialize Active Account as the first account
+        //activeAccount = new ActiveAccountManager(filteredAccounts.get(FIRST_ACCOUNT_INDEX));
     }
 
     public ModelManager() {
         this(new CommonCents(), new UserPrefs());
     }
+
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -78,7 +86,7 @@ public class ModelManager implements Model {
         userPrefs.setCommonCentsFilePath(commonCentsFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== CommonCents ================================================================================
 
     @Override
     public void setCommonCents(ReadOnlyCommonCents commonCents) {
@@ -104,7 +112,7 @@ public class ModelManager implements Model {
     @Override
     public void addAccount(Account person) {
         commonCents.addAccount(person);
-        updateFilteredAccountList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
     }
 
     @Override
@@ -118,7 +126,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Account} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedCommonCents}
      */
     @Override
     public ObservableList<Account> getFilteredAccountList() {
@@ -148,6 +156,7 @@ public class ModelManager implements Model {
         return commonCents.equals(other.commonCents)
                 && userPrefs.equals(other.userPrefs)
                 && filteredAccounts.equals(other.filteredAccounts);
+        //&& activeAccount.equals(other.activeAccount);
     }
 
     //=========== Stub methods =============================================================

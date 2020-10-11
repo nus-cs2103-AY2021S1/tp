@@ -5,6 +5,9 @@ import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
 public interface ReadOnlyAccount {
+
+    Name getName();
+
     /**
      * Returns an unmodifiable view of the expense list.
      */

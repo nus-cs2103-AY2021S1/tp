@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.account.Account;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,7 +15,7 @@ import seedu.address.model.person.Person;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Account> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Account> PREDICATE_SHOW_ALL_ACCOUNTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -50,38 +52,39 @@ public interface Model {
      */
     void setCommonCents(ReadOnlyCommonCents commonCents);
 
-    /** Returns the AddressBook */
+    /** Returns the CommonCents */
     ReadOnlyCommonCents getCommonCents();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a account with the same identity as {@code account} exists in the CommonCents.
      */
-    boolean hasAccount(Account person);
+    boolean hasAccount(Account account);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given account.
+     * The account must exist in the CommonCents.
      */
     void deleteAccount(Account target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given account.
+     * {@code account} must not already exist in the CommonCents.
      */
-    void addAccount(Account person);
+    void addAccount(Account account);
 
     /**
      * Replaces the given person {@code target} with {@code editedAccount}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedAccount} must not be the same as another existing person in the address book.
+     * The account identity of {@code editedAccount} must not be the same as another existing account
+     * in the CommonCents.
      */
     void setAccount(Account target, Account editedAccount);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered account list */
     ObservableList<Account> getFilteredAccountList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered account list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAccountList(Predicate<Account> predicate);

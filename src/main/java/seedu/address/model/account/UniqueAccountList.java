@@ -47,6 +47,19 @@ public class UniqueAccountList implements Iterable<Account> {
         internalList.add(toAdd);
     }
 
+    public Account getAccount(int index) {
+        return internalList.get(index);
+    }
+
+    public Account getAccount(Name name) {
+        for (Account acc : internalList) {
+            if (acc.getName().equals(name)) {
+                return acc;
+            }
+        }
+        throw new AccountNotFoundException();
+    }
+
     /**
      * Replaces the account {@code target} in the list with {@code editedAccount}.
      * {@code target} must exist in the list.
