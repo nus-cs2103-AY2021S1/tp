@@ -52,7 +52,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void resetData(ReadOnlyPropertyBook newData) {
         requireNonNull(newData);
-
         setProperties(newData.getPropertyList());
     }
 
