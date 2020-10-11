@@ -35,6 +35,16 @@ public class StudentCard extends UiPart<Region> {
     private Label school;
     @FXML
     private Label year;
+    @FXML
+    private Label venue;
+    @FXML
+    private Label time;
+    @FXML
+    private Label fee;
+    @FXML
+    private Label payment;
+    @FXML
+    private Label details;
 
     /*
      * @FXML
@@ -51,15 +61,14 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        school.setText(student.getSchool().school);
-        year.setText(String.valueOf(student.getYear().year));
-        /*
-         * address.setText("Placeholder for address");
-         * new HashSet<>(Set.of("Placeholder for details")).stream()
-                .sorted(Comparator.comparing(tag -> tag))
-                .forEach(tag -> tags.getChildren().add(new Label(tag)));
-         */
+        phone.setText("Phone: " + student.getPhone().value);
+        school.setText("School: " + student.getSchool().school);
+        year.setText("Year: " + student.getYear().year);
+        venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
+        time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
+        fee.setText("Fee: " + student.getAdmin().getFee().toString());
+        payment.setText("Last Paid Date: " + student.getAdmin().getPaymentDate().toString());
+        details.setText("Details: " + student.getAdmin().getDetails().toString());
     }
 
     @Override
