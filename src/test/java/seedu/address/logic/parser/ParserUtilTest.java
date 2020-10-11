@@ -89,5 +89,4 @@ public class ParserUtilTest {
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
-
 }

@@ -38,11 +38,10 @@ public class CommandTestUtil {
     public static final String VALID_SCHOOL_BOB = "Hwa Chong Institution";
     public static final String VALID_YEAR_AMY = "6";
     public static final String VALID_YEAR_BOB = "4";
-
     public static final String VALID_CLASS_TIME_AMY = "2 1200-1300";
     public static final String VALID_CLASS_TIME_BOB = "5 0900-1100";
-    public static final String VALID_CLASS_VENUE_AMY = "Seminar Room 1";
-    public static final String VALID_CLASS_VENUE_BOB = "Tutorial Room 3";
+    public static final String VALID_CLASS_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
+    public static final String VALID_CLASS_VENUE_BOB = "347 Woodlands Ave 3, Singapore 730347";
     public static final String VALID_FEE_AMY = "40";
     public static final String VALID_FEE_BOB = "55";
     public static final String VALID_PAYMENT_DATE_AMY = "27/10/2020";
@@ -58,6 +57,7 @@ public class CommandTestUtil {
     public static final String SCHOOL_DESC_BOB = " " + PREFIX_SCHOOL + VALID_SCHOOL_BOB;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
+
     public static final String CLASS_VENUE_DESC_AMY = " " + PREFIX_VENUE + VALID_CLASS_VENUE_AMY;
     public static final String CLASS_VENUE_DESC_BOB = " " + PREFIX_VENUE + VALID_CLASS_VENUE_BOB;
     public static final String CLASS_TIME_DESC_AMY = " " + PREFIX_TIME + VALID_CLASS_TIME_AMY;
@@ -73,6 +73,11 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_SCHOOL_DESC = " " + PREFIX_SCHOOL; // empty string not allowed for schools
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "$4"; // '$' not allowed in year
+    public static final String INVALID_VENUE_DESC = " " + PREFIX_VENUE + ""; // only empty venues are not allowed
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "1 @100"; // '@' not allowed in times
+    public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
+    // 'alphabets' not allowed in payment date
+    public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

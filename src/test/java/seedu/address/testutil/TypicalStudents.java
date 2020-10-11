@@ -57,7 +57,6 @@ public class TypicalStudents {
             .withSchool("NUS High School")
             .withYear("6").build();
 
-
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
@@ -93,7 +92,7 @@ public class TypicalStudents {
     public static Reeve getTypicalAddressBook() {
         Reeve ab = new Reeve();
         for (Student student : getTypicalPersons()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
         }
         return ab;
     }
