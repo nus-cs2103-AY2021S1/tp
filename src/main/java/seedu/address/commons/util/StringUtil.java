@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -13,23 +14,29 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     *   Ignores case, support fuzzy match
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       matchesWordIgnoreCase("ABc def", "abc") == true
+     *       matchesWordIgnoreCase("ABc def", "DEF") == true
+     *       matchesWordIgnoreCase("ABc def", "ABadncbas") == false //not a good match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
+     * @param isFuzzy true if the matching is fuzzy, false if it must be a full match
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean matchesWordIgnoreCase(String sentence, String word, boolean isFuzzy) {
         requireNonNull(sentence);
         requireNonNull(word);
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
-        return isFuzzyMatched(sentence.toLowerCase(), preppedWord.toLowerCase());
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return isFuzzy
+                ? isFuzzyMatched(sentence.toLowerCase(), preppedWord.toLowerCase())
+                : Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equalsIgnoreCase);
     }
 
     private static boolean isFuzzyMatched(String sentence, String keyword) {
