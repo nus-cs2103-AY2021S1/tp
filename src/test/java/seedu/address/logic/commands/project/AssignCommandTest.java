@@ -2,20 +2,27 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.catalogue.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+import seedu.address.model.task.Task;
+
+import java.util.HashMap;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -26,50 +33,36 @@ public class AssignCommandTest {
     private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
-
+    public void execute_validIndex_success() {
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        project.addParticipation(ALICE);
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        expectedModel.deleteProject(projectToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Participation assignee = project.getParticipation(ALICE.getPersonName().fullPersonName);
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getPersonName().fullPersonName);
+
+
+        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssign, assignee);
+
+        Project projectCopy = new Project(project.getProjectName(), project.getDeadline(), project.getRepoUrl(),
+                project.getProjectDescription(), project.getProjectTags(), new HashMap<>(), project.getTasks());
+        projectCopy.addParticipation(ALICE);
+        // TODO: After refining Participation getters and setters this part can be done fully via getters
+        expectedModel.setProject(project, projectCopy);
+        expectedModel.enter(projectCopy);
+        expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased())
+                .getParticipation(ALICE.getPersonName().fullPersonName).addTask(taskToAssign);
+
+        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
 
+    // TODO: May add test cases for filtered/unfiltered list of tasks after filters are implemented
+
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showProjectAtIndex(model, INDEX_FIRST_PROJECT);
-
-        Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROJECT);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
-
-        Model expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        expectedModel.deleteProject(projectToDelete);
-        showNoProject(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showProjectAtIndex(model, INDEX_FIRST_PROJECT);
-
-        Index outOfBoundIndex = INDEX_SECOND_PROJECT;
-        // ensures that outOfBoundIndex is still in bounds of main catalogue list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectCatalogue().getProjectList().size());
-
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
