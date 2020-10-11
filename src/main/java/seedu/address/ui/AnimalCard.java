@@ -31,7 +31,7 @@ public class AnimalCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
+    private Label index;
     @FXML
     private Label identity;
     @FXML
@@ -47,10 +47,10 @@ public class AnimalCard extends UiPart<Region> {
     public AnimalCard(Animal animal, int displayedIndex) {
         super(FXML);
         this.animal = animal;
-        id.setText(displayedIndex + ". ");
+        index.setText(displayedIndex + ". ");
         name.setText(animal.getName().fullName);
-        identity.setText(animal.getId().value);
-        species.setText(animal.getSpecies().value);
+        identity.setText("ID: " + animal.getId().value);
+        species.setText("Species: " + animal.getSpecies().value);
         medicalCondition.setText("Medical details: ");
         animal.getMedicalConditions().stream()
                 .sorted(Comparator.comparing(medicalCondition -> medicalCondition.medicalConditionName))
@@ -72,7 +72,7 @@ public class AnimalCard extends UiPart<Region> {
 
         // state check
         AnimalCard card = (AnimalCard) other;
-        return id.getText().equals(card.id.getText())
+        return index.getText().equals(card.index.getText())
                 && animal.equals(card.animal);
     }
 }
