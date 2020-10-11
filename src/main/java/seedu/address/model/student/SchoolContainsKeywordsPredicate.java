@@ -17,8 +17,12 @@ public class SchoolContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
+        if (this.keywords.size() < 1) {
+            return false;
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getSchool().school, keyword));
+                .map(String::toLowerCase)
+                .allMatch(keyword -> StringUtil.containsIgnoreCase(student.getSchool().school, keyword));
     }
 
     @Override

@@ -115,22 +115,27 @@ Examples:
 (written by: Ying Gao)
 Finds students who satisfy the given search criteria.
 
-Format: `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`
+Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
 * The order of the optional fields do not matter. e.g `n/Hans s/River Valley` will match `s/River Valley n/Hans`
-* Only full words will be matched. e.g `han` will not match `hans`
-* Students whose name, school, year or subject contain the keywords given for their respective fields will be returned.
-* Only students satisfying all search criteria will be returned (i.e `AND` search).
+* Only full words will be matched. e.g `han` will not match `hans`.
+* For the name, students with a name that matches any whole keyword specified for the name will be considered to match for the name.
+* For the school, students with a school that contains any keyword specified for the school will be considered to match for the school.
+* For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
+* Only students matching all criteria specified will be returned (i.e `AND` search).
 
 (written by: Choon Siong)
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
-* `find s/yishun` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
-* `find y/sec 3` matches `pri 3`, `Secondary 3` and `3`.
+* `find n/Alex david` does not match `Alexis Davinder`.
+* `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
+* `find s/yishun secondary` does not match `Yishun Sec`
+* `find y/sec 3` matches `sec 3`, `Secondary 3`
+* `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
-* '
+* 
 
 ### Deleting a student : `delete`
 

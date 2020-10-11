@@ -73,21 +73,4 @@ public class FindCommandParser implements Parser<FindCommand> {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof FindCommandParser)) {
-            return false;
-        }
-
-        // state check
-        FindCommandParser e = (FindCommandParser) other;
-
-        return true;
-    }
 }

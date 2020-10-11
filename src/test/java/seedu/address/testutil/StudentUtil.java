@@ -68,7 +68,6 @@ public class StudentUtil {
             sb.append(PREFIX_YEAR).append(stringYear).append(" ");
         });
 
-        System.out.println(sb.toString());
         return sb.toString();
     }
 }

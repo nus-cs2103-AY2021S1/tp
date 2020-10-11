@@ -96,7 +96,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
-        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("year 2");
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("2");
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);

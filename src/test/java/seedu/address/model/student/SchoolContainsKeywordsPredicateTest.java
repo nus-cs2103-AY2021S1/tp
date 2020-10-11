@@ -42,33 +42,29 @@ public class SchoolContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
+    public void test_schoolContainsAllKeywords_returnsTrue() {
+        // One keyword different case
         SchoolContainsKeywordsPredicate predicate =
                 new SchoolContainsKeywordsPredicate(Collections.singletonList("Changi"));
         assertTrue(predicate.test(new StudentBuilder().withSchool("changi").build()));
 
-        // Multiple keywords
+        // Multiple keywords same case
         predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("Kent", "Ridge"));
         assertTrue(predicate.test(new StudentBuilder().withSchool("Kent Ridge").build()));
-
-        // Only one matching keyword
-        predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("Kent", "Ridge"));
-        assertTrue(predicate.test(new StudentBuilder().withSchool("Kent Vale").build()));
 
         // Mixed-case keywords
         predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("KeNt", "RiDGE"));
         assertTrue(predicate.test(new StudentBuilder().withSchool("kent ridge").build()));
 
         // User guide test cases
-        predicate = new SchoolContainsKeywordsPredicate(Collections.singletonList("yishun"));
+        predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("yishun", "sec"));
         assertTrue(predicate.test(new StudentBuilder().withSchool("Yishun Secondary School").build()));
         assertTrue(predicate.test(new StudentBuilder().withSchool("Yishun Town Secondary School").build()));
 
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_schoolDoesNotContainAllKeywords_returnsFalse() {
         // Zero keywords
         SchoolContainsKeywordsPredicate predicate = new SchoolContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new StudentBuilder().withSchool("Changi").build()));
@@ -77,9 +73,18 @@ public class SchoolContainsKeywordsPredicateTest {
         predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("Science"));
         assertFalse(predicate.test(new StudentBuilder().withSchool("School of Computing").build()));
 
+        // One keyword matching one not matching
+        predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("Kent", "Ridge"));
+        assertFalse(predicate.test(new StudentBuilder().withSchool("Kent Vale").build()));
+
         // Keywords match phone, email and address, but does not match school
         predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
                 .build()));
+
+        // User guide test cases
+        predicate = new SchoolContainsKeywordsPredicate(Arrays.asList("yishun", "secondary"));
+        assertFalse(predicate.test(new StudentBuilder().withSchool("Yishun sec").build()));
+
     }
 }

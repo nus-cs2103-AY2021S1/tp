@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+
 /**
  * Tests that a {@code Student}'s {@code Year} matches the given year.
  */
@@ -20,8 +21,12 @@ public class YearMatchPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
+        if (this.keywords.size() < 1) {
+            return false;
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getYear().year, keyword));
+                .map(String::toLowerCase)
+                .allMatch(keyword -> StringUtil.containsIgnoreCase(student.getYear().year, keyword));
     }
 
     @Override
@@ -30,6 +35,5 @@ public class YearMatchPredicate implements Predicate<Student> {
                 || (other instanceof YearMatchPredicate // instanceof handles nulls
                 && this.keywords.equals(((YearMatchPredicate) other).keywords)); // state check
     }
-
 
 }
