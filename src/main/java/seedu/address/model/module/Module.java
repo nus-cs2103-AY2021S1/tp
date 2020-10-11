@@ -5,6 +5,9 @@ public class Module {
     private final String name;
     private final String description;
 
+    /**
+     * Constructor for Module Class. Note this is just a Stub and should be furthur fleshed out
+     */
     public Module(String name, String description) {
         this.name = name;
         this.description = description;

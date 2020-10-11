@@ -51,8 +51,7 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of meetings */
     ObservableList<Meeting> getFilteredMeetingList();
 
-    /** Returns an unmodifiable view of the filtered list of modules
-     * @return*/
+    /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
 
     /**
