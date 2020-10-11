@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 
 /**
  * API of the DeliveryModel component

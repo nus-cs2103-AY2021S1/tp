@@ -6,4 +6,9 @@ package seedu.address.model.delivery;
  */
 public class Delivery {
     // TODO: implement delivery class
+
+    public boolean isSameDelivery(Delivery d) {
+        // TODO: implement
+        return true;
+    }
 }
