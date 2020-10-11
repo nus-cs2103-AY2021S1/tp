@@ -12,13 +12,16 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 
 ## Contents
 
-- Features before project initialisation
+- Features in global scope
   - Get help `help` 
+  - Exit application `exit`
+  
+- Features in catalogue scope
   - Features associated with initialising project 
     - Creating new project `new project `
     - Start working on an existing project `start `
     
-- Features after project initialisation
+- Features in project scope
   - Teammate related features 
     - Create new teammate `new teammate `
     - Add existing teammates of other projects to participate in this project `involves `
@@ -26,6 +29,10 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Update participation details (tasks and project-specific information) `updatept participation `
     - Remove a teammate in the project `remove teammate `
     - View tasks allocated to a particular teammate `task participants `
+  - Task management 
+    - Assign task to a team member `assign task member`
+  - Change scope 
+    - Return to main catalogue `leave`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
