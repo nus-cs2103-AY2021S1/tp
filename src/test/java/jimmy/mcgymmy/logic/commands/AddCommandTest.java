@@ -32,7 +32,8 @@ public class AddCommandTest {
                 new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs())
+                new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs()),
+                new CommandParserTestUtil.OptionalParameterStub<>("t")
         );
 
         CommandResult commandResult = command.execute(modelStub);
@@ -49,7 +50,8 @@ public class AddCommandTest {
                 new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
-                new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs())
+                new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs()),
+                new CommandParserTestUtil.OptionalParameterStub<>("t")
         );
         ModelStub modelStub = new ModelStubWithFood(validFood);
 
