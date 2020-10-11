@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
 /**
  * Finds and lists all tasks in address book whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final TitleContainsKeywordsPredicate predicate;
+    private final TaskContainsKeywordsPredicate predicate;
 
-    public FindCommand(TitleContainsKeywordsPredicate predicate) {
+    public FindCommand(TaskContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

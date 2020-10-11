@@ -30,11 +30,42 @@ public class StringUtil {
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(wordInSentence -> isFuzzyMatched(wordInSentence, preppedWord));
+    }
+
+    private static boolean isFuzzyMatched(String word, String keyword) {
+        int lKeyword = keyword.length();
+        int lTask = word.length();
+        final int fuzzyLimit = lKeyword / 5;
+
+        // if keyword is longer or is empty, no match can be found
+        if (lKeyword > lTask || lKeyword == 0) {
+            return false;
+        }
+
+        for (int i = 0; i <= lTask - lKeyword; ++i) {
+            boolean matchFound = true;
+            int fuzzyCount = 0;
+            for (int j = 0; j < lKeyword; ++j) {
+                boolean isCharMatched = word.charAt(i + j) == keyword.charAt(j);
+                if (!isCharMatched && fuzzyCount < fuzzyLimit) {
+                    fuzzyCount++;
+                    continue;
+                }
+
+                if (!isCharMatched) {
+                    matchFound = false;
+                    break;
+                }
+            }
+            if (matchFound) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

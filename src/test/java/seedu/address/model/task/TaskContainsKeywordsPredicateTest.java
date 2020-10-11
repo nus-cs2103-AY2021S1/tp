@@ -11,22 +11,22 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
-public class TitleContainsKeywordsPredicateTest {
+public class TaskContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
-        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(secondPredicateKeywordList);
+        TaskContainsKeywordsPredicate firstPredicate = new TaskContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskContainsKeywordsPredicate secondPredicate = new TaskContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleContainsKeywordsPredicate firstPredicateCopy;
-        firstPredicateCopy = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
+        TaskContainsKeywordsPredicate firstPredicateCopy;
+        firstPredicateCopy = new TaskContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,35 +42,35 @@ public class TitleContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        TitleContainsKeywordsPredicate predicate;
-        predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        TaskContainsKeywordsPredicate predicate;
+        predicate = new TaskContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
     }
 
     @Test
     public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").build()));
 
         // Non-matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice Bob").build()));
 
         // Keywords match dateTime, description and type, but does not match title
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("01-01-2020 12:00",
+        predicate = new TaskContainsKeywordsPredicate(Arrays.asList("01-01-2020 12:00",
                 "alice,email.com", "Main", "Street"));
         assertFalse(predicate.test(new TaskBuilder().withTitle("Alice").withDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").withType("event").build()));
