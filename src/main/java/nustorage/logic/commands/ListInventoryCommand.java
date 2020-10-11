@@ -1,6 +1,7 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.model.Model.PREDICATE_REMOVE_ALL_FINANCE;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
 
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ public class ListInventoryCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
+        model.updateFilteredFinanceList(PREDICATE_REMOVE_ALL_FINANCE);
         ObservableList<InventoryRecord> inventory = model.getFilteredInventory();
         return new CommandResult(MESSAGE_SUCCESS);
     }

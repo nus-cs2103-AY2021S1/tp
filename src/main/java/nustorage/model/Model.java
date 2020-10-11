@@ -18,7 +18,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<InventoryRecord> PREDICATE_SHOW_ALL_INVENTORY = unused -> true;
+    Predicate<InventoryRecord> PREDICATE_REMOVE_ALL_INVENTORY = unused -> false;
     Predicate<FinanceRecord> PREDICATE_SHOW_ALL_FINANCE = unused -> true;
+    Predicate<FinanceRecord> PREDICATE_REMOVE_ALL_FINANCE = unused -> false;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

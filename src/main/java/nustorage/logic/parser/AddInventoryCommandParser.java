@@ -27,9 +27,9 @@ public class AddInventoryCommandParser implements Parser<AddInventoryCommand> {
      */
     public AddInventoryCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_COST);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_COST, PREFIX_ITEM_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
