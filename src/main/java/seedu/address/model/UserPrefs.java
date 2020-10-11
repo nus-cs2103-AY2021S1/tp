@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path bidBookFilePath = Paths.get("data" , "bidbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setBidBookFilePath(newUserPrefs.getBidBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,13 +53,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    public Path getBidBookFilePath() {
+        return bidBookFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public void setBidBookFilePath(Path bidBookFilePath) {
+        requireNonNull(bidBookFilePath);
+        this.bidBookFilePath = bidBookFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
+
         if (other == this) {
             return true;
         }
@@ -68,19 +80,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath) && bidBookFilePath.equals(o.bidBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, bidBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal addressBook data file location : " + addressBookFilePath);
+        sb.append("\nLocal bidBook data file location : " + bidBookFilePath);
         return sb.toString();
     }
 

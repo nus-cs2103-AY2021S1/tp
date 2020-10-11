@@ -1,12 +1,9 @@
-#personAndBidTabBar {
+#tabBar {
     -fx-tab-min-height: 5em;
     -fx-tab-max-height: 5em;
 
     -fx-tab-min-height: 0.5em;
     -fx-tab-min-height: 0.5em;
-
-
-
 }
 
 .tab-pane .tab-header-area .tab-header-background {
