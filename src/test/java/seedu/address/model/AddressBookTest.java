@@ -44,8 +44,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTags_throwsDuplicateTagException() {
         // Two persons with the same identity fields
-        Tag editedAlice = new TagBuilder(CS2103).build();
-        List<Tag> newPersons = Arrays.asList(CS2103, editedAlice);
+        Tag editedCS2103 = new TagBuilder(CS2103).build();
+        List<Tag> newPersons = Arrays.asList(CS2103, editedCS2103);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicateTagException.class, () -> addressBook.resetData(newData));
@@ -70,8 +70,8 @@ public class AddressBookTest {
     @Test
     public void hasTag_tagWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addTag(CS2103);
-        Tag editedAlice = new TagBuilder(CS2103).build();
-        assertTrue(addressBook.hasTag(editedAlice));
+        Tag editedCS2103 = new TagBuilder(CS2103).build();
+        assertTrue(addressBook.hasTag(editedCS2103));
     }
 
     @Test
