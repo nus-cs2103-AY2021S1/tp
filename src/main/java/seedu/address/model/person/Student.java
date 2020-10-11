@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -15,17 +16,17 @@ public class Student extends Person {
 
     private final StudentId studentId;
 
-    /* to be implemented
     private final Module module;
-    private final TutorialGroup tutorialGroup;
-     */
+
+    private TutorialGroup tutorialGroup;
 
     /**
      * Constructor for StudentId.
      * @param studentId a valid string representing a Student's id.
      */
-    public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId) {
+    public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId, Module module) {
         super(name, phone, email, tags);
+        this.module = module;
         requireAllNonNull(studentId);
         this.studentId = studentId;
     }
@@ -34,7 +35,6 @@ public class Student extends Person {
         return studentId;
     }
 
-    /*
     public Module getModule() {
         return module;
     }
@@ -42,7 +42,6 @@ public class Student extends Person {
     public TutorialGroup getTutorialGroup() {
         return tutorialGroup;
     }
-     */
 
     /**
      * Returns true if both students of the same name have at least one other identity field that is the same.
@@ -77,8 +76,8 @@ public class Student extends Person {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags())
-                && otherStudent.getStudentId().equals(getStudentId());
-        // to add module and tut group
+                && otherStudent.getStudentId().equals(getStudentId())
+                && otherStudent.getModule().equals(getModule());
     }
 
     @Override
@@ -90,7 +89,7 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // to add module and tut group
+        // todo add tut group
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
@@ -98,7 +97,8 @@ public class Student extends Person {
                 .append(getEmail())
                 .append(" Student ID: ")
                 .append(getStudentId())
-                .append(" Tags: ");
+                .append(" Tags: ")
+                .append(" Module: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
