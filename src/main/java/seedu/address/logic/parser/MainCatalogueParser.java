@@ -92,7 +92,7 @@ public class MainCatalogueParser {
                 return new LeaveCommand();
 
             case AssignCommand.COMMAND_WORD:
-                return new AssignCommand(null, null);
+                return new AssignCommandParser().parse(arguments);
 
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
