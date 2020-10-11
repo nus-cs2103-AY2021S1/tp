@@ -32,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOMLINK).get());
+        ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
 
         Module Module = new Module(name, zoomLink);
 
