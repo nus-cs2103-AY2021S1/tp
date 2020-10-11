@@ -100,7 +100,7 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_start() throws Exception {
         StartCommand command = (StartCommand) parser.parseCommand(
-                StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT);
+                StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
         assertEquals(new StartCommand(INDEX_FIRST_PROJECT), command);
     }
 
@@ -171,9 +171,9 @@ public class MainCatalogueParserTest {
 
         try {
             parser.parseCommand(
-                    StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.CATALOGUE);
+                    StartCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased(), Status.PROJECT);
         } catch (Exception e) {
-            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
+            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
         }
 
         try {
