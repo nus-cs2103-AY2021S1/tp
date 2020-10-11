@@ -78,13 +78,14 @@ public class Recipe extends FoodEntry {
                 .append(" Ingredients: ");
         getIngredients().forEach((Ingredient ingredient) -> {
             builder.append(ingredient.getName());
-            builder.append("(" + ingredient.getQuantity() + ") ");
+            builder.append("(" + ingredient.getQuantity() + ")\n");
         });
-        builder.append(" Steps:");
+        builder.append("/ Steps:");
         AtomicInteger counter = new AtomicInteger(1);
         getSteps().forEach((Step step) -> {
             builder.append(" " + counter + ". ");
             builder.append(step.toString());
+            builder.append("\n");
             counter.getAndIncrement();
         });
         return builder.toString();
