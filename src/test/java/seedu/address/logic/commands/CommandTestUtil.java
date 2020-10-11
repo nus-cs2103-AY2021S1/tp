@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -33,36 +34,42 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_INGREDIENT_ALICE = "apple";
     public static final String VALID_INGREDIENT_AMY = "11111111";
     public static final String VALID_INGREDIENT_BOB = "22222222";
+    public static final String VALID_QUANTITY_AMY = "2 cups";
+    public static final String VALID_QUANTITY_BOB = "a teaspoon";
+    public static final String VALID_QUANTITY_ALICE = "1 cup";
     public static final Integer VALID_CALORIES_AMY = 10;
     public static final Integer VALID_CALORIES_BOB = 10;
     public static final String VALID_INSTRUCTION_AMY = "instruction";
     public static final String VALID_INSTRUCTION_BOB = "instruction2";
     public static final String VALID_RECIPE_IMAGE_AMY = "images/healthy1";
     public static final String VALID_RECIPE_IMAGE_BOB = "images/healthy2";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_AMY = "healthy";
+    public static final String VALID_TAG_BOB = "healthy";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String INGREDIENT_DESC_AMY = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_AMY;
-    public static final String INGREDIENT_DESC_BOB = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_BOB;
+    public static final String INGREDIENT_DESC_AMY = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_AMY
+            + " " + PREFIX_QUANTITY + VALID_QUANTITY_AMY;
+    public static final String INGREDIENT_DESC_BOB = " " + PREFIX_INGREDIENT + VALID_INGREDIENT_BOB
+            + " " + PREFIX_QUANTITY + VALID_QUANTITY_BOB;
     public static final String CALORIES_DESC_AMY = " " + PREFIX_CALORIES + VALID_CALORIES_AMY;
     public static final String CALORIES_DESC_BOB = " " + PREFIX_CALORIES + VALID_CALORIES_BOB;
     public static final String INSTRUCTION_DESC_AMY = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_AMY;
     public static final String INSTRUCTION_DESC_BOB = " " + PREFIX_INSTRUCTION + VALID_INSTRUCTION_BOB;
     public static final String RECIPE_IMAGE_DESC_AMY = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_AMY;
     public static final String RECIPE_IMAGE_DESC_BOB = " " + PREFIX_RECIPE_IMAGE + VALID_RECIPE_IMAGE_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_AMY;
+    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
 
     public static final String INVALID_NAME_DESC = " "
             + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_INGREDIENT_DESC = " "
             + PREFIX_INGREDIENT + " "; // not allowed in to blank the ingredients
     public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "-1"; // negative number
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "healthy*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -72,9 +79,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withIngredient(VALID_INGREDIENT_AMY).withCalories(VALID_CALORIES_AMY).build();
+                .withIngredient(VALID_INGREDIENT_AMY, VALID_QUANTITY_AMY).withCalories(VALID_CALORIES_AMY)
+                .withTags(VALID_TAG_AMY).build();
         DESC_BOB = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withIngredient(VALID_INGREDIENT_BOB).withCalories(VALID_CALORIES_BOB).build();
+                .withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB).withCalories(VALID_CALORIES_BOB)
+                .withTags(VALID_TAG_AMY).build();
     }
 
     /**

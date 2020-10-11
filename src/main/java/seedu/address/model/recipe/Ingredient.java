@@ -3,6 +3,8 @@ package seedu.address.model.recipe;
 import static java.util.Objects.requireNonNull;
 //import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Recipe's ingredients in the Wishful Shrinking.
  */
@@ -13,17 +15,20 @@ public class Ingredient {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum} ]*";
     private String value;
+    private String quantity;
 
     /**
      * Constructs a {@code Ingredient}.
      *
      * @param ingredient A valid ingredients number.
      */
-    public Ingredient(String ingredient) {
+    public Ingredient(String ingredient, String quantity) {
         requireNonNull(ingredient);
         value = ingredient;
+        this.quantity = quantity;
     }
     public Ingredient() {
 
@@ -33,7 +38,11 @@ public class Ingredient {
     }
 
     public String getValue() {
-        return value;
+        return value.trim();
+    }
+
+    public String getQuantity() {
+        return quantity.trim();
     }
 
     /**
@@ -46,31 +55,34 @@ public class Ingredient {
         }
 
         return otherIngredient != null
-                && otherIngredient.toString().equals(toString());
+                && otherIngredient.getValue().equals(getValue())
+                && otherIngredient.getQuantity().equals(getQuantity());
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidIngredient(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidIngredient(Ingredient test) {
+        return test.getValue().matches(VALIDATION_REGEX)
+                && test.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
     }
 
     @Override
     public String toString() {
-        return value;
+        return quantity + " " + value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ingredient // instanceof handles nulls
-                && value.equals(((Ingredient) other).value)); // state check
+                && value.equals(((Ingredient) other).getValue())
+                && quantity.equals(((Ingredient) other).getQuantity())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Objects.hash(value, quantity);
     }
 
 }

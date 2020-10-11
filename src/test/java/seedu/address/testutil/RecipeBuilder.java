@@ -1,16 +1,16 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-//import java.util.HashSet;
-//import java.util.Set;
+import java.util.Set;
 
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Recipe objects.
@@ -19,7 +19,7 @@ public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
-            new ArrayList<>(List.of(new Ingredient("Veggies"), new Ingredient("Snakes")));
+            new ArrayList<>(List.of(new Ingredient("Veggies", ""), new Ingredient("Snakes", "")));
     public static final Integer DEFAULT_CALORIES = 10;
     public static final String DEFAULT_INSTRUCTION = "instruction";
     public static final String DEFAULT_RECIPE_IMAGE = "images/healthy1.jpg";
@@ -29,6 +29,7 @@ public class RecipeBuilder {
     private Calories calories;
     private String instruction;
     private String recipeImage;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -39,6 +40,7 @@ public class RecipeBuilder {
         calories = new Calories(DEFAULT_CALORIES);
         instruction = DEFAULT_INSTRUCTION;
         recipeImage = DEFAULT_RECIPE_IMAGE;
+        tags = new HashSet<>();
     }
 
     /**
@@ -50,6 +52,7 @@ public class RecipeBuilder {
         calories = recipeToCopy.getCalories();
         instruction = recipeToCopy.getInstruction();
         recipeImage = recipeToCopy.getRecipeImage();
+        tags = new HashSet<>(recipeToCopy.getTags());
     }
 
     /**
@@ -64,11 +67,12 @@ public class RecipeBuilder {
     /**
      * Sets the {@code Ingredient} of the {@code Recipe} that we are building.
      */
-    public RecipeBuilder withIngredient(String ingredientString) {
+    public RecipeBuilder withIngredient(String ingredientString, String ingredientQuantity) {
         String[] ingredientsToken = ingredientString.split(",");
+        String[] ingredientsQuantity = ingredientQuantity.split(",");
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients.add(new Ingredient(ingredientsToken[i].trim()));
+            ingredients.add(new Ingredient(ingredientsToken[i].trim(), ingredientsQuantity[i].trim()));
         }
         this.ingredients = ingredients;
         return this;
@@ -99,11 +103,19 @@ public class RecipeBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public RecipeBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Builds Recipe
      * @return built Recipe
      */
     public Recipe build() {
-        return new Recipe(name, instruction, recipeImage, ingredients, calories);
+        return new Recipe(name, instruction, recipeImage, ingredients, calories, tags);
     }
 
 }

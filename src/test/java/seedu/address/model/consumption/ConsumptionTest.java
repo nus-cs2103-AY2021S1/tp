@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BOB;
 import static seedu.address.testutil.TypicalRecipes.ALICE;
 import static seedu.address.testutil.TypicalRecipes.BOB;
 
@@ -39,7 +40,9 @@ public class ConsumptionTest {
         assertFalse(alice.equals(editedAlice));
 
         // different ingredients -> returns false
-        editedAlice = new Consumption(new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB).build());
+        editedAlice =
+                new Consumption(new RecipeBuilder(ALICE).withIngredient(VALID_INGREDIENT_BOB, VALID_QUANTITY_BOB)
+                        .build());
         assertFalse(alice.equals(editedAlice));
 
     }

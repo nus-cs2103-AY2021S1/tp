@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-//import java.util.Comparator;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -65,9 +65,13 @@ public class RecipeCard extends UiPart<Region> {
         recipeImageView.setImage(new Image(recipe.getRecipeImage()));
 
         ingredients.setText(recipe.getIngredient().stream()
-                .map(item -> item.getValue())
+                .map(item -> item.getQuantity() + " " + item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
         calories.setText(recipe.getCalories().value.toString() + " cal");
+
+        this.recipe.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
