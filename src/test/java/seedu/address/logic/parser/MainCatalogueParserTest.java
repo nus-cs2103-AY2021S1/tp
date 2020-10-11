@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.address.logic.commands.project.AssignCommand;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
@@ -32,6 +33,7 @@ import seedu.address.model.project.Status;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 public class MainCatalogueParserTest {
 
@@ -108,6 +110,13 @@ public class MainCatalogueParserTest {
     public void parseCommand_leave() throws Exception {
         assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD, Status.PROJECT) instanceof LeaveCommand);
         assertTrue(parser.parseCommand(LeaveCommand.COMMAND_WORD + " 3", Status.PROJECT) instanceof LeaveCommand);
+    }
+
+    @Test
+    public void parseCommand_assign() throws Exception {
+        AssignCommand command = (AssignCommand) parser.parseCommand(
+                AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " Alice", Status.PROJECT);
+        assertEquals(new AssignCommand(INDEX_FIRST_TASK, "Alice"), command);
     }
 
     @Test
