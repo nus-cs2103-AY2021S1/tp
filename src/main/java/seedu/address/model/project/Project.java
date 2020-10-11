@@ -119,6 +119,13 @@ public class Project {
     }
 
     /**
+     * Gets the Participation with the member name.
+     */
+    public Participation getParticipation(String name) {
+        return listOfParticipations.get(new PersonName(name));
+    }
+
+    /**
      * Returns the list of tasks that is last shown.
      */
     public List<Task> getFilteredTaskList() {
