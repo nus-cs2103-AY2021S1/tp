@@ -418,7 +418,9 @@ Use case ends.
 **MSS:**
 
 1. User requests to add a task in a project with specifications such as projectName, deadline, etc.
-2. PMS adds the task with given specifications.
+1. PMS adds the task with given specifications.
+1. User requests to assign the task to a team member.
+1. PMS associates the task with the team member.
 
 Use case ends.
 
@@ -426,11 +428,24 @@ Use case ends.
 
  * 2a. The application has not started any project.
    * 2a1. PMS shows an error message. 
+   * 2a2. User UC6: _starts the project_
 
-Use case ends
+Use case resumes at 1.
 
  * 2b. The input format for adding a task is invalid.
    * 2b1. PMS shows an error message. 
+   * 2b2. Repeat 1-2 until adding task is successful.
+
+Use case resumes at 3.
+
+ * 4a. The input task index is invalid or the team member is not found in the project.
+   * 4a1. PMS shows an error message.
+   * 4a2. Repeat 3-4 until assignment of task is successful.
+   
+Use case ends.
+
+ * 4b. The task has already been associated with the team member.
+   * 4b1. PMS shows an error message.
 
 Use case ends.
 
