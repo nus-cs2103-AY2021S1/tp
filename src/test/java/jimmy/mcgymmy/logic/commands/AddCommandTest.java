@@ -2,6 +2,7 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
+import static jimmy.mcgymmy.testutil.TypicalFoods.getTypicalMcGymmy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -17,8 +19,10 @@ import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
 import jimmy.mcgymmy.model.McGymmy;
 import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.ModelManager;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.model.ReadOnlyUserPrefs;
+import jimmy.mcgymmy.model.UserPrefs;
 import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.tag.Tag;
 import jimmy.mcgymmy.testutil.FoodBuilder;
@@ -26,6 +30,13 @@ import jimmy.mcgymmy.testutil.FoodBuilder;
 
 
 public class AddCommandTest {
+    private Model model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
+
+    @BeforeEach
+    private void initEach() {
+        model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
+    }
+
     @Test
     public void execute_foodAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
@@ -46,22 +57,22 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_validFoodWithTag_addSuccessful() throws Exception {
-        ModelStubAcceptingFoodAdded modelStub = new ModelStubAcceptingFoodAdded();
-        Food validFood = new FoodBuilder().withCarb("12345").withTags("hello").build();
+    public void execute_validFoodWithTag_addSuccessful() {
+        Food validFoodWithTag = new FoodBuilder().withCarb("12345").withTags("hello").build();
         AddCommand command = new AddCommand();
         command.setParameters(
-            new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
-            new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
-            new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
-            new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs()),
+            new CommandParserTestUtil.ParameterStub<>("n", validFoodWithTag.getName()),
+            new CommandParserTestUtil.OptionalParameterStub<>("p", validFoodWithTag.getProtein()),
+            new CommandParserTestUtil.OptionalParameterStub<>("f", validFoodWithTag.getFat()),
+            new CommandParserTestUtil.OptionalParameterStub<>("c", validFoodWithTag.getCarbs()),
             new CommandParserTestUtil.OptionalParameterStub<>("t", new Tag("hello"))
         );
 
-        CommandResult commandResult = command.execute(modelStub);
+        String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, validFoodWithTag);
+        Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
+        expectedModel.addFood(validFoodWithTag);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFood), modelStub.foodAdded);
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
