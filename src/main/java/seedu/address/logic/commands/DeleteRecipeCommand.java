@@ -33,7 +33,7 @@ public class DeleteRecipeCommand extends Command {
     private final Index index;
 
     /**
-     * Creates an DeleteRecipeCommand to delete the specified {@code Recipe}
+     * Creates a DeleteRecipeCommand to delete the specified {@code Recipe}
      */
     public DeleteRecipeCommand(String productName, Index index) {
         requireNonNull(productName);

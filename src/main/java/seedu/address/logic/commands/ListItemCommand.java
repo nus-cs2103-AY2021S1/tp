@@ -15,10 +15,15 @@ public class ListItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " :lists all items";
 
     public static final String MESSAGE_SUCCESS = "Listed all items";
+    public static final String MESSAGE_NO_ITEMS = "You have no items in your inventory now, will you like to add some?";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, DisplayedInventoryType.ITEMS);
+        if (model.getFilteredItemList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_ITEMS, false, false, DisplayedInventoryType.ITEMS);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS, false, false, DisplayedInventoryType.ITEMS);
+        }
     }
 }
