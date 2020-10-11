@@ -1,18 +1,16 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddZoomLinkCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ZoomLink;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import java.util.stream.Stream;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddZoomLinkCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ZoomLink;
 
 public class AddZoomLinkCommandParser implements Parser<AddZoomLinkCommand> {
 
@@ -30,7 +28,8 @@ public class AddZoomLinkCommandParser implements Parser<AddZoomLinkCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddZoomLinkCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddZoomLinkCommand.MESSAGE_USAGE), pe);
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)
                 || !argMultimap.getPreamble().isEmpty()) {

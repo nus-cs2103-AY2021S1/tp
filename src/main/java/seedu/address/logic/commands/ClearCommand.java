@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jdk.jfr.Percentage;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 
