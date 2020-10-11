@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * Tests that a {@code Item}'s {@code Name} contains any of the keywords given.
+ * Tests that a {@code Item}'s {@code Name} contains any of the keywords given, case-insensitive.
  */
 public class NameMatchesKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
