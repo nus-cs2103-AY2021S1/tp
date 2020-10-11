@@ -19,6 +19,7 @@ public class FindIngredientCommand extends FindCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " sugar";
 
+
     public FindIngredientCommand(NameContainsKeywordsPredicate predicate) {
         super(predicate);
     }
@@ -28,7 +29,7 @@ public class FindIngredientCommand extends FindCommand {
         requireNonNull(model);
         model.updateFilteredIngredientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_INGREDIENT_LISTED_OVERVIEW, model.getFilteredIngredientList().size()));
+                String.format(Messages.MESSAGE_INGREDIENTS_LISTED_OVERVIEW, model.getFilteredIngredientList().size()));
     }
 
     @Override
