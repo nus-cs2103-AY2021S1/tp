@@ -19,14 +19,14 @@ import static seedu.address.testutil.TypicalTags.BOB;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 import seedu.address.testutil.TagBuilder;
 
-public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+public class TagCommandParserTest {
+    private TagCommandParser parser = new TagCommandParser();
 
     @Test
     @Disabled
@@ -36,17 +36,16 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-                + FILE_ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTag));
+                + FILE_ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new TagCommand(expectedTag));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
-                + FILE_ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTag));
+                + FILE_ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new TagCommand(expectedTag));
     }
-
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE);
 
         // missing tag name prefix
         assertParseFailure(parser, VALID_NAME_BOB + FILE_ADDRESS_DESC_BOB,
@@ -80,6 +79,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
                 + FILE_ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
     }
 }

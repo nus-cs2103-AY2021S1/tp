@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
@@ -33,8 +33,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Tag person = new TagBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(TagUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        TagCommand command = (TagCommand) parser.parseCommand(TagUtil.getTagCommand(person));
+        assertEquals(new TagCommand(person), command);
     }
 
     @Test

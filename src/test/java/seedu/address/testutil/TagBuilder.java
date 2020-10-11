@@ -10,7 +10,7 @@ import seedu.address.model.tag.TagName;
  */
 public class TagBuilder {
 
-    public static final String DEFAULT_TAG_NAME = "Alice Pauline";
+    public static final String DEFAULT_TAG_NAME = "myTag";
     public static final String DEFAULT_FILE_ADDRESS = "c:\\a\\b\\abc.txt";
 
     private TagName tagName;
