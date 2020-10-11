@@ -22,8 +22,9 @@ public class TypicalItems {
     public static final Item CHICKEN = new ItemBuilder().withName("Chicken")
             .withSupplier("Giant")
             .withQuantity("12")
-            .withTags("meat").build();
-    public static final Item DUCK = new ItemBuilder().withName("Duck")
+            .withTags("meat")
+            .build();
+    public static final Item DUCK_WITH_MAX_QUANTITY = new ItemBuilder().withName("Duck")
             .withSupplier("Cold Storage")
             .withQuantity("33")
             .withTags("meat")
@@ -32,23 +33,28 @@ public class TypicalItems {
     public static final Item SALMON = new ItemBuilder().withName("Salmon")
             .withSupplier("No Supplier")
             .withQuantity("5")
-            .withTags("fish").build();
+            .withTags("fish")
+            .build();
     public static final Item BROCCOLI = new ItemBuilder().withName("Broccoli")
             .withSupplier("Sheng Siong")
             .withQuantity("3")
-            .withTags("vegetable").build();
+            .withTags("vegetable")
+            .build();
     public static final Item CRAB = new ItemBuilder().withName("Crab")
             .withSupplier("NTUC")
             .withQuantity("7")
-            .withTags("seafood").build();
+            .withTags("seafood")
+            .build();
     public static final Item BEEF = new ItemBuilder().withName("Beef")
             .withSupplier("Cold Storage")
             .withQuantity("41")
-            .withTags("meat").build();
+            .withTags("meat")
+            .build();
     public static final Item PORK = new ItemBuilder().withName("Pork")
             .withSupplier("Sheng Siong")
             .withQuantity("2")
-            .withTags("meat").build();
+            .withTags("meat")
+            .build();
 
     // Manually added
     public static final Item TUNA = new ItemBuilder().withName("Tuna").withQuantity("10")
@@ -83,6 +89,6 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(CHICKEN, DUCK, SALMON, BROCCOLI, CRAB, BEEF, PORK));
+        return new ArrayList<>(Arrays.asList(CHICKEN, DUCK_WITH_MAX_QUANTITY, SALMON, BROCCOLI, CRAB, BEEF, PORK));
     }
 }

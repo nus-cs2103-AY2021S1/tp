@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SUPPLIER_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
-import static seedu.address.testutil.TypicalItems.DUCK;
+import static seedu.address.testutil.TypicalItems.DUCK_WITH_MAX_QUANTITY;
 
 import org.junit.jupiter.api.Test;
 
@@ -72,7 +72,7 @@ public class ItemTest {
         assertFalse(CHICKEN.equals(5));
 
         // different Item -> returns false
-        assertFalse(CHICKEN.equals(DUCK));
+        assertFalse(CHICKEN.equals(DUCK_WITH_MAX_QUANTITY));
 
         // different name -> returns false
         Item editedChicken = new ItemBuilder(CHICKEN).withName(VALID_NAME_DUCK).build();
