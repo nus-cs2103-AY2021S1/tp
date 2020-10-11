@@ -34,7 +34,7 @@ public class RecipeCard extends UiPart<Region> {
 
     @FXML
     public void handleSelectRecipe(ActionEvent event) {
-
+        DisplayNavigator.loadRecipeDisplay(recipe);
     }
 
     @Override
