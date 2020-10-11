@@ -20,7 +20,7 @@ public interface ActiveAccount {
     void setActiveAccount(ReadOnlyAccount newActiveAccount);
 
     /** Returns the Active Account */
-    ReadOnlyAccount getAccount();
+    Account getAccount();
 
     /**
      * Returns true if an expense/revenue entry with the same identity as {@code entry} exists in the account.

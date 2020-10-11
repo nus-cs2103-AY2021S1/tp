@@ -54,7 +54,7 @@ public class LogicManager implements Logic {
         // Parses user input from String to Command
         Command command = commonCentsParser.parseCommand(commandText);
         // Executes the Command and stores the result in commandResult
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, activeAccount);
 
         try {
             // Since the model is modified previously, the current model is saved through the storage
