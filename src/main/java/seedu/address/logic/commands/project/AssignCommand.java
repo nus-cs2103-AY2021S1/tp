@@ -29,9 +29,9 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigns task: %1$s to %s";
 
     private final Index targetIndex;
-    private final Participation assignee;
+    private final String assignee;
 
-    public AssignCommand(Index targetIndex, Participation assignee) {
+    public AssignCommand(Index targetIndex, String assignee) {
         this.targetIndex = targetIndex;
         this.assignee = assignee;
     }
@@ -47,6 +47,12 @@ public class AssignCommand extends Command {
         }
 
         Task taskToAssociate = lastShownTaskList.get(targetIndex.getZeroBased());
+
+        if (!project.hasParticipation(assignee)) {
+            throw new CommandException(Messages.MESSAGE_MEMBER_NOT_PRESENT);
+        }
+
+        Participation assignee = project.getParticipation(this.assignee);
         assignee.addTask(taskToAssociate);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee));
