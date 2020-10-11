@@ -26,7 +26,8 @@ public class TypicalItems {
     public static final Item DUCK = new ItemBuilder().withName("Duck")
             .withSupplier("Cold Storage")
             .withQuantity("33")
-            .withTags("meat").build();
+            .withTags("meat")
+            .build();
     public static final Item SALMON = new ItemBuilder().withName("Salmon")
             .withSupplier("No Supplier")
             .withQuantity("5")

@@ -24,17 +24,19 @@ public class Item {
     private final Quantity quantity;
     private final Set<Tag> tags = new HashSet<>();
     private final Optional<Quantity> maxQuantity;
+    private final Optional<Metric> metric;
 
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags, Quantity maxQuantity) {
+    public Item(Name name, Quantity quantity, Supplier supplier, Set<Tag> tags, Quantity maxQuantity, Metric metric) {
         requireAllNonNull(name, quantity, supplier, tags);
         this.name = name;
         this.quantity = quantity;
         this.supplier = supplier;
         this.tags.addAll(tags);
         this.maxQuantity = Optional.ofNullable(maxQuantity);
+        this.metric = Optional.ofNullable(metric);
     }
 
     public Name getName() {
@@ -59,6 +61,10 @@ public class Item {
 
     public Optional<Quantity> getMaxQuantity() {
         return maxQuantity;
+    }
+
+    public Optional<Metric> getMetric() {
+        return metric;
     }
 
     /**
