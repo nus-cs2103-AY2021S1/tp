@@ -11,5 +11,5 @@ public class Messages {
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects listed!";
     public static final String MESSAGE_INVALID_SCOPE_COMMAND = "The scope status is expected to be %s but you are"
             + " now in %s";
-
+    public static final String MESSAGE_MEMBER_NOT_PRESENT = "%s is not a team member of this project.";
 }
