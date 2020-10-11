@@ -48,8 +48,10 @@ public interface Model {
 
     void addInventoryRecord(InventoryRecord inventoryRecord);
 
+    void deleteInventoryRecord(InventoryRecord target);
+
     /**
-     * Returns the user prefs' address book file path.
+     *  * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
 
