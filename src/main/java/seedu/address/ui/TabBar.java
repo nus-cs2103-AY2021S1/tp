@@ -6,6 +6,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
+import seedu.address.ui.property.PropertyListPanel;
 
 
 public class TabBar extends UiPart<Region> {
@@ -13,11 +14,12 @@ public class TabBar extends UiPart<Region> {
     private static final String FXML = "TabBar.fxml";
     private static final String FXML2 = "PersonListPanel.fxml";
     private static final String FXML3 = "BidListPanel.fxml";
+    private static final String FXML4 = "property/PropertyListPanel.fxml";
 
     private Logic logic;
 
     @FXML
-    private TabPane personAndBidTabBar;
+    private TabPane tabBar;
 
     @FXML
     private Tab personTab;
@@ -26,11 +28,16 @@ public class TabBar extends UiPart<Region> {
     private Tab bidTab;
 
     @FXML
+    private Tab propertyTab;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane bidListPanelPlaceholder;
 
+    @FXML
+    private StackPane propertyListPanelPlaceholder;
 
     /**
      * Creates a {@code TabBar} with the given {@code Logic}.
@@ -38,18 +45,19 @@ public class TabBar extends UiPart<Region> {
     public TabBar(Logic logic) {
         super(FXML);
         this.logic = logic;
-        setPersonAndBidTabBar();
+        setTabBar();
         populateTab();
     }
 
     /**
-     * Initialises the two tabs on the tabpane.
+     * Initialises all tabs on the tabpane.
      */
-    private void setPersonAndBidTabBar() {
+    private void setTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");
-        personAndBidTabBar.setTabMinWidth(335);
-        personAndBidTabBar.setTabMaxWidth(335);
+        propertyTab.setText("Properties");
+        tabBar.setTabMinWidth(335);
+        tabBar.setTabMaxWidth(335);
     }
 
     /**
@@ -58,8 +66,10 @@ public class TabBar extends UiPart<Region> {
     private void populateTab() {
         PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         BidListPanel bidListPanel = new BidListPanel(logic.getFilteredBidList());
+        PropertyListPanel propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         bidListPanelPlaceholder.getChildren().add(bidListPanel.getRoot());
+        propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
     }
 }
 

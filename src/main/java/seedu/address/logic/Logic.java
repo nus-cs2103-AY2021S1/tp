@@ -9,8 +9,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.person.Person;
+import seedu.address.model.property.Property;
 
 /**
  * API of the Logic component
@@ -58,4 +60,14 @@ public interface Logic {
     ReadOnlyBidBook getBidBook();
 
     ObservableList<Bid> getFilteredBidList();
+
+    /**
+     * Returns the PropertyBook.
+     *
+     * @see seedu.address.model.Model#getPropertyBook()
+     */
+    ReadOnlyPropertyBook getPropertyBook();
+
+    /** Returns an unmodifiable view of the filtered list of properties */
+    ObservableList<Property> getFilteredPropertyList();
 }
