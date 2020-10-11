@@ -38,8 +38,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PROJECT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.catalogue.EditCommand;
+import seedu.address.logic.commands.catalogue.EditCommand.EditProjectDescriptor;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;

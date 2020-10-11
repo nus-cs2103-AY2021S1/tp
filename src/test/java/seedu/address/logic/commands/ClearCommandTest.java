@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import seedu.address.logic.commands.catalogue.ClearCommand;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;

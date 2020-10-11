@@ -1,6 +1,8 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.catalogue;
 
 import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;

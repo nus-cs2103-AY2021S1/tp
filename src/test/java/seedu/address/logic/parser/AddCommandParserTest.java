@@ -35,7 +35,7 @@ import static seedu.address.testutil.TypicalProjects.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.catalogue.AddCommand;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import seedu.address.logic.commands.catalogue.AddCommand;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.BeforeEach;

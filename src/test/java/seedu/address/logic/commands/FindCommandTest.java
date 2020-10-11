@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import seedu.address.logic.commands.catalogue.FindCommand;
 import static seedu.address.testutil.TypicalProjects.CARL;
 import static seedu.address.testutil.TypicalProjects.ELLE;
 import static seedu.address.testutil.TypicalProjects.FIONA;
