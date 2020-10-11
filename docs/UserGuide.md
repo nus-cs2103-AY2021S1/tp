@@ -190,10 +190,18 @@ Outcome: The task is assigned with the priority level.
 Displays a list of tasks allocated to the specified members.
 
 Format: `view NAME`
-- NAME refers to the projectName of the team member when it was first input during project creation.
+- `NAME` refers to the projectName of the team member when it was first input during project creation.
 
 Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
 
+#### Assign tasks to a team member `assign `
+Assigns a task to a team member. A task can be assigned to multiple members, and a member can have multiple tasks.
+
+Format: `assign INDEX NAME`
+- `INDEX` refers to the task index in the current displaying list of tasks.
+- `NAME` refers to the projectName of the team member.
+
+Example: `assign 1 Niaaz` Assigns the task currently with index 1 to Niaaz.
 
 --------------------------------------------------------------------------------------------------------------------
 
