@@ -2,15 +2,16 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -18,7 +19,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,18 +34,24 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    // private PersonListPanel personListPanel;
+
+    // TODO: Change this to EntryListPanel
+    private PersonListPanel entryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandBoxPlaceholder;
+
+    @FXML
+    private Circle accountDisplayPicture;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane entryListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -65,6 +71,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        // Image img = new Image(this.getClass().getResourceAsStream("/images/sampleDisplayPicture.png"));
+        // accountDisplayPicture.setFill(new ImagePattern(img));
+        // TODO: Dummy colour, to be changed later
+        accountDisplayPicture.setFill(Color.web("ffb997"));
 
         setAccelerators();
 
@@ -113,10 +123,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // Suppose to get filtered account list from logic here
-        ObservableList<Person> stub = FXCollections.observableArrayList();
-        personListPanel = new PersonListPanel(stub);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        // TODO: change logic.getFilteredList()
+        // entryListPanel = new PersonListPanel(logic.getFilteredAccountList());
+        entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -125,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
     }
 
     /**
@@ -168,8 +177,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public PersonListPanel getEntryListPanel() {
+        return entryListPanel;
     }
 
     /**
