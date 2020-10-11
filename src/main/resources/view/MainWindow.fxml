@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="550" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -40,14 +40,20 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="80" prefHeight="80" styleClass="stack-pane" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+        <StackPane alignment="CENTER_LEFT" maxHeight="50" minHeight="50" prefHeight="50" styleClass="stack-pane" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="20" right="10" top="5" />
+          </padding>
+          <Label styleClass="label-title">ModDuke</Label>
+        </StackPane>
 
+        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
           <VBox alignment="TOP_CENTER">
             <Label>Contacts</Label>
             <VBox fx:id="personList" minWidth="370" prefWidth="370" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
@@ -75,6 +81,16 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
               <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            </VBox>
+          </VBox>
+
+          <VBox alignment="TOP_CENTER">
+            <Label alignment="CENTER">Meetings</Label>
+            <VBox fx:id="moduleList" minWidth="370" prefWidth="370" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </VBox>
 
