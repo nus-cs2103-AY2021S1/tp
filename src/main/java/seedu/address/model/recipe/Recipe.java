@@ -5,15 +5,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.Inventory;
+import seedu.address.model.InventoryComponent;
 import seedu.address.model.item.Item;
-import seedu.address.ui.View;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Represents an Recipe in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Recipe extends Inventory {
+public class Recipe extends InventoryComponent {
     private static int idCounter = 0;
 
     // Identity fields
@@ -134,8 +134,8 @@ public class Recipe extends Inventory {
         return String.format("Recipe for: %s. %s", productName, description);
     }
 
-    public View.InventoryType getType() {
-        return View.InventoryType.RECIPES;
+    public DisplayedInventoryType getType() {
+        return DisplayedInventoryType.RECIPES;
     }
 
     /**

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.item.NameIsExactlyPredicate;
-import seedu.address.ui.View;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Finds the first item that matches what is searched for, and displays it's details.
@@ -32,10 +32,11 @@ public class ViewDetailsCommand extends Command {
         model.updateFilteredItemList(predicate);
         boolean filteredItemListNotEmpty = model.getFilteredItemList().size() > 0;
         if (filteredItemListNotEmpty) {
-            return new CommandResult("Displaying searched item", false, false, View.InventoryType.DETAILED_ITEM);
+            return new CommandResult("Displaying searched item", false, false,
+                    DisplayedInventoryType.DETAILED_ITEM);
         } else {
             return new CommandResult(String.format(Messages.MESSAGE_NO_ITEM_FOUND, predicate.getKeyword()),
-                    false, false, View.InventoryType.UNCHANGED);
+                    false, false, DisplayedInventoryType.UNCHANGED);
         }
     }
 

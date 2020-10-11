@@ -52,7 +52,7 @@ public class InventoryMainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    private View.InventoryType inventoryType;
+    private DisplayedInventoryType inventoryType;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -71,7 +71,7 @@ public class InventoryMainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        inventoryType = View.InventoryType.ITEMS;
+        inventoryType = DisplayedInventoryType.ITEMS;
     }
 
     public Stage getPrimaryStage() {
@@ -192,13 +192,13 @@ public class InventoryMainWindow extends UiPart<Stage> {
             // update the type of inventory to be displayed
             switch (commandResult.getInventoryType()) {
             case ITEMS:
-                inventoryType = View.InventoryType.ITEMS;
+                inventoryType = DisplayedInventoryType.ITEMS;
                 break;
             case RECIPES:
-                inventoryType = View.InventoryType.RECIPES;
+                inventoryType = DisplayedInventoryType.RECIPES;
                 break;
             case DETAILED_ITEM:
-                inventoryType = View.InventoryType.DETAILED_ITEM;
+                inventoryType = DisplayedInventoryType.DETAILED_ITEM;
                 break;
             case UNCHANGED:
                 // inventoryType stays the same

@@ -3,7 +3,7 @@ package seedu.address.model.item;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.ui.View;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Represents an Detailed Item which may be displayed.
@@ -16,7 +16,7 @@ public class DetailedItem extends Item {
     }
 
     @Override
-    public View.InventoryType getType() {
-        return View.InventoryType.DETAILED_ITEM;
+    public DisplayedInventoryType getType() {
+        return DisplayedInventoryType.DETAILED_ITEM;
     }
 }

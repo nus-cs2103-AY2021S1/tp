@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.Inventory;
+import seedu.address.model.InventoryComponent;
 import seedu.address.model.tag.Tag;
-import seedu.address.ui.View;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Represents an Item in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Item extends Inventory {
+public class Item extends InventoryComponent {
     private static int idCounter = 0;
 
     // Identity fields
@@ -46,7 +46,7 @@ public class Item extends Inventory {
         this.recipeIds.addAll(recipeIds);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
-        if (!this.getType().equals(View.InventoryType.DETAILED_ITEM)) {
+        if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
             idCounter++;
         }
     }
@@ -175,7 +175,7 @@ public class Item extends Inventory {
     }
 
     @Override
-    public View.InventoryType getType() {
-        return View.InventoryType.ITEMS;
+    public DisplayedInventoryType getType() {
+        return DisplayedInventoryType.ITEMS;
     }
 }

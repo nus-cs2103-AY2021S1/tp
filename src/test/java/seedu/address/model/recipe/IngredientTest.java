@@ -42,6 +42,9 @@ public class IngredientTest {
         assertFalse(INGREDIENT_1.isItem(differentItemId));
     }
 
+    /**
+     * Test for correct display of toString.
+     */
     @Test
     public void testToString_success() {
         ArrayList<Item> itemArrayList = new ArrayList<>();
@@ -51,6 +54,9 @@ public class IngredientTest {
         assertEquals("Apple [5]", ind.toString(itemObservableList));
     }
 
+    /**
+     * Test for exception thrown in toString when the ingredient cannot be found in the item list.
+     */
     @Test
     public void testToString_throwsIngredientNotFoundException() {
         ArrayList<Item> itemArrayList = new ArrayList<>();

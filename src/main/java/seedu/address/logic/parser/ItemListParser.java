@@ -71,9 +71,6 @@ public class ItemListParser {
         case ClearItemCommand.COMMAND_WORD:
             return new ClearItemCommand();
 
-        case ListItemCommand.COMMAND_WORD:
-            return new ListItemCommand();
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

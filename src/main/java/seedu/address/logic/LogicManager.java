@@ -13,7 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Inventory;
+import seedu.address.model.InventoryComponent;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
@@ -24,7 +24,7 @@ import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
-import seedu.address.ui.View;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * The main LogicManager of the app.
@@ -143,14 +143,16 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    // Process for viewing
-    public ArrayList<Inventory> getInventoryList(View.InventoryType inventoryType) {
-        if (!inventoryType.equals(View.InventoryType.DETAILED_ITEM)) {
+    /**
+     * Returns the relevant inventory list containing inventory of {@code inventoryType} to be displayed.
+     */
+    public ArrayList<InventoryComponent> getInventoryList(DisplayedInventoryType inventoryType) {
+        if (!inventoryType.equals(DisplayedInventoryType.DETAILED_ITEM)) {
             // ViewDetailsCommand already updates for viewing of one item
             model.updateFilteredItemList(item -> !item.isDeleted());
             model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
         }
-        ArrayList<Inventory> inventoryList = new ArrayList<>();
+        ArrayList<InventoryComponent> inventoryList = new ArrayList<>();
         switch(inventoryType) {
         case ITEMS:
             inventoryList.addAll(model.getFilteredItemList());

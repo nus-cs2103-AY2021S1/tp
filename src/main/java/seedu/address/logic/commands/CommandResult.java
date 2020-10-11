@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import seedu.address.ui.DisplayedInventoryType;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
-
-import seedu.address.ui.View;
 
 /**
  * Represents the result of a command execution.
@@ -14,7 +14,7 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Toggles the current display. */
-    private final View.InventoryType inventoryType;
+    private final DisplayedInventoryType inventoryType;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -26,7 +26,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, View.InventoryType inventoryType) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DisplayedInventoryType inventoryType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -40,7 +40,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.inventoryType = View.InventoryType.UNCHANGED;
+        this.inventoryType = DisplayedInventoryType.UNCHANGED;
     }
 
     /**
@@ -48,7 +48,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, View.InventoryType.UNCHANGED);
+        this(feedbackToUser, false, false, DisplayedInventoryType.UNCHANGED);
     }
 
     public String getFeedbackToUser() {
@@ -63,7 +63,7 @@ public class CommandResult {
         return exit;
     }
 
-    public View.InventoryType getInventoryType() {
+    public DisplayedInventoryType getInventoryType() {
         return this.inventoryType;
     }
 
