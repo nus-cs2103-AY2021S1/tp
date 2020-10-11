@@ -1,11 +1,11 @@
 package com.eva.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class StaffBuilder extends PersonBuilder {
 
