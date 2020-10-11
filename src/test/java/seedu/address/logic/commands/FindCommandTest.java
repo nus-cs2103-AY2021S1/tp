@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.TypicalTasks.CARL;
 import static seedu.address.testutil.TypicalTasks.ELLE;
 import static seedu.address.testutil.TypicalTasks.FIONA;
@@ -12,9 +13,13 @@ import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,10 +34,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        TaskContainsKeywordsPredicate firstPredicate =
-                new TaskContainsKeywordsPredicate(Collections.singletonList("first"));
-        TaskContainsKeywordsPredicate secondPredicate =
-                new TaskContainsKeywordsPredicate(Collections.singletonList("second"));
+        TaskContainsKeywordsPredicate firstPredicate = new TaskContainsKeywordsPredicate();
+        firstPredicate.setKeyword(PREFIX_TITLE, "first");
+        TaskContainsKeywordsPredicate secondPredicate = new TaskContainsKeywordsPredicate();
+        secondPredicate.setKeyword(PREFIX_TITLE, "second");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -78,6 +83,10 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code TaskContainsKeywordsPredicate}.
      */
     private TaskContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TaskContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        Arrays.asList(userInput.split("\\s+")).forEach(
+                input -> predicate.setKeyword(PREFIX_TITLE, input)
+        );
+        return predicate;
     }
 }

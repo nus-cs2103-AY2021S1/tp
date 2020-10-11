@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
@@ -117,8 +118,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTitle().title.split("\\s+");
-        modelManager.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(keywords)));
+        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        predicate.setKeyword(PREFIX_TITLE, ALICE.getTitle().title);
+        modelManager.updateFilteredTaskList(predicate);
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

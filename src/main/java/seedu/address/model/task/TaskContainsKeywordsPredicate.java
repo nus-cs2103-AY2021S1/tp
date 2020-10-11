@@ -42,9 +42,21 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TaskContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TaskContainsKeywordsPredicate) other).keywords)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TaskContainsKeywordsPredicate)) {
+            return false;
+        }
+
+        TaskContainsKeywordsPredicate casted = (TaskContainsKeywordsPredicate) other;
+        for (Prefix key : keywords.keySet()) {
+            if (!casted.keywords.containsKey(key) || !keywords.get(key).equals(casted.keywords.get(key))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean isMatched(String prefix, List<String> words, Task task) {

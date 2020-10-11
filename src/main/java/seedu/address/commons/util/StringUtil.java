@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -30,10 +29,7 @@ public class StringUtil {
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
-        String[] wordsInPreppedSentence = sentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(wordInSentence -> isFuzzyMatched(wordInSentence, preppedWord));
+        return isFuzzyMatched(sentence.toLowerCase(), preppedWord.toLowerCase());
     }
 
     private static boolean isFuzzyMatched(String word, String keyword) {
