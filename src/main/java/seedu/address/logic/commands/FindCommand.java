@@ -18,7 +18,7 @@ public class FindCommand extends Command {
             + "the specified keywords or exact NRIC (case-insensitive)"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob s12345678A";
+            + "Example: " + COMMAND_WORD + " alice bob s1234567A";
 
     private final KeywordsPredicate predicate;
 
