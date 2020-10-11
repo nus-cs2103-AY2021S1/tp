@@ -121,9 +121,8 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         bidBookStorage.saveBidBook(bidBook, filePath);
     }
-    
-    // ================ BidderAddressBook methods ==============================
 
+    // ================ BidderAddressBook methods ==============================
     @Override
     public Path getBidderAddressBookFilePath() {
         return bidderAddressBookStorage.getBidderAddressBookFilePath();
@@ -136,7 +135,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyBidderAddressBook> readBidderAddressBook(Path filePath) throws
-    DataConversionException, IOException {
+            DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return bidderAddressBookStorage.readBidderAddressBook(filePath);
     }
@@ -167,7 +166,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlySellerAddressBook> readSellerAddressBook(Path filePath) throws
-    DataConversionException, IOException {
+            DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return sellerAddressBookStorage.readSellerAddressBook(filePath);
     }

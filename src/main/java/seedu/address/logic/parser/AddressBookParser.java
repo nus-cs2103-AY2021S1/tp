@@ -17,14 +17,14 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBidCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.property.AddPropertyCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.commands.biddercommands.AddBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
+import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.sellercommands.AddSellerCommand;
 import seedu.address.logic.commands.sellercommands.ListSellerCommand;
 import seedu.address.logic.parser.bidderparser.AddBidderCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.sellerparser.AddSellerCommandParser;
 
 /**

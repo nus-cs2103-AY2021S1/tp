@@ -15,9 +15,9 @@ import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.property.Property;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
+import seedu.address.model.property.Property;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 
