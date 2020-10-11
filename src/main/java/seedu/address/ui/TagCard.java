@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +43,21 @@ public class TagCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         tagName.setText(tag.getTagName().tagName);
         fileAddress.setText(tag.getFileAddress().value);
+    }
+
+    /**
+     * Displays the information of the tag in the main window.
+     *
+     * @see seedu.address.logic.Logic#execute(String)
+     */
+    public void showTagInfo() throws CommandException, ParseException {
+        MainWindow mainWindow = MainWindow.getInstance();
+        if (mainWindow == null) {
+            return;
+        }
+
+        String showInfoCommand = "show t/" + tag.getTagName();
+        mainWindow.executeCommand(showInfoCommand);
     }
 
     @Override
