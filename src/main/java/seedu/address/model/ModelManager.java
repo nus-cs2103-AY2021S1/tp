@@ -19,7 +19,6 @@ import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
-import seedu.address.model.person.Person;
 import seedu.address.model.vendor.Vendor;
 
 /**

@@ -9,7 +9,6 @@ import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
-import seedu.address.model.person.Person;
 import seedu.address.model.vendor.Vendor;
 
 
@@ -126,7 +125,6 @@ public interface Model {
      * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
      */
     void setFood(Food target, Food editedFood, int index);
-  
     /**
      * Replaces address book data with the data in {@code orderManager}.
      */
@@ -159,9 +157,6 @@ public interface Model {
      * must not be the same as another existing orderItem in the address book.
      */
     void setOrderItem(OrderItem target, OrderItem editedOrderItem);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered vendor list */
     ObservableList<Vendor> getFilteredVendorList();

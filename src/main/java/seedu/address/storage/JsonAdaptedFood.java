@@ -66,9 +66,7 @@ class JsonAdaptedFood {
         if (!Food.isValidPrice(price)) {
             throw new IllegalValueException("Price must be a double.");
         }
-      
         final Set<Tag> modelTags = new HashSet<>(vendorTags);
-      
         return new Food(name, price, modelTags);
     }
 
