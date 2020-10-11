@@ -37,7 +37,7 @@ class JsonSerializableReeve {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableReeve(ReadOnlyReeve source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        persons.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableReeve {
         Reeve reeve = new Reeve();
         for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (reeve.hasPerson(student)) {
+            if (reeve.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            reeve.addPerson(student);
+            reeve.addStudent(student);
         }
         return reeve;
     }

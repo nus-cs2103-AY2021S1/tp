@@ -1,13 +1,18 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.student.Student;
+
 
 /**
  * A utility class for Person.
@@ -30,6 +35,14 @@ public class StudentUtil {
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_SCHOOL + student.getSchool().school + " ");
         sb.append(PREFIX_YEAR + String.valueOf(student.getYear().year) + " ");
+        sb.append(PREFIX_VENUE + student.getAdmin().getClassVenue().venue + " ");
+        //There needs to be a way to convert back and forth for the admin details
+        sb.append(PREFIX_TIME + student.getAdmin().getClassTime().dayOfWeek.toString()
+                + " " + student.getAdmin().getClassTime().startTime.toString().replace(":", "")
+                + "-" + student.getAdmin().getClassTime().endTime.toString().replace(":", "") + " ");
+        sb.append(PREFIX_FEE + String.valueOf(student.getAdmin().getFee().amount) + " ");
+        sb.append(PREFIX_PAYMENT + "01/01/2001" + " ");
+        System.out.println(sb);
         return sb.toString();
     }
 

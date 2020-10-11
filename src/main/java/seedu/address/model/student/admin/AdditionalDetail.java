@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class AdditionalDetail {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Additional Details should be alphanumeric";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String detail;
 
@@ -48,7 +48,7 @@ public class AdditionalDetail {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + detail + ']';
+        return "[" + detail + "] ";
     }
 
 }
