@@ -41,8 +41,6 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label instruction;
     @FXML
-    private Label recipeImage;
-    @FXML
     private FlowPane tags;
     @FXML
     private ImageView recipeImageView;
@@ -57,7 +55,6 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction());
-        recipeImage.setText(recipe.getRecipeImage());
 
         //Image image = new Image(recipe.getRecipeImage());
         //recipeImageView = new ImageView(image);

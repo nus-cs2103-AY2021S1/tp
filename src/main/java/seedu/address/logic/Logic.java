@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
@@ -33,7 +34,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of recipes */
     ObservableList<Recipe> getFilteredRecipeList();
+
+    /** Returns an unmodifiable view of the filtered list of ingredients */
     ObservableList<Ingredient> getFilteredIngredientList();
+
+    /** Returns an unmodifiable view of the filtered list of consumption */
+    ObservableList<Consumption> getFilteredConsumptionList();
 
     /**
      * Returns the user prefs' Wishful Shrinking file path.
