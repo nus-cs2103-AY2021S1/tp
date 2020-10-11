@@ -9,7 +9,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,4 +60,8 @@ public interface Logic {
     ReadOnlyBidBook getBidBook();
 
     ObservableList<Bid> getFilteredBidList();
+
+    ReadOnlyMeetingManager getMeetingManager();
+
+    ObservableList<CalendarMeeting> getFilteredMeetingList();
 }

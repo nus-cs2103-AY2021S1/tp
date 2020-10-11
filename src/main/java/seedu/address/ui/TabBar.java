@@ -13,11 +13,12 @@ public class TabBar extends UiPart<Region> {
     private static final String FXML = "TabBar.fxml";
     private static final String FXML2 = "PersonListPanel.fxml";
     private static final String FXML3 = "BidListPanel.fxml";
+    private static final String FXML4 = "CalendarListPanel.fxml";
 
     private Logic logic;
 
     @FXML
-    private TabPane personAndBidTabBar;
+    private TabPane personCalenderBidTabBar;
 
     @FXML
     private Tab personTab;
@@ -26,11 +27,16 @@ public class TabBar extends UiPart<Region> {
     private Tab bidTab;
 
     @FXML
+    private Tab calenderTab;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane bidListPanelPlaceholder;
 
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     /**
      * Creates a {@code TabBar} with the given {@code Logic}.
@@ -38,18 +44,19 @@ public class TabBar extends UiPart<Region> {
     public TabBar(Logic logic) {
         super(FXML);
         this.logic = logic;
-        setPersonAndBidTabBar();
+        setPersonCalenderBidTabBar();
         populateTab();
     }
 
     /**
      * Initialises the two tabs on the tabpane.
      */
-    private void setPersonAndBidTabBar() {
+    private void setPersonCalenderBidTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");
-        personAndBidTabBar.setTabMinWidth(335);
-        personAndBidTabBar.setTabMaxWidth(335);
+        calenderTab.setText("Calender");
+        personCalenderBidTabBar.setTabMinWidth(335);
+        personCalenderBidTabBar.setTabMaxWidth(335);
     }
 
     /**
@@ -58,8 +65,10 @@ public class TabBar extends UiPart<Region> {
     private void populateTab() {
         PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         BidListPanel bidListPanel = new BidListPanel(logic.getFilteredBidList());
+        CalendarListPanel calendarListPanel = new CalendarListPanel(logic.getFilteredMeetingList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         bidListPanelPlaceholder.getChildren().add(bidListPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(calendarListPanel.getRoot());
     }
 }
 

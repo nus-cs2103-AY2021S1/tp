@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,28 +24,35 @@ public class ModelManager implements Model {
     private final BidBook bidBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final MeetingBook meetingBook;
+
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Bid> filteredBids;
+    private final FilteredList<CalendarMeeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyBidBook bidBook,
+                        ReadOnlyMeetingManager meetingManager) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook);
+        requireAllNonNull(addressBook, userPrefs, bidBook, meetingManager);
 
         logger.fine("Initializing with address book: " + addressBook
-                + " and user prefs " + userPrefs + " and bid book: " + bidBook);
+                + " and user prefs " + userPrefs + " and bid book: " + bidBook + " and meeting manager" + meetingManager);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidBook = new BidBook(bidBook);
+        this.meetingBook = new MeetingBook(meetingManager);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
+        filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new BidBook());
+        this(new AddressBook(), new UserPrefs(), new BidBook(), new MeetingBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -173,7 +181,61 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && meetingBook.equals(other.meetingBook)
+                && filteredMeetings.equals(other.filteredMeetings);
     }
 
+    //=========== MeetingManager ================================================================================
+
+    @Override
+    public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+        this.meetingBook.resetData(meetingManager);
+    }
+
+    @Override
+    public ReadOnlyMeetingManager getMeetingManager() {
+        return meetingBook;
+    }
+
+    @Override
+    public boolean hasMeeting(CalendarMeeting meeting) {
+        requireNonNull(meeting);
+        return meetingBook.hasMeetings(meeting);
+    }
+
+    @Override
+    public void deleteMeeting(CalendarMeeting target) {
+        meetingBook.removeMeeting(target);
+    }
+
+    @Override
+    public void addMeeting(CalendarMeeting meeting) {
+        meetingBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
 }
