@@ -24,11 +24,11 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task ALICE = new TaskBuilder().withTitle("Alice Pauline")
-            .withType("todo").withDescription("alice,example.com")
+            .withType("event").withDescription("alice,example.com")
             .withDateTime("01-01-2020 12:00")
             .withTags("friends").build();
     public static final Task BENSON = new TaskBuilder().withTitle("Benson Meier")
-            .withType("deadline")
+            .withType("event")
             .withDescription("johnd,example.com").withDateTime("02-02-2020 12:00")
             .withTags("owesMoney", "friends").build();
     public static final Task CARL = new TaskBuilder().withTitle("Carl Kurz").withDateTime("03-03-2020 12:00")
@@ -36,17 +36,17 @@ public class TypicalTasks {
     public static final Task DANIEL = new TaskBuilder().withTitle("Daniel Meier").withDateTime("04-04-2020 12:00")
             .withDescription("cornelia,example.com").withType("event").withTags("friends").build();
     public static final Task ELLE = new TaskBuilder().withTitle("Elle Meyer").withDateTime("05-05-2020 12:00")
-            .withDescription("werner,example.com").withType("lesson").build();
+            .withDescription("werner,example.com").withType("event").build();
     public static final Task FIONA = new TaskBuilder().withTitle("Fiona Kunz").withDateTime("06-06-2020 12:00")
-            .withDescription("lydia,example.com").withType("tutorial").build();
+            .withDescription("lydia,example.com").withType("event").build();
     public static final Task GEORGE = new TaskBuilder().withTitle("George Best").withDateTime("07-07-2020 12:00")
-            .withDescription("anna,example.com").withType("session").build();
+            .withDescription("anna,example.com").withType("event").build();
 
     // Manually added
     public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDateTime("08-08-2020 12:00")
-            .withDescription("stefan,example.com").withType("little-india").build();
+            .withDescription("stefan,example.com").withType("event").build();
     public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDateTime("09-09-2020 12:00")
-            .withDescription("hans,example.com").withType("chicago-ave").build();
+            .withDescription("hans,example.com").withType("event").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDateTime(VALID_DATE_TIME_AMY)

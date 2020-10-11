@@ -3,18 +3,33 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+
 /**
  * Represents a Task's type in the PlaNUS task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
  */
 public class Type {
 
-    public static final String MESSAGE_CONSTRAINTS = "Type can only be one word or a phrase connected by \'-\'.";
-
-    /*
-     * Type can only be one word or a phrase connected by '-'.
+    /**
+     * Types of task that a user can create.
      */
-    public static final String VALIDATION_REGEX = "^[\\w]+(-[\\w]+)?";
+    public enum TypeOfTask {
+        TODO("todo"),
+        EVENT("event"),
+        DEADLINE("deadline");
+        private final String type;
+        TypeOfTask(String type) {
+            this.type = type;
+        }
+        @Override
+        public String toString() {
+            return this.type;
+        }
+    }
+    public static final String ACCEPTED_TYPES = listAcceptedTypes();
+    public static final String MESSAGE_CONSTRAINTS = String.format("Type can only be one of the following: %s.",
+            ACCEPTED_TYPES);
 
     public final String value;
 
@@ -32,8 +47,28 @@ public class Type {
     /**
      * Returns true if a given string is a valid type.
      */
-    public static boolean isValidType(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidType(String testType) {
+        requireNonNull(testType);
+        for (TypeOfTask types : TypeOfTask.values()) {
+            String type = types.toString();
+            if (type.equals(testType)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns all possible types of task a user can create.
+     * @return a String containing all possible types of task a user can create.
+     */
+    private static String listAcceptedTypes() {
+        ArrayList<String> listOfAcceptedTypes = new ArrayList<>();
+        for (TypeOfTask types : TypeOfTask.values()) {
+            listOfAcceptedTypes.add(types.toString());
+        }
+        String acceptedTypes = String.join(", ", listOfAcceptedTypes);
+        return acceptedTypes;
     }
 
     @Override
