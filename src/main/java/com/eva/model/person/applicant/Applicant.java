@@ -54,6 +54,13 @@ public class Applicant extends Person {
     }
 
     /**
+     * Sets the application status of the specific applicant to be processing.
+     */
+    public void setApplicantProcessing() {
+        this.applicationStatus.setProcessing();
+    }
+
+    /**
      * Sets the application status of the specific applicant to be rejected.
      */
     public void setApplicantRejected() {
@@ -62,6 +69,13 @@ public class Applicant extends Person {
 
     public Optional<InterviewDate> getInterviewDate() {
         return interviewDate;
+    }
+
+    /**
+     * Sets the interview date of the specific applicant.
+     */
+    public void setInterviewDate(InterviewDate interviewDate) {
+        this.interviewDate = Optional.ofNullable(interviewDate);
     }
 
     public ApplicationStatus getApplicationStatus() {

@@ -11,6 +11,7 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.tag.Tag;
 
 /**

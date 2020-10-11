@@ -17,6 +17,7 @@ public class ApplicationStatus {
 
     /**
      * Creates an object representing the application status of the applicant.
+     *
      * @param status
      */
     public ApplicationStatus(String status) {
@@ -28,6 +29,7 @@ public class ApplicationStatus {
 
     /**
      * Checks whether the application status is a valid status - accepted, rejected or processing.
+     *
      * @param status
      * @return
      */
@@ -35,16 +37,25 @@ public class ApplicationStatus {
         return Arrays.asList(POSSIBLE_STATUSES).contains(status);
     }
 
+    /**
+     * Sets the application status to processing.
+     */
     public void setProcessing() {
-        this.status = POSSIBLE_STATUSES[0];
-    }
-
-    public void setAccepted() {
         this.status = POSSIBLE_STATUSES[1];
     }
 
-    public void setRejected() {
+    /**
+     * Sets the application status to accepted.
+     */
+    public void setAccepted() {
         this.status = POSSIBLE_STATUSES[2];
+    }
+
+    /**
+     * Sets the application status to rejected.
+     */
+    public void setRejected() {
+        this.status = POSSIBLE_STATUSES[3];
     }
 
     @Override
