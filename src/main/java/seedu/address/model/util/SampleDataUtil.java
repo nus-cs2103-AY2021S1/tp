@@ -22,8 +22,8 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
             new Project(new ProjectName("Aeroknotty"), new Deadline("21-04-2021 00:00:00"),
-                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Made for pilots wanting to tie the " +
-                "knot"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Made for pilots wanting to tie the "
+                + "knot"),
                 getTagSet("creative"), new HashMap<>(), getTaskSet("Refactor project class")),
             new Project(new ProjectName("Basket Web"), new Deadline("21-04-2021 00:00:00"),
                 new RepoUrl("http://github.com/a/b.git"),
@@ -41,8 +41,8 @@ public class SampleDataUtil {
                 new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Habit tracker"),
                 getTagSet("classmates"), new HashMap<>(), getTaskSet()),
             new Project(new ProjectName("Reuletan"), new Deadline("21-04-2021 00:00:00"),
-                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Brings low cost investment to the " +
-                "masses"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Brings low cost investment to the "
+                + "masses"),
                 getTagSet("colleagues"), new HashMap<>(), getTaskSet("Write DG"))
         };
     }
