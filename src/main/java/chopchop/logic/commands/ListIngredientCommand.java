@@ -1,14 +1,16 @@
+// ListIngredientCommand.java
+
 package chopchop.logic.commands;
 
 import chopchop.model.Model;
 
-import static chopchop.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 import static java.util.Objects.requireNonNull;
+import static chopchop.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 /**
  * Lists all ingredients in the ingredient book to the user.
  */
-public class ListIngredientCommand extends ListCommand {
+public class ListIngredientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all ingredients";
 

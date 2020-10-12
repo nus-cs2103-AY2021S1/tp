@@ -12,9 +12,11 @@ import chopchop.util.Strings;
 import chopchop.util.StringView;
 
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.HelpCommand;
 
 import static chopchop.logic.parser.commands.AddCommandParser.parseAddCommand;
+import static chopchop.logic.parser.commands.HelpCommandParser.parseHelpCommand;
+import static chopchop.logic.parser.commands.ListCommandParser.parseListCommand;
+import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 
 public class CommandParser {
@@ -120,7 +122,9 @@ public class CommandParser {
                 switch (args.getCommand()) {
 
                 case Strings.COMMAND_ADD:       return parseAddCommand(args);
-                case Strings.COMMAND_HELP:      return Result.of(new HelpCommand());
+                case Strings.COMMAND_HELP:      return parseHelpCommand(args);
+                case Strings.COMMAND_FIND:      return parseFindCommand(args);
+                case Strings.COMMAND_LIST:      return parseListCommand(args);
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
 
                 default:
