@@ -1,14 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_CASE_PAGE;
+import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.Command.TYPE_CASE;
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCaseCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.state.StateManager;
 
 public class ListCommandParser implements Parser<ListCommand> {
 
@@ -26,13 +30,14 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         final String commandWord = matcher.group("commandWord");
 
-        //TODO: check state of the program here. If main page, check if TYPE_CASE. If other page, check other TYPES.
-
         if (!commandWord.equals(TYPE_CASE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        return new ListCaseCommand();
+        if (StateManager.getState() != null) {
+            throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+        }
 
+        return new ListCaseCommand();
     }
 }
