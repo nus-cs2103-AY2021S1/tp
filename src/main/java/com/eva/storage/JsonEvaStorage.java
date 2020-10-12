@@ -28,11 +28,21 @@ public class JsonEvaStorage implements EvaStorage {
     private Path staffDatabaseFilePath;
 
     // for compatibility of tests
+
+    /**
+     * For compatibility of tests only.
+     * @param personDatabaseFilePath
+     */
     public JsonEvaStorage(Path personDatabaseFilePath) {
         this.personDatabaseFilePath = personDatabaseFilePath;
         this.staffDatabaseFilePath = Paths.get("");
     }
 
+    /**
+     * Initializes with the path for person and staff database.
+     * @param personDatabaseFilePath
+     * @param staffDatabaseFilePath
+     */
     public JsonEvaStorage(Path personDatabaseFilePath, Path staffDatabaseFilePath) {
         this.personDatabaseFilePath = personDatabaseFilePath;
         this.staffDatabaseFilePath = staffDatabaseFilePath;
