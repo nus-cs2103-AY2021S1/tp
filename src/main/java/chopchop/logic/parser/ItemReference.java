@@ -1,6 +1,6 @@
 // ItemReference.java
 
-package chopchop.parser;
+package chopchop.logic.parser;
 
 import java.util.Optional;
 

@@ -13,7 +13,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
-import chopchop.parser.CommandParser;
+import chopchop.logic.parser.CommandParser;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.parser.exceptions.ParseException;

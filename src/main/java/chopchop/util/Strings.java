@@ -2,7 +2,7 @@
 
 package chopchop.util;
 
-import chopchop.parser.ArgName;
+import chopchop.logic.parser.ArgName;
 
 /**
  * Defines user-facing strings for the whole program.

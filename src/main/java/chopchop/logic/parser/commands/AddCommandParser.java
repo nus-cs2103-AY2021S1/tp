@@ -1,6 +1,6 @@
 // AddCommandParser.java
 
-package chopchop.parser.commands;
+package chopchop.logic.parser.commands;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,14 +21,14 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.units.Count;
 
-import chopchop.parser.ArgName;
-import chopchop.parser.CommandArguments;
+import chopchop.logic.parser.ArgName;
+import chopchop.logic.parser.CommandArguments;
 
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.AddRecipeCommand;
 import chopchop.logic.commands.AddIngredientCommand;
 
-import static chopchop.parser.commands.CommonParser.getFirstUnknownArgument;
+import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
 public class AddCommandParser {
 

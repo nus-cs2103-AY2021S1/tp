@@ -1,6 +1,6 @@
 // CommandParser.java
 
-package chopchop.parser;
+package chopchop.logic.parser;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,7 @@ import chopchop.util.Result;
 import chopchop.util.StringView;
 import chopchop.logic.commands.Command;
 
-import static chopchop.parser.commands.AddCommandParser.parseAddCommand;
+import static chopchop.logic.parser.commands.AddCommandParser.parseAddCommand;
 
 public class CommandParser {
 
@@ -53,7 +53,7 @@ public class CommandParser {
 
     /**
      * Parse an input string into its constituent components, including the name of the command, its target,
-     * and its arguments. See the documentation for {@link chopchop.parser.CommandArguments} for the recognised
+     * and its arguments. See the documentation for {@link chopchop.logic.parser.CommandArguments} for the recognised
      * components of a given input string.
      *
      * @param input the input string to parse
