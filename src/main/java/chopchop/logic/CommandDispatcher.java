@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
-// import chopchop.logic.commands.Command;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
@@ -14,8 +13,9 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
+import chopchop.parser.CommandParser;
+
 import javafx.collections.ObservableList;
-import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.Storage;
 
@@ -28,15 +28,15 @@ public class CommandDispatcher implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final CommandParser parser;
 
     /**
      * Constructs a {@code CommandDispatcher} with the given {@code Model} and {@code Storage}.
      */
     public CommandDispatcher(Model model, Storage storage) {
-        this.model = model;
+        this.model   = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        this.parser  = new CommandParser();
     }
 
     /**
@@ -48,18 +48,22 @@ public class CommandDispatcher implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        /*
-        Command command = addressBookParser.parseCommand(commandText);
-        CommandResult commandResult = command.execute(model);
-
-        try {
-            storage.saveAddressBook(model.getAddressBook());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        var res = this.parser.parse(commandText);
+        if (res.isError()) {
+            throw new ParseException(res.getError());
         }
-        */
-        CommandResult commandResult = new CommandResult("stub");
-        return commandResult;
+
+        var cmd = res.getValue();
+        var result = cmd.execute(this.model);
+
+
+        // try {
+        //     storage.saveAddressBook(model.getAddressBook());
+        // } catch (IOException ioe) {
+        //     throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        // }
+
+        return result;
     }
 
     @Override
