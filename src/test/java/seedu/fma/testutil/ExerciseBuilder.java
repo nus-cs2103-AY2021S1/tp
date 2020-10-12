@@ -1,15 +1,19 @@
 package seedu.fma.testutil;
 
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
+
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.util.Name;
+
 
 /**
  * A utility class to help with building Exercise objects.
  */
 public class ExerciseBuilder {
+    public static final Exercise SAMPLE_EXERCISE = getSampleExercises()[0];
 
-    public static final String DEFAULT_NAME = "Star fish jumps";
-    public static final int DEFAULT_CALORIESPERREP = 30;
+    public static final String DEFAULT_NAME = SAMPLE_EXERCISE.getName().toString();
+    public static final int DEFAULT_CALORIESPERREP = SAMPLE_EXERCISE.getCaloriesPerRep();
 
     private Name name;
     private int caloriesPerRep;
@@ -39,7 +43,7 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Exercise} that we are building.
+     * Sets the {@code caloriesPerRep} of the {@code Exercise} that we are building.
      */
     public ExerciseBuilder withCaloriesPerRep(int caloriesPerRep) {
         this.caloriesPerRep = caloriesPerRep;

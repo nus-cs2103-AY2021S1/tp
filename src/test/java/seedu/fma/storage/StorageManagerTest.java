@@ -2,6 +2,7 @@ package seedu.fma.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.fma.testutil.TypicalLogs.getTypicalLogBook;
 
 import java.nio.file.Path;
 
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.fma.commons.core.GuiSettings;
+import seedu.fma.model.AddressBook;
+import seedu.fma.model.ReadOnlyAddressBook;
 import seedu.fma.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -44,18 +47,17 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    /*@Test
+    @Test
     public void addressBookReadSave() throws Exception {
-        *//*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+        /* Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-         *//*
+         */
         AddressBook original = getTypicalLogBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
-    }*/
+    }
 
     @Test
     public void getAddressBookFilePath() {
