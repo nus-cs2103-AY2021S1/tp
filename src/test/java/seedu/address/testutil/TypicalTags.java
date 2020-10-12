@@ -20,7 +20,10 @@ public class TypicalTags {
 
     // TODO These tags could be updated with more descriptive tag names.
     public static final Tag CS2103 = new TagBuilder().withTagName("cs2103")
-            .withFileAddress("c:\\a\\b\\cs2103.txt")
+            .withFileAddress("./src/test/java/seedu/address/testutil/cs2103.bat")
+            .build();
+    public static final Tag CS2101 = new TagBuilder().withTagName("cs2101")
+            .withFileAddress("./src/test/java/seedu/address/testutil/cs2101.bat")
             .build();
     public static final Tag BENSON = new TagBuilder().withTagName("Benson Meier")
             .withFileAddress("c:\\a\\b\\benson.txt")
