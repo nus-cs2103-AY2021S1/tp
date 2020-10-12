@@ -14,7 +14,7 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `quickcache.jar` from [here](https://github.com/AY2021S1-CS2103T-T13-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your QuickCache.
 
@@ -28,8 +28,8 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 
    * **`add`**`add n/Plants give out ___ when they photosynthesise? n/Oxygen` :  Adds a question `Plants give out ___ when they photosynthesise?` with answer `Oxygen`.
    
-   * **`test`**`1 a/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer. 
-
+   * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
+   
    * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
 
    * **`clear`** : Deletes all FlashCards.
@@ -62,34 +62,106 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a flashcard: `add`
+### Open a flashcard: `open`
+
+Opens a specified flashcard from the list .
+
+Format: `open INDEX`
+
+* Opens the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `open 2` opens the 2nd flashcard in the list.
+
+### Adding a flashcard with open ended question: `add`
 
 Adds a new flashcard to the application.
 
-Format: `add n/QUESTION n/ANSWER`
+Format: `add q/QUESTION ans/ANSWER`
 
 Examples:
-* `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
+* `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
+
+### Adding a flashcard with multiple choice question: `addmcq`
+
+Adds a new flashcard to the application.
+
+Format: `addmcq q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+
+Examples:
+* `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
+
+### Edit a flashcard: `edit`
+
+Edit a flashcard.
+
+Format: `edit INDEX q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+
+Examples:
+* `edit 1 q/Plants give out ___ when they photosynthesise? ans/2 c/Oxygen c/Carbon c/Carbon dioxide`
 
 ### Testing a flashcard : `test`
 
 Tests a specified flashcard from the list.
 
-Format: `test INDEX a/ANSWER`
+#### Containing an open-ended question
+
+Format: `test INDEX ans/ANSWER`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer**  1, 2, 3, …
-* The `ANSWER` is case-sensitive.
+* The `ANSWER` is case-insensitive.
 
 Examples:
 * `list` followed by `test 1 a/Example answer` tests the 1st flashcard in the list with `Example answer` as the answer.
+
+#### Containing a multiple choice question
+
+Format: `test INDEX o/OPTION` 
+
+* Tests the flashcard at the specified `INDEX`
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer**  1, 2, 3, …
+* `CHOICE`(s) are displayed in the displayed choices list of the flashcard after `open INDEX` command is performed.
+* The `OPTION` refers to the index number of the specified `CHOICE`.
+* The `OPTION` **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
+
+### Displaying statistics for a Flashcard: `stats`
+
+Shows the Bar Chart for a specified Flashcard in the list.
+
+Statistics include:
+
+* The number of times the user answers the question associated with the flashcard correctly.
+* The number of times the user attempted the question associated with the flashcard.
+
+Format: `stats INDEX`
+
+* Displays the statistics of a flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
+
+### Finding Flashcards by their tags: `find`
+
+Finds all Flashcards based on their tags.
+
+Format: `find KEYWORDS`
+
+* Keywords should be seperated by a whitespace between
+
+Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
 
 ### Deleting a flashcard : `delete`
 
@@ -133,10 +205,13 @@ QuickCache data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/QUESTION n/ANSWER` <br> e.g., `add n/Plants give out ___ when they photosynthesise? n/Oxygen`
-**Test** | `test INDEX a/ANSWER`<br> e.g., `test 2 a/lorem ipsum`
+**Open**| `open INDEX` <br> e.g., `open 3`
+**Add** | `add q/QUESTION ans/ANSWER` <br> e.g., `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
+**Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
+**Test** | `test INDEX ans/ANSWER` (open-ended question)<br> e.g., `test 2 a/lorem ipsum` <br> `test INDEX o/OPTION` (multiple choice question)<br> e.g., `test 3 o/1`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **List** | `list`
+**Find** | `find KEYWORDS` <br> e.g., `find CS2100 MCQ`
 **Help** | `help`
 **Exit** | `exit`

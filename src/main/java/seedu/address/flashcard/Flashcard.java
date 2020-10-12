@@ -7,12 +7,15 @@ import java.util.Set;
  * one answer. In addition, it can have multiple tags.
  */
 public class Flashcard {
+
     private final Question question;
     private final Answer answer;
     private final Set<Tag> tags;
+    private final Statistics statistics;
 
     /**
      * A constructor to create flashcard object.
+     *
      * @param question Question of the flashcard.
      * @param answer Answer of the flashcard.
      * @param tags Tags of the flashcard.
@@ -21,35 +24,55 @@ public class Flashcard {
         this.question = question;
         this.answer = answer;
         this.tags = tags;
+        this.statistics = new Statistics();
+    }
+
+    /**
+     * A constructor to create flashcard object.
+     *
+     * @param question Question of the flashcard.
+     * @param answer Answer of the flashcard.
+     * @param tags Tags of the flashcard.
+     * @param statistics Statistics of the flashcard.
+     */
+    public Flashcard(Question question, Answer answer, Set<Tag> tags, Statistics statistics) {
+        this.question = question;
+        this.answer = answer;
+        this.tags = tags;
+        this.statistics = statistics;
     }
 
     /**
      * Gets the question.
+     *
      * @return the question.
      */
-    public String getQuestion() {
-        return question.getQuestion();
+    public Question getQuestion() {
+        return question;
     }
 
     /**
      * Gets the answer.
+     *
      * @return the answer.
      */
-    public String getAnswer() {
-        return answer.getAnswer();
+    public Answer getAnswer() {
+        return answer;
     }
 
     /**
      * Checks the given userAnswer with the correct answer.
+     *
      * @param userAnswer the user's answer.
      * @return {@code true} if the user's answer is equal to the actual answer.
      */
-    public boolean checkAnswer(String userAnswer) {
+    public boolean checkAnswer(Answer userAnswer) {
         return answer.checkAnswer(userAnswer);
     }
 
     /**
      * Gets the tags of this flashcard.
+     *
      * @return a list of tags.
      */
     public Set<Tag> getTags() {
@@ -58,7 +81,7 @@ public class Flashcard {
 
     @Override
     public String toString() {
-        return String.format("Question:\n%s\nAnswer:\n%s", question.getQuestion(), answer.getAnswer());
+        return String.format("Question:\n%s\nAnswer:\n%s", question.getFormatQuestion(), answer.getValue());
     }
 
     /**
@@ -71,7 +94,19 @@ public class Flashcard {
 
         return otherFlashcard != null
                 && otherFlashcard.getQuestion().equals(getQuestion())
-                && (otherFlashcard.getAnswer().equals(getAnswer()));
+                && otherFlashcard.getAnswer().equals(getAnswer())
+                && otherFlashcard.getTags().equals(getTags())
+                && otherFlashcard.getStatistics().equals(getStatistics());
+    }
+
+    /**
+     * Checks if this flashcard contains the tag.
+     *
+     * @param tag the tag to be checked.
+     * @return {@code true} if this flashcard has the tag.
+     */
+    public boolean matchTag(Tag tag) {
+        return tags.contains(tag);
     }
 
     /**
@@ -84,9 +119,24 @@ public class Flashcard {
         } else if (otherFlashcard instanceof Flashcard) {
             Flashcard other = (Flashcard) otherFlashcard;
             return other.getAnswer().equals(getAnswer())
-                    && other.getQuestion().equals(getQuestion());
+                    && other.getQuestion().equals(getQuestion())
+                    && other.getTags().equals(getTags())
+                    && other.getStatistics().equals(getStatistics());
         }
         return false;
+    }
 
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public Flashcard getFlashcardAfterTestSuccess() {
+        Statistics newStats = statistics.incrementTimesTested().incrementTimesTestedCorrect();
+        return new Flashcard(question, answer, tags, newStats);
+    }
+
+    public Flashcard getFlashcardAfterTestFailure() {
+        Statistics newStats = statistics.incrementTimesTested();
+        return new Flashcard(question, answer, tags, newStats);
     }
 }

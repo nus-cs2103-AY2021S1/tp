@@ -12,8 +12,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.flashcard.Answer;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.Choice;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
+import seedu.address.flashcard.Option;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
@@ -34,6 +36,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -81,13 +84,13 @@ public class ParserUtil {
      * @throws ParseException if answer is less than choices and question is invalid.
      */
     public static Question parseMultipleChoiceQuestion(String question,
-                                                       String[] choices) throws ParseException {
+                                                       Choice[] choices) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
-        if (!Mcq.isValidQuestion(trimmedQuestion)) {
-            throw new ParseException(Mcq.MESSAGE_CONSTRAINTS);
+        if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         }
-        return new Mcq(trimmedQuestion, choices);
+        return new MultipleChoiceQuestion(trimmedQuestion, choices);
     }
 
     /**
@@ -171,25 +174,25 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static String parseChoice(String choice) throws ParseException {
+    public static Choice parseChoice(String choice) throws ParseException {
         requireNonNull(choice);
         String trimmedChoice = choice.trim();
-        if (choice.equals(" ")) {
+        if (!Choice.isValidChoice(trimmedChoice)) {
             throw new ParseException("Choices cannot be empty");
         }
-        return trimmedChoice;
+        return new Choice(trimmedChoice);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static String[] parseChoices(Collection<String> choices) throws ParseException {
+    public static Choice[] parseChoices(Collection<String> choices) throws ParseException {
         requireNonNull(choices);
-        List<String> choicesList = new ArrayList<>();
+        List<Choice> choicesList = new ArrayList<>();
         for (String choice : choices) {
             choicesList.add(parseChoice(choice));
         }
-        String[] result = new String[choicesList.size()];
+        Choice[] result = new Choice[choicesList.size()];
         if (result.length <= 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
@@ -197,6 +200,7 @@ public class ParserUtil {
         choicesList.toArray(result);
         return result;
     }
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -207,5 +211,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String option} into a {@code Option}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code option} is invalid.
+     */
+    public static Option parseOption(String option) throws ParseException {
+        requireNonNull(option);
+        String trimmedOption = option.trim();
+        if (!Option.isValidOption(trimmedOption)) {
+            throw new ParseException(Option.MESSAGE_CONSTRAINTS);
+        }
+        return new Option(trimmedOption);
     }
 }

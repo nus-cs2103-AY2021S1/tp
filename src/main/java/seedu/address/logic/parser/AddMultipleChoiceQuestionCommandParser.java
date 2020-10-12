@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
@@ -22,8 +23,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipleChoiceQuestionCommand> {
 
     /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddMultipleChoiceQuestionCommand parse(String args) throws ParseException {
@@ -36,15 +46,15 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
                     AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
         }
 
-        String[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
+        Choice[] choicesList = ParserUtil.parseChoices(argMultimap.getAllValues(PREFIX_CHOICE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Question question = ParserUtil.parseMultipleChoiceQuestion(
                 argMultimap.getValue(PREFIX_QUESTION).get(), choicesList);
-        Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
+        Answer parsedAnswer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
 
         int ans;
         try {
-            ans = Integer.parseInt(answer.getAnswer());
+            ans = Integer.parseInt(parsedAnswer.getValue());
             if (ans > choicesList.length) {
                 throw new ParseException("Answer must be smaller than number of choices");
             }
@@ -52,17 +62,10 @@ public class AddMultipleChoiceQuestionCommandParser implements Parser<AddMultipl
             throw new ParseException("Answer must be integer");
         }
 
+        Answer answer = new Answer(choicesList[ans - 1].getValue());
         Flashcard flashcard = new Flashcard(question, answer, tagList);
 
         return new AddMultipleChoiceQuestionCommand(flashcard);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

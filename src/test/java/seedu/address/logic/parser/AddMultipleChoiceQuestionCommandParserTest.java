@@ -20,18 +20,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.flashcard.Answer;
 import seedu.address.flashcard.Flashcard;
-import seedu.address.flashcard.Mcq;
+import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.logic.commands.AddMultipleChoiceQuestionCommand;
 import seedu.address.testutil.FlashcardBuilder;
 
 public class AddMultipleChoiceQuestionCommandParserTest {
-    private AddMultipleChoiceQuestionCommandParser parser = new AddMultipleChoiceQuestionCommandParser();
+    private final AddMultipleChoiceQuestionCommandParser parser = new AddMultipleChoiceQuestionCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
         String[] choices = {"First", "Second", "Third", "Fourth"};
         Flashcard expectedFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Alice", choices)
-                .withAnswer("2").build();
+                .withAnswer("Second").withTags(new String[]{}).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_ALICE + ANSWER_DESC_ALICE + CHOICE_DESC,
@@ -56,14 +56,14 @@ public class AddMultipleChoiceQuestionCommandParserTest {
         // missing question prefix
         assertParseFailure(parser, VALID_QUESTION_ALICE
                         + ANSWER_DESC_ALICE + CHOICE_DESC,
-                        expectedMessage);
+                expectedMessage);
 
         // missing answer prefix
         assertParseFailure(parser, QUESTION_DESC_ALICE + VALID_ANSWER_ALICE + CHOICE_DESC,
                 expectedMessage);
 
         // missing Choices prefix
-        assertParseFailure(parser, QUESTION_DESC_ALICE + ANSWER_DESC_ALICE ,
+        assertParseFailure(parser, QUESTION_DESC_ALICE + ANSWER_DESC_ALICE,
                 expectedMessage);
 
 
@@ -76,7 +76,7 @@ public class AddMultipleChoiceQuestionCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid Question
         assertParseFailure(parser, ANSWER_DESC_ALICE + INVALID_QUESTION_DESC + CHOICE_DESC,
-                Mcq.MESSAGE_CONSTRAINTS);
+                MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
         // invalid Answer
         assertParseFailure(parser, QUESTION_DESC_BOB + INVALID_ANSWER_DESC + CHOICE_DESC,
                 Answer.MESSAGE_CONSTRAINTS);
@@ -84,12 +84,12 @@ public class AddMultipleChoiceQuestionCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_QUESTION_DESC + INVALID_ANSWER_DESC + CHOICE_DESC,
-                Mcq.MESSAGE_CONSTRAINTS);
+                MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + QUESTION_DESC_ALICE
                         + ANSWER_DESC_ALICE + CHOICE_DESC,
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                                AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
     }
 }

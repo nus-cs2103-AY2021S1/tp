@@ -18,7 +18,7 @@ public class AddMultipleChoiceQuestionCommand extends Command {
 
     public static final String COMMAND_WORD = "addmcq";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to QuickCache. "
             + "Parameters: "
             + PREFIX_QUESTION + "Question "
             + PREFIX_ANSWER + "Answer "
@@ -26,8 +26,7 @@ public class AddMultipleChoiceQuestionCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in QuickCache";
 
     private final Flashcard toAdd;
 

@@ -1,18 +1,23 @@
 package seedu.address.flashcard;
 
+import java.util.Optional;
+
 /**
  * Represents an open ended question.
  */
 public class OpenEndedQuestion implements Question {
+
+    public static final String TYPE = "OEQ";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public static final String MESSAGE_CONSTRAINTS = "OpenEndedQuestion can take any values, "
             + "and it should not be blank";
 
-    private final String question;
+    private final String value;
+
     public OpenEndedQuestion(String question) {
-        this.question = question;
+        this.value = question;
     }
 
     public static boolean isValidQuestion(String test) {
@@ -20,8 +25,13 @@ public class OpenEndedQuestion implements Question {
     }
 
     @Override
-    public String getQuestion() {
-        return question;
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String getFormatQuestion() {
+        return this.getValue();
     }
 
     @Override
@@ -30,8 +40,17 @@ public class OpenEndedQuestion implements Question {
             return true;
         } else if (o instanceof OpenEndedQuestion) {
             OpenEndedQuestion temp = (OpenEndedQuestion) o;
-            return temp.toString().equals(o.toString());
+            return this.toString().equals(temp.toString());
         }
         return false;
+    }
+
+    public Optional<Choice[]> getChoices() {
+        return Optional.empty();
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }

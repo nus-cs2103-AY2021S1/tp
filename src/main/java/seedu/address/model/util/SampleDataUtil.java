@@ -1,54 +1,77 @@
 package seedu.address.model.util;
 
-//import java.util.Arrays;
-//import java.util.Set;
-//import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
+import seedu.address.flashcard.Answer;
+import seedu.address.flashcard.Choice;
+import seedu.address.flashcard.Flashcard;
+import seedu.address.flashcard.MultipleChoiceQuestion;
+import seedu.address.flashcard.Tag;
+import seedu.address.model.QuickCache;
+import seedu.address.model.ReadOnlyQuickCache;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code QuickCache} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"))
+    public static Flashcard[] getSampleFlashcards() {
+        Choice choice1 = new Choice("Software Engineering module for NUS students");
+        Choice choice2 = new Choice("A non-compulsory module for NUS Computer Science students");
+        Choice choice3 = new Choice("A module that can be S/Ued");
+        Choice choice4 = new Choice("A module that doesn't involve a brown field project");
+        Choice choice5 = new Choice("Computer Organization module for NUS students");
+        Choice choice6 = new Choice("A non-compulsory module for NUS Computer Science students");
+        Choice choice7 = new Choice("A module that can be S/Ued");
+        Choice choice8 = new Choice("A module that doesn't involve assembly language");
+        Choice choice9 = new Choice("Introductory module to computer networks for NUS students");
+        Choice choice10 = new Choice("A non-compulsory module for NUS Computer Science students");
+        Choice choice11 = new Choice("A module that can be S/Ued");
+        Choice choice12 = new Choice("A module that doesn't involve TCP");
+        return new Flashcard[]{
+            new Flashcard(new MultipleChoiceQuestion("What is CS2103T?",
+                    choice1,
+                    choice2,
+                    choice3,
+                    choice4
+            ),
+                    new Answer("Software Engineering module for NUS students"),
+                    getTagSet("MCQ", "Good Question")),
+            new Flashcard(new MultipleChoiceQuestion("What is CS2100?",
+                    choice5,
+                    choice6,
+                    choice7,
+                    choice8
+            ),
+                    new Answer("Computer Organization module for NUS students"),
+                    getTagSet("MCQ", "Assembly")),
+            new Flashcard(new MultipleChoiceQuestion("What is CS2105?",
+                    choice9,
+                    choice10,
+                    choice11,
+                    choice12
+            ),
+                    new Answer("Introductory module to computer networks for NUS students"),
+                    getTagSet("MCQ", "TCPforLife"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyQuickCache getSampleQuickCache() {
+        QuickCache sampleQc = new QuickCache();
+        for (Flashcard sampleFlashcard : getSampleFlashcards()) {
+            sampleQc.addFlashcard(sampleFlashcard);
         }
-        return sampleAb;
+        return sampleQc;
     }
 
-    //    /**
-    //     * Returns a tag set containing the list of strings given.
-    //     */
-    //    public static Set<Tag> getTagSet(String... strings) {
-    //        return Arrays.stream(strings)
-    //                .map(Tag::new)
-    //                .collect(Collectors.toSet());
-    //    }
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Tag> getTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
 
 }

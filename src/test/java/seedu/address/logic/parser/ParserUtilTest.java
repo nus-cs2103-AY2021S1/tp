@@ -8,8 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
-//import java.util.HashSet;
-//import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +51,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuestion_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuestion((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuestion(null));
     }
 
     @Test
@@ -77,7 +75,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAnswer_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAnswer((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAnswer(null));
     }
 
     @Test

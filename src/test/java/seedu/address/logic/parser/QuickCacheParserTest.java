@@ -13,26 +13,19 @@ import seedu.address.flashcard.Flashcard;
 import seedu.address.logic.commands.AddOpenEndedQuestionCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-//import seedu.address.logic.commands.EditCommand;
-//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.person.NameContainsKeywordsPredicate;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.FlashcardBuilder;
 import seedu.address.testutil.FlashcardUtil;
-//import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookParserTest {
+public class QuickCacheParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final QuickCacheParser parser = new QuickCacheParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        Flashcard flashcard = new FlashcardBuilder().build();
+        Flashcard flashcard = new FlashcardBuilder().withTags(new String[]{}).build();
         AddOpenEndedQuestionCommand command = (AddOpenEndedQuestionCommand)
                 parser.parseCommand(FlashcardUtil.getAddCommand(flashcard));
         assertEquals(new AddOpenEndedQuestionCommand(flashcard), command);
@@ -80,11 +73,11 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    }
+    //    @Test
+    //    public void parseCommand_list() throws Exception {
+    //        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+    //        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    //    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
