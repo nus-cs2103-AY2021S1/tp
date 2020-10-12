@@ -12,21 +12,30 @@ public class Answer {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private final String answer;
+    private final String value;
 
     /**
      * Instantiates an Answer.
+     *
      * @param answer to be set.
      */
     public Answer(String answer) {
         requireNonNull(answer);
         checkArgument(isValidAnswer(answer), MESSAGE_CONSTRAINTS);
-        this.answer = normalizeAnswer(answer);
+        this.value = normalizeAnswer(answer);
+    }
+
+    /**
+     * Returns if a given string is a valid answer.
+     */
+    public static boolean isValidAnswer(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Checks the given userAnswer with the correct answer.
      * This is done by strictly comparing lower case string equality.
+     *
      * @param userAnswer the user's answer.
      * @return true if the user's answer is equal to the actual answer.
      */
@@ -36,6 +45,7 @@ public class Answer {
 
     /**
      * Lower cases the answer.
+     *
      * @param answer to be normalized.
      * @return lower-cased answer.
      */
@@ -44,18 +54,12 @@ public class Answer {
     }
 
     /**
-     * Gets the correct answer.
-     * @return the correct answer.
+     * Gets the correct value of the answer .
+     *
+     * @return the correct value of the answer .
      */
-    public String getAnswer() {
-        return answer;
-    }
-
-    /**
-     * Returns if a given string is a valid answer.
-     */
-    public static boolean isValidAnswer(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -71,6 +75,6 @@ public class Answer {
 
     @Override
     public String toString() {
-        return answer;
+        return value;
     }
 }

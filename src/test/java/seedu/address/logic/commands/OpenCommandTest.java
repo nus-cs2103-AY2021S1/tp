@@ -20,7 +20,7 @@ import seedu.address.model.UserPrefs;
 
 public class OpenCommandTest {
 
-    private Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_validIndex_success() {

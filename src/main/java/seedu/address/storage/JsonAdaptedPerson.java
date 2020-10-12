@@ -36,6 +36,8 @@ class JsonAdaptedPerson {
     private final List<String> choices;
     private final String answer;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final Integer timesTested;
+    private final Integer timesTestedCorrect;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +47,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("question") String question,
                              @JsonProperty("choices") List<String> choices,
                              @JsonProperty("answer") String answer,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("timesTested") int timesTested,
+                             @JsonProperty("timesTestedCorrect") int timesTestedCorrect) {
         this.type = type;
         this.question = question;
         this.choices = choices;
@@ -53,6 +57,8 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.timesTested = timesTested;
+        this.timesTestedCorrect = timesTestedCorrect;
     }
 
     /**
@@ -62,19 +68,23 @@ class JsonAdaptedPerson {
         if (source.getQuestion() instanceof MultipleChoiceQuestion) {
             this.type = MultipleChoiceQuestion.TYPE;
         } else if (source.getQuestion() instanceof OpenEndedQuestion) {
-            this.type = OpenEndedQuestion.TYPE;;
+            this.type = OpenEndedQuestion.TYPE;
         } else {
             this.type = "";
         }
-        this.question = source.getQuestion().getQuestion();
+        this.question = source.getQuestion().getValue();
         if (source.getQuestion().getChoices().isPresent()) {
             this.choices = Arrays.stream(source.getQuestion().getChoices().get()).map(Choice::toString)
                     .collect(Collectors.toList());
         } else {
             this.choices = null;
         }
-        answer = source.getAnswer().getAnswer();
+        answer = source.getAnswer().getValue();
         tagged.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+
+        this.timesTested = source.getTimesTested();
+        this.timesTestedCorrect = source.getTimesTestedCorrect();
+
     }
 
     /**
@@ -96,54 +106,84 @@ class JsonAdaptedPerson {
         if (type.equals(MultipleChoiceQuestion.TYPE)) {
 
             if (question == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        String.class.getSimpleName()));
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
             }
             if (!MultipleChoiceQuestion.isValidQuestion(question)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
 
             if (choices == null || choices.size() == 0) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Choice.class.getSimpleName()));
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Choice.class.getSimpleName()));
             }
-            final Question modelQuestion= new MultipleChoiceQuestion(question, choices);
+            final Question modelQuestion = new MultipleChoiceQuestion(question, choices);
 
             if (answer == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Answer.class.getSimpleName()));
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
             }
             if (!Answer.isValidAnswer(answer)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
             final Answer modelAnswer = new Answer(answer);
 
+            if (timesTested == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            }
+
+            final int modelTimesTested = timesTested;
+
+            if (timesTestedCorrect == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            }
+
+            final int modelTimesTestedCorrect = timesTestedCorrect;
+
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
-            return new Flashcard(modelQuestion, modelAnswer, modelTags);
+
+            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelTimesTested, modelTimesTestedCorrect);
 
         } else if (type.equals(OpenEndedQuestion.TYPE)) {
 
             if (question == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        String.class.getSimpleName()));
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, String.class.getSimpleName()));
             }
             if (!OpenEndedQuestion.isValidQuestion(question)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
 
-            final Question modelQuestion= new OpenEndedQuestion(question);
+            final Question modelQuestion = new OpenEndedQuestion(question);
 
             if (answer == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Answer.class.getSimpleName()));
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
             }
             if (!Answer.isValidAnswer(answer)) {
                 throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
             }
             final Answer modelAnswer = new Answer(answer);
 
+            if (timesTested == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            }
+
+            final int modelTimesTested = timesTested;
+
+            if (timesTestedCorrect == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            }
+
+            final int modelTimesTestedCorrect = timesTestedCorrect;
+
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
-            return new Flashcard(modelQuestion, modelAnswer, modelTags);
+
+            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelTimesTested, modelTimesTestedCorrect);
 
         } else {
             throw new IllegalValueException(String.format(INVALID_TYPE));

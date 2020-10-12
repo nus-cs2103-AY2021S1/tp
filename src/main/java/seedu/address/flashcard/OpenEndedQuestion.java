@@ -14,10 +14,10 @@ public class OpenEndedQuestion implements Question {
     public static final String MESSAGE_CONSTRAINTS = "OpenEndedQuestion can take any values, "
             + "and it should not be blank";
 
-    private final String question;
+    private final String value;
 
     public OpenEndedQuestion(String question) {
-        this.question = question;
+        this.value = question;
     }
 
     public static boolean isValidQuestion(String test) {
@@ -25,16 +25,13 @@ public class OpenEndedQuestion implements Question {
     }
 
     @Override
-    public String getQuestion() {
-        return question;
-        //List<String> questionArray = new ArrayList<String>();
-        //questionArray.add(question);
-        //return questionArray;
+    public String getValue() {
+        return value;
     }
 
     @Override
     public String getFormatQuestion() {
-        return question;
+        return this.getValue();
     }
 
     @Override
@@ -54,6 +51,6 @@ public class OpenEndedQuestion implements Question {
 
     @Override
     public String toString() {
-        return question;
+        return value;
     }
 }

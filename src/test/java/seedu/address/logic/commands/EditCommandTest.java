@@ -27,7 +27,7 @@ import seedu.address.testutil.FlashcardBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalQuickCache(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

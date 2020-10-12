@@ -48,6 +48,7 @@ public class QuestionDisplay extends UiPart<Region> {
 
     /**
      * Displays the outcome of a test command to the user.
+     *
      * @param feedbackToUser the feedback to be displayed to the user.
      * @param isAnswerCorrect displays the answer to be correct if true and vice versa.
      */

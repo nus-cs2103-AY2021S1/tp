@@ -1,17 +1,17 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.flashcard.Flashcard;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.flashcard.Flashcard;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -46,14 +46,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -81,13 +81,13 @@ public class ModelManager implements Model {
     //=========== QuickCache ================================================================================
 
     @Override
-    public void setQuickCache(ReadOnlyQuickCache quickCache) {
-        this.quickCache.resetData(quickCache);
+    public ReadOnlyQuickCache getQuickCache() {
+        return quickCache;
     }
 
     @Override
-    public ReadOnlyQuickCache getQuickCache() {
-        return quickCache;
+    public void setQuickCache(ReadOnlyQuickCache quickCache) {
+        this.quickCache.resetData(quickCache);
     }
 
     @Override

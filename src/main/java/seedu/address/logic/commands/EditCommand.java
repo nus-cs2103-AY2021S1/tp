@@ -1,5 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CHOICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -12,12 +26,6 @@ import seedu.address.flashcard.Question;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 
 /**
@@ -59,6 +67,87 @@ public class EditCommand extends Command {
         this.editFlashcardDescriptor = new EditFlashcardDescriptor(editFlashcardDescriptor);
     }
 
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit,
+                                                   EditFlashcardDescriptor editFlashcardDescriptor)
+            throws CommandException {
+        assert flashcardToEdit != null;
+
+        boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
+        int timesTested = flashcardToEdit.getTimesTested();
+        int timesTestedCorrect = flashcardToEdit.getTimesTestedCorrect();
+
+        Optional<Answer> updatedAnswer = editFlashcardDescriptor.getAnswer();
+        //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
+        Answer finalAnswer;
+        Question updatedQuestion = editFlashcardDescriptor.getQuestion()
+                .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getValue()));
+        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
+        Choice[] emptyArray = new Choice[0];
+        Choice[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
+
+        boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
+        if (isMcq) {
+            String question = updatedQuestion.getValue();
+            MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
+            Choice[] previousChoices = mcq.getChoices().get();
+            if (Arrays.equals(updatedChoices, emptyArray)) {
+                updatedQuestion = new MultipleChoiceQuestion(question, previousChoices);
+                if (updatedAnswer.isPresent()) {
+                    int ans;
+                    try {
+                        ans = Integer.parseInt(updatedAnswer.get().getValue());
+                        if (ans > previousChoices.length && ans > 0) {
+                            throw new CommandException("Answer must be smaller than number of choices");
+                        }
+                    } catch (NumberFormatException e) {
+                        throw new CommandException("Answer must be integer");
+                    }
+                    finalAnswer = new Answer(previousChoices[ans - 1].getValue());
+                } else {
+                    finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
+                }
+            } else {
+                updatedQuestion = new MultipleChoiceQuestion(question, updatedChoices);
+                if (updatedAnswer.isPresent()) {
+                    int ans;
+                    try {
+                        ans = Integer.parseInt(updatedAnswer.get().getValue());
+                        if (ans > updatedChoices.length && ans > 0) {
+                            throw new CommandException("Answer must be smaller than number of choices");
+                        }
+                    } catch (NumberFormatException e) {
+                        throw new CommandException("Answer must be integer");
+                    }
+                    finalAnswer = new Answer(updatedChoices[ans - 1].getValue());
+                } else {
+                    Answer previousAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
+                    String previousAnswerString = previousAnswer.getValue();
+                    int previousIndex = -1;
+                    for (int i = 0; i < previousChoices.length; i++) {
+                        if (previousAnswerString.equals(previousChoices[i].getValue().toLowerCase())) {
+                            previousIndex = i;
+                        }
+                    }
+                    if (previousIndex < updatedChoices.length) {
+                        finalAnswer = new Answer(updatedChoices[previousIndex].getValue());
+                    } else {
+                        throw new CommandException("Answer must be smaller than number of choices");
+                    }
+                }
+            }
+        } else {
+            if (!Arrays.equals(updatedChoices, emptyArray)) {
+                throw new CommandException(MESSAGE_DIFFERENT_TYPE);
+            }
+            finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
+        }
+        return new Flashcard(updatedQuestion, finalAnswer, updatedTags, timesTested, timesTestedCorrect);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -79,86 +168,6 @@ public class EditCommand extends Command {
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard));
     }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Flashcard createEditedFlashcard(Flashcard flashcardToEdit,
-                                                   EditFlashcardDescriptor editFlashcardDescriptor)
-            throws CommandException {
-        assert flashcardToEdit != null;
-
-        boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
-
-        Optional<Answer> updatedAnswer = editFlashcardDescriptor.getAnswer();
-        //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
-        Answer finalAnswer;
-        Question updatedQuestion = editFlashcardDescriptor.getQuestion()
-                .orElse(new OpenEndedQuestion(flashcardToEdit.getQuestion().getQuestion()));
-        Set<Tag> updatedTags = editFlashcardDescriptor.getTags().orElse(flashcardToEdit.getTags());
-        Choice[] emptyArray = new Choice[0];
-        Choice[] updatedChoices = editFlashcardDescriptor.getChoices().orElse(emptyArray);
-        boolean isMcqEdit = editFlashcardDescriptor.getIsMcq();
-        if (isMcq) {
-            String question = updatedQuestion.getQuestion();
-            MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) flashcardToEdit.getQuestion();
-            Choice[] previousChoices = mcq.getChoices().get();
-            if (Arrays.equals(updatedChoices, emptyArray)) {
-                updatedQuestion = new MultipleChoiceQuestion(question, previousChoices);
-                if (updatedAnswer.isPresent()) {
-                    int ans;
-                    try {
-                        ans = Integer.parseInt(updatedAnswer.get().getAnswer());
-                        if (ans > previousChoices.length && ans > 0) {
-                            throw new CommandException("Answer must be smaller than number of choices");
-                        }
-                    } catch (NumberFormatException e) {
-                        throw new CommandException("Answer must be integer");
-                    }
-                    finalAnswer = new Answer(previousChoices[ans - 1].getContent());
-                } else {
-                    finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
-                }
-            } else {
-                updatedQuestion = new MultipleChoiceQuestion(question, updatedChoices);
-                if (updatedAnswer.isPresent()) {
-                    int ans;
-                    try {
-                        ans = Integer.parseInt(updatedAnswer.get().getAnswer());
-                        if (ans > updatedChoices.length && ans > 0) {
-                            throw new CommandException("Answer must be smaller than number of choices");
-                        }
-                    } catch (NumberFormatException e) {
-                        throw new CommandException("Answer must be integer");
-                    }
-                    finalAnswer = new Answer(updatedChoices[ans - 1].getContent());
-                } else {
-                    Answer previousAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
-                    String previousAnswerString = previousAnswer.getAnswer();
-                    int previousIndex = -1;
-                    for (int i = 0; i < previousChoices.length; i++) {
-                        if (previousAnswerString.equals(previousChoices[i].getContent().toLowerCase())) {
-                            previousIndex = i;
-                        }
-                    }
-                    if (previousIndex < updatedChoices.length) {
-                        finalAnswer = new Answer(updatedChoices[previousIndex].getContent());
-                    } else {
-                        throw new CommandException("Answer must be smaller than number of choices");
-                    }
-                }
-            }
-        } else {
-            if (!Arrays.equals(updatedChoices, emptyArray)) {
-                throw new CommandException(MESSAGE_DIFFERENT_TYPE);
-            }
-            finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
-        }
-        return new Flashcard(updatedQuestion, finalAnswer, updatedTags);
-    }
-
-
 
     @Override
     public boolean equals(Object other) {
@@ -213,20 +222,20 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(answer, question, choices, tags);
         }
 
-        public void setAnswer(Answer answer) {
-            this.answer = answer;
-        }
-
         public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
         }
 
-        public void setQuestion(Question question) {
-            this.question = question;
+        public void setAnswer(Answer answer) {
+            this.answer = answer;
         }
 
         public Optional<Question> getQuestion() {
             return Optional.ofNullable(question);
+        }
+
+        public void setQuestion(Question question) {
+            this.question = question;
         }
 
         public boolean getIsMcq() {
@@ -235,14 +244,6 @@ public class EditCommand extends Command {
 
         public void setIsMcq(Boolean isMcq) {
             this.isMcq = isMcq;
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -255,10 +256,11 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code choices} to this object's {@code choices}.
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
          */
-        public void setChoices(Choice[] choices) {
-            this.choices = (choices != null) ? choices : null;
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -267,6 +269,13 @@ public class EditCommand extends Command {
          */
         public Optional<Choice[]> getChoices() {
             return (choices != null) ? Optional.of(choices) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code choices} to this object's {@code choices}.
+         */
+        public void setChoices(Choice[] choices) {
+            this.choices = choices;
         }
 
         @Override

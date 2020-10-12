@@ -1,15 +1,15 @@
 package seedu.address.flashcard;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.flashcard.exceptions.DuplicateFlashcardException;
-import seedu.address.flashcard.exceptions.FlashcardNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.flashcard.exceptions.DuplicateFlashcardException;
+import seedu.address.flashcard.exceptions.FlashcardNotFoundException;
 
 
 /**
@@ -20,7 +20,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * in terms of identity in the UniquePersonList.
  * However, the removal of a Flashcard uses Flashcard#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Flashcard#isSameFlashcard(Flashcard)

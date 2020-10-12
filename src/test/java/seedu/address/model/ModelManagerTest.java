@@ -12,7 +12,7 @@ import seedu.address.commons.core.GuiSettings;
 
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private final ModelManager modelManager = new ModelManager();
 
     @Test
     public void constructor() {

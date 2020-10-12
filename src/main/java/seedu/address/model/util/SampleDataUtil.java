@@ -29,31 +29,31 @@ public class SampleDataUtil {
         Choice choice10 = new Choice("A non-compulsory module for NUS Computer Science students");
         Choice choice11 = new Choice("A module that can be S/Ued");
         Choice choice12 = new Choice("A module that doesn't involve TCP");
-        return new Flashcard[] {
+        return new Flashcard[]{
             new Flashcard(new MultipleChoiceQuestion("What is CS2103T?",
                     choice1,
                     choice2,
                     choice3,
                     choice4
-                    ),
+            ),
                     new Answer("Software Engineering module for NUS students"),
                     getTagSet("MCQ", "Good Question")),
             new Flashcard(new MultipleChoiceQuestion("What is CS2100?",
                     choice5,
-                        choice6,
-                        choice7,
-                        choice8
-                        ),
-                        new Answer("Computer Organization module for NUS students"),
-                        getTagSet("MCQ", "Assembly")),
+                    choice6,
+                    choice7,
+                    choice8
+            ),
+                    new Answer("Computer Organization module for NUS students"),
+                    getTagSet("MCQ", "Assembly")),
             new Flashcard(new MultipleChoiceQuestion("What is CS2105?",
-                        choice9,
-                        choice10,
-                        choice11,
-                        choice12
-                        ),
-                        new Answer("Introductory module to computer networks for NUS students"),
-                        getTagSet("MCQ", "TCPforLife"))
+                    choice9,
+                    choice10,
+                    choice11,
+                    choice12
+            ),
+                    new Answer("Introductory module to computer networks for NUS students"),
+                    getTagSet("MCQ", "TCPforLife"))
         };
     }
 
@@ -70,8 +70,8 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                    .map(Tag::new)
-                    .collect(Collectors.toSet());
+                .map(Tag::new)
+                .collect(Collectors.toSet());
     }
 
 }

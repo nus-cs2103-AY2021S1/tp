@@ -22,13 +22,13 @@ public class MultipleChoiceQuestion implements Question {
             + "and it should not be blank";
 
     private final Choice[] choices;
-    private final String question;
+    private final String value;
 
     /**
      * A constructor to create MCQ Question object.
      */
     public MultipleChoiceQuestion(String question, Choice... choices) {
-        this.question = question;
+        this.value = question;
         this.choices = choices;
     }
 
@@ -36,7 +36,7 @@ public class MultipleChoiceQuestion implements Question {
      * A constructor to create MCQ Question object.
      */
     public MultipleChoiceQuestion(String question, List<String> choices) {
-        this.question = question;
+        this.value = question;
         List<Choice> choicesArray = new ArrayList<Choice>();
         for (String c : choices) {
             Choice choice = new Choice(c);
@@ -49,14 +49,13 @@ public class MultipleChoiceQuestion implements Question {
         this.choices = test;
     }
 
+    public static boolean isValidQuestion(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     @Override
-    public String getQuestion() {
-        StringBuilder sb = new StringBuilder(question);
-        return sb.toString();
-        //List<String> questionArray = new ArrayList<String>();
-        //questionArray.add(question);
-        //questionArray.addAll(1, Arrays.stream(choices).map(Choice::toString).collect(Collectors.toList()));
-        //return questionArray;
+    public String getValue() {
+        return value;
     }
 
     public Optional<Choice[]> getChoices() {
@@ -65,7 +64,7 @@ public class MultipleChoiceQuestion implements Question {
 
     @Override
     public String getFormatQuestion() {
-        StringBuilder sb = new StringBuilder(question + "\n");
+        StringBuilder sb = new StringBuilder(value + "\n");
         int i = 1;
         for (Choice choice : choices) {
             sb.append(i).append(". ").append(choice.toString()).append("\n");
@@ -74,18 +73,15 @@ public class MultipleChoiceQuestion implements Question {
         return sb.toString();
     }
 
-    public static boolean isValidQuestion(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     /**
      * Retrieves the option from {@code index} as an Answer.
+     *
      * @param index to get option from.
      * @return option as an {@code Answer}.
      */
     public Answer getAnswerFromIndex(Index index) {
         Choice choice = choices[index.getZeroBased()];
-        return new Answer(choice.getContent());
+        return new Answer(choice.getValue());
     }
 
     @Override
@@ -102,6 +98,6 @@ public class MultipleChoiceQuestion implements Question {
 
     @Override
     public String toString() {
-        return question;
+        return value;
     }
 }

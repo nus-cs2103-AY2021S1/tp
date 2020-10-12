@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.QuickCache;
-import seedu.address.model.ReadOnlyQuickCache;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.QuickCache;
+import seedu.address.model.ReadOnlyQuickCache;
 
 /**
  * Represents a storage for {@link QuickCache}.
@@ -20,7 +20,8 @@ public interface AddressBookStorage {
 
     /**
      * Returns QuickCache data as a {@link ReadOnlyQuickCache}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,6 +34,7 @@ public interface AddressBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyQuickCache} to the storage.
+     *
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
