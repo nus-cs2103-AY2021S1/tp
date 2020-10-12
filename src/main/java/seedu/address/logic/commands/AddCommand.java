@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     public final Entry entry;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Entry}
      */
     public AddCommand(Entry entry) {
         requireNonNull(entry);

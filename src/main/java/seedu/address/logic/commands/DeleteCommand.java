@@ -30,6 +30,9 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
     private final Category category;
 
+    /**
+     * Creates an DeleteCommand to add the specified {@code Entry}
+     */
     public DeleteCommand(Index targetIndex, Category category) {
         this.targetIndex = targetIndex;
         this.category = category;
