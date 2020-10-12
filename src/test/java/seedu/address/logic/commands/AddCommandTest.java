@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.timetable.TimetableData;
@@ -152,6 +153,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -159,6 +165,11 @@ public class AddCommandTest {
         @Override
         public ObservableList<Assignment> getRemindedAssignmentsList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return null;
         }
 
         @Override

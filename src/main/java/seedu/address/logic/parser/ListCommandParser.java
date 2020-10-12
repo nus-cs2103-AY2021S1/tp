@@ -20,7 +20,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean isNotListAll = args.matches(".*\\b\\d+\\b$"); //Has index as argument
         if (isNotListAll) {
             try {
-                Index index = ParserUtil.parseIndex(args);
+                Index index = ParserUtil.parseListIndex(args);
+                System.out.println("index keyed in is " + index.getZeroBased());
                 return new ListCommand(index);
             } catch (ParseException pe) {
                 throw new ParseException(

@@ -32,7 +32,6 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed your assignments";
 
-
     private final Index numberOfWeeks;
 
     public ListCommand(Index numberOfWeeks) {
@@ -55,9 +54,11 @@ public class ListCommand extends Command {
         };
 
         if (numberOfWeeks.getZeroBased() != 0) {
+            System.out.println("in non 0");
             model.updateFilteredAssignmentList(PREDICATE_SHOW_LIMITED_ASSIGNMENT);
         } else {
             model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
+            System.out.println("in 0");
         }
 
         return new CommandResult(
