@@ -18,7 +18,7 @@ public class DeleteItemCommandParserTest {
         String userInput = " -n " + APPLE.getName();
         DeleteItemCommand expectedCommand = new DeleteItemCommand(APPLE.getName());
 
-        //expected userinput constructs successful delete item command
+        //expected user input constructs successful delete item command
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

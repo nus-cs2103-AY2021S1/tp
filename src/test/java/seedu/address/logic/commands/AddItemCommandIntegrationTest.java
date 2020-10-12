@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertItemCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
 import static seedu.address.testutil.TypicalLocations.getTypicalLocationsList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +47,7 @@ public class AddItemCommandIntegrationTest {
                 model.getRecipeList(), new UserPrefs());
         modelWithItem.addItem(validItem);
 
-        assertItemCommandFailure(new AddItemCommand(validItemPrecursor), modelWithItem,
+        assertInventoryCommandFailure(new AddItemCommand(validItemPrecursor), modelWithItem,
                 AddItemCommand.MESSAGE_DUPLICATE_ITEM);
     }
 }

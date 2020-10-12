@@ -44,7 +44,7 @@ public class DeleteItemCommand extends Command {
 
         List<Item> itemList = new ArrayList<>(model.getFilteredItemList());
 
-        // filter to only get matching and not deleted recipes
+        // filter to only get matching and not deleted items
         itemList.removeIf(x -> !x.getName().equals(productName) || x.isDeleted());
         if (itemList.isEmpty()) {
             throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
@@ -61,7 +61,8 @@ public class DeleteItemCommand extends Command {
         // remove recipes from consideration that are not soft deleted,
         // nor contain deleted item as product or ingredient
         recipeList.removeIf(y -> y.isDeleted()
-                || y.getIngredients()
+                || !y.getProductName().equals(productName)
+                && y.getIngredients()
                 .asUnmodifiableObservableList()
                 .stream()
                 .noneMatch(z -> z.isItem(itemToDelete.getId())));

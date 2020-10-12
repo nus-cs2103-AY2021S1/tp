@@ -4,13 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.item.Item;
-
+import seedu.address.model.item.DetailedItem;
 
 /**
  * An UI component that displays information of a {@code Item}.
  */
-public class InventoryDetailedCard extends UiPart<Region> {
+public class DetailedItemCard extends UiPart<Region> {
 
     private static final String FXML = "InventoryListDetailedCard.fxml";
 
@@ -22,7 +21,7 @@ public class InventoryDetailedCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Item item;
+    public final DetailedItem detailedItem;
 
     @FXML
     private HBox cardPane;
@@ -36,12 +35,12 @@ public class InventoryDetailedCard extends UiPart<Region> {
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
-    public InventoryDetailedCard(Item item, int displayedIndex) {
+    public DetailedItemCard(DetailedItem detailedItem, int displayedIndex) {
         super(FXML);
-        this.item = item;
-        name.setText(item.getName());
-        quantity.setText("Quantity: " + item.getQuantity());
-        description.setText(item.getDescription());
+        this.detailedItem = detailedItem;
+        name.setText(detailedItem.getName());
+        quantity.setText("Quantity: " + detailedItem.getQuantity());
+        description.setText(detailedItem.getDescription());
     }
 
     @Override
@@ -52,12 +51,12 @@ public class InventoryDetailedCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof InventoryDetailedCard)) {
+        if (!(other instanceof DetailedItemCard)) {
             return false;
         }
 
         // state check
-        InventoryDetailedCard card = (InventoryDetailedCard) other;
-        return item.equals(card.item);
+        DetailedItemCard card = (DetailedItemCard) other;
+        return detailedItem.equals(card.detailedItem);
     }
 }

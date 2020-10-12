@@ -1,73 +1,88 @@
 package seedu.address.ui;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.InventoryComponent;
+import seedu.address.model.item.DetailedItem;
 import seedu.address.model.item.Item;
-
+import seedu.address.model.recipe.PrintableRecipe;
 
 /**
- * Panel containing the list of items.
+ * Panel containing the list of inventory.
  */
 public class InventoryListPanel extends UiPart<Region> {
     private static final String FXML = "InventoryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InventoryListPanel.class);
 
+    private DisplayedInventoryType inventoryType;
+
     @FXML
-    private ListView<Item> itemListView;
+    private ListView<InventoryComponent> itemListView;
 
     /**
-     * Creates a {@code InventoryListPanel} with the given {@code ObservableList}.
+     * Creates a {@code InventoryListPanel} with the given {@code ObservableList} and {@code View.InventoryType}.
      */
-    public InventoryListPanel(ObservableList<Item> itemList) {
+    public InventoryListPanel(List<InventoryComponent> inventoryList, DisplayedInventoryType inventoryType) {
         super(FXML);
-        itemListView.setItems(itemList);
+        this.inventoryType = inventoryType;
+        ObservableList<InventoryComponent> observableInventoryList = FXCollections.observableList(inventoryList);
+        itemListView.setItems(observableInventoryList);
         itemListView.setCellFactory(listView -> new ItemListViewCell());
     }
 
-    public void changeToSimpleCell() {
+    /**
+     * Updates the InventoryListPanel to display inventory of the given {@code View.InventoryType}
+     * in the given {@code ObservableList}.
+     */
+    public void refresh(List<InventoryComponent> inventoryList, DisplayedInventoryType inventoryType) {
+        this.inventoryType = inventoryType;
+        ObservableList<InventoryComponent> observableInventoryList = FXCollections.observableList(inventoryList);
+        itemListView.setItems(observableInventoryList);
         itemListView.setCellFactory(listView -> new ItemListViewCell());
     }
 
-    public void changeToDetailedCell() {
-        itemListView.setCellFactory(listView -> new ItemListViewDetailedCell());
+    public DisplayedInventoryType getInventoryType() {
+        return this.inventoryType;
+    }
+
+    public void setInventoryType(DisplayedInventoryType inventoryType) {
+        this.inventoryType = inventoryType;
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code InventoryCard}.
+     * Custom {@code ListCell} that displays the graphics of the current inventory, either {@code Item} using an
+     * {@code InventoryCard} or {@code PrintableRecipe} using a {@code RecipeCard}.
      */
-    class ItemListViewCell extends ListCell<Item> {
-        @Override
-        protected void updateItem(Item item, boolean empty) {
-            super.updateItem(item, empty);
+    class ItemListViewCell extends ListCell<InventoryComponent> {
 
-            if (empty || item == null || item.isDeleted()) {
+        @Override
+        protected void updateItem(InventoryComponent inventoryComponent, boolean empty) {
+            super.updateItem(inventoryComponent, empty);
+            if (empty || inventoryComponent == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new InventoryCard(item, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code InventoryCard}.
-     */
-    class ItemListViewDetailedCell extends ListCell<Item> {
-        @Override
-        protected void updateItem(Item item, boolean empty) {
-            super.updateItem(item, empty);
-
-            if (empty || item == null || item.isDeleted()) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new InventoryDetailedCard(item, getIndex() + 1).getRoot());
+                switch (inventoryComponent.getType()) {
+                case ITEMS:
+                    setGraphic(new InventoryCard((Item) inventoryComponent, getIndex() + 1).getRoot());
+                    break;
+                case RECIPES:
+                    setGraphic(new RecipeCard((PrintableRecipe) inventoryComponent, getIndex() + 1).getRoot());
+                    break;
+                case DETAILED_ITEM:
+                    setGraphic(new DetailedItemCard((DetailedItem) inventoryComponent, getIndex() + 1).getRoot());
+                    break;
+                default:
+                    throw new IllegalStateException("This inventoryType is not valid");
+                }
             }
         }
     }

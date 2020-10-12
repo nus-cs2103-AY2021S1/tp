@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertItemCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalItems.getTypicalItemList;
@@ -35,7 +35,7 @@ public class DeleteItemCommandTest {
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         String itemName = "Someone's Toenail";
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemName);
-        assertItemCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
+        assertInventoryCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
     }
 
     @Test

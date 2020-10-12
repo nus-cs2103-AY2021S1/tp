@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertItemCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
 import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 import static seedu.address.testutil.TypicalLocations.getTypicalLocationsList;
 
@@ -48,7 +48,7 @@ public class AddRecipeCommandIntegrationTest {
                 model.getRecipeList(), new UserPrefs());
         modelWithRecipe.addRecipe(validRecipe);
 
-        assertItemCommandFailure(new AddRecipeCommand(validRecipePrecursor), modelWithRecipe,
+        assertInventoryCommandFailure(new AddRecipeCommand(validRecipePrecursor), modelWithRecipe,
                 AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
     }
 
