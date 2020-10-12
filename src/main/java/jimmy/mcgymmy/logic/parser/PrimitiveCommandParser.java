@@ -49,15 +49,15 @@ public class PrimitiveCommandParser {
 
     private void addDefaultCommands() {
         this.addCommand(AddCommand.COMMAND_WORD, AddCommand.SHORT_DESCRIPTION, AddCommand::new);
-        this.addCommand(EditCommand.COMMAND_WORD, "TODO", EditCommand::new);
-        this.addCommand(DeleteCommand.COMMAND_WORD, "TODO", DeleteCommand::new);
-        this.addCommand(ClearCommand.COMMAND_WORD, "TODO", ClearCommand::new);
-        this.addCommand(ExitCommand.COMMAND_WORD, "TODO", ExitCommand::new);
-        this.addCommand(FindCommand.COMMAND_WORD, "TODO", FindCommand::new);
-        this.addCommand(ListCommand.COMMAND_WORD, "TODO", ListCommand::new);
+        this.addCommand(EditCommand.COMMAND_WORD, EditCommand.SHORT_DESCRIPTION, EditCommand::new);
+        this.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.SHORT_DESCRIPTION, DeleteCommand::new);
+        this.addCommand(ClearCommand.COMMAND_WORD, ClearCommand.SHORT_DESCRIPTION, ClearCommand::new);
+        this.addCommand(ExitCommand.COMMAND_WORD, ExitCommand.SHORT_DESCRIPTION, ExitCommand::new);
+        this.addCommand(FindCommand.COMMAND_WORD, FindCommand.SHORT_DESCRIPTION, FindCommand::new);
+        this.addCommand(ListCommand.COMMAND_WORD, ListCommand.SHORT_DESCRIPTION, ListCommand::new);
+        this.addCommand(TagCommand.COMMAND_WORD, TagCommand.SHORT_DESCRIPTION, TagCommand::new);
+        this.addCommand(UnTagCommand.COMMAND_WORD, UnTagCommand.SHORT_DESCRIPTION, UnTagCommand::new);
         this.addCommand(HelpCommand.COMMAND_WORD, "TODO", HelpCommand::new);
-        this.addCommand(TagCommand.COMMAND_WORD, "TODO", TagCommand::new);
-        this.addCommand(UnTagCommand.COMMAND_WORD, "TODO", UnTagCommand::new);
     }
 
     /**
