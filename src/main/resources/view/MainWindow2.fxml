@@ -12,7 +12,7 @@
          <stylesheets>
               <URL value="@Style.css" />
          </stylesheets>
-         <BorderPane prefHeight="560.0" prefWidth="880.0" styleClass="main-pane">
+         <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="928.0" styleClass="main-pane">
             <top>
                <MenuBar fx:id="menuBar" prefWidth="928.0" BorderPane.alignment="CENTER">
                  <menus>
@@ -35,12 +35,12 @@
                      <StackPane fx:id="commandBoxPlaceholder" prefHeight="256.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
                   </top>
                   <bottom>
-                     <StackPane fx:id="pinBoxPlaceholder" prefHeight="320.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
+                     <StackPane fx:id="pinBoxPlaceholder" prefHeight="256.0" prefWidth="304.0" BorderPane.alignment="CENTER" />
                   </bottom>
                </BorderPane>
             </right>
             <left>
-               <StackPane fx:id="displayPlaceholder" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               <StackPane fx:id="displayPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="624.0" BorderPane.alignment="CENTER" />
             </left>
          </BorderPane>
       </Scene>
