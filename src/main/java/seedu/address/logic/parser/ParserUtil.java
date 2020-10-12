@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
     //Calo parse
-    public static seedu.address.model.exercise.Name parseName(String name) throws ParseException {
+    public static seedu.address.model.exercise.Name parseExerciseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!seedu.address.model.exercise.Name.isValidName(trimmedName)) {
