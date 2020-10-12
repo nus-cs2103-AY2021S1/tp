@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ModelForExercise;
+import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Description;
@@ -62,7 +62,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ModelForExercise model) throws CommandException {
+    public CommandResult execute(ExerciseModel model) throws CommandException {
         requireNonNull(model);
         List<Exercise> lastShownList = model.getFilteredExerciseList();
 
