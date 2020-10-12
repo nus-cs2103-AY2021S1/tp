@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,8 +18,6 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Contains utility methods for populating {@code WishfulShrinking} with sample data.
@@ -135,9 +135,9 @@ public class SampleDataUtil {
     private static Recipe getFallbackRecipe() {
         Name name = new Name("Tahini cake");
         String instructions = "Heat oven. Cream butter, add flour";
-        String recipeImage = "https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6" +
-                "/84_2248_5678_6000/master/5678.jpg?width=620&quality=85&auto=format&fit=max&s=b20e33f" +
-                "7054827278dbd2b9d8a2e7616";
+        String recipeImage = "https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6"
+                + "/84_2248_5678_6000/master/5678.jpg?width=620&quality=85&auto=format&fit=max&s=b20e33f"
+                + "7054827278dbd2b9d8a2e7616";
         Ingredient ingredient1 = new Ingredient("unsalted butter", "210g");
         Ingredient ingredient2 = new Ingredient("flour", "2 cups");
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
