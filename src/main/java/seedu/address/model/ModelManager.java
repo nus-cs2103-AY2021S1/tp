@@ -104,8 +104,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAccount(Account person) {
-        commonCents.addAccount(person);
+    public void addAccount(Account account) {
+        commonCents.addAccount(account);
         updateFilteredAccountList(PREDICATE_SHOW_ALL_ACCOUNTS);
     }
 
@@ -157,7 +157,6 @@ public class ModelManager implements Model {
         return commonCents.equals(other.commonCents)
                 && userPrefs.equals(other.userPrefs)
                 && filteredAccounts.equals(other.filteredAccounts);
-        //&& activeAccount.equals(other.activeAccount);
     }
 
 }
