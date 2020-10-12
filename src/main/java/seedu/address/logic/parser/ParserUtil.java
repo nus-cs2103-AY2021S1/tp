@@ -84,7 +84,7 @@ public class ParserUtil {
         if (!School.isValidSchool(trimmedSchool)) {
             throw new ParseException(School.MESSAGE_CONSTRAINTS);
         }
-        return new School(school);
+        return new School(trimmedSchool);
     }
 
     /**
@@ -99,7 +99,7 @@ public class ParserUtil {
         if (!Year.isValidYear(trimmedYear)) {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new Year(year);
+        return new Year(trimmedYear);
     }
 
     /**
