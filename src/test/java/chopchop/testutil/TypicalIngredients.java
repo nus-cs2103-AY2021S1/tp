@@ -12,6 +12,7 @@ import java.util.List;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.IngredientReference;
+import chopchop.model.attributes.Quantity;
 
 public class TypicalIngredients {
 
@@ -24,12 +25,12 @@ public class TypicalIngredients {
 
     public static final IngredientReference APRICOT_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_APRICOT,
-        Count.of(VALID_INGREDIENT_QTY_APRICOT)
+        new Quantity(VALID_INGREDIENT_QTY_APRICOT)
     );
 
     public static final IngredientReference BANANA_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_BANANA,
-        Count.of(VALID_INGREDIENT_QTY_BANANA)
+        new Quantity(VALID_INGREDIENT_QTY_BANANA)
     );
 
     /**
