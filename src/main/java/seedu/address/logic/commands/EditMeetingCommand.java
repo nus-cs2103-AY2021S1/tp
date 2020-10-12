@@ -100,6 +100,14 @@ public class EditMeetingCommand extends Command {
         Date updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getDate());
         Time updatedTime = editMeetingDescriptor.getTime().orElse(meetingToEdit.getTime());
         Set<Name> updatedMemberNames = editMeetingDescriptor.getMemberNames().orElse(null);
+        Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, model);
+
+        return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers);
+    }
+
+    private static Set<Person> getUpdatedMembers(Meeting meetingToEdit,
+                                                 Set<Name> updatedMemberNames,
+                                                 Model model) throws CommandException {
         Set<Person> updatedMembers = new HashSet<>();
 
         if (updatedMemberNames != null) {
@@ -128,8 +136,7 @@ public class EditMeetingCommand extends Command {
             updatedMembers = meetingToEdit.getMembers();
         }
         assert updatedMembers != null;
-
-        return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers);
+        return updatedMembers;
     }
 
     @Override
