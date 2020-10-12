@@ -45,8 +45,8 @@ public class JsonAdaptedMeeting {
      */
     public JsonAdaptedMeeting(Meeting source) {
         meetingName = source.getMeetingName().meetingName;
-        date = source.getDate().value;
-        time = source.getTime().value;
+        date = source.getDate().toString();
+        time = source.getTime().toString();
         memberList.addAll(source.getMembers().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));

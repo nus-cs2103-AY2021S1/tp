@@ -1,5 +1,8 @@
 package seedu.address.model.meeting;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +10,10 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format yyyy-mm-dd";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd LLL (EEE)");
+    public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    public final LocalDate value;
 
     /**
      * Constructs a {@code Date}.
@@ -17,11 +23,11 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = date;
+        value = LocalDate.parse(date, INPUT_FORMAT);
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
         return test.length() == 10
@@ -32,7 +38,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return value;
+        return value.format(OUTPUT_FORMAT);
     }
 
     @Override
