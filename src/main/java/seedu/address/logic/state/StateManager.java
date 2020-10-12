@@ -2,6 +2,7 @@ package seedu.address.logic.state;
 
 import java.util.Optional;
 
+import javafx.beans.property.SimpleObjectProperty;
 import seedu.address.commons.core.index.Index;
 
 /**
@@ -10,7 +11,11 @@ import seedu.address.commons.core.index.Index;
 public class StateManager {
 
     private static Optional<Index> state = Optional.empty();
+    private static SimpleObjectProperty<Index> visibleState = new SimpleObjectProperty<>(null);
 
+    public static SimpleObjectProperty<Index> getVisibleState() {
+        return visibleState;
+    }
 
     /**
      * Gets the state of the program.
@@ -30,6 +35,7 @@ public class StateManager {
     public static void setState(Index index) {
         assert (index != null) : "index should not be null";
         state = Optional.of(index);
+        visibleState.set(index);
     }
 
     /**
@@ -37,6 +43,7 @@ public class StateManager {
      */
     public static void resetState() {
         state = Optional.empty();
+        visibleState.set(null);
     }
 
     /**
