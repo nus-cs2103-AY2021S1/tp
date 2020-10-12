@@ -26,6 +26,9 @@ public class DeleteIngredientCommand extends Command {
 
     private final ItemReference item;
 
+    /**
+     * Constructs a command that deletes the given ingredient item.
+     */
     public DeleteIngredientCommand(ItemReference item) {
         requireNonNull(item);
         this.item = item;

@@ -25,6 +25,9 @@ public class FindIngredientCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs a command that finds the given ingredient item.
+     */
     public FindIngredientCommand(NameContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

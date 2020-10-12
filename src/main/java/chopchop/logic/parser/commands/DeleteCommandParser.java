@@ -54,7 +54,7 @@ public class DeleteCommandParser {
     }
 
     /**
-     * Parses an 'add ingredient' command. Syntax:
+     * Parses a 'delete ingredient' command. Syntax:
      * {@code delete ingredient REF}
      */
     private static Result<DeleteIngredientCommand> parseDeleteIngredientCommand(CommandArguments args) {
@@ -78,7 +78,7 @@ public class DeleteCommandParser {
     }
 
     /**
-     * Parses an 'delete ingredient' command. Syntax:
+     * Parses a 'delete recipe' command. Syntax:
      * {@code delete recipe REF}
      */
     private static Result<DeleteRecipeCommand> parseDeleteRecipeCommand(CommandArguments args) {
