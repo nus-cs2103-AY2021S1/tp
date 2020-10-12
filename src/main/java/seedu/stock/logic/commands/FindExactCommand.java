@@ -17,11 +17,11 @@ import seedu.stock.model.stock.Stock;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindExactCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findexact";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all stocks whose fields contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all stocks whose fields match all of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters (any combination, in any order, of the following four fields):\n"
             + PREFIX_NAME + " KEYWORD [more KEYWORDS which will be matched with Name field of stock]\n"
@@ -38,9 +38,9 @@ public class FindCommand extends Command {
      * a list of predicates to filter and find stocks by
      * @param predicates list of predicates to filter stocks
      */
-    public FindCommand(List<Predicate<Stock>> predicates) {
+    public FindExactCommand(List<Predicate<Stock>> predicates) {
         this.predicates = predicates;
-        this.combinedPredicates = predicates.stream().reduce(x -> false, Predicate::or);
+        this.combinedPredicates = predicates.stream().reduce(x -> true, Predicate::and);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicates.equals(((FindCommand) other).predicates)); // state check
+                || (other instanceof FindExactCommand // instanceof handles nulls
+                && predicates.equals(((FindExactCommand) other).predicates)); // state check
     }
 }
