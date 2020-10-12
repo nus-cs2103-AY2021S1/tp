@@ -264,4 +264,5 @@ public interface Model {
      * Processes an ItemPrecursor into an Item.
      */
     Item processPrecursor(ItemPrecursor itemPrecursor);
+
 }

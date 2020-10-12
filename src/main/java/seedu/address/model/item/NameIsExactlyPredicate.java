@@ -23,7 +23,7 @@ public class NameIsExactlyPredicate implements Predicate<Item> {
     @Override
     public boolean test(Item item) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsMultipleWordsIgnoreCase(item.getName(), keyword));
+                .anyMatch(keyword -> StringUtil.exactlyMultipleWordsIgnoreCase(item.getName(), keyword));
     }
 
     @Override

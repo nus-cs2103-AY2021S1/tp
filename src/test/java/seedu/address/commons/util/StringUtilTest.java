@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 
@@ -140,4 +141,38 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //---------------- Tests for matchesPatternIgnoreCase ------------------------
+
+    @Test
+    public void matchesPatternIgnoreCase() {
+        String toMatch = "Example String";
+        String start = "Exa";
+        String end = "ing";
+        String mid = "e Str";
+
+        // Full match
+        assertTrue(StringUtil.matchesPatternIgnoreCase(toMatch, Pattern.compile(toMatch)));
+
+        // Start match
+        assertTrue(StringUtil.matchesPatternIgnoreCase(toMatch, Pattern.compile(start)));
+
+        // End match
+        assertTrue(StringUtil.matchesPatternIgnoreCase(toMatch, Pattern.compile(end)));
+
+        // Mid match
+        assertTrue(StringUtil.matchesPatternIgnoreCase(toMatch, Pattern.compile(mid)));
+
+        // Case sensitive
+        assertFalse(StringUtil.matchesPatternIgnoreCase(toMatch, Pattern.compile(toMatch.toLowerCase())));
+
+        // Empty Pattern matches all
+        assertTrue(StringUtil.matchesPatternIgnoreCase(toMatch, Pattern.compile("")));
+
+        // String null
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.matchesPatternIgnoreCase(null, Pattern.compile(toMatch)));
+
+        // Pattern null
+        assertThrows(NullPointerException.class, () -> StringUtil.matchesPatternIgnoreCase(toMatch, null));
+    }
 }

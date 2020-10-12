@@ -9,13 +9,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.InventoryComponent;
 import seedu.address.model.tag.Tag;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Represents an Item in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Item {
+public class Item extends InventoryComponent {
     private static int idCounter = 0;
 
     // Identity fields
@@ -44,7 +46,9 @@ public class Item {
         this.recipeIds.addAll(recipeIds);
         this.tags.addAll(tags);
         this.isDeleted = isDeleted;
-        idCounter++;
+        if (!this.getType().equals(DisplayedInventoryType.DETAILED_ITEM)) {
+            idCounter++;
+        }
     }
 
     public static int getIdCounter() {
@@ -89,6 +93,7 @@ public class Item {
 
     /**
      * Adds Recipe Id to item ids.
+     *
      * @param recipeId recipe id connected to this item.
      */
     public void addRecipeId(int recipeId) {
@@ -111,6 +116,7 @@ public class Item {
 
     /**
      * Returns true if both items have same name, and can be replaced.
+     *
      * @param otherItem Other item to compare to this item.
      * @return true if the item of this name can be replaced.
      */
@@ -160,4 +166,16 @@ public class Item {
         return name;
     }
 
+    /**
+     * Creates a DetailedItem with the same fields.
+     */
+    public DetailedItem detailedItem() {
+        return new DetailedItem(id, name, quantity, description, Set.copyOf(locationIds),
+                Set.copyOf(recipeIds), tags, isDeleted);
+    }
+
+    @Override
+    public DisplayedInventoryType getType() {
+        return DisplayedInventoryType.ITEMS;
+    }
 }
