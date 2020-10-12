@@ -1,22 +1,27 @@
 package chopchop.model;
 
-import static java.util.Objects.requireNonNull;
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.nio.file.Path;
-import java.util.function.Predicate;
+import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.function.Predicate;
+
+import chopchop.model.recipe.Recipe;
+import chopchop.model.recipe.RecipeBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
 
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
-import chopchop.model.recipe.Recipe;
-import chopchop.model.recipe.RecipeBook;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+
+import static java.util.Objects.requireNonNull;
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+
 
 /**
  * Represents the in-memory model of the recipe book data.
@@ -87,6 +92,9 @@ public class ModelManager implements Model {
         requireNonNull(recipeBookFilePath);
         userPrefs.setRecipeBookFilePath(recipeBookFilePath);
     }
+
+
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -122,6 +130,15 @@ public class ModelManager implements Model {
 
         recipeBook.setRecipe(target, editedRecipe);
     }
+
+    @Override
+    public Optional<Recipe> findRecipeWithName(String name) {
+        return this.recipeBook.getFoodEntryList()
+            .stream()
+            .filter(r -> r.getName().equals(name))
+            .findFirst();
+    }
+
 
     //=========== Filtered Recipe List Accessors =============================================================
 
@@ -193,6 +210,15 @@ public class ModelManager implements Model {
 
         ingredientBook.setIngredient(target, editedIngredient);
     }
+
+    @Override
+    public Optional<Ingredient> findIngredientWithName(String name) {
+        return this.ingredientBook.getFoodEntryList()
+            .stream()
+            .filter(r -> r.getName().equals(name))
+            .findFirst();
+    }
+
 
     //=========== Filtered Ingredient List Accessors =============================================================
 
