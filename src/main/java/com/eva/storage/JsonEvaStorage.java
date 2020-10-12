@@ -52,6 +52,10 @@ public class JsonEvaStorage implements EvaStorage {
         return personDatabaseFilePath;
     }
 
+    public Path getStaffDatabaseFilePath() {
+        return staffDatabaseFilePath;
+    }
+
     @Override
     public Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException {
         return readPersonDatabase(personDatabaseFilePath);
