@@ -25,7 +25,7 @@ public class Nric {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid NRIC number.
      */
     public static boolean isValidNric(String test) {
         return test.trim().matches(VALIDATION_REGEX);
