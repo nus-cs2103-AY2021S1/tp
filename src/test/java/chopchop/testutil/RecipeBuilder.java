@@ -1,9 +1,9 @@
 package chopchop.testutil;
 
+import chopchop.model.recipe.Recipe;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.Recipe;
+import chopchop.model.ingredient.IngredientReference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +15,7 @@ public class RecipeBuilder {
     public static final String DEFAULT_STEP = "Heat it for 15 minutes.";
 
     private Name name;
-    private List<Ingredient> ingredients;
+    private List<IngredientReference> ingredients;
     private List<Step> steps;
 
     /**
@@ -23,7 +23,7 @@ public class RecipeBuilder {
      */
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
-        ingredients = new ArrayList<>(Arrays.asList(new IngredientBuilder().build()));
+        ingredients = new ArrayList<>();
         steps = new ArrayList<>(Arrays.asList(new Step(DEFAULT_STEP)));
     }
 
@@ -47,7 +47,7 @@ public class RecipeBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public RecipeBuilder withIngredients(List<Ingredient> ingredients) {
+    public RecipeBuilder withIngredients(List<IngredientReference> ingredients) {
         this.ingredients = ingredients;
         return this;
     }
