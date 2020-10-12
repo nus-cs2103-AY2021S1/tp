@@ -6,7 +6,7 @@ import seedu.address.model.animal.Animal;
 /**
  * A utility class to help with building ZooKeepBook objects.
  * Example usage: <br>
- *     {@code ZooKeepBook ab = new ZooKeepBookBuilder().withAnimal("John", "Doe").build();}
+ *     {@code ZooKeepBook ab = new ZooKeepBookBuilder().withAnimal(harambe).build();}
  */
 public class ZooKeepBookBuilder {
 
