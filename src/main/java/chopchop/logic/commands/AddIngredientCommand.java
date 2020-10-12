@@ -2,12 +2,14 @@
 
 package chopchop.logic.commands;
 
-import static chopchop.util.Strings.ARG_EXPIRY;
-import static chopchop.util.Strings.ARG_QUANTITY;
-import static java.util.Objects.requireNonNull;
+import chopchop.model.Model;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.model.Model;
+
+import static java.util.Objects.requireNonNull;
+
+import static chopchop.util.Strings.ARG_EXPIRY;
+import static chopchop.util.Strings.ARG_QUANTITY;
 
 public class AddIngredientCommand extends Command {
 
