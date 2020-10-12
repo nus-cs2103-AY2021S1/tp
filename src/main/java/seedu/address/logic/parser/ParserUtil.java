@@ -142,9 +142,6 @@ public class ParserUtil {
     public static CalendarVenue parseCalendarVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        if (!Name.isValidName(trimmedVenue)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
         return new CalendarVenue(trimmedVenue);
     }
 
@@ -157,9 +154,6 @@ public class ParserUtil {
     public static CalendarTime parseCalendarTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        if (!Phone.isValidPhone(trimmedTime)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
         return new CalendarTime(trimmedTime);
     }
 
@@ -172,9 +166,6 @@ public class ParserUtil {
     public static CalendarPropertyId parseCalendarPropertyId(String propertyId) throws ParseException {
         requireNonNull(propertyId);
         String trimmedpropertyId = propertyId.trim();
-        if (!Phone.isValidPhone(trimmedpropertyId)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
         return new CalendarPropertyId(trimmedpropertyId);
     }
 
@@ -187,9 +178,6 @@ public class ParserUtil {
     public static CalendarBidderId parseCalendarBidderId(String bidderId) throws ParseException {
         requireNonNull(bidderId);
         String trimmedbidderId = bidderId.trim();
-        if (!Phone.isValidPhone(trimmedbidderId)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
         return new CalendarBidderId(trimmedbidderId);
     }
 
