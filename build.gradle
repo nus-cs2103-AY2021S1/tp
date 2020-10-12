@@ -21,6 +21,7 @@ checkstyle {
 }
 
 test {
+    jvmArgs "-Djava.awt.headless=false"
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
