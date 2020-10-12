@@ -23,5 +23,6 @@ public class CommandWords {
         allCommandWords.add(HELP_COMMAND_WORD);
         allCommandWords.add(LIST_COMMAND_WORD);
         allCommandWords.add(UPDATE_COMMAND_WORD);
+        return allCommandWords;
     }
 }
