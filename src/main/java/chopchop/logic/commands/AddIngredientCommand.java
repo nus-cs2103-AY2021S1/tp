@@ -1,3 +1,5 @@
+// AddIngredientCommand.java
+
 package chopchop.logic.commands;
 
 import static chopchop.util.Strings.ARG_EXPIRY;
@@ -7,7 +9,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
 
-public class AddIngredientCommand extends AddCommand {
+public class AddIngredientCommand extends Command {
 
     public static final String COMMAND_WORD = "add ingredient";
 
@@ -26,35 +28,37 @@ public class AddIngredientCommand extends AddCommand {
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the ingredient book";
 
 
+    private final Ingredient ingredient;
+
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddIngredientCommand(Ingredient ind) {
-        super(ind);
-        requireNonNull(ind);
+    public AddIngredientCommand(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        this.ingredient = ingredient;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasIngredient((Ingredient) toAdd)) {
+        if (model.hasIngredient(ingredient)) {
             throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
         }
 
-        model.addIngredient((Ingredient) toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addIngredient(ingredient);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredient));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddIngredientCommand // instanceof handles nulls
-            && toAdd.equals(((AddIngredientCommand) other).toAdd));
+            && ingredient.equals(((AddIngredientCommand) other).ingredient));
     }
 
     @Override
     public String toString() {
-        return String.format("AddIngredientCommand: %s", this.toAdd);
+        return String.format("AddIngredientCommand: %s", this.ingredient);
     }
 }
