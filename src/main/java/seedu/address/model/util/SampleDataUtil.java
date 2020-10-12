@@ -5,13 +5,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
+import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.ModuleBook;
 import seedu.address.model.meeting.Time;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -54,10 +59,10 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-                new Module(new ModuleName("CS2103"), getPersonSet("Alex Yeoh", "Bernice Yu")),
-                new Module(new ModuleName("CS2105"), getPersonSet("Bernice Yu", "David Li")),
-                new Module(new ModuleName("CS2040"), getPersonSet("David Li", "Charlotte Oliveiro")),
-                new Module(new ModuleName("CS2100"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
+            new Module(new ModuleName("CS2103"), getPersonSet("Alex Yeoh", "Bernice Yu")),
+            new Module(new ModuleName("CS2105"), getPersonSet("Bernice Yu", "David Li")),
+            new Module(new ModuleName("CS2040"), getPersonSet("David Li", "Charlotte Oliveiro")),
+            new Module(new ModuleName("CS2100"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
         };
     }
 

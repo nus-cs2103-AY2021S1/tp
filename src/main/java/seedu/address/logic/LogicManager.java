@@ -2,11 +2,8 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -23,7 +20,6 @@ import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -62,9 +58,9 @@ public class LogicManager implements Logic {
 
         if (firstWord.equals("meeting")) {
             command = meetingBookParser.parseCommand(commandText);
-        } else if(firstWord.equals("module")){
+        } else if (firstWord.equals("module")) {
             command = moduleBookParser.parseCommand(commandText);
-        }else{
+        } else {
             command = addressBookParser.parseCommand(commandText);
         }
         commandResult = command.execute(model);

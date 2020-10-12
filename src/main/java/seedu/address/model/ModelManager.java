@@ -35,7 +35,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook, ReadOnlyModuleBook moduleBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
+                        ReadOnlyModuleBook moduleBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, meetingBook, userPrefs, moduleBook);
 
@@ -172,7 +173,7 @@ public class ModelManager implements Model {
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return meetingBook.hasMeeting(meeting);
-    };
+    }
 
     @Override
     public boolean hasMeetingName(MeetingName meetingName) {
@@ -192,7 +193,7 @@ public class ModelManager implements Model {
     }
     //=========== Modules ===================================================================================
     @Override
-    public void addModule(Module module){
+    public void addModule(Module module) {
         moduleBook.addModule(module);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -201,7 +202,7 @@ public class ModelManager implements Model {
      * Returns true if a module with the same module name as {@code module} exists in the address book.
      */
     @Override
-    public boolean hasModuleName(ModuleName moduleName){
+    public boolean hasModuleName(ModuleName moduleName) {
         requireNonNull(moduleName);
         return moduleBook.hasModuleName(moduleName);
     }

@@ -85,7 +85,7 @@ public class AddModuleCommand extends Command {
         Module toAdd = new Module(moduleName, personList);
         try {
             model.addModule(toAdd);
-        }catch(DuplicateModuleException e){
+        } catch (DuplicateModuleException e) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
@@ -98,5 +98,4 @@ public class AddModuleCommand extends Command {
                 && moduleName.equals(((AddModuleCommand) other).moduleName)
                 && nameList.equals(((AddModuleCommand) other).nameList));
     }
-
 }

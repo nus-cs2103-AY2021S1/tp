@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
@@ -53,7 +52,7 @@ public class UniqueModuleList implements Iterable<Module> {
      * {@code target} must exist in the list.
      * The module identity of {@code editedModule} must not be the same as another existing module in the list.
      */
-    public void setModule(Module target, Module editedModule) throws RuntimeException{
+    public void setModule(Module target, Module editedModule) throws RuntimeException {
         requireAllNonNull(target, editedModule);
 
         int index = internalList.indexOf(target);
