@@ -66,7 +66,12 @@ public class Module {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameModule(Module otherModule) {
-        return true;
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getName().equals(getName());
     }
 
     @Override

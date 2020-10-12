@@ -23,10 +23,10 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        Module module;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -38,9 +38,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         //Person person = new Person(name, email, tagList);
 
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
-        ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_NAME).get());
 
-        Module module = new Module(moduleName, zoomLink);
+        if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
+            ZoomLink zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
+            module = new Module(moduleName, zoomLink);
+        } else {
+            module = new Module(moduleName);
+        }
 
         // return new AddCommand(person);
         return new AddCommand(module);
