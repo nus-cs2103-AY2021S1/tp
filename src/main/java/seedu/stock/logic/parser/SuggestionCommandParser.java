@@ -13,8 +13,11 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import java.util.List;
 
 import seedu.stock.commons.util.SuggestionUtil;
+import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.ExitCommand;
+import seedu.stock.logic.commands.HelpCommand;
+import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -56,11 +59,28 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         case ExitCommand.COMMAND_WORD:
             generateExitSuggestion(toBeDisplayed, argMultimap);
             break;
+
+        case HelpCommand.COMMAND_WORD:
+            generateHelpSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case ListCommand.COMMAND_WORD:
+            generateListSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(CommandWords.LIST_COMMAND_WORD);
+    }
+
+    private void generateHelpSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(CommandWords.HELP_COMMAND_WORD);
     }
 
     private void generateExitSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
