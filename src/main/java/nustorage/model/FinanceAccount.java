@@ -1,5 +1,6 @@
 package nustorage.model;
 
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -11,25 +12,35 @@ import javafx.collections.ObservableList;
 import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 
+
 public class FinanceAccount implements Iterable<FinanceRecord> {
 
     private final ObservableList<FinanceRecord> internalList = FXCollections.observableArrayList();
     private final ObservableList<FinanceRecord> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+
     public FinanceAccount() {
 
     }
 
+
     public void addRecord(FinanceRecord record) {
         internalList.add(record);
     }
+
 
     public void setFinanceRecord(FinanceRecord target, FinanceRecord newRecord) {
         int index = internalList.indexOf(target);
         internalList.remove(index);
         internalList.add(index, newRecord);
     }
+
+
+    public boolean hasRecord(FinanceRecord record) {
+        return this.internalList.contains(record);
+    }
+
 
     /**
      * Removes the finance record with the corresponding index
@@ -46,9 +57,11 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
         return Optional.of(internalList.remove(targetIndex.getZeroBased()));
     }
 
+
     public int count() {
         return internalList.size();
     }
+
 
     /**
      * Returns the net transaction amount of all finance records
@@ -61,9 +74,11 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
                 .sum();
     }
 
-    public List<FinanceRecord> filterRecords (Predicate<FinanceRecord> filter) {
+
+    public List<FinanceRecord> filterRecords(Predicate<FinanceRecord> filter) {
         return internalList.stream().filter(filter).collect(Collectors.toList());
     }
+
 
     public boolean isEmpty() {
         return internalList.isEmpty();
@@ -74,14 +89,17 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
         return internalList;
     }
 
+
     public ObservableList<FinanceRecord> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
+
 
     @Override
     public Iterator<FinanceRecord> iterator() {
         return internalList.iterator();
     }
+
 
     @Override
     public String toString() {
@@ -89,4 +107,5 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
                 .map(FinanceRecord::toString)
                 .collect(Collectors.joining("\n"));
     }
+
 }
