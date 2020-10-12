@@ -48,14 +48,8 @@ public class ClientListParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
