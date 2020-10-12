@@ -3,28 +3,25 @@ package seedu.address.model.flashcard;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
- * Tests that a {@code Flashcard}'s {@code Category} is equivalent to any of the keywords given.
+ * Tests that a {@code Flashcard}'s {@code Category} is equivalent to any of the categories given.
  */
 public class CategoryEqualsKeywordsPredicate implements Predicate<Flashcard> {
-    private final List<String> keywords;
+    private final List<Category> categoryList;
 
-    public CategoryEqualsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public CategoryEqualsKeywordsPredicate(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 
     @Override
     public boolean test(Flashcard flashcard) {
-        return keywords.stream().anyMatch(keyword -> StringUtil
-                .equalsToCategoryIgnoreCase(flashcard.getCategory().toString(), keyword));
+        return categoryList.stream().anyMatch(category -> category.equals(flashcard.getCategory()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CategoryEqualsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((CategoryEqualsKeywordsPredicate) other).keywords)); // state check
+                && categoryList.equals(((CategoryEqualsKeywordsPredicate) other).categoryList)); // state check
     }
 }

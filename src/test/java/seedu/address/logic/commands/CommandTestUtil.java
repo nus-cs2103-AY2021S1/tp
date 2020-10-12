@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -12,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FlashcardDeck;
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
+import seedu.address.testutil.EditFlashcardDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -22,13 +26,22 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_2 = "What is a revision control software?";
     public static final String VALID_QUESTION_3 = "It is recommended that assertions to be used liberally in the "
             + "code. True or False?";
+    public static final String VALID_QUESTION_4 = "Multiple models of the same entity may be needed to capture it "
+            + "fully. True or False?";
+    public static final String VALID_QUESTION_5 = "The middle part of the user story (i.e., the function) can be "
+            + "omitted if it is obvious. True or False?";
 
     public static final String VALID_ANSWER_1 = "Software development life cycle";
     public static final String VALID_ANSWER_2 = "It is the software tool that automate the process of Revision Control";
     public static final String VALID_ANSWER_3 = "True";
+    public static final String VALID_ANSWER_4 = "True";
+    public static final String VALID_ANSWER_5 = "False";
+
 
     public static final String VALID_CATEGORY_1 = "SDLC";
     public static final String VALID_CATEGORY_2 = "Revision history";
+    public static final String VALID_CATEGORY_4 = "Models";
+    public static final String VALID_CATEGORY_5 = "User Stories";
 
     public static final String INVALID_QUESTION_1 = " ";
     public static final String INVALID_ANSWER_1 = " ";
@@ -37,18 +50,26 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_QUESTION_4_DESC = " " + PREFIX_QUESTION + VALID_QUESTION_4;
+    public static final String VALID_ANSWER_4_DESC = " " + PREFIX_ANSWER + VALID_ANSWER_4;
+    public static final String VALID_CATEGORY_4_DESC = " " + PREFIX_CATEGORY + VALID_CATEGORY_4;
+    public static final String VALID_QUESTION_5_DESC = " " + PREFIX_QUESTION + VALID_QUESTION_5;
+    public static final String VALID_ANSWER_5_DESC = " " + PREFIX_ANSWER + VALID_ANSWER_5;
+    public static final String VALID_CATEGORY_5_DESC = " " + PREFIX_CATEGORY + VALID_CATEGORY_5;
 
-    //    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    //    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + INVALID_QUESTION_1;
+    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER + INVALID_ANSWER_1;
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + INVALID_CATEGORY_1;
 
-    //    static {
-    //        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-    //                .withCategory(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAnswer(VALID_ADDRESS_AMY)
-    //                .withTags(VALID_TAG_FRIEND).build();
-    //        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-    //                .withCategory(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ADDRESS_BOB)
-    //                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    //    }
+    public static final EditCommand.EditFlashcardDescriptor DESC_FLASHCARD_1;
+    public static final EditCommand.EditFlashcardDescriptor DESC_FLASHCARD_2;
+
+    static {
+        DESC_FLASHCARD_1 = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_1)
+                .withAnswer(VALID_ANSWER_1).withCategory(VALID_CATEGORY_1).build();
+        DESC_FLASHCARD_2 = new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_2)
+                .withAnswer(VALID_ANSWER_2).withCategory(VALID_CATEGORY_2).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

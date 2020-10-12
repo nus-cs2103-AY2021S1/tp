@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.flashcard.Category;
 import seedu.address.model.flashcard.CategoryEqualsKeywordsPredicate;
 
 /**
@@ -19,20 +22,24 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        String[] categoryKeywords = trimmedArgs.split("c/");
+        List<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
+        return new FilterCommand(new CategoryEqualsKeywordsPredicate(categoryList));
+    }
 
-        categoryKeywords = Arrays.copyOfRange(categoryKeywords, 1, categoryKeywords.length);
-
-        for (int i = 0; i < categoryKeywords.length; i++) {
-            categoryKeywords[i] = categoryKeywords[i].trim();
-        }
-
-        return new FilterCommand(new CategoryEqualsKeywordsPredicate(Arrays.asList(categoryKeywords)));
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

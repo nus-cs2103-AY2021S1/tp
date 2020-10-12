@@ -47,7 +47,7 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyFlashcardDeck addressBook);
+    void setFlashcardDeck(ReadOnlyFlashcardDeck addressBook);
 
     /** Returns the AddressBook */
     ReadOnlyFlashcardDeck getAddressBook();
