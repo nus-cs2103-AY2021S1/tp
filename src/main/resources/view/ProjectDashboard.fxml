@@ -40,7 +40,8 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <FlowPane id="dashboardTask" fx:id="tasks" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <FlowPane id="dashboardTM" fx:id="tasks" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <FlowPane id="dashboardTask" fx:id="tasks1" layoutX="25.0" layoutY="412.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
          </children>
       </VBox>
    </children>

@@ -40,7 +40,10 @@ public class ProjectDashboard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private FlowPane teammates;
+    @FXML
     private FlowPane tasks;
+
 
     /**
      * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
@@ -60,6 +63,8 @@ public class ProjectDashboard extends UiPart<Region> {
         this.project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+        this.project.getTeammates().stream()
+                .forEach(person -> teammates.getChildren().add(new Label((person.getPersonName().toString()))));
     }
 
     @Override
