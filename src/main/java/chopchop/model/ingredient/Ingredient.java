@@ -22,6 +22,10 @@ public class Ingredient extends FoodEntry {
     // Data fields
     private final Quantity quantity;
 
+    /**
+     * Every field must be present and not null. Use this constructor if expiry date is not present.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
     public Ingredient(Name name, Quantity quantity) {
         super(name);
         requireNonNull(quantity);
@@ -29,6 +33,10 @@ public class Ingredient extends FoodEntry {
         this.expiryDate = null;
     }
 
+    /**
+     * Every field must be present and not null. If expiry date is not present, use other constructor.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
     public Ingredient(Name name, Quantity quantity, ExpiryDate expiryDate) {
         super(name);
         requireAllNonNull(quantity, expiryDate);
