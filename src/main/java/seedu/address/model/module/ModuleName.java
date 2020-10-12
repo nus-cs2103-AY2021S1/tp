@@ -33,7 +33,7 @@ public class ModuleName {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getModuleName(){
+    public String getModuleName() {
         return this.moduleName;
     }
 

@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
+import seedu.address.model.ModuleBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.ModuleBook;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
