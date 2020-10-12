@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.HELP_START;
+import static seedu.address.commons.core.Messages.HELP_SUMMARY;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -35,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
+    private DeliveryListPanel deliveryListPanel;
     private HelpWindow helpWindow;
     private PreviewWindow previewWindow;
 
@@ -42,13 +46,19 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private MenuItem startHelpMenuItem;
+
+    @FXML
+    private MenuItem summaryHelpMenuItem;
 
     @FXML
     private StackPane itemListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane deliveryListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -79,7 +89,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(startHelpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(summaryHelpMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -122,6 +133,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        deliveryListPanel = new DeliveryListPanel(logic.getFilteredDeliveryList());
+        deliveryListPanelPlaceholder.getChildren().add(deliveryListPanel.getRoot());
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInventoryBookFilePath(),
                 logic.getDeliveryBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -143,10 +157,27 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Sets up the start help window page and opens it or focuses on it if it's already opened
      */
     @FXML
-    public void handleHelp() {
+    public void handleHelpStart() {
+        helpWindow.setText(HELP_START);
+        handleHelp();
+    }
+
+    /**
+     * Sets up the summary help window page and opens it or focuses on it if it's already opened
+     */
+    @FXML
+    public void handleHelpSummary() {
+        previewWindow.setPreviewText(HELP_SUMMARY);
+        handlePreview();
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    private void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -158,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
-    public void handlePreview() {
+    private void handlePreview() {
         if (!previewWindow.isShowing()) {
             previewWindow.show();
         } else {
