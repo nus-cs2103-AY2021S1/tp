@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Animal values as in TypicalAnimals#getTypicalAddressBook()",
+  "_comment": "ZooKeepBook save file which contains the same Animal values as in TypicalAnimals#getTypicalZooKeepBook()",
   "animals" : [ {
     "name" : "Alice Pauline",
     "id" : "94351253",

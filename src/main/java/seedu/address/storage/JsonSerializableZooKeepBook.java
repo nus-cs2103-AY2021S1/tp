@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyZooKeepBook;
+import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ZooKeepBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "zookeepbook")
+class JsonSerializableZooKeepBook {
 
     public static final String MESSAGE_DUPLICATE_ANIMAL = "Animals list contains duplicate animal(s).";
 
     private final List<JsonAdaptedAnimal> animals = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given animals.
+     * Constructs a {@code JsonSerializableZooKeepBook} with the given animals.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("animals") List<JsonAdaptedAnimal> animals) {
+    public JsonSerializableZooKeepBook(@JsonProperty("animals") List<JsonAdaptedAnimal> animals) {
         this.animals.addAll(animals);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyZooKeepBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableZooKeepBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableZooKeepBook(ReadOnlyZooKeepBook source) {
         animals.addAll(source.getAnimalList().stream().map(JsonAdaptedAnimal::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this zookeep book into the model's {@code ZooKeepBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public ZooKeepBook toModelType() throws IllegalValueException {
+        ZooKeepBook zooKeepBook = new ZooKeepBook();
         for (JsonAdaptedAnimal jsonAdaptedAnimal : animals) {
             Animal animal = jsonAdaptedAnimal.toModelType();
-            if (addressBook.hasAnimal(animal)) {
+            if (zooKeepBook.hasAnimal(animal)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ANIMAL);
             }
-            addressBook.addAnimal(animal);
+            zooKeepBook.addAnimal(animal);
         }
-        return addressBook;
+        return zooKeepBook;
     }
 
 }

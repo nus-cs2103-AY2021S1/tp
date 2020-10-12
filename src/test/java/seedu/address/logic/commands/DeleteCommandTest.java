@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
-import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
 
@@ -27,7 +27,7 @@ public class DeleteCommandTest {
 
     private static final Id OUT_OF_BOUNDS_ID = new Id("99999999999999999999999999999999");
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,7 +36,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getZooKeepBook(), new UserPrefs());
         expectedModel.deleteAnimal(animalToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -59,7 +59,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getZooKeepBook(), new UserPrefs());
         expectedModel.deleteAnimal(animalToDelete);
         showNoAnimal(expectedModel);
 
@@ -72,7 +72,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAnimalList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(OUT_OF_BOUNDS_ID);
 

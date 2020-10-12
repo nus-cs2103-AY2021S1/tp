@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
-import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
 
@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
 import seedu.address.testutil.AnimalBuilder;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
@@ -32,7 +32,7 @@ import seedu.address.testutil.EditAnimalDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ZooKeepBook(model.getZooKeepBook()), new UserPrefs());
         expectedModel.setAnimal(model.getFilteredAnimalList().get(0), editedAnimal);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ZooKeepBook(model.getZooKeepBook()), new UserPrefs());
         expectedModel.setAnimal(lastAnimal, editedAnimal);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ZooKeepBook(model.getZooKeepBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ZooKeepBook(model.getZooKeepBook()), new UserPrefs());
         expectedModel.setAnimal(model.getFilteredAnimalList().get(0), editedAnimal);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -112,7 +112,7 @@ public class EditCommandTest {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
         // edit animal in filtered list into a duplicate in address book
-        Animal animalInList = model.getAddressBook().getAnimalList().get(INDEX_SECOND_ANIMAL.getZeroBased());
+        Animal animalInList = model.getZooKeepBook().getAnimalList().get(INDEX_SECOND_ANIMAL.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ANIMAL,
                 new EditAnimalDescriptorBuilder(animalInList).build());
 
@@ -137,7 +137,7 @@ public class EditCommandTest {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
         Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAnimalList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB).build());

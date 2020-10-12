@@ -9,10 +9,10 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.UniqueAnimalList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the zookeep-book level
  * Duplicates are not allowed (by .isSameAnimal comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ZooKeepBook implements ReadOnlyZooKeepBook {
 
     private final UniqueAnimalList animals;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         animals = new UniqueAnimalList();
     }
 
-    public AddressBook() {}
+    public ZooKeepBook() {}
 
     /**
-     * Creates an AddressBook using the Animals in the {@code toBeCopied}
+     * Creates a ZooKeepBook using the Animals in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ZooKeepBook(ReadOnlyZooKeepBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ZooKeepBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyZooKeepBook newData) {
         requireNonNull(newData);
 
         setAnimals(newData.getAnimalList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// animal-level operations
 
     /**
-     * Returns true if a animal with the same identity as {@code animal} exists in the address book.
+     * Returns true if a animal with the same identity as {@code animal} exists in the zookeep book.
      */
     public boolean hasAnimal(Animal animal) {
         requireNonNull(animal);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a animal to the address book.
-     * The animal must not already exist in the address book.
+     * Adds a animal to the zookeep book.
+     * The animal must not already exist in the zookeep book.
      */
     public void addAnimal(Animal p) {
         animals.add(p);
@@ -76,8 +76,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given animal {@code target} in the list with {@code editedAnimal}.
-     * {@code target} must exist in the address book.
-     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the address book.
+     * {@code target} must exist in the zookeep book.
+     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the zookeep book.
      */
     public void setAnimal(Animal target, Animal editedAnimal) {
         requireNonNull(editedAnimal);
@@ -86,8 +86,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ZooKeepBook}.
+     * {@code key} must exist in the zookeep book.
      */
     public void removeAnimal(Animal key) {
         animals.remove(key);
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && animals.equals(((AddressBook) other).animals));
+                || (other instanceof ZooKeepBook // instanceof handles nulls
+                && animals.equals(((ZooKeepBook) other).animals));
     }
 
     @Override
