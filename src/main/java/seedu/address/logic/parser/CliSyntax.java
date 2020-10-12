@@ -6,7 +6,7 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    //AB3 prefix
+    //Calo prefix
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_DATE = new Prefix("at/");

@@ -33,6 +33,6 @@ public class CaloriesTest {
         // valid calories
         assertTrue(Calories.isValidCalories("9")); // exactly 1 number
         assertTrue(Calories.isValidCalories("93121534"));
-        assertTrue(Calories.isValidCalories("124293842033123")); // long phone numbers
+        assertTrue(Calories.isValidCalories("124293842033123")); // long number
     }
 }
