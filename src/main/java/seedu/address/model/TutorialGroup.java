@@ -4,9 +4,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import seedu.address.model.person.Module;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.person.Module;
 
 public class TutorialGroup {
     private final String id;

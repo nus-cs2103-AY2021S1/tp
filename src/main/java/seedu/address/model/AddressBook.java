@@ -125,6 +125,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorialgroups.add(tutorialGroup);
     }
 
+    /**
+     * Checks if the AddressBook already contains the specific tutorial group is in tutorialgroups list
+     *
+     * @param tutorialGroup
+     * @return
+     */
     public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
         requireNonNull(tutorialGroup);
         return tutorialgroups.contains(tutorialGroup);
