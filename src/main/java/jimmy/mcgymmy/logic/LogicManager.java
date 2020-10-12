@@ -7,14 +7,14 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
-import jimmy.mcgymmy.logic.commands.Command;
+import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.McGymmyParser;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.ReadOnlyAddressBook;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.storage.Storage;
 
 /**
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = mcGymmyParser.parse(commandText);
-        commandResult = command.execute(model);
+        CommandExecutable executable = mcGymmyParser.parse(commandText);
+        commandResult = executable.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveMcGymmy(model.getMcGymmy());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyMcGymmy getMcGymmy() {
+        return model.getMcGymmy();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Food> getFilteredFoodList() {
+        return model.getFilteredFoodList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getMcGymmyFilePath() {
+        return model.getMcGymmyFilePath();
     }
 
     @Override

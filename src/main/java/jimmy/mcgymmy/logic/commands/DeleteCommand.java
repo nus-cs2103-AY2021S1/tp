@@ -10,20 +10,20 @@ import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.person.Person;
+import jimmy.mcgymmy.model.food.Food;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a food identified using it's displayed index from mcgymmy.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Deleted Food: %1$s";
 
     private Parameter<Index> indexParameter = this.addParameter(
             "index",
             "",
-            "index number used in the displayed person list.",
+            "index number used in the displayed food list.",
             "2",
             ParserUtil::parseIndex
     );
@@ -35,15 +35,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Food> lastShownList = model.getFilteredFoodList();
         Index targetIndex = indexParameter.consume();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Food foodToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteFood(foodToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_FOOD_SUCCESS, foodToDelete));
     }
 }
