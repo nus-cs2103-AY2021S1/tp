@@ -29,8 +29,10 @@ import seedu.address.model.tag.Tag;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
+        new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(),
+        getTypicalModuleBook(), new UserPrefs());
 
     @Test
     public void equals() {

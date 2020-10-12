@@ -20,10 +20,21 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
+import seedu.address.model.ReadOnlyModuleBook;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.storage.*;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMeetingBookStorage;
+import seedu.address.storage.JsonModuleBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
+
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -43,7 +54,8 @@ public class LogicManagerTest {
         JsonModuleBookStorage moduleBookStorage =
                 new JsonModuleBookStorage(temporaryFolder.resolve("moduleBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, moduleBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, moduleBookStorage,
+            userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,7 +88,8 @@ public class LogicManagerTest {
                 new JsonModuleBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionModuleBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, moduleBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, moduleBookStorage,
+            userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +142,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(), model.getModuleBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(), model.getModuleBook(),
+            new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

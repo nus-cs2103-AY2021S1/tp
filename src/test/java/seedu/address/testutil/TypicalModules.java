@@ -1,13 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.MeetingBook;
-import seedu.address.model.ModuleBook;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.module.Module;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.ModuleBook;
+import seedu.address.model.module.Module;
+
 
 public class TypicalModules {
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105").build();
