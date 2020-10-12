@@ -36,6 +36,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code quantity} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified quantity is a zero or negative value, or not an Integer.
+     */
+    public static int parseQuantity(String quantity) throws ParseException {
+        String trimmedQuantity = quantity.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedQuantity);
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

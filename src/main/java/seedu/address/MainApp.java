@@ -85,7 +85,8 @@ public class MainApp extends Application {
         List<Optional<ReadOnlyMenuManager>> menuManagersOptional;
         ReadOnlyAddressBook initialData;
         List<MenuManager> initialMenuManagers = new ArrayList<>();
-        OrderManager initialOrderManager = new OrderManager(new OrderItemStorageStub().readOrderManager().get());
+//        OrderManager initialOrderManager = new OrderManager(new OrderItemStorageStub().readOrderManager().get());
+        OrderManager initialOrderManager = new OrderManager();
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
