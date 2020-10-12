@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.lesson.exceptions.DuplicateLessonException;
 import seedu.address.model.lesson.exceptions.LessonNotFoundException;
 
@@ -63,12 +64,16 @@ public class UniqueLessonList implements Iterable<Lesson> {
      * Removes all lessons from the list.
      */
     public void removeAll() {
-        internalList.removeAll();
+        internalList.clear();
     }
 
     public void setLessons(UniqueLessonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+    }
+
+    public ObservableList<Lesson> getInternalList() {
+        return internalList;
     }
 
     /**

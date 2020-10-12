@@ -3,15 +3,19 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
+import seedu.address.model.task.UniqueTaskList;
 import seedu.address.timetable.TimetableData;
 import seedu.address.timetable.TimetableRetriever;
 
@@ -23,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueAssignmentList assignments;
     private final UniqueLessonList lessons;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,6 +39,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         assignments = new UniqueAssignmentList();
         lessons = new UniqueLessonList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -65,6 +71,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the lesson list with {@code lessons}.
+     * {@code lessons} must not contain duplicate lessons.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -72,6 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setAssignments(newData.getAssignmentList());
         setLessons(newData.getLessonList());
+        setTasks(newData.getTaskList());
     }
 
     //// assignment-level operations
@@ -88,8 +103,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an assignment to the address book.
      * The assignment must not already exist in the address book.
      */
-    public void addAssignment(Assignment p) {
-        assignments.add(p);
+    public void addAssignment(Assignment a) {
+        assignments.add(a);
+        tasks.add(a);
     }
 
     /**
@@ -110,6 +126,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeAssignment(Assignment key) {
         assignments.remove(key);
+        tasks.remove(key);
     }
 
     //// lesson-level operations
@@ -135,6 +152,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
+        tasks.add(lesson);
     }
 
     /**
@@ -142,6 +160,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void clearLessons() {
         lessons.removeAll();
+        //Have to remove lessons from task list as well
     }
 
     //// util methods
@@ -160,6 +179,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Lesson> getLessonList() {
         return lessons.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Task> combineTaskList() {
+        tasks.getInternalList().addAll(assignments.getInternalList());
+        tasks.getInternalList().addAll(lessons.getInternalList());
+        //not yet sorted
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override

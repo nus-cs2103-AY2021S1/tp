@@ -30,8 +30,9 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
+    //Independent Ui parts residing in this Ui container
     private AssignmentListPanel assignmentListPanel;
+    //private TaskListPanel taskListPanel;
     private ReminderListPanel assignmentListPanel2;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -41,6 +42,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane assignmentListPanelPlaceholder;
@@ -115,7 +119,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
+        System.out.println(logic.getFilteredAssignmentList());
+        System.out.println(logic.getFilteredTaskList());
         assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+
+//        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+//        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         assignmentListPanel2 = new ReminderListPanel(logic.getFilteredAssignmentList());
         assignmentListPanelPlaceholder2.getChildren().add(assignmentListPanel2.getRoot());
@@ -173,6 +182,10 @@ public class MainWindow extends UiPart<Stage> {
     public AssignmentListPanel getAssignmentListPanel() {
         return assignmentListPanel;
     }
+
+//    public TaskListPanel getTaskListPanel() {
+//        return taskListPanel;
+//    }
 
     public ReminderListPanel getReminderListPanel() {
         return assignmentListPanel2;

@@ -29,4 +29,14 @@ public abstract class Task {
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
+
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(getName())
+                && (otherTask.getTime().equals(getTime()));
+    }
 }
