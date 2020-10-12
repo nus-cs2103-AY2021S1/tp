@@ -16,6 +16,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<NamedAttendance> PREDICATE_SHOW_ALL_ATTENDANCES = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -90,6 +93,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Updates the filter of the filtered attendance list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAttendanceList(Predicate<NamedAttendance> predicate);
 
     /**
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.

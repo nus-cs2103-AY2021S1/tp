@@ -7,18 +7,13 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.attendance.Attendance;
-import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.attendance.NamedAttendance;
-import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Represents the in-memory model of the student list data.
@@ -29,7 +24,7 @@ public class ModelManager implements Model {
     private final Taskmaster taskmaster;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final AttendanceList attendanceList;
+    private final FilteredList<NamedAttendance> filteredNamedAttendance;
 
     /**
      * Initializes a ModelManager with the given taskmaster and userPrefs.
@@ -43,7 +38,7 @@ public class ModelManager implements Model {
         this.taskmaster = new Taskmaster(taskmaster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
-        attendanceList = AttendanceList.of(this.taskmaster.getStudentList());
+        filteredNamedAttendance = new FilteredList<>(this.taskmaster.getNamedAttendanceList());
     }
 
     public ModelManager() {
@@ -124,7 +119,8 @@ public class ModelManager implements Model {
     @Override
     public void markStudent(Student target, AttendanceType attendanceType) {
         requireAllNonNull(target, attendanceType);
-        attendanceList.markStudentAttendance(target.getNusnetId(), attendanceType);
+        taskmaster.markStudent(target, attendanceType);
+        updateFilteredAttendanceList(PREDICATE_SHOW_ALL_ATTENDANCES);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -150,19 +146,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<NamedAttendance> getFilteredAttendanceList() {
-        ObservableList<Attendance> attendances = attendanceList.asUnmodifiableObservableList();
-        ObservableList<NamedAttendance> namedAttendances = FXCollections.observableArrayList();
-        for (Attendance attendance : attendances) {
-            try {
-                Name name = taskmaster.getNameByNusnetId(attendance.getNusnetId());
-                namedAttendances.add(new NamedAttendance(name, attendance));
-            } catch (StudentNotFoundException stfe) {
-                Name name = Name.getStudentNotFoundName();
-                namedAttendances.add(new NamedAttendance(name, attendance));
-            }
-        }
+        return filteredNamedAttendance;
+    }
 
-        return FXCollections.unmodifiableObservableList(namedAttendances);
+    @Override
+    public void updateFilteredAttendanceList(Predicate<NamedAttendance> predicate) {
+        requireNonNull(predicate);
+        filteredNamedAttendance.setPredicate(predicate);
     }
 
     @Override
