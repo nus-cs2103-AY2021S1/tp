@@ -27,10 +27,10 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Only name and tags need to be non-null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, note);
+        requireAllNonNull(name, tags, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -69,6 +69,8 @@ public class Person {
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * If one of phone or email is null for both self and other person, check the other field instead.
+     * If both of phone and email are null for both self and other person, return true.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -76,9 +78,35 @@ public class Person {
             return true;
         }
 
+        // If both of phone and email are null for both self and other person, return true.
+        if (otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && getPhone() == null && otherPerson.getPhone() == null
+                && getEmail() == null && otherPerson.getEmail() == null) {
+            return true;
+        }
+
+        // If one of phone or email is null for both self and other person, check the other field instead.
+        // If at least one of phone or email are the same and non-null, return true,
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (isSameNullable(otherPerson.getPhone(), getPhone())
+                || isSameNullable(otherPerson.getEmail(), getEmail()));
+    }
+
+    /**
+     * Returns true if both objects are non-null, and are equal to each other.
+     * This is a utility method used by isSamePerson to handle for nulls.
+     * If either objects are null, false is returned, as the other identity field
+     * would be used to check for "sameness" instead.
+     *
+     * @param obj First object to test for is same.
+     * @param otherObj Second object to test for is same.
+     * @return Boolean representing if 2 objects are the same.
+     */
+    private boolean isSameNullable(Object obj, Object otherObj) {
+        return obj != null
+                && obj.equals(otherObj);
     }
 
     /**
@@ -96,12 +124,21 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && equalsNullable(otherPerson.getPhone(), getPhone())
+                && equalsNullable(otherPerson.getEmail(), getEmail())
+                && equalsNullable(otherPerson.getAddress(), getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getNote().equals(getNote());
+    }
+
+    private boolean equalsNullable(Object obj, Object otherObj) {
+        if (obj == null) {
+            return otherObj == null;
+        } else {
+            return obj.equals(otherObj);
+        }
     }
 
     @Override
@@ -113,18 +150,29 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+
+        builder.append(getName());
+        if (getPhone() != null) {
+            builder.append(" Phone: ")
+                    .append(getPhone());
+        }
+        if (getEmail() != null) {
+            builder.append(" Email: ")
+                    .append(getEmail());
+        }
+        if (getAddress() != null) {
+            builder.append(" Address: ")
+                    .append(getAddress());
+        }
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
         builder.append(" Note: ")
                 .append(getNote());
+
         return builder.toString();
     }
 
 }
+
