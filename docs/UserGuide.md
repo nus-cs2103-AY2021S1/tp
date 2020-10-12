@@ -43,7 +43,7 @@ This section explains the format of commands in this User Guide.
 4. Double-click the file to start the app. The following window should appear within a few seconds - this is the Session Screen, where you can create, open, or delete interview sessions:
 5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing Enter will open this user guide.
 6. Some example commands you can try:
-    -  `list rooms`: lists all rooms that are vacant.
+    -  `rooms --vacant`: lists all rooms that are vacant.
     - `allocate A0123456X 08-108`: allocate a student with the student ID A0123456X to room number 08-108.
     - `exit`: exits the app.
 8. Refer to “Features” for details of all the commands.
@@ -55,7 +55,7 @@ This section explains the format of commands in this User Guide.
 
 #### 1. Viewing a list of all vacant rooms
 
-Before assigning a room to a student at the start of the semester, you can view a list of all vacant rooms using the `list rooms` command.
+Before assigning a room to a student at the start of the semester, you can view a list of all vacant rooms using the `rooms --vacant` command.
 
 ##### Command
 ```
@@ -156,11 +156,11 @@ The room allocations for all students in the residential college can be viewed t
 
 ##### Command
 ```
-rooms
+rooms --vacant
 ```
 ##### Execution Example
 ```
-> rooms
+> rooms --vacant
 ```
 *Action*: views the room allocations for all students
 
@@ -284,7 +284,7 @@ help
 ```
 ##### Execution Example
 ```
-> list rooms - views a list of vacant rooms
+> rooms --vacant - views a list of vacant rooms
 > ...
 ```
 
