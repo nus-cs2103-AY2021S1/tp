@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 public class EmptyProjectDashboard extends UiPart<Region> {
     private static final String FXML = "EmptyProjectDashboard.fxml";
     private static final String EMPTY_DASHBOARD_MSG = "No project to be shown here";
-    
+
     @FXML
     private Label message;
 

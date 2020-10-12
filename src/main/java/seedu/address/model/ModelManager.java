@@ -172,12 +172,18 @@ public class ModelManager implements Model {
     }
 
     //=========== Project To Be Displayed On DashBoard Accessors ======================================================
-    
+
+    /**
+     * Updates the project to be displayed on project dashboard.
+     * @param project project to be displayed on dashboard
+     */
+    @Override
     public void updateProjectToBeDisplayedOnDashboard(Project project) {
         requireNonNull(project);
         this.projectToBeDisplayedOnDashboard = Optional.of(project);
     }
-    
+
+    @Override
     public Optional<Project> getProjectToBeDisplayedOnDashboard() {
         return projectToBeDisplayedOnDashboard;
     }

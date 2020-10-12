@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -83,7 +81,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered project list */
     ObservableList<Project> getFilteredProjectList();
-    
+
     /**
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

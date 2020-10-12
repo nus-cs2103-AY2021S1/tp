@@ -65,9 +65,11 @@ public class LogicManager implements Logic {
     public ObservableList<Project> getFilteredProjectList() {
         return model.getFilteredProjectList();
     }
-    
+
     @Override
-    public Optional<Project> getProjectToBeDisplayedOnDashBoard() { return model.getProjectToBeDisplayedOnDashboard();}
+    public Optional<Project> getProjectToBeDisplayedOnDashBoard() {
+        return model.getProjectToBeDisplayedOnDashboard();
+    }
 
     @Override
     public Path getMainCatalogueFilePath() {
