@@ -67,6 +67,10 @@ public class ClassTime {
         return LocalTime.parse(endTime, TIME_FORMATTER);
     }
 
+    public boolean isSameDay(DayOfWeek otherDay) {
+        return this.dayOfWeek.equals(otherDay);
+    }
+
     @Override
     public String toString() {
         String dayDisplayName = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);

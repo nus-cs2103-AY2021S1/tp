@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.DayOfWeek;
+
 import org.junit.jupiter.api.Test;
 
 public class ClassTimeTest {
@@ -55,5 +57,16 @@ public class ClassTimeTest {
         // valid class times
         assertTrue(ClassTime.isValidClassTime("2 1000-2230"));
         assertTrue(ClassTime.isValidClassTime("7 0000-2359"));
+    }
+
+    @Test
+    public void isSameDay() {
+        ClassTime t1 = new ClassTime("2 1000-2230");
+        DayOfWeek daySameAst1 = DayOfWeek.TUESDAY;
+        DayOfWeek dayDifferentFromt1 = DayOfWeek.MONDAY;
+
+        assertTrue(t1.isSameDay(daySameAst1));
+        assertFalse(t1.isSameDay(dayDifferentFromt1));
+        assertFalse(t1.isSameDay(null)); // equals method on null should return false
     }
 }
