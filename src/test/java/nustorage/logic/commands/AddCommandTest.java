@@ -117,7 +117,14 @@ public class AddCommandTest {
 
 
         @Override
+<<<<<<< HEAD
         public Path getAddressBookFilePath() {
+=======
+        public void deleteInventoryRecord(InventoryRecord target) {}
+
+        @Override
+        public ObservableList<InventoryRecord> getFilteredInventory() {
+>>>>>>> ba85e094c7db7ddb7b4601fc17379125a0c3bc68
             throw new AssertionError("This method should not be called.");
         }
 
@@ -244,6 +251,11 @@ public class AddCommandTest {
         @Override
         public Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex) {
             return Optional.empty();
+        }
+
+        @Override
+        public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
+
         }
 
 

@@ -1,6 +1,9 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Optional;
 
@@ -12,12 +15,18 @@ import nustorage.model.record.InventoryRecord;
 /**
  * An add inventory command class
  */
-public class AddInventoryCommand extends Command {
+public class AddInventoryRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "add_inventory";
 
-    public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an inventory record to the Inventory. "
+            + "Parameters: "
+            + PREFIX_ITEM_DESCRIPTION + "ITEM_DESCRIPTION "
+            + PREFIX_QUANTITY + "QUANTITY "
+            + PREFIX_ITEM_COST + "ITEM_COST"
+            + "(OPTIONAL) 'c/' is optional ";
 
+    public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
     private final InventoryRecord newInventoryRecord;
     private final Optional<FinanceRecord> newFinanceRecord;
 
@@ -26,7 +35,7 @@ public class AddInventoryCommand extends Command {
      * @param newInventoryRecord New inventory record.
      * @param newFinanceRecord New finance record.
      */
-    public AddInventoryCommand(InventoryRecord newInventoryRecord, Optional<FinanceRecord> newFinanceRecord) {
+    public AddInventoryRecordCommand(InventoryRecord newInventoryRecord, Optional<FinanceRecord> newFinanceRecord) {
         requireNonNull(newInventoryRecord);
         this.newInventoryRecord = newInventoryRecord;
         this.newFinanceRecord = newFinanceRecord;
