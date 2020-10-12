@@ -27,7 +27,7 @@ public class FilterCommand extends Command {
         + "Parameters: ("
         + PREFIX_TASK_FILTER_BY_ASSIGNEE + "ASSIGNEE NAME)||("
         + PREFIX_TASK_FILTER_BY_DEADLINE + "DEADLINE)||("
-        + PREFIX_TASK_FILTER_BY_NAME + "NAME)\n"
+        + PREFIX_TASK_FILTER_BY_NAME + "TASK NAME)\n"
         + "Example: " + COMMAND_WORD + " ("
         + PREFIX_TASK_FILTER_BY_ASSIGNEE + "Alice)||("
         + PREFIX_TASK_FILTER_BY_DEADLINE + "31-12-2020 10:00:00)||("
