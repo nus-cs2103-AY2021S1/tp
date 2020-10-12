@@ -1,6 +1,5 @@
 package chopchop.storage;
 
-import java.util.HashSet;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import chopchop.commons.exceptions.IllegalValueException;
