@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import chopchop.util.Pair;
 import chopchop.util.Result;
 import chopchop.util.StringView;
+import chopchop.logic.commands.Command;
+
+import static chopchop.parser.commands.AddCommandParser.parseAddCommand;
 
 public class CommandParser {
 
-    private static Result<List<Pair<String, String>>> parseNamedArguments(StringView input) {
+    private Result<List<Pair<String, String>>> parseNamedArguments(StringView input) {
 
         var ret = new ArrayList<Pair<String, String>>();
         while (input.size() > 0) {
@@ -56,7 +59,7 @@ public class CommandParser {
      * @param input the input string to parse
      * @return      the parsed components, iff parsing succeeded; an empty optional otherwise.
      */
-    public static Result<CommandArguments> parse(String input) {
+    private Result<CommandArguments> parseArgs(String input) {
 
         var sv = new StringView(input);
 
@@ -95,7 +98,29 @@ public class CommandParser {
             assert xs.at(0) == '/';
         }
 
-        return parseNamedArguments(xs)
+        return this.parseNamedArguments(xs)
             .map(args -> new CommandArguments(command, target, theRest, args));
+    }
+
+
+    /**
+     * Parse a user input into a {@code Command}, or an error message if parsing failed.
+     *
+     * @param input the input string to parse
+     * @return      the parsed command on success; an error message otherwise.
+     */
+    public Result<Command> parse(String input) {
+
+        return this.parseArgs(input)
+            .then(args -> {
+                switch (args.getCommand()) {
+
+                case "add": return parseAddCommand(args);
+
+
+                default:
+                    return Result.error("unknown command '%s'", args.getCommand());
+                }
+            });
     }
 }

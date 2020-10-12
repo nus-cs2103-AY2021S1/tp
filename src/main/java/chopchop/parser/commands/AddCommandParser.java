@@ -7,10 +7,15 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import chopchop.model.Model;
 import chopchop.util.Result;
 import chopchop.util.StringView;
+import chopchop.logic.commands.Command;
 import chopchop.parser.CommandArguments;
 import chopchop.model.attributes.Quantity;
+import chopchop.logic.commands.CommandResult;
+
+import chopchop.logic.commands.exceptions.CommandException;
 
 import static chopchop.parser.commands.CommonParser.getFirstUnknownArgument;
 
@@ -24,7 +29,7 @@ public class AddCommandParser {
      * @param args the parsed command arguments from the {@code CommandParser}.
      * @return     an AddCommand, if the input was valid.
      */
-    public static Result<? extends CommandStub> parseAddCommand(CommandArguments args) {
+    public static Result<? extends Command> parseAddCommand(CommandArguments args) {
         if (!args.getCommand().equals("add")) {
             return Result.error("invalid command '%s' (expected 'add')", args.getCommand());
         }
@@ -188,9 +193,6 @@ public class AddCommandParser {
         return Result.of(date);
     }
 
-    private static interface CommandStub {
-    }
-
     private static class RecipeStepStub {
         private final String step;
 
@@ -209,7 +211,7 @@ public class AddCommandParser {
         }
     }
 
-    private static class AddRecipeCommandStub implements CommandStub {
+    private static class AddRecipeCommandStub extends Command {
 
         private final String name;
         private final List<RecipeStepStub> steps;
@@ -222,9 +224,14 @@ public class AddCommandParser {
             this.steps = steps;
             this.ingredients = ingredients;
         }
+
+        @Override
+        public CommandResult execute(Model model) throws CommandException {
+            return null;
+        }
     }
 
-    private static class AddIngredientCommandStub implements CommandStub {
+    private static class AddIngredientCommandStub extends Command {
 
         private final String name;
         private final Optional<Quantity> quantity;
@@ -234,6 +241,11 @@ public class AddCommandParser {
             this.name = name;
             this.quantity = qty;
             this.expiryDate = expiry;
+        }
+
+        @Override
+        public CommandResult execute(Model model) throws CommandException {
+            return null;
         }
     }
 }

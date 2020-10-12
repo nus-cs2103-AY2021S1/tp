@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import chopchop.model.attributes.Quantity;
 import chopchop.testutil.IngredientBuilder;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.attributes.units.Count;

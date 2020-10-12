@@ -4,6 +4,7 @@ package chopchop.util;
 
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Consumer;
 
 /**
  * The Result class is used to encapsulate the result of some computation
@@ -99,6 +100,22 @@ public class Result<T> extends Either<String, T> {
     }
 
     /**
+     * Calls the function with the contained value iff it was not an error. This method is equivalent
+     * to {@code map}, but it does not return a new value. Use it to do things to the contained value
+     * in the middle of an expression.
+     *
+     * @param fn the consumer
+     * @return   the result, unmodified.
+     */
+    public Result<T> perform(Consumer<? super T> fn) {
+        if (this.hasValue()) {
+            fn.accept(this.getValue());
+        }
+
+        return this;
+    }
+
+    /**
      * Performs a monadic bind (>>=) on the value of this result. This is equivalent to
      * {@code flatMap} in Java (eg. Optional).
      *
@@ -138,6 +155,38 @@ public class Result<T> extends Either<String, T> {
         return this.isError()
             ? Optional.empty()
             : Optional.of(this.getValue());
+    }
+
+    /**
+     * If the result contains an error, throws the exception gotten from the supplier; if not, it returns
+     * the result unmodified.
+     *
+     * @param sup the supplier of the exception to throw
+     * @return    the result
+     * @throws E  if the result contained an error.
+     */
+    public <E extends Throwable> Result<T> throwIfError(Function<String, ? extends E> sup) throws E {
+        if (this.isError()) {
+            throw sup.apply(this.getError());
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * If the result contains an error, throws the exception gotten from the supplier; if not, it returns
+     * the value in the result.
+     *
+     * @param sup the supplier of the exception to throw
+     * @return    the contained value in the result (if an exception was not thrown)
+     * @throws E  if the result contained an error.
+     */
+    public <E extends Throwable> T orElseThrow(Function<String, ? extends E> sup) throws E {
+        if (this.isError()) {
+            throw sup.apply(this.getError());
+        } else {
+            return this.getValue();
+        }
     }
 
     @Override
@@ -221,6 +270,33 @@ public class Result<T> extends Either<String, T> {
             return Result.error(opt.get().getError());
         } else {
             return Result.of(Optional.of(opt.get().getValue()));
+        }
+    }
+
+    /**
+     * Extracts an exception from a {@code Result<Either<E, T>>}, where the left {@code Either} is the
+     * exception to throw, and the right side is the value to keep. If the outer {@code Result} contained
+     * an error message, then that error message is returned unmodified.
+     *
+     * If not, then the inner {@code Either} is inspected; if it was a left variant (ie. a
+     * {@code Throwable}), then it is thrown. Else, a Result of the right variant is returned.
+     *
+     * @param result the result to extract an exception from.
+     * @return       the resulting value (if no exception was thrown)
+     * @throws E     if the result's inner value was a right-variant Either.
+     */
+    public static <E extends Throwable, T> Result<T> extractException(
+        Result<? extends Either<? extends E, ? extends T>> result) throws E {
+
+        if (result.isError()) {
+            return Result.error(result.getError());
+        } else {
+            var value = result.getValue();
+            if (value.isLeft()) {
+                throw value.fromLeft();
+            } else {
+                return Result.of(value.fromRight());
+            }
         }
     }
 
