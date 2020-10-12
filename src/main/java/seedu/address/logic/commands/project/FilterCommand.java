@@ -20,8 +20,6 @@ import seedu.address.model.task.Task;
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Filter command not implemented yet";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Filter and show tasks with given predicate\n"
         + "Parameters: ("

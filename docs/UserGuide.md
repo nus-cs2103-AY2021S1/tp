@@ -213,15 +213,15 @@ Filter tasks by assignee, deadline or task name.
 
 Format: ``filter (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)``
 
-- `filter (ta/ASSIGNEE NAME)` retrieves all tasks that has assignee named `ASSIGNEE NAME`
-- `filter (td/DEADLINE)` retrieves all tasks whose deadline is`DEADLINE`
-- `filter (tn/TASK NAME)` retrieves all tasks whose task name contains `TASK NAME`
+- `filter (ta/ASSIGNEE NAME)` retrieves all tasks that have assignee named `ASSIGNEE NAME`
+- `filter (td/DEADLINE)` retrieves all tasks whose deadlines are`DEADLINE`
+- `filter (tn/TASK NAME)` retrieves all tasks whose task names contain `TASK NAME`
 
 Example: 
 
-1. `filter ta/Alice` Displays filtered list of tasks that has assignee named Alice.
-2. `filter td/31-12-2020 10:00:00` Displays filtered list of tasks whose deadline is at 10am on 31/12/2020.
-3. `filter tn/group meeting` Displays filtered list of tasks whose task name contains "group meeting".
+1. `filter ta/Alice` Displays filtered list of tasks that have assignee named Alice.
+2. `filter td/31-12-2020 10:00:00` Displays filtered list of tasks whose deadlines are at 10am on 31/12/2020.
+3. `filter tn/group meeting` Displays filtered list of tasks whose task names contain "group meeting".
 
 --------------------------------------------------------------------------------------------------------------------
 
