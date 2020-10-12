@@ -2,6 +2,7 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -129,6 +130,18 @@ public class Project {
      */
     public Participation getParticipation(String name) {
         return listOfParticipations.get(new PersonName(name));
+    }
+
+    /**
+     * Gets the complete list of Teammates associated with this project
+     */
+    public List<Person> getTeammates() {
+        List<Person> listOfPersons = new ArrayList<>();
+        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+            Person p = entry.getValue().getPerson();
+            listOfPersons.add(p);
+        }
+        return listOfPersons;
     }
 
     /**

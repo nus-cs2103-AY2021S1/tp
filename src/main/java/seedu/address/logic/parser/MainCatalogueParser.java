@@ -19,6 +19,7 @@ import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
+import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Status;
@@ -95,6 +96,10 @@ public class MainCatalogueParser {
 
             case AssignCommand.COMMAND_WORD:
                 return new AssignCommandParser().parse(arguments);
+
+            case NewTeammateCommand.COMMAND_WORD:
+                return new NewTeammateCommandParser().parse(arguments);
+
             case FilterCommand.COMMAND_WORD:
                 return new FilterCommandParser().parse(arguments);
             case ExitCommand.COMMAND_WORD:
