@@ -3,14 +3,31 @@ package seedu.fma.model.exercise;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_CRUNCHES;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_SIT_UP;
+import static seedu.fma.testutil.Assert.assertThrows;
 import static seedu.fma.testutil.TypicalExercises.JUMPING_JACK;
 import static seedu.fma.testutil.TypicalExercises.SIT_UP;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.fma.model.exercise.exceptions.ExerciseNotFoundException;
+import seedu.fma.model.util.Name;
 import seedu.fma.testutil.ExerciseBuilder;
 
 public class ExerciseTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        // null name
+        assertThrows(NullPointerException.class, () -> new Exercise(null, 123));
+    }
+
+    @Test
+    public void constructor_invalidCaloriesPerRep_throwsIllegalArgumentException() {
+        // invalid caloriesPerRep
+        assertThrows(IllegalArgumentException.class, () ->
+                new Exercise(new Name("jumping jacks"), -10));
+    }
 
     @Test
     public void equals() {
@@ -30,5 +47,18 @@ public class ExerciseTest {
         // different name -> returns false
         Exercise editedSitUp = new ExerciseBuilder(SIT_UP).withName(VALID_EXERCISE_CRUNCHES).build();
         assertFalse(SIT_UP.equals(editedSitUp));
+    }
+
+    @Test
+    public void finds() {
+        String invalidSearchString = "non existent exercise";
+
+        // non existing values -> returns ExerciseNotFound exception
+        assertThrows(ExerciseNotFoundException.class, () -> Exercise.find(new Name(invalidSearchString)));
+
+        // existing values -> returns true
+        assertTrue(new Exercise(new Name(VALID_EXERCISE_SIT_UP), 15)
+                .equals(Exercise.find(new Name(VALID_EXERCISE_SIT_UP))));
+
     }
 }

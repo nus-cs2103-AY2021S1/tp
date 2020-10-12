@@ -24,7 +24,7 @@ import seedu.fma.testutil.LogBuilder;
  */
 
 public class CommandTestUtil {
-    public static final String VALID_EXERCISE_SIT_UP = "Sit up";
+    public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
     public static final String VALID_EXERCISE_CRUNCHES = "Crunches";
 
     public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();

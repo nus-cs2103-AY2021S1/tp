@@ -1,13 +1,20 @@
 package seedu.fma.model.log;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_DATE_TIME_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B;
+import static seedu.fma.testutil.TypicalLogs.LOG_A;
+import static seedu.fma.testutil.TypicalLogs.LOG_B;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.fma.testutil.LogBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.fma.logic.commands.CommandTestUtil.*;
-import static seedu.fma.testutil.TypicalLogs.LOG_A;
-import static seedu.fma.testutil.TypicalLogs.LOG_B;
 
 public class LogTest {
     @Test

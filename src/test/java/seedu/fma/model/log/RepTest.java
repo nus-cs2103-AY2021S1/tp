@@ -2,6 +2,8 @@ package seedu.fma.model.log;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B;
 import static seedu.fma.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -40,22 +42,23 @@ public class RepTest {
 
     @Test
     public void equals() {
+
+        Rep repA = new Rep(VALID_REP_A);
+        Rep repB = new Rep(VALID_REP_B);
+
         // same values -> returns true
-        Rep REP_A = new Rep("12");
-        Rep REP_B = new Rep("12");
-        Rep REP_C = new Rep("14");
-        assertTrue(REP_A.equals(REP_B));
+        assertTrue(repA.equals(new Rep(VALID_REP_A)));
 
         // same object -> returns true
-        assertTrue(REP_A.equals(REP_A));
+        assertTrue(repA.equals(repA));
 
         // null -> returns false
-        assertFalse(REP_A.equals(null));
+        assertFalse(repA.equals(null));
 
         // different types -> returns false
-        assertFalse(REP_A.equals(5));
+        assertFalse(repA.equals(5));
 
         // different values -> returns false
-        assertFalse(REP_C.equals(REP_B));
+        assertFalse(repA.equals(repB));
     }
 }
