@@ -45,7 +45,7 @@
                             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
 
-                        <VBox fx:id="caseInformation" minWidth="250" prefWidth="250">
+                        <VBox fx:id="caseInformation" minWidth="250" prefWidth="250" VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets bottom="10" left="10" right="10" top="10"/>
                             </padding>
@@ -55,31 +55,31 @@
                                     <Insets bottom="10"/>
                                 </padding>
                                 <children>
-                                    <Label fx:id="caseTitle" styleClass="label-title" text="Double Kovan Murders">
+                                    <Label fx:id="caseTitle" styleClass="label-title" text="Default Title">
                                         <padding>
                                             <Insets bottom="5"/>
                                         </padding>
                                     </Label>
                                     <Label fx:id="caseDescription" styleClass="label-bright"
-                                           text="2 bodies found at Blk 123 and Blk 456, Kovan Avenue 6">
+                                           text="Default Description">
                                         <padding>
                                             <Insets bottom="5"/>
                                         </padding>
                                     </Label>
-                                    <Label fx:id="caseStatus" styleClass="label-bright" text="ACTIVE">
+                                    <Label fx:id="caseStatus" styleClass="label-bright" text="Default Status">
                                         <padding>
                                             <Insets bottom="5"/>
                                         </padding>
                                     </Label>
                                 </children>
                             </VBox>
-                            <VBox fx:id="caseDocumentsBox">
+                            <VBox fx:id="caseDocumentsBox" VBox.vgrow="ALWAYS">
                                 <padding>
                                     <Insets bottom="10"/>
                                 </padding>
                                 <children>
                                     <Label fx:id="caseDocumentsTitle" styleClass="label-title" text="DOCUMENTS"/>
-                                    <StackPane fx:id="caseDocuments" prefHeight="150.0" prefWidth="200.0"/>
+                                    <StackPane fx:id="documentListPanelPlaceholder" VBox.vgrow="ALWAYS" prefHeight="150.0" prefWidth="200.0"/>
                                 </children>
                             </VBox>
                             <VBox fx:id="caseSuspectsBox" layoutX="20.0" layoutY="106.0">

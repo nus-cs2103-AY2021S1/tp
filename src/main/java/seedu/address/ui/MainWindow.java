@@ -1,9 +1,15 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +22,16 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.Description;
+import seedu.address.model.investigationcase.Document;
+import seedu.address.model.investigationcase.Name;
+import seedu.address.model.investigationcase.Reference;
+import seedu.address.model.investigationcase.Status;
+import seedu.address.model.investigationcase.Suspect;
+import seedu.address.model.investigationcase.Title;
+import seedu.address.model.investigationcase.Victim;
+import seedu.address.model.investigationcase.Witness;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private DocumentListPanel documentListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +66,20 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    // Case Summary
+    @FXML
+    private Label caseTitle;
+
+    @FXML
+    private Label caseDescription;
+
+    @FXML
+    private Label caseStatus;
+
+    // Case Document
+    @FXML
+    private StackPane documentListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,6 +152,34 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        List<Document> dummyDoc = new ArrayList<>();
+        dummyDoc.add(new Document(new Name("Test Document Name"), new Reference("test1.txt")));
+        dummyDoc.add(new Document(new Name("Test Document Name 2"), new Reference("test1.txt")));
+
+        List<Suspect> dummySuspect = new ArrayList<>();
+        dummySuspect.add(new Suspect(new Name("Test Suspect 1")));
+        dummySuspect.add(new Suspect(new Name("Test Suspect 2")));
+
+        List<Witness> dummyWitness = new ArrayList<>();
+        dummyWitness.add(new Witness(new Name("Test Witness 1")));
+        dummyWitness.add(new Witness(new Name("Test Witness 2")));
+
+        List<Victim> dummyVictim = new ArrayList<>();
+        dummyVictim.add(new Victim(new Name("Test Victim 1")));
+        dummyVictim.add(new Victim(new Name("Test Victim 2")));
+
+        Case investigationCase = new Case(new Title("Double Kovan Murders"),
+                new Description("2 bodies found at Blk 123 and Blk 456 at Kovan Avenue 6"),
+                Status.ACTIVE, dummyDoc, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                new HashSet<>());
+
+        caseTitle.setText(investigationCase.getTitle().toString());
+        caseDescription.setText(investigationCase.getDescription().toString());
+        caseStatus.setText(investigationCase.getStatus().toString());
+
+        documentListPanel = new DocumentListPanel(FXCollections.observableList(investigationCase.getDocuments()));
+        documentListPanelPlaceholder.getChildren().add(documentListPanel.getRoot());
     }
 
     /**
