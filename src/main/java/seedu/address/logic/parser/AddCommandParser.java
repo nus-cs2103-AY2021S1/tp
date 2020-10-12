@@ -16,6 +16,13 @@ import seedu.address.model.food.Food;
 public class AddCommandParser implements Parser<AddCommand> {
 
     /**
+     * Dummy parse method
+     */
+    @Override
+    public AddCommand parse(String userInput) throws ParseException {
+        return null;
+    }
+    /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
@@ -48,10 +55,6 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
-
-    @Override
-    public AddCommand parse(String userInput) throws ParseException {
-        return null;
-    }
 }
+
+
