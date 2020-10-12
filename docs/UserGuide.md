@@ -141,9 +141,9 @@ Examples:
 
 ### Creating a macro command : `macro`
 
-Creates an Alias macro in McGymmy.
+Creates a macro in McGymmy.
 
-Format: `Alias SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
+Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
 
 ![Alias command example](images/CommandImagesForUG/Alias.png)
 
