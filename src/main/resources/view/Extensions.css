@@ -18,3 +18,19 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+#dashboardLabel {
+    -fx-font: 50pt"Arial";
+}
+
+#dashboardDeadline {
+    -fx-font: 25pt"Arial";
+}
+
+#dashboardPD {
+    -fx-font: 25pt"Arial";
+}
+
+#dashboardRU {
+    -fx-font: 25pt"Arial";
+}

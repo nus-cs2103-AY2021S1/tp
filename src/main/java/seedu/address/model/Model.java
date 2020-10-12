@@ -1,6 +1,9 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -80,7 +83,7 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered project list */
     ObservableList<Project> getFilteredProjectList();
-
+    
     /**
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -104,4 +107,16 @@ public interface Model {
      * Quits the current project view.
      */
     void quit();
+
+    /**
+     * Updates the project to be displayed on dashboard.
+     * @param project project to be displayed on dashboard
+     */
+    void updateProjectToBeDisplayedOnDashboard(Project project);
+
+    /**
+     * Gets the project to be displayed on dashboard.
+     * @return project to be displayed on dashboard wrapped in Optional box.
+     */
+    Optional<Project> getProjectToBeDisplayedOnDashboard();
 }

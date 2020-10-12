@@ -60,7 +60,7 @@ class JsonAdaptedProject {
      */
     public JsonAdaptedProject(Project source) {
         projectName = source.getProjectName().fullProjectName;
-        deadline = source.getDeadline().value;
+        deadline = source.getDeadline().toString();
         repoUrl = source.getRepoUrl().value;
         projectDescription = source.getProjectDescription().value;
         projectTagged.addAll(source.getProjectTags().stream()
