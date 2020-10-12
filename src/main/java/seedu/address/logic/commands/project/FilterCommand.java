@@ -25,13 +25,13 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Filter and show tasks with given predicate\n"
         + "Parameters: ("
-        + PREFIX_TASK_FILTER_BY_ASSIGNEE + "ASSIGNEE NAME )||("
-        + PREFIX_TASK_FILTER_BY_DEADLINE + "DEADLINE )||("
+        + PREFIX_TASK_FILTER_BY_ASSIGNEE + "ASSIGNEE NAME)||("
+        + PREFIX_TASK_FILTER_BY_DEADLINE + "DEADLINE)||("
         + PREFIX_TASK_FILTER_BY_NAME + "NAME)\n"
         + "Example: " + COMMAND_WORD + " ("
-        + PREFIX_TASK_FILTER_BY_ASSIGNEE + "ASSIGNEE NAME )||("
-        + PREFIX_TASK_FILTER_BY_DEADLINE + "DEADLINE )||("
-        + PREFIX_TASK_FILTER_BY_NAME + "NAME)\n";
+        + PREFIX_TASK_FILTER_BY_ASSIGNEE + "Alice)||("
+        + PREFIX_TASK_FILTER_BY_DEADLINE + "31-12-2020 10:00:00)||("
+        + PREFIX_TASK_FILTER_BY_NAME + "group meeting)\n";
     public static final String MESSAGE_FILTER_TASK_SUCCESS = "Here are the filtered tasks:";
 
     private final Predicate<Task> predicate;
