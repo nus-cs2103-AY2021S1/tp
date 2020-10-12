@@ -45,6 +45,7 @@ Given below are my contributions to the project.
     * Target user profile, value proposition, user stories, use cases, non-functional requirements, glossary (Pull requests [\#21]())
   * Renaming the product to Hospify (Pull requests [\#70]())
   * Changing the App window's bottom path display (Pull requests [\#70]())
+  * Updating product home page and description to Hospify and relevant links to Java CI and codecov (Pull requests [\#76]())
 
 * **Community**:
 

@@ -29,7 +29,7 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in Hospify.
  */
 public class EditCommand extends Command {
 
@@ -47,11 +47,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_NRIC + "S1234567A";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Hospify.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
