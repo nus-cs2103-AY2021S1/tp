@@ -1,7 +1,6 @@
 package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static jimmy.mcgymmy.testutil.TypicalFoods.getTypicalMcGymmy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -76,19 +75,25 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicateFood_throwsCommandException() {
+    public void execute_duplicateFood_success() {
         Food validFood = new FoodBuilder().withCarb("12345").build();
-        AddCommand addCommand = new AddCommand();
-        addCommand.setParameters(
+        AddCommand command = new AddCommand();
+        command.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("n", validFood.getName()),
                 new CommandParserTestUtil.OptionalParameterStub<>("p", validFood.getProtein()),
                 new CommandParserTestUtil.OptionalParameterStub<>("f", validFood.getFat()),
                 new CommandParserTestUtil.OptionalParameterStub<>("c", validFood.getCarbs()),
                 new CommandParserTestUtil.OptionalParameterStub<>("t")
         );
-        ModelStub modelStub = new ModelStubWithFood(validFood);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
+        String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, validFood);
+        Model expectedModel = new ModelManager(new McGymmy(model.getMcGymmy()), new UserPrefs());
+        expectedModel.addFood(validFood);
+        expectedModel.addFood(validFood);
+
+        command.execute(model);
+
+        CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     /**
