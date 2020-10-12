@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.calendar.exceptions.DuplicateMeetingException;
 import seedu.address.model.calendar.exceptions.MeetingNotFoundException;
-import seedu.address.model.property.Property;
 
 
 /**
@@ -23,7 +22,7 @@ import seedu.address.model.property.Property;
  *
  * Supports a minimal set of list operations.
  *
- * @see Property#isSameProperty(Property)
+ *
  */
 public class UniqueMeetingList implements Iterable<CalendarMeeting> {
 
@@ -94,7 +93,7 @@ public class UniqueMeetingList implements Iterable<CalendarMeeting> {
      */
     public void setMeetings(List<CalendarMeeting> meetings) {
         requireAllNonNull(meetings);
-        if (!propertiesAreUnique(meetings)) {
+        if (!meetingsAreUnique(meetings)) {
             throw new DuplicateMeetingException();
         }
 
@@ -128,7 +127,7 @@ public class UniqueMeetingList implements Iterable<CalendarMeeting> {
     /**
      * Returns true if {@code meetings} contains only unique meetings.
      */
-    private boolean propertiesAreUnique(List<CalendarMeeting> meetings) {
+    private boolean meetingsAreUnique(List<CalendarMeeting> meetings) {
         for (int i = 0; i < meetings.size() - 1; i++) {
             for (int j = i + 1; j < meetings.size(); j++) {
                 if (meetings.get(i).isSameMeeting(meetings.get(j))) {

@@ -16,8 +16,9 @@ public class CliSyntax {
     /* Calendar Prefix definitions */
     public static final Prefix PREFIX_CALENDAR_VENUE = new Prefix("v/");
     public static final Prefix PREFIX_CALENDAR_TIME = new Prefix("t/");
-    public static final Prefix PREFIX_CALENDAR_PROPERTY_ID = new Prefix("pID/");
-    public static final Prefix PREFIX_CALENDAR_BIDDER_ID = new Prefix("bID/");
+    public static final Prefix PREFIX_CALENDAR_PROPERTY_ID = new Prefix("p/");
+    public static final Prefix PREFIX_CALENDAR_BIDDER_ID = new Prefix("b/");
+    public static final Prefix PREFIX_CALENDAR_TYPE = new Prefix("q/");
 
     /* Property Prefix definitions */
     public static final Prefix PREFIX_PROPERTY_NAME = new Prefix("n/");

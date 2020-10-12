@@ -46,15 +46,15 @@ public class CalendarCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        typeOfMeeting.setText(getMeetingType(meeting));
-        calenderBidderId.setText(meeting.getCalendarBidderId().bidderId);
-        calenderPropertyId.setText(meeting.getCalendarPropertyId().propertyId);
-        time.setText(meeting.getCalendarTime().time);
-        venue.setText(meeting.getCalendarVenue().venue);
+        typeOfMeeting.setText("Meeting Type: " + getMeetingType(meeting));
+        calenderBidderId.setText("Bidder ID: " + meeting.getCalendarBidderId().bidderId);
+        calenderPropertyId.setText("Property ID: " + meeting.getCalendarPropertyId().propertyId);
+        time.setText("Time: " + meeting.getCalendarTime().time);
+        venue.setText("Venue: " + meeting.getCalendarVenue().venue);
     }
 
     public String getMeetingType(CalendarMeeting meeting) {
-        if (meeting.isAmin()) {
+        if (meeting.isAdmin()) {
             return "Admin Meeting:";
         } else if (meeting.isPaperWork()) {
             return "PaperWork Meeting:";
