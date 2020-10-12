@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@Style.css" />
     </stylesheets>
     <children>
-        <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
-        <TextArea fx:id="favouriteBox" maxHeight="256.0" maxWidth="304.0" prefHeight="320.0" prefWidth="320.0" text="\$pins" />
+        <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+        <TextArea fx:id="pins" maxHeight="256.0" maxWidth="304.0" prefHeight="320.0" prefWidth="290.0" text="\$pins" />
     </children>
 </StackPane>
