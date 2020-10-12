@@ -31,6 +31,10 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
         internalList.add(index, newRecord);
     }
 
+    public boolean hasRecord(FinanceRecord record) {
+        return this.internalList.contains(record);
+    }
+
     /**
      * Removes the finance record with the corresponding index
      *
