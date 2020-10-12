@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ModelForExercise;
+import seedu.address.model.ExerciseModel;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
@@ -15,6 +15,6 @@ public abstract class CommandForExercise {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(ModelForExercise model) throws CommandException;
+    public abstract CommandResult execute(ExerciseModel model) throws CommandException;
 
 }
