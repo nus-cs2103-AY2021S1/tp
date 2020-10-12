@@ -12,11 +12,14 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.MeetingBookParser;
+import seedu.address.logic.parser.ModuleBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
+import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -31,6 +34,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
     private final MeetingBookParser meetingBookParser;
+    private final ModuleBookParser moduleBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,6 +44,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         addressBookParser = new AddressBookParser();
         meetingBookParser = new MeetingBookParser();
+        moduleBookParser = new ModuleBookParser();
     }
 
     @Override
@@ -52,7 +57,9 @@ public class LogicManager implements Logic {
         Command command;
         if (firstWord.equals("meeting")) {
             command = meetingBookParser.parseCommand(commandText);
-        } else {
+        } else if(firstWord.equals("module")){
+            command = moduleBookParser.parseCommand(commandText);
+        }else{
             command = addressBookParser.parseCommand(commandText);
         }
         commandResult = command.execute(model);
@@ -60,6 +67,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveMeetingBook(model.getMeetingBook());
+            storage.saveModuleBook(model.getModuleBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -86,6 +94,15 @@ public class LogicManager implements Logic {
     public ReadOnlyMeetingBook getMeetingBook() {
         return model.getMeetingBook();
     }
+    @Override
+    public ReadOnlyModuleBook getModuleBook() {
+        return model.getModuleBook();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+    }
 
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
@@ -105,5 +122,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Path getModuleBookFilePath() {
+        return model.getModuleBookFilePath();
     }
 }
