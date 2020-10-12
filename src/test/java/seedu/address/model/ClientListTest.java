@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientList;
@@ -46,7 +46,9 @@ public class ClientListTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         ClientListStub newData = new ClientListStub(newPersons);
@@ -73,7 +75,9 @@ public class ClientListTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInClientList_returnsTrue() {
         clientList.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND)
                 .build();
         assertTrue(clientList.hasPerson(editedAlice));
     }

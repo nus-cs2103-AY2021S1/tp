@@ -7,7 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.clientsource.ClientSource;
+import seedu.address.model.note.Note;
 
 /**
  * Represents a Person in the client list.
@@ -22,18 +23,21 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<ClientSource> clientSources = new HashSet<>();
+    private final Note note;
+
 
     /**
-     * Every field must be present and not null.
+     * Only name and tags need to be non-null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note) {
+        requireAllNonNull(name, clientSources, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.clientSources.addAll(clientSources);
+        this.note = note;
     }
 
     public Name getName() {
@@ -53,15 +57,21 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable clientsource set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<ClientSource> getClientSources() {
+        return Collections.unmodifiableSet(clientSources);
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * If one of phone or email is null for both self and other person, check the other field instead.
+     * If both of phone and email are null for both self and other person, return true.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -69,9 +79,35 @@ public class Person {
             return true;
         }
 
+        // If both of phone and email are null for both self and other person, return true.
+        if (otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && getPhone() == null && otherPerson.getPhone() == null
+                && getEmail() == null && otherPerson.getEmail() == null) {
+            return true;
+        }
+
+        // If one of phone or email is null for both self and other person, check the other field instead.
+        // If at least one of phone or email are the same and non-null, return true,
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && (isSameNullable(otherPerson.getPhone(), getPhone())
+                || isSameNullable(otherPerson.getEmail(), getEmail()));
+    }
+
+    /**
+     * Returns true if both objects are non-null, and are equal to each other.
+     * This is a utility method used by isSamePerson to handle for nulls.
+     * If either objects are null, false is returned, as the other identity field
+     * would be used to check for "sameness" instead.
+     *
+     * @param obj First object to test for is same.
+     * @param otherObj Second object to test for is same.
+     * @return Boolean representing if 2 objects are the same.
+     */
+    private boolean isSameNullable(Object obj, Object otherObj) {
+        return obj != null
+                && obj.equals(otherObj);
     }
 
     /**
@@ -89,32 +125,55 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && equalsNullable(otherPerson.getPhone(), getPhone())
+                && equalsNullable(otherPerson.getEmail(), getEmail())
+                && equalsNullable(otherPerson.getAddress(), getAddress())
+                && otherPerson.getClientSources().equals(getClientSources())
+                && otherPerson.getNote().equals(getNote());
+    }
+
+    private boolean equalsNullable(Object obj, Object otherObj) {
+        if (obj == null) {
+            return otherObj == null;
+        } else {
+            return obj.equals(otherObj);
+        }
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, clientSources, note);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+
+        builder.append(getName());
+        if (getPhone() != null) {
+            builder.append(" Phone: ")
+                    .append(getPhone());
+        }
+        if (getEmail() != null) {
+            builder.append(" Email: ")
+                    .append(getEmail());
+        }
+        if (getAddress() != null) {
+            builder.append(" Address: ")
+                    .append(getAddress());
+        }
+        if (getClientSources().size() > 0) {
+            builder.append(" ClientSources: ");
+            getClientSources().forEach(builder::append);
+        }
+        builder.append(" Note: ")
+                .append(getNote());
+
         return builder.toString();
     }
 
 }
+
