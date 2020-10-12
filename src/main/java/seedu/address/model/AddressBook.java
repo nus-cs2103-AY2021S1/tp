@@ -27,7 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        tutorial_groups = new UniqueTutorialGroupList();
+        tutorialgroups = new UniqueTutorialGroupList();
     }
 
     public AddressBook() {}
@@ -122,6 +122,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
-        tutorial_groups.add(tutorialGroup);
+        tutorialgroups.add(tutorialGroup);
     }
 }
