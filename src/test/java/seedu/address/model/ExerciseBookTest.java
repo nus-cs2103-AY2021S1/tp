@@ -35,17 +35,17 @@ public class ExerciseBookTest {
     }
      */
 
-    /**
+    /*
     @Test
     public void resetData_withDuplicateExercises_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookTest.AddressBookStub newData = new AddressBookTest.AddressBookStub(newPersons);
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
-     */
+    */
 
     @Test
     public void hasPerson_nullExercise_throwsNullPointerException() {
@@ -77,10 +77,8 @@ public class ExerciseBookTest {
         assertThrows(UnsupportedOperationException.class, () -> exerciseBook.getExerciseList().remove(0));
     }
 
-/**
- * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
- */
     /*
+    //A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
