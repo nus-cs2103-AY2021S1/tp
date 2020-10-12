@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.calendar.CalendarMeeting;
@@ -12,7 +11,7 @@ import seedu.address.model.calendar.CalendarMeeting;
  */
 public class CalendarCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "CalendarListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -38,8 +37,7 @@ public class CalendarCard extends UiPart<Region> {
     private Label time;
     @FXML
     private Label venue;
-    @FXML
-    private FlowPane tags;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -48,15 +46,15 @@ public class CalendarCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        typeOfMeeting.setText(getMeetingType(meeting));
-        calenderBidderId.setText(meeting.getCalendarBidderId().bidderId);
-        calenderPropertyId.setText(meeting.getCalendarPropertyId().propertyId);
-        time.setText(meeting.getCalendarTime().time);
-        venue.setText(meeting.getCalendarVenue().venue);
+        typeOfMeeting.setText("Meeting Type: " + getMeetingType(meeting));
+        calenderBidderId.setText("Bidder ID: " + meeting.getCalendarBidderId().bidderId);
+        calenderPropertyId.setText("Property ID: " + meeting.getCalendarPropertyId().propertyId);
+        time.setText("Time: " + meeting.getCalendarTime().time);
+        venue.setText("Venue: " + meeting.getCalendarVenue().venue);
     }
 
     public String getMeetingType(CalendarMeeting meeting) {
-        if (meeting.isAmin()) {
+        if (meeting.isAdmin()) {
             return "Admin Meeting:";
         } else if (meeting.isPaperWork()) {
             return "PaperWork Meeting:";

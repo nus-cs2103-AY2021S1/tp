@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.bidder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -45,7 +47,15 @@ public class UniqueBidderList implements Iterable<Bidder> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
+        toAdd.setId(getLatestId());
         internalList.add(toAdd);
+    }
+
+    public Id getLatestId() {
+        if (internalList.size() == 0) {
+            return new Id("B", 1);
+        }
+        return this.internalList.get(internalList.size() - 1).getId().increment();
     }
 
     /**
@@ -53,7 +63,7 @@ public class UniqueBidderList implements Iterable<Bidder> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Bidder target, Bidder editedBidder) {
+    public void setBidder(Bidder target, Bidder editedBidder) {
         requireAllNonNull(target, editedBidder);
 
         int index = internalList.indexOf(target);
@@ -79,18 +89,18 @@ public class UniqueBidderList implements Iterable<Bidder> {
         }
     }
 
-    public void setPersons(UniqueBidderList replacement) {
+    public void setBidders(UniqueBidderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code bidders}.
+     * {@code bidders} must not contain duplicate bidders.
      */
-    public void setPersons(List<Bidder> bidders) {
+    public void setBidders(List<Bidder> bidders) {
         requireAllNonNull(bidders);
-        if (!personsAreUnique(bidders)) {
+        if (!biddersAreUnique(bidders)) {
             throw new DuplicatePersonException();
         }
 
@@ -122,12 +132,12 @@ public class UniqueBidderList implements Iterable<Bidder> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code bidders} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Bidder> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean biddersAreUnique(List<Bidder> bidders) {
+        for (int i = 0; i < bidders.size() - 1; i++) {
+            for (int j = i + 1; j < bidders.size(); j++) {
+                if (bidders.get(i).isSamePerson(bidders.get(j))) {
                     return false;
                 }
             }

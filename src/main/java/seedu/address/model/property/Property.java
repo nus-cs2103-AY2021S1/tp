@@ -15,7 +15,7 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
-    private static IdManager idManager = IdManager.initialize("P");
+    private static Id DEFAULT_ID = new Id("P", 0);
 
     // Identity fields
     private final Id propertyId;
@@ -52,7 +52,7 @@ public class Property {
     public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
                     PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
         requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
-        this.propertyId = idManager.getNextId();
+        this.propertyId = DEFAULT_ID;
         this.propertyName = propertyName;
         this.sellerId = sellerId;
         this.address = address;
@@ -60,6 +60,17 @@ public class Property {
         this.propertyType = propertyType;
         this.isRental = isRental;
         this.isClosedDeal = isClosedDeal;
+    }
+
+    /**
+     * Creates a new Property with the specified id.
+     *
+     * @param id The specified id.
+     * @return The new property.
+     */
+    public Property setId(Id id) {
+        return new Property(id, propertyName, sellerId, address, askingPrice, propertyType,
+                isRental, isClosedDeal);
     }
 
     public Id getPropertyId() {

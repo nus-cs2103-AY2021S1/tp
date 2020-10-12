@@ -6,17 +6,21 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
+
 
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends BidderModel, SellerModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Bid> PREDICATE_SHOW_ALL_BIDS = unused -> true;
+
+    Predicate<CalendarMeeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
 
@@ -148,5 +152,49 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
+
+    //=========== ModelManager ================================================================================
+
+    /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setMeetingManager(ReadOnlyMeetingManager meetingManager);
+
+    /** Returns the Meeting manager */
+    ReadOnlyMeetingManager getMeetingManager();
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasMeeting(CalendarMeeting meeting);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deleteMeeting(CalendarMeeting target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addMeeting(CalendarMeeting meeting);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<CalendarMeeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate);
+
 
 }
