@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
-        return commandResult;
+        return new CommandResult("This returns nothing");
     }
 
     /**
@@ -82,6 +82,14 @@ public class LogicManager implements Logic {
      */
     @Override
     public Path getRecipeBookFilePath() {
+        return null;
+    }
+
+    /**
+     * Returns the user prefs' ingredient book file path.
+     */
+    @Override
+    public Path getIngredientBookFilePath() {
         return null;
     }
 

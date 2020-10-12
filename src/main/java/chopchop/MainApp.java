@@ -5,6 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import chopchop.model.ingredient.IngredientBook;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
+import chopchop.model.recipe.RecipeBook;
 import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
 import chopchop.storage.JsonRecipeBookStorage;
@@ -26,6 +30,7 @@ import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
+import chopchop.model.util.SampleDataUtil;
 
 /**
  * Runs the application.
@@ -58,36 +63,48 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        //model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        //logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        //ui = new UiManager(logic);
 
     }
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s ingredient and recipe book
+     * and {@code userPrefs}. <br>
+     * The data from the sample ingredient or recipe book will be used instead if {@code storage}'s
+     * ingredient or recipe book is not found,
+     * or an empty ingredient or recipe book will be used instead if errors occur when reading
+     * {@code storage}'s ingredient or recipe book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyIngredientBook> ingredientBookOptional;
+        Optional<ReadOnlyRecipeBook> recipeBookOptional;
+        ReadOnlyIngredientBook initialIndData;
+        ReadOnlyRecipeBook initialRecData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            ingredientBookOptional = storage.readIngredientBook();
+            if (!ingredientBookOptional.isPresent()) {
+                logger.info("Data file for ingredient book not found. Will be starting with a sample IndBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            recipeBookOptional = storage.readRecipeBook();
+            initialIndData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
+            if (!recipeBookOptional.isPresent()) {
+                logger.info("Data file for recipe book not found. Will be starting with a sample RecBook");
+            }
+            initialRecData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialIndData = new IngredientBook();
+            initialRecData = new RecipeBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialIndData = new IngredientBook();
+            initialRecData = new RecipeBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialRecData, initialIndData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -165,7 +182,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
-        ui.start(primaryStage);
+        //ui.start(primaryStage);
     }
 
     @Override
