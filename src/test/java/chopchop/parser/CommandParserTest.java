@@ -3,13 +3,10 @@
 package chopchop.parser;
 
 import java.util.Map;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CommandParserTest {
 
@@ -25,10 +22,10 @@ public class CommandParserTest {
             "add ingredient milk /qty 600ml",
             "Result(AddIngredientCommand: milk Quantity: 600ml Expiry Date: 9999-12-31)",
 
-            "add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g " +
-                "/ingredient egg /qty 7 /step mix /step bake /step eat",
-            "Result(AddRecipeCommand: cake Ingredients: milk (400ml) flour (500g) " +
-                "egg (7)  Steps: 1. mix 2. bake 3. eat)"
+            "add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
+                + "/ingredient egg /qty 7 /step mix /step bake /step eat",
+            "Result(AddRecipeCommand: cake Ingredients: milk (400ml) flour (500g) "
+                + "egg (7)  Steps: 1. mix 2. bake 3. eat)"
         );
 
         tests.forEach((k, v) -> {
