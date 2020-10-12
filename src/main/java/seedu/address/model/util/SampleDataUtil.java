@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.delivery.Address;
 import seedu.address.model.delivery.Delivery;
+import seedu.address.model.delivery.Order;
+import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.InventoryBook;
@@ -37,9 +41,16 @@ public class SampleDataUtil {
         };
     }
 
-    // TODO
     public static Delivery[] getSampleDeliveries() {
-        return new Delivery[] { new Delivery() };
+        return new Delivery[] {
+                new Delivery(new DeliveryName("Alex Yeoh"),
+                        new Phone("87438807"),
+                        new Address("Blk 30 Geyland Street 29, #06-40"),
+                        new Order("2x Chicken Rice, 1x Ice Milo")),
+                new Delivery(new DeliveryName("Bernice Yu"),
+                        new Phone("99272758"),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new Order("2x Duck Rice, 1x Ayukata Green Tea"))};
     }
 
     public static ReadOnlyDeliveryBook getSampleDeliveryBook() {

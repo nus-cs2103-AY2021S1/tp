@@ -19,7 +19,7 @@ public class Delivery {
     /**
      * Every field must be present and not null.
      */
-    public Delivery(Name name, Phone phone, Address address, Order order) {
+    public Delivery(DeliveryName name, Phone phone, Address address, Order order) {
         requireAllNonNull(name, phone, address, order);
         this.name = name;
         this.phone = phone;
