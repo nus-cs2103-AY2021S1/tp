@@ -1,3 +1,5 @@
+// DeleteIngredientCommand.java
+
 package chopchop.logic.commands;
 
 import chopchop.model.Model;
@@ -13,7 +15,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Deletes an ingredient identified using it's displayed index from the ingredient book.
  */
-public class DeleteIngredientCommand extends DeleteCommand {
+public class DeleteIngredientCommand extends Command {
 
     public static final String MESSAGE_USAGE = "delete ingredient"
             + ": Deletes the ingredient identified by the index number used in the displayed recipe list.\n"
@@ -22,8 +24,11 @@ public class DeleteIngredientCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_INGREDIENT_SUCCESS = "Deleted Ingredient: %1$s";
 
+    private final ItemReference item;
+
     public DeleteIngredientCommand(ItemReference item) {
-        super(item);
+        requireNonNull(item);
+        this.item = item;
     }
 
     @Override
