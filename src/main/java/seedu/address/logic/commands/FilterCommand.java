@@ -16,8 +16,8 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters and lists flashcards belonging to the category input by user.\n"
-            + "Parameters: CATEGORY\n"
-            + "Example: " + PREFIX_CATEGORY + COMMAND_WORD + " SDLC";
+            + "Parameters: " + PREFIX_CATEGORY + " CATEGORY\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + " SDLC";
 
     private final CategoryEqualsKeywordsPredicate predicate;
 
