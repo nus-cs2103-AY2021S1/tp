@@ -101,8 +101,8 @@ public class ParserUtil {
     public static ModuleName parseModuleName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ModuleName.isValidName(trimmedName)) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         return new ModuleName(trimmedName);
     }
@@ -115,10 +115,10 @@ public class ParserUtil {
      */
     public static ZoomLink parseZoomLink(String zoomLink) throws ParseException {
         requireNonNull(zoomLink);
-        String trimmedName = zoomLink.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        String trimmedZoomLink = zoomLink.trim();
+        if (!ZoomLink.isValidZoomLink(trimmedZoomLink)) {
+            throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
-        return new ZoomLink(trimmedName);
+        return new ZoomLink(trimmedZoomLink);
     }
 }
