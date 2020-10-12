@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        indexSimpleObjectProperty = new SimpleObjectProperty<>(StateManager.getState());
+        indexSimpleObjectProperty = StateManager.getVisibleState();
         indexSimpleObjectProperty.addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
