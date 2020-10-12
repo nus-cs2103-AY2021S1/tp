@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.clientsource;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -17,7 +17,7 @@ public class Tag {
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagName A valid clientsource name.
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
@@ -26,7 +26,7 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid clientsource name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);

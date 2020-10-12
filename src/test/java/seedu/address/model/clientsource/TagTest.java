@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.clientsource;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,7 +19,7 @@ public class TagTest {
 
     @Test
     public void isValidTagName() {
-        // null tag name
+        // null clientsource name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
 
