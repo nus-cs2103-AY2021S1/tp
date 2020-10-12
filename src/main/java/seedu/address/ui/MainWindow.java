@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private RecipeListPanel recipeListPanel;
     private IngredientListPanel ingredientListPanel;
+    private ConsumptionListPanel consumptionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -126,6 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
     void fillRecipePanel() {
         recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
         listPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
@@ -134,6 +136,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillIngredientPanel() {
         ingredientListPanel = new IngredientListPanel(logic.getFilteredIngredientList());
         listPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
+    }
+
+    void fillConsumptionPanel() {
+        consumptionListPanel = new ConsumptionListPanel(logic.getFilteredConsumptionList());
+        listPanelPlaceholder.getChildren().add(consumptionListPanel.getRoot());
     }
 
     /**
@@ -207,6 +214,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowRecipe()) {
                 listPanelPlaceholder.getChildren().clear();
                 fillRecipePanel();
+            }
+
+            if (commandResult.isShowConsumption()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillConsumptionPanel();
             }
 
             return commandResult;
