@@ -9,7 +9,7 @@ import chopchop.model.FoodEntry;
 /**
  * Tests that a {@code FoodEntry}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate <F extends FoodEntry> implements Predicate<F> {
+public class NameContainsKeywordsPredicate implements Predicate<FoodEntry> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -17,7 +17,7 @@ public class NameContainsKeywordsPredicate <F extends FoodEntry> implements Pred
     }
 
     @Override
-    public boolean test(F fe) {
+    public boolean test(FoodEntry fe) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(fe.getName().fullName, keyword));
     }
