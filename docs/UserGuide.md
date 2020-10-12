@@ -50,7 +50,6 @@ Format: `add e/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES]`
 - The format for the DATE should be in the form of DD-MM-YYYY.
 
 Examples:
-
 - `add e/Push up d/10 at/14-09-2020 c/30`
 - `add e/Sit up d/10 at/14-09-2020`
 
@@ -59,12 +58,10 @@ Examples:
 Update an existing exercise.
 
 Format: `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]`
-
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
 - Existing values will be updated to the input values.
 
 Examples:
-
 - `update 1 e/Push up d/30 at/09-07-2020 c/260` Updates the exercise, the description, the date and the calories burnt of the 1st exercise to be `push up`, `30`,  `07-09-2020`, `260` respectively.
 
 #### Delete : `delete`
@@ -75,9 +72,8 @@ Format: `delete INDEX`
 - Deletes an exercise at the specified `INDEX`.
 - The index refers to the index number shown in the displayed workout list.
 - The index must be a positive integer: 1, 2, 3, …​
- 
-Example:
 
+Example:
 - `delete 2` Deletes the second exercise in the displayed list.
 
 #### List: `list`
@@ -101,12 +97,11 @@ The application will save the data automatically to the default file path after 
 #### Archive : `archive`
 Archive the data into a different file location.
 
-Format: `archive FILE_LOCATION`  
+Format: `archive FILE_LOCATION`<br>
 The file location takes reference from the home folder that the .jar file is located at.
 
-Examples:  
-archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.  
-   
+Examples:<br>
+archive data\file_name.txt If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.<br>
 ---
 ## FAQ
 
