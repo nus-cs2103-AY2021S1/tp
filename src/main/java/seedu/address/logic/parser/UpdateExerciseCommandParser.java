@@ -37,7 +37,7 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExercis
         UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor = new UpdateExerciseCommand.EditExerciseDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editExerciseDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editExerciseDescriptor.setName(ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editExerciseDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
