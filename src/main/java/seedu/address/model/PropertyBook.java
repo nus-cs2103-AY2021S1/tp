@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
 
@@ -91,6 +92,27 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void removeProperty(Property key) {
         properties.remove(key);
+    }
+
+    /**
+     * Removes property with {@code id} from this {@code PropertyBook}. A
+     * property with this {@code id} must exist in the property book.
+     *
+     * @param id The propertyId of the property to be removed.
+     */
+    public void removePropertyByPropertyId(Id id) {
+        properties.removeByPropertyId(id);
+    }
+
+    /**
+     * Gets property with {@code id} from this {@code PropertyBook}. A
+     * property with this {@code id} must exist in the property book.
+     *
+     * @param id The propertyId.
+     * @return The property with the {@code id}.
+     */
+    public Property getPropertyById(Id id) {
+        return properties.getPropertyById(id);
     }
 
     //// util methods

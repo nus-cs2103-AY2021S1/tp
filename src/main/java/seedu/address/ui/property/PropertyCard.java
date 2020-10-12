@@ -23,6 +23,8 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label propertyId;
+    @FXML
     private Label address;
     @FXML
     private Label sellerId;
@@ -40,6 +42,7 @@ public class PropertyCard extends UiPart<Region> {
         super(FXML);
         this.property = property;
         id.setText(displayedIndex + ". ");
+        propertyId.setText("Property Id: " + property.getPropertyId().toString());
         propertyName.setText(property.getPropertyName().toString());
         address.setText("Address: " + property.getAddress().toString());
         sellerId.setText("Seller Id: " + property.getSellerId().toString());

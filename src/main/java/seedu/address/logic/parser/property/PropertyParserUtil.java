@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.util;
+package seedu.address.logic.parser.property;
 
 import static java.util.Objects.requireNonNull;
 
@@ -43,6 +43,21 @@ public class PropertyParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String propertyId} into an {@code Id}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propertyId} is invalid.
+     */
+    public static Id parsePropertyId(String propertyId) throws ParseException {
+        requireNonNull(propertyId);
+        String trimmedPropertyId = propertyId.trim();
+        if (!Id.isValidId(propertyId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(trimmedPropertyId);
     }
 
     /**

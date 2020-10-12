@@ -16,7 +16,6 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.util.PropertyParserUtil;
 import seedu.address.model.id.Id;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
