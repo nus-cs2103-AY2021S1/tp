@@ -60,6 +60,11 @@ class OpenCommandTest {
     public void execute_tagNameInModel_success() throws Exception {
         if (Desktop.isDesktopSupported()) {
             Tag correctTag = new TagBuilder().build();
+            String os = System.getProperty("os.name").toLowerCase();
+            if (!os.startsWith("windows")) {
+                correctTag = new TagBuilder()
+                        .withFileAddress("./src/test/java/seedu/address/testutil/testFile.sh").build();
+            }
             OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
             Model model = new ModelManager();
             model.addTag(correctTag);

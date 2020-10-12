@@ -21,12 +21,14 @@ public class OpenCommandIntegrationTest {
     private static Tag validTag;
     private static Tag invalidTag;
 
-    // Change to true to enable testing of opening files
-    private final boolean isTestingOpenFile = false;
-
     @BeforeAll
     static void prepareModel() {
         validTag = new TagBuilder(CS2101).build();
+        // If system is not windows, use sh
+        if (!System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+            validTag = new TagBuilder(CS2101)
+                    .withFileAddress("./src/test/java/seedu/address/testutil/cs2101.sh").build();
+        }
         invalidTag = new TagBuilder().withFileAddress(".\\somewhereOverTheRainbow").build();
         model.addTag(validTag);
         model.addTag(invalidTag);
