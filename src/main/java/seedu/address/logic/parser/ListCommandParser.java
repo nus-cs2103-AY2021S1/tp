@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_CASE_PAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.Command.TYPE_CASE;
@@ -8,7 +7,6 @@ import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCaseCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
