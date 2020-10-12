@@ -33,8 +33,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
         return new DeleteCommand(index, category);
 
