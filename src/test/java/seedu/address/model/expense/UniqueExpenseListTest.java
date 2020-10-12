@@ -3,10 +3,10 @@ package seedu.address.model.expense;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalExpenses.ALICE;
-import static seedu.address.testutil.TypicalExpenses.BOB;
+import static seedu.address.testutil.TypicalExpenses.BUS;
+import static seedu.address.testutil.TypicalExpenses.FEL_BDAY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,19 +29,19 @@ public class UniqueExpenseListTest {
 
     @Test
     public void contains_expenseNotInList_returnsFalse() {
-        assertFalse(uniqueExpenseList.contains(ALICE));
+        assertFalse(uniqueExpenseList.contains(FEL_BDAY));
     }
 
     @Test
     public void contains_expenseInList_returnsTrue() {
-        uniqueExpenseList.add(ALICE);
-        assertTrue(uniqueExpenseList.contains(ALICE));
+        uniqueExpenseList.add(FEL_BDAY);
+        assertTrue(uniqueExpenseList.contains(FEL_BDAY));
     }
 
     @Test
     public void contains_expenseWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueExpenseList.add(ALICE);
-        Expense editedAlice = new ExpenseBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        uniqueExpenseList.add(FEL_BDAY);
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(uniqueExpenseList.contains(editedAlice));
     }
@@ -53,40 +53,40 @@ public class UniqueExpenseListTest {
 
     @Test
     public void add_duplicateExpense_throwsDuplicateExpenseException() {
-        uniqueExpenseList.add(ALICE);
-        assertThrows(DuplicateExpenseException.class, () -> uniqueExpenseList.add(ALICE));
+        uniqueExpenseList.add(FEL_BDAY);
+        assertThrows(DuplicateExpenseException.class, () -> uniqueExpenseList.add(FEL_BDAY));
     }
 
     @Test
     public void setExpense_nullTargetExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExpenseList.setExpense(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueExpenseList.setExpense(null, FEL_BDAY));
     }
 
     @Test
     public void setExpense_nullEditedExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExpenseList.setExpense(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueExpenseList.setExpense(FEL_BDAY, null));
     }
 
     @Test
     public void setExpense_targetExpenseNotInList_throwsExpenseNotFoundException() {
-        assertThrows(ExpenseNotFoundException.class, () -> uniqueExpenseList.setExpense(ALICE, ALICE));
+        assertThrows(ExpenseNotFoundException.class, () -> uniqueExpenseList.setExpense(FEL_BDAY, FEL_BDAY));
     }
 
     @Test
     public void setExpense_editedExpenseIsSameExpense_success() {
-        uniqueExpenseList.add(ALICE);
-        uniqueExpenseList.setExpense(ALICE, ALICE);
+        uniqueExpenseList.add(FEL_BDAY);
+        uniqueExpenseList.setExpense(FEL_BDAY, FEL_BDAY);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();
-        expectedUniqueExpenseList.add(ALICE);
+        expectedUniqueExpenseList.add(FEL_BDAY);
         assertEquals(expectedUniqueExpenseList, uniqueExpenseList);
     }
 
     @Test
     public void setExpense_editedExpenseHasSameIdentity_success() {
-        uniqueExpenseList.add(ALICE);
-        Expense editedAlice = new ExpenseBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        uniqueExpenseList.add(FEL_BDAY);
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
                 .build();
-        uniqueExpenseList.setExpense(ALICE, editedAlice);
+        uniqueExpenseList.setExpense(FEL_BDAY, editedAlice);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();
         expectedUniqueExpenseList.add(editedAlice);
         assertEquals(expectedUniqueExpenseList, uniqueExpenseList);
@@ -94,18 +94,18 @@ public class UniqueExpenseListTest {
 
     @Test
     public void setExpense_editedExpenseHasDifferentIdentity_success() {
-        uniqueExpenseList.add(ALICE);
-        uniqueExpenseList.setExpense(ALICE, BOB);
+        uniqueExpenseList.add(FEL_BDAY);
+        uniqueExpenseList.setExpense(FEL_BDAY, BUS);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();
-        expectedUniqueExpenseList.add(BOB);
+        expectedUniqueExpenseList.add(BUS);
         assertEquals(expectedUniqueExpenseList, uniqueExpenseList);
     }
 
     @Test
     public void setExpense_editedExpenseHasNonUniqueIdentity_throwsDuplicateExpenseException() {
-        uniqueExpenseList.add(ALICE);
-        uniqueExpenseList.add(BOB);
-        assertThrows(DuplicateExpenseException.class, () -> uniqueExpenseList.setExpense(ALICE, BOB));
+        uniqueExpenseList.add(FEL_BDAY);
+        uniqueExpenseList.add(BUS);
+        assertThrows(DuplicateExpenseException.class, () -> uniqueExpenseList.setExpense(FEL_BDAY, BUS));
     }
 
     @Test
@@ -115,13 +115,13 @@ public class UniqueExpenseListTest {
 
     @Test
     public void remove_expenseDoesNotExist_throwsExpenseNotFoundException() {
-        assertThrows(ExpenseNotFoundException.class, () -> uniqueExpenseList.remove(ALICE));
+        assertThrows(ExpenseNotFoundException.class, () -> uniqueExpenseList.remove(FEL_BDAY));
     }
 
     @Test
     public void remove_existingExpense_removesExpense() {
-        uniqueExpenseList.add(ALICE);
-        uniqueExpenseList.remove(ALICE);
+        uniqueExpenseList.add(FEL_BDAY);
+        uniqueExpenseList.remove(FEL_BDAY);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();
         assertEquals(expectedUniqueExpenseList, uniqueExpenseList);
     }
@@ -133,9 +133,9 @@ public class UniqueExpenseListTest {
 
     @Test
     public void setExpenses_uniqueExpenseList_replacesOwnListWithProvidedUniqueExpenseList() {
-        uniqueExpenseList.add(ALICE);
+        uniqueExpenseList.add(FEL_BDAY);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();
-        expectedUniqueExpenseList.add(BOB);
+        expectedUniqueExpenseList.add(BUS);
         uniqueExpenseList.setExpenses(expectedUniqueExpenseList);
         assertEquals(expectedUniqueExpenseList, uniqueExpenseList);
     }
@@ -147,17 +147,17 @@ public class UniqueExpenseListTest {
 
     @Test
     public void setExpenses_list_replacesOwnListWithProvidedList() {
-        uniqueExpenseList.add(ALICE);
-        List<Expense> expenseList = Collections.singletonList(BOB);
+        uniqueExpenseList.add(FEL_BDAY);
+        List<Expense> expenseList = Collections.singletonList(BUS);
         uniqueExpenseList.setExpenses(expenseList);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();
-        expectedUniqueExpenseList.add(BOB);
+        expectedUniqueExpenseList.add(BUS);
         assertEquals(expectedUniqueExpenseList, uniqueExpenseList);
     }
 
     @Test
     public void setExpenses_listWithDuplicateExpenses_throwsDuplicateExpenseException() {
-        List<Expense> listWithDuplicateExpenses = Arrays.asList(ALICE, ALICE);
+        List<Expense> listWithDuplicateExpenses = Arrays.asList(FEL_BDAY, FEL_BDAY);
         assertThrows(DuplicateExpenseException.class, () -> uniqueExpenseList.setExpenses(listWithDuplicateExpenses));
     }
 

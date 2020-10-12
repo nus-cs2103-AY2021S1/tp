@@ -22,24 +22,36 @@ public class SampleDataUtil {
 
     public static Expense[] getSampleExpenses() {
         return new Expense[]{
-            new Expense(new Description("Alex Yeoh"), new Amount("87438807"), new Date("alexyeoh@example.com"),
+            new Expense(new Description("Felicia's Birthday"), new Amount("140.00"), new Date("02-07-2020"),
+                    new Remark("Birthday surprise with friends + birthday presents + birthday dinner"),
+                    getTagSet("Girlfriend", "Shopping", "Food")),
+            new Expense(new Description("Lunch with Hostel Mates"), new Amount("13"), new Date("01-07-2020"),
                     EMPTY_REMARK,
-                    getTagSet("friends")),
-            new Expense(new Description("Bernice Yu"), new Amount("99272758"), new Date("berniceyu@example.com"),
+                    getTagSet("Food")),
+            new Expense(new Description("Grab Home"), new Amount("15"), new Date("01-07-2020"),
+                    new Remark("Need to stop grabbing so much!"),
+                    getTagSet("Transport")),
+            new Expense(new Description("ZARA Jacket"), new Amount("80"), new Date("30-06-2020"),
                     EMPTY_REMARK,
-                    getTagSet("colleagues", "friends")),
-            new Expense(new Description("Charlotte Oliveiro"), new Amount("93210283"), new Date("charlotte"
-                    + "@example.com"), EMPTY_REMARK,
-                    getTagSet("neighbours")),
-            new Expense(new Description("David Li"), new Amount("91031282"), new Date("lidavid@example.com"),
+                    getTagSet("Shopping")),
+            new Expense(new Description("Ramen with Tyler"), new Amount("18.50"), new Date("29-06-2020"),
+                    new Remark("Tori King @ Tanjong Pagar"),
+                    getTagSet("Food")),
+            new Expense(new Description("Phone Bill Payment"), new Amount("35.90"), new Date("29-06-2020"),
                     EMPTY_REMARK,
-                    getTagSet("family")),
-            new Expense(new Description("Irfan Ibrahim"), new Amount("92492021"), new Date("irfan@example.com"),
+                    getTagSet("Bills")),
+            new Expense(new Description("Grab to Supper"), new Amount("5"), new Date("28-06-2020"),
                     EMPTY_REMARK,
-                    getTagSet("classmates")),
-            new Expense(new Description("Roy Balakrishnan"), new Amount("92624417"), new Date("royb@example.com"),
+                    getTagSet("Food")),
+            new Expense(new Description("Movie with Felicia"), new Amount("14"), new Date("26-06-2020"),
+                    new Remark("Tenet was so confusing..."),
+                    getTagSet("Girlfriend")),
+            new Expense(new Description("Top-up Ez-Link"), new Amount("20"), new Date("25-06-2020"),
                     EMPTY_REMARK,
-                    getTagSet("colleagues"))
+                    getTagSet("Transport")),
+            new Expense(new Description("Caifan"), new Amount("3.80"), new Date("25-06-2020"),
+                    EMPTY_REMARK,
+                    getTagSet("Food"))
         };
     }
 

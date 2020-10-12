@@ -19,7 +19,7 @@ public class ExpenseBuilder {
     public static final String DEFAULT_DESCRIPTION = "Lunch Bak Chor Mee";
     public static final String DEFAULT_AMOUNT = "3.00";
     public static final String DEFAULT_DATE = "04-10-2020";
-    public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_REMARK = "Very expensive.";
 
     private Description description;
     private Amount amount;

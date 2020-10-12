@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalExpenses.CARL;
-import static seedu.address.testutil.TypicalExpenses.ELLE;
-import static seedu.address.testutil.TypicalExpenses.FIONA;
+import static seedu.address.testutil.TypicalExpenses.PHONE_BILL;
+import static seedu.address.testutil.TypicalExpenses.SWEE_CHOON;
+import static seedu.address.testutil.TypicalExpenses.ZARA;
 import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -87,11 +87,11 @@ public class FindCommandTest {
                 new DateMatchesPredicate(Collections.emptyList());
         TagsMatchesPredicate tagsPredicate =
                 new TagsMatchesPredicate(Collections.emptyList());
-        NameContainsKeywordsPredicate namePredicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate namePredicate = preparePredicate("ZARA Phone Swee");
         FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredExpenseList());
+        assertEquals(Arrays.asList(ZARA, PHONE_BILL, SWEE_CHOON), model.getFilteredExpenseList());
     }
 
     /**
