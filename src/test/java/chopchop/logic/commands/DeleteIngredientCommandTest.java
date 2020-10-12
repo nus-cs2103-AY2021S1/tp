@@ -2,9 +2,9 @@ package chopchop.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static chopchop.logic.commands.CommandTestUtil.assertCommandFailure;
+import static chopchop.logic.commands.CommandTestUtil.assertIngredientCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static chopchop.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static chopchop.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static chopchop.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
@@ -39,12 +39,12 @@ public class DeleteIngredientCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIngredientList().size() + 1);
         DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        assertIngredientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_INGREDIENT);
+        showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
 
         Ingredient indToDelete = model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
         DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(INDEX_FIRST_INGREDIENT);
@@ -60,7 +60,7 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_INGREDIENT);
+        showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
 
         Index outOfBoundIndex = INDEX_SECOND_INGREDIENT;
         // ensures that outOfBoundIndex is still in bounds of ingredient book list
@@ -68,7 +68,7 @@ public class DeleteIngredientCommandTest {
 
         DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        assertIngredientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
     }
 
     @Test
