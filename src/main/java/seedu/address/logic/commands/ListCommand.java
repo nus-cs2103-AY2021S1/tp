@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
@@ -13,8 +12,6 @@ import seedu.address.model.assignment.Deadline;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 /**
@@ -54,11 +51,9 @@ public class ListCommand extends Command {
         };
 
         if (numberOfWeeks.getZeroBased() != 0) {
-            System.out.println("in non 0");
             model.updateFilteredAssignmentList(PREDICATE_SHOW_LIMITED_ASSIGNMENT);
         } else {
             model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
-            System.out.println("in 0");
         }
 
         return new CommandResult(

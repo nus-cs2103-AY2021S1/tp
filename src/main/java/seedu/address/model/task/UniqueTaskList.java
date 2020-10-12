@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,13 +12,15 @@ import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
 import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
+import seedu.address.model.assignment.exceptions.DuplicateTaskException;
+import seedu.address.model.assignment.exceptions.TaskNotFoundException;
 
 /**
- * A list of assignments that enforces uniqueness between its elements and does not allow nulls.
- * An assignment is considered unique by comparing using {@code Assignment#isSameAssignment(Assignment)}. As such,
- * adding and updating of assignments uses Assignment#isSameAssignment(Assignment) for equality so as to ensure
- * that the assignment being added or updated is unique in terms of identity in the UniqueAssignmentList.
- * However, the removal of an assignment uses Assignment#equals(Object) so
+ * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
+ * A task is considered unique by comparing using {@code Task#isSameTask(Task)}. As such,
+ * adding and updating of tasks uses Task#isSameTask(Task) for equality so as to ensure
+ * that the task being added or updated is unique in terms of identity in the UniqueTaskList.
+ * However, the removal of an assignment uses Task#equals(Object) so
  * as to ensure that the assignment with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -31,7 +34,7 @@ public class UniqueTaskList implements Iterable<Task> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent assignment as the given argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
@@ -39,22 +42,26 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Adds an assignment to the list.
-     * The assignment must not already exist in the list.
+     * Adds a task to the list.
+     * The task must not already exist in the list.
      */
     public void add(Task toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateAssignmentException();
+            throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
     }
 
+    public ObservableList<Task> getInternalList() {
+        return internalList;
+    }
+
     /**
-     * Replaces the assignment {@code target} in the list with {@code editedAssignment}.
+     * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The assignment identity of {@code editedAssignment} must not be the same as
-     * another existing assignment in the list.
+     * The task identity of {@code editedTask} must not be the same as
+     * another existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -65,7 +72,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         if (!target.isSameTask(editedTask) && contains(editedTask)) {
-            throw new DuplicateAssignmentException();
+            throw new DuplicateTaskException();
         }
 
         internalList.set(index, editedTask);
@@ -78,7 +85,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public void remove(Task toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new AssignmentNotFoundException();
+            throw new TaskNotFoundException();
         }
     }
 
@@ -94,7 +101,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);
         if (!tasksAreUnique(tasks)) {
-            throw new DuplicateAssignmentException();
+            throw new DuplicateTaskException();
         }
 
         internalList.setAll(tasks);
@@ -122,10 +129,6 @@ public class UniqueTaskList implements Iterable<Task> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    public ObservableList<Task> getInternalList() {
-        return internalList;
     }
 
     /**

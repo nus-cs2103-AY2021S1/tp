@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -110,7 +111,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAssignment(Assignment a) {
         assignments.add(a);
-        tasks.add(a);
+    }
+
+    /**
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
+     */
+    public void addTask(Task t) {
+        tasks.add(t);
     }
 
     /**
@@ -165,7 +173,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void clearLessons() {
         lessons.removeAll();
-        //Have to remove lessons from task list as well
     }
 
     //// util methods
@@ -193,12 +200,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Task> getTaskList() {
 //        tasks.getInternalList().addAll(assignments.getInternalList());
 //        tasks.getInternalList().addAll(lessons.getInternalList());
-//        tasks.getInternalList().sort((firstTask, secondTask) -> {
-//            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value);
-//            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value);
-//            return firstTaskDateTime.compareTo(secondTaskDateTime);
-//        });
-//        System.out.println(tasks);
+        tasks.getInternalList().sort((firstTask, secondTask) -> {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value, inputFormat);
+            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value, inputFormat);
+            return firstTaskDateTime.compareTo(secondTaskDateTime);
+        });
+
         return tasks.asUnmodifiableObservableList();
     }
 
