@@ -83,6 +83,22 @@ Examples:
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
+### Tagging food items : `tag`
+
+Tags a food item in McGymmy.
+
+Format: `tag INDEX -t TAG_NAME`
+
+![tag command example]()
+
+### Tagging food items : `untag`
+
+Untags a food item in McGymmy.
+
+Format: `untag INDEX -t TAG_NAME`
+
+![untag command example]()
+
 ### Listing all food items : `list`
 
 Shows a list of all food items in McGymmy.
