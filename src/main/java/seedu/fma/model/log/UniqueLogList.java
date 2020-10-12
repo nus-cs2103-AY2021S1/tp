@@ -53,7 +53,7 @@ public class UniqueLogList implements Iterable<Log> {
      * {@code target} must exist in the list.
      * The log identity of {@code editedLog} must not be the same as another existing log in the list.
      */
-    public void setPerson(Log target, Log editedLog) {
+    public void setLog(Log target, Log editedLog) {
         requireAllNonNull(target, editedLog);
 
         int index = internalList.indexOf(target);
@@ -79,7 +79,7 @@ public class UniqueLogList implements Iterable<Log> {
         }
     }
 
-    public void setPersons(UniqueLogList replacement) {
+    public void setLogs(UniqueLogList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +88,7 @@ public class UniqueLogList implements Iterable<Log> {
      * Replaces the contents of this list with {@code logs}.
      * {@code logs} must not contain duplicate logs.
      */
-    public void setPersons(List<Log> logs) {
+    public void setLogs(List<Log> logs) {
         requireAllNonNull(logs);
         if (!logsAreUnique(logs)) {
             throw new DuplicateLogException();

@@ -76,7 +76,7 @@ public class Log {
 
     /**
      * Returns true if both logs of the same exercise have the same dateTime. This defines a weaker
-     * notion of equality between two persons.
+     * notion of equality between two logs.
      */
     public boolean isSameLog(Log otherLog) {
         if (otherLog == this) {
@@ -90,7 +90,7 @@ public class Log {
 
     /**
      * Returns true if both logs have the same identity and data fields. This defines a stronger
-     * notion of equality between two persons.
+     * notion of equality between two logs.
      */
     @Override
     public boolean equals(Object other) {

@@ -44,7 +44,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code logs} must not contain duplicate logs.
      */
     public void setPersons(List<Log> logs) {
-        this.persons.setPersons(logs);
+        this.persons.setLogs(logs);
     }
 
     /**
@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Log target, Log editedLog) {
         requireNonNull(editedLog);
 
-        persons.setPerson(target, editedLog);
+        persons.setLog(target, editedLog);
     }
 
     /**

@@ -22,21 +22,27 @@ public class RepTest {
     }
 
     @Test
-    public void isValidRep() {
+    public void isValidRep_null_throwsNullPointerException() {
         // null rep number
         assertThrows(NullPointerException.class, () -> Rep.isValidRep(null));
+    }
 
+    @Test
+    public void isValidRep_validRep_returnTrue() {
+        // valid rep numbers
+        assertTrue(Rep.isValidRep("911")); // exactly 3 numbers
+        assertTrue(Rep.isValidRep("93121"));
+        assertTrue(Rep.isValidRep("124293")); // long rep numbers
+    }
+
+    @Test
+    public void isValidRep_invalidRep_returnFalse() {
         // invalid rep numbers
         assertFalse(Rep.isValidRep("")); // empty string
         assertFalse(Rep.isValidRep(" ")); // spaces only
         assertFalse(Rep.isValidRep("rep")); // non-numeric
         assertFalse(Rep.isValidRep("9011p041")); // alphabets within digits
         assertFalse(Rep.isValidRep("9312 1534")); // spaces within digits
-
-        // valid rep numbers
-        assertTrue(Rep.isValidRep("911")); // exactly 3 numbers
-        assertTrue(Rep.isValidRep("93121"));
-        assertTrue(Rep.isValidRep("124293")); // long rep numbers
     }
 
 
