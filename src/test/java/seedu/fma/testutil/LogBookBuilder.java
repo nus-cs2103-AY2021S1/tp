@@ -6,7 +6,7 @@ import seedu.fma.model.log.Log;
 /**
  * A utility class to help with building LogBook objects.
  * Example usage: <br>
- *     {@code LogBook ab = new LogBookBuilder().withLog("John", "Doe").build();}
+ *     {@code LogBook logBook = new LogBookBuilder().withLog(new Log(...)).build();}
  */
 public class LogBookBuilder {
 

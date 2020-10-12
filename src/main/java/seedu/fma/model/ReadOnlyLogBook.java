@@ -9,8 +9,8 @@ import seedu.fma.model.log.Log;
 public interface ReadOnlyLogBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the logs list.
+     * This list will not contain any duplicate logs.
      */
     ObservableList<Log> getLogList();
 

@@ -36,7 +36,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validLog).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validLog), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validLog), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validLog), modelStub.logsAdded);
     }
 
     @Test
@@ -170,18 +170,18 @@ public class AddCommandTest {
      * A Model stub that always accept the log being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Log> personsAdded = new ArrayList<>();
+        final ArrayList<Log> logsAdded = new ArrayList<>();
 
         @Override
         public boolean hasLog(Log log) {
             requireNonNull(log);
-            return personsAdded.stream().anyMatch(log::isSameLog);
+            return logsAdded.stream().anyMatch(log::isSameLog);
         }
 
         @Override
         public void addLog(Log log) {
             requireNonNull(log);
-            personsAdded.add(log);
+            logsAdded.add(log);
         }
 
         @Override

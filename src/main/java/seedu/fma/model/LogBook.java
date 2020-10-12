@@ -30,7 +30,7 @@ public class LogBook implements ReadOnlyLogBook {
     public LogBook() {}
 
     /**
-     * Creates an LogBook using the Persons in the {@code toBeCopied}
+     * Creates an LogBook using the Logs in the {@code toBeCopied}
      */
     public LogBook(ReadOnlyLogBook toBeCopied) {
         this();
@@ -97,7 +97,7 @@ public class LogBook implements ReadOnlyLogBook {
 
     @Override
     public String toString() {
-        return logs.asUnmodifiableObservableList().size() + " persons";
+        return logs.asUnmodifiableObservableList().size() + " logs";
         // TODO: refine later
     }
 

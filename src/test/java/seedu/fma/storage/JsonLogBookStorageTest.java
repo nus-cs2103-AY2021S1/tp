@@ -26,11 +26,11 @@ public class JsonLogBookStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readLogBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readLogBook(null));
     }
 
-    private java.util.Optional<ReadOnlyLogBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyLogBook> readLogBook(String filePath) throws Exception {
         return new JsonLogBookStorage(Paths.get(filePath)).readLogBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,69 +42,69 @@ public class JsonLogBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readLogBook("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatLogBook.json"));
+        assertThrows(DataConversionException.class, () -> readLogBook("notJsonFormatLogBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidEntryLogBook.json"));
+    public void readLogBook_invalidLogBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readLogBook("invalidEntryLogBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidEntryLogBook.json"));
+    public void readLogBook_invalidAndValidEntryLogBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readLogBook("invalidAndValidEntryLogBook.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveLogBook_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempLogBook.json");
         LogBook original = getTypicalLogBook();
-        JsonLogBookStorage jsonAddressBookStorage = new JsonLogBookStorage(filePath);
+        JsonLogBookStorage jsonLogBookStorage = new JsonLogBookStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveLogBook(original, filePath);
-        ReadOnlyLogBook readBack = jsonAddressBookStorage.readLogBook(filePath).get();
+        jsonLogBookStorage.saveLogBook(original, filePath);
+        ReadOnlyLogBook readBack = jsonLogBookStorage.readLogBook(filePath).get();
         assertEquals(original, new LogBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addLog(LOG_E);
         original.removeLog(LOG_A);
-        jsonAddressBookStorage.saveLogBook(original, filePath);
-        readBack = jsonAddressBookStorage.readLogBook(filePath).get();
+        jsonLogBookStorage.saveLogBook(original, filePath);
+        readBack = jsonLogBookStorage.readLogBook(filePath).get();
         assertEquals(original, new LogBook(readBack));
 
         // Save and read without specifying file path
         original.addLog(LOG_F);
-        jsonAddressBookStorage.saveLogBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readLogBook().get(); // file path not specified
+        jsonLogBookStorage.saveLogBook(original); // file path not specified
+        readBack = jsonLogBookStorage.readLogBook().get(); // file path not specified
         assertEquals(original, new LogBook(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveLogBook_nullLogBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveLogBook(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code logBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyLogBook addressBook, String filePath) {
+    private void saveLogBook(ReadOnlyLogBook logBook, String filePath) {
         try {
             new JsonLogBookStorage(Paths.get(filePath))
-                    .saveLogBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveLogBook(logBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new LogBook(), null));
+    public void saveLogBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveLogBook(new LogBook(), null));
     }
 }
