@@ -151,12 +151,12 @@ public class ModelManager implements Model {
     /**
      * Sets the user prefs' address book file path.
      *
-     * @param addressBookFilePath
+     * @param indBookFilePath
      */
     @Override
-    public void setIngredientBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setIngredientBookFilePath(addressBookFilePath);
+    public void setIngredientBookFilePath(Path indBookFilePath) {
+        requireNonNull(indBookFilePath);
+        userPrefs.setIngredientBookFilePath(indBookFilePath);
     }
 
     //=========== Filtered Ingredient List Accessors =============================================================
