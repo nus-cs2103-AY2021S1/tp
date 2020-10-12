@@ -40,15 +40,23 @@ public class DeleteCommand extends Command {
 
         ObservableList<Expense> expenseList = activeAccount.getFilteredExpenseList();
         ObservableList<Revenue> revenueList = activeAccount.getFilteredRevenueList();
+        int index = targetIndex.getZeroBased();
+        boolean isExpense = this.category.isExpense();
+        boolean isRevenue = this.category.isRevenue();
+        boolean isInvalidIndex = isExpense
+                ? (index >= expenseList.size())
+                : (index >= revenueList.size());
 
-        if (this.category.isExpense() && targetIndex.getZeroBased() >= expenseList.size()) {
-            Expense toDelete = expenseList.get(targetIndex.getZeroBased());
-            activeAccount.deleteExpense(toDelete);
-        } else if (this.category.isRevenue() && targetIndex.getZeroBased() >= revenueList.size()) {
-            Revenue toDelete = revenueList.get(targetIndex.getZeroBased());
-            activeAccount.deleteRevenue(toDelete);
-        } else {
+        if (isInvalidIndex) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        if (isExpense) {
+            Expense toDelete = expenseList.get(index);
+            activeAccount.deleteExpense(toDelete);
+        } else if (isRevenue) {
+            Revenue toDelete = revenueList.get(index);
+            activeAccount.deleteRevenue(toDelete);
         }
         model.setAccount(activeAccount.getAccount());
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, category));
