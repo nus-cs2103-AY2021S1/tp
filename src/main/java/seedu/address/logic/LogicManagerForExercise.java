@@ -13,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ExerciseBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ExerciseModel;
 import seedu.address.model.ModelForExercise;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
@@ -26,14 +27,14 @@ public class LogicManagerForExercise implements LogicForExercise {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final ModelForExercise model;
+    private final ExerciseModel model;
     private final StorageForExercise storage;
     private final ExerciseBookParser exerciseBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManagerForExercise(ModelForExercise model, StorageForExercise storage) {
+    public LogicManagerForExercise(ExerciseModel model, StorageForExercise storage) {
         this.model = model;
         this.storage = storage;
         exerciseBookParser = new ExerciseBookParser();
