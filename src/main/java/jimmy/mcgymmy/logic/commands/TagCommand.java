@@ -58,7 +58,7 @@ public class TagCommand extends Command {
         }
 
         foodToTag.addTag(tag);
-        model.setFood(foodToTag, foodToTag); //To refresh the card
+        model.setFood(index, foodToTag); //To refresh the card
         model.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tag.tagName));
     }
