@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 /**
  * Lists all cases in the address book to the user.
  */
@@ -14,9 +12,4 @@ public abstract class ListCommand extends Command {
             + "Parameters: TYPE\n"
             + "Example: " + COMMAND_WORD + " case";
 
-    @Override
-    public abstract CommandResult execute(Model model);
-
-    @Override
-    public abstract boolean equals(Object other);
 }
