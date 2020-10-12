@@ -125,7 +125,6 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     /**
      * Add {@code key} from this {@code WishfulShrinking} to daily consumption.
      * {@code key} must exist in the consumption collection.
-     * @param key
      */
     public void addConsumption(Consumption key) {
         consumption.eat(key);

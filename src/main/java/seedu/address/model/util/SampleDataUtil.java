@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,7 +24,7 @@ public class SampleDataUtil {
 
     /**
      * For each recipe in openrecipes.txt:
-     * index 0: name, index 1: ingredients, index 2: instructions, index 5: image, index 6: calories
+     * index 0: name, index 1: ingredients, index 2: instructions, index 5: image, index 7: calories
      * The method will parse the sample recipes txt file and into an array of Recipe objects.
      * @return Recipe[]
      */
@@ -37,9 +38,10 @@ public class SampleDataUtil {
             Name recipeName = null;
             String recipeInstructions = "";
             String recipeImage = "";
+            HashSet<Tag> tag = new HashSet<>();
             ArrayList<Ingredient> ingredients = new ArrayList<>();
             Calories calories = null;
-            while (sc.hasNextLine() && index < 10) {
+            while (sc.hasNextLine() && index < 11) {
                 String field = sc.nextLine();
                 if (index == 0) {
                     recipeName = new Name(getRecipeName(field));
@@ -47,15 +49,18 @@ public class SampleDataUtil {
                     ingredients = getRecipeIngredients(field);
                 } else if (index == 2) {
                     recipeInstructions = getRecipeInstructions(field);
-                } else if (index == 4) {
+                } else if (index == 3) {
+                    tag.add(new Tag(getTag(field)));
+                } else if (index == 5) {
                     recipeImage = getRecipeImage(field);
-                } else if (index == 6) {
+                } else if (index == 7) {
                     calories = new Calories(getCalories(field));
                 }
                 index++;
-                if (index == 10) { //end of a recipe object
+                if (index == 11) { //end of a recipe object
                     index = 0;
-                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients, calories);
+                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients, 
+                            calories, tag);
                     recipeList.add(toAdd);
                 }
             }
@@ -68,6 +73,10 @@ public class SampleDataUtil {
 
     private static String getRecipeName(String str) {
         return str.substring(10, str.length() - 3);
+    }
+    
+    private static String getTag(String str) {
+        return str.substring(8, str.length() - 3);
     }
 
     private static String getRecipeInstructions(String str) {

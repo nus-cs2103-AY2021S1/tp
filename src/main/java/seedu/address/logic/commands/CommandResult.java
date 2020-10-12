@@ -17,13 +17,26 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Should show recipe list. */
+    private final boolean isShowRecipe;
+
+    /** Should show ingredient list. */
+    private final boolean isShowIngredient;
+
+    /** Should show consumption list. */
+    private final boolean isShowConsumption;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean isShowRecipe, boolean isShowIngredient, boolean isShowConsumption) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.isShowRecipe = isShowRecipe;
+        this.isShowIngredient = isShowIngredient;
+        this.isShowConsumption = isShowConsumption;
     }
 
     /**
@@ -31,7 +44,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +57,18 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowRecipe() {
+        return isShowRecipe;
+    }
+
+    public boolean isShowIngredient() {
+        return isShowIngredient;
+    }
+
+    public boolean isShowConsumption() {
+        return isShowConsumption;
     }
 
     @Override
@@ -65,7 +90,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, isShowRecipe, isShowIngredient, isShowConsumption);
     }
 
 }

@@ -1,8 +1,6 @@
 {
   "recipes": [ {
     "name": "Hans Muster",
-    "ingredients": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+    "ingredients": "9482424"
   } ]
 }

@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private RecipeListPanel recipeListPanel;
+    private IngredientListPanel ingredientListPanel;
+    private ConsumptionListPanel consumptionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane recipeListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -116,9 +118,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
-        recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -127,6 +126,21 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void fillRecipePanel() {
+        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
+        listPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
+    }
+
+    void fillIngredientPanel() {
+        ingredientListPanel = new IngredientListPanel(logic.getFilteredIngredientList());
+        listPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
+    }
+
+    void fillConsumptionPanel() {
+        consumptionListPanel = new ConsumptionListPanel(logic.getFilteredConsumptionList());
+        listPanelPlaceholder.getChildren().add(consumptionListPanel.getRoot());
     }
 
     /**
@@ -190,6 +204,21 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowIngredient()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillIngredientPanel();
+            }
+
+            if (commandResult.isShowRecipe()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillRecipePanel();
+            }
+
+            if (commandResult.isShowConsumption()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillConsumptionPanel();
             }
 
             return commandResult;

@@ -14,6 +14,8 @@ import seedu.address.logic.parser.WishfulShrinkingParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyWishfulShrinking;
+import seedu.address.model.consumption.Consumption;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
 
@@ -62,6 +64,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
         return model.getFilteredRecipeList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return model.getFilteredIngredientList();
+    }
+
+    @Override
+    public ObservableList<Consumption> getFilteredConsumptionList() {
+        return model.getFilteredConsumptionList();
     }
 
     @Override
