@@ -1,6 +1,5 @@
 package seedu.address.model.student.admin;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -24,6 +23,7 @@ public class ClassTime {
     public static final String TIME_VALIDATION = "([01]?[0-9]|2[0-3])[0-5][0-9]";
     public static final String VALIDATION_REGEX = "([1-7])[\\s]" + TIME_VALIDATION + "-" + TIME_VALIDATION;
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHm");
+    public static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("HHmm");
 
     public final Integer dayOfWeek;
     public final LocalTime startTime;
@@ -62,6 +62,22 @@ public class ClassTime {
     private static LocalTime extractEndTime(String input) {
         String endTime = input.substring(7);
         return LocalTime.parse(endTime, TIME_FORMATTER);
+    }
+
+    /**
+     * Converts a {@code classTime} object back to a user input string
+     */
+    public String convertClassTimeToUserInputString() {
+        String startTimeString = this.startTime.format(OUTPUT);
+        String endTimeString = this.endTime.format(OUTPUT);
+        String dayOfWeek = this.dayOfWeek.toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(dayOfWeek)
+                .append(" ")
+                .append(startTimeString)
+                .append("-")
+                .append(endTimeString);
+        return builder.toString();
     }
 
     @Override

@@ -1,81 +1,88 @@
 {
   "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
-  "persons" : [ {
+  "students" : [ {
     "name": "Alice Pauline",
     "phone": "94351253",
     "school": "Anderson Secondary",
     "year": "3",
-    "classVenue": "123, Jurong West Ave 6, #08-111",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink": "www.zoom123.com",
-    "subject": "Mathematics",
-    "tagged": [ "friends" ]
+    "admin" : {
+      "classVenue": "123, Jurong West Ave 6, #08-111",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": ["Clever"]
+    }
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "school": "Pei Hwa Secondary",
     "year": "2",
-    "classVenue" : "311, Clementi Ave 2, #02-25",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink" : "johnd@example.com",
-    "subject": "Mathematics",
-    "tagged" : [ "owesMoney", "friends" ]
+    "admin" : {
+      "classVenue": "311, Clementi Ave 2, #02-25",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": [ "owesMoney", "friends" ]
+    }
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "school": "Catholic High",
     "year": "5",
-    "classVenue" : "311, Clementi Ave 2, #02-25",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink" : "johnd@example.com",
-    "subject": "Mathematics",
-    "tagged" : [ "owesMoney", "friends" ]
+    "admin" : {
+      "classVenue": "311, Clementi Ave 2, #02-25",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": [ "owesMoney", "friends" ]
+    }
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "school": "Methodist Girls School",
     "year": "1",
-    "classVenue" : "311, Clementi Ave 2, #02-25",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink" : "johnd@example.com",
-    "subject": "Mathematics",
-    "tagged" : [ "owesMoney", "friends" ]
+    "admin" : {
+      "classVenue": "311, Clementi Ave 2, #02-25",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": [ "owesMoney", "friends" ]
+    }
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "school": "River Valley High",
     "year": "6",
-    "classVenue" : "311, Clementi Ave 2, #02-25",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink" : "johnd@example.com",
-    "subject": "Mathematics",
-    "tagged" : [ "owesMoney", "friends" ]
+    "admin" : {
+      "classVenue": "311, Clementi Ave 2, #02-25",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": [ "owesMoney", "friends" ]
+    }
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "school": "Raffles Girls School",
     "year": "2",
-    "classVenue" : "311, Clementi Ave 2, #02-25",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink" : "johnd@example.com",
-    "subject": "Mathematics",
-    "tagged" : [ "owesMoney", "friends" ]
+    "admin" : {
+      "classVenue": "311, Clementi Ave 2, #02-25",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": [ "owesMoney", "friends" ]
+    }
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",
     "year": "4",
-    "classVenue" : "311, Clementi Ave 2, #02-25",
-    "classTime": "1 1500 - 1700",
-    "additionalDetails" : "She is quiet",
-    "meetingLink" : "johnd@example.com",
-    "subject": "Mathematics",
-    "tagged" : [ "owesMoney", "friends" ]
+    "admin" : {
+      "classVenue": "311, Clementi Ave 2, #02-25",
+      "classTime": "1 1500-1700",
+      "fee": "21.00",
+      "paymentDate": "21/05/2020",
+      "additionalDetails": [ "owesMoney", "friends" ]
+    }
   } ]
 }

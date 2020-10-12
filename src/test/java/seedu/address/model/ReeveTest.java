@@ -80,7 +80,7 @@ public class ReeveTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose student list can violate interface constraints.
      */
     private static class ReeveStub implements ReadOnlyReeve {
         private final ObservableList<Student> students = FXCollections.observableArrayList();

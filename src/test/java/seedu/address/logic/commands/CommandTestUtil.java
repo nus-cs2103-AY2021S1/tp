@@ -57,10 +57,11 @@ public class CommandTestUtil {
     public static final String SCHOOL_DESC_BOB = " " + PREFIX_SCHOOL + VALID_SCHOOL_BOB;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
-    public static final String VENUE_DESC_AMY = " " + PREFIX_VENUE + VALID_VENUE_AMY;
-    public static final String VENUE_DESC_BOB = " " + PREFIX_VENUE + VALID_VENUE_BOB;
-    public static final String TIME_DESC_AMY = " " + PREFIX_TIME + VALID_TIME_AMY;
-    public static final String TIME_DESC_BOB = " " + PREFIX_TIME + VALID_TIME_BOB;
+
+    public static final String CLASS_VENUE_DESC_AMY = " " + PREFIX_VENUE + VALID_CLASS_VENUE_AMY;
+    public static final String CLASS_VENUE_DESC_BOB = " " + PREFIX_VENUE + VALID_CLASS_VENUE_BOB;
+    public static final String CLASS_TIME_DESC_AMY = " " + PREFIX_TIME + VALID_CLASS_TIME_AMY;
+    public static final String CLASS_TIME_DESC_BOB = " " + PREFIX_TIME + VALID_CLASS_TIME_BOB;
     public static final String FEE_DESC_AMY = " " + PREFIX_FEE + VALID_FEE_AMY;
     public static final String FEE_DESC_BOB = " " + PREFIX_FEE + VALID_FEE_BOB;
     public static final String PAYMENT_DESC_AMY = " " + PREFIX_PAYMENT + VALID_PAYMENT_AMY;

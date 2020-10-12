@@ -32,6 +32,9 @@ public class PaymentDateTest {
         assertFalse(PaymentDate.isValidDate("2/2/2"));
         assertFalse(PaymentDate.isValidDate("12.2.31"));
         assertFalse(PaymentDate.isValidDate("abc"));
+        assertFalse(PaymentDate.isValidDate("32/10/19"));
+        assertFalse(PaymentDate.isValidDate("0/0/1021"));
+        assertFalse(PaymentDate.isValidDate("12/14/1021"));
 
         // valid date
         assertTrue(PaymentDate.isValidDate("12/12/12"));
