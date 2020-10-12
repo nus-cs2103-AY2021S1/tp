@@ -1,5 +1,5 @@
 ---
-layout: page\
+layout: page
 title: User Guide
 ---
 
@@ -60,9 +60,9 @@ Hospify is a desktop app for a digital medical record management solution.
 
 ### Displaying usage instructions : `help`
 
-Shows a list of basic commands (and their usages) supported by Hospify. [Update coming soon]
+Shows a list of basic commands (and their usages) supported by Hospify.
 
-![tp_help_command](images/hospify/tp_help_command.png)
+![tp_help_command](images/helpMessage.png)
 
 Format: `help`
 
@@ -106,35 +106,43 @@ Examples:
 
 ### Locating patients by name: `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords or NRICs.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* The search is case-insensitive. e.g. `hans` will match `Hans`, and `s1234567a` will match `S1234567A`
+* The order of the keywords and NRICs does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Both the name and NRIC are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
+* Patients matching at least one keyword or NRIC will be returned (i.e. `OR` search).
+  e.g. `Hans Bo S7654321A` will return `Hans Gruber`, `Bo Yang`, `Tom Lee` (whose NRIC is S7654321A)
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
+* `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
+  ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
 
 ### Deleting a patient : `delete`
 
-Deletes the specified patient from the address book.
+Deletes the specified patient from Hospify.
 
-Format: `delete INDEX`
+Format: `delete INDEX`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `delete NRIC`
 
-* Deletes the patient at the specified `INDEX`.
+* Deletes the patient at the specified `INDEX` or `NRIC`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The NRIC refers to the NRIC of the patient to be deleted.
+* The NRIC entered is **case-sensitive**. e.g. `s1234567a` will **not** match `S1234567A`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `delete S7654321A` deletes `Tom Lee` (whose NRIC is S7654321A).
 
 ### Counting total number of patients : `count`
 
@@ -177,9 +185,9 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`<br> `delete NRIC`<br> e.g., `delete S1234567A`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ic/NRIC] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com ic/S1234567A`
+**Find** | `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`<br> e.g., `find James Jake`<br> e.g., `find Curry Davis Heskey S1234567A`
 **List** | `list`
 **Help** | `help`
 **Count** | `count`
