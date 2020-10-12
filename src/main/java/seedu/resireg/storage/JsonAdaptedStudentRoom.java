@@ -16,10 +16,7 @@ import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.tag.Tag;
 
-/**
- * Jackson-friendly version of {@link Room}.
- */
-class JsonAdaptedRoom {
+public class JsonAdaptedStudentRoom {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Room's %s field is missing!";
 
@@ -27,40 +24,32 @@ class JsonAdaptedRoom {
     private final String roomNumber;
     private final String roomType;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private JsonAdaptedRoomStudent student;
 
     /**
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("floor") String floor, @JsonProperty("roomNumber") String number,
-                           @JsonProperty("roomType") String roomType,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                           @JsonProperty("student") JsonAdaptedRoomStudent student) {
+    public JsonAdaptedStudentRoom(@JsonProperty("floor") String floor, @JsonProperty("roomNumber") String number,
+                                  @JsonProperty("roomType") String roomType,
+                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.floor = floor;
         this.roomNumber = number;
         this.roomType = roomType;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (student != null) {
-            this.student = student;
-        }
     }
 
     /**
      * Converts a given {@code Room} into this class for Jackson use.
      */
-    public JsonAdaptedRoom(Room source) {
+    public JsonAdaptedStudentRoom(Room source) {
         floor = source.getFloor().value;
         roomNumber = source.getRoomNumber().value;
         roomType = source.getRoomType().name;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        if (source.hasStudent()) {
-            this.student = new JsonAdaptedRoomStudent(source.getStudent());
-        }
     }
 
     /**
@@ -100,13 +89,7 @@ class JsonAdaptedRoom {
         final RoomType modelRoomType = new RoomType(roomType);
 
         final Set<Tag> modelTags = new HashSet<>(roomTags);
-
-        Room newRoom = new Room(modelFloor, modelNumber, modelRoomType, modelTags);
-        if (student != null) {
-            newRoom.setStudent(student.toModelType());
-        }
-        return newRoom;
+        return new Room(modelFloor, modelNumber, modelRoomType, modelTags);
     }
 
 }
-

@@ -164,8 +164,6 @@ public class Student {
                 .append(getFaculty())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
-        builder.append(" Room: ")
-                .append(getRoom());
         return builder.toString();
     }
 

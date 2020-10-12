@@ -140,8 +140,6 @@ public class Room {
                 .append(getRoomNumber())
                 .append(" Type: ")
                 .append(getRoomType())
-                .append(" Student : ")
-                .append(getStudent())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
