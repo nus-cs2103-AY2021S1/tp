@@ -15,6 +15,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.QuickCache;
@@ -106,6 +107,18 @@ public class CommandTestUtil {
                                             Boolean expectedIsCorrect, boolean isChangeWindow) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedQuestion,
                 expectedIsCorrect, isChangeWindow);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, Question expectedQuestion,
+                                            Statistics expectedStatistics) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedQuestion,
+                expectedStatistics);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
