@@ -21,7 +21,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.Question;
-import seedu.address.flashcard.Statistics;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.Feedback;
@@ -181,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-//        logic.setGuiSettings(guiSettings);
+        logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -193,11 +192,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
         feedbackToUser.getStatistics().ifPresentOrElse((statistics ->
-                        changeInnerPartsToStatisticsWindow(feedbackToUser)),
-                () -> changeInnerPartsToFlashcardWindow(feedbackToUser));
+                        changeInnerPartsToStatisticsWindow(feedbackToUser)), () ->
+                        changeInnerPartsToFlashcardWindow(feedbackToUser));
         this.isOnChangedWindow = true;
     }
 
+    /**
+     * Changes the content of the placeHolders of this window to display the statistics of a flashcard.
+     *
+     * @param feedbackToUser the feedback describing what to display to the user.
+     */
     private void changeInnerPartsToStatisticsWindow(Feedback feedbackToUser) {
 
         displayPlaceholder.getChildren().clear();

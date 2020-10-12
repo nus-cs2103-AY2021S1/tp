@@ -24,14 +24,16 @@ public class StatsCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        Flashcard flashcardToDisplayStatistics = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        Flashcard flashcardToDisplayStatistics = model.getFilteredFlashcardList()
+                .get(INDEX_FIRST_FLASHCARD.getZeroBased());
         Question question = flashcardToDisplayStatistics.getQuestion();
         StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
 
         String expectedMessage = String.format(StatsCommand.MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS,
                 flashcardToDisplayStatistics);
 
-        assertCommandSuccess(statsCommand, model, expectedMessage, model, question, null, true);
+        assertCommandSuccess(statsCommand, model, expectedMessage,
+                model, question, null, true);
     }
 
     @Test

@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -9,10 +13,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.flashcard.Statistics;
 import seedu.address.logic.commands.Feedback;
-
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
 
 public class BarChartDisplay extends UiPart<Region> {
     private static final String FXML = "BarChartDisplay.fxml";
@@ -27,10 +27,18 @@ public class BarChartDisplay extends UiPart<Region> {
     @FXML
     private NumberAxis yAxis;
 
+    /**
+     * Creates a {@code BarChartDisplay}.
+     */
     public BarChartDisplay() {
         super(FXML);
     }
 
+    /**
+     * Displays the statistics of the flashcard to the user.
+     *
+     * @param feedbackToUser the feedback to be displayed to the user.
+     */
     public void displayStatistics(Feedback feedbackToUser) {
         requireNonNull(feedbackToUser);
 

@@ -17,11 +17,12 @@ public class StatsCommand extends Command {
     public static final String COMMAND_WORD = "stats";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays the statistics of the flashcard identified by the index number used in the displayed flashcard list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Displays the statistics of the flashcard identified by the index number "
+            + "used in the displayed flashcard list.\nParameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS = "Displayed statistics of Flashcard:\n %1$s";
+    public static final String MESSAGE_DISPLAY_STATISTICS_FLASHCARD_SUCCESS =
+            "Displayed statistics of Flashcard:\n%1$s";
 
     private final Index targetIndex;
 

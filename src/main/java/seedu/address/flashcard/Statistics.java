@@ -1,13 +1,19 @@
 package seedu.address.flashcard;
 
+/**
+ * A class to store information of a flashcard's statistics.
+ */
 public class Statistics {
-    private final int timesTested;
-    private final int timesTestedCorrect;
-
     public static final String TIMES_TESTED_CONSTRAINTS = "Times tested should be a positive integer";
     public static final String TIMES_TESTED_LESS_THAN_TIMES_TESTED_CORRECT_CONSTRAINT = "Times tested should be more "
             + "than times tested correctly";
 
+    private final int timesTested;
+    private final int timesTestedCorrect;
+
+    /**
+     * A constructor to create statistics object.
+     */
     public Statistics() {
         this.timesTested = 0;
         this.timesTestedCorrect = 0;
@@ -46,16 +52,21 @@ public class Statistics {
         return timesTestedCorrect;
     }
 
+    /**
+     * Get the rate at which the user answers the flashcard's question correctly.
+     *
+     * @return The rate at which the user answers the flashcard's question correctly.
+     */
     public double getCorrectRate() {
         if (timesTested == 0) {
             return 0.0;
         }
 
-        return ((double)timesTestedCorrect) / timesTested * 100;
+        return ((double) timesTestedCorrect) / timesTested * 100;
     }
 
     /**
-     * A method to check if otherFlashcard is the same with the current one.
+     * A method to check if otherStatistics is the same with the current one.
      */
     @Override
     public boolean equals(Object otherStatistics) {
