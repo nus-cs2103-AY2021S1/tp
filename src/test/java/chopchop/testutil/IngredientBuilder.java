@@ -32,7 +32,7 @@ public class IngredientBuilder {
     public IngredientBuilder(Ingredient indToCopy) {
         name = indToCopy.getName();
         qty = indToCopy.getQuantity();
-        expDate = indToCopy.getExpiryDate();
+        expDate = indToCopy.getExpiryDate().orElse(null);
 
     }
 

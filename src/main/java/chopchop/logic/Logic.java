@@ -2,14 +2,14 @@ package chopchop.logic;
 
 import java.nio.file.Path;
 
+import javafx.collections.ObservableList;
 import chopchop.commons.core.GuiSettings;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
-import javafx.collections.ObservableList;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,6 +50,11 @@ public interface Logic {
      * Returns the user prefs' recipe book file path.
      */
     Path getRecipeBookFilePath();
+
+    /**
+     * Returns the user prefs' ingredient book file path.
+     */
+    Path getIngredientBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

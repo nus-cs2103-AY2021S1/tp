@@ -88,6 +88,11 @@ public class CommandDispatcher implements Logic {
     }
 
     @Override
+    public Path getIngredientBookFilePath() {
+        return model.getIngredientBookFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
