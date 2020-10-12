@@ -121,6 +121,13 @@ public class ModelManager implements Model {
         inventory.setInventoryRecord(target, editedInventoryRecord);
     }
 
+    @Override
+    public void deleteInventoryRecord(InventoryRecord target) {
+        requireAllNonNull(target);
+
+        inventory.deleteInventoryRecord(target);
+    }
+
     //=========== FinanceAccount ================================================================================
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {

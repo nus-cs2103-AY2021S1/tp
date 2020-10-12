@@ -106,6 +106,9 @@ public class AddCommandTest {
         public void addInventoryRecord(InventoryRecord newRecord) {}
 
         @Override
+        public void deleteInventoryRecord(InventoryRecord target) {}
+
+        @Override
         public ObservableList<InventoryRecord> getFilteredInventory() {
             throw new AssertionError("This method should not be called.");
         }
