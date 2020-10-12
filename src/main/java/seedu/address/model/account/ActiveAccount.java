@@ -77,6 +77,8 @@ public interface ActiveAccount {
     /** Returns an unmodifiable view of the filtered revenue list */
     public ObservableList<Revenue> getFilteredRevenueList();
 
+    /** Returns an unmodifiable view of the filtered entry list */
+    public ObservableList<Entry> getFilteredEntryList();
     /**
      * Updates the filter of the filtered expense list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
