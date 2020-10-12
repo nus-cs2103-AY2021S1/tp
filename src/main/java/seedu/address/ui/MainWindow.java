@@ -24,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static MainWindow instance = null;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -67,6 +68,13 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         // setAccelerators();
+
+        // Set instance
+        instance = this;
+    }
+
+    public static MainWindow getInstance() {
+        return instance;
     }
 
     public Stage getPrimaryStage() {
@@ -173,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    public CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
