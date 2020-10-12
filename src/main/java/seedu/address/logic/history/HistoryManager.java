@@ -19,32 +19,30 @@ public class HistoryManager implements History {
     public static final String MESSAGE_CANNOT_REDO = "No commands to redo";
 
     private final List<CommandHistory> commandHistory;
-    private int index;
+    private int currentIndex;
 
     /**
      * Constructs a {@code HistoryManager}.
      */
     public HistoryManager() {
         commandHistory = new ArrayList<>();
-        index = 0;
+        currentIndex = 0;
     }
 
     @Override
     public void add(CommandHistory command) {
-        commandHistory.subList(index, commandHistory.size()).clear();
+        commandHistory.subList(currentIndex, commandHistory.size()).clear();
         commandHistory.add(command);
-        index = commandHistory.size();
+        currentIndex = commandHistory.size();
     }
 
     @Override
     public CommandResult undo(Model model) throws CommandException {
-        int i;
-
-        for (i = index - 1; i >= 0; i--) {
+        for (int i = currentIndex - 1; i >= 0; i--) {
             Optional<Undoable> command = commandHistory.get(i).getCommand();
 
             if (command.isPresent()) {
-                index = i;
+                currentIndex = i;
                 return command.get().undo(model);
             }
         }
@@ -54,9 +52,9 @@ public class HistoryManager implements History {
 
     @Override
     public CommandResult redo(Model model) throws CommandException {
-        while (index < commandHistory.size()) {
-            Optional<Undoable> command = commandHistory.get(index).getCommand();
-            index++;
+        while (currentIndex < commandHistory.size()) {
+            Optional<Undoable> command = commandHistory.get(currentIndex).getCommand();
+            currentIndex++;
 
             if (command.isPresent()) {
                 return command.get().redo(model, this);
@@ -69,7 +67,7 @@ public class HistoryManager implements History {
     @Override
     public String getHistory() {
         StringJoiner sj = new StringJoiner("\n");
-        ListIterator<CommandHistory> reversedHistory = commandHistory.listIterator(index);
+        ListIterator<CommandHistory> reversedHistory = commandHistory.listIterator(currentIndex);
 
         while (reversedHistory.hasPrevious()) {
             CommandHistory command = reversedHistory.previous();
