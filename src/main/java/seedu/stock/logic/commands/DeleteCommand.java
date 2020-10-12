@@ -38,13 +38,15 @@ public class DeleteCommand extends Command {
      * @param targetSerialNumbers The list of target serial numbers to delete.
      */
     public DeleteCommand(Set<SerialNumber> targetSerialNumbers) {
-        assert(targetSerialNumbers.size() > 0);
         this.targetSerialNumbers = targetSerialNumbers;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (targetSerialNumbers.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_SERIAL_NUMBERS_GIVEN);
+        }
         List<Stock> lastShownList = model.getFilteredStockList();
         List<Stock> stocksDeleted = new ArrayList<>();
         List<SerialNumber> unknownSerialNumbers = new ArrayList<>();
