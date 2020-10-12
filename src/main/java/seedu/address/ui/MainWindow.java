@@ -49,6 +49,8 @@ public class MainWindow extends UiPart<Stage> {
     private OptionListPanel optionListPanel;
     private QuestionDisplay questionDisplay;
 
+    private BarChartDisplay barChartDisplay;
+
     private boolean isOnChangedWindow;
 
     @FXML
@@ -190,18 +192,23 @@ public class MainWindow extends UiPart<Stage> {
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
-        feedbackToUser.getStatistics().ifPresentOrElse(this::changeInnerPartsToStatisticsWindow,
+        feedbackToUser.getStatistics().ifPresentOrElse((statistics ->
+                        changeInnerPartsToStatisticsWindow(feedbackToUser)),
                 () -> changeInnerPartsToFlashcardWindow(feedbackToUser));
         this.isOnChangedWindow = true;
     }
 
-    private void changeInnerPartsToStatisticsWindow(Statistics statisticsToDisplay) {
+    private void changeInnerPartsToStatisticsWindow(Feedback feedbackToUser) {
 
         displayPlaceholder.getChildren().clear();
-        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
         listPanelPlaceholder.getChildren().clear();
 
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        barChartDisplay = new BarChartDisplay();
+        listPanelPlaceholder.getChildren().add(barChartDisplay.getRoot());
+
+        barChartDisplay.displayStatistics(feedbackToUser);
     }
 
     /**
