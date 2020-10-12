@@ -16,7 +16,7 @@ import seedu.address.model.person.UniqueTutorialGroupList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueTutorialGroupList tutorial_groups;
+    private final UniqueTutorialGroupList tutorialgroups;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

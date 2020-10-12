@@ -16,6 +16,11 @@ public class TutorialGroup {
     private LocalTime endTime;
     private int durationInHours;
 
+    /**
+     * Constructor for Tutorial Group
+     * @param id of Tutorail Group
+     * @param module that Tutorial Group belongs to
+     */
     public TutorialGroup(String id, Module module) {
         this.id = id;
         this.module = module;
@@ -38,7 +43,9 @@ public class TutorialGroup {
         return this.id;
     }
 
-    public Module getModule() { return this.module; }
+    public Module getModule() {
+        return this.module;
+    }
 
     public LocalTime getStartTime() {
         return this.startTime;
@@ -92,6 +99,13 @@ public class TutorialGroup {
         this.studentList.remove(student.getStudentId());
     }
 
+    /**
+     * Checks if two TutorialGroups are the same by first checking if they are the same object,
+     * then checking if there have the same id.
+     *
+     * @param otherTutorialGroup to check against
+     * @return true if same, false if not
+     */
     public boolean isSameTutorialGroup(TutorialGroup otherTutorialGroup) {
         if (otherTutorialGroup == this) {
             return true;
