@@ -43,7 +43,7 @@ public class CommandArguments {
     private final String command;
     private final String target;
     private final String remaining;
-    private final List<Pair<String, String>> arguments;
+    private final List<Pair<ArgName, String>> arguments;
 
     /**
      * Constructs a set of command arguments consisting of only the command name.
@@ -64,7 +64,7 @@ public class CommandArguments {
      * @param command   the name of the command
      * @param arguments a map of named arguments and their values
      */
-    public CommandArguments(String command, List<Pair<String, String>> arguments) {
+    public CommandArguments(String command, List<Pair<ArgName, String>> arguments) {
         this.command    = command;
         this.target     = null;
         this.remaining  = null;
@@ -79,7 +79,7 @@ public class CommandArguments {
      * @param target    the command target
      * @param arguments a map of named arguments and their values
      */
-    public CommandArguments(String command, String target, List<Pair<String, String>> arguments) {
+    public CommandArguments(String command, String target, List<Pair<ArgName, String>> arguments) {
         this.command    = command;
         this.target     = target;
         this.remaining  = null;
@@ -96,7 +96,7 @@ public class CommandArguments {
      * @param arguments a map of named arguments and their values
      */
     public CommandArguments(String command, String target, String remaining,
-        List<Pair<String, String>> arguments) {
+        List<Pair<ArgName, String>> arguments) {
 
         this.command    = command;
         this.target     = target;
@@ -121,7 +121,7 @@ public class CommandArguments {
      * be specified more than once, this method returns a list of all arguments with the
      * given name.
      */
-    public List<String> getArgument(String name) {
+    public List<String> getArgument(ArgName name) {
         return this.arguments
             .stream()
             .filter(p -> p.fst().equals(name))
@@ -129,7 +129,7 @@ public class CommandArguments {
             .collect(Collectors.toList());
     }
 
-    public List<Pair<String, String>> getAllArguments() {
+    public List<Pair<ArgName, String>> getAllArguments() {
         return new ArrayList<>(this.arguments);
     }
 }

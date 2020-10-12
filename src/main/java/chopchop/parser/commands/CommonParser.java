@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import chopchop.util.Result;
 import chopchop.util.StringView;
+
+import chopchop.parser.ArgName;
 import chopchop.parser.ItemReference;
 import chopchop.parser.CommandArguments;
 
@@ -30,7 +32,7 @@ public class CommonParser {
      * and returns it so we can print a nice error message. If all names are part of the given list,
      * then an empty optional is returned.
      */
-    public static Optional<String> getFirstUnknownArgument(CommandArguments args, List<String> knownArgs) {
+    public static Optional<ArgName> getFirstUnknownArgument(CommandArguments args, List<ArgName> knownArgs) {
         return args.getAllArguments()
             .stream()
             .filter(p -> !knownArgs.contains(p.fst()))

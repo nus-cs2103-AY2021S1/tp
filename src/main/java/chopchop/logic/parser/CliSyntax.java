@@ -1,16 +1,23 @@
 package chopchop.logic.parser;
 
-import seedu.address.logic.parser.Prefix;
+import chopchop.parser.ArgName;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
 public class CliSyntax {
 
-    /* Prefix definitions */
-    public static final Prefix PREFIX_STEP = new Prefix("/step");
-    public static final Prefix PREFIX_INGREDIENT = new Prefix("/ingredient");
-    public static final Prefix PREFIX_QUANTITY = new Prefix("/qty");
-    public static final Prefix PREFIX_EXPIRY = new Prefix("/expiry");
+    // argument names
+    public static final ArgName ARG_STEP            = new ArgName("step");
+    public static final ArgName ARG_INGREDIENT      = new ArgName("ingredient");
+    public static final ArgName ARG_QUANTITY        = new ArgName("qty");
+    public static final ArgName ARG_EXPIRY          = new ArgName("expiry");
 
+
+    // command names
+    public static final String COMMAND_ADD          = "add";
+
+    // command targets
+    public static final String TARGET_RECIPE        = "recipe";
+    public static final String TARGET_INGREDIENT    = "ingredient";
 }

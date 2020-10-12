@@ -20,7 +20,9 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.units.Count;
 
+import chopchop.parser.ArgName;
 import chopchop.parser.CommandArguments;
+import chopchop.logic.parser.CliSyntax;
 
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.AddRecipeCommand;
@@ -39,20 +41,21 @@ public class AddCommandParser {
      * @return     an AddCommand, if the input was valid.
      */
     public static Result<? extends Command> parseAddCommand(CommandArguments args) {
-        if (!args.getCommand().equals("add")) {
-            return Result.error("invalid command '%s' (expected 'add')", args.getCommand());
+        if (!args.getCommand().equals(CliSyntax.COMMAND_ADD)) {
+            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), CliSyntax.COMMAND_ADD);
         }
 
         // java type inference sucks, so lambdas are out of the question.
         if (args.getTarget().isEmpty()) {
-            return Result.error("'add' command requires a target (either 'recipe' or 'ingredient')");
+            return Result.error("'%s' command requires a target (either 'recipe' or 'ingredient')",
+                CliSyntax.COMMAND_ADD);
         }
 
         var target = args.getTarget().get();
 
-        if (target.equals("ingredient")) {
+        if (target.equals(CliSyntax.TARGET_INGREDIENT)) {
             return parseAddIngredientCommand(args);
-        } else if (target.equals("recipe")) {
+        } else if (target.equals(CliSyntax.TARGET_RECIPE)) {
             return parseAddRecipeCommand(args);
         } else {
             return Result.error("can only add recipes or ingredients ('%s' invalid)", target);
@@ -64,27 +67,29 @@ public class AddCommandParser {
      * {@code add ingredient NAME [/qty QUANTITY] [/expiry DATE]}
      */
     private static Result<AddIngredientCommand> parseAddIngredientCommand(CommandArguments args) {
-        assert args.getCommand().equals("add")
-            && args.getTarget().equals(Optional.of("ingredient"));
+        assert args.getCommand().equals(CliSyntax.COMMAND_ADD)
+            && args.getTarget().equals(Optional.of(CliSyntax.TARGET_INGREDIENT));
 
         // the non-named argument is the name of the ingredient.
         if (args.getRemaining().isEmpty()) {
             return Result.error("ingredient name cannot be empty");
         }
 
-        Optional<String> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of("qty", "ingredient"))).isPresent()) {
+        Optional<ArgName> foo;
+        if ((foo = getFirstUnknownArgument(args, List.of(CliSyntax.ARG_QUANTITY,
+            CliSyntax.ARG_EXPIRY))).isPresent()) {
+
             return Result.error("unknown argument '%s'", foo.get());
         }
 
         var name = args.getRemaining().get();
 
-        var qtys = args.getArgument("qty");
+        var qtys = args.getArgument(CliSyntax.ARG_QUANTITY);
         if (qtys.size() > 1) {
             return Result.error("multiple quantities specified");
         }
 
-        var exps = args.getArgument("expiry");
+        var exps = args.getArgument(CliSyntax.ARG_EXPIRY);
         if (exps.size() > 1) {
             return Result.error("multiple expiry dates specified");
         }
@@ -108,16 +113,18 @@ public class AddCommandParser {
      * {@code add recipe NAME [/ingredient INGREDIENT_NAME [/qty QTY1]...]... [/step STEP]...}
      */
     private static Result<AddRecipeCommand> parseAddRecipeCommand(CommandArguments args) {
-        assert args.getCommand().equals("add")
-            && args.getTarget().equals(Optional.of("recipe"));
+        assert args.getCommand().equals(CliSyntax.COMMAND_ADD)
+            && args.getTarget().equals(Optional.of(CliSyntax.TARGET_RECIPE));
 
         // the non-named argument is the name of the ingredient.
         if (args.getRemaining().isEmpty()) {
             return Result.error("recipe name cannot be empty");
         }
 
-        Optional<String> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of("qty", "ingredient", "step"))).isPresent()) {
+        Optional<ArgName> foo;
+        if ((foo = getFirstUnknownArgument(args, List.of(CliSyntax.ARG_QUANTITY,
+            CliSyntax.ARG_INGREDIENT, CliSyntax.ARG_STEP))).isPresent()) {
+
             return Result.error("unknown argument '%s'", foo.get());
         }
 
@@ -128,7 +135,7 @@ public class AddCommandParser {
             .map(ingrs -> createAddRecipeCommand(name, ingrs,
                     args.getAllArguments()
                         .stream()
-                        .filter(p -> p.fst().equals("step"))
+                        .filter(p -> p.fst().equals(CliSyntax.ARG_STEP))
                         .map(p -> p.snd())
                         .map(x -> new Step(x))
                         .collect(Collectors.toList()))
@@ -148,7 +155,7 @@ public class AddCommandParser {
         for (int i = 0; i < arglist.size(); i++) {
 
             var p = arglist.get(i);
-            if (p.fst().equals("ingredient")) {
+            if (p.fst().equals(CliSyntax.ARG_INGREDIENT)) {
 
                 var name = p.snd();
                 Optional<Quantity> quantity = Optional.empty();
@@ -156,7 +163,7 @@ public class AddCommandParser {
                 // check the next argument for a quantity (which is optional)
                 if (i + 1 < arglist.size()) {
                     var q = arglist.get(i + 1);
-                    if (q.fst().equals("qty")) {
+                    if (q.fst().equals(CliSyntax.ARG_QUANTITY)) {
                         var qty = Quantity.parse(q.snd());
                         if (qty.isError()) {
                             return Result.error(qty.getError());
@@ -171,9 +178,9 @@ public class AddCommandParser {
 
                 ingredients.add(createIngredientReference(name, quantity));
 
-            } else if (p.fst().equals("qty")) {
-                return Result.error("'/qty' without ingredient in argument %d [/qty %s...]",
-                    i + 1, new StringView(p.snd()).take(4));
+            } else if (p.fst().equals(CliSyntax.ARG_QUANTITY)) {
+                return Result.error("'%s' without ingredient in argument %d [/qty %s...]",
+                    CliSyntax.ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
             } else {
                 // do nothing.
             }

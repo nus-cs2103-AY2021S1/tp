@@ -1,8 +1,8 @@
 package chopchop.testutil;
 
 
-import static chopchop.logic.parser.CliSyntax.PREFIX_EXPIRY;
-import static chopchop.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static chopchop.logic.parser.CliSyntax.ARG_EXPIRY;
+import static chopchop.logic.parser.CliSyntax.ARG_QUANTITY;
 
 import chopchop.logic.commands.AddIngredientCommand;
 import chopchop.model.ingredient.Ingredient;
@@ -25,8 +25,8 @@ public class IngredientUtil {
     public static String getIngredientDetails(Ingredient ind) {
         StringBuilder sb = new StringBuilder();
         sb.append(ind.getName().fullName + " ");
-        sb.append(PREFIX_QUANTITY + " " + ind.getQuantity().toString() + " ");
-        sb.append(PREFIX_EXPIRY + " " +  ind.getExpiryDate().toString() + " ");
+        sb.append(ARG_QUANTITY + " " + ind.getQuantity().toString() + " ");
+        sb.append(ARG_EXPIRY + " " +  ind.getExpiryDate().toString() + " ");
         return sb.toString();
     }
 }

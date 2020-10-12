@@ -15,9 +15,9 @@ import static chopchop.parser.commands.AddCommandParser.parseAddCommand;
 
 public class CommandParser {
 
-    private Result<List<Pair<String, String>>> parseNamedArguments(StringView input) {
+    private Result<List<Pair<ArgName, String>>> parseNamedArguments(StringView input) {
 
-        var ret = new ArrayList<Pair<String, String>>();
+        var ret = new ArrayList<Pair<ArgName, String>>();
         while (input.size() > 0) {
 
             if (input.find('/') != 0) {
@@ -38,7 +38,7 @@ public class CommandParser {
                     return Result.error("argument name cannot be empty");
                 }
 
-                ret.add(Pair.of(argName.trim().toString(), argValue.trim().toString()));
+                ret.add(Pair.of(new ArgName(argName.trim().toString()), argValue.trim().toString()));
             }
 
             if (input.isEmpty()) {
