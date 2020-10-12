@@ -30,9 +30,9 @@ import seedu.address.testutil.AnimalBuilder;
 import seedu.address.testutil.AnimalUtil;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
-public class AddressBookParserTest {
+public class ZooKeepBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ZooKeepBookParser parser = new ZooKeepBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

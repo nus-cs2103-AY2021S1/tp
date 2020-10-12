@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyZooKeepBook;
 import seedu.address.model.animal.Animal;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ZooKeepBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getZooKeepBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyZooKeepBook getZooKeepBook();
 
     /** Returns an unmodifiable view of the filtered list of animals */
     ObservableList<Animal> getFilteredAnimalList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' zookeep book file path.
      */
-    Path getAddressBookFilePath();
+    Path getZooKeepBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

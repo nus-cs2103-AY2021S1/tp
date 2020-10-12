@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyZooKeepBook;
+import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
@@ -33,8 +33,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyZooKeepBook getSampleZooKeepBook() {
+        ZooKeepBook sampleAb = new ZooKeepBook();
         for (Animal sampleAnimal : getSampleAnimals()) {
             sampleAb.addAnimal(sampleAnimal);
         }

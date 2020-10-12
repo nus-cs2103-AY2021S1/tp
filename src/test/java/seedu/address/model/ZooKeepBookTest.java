@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAnimals.ALICE;
-import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,25 +22,25 @@ import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.exceptions.DuplicateAnimalException;
 import seedu.address.testutil.AnimalBuilder;
 
-public class AddressBookTest {
+public class ZooKeepBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ZooKeepBook zooKeepBook = new ZooKeepBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getAnimalList());
+        assertEquals(Collections.emptyList(), zooKeepBook.getAnimalList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> zooKeepBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyZooKeepBook_replacesData() {
+        ZooKeepBook newData = getTypicalZooKeepBook();
+        zooKeepBook.resetData(newData);
+        assertEquals(newData, zooKeepBook);
     }
 
     @Test
@@ -50,48 +50,48 @@ public class AddressBookTest {
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND)
                 .build();
         List<Animal> newAnimals = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newAnimals);
+        ZooKeepBookStub newData = new ZooKeepBookStub(newAnimals);
 
-        assertThrows(DuplicateAnimalException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateAnimalException.class, () -> zooKeepBook.resetData(newData));
     }
 
     @Test
     public void hasAnimal_nullAnimal_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasAnimal(null));
+        assertThrows(NullPointerException.class, () -> zooKeepBook.hasAnimal(null));
     }
 
     @Test
-    public void hasAnimal_animalNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasAnimal(ALICE));
+    public void hasAnimal_animalNotInZooKeepBook_returnsFalse() {
+        assertFalse(zooKeepBook.hasAnimal(ALICE));
     }
 
     @Test
-    public void hasAnimal_animalInAddressBook_returnsTrue() {
-        addressBook.addAnimal(ALICE);
-        assertTrue(addressBook.hasAnimal(ALICE));
+    public void hasAnimal_animalInZooKeepBook_returnsTrue() {
+        zooKeepBook.addAnimal(ALICE);
+        assertTrue(zooKeepBook.hasAnimal(ALICE));
     }
 
     @Test
-    public void hasAnimal_animalWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addAnimal(ALICE);
+    public void hasAnimal_animalWithSameIdentityFieldsInZooKeepBook_returnsTrue() {
+        zooKeepBook.addAnimal(ALICE);
         Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasAnimal(editedAlice));
+        assertTrue(zooKeepBook.hasAnimal(editedAlice));
     }
 
     @Test
     public void getAnimalList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getAnimalList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> zooKeepBook.getAnimalList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose animals list can violate interface constraints.
+     * A stub ReadOnlyZooKeepBook whose animals list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ZooKeepBookStub implements ReadOnlyZooKeepBook {
         private final ObservableList<Animal> animals = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Animal> animals) {
+        ZooKeepBookStub(Collection<Animal> animals) {
             this.animals.setAll(animals);
         }
 

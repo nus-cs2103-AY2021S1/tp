@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.animal.Animal;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an ZooKeep book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyZooKeepBook {
 
     /**
      * Returns an unmodifiable view of the animals list.

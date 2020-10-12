@@ -14,31 +14,31 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.animal.Animal;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the zookeep book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ZooKeepBook zooKeepBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Animal> filteredAnimals;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given zooKeepBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyZooKeepBook zooKeepBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(zooKeepBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with zookeep book: " + zooKeepBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.zooKeepBook = new ZooKeepBook(zooKeepBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredAnimals = new FilteredList<>(this.addressBook.getAnimalList());
+        filteredAnimals = new FilteredList<>(this.zooKeepBook.getAnimalList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ZooKeepBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,42 +66,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getZooKeepBookFilePath() {
+        return userPrefs.getZooKeepBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setZooKeepBookFilePath(Path zooKeepBookFilePath) {
+        requireNonNull(zooKeepBookFilePath);
+        userPrefs.setZooKeepBookFilePath(zooKeepBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ZooKeepBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setZooKeepBook(ReadOnlyZooKeepBook zooKeepBook) {
+        this.zooKeepBook.resetData(zooKeepBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyZooKeepBook getZooKeepBook() {
+        return zooKeepBook;
     }
 
     @Override
     public boolean hasAnimal(Animal animal) {
         requireNonNull(animal);
-        return addressBook.hasAnimal(animal);
+        return zooKeepBook.hasAnimal(animal);
     }
 
     @Override
     public void deleteAnimal(Animal target) {
-        addressBook.removeAnimal(target);
+        zooKeepBook.removeAnimal(target);
     }
 
     @Override
     public void addAnimal(Animal animal) {
-        addressBook.addAnimal(animal);
+        zooKeepBook.addAnimal(animal);
         updateFilteredAnimalList(PREDICATE_SHOW_ALL_ANIMALS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setAnimal(Animal target, Animal editedAnimal) {
         requireAllNonNull(target, editedAnimal);
 
-        addressBook.setAnimal(target, editedAnimal);
+        zooKeepBook.setAnimal(target, editedAnimal);
     }
 
     //=========== Filtered Animal List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return zooKeepBook.equals(other.zooKeepBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredAnimals.equals(other.filteredAnimals);
     }

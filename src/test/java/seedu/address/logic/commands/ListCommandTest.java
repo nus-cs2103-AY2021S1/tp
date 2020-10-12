@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
-import static seedu.address.testutil.TypicalAnimals.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getZooKeepBook(), new UserPrefs());
     }
 
     @Test

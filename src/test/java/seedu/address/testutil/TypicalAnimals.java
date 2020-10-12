@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ZooKeepBook;
 import seedu.address.model.animal.Animal;
 
 /**
@@ -58,10 +58,10 @@ public class TypicalAnimals {
     private TypicalAnimals() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical animals.
+     * Returns an {@code ZooKeepBook} with all the typical animals.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ZooKeepBook getTypicalZooKeepBook() {
+        ZooKeepBook ab = new ZooKeepBook();
         for (Animal animal : getTypicalAnimals()) {
             ab.addAnimal(animal);
         }

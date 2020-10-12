@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' zookeep book file path.
      */
-    Path getAddressBookFilePath();
+    Path getZooKeepBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' zookeep book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setZooKeepBookFilePath(Path zooKeepBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces zookeep book data with the data in {@code ZooKeepBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setZooKeepBook(ReadOnlyZooKeepBook zooKeepBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ZooKeepBook */
+    ReadOnlyZooKeepBook getZooKeepBook();
 
     /**
-     * Returns true if a animal with the same identity as {@code animal} exists in the address book.
+     * Returns true if a animal with the same identity as {@code animal} exists in the zookeep book.
      */
     boolean hasAnimal(Animal animal);
 
     /**
      * Deletes the given animal.
-     * The animal must exist in the address book.
+     * The animal must exist in the zookeep book.
      */
     void deleteAnimal(Animal target);
 
     /**
      * Adds the given animal.
-     * {@code animal} must not already exist in the address book.
+     * {@code animal} must not already exist in the zookeep book.
      */
     void addAnimal(Animal animal);
 
     /**
      * Replaces the given animal {@code target} with {@code editedAnimal}.
-     * {@code target} must exist in the address book.
-     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the address book.
+     * {@code target} must exist in the zookeep book.
+     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the zookeep book.
      */
     void setAnimal(Animal target, Animal editedAnimal);
 
