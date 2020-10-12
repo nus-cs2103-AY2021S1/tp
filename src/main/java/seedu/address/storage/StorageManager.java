@@ -11,6 +11,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
+import seedu.address.storage.delivery.DeliveryBookStorage;
+import seedu.address.storage.item.InventoryBookStorage;
 
 /**
  * Manages storage of InventoryBook data in local storage.

@@ -14,6 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
+import seedu.address.storage.delivery.JsonDeliveryBookStorage;
+import seedu.address.storage.item.JsonInventoryBookStorage;
 
 public class StorageManagerTest {
 

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.inventorymodel.InventoryBook;
+import seedu.address.storage.item.JsonSerializableInventoryBook;
 import seedu.address.testutil.TypicalItems;
 
 public class JsonSerializableInventoryBookTest {

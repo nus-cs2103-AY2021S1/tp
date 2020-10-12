@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.delivery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
+import seedu.address.storage.delivery.JsonAdaptedDelivery;
 
 /**
  * An Immutable DeliveryBook that is serializable to JSON format.
@@ -27,7 +28,7 @@ public class JsonSerializableDeliveryBook {
      * Constructs a {@code JsonSerializableDeliveryBook} with the given deliveries.
      */
     @JsonCreator
-    public JsonSerializableDeliveryBook(@JsonProperty("deliveries") List<JsonAdaptedItem> items) {
+    public JsonSerializableDeliveryBook(@JsonProperty("deliveries") List<JsonAdaptedDelivery> deliveries) {
         this.deliveries.addAll(deliveries);
     }
 

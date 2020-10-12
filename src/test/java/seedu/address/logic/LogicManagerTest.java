@@ -32,10 +32,10 @@ import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
-import seedu.address.storage.JsonDeliveryBookStorage;
-import seedu.address.storage.JsonInventoryBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.delivery.JsonDeliveryBookStorage;
+import seedu.address.storage.item.JsonInventoryBookStorage;
 import seedu.address.testutil.ItemBuilder;
 
 public class LogicManagerTest {
