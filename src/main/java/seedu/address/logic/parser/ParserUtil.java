@@ -12,9 +12,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exercise.Calories;
+import seedu.address.model.exercise.Date;
+import seedu.address.model.exercise.Description;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -22,7 +24,44 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
+    //Calo parse
+    public static seedu.address.model.exercise.Name parseName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!seedu.address.model.exercise.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.exercise.Name.MESSAGE_CONSTRAINTS);
+        }
+        return new seedu.address.model.exercise.Name(trimmedName);
+    }
 
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if(!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    public static Calories parseCalories(String calories) throws ParseException {
+        requireNonNull(calories);
+        String trimmedCalories = calories.trim();
+        if(!Calories.isValidCalories(trimmedCalories)) {
+            throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
+        }
+        return new Calories(trimmedCalories);
+    }
+
+    //AB3 parse
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -44,13 +83,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static seedu.address.model.person.Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.person.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.person.Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new seedu.address.model.person.Name(trimmedName);
     }
 
     /**
@@ -138,7 +177,7 @@ public class ParserUtil {
             throw new ParseException("A file with same name exists. Please key in a different name");
         }
         if (!hasRightToCreate(trimPathDirectory)) {
-            throw new ParseException("You don\'t have right to create at the specified location");
+            throw new ParseException("You don't have right to create at the specified location");
         }
 
         return Paths.get(trimPathDirectory);
