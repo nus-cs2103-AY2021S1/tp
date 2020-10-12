@@ -145,7 +145,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Path getIngredientBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getIngredientBookFilePath();
     }
 
     /**

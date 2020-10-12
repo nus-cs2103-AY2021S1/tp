@@ -38,15 +38,5 @@ public class RecipeTest {
         // different name -> returns false
         Recipe editedApricotSalad = new RecipeBuilder(APRICOT_SALAD).withName(VALID_NAME_BOB).build();
         assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
-
-        // different ingredients -> returns false. Different recipes can be of the same name but different ingredients
-        editedApricotSalad = new RecipeBuilder(APRICOT_SALAD)
-                .withIngredients(new ArrayList<>(Arrays.asList(BANANA_REF))).build();
-        assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
-
-        // different steps -> returns false. Different recipes can be of the same name but different steps
-        editedApricotSalad = new RecipeBuilder(APRICOT_SALAD)
-                .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD))).build();
-        assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
     }
 }
