@@ -35,6 +35,10 @@ public class Attendance {
         return nusnetId;
     }
 
+    public AttendanceType getAttendanceType() {
+        return attendanceType;
+    }
+
     public void setAttendanceType(AttendanceType attendanceType) {
         this.attendanceType = attendanceType;
     }

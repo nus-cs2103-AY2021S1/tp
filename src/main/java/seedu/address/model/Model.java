@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.attendance.NamedAttendance;
 import seedu.address.model.student.Student;
 
 /**
@@ -81,6 +82,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the filtered attendance list */
+    ObservableList<NamedAttendance> getFilteredAttendanceList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
