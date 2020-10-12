@@ -20,15 +20,21 @@ public class TagTest {
     }
 
     @Test
-    public void isValidTagName() {
+    public void isValidTagName_null_throwsNullPointerException() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+    }
 
+    @Test
+    public void isValidTagName_validName_returnTrue() {
         // valid tag names
         assertTrue(Tag.isValidTagName("abc")); // minimal
         assertTrue(Tag.isValidTagName("newexercises")); // alphabets only
         assertTrue(Tag.isValidTagName("testexercise123")); // alphabets + numbers only
+    }
 
+    @Test
+    public void isValidTagName_invalidName_returnFalse() {
         // invalid tag names
         assertFalse(Tag.isValidTagName("new exercise")); // use of space
         assertFalse(Tag.isValidTagName("!#$%&'*+/=?`{|}~^.-@exercise")); // extensive use of special characters
