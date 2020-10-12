@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -9,8 +11,6 @@ import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
-
-import static java.util.Objects.requireNonNull;
 
 
 /**
