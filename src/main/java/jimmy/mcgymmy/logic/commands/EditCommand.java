@@ -27,7 +27,6 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in McGymmy.";
 
     private Parameter<Index> indexParameter = this.addParameter(
             "index",
@@ -100,11 +99,7 @@ public class EditCommand extends Command {
 
         Food editedFood = new Food(newName, newProtein, newFat, newCarb, tags);
 
-        if (!(foodToEdit.equals(editedFood)) && model.hasFood(editedFood)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FOOD);
-        }
-
-        model.setFood(foodToEdit, editedFood);
+        model.setFood(index, editedFood);
         model.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
         return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood));
     }

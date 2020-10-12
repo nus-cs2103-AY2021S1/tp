@@ -20,8 +20,8 @@ import jimmy.mcgymmy.logic.commands.HelpCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 
-public class McGymmyParserCommandsTest {
-    private final McGymmyParser parser = new McGymmyParser();
+public class PrimitiveCommandParserCommandsTest {
+    private final PrimitiveCommandParser parser = new PrimitiveCommandParser();
 
     @Test
     public void defaultCommands_added() {

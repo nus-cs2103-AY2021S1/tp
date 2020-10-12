@@ -2,7 +2,6 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
@@ -21,7 +20,6 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_SUCCESS = "New food added: \n%1$s";
-    public static final String MESSAGE_DUPLICATE_FOOD = "This food already exists in McGymmy";
 
     private Parameter<Name> nameParameter = this.addParameter(
             "name",
@@ -70,7 +68,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         // rewriting this class as an example, tags not implemented.
         Name newName = nameParameter.consume();
@@ -82,10 +80,6 @@ public class AddCommand extends Command {
         if (this.tagParameter.getValue().isPresent()) {
             Tag newTag = this.tagParameter.getValue().get();
             toAdd.addTag(newTag);
-        }
-
-        if (model.hasFood(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_FOOD);
         }
 
         model.addFood(toAdd);

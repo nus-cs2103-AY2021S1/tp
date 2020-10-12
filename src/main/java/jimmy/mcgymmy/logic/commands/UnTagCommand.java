@@ -58,7 +58,7 @@ public class UnTagCommand extends Command {
         }
 
         foodToTag.removeTag(tag);
-        model.setFood(foodToTag, foodToTag); //To refresh the card
+        model.setFood(index, foodToTag); //To refresh the card
         model.updateFilteredFoodList(Model.PREDICATE_SHOW_ALL_FOODS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tag.tagName));
     }
