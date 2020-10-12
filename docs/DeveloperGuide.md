@@ -213,6 +213,35 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Tags
+
+The proposed tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
+
+Given below is an example usage scenario and how the tag mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
+
+Step 2. The user executes `add q/ question... t/tag` command to add a flashcard with tag. The `add` command will cause the addition of a flashcard with a tag inside the QuickCache. 
+
+Step 3. The user executes `edit 1 t/tag` to edit the tag in the first flashcard of the list. The edit command will change the internal structure of flashcard such that the `Set<Tag>` is updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not be saved in the QuickCache, so the flashcard inside the QuickCache will not be updated.
+
+#### Design consideration:
+
+##### Aspect: How tag executes
+
+* **Alternative 1 (current choice):** Tag is saved upon creation.
+  * Pros: Easy to implement.
+  * Cons: May be complicated as there will be too many fields in the `add` command.
+
+* **Alternative 2:** Individual command knows how to tag by
+  itself.
+  * Pros: Will be less complicated.
+  * Cons: There may be too many commands which can be combined to one.
+
+#### Proposed Implementation
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
