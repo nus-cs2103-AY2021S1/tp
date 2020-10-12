@@ -3,11 +3,11 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
 
 /**
@@ -18,7 +18,7 @@ public class Task {
     public final String taskName;
     private final String description;
     private final LocalDate publishDate;
-    private final LocalDateTime deadline;
+    private final Deadline deadline;
     private final double progress;
     private final boolean isDone;
     private Set<Participation> assignees;
@@ -26,7 +26,7 @@ public class Task {
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
      */
-    public Task(String taskName, String description, LocalDateTime deadline, double progress, boolean isDone) {
+    public Task(String taskName, String description, Deadline deadline, double progress, boolean isDone) {
         requireAllNonNull(taskName, progress, isDone);
         this.taskName = taskName;
         this.description = description;
@@ -49,7 +49,7 @@ public class Task {
         return publishDate;
     }
 
-    public LocalDateTime getDeadline() {
+    public Deadline getDeadline() {
         return deadline;
     }
 

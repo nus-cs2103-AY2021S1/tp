@@ -13,9 +13,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Task;
 
+/**
+ * Parses input {@code String} and creates a FilterCommand object.
+ */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
-
+    /**
+     * Parses the given input {@code String}.
+     * @param args  the user input
+     * @return      the filter command whose predicate correspond to the user input
+     * @throws ParseException   if the user input does not follow the format
+     */
     @Override
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -47,6 +55,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return new FilterCommand(predicate);
     }
 
+    /**
+     * Checks there is only one of the given prefixes is present.
+     * @param argumentMultimap  the map containing the prefixes and the corresponding Strings
+     * @param prefixes  prefixes to check
+     * @return  true if only one of the prefixes is present, and false otherwise
+     */
     private static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
             .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
