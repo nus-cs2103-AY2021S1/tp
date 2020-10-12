@@ -76,8 +76,12 @@ public interface Model {
      */
     void setCase(Case target, Case editedCase);
 
-    /** Returns an unmodifiable view of the filtered case list */
-    ObservableList<Case> getFilteredCaseList();
+    /**
+     * Returns an unmodifiable view of the filtered case list
+     */
+    default ObservableList<Case> getFilteredCaseList() {
+        return null;
+    }
 
     /**
      * Updates the filter of the filtered case list to filter by the given {@code predicate}.
