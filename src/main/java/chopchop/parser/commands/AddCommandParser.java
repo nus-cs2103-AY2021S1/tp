@@ -103,7 +103,7 @@ public class AddCommandParser {
             .then(qty -> Result.transpose(exps
                 .stream()
                 .findFirst()
-                .map(e -> dummyParseExpiryDate(e)))
+                .map(e -> Result.of(e)))
                 .map(exp -> createAddIngredientCommand(name, qty, exp))
             );
     }
@@ -220,9 +220,5 @@ public class AddCommandParser {
             qty.orElse(Count.of(1)),
             expiry.map(ExpiryDate::new).orElse(ExpiryDate.none())
         ));
-    }
-
-    private static Result<String> dummyParseExpiryDate(String date) {
-        return Result.of(date);
     }
 }
