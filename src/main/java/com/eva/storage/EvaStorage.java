@@ -21,6 +21,11 @@ public interface EvaStorage {
     Path getPersonDatabaseFilePath();
 
     /**
+     * Returns the file path of the data file.
+     */
+    Path getStaffDatabaseFilePath();
+
+    /**
      * Returns Eva data as a {@link ReadOnlyEvaDatabase}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
