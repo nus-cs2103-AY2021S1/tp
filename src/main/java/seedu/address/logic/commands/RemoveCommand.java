@@ -34,6 +34,8 @@ public class RemoveCommand extends Command {
             + PREFIX_QUANTITY + "5 ";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Updated Item Quantity: %1$s";
+    public static final String MESSAGE_NO_QUANTITY = "Quantity field must be provided.";
+    public static final String MESSAGE_OVER_CURRENT_QUANTITY = "Quantity cannot be more than current quantity";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory book.";
 
     private final Index index;
@@ -60,6 +62,11 @@ public class RemoveCommand extends Command {
         }
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
+
+        if (Integer.parseInt(quantity.value) > Integer.parseInt(itemToEdit.getQuantity().value)) {
+            throw new CommandException(MESSAGE_OVER_CURRENT_QUANTITY);
+        }
+
         Item editedItem = createRemovedItem(itemToEdit, quantity);
 
         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
