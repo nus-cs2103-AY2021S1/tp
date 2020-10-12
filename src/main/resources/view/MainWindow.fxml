@@ -25,12 +25,12 @@
         <URL value="@Extensions.css" />
       </stylesheets>
     <HBox>
-      <ImageView
-              fx:id="fridge"
-              fitHeight="600"
-              fitWidth="400"
-              pickOnBounds="true"
-      />
+        <VBox fx:id="recipeList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
       <VBox>
        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
@@ -46,13 +46,6 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="recipeList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets right="10" bottom="5" left="10" />

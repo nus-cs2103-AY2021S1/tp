@@ -4,8 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -41,11 +39,7 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label instruction;
     @FXML
-    private Label recipeImage;
-    @FXML
     private FlowPane tags;
-    @FXML
-    private ImageView recipeImageView;
 
 
     /**
@@ -57,12 +51,9 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction());
-        recipeImage.setText(recipe.getRecipeImage());
 
         //Image image = new Image(recipe.getRecipeImage());
         //recipeImageView = new ImageView(image);
-
-        recipeImageView.setImage(new Image(recipe.getRecipeImage()));
 
         ingredients.setText(recipe.getIngredient().stream()
                 .map(item -> item.getQuantity() + " " + item.getValue())

@@ -53,9 +53,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    @FXML
-    private ImageView fridge;
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -65,7 +62,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.fridge.setImage(new Image("images/fridge.png"));
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
