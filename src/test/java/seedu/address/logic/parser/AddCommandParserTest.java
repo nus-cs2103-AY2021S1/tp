@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 // import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 // import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 //import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -82,8 +82,8 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
+        //assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,
+        //        expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
