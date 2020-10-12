@@ -20,9 +20,10 @@ public class StatusBarFooter extends UiPart<Region> {
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation) {
+    public StatusBarFooter(Path inventoryLocation, Path deliveryLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        saveLocationStatus.setText(Paths.get(".").resolve(inventoryLocation).toString()
+                + " and " + Paths.get(".").resolve(deliveryLocation).toString());
     }
 
 }

@@ -9,6 +9,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
+import seedu.address.storage.delivery.DeliveryBookStorage;
+import seedu.address.storage.item.InventoryBookStorage;
 
 /**
  * API of the Storage component
@@ -29,6 +31,9 @@ public interface Storage extends InventoryBookStorage, UserPrefsStorage, Deliver
 
     @Override
     void saveInventoryBook(ReadOnlyInventoryBook inventoryBook) throws IOException;
+
+    @Override
+    void saveDeliveryBook(ReadOnlyDeliveryBook deliveryBook) throws IOException;
 
     @Override
     Optional<ReadOnlyDeliveryBook> readDeliveryBook() throws DataConversionException, IOException;

@@ -1,7 +1,7 @@
-package seedu.address.storage;
+package seedu.address.storage.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.item.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.DUCK_WITH_MAX_QUANTITY;
 
