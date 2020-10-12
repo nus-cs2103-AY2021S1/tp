@@ -1,4 +1,4 @@
-https://travis-ci.org/AY2021S1-CS2103T-W17-2/tp[image:https://travis-ci.org/se-edu/addressbook-level3.svg?branch=master[Build Status]]
+[![CI Status](https://github.com/AY2021S1-CS2103T-W17-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W17-2/tp/actions)
 
 # Calo
 

@@ -2,23 +2,22 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-/**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
- */
-public class Exercise {
+import java.util.Objects;
 
-    //Identify fields
+public class Exercise {
+    // identity field
     private final Name name;
-    private final Description description;
     private final Date date;
+
+    // data field
+    private final Description description;
     private final Calories calories;
 
     /**
-     * Every field must be present and not null.
+     * Every field except for calories must be present and not null.
      */
     public Exercise(Name name, Description description, Date date, Calories calories) {
-        requireAllNonNull(name, description, date, calories);
+        requireAllNonNull(name, description, date);
         this.name = name;
         this.description = description;
         this.date = date;
@@ -41,32 +40,16 @@ public class Exercise {
         return calories;
     }
 
-    /**
-     * Returns true if both exercises of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSameExercise(Exercise otherExercise) {
-        return false;
-    }
-
-    /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
-     */
-    @Override
-    public boolean equals(Object other) {
-        return false;
-    }
-
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(name, description, date, calories);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Name: ")
+                .append(getName())
                 .append(" Description: ")
                 .append(getDescription())
                 .append(" Date: ")
@@ -75,5 +58,27 @@ public class Exercise {
                 .append(getCalories());
         return builder.toString();
     }
-}
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Exercise)) {
+            return false;
+        }
+
+        Exercise otherExercise = (Exercise) other;
+
+        return otherExercise.getName().equals(getName())
+                && otherExercise.getDescription().equals(getDescription())
+                && otherExercise.getDate().equals(getDate())
+                && otherExercise.getCalories().equals(getCalories());
+    }
+
+    public boolean isSameExercise(Exercise other) {
+        return this.equals(other);
+    }
+
+}
