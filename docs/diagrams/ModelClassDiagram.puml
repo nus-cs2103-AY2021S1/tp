@@ -17,7 +17,7 @@ Class ReadOnlyUserPrefs
 
 Package Person {
 Class Person
-Class Address
+Class Type
 Class Email
 Class Name
 Class Phone
@@ -45,12 +45,12 @@ UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Type
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Type
+Type -[hidden]right-> Email
 
 ModelManager -->"1" Person : filtered list
 @enduml
