@@ -38,10 +38,10 @@ public class EntryCard extends UiPart<Node> {
         id.setText(displayIndex + ". ");
         description.setText(entry.getDescription().toString());
         if (entry instanceof Expense) {
-            amount.setText( "-$" + entry.getAmount().toString());
+            amount.setText("-$" + entry.getAmount().toString());
             entryCategory.setText("Expense");
         } else {
-            amount.setText( "+$" + entry.getAmount().toString());
+            amount.setText("+$" + entry.getAmount().toString());
             entryCategory.setText("Revenue");
         }
         entry.getTags().stream()

@@ -35,7 +35,7 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     private FilteredList<Entry> initFilteredEntries(FilteredList<Expense> filteredExpenses,
-                                                    FilteredList<Revenue> filteredRevenues ) {
+                                                    FilteredList<Revenue> filteredRevenues) {
         ObservableList<Entry> entries = FXCollections.observableArrayList(filteredExpenses);
         entries.addAll(filteredRevenues);
         return new FilteredList<>(entries);
