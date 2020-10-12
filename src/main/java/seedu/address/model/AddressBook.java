@@ -1,17 +1,23 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
+import seedu.address.model.task.UniqueTaskList;
 import seedu.address.timetable.TimetableData;
 import seedu.address.timetable.TimetableRetriever;
 
@@ -23,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueAssignmentList assignments;
     private final UniqueLessonList lessons;
+    private final UniqueTaskList tasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         assignments = new UniqueAssignmentList();
         lessons = new UniqueLessonList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -65,6 +73,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the tasks list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -72,6 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setAssignments(newData.getAssignmentList());
         setLessons(newData.getLessonList());
+        setTasks(newData.getTaskList());
     }
 
     //// assignment-level operations
@@ -88,8 +105,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an assignment to the address book.
      * The assignment must not already exist in the address book.
      */
-    public void addAssignment(Assignment p) {
-        assignments.add(p);
+    public void addAssignment(Assignment a) {
+        assignments.add(a);
+    }
+
+    /**
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
+     */
+    public void addTask(Task t) {
+        tasks.add(t);
     }
 
     /**
@@ -160,6 +185,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Lesson> getLessonList() {
         return lessons.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Task> getTaskList() {
+        tasks.getInternalList().sort((firstTask, secondTask) -> {
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value, inputFormat);
+            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value, inputFormat);
+            return firstTaskDateTime.compareTo(secondTaskDateTime);
+        });
+
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override

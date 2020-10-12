@@ -29,4 +29,19 @@ public abstract class Task {
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
+
+    /**
+     * Checks if task is the same.
+     * @param otherTask Another task.
+     * @return True if task is the same, false otherwise.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && otherTask.getName().equals(getName())
+                && (otherTask.getTime().equals(getTime()));
+    }
 }

@@ -110,7 +110,7 @@ public class TimetableRetriever {
                 String day = (String) currentData.get("day");
                 String startTime = DUMMY_DATE + (String) currentData.get("startTime");
                 String endTime = DUMMY_DATE + (String) currentData.get("endTime");
-                String name = module + currentLessonType;
+                String name = module + currentLessonType + day;
                 lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
                         new ModuleCode(module)));
             }
