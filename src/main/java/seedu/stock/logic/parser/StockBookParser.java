@@ -67,7 +67,7 @@ public class StockBookParser {
             return new FindCommandParser().parse(arguments);
 
         default:
-            return new SuggestionCommandParser().parse(arguments);
+            return new SuggestionCommandParser(commandWord).parse(arguments);
         }
     }
 

@@ -5,8 +5,15 @@ import seedu.stock.model.Model;
 
 public class SuggestionCommand extends Command {
 
+    private String toBeDisplayed;
+
+    public SuggestionCommand(String toBeDisplayed) {
+        this.toBeDisplayed = toBeDisplayed;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("This is a suggestion feature");
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(toBeDisplayed);
     }
 }
