@@ -3,10 +3,10 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.FILE_ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.FILE_ADDRESS_DESC_CS2101;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2101;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTags.AMY;
+import static seedu.address.testutil.TypicalTags.CS2101;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -77,9 +77,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute tag command
-        String tagCommand = TagCommand.COMMAND_WORD + NAME_DESC_AMY
-                + FILE_ADDRESS_DESC_AMY;
-        Tag expectedTag = new TagBuilder(AMY).build();
+        String tagCommand = TagCommand.COMMAND_WORD + NAME_DESC_CS2101
+                + FILE_ADDRESS_DESC_CS2101;
+        Tag expectedTag = new TagBuilder(CS2101).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTag(expectedTag);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
