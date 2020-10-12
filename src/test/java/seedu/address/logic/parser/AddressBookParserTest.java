@@ -22,6 +22,7 @@ import seedu.address.logic.commands.EditCommand.EditCaseDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCaseCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.investigationcase.Case;
@@ -85,11 +86,12 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_list_case() throws Exception {
+        //TODO: check for state first?
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + TYPE_CASE)
-                instanceof ListCommand);
+                instanceof ListCaseCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + TYPE_CASE + " 3")
-                instanceof ListCommand);
+                instanceof ListCaseCommand);
     }
 
     @Test
