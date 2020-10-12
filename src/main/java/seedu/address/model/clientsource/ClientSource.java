@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ClientSource {
 
     public static final String MESSAGE_CONSTRAINTS = "ClientSources names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].{1,49}";
 
     public final String clientSourceName;
 

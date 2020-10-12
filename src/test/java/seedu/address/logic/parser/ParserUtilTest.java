@@ -25,13 +25,13 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_CLIENTSOURCE = "#friend";
+    private static final String INVALID_CLIENTSOURCE = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";//has more that 50 characters
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_CLIENTSOURCE_1 = "friend";
+    private static final String VALID_CLIENTSOURCE_1 = "friend from work";
     private static final String VALID_CLIENTSOURCE_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";

@@ -127,7 +127,7 @@ public class AddCommandParserTest {
 
         // invalid clientsource
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_CLIENTSOURCE_DESC + VALID_CLIENTSOURCE_FRIEND, ClientSource.MESSAGE_CONSTRAINTS);
+                + INVALID_CLIENTSOURCE_DESC + CLIENTSOURCE_DESC_FRIEND, ClientSource.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
