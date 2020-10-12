@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import nustorage.model.record.FinanceRecord;
 
 public class FinanceRecordCard extends UiPart<Region> {
-    private static final String FXML = "FinanceListCard.fxml";
+    private static final String FXML = "RecordCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,11 +26,11 @@ public class FinanceRecordCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label transactionName;
+    private Label detailOne; //name of transaction
     @FXML
-    private Label amount;
+    private Label detailTwo; //amount
     @FXML
-    private Label dateAndTime;
+    private Label detailThree; //date and time
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -40,9 +40,9 @@ public class FinanceRecordCard extends UiPart<Region> {
         this.record = record;
         id.setText(displayedIndex + ". ");
         name.setText(Integer.toString(record.getID()));
-        transactionName.setText(String.format("Transaction no.: #%d", record.getID()));
-        amount.setText(String.format("Amount: $%.2f", record.getAmount()));
-        dateAndTime.setText(String.format("Date and Time: %s", record.getDatetime().toString()));
+        detailOne.setText(String.format("Transaction no.: #%d", record.getID()));
+        detailTwo.setText(String.format("Amount: $%.2f", record.getAmount()));
+        detailThree.setText(String.format("Date and Time: %s", record.getDatetime().toString()));
     }
 
     @Override
