@@ -52,13 +52,13 @@ public class StorageManager implements Storage {
     // ================ EvaDatabase methods ==============================
 
     @Override
-    public Path getEvaDatabaseFilePath() {
-        return evaStorage.getEvaDatabaseFilePath();
+    public Path getPersonDatabaseFilePath() {
+        return evaStorage.getPersonDatabaseFilePath();
     }
 
     @Override
     public Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException {
-        return readPersonDatabase(evaStorage.getEvaDatabaseFilePath());
+        return readPersonDatabase(evaStorage.getPersonDatabaseFilePath());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void savePersonDatabase(ReadOnlyEvaDatabase<Person> addressBook) throws IOException {
-        savePersonDatabase(addressBook, evaStorage.getEvaDatabaseFilePath());
+        savePersonDatabase(addressBook, evaStorage.getPersonDatabaseFilePath());
     }
 
     @Override
@@ -81,7 +81,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase() throws DataConversionException, IOException {
-        return readStaffDatabase(evaStorage.getEvaDatabaseFilePath());
+        return readStaffDatabase(evaStorage.getPersonDatabaseFilePath());
     }
 
     @Override
@@ -93,7 +93,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveStaffDatabase(ReadOnlyEvaDatabase<Staff> addressBook) throws IOException {
-        saveStaffDatabase(addressBook, evaStorage.getEvaDatabaseFilePath());
+        saveStaffDatabase(addressBook, evaStorage.getPersonDatabaseFilePath());
     }
 
     @Override

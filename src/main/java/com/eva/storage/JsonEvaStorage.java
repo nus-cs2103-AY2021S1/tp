@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -23,19 +24,27 @@ public class JsonEvaStorage implements EvaStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonEvaStorage.class);
 
-    private Path filePath;
+    private Path personDatabaseFilePath;
+    private Path staffDatabaseFilePath;
 
-    public JsonEvaStorage(Path filePath) {
-        this.filePath = filePath;
+    // for compatibility of tests
+    public JsonEvaStorage(Path personDatabaseFilePath) {
+        this.personDatabaseFilePath = personDatabaseFilePath;
+        this.staffDatabaseFilePath = Paths.get("");
     }
 
-    public Path getEvaDatabaseFilePath() {
-        return filePath;
+    public JsonEvaStorage(Path personDatabaseFilePath, Path staffDatabaseFilePath) {
+        this.personDatabaseFilePath = personDatabaseFilePath;
+        this.staffDatabaseFilePath = staffDatabaseFilePath;
+    }
+
+    public Path getPersonDatabaseFilePath() {
+        return personDatabaseFilePath;
     }
 
     @Override
     public Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException {
-        return readPersonDatabase(filePath);
+        return readPersonDatabase(personDatabaseFilePath);
     }
 
     /**
@@ -62,7 +71,7 @@ public class JsonEvaStorage implements EvaStorage {
     }
 
     public void savePersonDatabase(ReadOnlyEvaDatabase<Person> addressBook) throws IOException {
-        savePersonDatabase(addressBook, filePath);
+        savePersonDatabase(addressBook, personDatabaseFilePath);
     }
 
     /**
@@ -80,7 +89,7 @@ public class JsonEvaStorage implements EvaStorage {
 
     @Override
     public Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase() throws DataConversionException {
-        return readStaffDatabase(filePath);
+        return readStaffDatabase(staffDatabaseFilePath);
     }
 
     /**
@@ -108,7 +117,7 @@ public class JsonEvaStorage implements EvaStorage {
 
     @Override
     public void saveStaffDatabase(ReadOnlyEvaDatabase<Staff> addressBook) throws IOException {
-        saveStaffDatabase(addressBook, filePath);
+        saveStaffDatabase(addressBook, staffDatabaseFilePath);
     }
 
     /**
