@@ -12,7 +12,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
 
 /**
- * Tests that a {@code Delivery}'s {@code Name} or {@code Address} or {@code Phone} or {@code Order} matches any of the keywords given.
+ * Tests that a {@code Delivery}'s {@code Name} or {@code Address}
+ * or {@code Phone} or {@code Order} matches any of the keywords given.
  */
 public class DeliveryContainsKeywordsPredicate implements Predicate<Delivery> {
 
@@ -50,8 +51,8 @@ public class DeliveryContainsKeywordsPredicate implements Predicate<Delivery> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.delivery.DeliveryContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.address.model.delivery.DeliveryContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof DeliveryContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((DeliveryContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

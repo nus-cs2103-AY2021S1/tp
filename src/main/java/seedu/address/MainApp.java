@@ -26,7 +26,9 @@ import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.DeliveryBookStorage;
 import seedu.address.storage.InventoryBookStorage;
+import seedu.address.storage.JsonDeliveryBookStorage;
 import seedu.address.storage.JsonInventoryBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -62,7 +64,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         InventoryBookStorage inventoryBookStorage = new JsonInventoryBookStorage(userPrefs.getInventoryBookFilePath());
-        storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
+        DeliveryBookStorage deliveryBookStorage = new JsonDeliveryBookStorage(userPrefs.getDeliveryBookFilePath());
+        storage = new StorageManager(inventoryBookStorage, deliveryBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -198,13 +201,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting InventoryBook " + MainApp.VERSION);
+        logger.info("Starting OneShelf " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Inventory Book ] =============================");
+        logger.info("============================ [ Stopping OneShelf ] =============================");
         try {
             storage.saveUserPrefs(inventoryModel.getUserPrefs());
         } catch (IOException e) {

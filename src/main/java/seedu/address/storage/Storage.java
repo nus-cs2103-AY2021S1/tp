@@ -31,6 +31,9 @@ public interface Storage extends InventoryBookStorage, UserPrefsStorage, Deliver
     void saveInventoryBook(ReadOnlyInventoryBook inventoryBook) throws IOException;
 
     @Override
+    void saveDeliveryBook(ReadOnlyDeliveryBook deliveryBook) throws IOException;
+
+    @Override
     Optional<ReadOnlyDeliveryBook> readDeliveryBook() throws DataConversionException, IOException;
 
 }

@@ -32,6 +32,7 @@ import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
+import seedu.address.storage.JsonDeliveryBookStorage;
 import seedu.address.storage.JsonInventoryBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -51,8 +52,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonInventoryBookStorage inventoryBookStorage =
                 new JsonInventoryBookStorage(temporaryFolder.resolve("inventoryBook.json"));
+        JsonDeliveryBookStorage deliveryBookStorage =
+                new JsonDeliveryBookStorage(temporaryFolder.resolve("deliveryBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(inventoryBookStorage, deliveryBookStorage, userPrefsStorage);
         logic = new LogicManager(inventoryModel, deliveryModel, storage);
     }
 
@@ -80,9 +83,11 @@ public class LogicManagerTest {
         JsonInventoryBookStorage inventoryBookStorage =
             new JsonInventoryBookIoExceptionThrowingStub(
                 temporaryFolder.resolve("ioExceptionInventoryBook.json"));
+        JsonDeliveryBookStorage deliveryBookStorage =
+                new JsonDeliveryBookStorage(temporaryFolder.resolve("deliveryBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(inventoryBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(inventoryBookStorage, deliveryBookStorage, userPrefsStorage);
         logic = new LogicManager(inventoryModel, deliveryModel, storage);
 
         // Execute add command
