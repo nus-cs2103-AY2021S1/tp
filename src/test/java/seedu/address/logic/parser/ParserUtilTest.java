@@ -311,7 +311,7 @@ public class ParserUtilTest {
                 .collect(Collectors.toSet());
         assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validSet));
     }
-    
+
     @Test
     public void parseQuestion_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseQuestion((String) null));
