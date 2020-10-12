@@ -19,20 +19,21 @@ public class SuggestionUtil {
         int[][] dp = new int[str1Length + 1][str2Length + 1];
 
         // fill up base case
-        for (int i = 0; i < str1Length; i++) {
+        for (int i = 0; i <= str1Length; i++) {
             dp[i][0] = i;
         }
-        for (int j = 0; j < str2Length; j++) {
+        for (int j = 0; j <= str2Length; j++) {
             dp[0][j] = j;
         }
 
         // fill up table
+        // insertion cost: 1, remove cost: 1, replace cost: 3
         for (int i = 1; i <= str1Length; i++) {
             for (int j = 1; j <= str2Length; j++) {
                 if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
-                    dp[i][j] = 1 + min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+                    dp[i][j] = min(dp[i - 1][j - 1] + 3, dp[i - 1][j] + 1, dp[i][j - 1] + 1);
                 }
             }
         }
