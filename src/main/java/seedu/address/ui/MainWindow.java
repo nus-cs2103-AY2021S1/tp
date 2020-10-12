@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,6 +23,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.CasePerson;
 import seedu.address.model.investigationcase.Description;
 import seedu.address.model.investigationcase.Document;
 import seedu.address.model.investigationcase.Name;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private DocumentListPanel documentListPanel;
+    private CasePersonListPanel suspectListPanel;
+    private CasePersonListPanel witnessListPanel;
+    private CasePersonListPanel victimListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -80,6 +84,16 @@ public class MainWindow extends UiPart<Stage> {
     // Case Document
     @FXML
     private StackPane documentListPanelPlaceholder;
+
+    // Case Persons
+    @FXML
+    private StackPane suspectListPanelPlaceholder;
+
+    @FXML
+    private StackPane witnessListPanelPlaceholder;
+
+    @FXML
+    private StackPane victimListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -180,6 +194,18 @@ public class MainWindow extends UiPart<Stage> {
 
         documentListPanel = new DocumentListPanel(FXCollections.observableList(investigationCase.getDocuments()));
         documentListPanelPlaceholder.getChildren().add(documentListPanel.getRoot());
+
+        suspectListPanel = new CasePersonListPanel(FXCollections.observableList(
+                dummySuspect.stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+        suspectListPanelPlaceholder.getChildren().add(suspectListPanel.getRoot());
+
+        witnessListPanel = new CasePersonListPanel(FXCollections.observableList(
+                dummyWitness.stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+        witnessListPanelPlaceholder.getChildren().add(witnessListPanel.getRoot());
+
+        victimListPanel = new CasePersonListPanel(FXCollections.observableList(
+                dummyVictim.stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+        victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
     }
 
     /**
