@@ -47,7 +47,11 @@ public class Statistics {
     }
 
     public double getCorrectRate() {
-        return ((double)timesTestedCorrect) / timesTested;
+        if (timesTested == 0) {
+            return 0.0;
+        }
+
+        return ((double)timesTestedCorrect) / timesTested * 100;
     }
 
     /**
@@ -63,5 +67,11 @@ public class Statistics {
                     && other.getTimesTestedCorrect() == getTimesTestedCorrect();
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Times Correct: %d\nTimes Tested: %d\nCorrect Rate: %.2f%%\n",
+                timesTestedCorrect, timesTested, getCorrectRate());
     }
 }

@@ -21,6 +21,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.flashcard.Choice;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.Feedback;
@@ -189,9 +190,18 @@ public class MainWindow extends UiPart<Stage> {
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
-        // can add if-else statements to differentiate between
-        // how the content of the placeholders are changed.
-        changeInnerPartsToFlashcardWindow(feedbackToUser);
+        feedbackToUser.getStatistics().ifPresentOrElse(this::changeInnerPartsToStatisticsWindow,
+                () -> changeInnerPartsToFlashcardWindow(feedbackToUser));
+        this.isOnChangedWindow = true;
+    }
+
+    private void changeInnerPartsToStatisticsWindow(Statistics statisticsToDisplay) {
+
+        displayPlaceholder.getChildren().clear();
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        listPanelPlaceholder.getChildren().clear();
+
     }
 
     /**
@@ -228,8 +238,6 @@ public class MainWindow extends UiPart<Stage> {
         feedbackToUser.isCorrect().ifPresent(isCorrect -> {
             questionDisplay.showOutcome(feedbackToUser.toString(), isCorrect);
         });
-
-        this.isOnChangedWindow = true;
     }
 
     /**
