@@ -8,7 +8,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.attributes.units.Count;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.IngredientReference;
-import chopchop.model.attributes.Quantity;
+import chopchop.model.attributes.units.Count;
 
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_BANANA;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_APRICOT;
@@ -33,12 +33,12 @@ public class TypicalIngredients {
 
     public static final IngredientReference APRICOT_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_APRICOT,
-        new Quantity(VALID_INGREDIENT_QTY_APRICOT)
+        Count.of(VALID_INGREDIENT_QTY_APRICOT)
     );
 
     public static final IngredientReference BANANA_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_BANANA,
-        new Quantity(VALID_INGREDIENT_QTY_BANANA)
+        Count.of(VALID_INGREDIENT_QTY_BANANA)
     );
 
     /**

@@ -7,15 +7,24 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import chopchop.model.Model;
 import chopchop.util.Result;
 import chopchop.util.StringView;
-import chopchop.logic.commands.Command;
-import chopchop.parser.CommandArguments;
-import chopchop.model.attributes.Quantity;
-import chopchop.logic.commands.CommandResult;
 
-import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.model.recipe.Recipe;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
+
+import chopchop.model.attributes.Name;
+import chopchop.model.attributes.Step;
+import chopchop.model.attributes.Quantity;
+import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.attributes.units.Count;
+
+import chopchop.parser.CommandArguments;
+
+import chopchop.logic.commands.Command;
+import chopchop.logic.commands.AddRecipeCommand;
+import chopchop.logic.commands.AddIngredientCommand;
 
 import static chopchop.parser.commands.CommonParser.getFirstUnknownArgument;
 
@@ -54,7 +63,7 @@ public class AddCommandParser {
      * Parses an 'add ingredient' command. Syntax:
      * {@code add ingredient NAME [/qty QUANTITY] [/expiry DATE]}
      */
-    private static Result<AddIngredientCommandStub> parseAddIngredientCommand(CommandArguments args) {
+    private static Result<AddIngredientCommand> parseAddIngredientCommand(CommandArguments args) {
         assert args.getCommand().equals("add")
             && args.getTarget().equals(Optional.of("ingredient"));
 
@@ -90,7 +99,7 @@ public class AddCommandParser {
                 .stream()
                 .findFirst()
                 .map(e -> dummyParseExpiryDate(e)))
-                .map(exp -> new AddIngredientCommandStub(name, qty, exp))
+                .map(exp -> createAddIngredientCommand(name, qty, exp))
             );
     }
 
@@ -98,7 +107,7 @@ public class AddCommandParser {
      * Parses an 'add ingredient' command. Syntax:
      * {@code add recipe NAME [/ingredient INGREDIENT_NAME [/qty QTY1]...]... [/step STEP]...}
      */
-    private static Result<AddRecipeCommandStub> parseAddRecipeCommand(CommandArguments args) {
+    private static Result<AddRecipeCommand> parseAddRecipeCommand(CommandArguments args) {
         assert args.getCommand().equals("add")
             && args.getTarget().equals(Optional.of("recipe"));
 
@@ -116,13 +125,12 @@ public class AddCommandParser {
         var name = args.getRemaining().get();
 
         return parseIngredientList(args)
-            .map(ingrs ->
-                new AddRecipeCommandStub(name, ingrs,
+            .map(ingrs -> createAddRecipeCommand(name, ingrs,
                     args.getAllArguments()
                         .stream()
                         .filter(p -> p.fst().equals("step"))
                         .map(p -> p.snd())
-                        .map(x -> new RecipeStepStub(x))
+                        .map(x -> new Step(x))
                         .collect(Collectors.toList()))
             );
     }
@@ -130,19 +138,19 @@ public class AddCommandParser {
     /**
      * Parse the list of ingredients.
      */
-    private static Result<List<IngredientUsageStub>> parseIngredientList(CommandArguments args) {
+    private static Result<List<IngredientReference>> parseIngredientList(CommandArguments args) {
 
         // what is this, imperative code??
         var arglist = args.getAllArguments();
 
-        var ingredients = new ArrayList<IngredientUsageStub>();
+        var ingredients = new ArrayList<IngredientReference>();
 
         for (int i = 0; i < arglist.size(); i++) {
 
             var p = arglist.get(i);
             if (p.fst().equals("ingredient")) {
 
-                var name = p.fst();
+                var name = p.snd();
                 Optional<Quantity> quantity = Optional.empty();
 
                 // check the next argument for a quantity (which is optional)
@@ -161,7 +169,7 @@ public class AddCommandParser {
                     }
                 }
 
-                ingredients.add(new IngredientUsageStub(name, quantity));
+                ingredients.add(createIngredientReference(name, quantity));
 
             } else if (p.fst().equals("qty")) {
                 return Result.error("'/qty' without ingredient in argument %d [/qty %s...]",
@@ -185,67 +193,29 @@ public class AddCommandParser {
 
 
 
+    private static IngredientReference createIngredientReference(String name, Optional<Quantity> qty) {
+        return new IngredientReference(name, qty.orElse(Count.of(1)));
+    }
+
+    private static AddRecipeCommand createAddRecipeCommand(String name,
+        List<IngredientReference> ingredients, List<Step> steps) {
+
+        return new AddRecipeCommand(new Recipe(
+            new Name(name), ingredients, steps
+        ));
+    }
 
 
+    private static AddIngredientCommand createAddIngredientCommand(String name,
+        Optional<Quantity> qty, Optional<String> expiry) {
 
+        return new AddIngredientCommand(new Ingredient(new Name(name),
+            qty.orElse(Count.of(1)),
+            expiry.map(ExpiryDate::new).orElse(ExpiryDate.none())
+        ));
+    }
 
     private static Result<String> dummyParseExpiryDate(String date) {
         return Result.of(date);
-    }
-
-    private static class RecipeStepStub {
-        private final String step;
-
-        public RecipeStepStub(String step) {
-            this.step = step;
-        }
-    }
-
-    private static class IngredientUsageStub {
-        private final String name;
-        private final Optional<Quantity> quantity;
-
-        public IngredientUsageStub(String name, Optional<Quantity> qty) {
-            this.name = name;
-            this.quantity = qty;
-        }
-    }
-
-    private static class AddRecipeCommandStub extends Command {
-
-        private final String name;
-        private final List<RecipeStepStub> steps;
-        private final List<IngredientUsageStub> ingredients;
-
-        public AddRecipeCommandStub(String name, List<IngredientUsageStub> ingredients,
-            List<RecipeStepStub> steps) {
-
-            this.name = name;
-            this.steps = steps;
-            this.ingredients = ingredients;
-        }
-
-        @Override
-        public CommandResult execute(Model model) throws CommandException {
-            return null;
-        }
-    }
-
-    private static class AddIngredientCommandStub extends Command {
-
-        private final String name;
-        private final Optional<Quantity> quantity;
-        private final Optional<String> expiryDate;
-
-        public AddIngredientCommandStub(String name, Optional<Quantity> qty, Optional<String> expiry) {
-            this.name = name;
-            this.quantity = qty;
-            this.expiryDate = expiry;
-        }
-
-        @Override
-        public CommandResult execute(Model model) throws CommandException {
-            return null;
-        }
     }
 }
