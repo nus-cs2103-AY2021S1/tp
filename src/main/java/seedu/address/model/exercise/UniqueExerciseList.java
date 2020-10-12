@@ -1,16 +1,14 @@
 package seedu.address.model.exercise;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class UniqueExerciseList implements Iterable<Exercise> {
 
@@ -23,36 +21,28 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameExercise);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds an exercise to the list.
      */
     public void add(Exercise toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
-        }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedExercise}.
+     * Replaces the exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedExercise} must not be the same as another existing person in the list.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
 
         int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
 
-        if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
-            throw new DuplicatePersonException();
+        if (index == -1) {
+            throw new ExerciseNotFoundException();
         }
 
         internalList.set(index, editedExercise);
@@ -65,8 +55,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     public void remove(Exercise toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            //Should throw a new error
-            throw new PersonNotFoundException();
+            throw new ExerciseNotFoundException();
         }
     }
 
@@ -79,13 +68,9 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setExercises(List<Exercise> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
-        }
-
-        internalList.setAll(persons);
+    public void setExercises(List<Exercise> exercises) {
+        requireAllNonNull(exercises);
+        internalList.setAll(exercises);
     }
 
     /**
@@ -112,17 +97,4 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return internalList.hashCode();
     }
 
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    private boolean personsAreUnique(List<Exercise> exercises) {
-        for (int i = 0; i < exercises.size() - 1; i++) {
-            for (int j = i + 1; j < exercises.size(); j++) {
-                if (exercises.get(i).isSameExercise(exercises.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
