@@ -14,7 +14,6 @@ import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
 import chopchop.storage.Storage;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
@@ -32,7 +31,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         try {
