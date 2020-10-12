@@ -10,7 +10,7 @@ public class CountCommand extends Command {
     public static final String COMMAND_WORD = "count";
 
     public static final String MESSAGE_UASGE = COMMAND_WORD
-            + ": Shows the total number of patients in record."
+            + ": Shows the total number of patients in record.\n"
             + "Example: " + COMMAND_WORD;
 
     @Override
