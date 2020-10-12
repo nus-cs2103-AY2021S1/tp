@@ -5,27 +5,10 @@ package chopchop.logic.parser.commands;
 import java.util.List;
 import java.util.Optional;
 
-import chopchop.util.Result;
-import chopchop.util.StringView;
-
 import chopchop.logic.parser.ArgName;
-import chopchop.logic.parser.ItemReference;
 import chopchop.logic.parser.CommandArguments;
 
 public class CommonParser {
-
-    /**
-     * Parse an item reference from the given string.
-     */
-    public static Result<ItemReference> parseItemReference(StringView ref) {
-        if (ref.startsWith("$")) {
-            return ref.drop(1)
-                .parseInt()
-                .map(i -> ItemReference.ofOneIndex(i));
-        } else {
-            return Result.of(ItemReference.ofName(ref.toString()));
-        }
-    }
 
     /**
      * Finds the first named argument in the given {@code args} that isn't part of {@code knownArgs}
