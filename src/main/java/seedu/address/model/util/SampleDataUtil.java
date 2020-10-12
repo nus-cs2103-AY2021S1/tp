@@ -7,11 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTime;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.*;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -19,16 +15,16 @@ import seedu.address.model.task.Type;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Alex Yeoh"), new DateTime("01-01-2020 12:00"), new Description("alexyeoh,example.com"),
+            new Task(new Title("Alex Yeoh"), DateTime.defaultDateTime(), new Description("alexyeoh,example.com"),
                 new Type("todo"),
-                getTagSet("friends")),
+                getTagSet("friends"), new Status(State.DONE)),
             new Task(new Title("Bernice Yu"), new DateTime("02-02-2020 12:00"),
                     new Description("berniceyu,example.com"), new Type("deadline"),
                 getTagSet("colleagues", "friends")),
             new Task(new Title("Charlotte Oliveiro"), new DateTime("03-03-2020 12:00"),
-                    new Description("charlotte,example.com"), new Type("event"),
+                    Description.defaultDescription(), new Type("event"),
                 getTagSet("neighbours")),
-            new Task(new Title("David Li"), new DateTime("04-04-2020 12:00"), new Description("lidavid,example.com"),
+            new Task(new Title("David Li"), DateTime.defaultDateTime(), new Description("lidavid,example.com"),
                 new Type("todo"),
                 getTagSet("family")),
             new Task(new Title("Irfan Ibrahim"), new DateTime("05-05-2020 12:00"), new Description("irfan,example.com"),
