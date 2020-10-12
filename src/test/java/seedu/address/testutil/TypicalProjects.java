@@ -25,44 +25,54 @@ import seedu.address.model.project.Project;
  */
 public class TypicalProjects {
 
-    public static final Project ALICE = new ProjectBuilder().withProjectName("Alice Pauline")
-            .withProjectDescription("123, Jurong West Ave 6, #08-111").withRepoUrl("https://github.com/a/a.git")
+    public static final Project APEAKAPP = new ProjectBuilder().withProjectName("Apeakapp")
+            .withProjectDescription("An app for you to speak your mind")
+            .withRepoUrl("https://github.com/a/a.git")
             .withDeadline("21-03-2020 00:00:00")
-            .withTags("friends").withTasks("Write DG", "Write user stories").build();
-    public static final Project BENSON = new ProjectBuilder().withProjectName("Benson Meier")
-            .withProjectDescription("311, Clementi Ave 2, #02-25")
-            .withRepoUrl("https://github.com/b/b.git").withDeadline("21-03-2020 00:00:00")
-            .withTags("owesMoney", "friends").withTasks("Practice presentation").build();
-    public static final Project CARL = new ProjectBuilder().withProjectName("Carl Kurz")
-            .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/c/c.git")
-            .withProjectDescription("wall street").withTasks("Read info pack").build();
-    public static final Project DANIEL = new ProjectBuilder().withProjectName("Daniel Meier")
-            .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/d/d.git")
-            .withProjectDescription("10th street").withTags("friends").build();
-    public static final Project ELLE = new ProjectBuilder().withProjectName("Elle Meyer")
-            .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/e/e.git")
-            .withProjectDescription("michegan ave").build();
-    public static final Project FIONA = new ProjectBuilder().withProjectName("Fiona Kunz")
-            .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/f/f.git").withProjectDescription(
-                "little tokyo").build();
-    public static final Project GEORGE = new ProjectBuilder().withProjectName("George Best")
-            .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/g/g.git").withProjectDescription(
-                "4th street").build();
+            .withTags("linguistics").withTasks("Write DG", "Write user stories").build();
+    public static final Project BRICK = new ProjectBuilder().withProjectName("Brick No Meier")
+            .withProjectDescription("To destroy the brick and mortar")
+            .withRepoUrl("https://github.com/b/b.git")
+            .withDeadline("21-03-2020 00:00:00")
+            .withTags("amazon", "evil").withTasks("Practice presentation").build();
+    public static final Project CARACTIVE = new ProjectBuilder().withProjectName("Caractive")
+            .withDeadline("21-03-2020 00:00:00")
+            .withRepoUrl("https://github.com/c/c.git")
+            .withProjectDescription("best car app for tesla")
+            .withTags("electric")
+            .withTasks("Integrate with tesla").build();
+    public static final Project DAYUM = new ProjectBuilder().withProjectName("Dayum Snap")
+            .withDeadline("21-03-2020 00:00:00")
+            .withRepoUrl("https://github.com/d/d.git")
+            .withProjectDescription("yet another stories app")
+            .withTags("instagram" , "snapchat").build();
+    public static final Project ELFIE = new ProjectBuilder().withProjectName("Elfie save")
+            .withDeadline("21-03-2020 00:00:00")
+            .withRepoUrl("https://github.com/e/e.git")
+            .withProjectDescription("save elves from persecution").build();
+    public static final Project FANS = new ProjectBuilder().withProjectName("Fans")
+            .withDeadline("21-03-2020 00:00:00")
+            .withRepoUrl("https://github.com/f/f.git")
+            .withProjectDescription("an app only for fans").build();
+    public static final Project GERRY = new ProjectBuilder().withProjectName("Gerry Mander")
+            .withDeadline("21-03-2020 00:00:00")
+            .withRepoUrl("https://github.com/g/g.git")
+            .withProjectDescription("Call us to rig any election").build();
 
     // Manually added
     public static final Project HOON = new ProjectBuilder().withProjectName("Hoon Meier")
             .withDeadline("21-03-2020 00:00:00").withRepoUrl("https://github.com/h/h.git")
-            .withProjectDescription("little india").build();
+            .withProjectDescription("Made with love and git").build();
     public static final Project IDA = new ProjectBuilder().withProjectName("Ida Mueller")
             .withDeadline("21-03-2020 00:00:00").withRepoUrl(VALID_REPOURL_B)
-            .withProjectDescription("chicago ave").build();
+            .withProjectDescription("german quality software").build();
 
     // Manually added - Project's details found in {@code CommandTestUtil}
-    public static final Project AMY = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_AI)
+    public static final Project AI = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_AI)
             .withDeadline(VALID_DEADLINE_AI).withRepoUrl(VALID_REPOURL_A).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_AI)
             .withTags(VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG, VALID_TASK_MODEL).build();
-    public static final Project BOB = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
+    public static final Project BOT = new ProjectBuilder().withProjectName(VALID_PROJECT_NAME_BOT)
             .withDeadline(VALID_DEADLINE_BOT).withRepoUrl(VALID_REPOURL_B).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_BOT)
             .withTags(VALID_PROJECT_TAG_HANG, VALID_PROJECT_TAG_FIEND).withTasks(VALID_PROJECT_TAG_DG).build();
@@ -83,6 +93,6 @@ public class TypicalProjects {
     }
 
     public static List<Project> getTypicalProjects() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(APEAKAPP, BRICK, CARACTIVE, DAYUM, ELFIE, FANS, GERRY));
     }
 }

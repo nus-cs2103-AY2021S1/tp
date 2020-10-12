@@ -43,6 +43,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private FlowPane teammates;
+    @FXML
     private FlowPane tasks;
 
     /**
@@ -62,13 +64,19 @@ public class ProjectCard extends UiPart<Region> {
 
         projectDescription.setText(project.getProjectDescription().value);
         repoUrl.setText(project.getRepoUrl().value);
+
+        project.getTeammates().stream()
+                .forEach(person -> teammates.getChildren().add(new Label((person.getPersonName().toString()))));
+
         project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+
         //System.out.println(status + name.getText());
         if (status == Status.CATALOGUE) {
             projectDescription.setVisible(false);
             repoUrl.setVisible(false);
+            teammates.setVisible(false);
             tasks.setVisible(false);
             projectDescription.setManaged(false);
             repoUrl.setManaged(false);

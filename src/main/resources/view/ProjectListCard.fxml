@@ -31,6 +31,7 @@
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
       <Label fx:id="projectDescription" styleClass="cell_small_label" text="\$projectDescription" />
       <Label fx:id="repoUrl" styleClass="cell_small_label" text="\$repoUrl" />
+      <FlowPane fx:id="teammates" />
       <FlowPane fx:id="tasks" />
     </VBox>
   </GridPane>
