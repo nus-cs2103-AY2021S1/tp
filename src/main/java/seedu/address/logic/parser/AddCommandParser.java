@@ -53,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(null));
         Set<ClientSource> clientSourceList = ParserUtil
                 .parseClientSources(argMultimap.getAllValues(PREFIX_CLIENTSOURCE));
-        Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
+        Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(null));
 
         Person person = new Person(name, phone, email, address, clientSourceList, note);
 

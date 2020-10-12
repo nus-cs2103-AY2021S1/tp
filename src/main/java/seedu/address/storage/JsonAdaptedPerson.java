@@ -80,7 +80,11 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedClientSource::new)
                 .collect(Collectors.toList()));
 
-        note = source.getNote().noteName;
+        if (source.getNote() != null) {
+            note = source.getNote().noteName;
+        } else {
+            note = null;
+        }
     }
 
     /**
@@ -134,10 +138,16 @@ class JsonAdaptedPerson {
 
         final Set<ClientSource> modelClientSources = new HashSet<>(personClientSources);
 
-        if (!Note.isValidNoteName(note)) {
-            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        final Note modelNote;
+        if (note == null) {
+            modelNote = null;
+        } else {
+            if (!Note.isValidNoteName(note)) {
+                throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+            }
+            modelNote = new Note(note);
         }
-        final Note modelNote = new Note(note);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote);
     }
 
