@@ -38,7 +38,7 @@ public class Module {
         }
 
         return otherModule != null
-                && otherModule.getModuleName().equals(getModuleName());
+                && otherModule.getModuleName().getModuleName().equals(getModuleName().getModuleName());
     }
 
     /**

@@ -52,6 +52,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of meetings */
     ObservableList<Meeting> getFilteredMeetingList();
 
+    /** Returns an unmodifiable view of the filtered list of modules */
+    ObservableList<Module> getFilteredModuleList();
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -79,7 +82,4 @@ public interface Logic {
      */
     ReadOnlyModuleBook getModuleBook();
 
-    /** Returns an unmodifiable view of the filtered list of modules
-     * @return*/
-    ObservableList<Module> getFilteredModuleList();
 }

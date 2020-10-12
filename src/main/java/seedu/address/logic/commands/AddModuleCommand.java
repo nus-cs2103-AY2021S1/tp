@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -26,7 +27,7 @@ public class AddModuleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the timetable. "
             + "Parameters: "
-            + PREFIX_NAME + "MEETING NAME "
+            + PREFIX_NAME + "MODULE NAME "
             + "[" + PREFIX_MEMBERS + "MEMBERS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103 "
@@ -43,10 +44,10 @@ public class AddModuleCommand extends Command {
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
-    public AddModuleCommand(ModuleName meetingName, Set<Name> nameList) {
-        requireNonNull(meetingName);
+    public AddModuleCommand(ModuleName moduleName, Set<Name> nameList) {
+        requireNonNull(moduleName);
         requireNonNull(nameList);
-        this.moduleName = meetingName;
+        this.moduleName = moduleName;
         this.nameList = nameList;
     }
 
@@ -82,8 +83,11 @@ public class AddModuleCommand extends Command {
         }
 
         Module toAdd = new Module(moduleName, personList);
-
-        model.addModule(toAdd);
+        try {
+            model.addModule(toAdd);
+        }catch(DuplicateModuleException e){
+            throw new CommandException(MESSAGE_DUPLICATE_MODULE);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

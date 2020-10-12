@@ -2,8 +2,11 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -20,6 +23,7 @@ import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -55,6 +59,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command;
+
         if (firstWord.equals("meeting")) {
             command = meetingBookParser.parseCommand(commandText);
         } else if(firstWord.equals("module")){
@@ -108,6 +113,7 @@ public class LogicManager implements Logic {
     public ObservableList<Meeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
     }
+
 
     @Override
     public Path getAddressBookFilePath() {
