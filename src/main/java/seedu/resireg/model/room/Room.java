@@ -98,8 +98,8 @@ public class Room {
             return true;
         }
 
-        return otherRoom != null && otherRoom.getFloor().equals(getFloor()) &&
-                otherRoom.getRoomNumber().equals(getRoomNumber());
+        return otherRoom != null && otherRoom.getFloor().equals(getFloor())
+                && otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
     /**
@@ -117,11 +117,11 @@ public class Room {
 
         seedu.resireg.model.room.Room otherRoom =
                 (seedu.resireg.model.room.Room) other;
-        return otherRoom.getFloor().equals(getFloor()) &&
-                otherRoom.getRoomNumber().equals(getRoomNumber()) &&
-                otherRoom.getRoomType().equals(getRoomType()) &&
-                otherRoom.getTags().equals(getTags()) &&
-                otherRoom.getStudent().equals(getStudent());
+        return otherRoom.getFloor().equals(getFloor())
+                && otherRoom.getRoomNumber().equals(getRoomNumber())
+                && otherRoom.getRoomType().equals(getRoomType())
+                && otherRoom.getTags().equals(getTags())
+                && otherRoom.getStudent().equals(getStudent());
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -14,6 +16,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.logic.Logic;
 import seedu.resireg.logic.commands.CommandResult;
+import seedu.resireg.logic.commands.TabView;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 
@@ -32,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
+    private RoomListPanel roomListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +49,22 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane studentListPanelPlaceholder;
 
     @FXML
+    private StackPane roomListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab studentsTab;
+
+    @FXML
+    private Tab roomsTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +94,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -112,7 +129,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren()
-            .add(studentListPanel.getRoot());
+                .add(studentListPanel.getRoot());
+
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+        roomListPanelPlaceholder.getChildren()
+                .add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -148,6 +169,27 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Sets what is displayed in the listPanelStackPane based on the toggle.
+     *
+     * @param toggleView enum representing what should be displayed
+     */
+    public void handleToggle(TabView toggleView) {
+        if (toggleView == TabView.ROOMS) {
+            showRoomsPanel();
+        } else {
+            showStudentPanel();
+        }
+    }
+
+    private void showStudentPanel() {
+        tabPane.getSelectionModel().select(studentsTab);
+    }
+
+    private void showRoomsPanel() {
+        tabPane.getSelectionModel().select(roomsTab);
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -178,6 +220,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandText, commandResult.getFeedbackToUser());
+
+            commandResult.displayResult(this);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

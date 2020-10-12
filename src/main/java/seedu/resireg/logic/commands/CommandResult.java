@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.resireg.ui.MainWindow;
+
 /**
  * Represents the result of a command execution.
  */
@@ -68,4 +70,6 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
+    public void displayResult(MainWindow mainWindow) {
+    }
 }

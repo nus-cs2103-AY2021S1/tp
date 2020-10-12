@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
         <Image url="@/images/address_book_32.png"/>
@@ -68,16 +70,35 @@
                     </StackPane>
                 </VBox>
 
-                <VBox fx:id="studentList"
-                      VBox.vgrow="ALWAYS"
-                      styleClass="pane-with-border"
-                      minWidth="340" prefWidth="340"
-                      GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-                    <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
+                <TabPane fx:id="tabPane"
+                         tabClosingPolicy="UNAVAILABLE"
+                         GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+
+                    <!-- Students tab -->
+                    <Tab fx:id="studentsTab" text="Students">
+                        <VBox fx:id="studentList"
+                              VBox.vgrow="ALWAYS"
+                              styleClass="pane-with-border"
+                              minWidth="340" prefWidth="340">
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                            <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </Tab>
+                    <!-- Rooms tab -->
+                    <Tab fx:id="roomsTab" text="Rooms">
+                        <VBox fx:id="roomList"
+                              VBox.vgrow="ALWAYS"
+                              styleClass="pane-with-border"
+                              minWidth="340" prefWidth="340">
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                            <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </Tab>
+                </TabPane>
 
                 <StackPane fx:id="statusbarPlaceholder"
                            VBox.vgrow="NEVER"
