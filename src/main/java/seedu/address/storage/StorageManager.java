@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -50,30 +51,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return moduleListStorage.getAddressBookFilePath();
+    public Path getModuleListFilePath() {
+        return moduleListStorage.getModuleListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(moduleListStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException, IOException {
+        return readModuleList(moduleListStorage.getModuleListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return moduleListStorage.readAddressBook(filePath);
+        return moduleListStorage.readModuleList(filePath);
     }
 
     @Override
-    public void saveModuleList(ReadOnlyAddressBook addressBook) throws IOException {
-        saveModuleList(addressBook, moduleListStorage.getAddressBookFilePath());
+    public void saveModuleList(ReadOnlyModuleList moduleList) throws IOException {
+        saveModuleList(moduleList, moduleListStorage.getModuleListFilePath());
     }
 
     @Override
-    public void saveModuleList(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        moduleListStorage.saveModuleList(addressBook, filePath);
+        moduleListStorage.saveModuleList(moduleList, filePath);
     }
 
 }

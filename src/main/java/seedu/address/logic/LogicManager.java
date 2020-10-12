@@ -49,9 +49,9 @@ public class LogicManager implements Logic {
 
         try {
             // storage.saveAddressBook(model.getAddressBook());
-            storage.saveModuleList(new ReadOnlyAddressBook() {
+            storage.saveModuleList(new ReadOnlyModuleList() {
                 @Override
-                public ObservableList<Person> getPersonList() {
+                public ObservableList<Module> getModuleList() {
                     return null;
                 }
             });
