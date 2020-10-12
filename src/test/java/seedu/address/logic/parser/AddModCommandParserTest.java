@@ -29,8 +29,8 @@ public class AddModCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Module expectedModuleCs1010s = new ModuleBuilder(CS1010S).withPersons().build();
-        Module expectedModuleCs2103 = new ModuleBuilder(CS2103).withPersons().build();
+        Module expectedModuleCs1010s = new ModuleBuilder(CS1010S).withInstructors().build();
+        Module expectedModuleCs2103 = new ModuleBuilder(CS2103).withInstructors().build();
 
         assertParseSuccess(parser, CODE_DESC_CS1010S + NAME_DESC_CS1010S,
                 new AddModCommand(expectedModuleCs1010s));
@@ -43,7 +43,7 @@ public class AddModCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero persons
-        Module expectedModule = new ModuleBuilder(CS1010S).withPersons().build();
+        Module expectedModule = new ModuleBuilder(CS1010S).withInstructors().build();
         assertParseSuccess(parser, CODE_DESC_CS1010S + NAME_DESC_CS1010S,
             new AddModCommand(expectedModule));
     }

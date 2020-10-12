@@ -34,7 +34,7 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleName;
     @FXML
-    private FlowPane persons;
+    private FlowPane instructors;
 
     /**
      * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
@@ -45,9 +45,9 @@ public class ModuleCard extends UiPart<Region> {
         moduleCode.setText(module.getModuleCode().moduleCode);
         moduleName.setText(module.getModuleName().moduleName);
 
-        module.getPersons().stream()
-                .sorted(Comparator.comparing(person -> person.getName().fullName))
-                .forEach(person -> persons.getChildren().add(new Label(person.getName().fullName)));
+        module.getInstructors().stream()
+                .sorted(Comparator.comparing(instructor -> instructor.getName().fullName))
+                .forEach(person -> instructors.getChildren().add(new Label(person.getName().fullName)));
     }
 
     @Override

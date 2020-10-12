@@ -20,7 +20,7 @@ public class Module {
 
     // Data fields
     private final ModuleName moduleName;
-    private final Set<Person> persons = new HashSet<>();
+    private final Set<Person> instructors = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -34,11 +34,11 @@ public class Module {
     /**
      * Every field must be present and not null.
      */
-    public Module(ModuleCode moduleCode, ModuleName moduleName, Set<Person> persons) {
-        requireAllNonNull(moduleCode, moduleName, persons);
+    public Module(ModuleCode moduleCode, ModuleName moduleName, Set<Person> instructors) {
+        requireAllNonNull(moduleCode, moduleName, instructors);
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
-        this.persons.addAll(persons);
+        this.instructors.addAll(instructors);
     }
 
     public ModuleCode getModuleCode() {
@@ -49,8 +49,8 @@ public class Module {
         return moduleName;
     }
 
-    public Set<Person> getPersons() {
-        return Collections.unmodifiableSet(persons);
+    public Set<Person> getInstructors() {
+        return Collections.unmodifiableSet(instructors);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Module {
         Module m = (Module) other;
         return m.moduleCode.equals(moduleCode)
                 && m.moduleName.equals(moduleName)
-                && m.persons.equals(persons);
+                && m.instructors.equals(instructors);
 
     }
 

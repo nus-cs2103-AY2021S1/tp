@@ -21,19 +21,19 @@ public class TypicalModules {
 
     public static final Module CS1010S = new ModuleBuilder()
             .withCode("CS1010S").withName("Programming Methodology")
-            .withPersons(BENSON, FIONA).build();
+            .withInstructors(BENSON, FIONA).build();
     public static final Module CS1101S = new ModuleBuilder()
             .withCode("CS1101S").withName("Programming Methodology")
-            .withPersons(ALICE, BENSON).build();
+            .withInstructors(ALICE, BENSON).build();
     public static final Module CS2030 = new ModuleBuilder()
             .withCode("CS2030").withName("Programming Methodology 2")
-            .withPersons(CARL).build();
+            .withInstructors(CARL).build();
     public static final Module CS2100 = new ModuleBuilder()
             .withCode("CS2100").withName("Computer Organization")
-            .withPersons(FIONA, GEORGE).build();
+            .withInstructors(FIONA, GEORGE).build();
     public static final Module CS2103 = new ModuleBuilder()
             .withCode("CS2103").withName("Software Engineering")
-            .withPersons(BENSON, CARL, DANIEL).build();
+            .withInstructors(BENSON, CARL, DANIEL).build();
 
     private TypicalModules() {} // prevents instantiation
 

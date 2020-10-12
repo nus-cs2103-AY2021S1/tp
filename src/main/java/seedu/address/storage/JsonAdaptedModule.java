@@ -20,7 +20,7 @@ public class JsonAdaptedModule {
 
     private final String moduleCode;
     private final String moduleName;
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPerson> instructors = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
@@ -28,11 +28,11 @@ public class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("moduleName") String moduleName,
-                             @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+                             @JsonProperty("instructors") List<JsonAdaptedPerson> instructors) {
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
-        if (persons != null) {
-            this.persons.addAll(persons);
+        if (instructors != null) {
+            this.instructors.addAll(instructors);
         }
     }
 
@@ -42,7 +42,7 @@ public class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         moduleCode = source.getModuleCode().moduleCode;
         moduleName = source.getModuleName().moduleName;
-        persons.addAll(source.getPersons().stream()
+        instructors.addAll(source.getInstructors().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
     }
@@ -53,9 +53,9 @@ public class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module.
      */
     public Module toModelType() throws IllegalValueException {
-        final List<Person> persons = new ArrayList<>();
-        for (JsonAdaptedPerson person : this.persons) {
-            persons.add(person.toModelType());
+        final List<Person> instructors = new ArrayList<>();
+        for (JsonAdaptedPerson person : this.instructors) {
+            instructors.add(person.toModelType());
         }
 
         if (moduleCode == null) {
@@ -76,7 +76,7 @@ public class JsonAdaptedModule {
         }
         final ModuleName modelName = new ModuleName(moduleName);
 
-        final Set<Person> modelPersons = new HashSet<>(persons);
+        final Set<Person> modelPersons = new HashSet<>(instructors);
         return new Module(modelCode, modelName, modelPersons);
     }
 }

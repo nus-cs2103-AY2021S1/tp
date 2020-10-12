@@ -21,7 +21,7 @@ public class ModuleTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Module module = new ModuleBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> module.getPersons().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> module.getInstructors().remove(0));
     }
 
     @Test
@@ -36,14 +36,14 @@ public class ModuleTest {
         assertFalse(CS1010S.isSameModule(CS1101S));
 
         // different code, same name, same attributes -> returns false
-        Person[] personsCs1101s = new Person[CS1101S.getPersons().size()];
-        CS1101S.getPersons().toArray(personsCs1101s);
+        Person[] instructorsCs1101s = new Person[CS1101S.getInstructors().size()];
+        CS1101S.getInstructors().toArray(instructorsCs1101s);
 
         Module cs50 = new ModuleBuilder(CS1101S).withCode("CS50").build();
         assertFalse(CS1101S.isSameModule(cs50));
 
         // same code, same name, different attributes -> returns true
-        Module editedCs1010S = new ModuleBuilder(CS1010S).withPersons(IDA).build();
+        Module editedCs1010S = new ModuleBuilder(CS1010S).withInstructors(IDA).build();
         assertTrue(CS1010S.isSameModule(editedCs1010S));
 
         // same code, different name, same attributes -> returns true
@@ -53,7 +53,7 @@ public class ModuleTest {
         // same code, different name, different attributes -> returns true
         editedCs1010S = new ModuleBuilder(CS1010S)
                 .withName(VALID_MODULE_NAME_CS50)
-                .withPersons(personsCs1101s).build();
+                .withInstructors(instructorsCs1101s).build();
         assertTrue(CS1010S.isSameModule(editedCs1010S));
 
     }
@@ -84,11 +84,11 @@ public class ModuleTest {
         editedCs1010s = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
         assertNotEquals(editedCs1010s, CS1010S);
 
-        // different persons -> returns false
-        Person[] personsCs1101s = new Person[CS1101S.getPersons().size()];
-        CS1101S.getPersons().toArray(personsCs1101s);
+        // different instructors -> returns false
+        Person[] instructorsCs1101s = new Person[CS1101S.getInstructors().size()];
+        CS1101S.getInstructors().toArray(instructorsCs1101s);
 
-        editedCs1010s = new ModuleBuilder(CS1010S).withPersons(personsCs1101s).build();
+        editedCs1010s = new ModuleBuilder(CS1010S).withInstructors(instructorsCs1101s).build();
         assertNotEquals(editedCs1010s, CS1010S);
     }
 }
