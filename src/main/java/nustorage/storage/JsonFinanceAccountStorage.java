@@ -76,10 +76,10 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
 
     @Override
-    public void saveFinanceAccount(FinanceAccount financeAccount, Path filepath) throws IOException {
-        requireAllNonNull(financeAccount, filepath);
+    public void saveFinanceAccount(FinanceAccount financeAccount, Path filePath) throws IOException {
+        requireAllNonNull(financeAccount, filePath);
 
-        FileUtil.createIfMissing(filepath);
+        FileUtil.createIfMissing(filePath);
 
         JsonUtil.saveJsonFile(new JsonSerializableFinanceAccount(financeAccount), filePath);
     }
