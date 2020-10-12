@@ -113,6 +113,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         expenses.remove(key);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueExpenseList#tallyExpenses().
+     */
+    @Override
+    public double tallyExpenses() {
+        return expenses.tallyExpenses();
+    }
+
     //// util methods
 
     @Override
