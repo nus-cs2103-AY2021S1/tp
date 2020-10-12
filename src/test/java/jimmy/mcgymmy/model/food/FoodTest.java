@@ -4,10 +4,9 @@ import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.junit.jupiter.api.Test;
-
 import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.FoodBuilder;
+import org.junit.jupiter.api.Test;
 
 public class FoodTest {
     public static final Name VALID_FOOD_NAME = new Name("test food");
@@ -53,21 +52,21 @@ public class FoodTest {
     }
 
     @Test
-    public void toStringIsCorrect() {
+    public void toString_Test() {
         String expected1 = "Food:test food\n"
-            + "protein: 2\n"
-            + "carbs: 3\n"
-            + "fat: 4\n";
+                + "protein: 2\n"
+                + "carbs: 3\n"
+                + "fat: 4\n";
         assertEquals(COMPARED_FOOD.toString(), expected1);
         String expected2 = "Food:test food2\n"
-            + "protein: 100\n"
-            + "carbs: 20\n"
-            + "fat: 10\n";
+                + "protein: 100\n"
+                + "carbs: 20\n"
+                + "fat: 10\n";
         assertEquals(new Food("test food2", 100, 10, 20).toString(), expected2);
     }
 
     @Test
-    public void getCaloriesIsCorrect() {
+    public void getCalories_Test() {
         assertEquals(new Food("water", 0, 0, 0).getCalories(), 0);
         assertEquals(new Food("chimkenbreast", 30, 0, 0).getCalories(), 120);
         assertEquals(new Food("chimkenRice", 0, 0, 30).getCalories(), 120);
