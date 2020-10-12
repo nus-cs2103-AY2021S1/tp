@@ -15,7 +15,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -98,13 +100,26 @@ public class ModelManagerTest {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
+        BidderAddressBook bidderAddressBook = new BidderAddressBook();
+        SellerAddressBook sellerAddressBook = new SellerAddressBook();
         BidBook bidBook = new BidBook();
         MeetingBook meetingBook = new MeetingBook();
         PropertyBook propertyBook = new PropertyBook();
 
+        modelManager = new ModelManager(addressBook, userPrefs,
+                bidBook,
+                propertyBook,
+                bidderAddressBook,
+                sellerAddressBook,
+                meetingBook);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs,
+                bidBook,
+                propertyBook,
+                bidderAddressBook,
+                sellerAddressBook,
+                meetingBook);
+
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, bidBook, meetingBook, propertyBook);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, bidBook, meetingBook, propertyBook);
 
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -118,13 +133,16 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, bidBook, meetingBook,
-                propertyBook)));
+
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs,
+                bidBook, propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, bidBook, meetingBook, propertyBook)));
+
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
+                bidBook, propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -132,8 +150,8 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(
-                new ModelManager(addressBook, differentUserPrefs, bidBook, meetingBook, propertyBook)));
 
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, bidBook,
+                propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
     }
 }

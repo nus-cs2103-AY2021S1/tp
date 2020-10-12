@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Id to uniquely identify elements in a list.
- */
+* Represents an Id to uniquely identify elements in a list.
+*/
 public class Id {
 
     public static final String MESSAGE_CONSTRAINTS = "Ids should start with a representative character, followed by"
-        + "some numbers.";
+            + "some numbers.";
 
     public static final String VALIDATION_REGEX = "[BSP]\\p{Digit}+";
 
@@ -17,11 +17,10 @@ public class Id {
     private final int idNumber;
 
     /**
-     * Constructs the Id with a prefix and id number.
-     *
-     * @param prefix The prefix representing the type of object.
-     * @param idNumber The id number.
-     */
+    * Constructs the Id with a prefix and id number.
+    * @param prefix The prefix representing the type of object.
+    * @param idNumber The id number.
+    */
     public Id(String prefix, int idNumber) {
         this.prefix = prefix;
         this.idNumber = idNumber;

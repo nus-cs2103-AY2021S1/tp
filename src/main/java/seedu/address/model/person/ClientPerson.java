@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 public class ClientPerson extends Person {
 
     // Identity fields
-    protected Id sellerId;
+    protected Id clientId;
 
     /**
      * Constructor for the client.
@@ -26,11 +26,15 @@ public class ClientPerson extends Person {
     protected ClientPerson(Name name, Phone phone, Set<Tag> tags, Id id) {
         super(name, phone, tags);
         requireAllNonNull(id);
-        this.sellerId = id;
+        this.clientId = id;
     }
 
     public Id getId() {
-        return this.sellerId;
+        return this.clientId;
+    }
+
+    public void setId(Id updatedId) {
+        this.clientId = updatedId;
     }
 
     /**
@@ -46,11 +50,11 @@ public class ClientPerson extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append(" Tags: ")
-                .append(" Id: ")
-                .append(getId());
+                .append("\nId: ")
+                .append(getId())
+                .append("\nTags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

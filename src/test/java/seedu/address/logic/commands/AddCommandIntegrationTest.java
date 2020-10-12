@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,16 +27,23 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
-                new MeetingBook(), new PropertyBook());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new PropertyBook(),
+                getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                model.getMeetingManager(), model.getPropertyBook());
+        Model expectedModel = new ModelManager(
+                model.getAddressBook(),
+                new UserPrefs(),
+                model.getBidBook(),
+                new PropertyBook(),
+                model.getBidderAddressBook(),
+                model.getSellerAddressBook(),
+                model.getMeetingManager()
+        );
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,

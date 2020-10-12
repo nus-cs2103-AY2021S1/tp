@@ -18,9 +18,13 @@ import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
 import seedu.address.model.property.Property;
+import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.storage.Storage;
 
 /**
@@ -28,6 +32,7 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private final Model model;
     private final Storage storage;
@@ -48,11 +53,14 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
+        logger.info("----------------[DOUBLE CHECK][" + command + "]");
         commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveBidBook(model.getBidBook());
+            storage.saveBidderAddressBook(model.getBidderAddressBook());
+            storage.saveSellerAddressBook(model.getSellerAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -95,6 +103,43 @@ public class LogicManager implements Logic {
         return model.getFilteredBidList();
     }
 
+    // ===================== BIDDER =====================
+
+    @Override
+    public ReadOnlyBidderAddressBook getBidderAddressBook() {
+        return model.getBidderAddressBook();
+    }
+
+    @Override
+    public ObservableList<Bidder> getFilteredBidderList() {
+        return model.getFilteredBidderList();
+    }
+
+    @Override
+    public Path getBidderAddressBookFilePath() {
+        return model.getBidderAddressBookFilePath();
+    }
+
+
+    // ===================== SELLER =====================
+
+    @Override
+    public ReadOnlySellerAddressBook getSellerAddressBook() {
+        return model.getSellerAddressBook();
+    }
+
+    @Override
+    public ObservableList<Seller> getFilteredSellerList() {
+        return model.getFilteredSellerList();
+    }
+
+    @Override
+    public Path getSellerAddressBookFilePath() {
+        return model.getSellerAddressBookFilePath();
+    }
+
+    // ===================== PROPERTY =====================
+
     @Override
     public ReadOnlyMeetingManager getMeetingManager() {
         return model.getMeetingManager();
@@ -113,4 +158,5 @@ public class LogicManager implements Logic {
     public ObservableList<Property> getFilteredPropertyList() {
         return model.getFilteredPropertyList();
     }
+
 }
