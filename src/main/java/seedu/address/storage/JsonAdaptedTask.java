@@ -2,8 +2,14 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.assignment.*;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.ModuleCode;
+import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 
 public class JsonAdaptedTask {

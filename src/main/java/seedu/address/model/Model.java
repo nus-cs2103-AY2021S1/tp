@@ -1,15 +1,11 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.timetable.TimetableData;

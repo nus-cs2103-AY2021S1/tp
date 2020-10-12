@@ -30,6 +30,11 @@ public abstract class Task {
         return moduleCode;
     }
 
+    /**
+     * Checks if task is the same.
+     * @param otherTask Another task.
+     * @return True if task is the same, false otherwise.
+     */
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;

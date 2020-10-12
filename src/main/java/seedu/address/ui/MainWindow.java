@@ -123,9 +123,6 @@ public class MainWindow extends UiPart<Stage> {
         System.out.println(logic.getFilteredTaskList());
         assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
 
-//        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-//        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
         assignmentListPanel2 = new ReminderListPanel(logic.getFilteredAssignmentList());
         assignmentListPanelPlaceholder2.getChildren().add(assignmentListPanel2.getRoot());
 
@@ -182,10 +179,6 @@ public class MainWindow extends UiPart<Stage> {
     public AssignmentListPanel getAssignmentListPanel() {
         return assignmentListPanel;
     }
-
-//    public TaskListPanel getTaskListPanel() {
-//        return taskListPanel;
-//    }
 
     public ReminderListPanel getReminderListPanel() {
         return assignmentListPanel2;

@@ -7,16 +7,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.lesson.Lesson;
@@ -194,13 +190,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return lessons.asUnmodifiableObservableList();
     }
 
-//    public ObservableList<Task> getTaskList() {
-//        return tasks.asUnmodifiableObservableList();
-//    }
-
     public ObservableList<Task> getTaskList() {
-//        tasks.getInternalList().addAll(assignments.getInternalList());
-//        tasks.getInternalList().addAll(lessons.getInternalList());
         tasks.getInternalList().sort((firstTask, secondTask) -> {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);

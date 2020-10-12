@@ -3,16 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Deadline;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-import java.util.function.Predicate;
 
 /**
  * Lists all assignments in the address book to the user.
@@ -39,7 +39,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        Predicate<Assignment> PREDICATE_SHOW_LIMITED_ASSIGNMENT = assignment -> {
+        Predicate<Assignment> showLimitedAssignment = assignment -> {
             LocalDateTime currentDateAndTime = LocalDateTime.now();
             LocalDateTime lastDateAndTime = currentDateAndTime.plusWeeks(numberOfWeeks.getZeroBased());
             String toParse = assignment.getDeadline().value;
@@ -51,7 +51,7 @@ public class ListCommand extends Command {
         };
 
         if (numberOfWeeks.getZeroBased() != 0) {
-            model.updateFilteredAssignmentList(PREDICATE_SHOW_LIMITED_ASSIGNMENT);
+            model.updateFilteredAssignmentList(showLimitedAssignment);
         } else {
             model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
         }

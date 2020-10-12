@@ -75,11 +75,6 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             addressBook.addTask(task);
-//            if (task instanceof Assignment) {
-//                addressBook.addTask((Assignment) task);
-//            } else {
-//                addressBook.addLesson((Lesson) task);
-//            }
         }
         return addressBook;
     }
