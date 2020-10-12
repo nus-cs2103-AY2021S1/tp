@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
@@ -28,12 +29,14 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
+
     private Model model = new ModelManager(getTypicalAddressBook(),
             new UserPrefs(),
             new BidBook(),
             new PropertyBook(),
             getTypicalBidderAddressBook(),
-            getTypicalSellerAddressBook());
+            getTypicalSellerAddressBook(),
+            new MeetingBook());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -43,8 +46,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
-
+                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
         expectedModel.deletePerson(personToDelete);
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -65,10 +67,9 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
-
+                new PropertyBook(), model.getBidderAddressBook(),
+                model.getSellerAddressBook(), model.getMeetingManager());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 

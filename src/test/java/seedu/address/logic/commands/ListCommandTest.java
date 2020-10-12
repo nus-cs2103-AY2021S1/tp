@@ -11,10 +11,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -27,9 +29,10 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
-                new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook());
+                new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
+                new PropertyBook(), model.getBidderAddressBook(),
+                model.getSellerAddressBook(), model.getMeetingManager());
     }
 
     @Test

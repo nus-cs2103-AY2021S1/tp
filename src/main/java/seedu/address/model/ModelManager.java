@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -33,42 +34,49 @@ public class ModelManager implements Model, SellerModel, BidderModel {
     private final SellerAddressBook sellerAddressBook;
     private final UserPrefs userPrefs;
     private final PropertyBook propertyBook;
+    private final MeetingBook meetingBook;
 
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Seller> filteredSellers;
     private final FilteredList<Bidder> filteredBidders;
     private final FilteredList<Bid> filteredBids;
+    private final FilteredList<CalendarMeeting> filteredMeetings;
     private final FilteredList<Property> filteredProperties;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs, bidBook, meetingManager and propertyBook.
      */
+
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
                         ReadOnlyPropertyBook propertyBook, ReadOnlyBidderAddressBook bidderAddressBook,
-                        ReadOnlySellerAddressBook sellerAddressBook) {
+                        ReadOnlySellerAddressBook sellerAddressBook, ReadOnlyMeetingManager meetingManager) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook, propertyBook, bidderAddressBook, sellerAddressBook);
+        requireAllNonNull(addressBook, userPrefs, bidBook, propertyBook,
+                bidderAddressBook, sellerAddressBook, meetingManager);
 
         logger.fine("Initializing with address book: " + addressBook
                 + " and user prefs " + userPrefs + " and bid book: " + bidBook
                 + " and property book: " + propertyBook
                 + "\n bidderAddressBook: " + bidderAddressBook
-                + "\n sellerAddressBook: " + sellerAddressBook);
-
+                + "\n sellerAddressBook: " + sellerAddressBook
+                + "\n and meeting manager" + meetingManager
+        );
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidderAddressBook = new BidderAddressBook(bidderAddressBook);
         this.sellerAddressBook = new SellerAddressBook(sellerAddressBook);
         this.bidBook = new BidBook(bidBook);
+        this.meetingBook = new MeetingBook(meetingManager);
         this.propertyBook = new PropertyBook(propertyBook);
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBidders = new FilteredList<>(this.bidderAddressBook.getBidderList());
         filteredSellers = new FilteredList<>(this.sellerAddressBook.getSellerList());
-
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
+        filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+
     }
 
     /**
@@ -80,7 +88,9 @@ public class ModelManager implements Model, SellerModel, BidderModel {
                 new BidBook(),
                 new PropertyBook(),
                 new BidderAddressBook(),
-                new SellerAddressBook());
+                new SellerAddressBook(),
+                new MeetingBook());
+
     }
 
     //=========== UserPrefs ==================================================================================
@@ -245,6 +255,59 @@ public class ModelManager implements Model, SellerModel, BidderModel {
         filteredProperties.setPredicate(predicate);
     }
 
+    //=========== MeetingManager ================================================================================
+
+    @Override
+    public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+        this.meetingBook.resetData(meetingManager);
+    }
+
+    @Override
+    public ReadOnlyMeetingManager getMeetingManager() {
+        return meetingBook;
+    }
+
+    @Override
+    public boolean hasMeeting(CalendarMeeting meeting) {
+        requireNonNull(meeting);
+        return meetingBook.hasMeetings(meeting);
+    }
+
+    @Override
+    public void deleteMeeting(CalendarMeeting target) {
+        meetingBook.removeMeeting(target);
+    }
+
+    @Override
+    public void addMeeting(CalendarMeeting meeting) {
+        meetingBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    @Override
+    public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
     //=========== Bidder =============================================================
 
     @Override
@@ -380,8 +443,9 @@ public class ModelManager implements Model, SellerModel, BidderModel {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
+                && meetingBook.equals(other.meetingBook)
+                && filteredMeetings.equals(other.filteredMeetings)
                 && propertyBook.equals(other.propertyBook)
-                && filteredProperties.equals(filteredProperties);
+                && filteredProperties.equals(other.filteredProperties);
     }
-
 }

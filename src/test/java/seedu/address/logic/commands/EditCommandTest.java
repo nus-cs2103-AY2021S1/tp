@@ -22,6 +22,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
@@ -37,7 +38,7 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
             new PropertyBook(), getTypicalBidderAddressBook(),
-            getTypicalSellerAddressBook());
+            getTypicalSellerAddressBook(), new MeetingBook());
 
 
     @Test
@@ -47,9 +48,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
+                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -72,7 +72,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
+                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -87,8 +87,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
-
+                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -104,7 +103,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook());
+                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 

@@ -21,10 +21,12 @@ import seedu.address.model.BidBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -124,6 +126,46 @@ public class AddCommandTest {
 
         @Override
         public void addBid(Bid bid) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+
+        }
+
+        @Override
+        public ReadOnlyMeetingManager getMeetingManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(CalendarMeeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(CalendarMeeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(CalendarMeeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -15,9 +15,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -138,6 +140,15 @@ public class LogicManager implements Logic {
 
     // ===================== PROPERTY =====================
 
+    @Override
+    public ReadOnlyMeetingManager getMeetingManager() {
+        return model.getMeetingManager();
+    }
+
+    @Override
+    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
+    }
     @Override
     public ReadOnlyPropertyBook getPropertyBook() {
         return model.getPropertyBook();

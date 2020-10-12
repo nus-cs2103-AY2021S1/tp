@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
@@ -144,9 +145,8 @@ public class MainApp extends Application {
             initialBidderData = new BidderAddressBook();
             initialSellerData = new SellerAddressBook();
         }
-
         return new ModelManager(initialData, userPrefs, initialBidData, initialPropertyData,
-                initialBidderData, initialSellerData);
+                initialBidderData, initialSellerData, new MeetingBook());
     }
 
     private void initLogging(Config config) {

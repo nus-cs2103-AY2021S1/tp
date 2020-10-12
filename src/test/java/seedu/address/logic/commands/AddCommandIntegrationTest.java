@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
@@ -27,7 +28,7 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new PropertyBook(),
-                getTypicalBidderAddressBook(), getTypicalSellerAddressBook());
+                getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
     }
 
     @Test
@@ -40,7 +41,8 @@ public class AddCommandIntegrationTest {
                 model.getBidBook(),
                 new PropertyBook(),
                 model.getBidderAddressBook(),
-                model.getSellerAddressBook()
+                model.getSellerAddressBook(),
+                model.getMeetingManager()
         );
         expectedModel.addPerson(validPerson);
 
