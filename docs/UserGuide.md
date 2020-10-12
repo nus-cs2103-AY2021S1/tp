@@ -71,7 +71,7 @@ Format: `open INDEX`
 
 * Opens the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `open 2` opens the 2nd flashcard in the list.
@@ -113,7 +113,7 @@ Format: `test INDEX ans/ANSWER`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
+* The index **must be a positive integer**  1, 2, 3, …
 * The `ANSWER` is case-insensitive.
 
 Examples:
@@ -125,10 +125,10 @@ Format: `test INDEX o/OPTION`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
+* The index **must be a positive integer**  1, 2, 3, …
 * `CHOICE`(s) are displayed in the displayed choices list of the flashcard after `open INDEX` command is performed.
 * The `OPTION` refers to the index number of the specified `CHOICE`.
-* The `OPTION` **must be a positive integer** 1, 2, 3, …​
+* The `OPTION` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
@@ -146,7 +146,7 @@ Format: `stats INDEX`
 
 * Displays the statistics of a flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 ### Listing all flashcards : `list`
 
@@ -172,7 +172,7 @@ Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd flashcard in the list.
