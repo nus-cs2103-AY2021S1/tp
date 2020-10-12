@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-
 import chopchop.commons.core.GuiSettings;
 
 /**
@@ -14,8 +13,8 @@ import chopchop.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path recipeBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path ingredientBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path ingredientBookFilePath = Paths.get("data" , "ingredientbook.json");
+    private Path recipeBookFilePath = Paths.get("data" , "recipebook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
+        setIngredientBookFilePath(newUserPrefs.getIngredientBookFilePath());
         setRecipeBookFilePath(newUserPrefs.getRecipeBookFilePath());
     }
 
@@ -43,28 +43,27 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return null;
-    }
-
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
 
+    public Path getIngredientBookFilePath() {
+        return ingredientBookFilePath;
+    }
 
     public Path getRecipeBookFilePath() {
-        return recipeBookFilePath;
+        return this.recipeBookFilePath;
     }
 
-    public void setRecipeBookFilePath(Path recipeBookFilePath) {
-        requireNonNull(recipeBookFilePath);
-        this.recipeBookFilePath = recipeBookFilePath;
+    public void setIngredientBookFilePath(Path BookFilePath) {
+        requireNonNull(BookFilePath);
+        this.ingredientBookFilePath = BookFilePath;
     }
 
-    public void setIngredientBookFilePath(Path indBookFilePath) {
-        requireNonNull(indBookFilePath);
-        this.ingredientBookFilePath = indBookFilePath;
+    public void setRecipeBookFilePath(Path BookFilePath) {
+        requireNonNull(BookFilePath);
+        this.recipeBookFilePath = BookFilePath;
     }
 
     @Override
@@ -72,28 +71,28 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof UserPrefs)) { //this handles null as well.
+        if (!(other instanceof seedu.address.model.UserPrefs)) { //this handles null as well.
             return false;
         }
 
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && recipeBookFilePath.equals(o.recipeBookFilePath);
+            && ingredientBookFilePath.equals(o.ingredientBookFilePath)
+            && recipeBookFilePath.equals(o.recipeBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, recipeBookFilePath);
+        return Objects.hash(guiSettings, ingredientBookFilePath, recipeBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + recipeBookFilePath);
-
+        sb.append("\nLocal data ingredient file location : " + ingredientBookFilePath);
+        sb.append("\nLocal data recipe file location : " + recipeBookFilePath);
         return sb.toString();
     }
-
 }

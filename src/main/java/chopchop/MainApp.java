@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import chopchop.storage.IngredientBookStorage;
+import chopchop.storage.RecipeBookStorage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -58,7 +60,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        IngredientBookStorage indBookStorage = new JsonAddressBookStorage(userPrefs.getIngredientBookFilePath());
+        RecipeBookStorage recipeBookStorage = new JsonAddressBookStorage(userPrefs.getRecipeBookFilePath())
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
