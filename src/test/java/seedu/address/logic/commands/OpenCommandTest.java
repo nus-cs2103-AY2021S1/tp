@@ -2,10 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
+
+import java.awt.Desktop;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,6 @@ class OpenCommandTest {
 
     private Model typicalModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     // Change to true to enable testing of opening files
-    private final boolean isTestingOpenFile = false;
 
     @Test
     public void equals() {
@@ -58,28 +58,30 @@ class OpenCommandTest {
 
     @Test
     public void execute_tagNameInModel_success() throws Exception {
-        assumeTrue(isTestingOpenFile);
-        Tag correctTag = new TagBuilder().build();
-        OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
-        Model model = new ModelManager();
-        model.addTag(correctTag);
+        if (Desktop.isDesktopSupported()) {
+            Tag correctTag = new TagBuilder().build();
+            OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
+            Model model = new ModelManager();
+            model.addTag(correctTag);
 
-        String expectedMessage = String.format(OpenCommand.MESSAGE_SUCCESS, correctTag);
+            String expectedMessage = String.format(OpenCommand.MESSAGE_SUCCESS, correctTag);
 
-        assertCommandSuccess(openCommand, model, expectedMessage, model);
+            assertCommandSuccess(openCommand, model, expectedMessage, model);
+        }
     }
 
     @Test
     public void execute_tagNameInModelFileNotFound_throwCommandException() {
-        assumeTrue(isTestingOpenFile);
-        Tag correctTag = new TagBuilder().withTagName("test")
-                .withFileAddress(".\\src\\test\\java\\seedu\\address\\testutil\\testFileNotHere.bat").build();
-        OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
-        Model model = new ModelManager();
-        model.addTag(correctTag);
+        if (Desktop.isDesktopSupported()) {
+            Tag correctTag = new TagBuilder().withTagName("test")
+                    .withFileAddress(".\\src\\test\\java\\seedu\\address\\testutil\\testFileNotHere.bat").build();
+            OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
+            Model model = new ModelManager();
+            model.addTag(correctTag);
 
-        assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND,
-                correctTag.getFileAddress().value), () -> openCommand.execute(model));
+            assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND,
+                    correctTag.getFileAddress().value), () -> openCommand.execute(model));
+        }
     }
 
 }

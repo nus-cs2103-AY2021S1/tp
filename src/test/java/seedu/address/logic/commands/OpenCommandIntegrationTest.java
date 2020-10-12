@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTags.CS2101;
+
+import java.awt.Desktop;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -33,9 +34,10 @@ public class OpenCommandIntegrationTest {
 
     @Test
     public void execute_openValidTag_success() {
-        assumeTrue(isTestingOpenFile);
-        assertCommandSuccess(new OpenCommand(validTag.getTagName()), model,
-                String.format(OpenCommand.MESSAGE_SUCCESS, validTag), model);
+        if (Desktop.isDesktopSupported()) {
+            assertCommandSuccess(new OpenCommand(validTag.getTagName()), model,
+                    String.format(OpenCommand.MESSAGE_SUCCESS, validTag), model);
+        }
     }
 
     @Test
@@ -48,9 +50,10 @@ public class OpenCommandIntegrationTest {
 
     @Test
     public void execute_openInvalidTag_throwCommandException() {
-        assumeTrue(isTestingOpenFile);
-        OpenCommand openCommand = new OpenCommand(invalidTag.getTagName());
-        assertCommandFailure(openCommand, model,
-                String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND, invalidTag.getFileAddress()));
+        if (Desktop.isDesktopSupported()) {
+            OpenCommand openCommand = new OpenCommand(invalidTag.getTagName());
+            assertCommandFailure(openCommand, model,
+                    String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND, invalidTag.getFileAddress()));
+        }
     }
 }
