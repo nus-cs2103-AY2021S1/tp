@@ -1,0 +1,17 @@
+{
+  "exercises": [
+    {
+      "name": "Push Up",
+      "description": "Valid Exercise",
+      "date": "10-10-20",
+      "calories": "100"
+    },
+    {
+      "name": "Invalid Description",
+      "description": "Inv@lid DEScr1pTI0N",
+      "date": "10-10-20",
+      "calories": "100"
+    }
+  ]
+
+}
