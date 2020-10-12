@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalBidder.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.bidder.Bidder;
 import seedu.address.testutil.BidderBuilder;
 
 public class BidderTest {

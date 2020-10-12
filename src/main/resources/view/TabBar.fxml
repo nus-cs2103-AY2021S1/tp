@@ -18,6 +18,26 @@
                 </VBox>
             </content>
         </Tab>
+        <Tab fx:id="bidderTab" text="Untitled Tab 1">
+            <content>
+                <VBox fx:id="bidderList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <StackPane fx:id="bidderListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                </VBox>
+            </content>
+        </Tab>
+        <Tab fx:id="sellerTab" text="Untitled Tab 1">
+            <content>
+                <VBox fx:id="sellerList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <StackPane fx:id="sellerListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                </VBox>
+            </content>
+        </Tab>
         <Tab fx:id="bidTab" text="Untitled Tab 2">
             <VBox fx:id="bidList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <padding>

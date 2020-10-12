@@ -1,12 +1,12 @@
-package seedu.address.model;
+package seedu.address.model.bidderaddressbook;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Bidder;
-import seedu.address.model.person.UniqueBidderList;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.bidder.UniqueBidderList;
 
 /**
  * Wraps all data at the address-book level
@@ -86,7 +86,7 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
      * Removes {@code key} from this {@code BidderAddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Bidder key) {
+    public void removeBidder(Bidder key) {
         bidders.remove(key);
     }
 
@@ -101,7 +101,6 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
     public ObservableList<Bidder> getBidderList() {
         return bidders.asUnmodifiableObservableList();
     }
-
 
     @Override
     public boolean equals(Object other) {

@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalSeller.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.seller.Seller;
 import seedu.address.testutil.SellerBuilder;
 
 public class SellerTest {
