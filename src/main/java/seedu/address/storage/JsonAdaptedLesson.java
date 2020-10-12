@@ -18,7 +18,7 @@ public class JsonAdaptedLesson {
     private final String endTime;
 
     /**
-     * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
+     * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
      */
     @JsonCreator
     public JsonAdaptedLesson(@JsonProperty("name") String name, @JsonProperty("startTime") String startTime,
@@ -30,7 +30,7 @@ public class JsonAdaptedLesson {
     }
 
     /**
-     * Converts a given {@code Assignment} into this class for Jackson use.
+     * Converts a given {@code Lesson} into this class for Jackson use.
      */
     public JsonAdaptedLesson(Lesson source) {
         name = source.getName().fullName;
@@ -40,9 +40,9 @@ public class JsonAdaptedLesson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted assignment object into the model's {@code Assignment} object.
+     * Converts this Jackson-friendly adapted lesson object into the model's {@code Lesson} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
     public Lesson toModelType() throws IllegalValueException {
         if (name == null) {

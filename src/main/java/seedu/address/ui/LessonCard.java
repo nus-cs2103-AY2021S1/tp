@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.lesson.Lesson;
 
 /**
- * An UI component that displays information of a {@code Assignment}.
+ * An UI component that displays information of a {@code Lesson}.
  */
 public class LessonCard extends UiPart<Region> {
 
@@ -37,7 +37,7 @@ public class LessonCard extends UiPart<Region> {
     private Label moduleCode;
 
     /**
-     * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
+     * Creates a {@code LessonCode} with the given {@code Lesson} and index to display.
      */
     public LessonCard(Lesson lesson, int displayedIndex) {
         super(FXML);

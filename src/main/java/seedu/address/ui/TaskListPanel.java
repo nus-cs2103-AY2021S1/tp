@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Task;
 
 /**
- * Panel containing the list of assignments.
+ * Panel containing the list of tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
@@ -21,7 +21,7 @@ public class TaskListPanel extends UiPart<Region> {
     private ListView<Task> taskListView;
 
     /**
-     * Creates a {@code AssignmentListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Assignment} using a {@code AssignmentCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
     class TaskListViewCell extends ListCell<Task> {
 

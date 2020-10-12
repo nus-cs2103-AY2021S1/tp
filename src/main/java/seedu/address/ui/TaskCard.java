@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.assignment.Task;
 
 /**
- * An UI component that displays information of a {@code Assignment}.
+ * An UI component that displays information of a {@code Task}.
  */
 public class TaskCard extends UiPart<Region> {
 
@@ -37,7 +37,7 @@ public class TaskCard extends UiPart<Region> {
     private Label moduleCode;
 
     /**
-     * Creates a {@code AssignmentCode} with the given {@code Assignment} and index to display.
+     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
@@ -56,7 +56,7 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof LessonCard)) {
+        if (!(other instanceof TaskCard)) {
             return false;
         }
 
