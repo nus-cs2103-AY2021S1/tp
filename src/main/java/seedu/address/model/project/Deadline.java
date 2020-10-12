@@ -8,8 +8,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {
-
-
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline should only be in the format of dd-MM-yyyy HH:mm:ss, "
                     + "and the time should only be in the format of 24-Hour";

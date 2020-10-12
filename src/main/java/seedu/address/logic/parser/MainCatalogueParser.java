@@ -17,6 +17,7 @@ import seedu.address.logic.commands.catalogue.StartCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exceptions.InvalidScopeException;
@@ -36,7 +37,7 @@ public class MainCatalogueParser {
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
-     * @param status the status of the current scoping
+     * @param status    the status of the current scoping
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -80,6 +81,7 @@ public class MainCatalogueParser {
 
             case LeaveCommand.COMMAND_WORD:
             case AssignCommand.COMMAND_WORD:
+            case FilterCommand.COMMAND_WORD:
                 throw new InvalidScopeException(Status.PROJECT, Status.CATALOGUE);
 
             default:
@@ -93,7 +95,8 @@ public class MainCatalogueParser {
 
             case AssignCommand.COMMAND_WORD:
                 return new AssignCommandParser().parse(arguments);
-
+            case FilterCommand.COMMAND_WORD:
+                return new FilterCommandParser().parse(arguments);
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
 
