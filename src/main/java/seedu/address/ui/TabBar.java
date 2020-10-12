@@ -20,9 +20,6 @@ public class TabBar extends UiPart<Region> {
     private Logic logic;
 
     @FXML
-    private TabPane personCalenderBidTabBar;
-
-    @FXML
     private TabPane tabBar;
 
     @FXML
@@ -54,7 +51,6 @@ public class TabBar extends UiPart<Region> {
     public TabBar(Logic logic) {
         super(FXML);
         this.logic = logic;
-        setPersonCalenderBidTabBar();
         setTabBar();
         populateTab();
     }
@@ -63,17 +59,11 @@ public class TabBar extends UiPart<Region> {
      * Initialises all tabs on the tabpane.
      */
 
-    private void setPersonCalenderBidTabBar() {
-        personTab.setText("AddressBooks");
-        bidTab.setText("Bids");
-        calenderTab.setText("Calendar");
-        personCalenderBidTabBar.setTabMinWidth(335);
-        personCalenderBidTabBar.setTabMaxWidth(335);
-    }
     private void setTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");
         propertyTab.setText("Properties");
+        calenderTab.setText("Calendar");
         tabBar.setTabMinWidth(335);
         tabBar.setTabMaxWidth(335);
     }
