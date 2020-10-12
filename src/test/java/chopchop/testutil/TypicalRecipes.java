@@ -10,8 +10,8 @@ import java.util.List;
 
 import static chopchop.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_APRICOT_SALAD;
 import static chopchop.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_BANANA_SALAD;
-import static chopchop.testutil.TypicalIngredients.APRICOT;
-import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalIngredients.APRICOT_REF;
+import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 
 public class TypicalRecipes {
 
@@ -21,12 +21,12 @@ public class TypicalRecipes {
             "Cut the banana, add salad dressing, and mix well in a bowl.");
 
     public static final Recipe APRICOT_SALAD = new RecipeBuilder().withName(VALID_RECIPE_NAME_APRICOT_SALAD)
-            .withIngredients(new ArrayList<>(Arrays.asList(APRICOT)))
+            .withIngredients(new ArrayList<>(Arrays.asList(APRICOT_REF)))
             .withSteps(new ArrayList<>(Arrays.asList(STEP_APRICOT_SALAD)))
             .build();
 
     public static final Recipe BANANA_SALAD = new RecipeBuilder().withName(VALID_RECIPE_NAME_BANANA_SALAD)
-            .withIngredients(new ArrayList<>(Arrays.asList(BANANA)))
+            .withIngredients(new ArrayList<>(Arrays.asList(BANANA_REF)))
             .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD)))
             .build();
 

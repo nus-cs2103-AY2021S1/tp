@@ -14,8 +14,8 @@ import chopchop.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path recipeBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path ingredientBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path recipeBookFilePath = Paths.get("data" , "recipebook.json");
+    private Path ingredientBookFilePath = Paths.get("data" , "ingredientbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -43,10 +43,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return null;
-    }
-
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
@@ -60,6 +56,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setRecipeBookFilePath(Path recipeBookFilePath) {
         requireNonNull(recipeBookFilePath);
         this.recipeBookFilePath = recipeBookFilePath;
+    }
+
+    public Path getIngredientBookFilePath() {
+        return ingredientBookFilePath;
     }
 
     public void setIngredientBookFilePath(Path indBookFilePath) {

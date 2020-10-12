@@ -1,29 +1,99 @@
+// Quantity.java
+
 package chopchop.model.attributes;
 
-import static chopchop.commons.util.AppUtil.checkArgument;
+import java.util.List;
+import java.util.function.BiFunction;
 
-public class Quantity {
+import chopchop.util.Result;
+import chopchop.util.StringView;
+import chopchop.model.attributes.units.Mass;
+import chopchop.model.attributes.units.Count;
+import chopchop.model.attributes.units.Volume;
 
-    public static final String MESSAGE_CONSTRAINTS =
-        "The quantity should be at least 1";
-
-    public final double value;
+/**
+ * The Quantity interface is an abstraction over various kinds of units, including but not limited to:
+ * mass, volume, and dimensionless counts.
+ *
+ * It has no knowledge of how each unit interacts and fits with the others; it simply provides a static
+ * method that helps to parse an input, eg. "300 ml" into a {@code Quantity}. Note that the concept of
+ * "units" is different from the idea of "prefixes"; eg. 'kg' and 'g' are conceptually the same unit of
+ * mass, but they have different prefixes (1000 and 1), so it must be possible to add them together.
+ *
+ * Each class implementing Quantity is expected to be immutable. "Type" safety is expected to be enforced
+ * by the implementation, unless it makes sense to add units of different types together (unlikely).
+ *
+ * There is no restriction on the actual value of the quantity, ie. they are allowed to be negative.
+ *
+ * Implementing classes should be responsible for implementing {@code add()} functionality between
+ * different ratios (prefixes) of the same unit; eg. it should be possible to add 700g to 2kg to
+ * obtain 2.7kg.
+ */
+public interface Quantity {
 
     /**
-     * Constructs a {@code Quantity}.
+     * Adds a quantity to this, and returns a new quantity (without modifying the original).
+     * The input quantity can be negative to perform a subtraction. If the units are incompatible,
+     * it returns an appropriate error message.
      *
-     * @param value A valid integer of arbitrary unit.
+     * @param qty the addend
+     * @return    a new Quantity after performing the addition.
      */
-    public Quantity(double value) {
-        checkArgument(isValidQuantity(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+    public Result<? extends Quantity> add(Quantity qty);
+
+    /**
+     * Parse a quantity and its associated unit.
+     *
+     * @param input the string input
+     * @return      the parsed input, or an error message.
+     */
+    public static Result<Quantity> parse(String input) {
+
+        final List<BiFunction<Double, String, Result<Quantity>>> knownUnits = List.of(
+            Mass::of, Volume::of, Count::of
+        );
+
+        if (input.isEmpty()) {
+            return Result.error("empty input");
+        }
+
+        // this is a bit iffy, but this condition will accept things like "-31.4-48.145.201-4".
+        // it's up to parseDouble() to return us an intelligible error message from that.
+        var p = new StringView(input).span(c -> Character.isDigit(c) || c == '.' || c == '-');
+        var num = p.fst().trim().parseDouble();
+
+        // do-notation would be really nice here.
+        if (num.isError()) {
+            return Result.error("couldn't parse number: %s", num.getError());
+        }
+
+        var unit = p.snd().trim();
+
+        // this loops through each known unit constructor, and returns the first one
+        // that gives a non-error result. this way, the knowledge of unit names are
+        // not duplicated here and in the actual implementation.
+        return Result.flatten(
+            Result.ofOptional(
+                knownUnits.stream()
+                    .map(fn -> num.then(n -> fn.apply(n, unit.toString())))
+                    .filter(Result::hasValue)
+                    .findFirst(),
+                String.format("unknown unit '%s'", unit))
+            );
     }
 
     /**
-     * Returns true if a given int is a valid number.
+     * Formats a decimal value in an intelligent manner; mainly by not showing the decimal places if
+     * the input is a whole number.
+     *
+     * @param value the value to format
+     * @return      the formatted value as a string
      */
-    public static boolean isValidQuantity(double value) {
-        return value > 0;
+    static String formatDecimalValue(double value) {
+        if (value == (int) value) {
+            return String.format("%d", (int) value);
+        } else {
+            return String.format("%.3f", value);
+        }
     }
-
 }

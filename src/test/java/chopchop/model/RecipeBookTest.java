@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import static chopchop.testutil.Assert.assertThrows;
-import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
@@ -76,10 +76,10 @@ public class RecipeBookTest {
     public void hasRecipe_recipeWithSameIdentityFieldsInRecipeBook_returnsTrue() {
         recipeBook.addRecipe(APRICOT_SALAD);
         Recipe editedRecipe = new RecipeBuilder(APRICOT_SALAD)
-            .withIngredients(new ArrayList<>(Arrays.asList(BANANA)))
+            .withIngredients(new ArrayList<>(Arrays.asList(BANANA_REF)))
             .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD)))
             .build();
-        assertFalse(recipeBook.hasRecipe(editedRecipe)); //Both identity fields must be equal
+        assertTrue(recipeBook.hasRecipe(editedRecipe)); //Both identity fields must be equal
     }
 
     @Test

@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
 public class ExpiryDate {
+
     public static final String MESSAGE_CONSTRAINTS =
         "Expiry date should be in the form, yyyy-MM-dd";
     //temporary using 1 fixed date format before parser is integrated.
@@ -51,5 +51,13 @@ public class ExpiryDate {
     @Override
     public String toString() {
         return this.date.toString();
+    }
+
+    /**
+     * Creates an expiry date far in the future, to represent food that either doesn't expire,
+     * or where the expiry date was not given.
+     */
+    public static ExpiryDate none() {
+        return new ExpiryDate("9999-12-31");
     }
 }

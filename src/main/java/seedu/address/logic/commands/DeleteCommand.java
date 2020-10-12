@@ -7,13 +7,14 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.history.History;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends Command implements Undoable {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -23,15 +24,19 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_REVERSE_SUCCESS = "Person undeleted: %1$s";
 
     private final Index targetIndex;
+
+    private Person personToDelete;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, History history) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -39,9 +44,26 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+    }
+
+    @Override
+    public CommandResult undo(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (model.hasPerson(personToDelete)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.addPerson(personToDelete);
+        return new CommandResult(String.format(MESSAGE_REVERSE_SUCCESS, personToDelete));
+    }
+
+    @Override
+    public CommandResult redo(Model model, History history) throws CommandException {
+        return execute(model, history);
     }
 
     @Override
