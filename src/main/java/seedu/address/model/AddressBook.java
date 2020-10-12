@@ -111,6 +111,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAssignment(Assignment a) {
         assignments.add(a);
+        tasks.add(a);
     }
 
     /**
