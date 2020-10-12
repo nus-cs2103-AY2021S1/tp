@@ -28,7 +28,6 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/MainApp.java). It is responsible for,
-
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +68,6 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/resources/view/MainWindow.fxml).
 
-
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
@@ -80,9 +78,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/logic/Logic.java)
-
 
 1. `Logic` uses the `McGymmyParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -103,22 +99,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/model/Model.java)
 
-
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-
 * stores the McGymmy data.
-
 * exposes an unmodifiable `ObservableList<Food>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `McGymmy`, which `Food` references. This allows `McGymmy` to only require one `Tag` object per unique `Tag`, instead of each `Food` needing their own `Tag` object.
 
 <br>
-
 
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
@@ -155,7 +146,6 @@ The proposed undo/redo mechanism is facilitated by `VersionedMcGymmy`. It extend
 * `VersionedMcGymmy#undo()` — Restores the previous McGymmy state from its history.
 * `VersionedMcGymmy#redo()` — Restores a previously undone McGymmy state from its history.
 
-
 These operations are exposed in the `Model` interface as `Model#commitMcGymmy()`, `Model#undoMcGymmy()` and `Model#redoMcGymmy()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
@@ -177,7 +167,6 @@ Step 3. The user executes `add n/Rice …​` to add a new food item. The `add` 
 </div>
 
 Step 4. The user now decides that adding the food item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoMcGymmy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous McGymmy state, and restores the McGymmy to that state.
-
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -205,7 +194,6 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitMcGymmy()`. Since the `currentStatePointer` is not pointing at the end of the `mcGymmyStateList`, all McGymmy states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Rice …​` command. This is the behavior that most modern desktop applications follow.
-
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -303,12 +291,10 @@ Use case ends
 
 Use case ends.
 
-
 **Extensions**
 - 1a. The format of the add method is invalid
     1a1. McGymmy shows an error message
     Use case ends.
-
 
 **Use case: UC03 Delete food**
 
@@ -327,7 +313,6 @@ Use case ends
     
 - 3a. The given index is invalid.<br>
    - 3a1. McGymmy shows an error message.
-
     
     Use case resumes at step 2.
 
@@ -374,7 +359,6 @@ Use case ends
 
  - 1a. The format of the macro is invalid.
     - 1a1. McGymmy shows an error message.
-
 
 Use case ends.
 
@@ -432,11 +416,9 @@ testers are expected to do more *exploratory* testing.
       <br>
       Expected: The most recent window size and location is retained.
 
-
 ### Deleting food items
 
 1. Deleting a food item while all food items are shown.
-
 
    1. Prerequisites: List all food items using the `list` command. Multiple food items in the list.
 
