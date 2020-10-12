@@ -98,6 +98,14 @@ public class UniqueExpenseList implements Iterable<Expense> {
         internalList.setAll(expenses);
     }
 
+    public double tallyExpenses() {
+        double sum = 0;
+        while (iterator().hasNext()) {
+            sum += iterator().next().getAmount().asDouble();
+        }
+        return sum;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
