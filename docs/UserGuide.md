@@ -48,6 +48,10 @@ ChopChop is a **desktop app for managing recipes and ingredients, optimised for 
 
 * Items with `...` after them can be used multiple times. <br>
 
+* A `<REFERENCE>` is used to refer to either an ingredient or a recipe. To refer to something by name, just type the full
+	name (case insensitive). However, it is often more convenient to refer to things by their number, especially when looking
+	at a filtered view. In that case, use `$NUMBER` (eg. `$7` to refer to the 7th item in the list).
+
 </div>
 
 
@@ -71,7 +75,7 @@ Format: `list recipes`
 ### Adding recipe: **`add`** `recipe`
 Adds a recipe to the recipe manager.
 
-Format: `add recipe NAME [/ingredient INGREDIENT [/qty QTY1]...]... (/step STEP)...`
+Format: `add recipe <REFERENCE> [/ingredient INGREDIENT [/qty QTY1]...]... (/step STEP)...`
 
 
 
@@ -86,7 +90,7 @@ Format: `delete recipe NAME`
 ### Finding recipes: **`find`** `recipe`
 Finds all recipes containing the given keywords in the name.
 
-Format: `find recipe KEYWORDS [MORE_KEYWORDS]`
+Format: `find recipe KEYWORDS [MORE_KEYWORDS]...`
 
 The search is case-insensitive. e.g henz will match Henz
 Only the name is searched, and only substrings will be matched.
@@ -94,10 +98,10 @@ Only the name is searched, and only substrings will be matched.
 
 
 
-### Listing all ingredients: **`list`** `ingredient`
+### Listing all ingredients: **`list`** `ingredients`
 Shows a list of all ingredients in the recipe manager.
 
-Format: `list ingredient`
+Format: `list ingredients`
 
 
 
@@ -113,7 +117,15 @@ Format: `add ingredient NAME [/qty QUANTITY] [/expiry DATE]`
 ### Deleting ingredient: **`delete`** `ingredient`
 Deletes a specific ingredient from the recipe manager.
 
-Format: `delete ingredient NAME [/qty QUANTITY]`
+Format: `delete ingredient NAME`
+
+
+
+
+### Using ingredient: **`use`**
+Removes the given quantity of the specified ingredient from the internal inventory.
+
+Format: `use <REFERENCE> /qty QUANTITY`
 
 
 

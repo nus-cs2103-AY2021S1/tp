@@ -15,6 +15,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.history.CommandHistory;
+import seedu.address.logic.history.History;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -77,7 +79,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, new HistoryStub());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -107,7 +109,8 @@ public class CommandTestUtil {
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () ->
+                command.execute(actualModel, new HistoryStub()));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
@@ -123,6 +126,31 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * A default history stub that have all of the methods failing.
+     */
+    public static class HistoryStub implements History {
+        @Override
+        public void add(CommandHistory command) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandResult undo(Model model) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandResult redo(Model model) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 }

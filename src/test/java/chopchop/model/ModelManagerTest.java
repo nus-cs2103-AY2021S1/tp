@@ -111,13 +111,13 @@ public class ModelManagerTest {
                                             differentRecipeBook, ingredientBook, userPrefs)));
 
         // different filteredIngredientList -> returns false
-        final String[] ind_keywords = APRICOT.getName().fullName.split("\\s+");
-        modelManager.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(ind_keywords)));
+        final String[] indKeywords = APRICOT.getName().fullName.split("\\s+");
+        modelManager.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(indKeywords)));
         assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
 
         // different filteredRecipeList -> returns false
-        final String[] rec_keywords = APRICOT_SALAD.getName().fullName.split("\\s+");
-        modelManager.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(rec_keywords)));
+        final String[] recKeywords = APRICOT_SALAD.getName().fullName.split("\\s+");
+        modelManager.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(recKeywords)));
         assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

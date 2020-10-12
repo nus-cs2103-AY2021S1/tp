@@ -1,17 +1,17 @@
 package chopchop.model.ingredient;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 import chopchop.model.FoodEntry;
 import chopchop.model.attributes.ExpiryDate;
-import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Name;
+import chopchop.model.attributes.Quantity;
 import seedu.address.model.tag.Tag;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an Ingredient in the recipe manager.
@@ -25,7 +25,18 @@ public class Ingredient extends FoodEntry {
     private final Quantity quantity;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Use this constructor if expiry date is not present.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
+    public Ingredient(Name name, Quantity quantity) {
+        super(name);
+        requireNonNull(quantity);
+        this.quantity = quantity;
+        this.expiryDate = null;
+    }
+
+    /**
+     * Every field must be present and not null. If expiry date is not present, use other constructor.
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
     public Ingredient(Name name, Quantity quantity, ExpiryDate expiryDate, Set<Tag> tags) {
@@ -40,13 +51,12 @@ public class Ingredient extends FoodEntry {
         return quantity;
     }
 
-    public ExpiryDate getExpiryDate() {
-        return expiryDate;
+    public Optional<ExpiryDate> getExpiryDate() {
+        return Optional.ofNullable(expiryDate);
     }
 
     /**
-     * Returns true if both ingredients of the same name.
-     *
+     * Returns true if both ingredients of the same name and expiry date.
      */
     @Override
     public boolean equals(Object other) {
@@ -73,13 +83,15 @@ public class Ingredient extends FoodEntry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         builder.append(getName())
-            .append(" Quantity: ")
-            .append(getQuantity())
-            .append(" Expiry Date: ")
-            .append(getExpiryDate())
-            .append(" Tags: ");
+                .append(" Quantity: ")
+                .append(getQuantity());
+
+        getExpiryDate().ifPresent(expiryDate -> builder.append(" Expiry Date: ").append(expiryDate));
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
+
         return builder.toString();
     }
 

@@ -3,25 +3,36 @@ package chopchop.model.recipe;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import chopchop.model.FoodEntry;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.FoodEntry;
-import seedu.address.model.tag.Tag;
+import chopchop.model.attributes.Tag;
+import chopchop.model.ingredient.IngredientReference;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Recipe extends FoodEntry {
 
     // Identity fields
-    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<IngredientReference> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, List<Ingredient> ingredients, List<Step> steps, Set<Tag> tags) {
+    public Recipe(Name name, List<IngredientReference> ingredients, List<Step> steps) {
+        super(name);
+        requireAllNonNull(name, ingredients, steps);
+        this.ingredients.addAll(ingredients);
+        this.steps.addAll(steps);
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Recipe(Name name, List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
         super(name);
         requireAllNonNull(name, ingredients, steps);
         this.ingredients.addAll(ingredients);
@@ -33,7 +44,7 @@ public class Recipe extends FoodEntry {
      * Returns an immutable ingredient set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Ingredient> getIngredients() {
+    public List<IngredientReference> getIngredients() {
         return Collections.unmodifiableList(ingredients);
     }
 
@@ -60,9 +71,7 @@ public class Recipe extends FoodEntry {
         }
 
         Recipe otherRecipe = (Recipe) other;
-        return otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredients().equals(getIngredients())
-                && otherRecipe.getSteps().equals(getSteps());
+        return otherRecipe.getName().equals(getName());
     }
 
     @Override
@@ -76,16 +85,12 @@ public class Recipe extends FoodEntry {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredients: ");
-        getIngredients().forEach((Ingredient ingredient) -> {
-            builder.append(ingredient.getName());
-            builder.append("(" + ingredient.getQuantity() + ") ");
-        });
+        getIngredients().forEach(ingredient -> builder.append(ingredient).append(" "));
         builder.append(" Steps:");
         AtomicInteger counter = new AtomicInteger(1);
-        getSteps().forEach((Step step) -> {
-            builder.append(" " + counter + ". ");
-            builder.append(step.toString());
-            counter.getAndIncrement();
+        getSteps().forEach(step -> {
+            builder.append(" ").append(counter.getAndIncrement()).append(". ");
+            builder.append(step);
         });
         return builder.toString();
     }
