@@ -1,14 +1,14 @@
 package seedu.address.model.exercise;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
-
 import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 
 public class UniqueExerciseList implements Iterable<Exercise> {
 
