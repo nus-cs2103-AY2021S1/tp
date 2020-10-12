@@ -142,7 +142,7 @@ public class ExerciseModelManager implements ExerciseModel {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
+        if (!(obj instanceof ExerciseModelManager)) {
             return false;
         }
 
