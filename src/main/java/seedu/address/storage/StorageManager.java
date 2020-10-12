@@ -9,11 +9,13 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
+import seedu.address.storage.calendar.MeetingBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 
 /**
@@ -27,22 +29,26 @@ public class StorageManager implements Storage {
     private SellerAddressBookStorage sellerAddressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private BidBookStorage bidBookStorage;
+    private MeetingBookStorage meetingBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage},
-     * {@code BidderAddressBookStorage}, {@code SellerAddressBookStorage} and {@code UserPrefStorage}.
+     * {@code BidderAddressBookStorage}, {@code SellerAddressBookStorage}, {@code MeetingBookStorage}
+     * and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           BidBookStorage bidBookStorage,
                           BidderAddressBookStorage bidderAddressBookStorage,
-                          SellerAddressBookStorage sellerAddressBookStorage) {
+                          SellerAddressBookStorage sellerAddressBookStorage,
+                          MeetingBookStorage meetingBookStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.bidBookStorage = bidBookStorage;
         this.bidderAddressBookStorage = bidderAddressBookStorage;
         this.sellerAddressBookStorage = sellerAddressBookStorage;
+        this.meetingBookStorage = meetingBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -180,5 +186,35 @@ public class StorageManager implements Storage {
     public void saveSellerAddressBook(ReadOnlySellerAddressBook sellerAddressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         sellerAddressBookStorage.saveSellerAddressBook(sellerAddressBook, filePath);
+    }
+
+    // ================ MeetingBook methods ==============================
+
+    @Override
+    public Path getMeetingBookFilePath() {
+        return meetingBookStorage.getMeetingBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyMeetingManager> readMeetingBook() throws DataConversionException, IOException {
+        return readMeetingBook(meetingBookStorage.getMeetingBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyMeetingManager> readMeetingBook(Path filePath) throws
+            DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return meetingBookStorage.readMeetingBook(filePath);
+    }
+
+    @Override
+    public void saveMeetingBook(ReadOnlyMeetingManager meetingBook) throws IOException {
+        saveMeetingBook(meetingBook, meetingBookStorage.getMeetingBookFilePath());
+    }
+
+    @Override
+    public void saveMeetingBook(ReadOnlyMeetingManager meetingBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        meetingBookStorage.saveMeetingBook(meetingBook, filePath);
     }
 }

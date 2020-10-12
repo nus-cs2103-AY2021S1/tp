@@ -23,6 +23,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -41,6 +42,8 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
+import seedu.address.storage.calendar.JsonMeetingBookStorage;
+import seedu.address.storage.calendar.MeetingBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 import seedu.address.ui.Ui;
@@ -77,8 +80,10 @@ public class MainApp extends Application {
                 new JsonBidderAddressBookStorage(userPrefs.getBidderAddressBookFilePath());
         SellerAddressBookStorage sellerAddressBookStorage =
                 new JsonSellerAddressBookStorage(userPrefs.getSellerAddressBookFilePath());
+        MeetingBookStorage meetingBookStorage =
+                new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
-                bidderAddressBookStorage, sellerAddressBookStorage);
+                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage);
 
         initLogging(config);
 
@@ -100,11 +105,13 @@ public class MainApp extends Application {
         Optional<ReadOnlyBidderAddressBook> bidderAddressBookOptional;
         Optional<ReadOnlySellerAddressBook> sellerAddressBookOptional;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
+        Optional<ReadOnlyMeetingManager> meetingBookOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyBidderAddressBook initialBidderData;
         ReadOnlySellerAddressBook initialSellerData;
         ReadOnlyPropertyBook initialPropertyData;
         ReadOnlyBidBook initialBidData;
+        ReadOnlyMeetingManager initialMeetingData;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -112,6 +119,8 @@ public class MainApp extends Application {
             propertyBookOptional = Optional.ofNullable(new PropertyBook());
             bidderAddressBookOptional = storage.readBidderAddressBook();
             sellerAddressBookOptional = storage.readSellerAddressBook();
+            meetingBookOptional = storage.readMeetingBook();
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("AddressBook Data file not found. Will be starting with a sample AddressBook");
             }
@@ -124,11 +133,16 @@ public class MainApp extends Application {
             if (!sellerAddressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample sellerAddressBook");
             }
+            if (!meetingBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample meetingBook");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialBidData = bidBookOptional.orElseGet(SampleDataUtil::getSampleBidBook);
             initialPropertyData = new PropertyBook();
             initialBidderData = bidderAddressBookOptional.orElseGet(SampleDataUtil::getSampleBidderAddressBook);
             initialSellerData = sellerAddressBookOptional.orElseGet(SampleDataUtil::getSampleSellerAddressBook);
+            initialMeetingData = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
+
 
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
@@ -137,6 +151,7 @@ public class MainApp extends Application {
             initialPropertyData = new PropertyBook();
             initialBidderData = new BidderAddressBook();
             initialSellerData = new SellerAddressBook();
+            initialMeetingData = new MeetingBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
@@ -144,9 +159,10 @@ public class MainApp extends Application {
             initialPropertyData = new PropertyBook();
             initialBidderData = new BidderAddressBook();
             initialSellerData = new SellerAddressBook();
+            initialMeetingData = new MeetingBook();
         }
         return new ModelManager(initialData, userPrefs, initialBidData, initialPropertyData,
-                initialBidderData, initialSellerData, new MeetingBook());
+                initialBidderData, initialSellerData, initialMeetingData);
     }
 
     private void initLogging(Config config) {

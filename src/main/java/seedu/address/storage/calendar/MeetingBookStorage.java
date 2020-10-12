@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
 
 /**
@@ -18,7 +17,7 @@ public interface MeetingBookStorage {
     Path getMeetingBookFilePath();
 
     /**
-     * Returns BidBook data as a {@link ReadOnlyBidBook}.
+     * Returns ReadOnlyMeetingManager data as a {@link ReadOnlyMeetingManager}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -45,6 +44,6 @@ public interface MeetingBookStorage {
      * @param filePath
      * @throws IOException
      */
-    void saveMeetingManager(ReadOnlyMeetingManager meetingManager, Path filePath) throws IOException;
+    void saveMeetingBook(ReadOnlyMeetingManager meetingManager, Path filePath) throws IOException;
 
 }
