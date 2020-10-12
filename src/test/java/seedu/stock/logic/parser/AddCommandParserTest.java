@@ -23,7 +23,6 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_BANANA;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.stock.testutil.TypicalStocks.BANANA;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +40,9 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Stock expectedStock = new StockBuilder(BANANA).withSerialNumber(DEFAULT_SERIAL_NUMBER).build();
+        Stock expectedStock = new StockBuilder().withName(VALID_NAME_BANANA).withSource(VALID_SOURCE_BANANA)
+                .withLocation(VALID_LOCATION_BANANA).withQuantity(VALID_QUANTITY_BANANA)
+                .withSerialNumber(DEFAULT_SERIAL_NUMBER).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BANANA + SOURCE_DESC_BANANA
