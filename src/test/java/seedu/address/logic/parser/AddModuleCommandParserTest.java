@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.model.person.Module;
 
-public class AddModuleCommandTest {
+public class AddModuleCommandParserTest {
 
     private AddModuleCommandParser parser = new AddModuleCommandParser();
 
