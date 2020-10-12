@@ -17,6 +17,8 @@ import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * Contains utility methods for populating {@code WishfulShrinking} with sample data.
  */
@@ -59,10 +61,15 @@ public class SampleDataUtil {
                 index++;
                 if (index == 11) { //end of a recipe object
                     index = 0;
+                    requireAllNonNull(recipeName, recipeInstructions, recipeImage, ingredients,
+                            calories, tag);
                     Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients,
                             calories, tag);
                     recipeList.add(toAdd);
                 }
+            }
+            if (recipeList.size() == 0) {
+                recipeList.add(getFallbackRecipe());
             }
             recipes = recipeList.toArray(new Recipe[]{});
         } catch (FileNotFoundException e) {
@@ -125,6 +132,23 @@ public class SampleDataUtil {
         return 0;
     }
 
+    private static Recipe getFallbackRecipe() {
+        Name name = new Name("Tahini cake");
+        String instructions = "Heat oven. Cream butter, add flour";
+        String recipeImage = "https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6" +
+                "/84_2248_5678_6000/master/5678.jpg?width=620&quality=85&auto=format&fit=max&s=b20e33f" +
+                "7054827278dbd2b9d8a2e7616";
+        Ingredient ingredient1 = new Ingredient("unsalted butter", "210g");
+        Ingredient ingredient2 = new Ingredient("flour", "2 cups");
+        ArrayList<Ingredient> ingredientList = new ArrayList<>();
+        ingredientList.add(ingredient1);
+        ingredientList.add(ingredient1);
+        Calories calories = new Calories(100);
+        HashSet<Tag> tags = new HashSet<>();
+        tags.add(new Tag("healthy"));
+        return new Recipe(name, instructions, recipeImage, ingredientList, calories, tags);
+    }
+
     public static ReadOnlyWishfulShrinking getSampleWishfulShrinking() {
         WishfulShrinking sampleAb = new WishfulShrinking();
         for (Recipe sampleRecipe : getSampleRecipes()) {
@@ -141,5 +165,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
