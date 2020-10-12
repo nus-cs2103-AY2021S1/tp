@@ -17,12 +17,12 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a stock to the stock book. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a stock to the stock book.\n"
+            + "Parameters: (any combination, in any order, of the following four fields)\n"
             + PREFIX_NAME + "NAME "
             + PREFIX_SOURCE + "SOURCE "
             + PREFIX_QUANTITY + "QUANTITY "
-            + PREFIX_LOCATION + "LOCATION "
+            + PREFIX_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Umbrella "
             + PREFIX_SOURCE + "Kc company "

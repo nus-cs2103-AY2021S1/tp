@@ -303,15 +303,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1b. The given input to the field header is empty.
+* 1b. The argument for any field header is empty.
 
     * 1b1. Warenager shows an error message.
 
       Use case resumes at step 1.
       
-* 1c. The given input to the field header is invalid.
+* 1c. The argument to the field header is invalid.
 
     * 1c1. Warenager shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1d. The given input has multiple required field headers.
+
+    * 1d1. Warenager shows an error message.
 
       Use case resumes at step 1.
 
