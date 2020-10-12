@@ -1,11 +1,17 @@
 package chopchop.model.ingredient;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 import chopchop.model.FoodEntry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Name;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Ingredient in the recipe manager.
@@ -22,11 +28,12 @@ public class Ingredient extends FoodEntry {
      * Every field must be present and not null.
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
-    public Ingredient(Name name, Quantity quantity, ExpiryDate expiryDate) {
-        super(name);
+    public Ingredient(Name name, Quantity quantity, ExpiryDate expiryDate, Set<Tag> tags) {
+        super(name, tags);
         requireAllNonNull(quantity, expiryDate);
         this.quantity = quantity;
         this.expiryDate = expiryDate;
+        this.tags.addAll(tags);
     }
 
     public Quantity getQuantity() {
@@ -36,7 +43,6 @@ public class Ingredient extends FoodEntry {
     public ExpiryDate getExpiryDate() {
         return expiryDate;
     }
-
 
     /**
      * Returns true if both ingredients of the same name.
@@ -55,12 +61,13 @@ public class Ingredient extends FoodEntry {
         Ingredient otherInd = (Ingredient) other;
 
         return otherInd.getName().equals(getName())
-            && otherInd.getExpiryDate().equals(getExpiryDate());
+            && otherInd.getExpiryDate().equals(getExpiryDate())
+            && otherInd.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.name, quantity, expiryDate);
+        return Objects.hash(super.name, quantity, expiryDate, tags);
     }
 
     @Override
@@ -70,7 +77,9 @@ public class Ingredient extends FoodEntry {
             .append(" Quantity: ")
             .append(getQuantity())
             .append(" Expiry Date: ")
-            .append(getExpiryDate());
+            .append(getExpiryDate())
+            .append(" Tags: ");
+        getTags().forEach(builder::append);
         return builder.toString();
     }
 

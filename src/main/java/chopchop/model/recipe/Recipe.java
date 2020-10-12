@@ -1,15 +1,13 @@
 package chopchop.model.recipe;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.FoodEntry;
+import seedu.address.model.tag.Tag;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -18,15 +16,17 @@ public class Recipe extends FoodEntry {
     // Identity fields
     private final List<Ingredient> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, List<Ingredient> ingredients, List<Step> steps) {
+    public Recipe(Name name, List<Ingredient> ingredients, List<Step> steps, Set<Tag> tags) {
         super(name);
         requireAllNonNull(name, ingredients, steps);
         this.ingredients.addAll(ingredients);
         this.steps.addAll(steps);
+        this.tags.addAll(tags);
     }
 
     /**
