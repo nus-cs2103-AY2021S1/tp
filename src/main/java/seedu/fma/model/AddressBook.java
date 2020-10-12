@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.fma.model.log.Log;
-import seedu.fma.model.log.UniquePersonList;
+import seedu.fma.model.log.UniqueLogList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.fma.model.log.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueLogList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueLogList();
     }
 
     public AddressBook() {}
@@ -44,7 +44,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code logs} must not contain duplicate logs.
      */
     public void setPersons(List<Log> logs) {
-        this.persons.setPersons(logs);
+        this.persons.setLogs(logs);
     }
 
     /**
@@ -82,7 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Log target, Log editedLog) {
         requireNonNull(editedLog);
 
-        persons.setPerson(target, editedLog);
+        persons.setLog(target, editedLog);
     }
 
     /**

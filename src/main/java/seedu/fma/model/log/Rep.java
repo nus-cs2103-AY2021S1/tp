@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.fma.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Log's phone number in the log book.
+ * Represents a Log's Rep number in the log book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRep(String)}
  */
 public class Rep {
@@ -15,7 +15,7 @@ public class Rep {
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Rep}.
      *
      * @param reps The number of reps of exercise.
      */
@@ -26,7 +26,7 @@ public class Rep {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid Rep number.
      */
     public static boolean isValidRep(String test) {
         return test.matches(VALIDATION_REGEX);

@@ -11,8 +11,6 @@ import seedu.fma.model.AddressBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
-
-
 /**
  * A utility class containing a list of {@code Log} objects to be used in tests.
  */
