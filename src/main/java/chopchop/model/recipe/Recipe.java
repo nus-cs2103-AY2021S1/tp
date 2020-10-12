@@ -74,11 +74,11 @@ public class Recipe extends FoodEntry {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredients: ");
-        getIngredients().forEach(ingredient -> builder.append(ingredient).append("\n"));
-        builder.append("/Steps:");
+        getIngredients().forEach(ingredient -> builder.append(ingredient).append(" "));
+        builder.append(" Steps:");
         AtomicInteger counter = new AtomicInteger(1);
         getSteps().forEach(step -> {
-            builder.append("\n").append(counter.getAndIncrement()).append(". ");
+            builder.append(" ").append(counter.getAndIncrement()).append(". ");
             builder.append(step);
         });
         return builder.toString();

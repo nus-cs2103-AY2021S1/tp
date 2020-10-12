@@ -1,7 +1,6 @@
 package chopchop.ui;
 
 import chopchop.logic.Logic;
-import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +18,10 @@ public class DisplayController extends UiPart<Region> {
     @FXML
     private StackPane displayAreaPlaceholder;
 
+    /**
+     * Creates a {@code DisplayController} with the given {@code Logic}.
+     * @param logic
+     */
     public DisplayController(Logic logic) {
         super(FXML);
         this.logic = logic;
@@ -28,10 +31,8 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayRecipeList() {
-        /*
         RecipeViewPanel recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
-        displayListPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
-         */
+        displayAreaPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
     }
 
     /**

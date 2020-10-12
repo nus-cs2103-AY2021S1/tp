@@ -5,10 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
+import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.UiPart;
 
 import static java.util.Objects.requireNonNull;
 
@@ -20,7 +19,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox2.fxml";
 
-    private final seedu.address.ui.CommandBox.CommandExecutor commandExecutor;
+    private final CommandExecutor commandExecutor;
 
     @FXML
     private TextField commandTextField;
@@ -31,7 +30,7 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Constructs {@code CommandBox}
      */
-    public CommandBox(seedu.address.ui.CommandBox.CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.

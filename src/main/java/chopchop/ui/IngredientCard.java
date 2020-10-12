@@ -7,9 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
-import java.awt.event.ActionEvent;
 
-public class IngredientCard extends UiPart<Region>{
+public class IngredientCard extends UiPart<Region> {
 
     private static final String FXML = "IngredientCard.fxml";
 

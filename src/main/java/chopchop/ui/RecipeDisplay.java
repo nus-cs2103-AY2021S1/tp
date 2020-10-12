@@ -20,6 +20,10 @@ public class RecipeDisplay extends UiPart<Region> {
     @FXML
     private TextArea ingredientDisplay;
 
+    /**
+     * Creates a {@code RecipeDisplay} with a {@code Recipe}.
+     * @param recipe
+     */
     public RecipeDisplay(Recipe recipe) {
         super(FXML);
         this.recipe = recipe;

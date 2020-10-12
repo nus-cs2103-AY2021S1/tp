@@ -5,20 +5,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@Style.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="304.0" />
+      <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
       <VBox>
          <children>
-            <StackPane>
+            <StackPane alignment="CENTER_LEFT">
                <children>
-                  <TextField fx:id="commandTextField" maxHeight="48.0" maxWidth="304.0" onAction="#handleCommandEntered" promptText="Enter command here..." />
+                  <TextField fx:id="commandTextField" maxHeight="48.0" maxWidth="290.0" onAction="#handleCommandEntered" promptText="Enter command here..." />
                </children>
             </StackPane>
-            <TextArea fx:id="displayBox" prefHeight="219.0" prefWidth="304.0" text="\$display" visible="true" />
+            <TextArea fx:id="displayBox" prefHeight="208.0" prefWidth="304.0" text="\$display" />
          </children>
       </VBox>
    </children>

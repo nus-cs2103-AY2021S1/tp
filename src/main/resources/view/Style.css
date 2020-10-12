@@ -54,8 +54,41 @@
     -fx-background-radius: 20 20 20 20;
 }
 #displayBox {
-    -fx-background-color: transparent
+    -fx-background-color: transparent;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-color: #575555;
+}
+#displayBox .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#displayBox .scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#displayBox .scroll-pane .content{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
 }
 #favouriteBox {
     -fx-background-color:transparent;
+}
+#pins {
+    -fx-background-color: transparent;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-color: #575555;
+}
+#pins .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#pins .scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#pins .scroll-pane .content{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
 }
