@@ -14,7 +14,9 @@ public class Date {
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("d LLL (EEE)");
 
-    public final LocalDate value;
+    // For DB storage. See Json AdaptedMeeting for use.
+    public final String value;
+    public final LocalDate date;
 
     /**
      * Constructs a {@code Date}.
@@ -24,7 +26,8 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = LocalDate.parse(date, INPUT_FORMAT);
+        this.value = date;
+        this.date = LocalDate.parse(date, INPUT_FORMAT);
     }
 
     /**
@@ -39,18 +42,18 @@ public class Date {
 
     @Override
     public String toString() {
-        return value.format(OUTPUT_FORMAT);
+        return date.format(OUTPUT_FORMAT);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Date // instanceof handles nulls
-                && value.equals(((Date) other).value)); // state check
+                && date.equals(((Date) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return date.hashCode();
     }
 }
