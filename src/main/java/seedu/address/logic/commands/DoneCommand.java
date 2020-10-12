@@ -48,7 +48,7 @@ public class DoneCommand extends Command {
     private String buildMessage(Task[] tasks) {
         String message = "";
         for (int i = 0; i < tasks.length; i++) {
-            message += String.format(MESSAGE_Done_TASK_SUCCESS, tasks[i]) + "/n";
+            message += String.format(MESSAGE_Done_TASK_SUCCESS, tasks[i]) + "\n";
         }
         return message;
     }

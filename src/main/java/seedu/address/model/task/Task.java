@@ -96,7 +96,7 @@ public class Task {
     }
 
     public Task markAsDone() {
-        return new Task(title, phone, description, address, tags, new Status(State.DONE));
+        return new Task(title, dateTime, description, type, tags, new Status(State.COMPLETE));
     }
 
     /**
