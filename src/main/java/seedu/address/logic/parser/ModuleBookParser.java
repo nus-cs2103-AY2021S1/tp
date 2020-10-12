@@ -6,15 +6,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteMeetingCommand;
-import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class MeetingBookParser {
+public class ModuleBookParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandCategory>\\S+)"
             + "(?<commandVerb>\\s\\S+)?(?<arguments>.*)");
 
@@ -37,15 +34,8 @@ public class MeetingBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-
-        case AddMeetingCommand.COMMAND_WORD:
-            return new AddMeetingCommandParser().parse(arguments);
-        case DeleteMeetingCommand.COMMAND_WORD:
-            return new DeleteMeetingCommandParser().parse(arguments);
-        case ListMeetingCommand.COMMAND_WORD:
-            return new ListMeetingCommand();
-        case EditMeetingCommand.COMMAND_WORD:
-            return new EditMeetingCommandParser().parse(arguments);
+        case AddModuleCommand.COMMAND_WORD:
+            return new AddModuleCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

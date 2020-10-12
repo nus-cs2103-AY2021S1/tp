@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -19,6 +21,9 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -129,6 +134,14 @@ public interface Model {
      */
     void deleteMeeting(Meeting targetMeeting);
 
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the meeting book.
+     * The meeting identity of {@code editedMeeting} must not be the same
+     * as another existing meeting in the address book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
 
@@ -137,4 +150,32 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    void addModule(Module module);
+
+    /**
+     * Returns true if a module with the same module name as {@code module} exists in the address book.
+     */
+    boolean hasModuleName(ModuleName moduleName);
+
+    /** Returns the ModuleBook */
+    ReadOnlyModuleBook getModuleBook();
+
+    /**
+     * Replaces module book data with the data in {@code moduleBook}.
+     */
+    void setModuleBook(ReadOnlyModuleBook moduleBook);
+
+    /**
+     * Returns the user prefs' module book file path.
+     */
+    Path getModuleBookFilePath();
+
+    /**
+     * Sets the user prefs' address book file path.
+     */
+    void setModuleBookFilePath(Path moduleBookFilePath);
+
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredModuleList();
 }
