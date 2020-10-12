@@ -141,8 +141,7 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getFaculty().equals(getFaculty())
                 && otherStudent.getTags().equals(getTags())
-                && otherStudent.hasRoom() == hasRoom()
-                && (!otherStudent.hasRoom() && !hasRoom() || otherStudent.getRoom().equals(getRoom()));
+                && Objects.equals(otherStudent.getRoom(), getRoom());
     }
 
     @Override

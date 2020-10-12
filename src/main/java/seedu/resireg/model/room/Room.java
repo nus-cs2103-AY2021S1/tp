@@ -121,7 +121,7 @@ public class Room {
                 && otherRoom.getRoomNumber().equals(getRoomNumber())
                 && otherRoom.getRoomType().equals(getRoomType())
                 && otherRoom.getTags().equals(getTags())
-                && otherRoom.getStudent().equals(getStudent());
+                && Objects.equals(otherRoom.getStudent(), getStudent());
     }
 
     @Override

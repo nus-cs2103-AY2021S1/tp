@@ -140,6 +140,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setRoom(Room target, Room editedRoom) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasRoom(Room room) {
             throw new AssertionError("This method should not be called.");
         }
