@@ -9,16 +9,15 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
  */
 public class Quantity {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity numbers should be more than 0.";
+            "Quantity numbers should be a number more than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
     public final String quantity;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Quantity}.
      *
-     * @param quantity A valid phone number.
+     * @param quantity A valid quantity.
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
@@ -27,7 +26,7 @@ public class Quantity {
     }
 
     /**
-     * Returns true if a given int is more than zero or more.
+     * Returns true if a given string is a number and is more than zero or more.
      */
     public static boolean isValidQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -49,5 +48,4 @@ public class Quantity {
     public int hashCode() {
         return quantity.hashCode();
     }
-
 }

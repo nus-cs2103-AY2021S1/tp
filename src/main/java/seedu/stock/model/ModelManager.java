@@ -102,7 +102,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Stock target) {
+    public void deleteStock(Stock target) {
         stockBook.removeStock(target);
     }
 
@@ -113,10 +113,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Stock target, Stock editedStock) {
-        requireAllNonNull(target, editedStock);
+    public void setStock(Stock target, Stock updatedStock) {
+        requireAllNonNull(target, updatedStock);
 
-        stockBook.setStock(target, editedStock);
+        stockBook.setStock(target, updatedStock);
     }
 
     //=========== SerialNumberSetsBook ================================================================================
@@ -167,7 +167,7 @@ public class ModelManager implements Model {
         serialNumberSetsBook.setSerialNumberSet(target, editedSerialNumberSet);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Stock List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Stock} backed by the internal list of

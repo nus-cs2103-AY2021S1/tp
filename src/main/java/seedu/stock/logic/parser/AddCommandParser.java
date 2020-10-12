@@ -1,5 +1,6 @@
 package seedu.stock.logic.parser;
 
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -36,6 +37,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        // Checks if all the prefixes only appear once in the given command.
+        if (!doesPrefixesAppearOnce(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_QUANTITY)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, AddCommand.MESSAGE_USAGE));
+        }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         SerialNumber serialNumber = SerialNumber.generateDefaultSerialNumber();
         Source source = ParserUtil.parseSource(argMultimap.getValue(PREFIX_SOURCE).get());
@@ -53,6 +59,14 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if all of the prefixes appears only once in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean doesPrefixesAppearOnce(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
     }
 
 }

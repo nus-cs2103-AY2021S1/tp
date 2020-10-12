@@ -31,18 +31,23 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 
 **:information_source: Brief summary of features:**<br>
 
-* Items contain location, quantities, etc. Item Details presented in a drop down
+* Items contain location, quantities, etc. Item Details presented in a drop down window.
 * Sorting and searching by
-    * location
+    * name of stock
     * serial number
-    * item name
+    * source of stock
+    * location stored in warehouse
 * Startup default sorted by quantity, highlight item with short quantity.
-* Commands, e.g. save, load, form filling.
+* Commands.<br>
+  e.g. add stock, delete stock and find stock.
 * Storage into a csv file.
-* Adding/Deleting items: Unique serial number generation per item per company
-* Setting up: Personalized GUI. i.e company name displayed in the GUI, predefined color presets
-* Bookmark feature e.g. often used stocks, search bookmark <item>
-
+* Adding/Deleting items: Unique serial number generation per item per company.
+* Setting up: Personalized GUI.<br>
+  e.g. company name displayed in the GUI, predefined color presets.
+* Bookmark feature.<br>
+  e.g. often used stocks, search bookmark<item>.
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/<name> q/<source of stock>`, `q/<source of stock> n/<name>` is also acceptable.
 
 </div>
 
@@ -64,47 +69,78 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
 
 Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
 
+⚠ Each specific fields specified in the `add` command should only be entered once.<br>
+e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
+
 ### Deleting of stock: `delete`
-Deletes the stock that has the input serial number from the inventory. Requires the user to confirm the deletion of the stock by inputting y/n.
+Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
 * Required fields:
     1. Serial number of product
 
-Format: `delete sn/<serial number>`
+Format (single): `delete sn/<serial number>`  
+Format (multiple): `delete sn/<serial number> sn/<serial number 2>...`
 
 ### Find stocks from inventory: `find`
-Returns a list of found stocks from the inventory that have the following keywords in their details.
+Displays a list of stocks found in the inventory that match/contain the following keywords in their details.
 * Fields that can be searched:
     * Name
     * Serial Number
     * Location stored
     * Source of the stock
 
-Format (either):
-`find n/<name>`
-`find sn/<serial number>`
-`find l/<location>`
-`find s/<source of the stock>`
+Format (any combination of 1,2,3 or 4 of the fields): <br>
+`find n/<name>` <br>
+`find sn/<serial number>` <br>
+`find l/<location>` <br>
+`find s/<source of the stock>` <br>
+`find n/<name> l/<location> s/<source of stock>`
 
-Search criteria:
-Only results that fully match/contain the search keyword will be displayed.
-* e.g find n/KaiChao will not match Kai.
+Search criteria: <br>
+Only stocks that fully match/contain the search keyword will be displayed. <br>
+* e.g. find n/KaiChao will not match Kai.
+* e.g. find n/KaiChao will match AngKaiChao. <br>
+
 Search is case-insensitive.
-* e.g find n/ash will match Ash.
+* e.g. find n/ashLey will match Ashley.
+
+Any stock with any field that matches/contains any of the search fields will be displayed.
+* e.g.
+
+Stock | Details
+--------|------------------
+**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
+**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section<br>
+find n/banana sn/SHENGSIONG will match both Stock 1 and Stock 2 <br>
+find l/section will match both Stock 1 and Stock 2. <br>
+find n/chicken l/poultry will match only Stock 2. <br>
+find s/ntuc l/singapore will match only Stock 1.
 
 ### Update inventory: `update`
-Updates the details of the desired stock, requires the serial number of product.
+Updates the details of the desired stock, requires the serial number of products.
 * Fields that can be updated:
     * Name
-    * Serial Number
+    * Quantity
     * Location stored
     * Source of the stock
 
-Format `update sn/<Serial Number of product>` (followed by one of):
-`q/<+/-><quantity to increment/decrement>`
-`nq/<new quantity>`
-`n/<new name>`
-`l/<new location in warehouse>`
-`s/<new source of stock>`
+Format (either):
+
+*`update sn/<Serial Number of product>
+q/<+/-><quantity to increment/decrement>
+n/<new name>
+l/<new location in warehouse>
+s/<new source of stock>`
+
+*`update sn/<Serial Number of product>
+nq/<new quantity>
+n/<new name>
+l/<new location in warehouse>
+s/<new source of stock>`
+
+User may pass in more than one serial number to update all at once.
+
+⚠ If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
+will not update anything and shows an error message.
 
 ### Saving data
 Data (all stocks in inventory in csv) is automatically saved to
@@ -143,7 +179,8 @@ Action | Format, Examples
 **Add** | `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section`
 **Clear** | `clear`
 **Delete** | `delete sn/<serial number>`<br> eg. `delete sn/100`
-**Find** | `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of the stock>`<br> e.g. `find n/umbrella`
-**Update** | `update sn/<Serial Number of product>` (followed by one of): <br>`q/<+/-><quantity to increment/decrement>`<br>`nq/<new quantity>`<br>`n/<new name>`<br>`l/<new location in warehouse>`<br>`s/<new source of stock>`
+**Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
+**FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `find n/umbrella s/ntuc`
+**Update** | `update sn/<Serial Number of product> q/<+/-><quantity to increment/decrement>n/<new name> l/<new location in warehouse> s/<new source of stock>` <br> `update sn/<Serial Number of product> nq/<new quantity> n/<new name> l/<new location in warehouse> s/<new source of stock>`
 **Help** | `help`
 **Exit** | `exit`
