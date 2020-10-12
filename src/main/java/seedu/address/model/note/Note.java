@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Note {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Note can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String noteName;
@@ -48,7 +48,7 @@ public class Note {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + noteName + ']';
+        return noteName;
     }
 
 }
