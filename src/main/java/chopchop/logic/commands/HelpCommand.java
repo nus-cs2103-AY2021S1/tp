@@ -1,8 +1,6 @@
 package chopchop.logic.commands;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.Model;
+import chopchop.model.Model;
 
 /**
  * Format full help instructions for every command for display.

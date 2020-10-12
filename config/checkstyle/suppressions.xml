@@ -7,6 +7,6 @@
 <suppressions>
   <suppress checks="JavadocType" files=".*Test\.java"/>
   <suppress checks="MissingJavadocMethodCheck" files=".*Test\.java"/>
-  <suppress checks="CustomImportOrder" />
-  <suppress checks="SingleSpaceSeparator" />
+  <suppress checks="CustomImportOrder" files="[\\/]chopchop[\\/]"/>
+  <suppress checks="SingleSpaceSeparator" files="[\\/]chopchop[\\/]"/>
 </suppressions>
