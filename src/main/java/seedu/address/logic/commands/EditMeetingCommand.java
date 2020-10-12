@@ -8,8 +8,10 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -20,10 +22,11 @@ import java.util.stream.Collectors;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBERS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
-public class EditMeetingCommand {
+public class EditMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "meeting edit";
 
@@ -34,7 +37,7 @@ public class EditMeetingCommand {
             + "[" + PREFIX_NAME + "NEW_MEETINGNAME] "
             + "[" + PREFIX_DATE + "NEW_DATE] "
             + "[" + PREFIX_TIME + "NEW_TIME] "
-            + "[" + PREFIX_MEMBERS + "NEW_MEMBERS]...\n"
+            + "[" + PREFIX_MEMBER + "NEW_MEMBERS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103 Project Meeting "
             + PREFIX_DATE + "2020-10-10 "
             + PREFIX_TIME + "11:30";
@@ -42,6 +45,7 @@ public class EditMeetingCommand {
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts";
 
     private final MeetingName meetingName;
     private final EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor;
@@ -72,7 +76,7 @@ public class EditMeetingCommand {
                 .filter(meeting -> meeting.isSameMeetingName(meetingName)).collect(Collectors.toList());
         Meeting meetingToEdit = filteredList.get(0);
 
-        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
+        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model);
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
@@ -87,13 +91,43 @@ public class EditMeetingCommand {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
+    private static Meeting createEditedMeeting(Meeting meetingToEdit,
+                                               EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor,
+                                               Model model) throws CommandException {
         assert meetingToEdit != null;
 
         MeetingName updatedMeetingName = editMeetingDescriptor.getMeetingName().orElse(meetingToEdit.getMeetingName());
         Date updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getDate());
         Time updatedTime = editMeetingDescriptor.getTime().orElse(meetingToEdit.getTime());
-        Set<Person> updatedMembers = editMeetingDescriptor.getMembers().orElse(meetingToEdit.getMembers());
+        Set<Name> updatedMemberNames = editMeetingDescriptor.getMemberNames().orElse(null);
+        Set<Person> updatedMembers = new HashSet<>();
+
+        if (updatedMemberNames != null) {
+            List<Name> nonExistentPersonNames = new ArrayList<>();
+            for (Name name : updatedMemberNames) {
+                if (!model.hasPersonName(name)) {
+                    nonExistentPersonNames.add(name);
+                }
+            }
+
+            if (!nonExistentPersonNames.isEmpty()) {
+                StringBuilder sb = new StringBuilder();
+                for (Name name : nonExistentPersonNames) {
+                    sb.append(name + ", ");
+                }
+                String nonExistentPersonNamesString = sb.substring(0, sb.length() - 2);
+                throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString));
+            }
+
+            for (Name name : updatedMemberNames) {
+                List<Person> filteredList = model.getFilteredPersonList().stream()
+                        .filter(person -> person.isSameName(name)).collect(Collectors.toList());
+                updatedMembers.addAll(filteredList);
+            }
+        } else {
+            updatedMembers = meetingToEdit.getMembers();
+        }
+        assert updatedMembers != null;
 
         return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers);
     }
@@ -106,7 +140,7 @@ public class EditMeetingCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMeetingCommand)) {
             return false;
         }
 
@@ -124,7 +158,7 @@ public class EditMeetingCommand {
         private MeetingName meetingName;
         private Date date;
         private Time time;
-        private Set<Person> members;
+        private Set<Name> memberNames;
 
         public EditMeetingDescriptor() {}
 
@@ -136,14 +170,14 @@ public class EditMeetingCommand {
             setMeetingName(toCopy.meetingName);
             setDate(toCopy.date);
             setTime(toCopy.time);
-            setMembers(toCopy.members);
+            setMemberNames(toCopy.memberNames);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(meetingName, date, time, members);
+            return CollectionUtil.isAnyNonNull(meetingName, date, time, memberNames);
         }
 
         public void setMeetingName(MeetingName meetingName) {
@@ -174,8 +208,8 @@ public class EditMeetingCommand {
          * Sets {@code members} to this object's {@code members}.
          * A defensive copy of {@code members} is used internally.
          */
-        public void setMembers(Set<Person> members) {
-            this.members = (members != null) ? new HashSet<>(members) : null;
+        public void setMemberNames(Set<Name> memberNames) {
+            this.memberNames = (memberNames != null) ? new HashSet<>(memberNames) : null;
         }
 
         /**
@@ -183,8 +217,8 @@ public class EditMeetingCommand {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Person>> getMembers() {
-            return (members != null) ? Optional.of(Collections.unmodifiableSet(members)) : Optional.empty();
+        public Optional<Set<Name>> getMemberNames() {
+            return (memberNames != null) ? Optional.of(Collections.unmodifiableSet(memberNames)) : Optional.empty();
         }
 
         @Override
@@ -205,7 +239,7 @@ public class EditMeetingCommand {
             return getMeetingName().equals(e.getMeetingName())
                     && getDate().equals(e.getDate())
                     && getTime().equals(e.getTime())
-                    && getMembers().equals(e.getMembers());
+                    && getMemberNames().equals(e.getMemberNames());
         }
     }
 }
