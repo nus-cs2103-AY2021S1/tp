@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.FindExactCommand;
+import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
@@ -34,22 +35,32 @@ public class FindExactCommandParser implements Parser<FindExactCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
 
-        if (!isAPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
+        // Check if command format is correct and there is a prefix present
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
         }
 
-        List<Predicate<Stock>> getPredicates =
+        List<Prefix> prefixes = CliSyntax.getAllPossiblePrefixes();
+        // Check for duplicate prefixes
+        for (Prefix prefix: prefixes) {
+            if (argMultimap.getAllValues(prefix).size() >= 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindExactCommand.MESSAGE_USAGE));
+            }
+        }
+
+        // Get the predicates to test to find the stocks that match
+        List<Predicate<Stock>> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
-        return new FindExactCommand(getPredicates);
+        return new FindExactCommand(predicatesToTest);
     }
 
     /**
      * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
      * in the given {@code ArgumentMultimap}.
      */
-    private static boolean isAPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
