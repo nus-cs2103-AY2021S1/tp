@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
@@ -19,6 +20,8 @@ import seedu.address.testutil.TagBuilder;
 class OpenCommandTest {
 
     private Model typicalModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    // Change to true to enable testing of opening files
+    private final boolean isTestingOpenFile = false;
 
     @Test
     public void equals() {
@@ -55,6 +58,7 @@ class OpenCommandTest {
 
     @Test
     public void execute_tagNameInModel_success() throws Exception {
+        assumeTrue(isTestingOpenFile);
         Tag correctTag = new TagBuilder().build();
         OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
         Model model = new ModelManager();
@@ -67,6 +71,7 @@ class OpenCommandTest {
 
     @Test
     public void execute_tagNameInModelFileNotFound_throwCommandException() {
+        assumeTrue(isTestingOpenFile);
         Tag correctTag = new TagBuilder().withTagName("test")
                 .withFileAddress(".\\src\\test\\java\\seedu\\address\\testutil\\testFileNotHere.bat").build();
         OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
