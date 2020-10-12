@@ -140,7 +140,7 @@ Examples:
 * `delmod m/CS2103` deletes the existing module with code `CS2103` from FaculType.
 * `delmod m/CS2102` deletes the existing module with code `CS2102` from FaculType.
 
-### Finding modules : findmod
+### Finding modules : `findmod`
 
 Finds all  modules whose code or name contain the given keyword.
 
