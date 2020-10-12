@@ -41,7 +41,6 @@ public class TagTest {
         assertFalse(Tag.isValidTagName("a1+be!@exercisemanz.com")); // mixture of alphanumeric and special characters
     }
 
-
     @Test
     public void equals() {
         Tag tagA = new Tag("newexercise");
