@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTSOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -36,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_CLIENTSOURCE_HUSBAND = "husband of Amy";
     public static final String VALID_CLIENTSOURCE_FRIEND = "friend from NUS";
+    public static final String VALID_NOTE_DOG = "lovesdogs";
+    public static final String VALID_NOTE_CAT = "lovescats";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,6 +50,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String CLIENTSOURCE_DESC_FRIEND = " " + PREFIX_CLIENTSOURCE + VALID_CLIENTSOURCE_FRIEND;
     public static final String CLIENTSOURCE_DESC_HUSBAND = " " + PREFIX_CLIENTSOURCE + VALID_CLIENTSOURCE_HUSBAND;
+    public static final String NOTE_DESC_DOG = " " + PREFIX_NOTE + VALID_NOTE_DOG;
+    public static final String NOTE_DESC_CAT = " " + PREFIX_NOTE + VALID_NOTE_CAT;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -56,6 +61,7 @@ public class CommandTestUtil {
             " "
             + PREFIX_CLIENTSOURCE
             + "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"; // clientsource is limited to 50 characters.
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE; // empty string not allowed for notes.
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -66,10 +72,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withClientSources(VALID_CLIENTSOURCE_FRIEND).build();
+                .withClientSources(VALID_CLIENTSOURCE_FRIEND).withNote(VALID_NOTE_CAT).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND, VALID_CLIENTSOURCE_FRIEND).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND, VALID_CLIENTSOURCE_FRIEND)
+                .withNote(VALID_NOTE_DOG).build();
     }
 
     /**

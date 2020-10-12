@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTSOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collection;
@@ -37,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_PHONE,
                 PREFIX_EMAIL,
                 PREFIX_ADDRESS,
-                PREFIX_CLIENTSOURCE);
+                PREFIX_CLIENTSOURCE,
+                PREFIX_NOTE);
 
         Index index;
 
@@ -62,6 +64,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseClientSourcesForEdit(argMultimap.getAllValues(PREFIX_CLIENTSOURCE))
                 .ifPresent(editPersonDescriptor::setClientSources);
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            editPersonDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

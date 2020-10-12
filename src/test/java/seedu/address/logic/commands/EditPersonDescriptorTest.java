@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
@@ -53,6 +54,10 @@ public class EditPersonDescriptorTest {
 
         // different clientSources -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withClientSources(VALID_CLIENTSOURCE_HUSBAND).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different notes -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNote(VALID_NOTE_DOG).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

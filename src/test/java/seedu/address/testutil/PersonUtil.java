@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTSOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
@@ -37,6 +38,7 @@ public class PersonUtil {
         person.getClientSources().stream().forEach(
             s -> sb.append(PREFIX_CLIENTSOURCE + s.clientSourceName + " ")
         );
+        sb.append(PREFIX_NOTE + person.getNote().noteName + " ");
         return sb.toString();
     }
 
@@ -51,12 +53,9 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getClientSources().isPresent()) {
             Set<ClientSource> clientSources = descriptor.getClientSources().get();
-            if (clientSources.isEmpty()) {
-                sb.append(PREFIX_CLIENTSOURCE);
-            } else {
-                clientSources.forEach(s -> sb.append(PREFIX_CLIENTSOURCE).append(s.clientSourceName).append(" "));
-            }
+            clientSources.forEach(s -> sb.append(PREFIX_CLIENTSOURCE).append(s.clientSourceName).append(" "));
         }
+        descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.noteName));
         return sb.toString();
     }
 }

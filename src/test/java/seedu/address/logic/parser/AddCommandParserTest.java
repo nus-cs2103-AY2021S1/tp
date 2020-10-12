@@ -11,9 +11,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLIENTSOURCE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NOTE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -23,6 +26,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_FR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -33,6 +37,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.clientsource.ClientSource;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -49,40 +54,60 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG, new AddCommand(expectedPerson));
 
-        // multiple clientSources - all accepted
-        Person expectedPersonMultipleClientSources = new PersonBuilder(BOB)
-                .withClientSources(VALID_CLIENTSOURCE_FRIEND, VALID_CLIENTSOURCE_HUSBAND)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleClientSources));
+        // multiple tags - all accepted
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withClientSources(VALID_CLIENTSOURCE_FRIEND,
+                VALID_CLIENTSOURCE_HUSBAND)
+                .withNote(VALID_NOTE_DOG).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + CLIENTSOURCE_DESC_FRIEND + CLIENTSOURCE_DESC_HUSBAND + NOTE_DESC_DOG,
+                new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
+
+        // missing phone prefix
+        Person expectedPersonWithoutPhone = new PersonBuilder(AMY).withoutPhone().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT,
+                new AddCommand(expectedPersonWithoutPhone));
+
+        // missing email prefix
+        Person expectedPersonWithoutEmail = new PersonBuilder(AMY).withoutEmail().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                        + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT,
+                new AddCommand(expectedPersonWithoutEmail));
+
+        // missing address prefix
+        Person expectedPersonWithoutAddress = new PersonBuilder(AMY).withoutAddress().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT,
+                new AddCommand(expectedPersonWithoutAddress));
+
         // zero clientSources
         Person expectedPerson = new PersonBuilder(AMY).withClientSources().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + ADDRESS_DESC_AMY + NOTE_DESC_CAT,
                 new AddCommand(expectedPerson));
+
     }
 
     @Test
@@ -90,23 +115,13 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + NOTE_DESC_DOG,
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
+                        + VALID_ADDRESS_BOB + VALID_NOTE_DOG,
                 expectedMessage);
     }
 
@@ -114,23 +129,32 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG,
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG,
+                Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG,
+                Address.MESSAGE_CONSTRAINTS);
 
         // invalid clientsource
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_CLIENTSOURCE_DESC + CLIENTSOURCE_DESC_FRIEND, ClientSource.MESSAGE_CONSTRAINTS);
+                + INVALID_CLIENTSOURCE_DESC + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG,
+                ClientSource.MESSAGE_CONSTRAINTS);
+
+        //invalid note
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + VALID_CLIENTSOURCE_FRIEND + INVALID_NOTE_DESC, Note.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
@@ -138,7 +162,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_HUSBAND + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

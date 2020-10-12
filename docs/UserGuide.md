@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Insurance4Insurance (I4I) is an app for insurance agents to manage clients. It helps manage client profile information for insurance agents to remember personal details about his/her client. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphic User Interface (GUI). 
+Insurance4Insurance (I4I) is an app for insurance agents to manage clients. It helps manage client profile information 
+for insurance agents to remember personal details about his/her client. It is optimized for use via a Command Line 
+Interface (CLI) while still having the benefits of a Graphic User Interface (GUI). 
 
 * Table of Contents
 {:toc}
@@ -35,7 +37,7 @@ Insurance4Insurance (I4I) is an app for insurance agents to manage clients. It h
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 [image coming soon]
 

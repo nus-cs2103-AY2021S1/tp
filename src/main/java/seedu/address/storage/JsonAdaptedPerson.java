@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.clientsource.ClientSource;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -29,14 +30,17 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedClientSource> clientSource = new ArrayList<>();
+    private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(
+            @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource) {
+            @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
+            @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +48,7 @@ class JsonAdaptedPerson {
         if (clientSource != null) {
             this.clientSource.addAll(clientSource);
         }
+        this.note = note;
     }
 
     /**
@@ -51,12 +56,31 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        clientSource.addAll(source.getClientSources().stream()
+
+        if (source.getPhone() != null) {
+            phone = source.getPhone().value;
+        } else {
+            phone = null;
+        }
+
+        if (source.getEmail() != null) {
+            email = source.getEmail().value;
+        } else {
+            email = null;
+        }
+
+        if (source.getAddress() != null) {
+            address = source.getAddress().value;
+        } else {
+            address = null;
+        }
+
+        clientSource.addAll(source.getClientSources()
+                .stream()
                 .map(JsonAdaptedClientSource::new)
                 .collect(Collectors.toList()));
+
+        note = source.getNote().noteName;
     }
 
     /**
@@ -78,32 +102,43 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        final Phone modelPhone;
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            modelPhone = null;
+        } else {
+            if (!Phone.isValidPhone(phone)) {
+                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            modelPhone = new Phone(phone);
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
 
+        final Email modelEmail;
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            modelEmail = null;
+        } else {
+            if (!Email.isValidEmail(email)) {
+                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            }
+            modelEmail = new Email(email);
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
 
+        final Address modelAddress;
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            modelAddress = null;
+        } else {
+            if (!Address.isValidAddress(address)) {
+                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            }
+            modelAddress = new Address(address);
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
 
         final Set<ClientSource> modelClientSources = new HashSet<>(personClientSources);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources);
+
+        if (!Note.isValidNoteName(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+        final Note modelNote = new Note(note);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote);
     }
 
 }
