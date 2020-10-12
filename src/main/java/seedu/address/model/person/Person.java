@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.note.Note;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,18 +23,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Note note;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be non-null. Only name needs to be present.
+     * Only name and tags need to be non-null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
+        requireAllNonNull(name, tags, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.note = note;
     }
 
     public Name getName() {
@@ -58,6 +61,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -122,7 +129,8 @@ public class Person {
                 && equalsNullable(otherPerson.getPhone(), getPhone())
                 && equalsNullable(otherPerson.getEmail(), getEmail())
                 && equalsNullable(otherPerson.getAddress(), getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getNote().equals(getNote());
     }
 
     private boolean equalsNullable(Object obj, Object otherObj) {
@@ -136,7 +144,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, note);
     }
 
     @Override
@@ -160,6 +168,8 @@ public class Person {
             builder.append(" Tags: ");
             getTags().forEach(builder::append);
         }
+        builder.append(" Note: ")
+                .append(getNote());
 
         return builder.toString();
     }
