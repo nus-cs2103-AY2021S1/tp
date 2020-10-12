@@ -150,4 +150,5 @@ public class ActiveAccountManager implements ActiveAccount {
                 && filteredExpenses.equals(other.filteredExpenses)
                 && filteredRevenues.equals(other.filteredRevenues);
     }
+
 }
