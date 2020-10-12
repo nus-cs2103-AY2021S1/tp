@@ -9,12 +9,12 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the Reeve level
+ * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class Reeve implements ReadOnlyReeve {
 
-    private final UniqueStudentList persons;
+    private final UniqueStudentList students;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class Reeve implements ReadOnlyReeve {
      *   among constructors.
      */
     {
-        persons = new UniqueStudentList();
+        students = new UniqueStudentList();
     }
 
     public Reeve() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a Reeve using the Students in the {@code toBeCopied}
      */
     public Reeve(ReadOnlyReeve toBeCopied) {
         this();
@@ -40,81 +40,82 @@ public class Reeve implements ReadOnlyReeve {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Student> students) {
-        this.persons.setStudents(students);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Reeve} with {@code newData}.
      */
     public void resetData(ReadOnlyReeve newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setStudents(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in Reeve.
      */
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return persons.contains(student);
+        return students.contains(student);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a student to Reeve.
+     * The student must not already exist in Reeve.
      */
-    public void addPerson(Student p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
+     * {@code target} must exist in Reeve.
+     * The student identity of {@code editedStudent} must not be the same as another existing student
+     * in Reeve.
      */
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
 
-        persons.setStudent(target, editedStudent);
+        students.setStudent(target, editedStudent);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Reeve}.
+     * {@code key} must exist in Reeve.
      */
-    public void removePerson(Student key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Student> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Reeve // instanceof handles nulls
-                && persons.equals(((Reeve) other).persons));
+                && students.equals(((Reeve) other).students));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 }

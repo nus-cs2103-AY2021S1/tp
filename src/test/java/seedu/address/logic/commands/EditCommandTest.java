@@ -121,7 +121,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
-        Student studentInList = model.getReeve().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Student studentInList = model.getReeve().getStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditStudentDescriptorBuilder(studentInList).build(),
                 new EditAdminDescriptorBuilder(studentInList).build());
@@ -149,7 +149,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getReeve().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getReeve().getStudentList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build(),
