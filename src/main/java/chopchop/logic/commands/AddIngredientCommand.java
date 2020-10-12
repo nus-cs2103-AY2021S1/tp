@@ -1,9 +1,8 @@
 package chopchop.logic.commands;
 
-import static chopchop.logic.parser.CliSyntax.PREFIX_EXPIRY;
-import static chopchop.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static chopchop.util.Strings.ARG_EXPIRY;
+import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
@@ -14,14 +13,14 @@ public class AddIngredientCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the manager. "
         + "Parameters: "
-        + PREFIX_NAME + "NAME "
-        + PREFIX_QUANTITY + "QUANTITY "
-        + PREFIX_EXPIRY + "EXPIRY "
+        + "NAME "
+        + ARG_QUANTITY + "QUANTITY "
+        + ARG_EXPIRY + "EXPIRY "
         + "\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_NAME + "Chili "
-        + PREFIX_QUANTITY + "3"
-        + PREFIX_EXPIRY + "2020-10-05";
+        + "Chili "
+        + ARG_QUANTITY + "3"
+        + ARG_EXPIRY + "2020-10-05";
 
     public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the ingredient book";
@@ -54,4 +53,8 @@ public class AddIngredientCommand extends AddCommand {
             && toAdd.equals(((AddIngredientCommand) other).toAdd));
     }
 
+    @Override
+    public String toString() {
+        return String.format("AddIngredientCommand: %s", this.toAdd);
+    }
 }

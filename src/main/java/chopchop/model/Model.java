@@ -91,14 +91,19 @@ public interface Model {
     void updateFilteredRecipeList(Predicate<FoodEntry> predicate);
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user prefs' ingredient book file path.
      */
-    void setIngredientBookFilePath(Path addressBookFilePath);
+    Path getIngredientBookFilePath();
+
+    /**
+     * Sets the user prefs' ingredient book file path.
+     */
+    void setIngredientBookFilePath(Path indBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyFoodEntryBook addressBook);
+    void setIngredientBook(ReadOnlyIngredientBook book);
 
     /** Returns the AddressBook */
     ReadOnlyIngredientBook getIngredientBook();

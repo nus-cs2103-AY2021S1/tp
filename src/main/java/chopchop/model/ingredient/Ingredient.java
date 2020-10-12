@@ -1,7 +1,11 @@
 package chopchop.model.ingredient;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
+import java.util.Optional;
+
 import chopchop.model.FoodEntry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
@@ -19,7 +23,18 @@ public class Ingredient extends FoodEntry {
     private final Quantity quantity;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. Use this constructor if expiry date is not present.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
+    public Ingredient(Name name, Quantity quantity) {
+        super(name);
+        requireNonNull(quantity);
+        this.quantity = quantity;
+        this.expiryDate = null;
+    }
+
+    /**
+     * Every field must be present and not null. If expiry date is not present, use other constructor.
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
     public Ingredient(Name name, Quantity quantity, ExpiryDate expiryDate) {
@@ -33,14 +48,13 @@ public class Ingredient extends FoodEntry {
         return quantity;
     }
 
-    public ExpiryDate getExpiryDate() {
-        return expiryDate;
+    public Optional<ExpiryDate> getExpiryDate() {
+        return Optional.ofNullable(expiryDate);
     }
 
 
     /**
-     * Returns true if both ingredients of the same name.
-     *
+     * Returns true if both ingredients of the same name and expiry date.
      */
     @Override
     public boolean equals(Object other) {
@@ -60,17 +74,18 @@ public class Ingredient extends FoodEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.name, quantity, expiryDate);
+        return Objects.hash(name, quantity, expiryDate);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
         builder.append(getName())
-            .append("\nQuantity: ")
-            .append(getQuantity())
-            .append("\nExpiry Date: ")
-            .append(getExpiryDate());
+                .append(" Quantity: ")
+                .append(getQuantity());
+
+        getExpiryDate().ifPresent(expiryDate -> builder.append(" Expiry Date: ").append(expiryDate));
         return builder.toString();
     }
 

@@ -115,6 +115,7 @@
       <metadata name="altname" value="StaticVariableName"/>
       <property name="format" value="^[a-z][a-zA-Z0-9]*_?$"/>
       <property name="severity" value="warning"/>
+      <property name="applyToPrivate" value="false"/>
     </module>
 
     <module name="MemberName">

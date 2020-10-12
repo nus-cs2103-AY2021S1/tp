@@ -24,4 +24,9 @@ public abstract class AddCommand extends Command {
 
     @Override
     public abstract boolean equals(Object other);
+
+    @Override
+    public String toString() {
+        return String.format("AddCommand: %s", this.toAdd);
+    }
 }

@@ -1,13 +1,14 @@
 package chopchop.model;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+
 import chopchop.model.attributes.Name;
 
 public abstract class FoodEntry {
     protected final Name name;
 
     protected FoodEntry(Name name) {
-        requireAllNonNull(name);
+        requireNonNull(name);
         this.name = name;
     }
 

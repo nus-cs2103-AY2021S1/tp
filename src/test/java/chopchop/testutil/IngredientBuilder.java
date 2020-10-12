@@ -1,9 +1,10 @@
 package chopchop.testutil;
 
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Quantity;
+import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.attributes.units.Count;
 
 public class IngredientBuilder {
 
@@ -20,8 +21,8 @@ public class IngredientBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public IngredientBuilder() {
-        name = new Name(DEFAULT_NAME);
-        qty = new Quantity(DEFAULT_QTY);
+        qty     = Count.of(DEFAULT_QTY);
+        name    = new Name(DEFAULT_NAME);
         expDate = new ExpiryDate(DEFAULT_EXPIRY);
     }
 
@@ -31,7 +32,7 @@ public class IngredientBuilder {
     public IngredientBuilder(Ingredient indToCopy) {
         name = indToCopy.getName();
         qty = indToCopy.getQuantity();
-        expDate = indToCopy.getExpiryDate();
+        expDate = indToCopy.getExpiryDate().orElse(null);
 
     }
 
@@ -46,8 +47,8 @@ public class IngredientBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public IngredientBuilder withQuantity(double qty) {
-        this.qty = new Quantity(qty);
+    public IngredientBuilder withQuantity(Quantity qty) {
+        this.qty = qty;
         return this;
     }
 

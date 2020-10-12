@@ -23,6 +23,15 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+
+    testLogging {
+        // showStandardStreams = true
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xdiags:verbose"
+    options.compilerArgs << "-Xlint:unchecked"
 }
 
 task coverage(type: JacocoReport) {
