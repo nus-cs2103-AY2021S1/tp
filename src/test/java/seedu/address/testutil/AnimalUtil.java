@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
@@ -33,7 +33,7 @@ public class AnimalUtil {
         sb.append(PREFIX_ID + animal.getId().value + " ");
         sb.append(PREFIX_SPECIES + animal.getSpecies().value + " ");
         animal.getMedicalConditions().stream().forEach(
-            s -> sb.append(PREFIX_MEDICALCONDITION + s.medicalConditionName + " ")
+            s -> sb.append(PREFIX_MEDICAL_CONDITION + s.medicalConditionName + " ")
         );
         return sb.toString();
     }
@@ -49,9 +49,9 @@ public class AnimalUtil {
         if (descriptor.getMedicalConditions().isPresent()) {
             Set<MedicalCondition> medicalConditions = descriptor.getMedicalConditions().get();
             if (medicalConditions.isEmpty()) {
-                sb.append(PREFIX_MEDICALCONDITION);
+                sb.append(PREFIX_MEDICAL_CONDITION);
             } else {
-                medicalConditions.forEach(s -> sb.append(PREFIX_MEDICALCONDITION)
+                medicalConditions.forEach(s -> sb.append(PREFIX_MEDICAL_CONDITION)
                         .append(s.medicalConditionName).append(" "));
             }
         }

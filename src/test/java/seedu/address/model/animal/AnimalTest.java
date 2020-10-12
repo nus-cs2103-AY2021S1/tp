@@ -3,7 +3,7 @@ package seedu.address.model.animal;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -40,7 +40,7 @@ public class AnimalTest {
 
         // same name, same ID, different attributes -> returns true
         editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
-                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND).build();
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
         assertTrue(ALICE.isSameAnimal(editedAlice));
 
         // same name, different ID, same attributes -> returns false
@@ -79,7 +79,7 @@ public class AnimalTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different medicalConditions -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND).build();
+        editedAlice = new AnimalBuilder(ALICE).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

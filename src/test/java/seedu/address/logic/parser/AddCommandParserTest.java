@@ -4,11 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICALCONDITION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICAL_CONDITION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SPECIES_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MEDICALCONDITION_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.MEDICALCONDITION_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -16,8 +16,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -40,31 +40,31 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Animal expectedAnimal = new AnimalBuilder(BOB).withMedicalConditions(VALID_MEDICALCONDITION_FRIEND).build();
+        Animal expectedAnimal = new AnimalBuilder(BOB).withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + ID_DESC_BOB
-                + SPECIES_DESC_BOB + MEDICALCONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
+                + SPECIES_DESC_BOB + MEDICAL_CONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + ID_DESC_BOB
-                + SPECIES_DESC_BOB + MEDICALCONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
+                + SPECIES_DESC_BOB + MEDICAL_CONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
 
         // multiple ids - last id accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_AMY + ID_DESC_BOB
-                + SPECIES_DESC_BOB + MEDICALCONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
+                + SPECIES_DESC_BOB + MEDICAL_CONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
 
         // multiple species - last species accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB + SPECIES_DESC_AMY
-                + SPECIES_DESC_BOB + MEDICALCONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
+                + SPECIES_DESC_BOB + MEDICAL_CONDITION_DESC_FRIEND, new AddCommand(expectedAnimal));
 
         // multiple medicalConditions - all accepted
         Animal expectedAnimalMultipleMedicalConditions = new AnimalBuilder(BOB)
-                .withMedicalConditions(VALID_MEDICALCONDITION_FRIEND, VALID_MEDICALCONDITION_HUSBAND)
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND, VALID_MEDICAL_CONDITION_HUSBAND)
                 .build();
 
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB + SPECIES_DESC_BOB
-                + MEDICALCONDITION_DESC_HUSBAND + MEDICALCONDITION_DESC_FRIEND,
+                + MEDICAL_CONDITION_DESC_HUSBAND + MEDICAL_CONDITION_DESC_FRIEND,
                 new AddCommand(expectedAnimalMultipleMedicalConditions));
     }
 
@@ -101,19 +101,20 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + ID_DESC_BOB + SPECIES_DESC_BOB
-                + MEDICALCONDITION_DESC_HUSBAND + MEDICALCONDITION_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + MEDICAL_CONDITION_DESC_HUSBAND + MEDICAL_CONDITION_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid id
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_ID_DESC + SPECIES_DESC_BOB
-                + MEDICALCONDITION_DESC_HUSBAND + MEDICALCONDITION_DESC_FRIEND, Id.MESSAGE_CONSTRAINTS);
+                + MEDICAL_CONDITION_DESC_HUSBAND + MEDICAL_CONDITION_DESC_FRIEND, Id.MESSAGE_CONSTRAINTS);
 
         // invalid species
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB + INVALID_SPECIES_DESC
-                + MEDICALCONDITION_DESC_HUSBAND + MEDICALCONDITION_DESC_FRIEND, Species.MESSAGE_CONSTRAINTS);
+                + MEDICAL_CONDITION_DESC_HUSBAND + MEDICAL_CONDITION_DESC_FRIEND, Species.MESSAGE_CONSTRAINTS);
 
         // invalid medicalCondition
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB + SPECIES_DESC_BOB
-                + INVALID_MEDICALCONDITION_DESC + VALID_MEDICALCONDITION_FRIEND, MedicalCondition.MESSAGE_CONSTRAINTS);
+                + INVALID_MEDICAL_CONDITION_DESC + VALID_MEDICAL_CONDITION_FRIEND,
+                MedicalCondition.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + ID_DESC_BOB + INVALID_SPECIES_DESC,
@@ -121,7 +122,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + ID_DESC_BOB
-                + SPECIES_DESC_BOB + MEDICALCONDITION_DESC_HUSBAND + MEDICALCONDITION_DESC_FRIEND,
+                + SPECIES_DESC_BOB + MEDICAL_CONDITION_DESC_HUSBAND + MEDICAL_CONDITION_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
@@ -31,7 +31,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICALCONDITION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICAL_CONDITION);
 
         Index index;
 
@@ -51,7 +51,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_SPECIES).isPresent()) {
             editAnimalDescriptor.setSpecies(ParserUtil.parseSpecies(argMultimap.getValue(PREFIX_SPECIES).get()));
         }
-        parseMedicalConditionsForEdit(argMultimap.getAllValues(PREFIX_MEDICALCONDITION))
+        parseMedicalConditionsForEdit(argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION))
                 .ifPresent(editAnimalDescriptor::setMedicalConditions);
 
         if (!editAnimalDescriptor.isAnyFieldEdited()) {

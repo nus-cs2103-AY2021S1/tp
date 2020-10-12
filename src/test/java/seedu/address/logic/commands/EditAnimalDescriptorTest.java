@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICALCONDITION_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 
@@ -48,7 +48,7 @@ public class EditAnimalDescriptorTest {
 
         // different medicalConditions -> returns false
         editedAmy = new EditAnimalDescriptorBuilder(DESC_AMY)
-                .withMedicalConditions(VALID_MEDICALCONDITION_HUSBAND).build();
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

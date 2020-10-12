@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ANIMALS;
@@ -38,7 +38,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_SPECIES + "SPECIES] "
-            + "[" + PREFIX_MEDICALCONDITION + "MEDICALCONDITION]...\n"
+            + "[" + PREFIX_MEDICAL_CONDITION + "MEDICAL_CONDITION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ID + "91234567 ";
 

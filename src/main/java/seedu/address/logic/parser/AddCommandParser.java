@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICALCONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
@@ -29,7 +29,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICALCONDITION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_SPECIES, PREFIX_MEDICAL_CONDITION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SPECIES, PREFIX_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -40,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Species species = ParserUtil.parseSpecies(argMultimap.getValue(PREFIX_SPECIES).get());
         Set<MedicalCondition> medicalConditionList = ParserUtil
-                .parseMedicalConditions(argMultimap.getAllValues(PREFIX_MEDICALCONDITION));
+                .parseMedicalConditions(argMultimap.getAllValues(PREFIX_MEDICAL_CONDITION));
 
         Animal animal = new Animal(name, id, species, medicalConditionList);
 

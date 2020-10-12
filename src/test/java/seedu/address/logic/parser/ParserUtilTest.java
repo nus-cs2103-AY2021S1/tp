@@ -23,13 +23,13 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ID = "+651234";
     private static final String INVALID_SPECIES = " ";
-    private static final String INVALID_MEDICALCONDITION = "#friend";
+    private static final String INVALID_MEDICAL_CONDITION = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_SPECIES = "Cat";
     private static final String VALID_ID = "123456";
-    private static final String VALID_MEDICALCONDITION_1 = "friend";
-    private static final String VALID_MEDICALCONDITION_2 = "neighbour";
+    private static final String VALID_MEDICAL_CONDITION_1 = "friend";
+    private static final String VALID_MEDICAL_CONDITION_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -129,19 +129,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseMedicalCondition_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMedicalCondition(INVALID_MEDICALCONDITION));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMedicalCondition(INVALID_MEDICAL_CONDITION));
     }
 
     @Test
     public void parseMedicalCondition_validValueWithoutWhitespace_returnsMedicalCondition() throws Exception {
-        MedicalCondition expectedMedicalCondition = new MedicalCondition(VALID_MEDICALCONDITION_1);
-        assertEquals(expectedMedicalCondition, ParserUtil.parseMedicalCondition(VALID_MEDICALCONDITION_1));
+        MedicalCondition expectedMedicalCondition = new MedicalCondition(VALID_MEDICAL_CONDITION_1);
+        assertEquals(expectedMedicalCondition, ParserUtil.parseMedicalCondition(VALID_MEDICAL_CONDITION_1));
     }
 
     @Test
     public void parseMedicalCondition_validValueWithWhitespace_returnsTrimmedMedicalCondition() throws Exception {
-        String medicalConditionWithWhitespace = WHITESPACE + VALID_MEDICALCONDITION_1 + WHITESPACE;
-        MedicalCondition expectedMedicalCondition = new MedicalCondition(VALID_MEDICALCONDITION_1);
+        String medicalConditionWithWhitespace = WHITESPACE + VALID_MEDICAL_CONDITION_1 + WHITESPACE;
+        MedicalCondition expectedMedicalCondition = new MedicalCondition(VALID_MEDICAL_CONDITION_1);
         assertEquals(expectedMedicalCondition, ParserUtil.parseMedicalCondition(medicalConditionWithWhitespace));
     }
 
@@ -153,7 +153,7 @@ public class ParserUtilTest {
     @Test
     public void parseMedicalConditions_collectionWithInvalidMedicalConditions_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMedicalConditions(Arrays
-                .asList(VALID_MEDICALCONDITION_1, INVALID_MEDICALCONDITION)));
+                .asList(VALID_MEDICAL_CONDITION_1, INVALID_MEDICAL_CONDITION)));
     }
 
     @Test
@@ -165,9 +165,9 @@ public class ParserUtilTest {
     public void parseMedicalConditions_collectionWithValidMedicalConditions_returnsMedicalConditionSet()
             throws Exception {
         Set<MedicalCondition> actualMedicalConditionSet = ParserUtil.parseMedicalConditions(Arrays
-                .asList(VALID_MEDICALCONDITION_1, VALID_MEDICALCONDITION_2));
+                .asList(VALID_MEDICAL_CONDITION_1, VALID_MEDICAL_CONDITION_2));
         Set<MedicalCondition> expectedMedicalConditionSet = new HashSet<MedicalCondition>(Arrays.asList(
-                new MedicalCondition(VALID_MEDICALCONDITION_1), new MedicalCondition(VALID_MEDICALCONDITION_2)));
+                new MedicalCondition(VALID_MEDICAL_CONDITION_1), new MedicalCondition(VALID_MEDICAL_CONDITION_2)));
 
         assertEquals(expectedMedicalConditionSet, actualMedicalConditionSet);
     }
