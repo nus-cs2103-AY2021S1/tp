@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
 
         try {
             // storage.saveAddressBook(model.getAddressBook());
-            storage.saveAddressBook(new ReadOnlyAddressBook() {
+            storage.saveModuleList(new ReadOnlyAddressBook() {
                 @Override
                 public ObservableList<Person> getPersonList() {
                     return null;
