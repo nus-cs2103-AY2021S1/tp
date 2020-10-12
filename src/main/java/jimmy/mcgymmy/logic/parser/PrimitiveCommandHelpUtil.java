@@ -14,14 +14,24 @@ import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.parameter.AbstractParameter;
 import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
 
+/**
+ * A class to generate various help strings for primitive commands.
+ */
 public class PrimitiveCommandHelpUtil {
     private final Map<String, Supplier<Command>> commandTable;
     private final Map<String, String> commandDescriptionTable;
+    
     PrimitiveCommandHelpUtil(Map<String, Supplier<Command>> commandTable, Map<String, String> commandDescriptionTable) {
         this.commandTable = commandTable;
         this.commandDescriptionTable = commandDescriptionTable;
     }
-    // Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function
+
+    /**
+     * Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function.
+     * @param commandName name of the command.
+     * @param parameterSet parameterSet of the command.
+     * @return usage string for the command.
+     */
     public String getUsage(String commandName, ParameterSet parameterSet) {
         Options options = parameterSet.asOptions();
         String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName,
@@ -50,6 +60,11 @@ public class PrimitiveCommandHelpUtil {
         return result.toString();
     }
 
+    /**
+     * Generates a command that outputs the usage of the given command.
+     * @param commandName the command to generate usage of.
+     * @return Command that outputs the usage string of the command.
+     */
     public CommandExecutable newHelpCommand(String commandName) {
         return model -> {
             if (!commandTable.containsKey(commandName)) {
@@ -60,6 +75,10 @@ public class PrimitiveCommandHelpUtil {
         };
     }
 
+    /**
+     * Returns a command that lists all available commands.
+     * @return Command that outputs all available commands.
+     */
     public CommandExecutable newHelpCommand() {
         return model -> new CommandResult(formatAllCommandsHelp());
     }

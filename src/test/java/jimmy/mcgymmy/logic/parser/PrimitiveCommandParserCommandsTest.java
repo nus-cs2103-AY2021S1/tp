@@ -25,7 +25,7 @@ public class PrimitiveCommandParserCommandsTest {
     @Test
     public void defaultCommands_added() {
         // if this breaks, you need to add the command in McGymmyParser.addDefaultCommands
-        String[] commands = {"add", "edit", "delete", "clear", "find", "delete", "help", "list"};
+        String[] commands = {"add", "edit", "delete", "clear", "find", "delete", "list"};
         Set<String> registeredCommands = parser.getRegisteredCommands();
         for (String command : commands) {
             assertTrue(registeredCommands.contains(command));
