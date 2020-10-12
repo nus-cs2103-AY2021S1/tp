@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
-import seedu.address.model.Model;
-import seedu.address.model.ModelForExercise;
 import seedu.address.model.exercise.Exercise;
 
 /**
