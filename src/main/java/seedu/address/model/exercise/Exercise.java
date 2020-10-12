@@ -1,10 +1,8 @@
 package seedu.address.model.exercise;
 
-import seedu.address.model.person.Person;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Exercise {
     // identity field
@@ -15,6 +13,9 @@ public class Exercise {
     private final Description description;
     private final Calories calories;
 
+    /**
+     * Every field except for calories must be present and not null.
+     */
     public Exercise(Name name, Description description, Date date, Calories calories) {
         requireAllNonNull(name, description, date);
         this.name = name;
