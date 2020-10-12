@@ -1,15 +1,18 @@
 package chopchop.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
-import javafx.collections.ObservableList;
 import chopchop.commons.core.GuiSettings;
-import chopchop.model.recipe.Recipe;
-import chopchop.model.ingredient.Ingredient;
 
+import chopchop.model.recipe.Recipe;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
+
+import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+
+import javafx.collections.ObservableList;
 
 /**
  * The API of the Model component.
@@ -61,6 +64,11 @@ public interface Model {
      * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe book.
      */
     boolean hasRecipe(Recipe recipe);
+
+    /**
+     * Finds a recipe by name.
+     */
+    Optional<Recipe> findRecipeWithName(String name);
 
     /**
      * Deletes the given recipe.
@@ -118,6 +126,11 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deleteIngredient(Ingredient ind);
+
+    /**
+     * Finds an ingredient by name.
+     */
+    Optional<Ingredient> findIngredientWithName(String name);
 
     /**
      * Adds the given person.

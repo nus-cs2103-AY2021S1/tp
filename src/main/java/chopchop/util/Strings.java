@@ -2,7 +2,7 @@
 
 package chopchop.util;
 
-import chopchop.parser.ArgName;
+import chopchop.logic.parser.ArgName;
 
 /**
  * Defines user-facing strings for the whole program.
@@ -17,6 +17,8 @@ public class Strings {
 
     // command names
     public static final String COMMAND_ADD          = "add";
+    public static final String COMMAND_HELP         = "help";
+    public static final String COMMAND_DELETE       = "delete";
 
     // command targets
     public static final String TARGET_RECIPE        = "recipe";

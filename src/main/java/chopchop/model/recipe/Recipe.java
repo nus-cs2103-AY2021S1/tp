@@ -60,9 +60,7 @@ public class Recipe extends FoodEntry {
         }
 
         Recipe otherRecipe = (Recipe) other;
-        return otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredients().equals(getIngredients())
-                && otherRecipe.getSteps().equals(getSteps());
+        return otherRecipe.getName().equals(getName());
     }
 
     @Override
@@ -76,15 +74,12 @@ public class Recipe extends FoodEntry {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredients: ");
-        getIngredients().forEach((IngredientReference ingredient) -> {
-            builder.append(ingredient + " ");
-        });
+        getIngredients().forEach(ingredient -> builder.append(ingredient).append(" "));
         builder.append(" Steps:");
         AtomicInteger counter = new AtomicInteger(1);
-        getSteps().forEach((Step step) -> {
-            builder.append(" " + counter + ". ");
-            builder.append(step.toString());
-            counter.getAndIncrement();
+        getSteps().forEach(step -> {
+            builder.append(" ").append(counter.getAndIncrement()).append(". ");
+            builder.append(step);
         });
         return builder.toString();
     }

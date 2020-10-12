@@ -13,6 +13,7 @@ import chopchop.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
+
     private Path ingredientBookFilePath = Paths.get("data" , "ingredientbook.json");
     private Path recipeBookFilePath = Paths.get("data" , "recipebook.json");
 

@@ -1,6 +1,6 @@
 // CommonParser.java
 
-package chopchop.parser.commands;
+package chopchop.logic.parser.commands;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,9 +8,9 @@ import java.util.Optional;
 import chopchop.util.Result;
 import chopchop.util.StringView;
 
-import chopchop.parser.ArgName;
-import chopchop.parser.ItemReference;
-import chopchop.parser.CommandArguments;
+import chopchop.logic.parser.ArgName;
+import chopchop.logic.parser.ItemReference;
+import chopchop.logic.parser.CommandArguments;
 
 public class CommonParser {
 

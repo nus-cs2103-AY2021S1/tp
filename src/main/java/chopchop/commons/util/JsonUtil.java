@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.exceptions.DataConversionException;
 
-
 /**
  * Converts a Java object instance to JSON and vice versa
  */
