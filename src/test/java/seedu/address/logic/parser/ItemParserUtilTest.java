@@ -22,7 +22,7 @@ public class ItemParserUtilTest {
     private static final Collection<String> VALID_LOCATIONS = Set.of("City", "Town");
 
     private static final String WHITESPACE = " \t\r\n";
-    //
+
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ItemParserUtil.parseIndex("10 a"));
@@ -50,13 +50,13 @@ public class ItemParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() {
-        assertEquals(VALID_NAME, ItemParserUtil.parseDescription(VALID_NAME));
+        assertEquals(VALID_NAME, ItemParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        assertEquals(VALID_NAME, ItemParserUtil.parseDescription(nameWithWhitespace));
+        assertEquals(VALID_NAME, ItemParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
