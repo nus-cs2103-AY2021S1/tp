@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.InventoryBook;
 import seedu.address.model.ReadOnlyInventoryBook;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -22,12 +23,14 @@ public class SampleDataUtil {
                 new Quantity("12"),
                 new Supplier("NTUC"),
                 getTagSet("meat"),
-                new Quantity("200")),
+                new Quantity("200"),
+                new Metric("kg")),
             new Item(new Name("Duck"),
                 new Quantity("33"),
                 new Supplier("NTUC"),
                 getTagSet("meat"),
-                new Quantity("300"))
+                new Quantity("300"),
+                new Metric("kg"))
         };
     }
 

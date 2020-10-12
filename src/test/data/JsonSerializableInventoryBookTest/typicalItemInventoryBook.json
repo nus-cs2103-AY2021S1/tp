@@ -8,6 +8,7 @@
   }, {
     "name" : "Duck",
     "quantity" : "33",
+    "maxQuantity" : "500",
     "supplier" : "Cold Storage",
     "tagged" : ["meat"]
   }, {
