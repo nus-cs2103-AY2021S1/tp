@@ -29,13 +29,13 @@ public class SampleDataUtil {
                     new Description("charlotte,example.com"), new Type("event"),
                 getTagSet("neighbours")),
             new Task(new Title("David Li"), new DateTime("04-04-2020 12:00"), new Description("lidavid,example.com"),
-                new Type("lesson"),
+                new Type("todo"),
                 getTagSet("family")),
             new Task(new Title("Irfan Ibrahim"), new DateTime("05-05-2020 12:00"), new Description("irfan,example.com"),
-                new Type("tutorial"),
+                new Type("deadline"),
                 getTagSet("classmates")),
             new Task(new Title("Roy Balakrishnan"), new DateTime("06-06-2020 12:00"),
-                    new Description("royb,example.com"), new Type("session"),
+                    new Description("royb,example.com"), new Type("event"),
                 getTagSet("colleagues"))
         };
     }
