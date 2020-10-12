@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.project.FilterCommand;
 
 class FilterCommandParserTest {
-
-    private FilterCommandParser parser = new FilterCommandParser();
     private static final String MESSAGE_INVALID_FORMAT =
         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE);
 
+    private FilterCommandParser parser = new FilterCommandParser();
     @Test
     public void parse_missingParts_failure() {
         // empty user input

@@ -130,9 +130,12 @@ public class MainCatalogueParserTest {
     @Test
     public void parseCommand_filter() throws Exception {
         // FilterCommand does not have equal method as one cannot compare two predicates unless they are identical
-        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(), Status.PROJECT) instanceof FilterCommand);
-        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_DEADLINE + VALID_TASK_DEADLINE, Status.PROJECT) instanceof FilterCommand);
-        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " " + PREFIX_TASK_FILTER_BY_NAME + VALID_TASK_NAME, Status.PROJECT) instanceof FilterCommand);
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
+            + PREFIX_TASK_FILTER_BY_ASSIGNEE + ALICE.getPersonName(), Status.PROJECT) instanceof FilterCommand);
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
+            + PREFIX_TASK_FILTER_BY_DEADLINE + VALID_TASK_DEADLINE, Status.PROJECT) instanceof FilterCommand);
+        assertTrue(parser.parseCommand(FilterCommand.COMMAND_WORD + " "
+            + PREFIX_TASK_FILTER_BY_NAME + VALID_TASK_NAME, Status.PROJECT) instanceof FilterCommand);
     }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
