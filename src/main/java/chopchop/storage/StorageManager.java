@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
+import chopchop.commons.core.LogsCenter;
+import chopchop.commons.exceptions.DataConversionException;
+import chopchop.model.ReadOnlyUserPrefs;
+import chopchop.model.UserPrefs;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -16,16 +17,19 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private IngredientBookStorage ingredientBookStorage;
+    private RecipeBookStorage recipeBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
     /**
      * Constructs {@code StorageManagers}
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(IngredientBookStorage ingredientBookStorage, RecipeBookStorage recipeBookStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.ingredientBookStorage = ingredientBookStorage;
+        this.recipeBookStorage = recipeBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,34 +50,76 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
-
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getIngredientBookFilePath() {
+        return ingredientBookStorage.getIngredientBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyRecipeBook> readRecipeBook()
+        throws DataConversionException, IOException {
+        return readRecipeBook(recipeBookStorage.getRecipeBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyRecipeBook> readRecipeBook(Path filePath)
+        throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return recipeBookStorage.readRecipeBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public Path getRecipeBookFilePath() {
+        return null;
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public Optional<ReadOnlyIngredientBook> readIngredientBook()
+        throws DataConversionException, IOException {
+        return readIngredientBook(ingredientBookStorage.getIngredientBookFilePath());
+    }
+
+    /**
+     * @param filePath
+     * @see #getIngredientBookFilePath()
+     */
+    @Override
+    public Optional<ReadOnlyIngredientBook> readIngredientBook(Path filePath)
+        throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return ingredientBookStorage.readIngredientBook(filePath);
+    }
+
+    @Override
+    public void saveIngredientBook(ReadOnlyIngredientBook addressBook) throws IOException {
+        saveIngredientBook(addressBook, ingredientBookStorage.getIngredientBookFilePath());
+    }
+
+    /**
+     * @param ingredientBook
+     * @param filePath
+     * @see #saveIngredientBook(ReadOnlyIngredientBook)
+     */
+    @Override
+    public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        ingredientBookStorage.saveIngredientBook(ingredientBook, filePath);
+    }
+
+    @Override
+    public void saveRecipeBook(ReadOnlyRecipeBook recipeBook) throws IOException {
+        saveRecipeBook(recipeBook, recipeBookStorage.getRecipeBookFilePath());
+    }
+
+    /**
+     * @param recipeBook
+     * @param filePath
+     * @see #saveRecipeBook(ReadOnlyRecipeBook)
+     */
+    @Override
+    public void saveRecipeBook(ReadOnlyRecipeBook recipeBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        recipeBookStorage.saveRecipeBook(recipeBook, filePath);
     }
 
 }

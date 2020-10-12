@@ -6,34 +6,27 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import chopchop.storage.IngredientBookStorage;
+import chopchop.storage.JsonIngredientBookStorage;
+import chopchop.storage.JsonRecipeBookStorage;
 import chopchop.storage.RecipeBookStorage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import seedu.address.AppParameters;
-import seedu.address.commons.core.Config;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Version;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Logic;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
+import chopchop.commons.core.Config;
+import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Version;
+import chopchop.commons.exceptions.DataConversionException;
+import chopchop.commons.util.ConfigUtil;
+import chopchop.commons.util.StringUtil;
+import chopchop.logic.Logic;
+import chopchop.model.Model;
+import chopchop.model.ModelManager;
+import chopchop.model.ReadOnlyUserPrefs;
+import chopchop.model.UserPrefs;
+import chopchop.storage.JsonUserPrefsStorage;
+import chopchop.storage.Storage;
+import chopchop.storage.StorageManager;
+import chopchop.storage.UserPrefsStorage;
 
 /**
  * Runs the application.
@@ -44,7 +37,6 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
@@ -60,9 +52,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        IngredientBookStorage indBookStorage = new JsonAddressBookStorage(userPrefs.getIngredientBookFilePath());
-        RecipeBookStorage recipeBookStorage = new JsonAddressBookStorage(userPrefs.getRecipeBookFilePath())
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        IngredientBookStorage ingredientBookStorage = new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
+        RecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
+        storage = new StorageManager(ingredientBookStorage, recipeBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -71,8 +63,8 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
-    }
 
+    }
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
@@ -125,7 +117,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -153,7 +145,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
