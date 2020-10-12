@@ -317,7 +317,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<AdditionalDetail>> getAdditionalDetails() {
             return Optional.ofNullable(details).map(Collections::unmodifiableSet);
-            // return (details != null) ? Optional.of(Collections.unmodifiableSet(details)) : Optional.empty();
         }
 
         @Override
