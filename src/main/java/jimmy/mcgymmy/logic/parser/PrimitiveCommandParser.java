@@ -95,7 +95,7 @@ public class PrimitiveCommandParser {
             this.provideValuesToParameterSet(cmd, parameterSet);
             return result;
         } catch (org.apache.commons.cli.ParseException | ParseException e) {
-            String message = e.getMessage() + "\n" + this.getUsage(commandName, parameterSet);
+            String message = e.getMessage() + "\n" + PrimitiveCommandHelpUtil.getUsage(commandName, parameterSet);
             throw new ParseException(message);
         }
     }
@@ -141,26 +141,6 @@ public class PrimitiveCommandParser {
     void addCommand(String name, Supplier<Command> commandSupplier) {
         assert !this.commandTable.containsKey(name) : name + " command has already been added";
         this.commandTable.put(name, commandSupplier);
-    }
-
-    // Creates the usage string using commons-cli's HelpFormatter and the createExampleCommand function
-    private String getUsage(String commandName, ParameterSet parameterSet) {
-        Options options = parameterSet.asOptions();
-        String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName,
-                getUnnamedParameterUsage(parameterSet), options);
-        return formattedHelp + "\nEXAMPLE: " + this.createExampleCommand(commandName, parameterSet.getParameterList());
-    }
-
-    private String getUnnamedParameterUsage(ParameterSet parameterSet) {
-        return parameterSet.getUnnamedParameter()
-                .map(param -> String.format("<arg> %s: %s", param.getName(), param.getDescription()))
-                .orElseGet(() -> "");
-    }
-
-    private String createExampleCommand(String commandName, List<AbstractParameter> parameterList) {
-        return commandName + " " + parameterList.stream()
-                .map(p -> p.getFlag().equals("") ? p.getExample() : "-" + p.getFlag() + " " + p.getExample())
-                .collect(Collectors.joining(" "));
     }
 
     public Set<String> getRegisteredCommands() {
