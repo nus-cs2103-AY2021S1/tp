@@ -20,6 +20,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.delivery.Delivery;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
@@ -165,6 +166,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Item> getFilteredItemList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Delivery> getFilteredDeliveryList() {
             throw new AssertionError("This method should not be called.");
         }
 
