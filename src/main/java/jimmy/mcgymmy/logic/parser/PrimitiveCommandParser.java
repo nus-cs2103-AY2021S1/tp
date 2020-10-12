@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -16,6 +15,7 @@ import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.ClearCommand;
 import jimmy.mcgymmy.logic.commands.Command;
+import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.DeleteCommand;
 import jimmy.mcgymmy.logic.commands.EditCommand;
 import jimmy.mcgymmy.logic.commands.ExitCommand;
@@ -33,27 +33,31 @@ import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
  */
 public class PrimitiveCommandParser {
     private final Map<String, Supplier<Command>> commandTable;
+    private final Map<String, String> commandDescriptionTable;
     private final CommandLineParser parser;
+    private final PrimitiveCommandHelpUtil helpUtil;
     /**
      * Creates a new McGymmyParser
      */
     public PrimitiveCommandParser() {
         this.commandTable = new HashMap<>();
+        this.commandDescriptionTable = new HashMap<>();
+        this.helpUtil = new PrimitiveCommandHelpUtil(commandTable, commandDescriptionTable);
         this.addDefaultCommands();
         this.parser = new DefaultParser();
     }
 
     private void addDefaultCommands() {
-        this.addCommand(AddCommand.COMMAND_WORD, AddCommand::new);
-        this.addCommand(EditCommand.COMMAND_WORD, EditCommand::new);
-        this.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand::new);
-        this.addCommand(ClearCommand.COMMAND_WORD, ClearCommand::new);
-        this.addCommand(ExitCommand.COMMAND_WORD, ExitCommand::new);
-        this.addCommand(FindCommand.COMMAND_WORD, FindCommand::new);
-        this.addCommand(ListCommand.COMMAND_WORD, ListCommand::new);
-        this.addCommand(HelpCommand.COMMAND_WORD, HelpCommand::new);
-        this.addCommand(TagCommand.COMMAND_WORD, TagCommand::new);
-        this.addCommand(UnTagCommand.COMMAND_WORD, UnTagCommand::new);
+        this.addCommand(AddCommand.COMMAND_WORD, AddCommand.SHORT_DESCRIPTION, AddCommand::new);
+        this.addCommand(EditCommand.COMMAND_WORD, "TODO", EditCommand::new);
+        this.addCommand(DeleteCommand.COMMAND_WORD, "TODO", DeleteCommand::new);
+        this.addCommand(ClearCommand.COMMAND_WORD, "TODO", ClearCommand::new);
+        this.addCommand(ExitCommand.COMMAND_WORD, "TODO", ExitCommand::new);
+        this.addCommand(FindCommand.COMMAND_WORD, "TODO", FindCommand::new);
+        this.addCommand(ListCommand.COMMAND_WORD, "TODO", ListCommand::new);
+        this.addCommand(HelpCommand.COMMAND_WORD, "TODO", HelpCommand::new);
+        this.addCommand(TagCommand.COMMAND_WORD, "TODO", TagCommand::new);
+        this.addCommand(UnTagCommand.COMMAND_WORD, "TODO", UnTagCommand::new);
     }
 
     /**
@@ -65,7 +69,7 @@ public class PrimitiveCommandParser {
      * @throws ParseException if a required argument to the command is not supplied
      * @throws ParseException if an argument to the command is not in the correct format
      */
-    public Command parse(String text) throws ParseException {
+    public CommandExecutable parse(String text) throws ParseException {
         ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(text);
         if (headTail.getHead().equals("")) {
             throw new ParseException("Please enter a command.");
@@ -83,7 +87,14 @@ public class PrimitiveCommandParser {
      * @throws ParseException if a required argument to the command is not supplied
      * @throws ParseException if an argument to the command is not in the correct format
      */
-    public Command parsePrimitiveCommand(String commandName, String[] arguments) throws ParseException {
+    public CommandExecutable parsePrimitiveCommand(String commandName, String[] arguments) throws ParseException {
+        if (commandName.equals("help")) {
+            if (arguments.length == 1) {
+                return this.helpUtil.newHelpCommand(arguments[0]);
+            } else {
+                return this.helpUtil.newHelpCommand();
+            }
+        }
         if (!this.commandTable.containsKey(commandName)) {
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
@@ -95,7 +106,7 @@ public class PrimitiveCommandParser {
             this.provideValuesToParameterSet(cmd, parameterSet);
             return result;
         } catch (org.apache.commons.cli.ParseException | ParseException e) {
-            String message = e.getMessage() + "\n" + PrimitiveCommandHelpUtil.getUsage(commandName, parameterSet);
+            String message = e.getMessage() + "\n" + helpUtil.getUsage(commandName, parameterSet);
             throw new ParseException(message);
         }
     }
@@ -138,8 +149,9 @@ public class PrimitiveCommandParser {
      * @param name            Name of command to be added
      * @param commandSupplier a constructor of the command taking no arguments
      */
-    void addCommand(String name, Supplier<Command> commandSupplier) {
+    void addCommand(String name, String description, Supplier<Command> commandSupplier) {
         assert !this.commandTable.containsKey(name) : name + " command has already been added";
+        this.commandDescriptionTable.put(name, description);
         this.commandTable.put(name, commandSupplier);
     }
 
