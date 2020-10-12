@@ -96,7 +96,7 @@ public class MainCatalogueParser {
             case AssignCommand.COMMAND_WORD:
                 return new AssignCommandParser().parse(arguments);
             case FilterCommand.COMMAND_WORD:
-                return new FilterCommand();
+                return new FilterCommandParser().parse(arguments);
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
 
