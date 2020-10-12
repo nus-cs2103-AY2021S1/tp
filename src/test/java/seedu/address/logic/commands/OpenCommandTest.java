@@ -66,12 +66,12 @@ class OpenCommandTest {
                         .withFileAddress("./src/test/java/seedu/address/testutil/testFile.sh").build();
             }
             OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
-            Model model = new ModelManager();
-            model.addTag(correctTag);
+            Model modelStubWithAddressBook = new ModelStubWithAddressBook();
+            modelStubWithAddressBook.addTag(correctTag);
 
             String expectedMessage = String.format(OpenCommand.MESSAGE_SUCCESS, correctTag);
 
-            assertCommandSuccess(openCommand, model, expectedMessage, model);
+            assertCommandSuccess(openCommand, modelStubWithAddressBook, expectedMessage, modelStubWithAddressBook);
         }
     }
 
@@ -81,11 +81,11 @@ class OpenCommandTest {
             Tag correctTag = new TagBuilder().withTagName("test")
                     .withFileAddress(".\\src\\test\\java\\seedu\\address\\testutil\\testFileNotHere.bat").build();
             OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
-            Model model = new ModelManager();
-            model.addTag(correctTag);
+            Model modelStubWithAddressBook = new ModelStubWithAddressBook();
+            modelStubWithAddressBook.addTag(correctTag);
 
             assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND,
-                    correctTag.getFileAddress().value), () -> openCommand.execute(model));
+                    correctTag.getFileAddress().value), () -> openCommand.execute(modelStubWithAddressBook));
         }
     }
 
