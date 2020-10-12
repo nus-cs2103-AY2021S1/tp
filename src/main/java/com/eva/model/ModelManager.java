@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -97,6 +98,11 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteStaff(Staff target) {
         addressBook.removePerson(target);
     }
 

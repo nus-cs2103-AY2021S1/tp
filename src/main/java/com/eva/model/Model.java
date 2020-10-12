@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 
 import javafx.collections.ObservableList;
 
@@ -63,6 +64,12 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Deletes the given staff.
+     * The staff must exist in the address book.
+     */
+    void deleteStaff(Staff target);
 
     /**
      * Adds the given person.
