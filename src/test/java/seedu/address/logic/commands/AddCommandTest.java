@@ -203,6 +203,11 @@ public class AddCommandTest {
             public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
 
             }
+
+            @Override
+            public void updateFilteredEntryList(Predicate<Entry> predicate) {
+
+            }
         };
 
         assertEquals(String.format("New entry added!", expenseStub),

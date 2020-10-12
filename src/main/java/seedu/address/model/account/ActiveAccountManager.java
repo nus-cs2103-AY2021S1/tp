@@ -19,6 +19,7 @@ public class ActiveAccountManager implements ActiveAccount {
     private final Account activeAccount;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Revenue> filteredRevenues;
+    private final FilteredList<Entry> filteredEntries;
 
     /**
      * Initializes an ActiveAccountManager with the given account.
@@ -30,6 +31,14 @@ public class ActiveAccountManager implements ActiveAccount {
         this.activeAccount = new Account(account);
         filteredExpenses = new FilteredList<>(this.activeAccount.getExpenseList());
         filteredRevenues = new FilteredList<>(this.activeAccount.getRevenueList());
+        filteredEntries = initFilteredEntries(filteredExpenses, filteredRevenues);
+    }
+
+    private FilteredList<Entry> initFilteredEntries(FilteredList<Expense> filteredExpenses,
+                                                    FilteredList<Revenue> filteredRevenues) {
+        ObservableList<Entry> entries = FXCollections.observableArrayList(filteredExpenses);
+        entries.addAll(filteredRevenues);
+        return new FilteredList<>(entries);
     }
 
     //=========== Account ================================================================================
@@ -78,15 +87,15 @@ public class ActiveAccountManager implements ActiveAccount {
     @Override
     public void addExpense(Expense expense) {
         activeAccount.addExpense(expense);
-
-        updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        // updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRY);
     }
 
     @Override
     public void addRevenue(Revenue revenue) {
         activeAccount.addRevenue(revenue);
-
-        updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+        // updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRY);
     }
 
     @Override
@@ -117,9 +126,7 @@ public class ActiveAccountManager implements ActiveAccount {
 
     @Override
     public ObservableList<Entry> getFilteredEntryList() {
-        ObservableList<Entry> entries = FXCollections.observableArrayList(filteredRevenues);
-        entries.addAll(filteredExpenses);
-        return entries;
+        return filteredEntries;
     }
 
     @Override
@@ -130,6 +137,11 @@ public class ActiveAccountManager implements ActiveAccount {
     @Override
     public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
         this.filteredRevenues.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
+        this.filteredEntries.setPredicate(predicate);
     }
 
     @Override

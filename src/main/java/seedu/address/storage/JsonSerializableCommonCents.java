@@ -50,10 +50,12 @@ public class JsonSerializableCommonCents {
         CommonCents commonCents = new CommonCents();
         for (JsonAdaptedAccount jsonAdaptedAccount : accounts) {
             Account account = jsonAdaptedAccount.toModelType();
+            /*
             if (commonCents.hasAccount(account)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ACCOUNT);
             }
-            commonCents.addAccount(account);
+             */
+            commonCents.setAccount(account);
         }
         return commonCents;
     }
