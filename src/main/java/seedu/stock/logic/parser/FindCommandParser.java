@@ -40,22 +40,32 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
 
-        if (!isAPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
+        // Check if command format is correct
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<Predicate<Stock>> getPredicates =
+        List<Prefix> prefixes = CliSyntax.getAllPossiblePrefixes();
+        // Check for duplicate prefixes
+        for (Prefix prefix: prefixes) {
+            if (argMultimap.getAllValues(prefix).size() >= 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+        }
+
+        // Get the predicates to test to find stocks wanted
+        List<Predicate<Stock>> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
-        return new FindCommand(getPredicates);
+        return new FindCommand(predicatesToTest);
     }
 
     /**
      * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
      * in the given {@code ArgumentMultimap}.
      */
-    private static boolean isAPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
