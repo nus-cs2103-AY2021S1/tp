@@ -1,7 +1,7 @@
 package chopchop.testutil;
 
-import static chopchop.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static chopchop.logic.parser.CliSyntax.PREFIX_STEP;
+import static chopchop.util.Strings.ARG_INGREDIENT;
+import static chopchop.util.Strings.ARG_STEP;
 
 import chopchop.logic.commands.AddRecipeCommand;
 import chopchop.model.recipe.Recipe;
@@ -25,9 +25,9 @@ public class RecipeUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(recipe.getName().fullName + " ");
         recipe.getIngredients().stream().forEach(ind ->
-                        sb.append(PREFIX_INGREDIENT + Double.toString(ind.getQuantity().value) + " "));
+                        sb.append(ARG_INGREDIENT + " " + ind.getQuantity().toString() + " "));
         recipe.getSteps().stream().forEach(step ->
-                sb.append(PREFIX_STEP + step.toString() + " "));
+                sb.append(ARG_STEP + step.toString() + " "));
         return sb.toString();
     }
 

@@ -6,23 +6,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import chopchop.model.FoodEntry;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.FoodEntry;
+import chopchop.model.ingredient.IngredientReference;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Recipe extends FoodEntry {
 
     // Identity fields
-    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<IngredientReference> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, List<Ingredient> ingredients, List<Step> steps) {
+    public Recipe(Name name, List<IngredientReference> ingredients, List<Step> steps) {
         super(name);
         requireAllNonNull(name, ingredients, steps);
         this.ingredients.addAll(ingredients);
@@ -33,7 +33,7 @@ public class Recipe extends FoodEntry {
      * Returns an immutable ingredient set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Ingredient> getIngredients() {
+    public List<IngredientReference> getIngredients() {
         return Collections.unmodifiableList(ingredients);
     }
 
@@ -76,9 +76,8 @@ public class Recipe extends FoodEntry {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredients: ");
-        getIngredients().forEach((Ingredient ingredient) -> {
-            builder.append(ingredient.getName());
-            builder.append("(" + ingredient.getQuantity() + ") ");
+        getIngredients().forEach((IngredientReference ingredient) -> {
+            builder.append(ingredient + " ");
         });
         builder.append(" Steps:");
         AtomicInteger counter = new AtomicInteger(1);

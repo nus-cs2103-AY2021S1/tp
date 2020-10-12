@@ -1,6 +1,6 @@
 package chopchop.model.recipe;
 
-import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
 import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
@@ -41,7 +41,7 @@ public class RecipeTest {
 
         // different ingredients -> returns false. Different recipes can be of the same name but different ingredients
         editedApricotSalad = new RecipeBuilder(APRICOT_SALAD)
-                .withIngredients(new ArrayList<>(Arrays.asList(BANANA))).build();
+                .withIngredients(new ArrayList<>(Arrays.asList(BANANA_REF))).build();
         assertFalse(APRICOT_SALAD.equals(editedApricotSalad));
 
         // different steps -> returns false. Different recipes can be of the same name but different steps

@@ -1,6 +1,6 @@
 package chopchop.model.attributes;
 
-import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -87,7 +87,7 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList(
                 "Banana", "Cut"));
         assertFalse(predicate.test(new RecipeBuilder().withName("Apricot Salad")
-            .withIngredients(new ArrayList<>(Arrays.asList(BANANA)))
+            .withIngredients(new ArrayList<>(Arrays.asList(BANANA_REF)))
             .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD)))
             .build()));
     }
