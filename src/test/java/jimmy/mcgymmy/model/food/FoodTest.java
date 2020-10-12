@@ -4,9 +4,11 @@ import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import org.junit.jupiter.api.Test;
+
 import jimmy.mcgymmy.testutil.Assert;
 import jimmy.mcgymmy.testutil.FoodBuilder;
-import org.junit.jupiter.api.Test;
+
 
 public class FoodTest {
     public static final Name VALID_FOOD_NAME = new Name("test food");
@@ -52,7 +54,7 @@ public class FoodTest {
     }
 
     @Test
-    public void toString_Test() {
+    public void toStringTest() {
         String expected1 = "Food:test food\n"
                 + "protein: 2\n"
                 + "carbs: 3\n"
@@ -66,7 +68,7 @@ public class FoodTest {
     }
 
     @Test
-    public void getCalories_Test() {
+    public void getCaloriesTest() {
         assertEquals(new Food("water", 0, 0, 0).getCalories(), 0);
         assertEquals(new Food("chimkenbreast", 30, 0, 0).getCalories(), 120);
         assertEquals(new Food("chimkenRice", 0, 0, 30).getCalories(), 120);
