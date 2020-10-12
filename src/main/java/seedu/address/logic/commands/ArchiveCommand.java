@@ -10,7 +10,6 @@ import java.nio.file.Path;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
-import seedu.address.model.ModelForExercise;
 import seedu.address.storage.StorageForExercise;
 
 public class ArchiveCommand extends CommandForExercise {
