@@ -51,7 +51,9 @@ public class JsonModuleListStorage implements ModuleListStorage {
         if (!jsonModuleList.isPresent()) {
             return Optional.empty();
         }
-        return null;
+        //temp only until return null error is resolved
+        return Optional.empty();
+        //return null;
         // try {
         //    return Optional.of(jsonAddressBook.get().toModelType());
         // } catch (IllegalValueException ive) {

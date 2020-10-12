@@ -81,10 +81,11 @@ public class MainApp extends Application {
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
+            initialData = new ModuleList();
             // initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            // initialData = new ModuleList();
+            initialData = new ModuleList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new ModuleList();
