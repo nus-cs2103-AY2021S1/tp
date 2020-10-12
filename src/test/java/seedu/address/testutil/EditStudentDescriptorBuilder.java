@@ -6,6 +6,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.admin.Admin;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -31,6 +32,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setSchool(student.getSchool());
         descriptor.setYear(student.getYear());
+        descriptor.setAdmin(student.getAdmin());
     }
 
     /**
@@ -62,6 +64,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withYear(String year) {
         descriptor.setYear(new Year(year));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Year} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withAdmin(Admin admin) {
+        descriptor.setAdmin(admin);
         return this;
     }
 

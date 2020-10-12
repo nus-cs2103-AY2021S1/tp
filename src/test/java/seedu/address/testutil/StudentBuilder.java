@@ -28,10 +28,14 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
     public static final String DEFAULT_YEAR = "4";
-    public static final String DEFAULT_CLASS_VENUE = "Placeholder venue";
-    public static final String DEFAULT_CLASS_TIME = "1 0000-2359";
-    public static final String DEFAULT_FEE = "123";
-    public static final String DEFAULT_PAYMENT_DATE = "1/1/01";
+    public static final String DEFAULT_CLASS_VENUE = "311, Clementi Ave 2, #02-25";
+    public static final String DEFAULT_CLASS_TIME = "1 1500-1700";
+    public static final String DEFAULT_FEE = "21";
+    public static final String DEFAULT_PAYMENT_DATE = "21/05/2020";
+    public static final String DEFAULT_ADDITIONAL_DETAILS_MONEY = "owesMoney";
+    public static final String DEFAULT_ADDITIONAL_DETAILS_FRIEND = "friends";
+    public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
+    public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
 
     // Identity fields
     private Name name;
@@ -61,6 +65,15 @@ public class StudentBuilder {
         time = new ClassTime(DEFAULT_CLASS_TIME);
         fee = new Fee(DEFAULT_FEE);
         paymentDate = new PaymentDate(DEFAULT_PAYMENT_DATE);
+        List.of(DEFAULT_ADDITIONAL_DETAILS_MONEY, DEFAULT_ADDITIONAL_DETAILS_FRIEND)
+                .stream()
+                .map(AdditionalDetail::new)
+                .forEach(details::add);
+
+        List.of(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
+                .stream()
+                .map(Question::new)
+                .forEach(questions::add);
     }
 
     /**

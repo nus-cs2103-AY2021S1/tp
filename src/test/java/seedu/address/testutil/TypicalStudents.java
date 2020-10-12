@@ -1,12 +1,35 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.admin.Admin;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -15,16 +38,25 @@ public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withSchool("Anderson Secondary").withYear("3").withPhone("94351253")
+            .withClassVenue("123, Jurong West Ave 6, #08-111")
+            .withDetails("Clever")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withSchool("Pei Hwa Secondary").withYear("2").withPhone("98765432")
+            .withClassTime("2 1200-1430")
             .build();
-    public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withSchool("Catholic High").withYear("5").build();
-    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withSchool("Methodist Girls School").withYear("1").build();
-    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withSchool("River Valley High").withYear("6").build();
+    public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
+            .withSchool("Catholic High").withYear("5").withPhone("95352563")
+            .withFee("450.50")
+            .build();
+    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
+            .withSchool("Methodist Girls School").withYear("1").withPhone("87652533")
+            .withPaymentDate("28/2/2018")
+            .build();
+    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
+            .withSchool("River Valley High").withYear("6").withPhone("9482224")
+            .withSolved(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
+            .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withSchool("Raffles Girls School").withYear("2").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
@@ -38,26 +70,32 @@ public class TypicalStudents {
             .withSchool("NUS High School")
             .withYear("6").build();
 
+    // Manually added - Student's details found in {@code CommandTestUtil}
+    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withSchool(VALID_SCHOOL_AMY)
+            .withYear(VALID_YEAR_AMY)
+            .withClassVenue(VALID_CLASS_VENUE_AMY)
+            .withClassTime(VALID_CLASS_TIME_AMY)
+            .withFee(VALID_FEE_AMY)
+            .withPaymentDate(VALID_PAYMENT_DATE_AMY)
+            .withDetails(VALID_ADDITIONAL_DETAILS_AMY)
+            .withQuestions(VALID_QUESTION_AMY)
+            .build();
+    public static final Admin AMY_ADMIN = AMY.getAdmin();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
-            .withPhone(CommandTestUtil.VALID_PHONE_AMY)
-            .withSchool(CommandTestUtil.VALID_SCHOOL_AMY)
-            .withYear(CommandTestUtil.VALID_YEAR_AMY)
-            .withClassVenue(CommandTestUtil.VALID_VENUE_AMY)
-            .withClassTime(CommandTestUtil.VALID_TIME_AMY)
-            .withFee(CommandTestUtil.VALID_FEE_AMY)
-            .withPaymentDate(CommandTestUtil.VALID_PAYMENT_AMY)
+    public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withSchool(VALID_SCHOOL_BOB)
+            .withYear(VALID_YEAR_BOB)
+            .withClassVenue(VALID_CLASS_VENUE_BOB)
+            .withClassTime(VALID_CLASS_TIME_BOB)
+            .withFee(VALID_FEE_BOB)
+            .withPaymentDate(VALID_PAYMENT_DATE_BOB)
+            .withDetails(VALID_ADDITIONAL_DETAILS_BOB)
+            .withSolved(VALID_QUESTION_BOB)
             .build();
-    public static final Student BOB = new StudentBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-            .withPhone(CommandTestUtil.VALID_PHONE_BOB)
-            .withSchool(CommandTestUtil.VALID_SCHOOL_BOB)
-            .withYear(CommandTestUtil.VALID_YEAR_BOB)
-            .withClassVenue(CommandTestUtil.VALID_VENUE_BOB)
-            .withClassTime(CommandTestUtil.VALID_TIME_BOB)
-            .withFee(CommandTestUtil.VALID_FEE_BOB)
-            .withPaymentDate(CommandTestUtil.VALID_PAYMENT_BOB)
-            .build();
+    public static final Admin BOB_ADMIN = BOB.getAdmin();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

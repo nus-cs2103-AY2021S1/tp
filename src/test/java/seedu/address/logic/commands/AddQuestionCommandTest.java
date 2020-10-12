@@ -45,14 +45,16 @@ public class AddQuestionCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student clone = new StudentBuilder(asker).withQuestions().build();
         Question question = new Question(TEST_QUESTION);
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, question);
         Student expectedStudent = new StudentBuilder(ALICE).withQuestions(TEST_QUESTION).build();
+        model.setPerson(asker, clone);
 
         String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(asker, expectedStudent);
+        expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);
     }
@@ -83,13 +85,16 @@ public class AddQuestionCommandTest {
 
         Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Question question = new Question(TEST_QUESTION);
+        Student clone = new StudentBuilder(asker).withQuestions().build();
+        model.setPerson(asker, clone);
+
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, question);
         Student expectedStudent = new StudentBuilder(BENSON).withQuestions(TEST_QUESTION).build();
 
         String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(asker, expectedStudent);
+        expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);
 

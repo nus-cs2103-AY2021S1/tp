@@ -143,6 +143,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setSchool(toCopy.school);
             setYear(toCopy.year);
+            setAdmin(toCopy.admin);
         }
 
         /**

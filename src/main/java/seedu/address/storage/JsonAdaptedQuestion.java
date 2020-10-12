@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Question;
 
@@ -31,6 +33,7 @@ public class JsonAdaptedQuestion {
         this.question = String.format("%1d | %2s", status, source.question);
     }
 
+    @JsonValue
     public String getQuestion() {
         return question;
     }
