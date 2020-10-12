@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.FindExactCommand;
-import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
