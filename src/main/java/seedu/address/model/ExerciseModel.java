@@ -79,10 +79,11 @@ public interface ExerciseModel {
 
     /** Returns an unmodifiable view of the filtered Exercise list */
     ObservableList<Exercise> getFilteredExerciseList();
-
+    
     /**
      * Updates the filter of the filtered Exercise list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
+     * @param predicate
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
 

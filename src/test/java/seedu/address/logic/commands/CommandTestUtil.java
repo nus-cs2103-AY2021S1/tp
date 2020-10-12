@@ -16,7 +16,10 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ExerciseModel;
 import seedu.address.model.Model;
+import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -74,8 +77,28 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
+    
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+    
+   
+
+    
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel, CommandResult expectedCommandResult,
+                                            ExerciseModel expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -89,11 +112,26 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
+    
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
+    
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(CommandForExercise, ExerciseModel, CommandResult, ExerciseModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+   
+    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel, String expectedMessage,
+            ExerciseModel expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+    
+    
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -111,6 +149,8 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+    
+    
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -123,6 +163,18 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showExerciseAtIndex(ExerciseModel model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredExerciseList().size());
+        Exercise exercise = model.getFilteredExerciseList().get(targetIndex.getZeroBased());
+        final String[] splitName = exercise.getName().fullName.split("\\s+");
+        model.updateFilteredExerciseList(new NameContainsKeywordsPredicateForExercise(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredExerciseList().size());
     }
 
 }
