@@ -44,8 +44,9 @@ public class Project {
      */
     public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
-                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks) {
-        requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags, listOfParticipations, tasks);
+                   HashMap<PersonName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
+        requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
+                listOfParticipations, tasks, meetings);
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -53,6 +54,7 @@ public class Project {
         this.projectTags.addAll(projectTags);
         this.listOfParticipations.putAll(listOfParticipations);
         this.tasks.addAll(tasks);
+        this.meetings.addAll(meetings);
     }
 
     public ProjectName getProjectName() {

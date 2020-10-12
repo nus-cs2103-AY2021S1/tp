@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,6 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.RepoUrl;
 import seedu.address.model.task.Task;
 
 /**
@@ -130,13 +128,13 @@ public class EditTaskCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        String taskName;
-        String description;
-        LocalDate publishDate;
-        Deadline deadline;
-        Double progress;
-        Boolean isDone;
-        Set<Participation> assignees;
+        private String taskName;
+        private String description;
+        private LocalDate publishDate;
+        private Deadline deadline;
+        private Double progress;
+        private Boolean isDone;
+        private Set<Participation> assignees;
 
         public EditTaskDescriptor() {}
 
@@ -158,7 +156,8 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(taskName, deadline, progress, description, isDone, publishDate, assignees);
+            return CollectionUtil.isAnyNonNull(taskName, deadline, progress,
+                    description, isDone, publishDate, assignees);
         }
 
         public void setTaskName(String taskName) {

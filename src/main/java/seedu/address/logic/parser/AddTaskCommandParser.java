@@ -1,21 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
-import java.util.HashMap;
-import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.catalogue.AddCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,6 +19,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
