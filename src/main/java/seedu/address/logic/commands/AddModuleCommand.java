@@ -98,4 +98,5 @@ public class AddModuleCommand extends Command {
                 && moduleName.equals(((AddModuleCommand) other).moduleName)
                 && nameList.equals(((AddModuleCommand) other).nameList));
     }
+
 }
