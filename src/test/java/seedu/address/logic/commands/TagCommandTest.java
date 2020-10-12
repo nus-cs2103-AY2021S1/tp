@@ -46,6 +46,12 @@ public class TagCommandTest {
     }
 
     @Test
+    public void execute_tagAddressFileNotFound_throwsCommandException() {
+        Tag tagInvalidAddress = new TagBuilder().withFileAddress("./somewhereOverTheRainbow").build();
+        assertThrows(IllegalArgumentException.class, () -> new TagCommand(tagInvalidAddress));
+    }
+
+    @Test
     public void execute_duplicateTagName_throwsCommandException() {
         Tag validTag = new TagBuilder().build();
         TagCommand tagCommand = new TagCommand(validTag);
@@ -73,7 +79,6 @@ public class TagCommandTest {
 
         // null -> returns false
         assertFalse(tagT1Command.equals(null));
-
         // different person -> returns false
         assertFalse(tagT1Command.equals(tagT2Command));
     }
