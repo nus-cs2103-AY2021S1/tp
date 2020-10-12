@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
@@ -23,7 +24,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the Entry identified by the index number used in the displayed entry list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "revenue";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Entry: %1$s";
 

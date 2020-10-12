@@ -21,24 +21,31 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleCommonCentsUtilData {
     public static Account getSampleAccount() {
-        Account acc = new Account(new Name("General"));
-        RevenueList accProfits = new RevenueList();
-        accProfits.add(new Revenue(new Description("earrings sales"),
+        Account acc = new Account(new Name("General account"));
+        RevenueList accRevenues = new RevenueList();
+        accRevenues.add(new Revenue(new Description("earrings sales"),
                 new Amount("13.50"), getTagSet("craft", "accessories")));
-        accProfits.add(new Revenue(new Description("phone cases sales"),
+        accRevenues.add(new Revenue(new Description("phone cases sales"),
                 new Amount("15.70"), getTagSet("phone", "accessories")));
-        ExpenseList accExpenseList = new ExpenseList();
-        accExpenseList.add(new Expense(new Description("Watercolours"),
+        ExpenseList accExpenses = new ExpenseList();
+        accExpenses
+                .add(new Expense(new Description("Watercolours"),
                 new Amount("12.10"), getTagSet("art", "colours")));
-        accExpenseList.add(new Expense(new Description("canvas"),
+        accExpenses
+                .add(new Expense(new Description("canvas"),
                 new Amount("20.15"), getTagSet("art")));
+        acc.setExpenses(accExpenses
+        );
+        acc.setRevenues(accRevenues);
         /*
         Account acc2 = new Account(new Name("Lulu - nonbiz acc"));
         RevenueList acc2Profits = new RevenueList();
         ExpenseList acc2ExpenseList = new ExpenseList();
-        accExpenseList.add(new Expense(new Description("lunch"),
+        accExpenses
+        .add(new Expense(new Description("lunch"),
                 new Amount("5.45"), getTagSet("food", "hawker")));
-        accExpenseList.add(new Expense(new Description("dinner at Morganfield's"),
+        accExpenses
+        .add(new Expense(new Description("dinner at Morganfield's"),
                 new Amount("24.45"), getTagSet("food", "restaurant", "Morganfields")));
         */
         return acc;
@@ -46,7 +53,7 @@ public class SampleCommonCentsUtilData {
 
     public static ReadOnlyCommonCents getSampleCommonCents() {
         CommonCents sampleCc = new CommonCents();
-        sampleCc.addAccount(getSampleAccount());
+        sampleCc.setAccount(getSampleAccount());
 
         return sampleCc;
     }

@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_AMOUNT + "AMOUNT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CATEGORY + "Revenue "
+            + PREFIX_CATEGORY + "revenue "
             + PREFIX_DESCRIPTION + "Sale of clothes "
             + PREFIX_AMOUNT + "200 "
             + PREFIX_TAG + "blogshop "
