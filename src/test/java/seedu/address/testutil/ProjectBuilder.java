@@ -115,6 +115,11 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Creates a project
+     *
+     * @return project sample
+     */
     public Project build() {
         return new Project(projectName, deadline, repoUrl, projectDescription,
                 projectTags, new HashMap<>(), tasks, meetings);
