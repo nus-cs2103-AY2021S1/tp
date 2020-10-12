@@ -32,7 +32,7 @@ public class FinanceAccount implements Iterable<FinanceRecord> {
     }
 
     public boolean hasRecord(FinanceRecord record) {
-        return this.financeRecords.contains(record);
+        return this.internalList.contains(record);
     }
 
     /**
