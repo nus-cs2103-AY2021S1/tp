@@ -7,3 +7,7 @@ Copyright by Susumu Yoshida - http://www.mcdodesign.com/
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
 - edit.png
+
+Copyright by Freepik - https://www.flaticon.com/authors/freepik
+- zookeep_icon.png (https://www.flaticon.com/free-icon/koala_2424348?term=koala&page=1&position=6)
+<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
