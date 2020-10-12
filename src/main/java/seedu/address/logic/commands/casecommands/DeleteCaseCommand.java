@@ -37,4 +37,10 @@ public class DeleteCaseCommand extends DeleteCommand {
         return new CommandResult(String.format(MESSAGE_DELETE_CASE_SUCCESS, caseToDelete));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteCaseCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteCaseCommand) other).targetIndex)); // state check
+    }
 }

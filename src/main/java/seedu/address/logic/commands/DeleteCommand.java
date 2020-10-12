@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 
 /**
  * Abstract class for deleting different types of items based off of index.
@@ -26,12 +24,4 @@ public abstract class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
-    public abstract CommandResult execute(Model model) throws CommandException;
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
-    }
 }
