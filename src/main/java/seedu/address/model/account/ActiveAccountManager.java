@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.account.entry.Entry;
@@ -112,6 +113,13 @@ public class ActiveAccountManager implements ActiveAccount {
     @Override
     public ObservableList<Revenue> getFilteredRevenueList() {
         return filteredRevenues;
+    }
+
+    @Override
+    public ObservableList<Entry> getFilteredEntryList() {
+        ObservableList<Entry> entries = FXCollections.observableArrayList(filteredRevenues);
+        entries.addAll(filteredExpenses);
+        return entries;
     }
 
     @Override
