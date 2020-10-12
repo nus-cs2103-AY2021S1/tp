@@ -41,7 +41,7 @@ class JsonAdaptedFinanceRecord {
     public JsonAdaptedFinanceRecord(FinanceRecord source) {
         this.id = source.getID();
         this.amount = source.getAmount();
-        this.dateTime = source.getDate();
+        this.dateTime = source.getDatetime();
     }
 
 

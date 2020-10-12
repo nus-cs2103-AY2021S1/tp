@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -107,6 +106,9 @@ public class AddCommandTest {
         public void addInventoryRecord(InventoryRecord newRecord) {}
 
         @Override
+        public void deleteInventoryRecord(InventoryRecord target) {}
+
+        @Override
         public ObservableList<InventoryRecord> getFilteredInventory() {
             throw new AssertionError("This method should not be called.");
         }
@@ -123,8 +125,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<FinanceRecord> viewFinanceRecords() {
+        public ObservableList<FinanceRecord> getFilteredFinanceList() {
             return null;
+        }
+
+        @Override
+        public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
+
         }
 
         @Override
@@ -184,6 +191,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
 
         }
 

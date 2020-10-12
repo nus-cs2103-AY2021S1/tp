@@ -11,19 +11,19 @@ import nustorage.commons.core.LogsCenter;
 import nustorage.model.record.InventoryRecord;
 
 public class InventoryPanel extends UiPart<Region> {
-    private static final String FXML = "InventoryPanel.fxml";
+    private static final String FXML = "RecordPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InventoryPanel.class);
 
     @FXML
-    private ListView<InventoryRecord> inventoryView;
+    private ListView<InventoryRecord> recordView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public InventoryPanel(ObservableList<InventoryRecord> recordList) {
         super(FXML);
-        inventoryView.setItems(recordList);
-        inventoryView.setCellFactory(listView -> new InventoryPanel.InventoryViewCell());
+        recordView.setItems(recordList);
+        recordView.setCellFactory(listView -> new InventoryPanel.InventoryViewCell());
     }
 
     /**
@@ -33,7 +33,6 @@ public class InventoryPanel extends UiPart<Region> {
         @Override
         protected void updateItem(InventoryRecord record, boolean empty) {
             super.updateItem(record, empty);
-
             if (empty || record == null) {
                 setGraphic(null);
                 setText(null);

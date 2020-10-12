@@ -9,6 +9,7 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.person.Person;
+import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
 /**
@@ -35,6 +36,8 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     ObservableList<InventoryRecord> getFilteredInventory();
+
+    ObservableList<FinanceRecord> getFilteredFinanceList();
 
     /**
      * Returns the user prefs' address book file path.

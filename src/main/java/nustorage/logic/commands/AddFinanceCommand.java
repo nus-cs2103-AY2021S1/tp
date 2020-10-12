@@ -1,6 +1,8 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
@@ -12,6 +14,14 @@ import nustorage.model.record.FinanceRecord;
 public class AddFinanceCommand extends Command {
 
     public static final String COMMAND_WORD = "add_finance";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a finance record."
+            + "Parameters: "
+            + PREFIX_AMOUNT + "AMOUNT "
+            + "[" + PREFIX_DATETIME + "[DATE] [TIME]]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_AMOUNT + "30000 "
+            + PREFIX_DATETIME + "2020-03-30 18:00";
 
     public static final String MESSAGE_SUCCESS = "New finance record added: %1$s";
 

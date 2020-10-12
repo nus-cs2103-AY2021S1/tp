@@ -55,7 +55,7 @@ public class FinanceRecord {
         return amount;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDateTime getDatetime() {
         return datetime;
     }
 

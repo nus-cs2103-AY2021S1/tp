@@ -1,4 +1,4 @@
-package nustorage.model.item;
+package nustorage.model;
 
 import javafx.collections.ObservableList;
 import nustorage.model.record.InventoryRecord;
