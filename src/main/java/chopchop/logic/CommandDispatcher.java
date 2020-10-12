@@ -47,6 +47,7 @@ public class CommandDispatcher implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
         /*
         Command command = addressBookParser.parseCommand(commandText);
         CommandResult commandResult = command.execute(model);

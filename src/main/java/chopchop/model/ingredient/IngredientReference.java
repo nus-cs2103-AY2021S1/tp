@@ -29,6 +29,11 @@ public class IngredientReference {
     }
 
     @Override
+    public String toString() {
+        return String.format("%s (%s)", this.name, this.quantity);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         return obj == this
             || (obj instanceof IngredientReference

@@ -1,9 +1,9 @@
 package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static chopchop.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static chopchop.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static chopchop.logic.parser.CliSyntax.PREFIX_STEP;
+import static chopchop.util.Strings.ARG_INGREDIENT;
+import static chopchop.util.Strings.ARG_QUANTITY;
+import static chopchop.util.Strings.ARG_STEP;
 
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
@@ -19,14 +19,14 @@ public class AddRecipeCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the recipe book. "
             + "Parameters: "
             + "NAME "
-            + "[" + PREFIX_INGREDIENT + "INGREDIENT [" + PREFIX_QUANTITY + " QUANTITY]]..."
-            + "[" + PREFIX_STEP + "STEP]...\n"
+            + "[" + ARG_INGREDIENT + "INGREDIENT [" + ARG_QUANTITY + " QUANTITY]]..."
+            + "[" + ARG_STEP + "STEP]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "Sugar Tomato"
-            + PREFIX_INGREDIENT + "Sugar "
-            + PREFIX_INGREDIENT + "Tomato " + PREFIX_QUANTITY + " 5 "
-            + PREFIX_STEP + "Chop tomatoes. "
-            + PREFIX_STEP + "Add sugar to it and mix well. ";
+            + ARG_INGREDIENT + "Sugar "
+            + ARG_INGREDIENT + "Tomato " + ARG_QUANTITY + " 5 "
+            + ARG_STEP + "Chop tomatoes. "
+            + ARG_STEP + "Add sugar to it and mix well. ";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
@@ -59,4 +59,12 @@ public class AddRecipeCommand extends AddCommand {
                 || (other instanceof AddRecipeCommand // instanceof handles nulls
                 && toAdd.equals(((AddRecipeCommand) other).toAdd));
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("AddRecipeCommand: %s", this.toAdd);
+    }
 }
+
+
