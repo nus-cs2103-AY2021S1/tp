@@ -7,25 +7,25 @@ import java.util.logging.Logger;
 
 import seedu.fma.commons.core.LogsCenter;
 import seedu.fma.commons.exceptions.DataConversionException;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.ReadOnlyUserPrefs;
 import seedu.fma.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of LogBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private LogBookStorage addressBookStorage;
+    private LogBookStorage logBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code LogBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(LogBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(LogBookStorage logBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.logBookStorage = logBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,33 +47,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ LogBook methods ==============================
 
     @Override
     public Path getLogBookFilePath() {
-        return addressBookStorage.getLogBookFilePath();
+        return logBookStorage.getLogBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readLogBook() throws DataConversionException, IOException {
-        return readLogBook(addressBookStorage.getLogBookFilePath());
+    public Optional<ReadOnlyLogBook> readLogBook() throws DataConversionException, IOException {
+        return readLogBook(logBookStorage.getLogBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readLogBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyLogBook> readLogBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readLogBook(filePath);
+        return logBookStorage.readLogBook(filePath);
     }
 
     @Override
-    public void saveLogBook(ReadOnlyAddressBook logBook) throws IOException {
-        saveLogBook(logBook, addressBookStorage.getLogBookFilePath());
+    public void saveLogBook(ReadOnlyLogBook logBook) throws IOException {
+        saveLogBook(logBook, logBookStorage.getLogBookFilePath());
     }
 
     @Override
-    public void saveLogBook(ReadOnlyAddressBook logBook, Path filePath) throws IOException {
+    public void saveLogBook(ReadOnlyLogBook logBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveLogBook(logBook, filePath);
+        logBookStorage.saveLogBook(logBook, filePath);
     }
 
 }

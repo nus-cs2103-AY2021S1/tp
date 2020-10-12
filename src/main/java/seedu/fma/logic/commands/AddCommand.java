@@ -10,13 +10,13 @@ import seedu.fma.model.Model;
 import seedu.fma.model.log.Log;
 
 /**
- * Adds a log to the address book.
+ * Adds a log to the log book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a log to the log book. "
             + "Parameters: "
             + PREFIX_EXERCISE + "EXERCISE "
             + PREFIX_REPS + "REPS "
@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_COMMENT + "my abs hurt:( \n";
 
     public static final String MESSAGE_SUCCESS = "New log added: %1$s";
-    public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book";
 
     private final Log toAdd;
 

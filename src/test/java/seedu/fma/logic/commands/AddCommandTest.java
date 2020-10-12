@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.logic.commands.exceptions.CommandException;
-import seedu.fma.model.AddressBook;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.Model;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.ReadOnlyUserPrefs;
 import seedu.fma.model.log.Log;
 import seedu.fma.testutil.LogBuilder;
@@ -98,12 +98,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getLogBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setLogBookFilePath(Path logBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -113,12 +113,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setLogBook(ReadOnlyLogBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyLogBook getLogBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -185,8 +185,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyLogBook getLogBook() {
+            return new LogBook();
         }
     }
 

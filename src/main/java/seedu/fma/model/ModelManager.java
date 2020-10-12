@@ -16,34 +16,34 @@ import seedu.fma.commons.core.LogsCenter;
 import seedu.fma.model.log.Log;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the log book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final LogBook logBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Log> filteredLogs;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given logBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyLogBook logBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(logBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with log book: " + logBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.logBook = new LogBook(logBook);
         this.userPrefs = new UserPrefs(userPrefs);
         // TODO: Sorting order is currently hardcoded
-        SortedList<Log> sortedLogs = new SortedList<>(this.addressBook.getPersonList(),
+        SortedList<Log> sortedLogs = new SortedList<>(this.logBook.getLogList(),
                 Comparator.comparing(Log::getDateTime).reversed());
         filteredLogs = new FilteredList<>(sortedLogs);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new LogBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,42 +71,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getLogBookFilePath() {
+        return userPrefs.getLogBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setLogBookFilePath(Path logBookFilePath) {
+        requireNonNull(logBookFilePath);
+        userPrefs.setLogBookFilePath(logBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== LogBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setLogBook(ReadOnlyLogBook logBook) {
+        this.logBook.resetData(logBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyLogBook getLogBook() {
+        return logBook;
     }
 
     @Override
     public boolean hasLog(Log log) {
         requireNonNull(log);
-        return addressBook.hasPerson(log);
+        return logBook.hasLog(log);
     }
 
     @Override
     public void deleteLog(Log target) {
-        addressBook.removePerson(target);
+        logBook.removeLog(target);
     }
 
     @Override
     public void addLog(Log log) {
-        addressBook.addPerson(log);
+        logBook.addLog(log);
         updateFilteredLogList(PREDICATE_SHOW_ALL_LOGS);
     }
 
@@ -114,14 +114,14 @@ public class ModelManager implements Model {
     public void setLog(Log target, Log editedLog) {
         requireAllNonNull(target, editedLog);
 
-        addressBook.setPerson(target, editedLog);
+        logBook.setLog(target, editedLog);
     }
 
     //=========== Filtered Log List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Log} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedLogBook}
      */
     @Override
     public ObservableList<Log> getFilteredLogList() {
@@ -148,7 +148,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return logBook.equals(other.logBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredLogs.equals(other.filteredLogs);
     }

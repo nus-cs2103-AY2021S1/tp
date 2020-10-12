@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.fma.commons.core.GuiSettings;
-import seedu.fma.model.AddressBook;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.LogBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -53,10 +53,10 @@ public class StorageManagerTest {
          * {@link JsonLogBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonLogBookStorageTest} class.
          */
-        AddressBook original = getTypicalLogBook();
+        LogBook original = getTypicalLogBook();
         storageManager.saveLogBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readLogBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyLogBook retrieved = storageManager.readLogBook().get();
+        assertEquals(original, new LogBook(retrieved));
     }
 
     @Test

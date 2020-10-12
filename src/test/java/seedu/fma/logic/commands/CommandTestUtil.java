@@ -12,7 +12,7 @@ import java.util.List;
 
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.logic.commands.exceptions.CommandException;
-import seedu.fma.model.AddressBook;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.Model;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
@@ -111,11 +111,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        LogBook expectedLogBook = new LogBook(actualModel.getLogBook());
         List<Log> expectedFilteredList = new ArrayList<>(actualModel.getFilteredLogList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedLogBook, actualModel.getLogBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredLogList());
     }
 

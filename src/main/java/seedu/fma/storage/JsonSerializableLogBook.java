@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.fma.commons.exceptions.IllegalValueException;
-import seedu.fma.model.AddressBook;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.LogBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.log.Log;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable LogBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "logbook")
 class JsonSerializableLogBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate log(s).";
+    public static final String MESSAGE_DUPLICATE_LOG = "Log list contains duplicate log(s).";
 
-    private final List<JsonAdaptedLog> persons = new ArrayList<>();
+    private final List<JsonAdaptedLog> logs = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableLogBook} with the given persons.
+     * Constructs a {@code JsonSerializableLogBook} with the given logs.
      */
     @JsonCreator
-    public JsonSerializableLogBook(@JsonProperty("persons") List<JsonAdaptedLog> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableLogBook(@JsonProperty("logs") List<JsonAdaptedLog> logs) {
+        this.logs.addAll(logs);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyLogBook} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableLogBook}.
      */
-    public JsonSerializableLogBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedLog::new).collect(Collectors.toList()));
+    public JsonSerializableLogBook(ReadOnlyLogBook source) {
+        logs.addAll(source.getLogList().stream().map(JsonAdaptedLog::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this log book into the model's {@code LogBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedLog jsonAdaptedLog : persons) {
+    public LogBook toModelType() throws IllegalValueException {
+        LogBook logBook = new LogBook();
+        for (JsonAdaptedLog jsonAdaptedLog : logs) {
             Log log = jsonAdaptedLog.toModelType();
-            if (addressBook.hasPerson(log)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (logBook.hasLog(log)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LOG);
             }
-            addressBook.addPerson(log);
+            logBook.addLog(log);
         }
-        return addressBook;
+        return logBook;
     }
 
 }

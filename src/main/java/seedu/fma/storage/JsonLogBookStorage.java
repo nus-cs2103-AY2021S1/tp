@@ -12,16 +12,16 @@ import seedu.fma.commons.exceptions.DataConversionException;
 import seedu.fma.commons.exceptions.IllegalValueException;
 import seedu.fma.commons.util.FileUtil;
 import seedu.fma.commons.util.JsonUtil;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access LogBook data stored as a json file on the hard disk.
  */
 public class JsonLogBookStorage implements LogBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonLogBookStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonLogBookStorage(Path filePath) {
         this.filePath = filePath;
@@ -32,7 +32,7 @@ public class JsonLogBookStorage implements LogBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readLogBook() throws DataConversionException {
+    public Optional<ReadOnlyLogBook> readLogBook() throws DataConversionException {
         return readLogBook(filePath);
     }
 
@@ -42,17 +42,17 @@ public class JsonLogBookStorage implements LogBookStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readLogBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyLogBook> readLogBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableLogBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableLogBook> jsonLogBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableLogBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonLogBook.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonLogBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,16 +60,16 @@ public class JsonLogBookStorage implements LogBookStorage {
     }
 
     @Override
-    public void saveLogBook(ReadOnlyAddressBook logBook) throws IOException {
+    public void saveLogBook(ReadOnlyLogBook logBook) throws IOException {
         saveLogBook(logBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveLogBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveLogBook(ReadOnlyLogBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveLogBook(ReadOnlyAddressBook logBook, Path filePath) throws IOException {
+    public void saveLogBook(ReadOnlyLogBook logBook, Path filePath) throws IOException {
         requireNonNull(logBook);
         requireNonNull(filePath);
 

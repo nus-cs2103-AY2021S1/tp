@@ -7,7 +7,7 @@ import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.logic.commands.CommandResult;
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.logic.parser.exceptions.ParseException;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.log.Log;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the LogBook.
      *
-     * @see seedu.fma.model.Model#getAddressBook()
+     * @see seedu.fma.model.Model#getLogBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyLogBook getLogBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Log> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of logs */
+    ObservableList<Log> getFilteredLogList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' log book file path.
      */
-    Path getAddressBookFilePath();
+    Path getLogBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

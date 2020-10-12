@@ -4,14 +4,14 @@ import javafx.collections.ObservableList;
 import seedu.fma.model.log.Log;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an log book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyLogBook {
 
     /**
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Log> getPersonList();
+    ObservableList<Log> getLogList();
 
 }

@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.fma.commons.exceptions.DataConversionException;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.ReadOnlyUserPrefs;
 import seedu.fma.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends LogBookStorage, UserPrefsStorage {
     Path getLogBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readLogBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyLogBook> readLogBook() throws DataConversionException, IOException;
 
     @Override
-    void saveLogBook(ReadOnlyAddressBook logBook) throws IOException;
+    void saveLogBook(ReadOnlyLogBook logBook) throws IOException;
 
 }

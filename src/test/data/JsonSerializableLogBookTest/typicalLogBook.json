@@ -1,6 +1,6 @@
 {
   "_comment": "LogBook save file which contains the same Log values as in TypicalLogs#getTypicalLogBook()",
-  "persons" : [ {
+  "logs" : [ {
     "exercise" : "Flying kicks",
     "dateTime" : "2020-01-01T01:01:00",
     "rep" : "1",

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.fma.model.AddressBook;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
@@ -57,12 +57,12 @@ public class TypicalLogs {
     private TypicalLogs() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code LogBook} with all the typical logs.
      */
-    public static AddressBook getTypicalLogBook() {
-        AddressBook ab = new AddressBook();
+    public static LogBook getTypicalLogBook() {
+        LogBook ab = new LogBook();
         for (Log log : getTypicalLogs()) {
-            ab.addPerson(log);
+            ab.addLog(log);
         }
         return ab;
     }
