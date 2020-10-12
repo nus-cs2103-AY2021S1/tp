@@ -6,6 +6,7 @@ import static chopchop.commons.util.AppUtil.checkArgument;
 /**
  * Represents a FoodEntry's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Comparisons are case insensitive.
  */
 public class Name {
 
@@ -48,12 +49,13 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                    && this.fullName.toLowerCase().equals(((Name) other).fullName.toLowerCase()))
+                || (other instanceof String
+                    && this.fullName.toLowerCase().equals(((String) other).toLowerCase()));
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return this.fullName.toLowerCase().hashCode();
     }
-
 }

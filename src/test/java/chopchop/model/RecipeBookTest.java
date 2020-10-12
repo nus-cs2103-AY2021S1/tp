@@ -79,7 +79,7 @@ public class RecipeBookTest {
             .withIngredients(new ArrayList<>(Arrays.asList(BANANA_REF)))
             .withSteps(new ArrayList<>(Arrays.asList(STEP_BANANA_SALAD)))
             .build();
-        assertFalse(recipeBook.hasRecipe(editedRecipe)); //Both identity fields must be equal
+        assertTrue(recipeBook.hasRecipe(editedRecipe)); //Both identity fields must be equal
     }
 
     @Test

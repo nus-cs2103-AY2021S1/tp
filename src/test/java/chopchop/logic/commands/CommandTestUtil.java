@@ -6,7 +6,7 @@ import static chopchop.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import chopchop.commons.core.index.Index;
+import chopchop.logic.parser.ItemReference;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
@@ -69,10 +69,10 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredIngredientList().size());
+    public static void showPersonAtIndex(Model model, ItemReference targetIndex) {
+        assertTrue(targetIndex.getZeroIndex() < model.getFilteredIngredientList().size());
 
-        Ingredient person = model.getFilteredIngredientList().get(targetIndex.getZeroBased());
+        Ingredient person = model.getFilteredIngredientList().get(targetIndex.getZeroIndex());
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
