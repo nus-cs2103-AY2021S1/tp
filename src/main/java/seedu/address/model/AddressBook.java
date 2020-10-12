@@ -3,14 +3,19 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.assignment.UniqueAssignmentList;
 import seedu.address.model.lesson.Lesson;
@@ -71,8 +76,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the lesson list with {@code lessons}.
-     * {@code lessons} must not contain duplicate lessons.
+     * Replaces the contents of the tasks list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
      */
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
@@ -181,14 +186,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         return lessons.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Task> getTaskList() {
-        return tasks.asUnmodifiableObservableList();
-    }
+//    public ObservableList<Task> getTaskList() {
+//        return tasks.asUnmodifiableObservableList();
+//    }
 
-    public ObservableList<Task> combineTaskList() {
-        tasks.getInternalList().addAll(assignments.getInternalList());
-        tasks.getInternalList().addAll(lessons.getInternalList());
-        //not yet sorted
+    public ObservableList<Task> getTaskList() {
+//        tasks.getInternalList().addAll(assignments.getInternalList());
+//        tasks.getInternalList().addAll(lessons.getInternalList());
+//        tasks.getInternalList().sort((firstTask, secondTask) -> {
+//            LocalDateTime firstTaskDateTime = LocalDateTime.parse(firstTask.getTime().value);
+//            LocalDateTime secondTaskDateTime = LocalDateTime.parse(secondTask.getTime().value);
+//            return firstTaskDateTime.compareTo(secondTaskDateTime);
+//        });
+//        System.out.println(tasks);
         return tasks.asUnmodifiableObservableList();
     }
 
