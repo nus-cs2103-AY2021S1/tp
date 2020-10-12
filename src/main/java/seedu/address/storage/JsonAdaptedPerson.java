@@ -3,8 +3,6 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -53,13 +51,25 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        if (source.getPhone().isPresent()) {
-            phone = source.getPhone().get().value;
+
+        if (source.getPhone() != null) {
+            phone = source.getPhone().value;
         } else {
             phone = null;
         }
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+
+        if (source.getEmail() != null) {
+            email = source.getEmail().value;
+        } else {
+            email = null;
+        }
+
+        if (source.getAddress() != null) {
+            address = source.getAddress().value;
+        } else {
+            address = null;
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -84,31 +94,35 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone != null && !Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Optional<Phone> modelPhone;
+        final Phone modelPhone;
         if (phone == null) {
-            modelPhone = Optional.empty();
+            modelPhone = null;
         } else {
-            modelPhone = Optional.of(new Phone(phone));
+            if (!Phone.isValidPhone(phone)) {
+                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            modelPhone = new Phone(phone);
         }
 
+        final Email modelEmail;
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            modelEmail = null;
+        } else {
+            if (!Email.isValidEmail(email)) {
+                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            }
+            modelEmail = new Email(email);
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
 
+        final Address modelAddress;
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            modelAddress = null;
+        } else {
+            if (!Address.isValidAddress(address)) {
+                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            }
+            modelAddress = new Address(address);
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);

@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -18,18 +17,18 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
-    private final Optional<Phone> phone;
-    private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be non-null. Only name needs to be present.
      */
-    public Person(Name name, Optional<Phone> phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -41,7 +40,7 @@ public class Person {
         return name;
     }
 
-    public Optional<Phone> getPhone() {
+    public Phone getPhone() {
         return phone;
     }
 
@@ -62,7 +61,9 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons of the same name.
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * If one of phone or email is null for both self and other person, check the other field instead.
+     * If both of phone and email are null for both self and other person, return true.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,8 +71,35 @@ public class Person {
             return true;
         }
 
+        // If both of phone and email are null for both self and other person, return true.
+        if (otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && getPhone() == null && otherPerson.getPhone() == null
+                && getEmail() == null && otherPerson.getEmail() == null) {
+            return true;
+        }
+
+        // If one of phone or email is null for both self and other person, check the other field instead.
+        // If at least one of phone or email are the same and non-null, return true,
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && (isSameNullable(otherPerson.getPhone(), getPhone())
+                || isSameNullable(otherPerson.getEmail(), getEmail()));
+    }
+
+    /**
+     * Returns true if both objects are non-null, and are equal to each other.
+     * This is a utility method used by isSamePerson to handle for nulls.
+     * If either objects are null, false is returned, as the other identity field
+     * would be used to check for "sameness" instead.
+     *
+     * @param obj First object to test for is same.
+     * @param otherObj Second object to test for is same.
+     * @return Boolean representing if 2 objects are the same.
+     */
+    private boolean isSameNullable(Object obj, Object otherObj) {
+        return obj != null
+                && obj.equals(otherObj);
     }
 
     /**
@@ -89,11 +117,20 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && equalsNullable(otherPerson.getPhone(), getPhone())
+                && equalsNullable(otherPerson.getEmail(), getEmail())
+                && equalsNullable(otherPerson.getAddress(), getAddress())
                 && otherPerson.getTags().equals(getTags());
+    }
+
+    private boolean equalsNullable(Object obj, Object otherObj) {
+        if (obj == null) {
+            return otherObj == null;
+        } else {
+            return obj.equals(otherObj);
+        }
     }
 
     @Override
@@ -105,15 +142,25 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone().orElse(null))
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+
+        builder.append(getName());
+        if (getPhone() != null) {
+            builder.append(" Phone: ")
+                    .append(getPhone());
+        }
+        if (getEmail() != null) {
+            builder.append(" Email: ")
+                    .append(getEmail());
+        }
+        if (getAddress() != null) {
+            builder.append(" Address: ")
+                    .append(getAddress());
+        }
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

@@ -52,6 +52,66 @@ public class PersonTest {
         // same name, same phone, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
+
+
+        // null phone and email test cases start here
+        Person aliceWithoutPhone = new PersonBuilder(ALICE).withoutPhone().build();
+        Person aliceWithoutEmail = new PersonBuilder(ALICE).withoutEmail().build();
+        Person aliceWithoutPhoneAndEmail = new PersonBuilder(ALICE).withoutPhone().withoutEmail().build();
+
+        // same name, null phone, null email, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withoutEmail().withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(aliceWithoutPhoneAndEmail.isSamePerson(editedAlice));
+
+        // same name, null phone, null and non-null email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withoutEmail().build();
+        assertFalse(aliceWithoutPhone.isSamePerson(editedAlice));
+
+        // same name, null phone, same email, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(aliceWithoutPhone.isSamePerson(editedAlice));
+
+        // same name, null phone, different email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(aliceWithoutPhone.isSamePerson(editedAlice));
+
+        // same name, null and non-null phone, null email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withoutEmail().build();
+        assertFalse(aliceWithoutEmail.isSamePerson(editedAlice));
+
+        // same name, null and non-null phone, null and non-null email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withoutEmail().build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
+
+        // same name, null and non-null phone, same email, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
+
+        // same name, null and non-null phone, different email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withoutPhone().withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
+
+        // same name, same phone, null email, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withoutEmail().withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(aliceWithoutEmail.isSamePerson(editedAlice));
+
+        // same name, same phone, null and non-null email, different attributes -> returns true
+        editedAlice = new PersonBuilder(ALICE).withoutEmail().withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSamePerson(editedAlice));
+
+        // same name, different phone, null email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withoutEmail().build();
+        assertFalse(aliceWithoutEmail.isSamePerson(editedAlice));
+
+        // same name, different phone, null and non-null email -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withoutEmail().build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
+
     }
 
     @Test
