@@ -4,11 +4,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import javafx.collections.ObservableList;
+import seedu.address.model.InventoryComponent;
+import seedu.address.model.item.Item;
+import seedu.address.ui.DisplayedInventoryType;
+
 /**
  * Represents an Recipe in the Inventoryinator.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Recipe {
+public class Recipe extends InventoryComponent {
     private static int idCounter = 0;
 
     // Identity fields
@@ -129,4 +134,17 @@ public class Recipe {
         return String.format("Recipe for: %s. %s", productName, description);
     }
 
+    public DisplayedInventoryType getType() {
+        return DisplayedInventoryType.RECIPES;
+    }
+
+    /**
+     * Generates a printable recipe for display.
+     * @param filteredItemList The current item list which ingredients reference to.
+     * @return Printable Recipe with the same fields as this recipe.
+     */
+    public PrintableRecipe print(ObservableList<Item> filteredItemList) {
+        return new PrintableRecipe(this.id, this.ingredients, this.productId, this.productName,
+                this.productQuantity, this.description, this.isDeleted, filteredItemList);
+    }
 }
