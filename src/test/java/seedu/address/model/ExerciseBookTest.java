@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.LogsCenter;
 
 public class ExerciseBookTest {
@@ -42,7 +43,6 @@ public class ExerciseBookTest {
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookTest.AddressBookStub newData = new AddressBookTest.AddressBookStub(newPersons);
-
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
      */
@@ -77,9 +77,9 @@ public class ExerciseBookTest {
         assertThrows(UnsupportedOperationException.class, () -> exerciseBook.getExerciseList().remove(0));
     }
 
-    /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
-     */
+/**
+ * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+ */
     /*
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();

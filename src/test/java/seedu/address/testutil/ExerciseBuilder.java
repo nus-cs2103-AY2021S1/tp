@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-
+import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.Calories;
+
 
 /**
  * A utility class to help with building Person objects.
