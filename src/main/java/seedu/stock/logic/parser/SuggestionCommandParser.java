@@ -2,6 +2,7 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,7 +14,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import java.util.List;
 
 import seedu.stock.commons.util.SuggestionUtil;
-import seedu.stock.logic.commands.Command;
+import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.ExitCommand;
 import seedu.stock.logic.commands.HelpCommand;
@@ -68,11 +69,27 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateListSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case AddCommand.COMMAND_WORD:
+            generateAddSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    private void generateAddSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
+                 PREFIX_QUANTITY, PREFIX_LOCATION);
+        toBeDisplayed.append(ADD_COMMAND_WORD);
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            }
+        }
     }
 
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
