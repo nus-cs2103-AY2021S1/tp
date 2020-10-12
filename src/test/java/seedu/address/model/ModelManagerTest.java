@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
-import static seedu.address.testutil.TypicalItems.DUCK;
+import static seedu.address.testutil.TypicalItems.DUCK_WITH_MAX_QUANTITY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -96,7 +96,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        InventoryBook inventoryBook = new InventoryBookBuilder().withItem(CHICKEN).withItem(DUCK).build();
+        InventoryBook inventoryBook = new InventoryBookBuilder()
+                .withItem(CHICKEN).withItem(DUCK_WITH_MAX_QUANTITY).build();
         InventoryBook differentInventoryBook = new InventoryBook();
         UserPrefs userPrefs = new UserPrefs();
 

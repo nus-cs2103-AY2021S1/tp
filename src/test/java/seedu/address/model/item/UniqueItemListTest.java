@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DUCK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
-import static seedu.address.testutil.TypicalItems.DUCK;
+import static seedu.address.testutil.TypicalItems.DUCK_WITH_MAX_QUANTITY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -100,17 +100,17 @@ public class UniqueItemListTest {
     @Test
     public void setItem_editedItemHasDifferentIdentity_success() {
         uniqueItemList.add(CHICKEN);
-        uniqueItemList.setItem(CHICKEN, DUCK);
+        uniqueItemList.setItem(CHICKEN, DUCK_WITH_MAX_QUANTITY);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(DUCK);
+        expectedUniqueItemList.add(DUCK_WITH_MAX_QUANTITY);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void setItem_editedItemHasNonUniqueIdentity_throwsDuplicateItemException() {
         uniqueItemList.add(CHICKEN);
-        uniqueItemList.add(DUCK);
-        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(CHICKEN, DUCK));
+        uniqueItemList.add(DUCK_WITH_MAX_QUANTITY);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(CHICKEN, DUCK_WITH_MAX_QUANTITY));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class UniqueItemListTest {
     public void setItems_uniqueItemList_replacesOwnListWithProvidedUniqueItemList() {
         uniqueItemList.add(CHICKEN);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(DUCK);
+        expectedUniqueItemList.add(DUCK_WITH_MAX_QUANTITY);
         uniqueItemList.setItems(expectedUniqueItemList);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
@@ -153,10 +153,10 @@ public class UniqueItemListTest {
     @Test
     public void setItems_list_replacesOwnListWithProvidedList() {
         uniqueItemList.add(CHICKEN);
-        List<Item> itemList = Collections.singletonList(DUCK);
+        List<Item> itemList = Collections.singletonList(DUCK_WITH_MAX_QUANTITY);
         uniqueItemList.setItems(itemList);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(DUCK);
+        expectedUniqueItemList.add(DUCK_WITH_MAX_QUANTITY);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 

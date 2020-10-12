@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SUPPLIER + "SUPPLIER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_MAX_QUANTITY + "MAX_QUANTITY] "
+            + "[" + PREFIX_METRIC + "METRIC] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUANTITY + "21 ";
 
@@ -99,8 +102,12 @@ public class EditCommand extends Command {
         Quantity updatedMaxQuantity = editItemDescriptor.getMaxQuantity()
                 .or(() -> itemToEdit.getMaxQuantity())
                 .orElse(null);
+        Metric metric = editItemDescriptor.getMetric()
+                .or(() -> itemToEdit.getMetric())
+                .orElse(null);
 
-        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity);
+
+        return new Item(updatedName, updatedQuantity, updatedSupplier, updatedTags, updatedMaxQuantity, metric);
     }
 
     @Override
@@ -131,6 +138,7 @@ public class EditCommand extends Command {
         private Supplier supplier;
         private Set<Tag> tags;
         private Quantity maxQuantity;
+        private Metric metric;
 
         public EditItemDescriptor() {}
 
@@ -144,13 +152,14 @@ public class EditCommand extends Command {
             setSupplier(toCopy.supplier);
             setTags(toCopy.tags);
             setMaxQuantity(toCopy.maxQuantity);
+            setMetric(toCopy.metric);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, quantity, supplier, tags, maxQuantity);
+            return CollectionUtil.isAnyNonNull(name, quantity, supplier, tags, maxQuantity, metric);
         }
 
         public void setName(Name name) {
@@ -200,6 +209,14 @@ public class EditCommand extends Command {
 
         public Optional<Quantity> getMaxQuantity() {
             return Optional.ofNullable(maxQuantity);
+        }
+
+        public void setMetric(Metric metric) {
+            this.metric = metric;
+        }
+
+        public Optional<Metric> getMetric() {
+            return Optional.ofNullable(metric);
         }
 
         @Override

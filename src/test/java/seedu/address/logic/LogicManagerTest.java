@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.MAX_QUANTITY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.METRIC_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAX_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_METRIC;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN_MANUAL;
 
@@ -82,8 +84,11 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
-                + SUPPLIER_DESC_CHICKEN + MAX_QUANTITY_DESC;
-        Item expectedItem = new ItemBuilder(CHICKEN_MANUAL).withTags().withMaxQuantity(VALID_MAX_QUANTITY).build();
+                + SUPPLIER_DESC_CHICKEN + MAX_QUANTITY_DESC + METRIC_DESC_CHICKEN;
+        Item expectedItem = new ItemBuilder(CHICKEN_MANUAL)
+                .withTags()
+                .withMaxQuantity(VALID_MAX_QUANTITY)
+                .withMetric(VALID_METRIC).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

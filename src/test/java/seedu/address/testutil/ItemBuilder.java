@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
@@ -18,12 +19,14 @@ public class ItemBuilder {
     public static final String DEFAULT_NAME = "Chicken";
     public static final String DEFAULT_QUANTITY = "2";
     public static final String DEFAULT_SUPPLIER = "NTUC";
+    public static final String DEFAULT_METRIC = "kg";
 
     private Name name;
     private Quantity quantity;
     private Supplier supplier;
     private Set<Tag> tags;
     private Quantity maxQuantity;
+    private Metric metric;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -34,6 +37,7 @@ public class ItemBuilder {
         supplier = new Supplier(DEFAULT_SUPPLIER);
         tags = new HashSet<>();
         maxQuantity = null;
+        metric = new Metric(DEFAULT_METRIC);
     }
 
     /**
@@ -45,6 +49,7 @@ public class ItemBuilder {
         supplier = itemToCopy.getSupplier();
         tags = new HashSet<>(itemToCopy.getTags());
         maxQuantity = itemToCopy.getMaxQuantity().orElse(null);
+        metric = itemToCopy.getMetric().orElse(null);
     }
 
     /**
@@ -87,9 +92,16 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Metric} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withMetric(String metric) {
+        this.metric = new Metric(metric);
+        return this;
+    }
 
     public Item build() {
-        return new Item(name, quantity, supplier, tags, maxQuantity);
+        return new Item(name, quantity, supplier, tags, maxQuantity, metric);
     }
 
 }

@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUPPLIER_DESC
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MAX_QUANTITY_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.MAX_QUANTITY_DESC_DUCK;
+import static seedu.address.logic.commands.CommandTestUtil.METRIC_DESC_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.METRIC_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -18,6 +20,7 @@ import static seedu.address.logic.commands.CommandTestUtil.SUPPLIER_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CHICKEN;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAX_QUANTITY_CHICKEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_METRIC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_DUCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CHICKEN;
@@ -75,6 +78,15 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
                 + SUPPLIER_DESC_CHICKEN + TAG_DESC_CHICKEN
                 + MAX_QUANTITY_DESC_DUCK + MAX_QUANTITY_DESC_CHICKEN, new AddCommand(expectedItemMaxQuantitySpecified));
+
+        // multiple metrics - last metric accepted
+        Item expectedItemMetricSpecified = new ItemBuilder(CHICKEN_MANUAL)
+                .withTags(VALID_TAG_CHICKEN)
+                .withMetric(VALID_METRIC)
+                .build();
+        assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
+                + SUPPLIER_DESC_CHICKEN + TAG_DESC_CHICKEN
+                + METRIC_DESC_DUCK + METRIC_DESC_CHICKEN, new AddCommand(expectedItemMetricSpecified));
     }
 
     @Test
