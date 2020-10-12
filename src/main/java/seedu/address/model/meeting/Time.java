@@ -1,10 +1,10 @@
 package seedu.address.model.meeting;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
