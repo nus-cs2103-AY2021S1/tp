@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -18,7 +18,6 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
-import seedu.address.storage.item.JsonInventoryBookStorage;
 
 public class JsonInventoryBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonInventoryBookStorageTest");

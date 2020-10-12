@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.item.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT;
@@ -16,8 +16,6 @@ import seedu.address.model.item.Metric;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.item.Supplier;
-import seedu.address.storage.item.JsonAdaptedItem;
-import seedu.address.storage.item.JsonAdaptedTag;
 
 public class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "R@chel";

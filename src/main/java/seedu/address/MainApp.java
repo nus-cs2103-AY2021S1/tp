@@ -26,14 +26,14 @@ import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.inventorymodel.ReadOnlyInventoryBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.delivery.DeliveryBookStorage;
-import seedu.address.storage.item.InventoryBookStorage;
-import seedu.address.storage.delivery.JsonDeliveryBookStorage;
-import seedu.address.storage.item.JsonInventoryBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.delivery.DeliveryBookStorage;
+import seedu.address.storage.delivery.JsonDeliveryBookStorage;
+import seedu.address.storage.item.InventoryBookStorage;
+import seedu.address.storage.item.JsonInventoryBookStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
