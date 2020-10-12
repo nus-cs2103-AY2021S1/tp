@@ -53,4 +53,8 @@ public class AddIngredientCommand extends AddCommand {
             && toAdd.equals(((AddIngredientCommand) other).toAdd));
     }
 
+    @Override
+    public String toString() {
+        return String.format("AddIngredientCommand: %s", this.toAdd);
+    }
 }

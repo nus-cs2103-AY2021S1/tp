@@ -59,4 +59,12 @@ public class AddRecipeCommand extends AddCommand {
                 || (other instanceof AddRecipeCommand // instanceof handles nulls
                 && toAdd.equals(((AddRecipeCommand) other).toAdd));
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("AddRecipeCommand: %s", this.toAdd);
+    }
 }
+
+

@@ -77,8 +77,7 @@ public class Recipe extends FoodEntry {
         builder.append(getName())
                 .append(" Ingredients: ");
         getIngredients().forEach((IngredientReference ingredient) -> {
-            builder.append(ingredient.getName());
-            builder.append("(" + ingredient.getQuantity() + ") ");
+            builder.append(ingredient + " ");
         });
         builder.append(" Steps:");
         AtomicInteger counter = new AtomicInteger(1);
