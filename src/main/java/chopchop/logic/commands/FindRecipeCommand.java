@@ -1,8 +1,11 @@
+// FindRecipeCommand.java
+
 package chopchop.logic.commands;
 
-import chopchop.commons.core.Messages;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
+
+import chopchop.commons.core.Messages;
 
 import static java.util.Objects.requireNonNull;
 
