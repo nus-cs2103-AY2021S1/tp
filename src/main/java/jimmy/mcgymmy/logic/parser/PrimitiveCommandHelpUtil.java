@@ -20,7 +20,7 @@ import jimmy.mcgymmy.logic.parser.parameter.ParameterSet;
 public class PrimitiveCommandHelpUtil {
     private final Map<String, Supplier<Command>> commandTable;
     private final Map<String, String> commandDescriptionTable;
-    
+
     PrimitiveCommandHelpUtil(Map<String, Supplier<Command>> commandTable, Map<String, String> commandDescriptionTable) {
         this.commandTable = commandTable;
         this.commandDescriptionTable = commandDescriptionTable;

@@ -1,6 +1,7 @@
 package jimmy.mcgymmy.logic.parser;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -154,7 +155,9 @@ public class PrimitiveCommandParser {
     }
 
     public Set<String> getRegisteredCommands() {
-        return this.commandTable.keySet();
+        Set<String> result = new HashSet<>(this.commandTable.keySet());
+        result.add("help");
+        return result;
     }
 
     public Boolean hasCommand(String command) {
