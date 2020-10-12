@@ -11,7 +11,6 @@ import chopchop.storage.JsonRecipeBookStorage;
 import chopchop.storage.RecipeBookStorage;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import chopchop.commons.core.Config;
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.core.Version;
