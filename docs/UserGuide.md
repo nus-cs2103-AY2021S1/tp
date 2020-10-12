@@ -69,7 +69,7 @@ Format: `help`
 
 ### Adding a student: `add`
 
-Adds a student to Reeve. (written by: Alex and Hogan)
+Adds a student to Reeve. (Written by: Alex and Hogan)
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/VENUE t/TIME 
 [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
@@ -88,8 +88,6 @@ a/John likes chocolate m/www.zoom987.com sb/English`
 Shows a list of all students in Reeve.
 
 Format: `list`
-
-
 
 ### Editing a student : `edit`
 
@@ -112,8 +110,7 @@ Examples:
 
 ### Locating students: `find`
 
-(written by: Ying Gao)
-Finds students who satisfy the given search criteria.
+Finds students who satisfy the given search criteria. (Written by: Choon Siong)
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
@@ -126,7 +123,6 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 * For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
 * Only students matching all criteria specified will be returned (i.e `AND` search).
 
-(written by: Choon Siong)
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find n/Alex david` does not match `Alexis Davinder`.
@@ -135,7 +131,12 @@ Examples:
 * `find y/sec 3` matches `sec 3`, `Secondary 3`
 * `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
-* 
+
+### Finding students with overdue fees: `unpaid`
+
+Finds students whose date of last payment is more than a month ago. (Written by: Ying Gao)
+
+Format: `unpaid`
 
 ### Deleting a student : `delete`
 
@@ -166,10 +167,6 @@ Format: `exit`
 ### Saving the data
 
 Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
