@@ -63,7 +63,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
      * Removes all lessons from the list.
      */
     public void removeAll() {
-        internalList.removeAll();
+        internalList.clear();
     }
 
     public void setLessons(UniqueLessonList replacement) {
