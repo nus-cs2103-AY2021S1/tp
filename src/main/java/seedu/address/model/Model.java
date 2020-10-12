@@ -1,11 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
 import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.timetable.TimetableData;
@@ -89,8 +93,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered assignment list */
     ObservableList<Assignment> getFilteredAssignmentList();
 
-    /** Returns an unmodifiable view of the filtered assignment list */
+    /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
 
     /**
      * Updates the filter of the filtered assignment list to filter by the given {@code predicate}.

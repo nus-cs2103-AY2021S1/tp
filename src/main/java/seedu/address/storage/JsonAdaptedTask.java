@@ -10,8 +10,9 @@ public class JsonAdaptedTask {
 
     private final String name;
     private final String deadline;
+    private final boolean isReminded;
     private final String startTime;
-    //private final String endTime;
+    private final String endTime;
     private final String moduleCode;
 
     /**
@@ -21,12 +22,14 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
                                  @JsonProperty("startTime") String startTime,
                                  @JsonProperty("endTime") String endTime,
-                                 @JsonProperty("module") String moduleCode) {
+                                 @JsonProperty("module") String moduleCode,
+                                 @JsonProperty("isReminded") boolean isReminded) {
         this.name = name;
         this.startTime = startTime;
         this.moduleCode = moduleCode;
-        //this.endTime = endTime;
+        this.endTime = endTime;
         this.deadline = deadline;
+        this.isReminded = isReminded;
     }
 
     /**
@@ -37,7 +40,8 @@ public class JsonAdaptedTask {
         deadline = source.getTime().value;
         moduleCode = source.getModuleCode().moduleCode;
         startTime = source.getTime().value;
-        //endTime = source.getTime().value;
+        endTime = source.getTime().value;
+        isReminded = false;
     }
 
     /**
