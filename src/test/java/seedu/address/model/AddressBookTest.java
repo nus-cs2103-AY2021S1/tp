@@ -104,6 +104,11 @@ public class AddressBookTest {
         public Budget getBudget() {
             return budget;
         }
+
+        @Override
+        public double tallyExpenses() {
+            return -1; // should not be called
+        }
     }
 
 }
