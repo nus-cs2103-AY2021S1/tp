@@ -1,6 +1,6 @@
 # User Guide
 
-Common Cents is your convenient at-hand expense-tracking tool, meant for Singaporean University students with side businesses. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
+Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
 * Quick Start
 * Features
