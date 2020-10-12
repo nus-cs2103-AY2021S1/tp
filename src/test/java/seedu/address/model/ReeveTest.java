@@ -26,7 +26,7 @@ public class ReeveTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), reeve.getPersonList());
+        assertEquals(Collections.emptyList(), reeve.getStudentList());
     }
 
     @Test
@@ -53,30 +53,30 @@ public class ReeveTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> reeve.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> reeve.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(reeve.hasPerson(AMY));
+        assertFalse(reeve.hasStudent(AMY));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        reeve.addPerson(AMY);
-        assertTrue(reeve.hasPerson(AMY));
+        reeve.addStudent(AMY);
+        assertTrue(reeve.hasStudent(AMY));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        reeve.addPerson(AMY);
+        reeve.addStudent(AMY);
         Student editedAlice = new StudentBuilder(AMY).build();
-        assertTrue(reeve.hasPerson(editedAlice));
+        assertTrue(reeve.hasStudent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> reeve.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> reeve.getStudentList().remove(0));
     }
 
     /**
@@ -90,7 +90,7 @@ public class ReeveTest {
         }
 
         @Override
-        public ObservableList<Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return students;
         }
     }
