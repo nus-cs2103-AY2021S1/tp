@@ -9,8 +9,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
+import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.property.Property;
+import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
+
 
 /**
  * API of the Logic component
@@ -58,4 +67,52 @@ public interface Logic {
     ReadOnlyBidBook getBidBook();
 
     ObservableList<Bid> getFilteredBidList();
+
+
+    ReadOnlyMeetingManager getMeetingManager();
+
+    ObservableList<CalendarMeeting> getFilteredMeetingList();
+
+    // ================ BIDDER =================
+    /**
+     * Returns the BidderAddressBook.
+     *
+     * @see seedu.address.model.Model#getBidderAddressBook()
+     */
+    ReadOnlyBidderAddressBook getBidderAddressBook();
+
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Bidder> getFilteredBidderList();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getBidderAddressBookFilePath();
+
+    // ================ SELLER =================
+    /**
+     * Returns the SellerAddressBook.
+     *
+     * @see seedu.address.model.Model#getSellerAddressBook()
+     */
+    ReadOnlySellerAddressBook getSellerAddressBook();
+
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Seller> getFilteredSellerList();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getSellerAddressBookFilePath();
+
+    /**
+     * Returns the PropertyBook.
+     *
+     * @see seedu.address.model.Model#getPropertyBook()
+     */
+    ReadOnlyPropertyBook getPropertyBook();
+
+    /** Returns an unmodifiable view of the filtered list of properties */
+    ObservableList<Property> getFilteredPropertyList();
+
 }

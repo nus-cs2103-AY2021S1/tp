@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a property's name in the address book.
+ * Represents a property's name in the property book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPropertyName(String)}
  */
 public class PropertyName {

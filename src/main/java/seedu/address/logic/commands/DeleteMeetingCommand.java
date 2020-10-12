@@ -9,7 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.person.Person;
 
 /**
  * Deletes a meeting identified using it's displayed index from the calendar book.
@@ -34,14 +33,14 @@ public class DeleteMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<CalendarMeeting> lastShownList = model.getFilteredPersonList();
+        List<CalendarMeeting> lastShownList = model.getFilteredMeetingList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         CalendarMeeting meetingToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(meetingToDelete);
+        model.deleteMeeting(meetingToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete));
     }
 

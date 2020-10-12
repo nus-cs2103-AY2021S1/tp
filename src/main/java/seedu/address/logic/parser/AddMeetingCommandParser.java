@@ -4,19 +4,21 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_BIDDER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_PROPERTY_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALENDAR_VENUE;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.calendar.CalendarAdmin;
 import seedu.address.model.calendar.CalendarBidderId;
 import seedu.address.model.calendar.CalendarMeeting;
+import seedu.address.model.calendar.CalendarPaperwork;
 import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
+import seedu.address.model.calendar.CalendarViewing;
 
 
 /**
@@ -31,12 +33,12 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     */
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CALENDAR_BIDDER_ID, PREFIX_CALENDAR_PROPERTY_ID,
-                        PREFIX_CALENDAR_VENUE, PREFIX_CALENDAR_TIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_CALENDAR_TYPE, PREFIX_CALENDAR_BIDDER_ID,
+                        PREFIX_CALENDAR_PROPERTY_ID, PREFIX_CALENDAR_VENUE, PREFIX_CALENDAR_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CALENDAR_BIDDER_ID, PREFIX_CALENDAR_PROPERTY_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
         CalendarVenue venue = ParserUtil.parseCalendarVenue(argMultimap.getValue(PREFIX_CALENDAR_VENUE).get());
@@ -45,12 +47,23 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                 ParserUtil.parseCalendarPropertyId(argMultimap.getValue(PREFIX_CALENDAR_PROPERTY_ID).get());
         CalendarBidderId bidderId =
                 ParserUtil.parseCalendarBidderId(argMultimap.getValue(PREFIX_CALENDAR_BIDDER_ID).get());
+        String type = ParserUtil.parseCalendarType(argMultimap.getValue(PREFIX_CALENDAR_TYPE).get());
 
-        CalendarMeeting meeting = new CalendarMeeting(bidderId, propertyId,
-                time, venue);
-
-        return new AddMeetingCommand(meeting);
-
+        if (type.contains("p")) {
+            CalendarMeeting meeting = new CalendarPaperwork(bidderId, propertyId,
+                    time, venue);
+            return new AddMeetingCommand(meeting);
+        } else if (type.contains("a")) {
+            CalendarMeeting meeting = new CalendarAdmin(bidderId, propertyId,
+                    time, venue);
+            return new AddMeetingCommand(meeting);
+        } else if (type.contains("v")) {
+            CalendarMeeting meeting = new CalendarViewing(bidderId, propertyId,
+                    time, venue);
+            return new AddMeetingCommand(meeting);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
+        }
     }
 
     /**

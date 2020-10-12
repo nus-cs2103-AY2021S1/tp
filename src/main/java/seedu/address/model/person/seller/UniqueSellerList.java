@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.seller;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -45,7 +47,32 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
+        toAdd.setId(getLatestId());
         internalList.add(toAdd);
+    }
+
+    public Id getLatestId() {
+        if (internalList.size() == 0) {
+            return new Id("S", 1);
+        }
+        return this.internalList.get(internalList.size() - 1).getId().increment();
+    }
+    /**
+     * Replaces the contents of this list with {@code sellers}.
+     * {@code sellers} must not contain duplicate bidders.
+     */
+    public void setSellers(List<Seller> sellers) {
+        requireAllNonNull(sellers);
+        if (!sellersAreUnique(sellers)) {
+            throw new DuplicatePersonException();
+        }
+
+        internalList.setAll(sellers);
+    }
+
+    public void setSellers(UniqueSellerList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**
@@ -53,7 +80,7 @@ public class UniqueSellerList implements Iterable<Seller> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedSeller} must not be the same as another existing person in the list.
      */
-    public void setPerson(Seller target, Seller editedSeller) {
+    public void setSeller(Seller target, Seller editedSeller) {
         requireAllNonNull(target, editedSeller);
 
         int index = internalList.indexOf(target);
@@ -79,10 +106,6 @@ public class UniqueSellerList implements Iterable<Seller> {
         }
     }
 
-    public void setPersons(UniqueSellerList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

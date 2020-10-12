@@ -100,7 +100,7 @@ public class ParserUtil {
      * trims off any excess white spaces for a given string
      * @param propertyId string to trim
      * @return a string that has no white spaces on the sides
-     * @throws ParseException
+     * @throws ParseException If the property id is in the wrong format.
      */
     public static String parsePropertyId(String propertyId) throws ParseException {
         requireNonNull(propertyId);
@@ -112,7 +112,7 @@ public class ParserUtil {
      * trims off any excess white spaces for a given string
      * @param bidderId string to trim
      * @return a string that has no white spaces on the sides
-     * @throws ParseException
+     * @throws ParseException If the bidder id is in the wrong format.
      */
     public static String parseBidderId(String bidderId) throws ParseException {
         requireNonNull(bidderId);
@@ -124,7 +124,7 @@ public class ParserUtil {
      *  trims off any excess white spaces for a given string
      * @param bidAmount string to trim
      * @return a string that has no white spaces on the sides
-     * @throws ParseException
+     * @throws ParseException If the bidAmount is in the wrong format.
      */
     public static double parseBidAmount(String bidAmount) throws ParseException {
         requireNonNull(bidAmount);
@@ -179,6 +179,18 @@ public class ParserUtil {
         requireNonNull(bidderId);
         String trimmedbidderId = bidderId.trim();
         return new CalendarBidderId(trimmedbidderId);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static String parseCalendarType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        return trimmedType;
     }
 
 }
