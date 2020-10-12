@@ -133,11 +133,36 @@ Format: `test INDEX o/OPTION`
 Examples:
 * `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
 
+### Displaying statistics for a Flashcard: `stats`
+
+Shows the Bar Chart for a specified Flashcard in the list.
+
+Statistics include:
+
+* The number of times the user answers the question associated with the flashcard correctly.
+* The number of times the user attempted the question associated with the flashcard.
+
+Format: `stats INDEX`
+
+* Displays the statistics of a flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
+
+### Finding Flashcards by their tags: `find`
+
+Finds all Flashcards based on their tags.
+
+Format: `find KEYWORDS`
+
+* Keywords should be seperated by a whitespace between
+
+Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
 
 ### Deleting a flashcard : `delete`
 
@@ -157,16 +182,6 @@ Examples:
 Clears all entries from QuickCache.
 
 Format: `clear`
-
-### Finding Flashcards by their tags: `find`
-
-Finds all Flashcards based on their tags.
-
-Format: `find KEYWORDS`
-
-* Keywords should be seperated by a whitespace between
-
-Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
 
 ### Exiting the program : `exit`
 
