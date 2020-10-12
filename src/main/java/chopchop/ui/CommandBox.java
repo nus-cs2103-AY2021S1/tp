@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import chopchop.logic.parser.exceptions.ParseException;
 
 import static java.util.Objects.requireNonNull;
 

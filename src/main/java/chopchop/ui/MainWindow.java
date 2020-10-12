@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.logic.Logic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +16,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import chopchop.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing
