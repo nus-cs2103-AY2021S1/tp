@@ -35,6 +35,7 @@ public class RemoveCommand extends Command {
             + PREFIX_QUANTITY + "5 ";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Updated Item Quantity: %1$s";
+    public static final String MESSAGE_NO_QUANTITY = "Quantity field must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory book.";
 
     private final Index index;
