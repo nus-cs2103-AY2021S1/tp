@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
-
+import seedu.address.model.person.Module;
 
 public class TutorialGroup {
     private final String id;
@@ -112,7 +112,6 @@ public class TutorialGroup {
         }
 
         return otherTutorialGroup != null
-            && otherTutorialGroup.getId().equals(getId())
-            && otherTutorialGroup.getModule().equals(getModule());
+            && otherTutorialGroup.getId().equals(getId());
     }
 }

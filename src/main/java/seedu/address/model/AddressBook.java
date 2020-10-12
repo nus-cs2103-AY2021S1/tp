@@ -124,4 +124,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
         tutorialgroups.add(tutorialGroup);
     }
+
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireNonNull(tutorialGroup);
+        return tutorialgroups.contains(tutorialGroup);
+    }
 }

@@ -90,4 +90,9 @@ public interface Model {
      * {@code tutorial group} must not already exist in the address book.
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
+
+    /**
+     * Returns true if a Tutorial Group with the same id as {@code person} exists in the address book.
+     */
+    boolean hasTutorialGroup(TutorialGroup tutorialGroup);
 }

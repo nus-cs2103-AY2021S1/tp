@@ -106,11 +106,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTutorialGroup(TutorialGroup tutorialGroup) {
-        addressBook.addTutorialGroup(tutorialGroup);
-    }
-
-    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -132,6 +127,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        addressBook.addTutorialGroup(tutorialGroup);
+    }
+
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireAllNonNull(tutorialGroup);
+        return addressBook.hasTutorialGroup(tutorialGroup);
     }
 
     @Override
