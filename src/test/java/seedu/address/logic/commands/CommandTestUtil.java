@@ -189,7 +189,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Version for ItemListCommands
+     * Version for InventoryListCommands
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
@@ -199,7 +199,7 @@ public class CommandTestUtil {
      * @param actualModel the actual model
      * @param expectedMessage expected error message from execution
      */
-    public static void assertItemCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertInventoryCommandFailure(Command command, Model actualModel, String expectedMessage) {
         ItemList expectedItemList = new ItemList(actualModel.getItemList());
         List<Item> expectedFilteredItemList = new ArrayList<>(actualModel.getFilteredItemList());
         RecipeList expectedRecipeList = new RecipeList(actualModel.getRecipeList());

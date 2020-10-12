@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.InventoryComponent;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
@@ -22,6 +24,7 @@ import seedu.address.model.location.Location;
 import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
+import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * The main LogicManager of the app.
@@ -130,7 +133,6 @@ public class LogicManager implements Logic {
     }
 
     // GUI
-
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
@@ -139,5 +141,35 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    /**
+     * Returns the relevant inventory list containing inventory of {@code inventoryType} to be displayed.
+     */
+    public ArrayList<InventoryComponent> getInventoryList(DisplayedInventoryType inventoryType) {
+        if (!inventoryType.equals(DisplayedInventoryType.DETAILED_ITEM)) {
+            // ViewDetailsCommand already updates for viewing of one item
+            model.updateFilteredItemList(item -> !item.isDeleted());
+            model.updateFilteredRecipeList(recipe -> !recipe.isDeleted());
+        }
+        ArrayList<InventoryComponent> inventoryList = new ArrayList<>();
+        switch(inventoryType) {
+        case ITEMS:
+            inventoryList.addAll(model.getFilteredItemList());
+            break;
+        case RECIPES:
+            model.getFilteredRecipeList()
+                    .forEach(recipe -> inventoryList.add(recipe.print(model.getFilteredItemList())));
+            break;
+        case DETAILED_ITEM:
+            model.getFilteredItemList().forEach(item -> inventoryList.add(item.detailedItem()));
+            break;
+        case UNCHANGED:
+            assert false;
+            break;
+        default:
+            throw new IllegalStateException("This inventoryType is not valid" + inventoryType);
+        }
+        return inventoryList;
     }
 }

@@ -52,6 +52,8 @@ public class InventoryMainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    private DisplayedInventoryType inventoryType;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -68,6 +70,8 @@ public class InventoryMainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        inventoryType = DisplayedInventoryType.ITEMS;
     }
 
     public Stage getPrimaryStage() {
@@ -112,7 +116,7 @@ public class InventoryMainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        inventoryListPanel = new InventoryListPanel(logic.getFilteredItemList());
+        inventoryListPanel = new InventoryListPanel(logic.getInventoryList(inventoryType), inventoryType);
         itemListPanelPlaceholder.getChildren().add(inventoryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -125,13 +129,6 @@ public class InventoryMainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    public void changeToSimpleCell() {
-        inventoryListPanel.changeToSimpleCell();
-    }
-
-    public void changeToDetailedCell() {
-        inventoryListPanel.changeToDetailedCell();
-    }
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -173,10 +170,6 @@ public class InventoryMainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public InventoryListPanel getItemListPanel() {
-        return inventoryListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -184,8 +177,6 @@ public class InventoryMainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException, IOException {
         try {
-            changeToSimpleCell();
-
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -198,9 +189,25 @@ public class InventoryMainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isView()) {
-                changeToDetailedCell();
+            // update the type of inventory to be displayed
+            switch (commandResult.getInventoryType()) {
+            case ITEMS:
+                inventoryType = DisplayedInventoryType.ITEMS;
+                break;
+            case RECIPES:
+                inventoryType = DisplayedInventoryType.RECIPES;
+                break;
+            case DETAILED_ITEM:
+                inventoryType = DisplayedInventoryType.DETAILED_ITEM;
+                break;
+            case UNCHANGED:
+                // inventoryType stays the same
+                break;
+            default:
+                throw new IllegalStateException("This inventoryType is not valid");
             }
+            // updates the panel
+            inventoryListPanel.refresh(logic.getInventoryList(inventoryType), inventoryType);
 
             return commandResult;
         } catch (CommandException | ParseException | IOException e) {
@@ -209,4 +216,5 @@ public class InventoryMainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
