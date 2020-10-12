@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";
-    public static final String MESSAGE_SUCCESS = "Address book has been reset!";
+    public static final String MESSAGE_SUCCESS = "FaculType has been reset!";
 
 
     @Override
