@@ -2,7 +2,7 @@ package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import seedu.stock.commons.core.Messages;
@@ -111,7 +111,7 @@ public class ParserUtil {
         if (withoutPrefix.length < 2) {
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
-        Set<SerialNumber> serialNumberSet = new HashSet<>();
+        Set<SerialNumber> serialNumberSet = new LinkedHashSet<>();
 
         for (int i = 1; i < withoutPrefix.length; i++) {
             String currentSerialNumberInString = withoutPrefix[i];
