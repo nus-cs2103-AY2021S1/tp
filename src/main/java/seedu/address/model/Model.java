@@ -5,15 +5,13 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.account.Account;
-import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Account> PREDICATE_SHOW_ALL_ACCOUNTS = unused -> true;
+    Predicate<seedu.address.model.account.Account> PREDICATE_SHOW_ALL_ACCOUNTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -56,19 +54,19 @@ public interface Model {
     /**
      * Returns true if a account with the same identity as {@code account} exists in the CommonCents.
      */
-    boolean hasAccount(Account account);
+    boolean hasAccount(seedu.address.model.account.Account account);
 
     /**
      * Deletes the given account.
      * The account must exist in the CommonCents.
      */
-    void deleteAccount(Account target);
+    void deleteAccount(seedu.address.model.account.Account target);
 
     /**
      * Adds the given account.
      * {@code account} must not already exist in the CommonCents.
      */
-    void addAccount(Account account);
+    void addAccount(seedu.address.model.account.Account account);
 
     /**
      * Replaces the given person {@code target} with {@code editedAccount}.
@@ -76,25 +74,22 @@ public interface Model {
      * The account identity of {@code editedAccount} must not be the same as another existing account
      * in the CommonCents.
      */
-    void setAccount(Account target, Account editedAccount);
+    void setAccount(seedu.address.model.account.Account target, seedu.address.model.account.Account editedAccount);
 
     /**
      * Replaces the account in the list with the same name as {@code editedAccount}.
      * The account with the same name must exist in the money-tracker.
      */
-    void setAccount(Account editedAccount);
+    void setAccount(seedu.address.model.account.Account editedAccount);
 
 
     /** Returns an unmodifiable view of the filtered account list */
-    ObservableList<Account> getFilteredAccountList();
+    ObservableList<seedu.address.model.account.Account> getFilteredAccountList();
 
     /**
      * Updates the filter of the filtered account list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredAccountList(Predicate<Account> predicate);
-
-    // Stub Methods
-    ObservableList<Person> getFilteredPersonList();
+    void updateFilteredAccountList(Predicate<seedu.address.model.account.Account> predicate);
 
 }

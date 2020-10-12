@@ -7,15 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.account.Account;
-//import seedu.address.model.account.ActiveAccount;
-//import seedu.address.model.account.ActiveAccountManager;
-import seedu.address.model.person.Person;
+
 
 /**
  * Represents the in-memory model of the common cents data.
@@ -27,7 +24,6 @@ public class ModelManager implements Model {
     private final CommonCents commonCents;
     private final UserPrefs userPrefs;
     private final FilteredList<Account> filteredAccounts;
-    //private final ActiveAccount activeAccount;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,8 +37,6 @@ public class ModelManager implements Model {
         this.commonCents = new CommonCents(commonCents);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredAccounts = new FilteredList<>(this.commonCents.getAccountList());
-        // Initialize Active Account as the first account
-        //activeAccount = new ActiveAccountManager(filteredAccounts.get(FIRST_ACCOUNT_INDEX));
     }
 
     public ModelManager() {
@@ -165,11 +159,5 @@ public class ModelManager implements Model {
                 && filteredAccounts.equals(other.filteredAccounts);
         //&& activeAccount.equals(other.activeAccount);
     }
-
-    //=========== Stub methods =============================================================
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return FXCollections.observableArrayList();
-    };
 
 }
