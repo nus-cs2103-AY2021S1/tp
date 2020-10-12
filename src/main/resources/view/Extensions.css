@@ -23,14 +23,22 @@
     -fx-font: 50pt"Arial";
 }
 
-#dashboardDeadline {
+#dashboardPT {
     -fx-font: 25pt"Arial";
+}
+
+#dashboardDeadline {
+    -fx-font: 15pt"Arial";
 }
 
 #dashboardPD {
-    -fx-font: 25pt"Arial";
+    -fx-font: 15pt"Arial";
 }
 
 #dashboardRU {
+    -fx-font: 15pt"Arial";
+}
+
+#dashboardTask {
     -fx-font: 25pt"Arial";
 }

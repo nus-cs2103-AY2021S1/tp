@@ -24,7 +24,7 @@
                   </Label>
                </children>
             </HBox>
-            <FlowPane fx:id="tags" prefHeight="67.0" prefWidth="700.0" />
+            <FlowPane id="dashboardPT" fx:id="tags" orientation="VERTICAL" prefHeight="67.0" prefWidth="700.0" stylesheets="@Extensions.css" />
             <Label id="dashboardDeadline" fx:id="deadline" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$deadline">
                <font>
                   <Font size="50.0" />
@@ -40,7 +40,7 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <FlowPane fx:id="tasks" prefHeight="75.0" prefWidth="700.0" />
+            <FlowPane id="dashboardTask" fx:id="tasks" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
          </children>
       </VBox>
    </children>
