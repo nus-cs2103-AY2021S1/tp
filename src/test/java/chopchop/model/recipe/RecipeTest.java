@@ -1,9 +1,7 @@
 package chopchop.model.recipe;
 
-import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
-import static chopchop.testutil.TypicalRecipes.STEP_BANANA_SALAD;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -11,9 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import chopchop.testutil.IngredientBuilder;
 import chopchop.testutil.RecipeBuilder;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class RecipeTest {
 
