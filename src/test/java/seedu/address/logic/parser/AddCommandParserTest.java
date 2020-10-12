@@ -23,7 +23,7 @@ import static seedu.address.testutil.TypicalCases.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCaseCommand;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.Status;
 import seedu.address.model.investigationcase.Title;
@@ -33,24 +33,25 @@ import seedu.address.testutil.CaseBuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
+    // Todo: add other type specific test cases
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresentForAddCase_success() {
         Case expectedCase = new CaseBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TYPE_CASE + NAME_DESC_BOB
                 + STATUS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedCase));
+                new AddCaseCommand(expectedCase));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, TYPE_CASE + NAME_DESC_AMY + NAME_DESC_BOB
                 + STATUS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedCase));
+                new AddCaseCommand(expectedCase));
 
         // multiple statuses - last status accepted
         assertParseSuccess(parser, TYPE_CASE + NAME_DESC_BOB
                 + STATUS_DESC_AMY + STATUS_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedCase));
+                new AddCaseCommand(expectedCase));
 
         // multiple tags - all accepted
         Case expectedCaseMultipleTags = new CaseBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -58,23 +59,23 @@ public class AddCommandParserTest {
 
         assertParseSuccess(parser, TYPE_CASE + NAME_DESC_BOB
                 + STATUS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedCaseMultipleTags));
+                new AddCaseCommand(expectedCaseMultipleTags));
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_optionalFieldsMissingForAddCase_success() {
         // zero tags
         Case expectedCase = new CaseBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, TYPE_CASE + NAME_DESC_AMY, new AddCommand(expectedCase));
+        assertParseSuccess(parser, TYPE_CASE + NAME_DESC_AMY, new AddCaseCommand(expectedCase));
 
         // no status
         expectedCase = new CaseBuilder(expectedCase).withStatus("active").build();
-        assertParseSuccess(parser, TYPE_CASE + NAME_DESC_AMY, new AddCommand(expectedCase));
+        assertParseSuccess(parser, TYPE_CASE + NAME_DESC_AMY, new AddCaseCommand(expectedCase));
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+    public void parse_compulsoryFieldMissingForAddCase_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCaseCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, TYPE_CASE + VALID_NAME_BOB,
@@ -86,7 +87,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidValueForAddCase_failure() {
         // invalid title
         assertParseFailure(parser, TYPE_CASE + INVALID_NAME_DESC
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
@@ -109,11 +110,11 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TYPE_CASE + NAME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCaseCommand.MESSAGE_USAGE));
 
         // missing specific command word
         assertParseFailure(parser, NAME_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCaseCommand.MESSAGE_USAGE));
     }
 }

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddCaseCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -35,10 +36,10 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addCase() throws Exception {
         Case investigationCase = new CaseBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(CaseUtil.getAddCommand(investigationCase));
-        assertEquals(new AddCommand(investigationCase), command);
+        AddCommand command = (AddCaseCommand) parser.parseCommand(CaseUtil.getAddCommand(investigationCase));
+        assertEquals(new AddCaseCommand(investigationCase), command);
     }
 
     @Test
