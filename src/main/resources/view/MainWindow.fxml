@@ -35,7 +35,6 @@
             <MenuItem fx:id="studentPage" mnemonicParsing="false" onAction="#handleStudent" text="Student List" />
           </Menu>
           <Menu fx:id="attendanceMenu"  mnemonicParsing="false" text="Attendance">
-            <MenuItem fx:id="attendancePage" mnemonicParsing="false" onAction="#handleAttendance" text="Session 1" />
           </Menu>
 
         </MenuBar>
