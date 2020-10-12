@@ -9,7 +9,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Delivery {
 
     //Identity fields
-    private final Name name;
+    private final DeliveryName name;
     private final Phone phone;
 
     //Data fields
@@ -27,7 +27,7 @@ public class Delivery {
         this.order = order;
     }
 
-    public Name getName() {
+    public DeliveryName getName() {
         return name;
     }
 
