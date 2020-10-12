@@ -24,13 +24,13 @@ Hospify is a desktop app for a digital medical record management solution.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all patients.
 
-   * **`add`**`n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to Hospify.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all patients.
 
    * **`exit`** : Exits the app.
 
@@ -69,7 +69,7 @@ Format: `help`
 
 ### Adding a patient : `add`
 
-Adds a patient to the address book.
+Adds a patient to Hospify.
 
 Format: `add n/NAME ic/S1234567A p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -83,13 +83,13 @@ Examples:
 
 ### Listing all patients : `list`
 
-Shows a list of all patients in the address book.
+Shows a list of all patients in Hospify.
 
 Format: `list`
 
 ### Editing a patient : `edit`
 
-Edits an existing patient in the address book.
+Edits an existing patient in Hospify.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -136,11 +136,12 @@ Format: `delete INDEX`<br>
 * Deletes the patient at the specified `INDEX` or `NRIC`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The NRIC refers to the NRIC of the patient to be deleted.
-* The NRIC entered is **case-sensitive**. e.g. `s1234567a` will **not** match `S1234567A`
+* The `NRIC` refers to the `NRIC` of the patient to be deleted.
+* The `NRIC` entered is **case-sensitive**. e.g. `s1234567a` will **not** match `S1234567A`
+* Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `list` followed by `delete 2` deletes the 2nd patient in Hospify.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 * `delete S7654321A` deletes `Tom Lee` (whose NRIC is S7654321A).
 
@@ -152,7 +153,7 @@ Format: `count`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Hospify.
 
 Format: `clear`
 
@@ -164,7 +165,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Hospify data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -175,7 +176,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hospify home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
