@@ -270,8 +270,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | faculty leader                             | delete a module                | remove modules no longer offered                                       |
 | `* * *`  | faculty leader                             | assign instructors to various modules | keep a record of all the modules they teach                     |
 | `* * *`  | user                                       | clear all contacts             |                                                                        |
-| `* * *`  | user                                       | clear all modules              | discard all previous semester's information and switch semesters easily|                                                |
-
+| `* * *`  | faculty leader                             | clear all modules              | discard all previous semester's information                            |
+| `* * *`  | faculty leader                             | find modules by their code     |                                                                        |
+| `* * *`  | faculty leader                             | find modules by their name     |                                                                        |
+| `* * *`  | faculty leader                             | find modules by the instructor's name |                                                                 |
 
 *{More to be added}*
 
@@ -437,7 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Assignment**: A module handled by a contact. Assignment links a contact with a module
 * **Remark**: A short description of a contact. Remark is an optional attribute
 * **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
-* **Instructor** : A faculty member who teaches one or more modules
+* **Instructor** : A faculty member who teaches a particular module
 
 --------------------------------------------------------------------------------------------------------------------
 
