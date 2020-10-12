@@ -59,7 +59,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public void setExerciseBookFilePath(Path exerciseBookFilePath) {
         requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+        this.exerciseBookFilePath = exerciseBookFilePath;
     }
 
     @Override
