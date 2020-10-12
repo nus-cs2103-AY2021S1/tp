@@ -6,11 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.model.Task;
 
-public class AddTaskCommandParser {
+public class AddTaskCommandParser implements Parser<AddTaskCommand> {
+
     /**
-     * Interprets the user's input
-     * @param args
-     * @return
+     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
+     * and returns a AddTaskCommand object for execution.
      */
     public AddTaskCommand parse(String args) /*throws ParseException*/ {
         requireNonNull(args);

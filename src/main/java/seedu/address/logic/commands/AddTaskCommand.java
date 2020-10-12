@@ -20,13 +20,14 @@ public class AddTaskCommand extends Command {
     private final Task toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Task task) {
         requireNonNull(task);
         toAdd = task;
     }
 
+    // todo Implement execution of task addition
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException("Task addition not implemented yet");

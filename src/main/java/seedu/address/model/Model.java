@@ -84,4 +84,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given tutorial group.
+     * {@code tutorial group} must not already exist in the address book.
+     */
+    void addTutorialGroup(TutorialGroup tutorialGroup);
 }

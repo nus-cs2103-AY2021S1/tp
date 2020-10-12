@@ -106,6 +106,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        addressBook.addTutorialGroup(tutorialGroup);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
