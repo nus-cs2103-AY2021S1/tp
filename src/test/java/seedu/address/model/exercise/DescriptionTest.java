@@ -27,4 +27,5 @@ public class DescriptionTest {
         assertTrue(seedu.address.model.exercise.Description.isValidDescription("2 times")); // alphanumeric characters
         assertTrue(seedu.address.model.exercise.Description.isValidDescription("2 Times")); // with capital letters
     }
+
 }

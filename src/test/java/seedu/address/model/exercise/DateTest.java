@@ -31,4 +31,5 @@ public class DateTest {
         // valid date
         assertTrue(seedu.address.model.exercise.Date.isValidDate("30-09-2020")); //dd-mm-yyyy
     }
+
 }

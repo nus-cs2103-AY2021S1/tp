@@ -79,4 +79,5 @@ public class Exercise {
     public boolean isSameExercise(Exercise other) {
         return this.equals(other);
     }
+
 }

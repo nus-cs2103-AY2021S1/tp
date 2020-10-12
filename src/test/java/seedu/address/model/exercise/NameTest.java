@@ -37,4 +37,5 @@ public class NameTest {
         assertTrue(seedu.address.model.person.Name.isValidName("Run")); // with capital letters
         assertTrue(Name.isValidName("pull up 2 times")); // long names
     }
+
 }

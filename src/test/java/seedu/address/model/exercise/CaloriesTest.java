@@ -35,4 +35,5 @@ public class CaloriesTest {
         assertTrue(Calories.isValidCalories("93121534"));
         assertTrue(Calories.isValidCalories("124293842033123")); // long number
     }
+
 }

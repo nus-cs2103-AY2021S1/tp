@@ -41,4 +41,5 @@ public class Description {
     public int hashCode() {
         return value.hashCode();
     }
+
 }

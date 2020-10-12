@@ -51,4 +51,5 @@ public class Calories {
     public int hashCode() {
         return value.hashCode();
     }
+
 }
