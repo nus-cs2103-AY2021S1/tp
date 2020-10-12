@@ -119,7 +119,7 @@ public class SampleDataUtil {
     }
 
     private static String getRecipeImage(String str) {
-        return str.substring(10, str.length() - 3);
+        return str.substring(10, str.length() - 2);
     }
 
     private static int getCalories(String str) {
