@@ -25,6 +25,9 @@ public interface Storage extends EvaStorage, UserPrefsStorage {
     Path getPersonDatabaseFilePath();
 
     @Override
+    Path getStaffDatabaseFilePath();
+
+    @Override
     Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException;
 
     @Override
