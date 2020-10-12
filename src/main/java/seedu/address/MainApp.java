@@ -57,6 +57,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -89,6 +90,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
+
 
         return new ModelManager(initialData, userPrefs);
     }
