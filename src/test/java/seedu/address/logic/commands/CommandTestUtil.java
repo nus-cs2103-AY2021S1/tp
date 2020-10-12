@@ -86,6 +86,11 @@ public class CommandTestUtil {
         }
     }
 
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
     public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
                                             CommandResult expectedCommandResult, ExerciseModel expectedModel) {
         try {
@@ -107,6 +112,9 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+    /**
+     * Convenience wrapper that takes a string {@code expectedMessage}.
+     */
     public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
                                             String expectedMessage, ExerciseModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);

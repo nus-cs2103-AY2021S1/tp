@@ -15,7 +15,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
+
+import seedu.address.model.ExerciseBook;
+import seedu.address.model.ExerciseModel;
+import seedu.address.model.ReadOnlyExerciseBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.testutil.ExerciseBuilder;
 
@@ -27,7 +31,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_ExerciseAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_exerciseAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingExerciseAdded modelStub = new ModelStubAcceptingExerciseAdded();
         Exercise validExercise = new ExerciseBuilder().build();
 

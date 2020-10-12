@@ -6,7 +6,10 @@ import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.*;
+
+import seedu.address.model.ExerciseModel;
+import seedu.address.model.ExerciseModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.testutil.ExerciseBuilder;
 
