@@ -1,7 +1,10 @@
 package seedu.address.model.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,35 +20,102 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code WishfulShrinking} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * For each recipe in openrecipes.txt:
+     * index 0: name, index 1: ingredients, index 2: instructions, index 5: image, index 6: calories
+     * The method will parse the sample recipes txt file and into an array of Recipe objects.
+     * @return Recipe[]
+     */
     public static Recipe[] getSampleRecipes() {
-        return new Recipe[] {
-            new Recipe(new Name("Alex Yeoh"),
-                    "instructions", "images/healthy1.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
-                    new Calories(10)),
-            new Recipe(new Name("Bernice Yu"),
-                    "instructions", "images/healthy2.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 teaspoon")})),
-                            new Calories(10)),
-            new Recipe(new Name("Charlotte Oliveiro"),
-                    "instructions", "images/healthy3.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "250g")})),
-                    new Calories(10)),
-            new Recipe(new Name("David Li"),
-                    "instructions", "images/healthy4.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "a pinch")})),
-                    new Calories(10)),
-            new Recipe(new Name("Irfan Ibrahim"),
-                    "instructions", "images/healthy5.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "3 tablespoons")})),
-                    new Calories(10)),
-            new Recipe(new Name("Roy Balakrishnan"),
-                    "instructions", "images/healthy6.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
-                    new Calories(10))
-        };
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+        Recipe[] recipes = new Recipe[]{};
+        try {
+            File file = new File("src/main/java/seedu/address/model/util/openrecipes.txt");
+            Scanner sc = new Scanner(file);
+            int index = 0;
+            Name recipeName = null;
+            String recipeInstructions = "";
+            String recipeImage = "";
+            ArrayList<Ingredient> ingredients = new ArrayList<>();
+            Calories calories = null;
+            while (sc.hasNextLine() && index < 10) {
+                String field = sc.nextLine();
+                if (index == 0) {
+                    recipeName = new Name(getRecipeName(field));
+                } else if (index == 1) {
+                    ingredients = getRecipeIngredients(field);
+                } else if (index == 2) {
+                    recipeInstructions = getRecipeInstructions(field);
+                } else if (index == 4) {
+                    recipeImage = getRecipeImage(field);
+                } else if (index == 6) {
+                    calories = new Calories(getCalories(field));
+                }
+                index++;
+                if (index == 10) { //end of a recipe object
+                    index = 0;
+                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients, calories);
+                    recipeList.add(toAdd);
+                }
+            }
+            recipes = recipeList.toArray(new Recipe[]{});
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find sample data file: openrecipes.txt");
+        }
+        return recipes;
     }
 
+    private static String getRecipeName(String str) {
+        return str.substring(10, str.length() - 3);
+    }
+
+    private static String getRecipeInstructions(String str) {
+        return str.substring(17, str.length() - 2);
+    }
+    
+    private static ArrayList<Ingredient> getRecipeIngredients(String str) {
+        String ingts = str.substring(16, str.length() - 3);
+        String[] ingredients = ingts.split(", ");
+        ArrayList<Ingredient> ingredientList = new ArrayList<>();
+        for (String ingredient: ingredients) {
+            ingredientList.add(getIngredientObject(ingredient));
+        }
+        return ingredientList;
+    }
+    
+    private static Ingredient getIngredientObject(String ingredient) {
+        String[] ingtComponents = ingredient.split(" ");
+        StringBuilder sb = new StringBuilder();
+        try {
+            sb.append(ingtComponents[0] + " ");
+            sb.append(ingtComponents[1] + " ");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("For sample recipes, all ingredients should have quantity field " + e.toString());
+        }
+        String quantity = sb.toString();
+        sb = new StringBuilder();
+        for (int i = 2; i < ingtComponents.length; i++) {
+            sb.append(ingtComponents[i] + " ");
+        }
+        String ingredientValue = sb.toString();
+        return new Ingredient(ingredientValue, quantity);
+    }
+    
+    private static String getRecipeImage(String str) {
+        return str.substring(10, str.length() - 3);
+    }
+    
+    private static int getCalories(String str) {
+        String calorie = str.substring(13, str.length() - 3);
+        try {
+            return Integer.parseInt(calorie);
+        } catch (NumberFormatException e) {
+            System.out.println("Calorie string cannot be converted to int " + e.toString());
+        }
+        return 0;
+    }
+    
     public static ReadOnlyWishfulShrinking getSampleWishfulShrinking() {
         WishfulShrinking sampleAb = new WishfulShrinking();
         for (Recipe sampleRecipe : getSampleRecipes()) {
