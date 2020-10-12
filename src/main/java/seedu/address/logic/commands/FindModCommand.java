@@ -22,7 +22,7 @@ public class FindModCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(this.predicate);
-        return new CommandResult(String.format(Messages.MESSAGE_MODULE_LISTED, model.getFilteredModuleList().size()));
+        return new CommandResult(String.format(Messages.MESSAGE_MODULES_LISTED, model.getFilteredModuleList().size()));
     }
 
     @Override

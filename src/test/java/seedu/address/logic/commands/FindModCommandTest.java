@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_MODULE_LISTED;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.CS1010S;
 import static seedu.address.testutil.TypicalModules.CS1101S;
@@ -55,7 +55,7 @@ class FindModCommandTest {
 
     @Test
     public void execute_zeroKeywords_noModuleFound() {
-        String expectedMessage = String.format(MESSAGE_MODULE_LISTED, 0);
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 0);
         CodeOrNameMatchesKeywordPredicate predicate = preparePredicate(" ");
         FindModCommand command = new FindModCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
@@ -65,7 +65,7 @@ class FindModCommandTest {
 
     @Test
     public void execute_oneKeyword_multipleModulesFound() {
-        String expectedMessage = String.format(MESSAGE_MODULE_LISTED, 3);
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 3);
         CodeOrNameMatchesKeywordPredicate predicate = preparePredicate("Programming");
         FindModCommand command = new FindModCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
@@ -75,7 +75,7 @@ class FindModCommandTest {
 
     @Test
     public void execute_multipleKeyword_multipleModulesFound() {
-        String expectedMessage = String.format(MESSAGE_MODULE_LISTED, 3);
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 3);
         CodeOrNameMatchesKeywordPredicate predicate = preparePredicate("cs2030 organization software");
         FindModCommand command = new FindModCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
@@ -85,7 +85,7 @@ class FindModCommandTest {
 
     @Test
     public void execute_partialKeyword_multipleModulesFound() {
-        String expectedMessage = String.format(MESSAGE_MODULE_LISTED, 3);
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED, 3);
         CodeOrNameMatchesKeywordPredicate predicate = preparePredicate("cs2");
         FindModCommand command = new FindModCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
