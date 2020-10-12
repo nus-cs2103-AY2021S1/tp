@@ -21,26 +21,28 @@ import seedu.address.model.task.Task;
 public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
-            new Project(new ProjectName("Alex Yeoh"), new Deadline("21-04-2021 00:00:00"),
-                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), new HashMap<>(), getTaskSet("Refactor project class")),
-            new Project(new ProjectName("Bernice Yu"), new Deadline("21-04-2021 00:00:00"),
+            new Project(new ProjectName("Aeroknotty"), new Deadline("21-04-2021 00:00:00"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Made for pilots wanting to tie the "
+                + "knot"),
+                getTagSet("creative"), new HashMap<>(), getTaskSet("Refactor project class")),
+            new Project(new ProjectName("Basket Web"), new Deadline("21-04-2021 00:00:00"),
                 new RepoUrl("http://github.com/a/b.git"),
-                new ProjectDescription("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new HashMap<>(),
+                new ProjectDescription("Puts all your ususal searches into one place"),
+                getTagSet("internet", "iot"), new HashMap<>(),
                 getTaskSet("Brainstorm user stories", "Refine data model")),
-            new Project(new ProjectName("Charlotte Oliveiro"), new Deadline("21-04-2021 00:00:00"),
-                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Project(new ProjectName("Charletan"), new Deadline("21-04-2021 00:00:00"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("To nurture a more informed people"),
                 getTagSet("neighbours"), new HashMap<>(), getTaskSet("Write UG")),
-            new Project(new ProjectName("David Li"), new Deadline("21-04-2021 00:00:00"),
+            new Project(new ProjectName("Dacharie"), new Deadline("21-04-2021 00:00:00"),
                 new RepoUrl("http://github.com/a/b.git"),
-                new ProjectDescription("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new ProjectDescription("kitchen knife subscription service"),
                 getTagSet("family"), new HashMap<>(), getTaskSet("Delete ProjectDescription attribute")),
-            new Project(new ProjectName("Irfan Ibrahim"), new Deadline("21-04-2021 00:00:00"),
-                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 47 Tampines Street 20, #17-35"),
+            new Project(new ProjectName("Iterab"), new Deadline("21-04-2021 00:00:00"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Habit tracker"),
                 getTagSet("classmates"), new HashMap<>(), getTaskSet()),
-            new Project(new ProjectName("Roy Balakrishnan"), new Deadline("21-04-2021 00:00:00"),
-                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Blk 45 Aljunied Street 85, #11-31"),
+            new Project(new ProjectName("Reuletan"), new Deadline("21-04-2021 00:00:00"),
+                new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Brings low cost investment to the "
+                + "masses"),
                 getTagSet("colleagues"), new HashMap<>(), getTaskSet("Write DG"))
         };
     }

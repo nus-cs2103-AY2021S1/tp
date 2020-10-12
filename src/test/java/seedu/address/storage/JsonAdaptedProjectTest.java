@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProjects.BENSON;
+import static seedu.address.testutil.TypicalProjects.BRICK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,21 +24,21 @@ public class JsonAdaptedProjectTest {
     private static final String INVALID_REPOURL = "https://github.com/a/b";
     private static final String INVALID_PROJECT_TAG = "#friend";
 
-    private static final String VALID_PROJECT_NAME = BENSON.getProjectName().toString();
-    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
-    private static final String VALID_REPOURL = BENSON.getRepoUrl().toString();
-    private static final String VALID_PROJECT_DESCRIPTION = BENSON.getProjectDescription().toString();
-    private static final List<JsonAdaptedTag> VALID_PROJECT_TAGS = BENSON.getProjectTags().stream()
+    private static final String VALID_PROJECT_NAME = BRICK.getProjectName().toString();
+    private static final String VALID_DEADLINE = BRICK.getDeadline().toString();
+    private static final String VALID_REPOURL = BRICK.getRepoUrl().toString();
+    private static final String VALID_PROJECT_DESCRIPTION = BRICK.getProjectDescription().toString();
+    private static final List<JsonAdaptedTag> VALID_PROJECT_TAGS = BRICK.getProjectTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedTask> VALID_TASKS = BENSON.getTasks().stream()
+    private static final List<JsonAdaptedTask> VALID_TASKS = BRICK.getTasks().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validProjectDetails_returnsProject() throws Exception {
-        JsonAdaptedProject project = new JsonAdaptedProject(BENSON);
-        assertEquals(BENSON, project.toModelType());
+        JsonAdaptedProject project = new JsonAdaptedProject(BRICK);
+        assertEquals(BRICK, project.toModelType());
     }
 
     @Test

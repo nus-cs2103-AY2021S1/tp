@@ -31,7 +31,7 @@ class JsonAdaptedProject {
     private final String repoUrl;
     private final String projectDescription;
     private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
-    private final List<JsonAdaptedTask> occupied = new ArrayList<>();
+    private final List<JsonAdaptedTask> projectOccupied = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -42,7 +42,7 @@ class JsonAdaptedProject {
                                 @JsonProperty("repoUrl") String repoUrl,
                                 @JsonProperty("projectDescription") String projectDescription,
                                 @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
-                                @JsonProperty("occupied") List<JsonAdaptedTask> occupied) {
+                                @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied) {
         this.projectName = projectName;
         this.deadline = deadline;
         this.repoUrl = repoUrl;
@@ -50,8 +50,8 @@ class JsonAdaptedProject {
         if (projectTagged != null) {
             this.projectTagged.addAll(projectTagged);
         }
-        if (occupied != null) {
-            this.occupied.addAll(occupied);
+        if (projectOccupied != null) {
+            this.projectOccupied.addAll(projectOccupied);
         }
     }
 
@@ -66,7 +66,7 @@ class JsonAdaptedProject {
         projectTagged.addAll(source.getProjectTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        occupied.addAll(source.getTasks().stream()
+        projectOccupied.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
     }
@@ -82,7 +82,7 @@ class JsonAdaptedProject {
             projectProjectTags.add(projectTag.toModelType());
         }
         final List<Task> projectTasks = new ArrayList<>();
-        for (JsonAdaptedTask task : occupied) {
+        for (JsonAdaptedTask task : projectOccupied) {
             projectTasks.add(task.toModelType());
         }
 

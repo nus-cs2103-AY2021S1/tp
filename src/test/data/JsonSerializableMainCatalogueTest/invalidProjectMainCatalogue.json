@@ -1,8 +1,9 @@
 {
   "projects": [ {
-    "projectName": "Hans Muster",
-    "deadline": "29-02-2020 00:00:00",
+    "projectName": "invalid @ $% pr0j3ct",
+    "deadline": "29-02/020 00:00:00",
     "repoUrl": "https://invalid.com/invalid/invalid",
-    "projectDescription": "4th street"
+    "projectDescription": "this is n0t v@lid",
+    "projectTagged": ["f@ulty"]
   } ]
 }
