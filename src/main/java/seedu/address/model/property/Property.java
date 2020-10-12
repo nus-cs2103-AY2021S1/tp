@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.id.Id;
-import seedu.address.model.id.IdManager;
 import seedu.address.model.price.Price;
 
 /**
