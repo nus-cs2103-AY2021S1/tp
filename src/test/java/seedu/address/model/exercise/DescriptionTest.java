@@ -15,8 +15,7 @@ public class DescriptionTest {
     @Test
     public void isValidDescription() {
         // null description
-        assertThrows(NullPointerException.class,
-                () -> seedu.address.model.exercise.Description.isValidDescription(null));
+        assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
         // invalid description
         assertFalse(seedu.address.model.exercise.Description.isValidDescription("")); // empty string
