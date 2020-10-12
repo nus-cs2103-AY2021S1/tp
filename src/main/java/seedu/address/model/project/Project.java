@@ -2,7 +2,6 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -22,6 +23,7 @@ import seedu.address.model.task.Task;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Project {
+    private static final Predicate<Task> TRUE_TASK_PREDICATE = task -> true;
 
     // Identity fields
     private final ProjectName projectName;
@@ -32,6 +34,7 @@ public class Project {
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
     private final HashMap<PersonName, Participation> listOfParticipations = new HashMap<>();
+    private Predicate<Task> taskFilter = TRUE_TASK_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
 
@@ -76,12 +79,15 @@ public class Project {
     public boolean addTask(Task task) {
         return tasks.add(task);
     }
+    public void updateTaskFilter(Predicate<Task> predicate) {
+        this.taskFilter = predicate;
+    }
 
     /**
      * Gets all attendees of a specific meeting
      */
     public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
-        HashSet<Person> attendees = new HashSet<Person>();
+        HashSet<Person> attendees = new HashSet<>();
         for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
             attendees.add(entry.getValue().getPerson());
         }
@@ -141,8 +147,8 @@ public class Project {
      * Returns the list of tasks that is last shown.
      */
     public List<Task> getFilteredTaskList() {
-        return new ArrayList<>(tasks);
-    } // TODO: May update when adding filters
+        return tasks.stream().filter(taskFilter).collect(Collectors.toList());
+    }
 
     /**
      * Returns true if both projects of the same projectName have at least one other identity field that is the same.

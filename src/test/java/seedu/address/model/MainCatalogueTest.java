@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.Status;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
@@ -101,26 +100,6 @@ public class MainCatalogueTest {
             mainCatalogue.addProject(APEAKAPP);
             mainCatalogue.enter(APEAKAPP);
             mainCatalogue.quit();
-        } catch (Exception e) {
-            fail();
-        }
-    }
-
-    @Test
-    public void enterQuit_incorrectScope_throwInvalidScopeException() {
-        mainCatalogue.addProject(APEAKAPP);
-        try {
-            mainCatalogue.quit();
-        } catch (InvalidScopeException e) {
-            assertEquals(new InvalidScopeException(Status.PROJECT, Status.CATALOGUE), e);
-        } catch (Exception e) {
-            fail();
-        }
-        mainCatalogue.enter(APEAKAPP);
-        try {
-            mainCatalogue.enter(APEAKAPP);
-        } catch (InvalidScopeException e) {
-            assertEquals(new InvalidScopeException(Status.CATALOGUE, Status.PROJECT), e);
         } catch (Exception e) {
             fail();
         }

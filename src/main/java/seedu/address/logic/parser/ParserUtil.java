@@ -123,6 +123,7 @@ public class ParserUtil {
         return projectTagSet;
     }
 
+
     /**
      * Parses a {@code String task} into a {@code Task}.
      * Leading and trailing whitespaces will be trimmed.

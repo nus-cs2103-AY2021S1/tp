@@ -2,12 +2,9 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exceptions.InvalidScopeException;
 
 /**
  * Leaves the project view and go back to the main catalogue view.
@@ -26,14 +23,9 @@ public class LeaveCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
-        try {
-            model.quit();
-        } catch (InvalidScopeException e) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_SCOPE_COMMAND,
-                    e.getExpected(), e.getActual()));
-        }
+        model.quit();
         return new CommandResult(MESSAGE_LEAVE_SUCCESS);
     }
 

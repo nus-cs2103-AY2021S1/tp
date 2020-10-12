@@ -58,11 +58,13 @@ public class AssignCommand extends Command {
 
         Participation assignee = project.getParticipation(this.assignee);
 
-        if (assignee.hasTask(taskToAssociate)) {
+        if (assignee.hasTask(taskToAssociate) || taskToAssociate.hasAssignee(assignee)) {
             throw new CommandException(String.format(Messages.MESSAGE_REASSIGNMENT_OF_SAME_TASK_TO_SAME_PERSON,
                     assignee.getPerson().getPersonName()));
         }
+
         assignee.addTask(taskToAssociate);
+        taskToAssociate.addAssignee(assignee);
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssociate, assignee));
     }
