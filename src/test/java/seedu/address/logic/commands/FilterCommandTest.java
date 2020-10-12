@@ -8,14 +8,17 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_1;
 import static seedu.address.testutil.TypicalFlashcards.FLASHCARD_2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.flashcard.Category;
 import seedu.address.model.flashcard.CategoryEqualsKeywordsPredicate;
 import seedu.address.testutil.TypicalFlashcards;
 
@@ -30,9 +33,9 @@ public class FilterCommandTest {
     @Test
     public void equals() {
         CategoryEqualsKeywordsPredicate firstPredicate =
-                new CategoryEqualsKeywordsPredicate(Collections.singletonList("first"));
+                new CategoryEqualsKeywordsPredicate(Collections.singletonList(new Category("first")));
         CategoryEqualsKeywordsPredicate secondPredicate =
-                new CategoryEqualsKeywordsPredicate(Collections.singletonList("second"));
+                new CategoryEqualsKeywordsPredicate(Collections.singletonList(new Category("second")));
 
         FilterCommand findFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand findSecondCommand = new FilterCommand(secondPredicate);
@@ -94,12 +97,36 @@ public class FilterCommandTest {
         assertEquals(Arrays.asList(FLASHCARD_1), model.getFilteredFlashcardList());
     }
 
+    @Test
+    public void execute_multipleKeywordsUppercaseKeyword_success() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+        CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/SDLC c/REVISION HISTORY");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FLASHCARD_1, FLASHCARD_2), model.getFilteredFlashcardList());
+    }
+
+    @Test
+    public void execute_multipleKeywordsmixedOrder_success() {
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+        CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/REVISION HISTORY c/SDLC");
+        FilterCommand command = new FilterCommand(predicate);
+        expectedModel.updateFilteredFlashcardList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FLASHCARD_1, FLASHCARD_2), model.getFilteredFlashcardList());
+    }
     /**
      * Parses {@code userInput} into a {@code CategoryEqualsKeywordsPredicate}.
      */
     private CategoryEqualsKeywordsPredicate preparePredicate(String userInput) {
         String[] categoryKeywords = userInput.split("c/");
         categoryKeywords = Arrays.copyOfRange(categoryKeywords, 1, categoryKeywords.length);
-        return new CategoryEqualsKeywordsPredicate(Arrays.asList(categoryKeywords));
+        List<Category> categoryList = new ArrayList<>();
+        for (int i = 0; i < categoryKeywords.length; i++) {
+            String keyword = categoryKeywords[i].trim();
+            categoryList.add(new Category(keyword));
+        }
+        return new CategoryEqualsKeywordsPredicate(categoryList);
     }
 }
