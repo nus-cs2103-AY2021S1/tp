@@ -13,7 +13,7 @@ import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.logic.parser.FixMyAbsParser;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.Model;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.log.Log;
 import seedu.fma.storage.Storage;
 
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveLogBook(model.getLogBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyLogBook getLogBook() {
+        return model.getLogBook();
     }
 
     @Override
-    public ObservableList<Log> getFilteredPersonList() {
+    public ObservableList<Log> getFilteredLogList() {
         return model.getFilteredLogList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getLogBookFilePath() {
+        return model.getLogBookFilePath();
     }
 
     @Override

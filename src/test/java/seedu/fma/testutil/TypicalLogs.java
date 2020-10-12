@@ -1,78 +1,73 @@
 package seedu.fma.testutil;
 
+import static seedu.fma.model.util.SampleDataUtil.getSampleExercises;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.fma.model.AddressBook;
+import seedu.fma.model.LogBook;
+import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
 
 /**
  * A utility class containing a list of {@code Log} objects to be used in tests.
  */
 public class TypicalLogs {
+    public static final Exercise[] SAMPLE_EXERCISES = getSampleExercises();
 
     public static final Log LOG_A = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Jumping Jacks").build())
+            .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[0]).build())
             .withDateTime(LocalDateTime.of(2020, 1, 1, 1, 1))
-            .withReps("5")
-            .withComment("I love jumping jacks")
+            .withReps("1")
+            .withComment("This")
             .build();
     public static final Log LOG_B = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Lunges").build())
+            .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[1]).build())
             .withDateTime(LocalDateTime.of(2020, 2, 2, 2, 2))
-            .withReps("51")
-            .withComment("I love Lunges")
+            .withReps("2")
+            .withComment("is")
             .build();
     public static final Log LOG_C = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Body ups").build())
+            .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[2]).build())
             .withDateTime(LocalDateTime.of(2020, 3, 3, 3, 3))
-            .withReps("15")
-            .withComment("I love Body ups")
+            .withReps("34")
+            .withComment("a")
             .build();
     public static final Log LOG_D = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Head shakes").build())
+            .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[3]).build())
             .withDateTime(LocalDateTime.of(2020, 4, 4, 4, 4))
-            .withReps("52")
-            .withComment("I love Head shakes")
+            .withReps("56")
+            .withComment("typical")
             .build();
     public static final Log LOG_E = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Buddha claps").build())
+            .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[4]).build())
             .withDateTime(LocalDateTime.of(2020, 5, 5, 5, 5))
-            .withReps("53")
-            .withComment("I love Buddha claps")
+            .withReps("67")
+            .withComment("log")
             .build();
     public static final Log LOG_F = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Shaking hands").build())
+            .withExercise(new ExerciseBuilder(SAMPLE_EXERCISES[5]).build())
             .withDateTime(LocalDateTime.of(2020, 6, 6, 6, 6))
-            .withReps("54")
-            .withComment("I love Shaking hands")
+            .withReps("89")
+            .withComment("book!")
             .build();
-    public static final Log LOG_G = new LogBuilder()
-            .withExercise(new ExerciseBuilder().withName("Punching").build())
-            .withDateTime(LocalDateTime.of(2020, 7, 7, 7, 7))
-            .withReps("55")
-            .withComment("I love Punching")
-            .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalLogs() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code LogBook} with all the typical logs.
      */
-    // TODO change Addressbook variables
-    public static AddressBook getTypicalLogBook() {
-        AddressBook ab = new AddressBook();
+    public static LogBook getTypicalLogBook() {
+        LogBook ab = new LogBook();
         for (Log log : getTypicalLogs()) {
-            ab.addPerson(log);
+            ab.addLog(log);
         }
         return ab;
     }
 
     public static List<Log> getTypicalLogs() {
-        return new ArrayList<>(Arrays.asList(LOG_A, LOG_B, LOG_C, LOG_D, LOG_E, LOG_F, LOG_G));
+        return new ArrayList<>(Arrays.asList(LOG_A, LOG_B, LOG_C, LOG_D));
     }
 }

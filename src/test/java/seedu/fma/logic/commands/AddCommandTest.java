@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.fma.commons.core.GuiSettings;
 import seedu.fma.logic.commands.exceptions.CommandException;
-import seedu.fma.model.AddressBook;
+import seedu.fma.model.LogBook;
 import seedu.fma.model.Model;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.ReadOnlyUserPrefs;
 import seedu.fma.model.log.Log;
 import seedu.fma.testutil.LogBuilder;
@@ -36,7 +36,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validLog).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validLog), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validLog), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validLog), modelStub.logsAdded);
     }
 
     @Test
@@ -98,12 +98,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getLogBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setLogBookFilePath(Path logBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -113,12 +113,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setLogBook(ReadOnlyLogBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyLogBook getLogBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -170,23 +170,23 @@ public class AddCommandTest {
      * A Model stub that always accept the log being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Log> personsAdded = new ArrayList<>();
+        final ArrayList<Log> logsAdded = new ArrayList<>();
 
         @Override
         public boolean hasLog(Log log) {
             requireNonNull(log);
-            return personsAdded.stream().anyMatch(log::isSameLog);
+            return logsAdded.stream().anyMatch(log::isSameLog);
         }
 
         @Override
         public void addLog(Log log) {
             requireNonNull(log);
-            personsAdded.add(log);
+            logsAdded.add(log);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyLogBook getLogBook() {
+            return new LogBook();
         }
     }
 

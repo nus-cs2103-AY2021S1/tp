@@ -9,16 +9,16 @@ import seedu.fma.model.log.Log;
 /**
  * An UI component that displays information of a {@code Log}.
  */
-public class PersonCard extends UiPart<Region> {
+public class LogCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "LogListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on LogBook level 4</a>
      */
 
     public final Log log;
@@ -39,9 +39,9 @@ public class PersonCard extends UiPart<Region> {
     private Label comments;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Log} and index to display.
+     * Creates a {@code LogCode} with the given {@code Log} and index to display.
      */
-    public PersonCard(Log log, int displayedIndex) {
+    public LogCard(Log log, int displayedIndex) {
         super(FXML);
         this.log = log;
         id.setText(displayedIndex + ". ");
@@ -60,12 +60,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof LogCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        LogCard card = (LogCard) other;
         return id.getText().equals(card.id.getText())
                 && log.equals(card.log);
     }

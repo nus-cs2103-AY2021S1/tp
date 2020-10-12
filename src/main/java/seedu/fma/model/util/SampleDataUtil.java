@@ -1,17 +1,17 @@
 package seedu.fma.model.util;
 
-import seedu.fma.model.AddressBook;
-import seedu.fma.model.ReadOnlyAddressBook;
+import seedu.fma.model.LogBook;
+import seedu.fma.model.ReadOnlyLogBook;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code LogBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Log[] getSamplePersons() {
+    public static Log[] getSampleLogs() {
         return new Log[] {
             new Log(Exercise.find(new Name("Sit ups")),
                     new Rep("30"), new Comment("My abs hurt :(")),
@@ -31,11 +31,11 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Log sampleLog : getSamplePersons()) {
-            sampleAb.addPerson(sampleLog);
+    public static ReadOnlyLogBook getSampleLogBook() {
+        LogBook sampleLogbook = new LogBook();
+        for (Log sampleLog : getSampleLogs()) {
+            sampleLogbook.addLog(sampleLog);
         }
-        return sampleAb;
+        return sampleLogbook;
     }
 }

@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' log book file path.
      */
-    Path getAddressBookFilePath();
+    Path getLogBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' log book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setLogBookFilePath(Path logBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces log book data with the data in {@code logBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setLogBook(ReadOnlyLogBook logBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the LogBook */
+    ReadOnlyLogBook getLogBook();
 
     /**
-     * Returns true if a log with the same identity as {@code log} exists in the address book.
+     * Returns true if a log with the same identity as {@code log} exists in the log book.
      */
     boolean hasLog(Log log);
 
     /**
      * Deletes the given log.
-     * The log must exist in the address book.
+     * The log must exist in the log book.
      */
     void deleteLog(Log target);
 
     /**
      * Adds the given log.
-     * {@code log} must not already exist in the address book.
+     * {@code log} must not already exist in the log book.
      */
     void addLog(Log log);
 
     /**
      * Replaces the given log {@code target} with {@code editedLog}.
-     * {@code target} must exist in the address book.
-     * The log identity of {@code editedLog} must not be the same as another existing log in the address book.
+     * {@code target} must exist in the log book.
+     * The log identity of {@code editedLog} must not be the same as another existing log in the log book.
      */
     void setLog(Log target, Log editedLog);
 

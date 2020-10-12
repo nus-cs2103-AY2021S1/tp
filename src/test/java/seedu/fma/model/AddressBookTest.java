@@ -24,7 +24,7 @@
 //
 //public class AddressBookTest {
 ////
-////    private final AddressBook addressBook = new AddressBook();
+////    private final LogBook addressBook = new LogBook();
 ////
 ////    @Test
 ////    public void constructor() {
@@ -38,7 +38,7 @@
 ////
 ////    @Test
 ////    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-////        AddressBook newData = getTypicalLogBook();
+////        LogBook newData = getTypicalLogBook();
 ////        addressBook.resetData(newData);
 ////        assertEquals(newData, addressBook);
 ////    }
@@ -84,9 +84,9 @@
 ////    }
 ////
 ////    /**
-////     * A stub ReadOnlyAddressBook whose logs list can violate interface constraints.
+////     * A stub ReadOnlyLogBook whose logs list can violate interface constraints.
 ////     */
-////    private static class AddressBookStub implements ReadOnlyAddressBook {
+////    private static class AddressBookStub implements ReadOnlyLogBook {
 ////        private final ObservableList<Log> logs = FXCollections.observableArrayList();
 ////
 ////        AddressBookStub(Collection<Log> logs) {

@@ -21,7 +21,7 @@ import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
 
 /**
- * Edits the details of an existing log in the address book.
+ * Edits the details of an existing log in the log book.
  */
 public class EditCommand extends Command {
 
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_LOG_SUCCESS = "Edited Log: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LOG = "This log already exists in the log book.";
 
     private final Index index;
     private final EditLogDescriptor editLogDescriptor;
@@ -63,7 +63,7 @@ public class EditCommand extends Command {
         List<Log> lastShownList = model.getFilteredLogList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_LOG_DISPLAYED_INDEX);
         }
 
         Log logToEdit = lastShownList.get(index.getZeroBased());
