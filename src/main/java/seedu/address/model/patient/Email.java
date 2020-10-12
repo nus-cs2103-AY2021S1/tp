@@ -41,6 +41,14 @@ public class Email {
     }
 
     /**
+     * Constructs a default {@code Email}.
+     *
+     */
+    public Email() {
+        value = "N/A";
+    }
+
+    /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {

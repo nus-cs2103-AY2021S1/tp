@@ -2,6 +2,7 @@ package seedu.address.model.patient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.model.allergy.Allergy;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.VisitHistory;
 
 /**
  * Represents a Patient in the CliniCal application.
@@ -30,13 +32,16 @@ public class Patient {
     private final Set<Allergy> allergies = new HashSet<>();
     private final ColorTag colorTag;
 
+    // List of past visits
+    private final VisitHistory visitHistory;
+
     /**
      * Name, phone, and IC number must be present and not null.
      */
     public Patient(Name name, Phone phone, IcNumber icNumber, Address address, Email email,
                    ProfilePicture profilePicture, Sex sex, BloodType bloodType,
                    Set<Allergy> allergies, ColorTag colorTag) {
-        requireAllNonNull(name, phone, icNumber, address, email, profilePicture, sex, bloodType, allergies, colorTag);
+        requireAllNonNull(name, phone, icNumber);
         this.name = name;
         this.phone = phone;
         this.icNumber = icNumber;
@@ -47,6 +52,7 @@ public class Patient {
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
         this.colorTag = colorTag;
+        this.visitHistory = new VisitHistory(new ArrayList<>());
     }
 
     public Name getName() {
@@ -93,6 +99,10 @@ public class Patient {
         return colorTag;
     }
 
+    public VisitHistory getVisitHistory() {
+        return visitHistory;
+    }
+
     /**
      * Returns true if both patients of the same name have the same IC number.
      * This defines a weaker notion of equality between two patients.
@@ -131,7 +141,8 @@ public class Patient {
                 && otherPatient.getSex().equals(getSex())
                 && otherPatient.getBloodType().equals(getBloodType())
                 && otherPatient.getAllergies().equals(getAllergies())
-                && otherPatient.getColorTag().equals(getColorTag());
+                && otherPatient.getColorTag().equals(getColorTag())
+                && otherPatient.getVisitHistory().equals(getVisitHistory());
     }
 
     @Override
@@ -158,6 +169,8 @@ public class Patient {
                 .append(getBloodType())
                 .append(" ColorTag: ")
                 .append(getColorTag())
+                .append(" Visit History: ")
+                .append(getVisitHistory())
                 .append(" Allergies: ");
         getAllergies().forEach(builder::append);
         return builder.toString();

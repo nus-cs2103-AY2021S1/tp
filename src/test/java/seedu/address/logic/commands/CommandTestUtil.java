@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +33,7 @@ import seedu.address.testutil.EditPatientDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // for Patient
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -93,6 +95,16 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPatientDescriptor DESC_AMY;
     public static final EditCommand.EditPatientDescriptor DESC_BOB;
+
+    // for Visit
+    public static final LocalDate VALID_VISITDATE_ONE = LocalDate.of(2019, 3, 19);
+    public static final LocalDate VALID_VISITDATE_TWO = LocalDate.of(2018, 7, 6);
+    public static final String VALID_DIAGNOSIS_ONE = "Hyperlipidemia";
+    public static final String VALID_DIAGNOSIS_TWO = "Reflux esophagitis";
+    public static final String VALID_PRESCRIPTION_ONE = "Vicodin";
+    public static final String VALID_PRESCRIPTION_TWO = "Synthroid";
+    public static final String VALID_COMMENT_ONE = "Need immediate attention";
+    public static final String VALID_COMMENT_TWO = "No need to follow up";
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

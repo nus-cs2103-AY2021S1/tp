@@ -31,6 +31,14 @@ public class Address {
     }
 
     /**
+     * Constructs a default {@code Address}.
+     *
+     */
+    public Address() {
+        value = "N/A";
+    }
+
+    /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {

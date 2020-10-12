@@ -29,6 +29,14 @@ public class Sex {
     }
 
     /**
+     * Constructs a default {@code Sex}.
+     *
+     */
+    public Sex() {
+        value = "N/A";
+    }
+
+    /**
      * Returns if a given string is a valid sex.
      */
     public static boolean isValidSex(String test) {
