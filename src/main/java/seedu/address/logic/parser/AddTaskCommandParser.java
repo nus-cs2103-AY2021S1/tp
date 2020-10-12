@@ -39,9 +39,11 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        String taskName = argMultimap.getValue(PREFIX_PROJECT_NAME).get();
-        double taskProgress = Double.parseDouble(argMultimap.getValue(PREFIX_TASK_PROGRESS).get());
-        boolean taskStatus = Boolean.parseBoolean(argMultimap.getValue(PREFIX_TASK_IS_DONE).get());
+        String taskName = ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        double taskProgress = Double.parseDouble(
+                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
+        boolean taskStatus = Boolean.parseBoolean(
+                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
 
         Task task = new Task(taskName, null, null, taskProgress, taskStatus);
 

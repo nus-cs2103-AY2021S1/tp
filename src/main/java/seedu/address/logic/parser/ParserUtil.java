@@ -147,4 +147,19 @@ public class ParserUtil {
         return taskSet; //TODO: parse tasks in a more meaningful way
     }
 
+    /**
+     * Parses a {@code String taskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskName} is invalid.
+     */
+    public static String parseTaskBasicInformation(String projectName) throws ParseException {
+        requireNonNull(projectName);
+        String trimmedProjectName = projectName.trim();
+        if (!ProjectName.isValidProjectName(trimmedProjectName)) {
+            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedProjectName;
+    }
+
 }

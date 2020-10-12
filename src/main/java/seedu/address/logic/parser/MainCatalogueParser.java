@@ -108,13 +108,16 @@ public class MainCatalogueParser {
             case AddTaskCommand.COMMAND_WORD:
                 return new AddTaskCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
+            case EditTaskCommand.COMMAND_WORD:
+                return new EditTaskCommandParser().parse(arguments);
+
             case DeleteCommand.COMMAND_WORD:
             case ClearCommand.COMMAND_WORD:
             case FindCommand.COMMAND_WORD:
             case ListCommand.COMMAND_WORD:
             case StartCommand.COMMAND_WORD:
                 case AddCommand.COMMAND_WORD:
+                    case EditCommand.COMMAND_WORD:
                     throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
 
                 default:
