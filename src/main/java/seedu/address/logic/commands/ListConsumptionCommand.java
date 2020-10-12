@@ -29,6 +29,6 @@ public class ListConsumptionCommand extends Command {
         }
         builder.append("Total Calories: ");
         builder.append(totalCalories + " cal");
-        return new CommandResult(MESSAGE_SUCCESS + builder.toString());
+        return new CommandResult(MESSAGE_SUCCESS + builder.toString(), false, false, false, false, true);
     }
 }
