@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
 
 /**
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final InventoryBook inventoryBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
+    private final FilteredList<Delivery> filteredDeliveries;
 
     /**
      * Initializes a ModelManager with the given inventoryBook and userPrefs.
@@ -35,6 +38,8 @@ public class ModelManager implements Model {
         this.inventoryBook = new InventoryBook(inventoryBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.inventoryBook.getItemList());
+        // temporary for delivery
+        filteredDeliveries = new FilteredList<>(FXCollections.observableArrayList());
     }
 
     public ModelManager() {
@@ -128,6 +133,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Item> getFilteredItemList() {
         return filteredItems;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
+     * {@code versionedInventoryBook}
+     */
+    @Override
+    public ObservableList<Delivery> getFilteredDeliveryList() {
+        return filteredDeliveries;
     }
 
     @Override

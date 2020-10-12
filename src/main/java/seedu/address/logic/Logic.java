@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyInventoryBook;
+import seedu.address.model.delivery.Delivery;
 import seedu.address.model.item.Item;
 
 /**
@@ -32,6 +33,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of items */
     ObservableList<Item> getFilteredItemList();
+
+    /** Returns an unmodifiable view of the filtered list of deliveries */
+    ObservableList<Delivery> getFilteredDeliveryList();
 
     /**
      * Returns the user prefs' inventory book file path.

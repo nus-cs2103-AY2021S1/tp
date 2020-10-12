@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
-    private DeliveryDisplay deliveryDisplay;
+    private DeliveryListPanel deliveryListPanel;
     private HelpWindow helpWindow;
     private PreviewWindow previewWindow;
 
@@ -52,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane deliveryDisplayPlaceholder;
+    private StackPane deliveryListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -126,8 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        deliveryDisplay = new DeliveryDisplay();
-        deliveryDisplayPlaceholder.getChildren().add(deliveryDisplay.getRoot());
+        deliveryListPanel = new DeliveryListPanel(logic.getFilteredDeliveryList());
+        deliveryListPanelPlaceholder.getChildren().add(deliveryListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInventoryBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
