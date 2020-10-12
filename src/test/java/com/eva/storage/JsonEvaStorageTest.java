@@ -32,7 +32,8 @@ public class JsonEvaStorageTest {
     }
 
     private java.util.Optional<ReadOnlyEvaDatabase<Person>> readAddressBook(String filePath) throws Exception {
-        return new JsonEvaStorage(Paths.get(filePath)).readPersonDatabase(addToTestDataPathIfNotNull(filePath));
+        return new JsonEvaStorage(Paths.get(filePath))
+                .readPersonDatabase(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {

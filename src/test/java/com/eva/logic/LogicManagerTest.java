@@ -44,7 +44,8 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonEvaStorage addressBookStorage =
-                new JsonEvaStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonEvaStorage(temporaryFolder.resolve("personDatabase.json"),
+                        temporaryFolder.resolve("staffDatabase.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -151,7 +152,7 @@ public class LogicManagerTest {
      */
     private static class JsonEvaIoExceptionThrowingStub extends JsonEvaStorage {
         private JsonEvaIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+            super(filePath, filePath);
         }
 
         @Override

@@ -18,7 +18,7 @@ public interface EvaStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getEvaDatabaseFilePath();
+    Path getPersonDatabaseFilePath();
 
     /**
      * Returns Eva data as a {@link ReadOnlyEvaDatabase}.
@@ -29,7 +29,7 @@ public interface EvaStorage {
     Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException;
 
     /**
-     * @see #getEvaDatabaseFilePath()
+     * @see #getPersonDatabaseFilePath()
      */
     Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase(Path filePath) throws DataConversionException, IOException;
 
@@ -54,7 +54,7 @@ public interface EvaStorage {
     Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase() throws DataConversionException, IOException;
 
     /**
-     * @see #getEvaDatabaseFilePath()
+     * @see #getPersonDatabaseFilePath()
      */
     Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase(Path filePath) throws DataConversionException, IOException;
 
