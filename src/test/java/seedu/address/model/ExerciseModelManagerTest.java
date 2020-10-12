@@ -3,10 +3,9 @@ package seedu.address.model;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 class ExerciseModelManagerTest {
