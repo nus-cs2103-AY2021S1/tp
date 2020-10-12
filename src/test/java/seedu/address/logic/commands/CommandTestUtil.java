@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -37,14 +38,16 @@ public class CommandTestUtil {
     public static final String VALID_SCHOOL_BOB = "Hwa Chong Institution";
     public static final String VALID_YEAR_AMY = "6";
     public static final String VALID_YEAR_BOB = "4";
-    public static final String VALID_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
-    public static final String VALID_VENUE_BOB = "575 Hougang Street 51, Singapore 530575";
-    public static final String VALID_TIME_AMY = "1 1200-1400";
-    public static final String VALID_TIME_BOB = "5 1800-2000";
-    public static final String VALID_FEE_AMY = "45";
-    public static final String VALID_FEE_BOB = "30";
-    public static final String VALID_PAYMENT_AMY = "12/12/2020";
-    public static final String VALID_PAYMENT_BOB = "11/11/2020";
+    public static final String VALID_CLASS_TIME_AMY = "2 1200-1300";
+    public static final String VALID_CLASS_TIME_BOB = "5 0900-1100";
+    public static final String VALID_CLASS_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
+    public static final String VALID_CLASS_VENUE_BOB = "347 Woodlands Ave 3, Singapore 730347";
+    public static final String VALID_FEE_AMY = "40";
+    public static final String VALID_FEE_BOB = "55";
+    public static final String VALID_PAYMENT_DATE_AMY = "27/10/2020";
+    public static final String VALID_PAYMENT_DATE_BOB = "10/09/2020";
+    public static final String VALID_ADDITIONAL_DETAILS_AMY = "Clever";
+    public static final String VALID_ADDITIONAL_DETAILS_BOB = "Hardworking";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,14 +57,17 @@ public class CommandTestUtil {
     public static final String SCHOOL_DESC_BOB = " " + PREFIX_SCHOOL + VALID_SCHOOL_BOB;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
-    public static final String VENUE_DESC_AMY = " " + PREFIX_VENUE + VALID_VENUE_AMY;
-    public static final String VENUE_DESC_BOB = " " + PREFIX_VENUE + VALID_VENUE_BOB;
-    public static final String TIME_DESC_AMY = " " + PREFIX_TIME + VALID_TIME_AMY;
-    public static final String TIME_DESC_BOB = " " + PREFIX_TIME + VALID_TIME_BOB;
+
+    public static final String CLASS_VENUE_DESC_AMY = " " + PREFIX_VENUE + VALID_CLASS_VENUE_AMY;
+    public static final String CLASS_VENUE_DESC_BOB = " " + PREFIX_VENUE + VALID_CLASS_VENUE_BOB;
+    public static final String CLASS_TIME_DESC_AMY = " " + PREFIX_TIME + VALID_CLASS_TIME_AMY;
+    public static final String CLASS_TIME_DESC_BOB = " " + PREFIX_TIME + VALID_CLASS_TIME_BOB;
     public static final String FEE_DESC_AMY = " " + PREFIX_FEE + VALID_FEE_AMY;
     public static final String FEE_DESC_BOB = " " + PREFIX_FEE + VALID_FEE_BOB;
-    public static final String PAYMENT_DESC_AMY = " " + PREFIX_PAYMENT + VALID_PAYMENT_AMY;
-    public static final String PAYMENT_DESC_BOB = " " + PREFIX_PAYMENT + VALID_PAYMENT_BOB;
+    public static final String PAYMENT_DATE_DESC_AMY = " " + PREFIX_PAYMENT + VALID_PAYMENT_DATE_AMY;
+    public static final String PAYMENT_DATE_DESC_BOB = " " + PREFIX_PAYMENT + VALID_PAYMENT_DATE_BOB;
+    public static final String ADDITIONAL_DETAILS_DESC_AMY = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_AMY;
+    public static final String ADDITIONAL_DETAILS_DESC_BOB = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
