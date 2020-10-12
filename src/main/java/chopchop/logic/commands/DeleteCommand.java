@@ -1,21 +1,20 @@
+// DeleteCommand.java
+
 package chopchop.logic.commands;
 
-import chopchop.commons.core.index.Index;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
-
+import chopchop.logic.parser.ItemReference;
+import chopchop.logic.commands.exceptions.CommandException;
 
 /**
- * Deletes a recipe identified using it's displayed index from the recipe book.
+ * Deletes an item
  */
 public abstract class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    protected final ItemReference item;
 
-    protected final Index targetIndex;
-
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(ItemReference item) {
+        this.item = item;
     }
 
     @Override

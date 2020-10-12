@@ -1,12 +1,15 @@
 package chopchop.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
+
 import chopchop.commons.core.GuiSettings;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.Recipe;
+
 import javafx.collections.ObservableList;
 
 
@@ -131,6 +134,17 @@ public abstract class ModelStub implements Model {
 
     @Override
     public void updateFilteredRecipeList(Predicate<FoodEntry> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Optional<Ingredient> findIngredientWithName(String name) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    @Override
+    public Optional<Recipe> findRecipeWithName(String name) {
         throw new AssertionError("This method should not be called.");
     }
 }

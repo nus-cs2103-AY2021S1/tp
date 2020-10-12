@@ -1,6 +1,6 @@
 // ArgName.java
 
-package chopchop.parser;
+package chopchop.logic.parser;
 
 /**
  * A helper class to abtract away the menial task of handling '/' when printing argument names

@@ -2,7 +2,7 @@ package chopchop.logic.commands;
 
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static chopchop.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
+import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ public class ListIngredientCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_INGREDIENT);
+        showPersonAtIndex(model, INDEXED_FIRST);
         assertCommandSuccess(new ListIngredientCommand(), model, ListIngredientCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
