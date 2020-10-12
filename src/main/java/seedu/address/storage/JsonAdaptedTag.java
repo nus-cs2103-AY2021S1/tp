@@ -4,45 +4,45 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.clientsource.Tag;
+import seedu.address.model.clientsource.ClientSource;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link ClientSource}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedClientSource {
 
-    private final String tagName;
+    private final String clientSourceName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedClientSource} with the given {@code clientSourceName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedClientSource(String clientSourceName) {
+        this.clientSourceName = clientSourceName;
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code ClientSource} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+    public JsonAdaptedClientSource(ClientSource source) {
+        clientSourceName = source.clientSourceName;
     }
 
     @JsonValue
-    public String getTagName() {
-        return tagName;
+    public String getClientSourceName() {
+        return clientSourceName;
     }
 
     /**
-     * Converts this Jackson-friendly adapted clientsource object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted clientsource object into the model's {@code ClientSource} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted clientsource.
      */
-    public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+    public ClientSource toModelType() throws IllegalValueException {
+        if (!ClientSource.isValidClientSourceName(clientSourceName)) {
+            throw new IllegalValueException(ClientSource.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new ClientSource(clientSourceName);
     }
 
 }

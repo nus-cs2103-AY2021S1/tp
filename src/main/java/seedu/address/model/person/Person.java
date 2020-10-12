@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.clientsource.Tag;
+import seedu.address.model.clientsource.ClientSource;
 
 /**
  * Represents a Person in the client list.
@@ -22,18 +22,18 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<ClientSource> clientSources = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources) {
+        requireAllNonNull(name, phone, email, address, clientSources);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.clientSources.addAll(clientSources);
     }
 
     public Name getName() {
@@ -56,8 +56,8 @@ public class Person {
      * Returns an immutable clientsource set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<ClientSource> getClientSources() {
+        return Collections.unmodifiableSet(clientSources);
     }
 
     /**
@@ -93,13 +93,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getClientSources().equals(getClientSources());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, clientSources);
     }
 
     @Override
@@ -112,8 +112,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" ClientSources: ");
+        getClientSources().forEach(builder::append);
         return builder.toString();
     }
 
