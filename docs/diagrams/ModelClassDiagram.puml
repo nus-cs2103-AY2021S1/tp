@@ -21,7 +21,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class UniquePersonList
+Class UniqueLogList
 }
 
 Package Tag {
@@ -40,8 +40,8 @@ ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
+AddressBook *--> "1" UniqueLogList
+UniqueLogList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email

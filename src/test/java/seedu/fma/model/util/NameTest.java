@@ -20,16 +20,20 @@ public class NameTest {
     }
 
     @Test
-    public void isValidName() {
+    public void isValidName_null_throwNullPointerException() {
         // null name
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
 
+    }
+    public void isValidName_invalid_returnFalse() {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("situp*")); // contains non-alphanumeric characters
+    }
 
+    public void isValidName_valid_returnTrue() {
         // valid name
         assertTrue(Name.isValidName("jumping jacks")); // alphabets only
         assertTrue(Name.isValidName("1234143")); // numbers only
