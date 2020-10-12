@@ -1,18 +1,19 @@
-package chopchop.logic.parser;
+// Strings.java
+
+package chopchop.util;
 
 import chopchop.parser.ArgName;
 
 /**
- * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
+ * Defines user-facing strings for the whole program.
  */
-public class CliSyntax {
+public class Strings {
 
     // argument names
     public static final ArgName ARG_STEP            = new ArgName("step");
     public static final ArgName ARG_INGREDIENT      = new ArgName("ingredient");
     public static final ArgName ARG_QUANTITY        = new ArgName("qty");
     public static final ArgName ARG_EXPIRY          = new ArgName("expiry");
-
 
     // command names
     public static final String COMMAND_ADD          = "add";

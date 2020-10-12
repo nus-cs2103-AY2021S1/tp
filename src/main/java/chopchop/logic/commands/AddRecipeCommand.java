@@ -1,9 +1,9 @@
 package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static chopchop.logic.parser.CliSyntax.ARG_INGREDIENT;
-import static chopchop.logic.parser.CliSyntax.ARG_QUANTITY;
-import static chopchop.logic.parser.CliSyntax.ARG_STEP;
+import static chopchop.util.Strings.ARG_INGREDIENT;
+import static chopchop.util.Strings.ARG_QUANTITY;
+import static chopchop.util.Strings.ARG_STEP;
 
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;

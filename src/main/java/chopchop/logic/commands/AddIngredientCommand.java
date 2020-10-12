@@ -1,7 +1,7 @@
 package chopchop.logic.commands;
 
-import static chopchop.logic.parser.CliSyntax.ARG_EXPIRY;
-import static chopchop.logic.parser.CliSyntax.ARG_QUANTITY;
+import static chopchop.util.Strings.ARG_EXPIRY;
+import static chopchop.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.logic.commands.exceptions.CommandException;

@@ -1,8 +1,8 @@
 package chopchop.testutil;
 
 
-import static chopchop.logic.parser.CliSyntax.ARG_EXPIRY;
-import static chopchop.logic.parser.CliSyntax.ARG_QUANTITY;
+import static chopchop.util.Strings.ARG_EXPIRY;
+import static chopchop.util.Strings.ARG_QUANTITY;
 
 import chopchop.logic.commands.AddIngredientCommand;
 import chopchop.model.ingredient.Ingredient;
