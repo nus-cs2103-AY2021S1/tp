@@ -1,5 +1,8 @@
 package seedu.address.model.meeting;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +10,10 @@ public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "Times should be in the format HH:MM";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
+    public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("h:mm a");
+
+    public final LocalTime value;
 
     /**
      * Constructs a {@code Time}.
@@ -17,7 +23,7 @@ public class Time {
     public Time(String time) {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        value = time;
+        value = LocalTime.parse(time, INPUT_FORMAT);
     }
 
     /**
@@ -31,7 +37,7 @@ public class Time {
 
     @Override
     public String toString() {
-        return value;
+        return value.format(OUTPUT_FORMAT);
     }
 
     @Override
