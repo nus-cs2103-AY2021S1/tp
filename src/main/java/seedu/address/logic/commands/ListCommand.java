@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CASES;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.state.StateManager;
 import seedu.address.model.Model;
 
 /**
