@@ -162,12 +162,13 @@ Examples :
 
 Assigns a professor to a module.
 
-Format: `assign INDEX m/MODULE_CODE`
-* Assigns the `MODULE_CODE` to the contact at the specified `INDEX`. The `MODULE_CODE` **must exist** in FaculType in the first place.
+Format: `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]`
+* Assigns all the `MODULE_CODE` to the contact at the specified `INDEX`. All of the `MODULE_CODE` **must exist** in FaculType in the first place.
 
 Examples :
 * `assign 1 m/CS3233` Assigns the existing module with code `CS3233` to contact at index 1
 * `assign 2 m/CS2030S` Assigns the existing module with code `CS2030S` to contact at index 2
+* `assign 3 m/CS2100 m/CS2106` Assigns the existing modules with code `CS2100` and `CS2106` to contact at index 3
 
 
 ### Reseting FaculType : `reset`
