@@ -50,7 +50,7 @@ public class ExerciseTest {
     }
 
     @Test
-    public void finds_validSearchString_returnTrue() {
+    public void find_validSearchString_returnTrue() {
         // existing values -> returns true
         assertTrue(new Exercise(new Name(VALID_EXERCISE_SIT_UP), 15)
                 .equals(Exercise.find(new Name(VALID_EXERCISE_SIT_UP))));
@@ -58,7 +58,7 @@ public class ExerciseTest {
     }
 
     @Test
-    public void finds_invalidSearchString_throwsExerciseNotFoundException() {
+    public void find_invalidSearchString_throwsExerciseNotFoundException() {
         String invalidSearchString = "non existent exercise";
         // non existing values -> returns ExerciseNotFound exception
         assertThrows(ExerciseNotFoundException.class, () -> Exercise.find(new Name(invalidSearchString)));
