@@ -1,10 +1,10 @@
 package com.eva.model.person.staff.leave;
 
 import static com.eva.commons.util.DateUtil.dateParsed;
+import static com.eva.commons.util.DateUtil.getDaysBetween;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
 
 /**
@@ -44,7 +44,7 @@ public class Leave {
         requireNonNull(startDate, endDate);
         this.startDate = dateParsed(startDate);
         this.endDate = dateParsed(endDate);
-        leaveLength = Period.between(this.startDate, this.endDate).getDays() + 1;
+        leaveLength = getDaysBetween(this.startDate, this.endDate);
     }
 
     public int getLeaveLength() {

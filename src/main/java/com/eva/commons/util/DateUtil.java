@@ -4,6 +4,7 @@ import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
@@ -27,5 +28,16 @@ public class DateUtil {
     public static LocalDate dateParsed(String dateStr) {
         checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
         return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns the number of days elapsed between two dates.
+     * @param start cannot be empty.
+     * @param end cannot be empty.
+     */
+    public static int getDaysBetween(LocalDate start, LocalDate end) {
+        requireNonNull(start);
+        requireNonNull(end);
+        return Period.between(start, end).getDays() + 1;
     }
 }

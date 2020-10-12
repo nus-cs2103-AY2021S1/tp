@@ -111,6 +111,7 @@ public class ModelManager implements Model {
     @Override
     public void addStaffLeave(Staff target, Leave leave) {
         target.getLeaves().add(leave);
+        target.getLeaveBalance().deductLeaveBalance(leave.getLeaveLength());
     }
 
     @Override

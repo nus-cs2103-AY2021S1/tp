@@ -52,7 +52,4 @@ public class Staff extends Person {
     public LeaveBalance getLeaveBalance() {
         return leaveBalance;
     }
-    /*
-    I think add leave is done in edit command or smth idk i guess it's similar to tag so gotta find out.
-     */
 }
