@@ -22,9 +22,9 @@ import seedu.fma.model.ReadOnlyAddressBook;
 import seedu.fma.model.ReadOnlyUserPrefs;
 import seedu.fma.model.UserPrefs;
 import seedu.fma.model.util.SampleDataUtil;
-import seedu.fma.storage.AddressBookStorage;
-import seedu.fma.storage.JsonAddressBookStorage;
+import seedu.fma.storage.JsonLogBookStorage;
 import seedu.fma.storage.JsonUserPrefsStorage;
+import seedu.fma.storage.LogBookStorage;
 import seedu.fma.storage.Storage;
 import seedu.fma.storage.StorageManager;
 import seedu.fma.storage.UserPrefsStorage;
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        LogBookStorage addressBookStorage = new JsonLogBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -77,7 +77,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readLogBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }

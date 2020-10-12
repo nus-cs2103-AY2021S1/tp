@@ -27,7 +27,7 @@
 //import seedu.address.model.ReadOnlyAddressBook;
 //import seedu.address.model.UserPrefs;
 //import seedu.address.model.log.Log;
-//import seedu.address.storage.JsonAddressBookStorage;
+//import seedu.address.storage.JsonLogBookStorage;
 //import seedu.address.storage.JsonUserPrefsStorage;
 //import seedu.address.storage.StorageManager;
 //import seedu.address.testutil.LogBuilder;
@@ -43,8 +43,8 @@
 ////
 ////    @BeforeEach
 ////    public void setUp() {
-////        JsonAddressBookStorage addressBookStorage =
-////                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+////        JsonLogBookStorage addressBookStorage =
+////                new JsonLogBookStorage(temporaryFolder.resolve("addressBook.json"));
 ////        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
 ////        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
 ////        logic = new LogicManager(model, storage);
@@ -71,7 +71,7 @@
 ////    @Test
 ////    public void execute_storageThrowsIoException_throwsCommandException() {
 ////        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-////        JsonAddressBookStorage addressBookStorage =
+////        JsonLogBookStorage addressBookStorage =
 ////                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
 ////        JsonUserPrefsStorage userPrefsStorage =
 ////                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
@@ -149,7 +149,7 @@
 ////    /**
 ////     * A stub class to throw an {@code IOException} when the save method is called.
 ////     */
-////    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
+////    private static class JsonAddressBookIoExceptionThrowingStub extends JsonLogBookStorage {
 ////        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
 ////            super(filePath);
 ////        }

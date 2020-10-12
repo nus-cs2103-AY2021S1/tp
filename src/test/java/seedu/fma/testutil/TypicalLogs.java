@@ -61,7 +61,6 @@ public class TypicalLogs {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    // TODO change Addressbook variables
     public static AddressBook getTypicalLogBook() {
         AddressBook ab = new AddressBook();
         for (Log log : getTypicalLogs()) {
