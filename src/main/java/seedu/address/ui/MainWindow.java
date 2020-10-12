@@ -1,9 +1,16 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -12,10 +19,14 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.state.StateManager;
+import seedu.address.model.investigationcase.Case;
+import seedu.address.model.investigationcase.CasePerson;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +45,11 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private DocumentListPanel documentListPanel;
+    private CasePersonListPanel suspectListPanel;
+    private CasePersonListPanel witnessListPanel;
+    private CasePersonListPanel victimListPanel;
+    private SimpleObjectProperty<Index> indexSimpleObjectProperty;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +65,43 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    // Case Summary
+    @FXML
+    private Label caseTitle;
+
+    @FXML
+    private Label caseDescription;
+
+    @FXML
+    private Label caseStatus;
+
+    // Case Document
+    @FXML
+    private StackPane documentListPanelPlaceholder;
+
+    // Case Persons
+    @FXML
+    private StackPane suspectListPanelPlaceholder;
+
+    @FXML
+    private StackPane witnessListPanelPlaceholder;
+
+    @FXML
+    private StackPane victimListPanelPlaceholder;
+
+    // Titles
+    @FXML
+    private Label caseDocumentsTitle;
+
+    @FXML
+    private Label caseSuspectsTitle;
+
+    @FXML
+    private Label caseWitnessesTitle;
+
+    @FXML
+    private Label caseVictimsTitle;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +119,14 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        indexSimpleObjectProperty = StateManager.getVisibleState();
+        indexSimpleObjectProperty.addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                updateCaseInformationPanel((Index) newValue);
+            }
+        });
     }
 
     public Stage getPrimaryStage() {
@@ -121,6 +182,71 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        updateCaseInformationPanel(indexSimpleObjectProperty.get());
+    }
+
+    /**
+     * Updates the CaseInformationPanel using a Case by the given Index.
+     * @param index
+     */
+    private void updateCaseInformationPanel(Index index) {
+        if (index == null) {
+            showBlankPanel();
+        } else {
+            fillPanel();
+        }
+    }
+
+    private void showBlankPanel() {
+        caseTitle.setText("");
+        caseDescription.setText("");
+        caseStatus.setText("");
+
+        caseDocumentsTitle.setText("");
+        caseSuspectsTitle.setText("");
+        caseWitnessesTitle.setText("");
+        caseVictimsTitle.setText("");
+
+        documentListPanel = new DocumentListPanel(FXCollections.observableList(new ArrayList<>()));
+        documentListPanelPlaceholder.getChildren().add(documentListPanel.getRoot());
+
+        suspectListPanel = new CasePersonListPanel(FXCollections.observableList(new ArrayList<>()));
+        suspectListPanelPlaceholder.getChildren().add(suspectListPanel.getRoot());
+
+        witnessListPanel = new CasePersonListPanel(FXCollections.observableList(new ArrayList<>()));
+        witnessListPanelPlaceholder.getChildren().add(witnessListPanel.getRoot());
+
+        victimListPanel = new CasePersonListPanel(FXCollections.observableList(new ArrayList<>()));
+        victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
+    }
+
+    private void fillPanel() {
+        Case investigationCase = logic.getFilteredCaseList().get(indexSimpleObjectProperty.get().getZeroBased());
+
+        caseTitle.setText(investigationCase.getTitle().toString());
+        caseDescription.setText(investigationCase.getDescription().toString());
+        caseStatus.setText(investigationCase.getStatus().toString());
+
+        caseDocumentsTitle.setText("DOCUMENTS");
+        caseSuspectsTitle.setText("SUSPECTS");
+        caseWitnessesTitle.setText("WITNESSES");
+        caseVictimsTitle.setText("VICTIMS");
+
+        documentListPanel = new DocumentListPanel(FXCollections.observableList(investigationCase.getDocuments()));
+        documentListPanelPlaceholder.getChildren().add(documentListPanel.getRoot());
+
+        suspectListPanel = new CasePersonListPanel(FXCollections.observableList(
+                investigationCase.getSuspects().stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+        suspectListPanelPlaceholder.getChildren().add(suspectListPanel.getRoot());
+
+        witnessListPanel = new CasePersonListPanel(FXCollections.observableList(
+                investigationCase.getWitnesses().stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+        witnessListPanelPlaceholder.getChildren().add(witnessListPanel.getRoot());
+
+        victimListPanel = new CasePersonListPanel(FXCollections.observableList(
+                investigationCase.getVictims().stream().map(x -> (CasePerson) x).collect(Collectors.toList())));
+        victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
     }
 
     /**
