@@ -10,7 +10,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exceptions.InvalidScopeException;
 import seedu.address.model.project.Project;
 
 /**
@@ -43,12 +42,7 @@ public class StartCommand extends Command {
         }
 
         Project projectToStart = lastShownList.get(targetIndex.getZeroBased());
-        try {
-            model.enter(projectToStart);
-        } catch (InvalidScopeException e) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_SCOPE_COMMAND,
-                    e.getExpected(), e.getActual()));
-        }
+        model.enter(projectToStart);
         return new CommandResult(String.format(MESSAGE_START_PROJECT_SUCCESS, projectToStart));
     }
 
