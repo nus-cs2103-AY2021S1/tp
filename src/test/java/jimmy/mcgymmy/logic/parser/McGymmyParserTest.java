@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
-import jimmy.mcgymmy.logic.commands.HelpCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.macro.Macro;
 import jimmy.mcgymmy.logic.macro.MacroList;
@@ -23,10 +22,8 @@ public class McGymmyParserTest {
         // only test these 3 but it should suffice
         McGymmyParser mcGymmyParser = new McGymmyParser();
         CommandExecutable listCommand = mcGymmyParser.parse("list");
-        CommandExecutable helpCommand = mcGymmyParser.parse("help ");
         CommandExecutable addCommand = mcGymmyParser.parse("add -n poop -p 200");
         assertTrue(listCommand instanceof ListCommand);
-        assertTrue(helpCommand instanceof HelpCommand);
         assertTrue(addCommand instanceof AddCommand);
     }
 
