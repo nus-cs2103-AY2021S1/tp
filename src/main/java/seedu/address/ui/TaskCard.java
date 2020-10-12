@@ -50,8 +50,6 @@ public class TaskCard extends UiPart<Region> {
     private HBox descriptionHolder;
     @FXML
     private Label description;
-//    @FXML
-//    private FlowPane tags;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -65,11 +63,6 @@ public class TaskCard extends UiPart<Region> {
         loadStatus(task);
         loadDescription(task);
         loadDateTime(task);
-
-//        task.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName))
-//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
     }
 
     private boolean loadStatus(Task task) {

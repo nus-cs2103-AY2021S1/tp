@@ -7,7 +7,14 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
+import seedu.address.model.task.DateTime;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.State;
+import seedu.address.model.task.Status;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.Type;
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
