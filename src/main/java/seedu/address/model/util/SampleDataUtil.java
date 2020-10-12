@@ -59,7 +59,7 @@ public class SampleDataUtil {
                 index++;
                 if (index == 11) { //end of a recipe object
                     index = 0;
-                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients, 
+                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients,
                             calories, tag);
                     recipeList.add(toAdd);
                 }
@@ -74,7 +74,7 @@ public class SampleDataUtil {
     private static String getRecipeName(String str) {
         return str.substring(10, str.length() - 3);
     }
-    
+
     private static String getTag(String str) {
         return str.substring(8, str.length() - 3);
     }
@@ -82,7 +82,7 @@ public class SampleDataUtil {
     private static String getRecipeInstructions(String str) {
         return str.substring(17, str.length() - 2);
     }
-    
+
     private static ArrayList<Ingredient> getRecipeIngredients(String str) {
         String ingts = str.substring(16, str.length() - 3);
         String[] ingredients = ingts.split(", ");
@@ -92,7 +92,7 @@ public class SampleDataUtil {
         }
         return ingredientList;
     }
-    
+
     private static Ingredient getIngredientObject(String ingredient) {
         String[] ingtComponents = ingredient.split(" ");
         StringBuilder sb = new StringBuilder();
@@ -110,11 +110,11 @@ public class SampleDataUtil {
         String ingredientValue = sb.toString();
         return new Ingredient(ingredientValue, quantity);
     }
-    
+
     private static String getRecipeImage(String str) {
         return str.substring(10, str.length() - 3);
     }
-    
+
     private static int getCalories(String str) {
         String calorie = str.substring(13, str.length() - 3);
         try {
@@ -124,7 +124,7 @@ public class SampleDataUtil {
         }
         return 0;
     }
-    
+
     public static ReadOnlyWishfulShrinking getSampleWishfulShrinking() {
         WishfulShrinking sampleAb = new WishfulShrinking();
         for (Recipe sampleRecipe : getSampleRecipes()) {
