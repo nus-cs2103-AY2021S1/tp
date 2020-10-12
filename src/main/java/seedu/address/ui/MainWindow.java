@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -74,6 +75,16 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        //add menu items
+        MenuItem newMenuItem = new MenuItem("Attendance");
+        newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                fillInnerParts2();
+            }
+        });
+        attendanceMenu.getItems().add(newMenuItem);
     }
 
     public Stage getPrimaryStage() {
