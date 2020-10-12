@@ -9,6 +9,7 @@ import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
 import chopchop.model.recipe.RecipeBook;
+import chopchop.model.util.SampleDataUtil;
 import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
 import chopchop.storage.JsonRecipeBookStorage;
@@ -30,7 +31,6 @@ import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
-import chopchop.model.util.SampleDataUtil;
 
 /**
  * Runs the application.
