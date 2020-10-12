@@ -16,7 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.NameContainsKeywordsPredicate;
-import com.eva.testutil.AddressBookBuilder;
+import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
+import com.eva.testutil.EvaDatabaseBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +28,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new EvaDatabase<>(), new EvaDatabase<>(modelManager.getPersonDatabase()));
     }
 
     @Test
@@ -62,14 +64,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setEvaDatabaseFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setEvaDatabaseFilePath(path);
+        assertEquals(path, modelManager.getEvaDatabaseFilePath());
     }
 
     @Test
@@ -95,13 +97,15 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        EvaDatabase<Person> addressBook = new EvaDatabaseBuilder<>()
+                .withPerson(ALICE).withPerson(BENSON).build();
+        EvaDatabase<Staff> staffDatabase = new EvaDatabase<>();
+        EvaDatabase<Person> differentAddressBook = new EvaDatabase<>();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, staffDatabase, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, staffDatabase, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, staffDatabase, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, staffDatabase, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +131,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, staffDatabase, differentUserPrefs)));
     }
 }

@@ -13,10 +13,15 @@ import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -60,17 +65,36 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code EvaDatabase} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static EvaDatabase<Person> getTypicalPersonDatabase() {
+        EvaDatabase<Person> ab = new EvaDatabase<>();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
         return ab;
     }
 
+    /**
+     * Returns an {@code EvaDatabase} with all the typical staffs.
+     */
+    public static EvaDatabase<Staff> getTypicalStaffDatabase() {
+        EvaDatabase<Staff> ab = new EvaDatabase<>();
+        for (Staff staff : getTypicalStaffs()) {
+            ab.addPerson(staff);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Staff> getTypicalStaffs() {
+        // TODO: Add some meaningful leaves here
+        Set<Leave> leaves = new HashSet<>();
+        return getTypicalPersons().stream()
+                .map(person -> new Staff(person, leaves))
+                .collect(Collectors.toList());
     }
 }
