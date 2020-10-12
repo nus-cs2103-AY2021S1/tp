@@ -136,8 +136,8 @@ public class Project {
      * Gets the complete list of Teammates associated with this project
      */
     public List<Person> getTeammates() {
-        List<Person> listOfPersons = new ArrayList<>() ;
-        for(Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
+        List<Person> listOfPersons = new ArrayList<>();
+        for (Map.Entry<PersonName, Participation> entry: listOfParticipations.entrySet()) {
             Person p = entry.getValue().getPerson();
             listOfPersons.add(p);
         }

@@ -3,10 +3,6 @@ package seedu.address.logic.commands.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,9 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.Task;
 
 /**
  * Creates a new person within
@@ -40,7 +34,7 @@ public class NewTeammateCommand extends Command {
     private Person teammate;
 
     /**
-     * Creates an AssignCommand that TODO
+     * Creates an new teammate that is associated with the project
      */
     public NewTeammateCommand(String name, String phone, String email, String address) throws ParseException {
         requireAllNonNull(name, phone, email, address);
