@@ -4,7 +4,7 @@ import static com.eva.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static com.eva.testutil.Assert.assertThrows;
 import static com.eva.testutil.TypicalPersons.ALICE;
-import static com.eva.testutil.TypicalPersons.getTypicalAddressBook;
+import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,7 +39,7 @@ public class EvaDatabaseTest {
 
     @Test
     public void resetData_withValidReadOnlyEvaDatabase_replacesData() {
-        EvaDatabase newData = getTypicalAddressBook();
+        EvaDatabase newData = getTypicalPersonDatabase();
         evaDatabase.resetData(newData);
         assertEquals(newData, evaDatabase);
     }

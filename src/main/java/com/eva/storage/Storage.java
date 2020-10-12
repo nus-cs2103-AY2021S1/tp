@@ -8,6 +8,7 @@ import com.eva.commons.exceptions.DataConversionException;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
+import com.eva.model.person.Person;
 
 /**
  * API of the Storage component
@@ -24,9 +25,9 @@ public interface Storage extends EvaStorage, UserPrefsStorage {
     Path getEvaDatabaseFilePath();
 
     @Override
-    Optional<ReadOnlyEvaDatabase> readEvaDatabase() throws DataConversionException, IOException;
+    Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException;
 
     @Override
-    void saveEvaDatabase(ReadOnlyEvaDatabase addressBook) throws IOException;
+    void savePersonDatabase(ReadOnlyEvaDatabase<Person> addressBook) throws IOException;
 
 }

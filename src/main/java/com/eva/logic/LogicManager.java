@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveEvaDatabase(model.getAddressBook());
+            storage.savePersonDatabase(model.getPersonDatabase());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -57,7 +57,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyEvaDatabase getEvaDatabase() {
-        return model.getAddressBook();
+        return model.getPersonDatabase();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getEvaDatabaseFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getEvaDatabaseFilePath();
     }
 
     @Override

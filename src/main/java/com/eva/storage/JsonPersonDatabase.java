@@ -15,27 +15,27 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 /**
  * An Immutable EvaDatabase that is serializable to JSON format.
  */
-@JsonRootName(value = "evaDatabase")
-class JsonSerializableEvaDatabase {
+@JsonRootName(value = "personDatabase")
+class JsonPersonDatabase {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableEvaDatabase} with the given persons.
+     * Constructs a {@code JsonPersonDatabase} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableEvaDatabase(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonPersonDatabase(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
      * Converts a given {@code ReadOnlyEvaDatabase} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableEvaDatabase}.
+     * @param source future changes to this will not affect the created {@code JsonPersonDatabase}.
      */
-    public JsonSerializableEvaDatabase(ReadOnlyEvaDatabase source) {
+    public JsonPersonDatabase(ReadOnlyEvaDatabase<Person> source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -44,8 +44,8 @@ class JsonSerializableEvaDatabase {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public EvaDatabase toModelType() throws IllegalValueException {
-        EvaDatabase addressBook = new EvaDatabase();
+    public EvaDatabase<Person> toModelType() throws IllegalValueException {
+        EvaDatabase<Person> addressBook = new EvaDatabase<>();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {

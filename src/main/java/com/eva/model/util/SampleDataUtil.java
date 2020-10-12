@@ -1,6 +1,7 @@
 package com.eva.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,8 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 /**
@@ -40,9 +43,25 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyEvaDatabase getSampleEvaDatabase() {
-        EvaDatabase sampleAb = new EvaDatabase();
+    public static Staff[] getSampleStaffs() {
+        // TODO: Add some meaningful leave samples
+        Set<Leave> leaves = new HashSet<>();
+        return Arrays.stream(getSamplePersons())
+                .map(person -> new Staff(person, leaves))
+                .toArray(Staff[]::new);
+    }
+
+    public static ReadOnlyEvaDatabase<Person> getSamplePersonDatabase() {
+        EvaDatabase<Person> sampleAb = new EvaDatabase<>();
         for (Person samplePerson : getSamplePersons()) {
+            sampleAb.addPerson(samplePerson);
+        }
+        return sampleAb;
+    }
+
+    public static ReadOnlyEvaDatabase<Staff> getSampleStaffDatabase() {
+        EvaDatabase<Staff> sampleAb = new EvaDatabase<>();
+        for (Staff samplePerson : getSampleStaffs()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
@@ -54,6 +73,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a leave set containing the list of strings given.
+     */
+    public static Set<Leave> getLeaveSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Leave::new)
                 .collect(Collectors.toSet());
     }
 

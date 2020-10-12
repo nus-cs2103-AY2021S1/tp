@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.eva.commons.exceptions.DataConversionException;
 import com.eva.model.ReadOnlyEvaDatabase;
+import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 
 
 /**
@@ -24,23 +26,47 @@ public interface EvaStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyEvaDatabase> readEvaDatabase() throws DataConversionException, IOException;
+    Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException;
 
     /**
-     * @see #getEvaFilePath()
+     * @see #getEvaDatabaseFilePath()
      */
-    Optional<ReadOnlyEvaDatabase> readEvaDatabase(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyEvaDatabase} to the storage.
      * @param evaDatabase cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveEvaDatabase(ReadOnlyEvaDatabase evaDatabase) throws IOException;
+    void savePersonDatabase(ReadOnlyEvaDatabase<Person> evaDatabase) throws IOException;
 
     /**
-     * @see #saveEvaDatabase(ReadOnlyEvaDatabase)
+     * @see #savePersonDatabase(ReadOnlyEvaDatabase)
      */
-    void saveEvaDatabase(ReadOnlyEvaDatabase evaDatabase, Path filePath) throws IOException;
+    void savePersonDatabase(ReadOnlyEvaDatabase<Person> evaDatabase, Path filePath) throws IOException;
 
+    /**
+     * Returns Eva data as a {@link ReadOnlyEvaDatabase}.
+     *   Returns {@code Optional.empty()} if storage file is not found.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the storage.
+     */
+    Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase() throws DataConversionException, IOException;
+
+    /**
+     * @see #getEvaDatabaseFilePath()
+     */
+    Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase(Path filePath) throws DataConversionException, IOException;
+
+    /**
+     * Saves the given {@link ReadOnlyEvaDatabase} to the storage.
+     * @param evaDatabase cannot be null.
+     * @throws IOException if there was any problem writing to the file.
+     */
+    void saveStaffDatabase(ReadOnlyEvaDatabase<Staff> evaDatabase) throws IOException;
+
+    /**
+     * @see #saveStaffDatabase(ReadOnlyEvaDatabase)
+     */
+    void saveStaffDatabase(ReadOnlyEvaDatabase<Staff> evaDatabase, Path filePath) throws IOException;
 }

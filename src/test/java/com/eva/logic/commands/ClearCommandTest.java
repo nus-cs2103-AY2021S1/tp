@@ -1,7 +1,8 @@
 package com.eva.logic.commands;
 
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static com.eva.testutil.TypicalPersons.getTypicalAddressBook;
+import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
+import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +23,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new EvaDatabase());
+        Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
+        expectedModel.setPersonDatabase(new EvaDatabase<>());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

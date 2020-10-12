@@ -1,6 +1,6 @@
 package com.eva.storage;
 
-import static com.eva.testutil.TypicalPersons.getTypicalAddressBook;
+import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -54,9 +54,9 @@ public class StorageManagerTest {
          * {@link JsonEvaStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonEvaStorageTest} class.
          */
-        EvaDatabase original = getTypicalAddressBook();
-        storageManager.saveEvaDatabase(original);
-        ReadOnlyEvaDatabase retrieved = storageManager.readEvaDatabase().get();
+        EvaDatabase original = getTypicalPersonDatabase();
+        storageManager.savePersonDatabase(original);
+        ReadOnlyEvaDatabase retrieved = storageManager.readPersonDatabase().get();
         assertEquals(original, new EvaDatabase(retrieved));
     }
 

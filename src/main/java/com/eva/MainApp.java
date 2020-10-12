@@ -19,6 +19,8 @@ import com.eva.model.ModelManager;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
+import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 import com.eva.model.util.SampleDataUtil;
 import com.eva.storage.EvaStorage;
 import com.eva.storage.JsonEvaStorage;
@@ -75,23 +77,29 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyEvaDatabase> addressBookOptional;
-        ReadOnlyEvaDatabase initialData;
+        Optional<ReadOnlyEvaDatabase<Person>> personDatabaseOptional;
+        ReadOnlyEvaDatabase<Person> initialPersonData;
+        Optional<ReadOnlyEvaDatabase<Staff>> staffDatabaseOptional;
+        ReadOnlyEvaDatabase<Staff> initialStaffData;
         try {
-            addressBookOptional = storage.readEvaDatabase();
-            if (!addressBookOptional.isPresent()) {
+            personDatabaseOptional = storage.readPersonDatabase();
+            staffDatabaseOptional = storage.readStaffDatabase();
+            if (!personDatabaseOptional.isPresent() || !staffDatabaseOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample EvaDatabase");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleEvaDatabase);
+            initialPersonData = personDatabaseOptional.orElseGet(SampleDataUtil::getSamplePersonDatabase);
+            initialStaffData = staffDatabaseOptional.orElseGet(SampleDataUtil::getSampleStaffDatabase);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty EvaDatabase");
-            initialData = new EvaDatabase();
+            initialPersonData = new EvaDatabase<>();
+            initialStaffData = new EvaDatabase<>();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty EvaDatabase");
-            initialData = new EvaDatabase();
+            initialPersonData = new EvaDatabase<>();
+            initialStaffData = new EvaDatabase<>();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialPersonData, initialStaffData, userPrefs);
     }
 
     private void initLogging(Config config) {
