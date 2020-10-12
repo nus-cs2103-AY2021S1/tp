@@ -2,6 +2,7 @@ package chopchop.model.attributes;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -35,5 +36,12 @@ public class NameTest {
         assertTrue(Name.isValidName("eggplant the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Corn Starch")); // with capital letters
         assertTrue(Name.isValidName("The Great 2nd Corn Starch of the U.K.")); // long names
+    }
+
+    @Test
+    public void caseInsensitiveComparison() {
+
+        assertEquals(new Name("aaaaa"), new Name("aAaAa"));
+        assertEquals(new Name("aaaaa"), "AAAAA");
     }
 }

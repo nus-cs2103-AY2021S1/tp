@@ -2,9 +2,9 @@
 
 package chopchop.logic.parser;
 
-import java.util.Optional;
-
 import chopchop.util.Either;
+import chopchop.util.Result;
+import chopchop.util.StringView;
 
 public class ItemReference {
 
@@ -17,15 +17,29 @@ public class ItemReference {
     /**
      * Returns the zero-based index of the itemreference, if it was an indexed reference.
      */
-    public Optional<Integer> getZeroIndex() {
-        return this.reference.fromLeftOpt();
+    public Integer getZeroIndex() {
+        return this.reference.fromLeft();
     }
 
     /**
      * Returns the lowercased name of the itemreference, if it was a named reference.
      */
-    public Optional<String> getName() {
-        return this.reference.fromRightOpt();
+    public String getName() {
+        return this.reference.fromRight();
+    }
+
+    /**
+     * Returns true iff the {@code ItemReference} was made with an index.
+     */
+    public boolean isIndexed() {
+        return this.reference.isLeft();
+    }
+
+    /**
+     * Returns true iff the {@code ItemReference} was made with a name.
+     */
+    public boolean isNamed() {
+        return this.reference.isRight();
     }
 
     /**
@@ -58,5 +72,38 @@ public class ItemReference {
      */
     public static ItemReference ofName(String name) {
         return new ItemReference(Either.right(name.toLowerCase()));
+    }
+
+
+    /**
+     * Automatically parses an {@code ItemReference} given the string input. The denotation
+     * for an indexed reference is {@code #3}, where '3' is a 1-based index (ie. it is the
+     * third item here). Anything else not starting with a '#' is considered a name.
+     */
+    public static Result<ItemReference> parse(String input) {
+        if (input.isEmpty()) {
+            return Result.error("empty input");
+        } else if (input.startsWith("#")) {
+            return new StringView(input)
+                .drop(1)
+                .parseInt()
+                .then(i -> {
+                    if (i <= 0) {
+                        return Result.error("invalid index (cannot be zero or negative)");
+                    } else {
+                        return Result.of(ItemReference.ofOneIndex(i));
+                    }
+                });
+        } else {
+            return Result.of(ItemReference.ofName(input));
+        }
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj
+            || (obj instanceof ItemReference
+                && ((ItemReference) obj).reference.equals(this.reference));
     }
 }

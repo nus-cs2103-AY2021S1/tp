@@ -50,7 +50,7 @@ ChopChop is a **desktop app for managing recipes and ingredients, optimised for 
 
 * A `<REFERENCE>` is used to refer to either an ingredient or a recipe. To refer to something by name, just type the full
 	name (case insensitive). However, it is often more convenient to refer to things by their number, especially when looking
-	at a filtered view. In that case, use `$NUMBER` (eg. `$7` to refer to the 7th item in the list).
+	at a filtered view. In that case, use `#NUMBER` (eg. `#7` to refer to the 7th item in the list).
 
 </div>
 

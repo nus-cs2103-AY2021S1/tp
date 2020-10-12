@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 import chopchop.util.Pair;
 import chopchop.util.Result;
+import chopchop.util.Strings;
 import chopchop.util.StringView;
+
 import chopchop.logic.commands.Command;
+import chopchop.logic.commands.HelpCommand;
 
 import static chopchop.logic.parser.commands.AddCommandParser.parseAddCommand;
+import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 
 public class CommandParser {
 
@@ -115,8 +119,9 @@ public class CommandParser {
             .then(args -> {
                 switch (args.getCommand()) {
 
-                case "add": return parseAddCommand(args);
-
+                case Strings.COMMAND_ADD:       return parseAddCommand(args);
+                case Strings.COMMAND_HELP:      return Result.of(new HelpCommand());
+                case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
 
                 default:
                     return Result.error("unknown command '%s'", args.getCommand());
