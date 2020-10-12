@@ -37,9 +37,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of items */
     ObservableList<Item> getFilteredItemList();
 
-    /** Returns an unmodifiable view of the filtered list of deliveries */
-    ObservableList<Delivery> getFilteredDeliveryList();
-
     /**
      * Returns the user prefs' inventory book file path.
      */
