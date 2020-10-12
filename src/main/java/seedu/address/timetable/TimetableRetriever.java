@@ -115,25 +115,7 @@ public class TimetableRetriever {
             String currentLessonNum = (String) currentData.get("classNo");
 
             if (currentLessonType.equals(lessonType) && currentLessonNum.equals(lessonNum)) {
-                String day = (String) currentData.get("day");
-                String name = module + " " + currentLessonType + " " + day;
-
-                JSONArray jsonWeeks = (JSONArray) currentData.get("weeks");
-                int[] weeks = getWeeksAsIntegerArray(jsonWeeks);
-                int dayOffset = getDayOffset(day);
-
-                for (int week : weeks) {
-                    int daysToAdd = 7 * (week - 1) + dayOffset;
-                    LocalDate date = startDate.plusDays(daysToAdd);
-                    if (date.isAfter(LocalDate.now())) {
-                        String startTime = date.format(LOCAL_DATE_FORMATTER) + " "
-                                + (String) currentData.get("startTime");
-                        String endTime = date.format(LOCAL_DATE_FORMATTER) + " "
-                                + (String) currentData.get("endTime");
-                        lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
-                                new ModuleCode(module)));
-                    }
-                }
+                addSpecificLesson(lessons, module, startDate, currentLessonType, currentData);
             }
         }
     }
@@ -184,4 +166,27 @@ public class TimetableRetriever {
         }
         return weeks;
     }
+
+    private static void addSpecificLesson(List<Lesson> lessons, String module, LocalDate startDate,
+                                          String currentLessonType, JSONObject currentData) {
+        String day = (String) currentData.get("day");
+        String name = module + " " + currentLessonType + " " + day;
+
+        JSONArray jsonWeeks = (JSONArray) currentData.get("weeks");
+        int[] weeks = getWeeksAsIntegerArray(jsonWeeks);
+        int dayOffset = getDayOffset(day);
+
+        for (int week : weeks) {
+            int daysToAdd = 7 * (week - 1) + dayOffset;
+            LocalDate date = startDate.plusDays(daysToAdd);
+            if (date.isAfter(LocalDate.now())) {
+                String startTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("startTime");
+                String endTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("endTime");
+                lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
+                        new ModuleCode(module)));
+            }
+        }
+
+    }
+
 }
