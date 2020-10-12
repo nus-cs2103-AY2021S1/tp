@@ -27,7 +27,7 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="clientSources" />
       <FlowPane fx:id="phone" />
       <FlowPane fx:id="address" />
       <FlowPane fx:id="email" />

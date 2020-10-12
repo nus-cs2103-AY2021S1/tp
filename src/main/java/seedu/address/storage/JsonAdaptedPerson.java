@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.clientsource.ClientSource;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,22 +29,24 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedClientSource> clientSource = new ArrayList<>();
     private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("note") String note) {
+    public JsonAdaptedPerson(
+            @JsonProperty("name") String name, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
+            @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (clientSource != null) {
+            this.clientSource.addAll(clientSource);
         }
         this.note = note;
     }
@@ -73,9 +75,11 @@ class JsonAdaptedPerson {
             address = null;
         }
 
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        clientSource.addAll(source.getClientSources()
+                .stream()
+                .map(JsonAdaptedClientSource::new)
                 .collect(Collectors.toList()));
+
         note = source.getNote().noteName;
     }
 
@@ -85,9 +89,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<ClientSource> personClientSources = new ArrayList<>();
+        for (JsonAdaptedClientSource clientSource : clientSource) {
+            personClientSources.add(clientSource.toModelType());
         }
 
         if (name == null) {
@@ -128,13 +132,13 @@ class JsonAdaptedPerson {
             modelAddress = new Address(address);
         }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<ClientSource> modelClientSources = new HashSet<>(personClientSources);
 
         if (!Note.isValidNoteName(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
         final Note modelNote = new Note(note);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelNote);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote);
     }
 
 }

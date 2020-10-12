@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.clientsource.ClientSource;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -103,30 +103,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String clientsource} into a {@code ClientSource}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code clientsource} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static ClientSource parseClientSource(String clientSource) throws ParseException {
+        requireNonNull(clientSource);
+        String trimmedClientSource = clientSource.trim();
+        if (!ClientSource.isValidClientSourceName(trimmedClientSource)) {
+            throw new ParseException(ClientSource.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new ClientSource(trimmedClientSource);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> clientSources} into a {@code Set<ClientSource>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<ClientSource> parseClientSources(Collection<String> clientSources) throws ParseException {
+        requireNonNull(clientSources);
+        final Set<ClientSource> clientSourceSet = new HashSet<>();
+        for (String clientSourceName : clientSources) {
+            clientSourceSet.add(parseClientSource(clientSourceName));
         }
-        return tagSet;
+        return clientSourceSet;
     }
 
     /**

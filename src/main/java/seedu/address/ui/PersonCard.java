@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label note;
     @FXML
-    private FlowPane tags;
+    private FlowPane clientSources;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -65,9 +65,11 @@ public class PersonCard extends UiPart<Region> {
         }
 
         note.setText(person.getNote().noteName);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getClientSources().stream()
+                .sorted(Comparator.comparing(clientSource -> clientSource.clientSourceName))
+                .forEach(clientSource -> clientSources.getChildren().add(
+                        new Label(clientSource.clientSourceName)
+                ));
     }
 
     @Override

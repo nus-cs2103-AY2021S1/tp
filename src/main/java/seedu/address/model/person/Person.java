@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.clientsource.ClientSource;
 import seedu.address.model.note.Note;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the client list.
@@ -23,19 +23,20 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Set<ClientSource> clientSources = new HashSet<>();
     private final Note note;
-    private final Set<Tag> tags = new HashSet<>();
+
 
     /**
      * Only name and tags need to be non-null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
-        requireAllNonNull(name, tags, note);
+    public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note) {
+        requireAllNonNull(name, clientSources, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.clientSources.addAll(clientSources);
         this.note = note;
     }
 
@@ -56,11 +57,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable clientsource set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<ClientSource> getClientSources() {
+        return Collections.unmodifiableSet(clientSources);
     }
 
     public Note getNote() {
@@ -129,7 +130,7 @@ public class Person {
                 && equalsNullable(otherPerson.getPhone(), getPhone())
                 && equalsNullable(otherPerson.getEmail(), getEmail())
                 && equalsNullable(otherPerson.getAddress(), getAddress())
-                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getClientSources().equals(getClientSources())
                 && otherPerson.getNote().equals(getNote());
     }
 
@@ -144,7 +145,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, note);
+        return Objects.hash(name, phone, email, address, clientSources, note);
     }
 
     @Override
@@ -164,9 +165,9 @@ public class Person {
             builder.append(" Address: ")
                     .append(getAddress());
         }
-        if (getTags().size() > 0) {
-            builder.append(" Tags: ");
-            getTags().forEach(builder::append);
+        if (getClientSources().size() > 0) {
+            builder.append(" ClientSources: ");
+            getClientSources().forEach(builder::append);
         }
         builder.append(" Note: ")
                 .append(getNote());
