@@ -107,7 +107,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAssignment(Assignment a) {
         assignments.add(a);
-        tasks.add(a);
     }
 
     /**
@@ -136,7 +135,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeAssignment(Assignment key) {
         assignments.remove(key);
-        tasks.remove(key);
     }
 
     //// lesson-level operations
@@ -162,7 +160,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
-        tasks.add(lesson);
     }
 
     /**
