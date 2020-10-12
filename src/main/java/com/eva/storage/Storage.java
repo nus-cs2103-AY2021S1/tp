@@ -22,7 +22,7 @@ public interface Storage extends EvaStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getEvaDatabaseFilePath();
+    Path getPersonDatabaseFilePath();
 
     @Override
     Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException;

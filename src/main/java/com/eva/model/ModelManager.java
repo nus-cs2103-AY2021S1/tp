@@ -76,13 +76,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getEvaDatabaseFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getPersonDatabaseFilePath();
     }
 
     @Override
     public void setEvaDatabaseFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setPersonDatabaseFilePath(addressBookFilePath);
     }
 
     //=========== person database ================================================================================
