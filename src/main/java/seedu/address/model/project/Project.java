@@ -2,7 +2,6 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -80,7 +79,9 @@ public class Project {
     public boolean addTask(Task task) {
         return tasks.add(task);
     }
-    public void updateTaskFilter(Predicate<Task> predicate) {this.taskFilter = predicate;}
+    public void updateTaskFilter(Predicate<Task> predicate) {
+        this.taskFilter = predicate;
+    }
 
     /**
      * Gets all attendees of a specific meeting

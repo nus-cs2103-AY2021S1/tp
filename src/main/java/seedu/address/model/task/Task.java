@@ -57,18 +57,33 @@ public class Task {
         return progress;
     }
 
-    public Set<Participation> getAssignees() {return assignees;}
+    public Set<Participation> getAssignees() {
+        return assignees;
+    }
 
     public boolean isDone() {
         return isDone;
     }
 
-    public boolean hasAssignee(Participation assignee) {return assignees.contains(assignee);}
+    public boolean hasAssignee(Participation assignee) {
+        return assignees.contains(assignee);
+    }
 
-    public boolean hasAssigneeWhoseNameIs(String assigneeName) {return assignees.stream()
-        .anyMatch(assignee -> assignee.getPerson().getPersonName().equals(assigneeName));}
+    /**
+     * Checks if the task has an assignee whose name matches the given name.
+     *
+     * @param assigneeName the assignee's name to look for
+     * @return true if this task has an assignee whose name matches the given name,
+     * and false otherwise
+     */
+    public boolean hasAssigneeWhoseNameIs(String assigneeName) {
+        return assignees.stream()
+            .anyMatch(assignee -> assignee.getPerson().getPersonName().equals(assigneeName));
+    }
 
-    public boolean addAssignee(Participation assignee) {return assignees.add(assignee);}
+    public boolean addAssignee(Participation assignee) {
+        return assignees.add(assignee);
+    }
 
     /**
      * Returns true if all fields are equal.
@@ -83,10 +98,10 @@ public class Task {
         }
         Task task = (Task) o;
         return Double.compare(task.getProgress(), getProgress()) == 0
-                && getTaskName().equals(task.getTaskName())
-                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
-                && getPublishDate().equals(task.getPublishDate())
-                && Objects.equals(getDeadline(), task.getDeadline());
+            && getTaskName().equals(task.getTaskName())
+            && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
+            && getPublishDate().equals(task.getPublishDate())
+            && Objects.equals(getDeadline(), task.getDeadline());
     }
 
     @Override
