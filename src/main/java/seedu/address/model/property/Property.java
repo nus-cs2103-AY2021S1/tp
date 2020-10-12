@@ -14,7 +14,7 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
-    private static Id DEFAULT_ID = new Id("P", 0);
+    private static final Id DEFAULT_ID = new Id("P", 0);
 
     // Identity fields
     private final Id propertyId;

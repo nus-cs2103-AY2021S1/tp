@@ -164,7 +164,8 @@ class JsonAdaptedProperty {
      */
     private IsRental toModelIsRental() throws IllegalValueException {
         if (isRental == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IsRental.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    IsRental.class.getSimpleName()));
         }
         if (!IsRental.isValidIsRental(isRental)) {
             throw new IllegalValueException(IsRental.MESSAGE_CONSTRAINTS);
