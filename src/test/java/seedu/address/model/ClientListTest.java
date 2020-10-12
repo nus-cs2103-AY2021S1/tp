@@ -46,7 +46,9 @@ public class ClientListTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withClientSources(VALID_CLIENTSOURCE_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         ClientListStub newData = new ClientListStub(newPersons);
@@ -73,7 +75,9 @@ public class ClientListTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInClientList_returnsTrue() {
         clientList.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withClientSources(VALID_CLIENTSOURCE_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND)
                 .build();
         assertTrue(clientList.hasPerson(editedAlice));
     }
