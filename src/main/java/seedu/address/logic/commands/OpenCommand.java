@@ -14,7 +14,6 @@ import seedu.address.model.tag.TagName;
 
 public class OpenCommand extends Command {
 
-
     public static final String COMMAND_WORD = "open";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the file specified in the filepath of a tag. "
@@ -25,6 +24,7 @@ public class OpenCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "File opened! Tag: %1$s";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag '%s' not found!";
+    public static final String MESSAGE_FILE_NOT_FOUND = "The file: %s doesn't exist.";
 
     private final TagName tagName;
 
