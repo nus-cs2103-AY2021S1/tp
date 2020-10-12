@@ -4,11 +4,15 @@
 }
 
 .background-pink {
-    -fx-background-color:  derive(#F4C2C2, 80%)
+    -fx-background-color:  derive(#F4C2C2, 80%);
 }
 
 .background-mud {
     -fx-background-color: #534B4B;
+}
+
+.background-babyBlue {
+    -fx-background-color: #89CFF0;
 }
 
 .list-pill-cell {
@@ -17,6 +21,17 @@
     -fx-border-width:3;
     -fx-border-color: #707070;
     -fx-background-color: #F4C2C2;
+}
+
+.table-column {
+    -fx-background-color: #F4C2C2;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-text-fill: black;
+}
+
+.bold {
+    -fx-font-weight: bold;
 }
 
 .rounded-border {
@@ -397,4 +412,27 @@
     -fx-border-color: black;
     -fx-background-color: white;
     -fx-padding: 0 15 0 20;
+}
+
+#helpWindow {
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-text-fill: white;
+    -fx-background-color: #89CFF0;
+    -fx-border-radius: 20;
+}
+
+#pill-button {
+    -fx-background-color: #89CFF0;
+    -fx-background-radius: 20;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 20;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+
+.centerItems {
+    -fx-alignment: CENTER;
 }
