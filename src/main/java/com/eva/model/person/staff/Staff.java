@@ -34,6 +34,10 @@ public class Staff extends Person {
         this.leaves.addAll(leaves);
     }
 
+    public Staff(Person person, Set<Leave> leaves) {
+        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(), leaves);
+    }
+
     /**
      * Returns an immutable leave set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

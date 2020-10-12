@@ -7,25 +7,27 @@ import java.util.logging.Logger;
 
 import com.eva.commons.core.LogsCenter;
 import com.eva.commons.exceptions.DataConversionException;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.UserPrefs;
+import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of EvaDatabase data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final EvaStorage evaStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code EvaStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(EvaStorage evaStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.evaStorage = evaStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,33 +49,57 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ EvaDatabase methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getEvaDatabaseFilePath() {
+        return evaStorage.getEvaDatabaseFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase() throws DataConversionException, IOException {
+        return readPersonDatabase(evaStorage.getEvaDatabaseFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyEvaDatabase<Person>> readPersonDatabase(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return evaStorage.readPersonDatabase(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void savePersonDatabase(ReadOnlyEvaDatabase<Person> addressBook) throws IOException {
+        savePersonDatabase(addressBook, evaStorage.getEvaDatabaseFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void savePersonDatabase(ReadOnlyEvaDatabase<Person> addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        evaStorage.savePersonDatabase(addressBook, filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase() throws DataConversionException, IOException {
+        return readStaffDatabase(evaStorage.getEvaDatabaseFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEvaDatabase<Staff>> readStaffDatabase(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return evaStorage.readStaffDatabase(filePath);
+    }
+
+    @Override
+    public void saveStaffDatabase(ReadOnlyEvaDatabase<Staff> addressBook) throws IOException {
+        saveStaffDatabase(addressBook, evaStorage.getEvaDatabaseFilePath());
+    }
+
+    @Override
+    public void saveStaffDatabase(ReadOnlyEvaDatabase<Staff> addressBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        evaStorage.saveStaffDatabase(addressBook, filePath);
     }
 
 }

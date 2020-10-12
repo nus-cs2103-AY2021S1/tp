@@ -5,11 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyEvaDatabase <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
-Class ReadOnlyAddressBook
+Class ReadOnlyEvaDatabase
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -32,7 +32,7 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+AddressBook .up.|> ReadOnlyEvaDatabase
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
