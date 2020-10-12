@@ -1,4 +1,4 @@
-package seedu.stock.model.util;
+package seedu.stock.commons.util;
 
 public class SuggestionUtil {
     public static int min(int x, int y, int z) {
