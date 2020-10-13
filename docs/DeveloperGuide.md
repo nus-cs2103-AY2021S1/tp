@@ -287,37 +287,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the System is the Bamboo and the Actor is the user, unless specified otherwise)
 
-**Use case: Add an expense**
+####Use case U1: Add an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
-* User is logged in
+* User is logged in.
 
 **MSS**
 
-1. User requests to add an expense
-2. Bamboo adds the expense
-3. Bamboo shows the balance
+1. User requests to add an expense.
+2. Bamboo adds the expense.
+3. Bamboo lists all expenses and shows the new budget balance.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
-* 1a. The given command format is invalid
-    * 1a1. Bamboo shows an error message
+* 1a. The given command format is invalid.
+    * 1a1. Bamboo shows an error message.
       Use case ends.
 
-**Use case: Top-up budget**
+####Use case U2: Top-up budget
 
 **Preconditions:** (Needed for v1.2.1)
 
-- User is logged in
+- User is logged in.
 
 **MSS**
 
 1. User requests to top up budget by an amount he provides.
 2. Bamboo tops up the user's budget by the amount given by the user.
-3. Bamboo shows the balance.
+3. Bamboo lists all expenses and shows the budget balance.
 
     Use case ends.
 
@@ -327,19 +327,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Bamboo shows an error message. 
       Use case ends.
 
-**Use case: Delete an expense**
+####Use case U3: Delete an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
-* User is logged in
+* User is logged in.
 
 **MSS**
 
-1. User requests to list expenses
-2. Bamboo shows a list of expenses
-3. User requests to delete a specific expense in the list
-4. Bamboo deletes the expense
-5. Bamboo shows the balance
+1. User requests to list expenses (U5).
+2. Bamboo shows a list of expenses.
+3. User requests to delete a specific expense in the list.
+4. Bamboo deletes the expense.
+5. Bamboo lists all expenses and shows the budget balance.
 
    Use case ends.
 
@@ -349,24 +349,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given expense does not exist.
     * 3a1. Bamboo shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Edit an expense**
+####Use case U4: Edit an expense
 
 **Preconditions:** (Needed for v1.2.1)
 
-* User is logged in
+* User is logged in.
 
 **MSS**
 
-1. User requests to list expenses
-2. Bamboo shows a list of expenses
-3. User requests to edit an expense with the new fields given
-4. Bamboo edits the expense
-5. Bamboo shows the new balance
+1. User requests to list expenses (U5).
+2. Bamboo shows a list of expenses.
+3. User requests to edit an expense with the new fields given.
+4. Bamboo edits the expense.
+5. Bamboo feedbacks to user what was changed.
+6. Bamboo lists all expenses and shows the new budget balance.
+   Use case ends.
 
 **Extensions**
 
@@ -375,6 +377,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends
 * 3a. The given field value is invalid.
     * 3a1. Bamboo shows an error message. 
+      Use case ends.
+
+####Use case U5: List all expenses
+
+**Preconditions:** (Needed for v1.2.1)
+
+* User is logged in.
+
+**MSS**
+
+1. User requests to list all expenses.
+2. Bamboo shows a list of all expenses recorded and the current budget balance.
+
+   Use case ends.
+
+####Use case U6: Add a remark to an expense
+
+**Preconditions:** (Needed for v1.2.1)
+* User is logged in.
+* Expense List is not empty.
+
+**MSS**
+1. User requests to add a remark to specified expense item.
+2. Bamboo adds remark to specified expense item.
+3. Bamboo lists all expenses and shows the budget balance.
+   Use case ends.
+   
+**Extensions**
+
+* 1a. The given expense does not exist.
+    * 1a1. Bamboo shows an error message.
+    Use case ends.
+    
+####Use case U7: Find an expense
+
+**Preconditions:** (Needed for v1.2.1)
+
+* User is logged in.
+
+**MSS**
+
+1. User requests to find expense by certain identifiers and search terms.
+2. Bamboo shows a list of expenses which match the identifiers and search terms.
+3. Bamboo lists all expenses and shows the new budget balance.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message. 
       Use case ends.
 
 ### Non-Functional Requirement
@@ -396,7 +448,7 @@ Process Requirements:
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Expense**: A single instance of expenditure containing a description, amount spent, date, and category (coming soon). Expenses are subtracted from the user's **budget**.
+- **Expense**: A single instance of expenditure containing a description, amount spent, date, and category. Expenses are subtracted from the user's **budget**.
 - **Budget**: The amount a user sets aside to spend.
 - **Budget Balance**: The amount of budget left after deducting all expenses.
 
