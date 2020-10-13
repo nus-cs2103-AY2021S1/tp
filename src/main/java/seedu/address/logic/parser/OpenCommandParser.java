@@ -23,26 +23,27 @@ public class OpenCommandParser implements Parser<OpenCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public OpenCommand parse(String args) throws ParseException {
+
+        Index index;
+
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
+        }
+        final String openType = matcher.group("commandWord");
+        final String indexString = matcher.group("arguments");
+
         try {
-            final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
-            if (!matcher.matches()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
-            }
-            final String openType = matcher.group("commandWord");
-            final String indexString = matcher.group("arguments");
-
-            Index index = ParserUtil.parseIndex(indexString);
-
-            switch(openType) {
-            case TYPE_CASE:
-                return new OpenCaseCommand(index);
-            default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
-            }
-
+            index = ParserUtil.parseIndex(indexString);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE), pe);
+        }
+        switch(openType) {
+        case TYPE_CASE:
+            return new OpenCaseCommand(index);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
         }
     }
 }
