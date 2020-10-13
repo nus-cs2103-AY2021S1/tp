@@ -20,7 +20,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.UnpaidCommand;
+import seedu.address.logic.commands.OverdueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
@@ -93,8 +93,8 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_unpaid() throws Exception {
-        assertTrue(parser.parseCommand(UnpaidCommand.COMMAND_WORD) instanceof UnpaidCommand);
-        assertTrue(parser.parseCommand(UnpaidCommand.COMMAND_WORD + " 3") instanceof UnpaidCommand);
+        assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD) instanceof OverdueCommand);
+        assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD + " 3") instanceof OverdueCommand);
     }
 
     @Test

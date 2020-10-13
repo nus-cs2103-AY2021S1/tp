@@ -9,9 +9,9 @@ import seedu.address.model.student.admin.OverdueFeePredicate;
 /**
  * Finds and lists all students who have not paid their fees in more than a month.
  */
-public class UnpaidCommand extends Command {
+public class OverdueCommand extends Command {
 
-    public static final String COMMAND_WORD = "unpaid";
+    public static final String COMMAND_WORD = "overdue";
 
     @Override
     public CommandResult execute(Model model) {
