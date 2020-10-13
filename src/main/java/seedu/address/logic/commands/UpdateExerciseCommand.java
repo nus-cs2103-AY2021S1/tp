@@ -30,7 +30,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
     public static final String COMMAND_WORD = "update";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise "
-            + "by the index number used in the displayed exercise list. "
+            + "by the index number used in the displayed exercise list.\n "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "EXERCISE] "
@@ -51,7 +51,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
     private final EditExerciseDescriptor editExerciseDescriptor;
 
     /**
-     * @param index of the exercise in the filtered exercise list to edit
+     * @param index                  of the exercise in the filtered exercise list to edit
      * @param editExerciseDescriptor details to edit the exercise with
      */
     public UpdateExerciseCommand(Index index, EditExerciseDescriptor editExerciseDescriptor) {
@@ -93,7 +93,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
 
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
         Description updatedDescription = editExerciseDescriptor.getDescription()
-                                                                    .orElse(exerciseToEdit.getDescription());
+                .orElse(exerciseToEdit.getDescription());
         Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
         Calories updatedCalories = editExerciseDescriptor.getCalories().orElse(exerciseToEdit.getCalories());
 
@@ -131,7 +131,8 @@ public class UpdateExerciseCommand extends CommandForExercise {
         private Description description;
         private Calories calories;
 
-        public EditExerciseDescriptor() {}
+        public EditExerciseDescriptor() {
+        }
 
         /**
          * Copy constructor.

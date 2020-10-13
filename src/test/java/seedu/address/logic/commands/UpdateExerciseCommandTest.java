@@ -45,7 +45,7 @@ class UpdateExerciseCommandTest {
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
         ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
-                                                            new UserPrefs());
+                new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
@@ -61,15 +61,15 @@ class UpdateExerciseCommandTest {
                 .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
 
         UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder()
-                                                                        .withName(VALID_NAME_PUSH_UP)
-                                                                        .withDescription(VALID_DESCRIPTION_PUSH_UP)
+                .withName(VALID_NAME_PUSH_UP)
+                .withDescription(VALID_DESCRIPTION_PUSH_UP)
                 .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
         UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
         ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
-                                                                new UserPrefs());
+                new UserPrefs());
 
         expectedModel.setExercise(lastExercise, editedExercise);
 
@@ -79,13 +79,13 @@ class UpdateExerciseCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE,
-                                                        new UpdateExerciseCommand.EditExerciseDescriptor());
+                new UpdateExerciseCommand.EditExerciseDescriptor());
         Exercise editedExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
         ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
-                                                                new UserPrefs());
+                new UserPrefs());
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
     }
@@ -102,7 +102,7 @@ class UpdateExerciseCommandTest {
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
         ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
-                                                                new UserPrefs());
+                new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);

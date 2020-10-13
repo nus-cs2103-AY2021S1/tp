@@ -92,6 +92,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -201,9 +202,11 @@ public class ParserUtil {
         if (hasFileWithSameName(trimPathDirectory)) {
             throw new ParseException("A file with same name exists. Please key in a different name");
         }
+        /*
         if (!hasRightToCreate(trimPathDirectory)) {
             throw new ParseException("You don't have right to create at the specified location");
         }
+         */
 
         return Paths.get(trimPathDirectory);
     }
@@ -214,6 +217,7 @@ public class ParserUtil {
     }
 
     private static boolean hasRightToCreate(String filePath) {
-        return new File(filePath).canWrite();
+        return false;
+        //return new File(filePath).canWrite();
     }
 }

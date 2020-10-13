@@ -10,7 +10,6 @@ public class Description {
 
     /**
      * Constructs a {@code Description}.
-     *
      * @param description A valid name.
      */
     public Description(String description) {

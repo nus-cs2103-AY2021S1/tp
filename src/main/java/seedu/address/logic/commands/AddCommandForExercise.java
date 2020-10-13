@@ -13,14 +13,14 @@ import seedu.address.model.exercise.Exercise;
 /**
  * Adds an exercise to Calo.
  */
-public class AddCommand extends CommandForExercise {
+public class AddCommandForExercise extends CommandForExercise {
 
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Calo. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION"
             + PREFIX_DATE + "DATE "
             + "[" + PREFIX_CALORIES + "CALORIES]\n"
             + "Example: " + COMMAND_WORD + " "
@@ -30,25 +30,16 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_CALORIES + "100 kcal ";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book";
 
     private final Exercise toAdd;
 
-    /**
-     * Creates an AddCommand to add the specified {@code Exercise}
-     */
-    public AddCommand(Exercise exercise) {
-        requireNonNull(exercise);
-        toAdd = exercise;
+    public AddCommandForExercise(Exercise toAdd) {
+        this.toAdd = toAdd;
     }
 
     @Override
     public CommandResult execute(ExerciseModel model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasExercise(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
-        }
 
         model.addExercise(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
@@ -58,7 +49,7 @@ public class AddCommand extends CommandForExercise {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd)); // state check
+                && toAdd.equals(((AddCommandForExercise) other).toAdd)); // state check
     }
 
 }
