@@ -111,6 +111,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //temp only until null error is resolved
         //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

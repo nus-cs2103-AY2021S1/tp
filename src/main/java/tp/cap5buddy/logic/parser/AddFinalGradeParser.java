@@ -1,6 +1,6 @@
 package tp.cap5buddy.logic.parser;
 
-import tp.cap5buddy.logic.commands.AddFinalGradeCommand;
+// import tp.cap5buddy.logic.commands.AddFinalGradeCommand;
 import tp.cap5buddy.logic.commands.Command;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 
@@ -16,9 +16,10 @@ public class AddFinalGradeParser extends Parser {
      */
     public Command parse(String userInput) throws ParseException {
         Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_NAME_PREFIX, PrefixList.GRADE_RESULTS_PREFIX);
-        String[] parsedArguments = token.tokenize();
-        String modName = parsedArguments[0];
-        double gradeResults = Double.parseDouble(parsedArguments[1]);
-        return new AddFinalGradeCommand(modName, gradeResults);
+        // String[] parsedArguments = token.tokenize();
+        //String modName = parsedArguments[0];
+        //double gradeResults = Double.parseDouble(parsedArguments[1]);
+        //return new AddFinalGradeCommand(modName, gradeResults);
+        return null;
     }
 }
