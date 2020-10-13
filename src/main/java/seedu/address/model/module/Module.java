@@ -53,6 +53,11 @@ public class Module {
     public Set<Person> getInstructors() {
         return Collections.unmodifiableSet(instructors);
     }
+
+    public void assignInstructor(Person instructor) {
+        this.instructors.add(instructor);
+    }
+
     /**
      * Returns true if either the code or the name of the module contains the specified keywords.
      */

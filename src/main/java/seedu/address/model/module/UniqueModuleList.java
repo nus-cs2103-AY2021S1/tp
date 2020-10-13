@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
@@ -77,6 +78,22 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Assigns an instructor to the module with the equivalent module code from the list.
+     * The module with the module code must exist in the list.
+     */
+    public void assignInstructor(Person instructor, ModuleCode toAssign) {
+        requireAllNonNull(instructor, toAssign);
+        int indexOfModuleToBeAssigned = 0;
+        while (!internalList.get(indexOfModuleToBeAssigned).hasModuleCode(toAssign)
+                && indexOfModuleToBeAssigned < internalList.size()) {
+            indexOfModuleToBeAssigned++;
+        }
+        Module toSet = internalList.get(indexOfModuleToBeAssigned);
+        toSet.assignInstructor(instructor);
+        internalList.set((indexOfModuleToBeAssigned), toSet);
+    }
+
+    /**
      * Removes the equivalent module from the list.
      * The module must exist in the list.
      */
@@ -89,7 +106,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
     /**
      * Removes the module with the equivalent module code from the list.
-     * The module with the module code must exist.
+     * The module with the module code must exist in the list.
      */
     public void removeModuleWithCode(ModuleCode toRemove) {
         requireNonNull(toRemove);

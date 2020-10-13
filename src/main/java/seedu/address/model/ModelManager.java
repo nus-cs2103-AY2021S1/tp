@@ -139,6 +139,11 @@ public class ModelManager implements Model {
         addressBook.addModule(module);
     }
 
+    @Override
+    public void assignInstructor(Person instructor, ModuleCode moduleCode) {
+        addressBook.assignInstructor(instructor, moduleCode);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

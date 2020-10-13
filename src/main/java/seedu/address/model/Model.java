@@ -84,7 +84,7 @@ public interface Model {
 
     /**
      * Removes the module with the given module code {@code targetModuleCode}.
-     * Module with the {@code targetModuleCode} must exist in the address book.
+     * The module with the {@code targetModuleCode} must exist in the address book.
      */
     void deleteMod(ModuleCode targetModuleCode);
 
@@ -115,6 +115,13 @@ public interface Model {
      * {@code module} must not already exist in the address book.
      */
     void addModule(Module module);
+
+
+    /**
+     * Assigns an {@code instructor} to the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    void assignInstructor(Person instructor, ModuleCode moduleCode);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Module> getFilteredModuleList();

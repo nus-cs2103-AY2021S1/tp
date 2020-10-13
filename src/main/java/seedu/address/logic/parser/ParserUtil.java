@@ -155,6 +155,19 @@ public class ParserUtil {
         }
         return new ModuleCode(trimmedModuleCode);
     }
+
+    /**
+     * Parses {@code Collection<String> moduleCodes} into a {@code Set<ModuleCode>}.
+     */
+    public static Set<ModuleCode> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+        final Set<ModuleCode> codeSet = new HashSet<>();
+        for (String code : moduleCodes) {
+            codeSet.add(parseModuleCode(code));
+        }
+        return codeSet;
+    }
+
     /**
      * Parses a {@code String moduleName} into a {@code ModuleName}.
      * Leading and trailing whitespaces will be trimmed.
