@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
@@ -82,6 +83,7 @@ class JsonAdaptedProject {
             projectProjectTags.add(projectTag.toModelType());
         }
         final List<Task> projectTasks = new ArrayList<>();
+        final List<Meeting> projectMeetings = new ArrayList<>();
         for (JsonAdaptedTask task : projectOccupied) {
             projectTasks.add(task.toModelType());
         }
@@ -123,8 +125,9 @@ class JsonAdaptedProject {
 
         final Set<ProjectTag> modelProjectTags = new HashSet<>(projectProjectTags);
         final Set<Task> modelTasks = new HashSet<>(projectTasks);
+        final Set<Meeting> modelMeetings = new HashSet<>(projectMeetings);
         return new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
-            modelProjectTags, new HashMap<>(), modelTasks);
+            modelProjectTags, new HashMap<>(), modelTasks, modelMeetings);
     }
 
 }

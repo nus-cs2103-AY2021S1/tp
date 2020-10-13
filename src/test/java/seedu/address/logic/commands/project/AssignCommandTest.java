@@ -33,7 +33,8 @@ public class AssignCommandTest {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         Project projectCopy = new Project(project.getProjectName(), project.getDeadline(), project.getRepoUrl(),
-                project.getProjectDescription(), project.getProjectTags(), new HashMap<>(), project.getTasks());
+                project.getProjectDescription(), project.getProjectTags(), new HashMap<>(),
+                project.getTasks(), project.getMeetings());
         model.enter(project);
         model.setProject(project, projectCopy);
 
@@ -84,8 +85,9 @@ public class AssignCommandTest {
 
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_TASK_SUCCESS, taskToAssign, assignee);
 
-        Project projectCopy = new Project(project.getProjectName(), project.getDeadline(), project.getRepoUrl(),
-                project.getProjectDescription(), project.getProjectTags(), new HashMap<>(), project.getTasks());
+        Project projectCopy = new Project(project.getProjectName(), project.getDeadline(),
+                project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
+                new HashMap<>(), project.getTasks(), project.getMeetings());
         projectCopy.addParticipation(ALICE);
         // TODO: After refining Participation getters and setters this part can be done fully via getters
         expectedModel.setProject(project, projectCopy);

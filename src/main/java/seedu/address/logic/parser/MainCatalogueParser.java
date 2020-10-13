@@ -16,7 +16,9 @@ import seedu.address.logic.commands.catalogue.ListCommand;
 import seedu.address.logic.commands.catalogue.StartCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
+import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.FilterCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
@@ -108,13 +110,19 @@ public class MainCatalogueParser {
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
 
-            case AddCommand.COMMAND_WORD:
-            case EditCommand.COMMAND_WORD:
+            case AddTaskCommand.COMMAND_WORD:
+                return new AddTaskCommandParser().parse(arguments);
+
+            case EditTaskCommand.COMMAND_WORD:
+                return new EditTaskCommandParser().parse(arguments);
+
             case DeleteCommand.COMMAND_WORD:
             case ClearCommand.COMMAND_WORD:
             case FindCommand.COMMAND_WORD:
             case ListCommand.COMMAND_WORD:
             case StartCommand.COMMAND_WORD:
+            case AddCommand.COMMAND_WORD:
+            case EditCommand.COMMAND_WORD:
                 throw new InvalidScopeException(Status.CATALOGUE, Status.PROJECT);
 
             default:
