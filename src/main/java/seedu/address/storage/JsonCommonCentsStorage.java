@@ -53,7 +53,7 @@ public class JsonCommonCentsStorage implements CommonCentsStorage {
      * @see #getCommonCentsFilePath()
      */
     @Override
-    public Optional<ReadOnlyCommonCents> readCommonCents(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyCommonCents> readCommonCents(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableCommonCents> jsonCommonCents = JsonUtil.readJsonFile(
@@ -78,7 +78,7 @@ public class JsonCommonCentsStorage implements CommonCentsStorage {
      */
     @Override
     public void saveCommonCents(ReadOnlyCommonCents commonCents) throws IOException {
-
+        saveCommonCents(commonCents, filepath);
     }
 
     /**

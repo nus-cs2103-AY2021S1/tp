@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     // private PersonListPanel personListPanel;
 
     // TODO: Change this to EntryListPanel
-    private PersonListPanel entryListPanel;
+    private EntryListPanel entryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -123,8 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // TODO: change logic.getFilteredList()
-        // entryListPanel = new PersonListPanel(logic.getFilteredAccountList());
+        entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -177,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getEntryListPanel() {
+    public EntryListPanel getEntryListPanel() {
         return entryListPanel;
     }
 
