@@ -1,9 +1,9 @@
 package com.eva.model.person.applicant;
 
-import com.eva.testutil.ApplicantBuilder;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import com.eva.testutil.ApplicantBuilder;
 
 public class ApplicantTest {
 
