@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
 
+
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
