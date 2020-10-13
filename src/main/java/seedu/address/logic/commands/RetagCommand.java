@@ -30,7 +30,7 @@ public class RetagCommand extends Command {
 
     public static final String MESSAGE_RETAG_TAG_SUCCESS = "Retagged Tag: %s to Tag: %s";
     public static final String MESSAGE_OLD_TAG_NOT_FOUND = " %s tag not found!"
-            + "Please make sure that the old tag is present before retagging.";
+            + " Please make sure that the old tag is present before retagging.";
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tag name!";
 
     private final TagName newTagName;
@@ -64,17 +64,16 @@ public class RetagCommand extends Command {
             throw new CommandException(String.format(MESSAGE_OLD_TAG_NOT_FOUND, oldTagName.toString()));
         }
 
-        // Get oldTagName
-        Tag tagToChange = oldTagList.get(0);
-        // Get file path
-        FileAddress fileAddress = tagToChange.getFileAddress();
-
         // Check if newTagName is in tag list
         List<Tag> newTagList = model.findFilteredTagList(new TagNameEqualsKeywordPredicate(newTagName));
         if (!newTagList.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_TAG));
         }
 
+        // Get oldTagName
+        Tag tagToChange = oldTagList.get(0);
+        // Get file path
+        FileAddress fileAddress = tagToChange.getFileAddress();
         // Delete old tag
         model.deleteTag(tagToChange);
 
