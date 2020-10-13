@@ -112,7 +112,7 @@ Examples:
 
 Finds a task by a set of defined attribute by the user
 
-Format: `find [ATTRIBUTE:SEARCH_PHRASE]+`
+Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
 Available attributes in v1.2 include:
 * `title:` find all tasks with the given title
@@ -121,8 +121,9 @@ Available attributes in v1.2 include:
 * `date:` find all tasks with the given date
 
 Examples:
-* `find title:play games` will list all tasks that are close matched to the title "play games"
+* `find title:play games` will list all tasks with title including the phrase `play games`
 * `find type:todo` will list all tasks with the type `todo`
+* `find title:dinner type:todo` will list all tasks with the type `todo` and title that includes `dinner`
 
 ### Exit the program : `exit`
 
