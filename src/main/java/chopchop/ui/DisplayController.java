@@ -47,10 +47,8 @@ public class DisplayController extends UiPart<Region> {
      * Displays the IngredientViewPanel on the swappable display region.
      */
     protected void displayIngredientList() {
-        /*
-        IngredientViewPanel ingredienteViewPanel = new IngredientViewPanel(logic.getFilteredIngredientList());
-        displayListPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
-         */
+        IngredientViewPanel ingredientViewPanel = new IngredientViewPanel(logic.getFilteredIngredientList());
+        displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
     }
 
 
@@ -67,8 +65,8 @@ public class DisplayController extends UiPart<Region> {
      * Displays the recipe panel.
      */
     @FXML
-    public void handleIngredients(ActionEvent event) {
-        // To add more code.
+    public void handleIngredientPanel(ActionEvent event) {
+        displayIngredientList();
     }
 
     /**
