@@ -38,7 +38,7 @@ public class RevenueBuilder {
     /**
      * Sets the {@code Description} of the {@code Revenue} that we are building.
      */
-    public RevenueBuilder withDesciption(Description description) {
+    public RevenueBuilder withDescription(Description description) {
         this.description = description;
         return this;
     }

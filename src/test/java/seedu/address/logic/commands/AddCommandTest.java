@@ -1,35 +1,34 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
-import java.util.Set;
-import java.util.function.Predicate;
 
-import org.junit.jupiter.api.Test;
+import java.util.*;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.util.ArgumentMultimap;
-import seedu.address.logic.parser.util.ParserUtil;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.CommonCents;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyCommonCents;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.account.Account;
-import seedu.address.model.account.ActiveAccount;
-import seedu.address.model.account.ReadOnlyAccount;
-import seedu.address.model.account.entry.Amount;
-import seedu.address.model.account.entry.Description;
+import seedu.address.model.account.*;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
-import seedu.address.model.tag.Tag;
+import seedu.address.testutil.ActiveAccountStub;
+import seedu.address.testutil.ExpenseBuilder;
+import seedu.address.testutil.ModelStub;
+import seedu.address.testutil.RevenueBuilder;
+
 
 public class AddCommandTest {
+
+    private final ExpenseBuilder expenseBuilder = new ExpenseBuilder();
+    private final RevenueBuilder revenueBuilder = new RevenueBuilder();
 
     @Test
     public void constructor_nullEntry_throwsNullPointerException() {
@@ -37,182 +36,100 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_correctFeedback() throws ParseException, CommandException {
-        Tag tagStub = new Tag("stub");
-        ArgumentMultimap argMultimapStub = new ArgumentMultimap();
-        Set<Tag> tagListStub = ParserUtil.parseTags(argMultimapStub.getAllValues(PREFIX_TAG));
-        Expense expenseStub = new Expense(new Description("flowers"), new Amount("20"), tagListStub);
-        Model modelStub = new Model() {
-            @Override
-            public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+    public void execute_entryAcceptedByModel_addSuccessful() {
+//        Model modelStub = new ModelStub();
+//        ActiveAccount activeAccountStub = new ActiveAccountAddSuccessful(new ReadOnlyAccount() {
+//            @Override
+//            public Name getName() {
+//                return null;
+//            }
+//
+//            @Override
+//            public ObservableList<Expense> getExpenseList() {
+//                return new SortedList<Expense>();
+//            }
+//
+//            @Override
+//            public ObservableList<Revenue> getRevenueList() {
+//                return new FilteredList<Revenue>();
+//            }
+//        });
+//        Expense expenseStub = expenseBuilder.build();
+//
+//        CommandResult commandResult = new AddCommand(expenseStub).execute(modelStub, activeAccountStub);
+//
+//        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expenseStub), commandResult.getFeedbackToUser());
+//        assertEquals(true, activeAccountStub.getAccount().hasEntry(expenseStub));
+    }
 
-            }
+    @Test
+    public void execute_typicalExpense() {
+        Expense expenseStub = expenseBuilder.build();
+        Model modelStub = new ModelStub();
+        ActiveAccount activeAccountStub = new ActiveAccountStub();
 
-            @Override
-            public ReadOnlyUserPrefs getUserPrefs() {
-                return null;
-            }
-
-            @Override
-            public GuiSettings getGuiSettings() {
-                return null;
-            }
-
-            @Override
-            public void setGuiSettings(GuiSettings guiSettings) {
-
-            }
-
-            @Override
-            public Path getCommonCentsFilePath() {
-                return null;
-            }
-
-            @Override
-            public void setCommonCentsFilePath(Path commonCentsFilePath) {
-
-            }
-
-            @Override
-            public void setCommonCents(ReadOnlyCommonCents commonCents) {
-
-            }
-
-            @Override
-            public ReadOnlyCommonCents getCommonCents() {
-                return null;
-            }
-
-            @Override
-            public boolean hasAccount(Account account) {
-                return false;
-            }
-
-            @Override
-            public void deleteAccount(Account target) {
-
-            }
-
-            @Override
-            public void addAccount(Account account) {
-
-            }
-
-            @Override
-            public void setAccount(Account target, Account editedAccount) {
-
-            }
-
-            @Override
-            public void setAccount(Account editedAccount) {
-
-            }
-
-            @Override
-            public ObservableList<Account> getFilteredAccountList() {
-                return null;
-            }
-
-            @Override
-            public void updateFilteredAccountList(Predicate<Account> predicate) {
-
-            }
-
-        };
-
-        ActiveAccount activeAccountStub = new ActiveAccount() {
-            @Override
-            public void setActiveAccount(ReadOnlyAccount newActiveAccount) {
-
-            }
-
-            @Override
-            public Account getAccount() {
-                return null;
-            }
-
-            @Override
-            public boolean hasEntry(Entry entry) {
-                return false;
-            }
-
-            @Override
-            public boolean hasExpense(Expense expense) {
-                return false;
-            }
-
-            @Override
-            public boolean hasRevenue(Revenue revenue) {
-                return false;
-            }
-
-            @Override
-            public void deleteExpense(Expense target) {
-
-            }
-
-            @Override
-            public void deleteRevenue(Revenue target) {
-
-            }
-
-            @Override
-            public void addExpense(Expense expense) {
-
-            }
-
-            @Override
-            public void addRevenue(Revenue revenue) {
-
-            }
-
-            @Override
-            public void setExpense(Expense target, Expense editedExpense) {
-
-            }
-
-            @Override
-            public void setRevenue(Revenue target, Revenue editedRevenue) {
-
-            }
-
-            @Override
-            public ObservableList<Expense> getFilteredExpenseList() {
-                return null;
-            }
-
-            @Override
-            public ObservableList<Revenue> getFilteredRevenueList() {
-                return null;
-            }
-
-            /**
-             * Returns an unmodifiable view of the filtered entry list
-             */
-            @Override
-            public ObservableList<Entry> getFilteredEntryList() {
-                return null;
-            }
-
-            @Override
-            public void updateFilteredExpenseList(Predicate<Expense> predicate) {
-
-            }
-
-            @Override
-            public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
-
-            }
-
-            @Override
-            public void updateFilteredEntryList(Predicate<Entry> predicate) {
-
-            }
-        };
-
-        assertEquals(String.format("New entry added!", expenseStub),
+        assertEquals("New entry added! Expense: buying paint supplies Amount: 131.73 Tags: ",
                 new AddCommand(expenseStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
     }
+
+    @Test
+    public void execute_typicalRevenue() {
+        Revenue revenueStub = revenueBuilder.build();
+        Model modelStub = new ModelStub();
+        ActiveAccount activeAccountStub = new ActiveAccountStub();
+
+        assertEquals("New entry added! Revenue: buying paint supplies Amount: 131.73 Tags: ",
+                new AddCommand(revenueStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_typicalRevenue_withTags() {
+        //to maintain immutability of revenueBuilder
+        RevenueBuilder revenueBuilderStub = new RevenueBuilder(revenueBuilder.build());
+        revenueBuilderStub.withTags("bar", "foo");
+        Revenue revenueStub = revenueBuilderStub.build();
+        Model modelStub = new ModelStub();
+        ActiveAccount activeAccountStub = new ActiveAccountStub();
+
+        assertEquals("New entry added! Revenue: buying paint supplies Amount: 131.73 Tags: [bar][foo]",
+                new AddCommand(revenueStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_typicalExpense_withTags() {
+        //to maintain immutability of expenseBuilder
+        ExpenseBuilder expenseBuilderStub = new ExpenseBuilder(expenseBuilder.build());
+        expenseBuilderStub.withTags("bar", "foo");
+        Expense expenseStub = expenseBuilderStub.build();
+
+        Model modelStub = new ModelStub();
+        ActiveAccount activeAccountStub = new ActiveAccountStub();
+
+        assertEquals("New entry added! Expense: buying paint supplies Amount: 131.73 Tags: [bar][foo]",
+                new AddCommand(expenseStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
+    }
+
+}
+
+class ActiveAccountAddSuccessful extends ActiveAccountStub {
+    private final Account activeAccount;
+    private final ArrayList<Entry> entries;
+
+    public ActiveAccountAddSuccessful(ReadOnlyAccount account) {
+        this.activeAccount = new Account(account);
+        this.entries = new ArrayList<>();
+    }
+
+    @Override
+    public void addExpense(Expense expense) {
+        entries.add(expense);
+    }
+
+    @Override
+    public boolean hasEntry(Entry entry) {
+        return entries.contains(entry);
+    }
+
 }
 
 //    @Test

@@ -42,7 +42,7 @@ public class ExpenseBuilder {
     /**
      * Sets the {@code Description} of the {@code Expense} that we are building.
      */
-    public ExpenseBuilder withDesciption(Description description) {
+    public ExpenseBuilder withDescription(Description description) {
         this.description = description;
         return this;
     }

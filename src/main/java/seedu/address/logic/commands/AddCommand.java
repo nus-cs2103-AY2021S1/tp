@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "blogshop "
             + PREFIX_TAG + "eCommerce";
 
-    public static final String MESSAGE_SUCCESS = "New entry added!";
+    public static final String MESSAGE_SUCCESS = "New entry added! %1$s";
 
     public final Entry entry;
 
@@ -47,7 +47,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireNonNull(model);
 
         if (this.entry instanceof Expense) {
