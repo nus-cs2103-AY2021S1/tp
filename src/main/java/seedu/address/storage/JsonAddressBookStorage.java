@@ -50,7 +50,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
-        return null;
+        return Optional.empty();
         // try {
         //    return Optional.of(jsonAddressBook.get().toModelType());
         // } catch (IllegalValueException ive) {

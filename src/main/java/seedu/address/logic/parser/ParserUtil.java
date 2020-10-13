@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -88,5 +90,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ModuleName parseModuleName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ModuleName.isValidName(trimmedName)) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String zoomLink} into a {@code ZoomLink}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code zoomLink} is invalid.
+     */
+    public static ZoomLink parseZoomLink(String zoomLink) throws ParseException {
+        requireNonNull(zoomLink);
+        String trimmedZoomLink = zoomLink.trim();
+        if (!ZoomLink.isValidZoomLink(trimmedZoomLink)) {
+            throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
+        }
+        return new ZoomLink(trimmedZoomLink);
     }
 }
