@@ -15,6 +15,7 @@ import seedu.address.model.order.OrderItem;
  */
 public class DeleteCommand extends Command {
 
+    // TODO: Update delete to remove.
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
