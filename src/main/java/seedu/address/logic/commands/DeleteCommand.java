@@ -1,45 +1,70 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.util.Category;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
+
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes an entry identified using it's displayed index from the revenue/expense list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the Entry identified by the index number used in the displayed entry list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "revenue";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Entry: %1$s";
 
     private final Index targetIndex;
+    private final Category category;
 
-    public DeleteCommand(Index targetIndex) {
+    /**
+     * Creates an DeleteCommand to add the specified {@code Entry}
+     */
+    public DeleteCommand(Index targetIndex, Category category) {
         this.targetIndex = targetIndex;
+        this.category = category;
     }
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
-        /*
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        ObservableList<Expense> expenseList = activeAccount.getFilteredExpenseList();
+        ObservableList<Revenue> revenueList = activeAccount.getFilteredRevenueList();
+        int index = targetIndex.getZeroBased();
+        boolean isExpense = this.category.isExpense();
+        boolean isRevenue = this.category.isRevenue();
+        boolean isInvalidIndex = isExpense
+                ? (index >= expenseList.size())
+                : (index >= revenueList.size());
+
+        if (isInvalidIndex) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        */
-        String stub = "stub";
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, stub));
+        if (isExpense) {
+            Expense toDelete = expenseList.get(index);
+            activeAccount.deleteExpense(toDelete);
+        } else if (isRevenue) {
+            Revenue toDelete = revenueList.get(index);
+            activeAccount.deleteRevenue(toDelete);
+        }
+        model.setAccount(activeAccount.getAccount());
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, category));
     }
 
     @Override

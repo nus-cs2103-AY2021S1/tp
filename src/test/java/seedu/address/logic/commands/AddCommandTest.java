@@ -27,7 +27,6 @@ import seedu.address.model.account.entry.Description;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 public class AddCommandTest {
@@ -119,10 +118,6 @@ public class AddCommandTest {
 
             }
 
-            @Override
-            public ObservableList<Person> getFilteredPersonList() {
-                return null;
-            }
         };
 
         ActiveAccount activeAccountStub = new ActiveAccount() {
@@ -191,6 +186,14 @@ public class AddCommandTest {
                 return null;
             }
 
+            /**
+             * Returns an unmodifiable view of the filtered entry list
+             */
+            @Override
+            public ObservableList<Entry> getFilteredEntryList() {
+                return null;
+            }
+
             @Override
             public void updateFilteredExpenseList(Predicate<Expense> predicate) {
 
@@ -198,6 +201,11 @@ public class AddCommandTest {
 
             @Override
             public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
+
+            }
+
+            @Override
+            public void updateFilteredEntryList(Predicate<Entry> predicate) {
 
             }
         };

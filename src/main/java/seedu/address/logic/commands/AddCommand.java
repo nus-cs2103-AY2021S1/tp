@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_AMOUNT + "AMOUNT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_CATEGORY + "Revenue "
+            + PREFIX_CATEGORY + "revenue "
             + PREFIX_DESCRIPTION + "Sale of clothes "
             + PREFIX_AMOUNT + "200 "
             + PREFIX_TAG + "blogshop "
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     public final Entry entry;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Entry}
      */
     public AddCommand(Entry entry) {
         requireNonNull(entry);
@@ -48,7 +48,6 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
-
         requireNonNull(model);
 
         if (this.entry instanceof Expense) {
