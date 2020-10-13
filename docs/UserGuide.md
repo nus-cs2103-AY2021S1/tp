@@ -142,7 +142,7 @@ Examples:
 
 ### Finding modules : `findmod`
 
-Finds all  modules whose code or name contain the given keywords.
+Finds all modules whose codes or names contain the given keywords.
 
 Format : `findmod KEYWORD [MORE_KEYWORDS]`
 
