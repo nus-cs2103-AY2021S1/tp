@@ -43,19 +43,19 @@ public class ExerciseBookParser {
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
-            
+
         case ListCommand.COMMAND_WORD:
              return new ListCommand();
-             
+
         case UpdateExerciseCommand.COMMAND_WORD:
             return new UpdateExerciseCommandParser().parse(arguments);
-            
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-            
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

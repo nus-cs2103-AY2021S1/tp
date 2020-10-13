@@ -65,7 +65,7 @@ public class LogicManagerTest {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-    
+
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {

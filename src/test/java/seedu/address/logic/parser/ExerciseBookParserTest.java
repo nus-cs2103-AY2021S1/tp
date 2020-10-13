@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExerciseBookParserTest {
 
     private final ExerciseBookParser parser = new ExerciseBookParser();
-    
+
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
