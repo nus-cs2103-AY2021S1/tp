@@ -102,11 +102,6 @@ public class RemoveCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
-            return false;
-        }
-
         // state check
         RemoveCommand r = (RemoveCommand) other;
         return index.equals(r.index)
