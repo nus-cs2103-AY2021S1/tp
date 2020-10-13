@@ -14,7 +14,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.LogicForExercise;
-import seedu.address.logic.LogicManager;
 import seedu.address.logic.LogicManagerForExercise;
 import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
