@@ -54,6 +54,12 @@
           <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
+        <StackPane VBox.vgrow="NEVER" fx:id="budgetDisplayPlaceholder" styleClass="pane-with-border">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
