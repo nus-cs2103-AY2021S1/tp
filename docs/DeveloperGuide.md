@@ -55,6 +55,7 @@ Coming soon.
 **Target user profile**:
 
 Insurance Agents - Financial Advisors
+
 Insurance agents represent insurance companies, such as AIA and Prudential, as their sales person. They bring in 
 clients and promote various insurance schemes. Their clients could be individuals or other businesses. Insurance agents’ 
 mode of conducting their job generally involves talking directly to these clients in a face-to-face setting and giving 
