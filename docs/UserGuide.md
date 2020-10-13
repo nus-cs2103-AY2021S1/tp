@@ -132,7 +132,7 @@ Examples:
 * `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
 
-### Finding students with overdue fees: `unpaid`
+### Finding students with overdue fees: `overdue`
 
 Finds students whose date of last payment is more than a month ago. (Written by: Ying Gao)
 
