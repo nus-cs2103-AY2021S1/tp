@@ -10,8 +10,8 @@ import seedu.address.model.tag.TagName;
  */
 public class TagBuilder {
 
-    public static final String DEFAULT_TAG_NAME = "myTag";
-    public static final String DEFAULT_FILE_ADDRESS = "c:\\a\\b\\abc.txt";
+    public static final String DEFAULT_TAG_NAME = "testTag";
+    public static final String DEFAULT_FILE_ADDRESS = "./src/test/java/seedu/address/testutil/testFile.bat";
 
     private TagName tagName;
     private FileAddress fileAddress;

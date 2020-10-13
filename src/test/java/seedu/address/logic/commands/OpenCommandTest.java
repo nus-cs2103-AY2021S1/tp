@@ -1,0 +1,92 @@
+package seedu.address.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
+
+import java.awt.Desktop;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagName;
+import seedu.address.testutil.TagBuilder;
+
+class OpenCommandTest {
+
+    private Model typicalModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    // Change to true to enable testing of opening files
+
+    @Test
+    public void equals() {
+        TagName tagName1 = new TagName("cs2103");
+        TagName tagName2 = new TagName("cs2103T");
+
+        OpenCommand openCommand1 = new OpenCommand(tagName1);
+        OpenCommand openCommand2 = new OpenCommand(tagName2);
+
+        // same object -> returns true
+        assertTrue(openCommand1.equals(openCommand1));
+
+        // same values -> returns true
+        OpenCommand openCommand1Copy = new OpenCommand(tagName1);
+        assertTrue(openCommand1.equals(openCommand1Copy));
+
+        // different types -> returns false
+        assertFalse(openCommand1.equals(1));
+
+        // null -> returns false
+        assertFalse(openCommand1.equals(null));
+
+        // different tagName -> returns false
+        assertFalse(openCommand1.equals(openCommand2));
+    }
+
+    @Test
+    public void execute_tagNotInModel_throwCommandException() {
+        TagName tagName = new TagName("haHaImWrong");
+        OpenCommand openCommand = new OpenCommand(tagName);
+        assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_TAG_NOT_FOUND,
+                tagName.tagName), () -> openCommand.execute(typicalModel));
+    }
+
+    @Test
+    public void execute_tagNameInModel_success() throws Exception {
+        if (Desktop.isDesktopSupported()) {
+            Tag correctTag = new TagBuilder().build();
+            String os = System.getProperty("os.name").toLowerCase();
+            if (!os.startsWith("windows")) {
+                correctTag = new TagBuilder()
+                        .withFileAddress("./src/test/java/seedu/address/testutil/testFile.sh").build();
+            }
+            OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
+            Model modelStubWithAddressBook = new ModelStubWithAddressBook();
+            modelStubWithAddressBook.addTag(correctTag);
+
+            String expectedMessage = String.format(OpenCommand.MESSAGE_SUCCESS, correctTag);
+
+            assertCommandSuccess(openCommand, modelStubWithAddressBook, expectedMessage, modelStubWithAddressBook);
+        }
+    }
+
+    @Test
+    public void execute_tagNameInModelFileNotFound_throwCommandException() {
+        if (Desktop.isDesktopSupported()) {
+            Tag correctTag = new TagBuilder().withTagName("test")
+                    .withFileAddress(".\\src\\test\\java\\seedu\\address\\testutil\\testFileNotHere.bat").build();
+            OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
+            Model modelStubWithAddressBook = new ModelStubWithAddressBook();
+            modelStubWithAddressBook.addTag(correctTag);
+
+            assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND,
+                    correctTag.getFileAddress().value), () -> openCommand.execute(modelStubWithAddressBook));
+        }
+    }
+
+}
