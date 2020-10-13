@@ -142,7 +142,7 @@ Examples:
 
 ### Finding modules : `findmod`
 
-Finds all  modules whose code or name contain the given keyword.
+Finds all  modules whose code or name contain the given keywords.
 
 Format : `findmod KEYWORD [MORE_KEYWORDS]`
 
@@ -158,12 +158,12 @@ Examples :
 * `findmod CS11 security` returns `CS1101S`, `Computer Security`
 * `findmod cs210` returns `CS2100`, `CS2102`, `CS2103`
 
-### Assigning a professor to a module: `assign`
+### Assigning an instructor to modules : `assign`
 
-Assigns a professor to a module.
+Assigns an instructor to one or more modules.
 
 Format: `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]`
-* Assigns all the `MODULE_CODE` to the contact at the specified `INDEX`. All of the `MODULE_CODE` **must exist** in FaculType in the first place.
+* Assigns the instructor at the specified `INDEX` to every `MODULE_CODE` specified. All of the `MODULE_CODE` **must exist** in FaculType in the first place.
 
 Examples :
 * `assign 1 m/CS3233` Assigns the existing module with code `CS3233` to contact at index 1
