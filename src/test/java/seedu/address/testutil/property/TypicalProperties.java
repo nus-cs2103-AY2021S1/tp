@@ -9,7 +9,14 @@ import seedu.address.model.propertybook.PropertyBook;
 
 public class TypicalProperties {
 
-    public static final Property PROPERTY_A = new PropertyBuilder().build();
+    public static final Property PROPERTY_A = new PropertyBuilder()
+            .withPropertyId("P1")
+            .withPropertyType("HDB 2 room")
+            .withPropertyName("Aljunied Building")
+            .withAddress("101 Aljunied Drive")
+            .withAskingPrice(999.99)
+            .withSellerId("S1")
+            .build();;
     public static final Property PROPERTY_B = new PropertyBuilder()
             .withPropertyId("P2")
             .withPropertyType("Condo")
