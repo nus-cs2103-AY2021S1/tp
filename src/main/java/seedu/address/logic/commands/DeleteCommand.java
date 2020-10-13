@@ -11,18 +11,18 @@ import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 
 /**
- * Deletes a task identified using it's displayed index from the task list.
+ * Deletes a assignment identified using it's displayed index from the assignment list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer and not greater than the size of the current task list)\n"
+            + ": Deletes the assignment identified by the index number used in the displayed assignment list.\n"
+            + "Parameters: INDEX (must be a positive integer and not greater than the size of the current assignment list)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment: %1$s";
 
     private final Index targetIndex;
 
