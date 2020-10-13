@@ -6,16 +6,23 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.propertybook.PropertyModel;
+
 
 /**
  * The API of the Model component.
  */
-public interface Model {
+public interface Model extends BidderModel, SellerModel, PropertyModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Bid> PREDICATE_SHOW_ALL_BIDS = unused -> true;
+
+    Predicate<CalendarMeeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
+    //=========== UserPrefs ================================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,6 +44,8 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // --- Address book file path ---
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -45,7 +54,21 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setAddressBookFilePath(Path propertyBookFilePath);
+
+    // --- Property book file path ---
+
+    /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
+
+    /**
+     * Sets the user prefs' property book file path.
+     */
+    void setPropertyBookFilePath(Path propertyBookFilePath);
+
+    //=========== AddressBook ================================================================================
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -55,8 +78,6 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns the BidBook */
-    ReadOnlyBidBook getBidBook();
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -84,6 +105,11 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    //=========== BidBook ================================================================================
+
+    /** Returns the BidBook */
+    ReadOnlyBidBook getBidBook();
+
     ObservableList<Bid> getFilteredBidList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -94,6 +120,49 @@ public interface Model {
     void updateFilteredBidList(Predicate<Bid> predicate);
 
     void addBid(Bid bid);
+
+    //=========== MeetingManager ================================================================================
+
+    /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setMeetingManager(ReadOnlyMeetingManager meetingManager);
+
+    /** Returns the Meeting manager */
+    ReadOnlyMeetingManager getMeetingManager();
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     */
+    boolean hasMeeting(CalendarMeeting meeting);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
+     */
+    void deleteMeeting(CalendarMeeting target);
+
+    /**
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
+     */
+    void addMeeting(CalendarMeeting meeting);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting);
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<CalendarMeeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate);
 
 
 }

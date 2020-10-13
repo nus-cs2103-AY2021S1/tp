@@ -6,6 +6,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
+import seedu.address.ui.bidder.BidderListPanel;
+import seedu.address.ui.property.PropertyListPanel;
+import seedu.address.ui.seller.SellerListPanel;
 
 
 public class TabBar extends UiPart<Region> {
@@ -13,17 +16,39 @@ public class TabBar extends UiPart<Region> {
     private static final String FXML = "TabBar.fxml";
     private static final String FXML2 = "PersonListPanel.fxml";
     private static final String FXML3 = "BidListPanel.fxml";
+    private static final String FXML4 = "BidderListPanel.fxml";
+    private static final String FXML5 = "SellerListPanel.fxml";
+    private static final String FXML6 = "property/PropertyListPanel.fxml";
+    private static final String FXML7 = "CalendarListPanel.fxml";
 
     private Logic logic;
 
     @FXML
-    private TabPane personAndBidTabBar;
+    private TabPane tabBar;
 
     @FXML
     private Tab personTab;
 
     @FXML
+    private Tab sellerTab;
+
+    @FXML
+    private Tab bidderTab;
+
+    @FXML
     private Tab bidTab;
+
+    @FXML
+    private Tab calenderTab;
+    @FXML
+    private Tab propertyTab;
+
+    @FXML
+    private StackPane sellerListPanelPlaceholder;
+
+
+    @FXML
+    private StackPane bidderListPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -31,6 +56,11 @@ public class TabBar extends UiPart<Region> {
     @FXML
     private StackPane bidListPanelPlaceholder;
 
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
+
+    @FXML
+    private StackPane propertyListPanelPlaceholder;
 
     /**
      * Creates a {@code TabBar} with the given {@code Logic}.
@@ -38,18 +68,23 @@ public class TabBar extends UiPart<Region> {
     public TabBar(Logic logic) {
         super(FXML);
         this.logic = logic;
-        setPersonAndBidTabBar();
+        setTabBar();
         populateTab();
     }
 
     /**
-     * Initialises the two tabs on the tabpane.
+     * Initialises all tabs on the tabpane.
      */
-    private void setPersonAndBidTabBar() {
+
+    private void setTabBar() {
         personTab.setText("AddressBooks");
         bidTab.setText("Bids");
-        personAndBidTabBar.setTabMinWidth(335);
-        personAndBidTabBar.setTabMaxWidth(335);
+        bidderTab.setText("Bidders");
+        sellerTab.setText("Sellers");
+        propertyTab.setText("Properties");
+        calenderTab.setText("Calendar");
+        tabBar.setTabMinWidth(335);
+        tabBar.setTabMaxWidth(335);
     }
 
     /**
@@ -58,8 +93,16 @@ public class TabBar extends UiPart<Region> {
     private void populateTab() {
         PersonListPanel personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         BidListPanel bidListPanel = new BidListPanel(logic.getFilteredBidList());
+        CalendarListPanel calendarListPanel = new CalendarListPanel(logic.getFilteredMeetingList());
+        PropertyListPanel propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
+        BidderListPanel bidderListPanel = new BidderListPanel(logic.getFilteredBidderList());
+        SellerListPanel sellerListPanel = new SellerListPanel(logic.getFilteredSellerList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         bidListPanelPlaceholder.getChildren().add(bidListPanel.getRoot());
+        meetingListPanelPlaceholder.getChildren().add(calendarListPanel.getRoot());
+        bidderListPanelPlaceholder.getChildren().add(bidderListPanel.getRoot());
+        sellerListPanelPlaceholder.getChildren().add(sellerListPanel.getRoot());
+        propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
     }
 }
 
