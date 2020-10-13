@@ -188,7 +188,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCommand.EditPersonDescriptor)) {
+            if (!(other instanceof UpdateExerciseCommand.EditExerciseDescriptor)) {
                 return false;
             }
 

@@ -8,8 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
+import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 
 
 public class UniqueExerciseList implements Iterable<Exercise> {
@@ -27,13 +28,13 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a exercise to the list.
+     * The exercise must not already exist in the list.
      */
-    public void add(Exercise toAdd) {
+    public void add(Exercise toAdd){
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateExerciseException();
         }
         internalList.add(toAdd);
     }
@@ -48,11 +49,11 @@ public class UniqueExerciseList implements Iterable<Exercise> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ExerciseNotFoundException();
         }
 
         if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateExerciseException();
         }
 
         internalList.set(index, editedExercise);
@@ -66,7 +67,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             //Should throw a new error
-            throw new PersonNotFoundException();
+            throw new ExerciseNotFoundException();
         }
     }
 
@@ -82,7 +83,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     public void setExercises(List<Exercise> persons) {
         requireAllNonNull(persons);
         if (!personsAreUnique(persons)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateExerciseException();
         }
 
         internalList.setAll(persons);
