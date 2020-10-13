@@ -353,6 +353,30 @@
     -fx-background-radius: 0;
 }
 
+#budgetPlaceHolder #budgetHeader {
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+#budgetPlaceHolder #budgetDisplay {
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+}
+
+.green-bar {
+    -fx-accent: #3CB371;
+}
+
+.orange-bar {
+    -fx-accent: #FFDAB9;
+}
+
+.red-bar {
+    -fx-accent: #F08080;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 7;
