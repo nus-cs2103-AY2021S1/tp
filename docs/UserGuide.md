@@ -26,8 +26,8 @@ Reeve is a desktop app for **private tutors to manage the details of their stude
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Secondary 2 v/Blk 33 West Coast Rd #21-214 
-   t/1 1430-1630 a/Alex is quiet m/www.zoom123.com sb/Mathematics` : Adds a student named `Alex` to Reeve.
+   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+   t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to Reeve.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
