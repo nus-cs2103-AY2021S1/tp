@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,6 +112,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         attendanceList.markStudentAttendance(target.getNusnetId(), attendanceType);
     }
 
+    /**
+     * Marks the attendance of a Student given the NUSNET ID
+     */
+    public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+        attendanceList.markStudentAttendance(nusnetId, attendanceType);
+    }
+
     //// util methods
 
     /**
@@ -136,6 +144,35 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Sets the {@code AttendanceType} of all students' {@code Attendance} to NO_RECORD
+     */
+    public void clearAttendance() {
+        this.attendanceList.markAllAttendance(
+                attendanceList.asUnmodifiableObservableList().stream()
+                        .map(Attendance::getNusnetId).collect(Collectors.toList()),
+                AttendanceType.NO_RECORD);
+    }
+
+    /**
+     *
+     * @param attendances
+     * @throws StudentNotFoundException
+     */
+    public void updateAttendances(List<Attendance> attendances) throws StudentNotFoundException {
+        for (Attendance attendance: attendances) {
+            this.attendanceList.markStudentAttendance(attendance.getNusnetId(), attendance.getAttendanceType());
+        }
+    }
+
+    /**
+     * Returns an unmodifiable view of the {@code AttendanceList} backed by the internal list of the Taskmaster.
+     * Note that this method returns a List of {@code Attendance} without student names, not {@code NamedAttendance}
+     */
+    public ObservableList<Attendance> getUnmodifiableAttendanceList() {
+        return this.attendanceList.asUnmodifiableObservableList();
     }
 
     /**

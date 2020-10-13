@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskmaster;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Taskmaster;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.attendance.NamedAttendance;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -163,6 +166,21 @@ public class AddCommandTest {
         @Override
         public void markStudent(Student student, AttendanceType attendanceType) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateAttendances(List<Attendance> attendances) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void clearAttendance() {
+            throw new AssertionError("This method should not be called");
         }
     }
 

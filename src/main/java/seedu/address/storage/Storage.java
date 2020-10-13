@@ -29,4 +29,5 @@ public interface Storage extends TaskmasterStorage, UserPrefsStorage {
     @Override
     void saveTaskmaster(ReadOnlyTaskmaster taskmaster) throws IOException;
 
+    boolean fileExists(Path filepath);
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,8 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceType;
 import seedu.address.model.attendance.NamedAttendance;
+import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
 
 /**
@@ -121,6 +124,23 @@ public class ModelManager implements Model {
         requireAllNonNull(target, attendanceType);
         taskmaster.markStudent(target, attendanceType);
         updateFilteredAttendanceList(PREDICATE_SHOW_ALL_ATTENDANCES);
+    }
+
+    @Override
+    public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+        requireAllNonNull(nusnetId, attendanceType);
+        taskmaster.markStudentWithNusnetId(nusnetId, attendanceType);
+        updateFilteredAttendanceList(PREDICATE_SHOW_ALL_ATTENDANCES);
+    }
+
+    @Override
+    public void clearAttendance() {
+        taskmaster.clearAttendance();
+    }
+
+    @Override
+    public void updateAttendances(List<Attendance> attendances) {
+        taskmaster.updateAttendances(attendances);
     }
 
     //=========== Filtered Student List Accessors =============================================================

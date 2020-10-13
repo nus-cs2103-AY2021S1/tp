@@ -15,6 +15,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.StorageManager;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -136,5 +137,20 @@ public class ParserUtil {
             throw new ParseException(AttendanceType.MESSAGE_CONSTRAINTS);
         }
         return AttendanceType.valueOf(trimmedAttendanceType);
+    }
+
+    /**
+     * Parses a {@code String filename} into a filename.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendanceType} is invalid.
+     */
+    public static String parseFilename(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFilename = filename.trim();
+        if (!StorageManager.isValidFilename(filename)) {
+            throw new ParseException(StorageManager.FILENAME_CONSTRAINTS);
+        }
+        return trimmedFilename;
     }
 }
