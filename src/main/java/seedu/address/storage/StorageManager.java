@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -11,7 +12,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTaskmaster;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.attendance.AttendanceList;
+import seedu.address.model.attendance.Attendance;
 
 /**
  * Manages storage of Taskmaster data in local storage.
@@ -86,16 +87,16 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAttendance(AttendanceList attendanceList, Path filePath) throws IOException {
+    public void saveAttendance(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
         logger.fine("Attempting to save attendance to file: " + filePath);
-        taskmasterStorage.saveAttendance(attendanceList, filePath);
+        taskmasterStorage.saveAttendance(taskmaster, filePath);
     }
 
     @Override
-    public Optional<AttendanceList> readAttendance(Path filepath, AttendanceList existingList)
+    public Optional<List<Attendance>> readAttendance(Path filepath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to load attendance from file: " + filepath);
-        return taskmasterStorage.readAttendance(filepath, existingList);
+        return taskmasterStorage.readAttendance(filepath);
     }
 
     // ================ Util methods ==============================

@@ -5,13 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FILENAME;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
@@ -55,19 +54,18 @@ public class LoadAttendanceCommand extends StorageCommand {
             throw new CommandException(MESSAGE_NO_FILE_FOUND);
         }
 
+
         model.clearAttendance();
-        AttendanceList modelAttendanceList = model.getAttendanceList();
 
         try {
-            ObservableList<Attendance> newAttendanceList = storage.readAttendance(filepath, modelAttendanceList)
-                                                                  .get().asUnmodifiableObservableList();
+            List<Attendance> newAttendanceList = storage.readAttendance(filepath).get();
 
             // TODO: Build a list of students whose IDs aren't found + IDs stored that aren't in the
             //      current StudentList and display it to the user
 
             for (Attendance attendance: newAttendanceList) {
                 try {
-                    modelAttendanceList.markStudentAttendance(attendance.getNusnetId(), attendance.getAttendanceType());
+                    model.markStudentWithNusnetId(attendance.getNusnetId(), attendance.getAttendanceType());
                 } catch (StudentNotFoundException snfe) {
                     // skip
                 }
@@ -77,6 +75,7 @@ public class LoadAttendanceCommand extends StorageCommand {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + filename);
         }
+
 
         return new CommandResult(String.format(MESSAGE_LOAD_ATTENDANCE_SUCCESS, filename));
     }

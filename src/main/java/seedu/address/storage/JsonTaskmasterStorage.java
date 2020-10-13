@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTaskmaster;
-import seedu.address.model.attendance.AttendanceList;
+import seedu.address.model.attendance.Attendance;
 
 /**
  * A class to access Taskmaster data stored as a json file on the hard disk.
@@ -78,23 +79,28 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
         JsonUtil.saveJsonFile(new JsonSerializableTaskmaster(taskmaster), filePath);
     }
 
+    /**
+     * Saves the list of Attendances in a Taskmaster to the filepath specified.
+     */
     @Override
-    public void saveAttendance(AttendanceList attendanceList, Path filePath) throws IOException {
-        requireNonNull(attendanceList);
+    public void saveAttendance(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
+        requireNonNull(taskmaster);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAttendanceList(attendanceList), filePath);
+        JsonUtil.saveJsonFile(
+                JsonSerializableAttendanceList.getSerializableListFromAttendances(
+                        taskmaster.getUnmodifiableAttendanceList()),
+                filePath);
     }
 
     /**
-     * Gets an AttendanceList from the filePath specified and maps the attendance entries over to an existing
-     * AttendanceList.
+     * Gets a list of Attendances from the filePath specified.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<AttendanceList> readAttendance(Path filePath, AttendanceList existingList)
+    public Optional<List<Attendance>> readAttendance(Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
 
@@ -106,7 +112,7 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
         }
 
         try {
-            return Optional.of(jsonAttendanceList.get().toModelType(existingList));
+            return Optional.of(jsonAttendanceList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

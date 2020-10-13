@@ -10,14 +10,13 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.NusnetId;
 
 
 /**
- * An Immutable AttendanceList that is serializable to JSON format.
+ * An Immutable list of Attendances that is serializable to JSON format.
  */
-@JsonRootName(value = "taskmaster")
+@JsonRootName(value = "attendanceList")
 class JsonSerializableAttendanceList {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Attendance list contains duplicate NusnetId(s).";
@@ -25,7 +24,7 @@ class JsonSerializableAttendanceList {
     private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTaskmaster} with the given students.
+     * Constructs a {@code JsonSerializableAttendanceList} from the given List.
      */
     @JsonCreator
     public JsonSerializableAttendanceList(@JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
@@ -34,20 +33,22 @@ class JsonSerializableAttendanceList {
 
     /**
      * Converts a given {@code ReadOnlyTaskmaster} into this class for Jackson use.
+     * This method exists because two different constructors will have the same erasure.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableTaskmaster}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableAttendanceList}.
      */
-    public JsonSerializableAttendanceList(AttendanceList source) {
-        attendances.addAll(source.asUnmodifiableObservableList().stream()
-                .map(JsonAdaptedAttendance::new).collect(Collectors.toList()));
+    public static JsonSerializableAttendanceList getSerializableListFromAttendances(List<Attendance> source) {
+        return new JsonSerializableAttendanceList(source.stream()
+                                                    .map(JsonAdaptedAttendance::new)
+                                                    .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this student list into the model's {@code Taskmaster} object.
+     * Converts this student list into a List of Attendances for use by the model.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AttendanceList toModelType(AttendanceList existingList) throws IllegalValueException {
+    public List<Attendance> toModelType() throws IllegalValueException {
         List<Attendance> newAttendances = new ArrayList<>();
         List<NusnetId> nusnetIds = new ArrayList<>();
 
@@ -63,9 +64,8 @@ class JsonSerializableAttendanceList {
 
             newAttendances.add(modelAttendance);
         }
-        existingList.setAttendances(newAttendances);
 
-        return existingList;
+        return newAttendances;
     }
 
 }

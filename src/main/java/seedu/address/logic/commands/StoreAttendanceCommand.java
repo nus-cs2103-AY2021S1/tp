@@ -49,7 +49,7 @@ public class StoreAttendanceCommand extends StorageCommand {
 
         // TODO
         try {
-            storage.saveAttendance(model.getAttendanceList(), filepath);
+            storage.saveAttendance(model.getTaskmaster(), filepath);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
