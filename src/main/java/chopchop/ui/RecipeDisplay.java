@@ -37,6 +37,9 @@ public class RecipeDisplay extends UiPart<Region> {
     public RecipeDisplay(Recipe recipe) {
         super(FXML);
         this.recipe = recipe;
+        this.name = "";
+        this.ingredients = "";
+        this.steps = "";
         stringRepresentation();
         display();
     }
@@ -46,7 +49,7 @@ public class RecipeDisplay extends UiPart<Region> {
      */
     private void display() {
 
-        assert !name.isEmpty();
+        assert !name.isBlank();
 
         recipeName.clear();
         recipeName.setText(name);
