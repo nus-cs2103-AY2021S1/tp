@@ -72,6 +72,7 @@ public class OrderManager implements ReadOnlyOrderManager {
         order.add(f);
     }
 
+
     /**
      * Replaces the given orderItem {@code target} in the list with {@code editedOrderItem}.
      * {@code target} must exist in the address book.
@@ -116,4 +117,5 @@ public class OrderManager implements ReadOnlyOrderManager {
     public int hashCode() {
         return order.hashCode();
     }
+
 }

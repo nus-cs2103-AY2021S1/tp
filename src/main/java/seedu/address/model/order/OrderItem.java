@@ -25,6 +25,16 @@ public class OrderItem extends Food {
         this.quantity = quantity;
     }
 
+    /**
+     * Alternative constructor that takes in a food item and quantity. Every field must be present and not null.
+     */
+    public OrderItem(Food food, int quantity) {
+        super(food.getName(), food.getPrice(), food.getTags());
+        requireAllNonNull(quantity);
+        this.quantity = quantity;
+    }
+
+
     public int getQuantity() {
         return quantity;
     }
@@ -69,4 +79,5 @@ public class OrderItem extends Food {
         getTags().forEach(builder::append);
         return builder.toString();
     }
+
 }

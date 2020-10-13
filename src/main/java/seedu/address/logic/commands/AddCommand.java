@@ -1,15 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.vendor.Vendor;
+import seedu.address.model.food.Food;
+import seedu.address.model.order.OrderItem;
 //TODO change to fit vendor better
 /**
  * Adds a person to the address book.
@@ -18,44 +14,37 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a vendor to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a OrderItem to the OrderManager. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
-
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+            + " Index of FoodItem in Menu "
+            + " [Quantity of Food to add]";
+    // To remove
     public static final String MESSAGE_DUPLICATE_VENDOR = "This vendor already exists in the address book";
-
-    private final Vendor toAdd;
+    public static final String MESSAGE_SUCCESS = "%1$s has been added to your Order";
+    private final OrderItem toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Vendor}
+     * Creates an AddCommand to add the specified {@code Food}
      */
-    public AddCommand(Vendor vendor) {
-        requireNonNull(vendor);
-        toAdd = vendor;
+    public AddCommand(Food food) {
+        requireNonNull(food);
+        toAdd = new OrderItem(food, 1);
     }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Food}
+     */
+    public AddCommand(Food food, int quantity) {
+        requireNonNull(food);
+        toAdd = new OrderItem(food, quantity);
+    }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasVendor(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VENDOR);
-        }
-
-        model.addVendor(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addOrderItem(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, getAddMessage()));
     }
 
     @Override
@@ -63,5 +52,11 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
+    }
+
+    public String getAddMessage() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(toAdd.getName()).append(" X ").append(toAdd.getQuantity());
+        return builder.toString();
     }
 }
