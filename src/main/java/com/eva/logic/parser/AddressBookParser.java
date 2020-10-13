@@ -9,6 +9,7 @@ import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
+import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.commands.EditCommand;
@@ -71,6 +72,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CommentCommand.COMMAND_WORD:
+            return new CommentCommandParser().parse(arguments);
 
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveCommandParser().parse(arguments);

@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.eva.commons.exceptions.IllegalValueException;
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedComment> comments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -36,13 +38,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("comments") List<JsonAdaptedComment> comments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (comments != null) {
+            this.comments.addAll(comments);
         }
     }
 
@@ -57,6 +63,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        comments.addAll(source.getComments().stream()
+                .map(JsonAdaptedComment::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +77,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Comment> personComments = new ArrayList<>();
+        for (JsonAdaptedComment comment : comments) {
+            personComments.add(comment.toModelType());
         }
 
         if (name == null) {
@@ -103,7 +117,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Comment> modelComments = new HashSet<>(personComments);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelComments);
     }
 
 }

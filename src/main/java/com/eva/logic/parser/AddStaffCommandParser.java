@@ -1,6 +1,7 @@
 package com.eva.logic.parser;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -41,7 +43,8 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
      */
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_COMMENT);
 
         // compulsory information of a staff
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
@@ -55,8 +58,9 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Comment> commentList = ParserUtil.parseComments(argMultimap.getAllValues(PREFIX_COMMENT));
 
-        Staff staff = new Staff(name, phone, email, address, tagList);
+        Staff staff = new Staff(name, phone, email, address, tagList, commentList);
 
         return new AddStaffCommand(staff);
     }
