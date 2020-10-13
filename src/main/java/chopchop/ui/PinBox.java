@@ -20,6 +20,6 @@ public class PinBox extends UiPart<Region> {
     public PinBox() {
         super(FXML);
         // Have to decide what to do with this real estate uwu
-        pins.setText("Pin");
+        pins.setText("Pins\n To be implemented.");
     }
 }

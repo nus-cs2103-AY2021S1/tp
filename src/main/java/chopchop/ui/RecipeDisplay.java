@@ -35,15 +35,16 @@ public class RecipeDisplay extends UiPart<Region> {
      */
     private void display() {
         // Splits the recipe string representation into ingredients,
-        String[] recipeComponents = recipe.toString().split("/");
+        // String[] recipeComponents = recipe.toString().split("/");
 
         recipeName.clear();
         recipeName.setText(recipe.getName().toString());
 
-        ingredientDisplay.clear();
-        ingredientDisplay.setText(/* Ingredients. */ recipeComponents[0]);
+        // ingredientDisplay.clear();
+        // ingredientDisplay.setText(/* Ingredients. */ recipeComponents[0]);
 
-        instructionDisplay.clear();
-        instructionDisplay.setText(/* Steps. */ recipeComponents[1]);
+        // instructionDisplay.clear();
+        // instructionDisplay.setText(/* Steps. */ recipeComponents[1]);
+
     }
 }

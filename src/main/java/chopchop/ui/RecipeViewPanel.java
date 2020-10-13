@@ -39,6 +39,7 @@ public class RecipeViewPanel extends UiPart<Region> {
         populate();
     }
 
+
     private int calculate_row(int index) {
         return index % ROWS;
     }

@@ -8,12 +8,22 @@
     -fx-padding: 2 2 2 2;
     -fx-border-color: #f6f6f6;
     -fx-border-width: 2;
-    -fx-background-radius: 0;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
     -fx-background-color: #f6f6f6;
     -fx-font-family: "Helvetica";
     -fx-font-size: 12pt;
     -fx-text-fill: #000000;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-focus-color: blue;
+    -fx-faint-focus-color: #ff0022;
+    -fx-border-color: rgb(49, 89, 23);
+}
+.tab-button:hover {
+
+}
+.tab-button:pressed {
+    -fx-background-color: green;
 }
 .label-button {
     -fx-font-family: "Helvetica";
