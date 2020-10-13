@@ -6,15 +6,22 @@ public class CalendarPaperwork extends CalendarMeeting {
 
     private static final String PREFIX = "p";
 
-    CalendarPaperwork (CalendarBidderId calendarBidderId, CalendarPropertyId calendarPropertyId,
-                   CalendarTime calendarTime, CalendarVenue calendarVenue) {
+    /**
+     * Constructor for paperwork meeting.
+     * @param calendarBidderId Bidder ID.
+     * @param calendarPropertyId Property ID.
+     * @param calendarTime Calendar Time.
+     * @param calendarVenue Calendar Venue.
+     */
+    public CalendarPaperwork(CalendarBidderId calendarBidderId, CalendarPropertyId calendarPropertyId,
+                             CalendarTime calendarTime, CalendarVenue calendarVenue) {
         super(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);
         requireAllNonNull(calendarBidderId, calendarPropertyId, calendarTime, calendarVenue);
         super.isPaperWork = true;
     }
 
     @Override
-    public boolean checkMeetingType() {
-        return super.isPaperWork;
+    public String toString() {
+        return super.toString();
     }
 }

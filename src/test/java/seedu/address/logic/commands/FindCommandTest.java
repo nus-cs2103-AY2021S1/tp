@@ -18,12 +18,13 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 
 /**
@@ -32,9 +33,9 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
 public class FindCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
-            new PropertyBook(), new BidderAddressBook(), new SellerAddressBook());
+            new PropertyBook(), new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
-            new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook());
+            new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
 
     @Test
     public void equals() {

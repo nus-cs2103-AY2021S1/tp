@@ -26,6 +26,7 @@
                 </Label>
                 <Label fx:id="propertyName" text="\$first" styleClass="cell_big_label" />
             </HBox>
+            <Label fx:id="propertyId" styleClass="cell_small_label" text="\$propertyId" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="sellerId" styleClass="cell_small_label" text="\$sellerId" />
             <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice" />

@@ -15,6 +15,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
+import seedu.address.storage.calendar.JsonMeetingBookStorage;
+import seedu.address.storage.property.JsonPropertyBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
 
 public class StorageManagerTest {
@@ -33,8 +35,12 @@ public class StorageManagerTest {
                 new JsonBidderAddressBookStorage(getTempFilePath("ab"));
         JsonSellerAddressBookStorage sellerAddressBookStorage =
                 new JsonSellerAddressBookStorage(getTempFilePath("ab"));
+        JsonMeetingBookStorage meetingBookStorage =
+                new JsonMeetingBookStorage(getTempFilePath("ab"));
+        JsonPropertyBookStorage propertyBookStorage =
+                new JsonPropertyBookStorage(getTempFilePath("pb"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
-                bidderAddressBookStorage, sellerAddressBookStorage);
+                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage, propertyBookStorage);
     }
 
     private Path getTempFilePath(String fileName) {

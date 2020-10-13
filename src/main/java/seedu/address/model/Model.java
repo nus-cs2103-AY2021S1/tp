@@ -6,20 +6,21 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.PropertyModel;
 
 
 /**
  * The API of the Model component.
  */
-public interface Model extends BidderModel, SellerModel {
+public interface Model extends BidderModel, SellerModel, PropertyModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     Predicate<Bid> PREDICATE_SHOW_ALL_BIDS = unused -> true;
 
-    Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
+    Predicate<CalendarMeeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     //=========== UserPrefs ================================================================================
 
@@ -43,6 +44,8 @@ public interface Model extends BidderModel, SellerModel {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // --- Address book file path ---
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -51,7 +54,19 @@ public interface Model extends BidderModel, SellerModel {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setAddressBookFilePath(Path propertyBookFilePath);
+
+    // --- Property book file path ---
+
+    /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
+
+    /**
+     * Sets the user prefs' property book file path.
+     */
+    void setPropertyBookFilePath(Path propertyBookFilePath);
 
     //=========== AddressBook ================================================================================
 
@@ -106,48 +121,48 @@ public interface Model extends BidderModel, SellerModel {
 
     void addBid(Bid bid);
 
-    //=========== PropertyBook ================================================================================
+    //=========== MeetingManager ================================================================================
 
     /**
-     * Replaces property book data with the data in {@code propertyBook}.
+     * Replaces address book data with the data in {@code addressBook}.
      */
-    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
+    void setMeetingManager(ReadOnlyMeetingManager meetingManager);
 
-    /** Returns the property book. */
-    ReadOnlyPropertyBook getPropertyBook();
+    /** Returns the Meeting manager */
+    ReadOnlyMeetingManager getMeetingManager();
 
     /**
-     * Returns true if a property with the same identity as {@code property} exists in the property book.
+     * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasProperty(Property property);
+    boolean hasMeeting(CalendarMeeting meeting);
 
     /**
-     * Deletes the given property.
-     * The property must exist in the property book.
+     * Deletes the given person.
+     * The person must exist in the address book.
      */
-    void deleteProperty(Property target);
+    void deleteMeeting(CalendarMeeting target);
 
     /**
-     * Adds the given property.
-     * {@code property} must not already exist in the property book.
+     * Adds the given person.
+     * {@code person} must not already exist in the address book.
      */
-    void addProperty(Property property);
+    void addMeeting(CalendarMeeting meeting);
 
     /**
-     * Replaces the given property {@code target} with {@code editedProperty}.
-     * {@code target} must exist in the property book.
-     * The property identity of {@code editedProperty} must not be the same as another existing property in the
-     * property book.
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setProperty(Property target, Property editedProperty);
+    void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting);
 
-    /** Returns an unmodifiable view of the filtered property list */
-    ObservableList<Property> getFilteredPropertyList();
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<CalendarMeeting> getFilteredMeetingList();
 
     /**
-     * Updates the filter of the filtered property list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPropertyList(Predicate<Property> predicate);
+    void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate);
+
 
 }

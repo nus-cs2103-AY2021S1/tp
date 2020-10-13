@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.id.Id;
-import seedu.address.model.id.IdManager;
 import seedu.address.model.price.Price;
 
 /**
@@ -15,7 +14,7 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
-    private static IdManager idManager = IdManager.initialize("P");
+    public static final Id DEFAULT_PROPERTY_ID = new Id("P", 0);
 
     // Identity fields
     private final Id propertyId;
@@ -27,15 +26,16 @@ public class Property {
     private final Price askingPrice;
     private final PropertyType propertyType;
     private final IsRental isRental;
-    private final boolean isClosedDeal;
+    private final IsClosedDeal isClosedDeal;
 
     /**
      * Every field must be present and not null.
      */
-    public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
-                    PropertyType propertyType, IsRental isRental, boolean isClosedDeal) {
-        requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
-        this.propertyId = idManager.getNextId();
+    public Property(Id propertyId, PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
+                    PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
+        requireAllNonNull(propertyId, propertyName, sellerId, address, askingPrice, propertyType,
+                isRental, isClosedDeal);
+        this.propertyId = propertyId;
         this.propertyName = propertyName;
         this.sellerId = sellerId;
         this.address = address;
@@ -43,6 +43,33 @@ public class Property {
         this.propertyType = propertyType;
         this.isRental = isRental;
         this.isClosedDeal = isClosedDeal;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
+                    PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
+        requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
+        this.propertyId = DEFAULT_PROPERTY_ID;
+        this.propertyName = propertyName;
+        this.sellerId = sellerId;
+        this.address = address;
+        this.askingPrice = askingPrice;
+        this.propertyType = propertyType;
+        this.isRental = isRental;
+        this.isClosedDeal = isClosedDeal;
+    }
+
+    /**
+     * Creates a new Property with the specified id.
+     *
+     * @param id The specified id.
+     * @return The new property.
+     */
+    public Property setId(Id id) {
+        return new Property(id, propertyName, sellerId, address, askingPrice, propertyType,
+                isRental, isClosedDeal);
     }
 
     public Id getPropertyId() {
@@ -77,7 +104,7 @@ public class Property {
         return isRental.isRental();
     }
 
-    public boolean isClosedDeal() {
+    public IsClosedDeal isClosedDeal() {
         return isClosedDeal;
     }
 
@@ -88,9 +115,9 @@ public class Property {
      * @return True if both property objects represent the same property.
      */
     public boolean isSameProperty(Property otherProperty) {
-        return this == otherProperty
+        return otherProperty != null && (this == otherProperty
                 || this.getPropertyId().equals(otherProperty.getPropertyId())
-                || this.getAddress().equals(otherProperty.getAddress());
+                || this.getAddress().equals(otherProperty.getAddress()));
     }
 
     /**
@@ -118,7 +145,7 @@ public class Property {
                 && this.getPropertyType().equals(otherProperty.getPropertyType())
                 && this.getSellerId().equals(otherProperty.getSellerId())
                 && this.isRental() == (otherProperty.isRental())
-                && this.isClosedDeal() == otherProperty.isClosedDeal();
+                && this.isClosedDeal().equals(otherProperty.isClosedDeal());
     }
 
     @Override
@@ -130,7 +157,7 @@ public class Property {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        if (isClosedDeal()) {
+        if (isClosedDeal().isClosedDeal) {
             builder.append("[CLOSED] ");
         }
         builder.append(getPropertyName())

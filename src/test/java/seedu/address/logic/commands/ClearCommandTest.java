@@ -9,12 +9,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.BidBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
+import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
+
 
 public class ClearCommandTest {
 
@@ -29,11 +31,12 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), new PropertyBook(),
-                getTypicalBidderAddressBook(), getTypicalSellerAddressBook());
+                getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
                 new PropertyBook(),
                 getTypicalBidderAddressBook(),
-                getTypicalSellerAddressBook());
+                getTypicalSellerAddressBook(),
+                new MeetingBook());
         expectedModel.setAddressBook(new AddressBook());
         expectedModel.setSellerAddressBook(new SellerAddressBook());
         expectedModel.setBidderAddressBook(new BidderAddressBook());

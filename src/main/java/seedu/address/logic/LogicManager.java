@@ -15,13 +15,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
-import seedu.address.model.ReadOnlyPropertyBook;
+import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.storage.Storage;
 
@@ -59,6 +61,8 @@ public class LogicManager implements Logic {
             storage.saveBidBook(model.getBidBook());
             storage.saveBidderAddressBook(model.getBidderAddressBook());
             storage.saveSellerAddressBook(model.getSellerAddressBook());
+            storage.saveMeetingBook(model.getMeetingManager());
+            storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -90,6 +94,8 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    // ===================== BID =====================
 
     @Override
     public ReadOnlyBidBook getBidBook() {
@@ -134,6 +140,18 @@ public class LogicManager implements Logic {
     @Override
     public Path getSellerAddressBookFilePath() {
         return model.getSellerAddressBookFilePath();
+    }
+
+    // ===================== MEETING =====================
+
+    @Override
+    public ReadOnlyMeetingManager getMeetingManager() {
+        return model.getMeetingManager();
+    }
+
+    @Override
+    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+        return model.getFilteredMeetingList();
     }
 
     // ===================== PROPERTY =====================

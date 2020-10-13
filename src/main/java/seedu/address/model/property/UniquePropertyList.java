@@ -2,12 +2,15 @@ package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.model.id.Id;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
 import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
@@ -25,6 +28,7 @@ import seedu.address.model.property.exceptions.PropertyNotFoundException;
  */
 public class UniquePropertyList implements Iterable<Property> {
 
+    private static final String PROPERTY_ID_PREFIX = "P";
     private final ObservableList<Property> internalList = FXCollections.observableArrayList();
     private final ObservableList<Property> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -46,7 +50,11 @@ public class UniquePropertyList implements Iterable<Property> {
         if (contains(toAdd)) {
             throw new DuplicatePropertyException();
         }
-        internalList.add(toAdd);
+        if (toAdd.getPropertyId().equals(DEFAULT_PROPERTY_ID)) {
+            internalList.add(toAdd.setId(getLastId().increment()));
+        } else {
+            internalList.add(toAdd);
+        }
     }
 
     /**
@@ -78,6 +86,45 @@ public class UniquePropertyList implements Iterable<Property> {
         if (!internalList.remove(toRemove)) {
             throw new PropertyNotFoundException();
         }
+    }
+
+    /**
+     * Removes the property with the specified id.
+     *
+     * @param id The id specified.
+     */
+    public void removeByPropertyId(Id id) {
+        requireNonNull(id);
+        remove(getPropertyById(id));
+    }
+
+    /**
+     * Gets the first property with the same id as {@code id}.
+     *
+     * @param id The specified id.
+     * @return The first property with the same id.
+     */
+    public Property getPropertyById(Id id) {
+        requireNonNull(id);
+        FilteredList<Property> filteredProperties = internalList
+                .filtered(property -> property.getPropertyId().equals(id));
+        if (filteredProperties.size() == 0) {
+            throw new PropertyNotFoundException();
+        }
+        assert filteredProperties.size() == 1;
+        return filteredProperties.get(0);
+    }
+
+    /**
+     * Checks if the property list contains a property with the given id.
+     *
+     * @param id The specified id.
+     * @return True if the property list contains the property with the given id.
+     */
+    public boolean containsPropertyId(Id id) {
+        requireNonNull(id);
+        return internalList.filtered(property -> property.getPropertyId().equals(id))
+                .size() > 0;
     }
 
     public void setProperties(UniquePropertyList replacement) {
@@ -134,5 +181,12 @@ public class UniquePropertyList implements Iterable<Property> {
             }
         }
         return true;
+    }
+
+    private Id getLastId() {
+        if (internalList.size() == 0) {
+            return new Id(PROPERTY_ID_PREFIX, 0);
+        }
+        return internalList.get(internalList.size() - 1).getPropertyId();
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.storage.sellerstorage;
 
-
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
