@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
@@ -39,9 +38,6 @@ public class TagCommand extends Command {
      */
     public TagCommand(Tag tag) {
         requireNonNull(tag);
-        // Check if file is present
-        checkArgument(filePresent(tag.getFileAddress()),
-                String.format(MESSAGE_FILE_NOT_FOUND, tag.getFileAddress().value));
         toTag = tag;
     }
 
@@ -63,6 +59,12 @@ public class TagCommand extends Command {
 
         if (model.hasTag(toTag)) {
             throw new CommandException(MESSAGE_DUPLICATE_TAG);
+        }
+
+        // Check if file is present
+        if (!filePresent(toTag.getFileAddress())) {
+            throw new CommandException(
+                    String.format(MESSAGE_FILE_NOT_FOUND, toTag.getFileAddress().value));
         }
 
         model.addTag(toTag);
