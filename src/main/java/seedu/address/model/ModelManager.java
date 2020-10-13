@@ -149,17 +149,6 @@ public class ModelManager implements Model {
         addressBook.addModule(module);
     }
 
-    @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        return filteredModules;
-    }
-
-    @Override
-    public void updateFilteredModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        this.filteredModules.setPredicate(predicate);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
