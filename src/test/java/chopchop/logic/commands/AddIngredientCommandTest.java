@@ -9,7 +9,6 @@ import chopchop.logic.commands.exceptions.CommandException;
 
 import chopchop.model.ModelStub;
 import chopchop.model.attributes.Name;
-import chopchop.model.attributes.units.Volume;
 
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientBook;
