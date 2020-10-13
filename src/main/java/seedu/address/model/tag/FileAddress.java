@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class FileAddress {
 
-    public static final String MESSAGE_CONSTRAINTS = "File address can only take a file path!";
+    public static final String MESSAGE_CONSTRAINTS = "File address can only take a valid file path!";
 
     /*
      * The first character of the address must not be a whitespace,
