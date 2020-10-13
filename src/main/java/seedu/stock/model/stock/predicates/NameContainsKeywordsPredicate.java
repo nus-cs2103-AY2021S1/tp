@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Stock> {
     }
 
     /**
-     * Returns true if stock's name matches or contains any of the keywords.
+     * Returns true if stock's name matches or contains all of the keywords.
      * @param stock stock to test
      * @return boolean true if stock matches keywords
      */
@@ -26,8 +26,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Stock> {
     public boolean test(Stock stock) {
         String stockName = stock.getName().fullName.toLowerCase();
 
-        return keywords.stream()
-                .anyMatch(keyword -> stockName.contains(keyword.toLowerCase()));
+        if (!keywords.isEmpty() && keywords.stream().noneMatch(String::isEmpty)) {
+            // test returns true if stock name contains all of the keywords specified
+            return keywords.stream()
+                    .allMatch(keyword -> stockName.contains(keyword.toLowerCase()));
+        } else {
+            return false;
+        }
     }
 
     @Override

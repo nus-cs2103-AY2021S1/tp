@@ -1,15 +1,17 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,11 +27,6 @@ import seedu.stock.model.stock.predicates.SourceContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    /**
-     * Used for initial separation of prefix and keywords to find.
-     */
-    private static final Pattern BASIC_FIND_FORMAT = Pattern
-            .compile("(?<commandPrefix>.*/)(?<keyWordsToFind>.*)");
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -38,24 +35,36 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER, PREFIX_LOCATION,
+                        PREFIX_QUANTITY, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY);
 
-        if (!isAPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
+        // Check if command format is correct
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER)
+                || isAnyPrefixPresent(argMultimap, PREFIX_NEW_QUANTITY, PREFIX_INCREMENT_QUANTITY, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<Predicate<Stock>> getPredicates =
+        List<Prefix> prefixes = CliSyntax.getAllPossiblePrefixes();
+        // Check for duplicate prefixes
+        for (Prefix prefix: prefixes) {
+            if (argMultimap.getAllValues(prefix).size() >= 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+        }
+
+        // Get the predicates to test to find stocks wanted
+        List<Predicate<Stock>> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER);
 
-        return new FindCommand(getPredicates);
+        return new FindCommand(predicatesToTest);
     }
 
     /**
      * Returns true if any one of the prefixes does not contain an empty {@code Optional} value
      * in the given {@code ArgumentMultimap}.
      */
-    private static boolean isAPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
@@ -87,21 +96,25 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         switch(prefix.getPrefix()) {
         case "n/":
+            // predicate to test name field of stock
             fieldContainsKeywordsPredicate =
                     new NameContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
 
         case "sn/":
+            // predicate to test serial number field of stock
             fieldContainsKeywordsPredicate =
                     new SerialNumberContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
 
         case "s/":
+            // predicate to test source field of stock
             fieldContainsKeywordsPredicate =
                     new SourceContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
 
         case "l/":
+            // predicate to test location stored field of stock
             fieldContainsKeywordsPredicate =
                     new LocationContainsKeywordsPredicate(Arrays.asList(keywords));
             break;
