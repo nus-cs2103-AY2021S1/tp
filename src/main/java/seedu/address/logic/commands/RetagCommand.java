@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OLD_TAG_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.FileAddress;
@@ -7,21 +13,24 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Adds a person to the address book.
+ */
 public class RetagCommand extends Command {
     public static final String COMMAND_WORD = "retag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Untags the tagged file identified by the index number used in the displayed Tag list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Retags the tagged file identified by the old tag into the new tag.\n"
+            + "Parameters: "
+            + PREFIX_OLD_TAG_NAME + "OLD_TAG_NAME "
+            + PREFIX_TAG_NAME + "NEW_TAG_NAME\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_OLD_TAG_NAME + "my_files "
+            + PREFIX_TAG_NAME + "my_old_files ";
 
-    public static final String MESSAGE_RETAG_TAG_SUCCESS = "Untagged Tag: %1$s";
+    public static final String MESSAGE_RETAG_TAG_SUCCESS = "Retagged Tag: %s to Tag: %s";
     public static final String MESSAGE_OLD_TAG_NOT_FOUND = " %s tag not found!"
-            + "Please make sure that file is present before adding.";
+            + "Please make sure that the old tag is present before retagging.";
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tag name!";
 
     private final TagName newTagName;
@@ -39,10 +48,10 @@ public class RetagCommand extends Command {
     }
 
     /**
-     * Executes the command and add the tag to model.
+     * Executes the command and renames the tag in the model to the new tag.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return A Command result of executing tag command.
+     * @return A Command result of executing retag command.
      * @throws CommandException
      */
     @Override
@@ -72,7 +81,7 @@ public class RetagCommand extends Command {
         Tag newTag = new Tag(newTagName, fileAddress);
         // Add new tag
         model.addTag(newTag);
-        return new CommandResult(String.format(MESSAGE_RETAG_TAG_SUCCESS, newTagName));
+        return new CommandResult(String.format(MESSAGE_RETAG_TAG_SUCCESS, oldTagName, newTagName));
     }
 
     @Override
