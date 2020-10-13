@@ -31,7 +31,7 @@ public class Person {
      * Only name and tags need to be non-null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note) {
-        requireAllNonNull(name, clientSources, note);
+        requireAllNonNull(name, clientSources);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -131,7 +131,7 @@ public class Person {
                 && equalsNullable(otherPerson.getEmail(), getEmail())
                 && equalsNullable(otherPerson.getAddress(), getAddress())
                 && otherPerson.getClientSources().equals(getClientSources())
-                && otherPerson.getNote().equals(getNote());
+                && equalsNullable(otherPerson.getNote(), getNote());
     }
 
     private boolean equalsNullable(Object obj, Object otherObj) {
@@ -169,8 +169,10 @@ public class Person {
             builder.append(" ClientSources: ");
             getClientSources().forEach(builder::append);
         }
-        builder.append(" Note: ")
-                .append(getNote());
+        if (getNote() != null) {
+            builder.append(" Note: ")
+                    .append(getNote());
+        }
 
         return builder.toString();
     }

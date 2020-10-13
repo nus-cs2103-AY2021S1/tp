@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.clientsource.ClientSource;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -34,6 +35,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_CLIENTSOURCE_1 = "friend from work";
     private static final String VALID_CLIENTSOURCE_2 = "neighbour";
+    private static final String VALID_NOTE = "friend";
+    private static final String INVALID_NOTE = " ";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -196,5 +199,28 @@ public class ParserUtilTest {
                 new ClientSource(VALID_CLIENTSOURCE_1), new ClientSource(VALID_CLIENTSOURCE_2)));
 
         assertEquals(expectedClientSourceSet, actualClientSourceSet);
+    }
+
+    @Test
+    public void parseNote_null_returnsNull() throws Exception {
+        assertNull(ParserUtil.parseNote((String) null));
+    }
+
+    @Test
+    public void parseNote_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNote(INVALID_NOTE));
+    }
+
+    @Test
+    public void parseNote_validValueWithoutWhitespace_returnsNote() throws Exception {
+        Note expectedNote = new Note(VALID_NOTE);
+        assertEquals(expectedNote, ParserUtil.parseNote(VALID_NOTE));
+    }
+
+    @Test
+    public void parseNote_validValueWithWhitespace_returnsTrimmedNote() throws Exception {
+        String noteWithWhitespace = WHITESPACE + VALID_NOTE + WHITESPACE;
+        Note expectedNote = new Note(VALID_NOTE);
+        assertEquals(expectedNote, ParserUtil.parseNote(noteWithWhitespace));
     }
 }

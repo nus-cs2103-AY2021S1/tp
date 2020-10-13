@@ -136,7 +136,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code note} is invalid.
      */
     public static Note parseNote(String note) throws ParseException {
-        requireNonNull(note);
+        if (note == null) {
+            return null;
+        }
         String trimmedNote = note.trim();
         if (!Note.isValidNoteName(trimmedNote)) {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS);
