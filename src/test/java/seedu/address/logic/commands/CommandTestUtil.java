@@ -48,6 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_PAYMENT_DATE_BOB = "10/09/2020";
     public static final String VALID_ADDITIONAL_DETAILS_AMY = "Clever";
     public static final String VALID_ADDITIONAL_DETAILS_BOB = "Hardworking";
+    public static final String VALID_QUESTION_AMY = "How is current calculated from resistance?";
+    public static final String VALID_QUESTION_BOB = "What is hemoglobin?";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -68,6 +70,15 @@ public class CommandTestUtil {
     public static final String PAYMENT_DATE_DESC_BOB = " " + PREFIX_PAYMENT + VALID_PAYMENT_DATE_BOB;
     public static final String ADDITIONAL_DETAILS_DESC_AMY = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_AMY;
     public static final String ADDITIONAL_DETAILS_DESC_BOB = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_BOB;
+
+    public static final String QUESTION_DESC_AMY = " " + PREFIX_DETAILS + VALID_QUESTION_AMY;
+    public static final String QUESTION_DESC_BOB = " " + PREFIX_DETAILS + VALID_QUESTION_BOB;
+
+    public static final String QUESTION_MATH = "What is 1 + 1?";
+    public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";
+    public static final String QUESTION_EMO = "What is the point of life?";
+    public static final String[] TEST_QUESTIONS =
+            new String[] {QUESTION_MATH, QUESTION_PHYSICS, QUESTION_EMO};
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

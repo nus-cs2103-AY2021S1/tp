@@ -35,6 +35,7 @@
          <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" wrapText="true" />
          <Label fx:id="payment" styleClass="cell_small_label" text="\$payment" wrapText="true" />
          <Label fx:id="details" styleClass="cell_small_label" text="\$details" wrapText="true" />
+      <Label fx:id="questions" styleClass="cell_small_label" text="\$questions" wrapText="true"/>
     </VBox>
       <rowConstraints>
          <RowConstraints />
