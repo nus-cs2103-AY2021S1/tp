@@ -22,6 +22,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_VENDOR = "This vendor already exists in the address book";
     public static final String MESSAGE_SUCCESS = "%1$s has been added to your Order";
     private final OrderItem toAdd;
+    private final int quantity;
 
     /**
      * Creates an AddCommand to add the specified {@code Food}
@@ -29,6 +30,7 @@ public class AddCommand extends Command {
     public AddCommand(Food food) {
         requireNonNull(food);
         toAdd = new OrderItem(food, 1);
+        this.quantity = 1;
     }
 
     /**
@@ -37,6 +39,7 @@ public class AddCommand extends Command {
     public AddCommand(Food food, int quantity) {
         requireNonNull(food);
         toAdd = new OrderItem(food, quantity);
+        this.quantity = quantity;
     }
 
 
@@ -56,7 +59,7 @@ public class AddCommand extends Command {
 
     public String getAddMessage() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(toAdd.getName()).append(" X ").append(toAdd.getQuantity());
+        builder.append(toAdd.getName()).append(" x ").append(quantity);
         return builder.toString();
     }
 }
