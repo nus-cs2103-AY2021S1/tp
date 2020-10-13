@@ -26,9 +26,13 @@ public class SourceContainsKeywordsPredicate implements Predicate<Stock> {
     public boolean test(Stock stock) {
         String stockSource = stock.getSource().value.toLowerCase();
 
-        // test returns true if stock source contains all the keywords specified
-        return keywords.stream()
-                .allMatch(keyword -> stockSource.contains(keyword.toLowerCase()));
+        if(keywords.stream().noneMatch(String::isEmpty)) {
+            // test returns true if stock source contains all the keywords specified
+            return keywords.stream()
+                    .allMatch(keyword -> stockSource.contains(keyword.toLowerCase()));
+        } else {
+            return false;
+        }
     }
 
     @Override
