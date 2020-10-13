@@ -16,7 +16,9 @@ public class FileAddress {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "([A-Z|a-z]:\\\\[^*|\"<>?\\n]*)|(\\\\\\\\.*?\\\\.*)";
+    public static final String VALIDATION_REGEX = "((((?<!\\w)[A-Z,a-z]:)|(\\.{1,2}\\\\))"
+            + "([^\b%\\/\\|:\\n\\\"]*))|(\"\\2([^%\\/\\|:\\n\\\"]*)\")|((?<!\\w)(\\.{1,2})?"
+            + "(?<!\\/)(\\/((\\\\\\b)|[^ \b%\\|:\\n\\\"\\\\\\/])+)+\\/?)";
 
     public final String value;
 

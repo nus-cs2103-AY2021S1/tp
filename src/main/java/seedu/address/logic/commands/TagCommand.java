@@ -1,11 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
+import java.io.File;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +28,8 @@ public class TagCommand extends Command {
             + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T ";
 
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
+    public static final String MESSAGE_FILE_NOT_FOUND = "File not found at %s!"
+            + "Please make sure that file is present before adding.";
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tag name!";
 
     private final Tag toTag;
@@ -33,7 +39,15 @@ public class TagCommand extends Command {
      */
     public TagCommand(Tag tag) {
         requireNonNull(tag);
+        // Check if file is present
+        checkArgument(filePresent(tag.getFileAddress()),
+                String.format(MESSAGE_FILE_NOT_FOUND, tag.getFileAddress().value));
         toTag = tag;
+    }
+
+    private boolean filePresent(FileAddress address) {
+        File file = new File(address.value);
+        return file.exists();
     }
 
     /**

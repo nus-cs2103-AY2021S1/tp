@@ -23,6 +23,10 @@ import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
 public class CommandTestUtil {
 
     // TODO All of these needs to be updated!
+    public static final String VALID_NAME_CS2103 = "cs2103";
+    public static final String VALID_NAME_CS2101 = "cs2101";
+    public static final String VALID_FILE_ADDRESS_CS2103 = "./src/test/java/seedu/address/testutil/cs2103.bat";
+    public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_FILE_ADDRESS_AMY = "c:\\a\\b\\amy.txt";
@@ -30,9 +34,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String NAME_DESC_CS2103 = " " + PREFIX_TAG_NAME + VALID_NAME_CS2103;
+    public static final String NAME_DESC_CS2101 = " " + PREFIX_TAG_NAME + VALID_NAME_CS2101;
     public static final String NAME_DESC_AMY = " " + PREFIX_TAG_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_TAG_NAME + VALID_NAME_BOB;
 
+    public static final String FILE_ADDRESS_DESC_CS2103 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2103;
+    public static final String FILE_ADDRESS_DESC_CS2101 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2101;
     public static final String FILE_ADDRESS_DESC_AMY = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_AMY;
     public static final String FILE_ADDRESS_DESC_BOB = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + VALID_TAG_FRIEND;

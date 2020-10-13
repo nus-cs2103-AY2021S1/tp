@@ -32,9 +32,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Tag person = new TagBuilder().build();
-        TagCommand command = (TagCommand) parser.parseCommand(TagUtil.getTagCommand(person));
-        assertEquals(new TagCommand(person), command);
+        Tag tag = new TagBuilder().build();
+        TagCommand command = (TagCommand) parser.parseCommand(TagUtil.getTagCommand(tag));
+        assertEquals(new TagCommand(tag), command);
     }
 
     @Test
