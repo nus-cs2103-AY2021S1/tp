@@ -26,9 +26,17 @@
           </minWidth>
         </Label>
         <Label fx:id="question" text="\$question" styleClass="cell_big_label" />
+        <padding>
+          <Insets  bottom="10"/>
+        </padding>
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+      <HBox>
+        <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+        <padding>
+          <Insets  bottom="10"/>
+        </padding>
+      </HBox>
       <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
     </VBox>
   </GridPane>
