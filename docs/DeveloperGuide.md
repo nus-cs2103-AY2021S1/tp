@@ -87,6 +87,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | regular user                               | add more clients               | handle more clients                                                    |
 | `* * *`  | regular user                               | delete a client                | account for my clients who churned                                     |
+|  `* *`   | first-time user                            | get some help on using the product | know how to use it                                                 |
 | `* * *`  | first-time user                            | view all clients               | get a general overview                                                 |
 | `* * *`  | first-time user                            | load existing data that I have on user personal details |                                               |
 | `* * *`  | regular user                               | save my client information     | save my edits for next time use                                        |
@@ -118,7 +119,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to list persons.
-2. I4I shows a list of persons.
+2. System shows a list of persons.
 3. User chooses to delete particular client.
 4. System gives success message.
 
@@ -159,9 +160,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
       
+**UC04 - User requests for help**
+
+**MSS**
+
+1. User requests for help on how to use the system.
+2. System gives a guide to help user.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong help command format.
+
+    * 1a1. System gives corresponding error message.
+
+      Use case ends.
+      
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
 2.  Should be able to store up to 1000 clients.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) 
 should be able to accomplish most of the tasks faster using commands than using the mouse.
