@@ -2,8 +2,8 @@ package seedu.expense.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_REMARK_BUS;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_REMARK_FOOD;
 import static seedu.expense.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.expense.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.expense.logic.commands.CommandTestUtil.showExpenseAtIndex;
@@ -87,7 +87,7 @@ public class RemarkCommandTest {
     @Test
     public void execute_invalidExpenseIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExpenseList().size() + 1);
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BUS));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
     }
@@ -103,17 +103,17 @@ public class RemarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of expense book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getExpenseBook().getExpenseList().size());
 
-        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BOB));
+        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, new Remark(VALID_REMARK_BUS));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(VALID_REMARK_AMY));
+        final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(VALID_REMARK_FOOD));
 
         // same values -> returns true
-        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(VALID_REMARK_AMY));
+        RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(VALID_REMARK_FOOD));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -126,10 +126,10 @@ public class RemarkCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_EXPENSE, new Remark(VALID_REMARK_AMY))));
+        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_EXPENSE, new Remark(VALID_REMARK_FOOD))));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(VALID_REMARK_BOB))));
+        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_EXPENSE, new Remark(VALID_REMARK_BUS))));
     }
 
 }

@@ -1,19 +1,21 @@
 package seedu.expense.testutil;
 
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_AMY;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_BUS;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_BUS;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BUS;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.expense.model.ExpenseBook;
+import seedu.expense.model.budget.Budget;
+import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 
 /**
@@ -21,38 +23,46 @@ import seedu.expense.model.expense.Expense;
  */
 public class TypicalExpenses {
 
-    public static final Expense ALICE = new ExpenseBuilder().withDescription("Alice Pauline")
-            .withDate("04-10-2020")
-            .withAmount("24.00").withRemark("She likes aardvarks.")
-            .withTags("friends").build();
-    public static final Expense BENSON = new ExpenseBuilder().withDescription("Benson Meier")
-            .withRemark("He can't take beer!")
-            .withDate("02-10-2020").withAmount("98.00")
-            .withTags("owesMoney", "friends").build();
-    public static final Expense CARL = new ExpenseBuilder().withDescription("Carl Kurz").withAmount("4.00")
-            .withDate("28-09-2020").build();
-    public static final Expense DANIEL = new ExpenseBuilder().withDescription("Daniel Meier").withAmount("4.50")
-            .withDate("11-09-2020").withTags("friends").build();
-    public static final Expense ELLE = new ExpenseBuilder().withDescription("Elle Meyer").withAmount("2.40")
-            .withDate("15-09-2020").build();
-    public static final Expense FIONA = new ExpenseBuilder().withDescription("Fiona Kunz").withAmount("65.00")
-            .withDate("21-09-2020").build();
-    public static final Expense GEORGE = new ExpenseBuilder().withDescription("George Best").withAmount("49.00")
-            .withDate("28-09-2020").build();
+    public static final Expense FEL_BDAY = new ExpenseBuilder().withDescription("Felicia's Birthday")
+            .withDate("02-07-2020")
+            .withAmount("140.00")
+            .withRemark("Birthday surprise with friends + birthday presents + birthday dinner")
+            .withTags("Girlfriend", "Shopping", "Food").build();
+    public static final Expense GRAB_HOME = new ExpenseBuilder().withDescription("Grab Home")
+            .withRemark("Need to stop grabbing so much!")
+            .withDate("01-07-2020").withAmount("15.00")
+            .withTags("Transport").build();
+    public static final Expense ZARA = new ExpenseBuilder().withDescription("ZARA Jacket").withAmount("80.00")
+            .withDate("30-06-2020")
+            .withTags("Shopping").build();
+    public static final Expense RAMEN = new ExpenseBuilder().withDescription("Ramen with Tyler").withAmount("18.50")
+            .withDate("29-06-2020")
+            .withTags("Food").build();
+    public static final Expense PHONE_BILL = new ExpenseBuilder()
+            .withDescription("Phone Bill Payment").withAmount("35.90")
+            .withDate("29-06-2020").build();
+    public static final Expense GRAB_SUPPER = new ExpenseBuilder()
+            .withDescription("Grab to Supper").withAmount("5.00")
+            .withDate("28-06-2020").build();
+    public static final Expense SWEE_CHOON = new ExpenseBuilder()
+            .withDescription("Swee Choon Supper").withAmount("12.40")
+            .withDate("28-06-2020").build();
 
     // Manually added
-    public static final Expense HOON = new ExpenseBuilder().withDescription("Hoon Meier").withAmount("38.00")
-            .withDate("29-09-2020").build();
-    public static final Expense IDA = new ExpenseBuilder().withDescription("Ida Mueller").withAmount("63.00")
-            .withDate("03-10-2020").build();
+    public static final Expense MOVIE = new ExpenseBuilder()
+            .withDescription("Movie with Felicia").withAmount("14.00")
+            .withDate("26-06-2020").build();
+    public static final Expense EZ_LINK = new ExpenseBuilder()
+            .withDescription("Top-up Ez-Link").withAmount("20")
+            .withDate("25-06-2020").build();
 
     // Manually added - Expense's details found in {@code CommandTestUtil}
-    public static final Expense AMY = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_AMY)
-            .withAmount(VALID_AMOUNT_AMY).withDate(VALID_DATE_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
-    public static final Expense BOB = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_BOB)
-            .withAmount(VALID_AMOUNT_BOB).withDate(VALID_DATE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Expense FOOD = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_FOOD)
+            .withAmount(VALID_AMOUNT_FOOD).withDate(VALID_DATE_FOOD)
+            .withTags(VALID_TAG_FOOD).build();
+    public static final Expense BUS = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_BUS)
+            .withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_BUS)
+            .withTags(VALID_TAG_TRANSPORT, VALID_TAG_FOOD)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -67,10 +77,13 @@ public class TypicalExpenses {
         for (Expense expense : getTypicalExpenses()) {
             ab.addExpense(expense);
         }
+        Budget budget = new Budget();
+        budget.topupBudget(new Amount("10"));
+        ab.setBudget(budget);
         return ab;
     }
 
     public static List<Expense> getTypicalExpenses() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(FEL_BDAY, GRAB_HOME, ZARA, RAMEN, PHONE_BILL, GRAB_SUPPER, SWEE_CHOON));
     }
 }

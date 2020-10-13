@@ -3,7 +3,7 @@ package seedu.expense.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.expense.storage.JsonAdaptedExpense.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.expense.testutil.Assert.assertThrows;
-import static seedu.expense.testutil.TypicalExpenses.BENSON;
+import static seedu.expense.testutil.TypicalExpenses.GRAB_HOME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +22,18 @@ public class JsonAdaptedExpenseTest {
     private static final String INVALID_DATE = "23 June 2020";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_DESCRIPTION = BENSON.getDescription().toString();
-    private static final String VALID_AMOUNT = BENSON.getAmount().toString();
-    private static final String VALID_DATE = BENSON.getDate().toString();
-    private static final String VALID_REMARK = BENSON.getRemark().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_DESCRIPTION = GRAB_HOME.getDescription().toString();
+    private static final String VALID_AMOUNT = GRAB_HOME.getAmount().toString();
+    private static final String VALID_DATE = GRAB_HOME.getDate().toString();
+    private static final String VALID_REMARK = GRAB_HOME.getRemark().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = GRAB_HOME.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validExpenseDetails_returnsExpense() throws Exception {
-        JsonAdaptedExpense expense = new JsonAdaptedExpense(BENSON);
-        assertEquals(BENSON, expense.toModelType());
+        JsonAdaptedExpense expense = new JsonAdaptedExpense(GRAB_HOME);
+        assertEquals(GRAB_HOME, expense.toModelType());
     }
 
     @Test

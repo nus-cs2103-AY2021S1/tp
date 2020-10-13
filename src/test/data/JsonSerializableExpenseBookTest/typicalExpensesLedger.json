@@ -1,45 +1,45 @@
 {
-  "_comment": "Ledger save file which contains the same Expense values as in TypicalExpenses#getTypicalExpenseBook()",
+  "_comment": "Ledger save file which contains the same Expense values as in TypicalExpenses#getTypicalAddressBook()",
   "expenses" : [ {
-    "description" : "Alice Pauline",
-    "amount" : "24.00",
-    "date": "04-10-2020",
-    "remark" : "",
-    "tagged" : [ "friends" ]
+    "description" : "Felicia's Birthday",
+    "amount" : "140",
+    "date" : "02-07-2020",
+    "remark" : "Birthday surprise with friends + birthday presents + birthday dinner",
+    "tagged" : [ "Girlfriend", "Shopping", "Food" ]
   }, {
-    "description" : "Benson Meier",
-    "amount" : "98.00",
-    "date": "02-10-2020",
-    "remark" : "",
-    "tagged" : [ "owesMoney", "friends" ]
+    "description" : "Grab Home",
+    "amount" : "15",
+    "date" : "01-07-2020",
+    "remark" : "Need to stop grabbing so much!",
+    "tagged" : [ "Transport" ]
   }, {
-    "description" : "Carl Kurz",
-    "amount" : "4.00",
-    "date": "28-09-2020",
+    "description" : "ZARA Jacket",
+    "amount" : "80",
+    "date" : "30-06-2020",
     "remark" : "",
-    "tagged" : [ ]
+    "tagged" : [ "Shopping" ]
   }, {
-    "description" : "Daniel Meier",
-    "amount" : "4.50",
-    "date": "11-09-2020",
+    "description" : "Ramen with Tyler",
+    "amount" : "18.50",
+    "date" : "29-06-2020",
     "remark" : "",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "Food" ]
   }, {
-    "description" : "Elle Meyer",
-    "amount" : "2.40",
-    "date": "15-09-2020",
-    "remark" : "",
-    "tagged" : [ ]
-  }, {
-    "description" : "Fiona Kunz",
-    "amount" : "65.00",
-    "date": "21-09-2020",
+    "description" : "Phone Bill Payment",
+    "amount" : "35.90",
+    "date" : "29-06-2020",
     "remark" : "",
     "tagged" : [ ]
   }, {
-    "description" : "George Best",
-    "amount" : "49.00",
-    "date": "28-09-2020",
+    "description" : "Grab to Supper",
+    "amount" : "5",
+    "date" : "28-06-2020",
+    "remark" : "",
+    "tagged" : [ ]
+  }, {
+    "description" : "Swee Choon Supper",
+    "amount" : "12.40",
+    "date" : "28-06-2020",
     "remark" : "",
     "tagged" : [ ]
   } ],

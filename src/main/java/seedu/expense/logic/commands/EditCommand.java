@@ -121,6 +121,7 @@ public class EditCommand extends Command {
     /**
      * Stores the details to edit the expense with. Each non-empty field value will replace the
      * corresponding field value of the expense.
+     * Important Note: Not able to change {@code Remark}.
      */
     public static class EditExpenseDescriptor {
         private Description description;

@@ -3,9 +3,9 @@ package seedu.expense.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.expense.testutil.Assert.assertThrows;
-import static seedu.expense.testutil.TypicalExpenses.ALICE;
+import static seedu.expense.testutil.TypicalExpenses.FEL_BDAY;
 import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class ExpenseBookTest {
     @Test
     public void resetData_withDuplicateExpenses_throwsDuplicateExpenseException() {
         // Two expenses with the same identity fields
-        Expense editedAlice = new ExpenseBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
                 .build();
-        List<Expense> newExpenses = Arrays.asList(ALICE, editedAlice);
+        List<Expense> newExpenses = Arrays.asList(FEL_BDAY, editedAlice);
         ExpenseBookStub newData = new ExpenseBookStub(newExpenses);
 
         assertThrows(DuplicateExpenseException.class, () -> expenseBook.resetData(newData));
@@ -61,19 +61,19 @@ public class ExpenseBookTest {
 
     @Test
     public void hasExpense_expenseNotInExpenseBook_returnsFalse() {
-        assertFalse(expenseBook.hasExpense(ALICE));
+        assertFalse(expenseBook.hasExpense(FEL_BDAY));
     }
 
     @Test
     public void hasExpense_expenseInExpenseBook_returnsTrue() {
-        expenseBook.addExpense(ALICE);
-        assertTrue(expenseBook.hasExpense(ALICE));
+        expenseBook.addExpense(FEL_BDAY);
+        assertTrue(expenseBook.hasExpense(FEL_BDAY));
     }
 
     @Test
     public void hasExpense_expenseWithSameIdentityFieldsInExpenseBook_returnsTrue() {
-        expenseBook.addExpense(ALICE);
-        Expense editedAlice = new ExpenseBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        expenseBook.addExpense(FEL_BDAY);
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(expenseBook.hasExpense(editedAlice));
     }

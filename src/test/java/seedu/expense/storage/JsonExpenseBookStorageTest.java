@@ -3,9 +3,9 @@ package seedu.expense.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.expense.testutil.Assert.assertThrows;
-import static seedu.expense.testutil.TypicalExpenses.ALICE;
-import static seedu.expense.testutil.TypicalExpenses.HOON;
-import static seedu.expense.testutil.TypicalExpenses.IDA;
+import static seedu.expense.testutil.TypicalExpenses.EZ_LINK;
+import static seedu.expense.testutil.TypicalExpenses.FEL_BDAY;
+import static seedu.expense.testutil.TypicalExpenses.MOVIE;
 import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonExpenseBookStorageTest {
         assertEquals(original, new ExpenseBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addExpense(HOON);
-        original.removeExpense(ALICE);
+        original.addExpense(MOVIE);
+        original.removeExpense(FEL_BDAY);
         jsonExpenseBookStorage.saveExpenseBook(original, filePath);
         readBack = jsonExpenseBookStorage.readExpenseBook(filePath).get();
         assertEquals(original, new ExpenseBook(readBack));
 
         // Save and read without specifying file path
-        original.addExpense(IDA);
+        original.addExpense(EZ_LINK);
         jsonExpenseBookStorage.saveExpenseBook(original); // file path not specified
         readBack = jsonExpenseBookStorage.readExpenseBook().get(); // file path not specified
         assertEquals(original, new ExpenseBook(readBack));
