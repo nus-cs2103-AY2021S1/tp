@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
@@ -31,7 +30,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newVendor_success() {
+    public void execute_newFoodItem_success() {
         //        Vendor validVendor = new VendorBuilder().build();
         ArrayList<MenuManager> menuManagers = new ArrayList<>();
         menuManagers.add(new MenuManager());
@@ -41,13 +40,14 @@ public class AddCommandIntegrationTest {
         Food food = new Food("Prata", 1.00, new HashSet<>());
         OrderItem item = new OrderItem(food, 1);
         expectedModel.addOrderItem(item);
-        assertCommandSuccess(new AddCommand(item), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, item),
+        AddCommand addCommand = new AddCommand(item);
+        assertCommandSuccess(addCommand, model,
+                String.format(AddCommand.MESSAGE_SUCCESS, addCommand.getAddMessage()),
                 expectedModel);
     }
 
     @Test
-    public void execute_duplicateVendor_throwsCommandException() {
+    public void execute_duplicateFood_success() {
         ArrayList<MenuManager> menuManagers = new ArrayList<>();
         menuManagers.add(new MenuManager());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
@@ -56,8 +56,9 @@ public class AddCommandIntegrationTest {
         Food food = new Food("Prata", 1.00, new HashSet<>());
         OrderItem item = new OrderItem(food, 1);
         expectedModel.addOrderItem(item);
-
-        assertCommandFailure(new AddCommand(item), expectedModel,
-                AddCommand.MESSAGE_DUPLICATE_VENDOR);
+        AddCommand addCommand = new AddCommand(item);
+        assertCommandSuccess(addCommand, model,
+                String.format(AddCommand.MESSAGE_SUCCESS, addCommand.getAddMessage()),
+                expectedModel);
     }
 }

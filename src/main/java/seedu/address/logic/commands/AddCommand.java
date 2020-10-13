@@ -18,7 +18,8 @@ public class AddCommand extends Command {
             + "Parameters: "
             + " Index of FoodItem in Menu "
             + " [Quantity of Food to add]";
-
+    // To remove
+    public static final String MESSAGE_DUPLICATE_VENDOR = "This vendor already exists in the address book";
     public static final String MESSAGE_SUCCESS = "%1$s has been added to your Order";
     private final OrderItem toAdd;
 
