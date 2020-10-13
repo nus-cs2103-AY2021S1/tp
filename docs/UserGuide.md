@@ -74,7 +74,7 @@ Format: `help`
 
 Add food item to McGymmy
 
-Format: `add NAME [-p PROTEIN] [-f FATS] [-c CARBS]`
+Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS]`
 
 Examples:
 * `add potato -p 100 -c 5 -f 0`
