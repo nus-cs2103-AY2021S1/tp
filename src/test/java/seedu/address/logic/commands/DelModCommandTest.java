@@ -189,11 +189,6 @@ class DelModCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void updateFilteredModuleList(Predicate<Module> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
     }
     /**
      * A Model stub that always accept the person being added.
