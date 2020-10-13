@@ -144,10 +144,10 @@ Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX] [d/QUESTION_INDEX]`
 
 * Exactly one of the optional fields must be present.
 * The index and question index **must be positive integers** 1, 2, 3, …​
-* The `a/` prefix adds a new unanswered question to the student at the specified `INDEX`.
-* The `s/` prefix marks an unanswered question, of the student at the specified `INDEX`, at the specified 
+* The `a/` field adds a new unanswered question to the student at the specified `INDEX`.
+* The `s/` field marks an unanswered question, of the student at the specified `INDEX`, at the specified 
 `QUESTION_INDEX` as solved.
-* The `d/` prefix deletes the question at the specified `QUESTION_INDEX` from the student at the specified `INDEX`.
+* The `d/` field deletes the question at the specified `QUESTION_INDEX` from the student at the specified `INDEX`.
 
 Examples:
 * `question 1 a/How do birds fly?` records "How do birds fly?" as a new question from the 1st student in Reeve.
