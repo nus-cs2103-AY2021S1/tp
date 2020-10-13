@@ -3,7 +3,11 @@ package chopchop.ui;
 import chopchop.logic.Logic;
 import chopchop.model.recipe.Recipe;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -13,6 +17,9 @@ import javafx.scene.layout.StackPane;
 public class DisplayController extends UiPart<Region> {
 
     private static final String FXML = "DisplayPanel.fxml";
+    private static final String WELCOME_MESSAGE = "Welcome to ChopChop! If you need any help, press 'F1'";
+
+    private final TextArea welcomePrompt = new TextArea();
     private Logic logic;
     private NotificationWindow notificationWindow;
 
@@ -26,7 +33,24 @@ public class DisplayController extends UiPart<Region> {
     public DisplayController(Logic logic) {
         super(FXML);
         this.logic = logic;
+        welcomePrompt.setText(WELCOME_MESSAGE);
         notificationWindow = new NotificationWindow();
+        displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ESCAPE)) {
+                    displayWelcomeMessage();
+                }
+            }
+        });
+        displayWelcomeMessage();
+    }
+
+    /**
+     * Displays the RecipeViewPanel on the swappable display region.
+     */
+    protected void displayWelcomeMessage() {
+        displayAreaPlaceholder.getChildren().setAll(welcomePrompt);
     }
 
     /**

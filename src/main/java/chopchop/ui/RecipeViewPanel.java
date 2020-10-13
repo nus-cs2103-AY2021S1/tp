@@ -15,10 +15,10 @@ public class RecipeViewPanel extends UiPart<Region> {
     private static final String FXML = "RecipeViewPanel.fxml";
     private static final int ROWS = 3;
     private static final int START_COL = -1;
-    private static final TextArea emptyListPrompt = new TextArea();
 
-    // Only 3 rows of recipes will be displayed.
     private ObservableList<Recipe> recipeObservableList;
+    private final TextArea emptyListPrompt = new TextArea();
+    // Only 3 rows of recipes will be displayed.
 
     @FXML
     private ScrollPane recipePanel;
