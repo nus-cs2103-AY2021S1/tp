@@ -5,10 +5,9 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-import chopchop.logic.commands.exceptions.CommandException;
-
 import chopchop.model.ModelStub;
 import chopchop.model.attributes.Name;
+import chopchop.model.attributes.units.Volume;
 
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientBook;
@@ -43,17 +42,6 @@ public class AddIngredientCommandTest {
     }
 
     @Test
-    public void execute_duplicateIngredient_throwsCommandException() {
-        var validIngredient = new IngredientBuilder().build();
-        var addCommand = new AddIngredientCommand(validIngredient);
-        var modelStub = new ModelStubWithIngredient(validIngredient);
-
-        assertThrows(CommandException.class,
-            AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT, () -> addCommand.execute(modelStub)
-        );
-    }
-    /*
-    @Test
     public void add_ingredients_combine() throws Exception {
         var milk1 = new IngredientBuilder().withName("milk").withQuantity(Volume.litres(0.7)).build();
         var milk2 = new IngredientBuilder().withName("MILK").withQuantity(Volume.cups(1)).build();
@@ -69,7 +57,7 @@ public class AddIngredientCommandTest {
 
         assertEquals(String.format(AddIngredientCommand.MESSAGE_COMBINED, milk3), out2);
     }
-    */
+
     @Test
     public void equals() {
         var apple = new IngredientBuilder().withName("Apple").build();
