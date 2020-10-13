@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -16,31 +15,18 @@ public class Student extends Person {
 
     private final StudentId studentId;
 
-    private final Module module;
-
-    private TutorialGroup tutorialGroup;
-
     /**
      * Constructor for StudentId.
      * @param studentId a valid string representing a Student's id.
      */
-    public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId, Module module) {
+    public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId) {
         super(name, phone, email, tags);
-        this.module = module;
         requireAllNonNull(studentId);
         this.studentId = studentId;
     }
 
     public StudentId getStudentId() {
         return studentId;
-    }
-
-    public Module getModule() {
-        return module;
-    }
-
-    public TutorialGroup getTutorialGroup() {
-        return tutorialGroup;
     }
 
     /**
@@ -54,7 +40,8 @@ public class Student extends Person {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName())
-                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()));
+                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()))
+                && otherStudent.getStudentId().equals(getStudentId());
     }
 
     /**
@@ -76,8 +63,7 @@ public class Student extends Person {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags())
-                && otherStudent.getStudentId().equals(getStudentId())
-                && otherStudent.getModule().equals(getModule());
+                && otherStudent.getStudentId().equals(getStudentId());
     }
 
     @Override
@@ -97,8 +83,7 @@ public class Student extends Person {
                 .append(getEmail())
                 .append(" Student ID: ")
                 .append(getStudentId())
-                .append(" Tags: ")
-                .append(" Module: ");
+                .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
