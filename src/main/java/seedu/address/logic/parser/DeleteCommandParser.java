@@ -38,7 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
 
-        switch(deleteType) {
+        switch (deleteType) {
         case TYPE_CASE:
             if (StateManager.atCasePage()) {
                 throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);

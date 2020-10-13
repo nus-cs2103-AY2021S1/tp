@@ -1,28 +1,25 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.investigationcase.Case;
 
 public class AddCaseCommand extends AddCommand {
-    public static final String COMMAND_WORD = "case";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_CASE
             + ": Adds a case to PIVOT. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "John Doe "
-            + PREFIX_STATUS + "closed "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_STATUS + "closed";
 
     public static final String MESSAGE_SUCCESS = "New case added: %1$s";
     public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in the address book";
@@ -35,7 +32,7 @@ public class AddCaseCommand extends AddCommand {
      * @param investigationCase
      */
     public AddCaseCommand(Case investigationCase) {
-        super(investigationCase);
+        requireNonNull(investigationCase);
         toAdd = investigationCase;
     }
 

@@ -1,36 +1,21 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.Command.TYPE_CASE;
 import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCaseCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.investigationcase.Case;
-import seedu.address.model.investigationcase.Description;
-import seedu.address.model.investigationcase.Document;
-import seedu.address.model.investigationcase.Status;
-import seedu.address.model.investigationcase.Suspect;
-import seedu.address.model.investigationcase.Title;
-import seedu.address.model.investigationcase.Victim;
-import seedu.address.model.investigationcase.Witness;
-import seedu.address.model.tag.Tag;
+import seedu.address.logic.state.StateManager;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-    // Todo: Refine the exception to be thrown
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -43,39 +28,27 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         final String commandWord = matcher.group("commandWord");
-        if (!commandWord.equals(TYPE_CASE)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCaseCommand.MESSAGE_USAGE));
-        }
-
         final String arguments = matcher.group("arguments");
+        switch (commandWord) {
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_TITLE, PREFIX_STATUS,
-                        PREFIX_TAG);
+        case TYPE_CASE:
+            if (StateManager.atCasePage()) {
+                throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+            }
+            return new AddCaseCommandParser().parse(arguments);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCaseCommand.MESSAGE_USAGE));
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Description description = new Description("");
-        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse("active"));
-        List<Document> documents = new ArrayList<>();
-        List<Suspect> suspects = new ArrayList<>();
-        List<Victim> victims = new ArrayList<>();
-        List<Witness> witnesses = new ArrayList<>();
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Case investigationCase = new Case(title, description, status, documents,
-                suspects, victims, witnesses, tagList);
-        return new AddCaseCommand(investigationCase);
+
     }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
