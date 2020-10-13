@@ -6,12 +6,12 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
- * Clears PlaNUS.
+ * Clears PlaNus.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "PlaNUS has been cleared!";
+    public static final String MESSAGE_SUCCESS = "PlaNus has been cleared!";
 
 
     @Override
