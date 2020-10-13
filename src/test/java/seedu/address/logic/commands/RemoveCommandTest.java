@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
@@ -42,6 +45,19 @@ public class RemoveCommandTest {
 
         assertEquals(String.format(RemoveCommand.MESSAGE_EDIT_ITEM_SUCCESS, afterRemoveItem),
                 commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void equals() {
+        RemoveCommand removeOne = new RemoveCommand(INDEX_FIRST_ITEM, new Quantity("10"));
+        RemoveCommand removeTwo = new RemoveCommand(INDEX_SECOND_ITEM, new Quantity("10"));
+        RemoveCommand removeThree = new RemoveCommand(INDEX_SECOND_ITEM, new Quantity("20"));
+
+        assertTrue(removeOne.equals(removeOne));
+
+        assertFalse(removeOne.equals(removeTwo));
+
+        assertFalse(removeTwo.equals(removeThree));
     }
 
 }
