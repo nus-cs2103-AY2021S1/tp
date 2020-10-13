@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -52,4 +53,15 @@ public class TestUtil {
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
+
+    // MEETING
+    /**
+     * Returns the person in the {@code model}'s meeting list at {@code index}.
+     */
+    public static CalendarMeeting getMeeting(Model model, Index index) {
+        return model.getFilteredMeetingList().get(index.getZeroBased());
+    }
+
+
+
 }
