@@ -192,6 +192,12 @@
 #recipePanel .viewport {
     -fx-background-color: white;
 }
+#ingredientPanel {
+    -fx-background-color: white;
+}
+#ingredientPanel .viewport {
+    -fx-background-color: white;
+}
 #recipeGridView {
     -fx-background-color: white;
 }

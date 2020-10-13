@@ -56,11 +56,11 @@ public class RecipeDisplay extends UiPart<Region> {
 
         if (!ingredients.isEmpty()) {
             ingredientDisplay.clear();
-            ingredientDisplay.setText(ingredients);
+            ingredientDisplay.setText(ingredients.trim());
         }
         if (!steps.isEmpty()) {
             instructionDisplay.clear();
-            instructionDisplay.setText(steps);
+            instructionDisplay.setText(steps.trim());
         }
     }
 

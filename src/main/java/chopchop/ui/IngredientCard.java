@@ -26,9 +26,16 @@ public class IngredientCard extends UiPart<Region> {
     public IngredientCard(Ingredient ingredient) {
         super(FXML);
         this.ingredient = ingredient;
-        name.setText(ingredient.toString());
+        name.setText(displayFormatter(ingredient.toString()));
     }
 
+    /**
+     * Adds a new line to separate the ingredient name and the quantity.
+     */
+    private String displayFormatter(String string) {
+        String[] temp = string.split(" ", 2);
+        return String.join("\n", temp);
+    }
 
     @Override
     public boolean equals(Object other) {

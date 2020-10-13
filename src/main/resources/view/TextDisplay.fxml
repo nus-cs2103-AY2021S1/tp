@@ -8,5 +8,5 @@
     <stylesheets>
         <URL value="@Style.css" />
     </stylesheets>
-    <TextArea fx:id="textDisplay" text="\$text" />
+    <TextArea fx:id="textDisplay" text="\$text" prefHeight="300.0" prefWidth="300.0"/>
 </StackPane>
