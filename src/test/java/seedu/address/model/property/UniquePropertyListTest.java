@@ -147,14 +147,14 @@ public class UniquePropertyListTest {
 
     @Test
     public void getPropertyById_propertyDoesNotExist_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> uniquePropertyList.getPropertyById(PROPERTY_A.getPropertyId()));
+        assertThrows(PropertyNotFoundException.class, () ->
+                uniquePropertyList.getPropertyById(PROPERTY_A.getPropertyId()));
     }
 
     @Test
     public void getPropertyById_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniquePropertyList.getPropertyById(null));
+        assertThrows(NullPointerException.class, () ->
+                uniquePropertyList.getPropertyById(null));
     }
 
     @Test
@@ -183,14 +183,14 @@ public class UniquePropertyListTest {
 
     @Test
     public void removeByPropertyId_propertyDoesNotExist_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> uniquePropertyList.removeByPropertyId(PROPERTY_A.getPropertyId()));
+        assertThrows(PropertyNotFoundException.class, () ->
+                uniquePropertyList.removeByPropertyId(PROPERTY_A.getPropertyId()));
     }
 
     @Test
     public void removeByPropertyId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniquePropertyList.removeByPropertyId(null));
+        assertThrows(NullPointerException.class, () ->
+                uniquePropertyList.removeByPropertyId(null));
     }
 
     @Test
@@ -225,12 +225,13 @@ public class UniquePropertyListTest {
     @Test
     public void setProperties_listWithDuplicateProperties_throwsDuplicatePropertyException() {
         List<Property> listWithDuplicateProperties = Arrays.asList(PROPERTY_A, PROPERTY_A);
-        assertThrows(DuplicatePropertyException.class, () -> uniquePropertyList.setProperties(listWithDuplicateProperties));
+        assertThrows(DuplicatePropertyException.class, () ->
+                uniquePropertyList.setProperties(listWithDuplicateProperties));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniquePropertyList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                uniquePropertyList.asUnmodifiableObservableList().remove(0));
     }
 }

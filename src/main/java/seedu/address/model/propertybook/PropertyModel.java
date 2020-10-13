@@ -3,9 +3,8 @@ package seedu.address.model.propertybook;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.property.Property;
-import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.id.Id;
+import seedu.address.model.property.Property;
 
 public interface PropertyModel {
 

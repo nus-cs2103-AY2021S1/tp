@@ -27,13 +27,14 @@ public class AddPropertyCommandTest {
     }
 
     @Test
-    public void execute_PROPERTY_AcceptedByModel_addSuccessful() throws Exception {
+    public void execute_propertyAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPropertyAdded modelStub = new ModelStubAcceptingPropertyAdded();
         Property validProperty = new PropertyBuilder().build();
 
         CommandResult commandResult = new AddPropertyCommand(validProperty).execute(modelStub);
 
-        assertEquals(String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validProperty), modelStub.propertiesAdded);
     }
 
@@ -43,8 +44,8 @@ public class AddPropertyCommandTest {
         AddPropertyCommand addPropertyCommand = new AddPropertyCommand(validProperty);
         ModelStub modelStub = new ModelStubWithProperty(validProperty);
 
-        assertThrows(CommandException.class, AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY,
-                () -> addPropertyCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY, () ->
+                addPropertyCommand.execute(modelStub));
     }
 
     @Test

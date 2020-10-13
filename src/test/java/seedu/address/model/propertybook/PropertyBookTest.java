@@ -93,8 +93,8 @@ public class PropertyBookTest {
 
     @Test
     public void getPropertyById_propertyNotInPropertyBook_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> propertyBook.getPropertyById(PROPERTY_A.getPropertyId()));
+        assertThrows(PropertyNotFoundException.class, () ->
+                propertyBook.getPropertyById(PROPERTY_A.getPropertyId()));
     }
 
     @Test
@@ -128,8 +128,8 @@ public class PropertyBookTest {
 
     @Test
     public void removePropertyByPropertyId_propertyNotInPropertyBook_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId()));
+        assertThrows(PropertyNotFoundException.class, () ->
+                propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId()));
     }
 
     @Test

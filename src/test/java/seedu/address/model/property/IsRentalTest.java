@@ -44,7 +44,7 @@ public class IsRentalTest {
         assertFalse(IsRental.isValidIsRental("**&#"));
         assertFalse(IsRental.isValidIsRental("a1b*"));
 
-       // valid isRental
+        // valid isRental
         assertTrue(IsRental.isValidIsRental("yes"));
         assertTrue(IsRental.isValidIsRental("YES"));
         assertTrue(IsRental.isValidIsRental("Yes"));
