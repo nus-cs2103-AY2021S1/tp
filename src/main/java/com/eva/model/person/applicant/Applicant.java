@@ -1,15 +1,15 @@
 package com.eva.model.person.applicant;
 
-import java.util.Optional;
-import java.util.Set;
-
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
-import com.eva.model.comment.Comment;
 import com.eva.model.tag.Tag;
+
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Represents the Applicant to be stored by Eva.
