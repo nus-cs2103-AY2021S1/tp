@@ -85,7 +85,7 @@ public interface ExerciseModel {
      * Returns an unmodifiable view of the filtered Exercise list
      */
     ObservableList<Exercise> getFilteredExerciseList();
-    
+
     /**
      * Updates the filter of the filtered Exercise list to filter by the given {@code predicate}.
      *

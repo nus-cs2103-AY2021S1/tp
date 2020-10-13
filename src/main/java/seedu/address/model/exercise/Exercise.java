@@ -8,7 +8,6 @@ public class Exercise {
     // identity field
     private final Name name;
     private final Date date;
-
     // data field
     private final Description description;
     private final Calories calories;
