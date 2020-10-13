@@ -48,6 +48,8 @@ public class MainWindow extends UiPart<Stage> {
     private OptionListPanel optionListPanel;
     private QuestionDisplay questionDisplay;
 
+    private BarChartDisplay barChartDisplay;
+
     private boolean isOnChangedWindow;
 
     @FXML
@@ -178,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
-        // logic.setGuiSettings(guiSettings);
+        logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -189,9 +191,28 @@ public class MainWindow extends UiPart<Stage> {
      * @param feedbackToUser the feedback describing what to display to the user.
      */
     public void handleChangeWindow(Feedback feedbackToUser) {
-        // can add if-else statements to differentiate between
-        // how the content of the placeholders are changed.
-        changeInnerPartsToFlashcardWindow(feedbackToUser);
+        feedbackToUser.getStatistics().ifPresentOrElse((statistics ->
+                        changeInnerPartsToStatisticsWindow(feedbackToUser)), () ->
+                        changeInnerPartsToFlashcardWindow(feedbackToUser));
+        this.isOnChangedWindow = true;
+    }
+
+    /**
+     * Changes the content of the placeHolders of this window to display the statistics of a flashcard.
+     *
+     * @param feedbackToUser the feedback describing what to display to the user.
+     */
+    private void changeInnerPartsToStatisticsWindow(Feedback feedbackToUser) {
+
+        displayPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().clear();
+
+        displayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        barChartDisplay = new BarChartDisplay();
+        listPanelPlaceholder.getChildren().add(barChartDisplay.getRoot());
+
+        barChartDisplay.displayStatistics(feedbackToUser);
     }
 
     /**
@@ -228,8 +249,6 @@ public class MainWindow extends UiPart<Stage> {
         feedbackToUser.isCorrect().ifPresent(isCorrect -> {
             questionDisplay.showOutcome(feedbackToUser.toString(), isCorrect);
         });
-
-        this.isOnChangedWindow = true;
     }
 
     /**

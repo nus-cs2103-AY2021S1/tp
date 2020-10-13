@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 
 /**
  * Represents the result of a command execution.
@@ -70,6 +71,16 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, Question question, Boolean isCorrect, boolean changeWindow) {
         this(feedbackToUser, false, false, changeWindow, question, isCorrect);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code question}, {@code isCorrect}, {@code statistics}
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Question question, Statistics statistics) {
+        this(feedbackToUser, false, false, true, question, null);
+        this.feedbackToUser.setStatistics(statistics);
     }
 
     public String getFeedbackToUser() {

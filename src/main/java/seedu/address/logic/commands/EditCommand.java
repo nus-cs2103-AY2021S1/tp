@@ -23,6 +23,7 @@ import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 import seedu.address.flashcard.Tag;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -77,8 +78,7 @@ public class EditCommand extends Command {
         assert flashcardToEdit != null;
 
         boolean isMcq = flashcardToEdit.getQuestion() instanceof MultipleChoiceQuestion;
-        int timesTested = flashcardToEdit.getTimesTested();
-        int timesTestedCorrect = flashcardToEdit.getTimesTestedCorrect();
+        Statistics statistics = flashcardToEdit.getStatistics();
 
         Optional<Answer> updatedAnswer = editFlashcardDescriptor.getAnswer();
         //.orElse(new Answer(flashcardToEdit.getAnswer().getAnswer()));
@@ -145,7 +145,7 @@ public class EditCommand extends Command {
             }
             finalAnswer = updatedAnswer.orElse(new Answer(flashcardToEdit.getAnswer().getValue()));
         }
-        return new Flashcard(updatedQuestion, finalAnswer, updatedTags, timesTested, timesTestedCorrect);
+        return new Flashcard(updatedQuestion, finalAnswer, updatedTags, statistics);
     }
 
     @Override

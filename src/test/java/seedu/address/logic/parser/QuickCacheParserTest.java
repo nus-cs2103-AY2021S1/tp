@@ -21,7 +21,7 @@ import seedu.address.testutil.FlashcardUtil;
 
 public class QuickCacheParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final QuickCacheParser parser = new QuickCacheParser();
 
     @Test
     public void parseCommand_add() throws Exception {

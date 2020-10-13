@@ -17,17 +17,14 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.TestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-//import seedu.address.logic.commands.EditCommand;
-//import seedu.address.logic.commands.FindCommand;
-// import seedu.address.logic.commands.ListCommand;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class QuickCacheParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -83,6 +80,9 @@ public class AddressBookParser {
 
         case TestCommand.COMMAND_WORD:
             return new TestCommandParser().parse(arguments);
+
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
