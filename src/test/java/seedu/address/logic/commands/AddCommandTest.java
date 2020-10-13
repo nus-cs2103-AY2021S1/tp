@@ -250,6 +250,11 @@ public class AddCommandTest {
         public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void getPersonsInModule(ModuleName moduleName) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

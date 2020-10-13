@@ -38,7 +38,7 @@ public class ModuleBookParser {
         case AddModuleCommand.COMMAND_WORD:
             return new AddModuleCommandParser().parse(arguments);
         case ListModuleCommand.COMMAND_WORD:
-            return new ListModuleCommand();
+            return new ListModuleCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
