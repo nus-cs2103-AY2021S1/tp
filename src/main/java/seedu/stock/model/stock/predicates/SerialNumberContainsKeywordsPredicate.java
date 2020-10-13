@@ -27,7 +27,7 @@ public class SerialNumberContainsKeywordsPredicate implements Predicate<Stock> {
     public boolean test(Stock stock) {
         String stockSerialNumber = stock.getSerialNumber().getSerialNumberAsString().toLowerCase();
 
-        if(keywords.stream().noneMatch(String::isEmpty)) {
+        if (!keywords.isEmpty() && keywords.stream().noneMatch(String::isEmpty)) {
             // test returns true if stock serial number contains all of the keywords specified
             return keywords.stream()
                     .allMatch(keyword -> stockSerialNumber.contains(keyword.toLowerCase()));

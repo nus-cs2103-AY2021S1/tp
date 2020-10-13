@@ -26,7 +26,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Stock> {
     public boolean test(Stock stock) {
         String stockName = stock.getName().fullName.toLowerCase();
 
-        if(keywords.stream().noneMatch(String::isEmpty)) {
+        if (!keywords.isEmpty() && keywords.stream().noneMatch(String::isEmpty)) {
             // test returns true if stock name contains all of the keywords specified
             return keywords.stream()
                     .allMatch(keyword -> stockName.contains(keyword.toLowerCase()));

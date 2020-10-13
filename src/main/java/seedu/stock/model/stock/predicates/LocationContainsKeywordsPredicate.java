@@ -27,7 +27,7 @@ public class LocationContainsKeywordsPredicate implements Predicate<Stock> {
     public boolean test(Stock stock) {
         String stockLocation = stock.getLocation().value.toLowerCase();
 
-        if(keywords.stream().noneMatch(String::isEmpty)) {
+        if (!keywords.isEmpty() && keywords.stream().noneMatch(String::isEmpty)) {
             // test returns true if stock's location contains all of the keywords specified
             return keywords.stream()
                     .allMatch(keyword -> stockLocation.contains(keyword.toLowerCase()));
