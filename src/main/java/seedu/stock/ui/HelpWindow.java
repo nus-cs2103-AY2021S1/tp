@@ -146,8 +146,7 @@ public class HelpWindow extends UiPart<Stage> {
                 Application a = new Application() {
 
                     @Override
-                    public void start(Stage stage)
-                    {
+                    public void start(Stage stage) {
                     }
                 };
                 a.getHostServices().showDocument(USERGUIDE_LINK.getText());
