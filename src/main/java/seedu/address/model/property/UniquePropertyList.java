@@ -2,6 +2,7 @@ package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.property.Property.DEFAULT_PROPERTY_ID;
 
 import java.util.Iterator;
 import java.util.List;
@@ -49,7 +50,11 @@ public class UniquePropertyList implements Iterable<Property> {
         if (contains(toAdd)) {
             throw new DuplicatePropertyException();
         }
-        internalList.add(toAdd.setId(getLastId().increment()));
+        if (toAdd.getPropertyId().equals(DEFAULT_PROPERTY_ID)) {
+            internalList.add(toAdd.setId(getLastId().increment()));
+        } else {
+            internalList.add(toAdd);
+        }
     }
 
     /**
@@ -117,6 +122,7 @@ public class UniquePropertyList implements Iterable<Property> {
      * @return True if the property list contains the property with the given id.
      */
     public boolean containsPropertyId(Id id) {
+        requireNonNull(id);
         return internalList.filtered(property -> property.getPropertyId().equals(id))
                 .size() > 0;
     }
