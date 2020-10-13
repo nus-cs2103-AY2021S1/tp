@@ -42,10 +42,10 @@ public class UniqueAnimalListTest {
     @Test
     public void contains_animalWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAnimalList.add(AHMENG);
-        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
+        Animal editedAhmeng = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
-        assertTrue(uniqueAnimalList.contains(editedAlice));
+        assertTrue(uniqueAnimalList.contains(editedAhmeng));
     }
 
     @Test
@@ -86,12 +86,12 @@ public class UniqueAnimalListTest {
     @Test
     public void setAnimal_editedAnimalHasSameIdentity_success() {
         uniqueAnimalList.add(AHMENG);
-        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
+        Animal editedAhmeng = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
-        uniqueAnimalList.setAnimal(AHMENG, editedAlice);
+        uniqueAnimalList.setAnimal(AHMENG, editedAhmeng);
         UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();
-        expectedUniqueAnimalList.add(editedAlice);
+        expectedUniqueAnimalList.add(editedAhmeng);
         assertEquals(expectedUniqueAnimalList, uniqueAnimalList);
     }
 

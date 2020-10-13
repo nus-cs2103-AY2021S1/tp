@@ -21,7 +21,7 @@ import seedu.address.model.animal.Animal;
  */
 public class TypicalAnimals {
 
-    public static final Animal AHMENG = new AnimalBuilder().withName("AhMeng")
+    public static final Animal AHMENG = new AnimalBuilder().withName("Ahmeng")
             .withSpecies("Orangutan")
             .withId("000123")
             .withMedicalConditions("Healthy").build();

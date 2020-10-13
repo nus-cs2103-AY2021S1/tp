@@ -1,7 +1,7 @@
 {
   "_comment": "ZooKeepBook save file which contains the same Animal values as in TypicalAnimals#getTypicalZooKeepBook()",
   "animals" : [ {
-    "name" : "AhMeng",
+    "name" : "Ahmeng",
     "id" : "000123",
     "species" : "Orangutan",
     "medicalConditions" : [ "Healthy" ]

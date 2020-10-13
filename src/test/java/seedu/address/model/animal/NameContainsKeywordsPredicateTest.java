@@ -41,35 +41,36 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new AnimalBuilder().withName("Alice Bob").build()));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("Ahmeng"));
+        assertTrue(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new AnimalBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Ahmeng", "Buttercup"));
+        assertTrue(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new AnimalBuilder().withName("Alice Carol").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Buttercup", "Coco"));
+        assertTrue(predicate.test(new AnimalBuilder().withName("Buttercup Coco").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new AnimalBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("ahMeNg", "buTTercup"));
+        assertTrue(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new AnimalBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new AnimalBuilder().withName("Ahmeng").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new AnimalBuilder().withName("Alice Bob").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Coco"));
+        assertFalse(predicate.test(new AnimalBuilder().withName("Ahmeng Buttercup").build()));
 
         // Keywords match ID and species, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
-        assertFalse(predicate.test(new AnimalBuilder().withName("Alice").withId("12345")
-                .withSpecies("Main Street").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("000123", "Reticulated", "Python"));
+        assertFalse(predicate.test(new AnimalBuilder().withName("Buttercup").withId("000123")
+                .withSpecies("Reticulated Python").build()));
     }
 }

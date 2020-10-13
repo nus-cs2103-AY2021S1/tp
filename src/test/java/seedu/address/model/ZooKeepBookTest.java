@@ -46,10 +46,10 @@ public class ZooKeepBookTest {
     @Test
     public void resetData_withDuplicateAnimals_throwsDuplicateAnimalException() {
         // Two animals with the same identity fields
-        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
+        Animal editedAhmeng = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
-        List<Animal> newAnimals = Arrays.asList(AHMENG, editedAlice);
+        List<Animal> newAnimals = Arrays.asList(AHMENG, editedAhmeng);
         ZooKeepBookStub newData = new ZooKeepBookStub(newAnimals);
 
         assertThrows(DuplicateAnimalException.class, () -> zooKeepBook.resetData(newData));
@@ -74,10 +74,10 @@ public class ZooKeepBookTest {
     @Test
     public void hasAnimal_animalWithSameIdentityFieldsInZooKeepBook_returnsTrue() {
         zooKeepBook.addAnimal(AHMENG);
-        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
+        Animal editedAhmeng = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
-        assertTrue(zooKeepBook.hasAnimal(editedAlice));
+        assertTrue(zooKeepBook.hasAnimal(editedAhmeng));
     }
 
     @Test
