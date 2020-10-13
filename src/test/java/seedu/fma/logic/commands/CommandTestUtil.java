@@ -1,6 +1,7 @@
 package seedu.fma.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.fma.logic.parser.CliSyntax.PREFIX_REPS;
@@ -8,7 +9,9 @@ import static seedu.fma.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.fma.commons.core.index.Index;
 import seedu.fma.logic.commands.exceptions.CommandException;
@@ -16,6 +19,8 @@ import seedu.fma.model.LogBook;
 import seedu.fma.model.Model;
 import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Log;
+import seedu.fma.model.log.Rep;
+import seedu.fma.model.util.NameContainsKeywordsPredicate;
 import seedu.fma.testutil.ExerciseBuilder;
 import seedu.fma.testutil.LogBuilder;
 
@@ -24,7 +29,7 @@ import seedu.fma.testutil.LogBuilder;
  */
 
 public class CommandTestUtil {
-    public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
+    public static final String VALID_EXERCISE_SIT_UP = "Sit up";
     public static final String VALID_EXERCISE_CRUNCHES = "Crunches";
 
     public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();
@@ -35,18 +40,18 @@ public class CommandTestUtil {
     public static final String VALID_COMMENT_B = "Easy";
 
     public static final int VALID_YEAR_A = 2021;
-    public static final int VALID_MONTH_A = 1; // February
-    public static final int VALID_DAY_A = 1;
-    public static final int VALID_HOUR_A = 1;
-    public static final int VALID_MINUTE_A = 1;
+    public static final int VALID_MONTH_A = 2; // February
+    public static final int VALID_DAY_A = 2;
+    public static final int VALID_HOUR_A = 2;
+    public static final int VALID_MINUTE_A = 2;
     public static final LocalDateTime VALID_DATE_TIME_A = LocalDateTime.of(
             VALID_YEAR_A, VALID_MONTH_A, VALID_DAY_A, VALID_HOUR_A, VALID_MINUTE_A
     );
     public static final int VALID_YEAR_B = 2020;
-    public static final int VALID_MONTH_B = 2; // January
-    public static final int VALID_DAY_B = 2;
-    public static final int VALID_HOUR_B = 2;
-    public static final int VALID_MINUTE_B = 2;
+    public static final int VALID_MONTH_B = 1; // January
+    public static final int VALID_DAY_B = 1;
+    public static final int VALID_HOUR_B = 1;
+    public static final int VALID_MINUTE_B = 1;
     public static final LocalDateTime VALID_DATE_TIME_B = LocalDateTime.of(
             VALID_YEAR_B, VALID_MONTH_B, VALID_DAY_B, VALID_HOUR_B, VALID_MINUTE_B
     );
@@ -69,11 +74,20 @@ public class CommandTestUtil {
     public static final Log DESC_A;
     public static final Log DESC_B;
 
+    public static final EditCommand.EditLogDescriptor EDIT_LOG_DESCRIPTOR_A;
+    public static final EditCommand.EditLogDescriptor EDIT_LOG_DESCRIPTOR_B;
+
     static {
         DESC_A = new LogBuilder().withExercise(VALID_EXERCISE_A)
                 .withReps(VALID_REP_A).withComment(VALID_COMMENT_A).build();
         DESC_B = new LogBuilder().withExercise(VALID_EXERCISE_B)
                 .withReps(VALID_REP_B).withComment(VALID_COMMENT_B).build();
+
+        EDIT_LOG_DESCRIPTOR_A = new EditCommand.EditLogDescriptor();
+        EDIT_LOG_DESCRIPTOR_A.setExercise(VALID_EXERCISE_A);
+
+        EDIT_LOG_DESCRIPTOR_B = new EditCommand.EditLogDescriptor();
+        EDIT_LOG_DESCRIPTOR_B.setRep(new Rep(VALID_REP_B));
     }
 
     /**
@@ -82,7 +96,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -97,7 +111,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -123,13 +137,12 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the log at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        /*assertTrue(targetIndex.getZeroBased() < model.getFilteredLogList().size());
+    public static void showLogAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredLogList().size());
 
         Log log = model.getFilteredLogList().get(targetIndex.getZeroBased());
-        final String[] splitName = log.getName().value.split("\\s+");
-        model.updateFilteredLogList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredLogList().size());*/
+        Predicate<Log> firstPredicate = new NameContainsKeywordsPredicate(Collections.singletonList(log.toString()));
+        model.updateFilteredLogList(firstPredicate);
+        assertEquals(1, model.getFilteredLogList().size());
     }
 }
