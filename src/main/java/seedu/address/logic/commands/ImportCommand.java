@@ -32,6 +32,7 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.importTimetable(data);
+        System.out.println(data);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

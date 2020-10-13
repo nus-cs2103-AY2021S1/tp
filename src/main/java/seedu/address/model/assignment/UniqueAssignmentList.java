@@ -99,6 +99,10 @@ public class UniqueAssignmentList implements Iterable<Assignment> {
         internalList.setAll(assignments);
     }
 
+    public ObservableList<Assignment> getInternalList() {
+        return internalList;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Task;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.timetable.TimetableData;
 
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Assignment> filteredAssignments;
     private final FilteredList<Assignment> remindedAssignments;
     private final FilteredList<Lesson> lessons;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +44,7 @@ public class ModelManager implements Model {
         remindedAssignments = new FilteredList<>(
                 this.addressBook.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
         lessons = new FilteredList<>(this.addressBook.getLessonList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
     }
 
     public ModelManager() {
@@ -139,6 +142,23 @@ public class ModelManager implements Model {
     public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
         requireNonNull(predicate);
         filteredAssignments.setPredicate(predicate);
+    }
+
+    //=========== Task List Accessors =============================================================
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
     }
 
     //=========== Reminded Assignments List Accessors =============================================================
