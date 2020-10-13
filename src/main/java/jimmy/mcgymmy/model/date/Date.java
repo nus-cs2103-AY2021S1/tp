@@ -30,7 +30,8 @@ public class Date {
         "yyyy/MM/dd",
         "dd/MM/yyyy",
         "dd/M/yyyy",
-        "d/M/yyyy"
+        "d/M/yyyy",
+        "d MMM yyyy"
     };
 
     private static final String OUTPUT_FORMAT = "d MMM yyyy";

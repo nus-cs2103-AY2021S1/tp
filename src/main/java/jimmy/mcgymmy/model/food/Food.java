@@ -35,7 +35,7 @@ public class Food {
      * Every field must be present and not null.
      */
     public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags, Date date) {
-        CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
+        CollectionUtil.requireAllNonNull(name, protein, carbs, fat, date);
         AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONSTRAINT);
         this.name = name;
         this.protein = protein;
@@ -133,7 +133,8 @@ public class Food {
                 && this.getName().equals(otherFood.getName())
                 && this.getProtein().equals(otherFood.getProtein())
                 && this.getCarbs().equals(otherFood.getCarbs())
-                && this.getFat().equals(otherFood.getFat());
+                && this.getFat().equals(otherFood.getFat())
+                && this.getDate().equals(otherFood.getDate());
     }
 
     // Displays
