@@ -21,6 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    // private final ModuleList moduleList;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -127,6 +128,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        addressBook.addTutorialGroup(tutorialGroup);
+    }
+
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+        requireAllNonNull(tutorialGroup);
+        return addressBook.hasTutorialGroup(tutorialGroup);
     }
 
     @Override

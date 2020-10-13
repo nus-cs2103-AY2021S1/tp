@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TutorialGroup;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -114,6 +115,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTutorialGroup(TutorialGroup tutorialGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -172,6 +183,18 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<TutorialGroup> tutorialGroupsAdded = new ArrayList<>();
+
+        public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+            requireNonNull(tutorialGroup);
+            return tutorialGroupsAdded.stream().anyMatch(tutorialGroup::isSameTutorialGroup);
+        }
+
+        @Override
+        public void addTutorialGroup(TutorialGroup tutorialGroup) {
+            requireNonNull(tutorialGroup);
+            tutorialGroupsAdded.add(tutorialGroup);
+        }
 
         @Override
         public boolean hasPerson(Person person) {

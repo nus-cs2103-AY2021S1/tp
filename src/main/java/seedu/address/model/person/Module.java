@@ -20,6 +20,8 @@ public class Module {
      * The first character of the module must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
+
+    // TODO make a module ID class?
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String moduleId;
@@ -73,6 +75,19 @@ public class Module {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
                 && getModuleId().equals(((Module) other).getModuleId())); // state check
+    }
+
+    /**
+     * Returns true if both modules of the same name have at least one other identity field that is the same.
+     * This defines a weaker notion of equality between two modules.
+     */
+    public boolean isSameModule(Module otherModule) {
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getModuleId().equals(getModuleId());
     }
 
     @Override
