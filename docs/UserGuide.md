@@ -77,9 +77,9 @@ Add food item to McGymmy
 Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS]`
 
 Examples:
-* `add potato -p 100 -c 5 -f 0`
-* `add McSpicy`
-* `add Wonton Mee -c 10`
+* `add -n potato -p 100 -c 5 -f 0`
+* `add -n McSpicy`
+* `add -n Wonton Mee -c 10`
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
