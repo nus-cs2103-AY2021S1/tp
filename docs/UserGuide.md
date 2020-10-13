@@ -69,19 +69,21 @@ Format: `help`
 
 ### Adding a student: `add`
 
-Adds a student to Reeve. (written by: Alex and Hogan)
+Adds a student to Reeve. (Written by: Alex and Hogan)
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/VENUE t/TIME 
-[a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+
 </div>
 
 Example:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Secondary 2 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630 `
-* `add n/John p/98765432 s/Newton Primary School y/Primary 5 v/Blk 123 East Coast Rd #02-345 t/3 1600-1830 
-a/John likes chocolate m/www.zoom987.com sb/English`
+* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+t/1 1430-1630 f/25 d/12/12/2020`
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 
+t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 ### Listing all students : `list`
 
@@ -97,8 +99,10 @@ Edits an existing student in Reeve (Written by: Vaishak).
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] [a/ADDITIONAL_DETAILS] `
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
-The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+
 </div>
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
@@ -112,7 +116,7 @@ Examples:
 
 ### Locating students: `find`
 
-(written by: Ying Gao)
+(Written by: Ying Gao)
 Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
@@ -126,7 +130,7 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 * For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
 * Only students matching all criteria specified will be returned (i.e `AND` search).
 
-(written by: Choon Siong)
+(Written by: Choon Siong)
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find n/Alex david` does not match `Alexis Davinder`.
