@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFlashcards.RANDOM1;
 import static seedu.address.testutil.TypicalFlashcards.RANDOM2;
@@ -57,7 +57,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         FlashcardContainsTagPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
@@ -67,7 +67,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_oneKeyword_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         FlashcardContainsTagPredicate predicate = preparePredicate("LSM1301");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
@@ -77,7 +77,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
         FlashcardContainsTagPredicate predicate = preparePredicate("CS2100 CS");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);

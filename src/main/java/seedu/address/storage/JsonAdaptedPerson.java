@@ -130,7 +130,7 @@ class JsonAdaptedPerson {
 
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
-            return new Flashcard(modelQuestion, modelAnswer, modelTags, statistics);
+            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelStatistics);
 
         } else if (type.equals(OpenEndedQuestion.TYPE)) {
 
@@ -162,7 +162,7 @@ class JsonAdaptedPerson {
 
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
-            return new Flashcard(modelQuestion, modelAnswer, modelTags, statistics);
+            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelStatistics);
 
         } else {
             throw new IllegalValueException(String.format(INVALID_TYPE));
