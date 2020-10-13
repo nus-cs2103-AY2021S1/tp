@@ -51,7 +51,8 @@ public class CalendarMeeting {
         } else if (isAdmin) {
             return "Admin";
         } else {
-            throw new AssertionError("no such meeting type");
+            //throw new AssertionError("no such meeting type");
+            return "General";
         }
     }
 

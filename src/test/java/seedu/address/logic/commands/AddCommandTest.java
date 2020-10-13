@@ -130,46 +130,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
-
-        }
-
-        @Override
-        public ReadOnlyMeetingManager getMeetingManager() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasMeeting(CalendarMeeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteMeeting(CalendarMeeting target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addMeeting(CalendarMeeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<CalendarMeeting> getFilteredMeetingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -364,11 +324,50 @@ public class AddCommandTest {
         public void updateFilteredSellerList(Predicate<Seller> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+
+        // ================= MEETING =================
+
+        @Override
+        public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMeetingManager getMeetingManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeeting(CalendarMeeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(CalendarMeeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(CalendarMeeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
-
-    // ================= MEETING =================
-
-
 
     /**
      * A Model stub that contains a single person.

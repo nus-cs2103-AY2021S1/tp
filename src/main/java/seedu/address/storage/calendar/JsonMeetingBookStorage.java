@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyMeetingManager;
-import seedu.address.storage.JsonAddressBookStorage;
 
 /**
  * A class to access MeetingBook data stored as a json file on the hard disk.
@@ -39,7 +38,7 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
 
     @Override
     public Optional<ReadOnlyMeetingManager> readMeetingBook(Path filePath)
-    throws DataConversionException, IOException {
+        throws DataConversionException, IOException {
         requireNonNull(filePath);
         Optional<JsonSerializableMeetingBook> jsonMeetingBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMeetingBook.class);
