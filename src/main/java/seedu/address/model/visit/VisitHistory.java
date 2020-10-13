@@ -80,7 +80,7 @@ public class VisitHistory {
     @Override
     public String toString() {
         if (visits.isEmpty()) {
-            return "No past visit history";
+            return "No visit history";
         }
         final StringBuilder builder = new StringBuilder();
         builder.append("Visit History:\n");

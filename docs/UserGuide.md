@@ -25,11 +25,11 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
 
    * **`list`** : Lists all patients.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 i/S256193A a/John street, block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to patient database.
 
    * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
 
-   * **`clear`** : Deletes all patient contacts.
+   * **`clear`** : Deletes all patients.
 
    * **`exit`** : Exits the app.
 
@@ -47,10 +47,10 @@ Clinic Calendar (CliniCal) is a **desktop app for managing patients and appointm
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [g/ALLERGY]` can be used as `n/John Doe g/penicillin` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[g/ALLERGY]…` can be used as ` ` (i.e. 0 times), `g/penicillin`, `g/sulfa g/aspirin` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -70,9 +70,9 @@ Format: `help`
 
 #### Adding a patient: `add`
 
-Adds a patient to the address book.
+Adds a patient to the patient database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/COLOR_TAG] [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -86,8 +86,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/COLOR_TAG] [t/TAG]…`
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe i/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
 
 #### Adding profile picture using command line interface: `addPicture`
 
@@ -111,32 +111,32 @@ Adds a profile picture to the patient’s profile by using drag and drop with yo
 
 #### Listing all patients: `list`
 
-Shows a list of all patients in the address book.
+Shows a list of all patients in the patient database.
 
 Format: `list`
 
 #### Editing a patient: `edit`
 
-Edits an existing patient in the address book.
+Edits an existing patient in the patient database.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ct/COLOR_TAG] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-* You can remove all the patient’s allergies by typing `t/` without specifying any allergies after it. The same applies for color allergies of a patient.
+* You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
+*  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
-* You can remove all the patient’s allergies by typing `t/` without specifying any allergies after it.
+* You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-*  `edit 3 ct/red` Clears the existing color tag dits the color tag of the 3rd patient to be `red`.
+*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
 
 #### Locating patients by name: `find`
 
@@ -158,7 +158,7 @@ Examples:
 
 #### Deleting a patient: `delete`
 
-Deletes the specified patient from the address book.
+Deletes the specified patient from the patient database.
 
 Format: `delete INDEX`
 
@@ -167,18 +167,18 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `list` followed by `delete 2` deletes the 2nd patient in the patient database.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 #### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the patient database.
 
 Format: `clear`
 
 #### Clearing command history : `clearhistory`
 
-Clears command history from the address book.
+Clears command history from the patient database.
 
 Format: `clearhistory`
 
@@ -220,9 +220,9 @@ CliniCal data is saved in the hard disk automatically after any command that cha
 
 ### Color coding patients
 
-When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color allergies can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as orange, for easier reference.
+When a patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes; for example, a doctor may color code patients at risk of terminal diseases as red, for easier reference.
 
-![example of color coded patient](images/colorCodedPatient.png)
+![example of color coded patient](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -237,12 +237,12 @@ When a patient is tagged with a color tag, the background of the patient will be
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ct/COLOR_TAG] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addProfilePicture 1 f/data/profile_picture.png`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ct/COLOR_TAG] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
