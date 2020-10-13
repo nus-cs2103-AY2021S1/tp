@@ -27,7 +27,7 @@ public class DoneCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_oneValidIndexUnfilteredList_success() {
         Index[] indexes = {INDEX_FIRST_TASK};
         Task[] tasksToDone = new Task[indexes.length];
         for (int i = 0; i < indexes.length; i++) {
@@ -44,9 +44,26 @@ public class DoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_manyValidIndexUnfilteredList_success() {
+        Index[] indexes = {INDEX_FIRST_TASK, INDEX_SECOND_TASK};
+        Task[] tasksToDone = new Task[indexes.length];
+        for (int i = 0; i < indexes.length; i++) {
+            tasksToDone[i] = model.getFilteredTaskList().get(indexes[i].getZeroBased());
+        }
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.markAsDone(tasksToDone);
+
+        assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_oneInvalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        Index[] indexes = {outOfBoundIndex};
+        Index[] indexes = {outOfBoundIndex, };
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
@@ -54,7 +71,18 @@ public class DoneCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_manyInvalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex1 = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex2 = Index.fromOneBased(model.getFilteredTaskList().size() + 2);
+        Index[] indexes = {outOfBoundIndex1, outOfBoundIndex2};
+
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_oneValidIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index[] indexes = {INDEX_FIRST_TASK};
         Task[] tasksToDone = new Task[indexes.length];
@@ -73,13 +101,34 @@ public class DoneCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_oneInvalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         Index[] indexes = {outOfBoundIndex};
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_mixValidInvalidIndexList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index[] indexes = {INDEX_FIRST_TASK, outOfBoundIndex};
+
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_mixValidInvalidIndexFilteredList_throwsCommandException() {
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        Index outOfBoundIndex = INDEX_SECOND_TASK;
+        Index[] indexes = {INDEX_FIRST_TASK, outOfBoundIndex};
 
         DoneCommand doneCommand = new DoneCommand(indexes);
 
