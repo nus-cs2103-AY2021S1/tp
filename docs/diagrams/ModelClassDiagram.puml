@@ -41,8 +41,8 @@ QuickCache -[dashed]-|> ReadOnlyQuickCache
 
 
 ModelManager o--> "1" QuickCache
-ModelManager -[dashed]-|> Model
-ModelManager o--> "1" UserPrefs
+ModelManager -[dashed]up-|> Model
+ModelManager o-right-> "1" UserPrefs
 ModelManager --> "*" Flashcard : filtered list
 UserPrefs -[dashed]-|> ReadOnlyUserPrefs
 Model -[dashed]-> ObservableList
