@@ -38,9 +38,23 @@ public class CalendarMeeting {
         this.isViewing = false;
         this.isAdmin = false;
     }
-    public boolean checkMeetingType() {
-        return this.isMeeting;
+
+    /**
+     * Checks the type of meeting.
+     * @return String containing the correct meeting type.
+     */
+    public String checkMeetingType() {
+        if (isPaperWork) {
+            return "Paperwork";
+        } else if (isViewing) {
+            return "Viewing";
+        } else if (isAdmin) {
+            return "Admin";
+        } else {
+            throw new AssertionError("no such meeting type");
+        }
     }
+
     public CalendarBidderId getCalendarBidderId() {
         return this.calendarBidderId;
     }
@@ -65,7 +79,7 @@ public class CalendarMeeting {
         return this.isPaperWork;
     }
 
-    public boolean isAmin() {
+    public boolean isAdmin() {
         return this.isAdmin;
     }
 
@@ -76,7 +90,32 @@ public class CalendarMeeting {
      * @return True if both property objects represent the same property.
      */
     public boolean isSameMeeting(CalendarMeeting otherMeeting) {
-        return this == otherMeeting;
+        if (otherMeeting == this) {
+            return true;
+        }
+
+        return otherMeeting != null
+                && otherMeeting.getCalendarPropertyId().equals(getCalendarPropertyId())
+                && (otherMeeting.getCalendarVenue().equals(getCalendarVenue()))
+                && ((otherMeeting.getCalendarTime() == getCalendarTime()))
+                && ((otherMeeting.getCalendarBidderId() == getCalendarBidderId()));
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(checkMeetingType());
+
+        builder.append(" Bidder Id: ")
+                .append(getCalendarBidderId())
+                .append(" Property Id: ")
+                .append(getCalendarPropertyId())
+                .append(" Venue: ")
+                .append(getCalendarVenue())
+                .append(" Time: ")
+                .append(getCalendarTime());
+        return builder.toString();
     }
 }
 
