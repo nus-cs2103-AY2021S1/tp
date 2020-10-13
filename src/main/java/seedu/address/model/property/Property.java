@@ -14,7 +14,7 @@ import seedu.address.model.price.Price;
  */
 public class Property {
 
-    private static final Id DEFAULT_ID = new Id("P", 0);
+    public static final Id DEFAULT_PROPERTY_ID = new Id("P", 0);
 
     // Identity fields
     private final Id propertyId;
@@ -51,7 +51,7 @@ public class Property {
     public Property(PropertyName propertyName, Id sellerId, Address address, Price askingPrice,
                     PropertyType propertyType, IsRental isRental, IsClosedDeal isClosedDeal) {
         requireAllNonNull(propertyName, sellerId, address, askingPrice, propertyType, isRental, isClosedDeal);
-        this.propertyId = DEFAULT_ID;
+        this.propertyId = DEFAULT_PROPERTY_ID;
         this.propertyName = propertyName;
         this.sellerId = sellerId;
         this.address = address;
@@ -115,9 +115,9 @@ public class Property {
      * @return True if both property objects represent the same property.
      */
     public boolean isSameProperty(Property otherProperty) {
-        return this == otherProperty
+        return otherProperty != null && (this == otherProperty
                 || this.getPropertyId().equals(otherProperty.getPropertyId())
-                || this.getAddress().equals(otherProperty.getAddress());
+                || this.getAddress().equals(otherProperty.getAddress()));
     }
 
     /**

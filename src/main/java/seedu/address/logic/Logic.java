@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
-import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
@@ -18,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 
 

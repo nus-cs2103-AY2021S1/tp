@@ -20,6 +20,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.PropertyBook;
+import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 
@@ -127,6 +129,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getPropertyBookFilePath() {
+        return userPrefs.getPropertyBookFilePath();
+    }
+
+    @Override
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
     }
 
     //=========== AddressBook ================================================================================

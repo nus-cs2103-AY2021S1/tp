@@ -20,10 +20,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.BidBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.propertybook.PropertyBook;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
