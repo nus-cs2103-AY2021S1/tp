@@ -90,7 +90,7 @@ public class Visit implements Comparable<Visit> {
 
     @Override
     public String toString() {
-        return "No visit history"; // placeholder String before parser for VisitCommand is implemented
+        return "N/A"; // placeholder String before parser for VisitCommand is implemented
         //             final StringBuilder builder = new StringBuilder();
         //             builder.append("Date: ")
         //                    .append(getVisitDate())
