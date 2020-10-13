@@ -22,9 +22,10 @@ import seedu.address.logic.commands.EditCommand.EditCaseDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCaseCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.casecommands.AddCaseCommand;
 import seedu.address.logic.commands.casecommands.DeleteCaseCommand;
+import seedu.address.logic.commands.casecommands.ListCaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.investigationcase.Case;
 import seedu.address.model.investigationcase.NameContainsKeywordsPredicate;
@@ -37,10 +38,10 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addCase() throws Exception {
         Case investigationCase = new CaseBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(CaseUtil.getAddCommand(investigationCase));
-        assertEquals(new AddCommand(investigationCase), command);
+        AddCommand command = (AddCaseCommand) parser.parseCommand(CaseUtil.getAddCommand(investigationCase));
+        assertEquals(new AddCaseCommand(investigationCase), command);
     }
 
     @Test

@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalCases.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.casecommands.AddCaseCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -14,9 +15,9 @@ import seedu.address.model.investigationcase.Case;
 import seedu.address.testutil.CaseBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddCaseCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddCaseCommandIntegrationTest {
 
     private Model model;
 
@@ -26,20 +27,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newCase_success() {
         Case validCase = new CaseBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addCase(validCase);
 
-        assertCommandSuccess(new AddCommand(validCase), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validCase), expectedModel);
+        assertCommandSuccess(new AddCaseCommand(validCase), model,
+                String.format(AddCaseCommand.MESSAGE_SUCCESS, validCase), expectedModel);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateCase_throwsCommandException() {
         Case caseInList = model.getAddressBook().getCaseList().get(0);
-        assertCommandFailure(new AddCommand(caseInList), model, AddCommand.MESSAGE_DUPLICATE_CASE);
+        assertCommandFailure(new AddCaseCommand(caseInList), model, AddCaseCommand.MESSAGE_DUPLICATE_CASE);
     }
 
 }

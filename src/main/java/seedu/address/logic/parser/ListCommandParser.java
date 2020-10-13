@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
-import seedu.address.logic.commands.ListCaseCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.casecommands.ListCaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.state.StateManager;
 

@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ListCaseCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.casecommands.ListCaseCommand;
 
 public class ListCommandParserTest {
 
