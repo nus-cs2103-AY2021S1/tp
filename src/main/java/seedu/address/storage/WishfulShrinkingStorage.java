@@ -32,14 +32,14 @@ public interface WishfulShrinkingStorage {
 
     /**
      * Saves the given {@link ReadOnlyWishfulShrinking} to the storage.
-     * @param addressBook cannot be null.
+     * @param wishfulShrinking cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook) throws IOException;
+    void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking) throws IOException;
 
     /**
      * @see #saveWishfulShrinking(ReadOnlyWishfulShrinking)
      */
-    void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook, Path filePath) throws IOException;
+    void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking, Path filePath) throws IOException;
 
 }

@@ -11,33 +11,36 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the Wishful Shrinking data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final WishfulShrinking addressBook;
+    private final WishfulShrinking wishfulShrinking;
     private final UserPrefs userPrefs;
     private final FilteredList<Recipe> filteredRecipes;
     private final FilteredList<Ingredient> filteredIngredients;
+    private final FilteredList<Consumption> filteredConsumption;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given wishfulShrinking and userPrefs.
      */
-    public ModelManager(ReadOnlyWishfulShrinking addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyWishfulShrinking wishfulShrinking, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(wishfulShrinking, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Wishful Shrinking: " + wishfulShrinking + " and user prefs " + userPrefs);
 
-        this.addressBook = new WishfulShrinking(addressBook);
+        this.wishfulShrinking = new WishfulShrinking(wishfulShrinking);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredRecipes = new FilteredList<>(this.addressBook.getRecipeList());
-        filteredIngredients = new FilteredList<>(this.addressBook.getIngredientList());
+        filteredRecipes = new FilteredList<>(this.wishfulShrinking.getRecipeList());
+        filteredIngredients = new FilteredList<>(this.wishfulShrinking.getIngredientList());
+        filteredConsumption = new FilteredList<>(this.wishfulShrinking.getConsumptionList());
     }
 
     public ModelManager() {
@@ -74,37 +77,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setWishfulShrinkingFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setWishfulShrinkingFilePath(addressBookFilePath);
+    public void setWishfulShrinkingFilePath(Path wishfulShrinkingFilePath) {
+        requireNonNull(wishfulShrinkingFilePath);
+        userPrefs.setWishfulShrinkingFilePath(wishfulShrinkingFilePath);
     }
 
     //=========== WishfulShrinking ================================================================================
 
     @Override
-    public void setWishfulShrinking(ReadOnlyWishfulShrinking addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking) {
+        this.wishfulShrinking.resetData(wishfulShrinking);
     }
 
     @Override
     public ReadOnlyWishfulShrinking getWishfulShrinking() {
-        return addressBook;
+        return wishfulShrinking;
     }
 
     @Override
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
-        return addressBook.hasRecipe(recipe);
+        return wishfulShrinking.hasRecipe(recipe);
     }
 
     @Override
     public void deleteRecipe(Recipe target) {
-        addressBook.removeRecipe(target);
+        wishfulShrinking.removeRecipe(target);
     }
 
     @Override
     public void addRecipe(Recipe recipe) {
-        addressBook.addRecipe(recipe);
+        wishfulShrinking.addRecipe(recipe);
         updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
     }
 
@@ -112,23 +115,33 @@ public class ModelManager implements Model {
     public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireAllNonNull(target, editedRecipe);
 
-        addressBook.setRecipe(target, editedRecipe);
+        wishfulShrinking.setRecipe(target, editedRecipe);
+    }
+
+    @Override
+    public void addConsumption(Consumption target) {
+        wishfulShrinking.addConsumption(target);
+    }
+
+    @Override
+    public void deleteConsumption(Consumption target) {
+        wishfulShrinking.removeConsumption(target);
     }
 
     @Override
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
-        return addressBook.hasIngredient(ingredient);
+        return wishfulShrinking.hasIngredient(ingredient);
     }
 
     @Override
     public void deleteIngredient(Ingredient target) {
-        addressBook.removeIngredient(target);
+        wishfulShrinking.removeIngredient(target);
     }
 
     @Override
     public void addIngredient(Ingredient ingredient) {
-        addressBook.addIngredient(ingredient);
+        wishfulShrinking.addIngredient(ingredient);
         updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
     }
 
@@ -136,7 +149,7 @@ public class ModelManager implements Model {
     public void setIngredient(Ingredient target, Ingredient editedIngredient) {
         requireAllNonNull(target, editedIngredient);
 
-        addressBook.setIngredient(target, editedIngredient);
+        wishfulShrinking.setIngredient(target, editedIngredient);
     }
 
     //=========== Filtered Recipe List Accessors =============================================================
@@ -156,6 +169,19 @@ public class ModelManager implements Model {
         filteredRecipes.setPredicate(predicate);
     }
 
+    //=========== Filtered Consumption List Accessors =============================================================
+    @Override
+    public ObservableList<Consumption> getFilteredConsumptionList() {
+        return filteredConsumption;
+    }
+
+    @Override
+    public void updateFilteredConsumptionList(Predicate<Consumption> predicate) {
+        requireNonNull(predicate);
+        filteredConsumption.setPredicate(predicate);
+    }
+
+    //=========== Filtered Ingredients List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedWishfulShrinking}
@@ -185,10 +211,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return wishfulShrinking.equals(other.wishfulShrinking)
                 && userPrefs.equals(other.userPrefs)
                 && filteredRecipes.equals(other.filteredRecipes)
-                && filteredIngredients.equals(other.filteredIngredients);
+                && filteredIngredients.equals(other.filteredIngredients)
+                && filteredConsumption.equals(other.filteredConsumption);
     }
 
 }

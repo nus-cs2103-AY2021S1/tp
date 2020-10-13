@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-//import java.util.Comparator;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -35,11 +35,12 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private Label ingredients;
     @FXML
-    private Label address;
+    private Label calories;
     @FXML
-    private Label email;
+    private Label instruction;
     @FXML
     private FlowPane tags;
+
 
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
@@ -49,8 +50,19 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        ingredients.setText(recipe.getIngredientString().value);
+        instruction.setText(recipe.getInstruction());
 
+        //Image image = new Image(recipe.getRecipeImage());
+        //recipeImageView = new ImageView(image);
+
+        ingredients.setText(recipe.getIngredient().stream()
+                .map(item -> item.getQuantity() + " " + item.getValue())
+                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+        calories.setText(recipe.getCalories().value.toString() + " cal");
+
+        this.recipe.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

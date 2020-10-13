@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consumption.Consumption;
+import seedu.address.model.consumption.ConsumptionList;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.UniqueIngredientList;
@@ -17,8 +19,8 @@ import seedu.address.model.recipe.UniqueRecipeList;
 public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     private final UniqueRecipeList recipes;
-
     private final UniqueIngredientList ingredients;
+    private final ConsumptionList consumption;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +32,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     {
         recipes = new UniqueRecipeList();
         ingredients = new UniqueIngredientList();
+        consumption = new ConsumptionList();
     }
 
     public WishfulShrinking() {}
@@ -61,6 +64,14 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     /**
+     * Replaces the contents of the consumption list with {@code consumptions}.
+     * {@code consumptions} must not contain duplicate consumptions.
+     */
+    public void setConsumptions(List<Consumption> consumptions) {
+        this.consumption.setConsumptions(consumptions);
+    }
+
+    /**
      * Resets the existing data of this {@code WishfulShrinking} with {@code newData}.
      */
     public void resetData(ReadOnlyWishfulShrinking newData) {
@@ -68,12 +79,13 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
         setRecipes(newData.getRecipeList());
         setIngredients(newData.getIngredientList());
+        setConsumptions(newData.getConsumptionList());
     }
 
     //// recipe-level operations
 
     /**
-     * Returns true if a recipe with the same identity as {@code recipe} exists in the address book.
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe collection.
      */
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
@@ -81,8 +93,8 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     /**
-     * Adds a recipe to the address book.
-     * The recipe must not already exist in the address book.
+     * Adds a recipe to the Wishful Shrinking.
+     * The recipe must not already exist in the recipe collection.
      */
     public void addRecipe(Recipe p) {
         recipes.add(p);
@@ -90,8 +102,9 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     /**
      * Replaces the given recipe {@code target} in the list with {@code editedRecipe}.
-     * {@code target} must exist in the address book.
-     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     * {@code target} must exist in the recipe collection.
+     * The recipe identity of {@code editedRecipe} must not be the same as
+     * another existing recipe in the recipe collection.
      */
     public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireNonNull(editedRecipe);
@@ -101,10 +114,40 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     /**
      * Removes {@code key} from this {@code WishfulShrinking}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the recipe collection.
      */
     public void removeRecipe(Recipe key) {
         recipes.remove(key);
+    }
+
+    //// calorie counter operations
+
+    /**
+     * Add {@code key} from this {@code WishfulShrinking} to daily consumption.
+     * {@code key} must exist in the consumption collection.
+     */
+    public void addConsumption(Consumption key) {
+        consumption.eat(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code WishfulShrinking}.
+     * {@code key} must exist in the consumption list.
+     */
+    public void removeConsumption(Consumption key) {
+        consumption.remove(key);
+    }
+
+    /**
+     * Replaces the given consumption {@code target} in the list with {@code editedConsumption}.
+     * {@code target} must exist in the consumption collection.
+     * The consumption identity of {@code editedConsumption} must not be the same as
+     * another existing consumption in the consumption collection.
+     */
+    public void setConsumption(Consumption target, Consumption editedConsumption) {
+        requireNonNull(editedConsumption);
+
+        consumption.setConsumption(target, editedConsumption);
     }
 
     //// ingredient-level operations
@@ -139,7 +182,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     /**
      * Removes {@code key} from this {@code WishfulShrinking}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the fridge.
      */
     public void removeIngredient(Ingredient key) {
         ingredients.remove(key);
@@ -161,6 +204,11 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     @Override
     public ObservableList<Ingredient> getIngredientList() {
         return ingredients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Consumption> getConsumptionList() {
+        return consumption.asUnmodifiableObservableList();
     }
 
     @Override

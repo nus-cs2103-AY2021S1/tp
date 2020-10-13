@@ -109,6 +109,19 @@ Format: `searchR n/TITLE [MORE_TITLE]`
 Examples:
 * `searchR n/salad` returns `salad` and `ham salad`
 
+### Eating a recipe : `add`
+
+Add the specified recipe to the Consumption Collection from Recipes Collection.
+
+Format: `eatR INDEX`
+
+* Add the recipe at the specified `INDEX` to the Consumption Collection.
+* The index refers to the index number shown in the displayed recipe list.
+* The index **must be a positive integer** 1, 2, 3......
+
+Examples:
+* `list` followed by `eatR 2` deletes the 2nd recipe in Recipe Collection.
+* `searchR n/salad` followed by `eatR 1` deletes the 1st recipe in the results of the `search` command.
 
 ## Fridge
 ### Adding an ingredient: `add`
@@ -183,11 +196,12 @@ Features | Format, Examples
 --------|------------------
 **Add recipe** | `addR n/TITLE i/INGREDIENTS` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil`
 **Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
-**Delete recipe** | `delete r/INDEX`<br> e.g., `deleteR 3`
+**Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
 **Search recipe** | `searchR n/KEYWORD`<br> e.g., `searchR n/salad`
 **Search Ingredient in the fridge** | `searchF KEYWORD`<br> e.g., `searchF avocado`
 **List recipe** | `recipe`
 **List ingredients in the fridge** | `fridge`
+**Eat recipe**| `eatR INDEX` <br> e.g., `eatR 3`
 **Help** | `help`
 **Exit** | `exit`

@@ -60,8 +60,8 @@ public class JsonWishfulShrinkingStorage implements WishfulShrinkingStorage {
     }
 
     @Override
-    public void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook) throws IOException {
-        saveWishfulShrinking(addressBook, filePath);
+    public void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking) throws IOException {
+        saveWishfulShrinking(wishfulShrinking, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonWishfulShrinkingStorage implements WishfulShrinkingStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking, Path filePath) throws IOException {
+        requireNonNull(wishfulShrinking);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableWishfulShrinking(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableWishfulShrinking(wishfulShrinking), filePath);
     }
 
 }

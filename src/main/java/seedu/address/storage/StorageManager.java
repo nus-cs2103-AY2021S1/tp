@@ -17,15 +17,15 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private WishfulShrinkingStorage addressBookStorage;
+    private WishfulShrinkingStorage wishfulShrinkingStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code WishfulShrinkingStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(WishfulShrinkingStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(WishfulShrinkingStorage wishfulShrinkingStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.wishfulShrinkingStorage = wishfulShrinkingStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -51,30 +51,30 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getWishfulShrinkingFilePath() {
-        return addressBookStorage.getWishfulShrinkingFilePath();
+        return wishfulShrinkingStorage.getWishfulShrinkingFilePath();
     }
 
     @Override
     public Optional<ReadOnlyWishfulShrinking> readWishfulShrinking() throws DataConversionException, IOException {
-        return readWishfulShrinking(addressBookStorage.getWishfulShrinkingFilePath());
+        return readWishfulShrinking(wishfulShrinkingStorage.getWishfulShrinkingFilePath());
     }
 
     @Override
     public Optional<ReadOnlyWishfulShrinking> readWishfulShrinking(Path filePath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readWishfulShrinking(filePath);
+        return wishfulShrinkingStorage.readWishfulShrinking(filePath);
     }
 
     @Override
-    public void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook) throws IOException {
-        saveWishfulShrinking(addressBook, addressBookStorage.getWishfulShrinkingFilePath());
+    public void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking) throws IOException {
+        saveWishfulShrinking(wishfulShrinking, wishfulShrinkingStorage.getWishfulShrinkingFilePath());
     }
 
     @Override
-    public void saveWishfulShrinking(ReadOnlyWishfulShrinking addressBook, Path filePath) throws IOException {
+    public void saveWishfulShrinking(ReadOnlyWishfulShrinking wishfulShrinking, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveWishfulShrinking(addressBook, filePath);
+        wishfulShrinkingStorage.saveWishfulShrinking(wishfulShrinking, filePath);
     }
 
 }

@@ -4,31 +4,31 @@ import seedu.address.model.WishfulShrinking;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building WishfulShrinking objects.
  * Example usage: <br>
  *     {@code WishfulShrinking ab = new WishfulShrinkingBuilder().withRecipe("John", "Doe").build();}
  */
 public class WishfulShrinkingBuilder {
 
-    private WishfulShrinking addressBook;
+    private WishfulShrinking wishfulShrinking;
 
     public WishfulShrinkingBuilder() {
-        addressBook = new WishfulShrinking();
+        wishfulShrinking = new WishfulShrinking();
     }
 
-    public WishfulShrinkingBuilder(WishfulShrinking addressBook) {
-        this.addressBook = addressBook;
+    public WishfulShrinkingBuilder(WishfulShrinking wishfulShrinking) {
+        this.wishfulShrinking = wishfulShrinking;
     }
 
     /**
      * Adds a new {@code Recipe} to the {@code WishfulShrinking} that we are building.
      */
     public WishfulShrinkingBuilder withRecipe(Recipe recipe) {
-        addressBook.addRecipe(recipe);
+        wishfulShrinking.addRecipe(recipe);
         return this;
     }
 
     public WishfulShrinking build() {
-        return addressBook;
+        return wishfulShrinking;
     }
 }

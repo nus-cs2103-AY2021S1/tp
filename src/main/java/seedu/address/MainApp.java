@@ -56,9 +56,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        WishfulShrinkingStorage addressBookStorage =
+        WishfulShrinkingStorage wishfulShrinkingStorage =
                 new JsonWishfulShrinkingStorage(userPrefs.getWishfulShrinkingFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(wishfulShrinkingStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -70,19 +70,20 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Wishful Shrinking and {@code userPrefs}. <br>
+     * The data from the sample Wishful Shrinking will be used instead if {@code storage}'s WishfulShrinking
+     * is not found, or an empty address book will be used instead if errors occur
+     * when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyWishfulShrinking> addressBookOptional;
+        Optional<ReadOnlyWishfulShrinking> wishfulShrinkingOptional;
         ReadOnlyWishfulShrinking initialData;
         try {
-            addressBookOptional = storage.readWishfulShrinking();
-            if (!addressBookOptional.isPresent()) {
+            wishfulShrinkingOptional = storage.readWishfulShrinking();
+            if (!wishfulShrinkingOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample WishfulShrinking");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleWishfulShrinking);
+            initialData = wishfulShrinkingOptional.orElseGet(SampleDataUtil::getSampleWishfulShrinking);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty WishfulShrinking");
             initialData = new WishfulShrinking();
@@ -174,7 +175,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Wishful Shrinking ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

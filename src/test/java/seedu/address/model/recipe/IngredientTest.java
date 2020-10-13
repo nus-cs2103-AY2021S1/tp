@@ -6,11 +6,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.ParserUtil;
+
 public class IngredientTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Ingredient(null));
+        assertThrows(NullPointerException.class, () -> new Ingredient(null, ""));
     }
 
     /*@Test
@@ -21,19 +23,26 @@ public class IngredientTest {
 
     @Test
     public void isValidIngredient() {
-        // null ingredients number
-        assertThrows(NullPointerException.class, () -> IngredientString.isValidIngredient(null));
+        // invalid ingredient names
+        assertFalse(ParserUtil.isValidIngredient(new Ingredient("", "2 cups"))); // empty name
+        assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishc@ke", "2 cups"))); // empty name
+        assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishcake!", "2 cups"))); // empty name
 
-        // invalid ingredients numbers
-        assertFalse(IngredientString.isValidIngredient("")); // empty string
-        //        assertFalse(IngredientString.isValidIngredient("91")); // less than 3 numbers
-        //        assertFalse(IngredientString.isValidIngredient("ingredients")); // non-numeric
-        //        assertFalse(IngredientString.isValidIngredient("9011p041")); // alphabets within digits
-        assertTrue(IngredientString.isValidIngredient("9312 1534")); // spaces within digits
+        // valid ingredient names
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("white cabbage", "2 cups"))); // space within name
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("pea", "2 cups")));
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("93121534", "2 cups")));
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("loooooooooooongbean", "2 cups"))); // long
 
-        // valid ingredients numbers
-        assertTrue(IngredientString.isValidIngredient("911")); // exactly 3 numbers
-        assertTrue(IngredientString.isValidIngredient("93121534"));
-        assertTrue(IngredientString.isValidIngredient("124293842033123")); // long ingredients numbers
+        // valid ingredient quantities
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "2 cups"))); // space within quantity
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "2cups"))); // no space within quantity
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", "pinch"))); // no numbers in quantity
+        assertTrue(ParserUtil.isValidIngredient(new Ingredient("cabbage", ""))); // no quantity
+
+        // invalid ingredient quantities
+        assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishcake", "2 c@ps"))); // empty name
+        assertFalse(ParserUtil.isValidIngredient(new Ingredient("fishcake", "2 cups!"))); // empty name
+
     }
 }

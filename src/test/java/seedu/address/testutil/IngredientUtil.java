@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -28,7 +26,7 @@ public class IngredientUtil {
      */
     public static String getIngredientDetails(Ingredient ingredient) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_INGREDIENT + ingredient.getValue() + " ");
+        sb.append(PREFIX_INGREDIENT + ingredient.getValue() + " -" + ingredient.getQuantity());
         return sb.toString();
     }
 
@@ -38,9 +36,11 @@ public class IngredientUtil {
     public static String getEditRecipeDescriptorDetails(EditRecipeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getIngredientString()
-                .ifPresent(ingredientString -> sb.append(PREFIX_INGREDIENT)
-                        .append(ingredientString.value).append(" "));
+        descriptor.getIngredient()
+                .ifPresent(ingredients -> sb.append(PREFIX_INGREDIENT)
+                        .append(ingredients.stream()
+                                .map(item -> item.getValue())
+                                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a)).append(" "));
 
         return sb.toString();
     }

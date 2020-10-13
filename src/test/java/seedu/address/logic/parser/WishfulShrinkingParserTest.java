@@ -6,28 +6,33 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONSUMPTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteConsumptionCommand;
 import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
-//import seedu.address.logic.commands.EditCommand;
-//import seedu.address.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.EatRecipeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListConsumptionCommand;
+import seedu.address.logic.commands.ListIngredientsCommand;
 import seedu.address.logic.commands.ListRecipesCommand;
+import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.IngredientUtil;
@@ -50,9 +55,11 @@ public class WishfulShrinkingParserTest {
     @Test
     public void parseCommand_addIngredient() throws Exception {
         Ingredient ingredient = new IngredientBuilder().build();
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(ingredient);
         AddIngredientCommand command = (AddIngredientCommand) parser.parseCommand(IngredientUtil
                 .getAddIngredientCommand(ingredient));
-        assertEquals(new AddIngredientCommand(ingredient), command);
+        assertEquals(new AddIngredientCommand(ingredients), command);
     }
 
     @Test
@@ -100,6 +107,15 @@ public class WishfulShrinkingParserTest {
     }
 
     @Test
+    public void parseCommand_searchIngredient() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        SearchIngredientCommand command = (SearchIngredientCommand) parser.parseCommand(
+                SearchIngredientCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchIngredientCommand(new IngredientContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -109,6 +125,32 @@ public class WishfulShrinkingParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD) instanceof ListRecipesCommand);
         assertTrue(parser.parseCommand(ListRecipesCommand.COMMAND_WORD + " 3") instanceof ListRecipesCommand);
+    }
+
+    @Test
+    public void parseCommand_listIngredient() throws Exception {
+        assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD) instanceof ListIngredientsCommand);
+        assertTrue(parser.parseCommand(ListIngredientsCommand.COMMAND_WORD + " 3") instanceof ListIngredientsCommand);
+    }
+
+    @Test
+    public void parseCommand_listConsumption() throws Exception {
+        assertTrue(parser.parseCommand(ListConsumptionCommand.COMMAND_WORD) instanceof ListConsumptionCommand);
+        assertTrue(parser.parseCommand(ListConsumptionCommand.COMMAND_WORD + " 3") instanceof ListConsumptionCommand);
+    }
+
+    @Test
+    public void parseCommand_eatRecipe() throws Exception {
+        EatRecipeCommand command = (EatRecipeCommand) parser.parseCommand(
+                EatRecipeCommand.COMMAND_WORD + " " + INDEX_FIRST_CONSUMPTION.getOneBased());
+        assertEquals(new EatRecipeCommand(INDEX_FIRST_CONSUMPTION), command);
+    }
+
+    @Test
+    public void parseCommand_deleteConsumption() throws Exception {
+        DeleteConsumptionCommand command = (DeleteConsumptionCommand) parser.parseCommand(
+                DeleteConsumptionCommand.COMMAND_WORD + " " + INDEX_FIRST_CONSUMPTION.getOneBased());
+        assertEquals(new DeleteConsumptionCommand(INDEX_FIRST_CONSUMPTION), command);
     }
 
     @Test

@@ -1,17 +1,21 @@
 package seedu.address.storage;
 
 //import java.util.stream.Collectors;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.IngredientString;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
-//import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Recipe}.
@@ -21,16 +25,30 @@ class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
-    private final String ingredientString;
+    private final String instruction;
+    private final String recipeImage;
+    private final ArrayList<Ingredient> ingredients;
+    private final Integer calories;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
-                             @JsonProperty("ingredients") String ingredients) {
+                             @JsonProperty("instruction") String instruction,
+                             @JsonProperty("recipeImage") String recipeImage,
+                             @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
+                             @JsonProperty("calories") Integer calories,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.ingredientString = ingredients;
+        this.instruction = instruction;
+        this.recipeImage = recipeImage;
+        this.ingredients = ingredients;
+        this.calories = calories;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -38,10 +56,13 @@ class JsonAdaptedRecipe {
      */
     public JsonAdaptedRecipe(Recipe source) {
         name = source.getName().fullName;
-        ingredientString = Arrays.stream(source.getIngredient())
-                .map(item -> item.value)
-                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a);
-
+        instruction = source.getInstruction();
+        recipeImage = source.getRecipeImage();
+        ingredients = source.getIngredient();
+        calories = source.getCalories().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -50,6 +71,10 @@ class JsonAdaptedRecipe {
      * @throws IllegalValueException if there were any data constraints violated in the adapted recipe.
      */
     public Recipe toModelType() throws IllegalValueException {
+        final List<Tag> recipeTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            recipeTags.add(tag.toModelType());
+        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
@@ -59,21 +84,42 @@ class JsonAdaptedRecipe {
         }
         final Name modelName = new Name(name);
 
-        if (ingredientString == null) {
+        if (instruction == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    String.class.getSimpleName()));
+        }
+        final String modelInstruction = instruction;
+
+        if (recipeImage == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    String.class.getSimpleName()));
+        }
+        final String modelRecipeImage = recipeImage;
+
+        if (ingredients == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Ingredient.class.getSimpleName()));
         }
-        if (!IngredientString.isValidIngredient(ingredientString)) {
-            throw new IllegalValueException(IngredientString.MESSAGE_CONSTRAINTS);
+        for (Ingredient ing: ingredients) {
+            if (!Ingredient.isValidIngredient(ing)) {
+                throw new IllegalValueException(Ingredient.MESSAGE_CONSTRAINTS);
+            }
         }
-        String[] ingredientsToken = ingredientString.split(",");
-        Ingredient[] ingredients = new Ingredient[ingredientsToken.length];
-        for (int i = 0; i < ingredientsToken.length; i++) {
-            ingredients[i] = new Ingredient(ingredientsToken[i].trim());
+        final ArrayList<Ingredient> modelIngredients = new ArrayList<>(ingredients);
+
+        if (calories == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Calories.class.getSimpleName()));
         }
+        if (!Calories.isValidCalories(calories)) {
+            throw new IllegalValueException(Calories.MESSAGE_CONSTRAINTS);
+        }
+        final Calories modelCalories = new Calories(calories);
 
+        final Set<Tag> modelTags = new HashSet<>(recipeTags);
 
-        return new Recipe(modelName, ingredients);
+        return new Recipe(modelName, modelInstruction, modelRecipeImage,
+                modelIngredients, modelCalories, modelTags);
     }
 
 }

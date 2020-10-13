@@ -71,7 +71,7 @@ public class DeleteIngredientCommandTest {
         showIngredientAtIndex(model, INDEX_FIRST_INGREDIENT);
 
         Index outOfBoundIndex = INDEX_SECOND_INGREDIENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of fridge's ingredient list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWishfulShrinking().getIngredientList().size());
 
         DeleteIngredientCommand deleteIngredientCommand = new DeleteIngredientCommand(outOfBoundIndex);

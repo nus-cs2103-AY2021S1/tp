@@ -2,10 +2,11 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import com.jfoenix.controls.JFXListCell;
+import com.jfoenix.controls.JFXListView;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.recipe.Recipe;
@@ -18,7 +19,7 @@ public class RecipeListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(RecipeListPanel.class);
 
     @FXML
-    private ListView<Recipe> recipeListView;
+    private JFXListView<Recipe> recipeListView;
 
     /**
      * Creates a {@code RecipeListPanel} with the given {@code ObservableList}.
@@ -32,7 +33,7 @@ public class RecipeListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Recipe} using a {@code RecipeCard}.
      */
-    class RecipeListViewCell extends ListCell<Recipe> {
+    class RecipeListViewCell extends JFXListCell<Recipe> {
         @Override
         protected void updateItem(Recipe recipe, boolean empty) {
             super.updateItem(recipe, empty);

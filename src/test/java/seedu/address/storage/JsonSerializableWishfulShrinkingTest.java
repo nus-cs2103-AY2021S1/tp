@@ -25,9 +25,9 @@ public class JsonSerializableWishfulShrinkingTest {
     public void toModelType_typicalRecipesFile_success() throws Exception {
         JsonSerializableWishfulShrinking dataFromFile = JsonUtil.readJsonFile(TYPICAL_RECIPES_FILE,
                 JsonSerializableWishfulShrinking.class).get();
-        WishfulShrinking addressBookFromFile = dataFromFile.toModelType();
+        WishfulShrinking wishfulShrinkingFromFile = dataFromFile.toModelType();
         WishfulShrinking typicalRecipesWishfulShrinking = TypicalRecipes.getTypicalWishfulShrinking();
-        assertEquals(addressBookFromFile, typicalRecipesWishfulShrinking);
+        assertEquals(wishfulShrinkingFromFile, typicalRecipesWishfulShrinking);
     }*/
 
     /*@Test

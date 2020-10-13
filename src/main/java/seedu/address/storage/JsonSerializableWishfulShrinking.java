@@ -11,13 +11,14 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
+import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
  * An Immutable WishfulShrinking that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "wishfulShrinking")
 class JsonSerializableWishfulShrinking {
 
     public static final String MESSAGE_DUPLICATE_RECIPE = "Recipes list contains duplicate recipe(s).";
@@ -25,6 +26,7 @@ class JsonSerializableWishfulShrinking {
 
     private final List<JsonAdaptedRecipe> recipes = new ArrayList<>();
     private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
+    private final List<JsonAdaptedConsumption> consumption = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableWishfulShrinking} with the given recipes.
@@ -51,30 +53,51 @@ class JsonSerializableWishfulShrinking {
         recipes.addAll(source.getRecipeList().stream().map(JsonAdaptedRecipe::new).collect(Collectors.toList()));
         ingredients.addAll(source.getIngredientList().stream().map(JsonAdaptedIngredient::new).collect(Collectors
                 .toList()));
+        consumption.addAll(source.getConsumptionList().stream().map(consump -> {
+            String recipeName = consump.getRecipe().getName().fullName;
+            ArrayList<Ingredient> ingredients = consump.getRecipe().getIngredient();
+            String instruction = consump.getRecipe().getInstruction();
+            String recipeImage = consump.getRecipe().getRecipeImage();
+            int calories = consump.getRecipe().getCalories().value;
+            /*Set<Tag> tags = consump.getRecipe().getTags();
+            if (tags != null) {
+                jsonTags.addAll(tags);
+            }*/
+            List<JsonAdaptedTag> jsonTags = new ArrayList<>();
+            jsonTags.addAll(consump.getRecipe().getTags().stream()
+                    .map(JsonAdaptedTag::new)
+                    .collect(Collectors.toList()));
+            return new JsonAdaptedConsumption(recipeName, instruction, recipeImage, ingredients, calories, jsonTags);
+        }).collect(Collectors
+                .toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code WishfulShrinking} object.
+     * Converts this Wishful Shrinking into the model's {@code WishfulShrinking} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public WishfulShrinking toModelType() throws IllegalValueException {
-        WishfulShrinking addressBook = new WishfulShrinking();
+        WishfulShrinking wishfulShrinking = new WishfulShrinking();
         for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
             Recipe recipe = jsonAdaptedRecipe.toModelType();
-            if (addressBook.hasRecipe(recipe)) {
+            if (wishfulShrinking.hasRecipe(recipe)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }
-            addressBook.addRecipe(recipe);
+            wishfulShrinking.addRecipe(recipe);
         }
         for (JsonAdaptedIngredient jsonAdaptedIngredient : ingredients) {
             Ingredient ingredient = jsonAdaptedIngredient.toModelType();
-            if (addressBook.hasIngredient(ingredient)) {
+            if (wishfulShrinking.hasIngredient(ingredient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);
             }
-            addressBook.addIngredient(ingredient);
+            wishfulShrinking.addIngredient(ingredient);
         }
-        return addressBook;
+        for (JsonAdaptedConsumption jsonAdaptedConsumption : consumption) {
+            Consumption recipeToEat = jsonAdaptedConsumption.toModelType();
+            wishfulShrinking.addConsumption(recipeToEat);
+        }
+        return wishfulShrinking;
     }
 
 }

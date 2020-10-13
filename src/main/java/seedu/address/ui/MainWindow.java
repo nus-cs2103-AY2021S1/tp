@@ -1,13 +1,22 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
+import com.jfoenix.assets.JFoenixResources;
+import com.jfoenix.controls.JFXDecorator;
+import com.jfoenix.svg.SVGGlyph;
+import com.jfoenix.svg.SVGGlyphLoader;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -32,9 +41,16 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private RecipeListPanel recipeListPanel;
+    private IngredientListPanel ingredientListPanel;
+    private ConsumptionListPanel consumptionListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    @FXML
+    private Scene mainScene;
+
+    @FXML
+    private BorderPane container;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -42,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane recipeListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -55,7 +71,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
@@ -110,9 +125,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
-        recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -121,6 +133,21 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void fillRecipePanel() {
+        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
+        listPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
+    }
+
+    void fillIngredientPanel() {
+        ingredientListPanel = new IngredientListPanel(logic.getFilteredIngredientList());
+        listPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
+    }
+
+    void fillConsumptionPanel() {
+        consumptionListPanel = new ConsumptionListPanel(logic.getFilteredConsumptionList());
+        listPanelPlaceholder.getChildren().add(consumptionListPanel.getRoot());
     }
 
     /**
@@ -148,6 +175,24 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        new Thread(() -> {
+            try {
+                SVGGlyphLoader.loadGlyphsFont(MainWindow.class.getResourceAsStream("/fonts/icomoon.svg"),
+                        "icomoon.svg");
+            } catch (IOException ioExc) {
+                ioExc.printStackTrace();
+            }
+        }).start();
+
+        JFXDecorator decorator = new JFXDecorator(primaryStage, container);
+        decorator.setCustomMaximize(true);
+        decorator.setGraphic(new SVGGlyph(""));
+
+        mainScene.setRoot(decorator);
+        final ObservableList<String> stylesheets = mainScene.getStylesheets();
+        stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
+                JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
+                MainWindow.class.getResource("/css/wishful-shrinking.css").toExternalForm());
         primaryStage.show();
     }
 
@@ -184,6 +229,21 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowIngredient()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillIngredientPanel();
+            }
+
+            if (commandResult.isShowRecipe()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillRecipePanel();
+            }
+
+            if (commandResult.isShowConsumption()) {
+                listPanelPlaceholder.getChildren().clear();
+                fillConsumptionPanel();
             }
 
             return commandResult;

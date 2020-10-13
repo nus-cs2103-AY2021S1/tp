@@ -9,9 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.recipe.Address;
-import seedu.address.model.recipe.Email;
-import seedu.address.model.recipe.IngredientString;
+import seedu.address.model.commons.Calories;
+import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.tag.Tag;
 
@@ -19,8 +18,25 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
+    public static final String MESSAGE_CONSTRAINTS =
+            "Ingredients should be separated by commas, "
+                    + "each ingredient and optional field quantity "
+                    + "separated by a hyphen, should be consisted "
+                    + "of alphanumeric characters only";
+    public static final String VALIDATION_REGEX = "[\\w\\s-]+"
+            + "(,\\s*[\\w\\s-]*)*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\w\\s]*";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Checks if ingredient has attributes in the right format.
+     * @param ingredient Ingredient to check.
+     * @return boolean to indicate whether ingredient is valid.
+     */
+    public static boolean isValidIngredient(Ingredient ingredient) {
+        return ingredient.getValue().matches(VALIDATION_REGEX)
+                && ingredient.getQuantity().matches(VALIDATION_REGEX_QUANTITY);
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -56,43 +72,43 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ingredients} is invalid.
      */
-    public static IngredientString parseIngredient(String ingredients) throws ParseException {
+    public static String parseIngredient(String ingredients) throws ParseException {
         requireNonNull(ingredients);
         String trimmedIngredient = ingredients.trim();
-        if (!IngredientString.isValidIngredient(trimmedIngredient)) {
-            throw new ParseException(IngredientString.MESSAGE_CONSTRAINTS);
+        if (!trimmedIngredient.matches(VALIDATION_REGEX)) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
         }
-        return new IngredientString(trimmedIngredient);
+        return trimmedIngredient;
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String quantity} into a {@code Quantity}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code quantity} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static String parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!trimmedQuantity.matches(VALIDATION_REGEX_QUANTITY)) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return trimmedQuantity;
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String calories} into an {@code Calories}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code calories} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Calories parseCalories(String calories) throws ParseException {
+        requireNonNull(calories);
+        String trimmedCalories = calories.trim();
+        if (!Calories.isValidCalories(trimmedCalories)) {
+            throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Calories(Integer.parseInt(trimmedCalories));
     }
 
     /**

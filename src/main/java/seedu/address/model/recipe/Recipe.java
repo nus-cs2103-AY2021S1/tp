@@ -1,45 +1,73 @@
 package seedu.address.model.recipe;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.commons.Calories;
+import seedu.address.model.tag.Tag;
 
 
 /**
- * Represents a Recipe in the address book.
+ * Represents a Recipe in the Wishful Shrinking.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Recipe {
 
     // Identity fields
     private final Name name;
-    private final IngredientString ingredientString;
-
+    private final String instruction;
+    private final String recipeImage;
     // Data fields
-    private final Ingredient[] ingredients;
+    private final ArrayList<Ingredient> ingredients;
+    private final Calories calories;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, Ingredient[] ingredients) {
-        requireAllNonNull(name, ingredients);
+    public Recipe(Name name, String instruction, String recipeImage,
+                  ArrayList<Ingredient> ingredients, Calories calories,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, ingredients, calories, instruction, tags);
         this.name = name;
+        this.instruction = instruction;
+        this.recipeImage = recipeImage;
         this.ingredients = ingredients;
-        this.ingredientString =
-                new IngredientString(Arrays.stream(ingredients)
-                        .map(item -> item.value)
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+        this.calories = calories;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
         return name;
     }
 
-    public Ingredient[] getIngredient() {
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public String getRecipeImage() {
+        return recipeImage;
+    }
+
+    public ArrayList<Ingredient> getIngredient() {
         return ingredients;
     }
-    public IngredientString getIngredientString() {
-        return ingredientString;
+
+    public Calories getCalories() {
+        return calories;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -53,7 +81,11 @@ public class Recipe {
 
         return otherRecipe != null
                 && otherRecipe.getName().equals(getName())
-                && (otherRecipe.getIngredient().equals(getIngredient()));
+                && otherRecipe.getInstruction().equals(getInstruction())
+                && otherRecipe.getRecipeImage().equals(getRecipeImage())
+                && (otherRecipe.getIngredient().equals(getIngredient()))
+                && otherRecipe.getCalories().equals(getCalories())
+                && otherRecipe.getTags().equals(getTags());
     }
 
     /**
@@ -72,13 +104,17 @@ public class Recipe {
 
         Recipe otherRecipe = (Recipe) other;
         return otherRecipe.getName().equals(getName())
-                && otherRecipe.getIngredient().equals(getIngredient());
+                && otherRecipe.getInstruction().equals(getInstruction())
+                && otherRecipe.getRecipeImage().equals(getRecipeImage())
+                && otherRecipe.getIngredient().equals(getIngredient())
+                && otherRecipe.getCalories().equals(getCalories())
+                && otherRecipe.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, ingredients);
+        return Objects.hash(name, instruction, recipeImage, ingredients, calories, tags);
     }
 
     @Override
@@ -86,7 +122,15 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                .append(getIngredientString());
+                .append(ingredients.stream()
+                        .map(item -> item.getQuantity() + " " + item.getValue())
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
+                .append(" Calories: ")
+                .append(getCalories() + " cal")
+                .append(" Instructions: ")
+                .append(getInstruction())
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
         return builder.toString();
     }
 
