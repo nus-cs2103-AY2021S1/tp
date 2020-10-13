@@ -53,19 +53,25 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Finds expenses by keywords, date, tags 
     - Command: 'find'
     - [API](#find)    
-8. Save Load Function &lt;Coming Soon v1.2.1&gt;
-9. Password &lt;Coming Soon v1.2.1&gt;
-10. Help command → documentation &lt;Coming Soon v1.2.1&gt;
-11. Sorting (date, category, keyword, amount) &lt;Coming Soon v1.2.1&gt;
-12. Multiple Accounts &lt;pending&gt;
-13. GUI &lt;pending&gt;>
-14. Budget notifications &lt;pending&gt;
-15. Achievements &lt;pending&gt;
-16. Graphs and progress trackers &lt;pending&gt;
-17. Colours &lt;pending&gt;
+    
+8. **Adding Remark**
+    - Adds a remark to an existing expense
+    - Command: 'remark"
+    -[API](#remark)
+         
+9. Save Load Function &lt;Coming Soon v1.2.1&gt;
+10. Password &lt;Coming Soon v1.2.1&gt;
+11. Help command → documentation &lt;Coming Soon v1.2.1&gt;
+12. Sorting (date, category, keyword, amount) &lt;Coming Soon v1.2.1&gt;
+13. Multiple Accounts &lt;pending&gt;
+14. GUI &lt;pending&gt;>
+15. Budget notifications &lt;pending&gt;
+16. Achievements &lt;pending&gt;
+17. Graphs and progress trackers &lt;pending&gt;
+18. Colours &lt;pending&gt;
 18. Sort/Search more powerful &lt;pending&gt;
-19. Customisation of workflow → shortcuts etc. &lt;pending&gt;
-20. Simulation of spending &lt;pending&gt;
+20. Customisation of workflow → shortcuts etc. &lt;pending&gt;
+21. Simulation of spending &lt;pending&gt;
 
 ## Usage/ API <a name="Usage"></a>
 ### Commands
@@ -75,15 +81,16 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Able to add multiple tags
     - Format: `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]`
     - Example: `add -ddinner -$10.50` Adds the spending to **current date's** record
+    - Example: `add -ddinner -$10.50 -@24-06-2020 t/Food` Adds the spending to **input date's** record and tags with **input category**
     - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
+
+    ![add_example](./images/ug_example/add_example.png) 
 
 2. **list** <a name="list"></a>
     - Format: `list`
     - Example: `list` Displays all the items in the list.
 
-    ![example_list](./images/ug_example/example_list.png)
-
-    Mock-up of the list function
+    ![list_example](./images/ug_example/list_example.png) 
 
 3. **edit** <a name="edit"></a>
     - Identified by index starting from 1.
@@ -92,27 +99,42 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - **At least 1, and up to all 3**, fields (description, amount spent, date) of expense must be specified.
     - Format: `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`
     - Example: `edit 1 -dlunch -$12.50`
-    - Example: `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`
+    - Example: `edit 11 -$12.50 -dlunch -@23-06/2020 t/Food`
+    
+    ![edit_example](./images/ug_example/edit_example.png) 
 
 4. **delete** <a name="delete"></a>
     - Deletes a specified existing expense record.
     - Identified by index starting from 1.
     - Format:  `delete <index>`
-    - Example: `delete 1` Deletes the item at index 1 of the list.
+    - Example: `delete 11` Deletes the item at index 11 of the list.
+    
+    ![delete_example](./images/ug_example/delete_example.png) 
 
 5. **topup** <a name="topup"></a>
     - Increases budget by amount input by user .
     - Expenses are subtracted from the budget.
     - Format: `topup -$<amount>`
-    - Example: `topup -$200` Adds an extra budget of 200 dollars to work with.
+    - Example: `topup -$10` Adds an extra budget of 10 dollars to work with.
+    
+    ![topup_example](./images/ug_example/topup_example.png) 
     
 6. **find** <a name="find"></a>
     - Finds expenses with given keywords, date, category by user.
     - Expenses that fits the criteria will be presented as another list.
     - Keywords and category are case-sensitive.
     - Format: `find [-d<description>] [-@<date>] [t/<category>]`
-    - Example: `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`    
+    - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
     
+    ![find_example](./images/ug_example/find_example.png)     
+
+7. **remark** <a name="remark"></a>
+    - Adds a remark to an existing expense.
+    - Format: `remark <index> r/<remark>`
+    - Example: `remark 11 r/Pepper Lunch`
+    
+    ![remark_example](./images/ug_example/remark_example.png)   
+     
 ### Fields
 1. **description**
     - Description of expense made.
@@ -146,11 +168,11 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 Action | Format, Examples
 --------|------------------
-**Spent** | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`
+**Add** | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`
 **List** | `list`
 **Edit** | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`
 **Delete** | `delete <index>`<br> e.g., `delete 1`
 **Topup** | `topup -$<amount>`<br> e.g., `topup -$200`
-**Tag** | `t/<category>` <br> e.g., `edit t/Food`, `find -dlunch t/Food`
-**Find** | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`  
+**Find** | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`
+**Remark** | `remark <index> r/<remark>` <br> e.g., `remark 11 r/Pepper Lunch`  
 --------------------------------------------------------------------------------------------------------------------
