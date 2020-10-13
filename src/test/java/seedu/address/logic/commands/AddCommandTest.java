@@ -186,14 +186,6 @@ public class AddCommandTest {
                 return null;
             }
 
-            /**
-             * Returns an unmodifiable view of the filtered entry list
-             */
-            @Override
-            public ObservableList<Entry> getFilteredEntryList() {
-                return null;
-            }
-
             @Override
             public void updateFilteredExpenseList(Predicate<Expense> predicate) {
 
@@ -201,11 +193,6 @@ public class AddCommandTest {
 
             @Override
             public void updateFilteredRevenueList(Predicate<Revenue> predicate) {
-
-            }
-
-            @Override
-            public void updateFilteredEntryList(Predicate<Entry> predicate) {
 
             }
         };
