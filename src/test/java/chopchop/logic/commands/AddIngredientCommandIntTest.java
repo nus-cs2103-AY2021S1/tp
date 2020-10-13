@@ -21,7 +21,7 @@ public class AddIngredientCommandIntTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newIngredient_success() {
         Ingredient validIngredient = new IngredientBuilder().build();
 
         Model expectedModel = new ModelManager(new RecipeBook(), model.getIngredientBook(), new UserPrefs());
@@ -32,7 +32,7 @@ public class AddIngredientCommandIntTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateIngredient_throwsCommandException() {
         Ingredient personInList = model.getIngredientBook().getFoodEntryList().get(0);
         assertCommandFailure(new AddIngredientCommand(personInList), model,
             AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
