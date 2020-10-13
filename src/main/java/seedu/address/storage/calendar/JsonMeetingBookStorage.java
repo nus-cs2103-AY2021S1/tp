@@ -37,15 +37,14 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
     }
 
     @Override
-    public Optional<ReadOnlyMeetingManager> readMeetingBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMeetingManager> readMeetingBook(Path filePath)
+        throws DataConversionException, IOException {
         requireNonNull(filePath);
-
         Optional<JsonSerializableMeetingBook> jsonMeetingBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMeetingBook.class);
         if (!jsonMeetingBook.isPresent()) {
             return Optional.empty();
         }
-
         try {
             return Optional.of(jsonMeetingBook.get().toModelType());
         } catch (IllegalValueException ive) {
