@@ -140,11 +140,54 @@ Examples:
 * `delmod m/CS2103` deletes the existing module with code `CS2103` from FaculType.
 * `delmod m/CS2102` deletes the existing module with code `CS2102` from FaculType.
 
-### Clearing all entries : `clear`
+### Finding modules : `findmod`
 
-Clears all entries from the FaculType.
+Finds all  modules whose code or name contain the given keywords.
 
-Format: `clear`
+Format : `findmod KEYWORD [MORE_KEYWORDS]`
+
+* The search is insensitive. e.g. `cs2103` will match `CS2103` in FaculType.
+* Partial words will be matched. e.g. `database` will match `Database Systems` in FaculType.
+* Modules matching at least one keyword will be returned (i.e. “OR” search)
+  e.g. `CS210 algorithms` will return `CS2103`, `CS2100`, `Data Structures and Algorithms`.
+* The order of the keyword does not matter. e.g. `Statistics and Probability` will match  `Probability and Statistics`.
+
+Examples :
+
+* `findmod programming` returns `Programming Methodology I`, `Programming Methodology II`
+* `findmod CS11 security` returns `CS1101S`, `Computer Security`
+* `findmod cs210` returns `CS2100`, `CS2102`, `CS2103`
+
+### Assigning an instructor to modules : `assign`
+
+Assigns an instructor to one or more modules.
+
+Format: `assign INDEX m/MODULE_CODE [MORE MODULE_CODES]`
+* Assigns the instructor at the specified `INDEX` to every `MODULE_CODE` specified. All of the `MODULE_CODE` **must exist** in FaculType in the first place.
+
+Examples :
+* `assign 1 m/CS3233` Assigns the existing module with code `CS3233` to contact at index 1
+* `assign 2 m/CS2030S` Assigns the existing module with code `CS2030S` to contact at index 2
+* `assign 3 m/CS2100 m/CS2106` Assigns the existing modules with code `CS2100` and `CS2106` to contact at index 3
+
+
+### Reseting FaculType : `reset`
+
+Resets FaculType to its initial state by clearing all entries of persons and modules.
+
+Format: `reset`
+
+### Clearing all contacts : `cclear`
+
+Clears all entries of contacts in FaculType.
+
+Format : `cclear`
+
+### Clearing all modules : `mclear`
+
+Clears all entries of modules in FaculType.
+
+Format : `mclear`
 
 ### Exiting the program : `exit`
 
@@ -170,7 +213,7 @@ FaculType data is saved in the hard disk automatically after any command that ch
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science t/senior lecturer t/friend`
-**Clear** | `clear`
+**Reset** | `reset`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​`<br> e.g.,`edit 1 d/Computing b/COM2`
 **Remark** | `remark INDEX [r/REMARK]`<br> e.g., `remark 1 r/Wears red glasses`
