@@ -1,22 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
-
-import java.util.*;
-
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.CommonCents;
 import seedu.address.model.Model;
 import seedu.address.model.account.*;
-import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.testutil.ActiveAccountStub;
@@ -111,26 +101,26 @@ public class AddCommandTest {
 
 }
 
-class ActiveAccountAddSuccessful extends ActiveAccountStub {
-    private final Account activeAccount;
-    private final ArrayList<Entry> entries;
-
-    public ActiveAccountAddSuccessful(ReadOnlyAccount account) {
-        this.activeAccount = new Account(account);
-        this.entries = new ArrayList<>();
-    }
-
-    @Override
-    public void addExpense(Expense expense) {
-        entries.add(expense);
-    }
-
-    @Override
-    public boolean hasEntry(Entry entry) {
-        return entries.contains(entry);
-    }
-
-}
+//class ActiveAccountAddSuccessful extends ActiveAccountStub {
+//    private final Account activeAccount;
+//    private final ArrayList<Entry> entries;
+//
+//    public ActiveAccountAddSuccessful(ReadOnlyAccount account) {
+//        this.activeAccount = new Account(account);
+//        this.entries = new ArrayList<>();
+//    }
+//
+//    @Override
+//    public void addExpense(Expense expense) {
+//        entries.add(expense);
+//    }
+//
+//    @Override
+//    public boolean hasEntry(Entry entry) {
+//        return entries.contains(entry);
+//    }
+//
+//}
 
 //    @Test
 //    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
