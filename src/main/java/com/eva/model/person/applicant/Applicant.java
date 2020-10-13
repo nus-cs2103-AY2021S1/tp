@@ -8,6 +8,7 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.comment.Comment;
 import com.eva.model.tag.Tag;
 
 /**
@@ -25,9 +26,10 @@ public class Applicant extends Person {
                      Email email,
                      Address address,
                      Set<Tag> tags,
+                     Set<Comment> comments,
                      InterviewDate interviewDate,
                      ApplicationStatus status) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, address, tags, comments);
         this.interviewDate = Optional.ofNullable(interviewDate);
         this.applicationStatus = status;
     }
@@ -40,8 +42,9 @@ public class Applicant extends Person {
                      Email email,
                      Address address,
                      Set<Tag> tags,
+                     Set<Comment> comments,
                      ApplicationStatus status) {
-        super(name, phone, email, address, tags);
+        super(name, phone, email, address, tags, comments);
         this.interviewDate = Optional.empty();
         this.applicationStatus = status;
     }
