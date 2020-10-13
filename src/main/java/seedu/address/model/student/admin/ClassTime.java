@@ -107,8 +107,8 @@ public class ClassTime {
         String dayDisplayName = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         return String.format("Day of week: %s, Start time: %s, End Time: %s",
                 dayDisplayName,
-                this.startTime.format(TIME_FORMATTER),
-                this.endTime.format(TIME_FORMATTER));
+                this.startTime.format(OUTPUT),
+                this.endTime.format(OUTPUT));
     }
 
     @Override
