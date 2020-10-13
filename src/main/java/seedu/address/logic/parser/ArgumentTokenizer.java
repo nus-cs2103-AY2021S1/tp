@@ -94,11 +94,13 @@ public class ArgumentTokenizer {
         String prefixSearch = " " + prefix.getPrefix();
         int prefixIndex = this.userInput.indexOf(prefixSearch);
 
-        boolean hasMultipleSamePrefixes = hasMultipleSamePrefixes(prefix, prefixIndex);
+        boolean hasMultipleSamePrefixes = hasMultipleSamePrefixes(prefix, prefixIndex + 1);
+
         if (hasMultipleSamePrefixes) {
             String error = "User input has multiple arguments for the same prefix";
             throw new ParseException(error);
         }
+
         return (prefixIndex == -1
                 ? Optional.empty()
                 : Optional.of(new PrefixPosition(prefix, prefixIndex + 1)));
