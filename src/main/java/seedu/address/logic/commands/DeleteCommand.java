@@ -32,11 +32,18 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
     private final int quantity;
 
+    /**
+     * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove all its quantity
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.quantity = Integer.MAX_VALUE;
     }
 
+    /**
+     * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove its quantity by
+     * the specified {@code quantity}
+     */
     public DeleteCommand(Index targetIndex, int quantity) {
         this.targetIndex = targetIndex;
         this.quantity = quantity;
