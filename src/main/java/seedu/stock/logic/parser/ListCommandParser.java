@@ -19,11 +19,10 @@ public class ListCommandParser implements Parser<ListCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-
         return new ListCommand();
     }
 
-    public boolean hasNoArguments(String args){
+    public boolean hasNoArguments(String args) {
         return args.length() == 0;
     }
 }
