@@ -10,13 +10,12 @@ import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
-import chopchop.util.Result;
 
 public class JsonAdaptedRecipe {
     public static final String RECIPE_MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
-    private final List<String> ingredientRefs;
+    private final List<JsonAdaptedIngredientRef> ingredientRefs;
     private final List<String> steps;
 
     /**
@@ -24,7 +23,7 @@ public class JsonAdaptedRecipe {
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
-                             @JsonProperty("ingredients") List<String> ingredients,
+                             @JsonProperty("ingredients") List<JsonAdaptedIngredientRef> ingredients,
                              @JsonProperty("steps") List<String> steps) {
         this.name = name;
 
@@ -50,7 +49,7 @@ public class JsonAdaptedRecipe {
         name = source.getName().fullName;
         ingredientRefs = new ArrayList<>();
         ingredientRefs.addAll(source.getIngredients().stream()
-            .map(x->x.toString())
+            .map(JsonAdaptedIngredientRef::new)
             .collect(Collectors.toList()));
         steps = new ArrayList<>();
         steps.addAll(source.getSteps().stream()
@@ -72,12 +71,8 @@ public class JsonAdaptedRecipe {
                 IngredientReference.class.getSimpleName()));
         }
         final List<IngredientReference> modelIngredientRefs = new ArrayList<>();
-        for (String ref : ingredientRefs) {
-            Result<IngredientReference> result = IngredientReference.parse(ref);
-            if (result.isError()) {
-                throw new IllegalValueException(result.getError());
-            }
-            modelIngredientRefs.add(result.getValue());
+        for (JsonAdaptedIngredientRef ref : ingredientRefs) {
+            modelIngredientRefs.add(ref.toModelType());
         }
 
         if (steps == null) {

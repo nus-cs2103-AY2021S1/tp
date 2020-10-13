@@ -16,12 +16,12 @@ import chopchop.model.ingredient.IngredientReference;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "";
-    private static final String INVALID_REFS = "dadadasd";
-    private static final String INVALID_STEPS = "";
+    private static final JsonAdaptedIngredientRef INVALID_REF = new JsonAdaptedIngredientRef(null, null);
+    private static final String INVALID_STEP = "";
 
     private static final String VALID_NAME = APRICOT_SALAD.getName().toString();
-    private static final List<String> VALID_REFS = BANANA_SALAD.getIngredients()
-        .stream().map(IngredientReference::toString).collect(Collectors.toList());
+    private static final List<JsonAdaptedIngredientRef> VALID_REFS = BANANA_SALAD.getIngredients()
+        .stream().map(JsonAdaptedIngredientRef::new).collect(Collectors.toList());
     private static final List<String> VALID_STEPS = BANANA_SALAD.getSteps()
         .stream().map(Step::toString).collect(Collectors.toList());
 
@@ -46,11 +46,14 @@ public class JsonAdaptedRecipeTest {
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
+    //IngredientReference has null values.
     @Test
     public void toModelType_invalidReference_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-            new JsonAdaptedRecipe(VALID_NAME, Collections.singletonList(INVALID_REFS), VALID_STEPS);
-        String expectedMessage = IngredientReference.parse(INVALID_REFS).getError();
+            new JsonAdaptedRecipe(VALID_NAME, Collections.singletonList(INVALID_REF), VALID_STEPS);
+        String expectedMessage = String.format(
+            JsonAdaptedIngredientRef.REF_MISSING_FIELD_MESSAGE_FORMAT,
+            Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import chopchop.logic.LogicManager;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
@@ -66,7 +65,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        //logic = new LogicManager(model, storage);
 
         //ui = new UiManager(logic);
 
