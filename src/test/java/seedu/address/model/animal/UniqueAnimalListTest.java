@@ -3,11 +3,11 @@ package seedu.address.model.animal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAnimals.AHMENG;
-import static seedu.address.testutil.TypicalAnimals.BOB;
+import static seedu.address.testutil.TypicalAnimals.BAILEY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,8 +42,8 @@ public class UniqueAnimalListTest {
     @Test
     public void contains_animalWithSameIdentityFieldsInList_returnsTrue() {
         uniqueAnimalList.add(AHMENG);
-        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BOB)
-                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND)
+        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
         assertTrue(uniqueAnimalList.contains(editedAlice));
     }
@@ -86,8 +86,8 @@ public class UniqueAnimalListTest {
     @Test
     public void setAnimal_editedAnimalHasSameIdentity_success() {
         uniqueAnimalList.add(AHMENG);
-        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BOB)
-                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND)
+        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BAILEY)
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
         uniqueAnimalList.setAnimal(AHMENG, editedAlice);
         UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();
@@ -98,17 +98,17 @@ public class UniqueAnimalListTest {
     @Test
     public void setAnimal_editedAnimalHasDifferentIdentity_success() {
         uniqueAnimalList.add(AHMENG);
-        uniqueAnimalList.setAnimal(AHMENG, BOB);
+        uniqueAnimalList.setAnimal(AHMENG, BAILEY);
         UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();
-        expectedUniqueAnimalList.add(BOB);
+        expectedUniqueAnimalList.add(BAILEY);
         assertEquals(expectedUniqueAnimalList, uniqueAnimalList);
     }
 
     @Test
     public void setAnimal_editedAnimalHasNonUniqueIdentity_throwsDuplicateAnimalException() {
         uniqueAnimalList.add(AHMENG);
-        uniqueAnimalList.add(BOB);
-        assertThrows(DuplicateAnimalException.class, () -> uniqueAnimalList.setAnimal(AHMENG, BOB));
+        uniqueAnimalList.add(BAILEY);
+        assertThrows(DuplicateAnimalException.class, () -> uniqueAnimalList.setAnimal(AHMENG, BAILEY));
     }
 
     @Test
@@ -138,7 +138,7 @@ public class UniqueAnimalListTest {
     public void setAnimals_uniqueAnimalList_replacesOwnListWithProvidedUniqueAnimalList() {
         uniqueAnimalList.add(AHMENG);
         UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();
-        expectedUniqueAnimalList.add(BOB);
+        expectedUniqueAnimalList.add(BAILEY);
         uniqueAnimalList.setAnimals(expectedUniqueAnimalList);
         assertEquals(expectedUniqueAnimalList, uniqueAnimalList);
     }
@@ -151,10 +151,10 @@ public class UniqueAnimalListTest {
     @Test
     public void setAnimals_list_replacesOwnListWithProvidedList() {
         uniqueAnimalList.add(AHMENG);
-        List<Animal> animalList = Collections.singletonList(BOB);
+        List<Animal> animalList = Collections.singletonList(BAILEY);
         uniqueAnimalList.setAnimals(animalList);
         UniqueAnimalList expectedUniqueAnimalList = new UniqueAnimalList();
-        expectedUniqueAnimalList.add(BOB);
+        expectedUniqueAnimalList.add(BAILEY);
         assertEquals(expectedUniqueAnimalList, uniqueAnimalList);
     }
 

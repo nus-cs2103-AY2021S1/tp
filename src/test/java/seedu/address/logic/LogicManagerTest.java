@@ -2,11 +2,11 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ID_DESC_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_ARCHIE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAnimals.AMY;
+import static seedu.address.testutil.TypicalAnimals.ARCHIE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -71,9 +71,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ID_DESC_AMY
-                + SPECIES_DESC_AMY;
-        Animal expectedAnimal = new AnimalBuilder(AMY).withMedicalConditions().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_ARCHIE + ID_DESC_ARCHIE
+                + SPECIES_DESC_ARCHIE;
+        Animal expectedAnimal = new AnimalBuilder(ARCHIE).withMedicalConditions().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addAnimal(expectedAnimal);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

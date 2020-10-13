@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAnimalAtIndex;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Animal lastAnimal = model.getFilteredAnimalList().get(indexLastAnimal.getZeroBased());
 
         AnimalBuilder animalInList = new AnimalBuilder(lastAnimal);
-        Animal editedAnimal = animalInList.withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
-                .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
+        Animal editedAnimal = animalInList.withName(VALID_NAME_BAILEY).withId(VALID_ID_BAILEY)
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
 
-        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withId(VALID_ID_BOB).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY)
+                .withId(VALID_ID_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
         EditCommand editCommand = new EditCommand(indexLastAnimal, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
@@ -86,9 +86,9 @@ public class EditCommandTest {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
         Animal animalInFilteredList = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
-        Animal editedAnimal = new AnimalBuilder(animalInFilteredList).withName(VALID_NAME_BOB).build();
+        Animal editedAnimal = new AnimalBuilder(animalInFilteredList).withName(VALID_NAME_BAILEY).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ANIMAL,
-                new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ANIMAL_SUCCESS, editedAnimal);
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidAnimalIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAnimalList().size() + 1);
-        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
@@ -140,17 +140,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditAnimalDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ANIMAL, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ANIMAL, DESC_ARCHIE);
 
         // same values -> returns true
-        EditAnimalDescriptor copyDescriptor = new EditAnimalDescriptor(DESC_AMY);
+        EditAnimalDescriptor copyDescriptor = new EditAnimalDescriptor(DESC_ARCHIE);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ANIMAL, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ANIMAL, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ANIMAL, DESC_ARCHIE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ANIMAL, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ANIMAL, DESC_BAILEY)));
     }
 
 }

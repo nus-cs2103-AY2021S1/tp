@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_ARCHIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,11 +46,11 @@ public class TypicalAnimals {
             .withSpecies("chicago ave").build();
 
     // Manually added - Animal's details found in {@code CommandTestUtil}
-    public static final Animal AMY = new AnimalBuilder().withName(VALID_NAME_AMY).withId(VALID_ID_AMY)
-            .withSpecies(VALID_SPECIES_AMY).withMedicalConditions(VALID_MEDICAL_CONDITION_FRIEND).build();
-    public static final Animal BOB = new AnimalBuilder().withName(VALID_NAME_BOB).withId(VALID_ID_BOB)
-            .withSpecies(VALID_SPECIES_BOB).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND,
-                    VALID_MEDICAL_CONDITION_FRIEND)
+    public static final Animal ARCHIE = new AnimalBuilder().withName(VALID_NAME_ARCHIE).withId(VALID_ID_ARCHIE)
+            .withSpecies(VALID_SPECIES_ARCHIE).withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
+    public static final Animal BAILEY = new AnimalBuilder().withName(VALID_NAME_BAILEY).withId(VALID_ID_BAILEY)
+            .withSpecies(VALID_SPECIES_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS,
+                    VALID_MEDICAL_CONDITION_OBESE)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
