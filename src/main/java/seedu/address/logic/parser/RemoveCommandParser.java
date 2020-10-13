@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.RemoveCommand;
@@ -29,9 +31,21 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), ive);
         }
 
-        Quantity quantity = new Quantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
+        if (!isQuantityPresent(argMultimap, PREFIX_QUANTITY)) {
+            throw new ParseException(RemoveCommand.MESSAGE_NO_QUANTITY);
+        }
+
+        Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
 
         return new RemoveCommand(index, quantity);
+    }
+
+    /**
+     * Returns true if Prefix Quantity does not contains empty {@code Optional} value in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean isQuantityPresent(ArgumentMultimap argumentMultimap, Prefix quantity) {
+        return Stream.of(quantity).allMatch(prefix -> argumentMultimap.getValue(quantity).isPresent());
     }
 
 }

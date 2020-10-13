@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.help.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Item;
@@ -73,6 +74,11 @@ public class InventoryBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "n/chicken");
         assertEquals(new FindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
+    }
+
+    @Test
+    public void parseCommand_remove() throws Exception {
+        assertTrue(parser.parseCommand(RemoveCommand.COMMAND_WORD + " 1 q/10") instanceof RemoveCommand);
     }
 
     @Test
