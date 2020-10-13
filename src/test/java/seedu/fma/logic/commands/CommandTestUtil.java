@@ -29,7 +29,7 @@ import seedu.fma.testutil.LogBuilder;
  */
 
 public class CommandTestUtil {
-    public static final String VALID_EXERCISE_SIT_UP = "Sit up";
+    public static final String VALID_EXERCISE_SIT_UP = "Sit ups";
     public static final String VALID_EXERCISE_CRUNCHES = "Crunches";
 
     public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder().withName(VALID_EXERCISE_SIT_UP).build();
@@ -48,10 +48,10 @@ public class CommandTestUtil {
             VALID_YEAR_A, VALID_MONTH_A, VALID_DAY_A, VALID_HOUR_A, VALID_MINUTE_A
     );
     public static final int VALID_YEAR_B = 2020;
-    public static final int VALID_MONTH_B = 1; // January
-    public static final int VALID_DAY_B = 1;
-    public static final int VALID_HOUR_B = 1;
-    public static final int VALID_MINUTE_B = 1;
+    public static final int VALID_MONTH_B = 3; // March
+    public static final int VALID_DAY_B = 4;
+    public static final int VALID_HOUR_B = 6;
+    public static final int VALID_MINUTE_B = 7;
     public static final LocalDateTime VALID_DATE_TIME_B = LocalDateTime.of(
             VALID_YEAR_B, VALID_MONTH_B, VALID_DAY_B, VALID_HOUR_B, VALID_MINUTE_B
     );
