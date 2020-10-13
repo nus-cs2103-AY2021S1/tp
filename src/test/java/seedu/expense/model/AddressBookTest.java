@@ -1,0 +1,114 @@
+package seedu.expense.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
+import static seedu.expense.testutil.Assert.assertThrows;
+import static seedu.expense.testutil.TypicalExpenses.FEL_BDAY;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.expense.model.budget.Budget;
+import seedu.expense.model.expense.Expense;
+import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
+import seedu.expense.testutil.ExpenseBuilder;
+
+public class AddressBookTest {
+
+    private final AddressBook addressBook = new AddressBook();
+
+    @Test
+    public void constructor() {
+        assertEquals(Collections.emptyList(), addressBook.getExpenseList());
+    }
+
+    @Test
+    public void resetData_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+    }
+
+    @Test
+    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+        AddressBook newData = getTypicalAddressBook();
+        addressBook.resetData(newData);
+        assertEquals(newData, addressBook);
+    }
+
+    @Test
+    public void resetData_withDuplicateExpenses_throwsDuplicateExpenseException() {
+        // Two expenses with the same identity fields
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+                .build();
+        List<Expense> newExpenses = Arrays.asList(FEL_BDAY, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newExpenses);
+
+        assertThrows(DuplicateExpenseException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void hasExpense_nullExpense_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasExpense(null));
+    }
+
+    @Test
+    public void hasExpense_expenseNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasExpense(FEL_BDAY));
+    }
+
+    @Test
+    public void hasExpense_expenseInAddressBook_returnsTrue() {
+        addressBook.addExpense(FEL_BDAY);
+        assertTrue(addressBook.hasExpense(FEL_BDAY));
+    }
+
+    @Test
+    public void hasExpense_expenseWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addExpense(FEL_BDAY);
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+                .build();
+        assertTrue(addressBook.hasExpense(editedAlice));
+    }
+
+    @Test
+    public void getExpenseList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getExpenseList().remove(0));
+    }
+
+    /**
+     * A stub ReadOnlyAddressBook whose expenses list can violate interface constraints.
+     */
+    private static class AddressBookStub implements ReadOnlyAddressBook {
+
+        private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
+        private final Budget budget = new Budget();
+
+        AddressBookStub(Collection<Expense> expenses) {
+            this.expenses.setAll(expenses);
+        }
+
+        @Override
+        public ObservableList<Expense> getExpenseList() {
+            return expenses;
+        }
+
+        @Override
+        public Budget getBudget() {
+            return budget;
+        }
+
+        @Override
+        public double tallyExpenses() {
+            return -1; // should not be called
+        }
+    }
+
+}
