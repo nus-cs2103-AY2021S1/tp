@@ -1,9 +1,10 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -40,6 +41,8 @@ public class RecipeCard extends UiPart<Region> {
     private Label instruction;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView recipeImage;
 
 
     /**
@@ -54,7 +57,7 @@ public class RecipeCard extends UiPart<Region> {
 
         //Image image = new Image(recipe.getRecipeImage());
         //recipeImageView = new ImageView(image);
-
+        recipeImage.setImage(new Image(recipe.getRecipeImage()));
         ingredients.setText(recipe.getIngredient().stream()
                 .map(item -> item.getQuantity() + " " + item.getValue())
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
