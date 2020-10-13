@@ -144,8 +144,7 @@ public class Food {
         return "Food:" + this.getName() + "\n"
                 + "protein: " + protein.getAmount() + "\n"
                 + "carbs: " + carbs.getAmount() + "\n"
-                + "fat: " + fat.getAmount() + "\n"
-                + "date: " + date.toString() + "\n";
+                + "fat: " + fat.getAmount() + "\n";
     }
 
 }
