@@ -81,6 +81,15 @@ public class Food {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * @return total caloric content of food item
+     */
+    public int getCalories() {
+        return this.getProtein().getTotalCalories()
+                + this.getCarbs().getTotalCalories()
+                + this.getFat().getTotalCalories();
+    }
+
     public Name getName() {
         return this.name;
     }
@@ -95,10 +104,6 @@ public class Food {
 
     public Fat getFat() {
         return this.fat;
-    }
-
-    public int getCalories() {
-        return getFat().getTotalCalories() + getCarbs().getTotalCalories() + getProtein().getTotalCalories();
     }
 
     public Set<Tag> getTags() {
