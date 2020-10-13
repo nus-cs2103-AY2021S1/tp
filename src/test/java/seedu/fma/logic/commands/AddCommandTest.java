@@ -39,14 +39,14 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validLog).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validLog), commandResult.getFeedbackToUser());
-        assertEquals(Collections.singletonList(validLog), modelStub.personsAdded);
+        assertEquals(Collections.singletonList(validLog), modelStub.logsAdded);
     }
 
     @Test
     public void execute_duplicateLog_throwsCommandException() {
         Log validLog = new LogBuilder().build();
         AddCommand addCommand = new AddCommand(validLog);
-        ModelStub modelStub = new ModelStubWithPerson(validLog);
+        ModelStub modelStub = new ModelStubWithLog(validLog);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_LOG, () -> addCommand.execute(modelStub));
     }
@@ -166,10 +166,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single log.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithLog extends ModelStub {
         private final Log log;
 
-        ModelStubWithPerson(Log log) {
+        ModelStubWithLog(Log log) {
             requireNonNull(log);
             this.log = log;
         }
@@ -185,18 +185,18 @@ public class AddCommandTest {
      * A Model stub that always accept the log being added.
      */
     private class ModelStubAcceptingLogAdded extends ModelStub {
-        final ArrayList<Log> personsAdded = new ArrayList<>();
+        final ArrayList<Log> logsAdded = new ArrayList<>();
 
         @Override
         public boolean hasLog(Log log) {
             requireNonNull(log);
-            return personsAdded.stream().anyMatch(log::isSameLog);
+            return logsAdded.stream().anyMatch(log::isSameLog);
         }
 
         @Override
         public void addLog(Log log) {
             requireNonNull(log);
-            personsAdded.add(log);
+            logsAdded.add(log);
         }
 
         @Override
