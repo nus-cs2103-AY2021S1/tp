@@ -34,7 +34,7 @@ public class JsonSerializableRecipeBook {
     }
 
     /**
-     * Converts this address book into the model's {@code RecipeBook} object.
+     * Converts this recipe book into the model's {@code RecipeBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

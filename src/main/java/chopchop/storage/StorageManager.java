@@ -99,8 +99,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveIngredientBook(ReadOnlyIngredientBook addressBook) throws IOException {
-        saveIngredientBook(addressBook, ingredientBookStorage.getIngredientBookFilePath());
+    public void saveIngredientBook(ReadOnlyIngredientBook ingredientBook) throws IOException {
+        saveIngredientBook(ingredientBook, ingredientBookStorage.getIngredientBookFilePath());
     }
 
     /**
