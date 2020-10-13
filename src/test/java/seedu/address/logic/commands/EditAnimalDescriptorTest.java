@@ -35,7 +35,8 @@ public class EditAnimalDescriptorTest {
         assertFalse(DESC_ARCHIE.equals(DESC_BAILEY));
 
         // different name -> returns false
-        EditAnimalDescriptor editedArchie = new EditAnimalDescriptorBuilder(DESC_ARCHIE).withName(VALID_NAME_BAILEY).build();
+        EditAnimalDescriptor editedArchie = new EditAnimalDescriptorBuilder(DESC_ARCHIE)
+                .withName(VALID_NAME_BAILEY).build();
         assertFalse(DESC_ARCHIE.equals(editedArchie));
 
         // different ID -> returns false

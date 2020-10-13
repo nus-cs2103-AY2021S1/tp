@@ -7,15 +7,15 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEDICAL_CONDITION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SPECIES_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_OBESE;
 import static seedu.address.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.MEDICAL_CONDITION_DESC_OBESE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.SPECIES_DESC_BAILEY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
@@ -95,8 +95,8 @@ public class EditCommandParserTest {
                 + MEDICAL_CONDITION_EMPTY, MedicalCondition.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + MEDICAL_CONDITION_DESC_OBESE
                 + MEDICAL_CONDITION_EMPTY + MEDICAL_CONDITION_DESC_ARTHRITIS, MedicalCondition.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MEDICAL_CONDITION_EMPTY
-                + MEDICAL_CONDITION_DESC_OBESE + MEDICAL_CONDITION_DESC_ARTHRITIS, MedicalCondition.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MEDICAL_CONDITION_EMPTY + MEDICAL_CONDITION_DESC_OBESE
+                + MEDICAL_CONDITION_DESC_ARTHRITIS, MedicalCondition.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SPECIES_DESC + VALID_ID_ARCHIE,

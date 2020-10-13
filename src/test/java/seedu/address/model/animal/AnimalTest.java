@@ -31,7 +31,8 @@ public class AnimalTest {
         assertFalse(AHMENG.isSameAnimal(null));
 
         // different ID and species -> returns false
-        Animal editedAhmeng = new AnimalBuilder(AHMENG).withId(VALID_ID_BAILEY).withSpecies(VALID_SPECIES_BAILEY).build();
+        Animal editedAhmeng = new AnimalBuilder(AHMENG).withId(VALID_ID_BAILEY)
+                .withSpecies(VALID_SPECIES_BAILEY).build();
         assertFalse(AHMENG.isSameAnimal(editedAhmeng));
 
         // different name -> returns false

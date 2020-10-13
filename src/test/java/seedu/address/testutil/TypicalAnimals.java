@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_ARCHIE;
