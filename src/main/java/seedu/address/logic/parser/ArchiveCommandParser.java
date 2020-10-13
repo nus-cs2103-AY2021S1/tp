@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
+
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATH;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,15 +25,20 @@ public class ArchiveCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PATH);
-        String trimArgs = args.trim();
-        if (!trimArgs.endsWith(".json")) {
-            throw new ParseException("Specified Location should ends with '.json'."
+
+        if (argMultimap.getValue(PREFIX_PATH).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+        }
+
+        String stringPath = argMultimap.getValue(PREFIX_PATH).get();
+
+        if (!stringPath.endsWith("json")) {
+            throw new ParseException("Specified location should ends with '.json'."
                     + "Example: parentDirectory/filename.json");
         }
-        Path specifiedLocation = Paths.get(trimArgs);
 
+        Path path = ParserUtil.parsePath(stringPath);
 
-        return new ArchiveCommand(specifiedLocation);
+        return new ArchiveCommand(path);
     }
-
 }

@@ -13,9 +13,9 @@ import seedu.address.model.exercise.Name;
 public class ExerciseBuilder {
 
     public static final String DEFAULT_NAME = "Push up";
-    public static final String DEFAULT_DESCRIPTION = "Testing 1 2 3";
+    public static final String DEFAULT_DESCRIPTION = "Testing 2254";
     public static final String DEFAULT_DATE = "09-10-2020";
-    public static final String DEFAULT_CALORIES = "2254";
+    public static final String DEFAULT_CALORIES = "224";
 
     private Name name;
     private Description description;

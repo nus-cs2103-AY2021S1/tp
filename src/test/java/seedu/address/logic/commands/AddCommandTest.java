@@ -33,7 +33,6 @@ public class AddCommandTest {
     public void execute_exerciseAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingExerciseAdded modelStub = new ModelStubAcceptingExerciseAdded();
         Exercise validExercise = new ExerciseBuilder().build();
-
         CommandResult commandResult = new AddCommand(validExercise).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExercise), commandResult.getFeedbackToUser());
@@ -145,6 +144,12 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingExerciseAdded extends ModelStub {
         final ArrayList<Exercise> exercisesAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasExercise(Exercise exercise) {
+            requireNonNull(exercise);
+            return exercisesAdded.stream().anyMatch(exercise::isSameExercise);
+        }
 
         @Override
         public void addExercise(Exercise exercise) {

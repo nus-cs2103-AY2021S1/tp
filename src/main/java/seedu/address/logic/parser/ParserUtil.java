@@ -202,9 +202,11 @@ public class ParserUtil {
         if (hasFileWithSameName(trimPathDirectory)) {
             throw new ParseException("A file with same name exists. Please key in a different name");
         }
+        /*
         if (!hasRightToCreate(trimPathDirectory)) {
             throw new ParseException("You don't have right to create at the specified location");
         }
+         */
 
         return Paths.get(trimPathDirectory);
     }
@@ -215,6 +217,7 @@ public class ParserUtil {
     }
 
     private static boolean hasRightToCreate(String filePath) {
-        return new File(filePath).canWrite();
+        return false;
+        //return new File(filePath).canWrite();
     }
 }
