@@ -74,7 +74,7 @@ public class Question {
     @Override
     public String toString() {
         String status = isResolved ? "(\u2713)" : "(\u2718)";
-        return String.format("[%1$s %2$s]", status, question);
+        return String.format("%1$s %2$s", status, question);
     }
 
     @Override

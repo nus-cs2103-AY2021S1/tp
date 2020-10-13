@@ -50,10 +50,10 @@ public class QuestionTest {
     @Test
     public void toString_equals() {
         // default simplified constructor
-        assertEquals(new Question("Hello?").toString(), "[(\u2718) Hello?]");
+        assertEquals(new Question("Hello?").toString(), "(\u2718) Hello?");
 
-        assertEquals(new Question("Hello?", false).toString(), "[(\u2718) Hello?]");
-        assertEquals(new Question("1+1=?", true).toString(), "[(\u2713) 1+1=?]");
+        assertEquals(new Question("Hello?", false).toString(), "(\u2718) Hello?");
+        assertEquals(new Question("1+1=?", true).toString(), "(\u2713) 1+1=?");
     }
 
     @Test

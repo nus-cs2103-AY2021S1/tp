@@ -67,10 +67,10 @@ public class StudentCard extends UiPart<Region> {
         fee.setText("Fee: " + student.getAdmin().getFee().toString());
         payment.setText("Last Paid Date: " + student.getAdmin().getPaymentDate().toString());
         details.setText("Details: " + student.getAdmin().getDetails().toString());
-        questions.setText("Questions: " + student.getQuestions()
+        questions.setText("Questions:\n" + student.getQuestions()
                 .stream()
                 .map(Question::toString)
-                .collect(Collectors.joining(", ")));
+                .collect(Collectors.joining("\n")));
     }
 
     @Override
