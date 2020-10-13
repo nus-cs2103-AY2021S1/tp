@@ -18,10 +18,10 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 ## Features <a name="Features"></a>
 
-1. **Create**
+1. **Add**
     - Adds new expense record.
-    - Command: `spent`
-    - [API](#spent)
+    - Command: `add`
+    - [API](#add)
 
 2. **List**
     - Displays a list of the all the user's expenses.
@@ -44,65 +44,135 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Command: `topup`
     - [API](#topup)
 
-6. Category tagging &lt;Coming Soon v1.2.1&gt;
-7. Save Load Function &lt;Coming Soon v1.2.1&gt;
-8. Password &lt;Coming Soon v1.2.1&gt;
-9. Help command → documentation &lt;Coming Soon v1.2.1&gt;
-10. Finding and sorting (date, category, keyword, amount) &lt;Coming Soon v1.2.1&gt;
-11. Multiple Accounts &lt;pending&gt;
-12. GUI &lt;pending&gt;>
-13. Budget notifications &lt;pending&gt;
-14. Achievements &lt;pending&gt;
-15. Graphs and progress trackers &lt;pending&gt;
-16. Colours &lt;pending&gt;
-17. Sort/Search more powerful &lt;pending&gt;
-18. Customisation of workflow → shortcuts etc. &lt;pending&gt;
-19. Simulation of spending &lt;pending&gt;
+6. **Category tagging**
+    - Tags expenses by their categories
+    - Prefix: `t/`
+    - [API](#tag)
+    
+7. **Expense finding**
+    - Finds expenses by keywords, date, tags 
+    - Command: 'find'
+    - [API](#find)    
+    
+8. **Adding Remark**
+    - Adds a remark to an existing expense
+    - Command: 'remark"
+    -[API](#remark)
+         
+9. Save Load Function &lt;Coming Soon v1.2.1&gt;
+10. Password &lt;Coming Soon v1.2.1&gt;
+11. Help command → documentation &lt;Coming Soon v1.2.1&gt;
+12. Sorting (date, category, keyword, amount) &lt;Coming Soon v1.2.1&gt;
+13. Multiple Accounts &lt;pending&gt;
+14. GUI &lt;pending&gt;>
+15. Budget notifications &lt;pending&gt;
+16. Achievements &lt;pending&gt;
+17. Graphs and progress trackers &lt;pending&gt;
+18. Colours &lt;pending&gt;
+18. Sort/Search more powerful &lt;pending&gt;
+20. Customisation of workflow → shortcuts etc. &lt;pending&gt;
+21. Simulation of spending &lt;pending&gt;
 
 ## Usage/ API <a name="Usage"></a>
-
-1. **spent** <a name="spent"></a>
+### Commands
+1. **add** <a name="add"></a>
     - Date input (DD-MM-YYYY) is optional, defaults to system's date.
     - Order of arguments is flexible.
-    - Format: `spent -d <description> $<amount_spent> [@ <date>]`
-    - Example: `spent -d dinner $10.50` Adds the spending to **current date's** record
-    - Example: `spent -d dinner $10.50 @ 20-08-2020` Adds the spending to **input date's** record
+    - Able to add multiple tags
+    - Format: `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]`
+    - Example: `add -ddinner -$10.50` Adds the spending to **current date's** record
+    - Example: `add -ddinner -$10.50 -@24-06-2020 t/Food` Adds the spending to **input date's** record and tags with **input category**
+    - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
+
+    ![add_example](./images/ug_example/add_example.png) 
 
 2. **list** <a name="list"></a>
     - Format: `list`
     - Example: `list` Displays all the items in the list.
 
-    ![example_list](./images/ug_example/example_list.png)
-
-    Mock-up of the list function
+    ![list_example](./images/ug_example/list_example.png) 
 
 3. **edit** <a name="edit"></a>
     - Identified by index starting from 1.
     - Order of arguments is flexible except index.
+    - Edited fields overwrite previous field completely. 
     - **At least 1, and up to all 3**, fields (description, amount spent, date) of expense must be specified.
-    - Format: `edit <index> [-d <description>] [$<amount_spent>] [@ <date>]`
-    - Example: `edit 1 -d lunch $12.50`
-    - Example: `edit 1 $12.50 -d lunch @ 11-11/2020`
+    - Format: `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`
+    - Example: `edit 1 -dlunch -$12.50`
+    - Example: `edit 11 -$12.50 -dlunch -@23-06/2020 t/Food`
+    
+    ![edit_example](./images/ug_example/edit_example.png) 
 
 4. **delete** <a name="delete"></a>
     - Deletes a specified existing expense record.
     - Identified by index starting from 1.
     - Format:  `delete <index>`
-    - Example: `delete 1` Deletes the item at index 1 of the list.
+    - Example: `delete 11` Deletes the item at index 11 of the list.
+    
+    ![delete_example](./images/ug_example/delete_example.png) 
 
 5. **topup** <a name="topup"></a>
     - Increases budget by amount input by user .
     - Expenses are subtracted from the budget.
-    - Format: `topup $<amount>`
-    - Example: `topup $200` Adds an extra budget of 200 dollars to work with.
+    - Format: `topup -$<amount>`
+    - Example: `topup -$10` Adds an extra budget of 10 dollars to work with.
+    
+    ![topup_example](./images/ug_example/topup_example.png) 
+    
+6. **find** <a name="find"></a>
+    - Finds expenses with given keywords, date, category by user.
+    - Expenses that fits the criteria will be presented as another list.
+    - Keywords and category are case-sensitive.
+    - Format: `find [-d<description>] [-@<date>] [t/<category>]`
+    - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
+    
+    ![find_example](./images/ug_example/find_example.png)     
+
+7. **remark** <a name="remark"></a>
+    - Adds a remark to an existing expense.
+    - Format: `remark <index> r/<remark>`
+    - Example: `remark 11 r/Pepper Lunch`
+    
+    ![remark_example](./images/ug_example/remark_example.png)   
+     
+### Fields
+1. **description**
+    - Description of expense made.
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - Prefix: `-d`
+    - Format: `-d<description>`
+    - Example: `-dlunch`, `-ddinner`
+    
+2. **amount**
+    - Amount of expense made
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [topup](#topup)
+    - Prefix: `-$`
+    - Format: `-$<amount>`
+    - Example: `-$2`, `-$1.50`
+    
+3. **date**
+    - Date at which expense was made
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - Prefix: `-@`
+    - Format: `-@<DD-MM-YYYY>`
+    - Example: `-@01-07-2020`, `-@02-07-2020`
+
+4. **tag** <a name="tag"></a>
+    - Tags expense by a category input by user
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - An expense can have multiple tags
+    - Format: `t/<category>`
+    - Example: `edit t/Food`, `find -dCoffee t/Food`
 
 ## Command summary <a name="CommandSummary"></a>
 
 Action | Format, Examples
 --------|------------------
-**Spent** | `spent -d <description> $<amount_spent> [@ <date>]` <br> e.g., `spent -d dinner $10.50`, `spent -d dinner $10.50 @ 20-08-2020`
+**Add** | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`
 **List** | `list`
-**Edit** | `edit <index> [-d <description>] [$<amount_spent>] [@ <date>]`<br> e.g.,`edit 1 -d lunch $12.50`, `edit 1 $12.50 -d lunch @ 11-11/2020`
+**Edit** | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`
 **Delete** | `delete <index>`<br> e.g., `delete 1`
-**Topup** | `topup $<amount>`<br> e.g., `topup $200`
+**Topup** | `topup -$<amount>`<br> e.g., `topup -$200`
+**Find** | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`
+**Remark** | `remark <index> r/<remark>` <br> e.g., `remark 11 r/Pepper Lunch`  
 --------------------------------------------------------------------------------------------------------------------
