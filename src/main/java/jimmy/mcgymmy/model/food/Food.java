@@ -68,7 +68,9 @@ public class Food {
      * @return total caloric content of food item
      */
     public int getCalories() {
-        return this.protein.getTotalCalories() + this.carbs.getTotalCalories() + this.fat.getTotalCalories();
+        return this.getProtein().getTotalCalories()
+                + this.getCarbs().getTotalCalories()
+                + this.getFat().getTotalCalories();
     }
 
     // getters : make when needed
