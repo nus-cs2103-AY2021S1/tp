@@ -27,7 +27,7 @@ class JsonAdaptedExercise {
      */
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("phone") String description,
-                             @JsonProperty("email") String date, @JsonProperty("address") String calories) {
+                               @JsonProperty("email") String date, @JsonProperty("address") String calories) {
         this.name = name;
         this.description = description;
         this.date = date;

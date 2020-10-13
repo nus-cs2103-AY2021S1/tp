@@ -22,12 +22,12 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         exercises = new UniqueExerciseList();
     }
 
-    public ExerciseBook() {}
+    public ExerciseBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}

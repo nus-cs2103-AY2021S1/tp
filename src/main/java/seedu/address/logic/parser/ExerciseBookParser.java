@@ -13,6 +13,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.UpdateExerciseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Parses user input.
  */

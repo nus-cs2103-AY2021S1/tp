@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandForExercise;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.exercise.Exercise;
 
 /**
  * Contains helper methods for testing command parsers.
