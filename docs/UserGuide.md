@@ -123,9 +123,9 @@ Format: `list`
 
 ![list command example](images/CommandImagesForUG/List.png)
 
-### Updating a food item : `update`
+### Editing a food item : `edit`
 
-Update the food item details based on the index.
+Edit the food item details based on the index.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS]`
 
