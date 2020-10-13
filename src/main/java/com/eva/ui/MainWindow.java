@@ -121,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEvaDatabaseFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEvaDatabaseFilePath(), logic.getStaffDatabaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

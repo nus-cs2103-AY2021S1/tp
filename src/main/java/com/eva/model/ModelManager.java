@@ -81,9 +81,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setEvaDatabaseFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setPersonDatabaseFilePath(addressBookFilePath);
+    public Path getStaffDatabaseFilePath() {
+        return userPrefs.getStaffDatabaseFilePath();
+    }
+
+    @Override
+    public void setEvaDatabaseFilePath(Path evaDatabaseFilePath) {
+        requireNonNull(evaDatabaseFilePath);
+        userPrefs.setPersonDatabaseFilePath(evaDatabaseFilePath);
+    }
+
+    @Override
+    public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
+        requireNonNull(staffDatabaseFilePath);
+        userPrefs.setStaffDatabaseFilePath(staffDatabaseFilePath);
     }
 
     //=========== person database ================================================================================
