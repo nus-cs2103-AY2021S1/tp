@@ -54,12 +54,12 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noExerciseFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_EXERCISES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicateForExercise predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        //assertEquals(Collections.emptyList(), model.getFilteredExerciseList());
+        assertEquals(Collections.emptyList(), model.getFilteredExerciseList());
     }
 
     @Test
