@@ -70,6 +70,14 @@ public class ItemBuilder {
     }
 
     /**
+     * Sets the {@code Recipes} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withRecipe(Set<Integer> recipes) {
+        this.recipes = recipes;
+        return this;
+    }
+
+    /**
      * Sets the {@code Description} of the {@code Item} that we are building.
      */
     public ItemBuilder withDescription(String description) {
