@@ -73,9 +73,9 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Date input (DD-MM-YYYY) is optional, defaults to system's date.
     - Order of arguments is flexible.
     - Able to add multiple tags
-    - Format: `add -d <description> -$<amount_spent> [-@<date>] [t/<category>]`
-    - Example: `add -d dinner -$10.50` Adds the spending to **current date's** record
-    - Example: `add -d dinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
+    - Format: `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]`
+    - Example: `add -ddinner -$10.50` Adds the spending to **current date's** record
+    - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
 
 2. **list** <a name="list"></a>
     - Format: `list`
@@ -90,9 +90,9 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Order of arguments is flexible except index.
     - Edited fields overwrite previous field completely. 
     - **At least 1, and up to all 3**, fields (description, amount spent, date) of expense must be specified.
-    - Format: `edit <index> [-d <description>] [-$<amount_spent>] [-@ <date>] [t/<category>]`
-    - Example: `edit 1 -d lunch -$12.50`
-    - Example: `edit 1 -$12.50 -d lunch -@11-11/2020 t/Lunch`
+    - Format: `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`
+    - Example: `edit 1 -dlunch -$12.50`
+    - Example: `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`
 
 4. **delete** <a name="delete"></a>
     - Deletes a specified existing expense record.
@@ -110,47 +110,47 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Finds expenses with given keywords, date, category by user.
     - Expenses that fits the criteria will be presented as another list.
     - Keywords and category are case-sensitive.
-    - Format: `find [-d <description>] [-@ <date>] [t/ <category>]`
-    - Example: `find -d lunch`, `find -d lunch -@ 01-07-2020 t/Food`    
+    - Format: `find [-d<description>] [-@<date>] [t/<category>]`
+    - Example: `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`    
     
 ### Fields
 1. **description**
     - Description of expense made.
     - Works only in complement with [add](#add), [edit](#edit), [find](#find)
     - Prefix: `-d`
-    - Format: `-d <description>`
-    - Example: `-d lunch`, `-ddinner`
+    - Format: `-d<description>`
+    - Example: `-dlunch`, `-ddinner`
     
 2. **amount**
     - Amount of expense made
     - Works only in complement with [add](#add), [edit](#edit), [find](#find), [topup](#topup)
     - Prefix: `-$`
-    - Format: `-$ <amount>`
-    - Example: `-$ 2`, `-$1.50`
+    - Format: `-$<amount>`
+    - Example: `-$2`, `-$1.50`
     
 3. **date**
     - Date at which expense was made
     - Works only in complement with [add](#add), [edit](#edit), [find](#find)
     - Prefix: `-@`
-    - Format: `-@ <DD-MM-YYYY>`
-    - Example: `-@ 01-07-2020`, `-@02-07-2020`
+    - Format: `-@<DD-MM-YYYY>`
+    - Example: `-@01-07-2020`, `-@02-07-2020`
 
 4. **tag** <a name="tag"></a>
     - Tags expense by a category input by user
     - Works only in complement with [add](#add), [edit](#edit), [find](#find)
     - An expense can have multiple tags
     - Format: `t/<category>`
-    - Example: `edit t/Food`, `find -d Coffee t/Food`
+    - Example: `edit t/Food`, `find -dCoffee t/Food`
 
 ## Command summary <a name="CommandSummary"></a>
 
 Action | Format, Examples
 --------|------------------
-**Spent** | `add -d <description> -$<amount_spent> [-@ <date>] [t/<category>]` <br> e.g., `add -d dinner -$10.50`, `add -d dinner -$10.50 -@20-08-2020 t/Food`
+**Spent** | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`
 **List** | `list`
-**Edit** | `edit <index> [-d <description>] [-$<amount_spent>] [-@ <date>] [t/<category>]`<br> e.g.,`edit 1 -d lunch -$12.50`, `edit 1 -$12.50 -d lunch -@11-11/2020 t/Lunch`
+**Edit** | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`
 **Delete** | `delete <index>`<br> e.g., `delete 1`
 **Topup** | `topup -$<amount>`<br> e.g., `topup -$200`
-**Tag** | `t/<category>` <br> e.g., `edit t/Food`, `find -d lunch t/Food`
-**Find** | `find [-d <description>] [-@ <date>] [t/ <category>]` <br> e.g., `find -d lunch`, `find -d lunch -@ 01-07-2020 t/Food`  
+**Tag** | `t/<category>` <br> e.g., `edit t/Food`, `find -dlunch t/Food`
+**Find** | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`  
 --------------------------------------------------------------------------------------------------------------------
