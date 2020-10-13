@@ -1,27 +1,22 @@
 package chopchop.logic;
 
-// import java.io.IOException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
-
-import chopchop.logic.parser.CommandParser;
-import chopchop.logic.parser.exceptions.ParseException;
-
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
-
+import chopchop.logic.parser.CommandParser;
+import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.model.Model;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.recipe.ReadOnlyRecipeBook;
-
-import javafx.collections.ObservableList;
-
 import chopchop.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main CommandDispatcher governing the logic in the app.
@@ -60,12 +55,12 @@ public class CommandDispatcher implements Logic {
         var cmd = res.getValue();
         var result = cmd.execute(this.model);
 
-
-        // try {
-        //     storage.saveAddressBook(model.getAddressBook());
-        // } catch (IOException ioe) {
-        //     throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        // }
+        try {
+            storage.saveIngredientBook(model.getIngredientBook());
+            storage.saveRecipeBook(model.getRecipeBook());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
 
         return result;
     }

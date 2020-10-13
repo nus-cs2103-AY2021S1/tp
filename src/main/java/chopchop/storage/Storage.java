@@ -32,7 +32,9 @@ public interface Storage extends IngredientBookStorage, RecipeBookStorage, UserP
     @Override
     Optional<ReadOnlyIngredientBook> readIngredientBook() throws DataConversionException, IOException;
 
+    @Override
     void saveIngredientBook(ReadOnlyIngredientBook ingredientBook) throws IOException;
 
+    @Override
     void saveRecipeBook(ReadOnlyRecipeBook recipeBook) throws IOException;
 }
