@@ -74,7 +74,7 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
-        ReadOnlyModuleList initialData = null;
+        ReadOnlyModuleList initialData;
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
