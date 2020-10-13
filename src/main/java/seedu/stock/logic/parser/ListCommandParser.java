@@ -1,11 +1,11 @@
 package seedu.stock.logic.parser;
 
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-public class ListCommandParser implements Parser<ListCommand>{
+public class ListCommandParser implements Parser<ListCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
