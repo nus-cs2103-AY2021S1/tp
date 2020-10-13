@@ -9,12 +9,15 @@ import chopchop.model.attributes.units.Count;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.IngredientReference;
 
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_CUSTARD;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_CUSTARD;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_BANANA;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_APRICOT;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_BANANA;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APRICOT;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_BANANA;
 import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_APRICOT;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_CUSTARD;
 
 public class TypicalIngredients {
 
@@ -28,6 +31,11 @@ public class TypicalIngredients {
         .withName(VALID_INGREDIENT_NAME_BANANA)
         .withDate(VALID_INGREDIENT_EXPIRY_BANANA)
         .withQuantity(Count.of(VALID_INGREDIENT_QTY_BANANA))
+        .build();
+    public static final Ingredient CUSTARD = new IngredientBuilder()
+        .withName(VALID_INGREDIENT_NAME_CUSTARD)
+        .withDate(VALID_INGREDIENT_EXPIRY_CUSTARD)
+        .withQuantity(Count.of(VALID_INGREDIENT_QTY_CUSTARD))
         .build();
 
     public static final IngredientReference APRICOT_REF = new IngredientReference(

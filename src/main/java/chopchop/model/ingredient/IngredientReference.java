@@ -29,7 +29,7 @@ public class IngredientReference {
      */
     public static Result<IngredientReference> parse(String source) {
         String[] words = source.split(" \\(|\\)");
-        if (words.length < 1 || words.length > 2) {
+        if (words.length != 2) {
             return Result.error("Unable to parse string: %s", source);
         }
         Result<Quantity> qtyResult = Quantity.parse(words[1]);

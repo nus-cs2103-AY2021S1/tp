@@ -14,14 +14,14 @@ public class JsonSerializableIngredientBook {
 
     public static final String MESSAGE_DUPLICATE_INGREDIENT = "Ingredient list contains duplicate ingredient(s).";
 
-    private final List<JsonAdaptedIngredient> inds = new ArrayList<>();
+    private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableIngredientBook} with the given inds.
      */
     @JsonCreator
     public JsonSerializableIngredientBook(@JsonProperty("ingredients") List<JsonAdaptedIngredient> inds) {
-        this.inds.addAll(inds);
+        this.ingredients.addAll(inds);
     }
 
     /**
@@ -30,7 +30,8 @@ public class JsonSerializableIngredientBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableIngredientBook}.
      */
     public JsonSerializableIngredientBook(ReadOnlyIngredientBook source) {
-        inds.addAll(source.getFoodEntryList().stream().map(JsonAdaptedIngredient::new).collect(Collectors.toList()));
+        ingredients.addAll(source.getFoodEntryList().stream().map(JsonAdaptedIngredient::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -40,7 +41,7 @@ public class JsonSerializableIngredientBook {
      */
     public IngredientBook toModelType() throws IllegalValueException {
         IngredientBook indBook = new IngredientBook();
-        for (JsonAdaptedIngredient jsonAdaptedIngredient : inds) {
+        for (JsonAdaptedIngredient jsonAdaptedIngredient : ingredients) {
             Ingredient ind = jsonAdaptedIngredient.toModelType();
             if (indBook.hasIngredient(ind)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);

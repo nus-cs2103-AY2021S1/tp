@@ -33,7 +33,9 @@ public class JsonAdaptedIngredient {
     public JsonAdaptedIngredient(Ingredient source) {
         name = source.getName().fullName;
         qty = source.getQuantity().toString();
-        expiry = source.getExpiryDate().get().toString();
+        expiry = source.getExpiryDate().isPresent()
+            ? source.getExpiryDate().get().toString()
+            : null;
     }
 
     /**
@@ -44,7 +46,8 @@ public class JsonAdaptedIngredient {
     public Ingredient toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(IND_MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(IND_MISSING_FIELD_MESSAGE_FORMAT,
+                Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);

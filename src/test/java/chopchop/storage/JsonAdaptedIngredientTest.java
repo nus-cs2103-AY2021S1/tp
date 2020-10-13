@@ -3,13 +3,14 @@ package chopchop.storage;
 import static chopchop.storage.JsonAdaptedIngredient.IND_MISSING_FIELD_MESSAGE_FORMAT;
 import static chopchop.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
 import static chopchop.testutil.TypicalIngredients.BANANA;
+
+import org.junit.jupiter.api.Test;
+
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Quantity;
-import chopchop.model.ingredient.Ingredient;
 
 public class JsonAdaptedIngredientTest {
     private static final String INVALID_NAME = "";

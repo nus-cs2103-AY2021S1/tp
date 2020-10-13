@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
+import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.util.Result;
@@ -27,14 +28,19 @@ public class JsonAdaptedRecipe {
                              @JsonProperty("ingredients") List<String> ingredients,
                              @JsonProperty("steps") List<String> steps) {
         this.name = name;
-        this.ingredientRefs = new ArrayList<>();
+
         if (ingredients != null) {
+            this.ingredientRefs = new ArrayList<>();
             this.ingredientRefs.addAll(ingredients);
+        } else {
+            this.ingredientRefs = null;
         }
 
-        this.steps = new ArrayList<>();
         if (steps != null) {
+            this.steps = new ArrayList<>();
             this.steps.addAll(steps);
+        } else {
+            this.steps = null;
         }
     }
 
@@ -61,8 +67,11 @@ public class JsonAdaptedRecipe {
      * @throws IllegalValueException if there were any data constraints violated in the adapted recipe.
      */
     public Recipe toModelType() throws IllegalValueException {
-        final List<IngredientReference> modelIngredientRefs = new ArrayList<>();
 
+        if (ingredientRefs == null) {
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, IngredientReference.class.getSimpleName()));
+        }
+        final List<IngredientReference> modelIngredientRefs = new ArrayList<>();
         for (String ref : ingredientRefs) {
             Result<IngredientReference> result = IngredientReference.parse(ref);
             if (result.isError()) {
@@ -71,8 +80,10 @@ public class JsonAdaptedRecipe {
             modelIngredientRefs.add(result.getValue());
         }
 
+        if (steps == null) {
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Step.class.getSimpleName()));
+        }
         final List<Step> modelSteps = new ArrayList<>();
-
         for (String step : steps) {
             modelSteps.add(new Step(step));
         }
