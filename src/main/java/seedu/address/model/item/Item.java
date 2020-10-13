@@ -92,13 +92,24 @@ public class Item extends InventoryComponent {
     }
 
     /**
-     * Adds Recipe Id to item ids.
+     * Adds Recipe Id to item's recipe ids.
      *
      * @param recipeId recipe id connected to this item.
      */
     public void addRecipeId(int recipeId) {
         if (!recipeIds.contains(recipeId)) {
             recipeIds.add(recipeId);
+        }
+    }
+
+    /**
+     * Remove Recipe Id from item's recipe ids.
+     *
+     * @param recipeId recipe id connected to this item.
+     */
+    public void removeRecipeId(int recipeId) {
+        if (recipeIds.contains(recipeId)) {
+            recipeIds.remove((Object) recipeId);
         }
     }
 
@@ -147,6 +158,7 @@ public class Item extends InventoryComponent {
         }
 
         Item otherItem = (Item) other;
+
         return otherItem.getName().equals(getName())
                 && otherItem.getQuantity().equals((getQuantity()))
                 && otherItem.getDescription().equals(getDescription())

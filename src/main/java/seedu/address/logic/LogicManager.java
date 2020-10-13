@@ -15,13 +15,11 @@ import seedu.address.logic.parser.InventoryParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.InventoryComponent;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
 import seedu.address.ui.DisplayedInventoryType;
@@ -62,23 +60,6 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
-    }
-
-    // Person
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
     }
 
     // Item

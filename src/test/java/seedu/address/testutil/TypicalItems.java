@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.ItemList;
@@ -14,11 +15,13 @@ public class TypicalItems {
 
     public static final Item APPLE = new ItemBuilder()
             .withId(1)
+            .withRecipe(new HashSet<>())
             .withName("Apple")
             .withDescription("Recovers 10 hp")
             .withQuantity("9").build();
     public static final Item BANANA = new ItemBuilder()
             .withId(2)
+            .withRecipe(new HashSet<>())
             .withName("Banana")
             .withDescription("Used as bait")
             .withQuantity("99").build();

@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.item.Item;
 import seedu.address.model.recipe.Recipe;
 
 
@@ -57,6 +58,13 @@ public class DeleteRecipeCommand extends Command {
             recipeToDelete = recipelist.get(index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INDEX_NOT_FOUND); //index out of range
+        }
+
+        int recipeId = recipeToDelete.getId();
+        for (Item i : model.getFilteredItemList()) {
+            if (i.getRecipeIds().contains(recipeId)) {
+                i.removeRecipeId(recipeId);
+            }
         }
 
         model.deleteRecipe(recipeToDelete);
