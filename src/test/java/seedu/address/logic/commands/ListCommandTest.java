@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
-
-import static seedu.address.logic.commands.CommandTestUtil.showExerciseAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showExerciseAtIndex;
 import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 
