@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
 
 /**
@@ -35,11 +38,8 @@ public class StudentCard extends UiPart<Region> {
     private Label school;
     @FXML
     private Label year;
-
-    /*
-     * @FXML
-     * private FlowPane tags;
-     */
+    @FXML
+    private Label questions;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,12 +54,10 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         school.setText(student.getSchool().school);
         year.setText(String.valueOf(student.getYear().year));
-        /*
-         * address.setText("Placeholder for address");
-         * new HashSet<>(Set.of("Placeholder for details")).stream()
-                .sorted(Comparator.comparing(tag -> tag))
-                .forEach(tag -> tags.getChildren().add(new Label(tag)));
-         */
+        questions.setText("Questions: " + student.getQuestions()
+                .stream()
+                .map(Question::toString)
+                .collect(Collectors.joining(", ")));
     }
 
     @Override
