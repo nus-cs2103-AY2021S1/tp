@@ -104,6 +104,7 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
+
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
                                             Model expectedModel) {
         try {
@@ -132,24 +133,33 @@ public class CommandTestUtil {
         }
     }
 
+
+
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
+
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+
+
     /**
-     * Convenience wrapper that takes a string {@code expectedMessage}.
+     * Convenience wrapper to {@link #assertCommandSuccess(CommandForExercise, ExerciseModel,
+     * CommandResult, ExerciseModel)}
+     * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
-                                            String expectedMessage, ExerciseModel expectedModel) {
+    public static void assertCommandSuccess(CommandForExercise command,
+                                            ExerciseModel actualModel, String expectedMessage,
+            ExerciseModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
+
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -200,6 +210,7 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+
 
     /**
      * Updates {@code model}'s filtered list to show only the exercise at the given {@code targetIndex} in the
