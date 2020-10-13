@@ -1,7 +1,13 @@
 package seedu.address.model.util;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,33 +23,130 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code WishfulShrinking} with sample data.
  */
 public class SampleDataUtil {
+
+    /**
+     * For each recipe in openrecipes.txt:
+     * index 0: name, index 1: ingredients, index 2: instructions, index 5: image, index 7: calories
+     * The method will parse the sample recipes txt file and into an array of Recipe objects.
+     * @return Recipe[]
+     */
     public static Recipe[] getSampleRecipes() {
-        return new Recipe[] {
-            new Recipe(new Name("Alex Yeoh"),
-                    "instructions", "images/healthy1.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
-                    new Calories(10), getTagSet("healthy", "fast")),
-            new Recipe(new Name("Bernice Yu"),
-                    "instructions", "images/healthy2.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 teaspoon")})),
-                            new Calories(10), getTagSet("yummy")),
-            new Recipe(new Name("Charlotte Oliveiro"),
-                    "instructions", "images/healthy3.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "250g")})),
-                    new Calories(10), getTagSet("can heat up")),
-            new Recipe(new Name("David Li"),
-                    "instructions", "images/healthy4.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "a pinch")})),
-                    new Calories(10), getTagSet("full")),
-            new Recipe(new Name("Irfan Ibrahim"),
-                    "instructions", "images/healthy5.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "3 tablespoons")})),
-                    new Calories(10), getTagSet("can heat up")),
-            new Recipe(new Name("Roy Balakrishnan"),
-                    "instructions", "images/healthy6.jpg",
-                    new ArrayList<>(Arrays.asList(new Ingredient[]{new Ingredient("87438807", "1 cup")})),
-                    new Calories(10), getTagSet("healthy"))
-        };
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+        Recipe[] recipes = new Recipe[]{};
+        try {
+            File file = new File("src/main/java/seedu/address/model/util/openrecipes.txt");
+            Scanner sc = new Scanner(file);
+            int index = 0;
+            Name recipeName = null;
+            String recipeInstructions = "";
+            String recipeImage = "";
+            HashSet<Tag> tag = new HashSet<>();
+            ArrayList<Ingredient> ingredients = new ArrayList<>();
+            Calories calories = null;
+            while (sc.hasNextLine() && index < 11) {
+                String field = sc.nextLine();
+                if (index == 0) {
+                    recipeName = new Name(getRecipeName(field));
+                } else if (index == 1) {
+                    ingredients = getRecipeIngredients(field);
+                } else if (index == 2) {
+                    recipeInstructions = getRecipeInstructions(field);
+                } else if (index == 3) {
+                    tag.add(new Tag(getTag(field)));
+                } else if (index == 5) {
+                    recipeImage = getRecipeImage(field);
+                } else if (index == 7) {
+                    calories = new Calories(getCalories(field));
+                }
+                index++;
+                if (index == 11) { //end of a recipe object
+                    index = 0;
+                    requireAllNonNull(recipeName, recipeInstructions, recipeImage, ingredients,
+                            calories, tag);
+                    Recipe toAdd = new Recipe(recipeName, recipeInstructions, recipeImage, ingredients,
+                            calories, tag);
+                    recipeList.add(toAdd);
+                }
+            }
+            if (recipeList.size() == 0) {
+                recipeList.add(getFallbackRecipe());
+            }
+            recipes = recipeList.toArray(new Recipe[]{});
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find sample data file: openrecipes.txt");
+        }
+        return recipes;
+    }
+
+    private static String getRecipeName(String str) {
+        return str.substring(10, str.length() - 3);
+    }
+
+    private static String getTag(String str) {
+        return str.substring(8, str.length() - 3);
+    }
+
+    private static String getRecipeInstructions(String str) {
+        return str.substring(17, str.length() - 2);
+    }
+
+    private static ArrayList<Ingredient> getRecipeIngredients(String str) {
+        String ingts = str.substring(16, str.length() - 3);
+        String[] ingredients = ingts.split(", ");
+        ArrayList<Ingredient> ingredientList = new ArrayList<>();
+        for (String ingredient: ingredients) {
+            ingredientList.add(getIngredientObject(ingredient));
+        }
+        return ingredientList;
+    }
+
+    private static Ingredient getIngredientObject(String ingredient) {
+        String[] ingtComponents = ingredient.split(" ");
+        StringBuilder sb = new StringBuilder();
+        try {
+            sb.append(ingtComponents[0] + " ");
+            sb.append(ingtComponents[1] + " ");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("For sample recipes, all ingredients should have quantity field " + e.toString());
+        }
+        String quantity = sb.toString();
+        sb = new StringBuilder();
+        for (int i = 2; i < ingtComponents.length; i++) {
+            sb.append(ingtComponents[i] + " ");
+        }
+        String ingredientValue = sb.toString();
+        return new Ingredient(ingredientValue, quantity);
+    }
+
+    private static String getRecipeImage(String str) {
+        return str.substring(10, str.length() - 2);
+    }
+
+    private static int getCalories(String str) {
+        String calorie = str.substring(13, str.length() - 3);
+        try {
+            return Integer.parseInt(calorie);
+        } catch (NumberFormatException e) {
+            System.out.println("Calorie string cannot be converted to int " + e.toString());
+        }
+        return 0;
+    }
+
+    private static Recipe getFallbackRecipe() {
+        Name name = new Name("Tahini cake");
+        String instructions = "Heat oven. Cream butter, add flour";
+        String recipeImage = "https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6"
+                + "/84_2248_5678_6000/master/5678.jpg?width=620&quality=85&auto=format&fit=max&s=b20e33f"
+                + "7054827278dbd2b9d8a2e7616";
+        Ingredient ingredient1 = new Ingredient("unsalted butter", "210g");
+        Ingredient ingredient2 = new Ingredient("flour", "2 cups");
+        ArrayList<Ingredient> ingredientList = new ArrayList<>();
+        ingredientList.add(ingredient1);
+        ingredientList.add(ingredient1);
+        Calories calories = new Calories(100);
+        HashSet<Tag> tags = new HashSet<>();
+        tags.add(new Tag("healthy"));
+        return new Recipe(name, instructions, recipeImage, ingredientList, calories, tags);
     }
 
     public static ReadOnlyWishfulShrinking getSampleWishfulShrinking() {
@@ -62,5 +165,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
