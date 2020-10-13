@@ -8,22 +8,22 @@ import seedu.address.model.person.Person;
  * Example usage: <br>
  *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class ModuleListBuilder {
 
     private ModuleList moduleList;
 
-    public AddressBookBuilder() {
+    public ModuleListBuilder() {
         moduleList = new ModuleList();
     }
 
-    public AddressBookBuilder(ModuleList moduleList) {
+    public ModuleListBuilder(ModuleList moduleList) {
         this.moduleList = moduleList;
     }
 
     /**
      * Adds a new {@code Person} to the {@code AddressBook} that we are building.
      */
-    public AddressBookBuilder withPerson(Person person) {
+    public ModuleListBuilder withPerson(Person person) {
         // moduleList.addPerson(person);
         return this;
     }
