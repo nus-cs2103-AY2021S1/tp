@@ -62,22 +62,22 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     private boolean isMatched(String prefix, List<String> words, Task task) {
         if (prefix.equals("title:")) {
             return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getTitle().title, keyword, true));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getTitle().title, keyword));
         }
 
         if (prefix.equals("desc:")) {
             return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDescription().value, keyword, true));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDescription().value, keyword));
         }
 
         if (prefix.equals("date:")) {
             return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().value, keyword, false));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().value, keyword));
         }
 
         if (prefix.equals("type")) {
             return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword, false));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
         }
 
         return false;

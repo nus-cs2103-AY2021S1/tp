@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 /**
  * Helper functions for handling strings.
@@ -14,54 +13,37 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, support fuzzy match
+     *   Ignores case
      *   <br>examples:<pre>
-     *       matchesWordIgnoreCase("ABc def", "abc", true) == true // a full match
-     *       matchesWordIgnoreCase("ABc def", "abb DEF") == true // a partial match
+     *       matchesWordIgnoreCase("ABc def", "abc", true) == true // a full match, ignore case
      *       matchesWordIgnoreCase("ABc def", "ABadncbas") == false //not a match
      *       </pre>
      * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
-     * @param isFuzzy true if the matching is fuzzy, false if it must be a full match
+     * @param word cannot be null, cannot be empty
      */
-    public static boolean matchesWordIgnoreCase(String sentence, String word, boolean isFuzzy) {
+    public static boolean matchesWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
 
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return isFuzzy
-                ? isFuzzyMatched(sentence.toLowerCase(), preppedWord.toLowerCase())
-                : Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equalsIgnoreCase);
+        return isMatched(sentence.toLowerCase(), preppedWord.toLowerCase());
     }
 
-    private static boolean isFuzzyMatched(String sentence, String keyword) {
-        int lKeyword = keyword.length();
-        int lTask = sentence.length();
-
-        // allowed a fifth of the characters in the keyword to be mismatched
-        final int fuzzyLimit = lKeyword / 5;
+    private static boolean isMatched(String sentence, String keyword) {
+        int keywordLength = keyword.length();
+        int taskLength = sentence.length();
 
         // if keyword is longer or is empty, no match can be found
-        if (lKeyword > lTask || lKeyword == 0) {
+        if (keywordLength > taskLength || keywordLength == 0) {
             return false;
         }
 
-        for (int i = 0; i <= lTask - lKeyword; ++i) {
+        for (int i = 0; i <= taskLength - keywordLength; ++i) {
             boolean matchFound = true;
-            int fuzzyCount = 0;
-            for (int j = 0; j < lKeyword; ++j) {
-                boolean isCharMatched = sentence.charAt(i + j) == keyword.charAt(j);
-                if (!isCharMatched && fuzzyCount < fuzzyLimit) {
-                    fuzzyCount++;
-                    continue;
-                }
-
-                if (!isCharMatched) {
+            for (int j = 0; j < keywordLength; ++j) {
+                if (sentence.charAt(i + j) != keyword.charAt(j)) {
                     matchFound = false;
                     break;
                 }
