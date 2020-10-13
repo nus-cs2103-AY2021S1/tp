@@ -78,6 +78,8 @@ public class CommandTestUtil {
     public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
     // 'alphabets' not allowed in payment date
     public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
+    public static final String INVALID_ADDITIONAL_DETAIL_DESC = " " + PREFIX_DETAILS + "hubby*";
+    // '*' not allowed in details
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

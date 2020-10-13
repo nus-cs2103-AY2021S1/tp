@@ -29,6 +29,7 @@ public class StudentBuilder {
     public static final String DEFAULT_CLASS_TIME = "1 0000-2359";
     public static final String DEFAULT_FEE = "123";
     public static final String DEFAULT_PAYMENT_DATE = "1/1/01";
+    public static final String DEFAULT_DETAIL = "smart";
 
     // Identity fields
     private Name name;
