@@ -262,12 +262,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a contact               | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a contact by name         | locate details of contacts without having to go through the entire list|
 | `* * *`  | forgetful user                             | add remarks to contacts        | remember certain details about them                                    |
-| `* * *`  | faculty leader                             | store a contact's office     | keep track of where to find them                                       |
-| `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective field                                  |
-| `* * *`  | faculty leader                             | edit a contact's office      | keep the data up to date                                               |
+| `* * *`  | faculty leader                             | store a contact's office       | keep track of where to find them                                       |
+| `* * *`  | faculty leader                             | store a contact's department   | keep track of their respective field                                   |
+| `* * *`  | faculty leader                             | edit a contact's office        | keep the data up to date                                               |
 | `* * *`  | faculty leader                             | edit a contact's department    | keep the data up to date                                               |
 | `* * *`  | faculty leader                             | add a new module               |                                                                        |
 | `* * *`  | faculty leader                             | delete a module                | remove modules no longer offered                                       |
+| `* * *`  | faculty leader                             | assign instructors to various modules | keep a record of all the modules they teach                     |
+| `* * *`  | user                                       | clear all contacts             |                                                                        |
+| `* * *`  | faculty leader                             | clear all modules              | discard all previous semester's information                            |
+| `* * *`  | faculty leader                             | find modules by their code     |                                                                        |
+| `* * *`  | faculty leader                             | find modules by their name     |                                                                        |
+| `* * *`  | faculty leader                             | find modules by the instructor's name |                                                                 |
 
 *{More to be added}*
 
@@ -433,6 +439,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Assignment**: A module handled by a contact. Assignment links a contact with a module
 * **Remark**: A short description of a contact. Remark is an optional attribute
 * **Tag**: An optional one-word identifier of a contact. A contact can have multiple tags
+* **Instructor** : A faculty member who teaches a particular module
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
