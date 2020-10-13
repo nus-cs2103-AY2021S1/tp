@@ -41,7 +41,11 @@ public class ModuleList implements ReadOnlyModuleList {
         setModules(newData.getModuleList());
     }
 
+<<<<<<< HEAD
     //// module-level operations
+=======
+    //// person-level operations
+>>>>>>> origin/module-storage
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -55,7 +59,11 @@ public class ModuleList implements ReadOnlyModuleList {
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
+<<<<<<< HEAD
     public void addModule(Module m) {
+=======
+    public void addPerson(Module m) {
+>>>>>>> origin/module-storage
         modules.add(m);
     }
 
@@ -64,7 +72,11 @@ public class ModuleList implements ReadOnlyModuleList {
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
+<<<<<<< HEAD
     public void setModule(Module target, Module editedModule) {
+=======
+    public void setPerson(Module target, Module editedModule) {
+>>>>>>> origin/module-storage
         requireNonNull(editedModule);
 
         modules.setModule(target, editedModule);

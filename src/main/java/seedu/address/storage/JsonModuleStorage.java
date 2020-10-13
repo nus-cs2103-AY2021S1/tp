@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+<<<<<<< HEAD
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
@@ -19,6 +20,11 @@ public class JsonModuleStorage implements ModuleStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonModuleStorage.class);
 
+=======
+import java.nio.file.Path;
+
+public class JsonModuleStorage implements ModuleStorage {
+>>>>>>> origin/module-storage
     private Path filePath;
 
     public JsonModuleStorage(Path filePath) {
@@ -29,6 +35,7 @@ public class JsonModuleStorage implements ModuleStorage {
     public Path getModuleFilePath() {
         return filePath;
     }
+<<<<<<< HEAD
 
     @Override
     public Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException {
@@ -74,4 +81,6 @@ public class JsonModuleStorage implements ModuleStorage {
         JsonUtil.saveJsonFile(new JsonSerializableModuleList(moduleList), filePath);
     }
 
+=======
+>>>>>>> origin/module-storage
 }

@@ -15,7 +15,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+<<<<<<< HEAD
     private Path moduleListFilePath = Paths.get("data", "modulelist.json");
+=======
+    private Path moduleFilePath = Paths.get("data", "mods.json");
+>>>>>>> origin/module-storage
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -53,8 +57,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+<<<<<<< HEAD
     public Path getModuleListFilePath() {
         return moduleListFilePath;
+=======
+    public Path getModuleFilePath() {
+        return moduleFilePath;
+>>>>>>> origin/module-storage
     }
 
     public void setAddressBookFilePath(Path addressBookFilePath) {
@@ -92,7 +101,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+<<<<<<< HEAD
         sb.append("\nModule list data file location : " + moduleListFilePath);
+=======
+        sb.append("\nModule data file location : " + moduleFilePath);
+>>>>>>> origin/module-storage
         return sb.toString();
     }
 
