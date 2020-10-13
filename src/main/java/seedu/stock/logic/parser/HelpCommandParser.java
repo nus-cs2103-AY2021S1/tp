@@ -5,11 +5,12 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-public class HelpCommandParser implements Parser<HelpCommand>{
+public class HelpCommandParser implements Parser<HelpCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the HelpCommand
      * and returns an HelpCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public HelpCommand parse(String args) throws ParseException {
@@ -22,7 +23,7 @@ public class HelpCommandParser implements Parser<HelpCommand>{
         return new HelpCommand();
     }
 
-    public boolean hasNoArguments(String args){
+    public boolean hasNoArguments(String args) {
         return args.length() == 0;
     }
 }

@@ -16,10 +16,3 @@
 
 
 </HBox>
-
-<!--<children>-->
-<!--<TextField fx:id="commandTextField" HBox.hgrow="ALWAYS" prefWidth="496" onAction="#handleCommandEntered"-->
-<!--           promptText="How can I assist you?"/>-->
-<!--<Button fx:id="enterButton" prefHeight="35" alignment="CENTER_RIGHT" onAction="#handleCommandEntered"-->
-<!--        text="ENTER" styleClass="button" AnchorPane.rightAnchor="1.0" />-->
-<!--</children>-->
