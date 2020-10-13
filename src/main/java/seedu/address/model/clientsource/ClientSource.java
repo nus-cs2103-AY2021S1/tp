@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ClientSource {
 
-    public static final String MESSAGE_CONSTRAINTS = "ClientSources names should be not more than 50 characters";
-    public static final String VALIDATION_REGEX = "[^\\s].{1,49}";
+    public static final String MESSAGE_CONSTRAINTS = "Client sources should not be more than 50 characters," +
+            " and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].{0,49}";
 
     public final String clientSourceName;
 
