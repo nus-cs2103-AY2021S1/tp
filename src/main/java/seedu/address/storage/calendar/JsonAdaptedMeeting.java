@@ -93,7 +93,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     CalendarVenue.class.getSimpleName()));
         }
-        if (!CalendarVenue.isValidCalendarTime(venue)) {
+        if (!CalendarVenue.isValidCalendarVenue(venue)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final CalendarVenue modelVenue = new CalendarVenue(venue);

@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Calendar's venue in the Calendar book.
- * Guarantees: immutable; is valid as declared in {@link #isValidCalendarTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCalendarVenue(String)}
  */
 public class CalendarVenue {
 
@@ -27,14 +27,14 @@ public class CalendarVenue {
      */
     public CalendarVenue(String venue) {
         requireNonNull(venue);
-        checkArgument(isValidCalendarTime(venue), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidCalendarVenue(venue), MESSAGE_CONSTRAINTS);
         this.venue = venue;
     }
 
     /**
      * Returns true if a given string is a valid venue.
      */
-    public static boolean isValidCalendarTime(String test) {
+    public static boolean isValidCalendarVenue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
