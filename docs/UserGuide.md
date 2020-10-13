@@ -74,7 +74,7 @@ Format: `help`
 
 Add food item to McGymmy
 
-Format: `add NAME [-p Proteins] [-f Fats] [-c carbs]`
+Format: `add NAME [-p PROTEIN] [-f FATS] [-c CARBS]`
 
 Examples:
 * `add potato -p 100 -c 5 -f 0`
@@ -111,7 +111,7 @@ Format: `list`
 
 Update the food item details based on the index.
 
-Format: `update 5 [-n foodItem] [-p protein] [-c carbs] [-f fats]`
+Format: `update INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS]`
 
 Examples: 
 
