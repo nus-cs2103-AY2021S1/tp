@@ -10,7 +10,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.util.Result;
 
 public class JsonAdaptedIngredient {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Ingredients's %s field is missing!";
+    public static final String IND_MISSING_FIELD_MESSAGE_FORMAT = "Ingredients's %s field is missing!";
 
     private final String name;
     private final String expiry;
@@ -33,8 +33,7 @@ public class JsonAdaptedIngredient {
     public JsonAdaptedIngredient(Ingredient source) {
         name = source.getName().fullName;
         qty = source.getQuantity().toString();
-        expiry = source.getExpiryDate().toString();
-
+        expiry = source.getExpiryDate().get().toString();
     }
 
     /**
@@ -45,7 +44,7 @@ public class JsonAdaptedIngredient {
     public Ingredient toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(IND_MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -53,7 +52,7 @@ public class JsonAdaptedIngredient {
         final Name modelName = new Name(name);
 
         if (expiry == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(IND_MISSING_FIELD_MESSAGE_FORMAT,
                 ExpiryDate.class.getSimpleName()));
         }
         if (!ExpiryDate.isValidDate(expiry)) {
@@ -62,7 +61,7 @@ public class JsonAdaptedIngredient {
         final ExpiryDate modelExpiry = new ExpiryDate(expiry);
 
         if (qty == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(IND_MISSING_FIELD_MESSAGE_FORMAT,
                 Quantity.class.getSimpleName()));
         }
         Result<Quantity> qtyResult = Quantity.parse(qty);

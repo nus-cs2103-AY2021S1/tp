@@ -13,7 +13,7 @@ import chopchop.model.recipe.Recipe;
 import chopchop.util.Result;
 
 public class JsonAdaptedRecipe {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
+    public static final String RECIPE_MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
     private final List<String> ingredientRefs;
@@ -78,7 +78,7 @@ public class JsonAdaptedRecipe {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
