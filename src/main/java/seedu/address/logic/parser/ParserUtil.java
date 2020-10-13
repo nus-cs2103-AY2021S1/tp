@@ -154,7 +154,7 @@ public class ParserUtil {
      */
     public static Meeting parseMeeting(String meeting) {
         requireNonNull(meeting);
-        String trimmedTask = meeting.trim();
+        String trimmedMeeting = meeting.trim();
         return new Meeting(meeting);
     }
 
@@ -172,10 +172,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String taskName}.
+     * Parses a {@code String projectName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code taskName} is invalid.
+     * @throws ParseException if the given {@code projectName} is invalid.
      */
     public static String parseTaskBasicInformation(String projectName) throws ParseException {
         requireNonNull(projectName);

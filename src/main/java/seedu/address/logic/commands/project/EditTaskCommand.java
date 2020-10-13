@@ -140,7 +140,6 @@ public class EditTaskCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code taskTags} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTaskName(toCopy.taskName);
