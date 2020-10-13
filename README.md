@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2021S1-CS2103T-W15-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-W15-2/tp/actions)
 
 ## Reeve
 ![Ui](docs/images/Ui.png)
@@ -11,4 +11,4 @@
 * For the detailed documentation of this project, see the [**Reeve Product Website**](https://ay2021s1-cs2103t-w15-2.github.io/tp/).
 
 ## Acknowledgements
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).  
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

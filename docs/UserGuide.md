@@ -14,9 +14,9 @@ Reeve is a desktop app for **private tutors to manage the details of their stude
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `jar` file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Reeve.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -89,40 +89,53 @@ Shows a list of all students in Reeve.
 
 Format: `list`
 
-### Editing a person : `edit`
 
-Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Editing a student : `edit`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Edits an existing student in Reeve (Written by: Vaishak).
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] [a/ADDITIONAL_DETAILS] `
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
+</div>
+
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* Start time has to be before end time.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
+*  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
-### Locating persons by name: `find`
+### Locating students: `find`
 
-Finds persons whose names contain any of the given keywords.
+(written by: Ying Gao)
+Finds students who satisfy the given search criteria.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* At least one of the optional fields must be provided.
+* The order of the optional fields do not matter. e.g `n/Hans s/River Valley` will match `s/River Valley n/Hans`
+* Only full words will be matched. e.g `han` will not match `hans`.
+* For the name, students with a name that matches any whole keyword specified for the name will be considered to match for the name.
+* For the school, students with a school that contains any keyword specified for the school will be considered to match for the school.
+* For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
+* Only students matching all criteria specified will be returned (i.e `AND` search).
 
+(written by: Choon Siong)
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
+* `find n/Alex david` does not match `Alexis Davinder`.
+* `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
+* `find s/yishun secondary` does not match `Yishun Sec`
+* `find y/sec 3` matches `sec 3`, `Secondary 3`
+* `find y/sec 3` matches `sec 4`
+* `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
+* 
 
 ### Deleting a student : `delete`
 
@@ -152,7 +165,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -163,7 +176,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reeve home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,7 +187,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]​` <br> e.g., `add n/John p/98765432 s/Newton Primary School y/Primary 5 v/Blk 123 East Coast Rd #02-345 t/3 1600-1830 a/John likes chocolate m/www.zoom987.com sb/English`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
+**Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
 **List** | `list`
 **Help** | `help`
