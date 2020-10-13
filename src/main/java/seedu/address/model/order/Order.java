@@ -88,8 +88,24 @@ public class Order implements Iterable<OrderItem> {
         if (!orderItemsAreUnique(orderItems)) {
             throw new DuplicateOrderItemException();
         }
-
         internalList.setAll(orderItems);
+    }
+
+    public double getTotal() {
+        double total = 0;
+        for (OrderItem orderItem: internalList) {
+            total += orderItem.getQuantity() * orderItem.getPrice();
+        }
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder text = new StringBuilder();
+        for (OrderItem orderItem: internalList) {
+            text.append(orderItem.toString() + '\n');
+        }
+        return text.toString();
     }
 
     /**
