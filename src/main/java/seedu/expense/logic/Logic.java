@@ -27,11 +27,7 @@ public interface Logic {
     /**
      * Returns the ExpenseBook.
      *
-<<<<<<< HEAD:src/main/java/seedu/expense/logic/Logic.java
      * @see seedu.expense.model.Model#getExpenseBook()
-=======
-     * @see seedu.expense.model.Model#getAddressBook()
->>>>>>> master:src/main/java/seedu/address/logic/Logic.java
      */
     ReadOnlyExpenseBook getExpenseBook();
 

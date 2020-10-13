@@ -1,5 +1,5 @@
 {
-  "_comment": "Ledger save file which contains the same Expense values as in TypicalExpenses#getTypicalAddressBook()",
+  "_comment": "Ledger save file which contains the same Expense values as in TypicalExpenses#getTypicalExpenseBook()",
   "expenses" : [ {
     "description" : "Felicia's Birthday",
     "amount" : "140",

@@ -41,7 +41,7 @@ public class BudgetDisplay extends UiPart<Region> {
 
     /**
      * Constructor for {@code BudgetDisplay}.
-     * @param expenseBook addressBook to be stored.
+     * @param expenseBook expenseBook to be stored.
      */
     public BudgetDisplay(ReadOnlyExpenseBook expenseBook) {
         super(FXML);

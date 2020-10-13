@@ -49,11 +49,7 @@ public interface Model {
     void setExpenseBookFilePath(Path expenseBookFilePath);
 
     /**
-<<<<<<< HEAD:src/main/java/seedu/expense/model/Model.java
      * Replaces expense book data with the data in {@code expenseBook}.
-=======
-     * Replaces expense book data with the data in {@code addressBook}.
->>>>>>> master:src/main/java/seedu/address/model/Model.java
      */
     void setExpenseBook(ReadOnlyExpenseBook expenseBook);
 
