@@ -161,6 +161,18 @@ Examples:
 * `question 2 s/3` marks the 3rd question of the 2nd student in Reeve as answered.
 * `question 1 d/2` removes the 2nd question from the 1st student in Reeve.
 
+### Listing lessons schedule on a particular date: `schedule`
+
+(written by:Alex Chua)
+List the students that the user has class with on the given date.
+
+Format: `schedule DATE`
+
+* Date must be in the format of **dd/mm/yyyy**.
+
+Examples:
+* `schedule 20/11/2020` outputs a list of students who has lessons with the user on that date
+
 ### Deleting a student : `delete`
 
 Deletes the specified student from Reeve.

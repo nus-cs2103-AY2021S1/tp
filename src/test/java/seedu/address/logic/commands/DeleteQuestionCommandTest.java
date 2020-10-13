@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.TEST_QUESTIONS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -104,7 +104,7 @@ public class DeleteQuestionCommandTest {
         Index outOfBounds = Index.fromZeroBased(model.getFilteredPersonList().size());
         Index question = Index.fromZeroBased(0);
         DeleteQuestionCommand invalidCommand = new DeleteQuestionCommand(outOfBounds, question);
-        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -113,7 +113,7 @@ public class DeleteQuestionCommandTest {
 
         Index question = Index.fromZeroBased(0);
         DeleteQuestionCommand invalidCommand = new DeleteQuestionCommand(INDEX_SECOND_PERSON, question);
-        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.AddQuestionCommand.MESSAGE_DUPLICATE_QUESTION;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -65,7 +65,7 @@ public class AddQuestionCommandTest {
         Question question = new Question(TEST_QUESTION);
         AddQuestionCommand invalidCommand = new AddQuestionCommand(outOfBounds, question);
 
-        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class AddQuestionCommandTest {
         Question question = new Question(TEST_QUESTION);
         AddQuestionCommand invalidCommand = new AddQuestionCommand(outOfBounds, question);
 
-        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test

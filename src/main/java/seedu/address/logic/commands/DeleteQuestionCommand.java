@@ -42,7 +42,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
 
         List<Student> lastShownList = model.getFilteredPersonList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student asker = lastShownList.get(studentIndex.getZeroBased());

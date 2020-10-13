@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.TEST_QUESTIONS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -65,7 +65,7 @@ public class SolveQuestionCommandTest {
         Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         Index question = Index.fromOneBased(1);
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, question);
-        assertCommandFailure(solveCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(solveCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class SolveQuestionCommandTest {
 
         Index question = Index.fromOneBased(1);
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_SECOND_PERSON, question);
-        assertCommandFailure(solveCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(solveCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test

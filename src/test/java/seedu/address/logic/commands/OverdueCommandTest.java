@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
@@ -26,7 +26,7 @@ public class OverdueCommandTest {
         // one student with overdue fees
         int studentsWhoHaveNotPaid = 1;
         Model model = getDateAdjustedModel(studentsWhoHaveNotPaid);
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredPersonList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -34,7 +34,7 @@ public class OverdueCommandTest {
         // multiple students with overdue fees
         studentsWhoHaveNotPaid = 3;
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
-        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
+        expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredPersonList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -42,7 +42,7 @@ public class OverdueCommandTest {
         // no students with overdue fees
         studentsWhoHaveNotPaid = 0;
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
-        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
+        expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredPersonList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);

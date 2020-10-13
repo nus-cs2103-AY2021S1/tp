@@ -48,7 +48,7 @@ public class StudentUtil {
     private static String getAdminDetails(Admin admin) {
         StringBuilder sb = new StringBuilder();
         String venue = PREFIX_VENUE + admin.getClassVenue().venue + " ";
-        String time = PREFIX_TIME + admin.getClassTime().dayOfWeek.toString()
+        String time = PREFIX_TIME + String.valueOf(admin.getClassTime().dayOfWeek.getValue())
                 + " " + admin.getClassTime().startTime.toString().replace(":", "")
                 + "-" + admin.getClassTime().endTime.toString().replace(":", "") + " ";
         String fee = PREFIX_FEE + String.valueOf(admin.getFee().amount) + " ";
