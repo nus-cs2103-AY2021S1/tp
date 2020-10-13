@@ -24,19 +24,12 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         Module module;
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
+        ArgumentMultimap argMultimap = tokenizer.tokenize();
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
-        //Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        //Person person = new Person(name, email, tagList);
-
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
 
         if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
@@ -48,6 +41,13 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // return new AddCommand(person);
         return new AddCommand(module);
+
+        //Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        //Person person = new Person(name, email, tagList);
+
     }
 
     /**

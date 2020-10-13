@@ -1,7 +1,7 @@
 package tp.cap5buddy.logic.parser;
 
 import tp.cap5buddy.logic.commands.Command;
-import tp.cap5buddy.logic.commands.FindContactCommand;
+// import tp.cap5buddy.logic.commands.FindContactCommand;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 
 /**
@@ -18,6 +18,7 @@ public class FindContactParser extends Parser {
      */
     @Override
     public Command parse(String userInput) throws ParseException {
+        /*
         // String trimmedInput = userInput.trim();
         Tokenizer tokenizer = new Tokenizer(userInput, PrefixList.SEARCH_KEYWORD_PREFIX);
         // current implementation only allows one keyword,
@@ -29,5 +30,8 @@ public class FindContactParser extends Parser {
             throw new ParseException(error);
         }
         return new FindContactCommand(keyword);
+
+         */
+        return null;
     }
 }
