@@ -91,7 +91,7 @@ Tags a food item in McGymmy.
 
 Format: `tag INDEX -t TAG_NAME`
 
-![tag command example]()
+![tag command example](images/CommandImagesForUG/Tag.png)
 
 ### Tagging food items : `untag`
 
@@ -101,7 +101,7 @@ Untags a food item in McGymmy.
 
 Format: `untag INDEX -t TAG_NAME`
 
-![untag command example]()
+![untag command example](images/CommandImagesForUG/Untag.png)
 
 ### Finding a food item: `find`
 
@@ -111,7 +111,7 @@ Find specified foods within McGymmy with a keyword
 
 Format: `find KEYWORDS`
 
-![find_command_example]()
+![find_command_example](images/CommandImagesForUG/Find.png)
 
 ### Listing all food items : `list`
 
@@ -121,7 +121,7 @@ Shows a list of all food items in McGymmy.
 
 Format: `list`
 
-![list command example]()
+![list command example](images/CommandImagesForUG/List.png)
 
 ### Updating a food item : `update`
 
@@ -138,7 +138,7 @@ Examples:
 Examples:
 *  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
-![update command example](images/CommandImagesForUG/Update.png)
+![edit command example](images/CommandImagesForUG/Edit.png)
 
 ### Deleting a food item: `delete`
 
@@ -163,7 +163,7 @@ Creates a macro in McGymmy.
 
 Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
 
-![Alias command example](images/CommandImagesForUG/Alias.png)
+![Alias command example](images/CommandImagesForUG/Macro.png)
 
 ### Exiting the program : `exit`
 
