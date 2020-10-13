@@ -103,6 +103,16 @@ Format: `untag INDEX -t TAG_NAME`
 
 ![untag command example]()
 
+### Finding a food item: `find`
+
+Find specified foods within McGymmy with a keyword
+
+* Finds all food within McGymmy with a keyword
+
+Format: `find KEYWORDS`
+
+![find_command_example]()
+
 ### Listing all food items : `list`
 
 Shows a list of all food items in McGymmy.
