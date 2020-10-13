@@ -36,6 +36,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
 import seedu.address.storage.calendar.JsonMeetingBookStorage;
+import seedu.address.storage.property.JsonPropertyBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
 import seedu.address.testutil.PersonBuilder;
 
@@ -60,8 +61,10 @@ public class LogicManagerTest {
                 new JsonBidderAddressBookStorage(temporaryFolder.resolve("bidderaddressbook.json"));
         JsonMeetingBookStorage meetingBookStorage =
                 new JsonMeetingBookStorage(temporaryFolder.resolve("meetingaddressbook.json"));
+        JsonPropertyBookStorage propertyBookStorage =
+                new JsonPropertyBookStorage(temporaryFolder.resolve("propertyBook.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
-                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage);
+                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage, propertyBookStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -98,8 +101,10 @@ public class LogicManagerTest {
                 JsonSellerAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonMeetingBookStorage meetingBookStorage = new
                 JsonMeetingBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMeetingBook.json"));
+        JsonPropertyBookStorage propertyBookStorage = new
+                JsonPropertyBookStorage(temporaryFolder.resolve("ioExceptionPropertyBook.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
-                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage);
+                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage, propertyBookStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

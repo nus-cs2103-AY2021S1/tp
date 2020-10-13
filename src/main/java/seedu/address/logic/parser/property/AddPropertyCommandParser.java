@@ -20,6 +20,7 @@ import seedu.address.logic.parser.util.PropertyParserUtil;
 import seedu.address.model.id.Id;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
+import seedu.address.model.property.IsClosedDeal;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -62,7 +63,7 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
                 .get());
 
         Property property = new Property(propertyName, sellerId, address, askingPrice, propertyType,
-                isRental, false);
+                isRental, new IsClosedDeal("Active"));
         return new AddPropertyCommand(property);
     }
 

@@ -8,19 +8,23 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
 import seedu.address.storage.calendar.MeetingBookStorage;
+import seedu.address.storage.property.PropertyBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 
 /**
  * API of the Storage component
  */
+
 public interface Storage extends SellerAddressBookStorage, BidderAddressBookStorage,
-        AddressBookStorage, UserPrefsStorage, BidBookStorage, MeetingBookStorage {
+        AddressBookStorage, UserPrefsStorage, BidBookStorage, MeetingBookStorage,
+        PropertyBookStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -69,6 +73,15 @@ public interface Storage extends SellerAddressBookStorage, BidderAddressBookStor
 
     // ===================== PROPERTY =======================
 
+    @Override
+    Path getPropertyBookFilePath();
+
+    @Override
+    Optional<ReadOnlyPropertyBook> readPropertyBook() throws DataConversionException, IOException;
+
+    @Override
+    void savePropertyBook(ReadOnlyPropertyBook propertyBook) throws IOException;
+
     // ===================== MEETING =======================
     @Override
     Path getMeetingBookFilePath();
@@ -78,5 +91,4 @@ public interface Storage extends SellerAddressBookStorage, BidderAddressBookStor
 
     @Override
     void saveMeetingBook(ReadOnlyMeetingManager meetingBook) throws IOException;
-
 }

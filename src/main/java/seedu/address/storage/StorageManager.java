@@ -10,12 +10,14 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
 import seedu.address.storage.calendar.MeetingBookStorage;
+import seedu.address.storage.property.PropertyBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 
 /**
@@ -25,23 +27,24 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private UserPrefsStorage userPrefsStorage;
     private BidderAddressBookStorage bidderAddressBookStorage;
     private SellerAddressBookStorage sellerAddressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
     private BidBookStorage bidBookStorage;
     private MeetingBookStorage meetingBookStorage;
+    private PropertyBookStorage propertyBookStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage},
-     * {@code BidderAddressBookStorage}, {@code SellerAddressBookStorage}, {@code MeetingBookStorage}
-     * and {@code UserPrefStorage}.
+     * {@code BidderAddressBookStorage}, {@code SellerAddressBookStorage}, {@code MeetingBookStorage},
+     * {@code UserPrefStorage} and {@code PropertyBookStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           BidBookStorage bidBookStorage,
                           BidderAddressBookStorage bidderAddressBookStorage,
                           SellerAddressBookStorage sellerAddressBookStorage,
-                          MeetingBookStorage meetingBookStorage) {
+                          MeetingBookStorage meetingBookStorage, PropertyBookStorage propertyBookStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -49,6 +52,7 @@ public class StorageManager implements Storage {
         this.bidderAddressBookStorage = bidderAddressBookStorage;
         this.sellerAddressBookStorage = sellerAddressBookStorage;
         this.meetingBookStorage = meetingBookStorage;
+        this.propertyBookStorage = propertyBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -67,7 +71,6 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
 
     // ================ AddressBook methods ==============================
 
@@ -98,6 +101,34 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ PropertyBook methods ==============================
+
+    @Override
+    public Path getPropertyBookFilePath() {
+        return propertyBookStorage.getPropertyBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyPropertyBook> readPropertyBook() throws DataConversionException, IOException {
+        return readPropertyBook(propertyBookStorage.getPropertyBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyPropertyBook> readPropertyBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return propertyBookStorage.readPropertyBook(filePath);
+    }
+
+    @Override
+    public void savePropertyBook(ReadOnlyPropertyBook propertyBook) throws IOException {
+        savePropertyBook(propertyBook, propertyBookStorage.getPropertyBookFilePath());
+    }
+
+    @Override
+    public void savePropertyBook(ReadOnlyPropertyBook propertyBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        propertyBookStorage.savePropertyBook(propertyBook, filePath);
+    }
 
     // ================ BidBook methods ==============================
 

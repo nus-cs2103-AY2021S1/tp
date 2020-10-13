@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
 import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
@@ -25,6 +26,7 @@ import seedu.address.model.property.exceptions.PropertyNotFoundException;
  */
 public class UniquePropertyList implements Iterable<Property> {
 
+    private static final String PROPERTY_ID_PREFIX = "P";
     private final ObservableList<Property> internalList = FXCollections.observableArrayList();
     private final ObservableList<Property> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -46,7 +48,7 @@ public class UniquePropertyList implements Iterable<Property> {
         if (contains(toAdd)) {
             throw new DuplicatePropertyException();
         }
-        internalList.add(toAdd);
+        internalList.add(toAdd.setId(getLastId().increment()));
     }
 
     /**
@@ -134,5 +136,12 @@ public class UniquePropertyList implements Iterable<Property> {
             }
         }
         return true;
+    }
+
+    private Id getLastId() {
+        if (internalList.size() == 0) {
+            return new Id(PROPERTY_ID_PREFIX, 0);
+        }
+        return internalList.get(internalList.size() - 1).getPropertyId();
     }
 }

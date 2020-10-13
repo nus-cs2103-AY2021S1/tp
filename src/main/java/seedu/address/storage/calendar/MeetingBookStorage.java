@@ -33,6 +33,7 @@ public interface MeetingBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyMeetingManager} to the storage.
+     *
      * @param meetingManager cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
@@ -42,7 +43,7 @@ public interface MeetingBookStorage {
      *
      * @param meetingManager
      * @param filePath
-     * @throws IOException
+     * @throws IOException If there was any problem when saving from the storage.
      */
     void saveMeetingBook(ReadOnlyMeetingManager meetingManager, Path filePath) throws IOException;
 

@@ -44,6 +44,8 @@ import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
 import seedu.address.storage.calendar.JsonMeetingBookStorage;
 import seedu.address.storage.calendar.MeetingBookStorage;
+import seedu.address.storage.property.JsonPropertyBookStorage;
+import seedu.address.storage.property.PropertyBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 import seedu.address.ui.Ui;
@@ -75,6 +77,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
         BidBookStorage bidBookStorage = new JsonBidBookStorage(userPrefs.getBidBookFilePath());
         BidderAddressBookStorage bidderAddressBookStorage =
                 new JsonBidderAddressBookStorage(userPrefs.getBidderAddressBookFilePath());
@@ -83,7 +86,7 @@ public class MainApp extends Application {
         MeetingBookStorage meetingBookStorage =
                 new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
-                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage);
+                bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage, propertyBookStorage);
 
         initLogging(config);
 
@@ -96,8 +99,8 @@ public class MainApp extends Application {
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * The data from the sample address book will be used instead if {@code storage}'s books are not found,
+     * or an empty book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -106,17 +109,18 @@ public class MainApp extends Application {
         Optional<ReadOnlySellerAddressBook> sellerAddressBookOptional;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
         Optional<ReadOnlyMeetingManager> meetingBookOptional;
+
         ReadOnlyAddressBook initialData;
+        ReadOnlyBidBook initialBidData;
         ReadOnlyBidderAddressBook initialBidderData;
         ReadOnlySellerAddressBook initialSellerData;
         ReadOnlyPropertyBook initialPropertyData;
-        ReadOnlyBidBook initialBidData;
         ReadOnlyMeetingManager initialMeetingData;
 
         try {
             addressBookOptional = storage.readAddressBook();
             bidBookOptional = storage.readBidBook();
-            propertyBookOptional = Optional.ofNullable(new PropertyBook());
+            propertyBookOptional = storage.readPropertyBook();
             bidderAddressBookOptional = storage.readBidderAddressBook();
             sellerAddressBookOptional = storage.readSellerAddressBook();
             meetingBookOptional = storage.readMeetingBook();
@@ -137,12 +141,15 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample meetingBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            if (!propertyBookOptional.isPresent()) {
+                logger.info("Property data file not found. Will be starting with a sample PropertyBook");
+            }
             initialBidData = bidBookOptional.orElseGet(SampleDataUtil::getSampleBidBook);
-            initialPropertyData = new PropertyBook();
             initialBidderData = bidderAddressBookOptional.orElseGet(SampleDataUtil::getSampleBidderAddressBook);
             initialSellerData = sellerAddressBookOptional.orElseGet(SampleDataUtil::getSampleSellerAddressBook);
             initialMeetingData = meetingBookOptional.orElseGet(SampleDataUtil::getSampleMeetingBook);
-
+            initialPropertyData = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
 
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
