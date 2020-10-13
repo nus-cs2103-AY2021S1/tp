@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,13 +24,16 @@ public class TimetableRetriever {
     private static final String JSON_API = "https://api.nusmods.com/v2/2020-2021/modules/";
     private static final String DOT_JSON = ".json";
 
-    private static final String DUMMY_DATE = "01-01-2020 ";
+    private static final LocalDate SEMESTER_1_START_DATE = LocalDate.of(2020, 8, 10);
+    private static final LocalDate SEMESTER_2_START_DATE = LocalDate.of(2021, 1, 11);
+    private static final DateTimeFormatter LOCAL_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
      * Retrieves timetable json information from NUSMods API and prints out the relevant information.
      */
     public static List<Lesson> retrieveLessons(TimetableData timetableData) throws IOException, ParseException {
         int semester = timetableData.getSemester();
+        LocalDate startDate = semester == 1 ? SEMESTER_1_START_DATE : SEMESTER_2_START_DATE;
         String[] moduleCodeArray = timetableData.getModuleCodeArray();
         String[] moduleLessonArray = timetableData.getModuleLessonArray();
 
@@ -42,7 +47,7 @@ public class TimetableRetriever {
             JSONArray semesterSpecificTimetableData = getSemesterSpecificTimetableData(semester, inline);
             String[] specificModuleLessonArray = getSpecificModuleLessonArray(moduleLessonArray, moduleIter);
 
-            findLessonAndAdd(lessons, module, semesterSpecificTimetableData, specificModuleLessonArray);
+            findLessonAndAdd(lessons, module, semesterSpecificTimetableData, specificModuleLessonArray, startDate);
         }
         return lessons;
     }
@@ -90,29 +95,27 @@ public class TimetableRetriever {
     }
 
     private static void findLessonAndAdd(List<Lesson> lessons, String module, JSONArray timetableData,
-                                         String[] moduleLessonArray) {
+                                         String[] moduleLessonArray, LocalDate startDate) {
         for (int lessonIter = 0; lessonIter < moduleLessonArray.length; lessonIter++) {
             if (!moduleLessonArray[0].equals("")) {
                 String lessonInfo = moduleLessonArray[lessonIter];
-                addLesson(lessons, module, lessonInfo, timetableData);
+                addLesson(lessons, module, lessonInfo, timetableData, startDate);
             }
         }
     }
 
-    private static void addLesson(List<Lesson> lessons, String module, String lessonInfo, JSONArray timetableData) {
+    private static void addLesson(List<Lesson> lessons, String module, String lessonInfo, JSONArray timetableData,
+                                  LocalDate startDate) {
         String lessonType = getLessonType(lessonInfo);
         String lessonNum = getLessonNum(lessonInfo);
+
         for (int dataIter = 0; dataIter < timetableData.size(); dataIter++) {
             JSONObject currentData = (JSONObject) timetableData.get(dataIter);
             String currentLessonType = (String) currentData.get("lessonType");
             String currentLessonNum = (String) currentData.get("classNo");
+
             if (currentLessonType.equals(lessonType) && currentLessonNum.equals(lessonNum)) {
-                String day = (String) currentData.get("day");
-                String startTime = DUMMY_DATE + (String) currentData.get("startTime");
-                String endTime = DUMMY_DATE + (String) currentData.get("endTime");
-                String name = module + currentLessonType + day;
-                lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
-                        new ModuleCode(module)));
+                addSpecificLesson(lessons, module, startDate, currentLessonType, currentData);
             }
         }
     }
@@ -141,4 +144,49 @@ public class TimetableRetriever {
         String lessonNum = lessonInfo.split(":")[1];
         return lessonNum;
     }
+
+    private static int getDayOffset(String day) {
+        String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        int dayOffset = 0;
+        for (int i = 0; i < 7; i++) {
+            String currDay = daysOfWeek[i];
+            if (currDay.equals(day)) {
+                dayOffset = i;
+                break;
+            }
+        }
+        return dayOffset;
+    }
+
+    private static int[] getWeeksAsIntegerArray(JSONArray jsonWeeks) {
+        int[] weeks = new int[jsonWeeks.size()];
+        for (int i = 0; i < jsonWeeks.size(); i++) {
+            Long week = (Long) jsonWeeks.get(i);
+            weeks[i] = week.intValue() > 6 ? week.intValue() + 1 : week.intValue();
+        }
+        return weeks;
+    }
+
+    private static void addSpecificLesson(List<Lesson> lessons, String module, LocalDate startDate,
+                                          String currentLessonType, JSONObject currentData) {
+        String day = (String) currentData.get("day");
+        String name = module + " " + currentLessonType + " " + day;
+
+        JSONArray jsonWeeks = (JSONArray) currentData.get("weeks");
+        int[] weeks = getWeeksAsIntegerArray(jsonWeeks);
+        int dayOffset = getDayOffset(day);
+
+        for (int week : weeks) {
+            int daysToAdd = 7 * (week - 1) + dayOffset;
+            LocalDate date = startDate.plusDays(daysToAdd);
+            if (date.isAfter(LocalDate.now())) {
+                String startTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("startTime");
+                String endTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("endTime");
+                lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
+                        new ModuleCode(module)));
+            }
+        }
+
+    }
+
 }
