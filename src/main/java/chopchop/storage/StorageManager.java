@@ -25,11 +25,11 @@ public class StorageManager implements Storage {
     /**
      * Constructs {@code StorageManagers}
      */
-    public StorageManager(IngredientBookStorage ingredientBookStorage, RecipeBookStorage recipeBookStorage,
+    public StorageManager(RecipeBookStorage recipeBookStorage, IngredientBookStorage ingredientBookStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-        this.ingredientBookStorage = ingredientBookStorage;
         this.recipeBookStorage = recipeBookStorage;
+        this.ingredientBookStorage = ingredientBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
