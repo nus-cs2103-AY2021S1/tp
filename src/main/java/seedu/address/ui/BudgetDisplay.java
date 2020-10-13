@@ -8,6 +8,9 @@ import javafx.scene.layout.Region;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.budget.Budget;
 
+/**
+ * A ui for the budget balance to be displayed to the user.
+ */
 public class BudgetDisplay extends UiPart<Region> {
 
     private static final String FXML = "BudgetDisplay.fxml";
@@ -17,6 +20,10 @@ public class BudgetDisplay extends UiPart<Region> {
     @FXML
     private TextArea budgetDisplay;
 
+    /**
+     * Constructor for {@code BudgetDisplay}.
+     * @param addressBook addressBook to be stored.
+     */
     public BudgetDisplay(ReadOnlyAddressBook addressBook) {
         super(FXML);
 
@@ -32,6 +39,9 @@ public class BudgetDisplay extends UiPart<Region> {
         return String.format(BUDGET_BALANCE, balance, budgetAmount);
     }
 
+    /**
+     * Sets text display to the user.
+     */
     public void setFeedbackToUser() {
         budgetDisplay.setText(budgetBalance());
     }

@@ -98,10 +98,15 @@ public class UniqueExpenseList implements Iterable<Expense> {
         internalList.setAll(expenses);
     }
 
+    /**
+     * Calculates the sum of the expenses in the expense list.
+     * @return sum of expenses.
+     */
     public double tallyExpenses() {
         double sum = 0;
-        while (iterator().hasNext()) {
-            sum += iterator().next().getAmount().asDouble();
+        Iterator<Expense> i = iterator();
+        while (i.hasNext()) {
+            sum += i.next().getAmount().asDouble();
         }
         return sum;
     }

@@ -116,7 +116,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * {@inheritDoc}
      *
-     * @see UniqueExpenseList#tallyExpenses().
+     * @see UniqueExpenseList#tallyExpenses()
      */
     @Override
     public double tallyExpenses() {
