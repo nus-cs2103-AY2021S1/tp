@@ -14,6 +14,7 @@ public class DisplayController extends UiPart<Region> {
 
     private static final String FXML = "DisplayPanel.fxml";
     private Logic logic;
+    private NotificationWindow notificationWindow;
 
     @FXML
     private StackPane displayAreaPlaceholder;
@@ -25,6 +26,7 @@ public class DisplayController extends UiPart<Region> {
     public DisplayController(Logic logic) {
         super(FXML);
         this.logic = logic;
+        notificationWindow = new NotificationWindow();
     }
 
     /**
@@ -51,6 +53,16 @@ public class DisplayController extends UiPart<Region> {
         displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
     }
 
+    /**
+     * Opens the notification window or focuses on it if it's already opened.
+     */
+    public void handleNotification() {
+        if (!notificationWindow.isShowing()) {
+            notificationWindow.show();
+        } else {
+            notificationWindow.focus();
+        }
+    }
 
     /**
      * Displays the recipe panel.
@@ -75,6 +87,7 @@ public class DisplayController extends UiPart<Region> {
     @FXML
     public void handleRecommendations(ActionEvent event) {
         // To add more code.
+        handleNotification();
     }
 
     /**
@@ -83,5 +96,6 @@ public class DisplayController extends UiPart<Region> {
     @FXML
     public void handleFavourites(ActionEvent event) {
         // To add more code.
+        handleNotification();
     }
 }

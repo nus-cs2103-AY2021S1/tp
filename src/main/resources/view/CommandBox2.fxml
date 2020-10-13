@@ -10,7 +10,7 @@
         <URL value="@Style.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="256.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+      <Rectangle arcHeight="32.0" arcWidth="48.0" fill="#ebe1ce" height="262.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
       <VBox>
          <children>
             <StackPane alignment="CENTER_LEFT">

@@ -42,7 +42,7 @@
 #commandTextField {
     -fx-background-color: rgba(0.96,0.96,0.96,0.7);
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
     -fx-font-color: #575555;
     -fx-prompt-text-fill: #575555;
     -fx-background-radius: 10 10 0 0;
@@ -50,7 +50,7 @@
 #ingredientDisplay {
     -fx-background-color: rgba(0.96,0.96,0.96,0.7);
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
     -fx-font-color: #575555;
     -fx-prompt-text-fill: #575555;
     -fx-background-radius: 20 20 20 20;
@@ -58,7 +58,7 @@
 #instructionDisplay {
     -fx-background-color: rgba(0.96,0.96,0.96,0.7);
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
     -fx-font-color: #575555;
     -fx-prompt-text-fill: #575555;
     -fx-background-radius: 20 20 20 20;
@@ -66,7 +66,7 @@
 #displayBox {
     -fx-background-color: transparent;
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
     -fx-font-color: #575555;
 }
 #displayBox .scroll-pane {
@@ -81,13 +81,63 @@
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
 }
+#recipeName {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-color: #575555;
+}
+#recipeName .scroll-pane {
+    -fx-background-radius: 10 10 10 10;
+}
+#recipeName .scroll-pane .viewport {
+    -fx-background-radius: 10 10 10 10;
+}
+#recipeName .scroll-pane .content{
+    -fx-background-radius: 10 10 10 10;
+}
+#ingredientDisplay {
+    -fx-background-color: #bcf5bc;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #575555;
+}
+#ingredientDisplay .scroll-pane {
+    -fx-background-color: #bcf5bc;
+    -fx-background-radius: 10 10 10 10;
+}
+#ingredientDisplay .scroll-pane .viewport {
+    -fx-background-color: #bcf5bc;
+    -fx-background-radius: 10 10 10 10;
+}
+#ingredientDisplay .scroll-pane .content{
+    -fx-background-color: #bcf5bc;
+    -fx-background-radius: 10 10 10 10;
+}
+#instructionDisplay {
+    -fx-background-color: #f7e9cd;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #575555;
+}
+#instructionDisplay .scroll-pane {
+    -fx-background-color: #f7e9cd;
+    -fx-background-radius: 10 10 10 10;
+}
+#instructionDisplay .scroll-pane .viewport {
+    -fx-background-color: #f7e9cd;
+    -fx-background-radius: 10 10 10 10;
+}
+#instructionDisplay .scroll-pane .content{
+    -fx-background-color: #f7e9cd;
+    -fx-background-radius: 10 10 10 10;
+}
 #favouriteBox {
     -fx-background-color:transparent;
 }
 #pins {
     -fx-background-color: transparent;
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI";
     -fx-font-color: #575555;
 }
 #pins .scroll-pane {
