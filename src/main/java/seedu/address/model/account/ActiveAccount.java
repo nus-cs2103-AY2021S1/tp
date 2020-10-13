@@ -14,6 +14,9 @@ public interface ActiveAccount {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Revenue> PREDICATE_SHOW_ALL_REVENUE = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Entry> PREDICATE_SHOW_ALL_ENTRY = unused -> true;
+
     /**
      * Replaces account data with the data in {@code newActiveAccount}.
      */
@@ -90,5 +93,11 @@ public interface ActiveAccount {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRevenueList(Predicate<Revenue> predicate);
+
+    /**
+     * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEntryList(Predicate<Entry> predicate);
 
 }
