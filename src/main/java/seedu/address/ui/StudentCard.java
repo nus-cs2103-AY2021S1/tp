@@ -1,13 +1,20 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Student;
 
+/**
+ * An UI component that displays information of a {@code Student}.
+ */
 public class StudentCard extends UiPart<Region> {
-    private static final String FXML = "PersonListCard.fxml";
+
+    private static final String FXML = "StudentListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,11 +33,13 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
+    private FlowPane tags;
+    @FXML
     private Label studentId;
-    //    @FXML
-    //    private Label email;
-    //    @FXML
-    //    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -40,11 +49,12 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
+        phone.setText(student.getPhone().value);
+        email.setText(student.getEmail().value);
         studentId.setText(student.getStudentId().value);
-        //        email.setText(person.getEmail().value);
-        //        person.getTags().stream()
-        //                .sorted(Comparator.comparing(tag -> tag.tagName))
-        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        student.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -55,7 +65,7 @@ public class StudentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof StudentCard)) {
             return false;
         }
 
