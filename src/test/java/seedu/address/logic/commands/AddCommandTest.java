@@ -6,7 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.account.*;
+
+import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 import seedu.address.testutil.ActiveAccountStub;
@@ -27,29 +28,8 @@ public class AddCommandTest {
 
     @Test
     public void execute_entryAcceptedByModel_addSuccessful() {
-//        Model modelStub = new ModelStub();
-//        ActiveAccount activeAccountStub = new ActiveAccountAddSuccessful(new ReadOnlyAccount() {
-//            @Override
-//            public Name getName() {
-//                return null;
-//            }
-//
-//            @Override
-//            public ObservableList<Expense> getExpenseList() {
-//                return new SortedList<Expense>();
-//            }
-//
-//            @Override
-//            public ObservableList<Revenue> getRevenueList() {
-//                return new FilteredList<Revenue>();
-//            }
-//        });
-//        Expense expenseStub = expenseBuilder.build();
-//
-//        CommandResult commandResult = new AddCommand(expenseStub).execute(modelStub, activeAccountStub);
-//
-//        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expenseStub), commandResult.getFeedbackToUser());
-//        assertEquals(true, activeAccountStub.getAccount().hasEntry(expenseStub));
+        assertEquals(true, true);
+        //placeholder for now
     }
 
     @Test
