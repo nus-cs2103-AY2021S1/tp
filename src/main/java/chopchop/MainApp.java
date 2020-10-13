@@ -101,11 +101,13 @@ public class MainApp extends Application {
             initialRecipeData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
             initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and IngredientBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
+                    + "IngredientBook");
             initialRecipeData = new RecipeBook();
             initialIngredientData = new IngredientBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty RecipeBook and IngredientBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty RecipeBook and"
+                    + "IngredientBook");
             initialRecipeData = new RecipeBook();
             initialIngredientData = new IngredientBook();
         }
