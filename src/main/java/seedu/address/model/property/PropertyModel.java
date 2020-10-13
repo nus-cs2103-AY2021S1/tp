@@ -52,6 +52,14 @@ public interface PropertyModel {
     Property getPropertyById(Id id);
 
     /**
+     * Checks if the property book contains a property with the given id.
+     *
+     * @param id The given id.
+     * @return True if a property exists.
+     */
+    boolean containsPropertyId(Id id);
+
+    /**
      * Replaces the given property {@code target} with {@code editedProperty}.
      * {@code target} must exist in the property book.
      * The property identity of {@code editedProperty} must not be the same as another existing property in the

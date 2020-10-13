@@ -115,6 +115,16 @@ public class PropertyBook implements ReadOnlyPropertyBook {
         return properties.getPropertyById(id);
     }
 
+    /**
+     * Checks if this {@code PropertyBook} contains a property with the given {@code id}.
+     *
+     * @param id The given id.
+     * @return True if a property with the given id exists in the list.
+     */
+    public boolean containsPropertyId(Id id) {
+        return properties.containsPropertyId(id);
+    }
+
     //// util methods
 
     @Override

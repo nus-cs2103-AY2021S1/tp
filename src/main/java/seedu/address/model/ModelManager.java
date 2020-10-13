@@ -244,6 +244,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean containsPropertyId(Id id) {
+        return propertyBook.containsPropertyId(id);
+    }
+
+    @Override
     public void setProperty(Property target, Property editedProperty) {
         requireAllNonNull(target, editedProperty);
         propertyBook.setProperty(target, editedProperty);

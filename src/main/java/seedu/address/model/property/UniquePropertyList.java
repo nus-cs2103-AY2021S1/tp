@@ -110,6 +110,17 @@ public class UniquePropertyList implements Iterable<Property> {
         return filteredProperties.get(0);
     }
 
+    /**
+     * Checks if the property list contains a property with the given id.
+     *
+     * @param id The specified id.
+     * @return True if the property list contains the property with the given id.
+     */
+    public boolean containsPropertyId(Id id) {
+        return internalList.filtered(property -> property.getPropertyId().equals(id))
+                .size() > 0;
+    }
+
     public void setProperties(UniquePropertyList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
