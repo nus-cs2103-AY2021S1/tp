@@ -4,26 +4,28 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
-import chopchop.model.ingredient.ReadOnlyIngredientBook;
-import chopchop.model.recipe.ReadOnlyRecipeBook;
+
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.model.ReadOnlyUserPrefs;
 import chopchop.model.UserPrefs;
+import chopchop.model.ingredient.ReadOnlyIngredientBook;
+import chopchop.model.recipe.ReadOnlyRecipeBook;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of IngredientBook and RecipeBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private IngredientBookStorage ingredientBookStorage;
-    private RecipeBookStorage recipeBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final IngredientBookStorage ingredientBookStorage;
+    private final RecipeBookStorage recipeBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
 
     /**
-     * Constructs {@code StorageManagers}
+     * Creates a {@code StorageManager} with the given {@code RecipeBookStorage}, {@code IngredientBookStorage} and
+     * {@code UserPrefStorage}.
      */
     public StorageManager(RecipeBookStorage recipeBookStorage, IngredientBookStorage ingredientBookStorage,
                           UserPrefsStorage userPrefsStorage) {

@@ -3,6 +3,7 @@ package chopchop.storage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.util.JsonUtil;
 import chopchop.model.ReadOnlyUserPrefs;
@@ -13,7 +14,7 @@ import chopchop.model.UserPrefs;
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonUserPrefsStorage(Path filePath) {
         this.filePath = filePath;
