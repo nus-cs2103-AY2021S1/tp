@@ -94,10 +94,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptor();
 
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
-            editAdminDescriptor.setTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get()));
+            editAdminDescriptor.setTime(ParserUtil.parseClassTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
-            editAdminDescriptor.setVenue(ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get()));
+            editAdminDescriptor.setVenue(ParserUtil.parseClassVenue(argMultimap.getValue(PREFIX_VENUE).get()));
         }
         if (argMultimap.getValue(PREFIX_FEE).isPresent()) {
             editAdminDescriptor.setFee(ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get()));

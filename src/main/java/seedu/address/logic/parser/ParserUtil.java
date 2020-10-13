@@ -106,7 +106,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static ClassVenue parseVenue(String venue) throws ParseException {
+    public static ClassVenue parseClassVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
         if (!ClassVenue.isValidClassVenue(trimmedVenue)) {
@@ -121,11 +121,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code time} is invalid.
      */
-    public static ClassTime parseTime(String time) throws ParseException {
+    public static ClassTime parseClassTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
         if (!ClassTime.isValidClassTime(trimmedTime)) {
             throw new ParseException(ClassTime.MESSAGE_CONSTRAINTS);
+        } else if (!ClassTime.isValidStartAndEndTime(trimmedTime)) {
+            throw new ParseException(ClassTime.TIME_CONSTRAINTS);
         }
         return new ClassTime(trimmedTime);
     }
