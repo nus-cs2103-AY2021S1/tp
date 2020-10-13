@@ -7,19 +7,18 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyItemList;
 import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Person;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * A default model stub that have all of the methods failing EXCEPT processPrecursors.
- * This is because we minimally need the processPrecursors method to handle AddItemCommand.
+ * A default model stub that have all of the methods failing EXCEPT processPrecursors and getFilteredItemList.
+ * This is because we minimally need the processPrecursors method to handle AddItemCommand and RecipeDeletion
+ * to reset the data to its original state (when needed).
  */
 public class ModelStub extends ModelManager implements Model {
     @Override
@@ -43,16 +42,6 @@ public class ModelStub extends ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public Path getItemListFilePath() {
         throw new AssertionError("This method should not be called.");
     }
@@ -68,22 +57,12 @@ public class ModelStub extends ModelManager implements Model {
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void setItemListFilePath(Path itemListFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setRecipeListFilePath(Path recipeListFilePath) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -103,22 +82,12 @@ public class ModelStub extends ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void setItemList(ReadOnlyItemList itemList) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setRecipeList(ReadOnlyRecipeList recipeList) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -138,11 +107,6 @@ public class ModelStub extends ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean hasItem(Item item) {
         throw new AssertionError("This method should not be called.");
     }
@@ -158,11 +122,6 @@ public class ModelStub extends ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void deleteItem(Item target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -173,27 +132,12 @@ public class ModelStub extends ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void setItem(Item target, Item editedItem) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setRecipe(Recipe target, Recipe editedRecipe) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Item> getFilteredItemList() {
         throw new AssertionError("This method should not be called.");
     }
 
