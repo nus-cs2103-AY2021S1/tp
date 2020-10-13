@@ -40,7 +40,7 @@ public class JsonSerializableReeveTest {
     public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
         JsonSerializableReeve dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableReeve.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableReeve.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableReeve.MESSAGE_DUPLICATE_STUDENT,
                 dataFromFile::toModelType);
     }
 

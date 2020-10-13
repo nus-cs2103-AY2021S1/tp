@@ -28,7 +28,7 @@ public class Year {
      */
     public Year(String year) {
         requireNonNull(year);
-        checkArgument(isValidYear(year), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidYear(year), Year.MESSAGE_CONSTRAINTS);
         this.year = year;
     }
 

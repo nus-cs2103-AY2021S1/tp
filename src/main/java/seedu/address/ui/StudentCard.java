@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.util.stream.Collectors;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
 
 /**
@@ -35,31 +38,39 @@ public class StudentCard extends UiPart<Region> {
     private Label school;
     @FXML
     private Label year;
-
-    /*
-     * @FXML
-     * private FlowPane tags;
-     */
+    @FXML
+    private Label venue;
+    @FXML
+    private Label time;
+    @FXML
+    private Label fee;
+    @FXML
+    private Label payment;
+    @FXML
+    private Label details;
+    @FXML
+    private Label questions;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
-     *
-     * TODO: Reimplement UI components.
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        school.setText(student.getSchool().school);
-        year.setText(String.valueOf(student.getYear().year));
-        /*
-         * address.setText("Placeholder for address");
-         * new HashSet<>(Set.of("Placeholder for details")).stream()
-                .sorted(Comparator.comparing(tag -> tag))
-                .forEach(tag -> tags.getChildren().add(new Label(tag)));
-         */
+        phone.setText("Phone: " + student.getPhone().value);
+        school.setText("School: " + student.getSchool().school);
+        year.setText("Year: " + student.getYear().year);
+        venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
+        time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
+        fee.setText("Fee: " + student.getAdmin().getFee().toString());
+        payment.setText("Last Payment Date: " + student.getAdmin().getPaymentDate().toString());
+        details.setText("Additional Details: \n" + student.getAdmin().getFormattedDetails());
+        questions.setText("Questions:\n" + student.getQuestions()
+                .stream()
+                .map(Question::toString)
+                .collect(Collectors.joining("\n")));
     }
 
     @Override

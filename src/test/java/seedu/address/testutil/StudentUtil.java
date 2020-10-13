@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -9,48 +10,63 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Admin;
 
 
 /**
- * A utility class for Person.
+ * A utility class for Student.
  */
 public class StudentUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(student);
+        return AddCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code student}'s details.
      */
-    public static String getPersonDetails(Student student) {
+    public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + student.getPhone().value + " ");
-        sb.append(PREFIX_SCHOOL + student.getSchool().school + " ");
-        sb.append(PREFIX_YEAR + String.valueOf(student.getYear().year) + " ");
-        sb.append(PREFIX_VENUE + student.getAdmin().getClassVenue().venue + " ");
-        //There needs to be a way to convert back and forth for the admin details
-        sb.append(PREFIX_TIME + student.getAdmin().getClassTime().dayOfWeek.toString()
-                + " " + student.getAdmin().getClassTime().startTime.toString().replace(":", "")
-                + "-" + student.getAdmin().getClassTime().endTime.toString().replace(":", "") + " ");
-        sb.append(PREFIX_FEE + String.valueOf(student.getAdmin().getFee().amount) + " ");
-        sb.append(PREFIX_PAYMENT + "01/01/2001" + " ");
-        System.out.println(sb);
+        sb.append(PREFIX_NAME + student.getName().fullName + " ")
+                .append(PREFIX_PHONE + student.getPhone().value + " ")
+                .append(PREFIX_SCHOOL + student.getSchool().school + " ")
+                .append(PREFIX_YEAR + String.valueOf(student.getYear().year) + " ")
+                .append(getAdminDetails(student.getAdmin()));
+        return sb.toString();
+    }
+
+    private static String getAdminDetails(Admin admin) {
+        StringBuilder sb = new StringBuilder();
+        String venue = PREFIX_VENUE + admin.getClassVenue().venue + " ";
+        String time = PREFIX_TIME + admin.getClassTime().dayOfWeek.toString()
+                + " " + admin.getClassTime().startTime.toString().replace(":", "")
+                + "-" + admin.getClassTime().endTime.toString().replace(":", "") + " ";
+        String fee = PREFIX_FEE + String.valueOf(admin.getFee().amount) + " ";
+        String date = PREFIX_PAYMENT + admin.getPaymentDate()
+                .lastPaid
+                .format(DateTimeFormatter.ofPattern("d/M/yy")) + " ";
+        sb.append(venue).append(time).append(fee).append(date);
+
+        for (AdditionalDetail detail : admin.getDetails()) {
+            sb.append(PREFIX_DETAILS + detail.detail + " ");
+        }
         return sb.toString();
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditStudentDescriptor descriptor) {
+    public static String getEditStudentDescriptorDetails(EditCommand.EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
