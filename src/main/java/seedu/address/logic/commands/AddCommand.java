@@ -49,6 +49,7 @@ public class AddCommand extends CommandForExercise {
         if (model.hasExercise(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
         }
+
         model.addExercise(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
