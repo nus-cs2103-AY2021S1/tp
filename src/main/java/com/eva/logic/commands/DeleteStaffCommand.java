@@ -8,7 +8,6 @@ import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
-import com.eva.model.person.Person;
 import com.eva.model.person.staff.Staff;
 
 public class DeleteStaffCommand extends Command {
@@ -38,13 +37,13 @@ public class DeleteStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Staff> lastShownList = model.getFilteredStaffList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         // cannot cast
-        Staff staffToDelete = (Staff) lastShownList.get(targetIndex.getZeroBased());
-        // model.deleteStaff(staffToDelete);
+        Staff staffToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteStaff(staffToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToDelete));
     }
