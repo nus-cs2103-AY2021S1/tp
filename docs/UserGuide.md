@@ -31,7 +31,7 @@ Refer to the features below for details of each command.
 
    * **`list`** : Lists all food items.
 
-   * **`add`**`potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100` proteins, `5` carbs, and `0` fats.
+   * **`add`**`-n potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100` proteins, `5` carbs, and `0` fats.
 
    * **`delete`**`3` : Deletes the 3rd food item shown in the current list.
 
@@ -48,7 +48,7 @@ Refer to the features below for details of each command.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
+  e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
 
 * Items in square brackets are optional.<br>
   e.g `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
