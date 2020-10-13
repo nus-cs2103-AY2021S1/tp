@@ -20,9 +20,9 @@ import chopchop.model.recipe.RecipeBook;
 public class SampleDataUtil {
     public static Ingredient[] getSampleIngredients() {
         return new Ingredient[] {
-            new Ingredient(new Name("Apple"),  Mass.of(10, "g").getValue(), new ExpiryDate("2020-04-04")),
+            new Ingredient(new Name("Apple"),  Mass.grams(10), new ExpiryDate("2020-04-04")),
             new Ingredient(new Name("Blueberry"), Count.of(5)),
-            new Ingredient(new Name("Custard"), Volume.of(200.5, "ml").getValue()),
+            new Ingredient(new Name("Custard"), Volume.millilitres(200.5)),
         };
     }
 
