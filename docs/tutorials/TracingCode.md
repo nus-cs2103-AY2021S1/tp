@@ -174,12 +174,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
    ``` java
    /**
-    * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+    * Converts a given {@code ReadOnlyEvaDatabase} into this class for Jackson use.
     *
     * @param source future changes to this will not affect the created
     * {@code JsonSerializableAddressBook}.
     */
-   public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+   public JsonSerializableAddressBook(ReadOnlyEvaDatabase source) {
        persons.addAll(
            source.getPersonList()
                  .stream()

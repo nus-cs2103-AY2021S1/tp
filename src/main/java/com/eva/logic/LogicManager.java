@@ -12,8 +12,9 @@ import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.AddressBookParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.Model;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 import com.eva.storage.Storage;
 
 import javafx.collections.ObservableList;
@@ -47,7 +48,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.savePersonDatabase(model.getPersonDatabase());
+            storage.saveStaffDatabase(model.getStaffDatabase());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,8 +58,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyEvaDatabase getEvaDatabase() {
+        return model.getPersonDatabase();
     }
 
     @Override
@@ -66,8 +68,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Staff> getFilteredStaffList() {
+        return model.getFilteredStaffList();
+    }
+
+    @Override
+    public Path getEvaDatabaseFilePath() {
+        return model.getEvaDatabaseFilePath();
     }
 
     @Override

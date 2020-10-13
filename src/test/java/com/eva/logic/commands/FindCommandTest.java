@@ -5,7 +5,8 @@ import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.testutil.TypicalPersons.CARL;
 import static com.eva.testutil.TypicalPersons.ELLE;
 import static com.eva.testutil.TypicalPersons.FIONA;
-import static com.eva.testutil.TypicalPersons.getTypicalAddressBook;
+import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
+import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,8 +25,10 @@ import com.eva.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(
+            getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
+    private Model expectedModel = new ModelManager(
+            getTypicalPersonDatabase(), getTypicalStaffDatabase(), new UserPrefs());
 
     @Test
     public void equals() {

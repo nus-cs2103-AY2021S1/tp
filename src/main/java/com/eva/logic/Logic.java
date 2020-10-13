@@ -6,8 +6,9 @@ import com.eva.commons.core.GuiSettings;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 
 import javafx.collections.ObservableList;
 
@@ -25,19 +26,21 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the EvaDatabase.
      *
-     * @see com.eva.model.Model#getAddressBook()
+     * @see com.eva.model.Model#getEvaDatabase()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyEvaDatabase getEvaDatabase();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Staff> getFilteredStaffList();
+
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getEvaDatabaseFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -15,11 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.logic.commands.exceptions.CommandException;
-import com.eva.model.AddressBook;
+import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
-import com.eva.model.ReadOnlyAddressBook;
+import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.PersonBuilder;
 
 import javafx.collections.ObservableList;
@@ -100,12 +102,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getEvaDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setEvaDatabaseFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,12 +117,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setPersonDatabase(ReadOnlyEvaDatabase<Person> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public void addStaffLeave(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStaffLeave(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -146,6 +158,46 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStaff(Staff person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStaff(Staff person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStaff(Staff target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStaff(Staff target, Staff editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Staff> getFilteredStaffList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredStaffList(Predicate<Staff> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -187,8 +239,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
+            return new EvaDatabase<>();
         }
     }
 
