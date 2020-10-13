@@ -18,7 +18,8 @@ public class ItemClearCommandTest {
         InventoryModel inventoryModel = new InventoryModelManager();
         InventoryModel expectedInventoryModel = new InventoryModelManager();
 
-        assertCommandSuccess(new ItemClearCommand(), inventoryModel, ItemClearCommand.MESSAGE_SUCCESS, expectedInventoryModel);
+        assertCommandSuccess(new ItemClearCommand(), inventoryModel, ItemClearCommand.MESSAGE_SUCCESS,
+                expectedInventoryModel);
     }
 
     @Test
@@ -27,7 +28,8 @@ public class ItemClearCommandTest {
         InventoryModel expectedInventoryModel = new InventoryModelManager(getTypicalInventoryBook(), new UserPrefs());
         expectedInventoryModel.setInventoryBook(new InventoryBook());
 
-        assertCommandSuccess(new ItemClearCommand(), inventoryModel, ItemClearCommand.MESSAGE_SUCCESS, expectedInventoryModel);
+        assertCommandSuccess(new ItemClearCommand(), inventoryModel, ItemClearCommand.MESSAGE_SUCCESS,
+                expectedInventoryModel);
     }
 
 }

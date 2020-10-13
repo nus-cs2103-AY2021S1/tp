@@ -47,7 +47,8 @@ public class ItemAddCommandTest {
 
         CommandResult commandResult = new ItemAddCommand(validItem).execute(modelStub);
 
-        assertEquals(String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
     }
 

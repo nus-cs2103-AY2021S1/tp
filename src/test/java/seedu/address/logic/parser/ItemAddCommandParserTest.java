@@ -41,7 +41,7 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Tag;
 import seedu.address.testutil.ItemBuilder;
 
-public class ItemItemAddCommandParserTest {
+public class ItemAddCommandParserTest {
     private ItemAddCommandParser parser = new ItemAddCommandParser();
 
     @Test
@@ -78,7 +78,8 @@ public class ItemItemAddCommandParserTest {
                 .build();
         assertParseSuccess(parser, NAME_DESC_CHICKEN + QUANTITY_DESC_CHICKEN
                 + SUPPLIER_DESC_CHICKEN + TAG_DESC_CHICKEN
-                + MAX_QUANTITY_DESC_DUCK + MAX_QUANTITY_DESC_CHICKEN, new ItemAddCommand(expectedItemMaxQuantitySpecified));
+                + MAX_QUANTITY_DESC_DUCK + MAX_QUANTITY_DESC_CHICKEN,
+                new ItemAddCommand(expectedItemMaxQuantitySpecified));
 
         // multiple metrics - last metric accepted
         Item expectedItemMetricSpecified = new ItemBuilder(CHICKEN_MANUAL)
@@ -105,7 +106,8 @@ public class ItemItemAddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_DUCK + QUANTITY_DESC_DUCK,
@@ -145,6 +147,7 @@ public class ItemItemAddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_DUCK + QUANTITY_DESC_DUCK
                 + SUPPLIER_DESC_DUCK + TAG_DESC_DUCK + TAG_DESC_CHICKEN,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_USAGE));
     }
 }

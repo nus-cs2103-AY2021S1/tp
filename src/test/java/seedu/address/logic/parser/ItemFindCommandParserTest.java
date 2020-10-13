@@ -15,13 +15,14 @@ import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.logic.parser.itemparser.ItemFindCommandParser;
 import seedu.address.model.item.ItemContainsKeywordsPredicate;
 
-public class ItemItemFindCommandParserTest {
+public class ItemFindCommandParserTest {
 
     private ItemFindCommandParser parser = new ItemFindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ItemFindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ItemFindCommand.MESSAGE_USAGE));
     }
 
     @Test

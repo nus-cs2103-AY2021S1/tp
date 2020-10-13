@@ -1,23 +1,22 @@
 package seedu.address.logic.parser.deliveryparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.deliverycommand.DeliveryFindCommand;
-import seedu.address.logic.commands.itemcommand.ItemFindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Parses input arguments and creates a new DeliveryFindCommand object

@@ -30,7 +30,8 @@ import seedu.address.testutil.EditItemDescriptorBuilder;
 import seedu.address.testutil.ItemBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for ItemEditCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
+ * ItemEditCommand.
  */
 public class ItemEditCommandTest {
 
@@ -128,7 +129,8 @@ public class ItemEditCommandTest {
     @Test
     public void execute_invalidItemIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(inventoryModel.getFilteredItemList().size() + 1);
-        ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_DUCK).build();
+        ItemEditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
+                .withName(VALID_NAME_DUCK).build();
         ItemEditCommand editCommand = new ItemEditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, inventoryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);

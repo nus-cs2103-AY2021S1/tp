@@ -14,7 +14,7 @@ public class HelpStartCommand extends HelpCommand {
     /**
      * Opens a pop-up window with instructions for user on how to get started.
      *
-     * @param inventoryModel {@code Model} which the command should operate on.
+     * @param model {@code Model} which the command should operate on.
      * @return {@code CommandResult} that describes changes made when command execute runs successfully.
      */
     @Override

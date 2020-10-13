@@ -38,7 +38,7 @@ import seedu.address.model.item.Supplier;
 import seedu.address.model.item.Tag;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
-public class ItemItemEditCommandParserTest {
+public class ItemEditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 

@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.logic.commands.itemcommand.ItemAddCommand;
+import seedu.address.logic.commands.itemcommand.ItemEditCommand;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Tag;
 

@@ -13,7 +13,7 @@ public class HelpSummaryCommand extends HelpCommand {
 
     /**
      * Opens a pop-up window with the summary of all available commands.
-     * @param inventoryModel {@code Model} which the command should operate on.
+     * @param model {@code Model} which the command should operate on.
      * @return {@code CommandResult} that describes changes made when command execute runs successfully.
      */
     @Override

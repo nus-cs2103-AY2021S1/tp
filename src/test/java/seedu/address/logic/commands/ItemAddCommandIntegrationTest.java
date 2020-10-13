@@ -34,6 +34,7 @@ public class ItemAddCommandIntegrationTest {
         expectedInventoryModel.addItem(validItem);
 
         assertCommandSuccess(new ItemAddCommand(validItem), inventoryModel,
-                String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem), expectedInventoryModel);
+                String.format(seedu.address.logic.commands.itemcommand.ItemAddCommand.MESSAGE_SUCCESS, validItem),
+                expectedInventoryModel);
     }
 }
