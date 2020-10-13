@@ -31,16 +31,19 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExercis
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateExerciseCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                        UpdateExerciseCommand.MESSAGE_USAGE), pe);
         }
 
-        UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor = new UpdateExerciseCommand.EditExerciseDescriptor();
+        UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor =
+                    new UpdateExerciseCommand.EditExerciseDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editExerciseDescriptor.setName(ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editExerciseDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            editExerciseDescriptor.setDescription(
+                                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editExerciseDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));

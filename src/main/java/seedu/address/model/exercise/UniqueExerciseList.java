@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 
@@ -31,7 +30,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      * Adds a exercise to the list.
      * The exercise must not already exist in the list.
      */
-    public void add(Exercise toAdd){
+    public void add(Exercise toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateExerciseException();

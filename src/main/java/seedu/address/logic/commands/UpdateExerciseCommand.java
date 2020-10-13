@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.ExerciseModel.PREDICATE_SHOW_ALL_EXERCISE;
 
 import java.util.List;
@@ -15,11 +15,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
+import seedu.address.model.exercise.Calories;
+import seedu.address.model.exercise.Date;
+import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.Description;
-import seedu.address.model.exercise.Date;
-import seedu.address.model.exercise.Calories;
+
 
 /**
  * Edits the details of an existing exercise in the exercise book.
@@ -86,11 +87,13 @@ public class UpdateExerciseCommand extends CommandForExercise {
      * Creates and returns a {@code Exercise} with the details of {@code exerciseToEdit}
      * edited with {@code editExerciseDescriptor}.
      */
-    private static Exercise createEditedExercise(Exercise exerciseToEdit, UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor) {
+    private static Exercise createEditedExercise(Exercise exerciseToEdit,
+                                                 UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor) {
         assert exerciseToEdit != null;
 
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
-        Description updatedDescription = editExerciseDescriptor.getDescription().orElse(exerciseToEdit.getDescription());
+        Description updatedDescription = editExerciseDescriptor.getDescription()
+                                                                    .orElse(exerciseToEdit.getDescription());
         Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
         Calories updatedCalories = editExerciseDescriptor.getCalories().orElse(exerciseToEdit.getCalories());
 
