@@ -16,7 +16,9 @@ import seedu.address.model.vendor.Vendor;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
     Predicate<OrderItem> PREDICATE_SHOW_ALL_ORDERITEMS = unused -> true;
@@ -67,7 +69,9 @@ public interface Model {
 
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -99,7 +103,9 @@ public interface Model {
      */
     void setMenuManager(ReadOnlyMenuManager menuManager, int index);
 
-    /** Returns the MenuManager at the ith index */
+    /**
+     * Returns the MenuManager at the ith index
+     */
     ReadOnlyMenuManager getMenuManager(int index);
 
     /**
@@ -125,12 +131,15 @@ public interface Model {
      * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
      */
     void setFood(Food target, Food editedFood, int index);
+
     /**
      * Replaces address book data with the data in {@code orderManager}.
      */
     void setOrderManager(ReadOnlyOrderManager orderManager);
 
-    /** Returns the MenuManager at the ith index */
+    /**
+     * Returns the MenuManager at the ith index
+     */
     ReadOnlyOrderManager getOrderManager();
 
     /**
@@ -158,33 +167,41 @@ public interface Model {
      */
     void setOrderItem(OrderItem target, OrderItem editedOrderItem);
 
-    /** Returns an unmodifiable view of the filtered vendor list */
+    /**
+     * Returns an unmodifiable view of the filtered vendor list
+     */
     ObservableList<Vendor> getFilteredVendorList();
 
 
     /**
      * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredVendorList(Predicate<Vendor> predicate);
 
-    /** Returns an unmodifiable view of the filtered food list at the corresponding index */
+    /**
+     * Returns an unmodifiable view of the filtered food list at the corresponding index
+     */
     ObservableList<Food> getFilteredFoodList(int index);
 
     /**
      * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate, int index);
 
-    /** Returns an unmodifiable view of the filtered orderItem list at the corresponding index */
+    /**
+     * Returns an unmodifiable view of the filtered orderItem list at the corresponding index
+     */
     ObservableList<OrderItem> getFilteredOrderItemList();
 
     /**
      * Updates the filter of the filtered orderItem list at the
      * corresponding index to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
-
 }

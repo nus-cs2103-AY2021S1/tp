@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.ParseIndexException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Address;
 import seedu.address.model.vendor.Email;
@@ -20,7 +21,9 @@ import seedu.address.model.vendor.Phone;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "%s is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_QUANTITY = "Quantity given is invalid.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,14 +39,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} into an {@code Index} with indexName
+     * and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseIndexException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseIndex(String oneBasedIndex, String indexName) throws ParseIndexException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseIndexException(String.format(MESSAGE_INVALID_INDEX, indexName));
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
      * Parses {@code quantity} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified quantity is a zero or negative value, or not an Integer.
+     * @throws ParseIndexException if the specified quantity is a zero or negative value, or not an Integer.
      */
-    public static int parseQuantity(String quantity) throws ParseException {
+    public static int parseQuantity(String quantity) throws ParseIndexException {
         String trimmedQuantity = quantity.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedQuantity)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseIndexException(MESSAGE_INVALID_QUANTITY);
         }
         return Integer.parseInt(trimmedQuantity);
     }

@@ -33,7 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argList.length == 0 || argList.length > 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-        Index index = ParserUtil.parseIndex(argList[0]);
+        Index index = ParserUtil.parseIndex(argList[0], "Menu Index");
         if (index.getZeroBased() >= filteredFoodList.size()) {
             throw new ParseException("INDEX SELECTED IS TOO LARGE.");
         }
@@ -46,7 +46,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(food, quantity);
 
     }
-
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
