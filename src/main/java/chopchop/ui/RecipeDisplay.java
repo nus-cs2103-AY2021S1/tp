@@ -1,15 +1,14 @@
 package chopchop.ui;
 
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class RecipeDisplay extends UiPart<Region> {
 
@@ -62,6 +61,9 @@ public class RecipeDisplay extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets the Strings displayed in the {@code RecipeDisplay} page.
+     */
     private void stringRepresentation() {
         final StringBuilder builder = new StringBuilder();
         name = recipe.getName().toString();
