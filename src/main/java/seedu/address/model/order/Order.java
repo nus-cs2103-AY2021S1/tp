@@ -37,11 +37,10 @@ public class Order implements Iterable<OrderItem> {
     public void add(OrderItem toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            OrderItem existingItem = internalList.stream()
-                    .filter(toAdd::isSameOrderItem)
-                    .findFirst()
-                    .get();
-            existingItem.setQuantity(existingItem.getQuantity() + toAdd.getQuantity());
+            int index = internalList.indexOf(toAdd);
+            OrderItem existingItem = internalList.get(index);
+            toAdd.setQuantity(toAdd.getQuantity() + existingItem.getQuantity());
+            setOrderItem(existingItem, toAdd);
         } else {
             internalList.add(toAdd);
         }
