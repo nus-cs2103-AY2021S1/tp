@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;

@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.ActiveAccount;
@@ -8,7 +10,6 @@ import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
-import java.util.function.Predicate;
 
 public class ActiveAccountStub implements ActiveAccount {
     @Override
