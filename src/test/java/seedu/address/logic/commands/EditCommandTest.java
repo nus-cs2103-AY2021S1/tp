@@ -137,7 +137,7 @@ public class EditCommandTest {
         EditAdminDescriptor editAdminDescriptor = new EditAdminDescriptorBuilder().build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, editStudentDescriptor, editAdminDescriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -155,7 +155,7 @@ public class EditCommandTest {
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build(),
                 new EditAdminDescriptorBuilder().build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test

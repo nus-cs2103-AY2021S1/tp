@@ -25,6 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
@@ -90,7 +91,7 @@ public class EditCommand extends Command {
         List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
@@ -136,7 +137,9 @@ public class EditCommand extends Command {
             updatedAdmin = studentToEdit.getAdmin();
         }
 
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin);
+        // Questions should not be edited through this command
+        List<Question> questions = studentToEdit.getQuestions();
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions);
     }
 
     @Override
