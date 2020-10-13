@@ -6,6 +6,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
@@ -15,6 +16,7 @@ public class IngredientViewPanel extends UiPart<Region> {
     private static final String FXML = "IngredientViewPanel.fxml";
     private static final int ROWS = 3;
     private static final int START_COL = -1;
+    private static final TextArea emptyListPrompt = new TextArea();
 
     // Only 3 rows of recipes will be displayed.
     private ObservableList<Ingredient> ingredientObservableList;
@@ -31,13 +33,14 @@ public class IngredientViewPanel extends UiPart<Region> {
     public IngredientViewPanel(ObservableList<Ingredient> ingredientList) {
         super(FXML);
         ingredientObservableList = ingredientList;
+        emptyListPrompt.setText("You do not have any ingredients yet.\nAdd one today:)");
         ingredientObservableList.addListener(new ListChangeListener<Ingredient>() {
             @Override
             public void onChanged(Change<? extends Ingredient> c) {
-                refresh();
+                fillDisplay();
             }
         });
-        populate();
+        fillDisplay();
     }
 
     private int calculate_row(int index) {
@@ -62,10 +65,22 @@ public class IngredientViewPanel extends UiPart<Region> {
     }
 
     /**
-     * Refresh the recipe grid view.
+     * Checks if the display contains any recipes, and fills the recipe grid view.
      */
-    private void refresh() {
+    private void fillDisplay() {
         ingredientGridView.getChildren().clear();
-        populate();
+        if (isEmpty()) {
+            displayPrompt();
+        } else {
+            populate();
+        }
+    }
+
+    private void displayPrompt() {
+        ingredientGridView.add(emptyListPrompt, 0, 0);
+    }
+
+    private boolean isEmpty() {
+        return ingredientGridView.getChildren().contains(emptyListPrompt) || ingredientObservableList.isEmpty();
     }
 }
