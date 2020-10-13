@@ -32,7 +32,7 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 **:information_source: Brief summary of features:**<br>
 
 * Items contain location, quantities, etc. Item Details presented in a drop down window.
-* Sorting and searching by
+* Searching by
     * name of stock
     * serial number
     * source of stock
@@ -69,8 +69,13 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
 
 Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
 
+## Listing of stock: `list`
+Lists all the stock(s) in the inventory.
+Format: `list`
+
 ⚠ Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
+
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
@@ -81,7 +86,7 @@ Format (single): `delete sn/<serial number>`
 Format (multiple): `delete sn/<serial number> sn/<serial number 2>...`
 
 ### Find stocks from inventory: `find`
-Displays a list of stocks found in the inventory that match/contain the following keywords in their details.
+Displays a list of stocks found in the inventory that contains all keywords specified in any fields searched.
 * Fields that can be searched:
     * Name
     * Serial Number
@@ -89,31 +94,72 @@ Displays a list of stocks found in the inventory that match/contain the followin
     * Source of the stock
 
 Format (any combination of 1,2,3 or 4 of the fields): <br>
-`find n/<name>` <br>
-`find sn/<serial number>` <br>
-`find l/<location>` <br>
-`find s/<source of the stock>` <br>
-`find n/<name> l/<location> s/<source of stock>`
+`find n/<name keyword> <(optional) more keywords to be searched in name>` <br>
+`find sn/<serial number keyword> <(optional) more keywords to be searched in serial number>` <br>
+`find l/<location stored keyword> <(optional) more keywords to be searched in location>` <br>
+`find s/<source keyword> <(optional) more keywords to be searched in source>` <br>
+`find n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords> 
+s/<source keyword> <(optional) more keywords>`
 
 Search criteria: <br>
-Only stocks that fully match/contain the search keyword will be displayed. <br>
-* e.g. find n/KaiChao will not match Kai.
-* e.g. find n/KaiChao will match AngKaiChao. <br>
+Only stocks that contain all the search keywords for a field will be displayed. <br>
+* e.g. find n/ChickenNuggets will not match stock with Name: Chick. <br>
+* e.g. find n/ChickenNuggets abcdef will not match stock with Name: ChickenNuggets. <br>
 
 Search is case-insensitive.
-* e.g. find n/ashLey will match Ashley.
+* e.g. find n/ashLey will match stock with Name: Ashley.
 
-Any stock with any field that matches/contains any of the search fields will be displayed.
+Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.
 * e.g.
 
-Stock | Details
---------|------------------
-**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
-**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section<br>
+| Stock | Details |
+| ------| --------|
+|**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section|
+|**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section|
 find n/banana sn/SHENGSIONG will match both Stock 1 and Stock 2 <br>
 find l/section will match both Stock 1 and Stock 2. <br>
 find n/chicken l/poultry will match only Stock 2. <br>
 find s/ntuc l/singapore will match only Stock 1.
+
+### Find exact stocks from inventory: `findexact`
+Displays a list of stocks found in the inventory that contains all keywords specified in all fields searched.
+* Fields that can be searched:
+    * Name
+    * Serial Number
+    * Location stored
+    * Source of the stock
+
+Format (any combination of 1,2,3 or 4 of the fields): <br>
+`findexact n/<name keyword> <(optional) more keywords to be searched in name>` <br>
+`findexact sn/<serial number keyword> <(optional) more keywords to be searched in serial number>` <br>
+`findexact l/<location stored keyword> <(optional) more keywords to be searched in location>` <br>
+`findexact s/<source keyword> <(optional) more keywords to be searched in source>` <br>
+`findexact n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords> 
+s/<source keyword> <(optional) more keywords>`
+
+Search criteria: <br>
+Only stocks that contain all the search keywords for all fields will be displayed. <br>
+* e.g. findexact n/ChickenNuggets s/ntuc 
+will match stock with Name: Chick, Source: ntuc. <br>
+* e.g. findexact n/Chicken sn/1111 
+will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
+* e.g. findexact n/ChickenNuggets abcdef l/section b 
+will not match stock with Name: ChickenNuggets, Location: section b.<br>
+
+Search is case-insensitive.
+* e.g. findexact n/ashLey s/nTuC will match stock with Name: Ashley, Source: ntuc.
+
+Any stock with fields containing all the search keywords in all the fields searched will be displayed.
+* e.g.
+
+| Stock | Details |
+| ------| --------|
+|**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section|
+|**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section|
+findexact n/banana sn/SHENGSIONG will not match Stock 1 and Stock 2.<br>
+findexact l/section will match both Stock 1 and Stock 2. <br>
+findexact n/chicken l/section will match only Stock 2. <br>
+findexact n/banana s/ntuc l/singapore will not match Stock 1 and Stock 2.
 
 ### Update inventory: `update`
 Updates the details of the desired stock, requires the serial number of products.
@@ -180,7 +226,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete sn/<serial number>`<br> eg. `delete sn/100`
 **Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
-**FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `find n/umbrella s/ntuc`
+**FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
 **Update** | `update sn/<Serial Number of product> q/<+/-><quantity to increment/decrement>n/<new name> l/<new location in warehouse> s/<new source of stock>` <br> `update sn/<Serial Number of product> nq/<new quantity> n/<new name> l/<new location in warehouse> s/<new source of stock>`
 **Help** | `help`
 **Exit** | `exit`

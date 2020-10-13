@@ -26,10 +26,29 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <Label fx:id="serialNumber" styleClass="cell_small_label" text="\$serialNumber" />
-      <Label fx:id="source" styleClass="cell_small_label" text="\$source" />
-      <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" />
-      <Label fx:id="locationStored" styleClass="cell_small_label" text="\$locationStored" />
+
+      <HBox>
+        <Label fx:id="serialNumberHeader" styleClass="cell_small_label_header" text="S/N: " />
+        <Label fx:id="serialNumber" styleClass="cell_small_label" text="\$serialNumber" />
+      </HBox>
+
+      <HBox>
+        <Label fx:id="quantityHeader" styleClass="cell_small_label_header" text="Quantity: " />
+        <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" />
+      </HBox>
+
+
+      <HBox>
+        <Label fx:id="sourceHeader" styleClass="cell_small_label_header" text="Source: " />
+        <Label fx:id="source" styleClass="cell_small_label" text="\$source" />
+      </HBox>
+
+      <HBox>
+        <Label fx:id="locationHeader" styleClass="cell_small_label_header" text="Location in warehouse: " />
+        <Label fx:id="locationStored" styleClass="cell_small_label" text="\$locationStored" />
+      </HBox>
+
+
     </VBox>
   </GridPane>
 </HBox>

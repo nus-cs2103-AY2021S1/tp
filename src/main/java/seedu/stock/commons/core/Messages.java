@@ -15,6 +15,6 @@ public class Messages {
             "The stock serial number(s) provided are not found: " + "%1$s";
     public static final String MESSAGE_NO_SERIAL_NUMBERS_GIVEN =
             "No serial numbers are provided";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d stock listed!";
+    public static final String MESSAGE_STOCKS_LISTED_OVERVIEW = "%1$d stock listed!";
 
 }
