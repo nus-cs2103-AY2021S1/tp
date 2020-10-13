@@ -18,6 +18,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP = "HELP \n---------------------------\n";
     public static final String ADD = "---------------------------\nADD \n---------------------------\n";
+    public static final String LIST = "---------------------------\nLIST \n---------------------------\n";
     public static final String DELETE = "---------------------------\nDELETE\n---------------------------\n";
     public static final String FIND = "---------------------------\nFIND\n---------------------------\n";
     public static final String UPDATE = "---------------------------\nUPDATE\n---------------------------\n";
@@ -28,6 +29,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_DESCRIPTION =
             "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
+
+    public static final String LIST_DESCRIPTION =
+            "format: \nlist\n\n";
 
     public static final String DELETE_DESCRIPTION =
             "format: \ndelete sn/<serial number>\n\n"
@@ -57,6 +61,12 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label addMessage;
+
+    @FXML
+    private Label listMethod;
+
+    @FXML
+    private Label listMessage;
 
     @FXML
     private Label deleteMethod;
@@ -111,6 +121,11 @@ public class HelpWindow extends UiPart<Stage> {
         addMethod.setText(ADD);
         addMethod.setStyle("-fx-font-size: 130%;");
         addMessage.setText(ADD_DESCRIPTION);
+
+        //List Method
+        addMethod.setText(LIST);
+        addMethod.setStyle("-fx-font-size: 130%;");
+        addMessage.setText(LIST_DESCRIPTION);
 
         //Delete Method
         deleteMethod.setText(DELETE);

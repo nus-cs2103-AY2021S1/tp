@@ -52,7 +52,7 @@ public class StockBookParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case UpdateCommand.COMMAND_WORD:
             return new UpdateCommandParser().parse(arguments);
@@ -61,7 +61,7 @@ public class StockBookParser {
         //            return new ClearCommand();
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
