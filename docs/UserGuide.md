@@ -218,8 +218,7 @@ Stock | Details
 `update sn/SHENGSIONG1111 s/cold storage l/Meat section` will change **Stock 2** source to `cold storage` and location
 to `Meat section`.
 
-`update sn/NTUC1111 iq/+50 n/heineken` will change **Stock 3** name to `heineken` and increment the quantity by 
-50. **Stock 3** quantity changes to `60`.
+`update sn/NTUC1111 iq/+50 n/heineken` will change **Stock 3** name to `heineken` and increment the quantity by `50`. **Stock 3** quantity changes to `60`.
 
 `update sn/SHENGSIONG1111 s/cold storage nq/50` will change **Stock 2** source to `cold storage` and quantity
 to `50`.

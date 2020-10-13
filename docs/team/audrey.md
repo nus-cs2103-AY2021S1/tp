@@ -24,7 +24,8 @@ Given below are my contributions to the project.
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`
   * Set up the team repository as specified by the `CS2103T` module requirements.
   * Used GitHub Projects feature to create kanban boards to track user stories.
-  * Managed the repository in general and helped team members with git and GitHub functionalities.
+  * Manager and maintainer of project repository.
+  * Provided help to team members about Git, GitHub, and workflow.
 
 * **Reviews & Merging**:
   * Head reviewer for Pull Requests.
@@ -32,9 +33,15 @@ Given below are my contributions to the project.
   * Ensured no pull requests was merged before thorough review was conducted.
   * Ensured every merge pass the GitHub action checks.
   * Head merger for Pull Requests.
+  * Tests other team member's code and determine functional flaws if any.
+
+* **Testing**:
+  * Created JUnit tests for update feature.
+  * Reviewed other team members' tests and ensure the tests are adequate and working.
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `update`.
+    * Fix markdown formatting errors.
   * Developer Guide:
     * Added implementation details of the `update` feature.
