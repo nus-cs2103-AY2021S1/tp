@@ -71,8 +71,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setModules(newData.getModuleList());
     }
 
-    //// person-level operations
 
+    //// person-level operations
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -114,6 +114,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeModule(ModuleCode moduleCode) {
         modules.removeModuleWithCode(moduleCode);
+    }
+
+    /**
+     * Removes all the module from the list.
+     */
+    public void clearMod() {
+        modules.clearAll();
     }
 
     /**

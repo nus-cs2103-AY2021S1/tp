@@ -88,6 +88,12 @@ public interface Model {
      */
     void deleteMod(ModuleCode targetModuleCode);
 
+    /**
+     * Clear all modules from the module list.
+     * At least the list has 1 module.
+     */
+    void clearMod();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -103,6 +109,12 @@ public interface Model {
      * Returns true if a module with the same identity as {@code module} exists in the address book.
      */
     boolean hasModule(Module module);
+
+    /**
+     * Returns true if module list is empty.
+     * @return
+     */
+    boolean isEmptyModuleList();
 
     /**
      * Adds the given module.
