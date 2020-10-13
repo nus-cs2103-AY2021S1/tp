@@ -149,6 +149,8 @@ Examples:
 
 Creates a macro in McGymmy.
 
+* Creates a macro with name `SHORTCUT` which executes `COMMAND_1; COMMAND_2; ...`.
+
 Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
 
 ![Alias command example](images/CommandImagesForUG/Alias.png)
