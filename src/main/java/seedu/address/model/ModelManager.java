@@ -131,6 +131,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getPropertyBookFilePath() {
+        return userPrefs.getPropertyBookFilePath();
+    }
+
+    @Override
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override

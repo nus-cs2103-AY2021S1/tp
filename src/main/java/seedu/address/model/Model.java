@@ -44,6 +44,8 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // --- Address book file path ---
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -52,7 +54,19 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setAddressBookFilePath(Path propertyBookFilePath);
+
+    // --- Property book file path ---
+
+    /**
+     * Returns the user prefs' property book file path.
+     */
+    Path getPropertyBookFilePath();
+
+    /**
+     * Sets the user prefs' property book file path.
+     */
+    void setPropertyBookFilePath(Path propertyBookFilePath);
 
     //=========== AddressBook ================================================================================
 
