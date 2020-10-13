@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -37,8 +39,8 @@ class JsonAdaptedModule {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedModule(Module source) {
-        name = source.getName();
-        zoomLink = source.getLink();
+        name = source.getName().fullName;
+        zoomLink = source.getLink().value;
         //tagging temporarily removed
         /*tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -57,9 +59,21 @@ class JsonAdaptedModule {
         }*/
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleName.class.getSimpleName()));
         }
-
+        if (!ModuleName.isValidName(name)) {
+            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
+        final ModuleName modelName = new ModuleName(name);
+        if (zoomLink == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ZoomLink.class.getSimpleName()));
+        }
+        if (!ZoomLink.isValidZoomLink(zoomLink)) {
+            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
+        final ZoomLink modelLink = new ZoomLink(zoomLink);
         //email and tagging removed temporarily
         /*if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -70,7 +84,7 @@ class JsonAdaptedModule {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);*/
-        return new Module(name, zoomLink);
+        return new Module(modelName, modelLink);
     }
 
 }
