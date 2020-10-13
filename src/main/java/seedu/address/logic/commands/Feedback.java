@@ -4,12 +4,14 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 
 public class Feedback {
 
     private Boolean isCorrect;
     private String body;
     private Question question;
+    private Statistics statistics;
 
     public Feedback(String body) {
         this.body = body;
@@ -21,6 +23,14 @@ public class Feedback {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public void setStatistics(Statistics statistics) {
+        this.statistics = statistics;
+    }
+
+    public Optional<Statistics> getStatistics() {
+        return Optional.ofNullable(statistics);
     }
 
     public Optional<String> getBody() {

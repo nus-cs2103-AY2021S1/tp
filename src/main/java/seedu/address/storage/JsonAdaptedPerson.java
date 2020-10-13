@@ -17,11 +17,8 @@ import seedu.address.flashcard.Flashcard;
 import seedu.address.flashcard.MultipleChoiceQuestion;
 import seedu.address.flashcard.OpenEndedQuestion;
 import seedu.address.flashcard.Question;
+import seedu.address.flashcard.Statistics;
 import seedu.address.flashcard.Tag;
-
-//import java.util.HashSet;
-//import java.util.Set;
-//import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Flashcard}.
@@ -36,8 +33,7 @@ class JsonAdaptedPerson {
     private final List<String> choices;
     private final String answer;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final Integer timesTested;
-    private final Integer timesTestedCorrect;
+    private final Statistics statistics;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -48,8 +44,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("choices") List<String> choices,
                              @JsonProperty("answer") String answer,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("timesTested") int timesTested,
-                             @JsonProperty("timesTestedCorrect") int timesTestedCorrect) {
+                             @JsonProperty("statistics") Statistics statistics) {
         this.type = type;
         this.question = question;
         this.choices = choices;
@@ -57,8 +52,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.timesTested = timesTested;
-        this.timesTestedCorrect = timesTestedCorrect;
+        this.statistics = statistics;
     }
 
     /**
@@ -82,8 +76,7 @@ class JsonAdaptedPerson {
         answer = source.getAnswer().getValue();
         tagged.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
 
-        this.timesTested = source.getTimesTested();
-        this.timesTestedCorrect = source.getTimesTestedCorrect();
+        this.statistics = source.getStatistics();
 
     }
 
@@ -128,23 +121,16 @@ class JsonAdaptedPerson {
             }
             final Answer modelAnswer = new Answer(answer);
 
-            if (timesTested == null) {
+            if (statistics == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
             }
 
-            final int modelTimesTested = timesTested;
-
-            if (timesTestedCorrect == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
-            }
-
-            final int modelTimesTestedCorrect = timesTestedCorrect;
+            final Statistics modelStatistics = statistics;
 
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
-            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelTimesTested, modelTimesTestedCorrect);
+            return new Flashcard(modelQuestion, modelAnswer, modelTags, statistics);
 
         } else if (type.equals(OpenEndedQuestion.TYPE)) {
 
@@ -167,23 +153,16 @@ class JsonAdaptedPerson {
             }
             final Answer modelAnswer = new Answer(answer);
 
-            if (timesTested == null) {
+            if (statistics == null) {
                 throw new IllegalValueException(
                         String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
             }
 
-            final int modelTimesTested = timesTested;
-
-            if (timesTestedCorrect == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
-            }
-
-            final int modelTimesTestedCorrect = timesTestedCorrect;
+            final Statistics modelStatistics = statistics;
 
             final Set<Tag> modelTags = new HashSet<>(flashcardTags);
 
-            return new Flashcard(modelQuestion, modelAnswer, modelTags, modelTimesTested, modelTimesTestedCorrect);
+            return new Flashcard(modelQuestion, modelAnswer, modelTags, statistics);
 
         } else {
             throw new IllegalValueException(String.format(INVALID_TYPE));

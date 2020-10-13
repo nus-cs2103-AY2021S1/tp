@@ -71,7 +71,7 @@ Format: `open INDEX`
 
 * Opens the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `open 2` opens the 2nd flashcard in the list.
@@ -113,7 +113,7 @@ Format: `test INDEX ans/ANSWER`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
+* The index **must be a positive integer**  1, 2, 3, …
 * The `ANSWER` is case-insensitive.
 
 Examples:
@@ -125,38 +125,34 @@ Format: `test INDEX o/OPTION`
 
 * Tests the flashcard at the specified `INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …​
+* The index **must be a positive integer**  1, 2, 3, …
 * `CHOICE`(s) are displayed in the displayed choices list of the flashcard after `open INDEX` command is performed.
 * The `OPTION` refers to the index number of the specified `CHOICE`.
-* The `OPTION` **must be a positive integer** 1, 2, 3, …​
+* The `OPTION` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
+
+### Displaying statistics for a Flashcard: `stats`
+
+Shows the Bar Chart for a specified Flashcard in the list.
+
+Statistics include:
+
+* The number of times the user answers the question associated with the flashcard correctly.
+* The number of times the user attempted the question associated with the flashcard.
+
+Format: `stats INDEX`
+
+* Displays the statistics of a flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
-
-### Deleting a flashcard : `delete`
-
-Deletes the specified flashcard from the list.
-
-Format: `delete INDEX`
-
-* Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd flashcard in the list.
-
-### Clearing all entries : `clear`
-
-Clears all entries from QuickCache.
-
-Format: `clear`
 
 ### Finding Flashcards by their tags: `find`
 
@@ -167,6 +163,25 @@ Format: `find KEYWORDS`
 * Keywords should be seperated by a whitespace between
 
 Example: `find CS2100 MCQ` where `CS2100` and `MCQ` are keywords.
+
+### Deleting a flashcard : `delete`
+
+Deletes the specified flashcard from the list.
+
+Format: `delete INDEX`
+
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd flashcard in the list.
+
+### Clearing all entries : `clear`
+
+Clears all entries from QuickCache.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 

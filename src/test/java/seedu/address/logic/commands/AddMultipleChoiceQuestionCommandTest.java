@@ -34,7 +34,7 @@ public class AddMultipleChoiceQuestionCommandTest {
     public void execute_flashcardAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingFlashcardAdded modelStub = new ModelStubAcceptingFlashcardAdded();
         String[] choices = {"First, Second, Third, Fourth"};
-        Flashcard validFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Alice", choices)
+        Flashcard validFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Sample Question", choices)
                 .withAnswer("2").build();
 
         CommandResult commandResult = new AddMultipleChoiceQuestionCommand(validFlashcard).execute(modelStub);
@@ -47,7 +47,7 @@ public class AddMultipleChoiceQuestionCommandTest {
     @Test
     public void execute_duplicateFlashcard_throwsCommandException() {
         String[] choices = {"First, Second, Third, Fourth"};
-        Flashcard validFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Alice", choices)
+        Flashcard validFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("Sample Question", choices)
                 .withAnswer("2").build();
 
         AddMultipleChoiceQuestionCommand addMultipleChoiceQuestionCommand =
@@ -61,9 +61,9 @@ public class AddMultipleChoiceQuestionCommandTest {
     @Test
     public void equals() {
         String[] choices = {"First, Second, Third, Fourth"};
-        Flashcard first = new FlashcardBuilder().withMultipleChoiceQuestion("Alice", choices)
+        Flashcard first = new FlashcardBuilder().withMultipleChoiceQuestion("Sample one", choices)
                 .withAnswer("2").build();
-        Flashcard second = new FlashcardBuilder().withMultipleChoiceQuestion("Bob", choices)
+        Flashcard second = new FlashcardBuilder().withMultipleChoiceQuestion("Sample two", choices)
                 .withAnswer("2").build();
         AddMultipleChoiceQuestionCommand addAliceCommand = new AddMultipleChoiceQuestionCommand(first);
         AddMultipleChoiceQuestionCommand addBobCommand = new AddMultipleChoiceQuestionCommand(second);
