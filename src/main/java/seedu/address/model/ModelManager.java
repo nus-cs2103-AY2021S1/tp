@@ -15,6 +15,7 @@ import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
+import seedu.address.model.id.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -25,7 +26,7 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
 /**
  * Represents the in-memory model of the address book data.
  */
-public class ModelManager implements Model, SellerModel, BidderModel {
+public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final BidBook bidBook;
@@ -227,9 +228,19 @@ public class ModelManager implements Model, SellerModel, BidderModel {
     }
 
     @Override
+    public void deletePropertyByPropertyId(Id id) {
+        propertyBook.removePropertyByPropertyId(id);
+    }
+
+    @Override
     public void addProperty(Property property) {
         propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public Property getPropertyById(Id id) {
+        return propertyBook.getPropertyById(id);
     }
 
     @Override
