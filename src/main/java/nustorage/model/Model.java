@@ -56,16 +56,7 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
 
-    // <<<<<<< HEAD
-    //     // ---------- AddressBook ----------
-    //
-    // =======
-    //     void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord);
-    //
-    //     Optional<FinanceRecord> deleteFinanceRecord(Index targetIndex);
-    //
-    //     void addInventoryRecord(InventoryRecord inventoryRecord);
-    // >>>>>>> ba85e094c7db7ddb7b4601fc17379125a0c3bc68
+    // ---------- AddressBook ----------
 
 
     void deleteInventoryRecord(InventoryRecord target);
