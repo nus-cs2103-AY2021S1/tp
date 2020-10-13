@@ -58,7 +58,7 @@ public class AddIngredientCommandParserTest {
                 AddIngredientCommand.MESSAGE_USAGE));
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DE origSC_BOB
                         + INGREDIENT_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIngredientCommand.MESSAGE_USAGE));
