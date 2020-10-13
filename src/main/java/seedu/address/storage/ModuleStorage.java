@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -20,10 +19,4 @@ public interface ModuleStorage {
     void saveModuleList(ReadOnlyModuleList moduleList) throws IOException;
 
     void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException;
-=======
-import java.nio.file.Path;
-
-public interface ModuleStorage {
-    Path getModuleFilePath();
->>>>>>> origin/module-storage
 }

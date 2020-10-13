@@ -59,14 +59,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-<<<<<<< HEAD
         ModuleStorage moduleStorage = new JsonModuleStorage(userPrefs.getModuleListFilePath());
-=======
-<<<<<<< HEAD
-        ModuleStorage moduleStorage = new JsonModuleStorage(userPrefs.getModuleFilePath());
-=======
->>>>>>> ce6bf76... Add Module Storage classes
->>>>>>> origin/module-storage
 
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
