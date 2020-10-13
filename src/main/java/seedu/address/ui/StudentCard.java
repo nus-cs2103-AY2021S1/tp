@@ -65,8 +65,8 @@ public class StudentCard extends UiPart<Region> {
         venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
         time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
         fee.setText("Fee: " + student.getAdmin().getFee().toString());
-        payment.setText("Last Paid Date: " + student.getAdmin().getPaymentDate().toString());
-        details.setText("Details: " + student.getAdmin().getDetails().toString());
+        payment.setText("Last Payment Date: " + student.getAdmin().getPaymentDate().toString());
+        details.setText("Additional Details: \n" + student.getAdmin().getFormattedDetails());
         questions.setText("Questions:\n" + student.getQuestions()
                 .stream()
                 .map(Question::toString)

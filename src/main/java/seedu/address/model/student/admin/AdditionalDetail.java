@@ -48,7 +48,6 @@ public class AdditionalDetail {
      * Format state as text for viewing.
      */
     public String toString() {
-        return "[" + detail + "] ";
+        return detail;
     }
-
 }
