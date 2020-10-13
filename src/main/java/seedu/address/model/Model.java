@@ -195,4 +195,6 @@ public interface Model extends BidderModel, SellerModel {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate);
+
+
 }

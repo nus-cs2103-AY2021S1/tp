@@ -69,6 +69,7 @@ public interface Logic {
     ObservableList<Bid> getFilteredBidList();
 
 
+    // ================ Meeting =================
     ReadOnlyMeetingManager getMeetingManager();
 
     ObservableList<CalendarMeeting> getFilteredMeetingList();

@@ -61,6 +61,7 @@ public class LogicManager implements Logic {
             storage.saveBidBook(model.getBidBook());
             storage.saveBidderAddressBook(model.getBidderAddressBook());
             storage.saveSellerAddressBook(model.getSellerAddressBook());
+            storage.saveMeetingBook(model.getMeetingManager());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -138,7 +139,7 @@ public class LogicManager implements Logic {
         return model.getSellerAddressBookFilePath();
     }
 
-    // ===================== PROPERTY =====================
+    // ===================== Meeting =====================
 
     @Override
     public ReadOnlyMeetingManager getMeetingManager() {
@@ -149,6 +150,7 @@ public class LogicManager implements Logic {
     public ObservableList<CalendarMeeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
     }
+
     @Override
     public ReadOnlyPropertyBook getPropertyBook() {
         return model.getPropertyBook();

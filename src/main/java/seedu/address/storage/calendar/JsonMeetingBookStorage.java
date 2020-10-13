@@ -12,17 +12,15 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyBidBook;
 import seedu.address.model.ReadOnlyMeetingManager;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonSerializableAddressBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access MeetingBook data stored as a json file on the hard disk.
  */
 public class JsonMeetingBookStorage implements MeetingBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonMeetingBookStorage.class);
 
     private Path filePath;
 
@@ -43,15 +41,13 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
     public Optional<ReadOnlyMeetingManager> readMeetingBook(Path filePath)
     throws DataConversionException, IOException {
         requireNonNull(filePath);
-
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        Optional<JsonSerializableMeetingBook> jsonMeetingBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableMeetingBook.class);
+        if (!jsonMeetingBook.isPresent()) {
             return Optional.empty();
         }
-
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMeetingBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,11 +56,14 @@ public class JsonMeetingBookStorage implements MeetingBookStorage {
 
     @Override
     public void saveMeetingBook(ReadOnlyMeetingManager meetingManager) throws IOException {
-
+        saveMeetingBook(meetingManager, filePath);
     }
 
     @Override
-    public void saveMeetingManager(ReadOnlyMeetingManager meetingManager, Path filePath) throws IOException {
-
+    public void saveMeetingBook(ReadOnlyMeetingManager meetingManager, Path filePath) throws IOException {
+        requireNonNull(meetingManager);
+        requireNonNull(filePath);
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMeetingBook(meetingManager), filePath);
     }
 }
