@@ -25,44 +25,44 @@ import seedu.address.testutil.EditExpenseDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_DESCRIPTION_AMY = "Amy Bee";
-    public static final String VALID_DESCRIPTION_BOB = "Bob Choo";
-    public static final String VALID_AMOUNT_AMY = "11";
-    public static final String VALID_AMOUNT_BOB = "22.00";
-    public static final String VALID_DATE_AMY = "04-10-2020";
-    public static final String VALID_DATE_BOB = "09-11-2020";
-    public static final String VALID_REMARK_AMY = "Like skiing.";
-    public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_FOOD = "Caifan lunch";
+    public static final String VALID_DESCRIPTION_BUS = "Coach ride to Malacca";
+    public static final String VALID_AMOUNT_FOOD = "3.80";
+    public static final String VALID_AMOUNT_BUS = "63";
+    public static final String VALID_DATE_FOOD = "04-10-2020";
+    public static final String VALID_DATE_BUS = "09-11-2020";
+    public static final String VALID_REMARK_FOOD = "The usual: Steamed egg, ladies finger, sweet n sour pork.";
+    public static final String VALID_REMARK_BUS = "We're going on a trip??";
+    public static final String VALID_TAG_FOOD = "Food";
+    public static final String VALID_TAG_TRANSPORT = "Transport";
 
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String AMOUNT_DESC_AMY = " " + PREFIX_AMOUNT + VALID_AMOUNT_AMY;
-    public static final String AMOUNT_DESC_BOB = " " + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
-    public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
-    public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String DESCRIPTION_DESC_FOOD = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_FOOD;
+    public static final String DESCRIPTION_DESC_BUS = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BUS;
+    public static final String AMOUNT_DESC_FOOD = " " + PREFIX_AMOUNT + VALID_AMOUNT_FOOD;
+    public static final String AMOUNT_DESC_BUS = " " + PREFIX_AMOUNT + VALID_AMOUNT_BUS;
+    public static final String DATE_DESC_FOOD = " " + PREFIX_DATE + VALID_DATE_FOOD;
+    public static final String DATE_DESC_BUS = " " + PREFIX_DATE + VALID_DATE_BUS;
+    public static final String TAG_DESC_FOOD = " " + PREFIX_TAG + VALID_TAG_FOOD;
+    public static final String TAG_DESC_TRANSPORT = " " + PREFIX_TAG + VALID_TAG_TRANSPORT;
 
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " "; // empty string not allowed
     public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "11a"; // 'a' not allowed in phones
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "24 Jun 2020"; // not in dd-MM-yyyy format
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "friend*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditExpenseDescriptor DESC_AMY;
-    public static final EditCommand.EditExpenseDescriptor DESC_BOB;
+    public static final EditCommand.EditExpenseDescriptor DESC_FOOD;
+    public static final EditCommand.EditExpenseDescriptor DESC_BUS;
 
     static {
-        DESC_AMY = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY)
-                .withAmount(VALID_AMOUNT_AMY).withDate(VALID_DATE_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB)
-                .withAmount(VALID_AMOUNT_BOB).withDate(VALID_DATE_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_FOOD = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_FOOD)
+                .withAmount(VALID_AMOUNT_FOOD).withDate(VALID_DATE_FOOD)
+                .withTags(VALID_TAG_FOOD).build();
+        DESC_BUS = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_BUS)
+                .withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_BUS)
+                .withTags(VALID_TAG_TRANSPORT, VALID_TAG_FOOD).build();
     }
 
     /**

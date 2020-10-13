@@ -1,6 +1,6 @@
 {
   "expenses": [ {
-    "description": "Expense with invalid name field: Ha!ns Mu@ster",
+    "description": "Expense with invalid Description field: Ha!ns R@star#unt",
     "amount": "3.00",
     "date": "04-10-2020"
   } ],

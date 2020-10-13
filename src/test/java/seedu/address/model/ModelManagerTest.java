@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalExpenses.ALICE;
-import static seedu.address.testutil.TypicalExpenses.BENSON;
+import static seedu.address.testutil.TypicalExpenses.FEL_BDAY;
+import static seedu.address.testutil.TypicalExpenses.GRAB_HOME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasExpense_expenseNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasExpense(ALICE));
+        assertFalse(modelManager.hasExpense(FEL_BDAY));
     }
 
     @Test
     public void hasExpense_expenseInAddressBook_returnsTrue() {
-        modelManager.addExpense(ALICE);
-        assertTrue(modelManager.hasExpense(ALICE));
+        modelManager.addExpense(FEL_BDAY);
+        assertTrue(modelManager.hasExpense(FEL_BDAY));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withExpense(ALICE).withExpense(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withExpense(FEL_BDAY).withExpense(GRAB_HOME).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getDescription().fullDescription.split("\\s+");
+        String[] keywords = FEL_BDAY.getDescription().fullDescription.split("\\s+");
         modelManager.updateFilteredExpenseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 

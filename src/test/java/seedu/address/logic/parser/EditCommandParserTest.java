@@ -1,24 +1,24 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_BUS;
+import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BUS;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_FOOD;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_TRANSPORT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_BUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -49,7 +49,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_DESCRIPTION_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_DESCRIPTION_FOOD, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -61,10 +61,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + DESCRIPTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + DESCRIPTION_DESC_FOOD, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + DESCRIPTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + DESCRIPTION_DESC_FOOD, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -81,33 +81,33 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC + DATE_DESC_AMY, Amount.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC + DATE_DESC_FOOD, Amount.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + AMOUNT_DESC_BOB + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + AMOUNT_DESC_BUS + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Expense} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_TRANSPORT + TAG_DESC_FOOD + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_TRANSPORT + TAG_EMPTY + TAG_DESC_FOOD, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_TRANSPORT + TAG_DESC_FOOD, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser,
-                "1" + INVALID_DESCRIPTION_DESC + INVALID_DATE_DESC + VALID_AMOUNT_AMY,
+                "1" + INVALID_DESCRIPTION_DESC + INVALID_DATE_DESC + VALID_AMOUNT_FOOD,
                 Description.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EXPENSE;
-        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_BOB + TAG_DESC_HUSBAND
-                + DATE_DESC_AMY + DESCRIPTION_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_BUS + TAG_DESC_FOOD
+                + DATE_DESC_FOOD + DESCRIPTION_DESC_FOOD + TAG_DESC_TRANSPORT;
 
-        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY)
-                .withAmount(VALID_AMOUNT_BOB).withDate(VALID_DATE_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_FOOD)
+                .withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_FOOD)
+                .withTags(VALID_TAG_TRANSPORT, VALID_TAG_FOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -116,10 +116,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_EXPENSE;
-        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_BOB + DATE_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_BUS + DATE_DESC_FOOD;
 
-        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BOB)
-                .withDate(VALID_DATE_AMY).build();
+        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BUS)
+                .withDate(VALID_DATE_FOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -128,27 +128,27 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_EXPENSE;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_FOOD;
         EditExpenseDescriptor descriptor =
-                new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_AMY).build();
+                new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_FOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
-        userInput = targetIndex.getOneBased() + AMOUNT_DESC_AMY;
-        descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_AMY).build();
+        userInput = targetIndex.getOneBased() + AMOUNT_DESC_FOOD;
+        descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_FOOD).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
-        descriptor = new EditExpenseDescriptorBuilder().withDate(VALID_DATE_AMY).build();
+        userInput = targetIndex.getOneBased() + DATE_DESC_FOOD;
+        descriptor = new EditExpenseDescriptorBuilder().withDate(VALID_DATE_FOOD).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditExpenseDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_TRANSPORT;
+        descriptor = new EditExpenseDescriptorBuilder().withTags(VALID_TAG_TRANSPORT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -156,12 +156,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EXPENSE;
-        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_AMY + DATE_DESC_AMY
-                + TAG_DESC_FRIEND + AMOUNT_DESC_AMY + DATE_DESC_AMY + TAG_DESC_FRIEND
-                + AMOUNT_DESC_BOB + DATE_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_FOOD + DATE_DESC_FOOD
+                + TAG_DESC_TRANSPORT + AMOUNT_DESC_FOOD + DATE_DESC_FOOD + TAG_DESC_TRANSPORT
+                + AMOUNT_DESC_BUS + DATE_DESC_BUS + TAG_DESC_FOOD;
 
-        EditCommand.EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BOB)
-                .withDate(VALID_DATE_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        EditCommand.EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BUS)
+                .withDate(VALID_DATE_BUS).withTags(VALID_TAG_FOOD, VALID_TAG_TRANSPORT)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -172,15 +172,15 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_EXPENSE;
-        String userInput = targetIndex.getOneBased() + INVALID_AMOUNT_DESC + AMOUNT_DESC_BOB;
-        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BOB).build();
+        String userInput = targetIndex.getOneBased() + INVALID_AMOUNT_DESC + AMOUNT_DESC_BUS;
+        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BUS).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + DATE_DESC_BOB + INVALID_AMOUNT_DESC
-                + AMOUNT_DESC_BOB;
-        descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BOB).withDate(VALID_DATE_BOB)
+        userInput = targetIndex.getOneBased() + DATE_DESC_BUS + INVALID_AMOUNT_DESC
+                + AMOUNT_DESC_BUS;
+        descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_BUS)
                 .build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
