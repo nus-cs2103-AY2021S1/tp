@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a task to the PlaNUS task list.
+ * Adds a task to the PlaNus task list.
  */
 public class AddCommand extends Command {
 
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in PlaNUS.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in PlaNus.";
 
     private final Task toAdd;
 
