@@ -19,7 +19,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the assignment identified by the index number used in the displayed assignment list.\n"
-            + "Parameters: INDEX (must be a positive integer and not greater than the size of the current assignment list)\n"
+            + "Parameters: INDEX (must be a positive integer and not greater than the size of the current "
+            + "assignment list)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment: %1$s";
