@@ -1,11 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.UpdateExerciseCommand.EditExerciseDescriptor;
+import seedu.address.model.exercise.Calories;
+import seedu.address.model.exercise.Date;
+import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.Description;
-import seedu.address.model.exercise.Date;
-import seedu.address.model.exercise.Calories;
+
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

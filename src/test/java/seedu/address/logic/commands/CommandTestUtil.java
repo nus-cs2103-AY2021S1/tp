@@ -20,8 +20,8 @@ import seedu.address.model.ExerciseBook;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditExerciseDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -85,9 +85,11 @@ public class CommandTestUtil {
     static {
         // Calo
         DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
-                .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
+                .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
+                .withCalories(VALID_CALORIES_PUSH_UP).build();
         DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
-                .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP).withCalories(VALID_CALORIES_SIT_UP).build();
+                .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
+                .withCalories(VALID_CALORIES_SIT_UP).build();
 
 
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -174,7 +176,8 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(CommandForExercise command, ExerciseModel actualModel, String expectedMessage) {
+    public static void assertCommandFailure(CommandForExercise command,
+                                            ExerciseModel actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ExerciseBook expectedExerciseBook = new ExerciseBook(actualModel.getExerciseBook());

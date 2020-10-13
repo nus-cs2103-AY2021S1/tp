@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SIT_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_UP;
-
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExerciseAtIndex;
@@ -28,7 +28,8 @@ import seedu.address.testutil.EditExerciseDescriptorBuilder;
 import seedu.address.testutil.ExerciseBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for UpdateExerciseCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+ * and unit tests for UpdateExerciseCommand.
  */
 class UpdateExerciseCommandTest {
 
@@ -37,12 +38,14 @@ class UpdateExerciseCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Exercise editedExercise = new ExerciseBuilder().build();
-        UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(editedExercise).build();
+        UpdateExerciseCommand.EditExerciseDescriptor descriptor =
+                new EditExerciseDescriptorBuilder(editedExercise).build();
         UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE, descriptor);
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+                                                            new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
@@ -57,13 +60,16 @@ class UpdateExerciseCommandTest {
         Exercise editedExercise = exerciseInList.withName(VALID_NAME_PUSH_UP).withDescription(VALID_DESCRIPTION_PUSH_UP)
                 .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
 
-        UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP).withDescription(VALID_DESCRIPTION_PUSH_UP)
+        UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder()
+                                                                        .withName(VALID_NAME_PUSH_UP)
+                                                                        .withDescription(VALID_DESCRIPTION_PUSH_UP)
                 .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
         UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+                                                                new UserPrefs());
 
         expectedModel.setExercise(lastExercise, editedExercise);
 
@@ -72,12 +78,14 @@ class UpdateExerciseCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE, new UpdateExerciseCommand.EditExerciseDescriptor());
+        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE,
+                                                        new UpdateExerciseCommand.EditExerciseDescriptor());
         Exercise editedExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+                                                                new UserPrefs());
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
     }
@@ -93,32 +101,38 @@ class UpdateExerciseCommandTest {
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
 
-        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()), new UserPrefs());
+        ExerciseModel expectedModel = new ExerciseModelManager(new ExerciseBook(model.getExerciseBook()),
+                                                                new UserPrefs());
         expectedModel.setExercise(model.getFilteredExerciseList().get(0), editedExercise);
 
         assertCommandSuccess(updateExerciseCommand, model, expectedMessage, expectedModel);
     }
 
-//     NOTE: to agree on command failure -> class differences in asserts
-//    @Test
-//    public void execute_duplicateExerciseUnfilteredList_failure() {
-//        Exercise firstExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
-//        UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(firstExercise).build();
-//        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_SECOND_EXERCISE, descriptor);
-//
-//        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
-//    }
+    //     NOTE: to agree on command failure -> class differences in asserts
+    //    @Test
+    //    public void execute_duplicateExerciseUnfilteredList_failure() {
+    //        Exercise firstExercise = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
+    //        UpdateExerciseCommand.EditExerciseDescriptor descriptor =
+    //                                                  new EditExerciseDescriptorBuilder(firstExercise).build();
+    //        UpdateExerciseCommand updateExerciseCommand =
+    //          new UpdateExerciseCommand(INDEX_SECOND_EXERCISE, descriptor);
+    //
+    //        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
+    //    }
 
-//    @Test
-//    public void execute_duplicatePersonFilteredList_failure() {
-//        showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
-//
-//        // edit exercise in filtered list into a duplicate in exercise book
-//        Exercise exerciseInList = model.getExerciseBook().getExerciseList().get(INDEX_SECOND_EXERCISE.getZeroBased());
-//        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE, new EditExerciseDescriptorBuilder(exerciseInList).build());
-//
-//        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
-//    }
+    //    @Test
+    //    public void execute_duplicatePersonFilteredList_failure() {
+    //        showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
+    //
+    //        // edit exercise in filtered list into a duplicate in exercise book
+    //        Exercise exerciseInList = model.getExerciseBook().
+    //                                        getExerciseList().get(INDEX_SECOND_EXERCISE.getZeroBased());
+    //        UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE,
+    //                                                          new EditExerciseDescriptorBuilder(exerciseInList)
+    //                                                          .build());
+    //
+    //        assertCommandFailure(updateExerciseCommand, model, UpdateExerciseCommand.MESSAGE_DUPLICATE_EXERCISE);
+    //    }
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
@@ -143,7 +157,8 @@ class UpdateExerciseCommandTest {
         final UpdateExerciseCommand standardCommand = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE, DESC_PUSH_UP);
 
         // same values -> returns true
-        UpdateExerciseCommand.EditExerciseDescriptor copyDescriptor = new UpdateExerciseCommand.EditExerciseDescriptor(DESC_PUSH_UP);
+        UpdateExerciseCommand.EditExerciseDescriptor copyDescriptor =
+                new UpdateExerciseCommand.EditExerciseDescriptor(DESC_PUSH_UP);
         UpdateExerciseCommand commandWithSameValues = new UpdateExerciseCommand(INDEX_FIRST_EXERCISE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
