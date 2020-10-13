@@ -82,6 +82,9 @@ public class Project {
     public boolean addTask(Task task) {
         return tasks.add(task);
     }
+    public boolean deleteTask(Task task) {
+        return tasks.remove(task);
+    }
     public void updateTaskFilter(Predicate<Task> predicate) {
         this.taskFilter = predicate;
     }
