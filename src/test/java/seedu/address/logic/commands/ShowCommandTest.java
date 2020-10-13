@@ -59,7 +59,7 @@ public class ShowCommandTest {
     }
 
     @Test
-    public void execute_validTagName_throwsCommandException() {
+    public void execute_validTagName_showTagFileSuccess() {
         Tag tagToBeShown = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
         TagNameEqualsKeywordPredicate predicate = new TagNameEqualsKeywordPredicate(tagToBeShown.getTagName());
         ShowCommand showCommand = new ShowCommand(predicate);
