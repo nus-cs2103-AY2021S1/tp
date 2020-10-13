@@ -42,6 +42,8 @@ public class StaffCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private FlowPane comments;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane leaves;
@@ -64,6 +66,9 @@ public class StaffCard extends UiPart<Region> {
         staff.getLeaves().stream()
                 .sorted(Comparator.comparing(leave -> leave.startDate))
                 .forEach(leave -> leaves.getChildren().add(leaveToDisplay(leave)));
+        staff.getComments().stream()
+                .forEach(comment -> comments.getChildren()
+                        .add(new Label(comment.toString())));
     }
 
     private Label leaveToDisplay(Leave leave) {
