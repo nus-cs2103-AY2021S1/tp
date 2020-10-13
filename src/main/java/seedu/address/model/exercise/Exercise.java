@@ -8,6 +8,7 @@ public class Exercise {
     // identity field
     private final Name name;
     private final Date date;
+
     // data field
     private final Description description;
     private final Calories calories;
@@ -67,6 +68,7 @@ public class Exercise {
         if (!(other instanceof Exercise)) {
             return false;
         }
+
         Exercise otherExercise = (Exercise) other;
 
         return otherExercise.getName().equals(getName())

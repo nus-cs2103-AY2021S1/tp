@@ -9,7 +9,6 @@ import java.time.format.DateTimeParseException;
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format of DD-MM-YYYY";
-
     public final String value;
 
     /**

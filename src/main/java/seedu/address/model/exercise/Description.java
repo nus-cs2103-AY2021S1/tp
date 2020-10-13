@@ -7,7 +7,7 @@ public class Description {
             "the description should not be blank";
 
     public final String value;
-
+    
     /**
      * Constructs a {@code Description}.
      * @param description A valid name.
