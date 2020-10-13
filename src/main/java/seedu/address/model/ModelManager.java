@@ -21,6 +21,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    // private final ModuleList moduleList;
     private final FilteredList<Person> filteredPersons;
 
     /**
