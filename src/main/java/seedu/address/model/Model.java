@@ -104,7 +104,7 @@ public interface Model {
 
     /**
      * Removes the module with the given {@code moduleCode}.
-     * Module with the {@code targetModuleCode} must exist in the address book.
+     * Module with the {@code moduleCode} must exist in the address book.
      */
     void deleteModule(ModuleCode moduleCode);
 
