@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 // import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -51,15 +52,12 @@ public class JsonModuleListStorage implements ModuleListStorage {
         if (!jsonModuleList.isPresent()) {
             return Optional.empty();
         }
-        //temp only until return null error is resolved
-        return Optional.empty();
-        //return null;
-        // try {
-        //    return Optional.of(jsonAddressBook.get().toModelType());
-        // } catch (IllegalValueException ive) {
-        //     logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-        //    throw new DataConversionException(ive);
-        // }
+        try {
+            return Optional.of(jsonModuleList.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override

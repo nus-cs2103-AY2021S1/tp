@@ -51,10 +51,10 @@ class JsonSerializableModuleList {
         ModuleList moduleList = new ModuleList();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            // if (moduleList.hasPerson(person)) {
-            //     throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            // }
-            // moduleList.addPerson(person);
+            if (moduleList.hasModule(module)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
+            }
+            moduleList.addModule(module);
         }
         return moduleList;
     }

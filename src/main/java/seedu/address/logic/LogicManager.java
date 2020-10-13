@@ -45,12 +45,7 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
-            storage.saveModuleList(new ReadOnlyModuleList() {
-                @Override
-                public ObservableList<Module> getModuleList() {
-                    return null;
-                }
-            });
+            storage.saveModuleList(model.getModuleList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

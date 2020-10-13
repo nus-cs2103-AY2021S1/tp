@@ -79,9 +79,11 @@ public class MainApp extends Application {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
+                initialData = new ModuleList();
             }
-            initialData = new ModuleList();
-            // initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = moduleListOptional.get();
+            //to be used when sample modulelist is created
+            //initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
