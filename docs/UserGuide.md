@@ -117,7 +117,7 @@ Format: `list`
 
 Update the food item details based on the index.
 
-Format: `update INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS]`
+Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS]`
 
 Examples: 
 
@@ -126,7 +126,7 @@ Examples:
 * Existing values will be updated to the input values.
 
 Examples:
-*  `update 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
+*  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
 
 ![update command example](images/CommandImagesForUG/Update.png)
 
@@ -186,7 +186,7 @@ Action     | Format, Examples
 -----------|------------------
 **Add**    | `add NAME [-p Proteins] [-f Fats] [-c carbs]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Update** | `update INDEX [-n NAME] [-p Proteins] [-f Fats] [-c carbs]`<br> e.g.,`update 2 -n Chicken Rice -p 30 -f 50 -c 60`
+**edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS]`<br> e.g.,`update 2 -n Chicken Rice -p 30 -f 50 -c 60`
 **List**   | `list`
 **Help**   | `help`
 **Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
