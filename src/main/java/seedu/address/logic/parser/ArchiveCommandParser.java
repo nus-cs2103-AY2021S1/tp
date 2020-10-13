@@ -29,12 +29,14 @@ public class ArchiveCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
         }
 
-        Path path = ParserUtil.parsePath(argMultimap.getValue(PREFIX_PATH).get());
+        String stringPath = argMultimap.getValue(PREFIX_PATH).get();
 
-        if (!path.endsWith(".json")) {
-            throw new ParseException("Specified Location should ends with '.json'."
+        if (!stringPath.endsWith("json")) {
+            throw new ParseException("Specified location should ends with '.json'."
                     + "Example: parentDirectory/filename.json");
         }
+
+        Path path = ParserUtil.parsePath(stringPath);
 
         return new ArchiveCommand(path);
     }
