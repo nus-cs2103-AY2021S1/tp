@@ -53,13 +53,13 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in PlaNUS.
+     * Returns true if a task with the same identity as {@code task} exists in PlaNus.
      */
     boolean hasTask(Task task);
 
     /**
      * Deletes the given task.
-     * The task must exist in PlaNUS.
+     * The task must exist in PlaNus.
      */
     void deleteTask(Task target);
 
