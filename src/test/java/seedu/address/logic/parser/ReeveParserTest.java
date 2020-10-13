@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OverdueCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
@@ -86,6 +87,15 @@ public class ReeveParserTest {
     }
 
     @Test
+    public void parseCommand_question() throws Exception {
+        String testQuestion = "How do birds fly?";
+        Question question = new Question(testQuestion);
+        QuestionCommand command = (QuestionCommand) parser.parseCommand(QuestionCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_QUESTION + testQuestion);
+        assertEquals(new AddQuestionCommand(INDEX_FIRST_PERSON, question), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -98,12 +108,9 @@ public class ReeveParserTest {
     }
 
     @Test
-    public void parseCommand_question() throws Exception {
-        String testQuestion = "How do birds fly?";
-        Question question = new Question(testQuestion);
-        QuestionCommand command = (QuestionCommand) parser.parseCommand(QuestionCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_QUESTION + testQuestion);
-        assertEquals(new AddQuestionCommand(INDEX_FIRST_PERSON, question), command);
+    public void parseCommand_unpaid() throws Exception {
+        assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD) instanceof OverdueCommand);
+        assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD + " 3") instanceof OverdueCommand);
     }
 
     @Test

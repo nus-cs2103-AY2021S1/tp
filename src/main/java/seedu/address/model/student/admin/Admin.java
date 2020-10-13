@@ -52,10 +52,6 @@ public class Admin {
         return details;
     }
 
-    public static Admin getPlaceholder() {
-        return placeholder;
-    }
-
     /**
      * Get additional details of student formatted for GUI use.
      * @return formatted additional details.
