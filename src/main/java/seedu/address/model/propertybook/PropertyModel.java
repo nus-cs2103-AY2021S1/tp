@@ -1,9 +1,10 @@
-package seedu.address.model.property;
+package seedu.address.model.propertybook;
 
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyPropertyBook;
+import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.id.Id;
 
 public interface PropertyModel {

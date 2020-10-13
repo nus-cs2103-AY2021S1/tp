@@ -8,7 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.property.PropertyModel;
+import seedu.address.model.propertybook.PropertyModel;
 
 
 /**

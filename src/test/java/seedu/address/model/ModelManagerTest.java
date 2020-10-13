@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.testutil.AddressBookBuilder;
 

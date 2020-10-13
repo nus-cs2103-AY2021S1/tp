@@ -13,7 +13,7 @@ import seedu.address.model.BidBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PropertyBook;
+import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;

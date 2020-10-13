@@ -36,7 +36,7 @@ public class IsRentalTest {
     @Test
     public void isValidIsRental() {
         // null isRental
-        assertThrows(NullPointerException.class, () -> new IsRental(null));
+        assertThrows(NullPointerException.class, () -> IsRental.isValidIsRental(null));
 
         // invalid isRental - not yes / no / y / n (caps insensitive)
         assertFalse(IsRental.isValidIsRental("abc"));

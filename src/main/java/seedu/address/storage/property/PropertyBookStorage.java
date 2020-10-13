@@ -5,10 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyPropertyBook;
+import seedu.address.model.propertybook.ReadOnlyPropertyBook;
+import seedu.address.model.propertybook.PropertyBook;
 
 /**
- * Represents a storage for {@link seedu.address.model.PropertyBook}.
+ * Represents a storage for {@link PropertyBook}.
  */
 public interface PropertyBookStorage {
 
