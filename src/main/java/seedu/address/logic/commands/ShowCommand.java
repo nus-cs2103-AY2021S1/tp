@@ -19,9 +19,9 @@ public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a tag's file address. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 ";
 
     public static final String MESSAGE_SUCCESS = "%s's file path: %s";
