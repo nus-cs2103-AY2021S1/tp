@@ -3,6 +3,7 @@ package com.eva.model.person.applicant;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
 import com.eva.testutil.ApplicantBuilder;
 
 public class ApplicantTest {
