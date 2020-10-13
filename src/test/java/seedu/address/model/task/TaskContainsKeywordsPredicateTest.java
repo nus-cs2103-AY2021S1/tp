@@ -55,9 +55,9 @@ public class TaskContainsKeywordsPredicateTest {
         predicate.setKeyword(PREFIX_DESCRIPTION, "League of Legends");
         assertTrue(predicate.test(new TaskBuilder().withTitle("Play").withDescription("League of Legends").build()));
 
-        // Fuzzy matched
+        // Multiple keywords with partial match
         predicate = new TaskContainsKeywordsPredicate();
-        predicate.setKeyword(PREFIX_DESCRIPTION, "Leguo of Legends");
+        predicate.setKeyword(PREFIX_DESCRIPTION, "eague of Le");
         assertTrue(predicate.test(new TaskBuilder().withDescription("League of Legends").build()));
 
         // Mixed-case keywords
