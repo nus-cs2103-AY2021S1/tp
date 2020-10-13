@@ -61,6 +61,12 @@ public class StorageManager implements Storage {
         return readRecipeBook(recipeBookStorage.getRecipeBookFilePath());
     }
 
+    /**
+     * Read and parse json file into recipe book.
+     *
+     * @param filePath relative path where the json file is saved.
+     * @see #getRecipeBookFilePath()
+     */
     @Override
     public Optional<ReadOnlyRecipeBook> readRecipeBook(Path filePath)
         throws DataConversionException, IOException {
@@ -80,7 +86,9 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * @param filePath
+     * Read and parse json file into ingredient book.
+     *
+     * @param filePath relative path where the json file is saved.
      * @see #getIngredientBookFilePath()
      */
     @Override
@@ -96,8 +104,10 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * @param ingredientBook
-     * @param filePath
+     * Write to ingredient book data file.
+     *
+     * @param ingredientBook the ingredient book to be written from.
+     * @param filePath the path where the data file is saved.
      * @see #saveIngredientBook(ReadOnlyIngredientBook)
      */
     @Override
@@ -112,9 +122,11 @@ public class StorageManager implements Storage {
     }
 
     /**
-     * @param recipeBook
-     * @param filePath
-     * @see #saveRecipeBook(ReadOnlyRecipeBook)
+     * Write to recipe book data file.
+     *
+     * @param recipeBook the ingredient book to be written from.
+     * @param filePath the path where the data file is saved.
+     * @see #saveIngredientBook(ReadOnlyIngredientBook)
      */
     @Override
     public void saveRecipeBook(ReadOnlyRecipeBook recipeBook, Path filePath) throws IOException {

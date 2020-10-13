@@ -43,7 +43,9 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
     }
 
     /**
-     * @param filePath
+     * Read and parse the json file to a serializable recipe book
+     *
+     * @param filePath the relative path where the json file of recipe book is saved.
      * @see #getRecipeBookFilePath()
      */
     @Override
@@ -76,8 +78,10 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
     }
 
     /**
-     * @param recipeBook
-     * @param filePath
+     * Updates the json file with the current state of recipe book.
+     *
+     * @param recipeBook updated recipe book.
+     * @param filePath relative path where the json file is at.
      * @see #saveRecipeBook(ReadOnlyRecipeBook)
      */
     @Override

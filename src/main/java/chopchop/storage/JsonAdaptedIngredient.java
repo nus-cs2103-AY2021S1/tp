@@ -6,8 +6,8 @@ import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Quantity;
-import chopchop.model.attributes.units.Count;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.util.Result;
 
 public class JsonAdaptedIngredient {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Ingredients's %s field is missing!";
@@ -65,7 +65,11 @@ public class JsonAdaptedIngredient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Quantity.class.getSimpleName()));
         }
+        Result<Quantity> qtyResult = Quantity.parse(qty);
+        if (qtyResult.isError()) {
+            throw new IllegalValueException(qtyResult.getError());
+        }
 
-        return new Ingredient(modelName, Count.of(Double.valueOf(qty)), modelExpiry);
+        return new Ingredient(modelName, qtyResult.getValue(), modelExpiry);
     }
 }

@@ -12,7 +12,7 @@ import chopchop.model.ingredient.ReadOnlyIngredientBook;
 
 public class JsonSerializableIngredientBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Ingredient list contains duplicate ingredient(s).";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "Ingredient list contains duplicate ingredient(s).";
 
     private final List<JsonAdaptedIngredient> inds = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class JsonSerializableIngredientBook {
         for (JsonAdaptedIngredient jsonAdaptedIngredient : inds) {
             Ingredient ind = jsonAdaptedIngredient.toModelType();
             if (indBook.hasIngredient(ind)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INGREDIENT);
             }
             indBook.addIngredient(ind);
         }

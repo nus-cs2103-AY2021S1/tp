@@ -77,8 +77,10 @@ public class JsonIngredientBookStorage implements IngredientBookStorage {
     }
 
     /**
-     * @param ingredientBook
-     * @param filePath
+     * Updates the json file with the current state of ingredient book.
+     *
+     * @param ingredientBook updated ingredient book.
+     * @param filePath relative path where the json file is at.
      * @see #saveIngredientBook(ReadOnlyIngredientBook)
      */
     @Override
