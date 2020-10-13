@@ -6,8 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalBidder.getTypicalBidderAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -16,10 +18,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.BidBook;
-import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.propertybook.PropertyBook;
 
@@ -36,7 +38,7 @@ public class DeleteCommandTest {
             new PropertyBook(),
             getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(),
-            new MeetingBook());
+            getTypicalMeetingAddressBook());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -46,7 +48,8 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
+                new PropertyBook(), model.getBidderAddressBook(),
+                model.getSellerAddressBook(), model.getMeetingManager());
         expectedModel.deletePerson(personToDelete);
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -118,5 +121,91 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+    // ---------------------------------MEETING----------------------------------
+
+    @Test
+    public void execute_validIndexUnfilteredMeetingList_success() {
+        CalendarMeeting meetingToDelete = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
+        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
+
+        String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+                new PropertyBook(), model.getBidderAddressBook(),
+                model.getSellerAddressBook(), model.getMeetingManager());
+        expectedModel.deleteMeeting(meetingToDelete);
+        assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredMeetingList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
+        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+    }
+
+    //    @Test
+    //    public void execute_validIndexFilteredMeetingList_success() {
+    //        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
+    //
+    //        CalendarMeeting meetingToDelete = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
+    //        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
+    //
+    //        String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS,
+    //        meetingToDelete);
+    //        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+    //                new PropertyBook(), model.getBidderAddressBook(),
+    //                model.getSellerAddressBook(), model.getMeetingManager());
+    //        expectedModel.deleteMeeting(meetingToDelete);
+    //        showNoMeeting(expectedModel);
+    //
+    //        assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
+    //    }
+
+    //    @Test
+    //    public void execute_invalidIndexFilteredMeetingList_throwsCommandException() {
+    //        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
+    //
+    //        Index outOfBoundIndex = INDEX_SECOND_MEETING;
+    //        // ensures that outOfBoundIndex is still in bounds of address book list
+    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getMeetingManager().getMeetingList().size());
+    //
+    //        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(outOfBoundIndex);
+    //
+    //        assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+    //    }
+
+    //    @Test
+    //    public void equalsMeeting() {
+    //        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    //        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+    //
+    //        // same object -> returns true
+    //        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+    //
+    //        // same values -> returns true
+    //        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+    //        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+    //
+    //        // different types -> returns false
+    //        assertFalse(deleteFirstCommand.equals(1));
+    //
+    //        // null -> returns false
+    //        assertFalse(deleteFirstCommand.equals(null));
+    //
+    //        // different person -> returns false
+    //        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    //    }
+
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    private void showNoMeeting(Model model) {
+        model.updateFilteredMeetingList(p -> false);
+
+        assertTrue(model.getFilteredMeetingList().isEmpty());
     }
 }
