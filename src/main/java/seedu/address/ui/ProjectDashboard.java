@@ -60,7 +60,7 @@ public class ProjectDashboard extends UiPart<Region> {
 
         projectDescription.setText("Project description: " + this.project.getProjectDescription().value);
         repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
-        this.project.getTasks().stream()
+        this.project.getFilteredTaskList().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         this.project.getTeammates().stream()
