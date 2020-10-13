@@ -132,7 +132,7 @@ class DelModCommandTest {
         }
 
         @Override
-        public void deleteMod(ModuleCode targetModuleCode) {
+        public void deleteModule(ModuleCode targetModuleCode) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
@@ -196,7 +196,7 @@ class DelModCommandTest {
         }
 
         @Override
-        public void deleteMod(ModuleCode targetModuleCode) {
+        public void deleteModule(ModuleCode targetModuleCode) {
             moduleList.removeModuleWithCode(targetModuleCode);
         }
 

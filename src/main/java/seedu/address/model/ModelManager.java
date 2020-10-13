@@ -120,7 +120,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteMod(ModuleCode targetCode) {
+    public void deleteModule(ModuleCode targetCode) {
         requireNonNull(targetCode);
         addressBook.removeModule(targetCode);
     }
