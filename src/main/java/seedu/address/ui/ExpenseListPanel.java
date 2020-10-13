@@ -20,6 +20,7 @@ public class ExpenseListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Expense> expenseListView;
+
     /**
      * Creates a {@code ExpenseListPanel} with the given {@code ObservableList}.
      */

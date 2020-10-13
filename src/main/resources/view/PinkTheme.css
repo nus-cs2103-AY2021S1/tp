@@ -41,7 +41,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Century Gothic";
-    -fx-font-size: 13pt;
+    -fx-font-size: 10pt;
     -fx-text-fill: black;
 }
 
@@ -58,3 +58,17 @@
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
+
+.header-label {
+    -fx-border-width: 8;
+    -fx-border-color: #f18c8e;
+    -fx-border-style: solid inside;
+    -fx-border-radius: 5;
+    -fx-background-color: #f18c8e;
+    -fx-effect: dropshadow(one-pass-box, rgba(128,128,128,0.5), 8, 0, 8, 0);
+    -fx-background-radius: 15 15 0 0;
+    -fx-text-fill: white;
+    -fx-font-size: 13pt;
+    -fx-font-family: "Lucida Sans Unicode";
+}
+

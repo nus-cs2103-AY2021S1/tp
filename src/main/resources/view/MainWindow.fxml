@@ -13,8 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Rectangle?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Common Cents - If you have it, use it." type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/cc_logo.png" />
@@ -66,9 +65,13 @@
 <!--          <StackPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS" />-->
 <!--        </VBox>-->
 
-        <HBox fx:id="entryListGridPlaceholder" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-              <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-              <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        <HBox fx:id="entryListGridPlaceholder" prefWidth="Infinity"
+              VBox.vgrow="ALWAYS" alignment="BASELINE_RIGHT" spacing="10" >
+              <padding>
+                <Insets bottom="5" right="10"/>
+              </padding>
+              <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS" prefWidth="80" />
+              <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS" prefWidth="80"/>
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"
