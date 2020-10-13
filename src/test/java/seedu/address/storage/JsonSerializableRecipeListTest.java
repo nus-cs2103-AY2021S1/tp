@@ -27,6 +27,7 @@ public class JsonSerializableRecipeListTest {
                 JsonSerializableRecipeList.class).get();
         RecipeList recipeListFromFile = dataFromFile.toModelType();
         RecipeList typicalRecipesRecipeList = TypicalRecipes.getTypicalRecipeList();
+
         assertEquals(recipeListFromFile, typicalRecipesRecipeList);
     }
 

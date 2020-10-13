@@ -27,6 +27,7 @@ public class JsonSerializableLocationListTest {
                 JsonSerializableLocationList.class).get();
         LocationList locationListFromFile = dataFromFile.toModelType();
         LocationList typicalLocationsLocationList = TypicalLocations.getTypicalLocationsList();
+
         assertEquals(locationListFromFile, typicalLocationsLocationList);
     }
 

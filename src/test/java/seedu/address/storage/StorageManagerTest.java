@@ -30,6 +30,7 @@ public class StorageManagerTest {
         JsonRecipeListStorage recipeListStorage = new JsonRecipeListStorage(getTempFilePath("ac"));
         JsonLocationListStorage locationListStorage = new JsonLocationListStorage(getTempFilePath("ad"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+
         storageManager = new StorageManager(itemListStorage, locationListStorage, recipeListStorage, userPrefsStorage);
     }
 

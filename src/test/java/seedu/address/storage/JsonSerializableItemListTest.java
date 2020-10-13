@@ -27,6 +27,7 @@ public class JsonSerializableItemListTest {
                 JsonSerializableItemList.class).get();
         ItemList itemListFromFile = dataFromFile.toModelType();
         ItemList typicalItemsItemList = TypicalItems.getTypicalItemList();
+
         assertEquals(itemListFromFile, typicalItemsItemList);
     }
 
