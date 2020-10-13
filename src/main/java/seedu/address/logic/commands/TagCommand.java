@@ -20,10 +20,10 @@ public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the HelleFile's address book. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
             + PREFIX_FILE_ADDRESS + "FILE_ADDRESS "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T ";
 
