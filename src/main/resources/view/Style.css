@@ -195,3 +195,24 @@
 #recipeGridView {
     -fx-background-color: white;
 }
+#textDisplay {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+#textDisplay .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+#textDisplay:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+#textDisplay:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+#textDisplay .content {
+    -fx-padding: 2px;
+    -fx-highlight-fill: #7ecfff;
+}
