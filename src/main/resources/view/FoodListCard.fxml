@@ -31,6 +31,7 @@
             <Label fx:id="carb" styleClass="cell_small_label" text="\$carbohydrate"/>
             <Label fx:id="fat" styleClass="cell_small_label" text="\$fat"/>
             <Label fx:id="totalCalories" styleClass="cell_small_label" text="\$totalCalories"/>
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date"/>
         </VBox>
     </GridPane>
 </HBox>

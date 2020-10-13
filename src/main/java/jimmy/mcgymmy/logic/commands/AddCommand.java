@@ -6,6 +6,7 @@ import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
+import jimmy.mcgymmy.model.date.Date;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
@@ -49,6 +50,13 @@ public class AddCommand extends Command {
             "10",
             ParserUtil::parseCarb
     );
+    private OptionalParameter<Date> dateParameter = this.addOptionalParameter(
+            "date",
+            "d",
+            "Date on which the food is consumed",
+            "20-04-2020",
+            ParserUtil::parseDate
+    );
     private OptionalParameter<Tag> tagParameter = this.addOptionalParameter(
             "tag",
             "t",
@@ -75,7 +83,8 @@ public class AddCommand extends Command {
         Protein newProtein = this.proteinParameter.getValue().orElse(new Protein(0));
         Fat newFat = this.fatParameter.getValue().orElse(new Fat(0));
         Carbohydrate newCarb = this.carbParameter.getValue().orElse(new Carbohydrate(0));
-        Food toAdd = new Food(newName, newProtein, newFat, newCarb);
+        Date newDate = this.dateParameter.getValue().orElse(Date.currentDate());
+        Food toAdd = new Food(newName, newProtein, newFat, newCarb, newDate);
 
         if (this.tagParameter.getValue().isPresent()) {
             Tag newTag = this.tagParameter.getValue().get();

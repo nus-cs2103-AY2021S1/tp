@@ -6,6 +6,7 @@ import java.util.Set;
 
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
+import jimmy.mcgymmy.model.date.Date;
 import jimmy.mcgymmy.model.tag.Tag;
 
 
@@ -26,13 +27,14 @@ public class Food {
     private final Protein protein;
     private final Carbohydrate carbs;
     private final Fat fat;
+    private final Date date;
     private final Set<Tag> tags = new HashSet<>();
 
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags, Date date) {
         CollectionUtil.requireAllNonNull(name, protein, carbs, fat);
         AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONSTRAINT);
         this.name = name;
@@ -40,6 +42,7 @@ public class Food {
         this.carbs = carbs;
         this.fat = fat;
         this.tags.addAll(tags);
+        this.date = date;
     }
 
     // Constructor for convenience
@@ -58,6 +61,17 @@ public class Food {
      */
     public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs) {
         this(name, protein, fat, carbs, new HashSet<Tag>());
+    }
+
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Date date) {
+        this(name, protein, fat, carbs, new HashSet<Tag>(), date);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
+        this(name, protein, fat, carbs, tags, Date.currentDate());
     }
 
     private boolean isValidName(String test) {
@@ -97,6 +111,10 @@ public class Food {
         tags.remove(tag);
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object other) {
         CollectionUtil.requireAllNonNull(protein, carbs, fat);
@@ -125,7 +143,8 @@ public class Food {
         return "Food:" + this.getName() + "\n"
                 + "protein: " + protein.getAmount() + "\n"
                 + "carbs: " + carbs.getAmount() + "\n"
-                + "fat: " + fat.getAmount() + "\n";
+                + "fat: " + fat.getAmount() + "\n"
+                + "date: " + date.toString() + "\n";
     }
 
 }
