@@ -151,7 +151,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        return modules.asUnmodifiableObservableList();
+        return filteredModules;
     }
 
     @Override
