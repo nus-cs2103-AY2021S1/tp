@@ -6,6 +6,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.lesson.Lesson;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+
+import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
+
 /**
  * An UI component that displays information of a {@code Lesson}.
  */
@@ -29,12 +37,10 @@ public class LessonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    //@FXML
+    //private Label moduleCode;
     @FXML
-    private Label deadline;
-    @FXML
-    private Label endTime;
-    @FXML
-    private Label moduleCode;
+    private Label time;
 
     /**
      * Creates a {@code LessonCode} with the given {@code Lesson} and index to display.
@@ -44,9 +50,14 @@ public class LessonCard extends UiPart<Region> {
         this.lesson = lesson;
         id.setText(displayedIndex + ". ");
         name.setText(lesson.getName().fullName);
-        deadline.setText("Start time: " + lesson.getTime().value);
-        endTime.setText("End time: " + lesson.getEndTime().value);
-        moduleCode.setText("Module: " + lesson.getModuleCode().moduleCode);
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                .withResolverStyle(ResolverStyle.STRICT);
+        String date = LocalDateTime.parse(lesson.getTime().value, inputFormat).toLocalDate().format(
+                DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        LocalTime startTime = LocalDateTime.parse(lesson.getTime().value, inputFormat).toLocalTime();
+        LocalTime endTime = LocalDateTime.parse(lesson.getEndTime().value, inputFormat).toLocalTime();
+        time.setText(date + " " + startTime + "-" + endTime);
+        //moduleCode.setText("Module: " + lesson.getModuleCode().moduleCode);
     }
 
     @Override

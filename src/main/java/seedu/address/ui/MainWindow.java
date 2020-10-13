@@ -32,8 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     //Independent Ui parts residing in this Ui container
     private AssignmentListPanel assignmentListPanel;
-    //private TaskListPanel taskListPanel;
-    private ReminderListPanel assignmentListPanel2;
+    private TaskListPanel taskListPanel;
+    private ReminderListPanel reminderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,7 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane assignmentListPanelPlaceholder;
 
     @FXML
-    private StackPane assignmentListPanelPlaceholder2;
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,12 +119,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
-        System.out.println(logic.getFilteredAssignmentList());
-        System.out.println(logic.getFilteredTaskList());
+        //System.out.println(logic.getFilteredAssignmentList());
+        //System.out.println(logic.getFilteredTaskList());
         assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
 
-        assignmentListPanel2 = new ReminderListPanel(logic.getFilteredAssignmentList());
-        assignmentListPanelPlaceholder2.getChildren().add(assignmentListPanel2.getRoot());
+        reminderListPanel = new ReminderListPanel(logic.getRemindedAssignmentList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
+
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -181,8 +184,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public ReminderListPanel getReminderListPanel() {
-        return assignmentListPanel2;
+        return reminderListPanel;
     }
+
+    public TaskListPanel getTaskListPanel() { return taskListPanel; }
 
     /**
      * Executes the command and returns the result.

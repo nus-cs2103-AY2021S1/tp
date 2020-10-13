@@ -188,6 +188,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public ObservableList<Task> getTaskList() {
+        tasks.getInternalList().clear();
+        tasks.getInternalList().addAll(assignments.getInternalList());
+        tasks.getInternalList().addAll(lessons.getInternalList());
         tasks.getInternalList().sort((firstTask, secondTask) -> {
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);

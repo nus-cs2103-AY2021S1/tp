@@ -18,7 +18,6 @@ public class JsonAdaptedTask {
     private final String name;
     private final String deadline;
     private final boolean isReminded;
-    private final String startTime;
     private final String endTime;
     private final String moduleCode;
 
@@ -27,12 +26,10 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                                 @JsonProperty("startTime") String startTime,
                                  @JsonProperty("endTime") String endTime,
                                  @JsonProperty("module") String moduleCode,
                                  @JsonProperty("isReminded") boolean isReminded) {
         this.name = name;
-        this.startTime = startTime;
         this.moduleCode = moduleCode;
         this.endTime = endTime;
         this.deadline = deadline;
@@ -48,14 +45,12 @@ public class JsonAdaptedTask {
             deadline = source.getTime().value;
             moduleCode = source.getModuleCode().moduleCode;
             isReminded = ((Assignment) source).isReminded();
-            startTime = "";
             endTime = "";
         } else {
             name = source.getName().fullName;
             moduleCode = source.getModuleCode().moduleCode;
-            startTime = source.getTime().value;
+            deadline = source.getTime().value;
             endTime = ((Lesson) source).getEndTime().value;
-            deadline = "";
             isReminded = false;
         }
     }
@@ -96,10 +91,6 @@ public class JsonAdaptedTask {
         final Remind modelRemind = new Remind(isReminded);
 
         if (endTime == null) {
-            throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
-        }
-        if (startTime == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
         }

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ProductiveNUS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="1000" minWidth="1000" onCloseRequest="#handleExit" title="ProductiveNUS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -36,24 +36,6 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-
-        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-small-round-border" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
-            <padding>
-              <Insets bottom="5" left="10" right="10" top="5" />
-            </padding>
-          </StackPane>
-        </HBox>
-
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
         <GridPane styleClass="grid-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
@@ -63,30 +45,65 @@
             <ColumnConstraints percentWidth="30.0" />
           </columnConstraints>
           <children>
-            <VBox fx:id="assignmentList" minWidth="170" prefWidth="340" styleClass="white-pane-with-big-round-border" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-              <StackPane fx:id="assignmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-              </padding>
-              <HBox.margin>
-                <Insets right="5.0" />
-              </HBox.margin>
-            </VBox>
-            <VBox fx:id="assignmentList2" minWidth="170" prefWidth="340" styleClass="black-pane-with-big-round-border" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-              <VBox alignment="CENTER">
+            <VBox>
+              <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
-                  <Insets bottom="20" left="10" right="10" top="10" />
+                  <Insets bottom="5" left="10" right="10" top="10" />
                 </padding>
-                <Label styleClass="reminder" text="Your reminders" />
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-small-round-border" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+                  <padding>
+                    <Insets bottom="5" left="10" right="10" top="5" />
+                  </padding>
+                </StackPane>
+              </HBox>
+
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
+              <VBox fx:id="assignmentList" minWidth="170" prefWidth="340" styleClass="white-pane-with-big-round-border" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <StackPane fx:id="assignmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
               </VBox>
-              <StackPane fx:id="assignmentListPanelPlaceholder2" VBox.vgrow="ALWAYS" />
-              <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-              </padding>
-                    <HBox.margin>
-                       <Insets left="5.0" />
-                    </HBox.margin>
             </VBox>
+            <GridPane styleClass="grid-with-vgap" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints percentHeight="40.0" />
+                <RowConstraints percentHeight="60.0" />
+              </rowConstraints>
+              <children>
+                <VBox fx:id="reminderList" minWidth="170" prefWidth="340" styleClass="black-pane-with-big-round-border">
+                  <VBox alignment="CENTER">
+                    <padding>
+                      <Insets bottom="20" left="10" right="10" top="10" />
+                    </padding>
+                    <Label styleClass="reminder" text="Your reminders" />
+                  </VBox>
+                  <StackPane fx:id="reminderListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                  <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                </VBox>
+                <VBox fx:id="taskList" minWidth="170" prefWidth="340" styleClass="black-pane-with-big-round-border" GridPane.rowIndex = "1">
+                  <VBox alignment="CENTER">
+                    <padding>
+                      <Insets bottom="20" left="10" right="10" top="10" />
+                    </padding>
+                    <Label styleClass="reminder" text="Upcoming tasks" />
+                  </VBox>
+                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                  <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                  </padding>
+                </VBox>
+              </children>
+            </GridPane>
           </children>
                <rowConstraints>
                   <RowConstraints />
