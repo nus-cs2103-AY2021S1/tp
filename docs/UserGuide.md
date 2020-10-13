@@ -159,6 +159,8 @@ Format: `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
 
 Exits the program.
 
+* Exits McGymmy
+
 Format: `exit`
 
 ### Saving the data
