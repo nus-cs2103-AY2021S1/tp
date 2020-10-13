@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -19,8 +18,6 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <ImageView fx:id="recipeImageView" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true">
-      </ImageView>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>

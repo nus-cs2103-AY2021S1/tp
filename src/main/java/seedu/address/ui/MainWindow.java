@@ -1,15 +1,22 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
+import com.jfoenix.assets.JFoenixResources;
+import com.jfoenix.controls.JFXDecorator;
+import com.jfoenix.svg.SVGGlyph;
+import com.jfoenix.svg.SVGGlyphLoader;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -40,6 +47,11 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
+    private Scene mainScene;
+
+    @FXML
+    private BorderPane container;
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
@@ -54,19 +66,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    @FXML
-    private ImageView fridge;
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.fridge.setImage(new Image("images/fridge.png"));
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -168,6 +175,24 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        new Thread(() -> {
+            try {
+                SVGGlyphLoader.loadGlyphsFont(MainWindow.class.getResourceAsStream("/fonts/icomoon.svg"),
+                        "icomoon.svg");
+            } catch (IOException ioExc) {
+                ioExc.printStackTrace();
+            }
+        }).start();
+
+        JFXDecorator decorator = new JFXDecorator(primaryStage, container);
+        decorator.setCustomMaximize(true);
+        decorator.setGraphic(new SVGGlyph(""));
+
+        mainScene.setRoot(decorator);
+        final ObservableList<String> stylesheets = mainScene.getStylesheets();
+        stylesheets.addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
+                JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
+                MainWindow.class.getResource("/css/wishful-shrinking.css").toExternalForm());
         primaryStage.show();
     }
 
