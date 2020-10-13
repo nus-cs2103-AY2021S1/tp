@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.LogicManagerForExercise.FILE_OPS_ERROR_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATH;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 
