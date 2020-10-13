@@ -17,12 +17,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ExerciseBook;
-import seedu.address.model.ExerciseModel;
 import seedu.address.model.Model;
-import seedu.address.model.exercise.Exercise;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicateForExercise;
 import seedu.address.model.person.Person;
+import seedu.address.model.ExerciseModel;
+import seedu.address.model.exercise.Exercise;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -79,7 +79,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -111,7 +111,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel) {
+            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -149,7 +149,6 @@ public class CommandTestUtil {
         assertEquals(expectedExerciseBook, actualModel.getExerciseBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredExerciseList());
     }
-
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.

@@ -11,20 +11,18 @@ import seedu.address.model.exercise.Exercise;
  * The API of the Model component.
  */
 public interface ModelForExercise {
-    /**
-     * {@code Exercise} that always evaluate to true
-     */
+    /** {@code Exercise} that always evaluate to true */
     Predicate<Exercise> PREDICATE_SHOW_ALL_EXERCISE = unused -> true;
-
-    /**
-     * Returns the user prefs.
-     */
-    ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+
+    /**
+     * Returns the user prefs.
+     */
+    ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,14 +45,12 @@ public interface ModelForExercise {
     void setExerciseBookFilePath(Path exerciseBookFilePath);
 
     /**
-     * Returns the AddressBook
-     */
-    ReadOnlyExerciseBook getExerciseBook();
-
-    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setExerciseBook(ReadOnlyExerciseBook addressBook);
+
+    /** Returns the AddressBook */
+    ReadOnlyExerciseBook getExerciseBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -80,14 +76,11 @@ public interface ModelForExercise {
      */
     void setExercise(Exercise target, Exercise editExercise);
 
-    /**
-     * Returns an unmodifiable view of the filtered person list
-     */
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);

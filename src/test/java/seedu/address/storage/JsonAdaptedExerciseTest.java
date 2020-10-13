@@ -11,7 +11,6 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Name;
-
 /*
 Test for invalid input are commented out due to the use of stubs
  */

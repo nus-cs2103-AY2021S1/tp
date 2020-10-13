@@ -5,19 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExerciseAtIndex;
+//import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXERCISE;
+
+import seedu.address.model.*;
+import seedu.address.model.exercise.Exercise;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.ExerciseModel;
-import seedu.address.model.ExerciseModelManager;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.exercise.Exercise;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

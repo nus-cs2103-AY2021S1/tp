@@ -6,7 +6,7 @@ import seedu.address.model.exercise.Exercise;
 /**
  * A utility class to help with building Exercisebook objects.
  * Example usage: <br>
- * {@code ExerciseBook ab = new ExerciseBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code ExerciseBook ab = new ExerciseBookBuilder().withPerson("John", "Doe").build();}
  */
 public class ExerciseBookBuilder {
 

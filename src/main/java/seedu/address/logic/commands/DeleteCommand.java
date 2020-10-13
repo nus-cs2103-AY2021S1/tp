@@ -7,8 +7,8 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.ExerciseModel;
 
 /**
  * Deletes an exercise identified using it's displayed index from the Calo.

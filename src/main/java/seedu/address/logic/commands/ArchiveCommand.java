@@ -37,7 +37,6 @@ public class ArchiveCommand extends CommandForExercise {
 
     /**
      * Set the storage which contains the content of the apps.
-     *
      * @param storage The storage.
      */
     public void setStorage(StorageForExercise storage) {
@@ -52,13 +51,13 @@ public class ArchiveCommand extends CommandForExercise {
         //Check if there is existing file with the same name
         if (specifiedFile.exists()) {
             throw new CommandException("A File with same name exists at the specified location. Please specify another"
-                    + "location or delete the file with the same name ");
+                + "location or delete the file with the same name ");
         }
 
         //Check if the system has the right to create at specified location
         if (!specifiedFile.canWrite()) {
             throw new CommandException("Right to write that specified location is not granted."
-                    + "Please specify another location");
+            + "Please specify another location");
         }
         try {
             this.storage.saveExerciseBook(model.getExerciseBook(), specifiedLocation);
