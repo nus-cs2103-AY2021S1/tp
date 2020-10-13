@@ -10,6 +10,7 @@ import tp.cap5buddy.logic.parser.ParserManager;
 import tp.cap5buddy.logic.parser.exception.ParseException;
 import tp.cap5buddy.modules.ModuleList;
 import tp.cap5buddy.storage.StorageManager;
+import tp.cap5buddy.todolist.TodoList;
 
 
 /**
@@ -17,20 +18,20 @@ import tp.cap5buddy.storage.StorageManager;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    //private ModuleList modlist;
-    private ParserManager pm;
+    private final ParserManager pm;
     private final StorageManager storage;
     private final ModuleList moduleList;
+    private final TodoList todoList;
     private final ContactList contactList;
 
     /**
      * Represents the constructor of the Manager.
      */
-    public LogicManager(StorageManager storage, ModuleList moduleList, ContactList contactList) {
-        //this.modlist = new ModuleList(new ArrayList<Module>());
+    public LogicManager(StorageManager storage, ModuleList moduleList, ContactList contactList, TodoList todoList) {
         this.pm = new ParserManager();
         this.storage = storage;
         this.moduleList = moduleList;
+        this.todoList = todoList;
         this.contactList = contactList;
     }
 
@@ -44,7 +45,7 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String userInput) throws ParseException, CommandException {
         Command command = pm.parse(userInput);
-        CommandResult result = command.execute(moduleList, contactList);
+        CommandResult result = command.execute(moduleList, contactList, todoList);
         try {
             storage.saveModuleList(moduleList);
         } catch (IOException ioe) {

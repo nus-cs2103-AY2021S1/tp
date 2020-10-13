@@ -6,6 +6,7 @@ import tp.cap5buddy.contacts.Email;
 import tp.cap5buddy.contacts.Name;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 
 public class AddContactCommand extends Command {
 
@@ -24,7 +25,8 @@ public class AddContactCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ModuleList modules, ContactList contacts) throws CommandException {
+    public CommandResult execute(ModuleList modules, ContactList contacts, TodoList todoList)
+            throws CommandException {
         Contact contact = new Contact(this.name, this.email);
         contacts.addContact(contact);
         String successMessage = createSuccessMessage();

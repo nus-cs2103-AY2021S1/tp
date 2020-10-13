@@ -5,6 +5,7 @@ import java.util.Optional;
 import tp.cap5buddy.contacts.ContactList;
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.todolist.TodoList;
 
 /**
  * Command to edit information about a Module.
@@ -37,7 +38,7 @@ public class EditModuleCommand extends Command {
      * @return a ResultCommand.
      */
     @Override
-    public CommandResult execute(ModuleList moduleList, ContactList contacts) {
+    public CommandResult execute(ModuleList moduleList, ContactList contacts, TodoList todolist) {
         Module moduleToEdit = moduleList.getModule(this.moduleName);
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
         moduleList.setModule(moduleName, editedModule);
