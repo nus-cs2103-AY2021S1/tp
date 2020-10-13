@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path propertyBookFilePath = Paths.get("data", "propertybook.json");
     private Path bidBookFilePath = Paths.get("data" , "bidbook.json");
     private Path bidderAddressBookFilePath = Paths.get("data" , "bidderaddressbook.json");
     private Path sellerAddressBookFilePath = Paths.get("data" , "selleraddressbook.json");
@@ -40,6 +41,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setPropertyBookFilePath(newUserPrefs.getPropertyBookFilePath());
         setBidBookFilePath(newUserPrefs.getBidBookFilePath());
         setBidderAddressBookFilePath(newUserPrefs.getBidderAddressBookFilePath());
         setSellerAddressBookFilePath(newUserPrefs.getSellerAddressBookFilePath());
@@ -75,6 +77,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return meetingBookFilePath;
     }
 
+    public Path getPropertyBookFilePath() {
+        return propertyBookFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
@@ -99,6 +105,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     // ========================= property =============================
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        this.propertyBookFilePath = propertyBookFilePath;
+    }
 
     // ========================= meeting ==============================
     public void setMeetingBookFilePath(Path meetingBookFilePath) {
@@ -119,14 +129,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath) && bidBookFilePath.equals(o.bidBookFilePath)
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && bidderAddressBookFilePath.equals(o.bidderAddressBookFilePath)
+                && sellerAddressBookFilePath.equals(o.sellerAddressBookFilePath)
+                && propertyBookFilePath.equals(o.propertyBookFilePath)
+                && bidBookFilePath.equals(o.bidBookFilePath)
                 && meetingBookFilePath.equals(o.meetingBookFilePath);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(guiSettings, addressBookFilePath, bidBookFilePath,
-                bidderAddressBookFilePath, sellerAddressBookFilePath, meetingBookFilePath);
+                bidderAddressBookFilePath, sellerAddressBookFilePath, meetingBookFilePath,
+                propertyBookFilePath);
     }
 
     @Override
@@ -134,6 +149,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal addressBook data file location : " + addressBookFilePath);
+        sb.append("\nLocal property data file location: " + propertyBookFilePath);
         sb.append("\nLocal bidBook data file location : " + bidBookFilePath);
         sb.append("\nLocal Bidder data file location : " + bidderAddressBookFilePath);
         sb.append("\nLocal Seller data file location : " + sellerAddressBookFilePath);

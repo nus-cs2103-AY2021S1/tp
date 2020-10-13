@@ -91,7 +91,15 @@ public class CalendarMeeting {
      * @return True if both property objects represent the same property.
      */
     public boolean isSameMeeting(CalendarMeeting otherMeeting) {
-        return this == otherMeeting;
+        if (otherMeeting == this) {
+            return true;
+        }
+
+        return otherMeeting != null
+                && otherMeeting.getCalendarPropertyId().equals(getCalendarPropertyId())
+                && (otherMeeting.getCalendarVenue().equals(getCalendarVenue()))
+                && ((otherMeeting.getCalendarTime() == getCalendarTime()))
+                && ((otherMeeting.getCalendarBidderId() == getCalendarBidderId()));
     }
 
 

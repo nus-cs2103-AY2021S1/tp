@@ -32,7 +32,14 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PROPERTY_SELLER_ID + "SELLER ID "
             + PREFIX_PROPERTY_ASKING_PRICE + "ASKING PRICE "
             + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE "
-            + PREFIX_PROPERTY_IS_RENTAL + "IS RENTAL?";
+            + PREFIX_PROPERTY_IS_RENTAL + "IS RENTAL?\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_PROPERTY_NAME + "Harsha Vista "
+            + PREFIX_PROPERTY_ADDRESS + "25 Marcus Street "
+            + PREFIX_PROPERTY_SELLER_ID + "S2 "
+            + PREFIX_PROPERTY_ASKING_PRICE + "1792.50 "
+            + PREFIX_PROPERTY_TYPE + "Landed "
+            + PREFIX_PROPERTY_IS_RENTAL + "No";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the property book";

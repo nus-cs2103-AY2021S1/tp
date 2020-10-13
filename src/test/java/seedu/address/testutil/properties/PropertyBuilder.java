@@ -3,6 +3,7 @@ package seedu.address.testutil.properties;
 import seedu.address.model.id.Id;
 import seedu.address.model.price.Price;
 import seedu.address.model.property.Address;
+import seedu.address.model.property.IsClosedDeal;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
@@ -22,7 +23,7 @@ public class PropertyBuilder {
     public static final double DEFAULT_ASKING_PRICE = 123.45;
     public static final String DEFAULT_PROPERTY_TYPE = "HDB 5 room";
     public static final String DEFAULT_IS_RENTAL = "No";
-    public static final boolean DEFAULT_IS_CLOSED_DEAL = false;
+    public static final String DEFAULT_IS_CLOSED_DEAL = "Active";
 
     private Address address;
     private PropertyName propertyName;
@@ -30,7 +31,7 @@ public class PropertyBuilder {
     private Price askingPrice;
     private PropertyType propertyType;
     private IsRental isRental;
-    private boolean isClosedDeal;
+    private IsClosedDeal isClosedDeal;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -42,7 +43,7 @@ public class PropertyBuilder {
         askingPrice = new Price(DEFAULT_ASKING_PRICE);
         propertyType = new PropertyType(DEFAULT_PROPERTY_TYPE);
         isRental = new IsRental(DEFAULT_IS_RENTAL);
-        isClosedDeal = DEFAULT_IS_CLOSED_DEAL;
+        isClosedDeal = new IsClosedDeal(DEFAULT_IS_CLOSED_DEAL);
     }
 
     /**
@@ -109,7 +110,7 @@ public class PropertyBuilder {
     /**
      * Sets the {@code isClosedDeal} of the {@code Property} that we are building.
      */
-    public PropertyBuilder withIsClosedDeal(boolean isClosedDeal) {
+    public PropertyBuilder withIsClosedDeal(IsClosedDeal isClosedDeal) {
         this.isClosedDeal = isClosedDeal;
         return this;
     }

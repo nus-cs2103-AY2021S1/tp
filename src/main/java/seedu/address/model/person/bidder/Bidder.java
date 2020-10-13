@@ -26,6 +26,11 @@ public class Bidder extends ClientPerson {
         tags.add(new Tag("bidder"));
     }
 
+    //    public static Bidder makeBidder(Name name, Phone phone, Set<Tag> tags, Id id) {
+    //        tags.add(new Tag("bidder"));
+    //        return new Bidder(name, phone, tags, id);
+    //    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.

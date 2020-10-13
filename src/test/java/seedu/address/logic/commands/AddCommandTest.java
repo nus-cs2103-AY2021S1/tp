@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.calendar.CalendarMeeting;
+import seedu.address.model.id.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -202,7 +203,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deletePropertyByPropertyId(Id id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addProperty(Property property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Property getPropertyById(Id id) {
             throw new AssertionError("This method should not be called.");
         }
 
