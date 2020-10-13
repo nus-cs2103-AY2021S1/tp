@@ -17,8 +17,12 @@ public class ViewModuleParser extends Parser {
      */
     public Command parse(String userInput) throws ParseException {
         Tokenizer token = new Tokenizer(userInput, PrefixList.MODULE_VIEW_PREFIX);
-        String[] parsedArguments = token.tokenize();
-        String modName = parsedArguments[0];
+        ArgumentMap argumentMap = token.tokenize();
+        if (!argumentMap.arePrefixesPresent(PrefixList.MODULE_VIEW_PREFIX)) {
+            String error = "Missing prefix arguments";
+            throw new ParseException(error);
+        }
+        String modName = argumentMap.getValue(PrefixList.MODULE_VIEW_PREFIX).get();
         return new ViewModuleCommand(modName);
     }
 }

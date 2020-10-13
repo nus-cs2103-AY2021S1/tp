@@ -18,8 +18,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME);
+        ArgumentMultimap argMultimap = tokenizer.tokenize();
         try {
             ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
             return new ViewCommand(moduleName);
