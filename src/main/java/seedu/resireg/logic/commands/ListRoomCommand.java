@@ -56,4 +56,11 @@ public class ListRoomCommand extends Command {
         }
         return new ToggleCommandResult(message, TabView.ROOMS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListRoomCommand) // instanceof handles nulls
+                && filter.equals(((ListRoomCommand) other).filter);
+    }
 }
