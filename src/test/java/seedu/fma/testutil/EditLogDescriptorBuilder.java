@@ -1,105 +1,98 @@
-// TODO or delete
-/*
-package seedu.address.testutil;
+package seedu.fma.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditLogDescriptor;
-import seedu.address.model.log.Address;
-import seedu.address.model.log.Email;
-import seedu.address.model.log.Log;
-import seedu.address.model.log.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.Name;
+import seedu.fma.logic.commands.EditCommand;
+import seedu.fma.logic.commands.EditCommand.EditLogDescriptor;
+import seedu.fma.model.exercise.Exercise;
+import seedu.fma.model.log.Comment;
+import seedu.fma.model.log.Log;
+import seedu.fma.model.log.Rep;
+import seedu.fma.model.util.Name;
 
-*/
+
 /**
  * A utility class to help with building EditLogDescriptor objects.
- *//*
+ */
 
-public class EditPersonDescriptorBuilder {
+public class EditLogDescriptorBuilder {
 
     private EditCommand.EditLogDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditLogDescriptorBuilder() {
         descriptor = new EditCommand.EditLogDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditLogDescriptor descriptor) {
+    public EditLogDescriptorBuilder(EditCommand.EditLogDescriptor descriptor) {
         this.descriptor = new EditLogDescriptor(descriptor);
     }
 
-    */
-/**
+
+    /**
      * Returns an {@code EditLogDescriptor} with fields containing {@code log}'s details
-     *//*
-
-    public EditPersonDescriptorBuilder(Log log) {
+     */
+    public EditLogDescriptorBuilder(Log log) {
         descriptor = new EditCommand.EditLogDescriptor();
-        descriptor.setName(log.getName());
-        descriptor.setPhone(log.getPhone());
-        descriptor.setEmail(log.getEmail());
-        descriptor.setAddress(log.getAddress());
-        descriptor.setTags(log.getTags());
+        descriptor.setExercise(log.getExercise());
+        descriptor.setComment(log.getComment());
+        descriptor.setRep(log.getReps());
+        descriptor.setDatetime(log.getDateTime());
     }
 
-    */
-/**
-     * Sets the {@code Name} of the {@code EditLogDescriptor} that we are building.
-     *//*
-
-    public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+    /**
+     * Sets the {@code Exercise} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder withExercise(Exercise exercise) {
+        descriptor.setExercise(exercise);
         return this;
     }
 
-    */
-/**
-     * Sets the {@code Phone} of the {@code EditLogDescriptor} that we are building.
-     *//*
-
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    /**
+     * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder withReps(Rep reps) {
+        descriptor.setRep(reps);
         return this;
     }
 
-    */
-/**
-     * Sets the {@code Email} of the {@code EditLogDescriptor} that we are building.
-     *//*
 
-    public EditPersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    /**
+     * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder withReps(String reps) {
+        descriptor.setRep(new Rep(reps));
         return this;
     }
 
-    */
-/**
-     * Sets the {@code Address} of the {@code EditLogDescriptor} that we are building.
-     *//*
-
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    /**
+     * Sets the {@code Exercise} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder withExerciseName(String name) {
+        descriptor.setExercise(Exercise.find(new Name(name)));
         return this;
     }
 
-    */
-/**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditLogDescriptor}
-     * that we are building.
-     *//*
 
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    /**
+     * Sets the {@code Comment} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder withComment(String comment) {
+        descriptor.setComment(new Comment(comment));
         return this;
     }
 
+
+    /**
+     * Sets the {@code Rep} of the {@code EditLogDescriptor} that we are building.
+     */
+    public EditLogDescriptorBuilder setReps(String reps) {
+        descriptor.setRep(new Rep(reps));
+        return this;
+    }
+
+    /**
+     * Builds the EditCommand
+     */
     public EditCommand.EditLogDescriptor build() {
         return descriptor;
     }
 }
-*/
