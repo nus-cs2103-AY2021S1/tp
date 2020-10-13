@@ -67,12 +67,13 @@ public class AddCommand extends Command {
 
     void setParameters(Parameter<Name> nameParameter, OptionalParameter<Protein> proteinParameter,
                        OptionalParameter<Fat> fatParameter, OptionalParameter<Carbohydrate> carbParameter,
-                       OptionalParameter<Tag> tagParameter) {
+                       OptionalParameter<Tag> tagParameter, OptionalParameter<Date> dateParameter) {
         this.nameParameter = nameParameter;
         this.proteinParameter = proteinParameter;
         this.fatParameter = fatParameter;
         this.carbParameter = carbParameter;
         this.tagParameter = tagParameter;
+        this.dateParameter = dateParameter;
     }
 
     @Override

@@ -74,12 +74,13 @@ public class EditCommand extends Command {
 
     void setParameters(Parameter<Index> indexParameter, OptionalParameter<Name> nameParameter,
                        OptionalParameter<Protein> proteinParameter, OptionalParameter<Fat> fatParameter,
-                       OptionalParameter<Carbohydrate> carbParameter) {
+                       OptionalParameter<Carbohydrate> carbParameter, OptionalParameter<Date> dateParameter) {
         this.indexParameter = indexParameter;
         this.nameParameter = nameParameter;
         this.proteinParameter = proteinParameter;
         this.fatParameter = fatParameter;
         this.carbParameter = carbParameter;
+        this.dateParameter = dateParameter;
     }
 
     @Override
