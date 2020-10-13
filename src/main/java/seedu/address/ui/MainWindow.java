@@ -4,10 +4,13 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -36,8 +39,9 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     // private PersonListPanel personListPanel;
 
-    // TODO: Change this to EntryListPanel
-    private EntryListPanel entryListPanel;
+    // TODO: Change this to ExpenseListPanel
+    private ExpenseListPanel expenseListPanel;
+    private RevenueListPanel revenueListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,7 +55,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane entryListPanelPlaceholder;
+    private HBox entryListGridPlaceholder;
+
+    @FXML
+    private StackPane expenseListPanelPlaceholder;
+
+    @FXML
+    private StackPane revenueListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -123,8 +133,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
-        entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
+//        entryListPanel = new ExpenseListPanel(logic.getFilteredEntryList());
+//        entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
+        fillEntryDisplay();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -134,6 +145,16 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().addAll(commandBox.getRoot());
+    }
+
+    void fillEntryDisplay() {
+        entryListGridPlaceholder.setPadding(new Insets(5, 5, 5, 5));
+
+        expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+        entryListGridPlaceholder.getChildren().add(expenseListPanel.getRoot());
+
+        revenueListPanel = new RevenueListPanel(logic.getFilteredRevenueList());
+        entryListGridPlaceholder.getChildren().add(revenueListPanel.getRoot());
     }
 
     /**
@@ -176,8 +197,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public EntryListPanel getEntryListPanel() {
-        return entryListPanel;
+    public ExpenseListPanel getEntryListPanel() {
+        return expenseListPanel;
+    }
+
+    public RevenueListPanel getRevenueListPanel() {
+        return revenueListPanel;
     }
 
     /**
