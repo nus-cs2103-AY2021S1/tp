@@ -69,6 +69,18 @@ public class Admin {
         return placeholder;
     }
 
+    /**
+     * Get additional details of student formatted for GUI use.
+     * @return formatted additional details.
+     */
+    public String getFormattedDetails() {
+        String result = "";
+        for (AdditionalDetail detail: details) {
+            result = result + "- " + detail.toString() + "\n";
+        }
+        return result;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(classVenue, classTime, fee, paymentDate, details);
