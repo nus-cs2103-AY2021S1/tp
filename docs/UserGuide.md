@@ -75,7 +75,7 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/L
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+:information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
 
 </div>
 
@@ -101,7 +101,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CL
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+:information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
 
 </div>
 

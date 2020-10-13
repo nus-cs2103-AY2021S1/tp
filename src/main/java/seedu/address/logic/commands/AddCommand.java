@@ -22,12 +22,17 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to Reeve. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to Reeve.\n\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_SCHOOL + "SCHOOL "
-            + PREFIX_YEAR + "YEAR\n"
+            + PREFIX_YEAR + "YEAR "
+            + PREFIX_VENUE + "CLASS_VENUE "
+            + PREFIX_TIME + "CLASS_TIME "
+            + PREFIX_FEE + "FEE "
+            + PREFIX_PAYMENT + "LAST_PAYMENT_DATE "
+            + "[" + PREFIX_DETAILS + "ADDITIONAL_DETAILS]\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
