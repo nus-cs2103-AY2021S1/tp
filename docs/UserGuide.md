@@ -65,6 +65,10 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
 
 Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
 
+## Listing of stock: `list`
+Lists all the stock(s) in the inventory.
+Format: `list`
+
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
 * Required fields:
