@@ -1,18 +1,17 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import seedu.address.model.lesson.Lesson;
+import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
-import static seedu.address.model.assignment.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * An UI component that displays information of a {@code Lesson}.

@@ -43,8 +43,11 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if(task instanceof Assignment) setGraphic(new AssignmentCard((Assignment)task, getIndex() + 1).getRoot());
-                else if(task instanceof Lesson) setGraphic(new LessonCard((Lesson)task, getIndex() + 1).getRoot());
+                if (task instanceof Assignment) {
+                    setGraphic(new AssignmentCard((Assignment) task, getIndex() + 1).getRoot());
+                } else if (task instanceof Lesson) {
+                    setGraphic(new LessonCard((Lesson) task, getIndex() + 1).getRoot());
+                }
             }
         }
     }

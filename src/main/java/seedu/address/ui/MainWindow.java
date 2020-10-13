@@ -187,7 +187,9 @@ public class MainWindow extends UiPart<Stage> {
         return reminderListPanel;
     }
 
-    public TaskListPanel getTaskListPanel() { return taskListPanel; }
+    public TaskListPanel getTaskListPanel() {
+        return taskListPanel;
+    }
 
     /**
      * Executes the command and returns the result.
