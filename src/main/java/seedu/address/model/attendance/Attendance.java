@@ -27,10 +27,6 @@ public class Attendance {
         this.attendanceType = attendanceType;
     }
 
-    public AttendanceType getAttendanceType() {
-        return attendanceType;
-    }
-
     public NusnetId getNusnetId() {
         return nusnetId;
     }
