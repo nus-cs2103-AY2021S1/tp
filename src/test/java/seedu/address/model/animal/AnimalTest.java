@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAnimals.ALICE;
+import static seedu.address.testutil.TypicalAnimals.AHMENG;
 import static seedu.address.testutil.TypicalAnimals.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -25,61 +25,61 @@ public class AnimalTest {
     @Test
     public void isSameAnimal() {
         // same object -> returns true
-        assertTrue(ALICE.isSameAnimal(ALICE));
+        assertTrue(AHMENG.isSameAnimal(AHMENG));
 
         // null -> returns false
-        assertFalse(ALICE.isSameAnimal(null));
+        assertFalse(AHMENG.isSameAnimal(null));
 
         // different ID and species -> returns false
-        Animal editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_BOB).build();
-        assertFalse(ALICE.isSameAnimal(editedAlice));
+        Animal editedAlice = new AnimalBuilder(AHMENG).withId(VALID_ID_BOB).withSpecies(VALID_SPECIES_BOB).build();
+        assertFalse(AHMENG.isSameAnimal(editedAlice));
 
         // different name -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameAnimal(editedAlice));
+        editedAlice = new AnimalBuilder(AHMENG).withName(VALID_NAME_BOB).build();
+        assertFalse(AHMENG.isSameAnimal(editedAlice));
 
         // same name, same ID, different attributes -> returns true
-        editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+        editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BOB)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
-        assertTrue(ALICE.isSameAnimal(editedAlice));
+        assertTrue(AHMENG.isSameAnimal(editedAlice));
 
         // same name, different ID, same attributes -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).build();
-        assertFalse(ALICE.isSameAnimal(editedAlice));
+        editedAlice = new AnimalBuilder(AHMENG).withId(VALID_ID_BOB).build();
+        assertFalse(AHMENG.isSameAnimal(editedAlice));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Animal aliceCopy = new AnimalBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Animal aliceCopy = new AnimalBuilder(AHMENG).build();
+        assertTrue(AHMENG.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(AHMENG.equals(AHMENG));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(AHMENG.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(AHMENG.equals(5));
 
         // different animal -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(AHMENG.equals(BOB));
 
         // different name -> returns false
-        Animal editedAlice = new AnimalBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Animal editedAlice = new AnimalBuilder(AHMENG).withName(VALID_NAME_BOB).build();
+        assertFalse(AHMENG.equals(editedAlice));
 
         // different ID -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withId(VALID_ID_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new AnimalBuilder(AHMENG).withId(VALID_ID_BOB).build();
+        assertFalse(AHMENG.equals(editedAlice));
 
         // different species -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BOB).build();
+        assertFalse(AHMENG.equals(editedAlice));
 
         // different medicalConditions -> returns false
-        editedAlice = new AnimalBuilder(ALICE).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new AnimalBuilder(AHMENG).withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND).build();
+        assertFalse(AHMENG.equals(editedAlice));
     }
 }

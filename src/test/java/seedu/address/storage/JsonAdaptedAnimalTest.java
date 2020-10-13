@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedAnimal.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAnimals.BENSON;
+import static seedu.address.testutil.TypicalAnimals.BUTTERCUP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +22,18 @@ public class JsonAdaptedAnimalTest {
     private static final String INVALID_SPECIES = " ";
     private static final String INVALID_MEDICAL_CONDITION = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_ID = BENSON.getId().toString();
-    private static final String VALID_SPECIES = BENSON.getSpecies().toString();
+    private static final String VALID_NAME = BUTTERCUP.getName().toString();
+    private static final String VALID_ID = BUTTERCUP.getId().toString();
+    private static final String VALID_SPECIES = BUTTERCUP.getSpecies().toString();
     private static final List<JsonAdaptedMedicalCondition> VALID_MEDICAL_CONDITIONS =
-            BENSON.getMedicalConditions().stream()
+            BUTTERCUP.getMedicalConditions().stream()
             .map(JsonAdaptedMedicalCondition::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validAnimalDetails_returnsAnimal() throws Exception {
-        JsonAdaptedAnimal animal = new JsonAdaptedAnimal(BENSON);
-        assertEquals(BENSON, animal.toModelType());
+        JsonAdaptedAnimal animal = new JsonAdaptedAnimal(BUTTERCUP);
+        assertEquals(BUTTERCUP, animal.toModelType());
     }
 
     @Test

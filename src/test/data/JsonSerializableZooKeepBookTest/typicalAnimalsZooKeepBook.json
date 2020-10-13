@@ -1,39 +1,39 @@
 {
   "_comment": "ZooKeepBook save file which contains the same Animal values as in TypicalAnimals#getTypicalZooKeepBook()",
   "animals" : [ {
-    "name" : "Alice Pauline",
-    "id" : "94351253",
-    "species" : "123, Jurong West Ave 6, #08-111",
-    "medicalConditions" : [ "friends" ]
+    "name" : "AhMeng",
+    "id" : "000123",
+    "species" : "Orangutan",
+    "medicalConditions" : [ "Healthy" ]
   }, {
-    "name" : "Benson Meier",
-    "id" : "98765432",
-    "species" : "311, Clementi Ave 2, #02-25",
-    "medicalConditions" : [ "owesMoney", "friends" ]
+    "name" : "Buttercup",
+    "id" : "000456",
+    "species" : "Reticulated Python",
+    "medicalConditions" : [ "Skin Infection", "Inclusion Body Disease" ]
   }, {
-    "name" : "Carl Kurz",
-    "id" : "95352563",
-    "species" : "wall street",
+    "name" : "Coco",
+    "id" : "000125",
+    "species" : "Chihuahua",
     "medicalConditions" : [ ]
   }, {
-    "name" : "Daniel Meier",
-    "id" : "87652533",
-    "species" : "10th street",
-    "medicalConditions" : [ "friends" ]
+    "name" : "Esther",
+    "id" : "000126",
+    "species" : "Pig",
+    "medicalConditions" : [ "Healthy" ]
   }, {
-    "name" : "Elle Meyer",
-    "id" : "9482224",
-    "species" : "michegan ave",
+    "name" : "Grecia",
+    "id" : "000001",
+    "species" : "Toucan",
     "medicalConditions" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "id" : "9482427",
-    "species" : "little tokyo",
+    "name" : "Nemo",
+    "id" : "000012",
+    "species" : "Clownfish",
     "medicalConditions" : [ ]
   }, {
-    "name" : "George Best",
-    "id" : "9482442",
-    "species" : "4th street",
+    "name" : "Pasha",
+    "id" : "001234",
+    "species" : "White Tiger",
     "medicalConditions" : [ ]
   } ]
 }

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAnimals.ALICE;
+import static seedu.address.testutil.TypicalAnimals.AHMENG;
 import static seedu.address.testutil.TypicalAnimals.getTypicalZooKeepBook;
 
 import java.util.Arrays;
@@ -46,10 +46,10 @@ public class ZooKeepBookTest {
     @Test
     public void resetData_withDuplicateAnimals_throwsDuplicateAnimalException() {
         // Two animals with the same identity fields
-        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BOB)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND)
                 .build();
-        List<Animal> newAnimals = Arrays.asList(ALICE, editedAlice);
+        List<Animal> newAnimals = Arrays.asList(AHMENG, editedAlice);
         ZooKeepBookStub newData = new ZooKeepBookStub(newAnimals);
 
         assertThrows(DuplicateAnimalException.class, () -> zooKeepBook.resetData(newData));
@@ -62,19 +62,19 @@ public class ZooKeepBookTest {
 
     @Test
     public void hasAnimal_animalNotInZooKeepBook_returnsFalse() {
-        assertFalse(zooKeepBook.hasAnimal(ALICE));
+        assertFalse(zooKeepBook.hasAnimal(AHMENG));
     }
 
     @Test
     public void hasAnimal_animalInZooKeepBook_returnsTrue() {
-        zooKeepBook.addAnimal(ALICE);
-        assertTrue(zooKeepBook.hasAnimal(ALICE));
+        zooKeepBook.addAnimal(AHMENG);
+        assertTrue(zooKeepBook.hasAnimal(AHMENG));
     }
 
     @Test
     public void hasAnimal_animalWithSameIdentityFieldsInZooKeepBook_returnsTrue() {
-        zooKeepBook.addAnimal(ALICE);
-        Animal editedAlice = new AnimalBuilder(ALICE).withSpecies(VALID_SPECIES_BOB)
+        zooKeepBook.addAnimal(AHMENG);
+        Animal editedAlice = new AnimalBuilder(AHMENG).withSpecies(VALID_SPECIES_BOB)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_HUSBAND)
                 .build();
         assertTrue(zooKeepBook.hasAnimal(editedAlice));
