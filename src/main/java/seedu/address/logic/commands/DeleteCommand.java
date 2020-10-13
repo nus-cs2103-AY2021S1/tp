@@ -9,7 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.OrderItem;
-import seedu.address.model.vendor.Vendor;
 
 /**
  * Deletes a vendor identified using it's displayed index from the address book.
@@ -28,7 +27,7 @@ public class DeleteCommand extends Command {
             + "2. " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_ORDERITEM_SUCCESS = "Deleted order item: %1$s";
-    public static final String MESSAGE_CUT_ORDERITEM_SUCCESS = "Reduced order item: %1$s";;
+    public static final String MESSAGE_CUT_ORDERITEM_SUCCESS = "Reduced order item: %1$s";
 
     private final Index targetIndex;
     private final int quantity;
