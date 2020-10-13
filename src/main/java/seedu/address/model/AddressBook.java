@@ -117,18 +117,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes all the module from the list.
-     */
-    public void clearMod() {
-        modules.clearAll();
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeModule(Module key) {
         modules.remove(key);
+    }
+
+    /**
+     * Removes all the module from the list.
+     */
+    public void clearMod() {
+        modules.clearAll();
     }
 
     //// module-level operations

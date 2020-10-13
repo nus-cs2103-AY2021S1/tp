@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import com.sun.prism.Mesh;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -23,7 +21,7 @@ public class MClearCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.isEmptyModuleList()){
+        if (model.isEmptyModuleList()) {
             throw new CommandException(MESSAGE_FAIL);
         } else {
             model.clearMod();

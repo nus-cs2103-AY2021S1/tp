@@ -70,7 +70,7 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-            case MClearCommand.COMMAND_WORD:
+        case MClearCommand.COMMAND_WORD:
             return new MClearCommand();
 
         case AddModCommand.COMMAND_WORD:
