@@ -14,6 +14,7 @@ import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
 import chopchop.storage.JsonRecipeBookStorage;
 import chopchop.storage.RecipeBookStorage;
+import chopchop.ui.UiManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import chopchop.commons.core.Config;
@@ -23,6 +24,7 @@ import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.util.ConfigUtil;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.Logic;
+import chopchop.logic.CommandDispatcher;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.ReadOnlyUserPrefs;
@@ -31,6 +33,8 @@ import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
+import chopchop.ui.Ui;
+
 
 /**
  * Runs the application.
@@ -40,7 +44,7 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 6, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
-
+    protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
@@ -65,9 +69,9 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        //logic = new LogicManager(model, storage);
+        logic = new CommandDispatcher(model, storage);
 
-        //ui = new UiManager(logic);
+        ui = new UiManager(logic);
 
     }
     /**
@@ -79,10 +83,12 @@ public class MainApp extends Application {
      * {@code storage}'s ingredient or recipe book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+
         Optional<ReadOnlyIngredientBook> ingredientBookOptional;
         Optional<ReadOnlyRecipeBook> recipeBookOptional;
         ReadOnlyIngredientBook initialIndData;
         ReadOnlyRecipeBook initialRecData;
+
         try {
             ingredientBookOptional = storage.readIngredientBook();
             if (!ingredientBookOptional.isPresent()) {
@@ -157,6 +163,7 @@ public class MainApp extends Application {
         logger.info("Using prefs file : " + prefsFilePath);
 
         UserPrefs initializedPrefs;
+
         try {
             Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
@@ -176,13 +183,14 @@ public class MainApp extends Application {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
         }
 
+        initializedPrefs = new UserPrefs();
         return initializedPrefs;
     }
 
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
-        //ui.start(primaryStage);
+        ui.start(primaryStage);
     }
 
     @Override
