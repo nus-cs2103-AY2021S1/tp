@@ -20,6 +20,7 @@ public class TypicalFoods {
     public static final Food NASI_LEMAK = new FoodBuilder().withName(new Name("Nasi Alamak"))
             .withProtein("98765432")
             .withFat("321").withCarb("123")
+            .withDate("20/04/2020")
             .withTags("dinner", "lunch").build();
     public static final Food CRISPY_FRIED_FISH = new FoodBuilder().withName(new Name("Crispy Fried Fish"))
             .withProtein("95352563").withFat("456").withCarb("654").build();
