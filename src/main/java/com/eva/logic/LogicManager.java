@@ -14,6 +14,7 @@ import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 import com.eva.storage.Storage;
 
 import javafx.collections.ObservableList;
@@ -64,6 +65,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Staff> getFilteredStaffList() {
+        return model.getFilteredStaffList();
     }
 
     @Override
