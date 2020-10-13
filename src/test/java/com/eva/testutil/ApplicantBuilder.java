@@ -1,10 +1,11 @@
 package com.eva.testutil;
 
+import java.util.Optional;
+
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
 
-import java.util.Optional;
 
 public class ApplicantBuilder extends PersonBuilder {
     public static final String DEFAULT_APPLICATION_STATUS = "received";
