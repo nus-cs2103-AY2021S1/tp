@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
@@ -13,16 +12,16 @@ import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a person to the address book.
+ * Adds a tag to the address book.
  */
 public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the HelleFile's address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the HelleFile's address book.\n"
             + "Parameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
-            + PREFIX_FILE_ADDRESS + "FILE_ADDRESS "
+            + PREFIX_FILE_ADDRESS + "FILE_ADDRESS\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T ";
@@ -39,9 +38,6 @@ public class TagCommand extends Command {
      */
     public TagCommand(Tag tag) {
         requireNonNull(tag);
-        // Check if file is present
-        checkArgument(filePresent(tag.getFileAddress()),
-                String.format(MESSAGE_FILE_NOT_FOUND, tag.getFileAddress().value));
         toTag = tag;
     }
 
@@ -63,6 +59,12 @@ public class TagCommand extends Command {
 
         if (model.hasTag(toTag)) {
             throw new CommandException(MESSAGE_DUPLICATE_TAG);
+        }
+
+        // Check if file is present
+        if (!filePresent(toTag.getFileAddress())) {
+            throw new CommandException(
+                    String.format(MESSAGE_FILE_NOT_FOUND, toTag.getFileAddress().value));
         }
 
         model.addTag(toTag);
