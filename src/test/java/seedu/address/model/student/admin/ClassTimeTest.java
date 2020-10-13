@@ -56,4 +56,15 @@ public class ClassTimeTest {
         assertTrue(ClassTime.isValidClassTime("2 1000-2230"));
         assertTrue(ClassTime.isValidClassTime("7 0000-2359"));
     }
+
+    @Test
+    public void isValidStartAndEndTime() {
+        // invalid start and end times
+        assertFalse(ClassTime.isValidStartAndEndTime("2 0900-0100")); // end time before start time
+        assertFalse(ClassTime.isValidStartAndEndTime("6 1200-0900")); // end time before start time
+
+        // valid start and end times
+        assertTrue(ClassTime.isValidStartAndEndTime("2 0900-1200"));
+        assertTrue(ClassTime.isValidStartAndEndTime("4 1100-1600"));
+    }
 }

@@ -1,6 +1,5 @@
 package seedu.address.model.student.admin;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -16,6 +15,7 @@ public class ClassTime {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
+    public static final String TIME_CONSTRAINTS = "End time should always be after Start time";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -24,6 +24,7 @@ public class ClassTime {
     public static final String TIME_VALIDATION = "([01]?[0-9]|2[0-3])[0-5][0-9]";
     public static final String VALIDATION_REGEX = "([1-7])[\\s]" + TIME_VALIDATION + "-" + TIME_VALIDATION;
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHm");
+    public static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("HHmm");
 
     public final Integer dayOfWeek;
     public final LocalTime startTime;
@@ -37,6 +38,7 @@ public class ClassTime {
     public ClassTime(String inputTime) {
         requireNonNull(inputTime);
         checkArgument(isValidClassTime(inputTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStartAndEndTime(inputTime), TIME_CONSTRAINTS);
         this.dayOfWeek = extractDay(inputTime);
         this.startTime = extractStartTime(inputTime);
         this.endTime = extractEndTime(inputTime);
@@ -62,6 +64,34 @@ public class ClassTime {
     private static LocalTime extractEndTime(String input) {
         String endTime = input.substring(7);
         return LocalTime.parse(endTime, TIME_FORMATTER);
+    }
+
+    /**
+     * Checks if input end time is after start time.
+     * @param input Start and end times input by user.
+     * @return True if times are valid, False if otherwise.
+     */
+    public static boolean isValidStartAndEndTime(String input) {
+        LocalTime startTime = extractStartTime(input);
+        LocalTime endTime = extractEndTime(input);
+
+        return endTime.isAfter(startTime);
+    }
+
+    /**
+     * Converts a {@code classTime} object back to a user input string
+     */
+    public String convertClassTimeToUserInputString() {
+        String startTimeString = this.startTime.format(OUTPUT);
+        String endTimeString = this.endTime.format(OUTPUT);
+        String dayOfWeek = this.dayOfWeek.toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(dayOfWeek)
+                .append(" ")
+                .append(startTimeString)
+                .append("-")
+                .append(endTimeString);
+        return builder.toString();
     }
 
     @Override
