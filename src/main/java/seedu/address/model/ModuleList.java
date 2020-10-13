@@ -41,7 +41,7 @@ public class ModuleList implements ReadOnlyModuleList {
         setModules(newData.getModuleList());
     }
 
-    //// person-level operations
+    //// module-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

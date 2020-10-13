@@ -8,13 +8,13 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyModuleList;
 
-import seedu.address.commons.exceptions.DataConversionException;
-
+// TODO better JavaDocs
 public class JsonModuleStorage implements ModuleStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonModuleStorage.class);
@@ -35,7 +35,9 @@ public class JsonModuleStorage implements ModuleStorage {
         return readModuleList(filePath);
     }
 
-
+    /**
+     * Reads the module list
+     */
     public Optional<ReadOnlyModuleList> readModuleList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -58,6 +60,12 @@ public class JsonModuleStorage implements ModuleStorage {
         saveModuleList(moduleList, filePath);
     }
 
+    /**
+     * Saves the module list in the specified file path.
+     * @param moduleList
+     * @param filePath
+     * @throws IOException
+     */
     public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
         requireNonNull(moduleList);
         requireNonNull(filePath);
