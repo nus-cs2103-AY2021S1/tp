@@ -38,7 +38,10 @@ public class TagCommandTest {
     @Test
     public void execute_tagAddressFileNotFound_throwsCommandException() {
         Tag tagInvalidAddress = new TagBuilder().withFileAddress("./somewhereOverTheRainbow").build();
-        assertThrows(IllegalArgumentException.class, () -> new TagCommand(tagInvalidAddress));
+        Tag validTag = new TagBuilder().build();
+        TagCommand tagCommand = new TagCommand(tagInvalidAddress);
+        ModelStub modelStub = new ModelStubWithTag(validTag);
+        assertThrows(CommandException.class, () -> tagCommand.execute(modelStub));
     }
 
     @Test
