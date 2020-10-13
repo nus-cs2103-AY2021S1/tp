@@ -42,7 +42,7 @@ public class DeleteCommentCommand extends CommentCommand {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson));
     }
 
     /**
@@ -71,7 +71,7 @@ public class DeleteCommentCommand extends CommentCommand {
         if (personToEdit instanceof Staff) {
             Set<Leave> updatedLeaves = commentPersonDescriptor.getLeaves();
             return new Staff(updatedName, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags,updatedLeaves, updatedComments);
+                    updatedAddress, updatedTags, updatedLeaves, updatedComments);
         }
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);

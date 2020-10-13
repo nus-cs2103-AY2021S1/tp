@@ -25,13 +25,13 @@ import com.eva.model.tag.Tag;
 
 public class CommentCommand extends Command {
 
-
-
-
     public static final String COMMAND_WORD = "comment";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds comment to person";
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or delete comment to person"
+            + "To add: key in '-a t: {Title} d: {Date} desc: {Description}'"
+            + "and to delete, key in '-d t:{TitletoDelete}'";
+    public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+
 
     public final Index index;
     public final CommentCommand.CommentPersonDescriptor commentPersonDescriptor;
@@ -68,7 +68,7 @@ public class CommentCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson));
     }
 
     /**
@@ -179,7 +179,7 @@ public class CommentCommand extends Command {
         }
 
         public void setLeaves(Set<Leave> leaves) {
-            this.leaves = (comments != null) ? new HashSet<>(leaves) : null;
+            this.leaves = (leaves != null) ? new HashSet<>(leaves) : null;
         }
 
         public Set<Leave> getLeaves() {
