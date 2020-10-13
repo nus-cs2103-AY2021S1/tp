@@ -218,6 +218,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean containsPropertyId(Id id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setProperty(Property target, Property editedProperty) {
             throw new AssertionError("This method should not be called.");
         }
