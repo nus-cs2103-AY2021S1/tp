@@ -13,5 +13,4 @@ public interface ReadOnlyModuleList {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Module> getModuleList();
-
 }
