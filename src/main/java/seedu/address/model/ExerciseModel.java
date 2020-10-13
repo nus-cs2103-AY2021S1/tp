@@ -88,7 +88,7 @@ public interface ExerciseModel {
 
     /**
      * Updates the filter of the filtered Exercise list to filter by the given {@code predicate}.
-     *
+     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
