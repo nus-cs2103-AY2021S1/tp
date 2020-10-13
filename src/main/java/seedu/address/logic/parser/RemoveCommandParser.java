@@ -31,7 +31,7 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), ive);
         }
 
-        if (!areQuantityPresent(argMultimap, PREFIX_QUANTITY)) {
+        if (!isQuantityPresent(argMultimap, PREFIX_QUANTITY)) {
             throw new ParseException(RemoveCommand.MESSAGE_NO_QUANTITY);
         }
 
@@ -44,7 +44,7 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
      * Returns true if Prefix Quantity does not contains empty {@code Optional} value in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean areQuantityPresent(ArgumentMultimap argumentMultimap, Prefix quantity) {
+    private static boolean isQuantityPresent(ArgumentMultimap argumentMultimap, Prefix quantity) {
         return Stream.of(quantity).allMatch(prefix -> argumentMultimap.getValue(quantity).isPresent());
     }
 
