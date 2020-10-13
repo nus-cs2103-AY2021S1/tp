@@ -4,48 +4,42 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import jimmy.mcgymmy.model.AddressBook;
-import jimmy.mcgymmy.model.ReadOnlyAddressBook;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Person;
-import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.McGymmy;
+import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Name;
+import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code McGymmy} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"))
+    public static Food[] getSamplePersons() {
+        return new Food[] {
+            new Food(new Name("Chicken Rice"), new Protein(200), new Fat(300),
+                    new Carbohydrate(100),
+                    getTagSet("Lunch")),
+            new Food(new Name("Rice Bowl"), new Protein(300), new Fat(200),
+                    new Carbohydrate(100),
+                    getTagSet("Lunch", "Dinner")),
+            new Food(new Name("Fried Chicken"), new Protein(200), new Fat(100),
+                    new Carbohydrate(10),
+                    getTagSet("Tasty")),
+            new Food(new Name("Nasi Lemak"), new Protein(20), new Fat(17),
+                    new Carbohydrate(31),
+                    getTagSet("Lunch")),
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyMcGymmy getSampleMcGymmy() {
+        McGymmy sampleMG = new McGymmy();
+        for (Food sampleFood : getSamplePersons()) {
+            sampleMG.addFood(sampleFood);
         }
-        return sampleAb;
+        return sampleMG;
     }
 
     /**

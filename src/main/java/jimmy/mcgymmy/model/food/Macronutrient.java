@@ -4,9 +4,12 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    private int amount;
-    private int caloricMultiplier;
-    private int totalCalories;
+    public static final String MESSAGE_CONSTRAINTS = "values should only contain positive numbers";
+    private static final String VALIDATION_REGEX = "(\\d)+";
+    private final int amount;
+    private final int caloricMultiplier;
+    private final int totalCalories;
+    private String type;
 
     /**
      * Represents macronutrients of 3 types
@@ -18,7 +21,7 @@ public abstract class Macronutrient {
         CollectionUtil.requireAllNonNull(amount, caloricMultiplier);
 
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
-        AppUtil.checkArgument(isValidAmount(amount), getMessageContraint());
+        AppUtil.checkArgument(isValidAmount(amount), getMessageConstraint());
 
         assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
@@ -28,20 +31,28 @@ public abstract class Macronutrient {
 
     }
 
-    private boolean isValidAmount(int amount) {
-        return amount > 0;
+    /**
+     * Check if the string is a Valid Macronutrient amount.
+     *
+     * @param value String value of Macronutrient.
+     * @return if the String is valid.
+     */
+    public static boolean isValid(String value) {
+        return value.matches(VALIDATION_REGEX);
     }
 
-    private String getMessageContraint() {
+    private boolean isValidAmount(int amount) {
+        return amount >= 0;
+    }
+
+    private String getMessageConstraint() {
         return this.getMacronutrientType() + " amount can only take in value larger than 0";
     }
 
     @Override
     public String toString() {
-        return "MacronutrientType:" + this.getMacronutrientType() + "\n"
-                + "Amount: "
-                + this.getAmount() + "\n"
-                + "Caloric Count: " + this.getTotalCalories() + "\n";
+        String res = this.getMacronutrientType() + ": " + this.getAmount() + "\n";
+        return res;
     }
 
     @Override
@@ -52,16 +63,14 @@ public abstract class Macronutrient {
         if (!(other instanceof Macronutrient)) {
             return false;
         }
-
         Macronutrient otherMacronutrient = (Macronutrient) other;
         return this.getMacronutrientType().equals(otherMacronutrient.getMacronutrientType())
-                && this.getAmount() == otherMacronutrient.getAmount()
-                && this.getCaloricMultiplier() == otherMacronutrient.getCaloricMultiplier();
+                && this.getAmount() == otherMacronutrient.getAmount();
     }
 
     // take the type from the class name
     public String getMacronutrientType() {
-        return this.getClass().getName();
+        return this.getClass().getSimpleName();
     }
 
     public int getAmount() {
@@ -75,4 +84,5 @@ public abstract class Macronutrient {
     public int getTotalCalories() {
         return totalCalories;
     }
+
 }

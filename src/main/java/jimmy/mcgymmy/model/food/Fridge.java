@@ -66,6 +66,7 @@ public class Fridge implements Iterable<Food> {
         internalList.setAll(foods);
     }
 
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

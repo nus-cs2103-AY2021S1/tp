@@ -2,69 +2,87 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
-
-import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
+import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Person;
-import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Name;
+import jimmy.mcgymmy.model.food.Protein;
+import jimmy.mcgymmy.model.tag.Tag;
 
 /**
- * Adds a person to the address book.
+ * Adds a food to mcgymmy.
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New food added: \n%1$s";
 
     private Parameter<Name> nameParameter = this.addParameter(
             "name",
             "n",
-            "Name of person to add",
-            "John Doe",
+            "Name of food to add",
+            "Chicken Rice",
             ParserUtil::parseName
     );
-    private Parameter<Phone> phoneParameter = this.addParameter(
-            "phone",
+    private OptionalParameter<Protein> proteinParameter = this.addOptionalParameter(
+            "protein value",
             "p",
-            "Phone number of person to add",
-            "98765432",
-            ParserUtil::parsePhone
+            "Protein value of food (g)",
+            "10",
+            ParserUtil::parseProtein
     );
-    private Parameter<Email> emailParameter = this.addParameter(
-            "email",
-            "e",
-            "Email address of person to add",
-            "johnd@example.com",
-            ParserUtil::parseEmail
-
+    private OptionalParameter<Fat> fatParameter = this.addOptionalParameter(
+            "fat value",
+            "f",
+            "Fat value of food (g)",
+            "10",
+            ParserUtil::parseFat
+    );
+    private OptionalParameter<Carbohydrate> carbParameter = this.addOptionalParameter(
+            "carb value",
+            "c",
+            "Carbohydrate value of food (g)",
+            "10",
+            ParserUtil::parseCarb
+    );
+    private OptionalParameter<Tag> tagParameter = this.addOptionalParameter(
+            "tag",
+            "t",
+            "Tag associated with the Food",
+            "Lunch",
+            ParserUtil::parseTag
     );
 
-    void setParameters(Parameter<Name> nameParameter, Parameter<Phone> phoneParameter,
-                       Parameter<Email> emailParameter) {
+    void setParameters(Parameter<Name> nameParameter, OptionalParameter<Protein> proteinParameter,
+                       OptionalParameter<Fat> fatParameter, OptionalParameter<Carbohydrate> carbParameter,
+                       OptionalParameter<Tag> tagParameter) {
         this.nameParameter = nameParameter;
-        this.phoneParameter = phoneParameter;
-        this.emailParameter = emailParameter;
+        this.proteinParameter = proteinParameter;
+        this.fatParameter = fatParameter;
+        this.carbParameter = carbParameter;
+        this.tagParameter = tagParameter;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
-        // rewriting this class as an example, address and tags not implemented.
-        Person toAdd = new Person(nameParameter.consume(), phoneParameter.consume(), emailParameter.consume(),
-                new Address("dummy value"), new HashSet<>());
+        // rewriting this class as an example, tags not implemented.
+        Name newName = nameParameter.consume();
+        Protein newProtein = this.proteinParameter.getValue().orElse(new Protein(0));
+        Fat newFat = this.fatParameter.getValue().orElse(new Fat(0));
+        Carbohydrate newCarb = this.carbParameter.getValue().orElse(new Carbohydrate(0));
+        Food toAdd = new Food(newName, newProtein, newFat, newCarb);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (this.tagParameter.getValue().isPresent()) {
+            Tag newTag = this.tagParameter.getValue().get();
+            toAdd.addTag(newTag);
         }
 
-        model.addPerson(toAdd);
+        model.addFood(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

@@ -2,17 +2,23 @@ package jimmy.mcgymmy.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.commons.util.StringUtil;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
-import jimmy.mcgymmy.model.person.Address;
-import jimmy.mcgymmy.model.person.Email;
-import jimmy.mcgymmy.model.person.Name;
-import jimmy.mcgymmy.model.person.Phone;
+import jimmy.mcgymmy.model.food.Carbohydrate;
+import jimmy.mcgymmy.model.food.Fat;
+import jimmy.mcgymmy.model.food.Name;
+import jimmy.mcgymmy.model.food.Protein;
 import jimmy.mcgymmy.model.tag.Tag;
 
 /**
@@ -52,48 +58,57 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Gets integer from string value.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @param value        String containing value of nutrient.
+     * @param errorMessage String containing the error message.
+     * @return Integer value of string.
+     * @throws ParseException if the value is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    private static int getNutrientValue(String value, String errorMessage) throws ParseException {
+        requireNonNull(value);
+        String trimmedValue = value.trim();
+        int nutrientValue;
+        try {
+            nutrientValue = Integer.parseInt(trimmedValue);
+        } catch (NumberFormatException numberFormatException) {
+            throw new ParseException(errorMessage);
         }
-        return new Phone(trimmedPhone);
+        return nutrientValue;
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String protein} into a {@code Protein}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code Protein} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
+    public static Protein parseProtein(String protein) throws ParseException {
+        int proteinValue = getNutrientValue(protein, Protein.MESSAGE_CONSTRAINTS);
+        return new Protein(proteinValue);
+    }
+
+
+    /**
+     * Parses a {@code String carb} into an {@code Carbohydrate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code carb} is invalid.
+     */
+    public static Carbohydrate parseCarb(String carb) throws ParseException {
+        int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
+        return new Carbohydrate(carbValue);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String fat} into an {@code Fat}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code fat} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
+    public static Fat parseFat(String fat) throws ParseException {
+        int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
+        return new Fat(fatValue);
     }
 
     /**
@@ -121,5 +136,83 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Helper function for commons-cli's HelpFormatter.
+     * Generates the usage string from commons-cli options.
+     *
+     * @param commandName name of the command.
+     * @param header extra text to be included before usage statement.
+     * @param options commons-cli options to format.
+     * @return usage string.
+     */
+    public static String getUsageFromHelpFormatter(String commandName, String header, Options options) {
+        HelpFormatter formatter = new HelpFormatter();
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        formatter.printHelp(
+            printWriter,
+            formatter.getWidth(),
+            commandName,
+            header,
+            options,
+            formatter.getLeftPadding(),
+            formatter.getDescPadding(),
+            "");
+        return stringWriter.toString();
+    }
+
+    /**
+     * Because Java does not support tuples/pairs.
+     * Also a ton of boilerplate because module guidelines
+     * doesn't let me use public variables even here.
+     */
+    public static class HeadTailString {
+        // mandated private fields from the Church of OOP.
+        private final String head;
+        private final String[] tail;
+
+        // package private because it can only be created here
+        HeadTailString(String head, String[] tail) {
+            this.head = head;
+            this.tail = tail;
+        }
+
+        /**
+         * Splits a string using the delimiter,
+         * storing the first string as the head, and the rest as the tail.
+         *
+         * @param input raw input string.
+         * @param delimiter Java regex string to split the string by.
+         * @return HeadTailString object which is essentially a pair (String, String[]) but with Java cruft.
+         */
+        public static HeadTailString splitString(String input, String delimiter) {
+            try {
+                String[] headTail = input.split(delimiter);
+                return new HeadTailString(headTail[0], Arrays.copyOfRange(headTail, 1, headTail.length));
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return new HeadTailString("", new String[]{""});
+            }
+        }
+
+        /**
+         * Splits a string by whitespaces,
+         * storing the first string as the head, and the rest as the tail.
+         *
+         * @param input raw input string.
+         * @return HeadTailString object which is essentially a pair (String, String[]) but with Java cruft.
+         */
+        public static HeadTailString splitString(String input) {
+            return HeadTailString.splitString(input, "\\s+");
+        }
+
+        public String getHead() {
+            return head;
+        }
+
+        public String[] getTail() {
+            return tail;
+        }
     }
 }
