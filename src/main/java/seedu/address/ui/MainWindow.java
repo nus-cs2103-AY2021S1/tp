@@ -4,8 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -145,9 +143,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void fillEntryDisplay() {
-        //entryListGridPlaceholder.setPadding(new Insets(0, 10, 0, 0));
-        // entryListGridPlaceholder.setSpacing(10);
-
         expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
         entryListGridPlaceholder.getChildren().add(expenseListPanel.getRoot());
 

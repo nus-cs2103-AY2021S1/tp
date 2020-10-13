@@ -52,7 +52,8 @@
         </Circle>
       </HBox>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
+                   styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
@@ -68,10 +69,10 @@
         <HBox fx:id="entryListGridPlaceholder" prefWidth="Infinity"
               VBox.vgrow="ALWAYS" alignment="BASELINE_RIGHT" spacing="10" >
               <padding>
-                <Insets bottom="5" right="10"/>
+                <Insets top="5" bottom="5" right="10"/>
               </padding>
-              <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS" prefWidth="80" />
-              <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS" prefWidth="80"/>
+              <StackPane fx:id="expenseListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="revenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"
