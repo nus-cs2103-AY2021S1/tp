@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         lastInputPlaceHolder.getChildren().add(lastInputDisplay.getRoot());
 
         // command box
-        NewCommandBox commandBox = new NewCommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceHolder.getChildren().add(commandBox.getRoot());
 
         // footer bar
