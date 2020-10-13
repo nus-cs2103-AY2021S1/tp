@@ -1,19 +1,10 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.calendar.CalendarBidderId;
 import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.calendar.CalendarPropertyId;
 import seedu.address.model.calendar.CalendarTime;
 import seedu.address.model.calendar.CalendarVenue;
-import seedu.address.model.id.Id;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.seller.Seller;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Meeting objects.

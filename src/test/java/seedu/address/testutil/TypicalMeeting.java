@@ -13,7 +13,6 @@ import java.util.List;
 
 import seedu.address.model.MeetingBook;
 import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.person.seller.Seller;
 
 /**
  * A utility class containing a list of {@code Seller} objects to be used in tests.
