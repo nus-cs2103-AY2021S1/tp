@@ -48,6 +48,11 @@ public class TypicalIngredients {
         Count.of(VALID_INGREDIENT_QTY_BANANA)
     );
 
+    public static final IngredientReference CUSTARD_REF = new IngredientReference(
+        VALID_INGREDIENT_NAME_CUSTARD,
+        Count.of(VALID_INGREDIENT_QTY_CUSTARD)
+    );
+
     /**
      * Returns an {@code IngredientBook} with all the typical ingredients.
      */

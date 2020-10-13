@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import chopchop.commons.exceptions.IllegalValueException;
-import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Name;
-import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.IngredientReference;
 
@@ -59,7 +57,8 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_nullReference_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, null, VALID_STEPS);
-        String expectedMessage = String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, IngredientReference.class.getSimpleName());
+        String expectedMessage = String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
+            IngredientReference.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

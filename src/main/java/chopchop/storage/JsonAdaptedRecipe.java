@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
-import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.util.Result;
@@ -69,7 +68,8 @@ public class JsonAdaptedRecipe {
     public Recipe toModelType() throws IllegalValueException {
 
         if (ingredientRefs == null) {
-            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, IngredientReference.class.getSimpleName()));
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
+                IngredientReference.class.getSimpleName()));
         }
         final List<IngredientReference> modelIngredientRefs = new ArrayList<>();
         for (String ref : ingredientRefs) {
@@ -81,7 +81,8 @@ public class JsonAdaptedRecipe {
         }
 
         if (steps == null) {
-            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Step.class.getSimpleName()));
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
+                Step.class.getSimpleName()));
         }
         final List<Step> modelSteps = new ArrayList<>();
         for (String step : steps) {
@@ -89,7 +90,8 @@ public class JsonAdaptedRecipe {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
+                Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);

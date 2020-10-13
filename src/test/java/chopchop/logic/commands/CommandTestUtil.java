@@ -25,6 +25,7 @@ public class CommandTestUtil {
     public static final String VALID_INGREDIENT_EXPIRY_CUSTARD = "2020-04-04";
     public static final String VALID_RECIPE_NAME_APRICOT_SALAD = "Apricot Salad";
     public static final String VALID_RECIPE_NAME_BANANA_SALAD = "Banana Salad";
+    public static final String VALID_RECIPE_NAME_CUSTARD_SALAD = "Custard Salad";
 
     /**
      * Executes the given {@code command}, confirms that <br>

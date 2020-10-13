@@ -76,7 +76,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getRecipeBookFilePath() {
-        return null;
+        return recipeBookStorage.getRecipeBookFilePath();
     }
 
     @Override

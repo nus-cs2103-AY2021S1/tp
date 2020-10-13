@@ -1,7 +1,6 @@
 package chopchop.storage;
 
 import static chopchop.testutil.Assert.assertThrows;
-import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
 import static chopchop.testutil.TypicalIngredients.CUSTARD;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
@@ -17,8 +16,8 @@ import chopchop.commons.exceptions.DataConversionException;
 import chopchop.model.ingredient.IngredientBook;
 import chopchop.model.ingredient.ReadOnlyIngredientBook;
 
-public class JsonIngredientBookStorageTest {    private static final Path
-    TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonIndBookStorageTest");
+public class JsonIngredientBookStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonIndBookStorageTest");
 
     @TempDir
     public Path testFolder;
