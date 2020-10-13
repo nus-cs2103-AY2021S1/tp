@@ -61,7 +61,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleLogsFound() {
         String expectedMessage = String.format(MESSAGE_LOGS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate predicate = preparePredicate("Jumping");
         FindCommand command = new FindCommand(predicate);
