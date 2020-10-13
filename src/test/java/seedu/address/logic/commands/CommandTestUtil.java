@@ -17,18 +17,31 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ExerciseBook;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicateForExercise;
-import seedu.address.model.person.Person;
 import seedu.address.model.ExerciseModel;
+import seedu.address.model.Model;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.EditExerciseDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    //Calo
+    public static final String VALID_NAME_PUSH_UP = "Push Up";
+    public static final String VALID_DESCRIPTION_PUSH_UP = "Push Up Description";
+    public static final String VALID_DATE_PUSH_UP = "10-10-2020";
+    public static final String VALID_CALORIES_PUSH_UP = "100";
+
+    public static final String VALID_NAME_SIT_UP = "Sit Up";
+    public static final String VALID_DESCRIPTION_SIT_UP = "Sit Up Description";
+    public static final String VALID_DATE_SIT_UP = "10-10-2020";
+    public static final String VALID_CALORIES_SIT_UP = "100";
+
+
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -64,7 +77,21 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+
+    public static final UpdateExerciseCommand.EditExerciseDescriptor DESC_PUSH_UP;
+    public static final UpdateExerciseCommand.EditExerciseDescriptor DESC_SIT_UP;
+
+
     static {
+        // Calo
+        DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
+                .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
+                .withCalories(VALID_CALORIES_PUSH_UP).build();
+        DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
+                .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
+                .withCalories(VALID_CALORIES_SIT_UP).build();
+
+
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
@@ -79,7 +106,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -89,8 +116,14 @@ public class CommandTestUtil {
         }
     }
 
-    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel, CommandResult expectedCommandResult,
-                                            ExerciseModel expectedModel) {
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
+                                            CommandResult expectedCommandResult, ExerciseModel expectedModel) {
+
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -98,12 +131,6 @@ public class CommandTestUtil {
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
-    }
-
-    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel, String expectedMessage,
-                                            ExerciseModel expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -111,7 +138,16 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
+                                            String expectedMessage, ExerciseModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -139,7 +175,9 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(CommandForExercise command, ExerciseModel actualModel, String expectedMessage) {
+    public static void assertCommandFailure(CommandForExercise command,
+                                            ExerciseModel actualModel, String expectedMessage) {
+
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ExerciseBook expectedExerciseBook = new ExerciseBook(actualModel.getExerciseBook());
@@ -149,6 +187,7 @@ public class CommandTestUtil {
         assertEquals(expectedExerciseBook, actualModel.getExerciseBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredExerciseList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -164,8 +203,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the exercise at the given {@code targetIndex} in the
+     * {@code model}'s exercise book.
      */
     public static void showExerciseAtIndex(ExerciseModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExerciseList().size());
@@ -176,5 +215,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredExerciseList().size());
     }
-
 }
