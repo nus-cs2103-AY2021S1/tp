@@ -20,7 +20,6 @@ import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
 
-
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -175,7 +174,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String detail} into a {@code Tag}.
+     * Parses a {@code String detail} into a {@code AdditionalDetail}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code detail} is invalid.
