@@ -5,6 +5,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
@@ -14,6 +15,7 @@ public class RecipeViewPanel extends UiPart<Region> {
     private static final String FXML = "RecipeViewPanel.fxml";
     private static final int ROWS = 3;
     private static final int START_COL = -1;
+    private static final TextArea emptyListPrompt = new TextArea();
 
     // Only 3 rows of recipes will be displayed.
     private ObservableList<Recipe> recipeObservableList;
@@ -30,15 +32,27 @@ public class RecipeViewPanel extends UiPart<Region> {
     public RecipeViewPanel(ObservableList<Recipe> recipeList) {
         super(FXML);
         recipeObservableList = recipeList;
+        emptyListPrompt.setText("You do not have any recipes yet.\nAdd one today:)");
         recipeObservableList.addListener(new ListChangeListener<Recipe>() {
             @Override
             public void onChanged(Change<? extends Recipe> c) {
-                refresh();
+                fillDisplay();
             }
         });
-        populate();
+        fillDisplay();
     }
 
+    /**
+     * Checks if the display contains any recipes, and fills the recipe grid view.
+     */
+    private void fillDisplay() {
+        recipeGridView.getChildren().clear();
+        if (isEmpty()) {
+            displayPrompt();
+        } else {
+            populate();
+        }
+    }
 
     private int calculate_row(int index) {
         return index % ROWS;
@@ -61,12 +75,11 @@ public class RecipeViewPanel extends UiPart<Region> {
         }
     }
 
-    /**
-     * Refresh the recipe grid view.
-     */
-    private void refresh() {
-        recipeGridView.getChildren().clear();
-        populate();
+    private void displayPrompt() {
+        recipeGridView.add(emptyListPrompt, 0, 0);
     }
 
+    private boolean isEmpty() {
+        return recipeGridView.getChildren().contains(emptyListPrompt) || recipeObservableList.isEmpty();
+    }
 }
