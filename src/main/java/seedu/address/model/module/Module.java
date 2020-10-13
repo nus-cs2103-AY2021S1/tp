@@ -4,15 +4,15 @@ package seedu.address.model.module;
  * Represents the Module creation class.
  */
 public class Module {
-    private final String name;
-    private final String zoomLink;
+    private final ModuleName name;
+    private final ZoomLink zoomLink;
 
     /**
      * Represents the module object constructor.
      * @param name name of module
      * @param zoomLink zoom link attached to module
      */
-    public Module(String name, String zoomLink) {
+    public Module(ModuleName name, ZoomLink zoomLink) {
         this.name = name;
         this.zoomLink = zoomLink;
     }
@@ -30,7 +30,7 @@ public class Module {
      * Represents the module object constructor.
      * @param name name of module
      */
-    public Module(String name) {
+    public Module(ModuleName name) {
         this.name = name;
         this.zoomLink = null;
     }
@@ -39,7 +39,8 @@ public class Module {
      * Returns the module name.
      * @return String module name.
      */
-    public String getName() {
+    public ModuleName getName() {
+        assert this.name != null;
         return this.name;
     }
 
@@ -47,7 +48,7 @@ public class Module {
      * Returns the zoom link of the module.
      * @return String zoom link.
      */
-    public String getLink() {
+    public ZoomLink getLink() {
         return this.zoomLink;
     }
 
@@ -56,7 +57,7 @@ public class Module {
      * @param zoomLink zoom link.
      * @return Module a new Module with the input zoom link.
      */
-    public Module addZoomLink(String zoomLink) {
+    public Module addZoomLink(ZoomLink zoomLink) {
         return new Module(this.getName(), zoomLink);
     }
 
@@ -65,7 +66,12 @@ public class Module {
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameModule(Module otherModule) {
-        return true;
+        if (otherModule == this) {
+            return true;
+        }
+
+        return otherModule != null
+                && otherModule.getName().equals(getName());
     }
 
     @Override
