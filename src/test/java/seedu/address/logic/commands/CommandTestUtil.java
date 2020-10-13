@@ -38,16 +38,16 @@ public class CommandTestUtil {
     public static final String VALID_SCHOOL_BOB = "Hwa Chong Institution";
     public static final String VALID_YEAR_AMY = "6";
     public static final String VALID_YEAR_BOB = "4";
-    public static final String VALID_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
-    public static final String VALID_VENUE_BOB = "575 Hougang Street 51, Singapore 530575";
-    public static final String VALID_TIME_AMY = "1 1200-1400";
-    public static final String VALID_TIME_BOB = "5 1800-2000";
-    public static final String VALID_FEE_AMY = "45";
-    public static final String VALID_FEE_BOB = "30";
-    public static final String VALID_PAYMENT_AMY = "12/12/2020";
-    public static final String VALID_PAYMENT_BOB = "11/11/2020";
-    public static final String VALID_DETAIL_AMY = "Independent Learner";
-    public static final String VALID_DETAIL_BOB = "smart";
+    public static final String VALID_CLASS_TIME_AMY = "2 1200-1300";
+    public static final String VALID_CLASS_TIME_BOB = "5 0900-1100";
+    public static final String VALID_CLASS_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
+    public static final String VALID_CLASS_VENUE_BOB = "347 Woodlands Ave 3, Singapore 730347";
+    public static final String VALID_FEE_AMY = "40";
+    public static final String VALID_FEE_BOB = "55";
+    public static final String VALID_PAYMENT_DATE_AMY = "27/10/2020";
+    public static final String VALID_PAYMENT_DATE_BOB = "10/09/2020";
+    public static final String VALID_ADDITIONAL_DETAILS_AMY = "Clever";
+    public static final String VALID_ADDITIONAL_DETAILS_BOB = "Hardworking";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -64,10 +64,10 @@ public class CommandTestUtil {
     public static final String CLASS_TIME_DESC_BOB = " " + PREFIX_TIME + VALID_CLASS_TIME_BOB;
     public static final String FEE_DESC_AMY = " " + PREFIX_FEE + VALID_FEE_AMY;
     public static final String FEE_DESC_BOB = " " + PREFIX_FEE + VALID_FEE_BOB;
-    public static final String PAYMENT_DESC_AMY = " " + PREFIX_PAYMENT + VALID_PAYMENT_AMY;
-    public static final String PAYMENT_DESC_BOB = " " + PREFIX_PAYMENT + VALID_PAYMENT_BOB;
-    public static final String DETAIL_DESC_AMY = " " + PREFIX_DETAILS + VALID_DETAIL_AMY;
-    public static final String DETAIL_DESC_BOB = " " + PREFIX_DETAILS + VALID_DETAIL_BOB;
+    public static final String PAYMENT_DATE_DESC_AMY = " " + PREFIX_PAYMENT + VALID_PAYMENT_DATE_AMY;
+    public static final String PAYMENT_DATE_DESC_BOB = " " + PREFIX_PAYMENT + VALID_PAYMENT_DATE_BOB;
+    public static final String ADDITIONAL_DETAILS_DESC_AMY = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_AMY;
+    public static final String ADDITIONAL_DETAILS_DESC_BOB = " " + PREFIX_DETAILS + VALID_ADDITIONAL_DETAILS_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -78,7 +78,8 @@ public class CommandTestUtil {
     public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
     // 'alphabets' not allowed in payment date
     public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
-    public static final String INVALID_DETAIL_DESC = " " + PREFIX_DETAILS + "hubby*"; // '*' not allowed in details
+    public static final String INVALID_ADDITIONAL_DETAIL_DESC = " " + PREFIX_DETAILS + "hubby*";
+    // '*' not allowed in details
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -99,7 +100,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -114,7 +115,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
