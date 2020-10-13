@@ -76,8 +76,8 @@ public class EditTaskCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-        lastShownList.remove(taskToEdit);
-        lastShownList.add(editedTask);
+        project.deleteTask(taskToEdit);
+        project.addTask(editedTask);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
