@@ -16,7 +16,7 @@ public class Ingredient {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
-    public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum}/\\ ]*";
     private String value;
     private String quantity;
 
