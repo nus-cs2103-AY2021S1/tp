@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.property;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ID;
@@ -7,6 +9,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_RENTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_SELLER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
+
+import java.util.Arrays;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 
 public class PropertyCommandTestUtil {
 
@@ -83,4 +92,17 @@ public class PropertyCommandTestUtil {
     public static final String INVALID_PROPERTY_ASKING_PRICE = " " + PREFIX_PROPERTY_ASKING_PRICE + "-20";
     public static final String INVALID_PROPERTY_SELLER_ID = " " + PREFIX_PROPERTY_SELLER_ID + "D1";
 
+    /**
+     * Updates {@code model}'s filtered list to show only the property at the given {@code targetIndex} in the
+     * {@code model}'s property book.
+     */
+    public static void showPropertyAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
+
+        Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
+        final String[] splitName = property.getPropertyName().propertyName.split("\\s+");
+        model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredPropertyList().size());
+    }
 }
