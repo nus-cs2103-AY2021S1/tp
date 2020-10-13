@@ -30,11 +30,12 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="school" styleClass="cell_small_label" text="\$school" />
       <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
-         <Label fx:id="venue" styleClass="cell_small_label" text="\$venue" />
-         <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
-         <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" />
-         <Label fx:id="payment" styleClass="cell_small_label" text="\$payment" />
-         <Label fx:id="details" styleClass="cell_small_label" text="\$details" />
+      <Label fx:id="venue" styleClass="cell_small_label" text="\$venue" />
+      <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
+      <Label fx:id="fee" styleClass="cell_small_label" text="\$fee" />
+      <Label fx:id="payment" styleClass="cell_small_label" text="\$payment" />
+      <Label fx:id="details" styleClass="cell_small_label" text="\$details" />
+      <Label fx:id="questions" styleClass="cell_small_label" text="\$questions" wrapText="true"/>
     </VBox>
       <rowConstraints>
          <RowConstraints />
