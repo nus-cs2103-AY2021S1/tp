@@ -1,7 +1,10 @@
 package seedu.fma.model.log;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_DATE_TIME_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;

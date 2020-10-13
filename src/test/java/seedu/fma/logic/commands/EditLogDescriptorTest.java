@@ -51,3 +51,4 @@ public class EditLogDescriptorTest {
         assertNotEquals(EDIT_LOG_DESCRIPTOR_A, editedAmy);
     }
 }
+

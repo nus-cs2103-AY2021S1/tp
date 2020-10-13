@@ -1,6 +1,8 @@
 package seedu.fma.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_A;
 import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A;

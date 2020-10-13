@@ -4,6 +4,8 @@ import static seedu.fma.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fma.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fma.testutil.TypicalLogs.getTypicalLogBook;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +14,6 @@ import seedu.fma.model.ModelManager;
 import seedu.fma.model.UserPrefs;
 import seedu.fma.model.log.Log;
 import seedu.fma.testutil.LogBuilder;
-
-import java.time.LocalDateTime;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -43,5 +43,4 @@ public class AddCommandIntegrationTest {
         Log logInList = model.getLogBook().getLogList().get(0);
         assertCommandFailure(new AddCommand(logInList), model, AddCommand.MESSAGE_DUPLICATE_LOG);
     }
-
 }

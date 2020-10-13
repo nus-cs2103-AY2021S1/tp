@@ -146,3 +146,4 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredLogList().size());
     }
 }
+
