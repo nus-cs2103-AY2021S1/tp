@@ -4,7 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
+import seedu.address.model.attendance.AttendanceType;
+import seedu.address.model.attendance.NamedAttendance;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NusnetId;
 import seedu.address.model.student.Student;
@@ -18,6 +23,7 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 public class Taskmaster implements ReadOnlyTaskmaster {
 
     private final UniqueStudentList students;
+    private AttendanceList attendanceList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -57,6 +63,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        attendanceList = AttendanceList.of(getStudentList());
     }
 
     //// student-level operations
@@ -98,6 +105,15 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
+     * Marks the attendance of a {@code target} student with {@code attendanceType}
+     */
+    public void markStudent(Student target, AttendanceType attendanceType) {
+        attendanceList.markStudentAttendance(target.getNusnetId(), attendanceType);
+    }
+
+    //// util methods
+
+    /**
      * Returns the name of the student with the given {@code nusnetId}.
      * The student must exist in the list.
      */
@@ -111,8 +127,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         throw new StudentNotFoundException();
     }
 
-    //// util methods
-
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
@@ -122,6 +136,26 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Attendance} backed by the internal list of
+     * {@code versionedTaskmaster}
+     */
+    public ObservableList<NamedAttendance> getNamedAttendanceList() {
+        ObservableList<Attendance> attendances = attendanceList.asUnmodifiableObservableList();
+        ObservableList<NamedAttendance> namedAttendances = FXCollections.observableArrayList();
+        for (Attendance attendance : attendances) {
+            try {
+                Name name = getNameByNusnetId(attendance.getNusnetId());
+                namedAttendances.add(new NamedAttendance(name, attendance));
+            } catch (StudentNotFoundException stfe) {
+                Name name = Name.getStudentNotFoundName();
+                namedAttendances.add(new NamedAttendance(name, attendance));
+            }
+        }
+
+        return FXCollections.unmodifiableObservableList(namedAttendances);
     }
 
     @Override
