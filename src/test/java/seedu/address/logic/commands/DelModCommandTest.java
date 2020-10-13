@@ -160,6 +160,11 @@ class DelModCommandTest {
         }
 
         @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
