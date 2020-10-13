@@ -1,7 +1,13 @@
 package com.eva.logic.parser;
 
+import static com.eva.model.comment.CommentCliSyntax.PREFIX_ADD;
+import static com.eva.model.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.model.comment.CommentCliSyntax.PREFIX_DELETE;
+import static com.eva.model.comment.CommentCliSyntax.PREFIX_DESC;
+import static com.eva.model.comment.CommentCliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +15,7 @@ import java.util.Set;
 import com.eva.commons.core.index.Index;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -122,4 +129,47 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses the commands inside comment input
+     * @param comment comment input
+     * @return Comment object created with input
+     * @throws ParseException
+     */
+    public static Comment parseComment(String comment) throws ParseException {
+        requireNonNull(comment);
+        String trimmedComment = comment.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment, PREFIX_ADD,
+                PREFIX_DELETE, PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
+        System.out.println(comment);
+        System.out.println(argMultiMap.getAllValues(PREFIX_ADD).size());
+        if (argMultiMap.getAllValues(PREFIX_DELETE).size() == 0) {
+            String date = argMultiMap.getValue(PREFIX_DATE).get();
+            String title = argMultiMap.getValue(PREFIX_TITLE).get();
+            String desc = argMultiMap.getValue(PREFIX_DESC).get();
+            return new Comment(LocalDate.parse(date), desc, title);
+        } else {
+            String desc = argMultiMap.getValue(PREFIX_DESC).get();
+            return new Comment(desc);
+        }
+    }
+
+    /**
+     * Converts string with details of comments into a Comment object
+     * @param comments strings of details
+     * @return Set of comment objects
+     * @throws ParseException
+     */
+    public static Set<Comment> parseComments(Collection<String> comments) throws ParseException {
+        requireNonNull(comments);
+        final Set<Comment> commentSet = new HashSet<>();
+        for (String comment : comments) {
+            commentSet.add(parseComment(comment));
+        }
+        return commentSet;
+    }
+
 }

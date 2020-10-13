@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -29,13 +30,20 @@ public class Staff extends Person {
      * @param tags
      * @param leaves
      */
-    public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Leave> leaves) {
-        super(name, phone, email, address, tags);
+    public Staff(Name name, Phone phone, Email email,
+                 Address address, Set<Tag> tags, Set<Leave> leaves, Set<Comment> comments) {
+        super(name, phone, email, address, tags, comments);
         this.leaves.addAll(leaves);
     }
 
+    /**
+     * Creates Staff Object
+     * @param person
+     * @param leaves
+     */
     public Staff(Person person, Set<Leave> leaves) {
-        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(), leaves);
+        this(person.getName(), person.getPhone(), person.getEmail(),
+                person.getAddress(), person.getTags(), leaves, person.getComments());
     }
 
     /**
