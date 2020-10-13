@@ -6,8 +6,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ArchiveCommand;
+import seedu.address.logic.commands.CommandForExercise;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UpdateExerciseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,7 +51,7 @@ public class ExerciseBookParser {
             return new ArchiveCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-             return new ListCommand();
+            return new ListCommand();
 
         case UpdateExerciseCommand.COMMAND_WORD:
             return new UpdateExerciseCommandParser().parse(arguments);
