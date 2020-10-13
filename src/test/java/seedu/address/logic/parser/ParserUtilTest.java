@@ -163,7 +163,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseVenue_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseVenue(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseClassVenue(null));
     }
 
     @Test
@@ -174,37 +174,37 @@ public class ParserUtilTest {
     @Test
     public void parseVenue_validVenueWithoutWhiteSpace_returnsVenue() throws Exception {
         ClassVenue expectedVenue = new ClassVenue(VALID_CLASS_VENUE);
-        assertEquals(expectedVenue, ParserUtil.parseVenue(VALID_CLASS_VENUE));
+        assertEquals(expectedVenue, ParserUtil.parseClassVenue(VALID_CLASS_VENUE));
     }
 
     @Test
     public void parseVenue_validVenueWithWhiteSpace_returnsTrimmedVenue() throws Exception {
         String venueWithWhiteSpace = WHITESPACE + VALID_CLASS_VENUE + WHITESPACE;
         ClassVenue expectedVenue = new ClassVenue(VALID_CLASS_VENUE);
-        assertEquals(expectedVenue, ParserUtil.parseVenue(venueWithWhiteSpace));
+        assertEquals(expectedVenue, ParserUtil.parseClassVenue(venueWithWhiteSpace));
     }
 
     @Test
     public void parseTime_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseClassTime(null));
     }
 
     @Test
     public void parseTime_invalidTime_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_CLASS_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClassTime(INVALID_CLASS_TIME));
     }
 
     @Test
     public void parseTime_validTimeWithoutWhiteSpace_returnsTime() throws Exception {
         ClassTime expectedTime = new ClassTime(VALID_CLASS_TIME);
-        assertEquals(expectedTime, ParserUtil.parseTime(VALID_CLASS_TIME));
+        assertEquals(expectedTime, ParserUtil.parseClassTime(VALID_CLASS_TIME));
     }
 
     @Test
     public void parseTime_validTimeWithWhiteSpace_returnsTrimmedTime() throws Exception {
         String timeWithWhiteSpace = WHITESPACE + VALID_CLASS_TIME + WHITESPACE;
         ClassTime expectedTime = new ClassTime(VALID_CLASS_TIME);
-        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhiteSpace));
+        assertEquals(expectedTime, ParserUtil.parseClassTime(timeWithWhiteSpace));
     }
 
     @Test

@@ -76,7 +76,9 @@ public class ClassTime {
         LocalTime endTime = extractEndTime(input);
 
         return endTime.isAfter(startTime);
+    }
 
+    /**
      * Converts a {@code classTime} object back to a user input string
      */
     public String convertClassTimeToUserInputString() {
