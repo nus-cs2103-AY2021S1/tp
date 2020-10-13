@@ -43,14 +43,14 @@ public class ExerciseModelManager implements ExerciseModel {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -79,13 +79,13 @@ public class ExerciseModelManager implements ExerciseModel {
     //=========== ExerciseBook ================================================================================
 
     @Override
-    public void setExerciseBook(ReadOnlyExerciseBook exerciseBook) {
-        this.exerciseBook.resetData(exerciseBook);
+    public ReadOnlyExerciseBook getExerciseBook() {
+        return exerciseBook;
     }
 
     @Override
-    public ReadOnlyExerciseBook getExerciseBook() {
-        return exerciseBook;
+    public void setExerciseBook(ReadOnlyExerciseBook exerciseBook) {
+        this.exerciseBook.resetData(exerciseBook);
     }
 
     @Override
