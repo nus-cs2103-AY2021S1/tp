@@ -99,6 +99,19 @@ public class UniqueExpenseList implements Iterable<Expense> {
     }
 
     /**
+     * Calculates the sum of the expenses in the expense list.
+     * @return sum of expenses.
+     */
+    public double tallyExpenses() {
+        double sum = 0;
+        Iterator<Expense> i = iterator();
+        while (i.hasNext()) {
+            sum += i.next().getAmount().asDouble();
+        }
+        return sum;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Expense> asUnmodifiableObservableList() {

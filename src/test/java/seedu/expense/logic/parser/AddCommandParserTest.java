@@ -117,7 +117,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + DESCRIPTION_DESC_BUS + AMOUNT_DESC_BUS
-                        + TAG_DESC_FOOD + TAG_DESC_TRANSPORT,
+                + TAG_DESC_FOOD + TAG_DESC_TRANSPORT,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

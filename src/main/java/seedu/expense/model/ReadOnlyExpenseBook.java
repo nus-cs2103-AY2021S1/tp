@@ -19,4 +19,9 @@ public interface ReadOnlyExpenseBook {
      * Returns the budget.
      */
     Budget getBudget();
+
+    /**
+     * Returns the total sum of the expenses in the expenses list.
+     */
+    double tallyExpenses();
 }

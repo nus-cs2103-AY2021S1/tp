@@ -27,6 +27,6 @@ public interface Storage extends ExpenseBookStorage, UserPrefsStorage {
     Optional<ReadOnlyExpenseBook> readExpenseBook() throws DataConversionException, IOException;
 
     @Override
-    void saveExpenseBook(ReadOnlyExpenseBook expenseBook) throws IOException;
+    void saveExpenseBook(ReadOnlyExpenseBook addressBook) throws IOException;
 
 }

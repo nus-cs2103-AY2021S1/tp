@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ExpenseListPanel expenseListPanel;
     private ResultDisplay resultDisplay;
+    private BudgetDisplay budgetDisplay;
     private HelpWindow helpWindow;
 
     @FXML
@@ -46,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane budgetDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -122,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        budgetDisplay = new BudgetDisplay(logic.getExpenseBook());
+        budgetDisplayPlaceholder.getChildren().add(budgetDisplay.getRoot());
     }
 
     /**
@@ -178,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            budgetDisplay.setFeedbackToUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -113,6 +113,16 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         expenses.remove(key);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueExpenseList#tallyExpenses()
+     */
+    @Override
+    public double tallyExpenses() {
+        return expenses.tallyExpenses();
+    }
+
     //// util methods
 
     @Override
