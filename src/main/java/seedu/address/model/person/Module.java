@@ -20,6 +20,8 @@ public class Module {
      * The first character of the module must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
+
+    // TODO make a module ID class?
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String moduleId;
