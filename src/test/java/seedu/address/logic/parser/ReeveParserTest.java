@@ -85,7 +85,7 @@ public class ReeveParserTest {
                 FindCommand.COMMAND_WORD + " " + StudentUtil.getFindStudentDescriptorDetails(descriptor));
         assertEquals(new FindCommand(descriptor), command);
     }
-    
+
     @Test
     public void parseCommand_question() throws Exception {
         String testQuestion = "How do birds fly?";
@@ -112,7 +112,7 @@ public class ReeveParserTest {
         assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD) instanceof OverdueCommand);
         assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD + " 3") instanceof OverdueCommand);
     }
-  
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

@@ -61,7 +61,7 @@ public class ReeveParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-            
+
         case QuestionCommand.COMMAND_WORD:
             return new QuestionCommandParser().parse(arguments);
 
@@ -73,7 +73,7 @@ public class ReeveParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-            
+
         case OverdueCommand.COMMAND_WORD:
             return new OverdueCommand();
 
