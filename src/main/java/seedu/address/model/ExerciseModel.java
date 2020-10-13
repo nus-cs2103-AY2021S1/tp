@@ -11,7 +11,9 @@ import seedu.address.model.exercise.Exercise;
  * The API of the Model component.
  */
 public interface ExerciseModel {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Exercise> PREDICATE_SHOW_ALL_EXERCISE = unused -> true;
 
     /**
@@ -49,7 +51,9 @@ public interface ExerciseModel {
      */
     void setExerciseBook(ReadOnlyExerciseBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyExerciseBook getExerciseBook();
 
     /**
@@ -77,11 +81,14 @@ public interface ExerciseModel {
      */
     void setExercise(Exercise target, Exercise editedExercise);
 
-    /** Returns an unmodifiable view of the filtered Exercise list */
+    /**
+     * Returns an unmodifiable view of the filtered Exercise list
+     */
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
      * Updates the filter of the filtered Exercise list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);

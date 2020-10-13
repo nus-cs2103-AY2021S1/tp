@@ -27,7 +27,8 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
         exercises = new UniqueExerciseList();
     }
 
-    public ExerciseBook() {}
+    public ExerciseBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}

@@ -9,7 +9,6 @@ import seedu.address.model.exercise.Exercise;
 import seedu.address.testutil.ExerciseBuilder;
 
 
-
 public class ExerciseBookParserTest {
     private final ExerciseBookParser parser = new ExerciseBookParser();
 
