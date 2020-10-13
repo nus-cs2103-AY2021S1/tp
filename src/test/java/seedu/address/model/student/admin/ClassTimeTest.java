@@ -69,4 +69,16 @@ public class ClassTimeTest {
         assertFalse(t1.isSameDay(dayDifferentFromt1));
         assertFalse(t1.isSameDay(null)); // equals method on null should return false
     }
+
+    @Test
+    public void isValidStartAndEndTime() {
+        // invalid start and end times
+        assertFalse(ClassTime.isValidStartAndEndTime("2 0900-0100")); // end time before start time
+        assertFalse(ClassTime.isValidStartAndEndTime("6 1200-0900")); // end time before start time
+
+        // valid start and end times
+        assertTrue(ClassTime.isValidStartAndEndTime("2 0900-1200"));
+        assertTrue(ClassTime.isValidStartAndEndTime("4 1100-1600"));
+
+    }
 }
