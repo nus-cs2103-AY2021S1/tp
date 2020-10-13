@@ -65,13 +65,13 @@ public interface Model {
 
     /**
      * Adds the given task.
-     * {@code task} must not already exist in PlaNUS.
+     * {@code task} must not already exist in PlaNus.
      */
     void addTask(Task task);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in PlaNUS.
+     * {@code target} must exist in PlaNus.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
     void setTask(Task target, Task editedTask);
