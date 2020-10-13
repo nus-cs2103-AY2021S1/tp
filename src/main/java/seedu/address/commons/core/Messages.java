@@ -12,4 +12,5 @@ public class Messages {
     public static final String MESSAGE_INCORRECT_MAIN_PAGE = "Invalid command. "
             + "Please return to main page to use this command.";
     public static final String MESSAGE_INCORRECT_CASE_PAGE = "Invalid command. Please open a case to use this command.";
+
 }
