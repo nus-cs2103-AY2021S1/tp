@@ -39,7 +39,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 Shows a message explaining how to access the help page.
 
-[image coming soon]
+![help message](images/helpMessage.png)
 
 Format: `help`
 
