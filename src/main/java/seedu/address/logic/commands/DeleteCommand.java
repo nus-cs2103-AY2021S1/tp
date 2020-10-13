@@ -8,40 +8,77 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.vendor.Vendor;
+import seedu.address.model.order.OrderItem;
 
 /**
  * Deletes a vendor identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
+    // TODO: Update delete to remove.
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the vendor identified by the index number used in the displayed vendor list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the order item identified by the index number used in the displayed menu list.\n"
+            + "Parameters: \n"
+            + "1. INDEX (must be a positive integer)\n"
+            + "2. INDEX (must be a positive integer) QUANTITY (must be a positive integer)\n"
+            + "Example: \n"
+            + "1. " + COMMAND_WORD + " 1\n"
+            + "2. " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_VENDOR_SUCCESS = "Deleted vendor: %1$s";
+    public static final String MESSAGE_DELETE_ORDERITEM_SUCCESS = "Deleted order item: %1$s";
+    public static final String MESSAGE_CUT_ORDERITEM_SUCCESS = "Reduced order item: %1$s";
 
     private final Index targetIndex;
+    private final int quantity;
 
+    /**
+     * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove all its quantity
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.quantity = Integer.MAX_VALUE;
+    }
+
+    /**
+     * Creates a DeleteCommand to delete the OrderItem at the specified {@code targetIndex} and remove its quantity by
+     * the specified {@code quantity}
+     */
+    public DeleteCommand(Index targetIndex, int quantity) {
+        this.targetIndex = targetIndex;
+        this.quantity = quantity;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Vendor> lastShownList = model.getFilteredVendorList();
+        List<OrderItem> lastShownList = model.getFilteredOrderItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
         }
 
-        Vendor vendorToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteVendor(vendorToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_VENDOR_SUCCESS, vendorToDelete));
+        if (!OrderItem.isValidQuantity(quantity)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
+        }
+
+        OrderItem orderItemToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        String successMessage;
+        int currQty = orderItemToDelete.getQuantity();
+        int newQty = currQty - quantity;
+        if (!OrderItem.isValidQuantity(newQty)) {
+            model.deleteOrderItem(orderItemToDelete);
+            successMessage = String.format(MESSAGE_DELETE_ORDERITEM_SUCCESS, orderItemToDelete);
+        } else {
+            orderItemToDelete.setQuantity(newQty);
+            model.setOrderItem(orderItemToDelete, orderItemToDelete);
+            successMessage = String.format(MESSAGE_CUT_ORDERITEM_SUCCESS, orderItemToDelete);
+        }
+
+        // TODO: Refine successMessage
+        return new CommandResult(successMessage);
     }
 
     @Override

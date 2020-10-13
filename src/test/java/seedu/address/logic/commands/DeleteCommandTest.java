@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showVendorAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_VENDOR;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_VENDOR;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
+
+import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.vendor.Vendor;
+import seedu.address.model.order.OrderItem;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -24,68 +24,73 @@ import seedu.address.model.vendor.Vendor;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    private Model initialiseModel() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        // Vendor vendorReference = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
+        model.addOrderItem(new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 3));
+        return model;
+    }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Vendor vendorToDelete = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_VENDOR);
+    public void execute_validIndex_success() {
+        Model model = initialiseModel();
+        Index first = Index.fromOneBased(1);
+        DeleteCommand deleteCommand = new DeleteCommand(first);
+        List<OrderItem> lastShownList = model.getFilteredOrderItemList();
+        OrderItem orderItemToDelete = lastShownList.get(first.getZeroBased());
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDERITEM_SUCCESS, orderItemToDelete);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_VENDOR_SUCCESS, vendorToDelete);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteVendor(vendorToDelete);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_validQuantity_success() {
+        Model model = initialiseModel();
+        Index first = Index.fromOneBased(1);
+        DeleteCommand deleteCommand = new DeleteCommand(first, 1);
+        OrderItem item = new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 2);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_CUT_ORDERITEM_SUCCESS, item);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.addOrderItem(item);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        Model model = initialiseModel();
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showVendorAtIndex(model, INDEX_FIRST_VENDOR);
+    public void execute_invalidQuantity_throwsCommandException() {
+        Model model = initialiseModel();
+        Index first = Index.fromOneBased(1);
+        // ensures that Index is still in bounds of order item list
+        assertTrue(first.getZeroBased() < model.getFilteredOrderItemList().size());
 
-        Vendor vendorToDelete = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_VENDOR);
+        DeleteCommand deleteCommand = new DeleteCommand(first, 0);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_VENDOR_SUCCESS, vendorToDelete);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteVendor(vendorToDelete);
-        showNoVendor(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showVendorAtIndex(model, INDEX_FIRST_VENDOR);
-
-        Index outOfBoundIndex = INDEX_SECOND_VENDOR;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getVendorList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_VENDOR);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_VENDOR);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(Index.fromOneBased(1));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(Index.fromOneBased(2));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_VENDOR);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(Index.fromOneBased(1));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
