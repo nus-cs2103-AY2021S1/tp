@@ -194,9 +194,13 @@ _{explain the feature here}_
 
 Action     | Format, Examples
 -----------|------------------
-**Add**    | `add NAME [-p Proteins] [-f Fats] [-c carbs]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
+**Add**    | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS]`<br> e.g.,`update 2 -n Chicken Rice -p 30 -f 50 -c 60`
+**edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60`
 **List**   | `list`
 **Help**   | `help`
-**Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​`
+**Find**   | `find KEYWORDS` <br> e.g., `find chicken`
+**Tag**    | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
+**UnTag**  | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
+**Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken
+**Exit**   | `exit`
