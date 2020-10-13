@@ -112,13 +112,13 @@ Examples:
 
 Finds a task by a set of defined attribute by the user
 
-Format: `find ATTRIBUTE:SEARCH_PHRASE ATTRIBUTE:SEARCH_PHRASE`
+Format: `find [ATTRIBUTE:SEARCH_PHRASE]+`
 
 Available attributes in v1.2 include:
-* `title:` find all tasks with the given title (support **fuzzy match**) 
-* `desc:` find all tasks with the given description (support **fuzzy match**) 
-* `type:` find all tasks with the given type (**do not support** fuzzy match) 
-* `date:` find all tasks with the given date (**do not support** fuzzy match) 
+* `title:` find all tasks with the given title
+* `desc:` find all tasks with the given description
+* `type:` find all tasks with the given type
+* `date:` find all tasks with the given date
 
 Examples:
 * `find title:play games` will list all tasks that are close matched to the title "play games"
