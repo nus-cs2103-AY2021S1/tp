@@ -87,6 +87,8 @@ Examples:
 
 Tags a food item in McGymmy.
 
+* Tags `TAG_NAME` for food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list. The index **must be a positive integer** 1, 2, 3, …​
+
 Format: `tag INDEX -t TAG_NAME`
 
 ![tag command example]()
@@ -94,6 +96,8 @@ Format: `tag INDEX -t TAG_NAME`
 ### Tagging food items : `untag`
 
 Untags a food item in McGymmy.
+
+* Untags `TAG_NAME` for food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list. The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `untag INDEX -t TAG_NAME`
 
