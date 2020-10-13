@@ -33,7 +33,7 @@ public class ListRoomCommandTest {
     }
 
     @Test
-    void execute_listIsFiltered_showsEverything() {
+    void execute_listFilterIsVacant_showsOnlyVacantRooms() {
         expectedModel.updateFilteredRoomList(Model.PREDICATE_SHOW_VACANT_ROOMS);
         assertToggleCommandSuccess(
                 new ListRoomCommand(DISPLAY_VACANT),
@@ -42,7 +42,7 @@ public class ListRoomCommandTest {
     }
 
     @Test
-    void execute_listIsVacant() {
+    void execute_listFilterIsAllocated_showsOnlyAllocatedRooms() {
         expectedModel.updateFilteredRoomList(Model.PREDICATE_SHOW_ALLOCATED_ROOMS);
         var cmd = new ListRoomCommand(DISPLAY_ALLOCATED);
         assertToggleCommandSuccess(
