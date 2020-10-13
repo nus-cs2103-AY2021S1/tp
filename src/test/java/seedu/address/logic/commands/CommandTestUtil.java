@@ -123,12 +123,11 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel,
                                             CommandResult expectedCommandResult, ExerciseModel expectedModel) {
+
         try {
             CommandResult result = command.execute(actualModel);
-
-            System.out.println(result);
-            System.out.println(expectedCommandResult);
-
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
