@@ -21,7 +21,7 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 1. Copy the file to the folder you want to use as the _home folder_ for your Warenager.
 
 1. Double-click the file to start the app. The commands available in the current version of
-    Warenager are listed below:
+   Warenager are listed below:
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -37,11 +37,11 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
     * serial number
     * source of stock
     * location stored in warehouse
-* Startup default sorted by quantity, highlight item with short quantity.
+* Startup default sorted by the order stocks are added, highlight item with short quantity.
 * Commands.<br>
-  e.g. add stock, delete stock and find stock.
-* Storage into a csv file.
-* Adding/Deleting items: Unique serial number generation per item per company.
+  e.g. add stock, delete stock, and find stock.
+* Storage into csv and json files.
+* Adding/Deleting items: Unique serial number generation per item per source company.
 * Setting up: Personalized GUI.<br>
   e.g. company name displayed in the GUI, predefined color presets.
 * Bookmark feature.<br>
@@ -69,13 +69,12 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
 
 Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
 
-## Listing of stock: `list`
-Lists all the stock(s) in the inventory.
-Format: `list`
-
 ⚠ Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
 
+## Listing of stock: `list`
+Lists all the stock(s) in the inventory.
+Format: `list`
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
@@ -83,7 +82,7 @@ Deletes the stock(s) using the stock's serial number from the inventory. Multipl
     1. Serial number of product
 
 Format (single): `delete sn/<serial number>`  
-Format (multiple): `delete sn/<serial number> sn/<serial number 2>...`
+Format (multiple): `delete sn/<serial number> sn/<serial number 2> ...`
 
 ### Find stocks from inventory: `find`
 Displays a list of stocks found in the inventory that contains all keywords specified in any fields searched.
@@ -103,23 +102,24 @@ s/<source keyword> <(optional) more keywords>`
 
 Search criteria: <br>
 Only stocks that contain all the search keywords for a field will be displayed. <br>
-* e.g. find n/ChickenNuggets will not match stock with Name: Chick. <br>
-* e.g. find n/ChickenNuggets abcdef will not match stock with Name: ChickenNuggets. <br>
+* e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
+* e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
 
 Search is case-insensitive.
-* e.g. find n/ashLey will match stock with Name: Ashley.
+* e.g. `find n/ashLey` will match stock with Name: Ashley.
 
 Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.
 * e.g.
 
-| Stock | Details |
-| ------| --------|
-|**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section|
-|**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section|
-find n/banana sn/SHENGSIONG will match both Stock 1 and Stock 2 <br>
-find l/section will match both Stock 1 and Stock 2. <br>
-find n/chicken l/poultry will match only Stock 2. <br>
-find s/ntuc l/singapore will match only Stock 1.
+Stock | Details
+------| --------
+**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
+**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+
+`find n/banana sn/SHENGSIONG` will match both Stock 1 and Stock 2 <br>
+`find l/section` will match both Stock 1 and Stock 2. <br>
+`find n/chicken l/poultry` will match only Stock 2. <br>
+`find s/ntuc l/singapore` will match only Stock 1.
 
 ### Find exact stocks from inventory: `findexact`
 Displays a list of stocks found in the inventory that contains all keywords specified in all fields searched.
@@ -139,27 +139,28 @@ s/<source keyword> <(optional) more keywords>`
 
 Search criteria: <br>
 Only stocks that contain all the search keywords for all fields will be displayed. <br>
-* e.g. findexact n/ChickenNuggets s/ntuc 
-will match stock with Name: Chick, Source: ntuc. <br>
-* e.g. findexact n/Chicken sn/1111 
-will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
-* e.g. findexact n/ChickenNuggets abcdef l/section b 
-will not match stock with Name: ChickenNuggets, Location: section b.<br>
+* e.g. `findexact n/ChickenNuggets s/ntuc`
+  will match stock with Name: Chick, Source: ntuc. <br>
+* e.g. `findexact n/Chicken sn/1111`
+  will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
+* e.g. `findexact n/ChickenNuggets abcdef l/section b` 
+  will not match stock with Name: ChickenNuggets, Location: section b.<br>
 
 Search is case-insensitive.
-* e.g. findexact n/ashLey s/nTuC will match stock with Name: Ashley, Source: ntuc.
+* e.g. `findexact n/ashLey s/nTuC` will match stock with Name: Ashley, Source: ntuc.
 
 Any stock with fields containing all the search keywords in all the fields searched will be displayed.
 * e.g.
 
-| Stock | Details |
-| ------| --------|
-|**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section|
-|**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section|
-findexact n/banana sn/SHENGSIONG will not match Stock 1 and Stock 2.<br>
-findexact l/section will match both Stock 1 and Stock 2. <br>
-findexact n/chicken l/section will match only Stock 2. <br>
-findexact n/banana s/ntuc l/singapore will not match Stock 1 and Stock 2.
+Stock | Details 
+------| --------
+**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
+**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+
+`findexact n/banana sn/SHENGSIONG` will not match Stock 1 and Stock 2.<br>
+`findexact l/section` will match both Stock 1 and Stock 2. <br>
+`findexact n/chicken l/section` will match only Stock 2. <br>
+`findexact n/banana s/ntuc l/singapore` will not match Stock 1 and Stock 2.
 
 ### Update inventory: `update`
 Updates the details of the desired stock, requires the serial number of products.
@@ -189,24 +190,28 @@ User may pass in more than one serial number to update all at once.
 will not update anything and shows an error message.
 
 ### Saving data
-Data (all stocks in inventory in csv) is automatically saved to
-`[root directory]/data/inventory.csv` when any of these commands is executed:
+Data (all stocks in inventory in json) is automatically saved to
+`[root directory]/data/stockbook.json` when any of these commands is executed:
 * add
 * delete
 * update
 
+The set of used serial number sources is automatically saved to
+`[root directory]/data/serialnumbers.json` when any of these commands is executed:
+* add
+
 ### Exiting Warenager: `exit`
 Terminates the program.
+
 Format : `exit`
 
-### Sorting `[coming in v2.0]`
+### Sorting `[coming in v1.3]`
 _{explain the feature here}_
 
-### Personalized GUI `[coming in v2.0]`
+### Personalized GUI `[coming in v1.3]`
 _{explain the feature here}_
 
-### Bookmark `[coming in v2.0]`
-
+### Bookmark `[coming in v1.3]`
 _{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
