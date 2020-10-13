@@ -95,10 +95,14 @@ exit
 ## Command Summary
 | Action | Format, Examples                                                                                        |
 |--------|---------------------------------------------------------------------------------------------------------|
-| Add    | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br>e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu``` |
-| List   | ```list```                                                                                              |
-| Delete | ```delete INDEX``` <br> e.g., ```delete 3```                                                                 |
-| Clear  | ```clear```                                                                                             |
+| Add    | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```|
+| List   | ```list```                                                                                               |
+| Delete | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
+| Mark   | `mark INDEX a/ATTENDANCE_TYPE` <br> e.g., `mark 1 a/present`                                             |
+| Store Attendance | `store_record fn/FILENAME` <br> e.g., `store_record tutorial01`                                |
+| Load Attendance | `load_record fn/FILENAME`
+| Clear  | ```clear```                                                                                              |
+
 
 ## Frequently Asked Questions (FAQ)
 How to download java? [Here](https://lmgtfy.com/?q=how+to+download+java)
