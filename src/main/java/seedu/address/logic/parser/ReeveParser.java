@@ -15,6 +15,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OverdueCommand;
+import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -61,6 +63,9 @@ public class ReeveParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case QuestionCommand.COMMAND_WORD:
+            return new QuestionCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -72,6 +77,9 @@ public class ReeveParser {
 
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
+
+        case OverdueCommand.COMMAND_WORD:
+            return new OverdueCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

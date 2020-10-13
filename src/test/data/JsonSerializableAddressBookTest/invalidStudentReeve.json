@@ -10,6 +10,7 @@
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": ["Clever"]
-    }
+    },
+    "questions": [" "]
   } ]
 }

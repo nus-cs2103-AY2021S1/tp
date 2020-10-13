@@ -35,6 +35,5 @@ public class ScheduleCommandParserTest {
 
         // "!" not allowed in user input date
         assertParseFailure(parser, "12/09/21!", ScheduleCommand.INCORRECT_DATE_FORMAT);
-
     }
 }

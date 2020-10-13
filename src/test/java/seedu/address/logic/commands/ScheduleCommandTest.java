@@ -2,12 +2,24 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.Reeve;
+import seedu.address.model.UserPrefs;
+
 public class ScheduleCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -29,6 +41,28 @@ public class ScheduleCommandTest {
 
         // null return false
         assertFalse(scheduleCommand1.equals(null));
+    }
+
+    @Test
+    public void execute_validDate_success() {
+        LocalDate validDate = LocalDate.of(2020, 11, 3);
+        DayOfWeek day = validDate.getDayOfWeek();
+
+        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
+        expectedModel.updateFilteredPersonList(std -> std.getAdmin().getClassTime().isSameDay(day));
+
+        String expectedMsg = String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW,
+                expectedModel.getFilteredPersonList().size());
+
+        ScheduleCommand scheduleCommand = new ScheduleCommand(validDate);
+
+        assertCommandSuccess(scheduleCommand, model, expectedMsg, expectedModel);
+    }
+
+    @Test
+    public void execute_nullDateToFindSchedule_throwsNullPointerException() {
+        ScheduleCommand scheduleCommand = new ScheduleCommand(null);
+        assertThrows(NullPointerException.class, () -> scheduleCommand.execute(model));
     }
 
 
