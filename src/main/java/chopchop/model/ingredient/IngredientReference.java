@@ -36,7 +36,7 @@ public class IngredientReference {
         if (qtyResult.isError()) {
             return Result.error(qtyResult.getError());
         }
-        return Result.of(new IngredientReference(words[1], qtyResult.getValue()));
+        return Quantity.parse(words[1]).map(qty -> new IngredientReference(words[0], qty));
     }
 
     public String getName() {
