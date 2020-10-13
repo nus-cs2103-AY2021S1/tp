@@ -25,7 +25,7 @@ import seedu.address.model.order.OrderItem;
 public class DeleteCommandTest {
 
 
-    private Model InitialiseModel() {
+    private Model initialiseModel() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         // Vendor vendorReference = model.getFilteredVendorList().get(INDEX_FIRST_VENDOR.getZeroBased());
         model.addOrderItem(new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 3));
@@ -34,7 +34,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        Model model = InitialiseModel();
+        Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(first);
         List<OrderItem> lastShownList = model.getFilteredOrderItemList();
@@ -48,7 +48,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validQuantity_success() {
-        Model model = InitialiseModel();
+        Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(first, 1);
         OrderItem item = new OrderItem("Hashybrownies", 4.20, new HashSet<>(), 2);
@@ -62,7 +62,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        Model model = InitialiseModel();
+        Model model = initialiseModel();
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
@@ -71,7 +71,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidQuantity_throwsCommandException() {
-        Model model = InitialiseModel();
+        Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
         // ensures that Index is still in bounds of order item list
         assertTrue(first.getZeroBased() < model.getFilteredOrderItemList().size());
