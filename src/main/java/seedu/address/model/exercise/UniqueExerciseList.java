@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
 
 public class UniqueExerciseList implements Iterable<Exercise> {
@@ -24,11 +25,16 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
+
     /**
-     * Adds an exercise to the list.
+     * Adds a exercise to the list.
+     * The exercise must not already exist in the list.
      */
     public void add(Exercise toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateExerciseException();
+        }
         internalList.add(toAdd);
     }
 
@@ -43,6 +49,10 @@ public class UniqueExerciseList implements Iterable<Exercise> {
 
         if (index == -1) {
             throw new ExerciseNotFoundException();
+        }
+
+        if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
+            throw new DuplicateExerciseException();
         }
 
         internalList.set(index, editedExercise);
@@ -68,8 +78,13 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
+
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
+        if (!exercisesAreUnique(exercises)) {
+            throw new DuplicateExerciseException();
+        }
+
         internalList.setAll(exercises);
     }
 
@@ -95,6 +110,20 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code exercises} contains only unique exercises.
+     */
+    private boolean exercisesAreUnique(List<Exercise> exercises) {
+        for (int i = 0; i < exercises.size() - 1; i++) {
+            for (int j = i + 1; j < exercises.size(); j++) {
+                if (exercises.get(i).isSameExercise(exercises.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

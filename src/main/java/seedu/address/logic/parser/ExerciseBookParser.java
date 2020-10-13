@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.CommandForExercise;
+import seedu.address.logic.commands.UpdateExerciseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
 /**
  * Parses user input.
  */
@@ -40,6 +40,9 @@ public class ExerciseBookParser {
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
+
+        case UpdateExerciseCommand.COMMAND_WORD:
+            return new UpdateExerciseCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
