@@ -18,7 +18,8 @@ public class Date {
             + "yyyy/MM/dd\n"
             + "dd/MM/yyyy\n"
             + "dd/M/yyyy\n"
-            + "d/M/yyyy\n";
+            + "d/M/yyyy\n"
+            + "d MMM yyyy\n";
 
     private static final String[] SUPPORTED_FORMATS = {
         "yyyy-MM-dd",
@@ -48,6 +49,7 @@ public class Date {
         boolean canParse = false;
         for (String format : SUPPORTED_FORMATS) {
             try {
+                // check if the date is in this format
                 this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
                 canParse = true;
                 break;
@@ -63,6 +65,9 @@ public class Date {
         date = LocalDate.now();
     }
 
+    /**
+     * Construct a {@code date} that contains the current date
+     */
     public static Date currentDate() {
         return new Date();
     }

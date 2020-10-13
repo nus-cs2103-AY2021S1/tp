@@ -63,6 +63,9 @@ public class Food {
         this(name, protein, fat, carbs, new HashSet<Tag>());
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Date date) {
         this(name, protein, fat, carbs, new HashSet<Tag>(), date);
     }
@@ -78,7 +81,6 @@ public class Food {
         return test.matches(VALIDATION_REGEX);
     }
 
-    // getters : make when needed
     public Name getName() {
         return this.name;
     }
