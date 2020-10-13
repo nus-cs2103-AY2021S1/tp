@@ -23,6 +23,7 @@ import seedu.address.logic.commands.biddercommands.AddBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
+import seedu.address.logic.commands.property.ListPropertyCommand;
 import seedu.address.logic.commands.sellercommands.AddSellerCommand;
 import seedu.address.logic.commands.sellercommands.ListSellerCommand;
 import seedu.address.logic.parser.bidderparser.AddBidderCommandParser;
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case DeletePropertyCommand.COMMAND_WORD:
             return new DeletePropertyCommandParser().parse(arguments);
+
+        case ListPropertyCommand.COMMAND_WORD:
+            return new ListPropertyCommand();
 
         case AddBidderCommand.COMMAND_WORD:
             return new AddBidderCommandParser().parse(arguments);
