@@ -21,26 +21,33 @@ import javafx.collections.transformation.FilteredList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final EvaDatabase<Person> personDatabase;
+    private final EvaDatabase<Staff> staffDatabase;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Staff> filteredStaffs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyEvaDatabase<Person> personDatabase,
+            ReadOnlyEvaDatabase<Staff> staffDatabase, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(personDatabase, staffDatabase, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with person database: " + personDatabase
+                + " and staff database: " + staffDatabase
+                + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.personDatabase = new EvaDatabase<>(personDatabase);
+        this.staffDatabase = new EvaDatabase<>(staffDatabase);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.personDatabase.getPersonList());
+        filteredStaffs = new FilteredList<>(this.staffDatabase.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new EvaDatabase<>(), new EvaDatabase<>(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,37 +75,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getEvaDatabaseFilePath() {
+        return userPrefs.getPersonDatabaseFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setEvaDatabaseFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setPersonDatabaseFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== person database ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPersonDatabase(ReadOnlyEvaDatabase<Person> personDatabase) {
+        this.personDatabase.resetData(personDatabase);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
+        return personDatabase;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return personDatabase.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        personDatabase.removePerson(target);
     }
 
     @Override
@@ -108,15 +115,49 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        personDatabase.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
+        personDatabase.setPerson(target, editedPerson);
+    }
 
-        addressBook.setPerson(target, editedPerson);
+    //=========== staff database ================================================================================
+
+    @Override
+    public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> staffDatabase) {
+        this.staffDatabase.resetData(staffDatabase);
+    }
+
+    @Override
+    public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
+        return staffDatabase;
+    }
+
+    @Override
+    public boolean hasStaff(Staff staff) {
+        requireNonNull(staff);
+        return staffDatabase.hasPerson(staff);
+    }
+
+    @Override
+    public void deleteStaff(Staff target) {
+        staffDatabase.removePerson(target);
+    }
+
+    @Override
+    public void addStaff(Staff person) {
+        staffDatabase.addPerson(person);
+        updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+    }
+
+    @Override
+    public void setStaff(Staff target, Staff editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        staffDatabase.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -136,6 +177,23 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Staff List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Staff> getFilteredStaffList() {
+        return filteredStaffs;
+    }
+
+    @Override
+    public void updateFilteredStaffList(Predicate<Staff> predicate) {
+        requireNonNull(predicate);
+        filteredStaffs.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -150,7 +208,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return personDatabase.equals(other.personDatabase)
+                && staffDatabase.equals(other.staffDatabase)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
