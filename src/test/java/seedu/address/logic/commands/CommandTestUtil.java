@@ -149,11 +149,12 @@ public class CommandTestUtil {
 
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(CommandForExercise, ExerciseModel, CommandResult, ExerciseModel)}
+     * Convenience wrapper to {@link #assertCommandSuccess(CommandForExercise, ExerciseModel,
+     * CommandResult, ExerciseModel)}
      * that takes a string {@code expectedMessage}.
      */
-
-    public static void assertCommandSuccess(CommandForExercise command, ExerciseModel actualModel, String expectedMessage,
+    public static void assertCommandSuccess(CommandForExercise command,
+                                            ExerciseModel actualModel, String expectedMessage,
             ExerciseModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
@@ -211,8 +212,7 @@ public class CommandTestUtil {
     }
 
 
-
-     /**
+    /**
      * Updates {@code model}'s filtered list to show only the exercise at the given {@code targetIndex} in the
      * {@code model}'s exercise book.
      */
