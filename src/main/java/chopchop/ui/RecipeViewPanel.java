@@ -5,7 +5,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
@@ -13,11 +12,13 @@ public class RecipeViewPanel extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "RecipeViewPanel.fxml";
+    private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today:)";
     private static final int ROWS = 3;
     private static final int START_COL = -1;
 
+    private final TextDisplay textDisplay;
+
     private ObservableList<Recipe> recipeObservableList;
-    private final TextArea emptyListPrompt = new TextArea();
     // Only 3 rows of recipes will be displayed.
 
     @FXML
@@ -31,8 +32,8 @@ public class RecipeViewPanel extends UiPart<Region> {
      */
     public RecipeViewPanel(ObservableList<Recipe> recipeList) {
         super(FXML);
+        textDisplay = new TextDisplay(EMPTY_PROMPT);
         recipeObservableList = recipeList;
-        emptyListPrompt.setText("You do not have any recipes yet.\nAdd one today:)");
         recipeObservableList.addListener(new ListChangeListener<Recipe>() {
             @Override
             public void onChanged(Change<? extends Recipe> c) {
@@ -76,10 +77,10 @@ public class RecipeViewPanel extends UiPart<Region> {
     }
 
     private void displayPrompt() {
-        recipeGridView.add(emptyListPrompt, 0, 0);
+        recipeGridView.add(textDisplay.getRoot(), 0, 0);
     }
 
     private boolean isEmpty() {
-        return recipeGridView.getChildren().contains(emptyListPrompt) || recipeObservableList.isEmpty();
+        return recipeGridView.getChildren().contains(textDisplay) || recipeObservableList.isEmpty();
     }
 }

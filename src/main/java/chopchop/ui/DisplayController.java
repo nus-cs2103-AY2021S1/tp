@@ -19,7 +19,7 @@ public class DisplayController extends UiPart<Region> {
     private static final String FXML = "DisplayPanel.fxml";
     private static final String WELCOME_MESSAGE = "Welcome to ChopChop! If you need any help, press 'F1'";
 
-    private final TextArea welcomePrompt = new TextArea();
+    private final TextDisplay textDisplay;
     private Logic logic;
     private NotificationWindow notificationWindow;
 
@@ -33,7 +33,7 @@ public class DisplayController extends UiPart<Region> {
     public DisplayController(Logic logic) {
         super(FXML);
         this.logic = logic;
-        welcomePrompt.setText(WELCOME_MESSAGE);
+        textDisplay = new TextDisplay(WELCOME_MESSAGE);
         notificationWindow = new NotificationWindow();
         displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -50,7 +50,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayWelcomeMessage() {
-        displayAreaPlaceholder.getChildren().setAll(welcomePrompt);
+        displayAreaPlaceholder.getChildren().setAll(textDisplay.getRoot());
     }
 
     /**
