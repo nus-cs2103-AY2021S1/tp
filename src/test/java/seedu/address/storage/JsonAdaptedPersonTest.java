@@ -67,6 +67,14 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_nullNote_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_CLIENTSOURCES, null);
+        Person bensonWithoutNote = new PersonBuilder(BENSON).withoutNote().build();
+        assertEquals(bensonWithoutNote, person.toModelType());
+    }
+
+    @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
@@ -130,16 +138,6 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_CLIENTSOURCES, INVALID_NOTE);
-        assertThrows(IllegalValueException.class, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullNote_throwsIllegalValueException() {
-        List<JsonAdaptedClientSource> invalidClientSources = new ArrayList<>(VALID_CLIENTSOURCES);
-        invalidClientSources.add(new JsonAdaptedClientSource(INVALID_CLIENTSOURCE));
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidClientSources,
-                        null);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 }

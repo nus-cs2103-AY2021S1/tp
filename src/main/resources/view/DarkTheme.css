@@ -362,3 +362,7 @@
 #email .label {
     -fx-font-size: 12;
 }
+
+#note .label {
+    -fx-font-size: 12;
+}

@@ -127,6 +127,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building to null.
+     */
+    public PersonBuilder withoutNote() {
+        this.note = null;
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, clientSources, note);
     }

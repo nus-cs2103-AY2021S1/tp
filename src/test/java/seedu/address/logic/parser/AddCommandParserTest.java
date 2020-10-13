@@ -108,6 +108,12 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_AMY + NOTE_DESC_CAT,
                 new AddCommand(expectedPerson));
 
+        // missing note prefix
+        Person expectedPersonWithoutNote = new PersonBuilder(AMY).withoutNote().build();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + ADDRESS_DESC_AMY + CLIENTSOURCE_DESC_FRIEND,
+                new AddCommand(expectedPersonWithoutNote));
+
     }
 
     @Test
