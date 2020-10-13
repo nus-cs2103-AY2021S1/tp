@@ -51,7 +51,7 @@ public class ExerciseBookParser {
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
-      
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 

@@ -67,7 +67,6 @@ public class Exercise {
         if (!(other instanceof Exercise)) {
             return false;
         }
-
         Exercise otherExercise = (Exercise) other;
 
         return otherExercise.getName().equals(getName())
