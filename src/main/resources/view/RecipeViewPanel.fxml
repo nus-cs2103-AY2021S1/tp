@@ -4,7 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@Style.css" />
+   </stylesheets>
    <bottom>
       <ScrollPane fx:id="recipePanel" pannable="true" prefHeight="470.0" prefWidth="624.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>

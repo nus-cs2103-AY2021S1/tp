@@ -25,6 +25,28 @@
 .tab-button:pressed {
     -fx-background-color: transparent;
 }
+.recipe-button {
+    -fx-padding: 2 2 2 2;
+    -fx-border-color: #f6f6f6;
+    -fx-border-width: 2;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-color: #f6f6f6;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12pt;
+    -fx-text-fill: #fa47df;
+    -fx-font-color: #fa47df;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-focus-color: #d6d4d4;
+    -fx-faint-focus-color: #d6d4d4;
+    -fx-border-color: black;
+}
+.recipe-button:hover {
+    -fx-background-color: #d6d4d4;
+}
+.recipe-button:pressed {
+    -fx-background-color: transparent;
+}
 .label-button {
     -fx-font-family: "Helvetica";
     -fx-font-size: 14pt;
@@ -38,6 +60,10 @@
 .cell-big-label {
     -fx-font-family: "Helvetica";
     -fx-font-size: 22pt;
+}
+.pins-background {
+    -fx-background-color: green;
+    -fx-fill: #f7e9cd;
 }
 #commandTextField {
     -fx-background-color: #d6d4d4;
@@ -153,4 +179,19 @@
 #pins .scroll-pane .content{
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
+}
+#name {
+    -fx-text-fill: #fa47df;
+}
+#displayAreaPlaceholder {
+    -fx-background-color: white;
+}
+#recipePanel {
+    -fx-background-color: white;
+}
+#recipePanel .viewport {
+    -fx-background-color: white;
+}
+#recipeGridView {
+    -fx-background-color: white;
 }
