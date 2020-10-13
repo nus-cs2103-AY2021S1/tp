@@ -3,10 +3,10 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a desktop application designed for team leaders of small software projects.** While it has a Graphical 
-Interface, Taskmania is primarily designed to be written in a command line fashion such that commands guide the user 
+* This is **a desktop application designed for team leaders of small software projects.** While it has a Graphical
+Interface, Taskmania is primarily designed to be written in a command line fashion such that commands guide the user
 through the application. This is ideal for a user who is a fast typer as this user would never have to reach
-for a mouse and hence save time that way. 
+for a mouse and hence save time that way.
 * Some project leaders manage their team over Whatsapp / Telegram which can get cumbersome and difficult to keep
  track of and we want to provide a way for them to see at a glance the progress of their team thus far to better
   gauge what has to be done.

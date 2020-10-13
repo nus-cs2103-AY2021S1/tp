@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final MainCatalogue mainCatalogue;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
+    private Optional<Project> projectToBeDisplayedOnDashboard;
 
     /**
      * Initializes a ModelManager with the given mainCatalogue and userPrefs.
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.mainCatalogue = new MainCatalogue(mainCatalogue);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
+        this.projectToBeDisplayedOnDashboard = Optional.empty();
     }
 
     public ModelManager() {
@@ -124,6 +127,7 @@ public class ModelManager implements Model {
     public void enter(Project project) {
         mainCatalogue.enter(project);
         updateFilteredProjectList(p -> p.isSameProject(project));
+        updateProjectToBeDisplayedOnDashboard(project);
     }
 
     @Override
@@ -166,5 +170,22 @@ public class ModelManager implements Model {
         return mainCatalogue.equals(other.mainCatalogue)
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects);
+    }
+
+    //=========== Project To Be Displayed On DashBoard Accessors ======================================================
+
+    /**
+     * Updates the project to be displayed on project dashboard.
+     * @param project project to be displayed on dashboard
+     */
+    @Override
+    public void updateProjectToBeDisplayedOnDashboard(Project project) {
+        requireNonNull(project);
+        this.projectToBeDisplayedOnDashboard = Optional.of(project);
+    }
+
+    @Override
+    public Optional<Project> getProjectToBeDisplayedOnDashboard() {
+        return projectToBeDisplayedOnDashboard;
     }
 }

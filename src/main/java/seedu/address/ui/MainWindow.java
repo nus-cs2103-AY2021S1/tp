@@ -32,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ProjectListPanel projectListPanel;
+    private ProjectDashboard projectDashboard;
+    private EmptyProjectDashboard emptyProjectDashboard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane projectListPanelPlaceholder;
+
+    @FXML
+    private StackPane projectDashboardPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +117,14 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList(), logic.getStatus());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+
+        if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()) {
+            emptyProjectDashboard = new EmptyProjectDashboard();
+            projectDashboardPlaceHolder.getChildren().add(emptyProjectDashboard.getRoot());
+        } else {
+            projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
+            projectDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
+        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
