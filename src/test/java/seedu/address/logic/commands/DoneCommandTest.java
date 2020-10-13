@@ -22,45 +22,54 @@ import seedu.address.model.task.Task;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DoneCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TASK);
+        Index[] indexes = {INDEX_FIRST_TASK};
+        Task[] tasksToDone = new Task[indexes.length];
+        for (int i = 0; i < indexes.length; i++) {
+            tasksToDone[i] = model.getFilteredTaskList().get(indexes[i].getZeroBased());
+        }
+        DoneCommand doneCommand = new DoneCommand(indexes);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTask(taskToDelete);
+        expectedModel.markAsDone(tasksToDone);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        Index[] indexes = {outOfBoundIndex};
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        DoneCommand doneCommand = new DoneCommand(indexes);
+
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
+        Index[] indexes = {INDEX_FIRST_TASK};
+        Task[] tasksToDone = new Task[indexes.length];
+        for (int i = 0; i < indexes.length; i++) {
+            tasksToDone[i] = model.getFilteredTaskList().get(indexes[i].getZeroBased());
+        }
+        DoneCommand doneCommand = new DoneCommand(indexes);
 
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TASK);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DoneCommand.buildMessage(tasksToDone));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTask(taskToDelete);
-        showNoTask(expectedModel);
+        showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
+        expectedModel.markAsDone(tasksToDone);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -68,42 +77,37 @@ public class DeleteCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
+        Index[] indexes = {outOfBoundIndex};
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DoneCommand doneCommand = new DoneCommand(indexes);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_TASK);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_TASK);
+        Index[] firstIndex = {INDEX_FIRST_TASK};
+        Index[] secondIndex = {INDEX_SECOND_TASK};
+        DoneCommand doneFirstCommand = new DoneCommand(firstIndex);
+        DoneCommand doneSecondCommand = new DoneCommand(secondIndex);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(doneFirstCommand.equals(doneFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_TASK);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        DoneCommand doneFirstCommandCopy = new DoneCommand(firstIndex);
+        assertTrue(doneFirstCommand.equals(doneFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(doneFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(doneFirstCommand.equals(null));
 
         // different task -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(doneFirstCommand.equals(doneSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTask(Model model) {
-        model.updateFilteredTaskList(p -> false);
-
-        assertTrue(model.getFilteredTaskList().isEmpty());
-    }
 }
