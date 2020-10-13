@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.delivery.Delivery;
 
@@ -20,12 +22,28 @@ public class DeliveryCard extends UiPart<Region> {
 
     public final Delivery delivery;
 
+    @FXML
+    private Label id;
+    @FXML
+    private Label name;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label address;
+    @FXML
+    private Label order;
+
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
     public DeliveryCard(Delivery delivery, int displayedIndex) {
         super(FXML);
         this.delivery = delivery;
+        id.setText(displayedIndex + ". ");
+        name.setText(delivery.getName().toString());
+        phone.setText(delivery.getPhone().toString());
+        address.setText(delivery.getAddress().toString());
+        order.setText(delivery.getOrder().toString());
     }
 
     @Override
