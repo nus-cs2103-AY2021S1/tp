@@ -1,12 +1,31 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PAYMENT_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.admin.Admin;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -38,26 +57,30 @@ public class TypicalStudents {
             .withSchool("NUS High School")
             .withYear("6").build();
 
+    // Manually added - Student's details found in {@code CommandTestUtil}
+    public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withSchool(VALID_SCHOOL_AMY)
+            .withYear(VALID_YEAR_AMY)
+            .withClassVenue(VALID_CLASS_VENUE_AMY)
+            .withClassTime(VALID_CLASS_TIME_AMY)
+            .withFee(VALID_FEE_AMY)
+            .withPaymentDate(VALID_PAYMENT_DATE_AMY)
+            .withDetails(VALID_ADDITIONAL_DETAILS_AMY)
+            .build();
+    public static final Admin AMY_ADMIN = AMY.getAdmin();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
-            .withPhone(CommandTestUtil.VALID_PHONE_AMY)
-            .withSchool(CommandTestUtil.VALID_SCHOOL_AMY)
-            .withYear(CommandTestUtil.VALID_YEAR_AMY)
-            .withClassVenue(CommandTestUtil.VALID_VENUE_AMY)
-            .withClassTime(CommandTestUtil.VALID_TIME_AMY)
-            .withFee(CommandTestUtil.VALID_FEE_AMY)
-            .withPaymentDate(CommandTestUtil.VALID_PAYMENT_AMY)
+    public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withSchool(VALID_SCHOOL_BOB)
+            .withYear(VALID_YEAR_BOB)
+            .withClassVenue(VALID_CLASS_VENUE_BOB)
+            .withClassTime(VALID_CLASS_TIME_BOB)
+            .withFee(VALID_FEE_BOB)
+            .withPaymentDate(VALID_PAYMENT_DATE_BOB)
+            .withDetails(VALID_ADDITIONAL_DETAILS_BOB)
             .build();
-    public static final Student BOB = new StudentBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
-            .withPhone(CommandTestUtil.VALID_PHONE_BOB)
-            .withSchool(CommandTestUtil.VALID_SCHOOL_BOB)
-            .withYear(CommandTestUtil.VALID_YEAR_BOB)
-            .withClassVenue(CommandTestUtil.VALID_VENUE_BOB)
-            .withClassTime(CommandTestUtil.VALID_TIME_BOB)
-            .withFee(CommandTestUtil.VALID_FEE_BOB)
-            .withPaymentDate(CommandTestUtil.VALID_PAYMENT_BOB)
-            .build();
+    public static final Admin BOB_ADMIN = BOB.getAdmin();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

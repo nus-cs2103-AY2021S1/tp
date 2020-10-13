@@ -95,16 +95,16 @@ Format: `list`
 
 Edits an existing student in Reeve (Written by: Vaishak).
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/VENUE] [t/TIME] [a/ADDITIONAL_DETAILS] [m/MEETING_LINK] [sb/SUBJECT]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] [a/ADDITIONAL_DETAILS] `
 
 <div markdown="span" class="alert alert-primary">:information_source: **Note:**
 The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}
 </div>
 
-
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Start time has to be before end time.
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
@@ -115,20 +115,27 @@ Examples:
 (written by: Ying Gao)
 Finds students who satisfy the given search criteria.
 
-Format: `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`
+Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * At least one of the optional fields must be provided.
 * The order of the optional fields do not matter. e.g `n/Hans s/River Valley` will match `s/River Valley n/Hans`
-* Only full words will be matched. e.g `han` will not match `hans`
-* Students whose name, school, year or subject contain the keywords given for their respective fields will be returned.
-* Only students satisfying all search criteria will be returned (i.e `AND` search).
+* Only full words will be matched. e.g `han` will not match `hans`.
+* For the name, students with a name that matches any whole keyword specified for the name will be considered to match for the name.
+* For the school, students with a school that contains any keyword specified for the school will be considered to match for the school.
+* For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
+* Only students matching all criteria specified will be returned (i.e `AND` search).
 
 (written by: Choon Siong)
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
-* `find s/yishun` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
-* `find n/alex s/yishun` searches for all students who match `n/alex` and `s/yishun`.
+* `find n/Alex david` does not match `Alexis Davinder`.
+* `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
+* `find s/yishun secondary` does not match `Yishun Sec`
+* `find y/sec 3` matches `sec 3`, `Secondary 3`
+* `find y/sec 3` matches `sec 4`
+* `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
+* 
 
 ### Deleting a student : `delete`
 

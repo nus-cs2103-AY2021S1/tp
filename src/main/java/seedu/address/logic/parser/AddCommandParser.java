@@ -54,8 +54,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SCHOOL).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        ClassVenue classVenue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        ClassTime classTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        ClassVenue classVenue = ParserUtil.parseClassVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        ClassTime classTime = ParserUtil.parseClassTime(argMultimap.getValue(PREFIX_TIME).get());
         Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
         PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get());
         Set<AdditionalDetail> detailList =
